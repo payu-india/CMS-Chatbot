@@ -10,323 +10,552 @@ metadata:
 next:
   description: ''
 ---
-This section provides step-by-step for integrating the UPI Bolt SDK in React Native applications. The UPI Bolt SDK offers the following key functionalities:
+PayU UPI Bolt SDK will provide a simpler and more efficient payment experience to the merchants. It will eliminate any third-party redirection and higher success rate. Profile management including accounts and balances for users. Enhancing the overall customer experience and decreasing customer drop-offs.
 
-- **Registration**: APIs for device binding and user registration
-- **Payment**: APIs for payment processing and transaction verification
-- **Management**: APIs for account management (balance checks, PIN changes, account addition/deletion)
+## Advantages
 
-## Prerequisites
+1. One-click payment journey and no hassle of redirection to a third-party UPI application.
+2. Quick completion of transactions because of direct integration with the bank.
+3. Seamless user experience to the customers with in-app payment.
+4. Easy to integrate and get the advantage of existing customer profiles created with banks.
+5. 5-6% higher success rate and better transaction conversion.
+6. Merchants can take advantage of a complete user funnel to understand user behavior.
 
-### SDK Compatibility
+## User Journeys in PayU UPI Bolt
 
-- Minimum Android SDK Version: 23+
-- Compile SDK Version: 31+
+### Registration and Pay
 
-### Required Permissions
+1. Merchant Application can do the User registration for customers who are coming first time for PayU UPI Bolt. The Registration can be done during the checkout process or it can be called in a separate user journey. In case of Merchant is using PayU Checkout Pro SDK, PayU will take care of customer registration.
+2. Once the registration process is initiated, the user will be asked to accept the SMS sending permissions required to verify the SIM card. If the phone has dual SIM, the SIM card selection screen will be shown to customers to select the specific SIM card.
+3. After the device verification, UPI ID creation and the Bank selection will be done. Add bank journey will be completed after adding a bank account connected to the same mobile number used for device verification.
+4. Finally, customers can do a transaction using the added bank account. In case the customer is using the bank account for the first time they will need to set the MPIN as well.
+5. Finally, customers can make a transaction using the added bank account. If the customer is using the bank account for the first time, he will also need to set the MPIN.
 
-The following permissions need to be added to your Android Manifest file:
+### Pay
 
-```xml
-<uses-permission android:name="android.permission.SEND_SMS"/>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-<uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+1. Customers who are already registered with PayU UPI Bolt can make a One-click payment.
+2. The customer needs to select the already added bank account and enter the MPIN and the transaction will be completed.
+3. The customer can also check the balance before making a transaction to avoid low-balance transaction failure.
+
+### Profile Management Journey
+
+1. Customers can add new bank accounts, set MPIN, change MPIN, reset MPIN, delete accounts, and check the balance of already added bank accounts.
+2. Transaction history can be seen and queries can be raised and resolved within the PayU UI Bolt SDK.
+3. Customers can see all the raised disputes from the Dispute history screen.
+4. Customers can also deregister their all accounts with PayU UI Bolt SDK.
+
+## Steps to Integrate PayU Bolt SDK
+
+### Prerequisites
+
+SDK Compatibility: Ensure that the application's minimum development target is set to version 13 or higher.
+
+### UI Bolt Integration
+
+Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
+
+### iOS Integration
+
+To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your podfile.
+
+**Supported iOS deployment target - iOS 17 and above.**
+
+Add the following imports in the class where you need to initiate SDK:
+
+```typescript
+import PayUUPIBoltUiSdk from 'payu-upi-bolt-ui-rn';
 ```
 
-## Integration Steps
+Ensure that the application's minimum development target is set to version 13 or higher.
 
-### 1. Install the SDK
+The following xcframework files will be provided by PayU during onboarding:
 
-Install the UPI Bolt SDK package using npm:
+1. NPCI - CommonLibrary.xcframework
+2. AXIS - OlivePayLibrary.xcframework
+
+Add these framework in your project.
+
+In Build Settings > Framework Search Path, add `$(PROJECT_DIR)/Frameworks` if it is not added automatically by Xcode.
+
+Install the npm package:
 
 ```bash
 npm install payu-upi-bolt-ui-rn --save
 react-native link payu-upi-bolt-ui-rn
 ```
 
-### 2. Import the SDK
+Also, add the following dependency to the podfile of your Xcode app if not exists:
 
-Import the SDK in your React Native component:
-
-```javascript
-import PayUUPIBoltUiSdk from 'payu-upi-bolt-ui-rn';
+```ruby
+pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
 ```
 
-### 3. Add Dependencies
+### Android Integration
 
-Add the following dependencies to your Android project's `build.gradle` file:
+Add the following permissions in your AndroidManifest file:
+
+```xml
+<uses-permission android:name="android.permission.SEND_SMS"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+```
+
+Add the following dependency in the build.gradle file of your android app module:
 
 ```gradle
-implementation 'in.payu:payu-upi-bolt-axis-wrapper-sdk-android:0.0.1'
+implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.1-dev4'
+implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
 ```
 
-### 4. Add .aar Files
+Add the given aar file in the libs folder of your android app module:
 
-Add the .aar files to your Android project and include them in your app's `build.gradle` file:
-
-> 📘 Note:
-> 
-> PayU will provide the required .aar files during onboarding.
-
-```gradle
-api(files("$projectDir/libs/SecureComponent-release-prod_05062024_9d3904ab.aar"))
-api(files("$projectDir/libs/oliveupi-payu-release_PROD_02-12-2024_2.0.2.aar"))
+```
+<your_project>/android/app/libs/SecureComponent-release-prod_05062024_9d3904ab.aar
 ```
 
-## SDK Initialization
+## SDK Methods
 
-### Initialize the SDK
+### 1. init
 
-Create a configuration object and initialize the SDK:
+It is used to initialize the SDK. This method returns an object that will be used to access other methods available in PayUUPIBoltUI.
+
+#### Request
 
 ```javascript
+// Function to create SDK configuration
 createSDKConfig = () => {
-    let x = Math.random();
-    var config = {
-        merchantName: merchantName,
-        merchantKey: key,
-        phone: phone,
-        email: email,
-        requestId: 'payu_' + x,
-        pluginTypes: ["AXIS"],
-        isProduction: true,
-        excludedBanksIINs: []
-    }
-    return config;
-}
+  const requestId = 'payu_' + Math.random();
 
-var initConfig = createSDKConfig();
-PayUUPIBoltUiSdk.initSDK(initConfig);
+  const config = {
+    merchantName: merchantName,
+    merchantKey: key,
+    phone: phone,
+    email: email,
+    requestId: requestId,
+    pluginTypes: ["AXIS"],
+    isProduction: true,
+    excludedBanksIINs: [],
+  };
+
+  return config;
+};
+
+// Initialize the SDK
+const initConfig = createSDKConfig();
+PayUUPIBoltUISdk.initSDK(initConfig);
+
+// To clear the SDK instance
+PayUUPIBoltUISdk.reset(reactContext);
 ```
 
-The following fields are needed as a request for this API:
+#### Request Parameters
 
-```json
-{
-  "Field": "Description",
-  "config": "`PayUUPIBoltUIConfig` PayUUPIBoltUIConfig includes the below fields.",
-  "merchantName": "`String` Merchant Name",
-  "merchantKey": "`String` Merchant key that was provided by PayU while onboarding. Refer to [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).",
-  "phone": "`String` Phone number for registration",
-  "email": "`String` Customer Email Id",
-  "pluginTypes": "`String Array` List of Supported Banks (Values - PluginType.AXIS)",
-  "isProduction": "`Boolean` Indicates the environment:  \n  \n- **true** indicates production environment\n- **false** indicates staging or test environment",
-  "excludedBanksIINs": "`String` List of Bank's IIN to exclude",
-  "requestId": "`String` Unique reference ID"
-}
-```
+# PayU UPI Configuration Parameters
 
-### Reset the SDK
+## Request Parameters
 
-To clear the SDK instance before creating a new one:
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">config<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> PayUUPIBoltBaseConfig includes the below fields.</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">{...}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">merchantName<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Merchant Name</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"MyStore Inc"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">merchantKey<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> PayU Merchant Key</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"gtKFFx"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">phone<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Phone number for registration</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"+919876543210"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">email<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Customer Email Id</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"customer@example.com"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">pluginTypes<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Supported Plugin (Values - AXIS or HDFC or BHIM)</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC", "BHIM"]</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">isProduction<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Bool</code> Prod - true, staging - false</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">excludedBanksIINs<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Bank's IIN to exclude</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">["123456", "789012"]</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">clientId<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique client ID</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"CLIENT_001"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">refId<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique reference ID</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"REF_12345678"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">issuingBanks<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Issuing Bank's (Values - AXIS or HDFC)</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC"]</td>
+        </tr>
+    </tbody>
+</table>
+`}</HTMLBlock>
+
+
+#### Response
+
+Refer to SDK Response JSON Format.
+
+### 2. isUPIBoltEnabled
+
+This method is used to check whether the upi bolt is enabled for the merchant or not.
+
+#### Request
 
 ```javascript
-PayUUPIBoltUiSdk.reset(reactContext);
+PayUUPIBoltUISdk.isUPIBoltSDKAvailable((response) => {
+  if (response.isSDKAvailable === 'true') {
+    console.log("SDK is available. Proceed with payment or other operations.");
+  } else {
+    console.log("UPI Bolt SDK is not available.");
+  }
+});
 ```
 
-## SDK APIs
+#### Response
 
-### Check SDK Availability
+Refer to SDK Response JSON Format.
 
-Use this method to check if the UPI Bolt SDK is available on the device:
+### 3. registerAndPay
+
+This API allows you to initialize registration and payment flow. It will internally authenticate and register the customer. After successful authentication and registration, the user will follow the payment journey. Once payment is completed, based on the payment status the merchant will get a callback through the listener.
+
+#### Request
 
 ```javascript
-PayUBizSdk.isUPIBoltSDKAvailable(
-    (response) => {
-        if (response.isSDKAvailable == 'true') {
-            console.log("SDK is available for payment.");
-        } else {
-            console.log("UPI Bolt is not available.");
-        }
-    }
-);
+const txnId = new Date().getTime().toString();
+
+const paymentParams = {
+  amount: "<amount>", // String
+  productInfo: "<productInfo>", // String
+  firstName: "<firstName>", // String
+  surl: "<successUrl>", // String (Android success URL)
+  furl: "<failureUrl>", // String (Android failure URL)
+  ios_surl: "<iosSuccessUrl>", // String (iOS success URL)
+  ios_furl: "<iosFailureUrl>", // String (iOS failure URL)
+  initiationMode: "<initiationMode>", // String (e.g., "10")
+  purpose: "<purpose>", // String (e.g., "00")
+  udf1: "<udf1>", // String (Optional)
+  udf2: "<udf2>", // String (Optional)
+  udf3: "<udf3>", // String (Optional)
+  udf4: "<udf4>", // String (Optional)
+  udf5: "<udf5>", // String (Optional)
+  txnId: "<txnId>", // String (Unique transaction ID)
+  isCCTxnEnabled: <trueOrFalse> // Boolean (Enable card fallback if supported)
+};
+
+PayUUPIBoltUISdk.payURegisterAndPay(paymentParams);
 ```
 
-### Register and Pay
+#### Request Parameters
 
-This API combines user registration and payment flow:
+| Field | Data Type | Optional / Mandatory | Definition |
+|-------|-----------|----------------------|------------|
+| params | Map | M | Refer to Payment Params section |
+
+#### Response
+
+Refer to SDK Response JSON Format.
+
+| Field | Data Type | Definition |
+|-------|-----------|------------|
+| result | Any | Payment Response |
+
+### 4. openUPIManagement
+
+This API allows you to manage UPI accounts and transaction history.
+
+#### Request
 
 ```javascript
-createPaymentParams = () => {
-    var txnId = new Date().getTime().toString();
-    var payUPaymentParams = {
-        txnId: txnId,
-        amount: amount,
-        firstName: firstName,
-        ios_surl: sUrl,
-        ios_furl: fUrl,
-        surl: sUrl,
-        furl: fUrl,
-        productInfo: productInfo,
-        udf1: udf1,
-        udf2: udf2,
-        udf3: udf3,
-        udf4: udf4,
-        udf5: udf5
-    }
-    return payUPaymentParams;
-}
+// Screen Types
+const screenType = <screenType> // String
 
-PayUUPIBoltUiSdk.payURegisterAndPay(createPaymentParams());
+// Values
+"ALL" or "TRANSACTIONHISTORY" or "MANAGEUPIACCOUNTS" or "DISPUTE" or "DEREGISTERUPI"
+
+PayUUPIBoltUISdk.openUPIManagement(screenType);
 ```
+
+#### Request Parameters
+
+| Field | Data Type | Optional / Mandatory | Definition |
+|-------|-----------|----------------------|------------|
+| screenType | String | M | To enforce the management screen |
+
+#### Response
+
+Refer to SDK Response JSON Format.
+
+## PayUPaymentParams
 
 The following fields are needed as a request:
 
-```json
-{
-  "Fields": "Description",
-  "amount": "`String` Amount to payment",
-  "txnId": "`String` Unique transaction Id",
-  "productInfo": "`String` Product description",
-  "firstName": "`String` First name of the user",
-  "surl": "`String` Success URL",
-  "furl": "`String` Failure URL",
-  "udf1": "`String` User-defined field 1",
-  "udf2": "`String` User-defined field 2",
-  "udf3": "`String` User-defined field 3",
-  "udf4": "`String` User-defined field 4",
-  "udf5": "`String` User-defined field 5"
-}
-```
+| Field | Data Type | Optional / Mandatory | Definition |
+|-------|-----------|----------------------|------------|
+| amount | String | M | Txn Amount |
+| txnId | String | M | Txn Id |
+| productInfo | String | M | Product Info |
+| firstName | String | M | First Name |
+| surl | String | O | Success URL |
+| furl | String | O | Failure URL |
+| additionalParam | Map | O | Additional params if any |
+| udf1 | Any | O | User Defined Fields1 |
+| udf2 | Any | O | User Defined Fields2 |
+| udf3 | Any | O | User Defined Fields3 |
+| udf4 | Any | O | User Defined Fields4 |
+| udf5 | Any | O | User Defined Fields5 |
+| udf6 | Any | O | User Defined Fields6 |
 
-### UPI Management
+## Listener/Callback Logic
 
-Use this API to manage UPI accounts and view transaction history:
+The listener/callback contains following methods where the merchant app will get the API response and hash-related callbacks.
 
-```javascript
-PayUUPIBoltUiSdk.payUUPIBoltUserSettings(<screenType>);
-```
-
-The following fields are needed as a request:
-
-```json
-{
-  "Field": "Description",
-  "screenType": "`String`This field must contain any of the following screen type  \n  \n- ALL\n- TRANSACTIONHISTORY\n- MANAGEUPIACCOUNTS\n- DISPUTE\n- DEREGISTERUPI"
-}
-```
-
-## Event Listeners
-
-Set up event listeners to handle callbacks from the SDK:
+#### Request
 
 ```javascript
+// Register event emitters
 useEffect(() => {
-    const eventEmitter = new NativeEventEmitter(PayUBizSdk);
-    onPayUSuccessListener = eventEmitter.addListener('onPayUSuccess', onPayUSuccess);
-    onPayUFailureListener = eventEmitter.addListener('onPayUFailure', onPayUFailure);
-    onPayUCancelListener = eventEmitter.addListener('onPayUCancel', onPayUCancel);
-    payUGenerateHashListener = eventEmitter.addListener('generateHash', generateHash);
-    permissionListener = eventEmitter.addListener('permissionCallback', permissionCallback);
+  const eventEmitter = new NativeEventEmitter(PayUBizSdk);
 
-    return () => {
-        onPayUSuccessListener.remove();
-        onPayUFailureListener.remove();
-        onPayUCancelListener.remove();
-        payUGenerateHashListener.remove();
-        permissionCallback.remove();
-    }
+  onPayUSuccessListener = eventEmitter.addListener('onPayUSuccess', onPayUSuccess);
+  onPayUFailureListener = eventEmitter.addListener('onPayUFailure', onPayUFailure);
+  onPayUCancelListener = eventEmitter.addListener('onPayUCancel', onPayUCancel);
+  payUGenerateHashListener = eventEmitter.addListener('generateHash', generateHash);
+  permissionListener = eventEmitter.addListener('permissionCallback', permissionCallback);
+
+  // Clean up listeners on unmount or merchantSalt change
+  return () => {
+    console.log("Unsubscribed!");
+    onPayUSuccessListener.remove();
+    onPayUFailureListener.remove();
+    onPayUCancelListener.remove();
+    payUGenerateHashListener.remove();
+    permissionListener.remove();
+  };
 }, [merchantSalt]);
 
-onPayUSuccess = (e) => {
-    console.log(e);
-    displayAlert('onPayUSuccess', JSON.stringify(e));
-}
+// Handler: PayU success
+onPayUSuccess = (response) => {
+  displayAlert('onPayUSuccess', JSON.stringify(response));
+};
 
-onPayUFailure = (e) => {
-    console.log(e);
-    displayAlert('onPayUFailure', JSON.stringify(e));
-}
+// Handler: PayU failure
+onPayUFailure = (response) => {
+  displayAlert('onPayUFailure', JSON.stringify(response));
+};
 
-onPayUCancel = (e) => {
-    console.log(e);
-    displayAlert('onPayUCancel', JSON.stringify(e));
-}
+// Handler: PayU cancel
+onPayUCancel = (response) => {
+  displayAlert('onPayUCancel', JSON.stringify(response));
+};
 
+// Handler: Generate hash event
 generateHash = (e) => {
-    console.log('generateHash - ' + e);
-    console.log(e.hashName);
-    console.log(e.hashString);
-    sendBackHash(e.hashName, e.hashString + merchantSalt);
-}
+  handleHashGeneration(e.hashName, e.hashString + merchantSalt);
+};
+```
 
-displayAlert = (title, value) => {
-    if (showAlert == false) {
-        setShowAlert(true);
-        Alert.alert(title, value);
-    }
-    setShowAlert(false);
-}
+#### Response
 
-sendBackHash = (hashName, hashData) => {
-    var hashValue = calculateHash(hashData);
-    var result = {'hashName': hashName, [hashName]: hashValue };
-    PayUBizSdk.hashGenerated(result);
-}
+Refer to SDK Response JSON Format.
 
-calculateHash = (data) => {
-    var result = sha512(data);
-    return result;
+## Hash Generation Logic
+
+The PayU SDKs use hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification.
+
+For generating and passing dynamic hashes, the merchant will receive a call from the generateHash method of PayUUPIBoltUiListener. The generateHash() method is called by the SDK each time it needs an individual hash.
+
+#### Request
+
+```javascript
+function handleHashGeneration(hashName, hashString) {  
+  // Merchant will get Map/ JSON with type of hash and hash string as value of dictionary.
+  /*
+  They have to sign that string using salt to create hash value and pass that to onCompletion
+  In the map you have to check for three keys to generate hash.
+  1. hashString
+  2. hashName
+  3. postSalt
+  
+  At the end of that hashString append your salt and use SHA-512 algo on that final string to generate hash.
+  Note: If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algo on that final string to generate hash.
+  Once the hash is generated use hashGenerationListener parameter to pass the hash to SDK. Example code:
+  */
+
+  // get hash for "commandName" from server
+  // get hash for "hashString" from server
+
+  var hash = <fetch_hash_from_server>;
+
+  // After fetching hash set its value in below variable "hashMap"
+
+  const result = { hashName: hashName, [hashName]: hashValue };
+  PayUBizSdk.hashGenerated(result);
 }
 ```
 
-## Response Structure
+#### Response
 
-### PayUUPIResponse
+Refer to SDK Response JSON Format.
 
-The SDK returns responses in the following format:
+| Field | Data Type | Definition |
+|-------|-----------|------------|
+| result | Any? | Contains response model if received success callback |
+| code | Int | Status code |
+| message | String? | Message |
+| responseType | Integer | Refer to ResponseType |
 
-```json
-{
-  "responseType": 100,
-  "code": 0,
-  "message": "Success",
-  "result": {
-    // Response data object
+## Error Codes and Error Message List
+
+| Response Code | Message |
+|---------------|---------|
+| 0 | Success |
+| 1 | Fail/ Invalid Response/ Missing params |
+| 2 | User cancelled the transaction |
+| 100 | Transaction timeout |
+| 103 | Handshake failed |
+| 104 | UPI bolt not supported |
+| 105 | Device not supported for UPI Bolt |
+| 500 | Something went wrong |
+| 501 | No internet connection |
+| 502 | SDK not found |
+
+### Response Type
+
+| Response Type | Response Code | Definition |
+|---------------|---------------|------------|
+| REQUEST_UPI_BOLT | 100 | UPI Bolt Status |
+| REQUEST_TRANSACTION | 124 | Register And Pay |
+| REQUEST_MANAGE | 125 | UPI Management |
+
+## SMS Hash Generation for Android OTP Auto-read
+
+Copy AppSignatureHelper class given below in your project.
+
+```java
+package com.payu.upipluginsampleapp;
+
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
+import android.util.Base64;
+import android.util.Log;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+/**
+ * This is a helper class to generate your message hash to be included in your SMS message.
+ *
+ * Without the correct hash, your app won't recieve the message callback. This only needs to
+ * be generated once per app and stored. Then you can remove this helper class from your code.
+ */
+public class AppSignatureHelper extends ContextWrapper {
+  public static final String TAG = AppSignatureHelper.class.getSimpleName();
+
+  private static final String HASH_TYPE = "SHA-256";
+  public static final int NUM_HASHED_BYTES = 9;
+  public static final int NUM_BASE64_CHAR = 11;
+
+  public AppSignatureHelper(Context context) {
+    super(context);
+  }
+
+  /**
+   * Get all the app signatures for the current package
+   * @return
+   */
+  public ArrayList<String> getAppSignatures() {
+    ArrayList<String> appCodes = new ArrayList<>();
+
+    try {
+      // Get all package signatures for the current package
+      String packageName = getPackageName();
+      PackageManager packageManager = getPackageManager();
+      Signature[] signatures = packageManager.getPackageInfo(packageName,
+          PackageManager.GET_SIGNATURES).signatures;
+
+      // For each signature create a compatible hash
+      for (Signature signature : signatures) {
+        String hash = hash(packageName, signature.toCharsString());
+        if (hash != null) {
+          appCodes.add(String.format("%s", hash));
+        }
+      }
+    } catch (PackageManager.NameNotFoundException e) {
+      Log.e(TAG, "Unable to find package to obtain hash.", e);
+    }
+    return appCodes;
+  }
+
+  private static String hash(String packageName, String signature) {
+    String appInfo = packageName + " " + signature;
+    try {
+      MessageDigest messageDigest = MessageDigest.getInstance(HASH_TYPE);
+      messageDigest.update(appInfo.getBytes(StandardCharsets.UTF_8));
+      byte[] hashSignature = messageDigest.digest();
+
+      // truncated into NUM_HASHED_BYTES
+      hashSignature = Arrays.copyOfRange(hashSignature, 0, NUM_HASHED_BYTES);
+      // encode into Base64
+      String base64Hash = Base64.encodeToString(hashSignature, Base64.NO_PADDING | Base64.NO_WRAP);
+      base64Hash = base64Hash.substring(0, NUM_BASE64_CHAR);
+
+      Log.d(TAG, String.format("pkg: %s -- hash: %s", packageName, base64Hash));
+      return base64Hash;
+    } catch (NoSuchAlgorithmException e) {
+      Log.e(TAG, "hash:NoSuchAlgorithm", e);
+    }
+    return null;
   }
 }
 ```
 
-| Field        | Description                                                                                             |
-| ------------ | ------------------------------------------------------------------------------------------------------- |
-| responseType | Integer value indicating the type of response (e.g., 100 for UPI Bolt Status, 124 for Register and Pay) |
-| code         | Error or success code                                                                                   |
-| message      | Error or success message                                                                                |
-| result       | Response data object                                                                                    |
+To get the hash value, log the value generated by following statement:
 
-### Response Types
+```java
+Log.d("appSignature", AppSignatureHelper(requireContext()).appSignatures[0]);
+```
 
-| Response Type | Code | Description      |
-| ------------- | ---- | ---------------- |
-| 100           |      | UPI Bolt Status  |
-| 124           |      | Register and Pay |
-
-## Error Codes and Messages
-
-| Error Code | Message                              | Description                                            |
-| ---------- | ------------------------------------ | ------------------------------------------------------ |
-| 0          | Success                              | Operation completed successfully                       |
-| 1          | Fail/Invalid Response/Missing Params | Operation failed due to invalid parameters or response |
-| 2          | User Canceled the Transaction        | User manually canceled the transaction                 |
-| 100        | Transaction Timeout                  | Transaction timed out                                  |
-| 101        | Hash Missing                         | Required hash is missing                               |
-| 102        | Incorrect Hash                       | Provided hash is incorrect                             |
-| 500        | Something Went Wrong                 | Unexpected error occurred                              |
-| 501        | No Internet Connection               | Device is not connected to the internet                |
-
-## Troubleshooting
-
-If you encounter issues during integration, check the following:
-
-1. Ensure all required permissions are added to the Android Manifest
-2. Verify that all dependencies and .aar files are correctly added to your project
-3. Check that the SDK initialization is performed with valid parameters
-4. Ensure proper error handling for all SDK callbacks
-
-> 📘 Note:
-> 
-> If you encounter any issues, contact [PayU Support](https://help.payu.in).
+Share the value to PayU team for configuring SMS hash at BE.
