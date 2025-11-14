@@ -322,21 +322,84 @@ Refer to SDK Response JSON Format.
 
 The following fields are needed as a request:
 
-| Field           | Data Type | Optional / Mandatory | Definition               |
-| --------------- | --------- | -------------------- | ------------------------ |
-| amount          | String    | M                    | Txn Amount               |
-| txnId           | String    | M                    | Txn Id                   |
-| productInfo     | String    | M                    | Product Info             |
-| firstName       | String    | M                    | First Name               |
-| surl            | String    | O                    | Success URL              |
-| furl            | String    | O                    | Failure URL              |
-| additionalParam | Map       | O                    | Additional params if any |
-| udf1            | Any       | O                    | User Defined Fields1     |
-| udf2            | Any       | O                    | User Defined Fields2     |
-| udf3            | Any       | O                    | User Defined Fields3     |
-| udf4            | Any       | O                    | User Defined Fields4     |
-| udf5            | Any       | O                    | User Defined Fields5     |
-| udf6            | Any       | O                    | User Defined Fields6     |
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">amount<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Txn Amount</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"100.00"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">txnId<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Txn Id</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"TXN_123456789"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">productInfo<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Product Info</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Product Purchase"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">firstName<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> First Name</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"John"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">surl<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Success URL</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"https://example.com/success"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">furl<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Failure URL</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"https://example.com/failure"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">additionalParam<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> Additional params if any</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">{"param1": "value1"}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">udf1<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields1</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 1"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">udf2<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields2</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 2"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">udf3<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields3</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 3"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">udf4<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields4</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 4"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">udf5<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields5</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 5"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">udf6<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields6</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 6"</td>
+        </tr>
+    </tbody>
+</table>
+`}</HTMLBlock>
 
 ## Listener/Callback Logic
 
