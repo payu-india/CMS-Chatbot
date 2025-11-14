@@ -46,12 +46,11 @@ Integrating FlashPay brings measurable value:
 
 ### Supported Mobile Platforms
 
-FlashPay works on:
+FlashPay works on **Android: Version 6.0** and above (phones only; tablets are not supported)
 
-* **Android**: Version 6.0 and above (phones only; tablets are not supported)
-* **iOS**: Version 12 and above (phones only; iPads are not supported)
-
-> **Note:** FlashPay is designed for smartphone users only to ensure optimal biometric capture and authentication.
+<Callout icon="📘" theme="info">
+  **Note:** FlashPay is designed for smartphone users only to ensure optimal biometric capture and authentication.
+</Callout>
 
 ### Integration Approach
 
@@ -60,8 +59,6 @@ To integrate FlashPay, you'll need to:
 1. Integrate the **FlashPay 3DS SDK** into your mobile app
 2. Implement **Payment Aggregator (PA) APIs** for backend communication
 3. Refer to the technical documentation (FlashPay_3DS SDK guide and Merchant_PA_API specifications)
-
-***
 
 ## How to check whether customers can use FlashPay?
 
