@@ -1,7 +1,7 @@
 ---
-title: Flashpay Android Integration - WIBMO MFA
+title: Flashpay Decoupled Flow Android Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
