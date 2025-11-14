@@ -154,10 +154,6 @@ PayUUPIBoltUISdk.reset(reactContext);
 
 #### Request Parameters
 
-# PayU UPI Configuration Parameters
-
-## Request Parameters
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
     <thead>
@@ -227,7 +223,6 @@ PayUUPIBoltUISdk.reset(reactContext);
 </table>
 `}</HTMLBlock>
 
-
 #### Response
 
 Refer to SDK Response JSON Format.
@@ -285,17 +280,17 @@ PayUUPIBoltUISdk.payURegisterAndPay(paymentParams);
 
 #### Request Parameters
 
-| Field | Data Type | Optional / Mandatory | Definition |
-|-------|-----------|----------------------|------------|
-| params | Map | M | Refer to Payment Params section |
+| Field  | Data Type | Optional / Mandatory | Definition                      |
+| ------ | --------- | -------------------- | ------------------------------- |
+| params | Map       | M                    | Refer to Payment Params section |
 
 #### Response
 
 Refer to SDK Response JSON Format.
 
-| Field | Data Type | Definition |
-|-------|-----------|------------|
-| result | Any | Payment Response |
+| Field  | Data Type | Definition       |
+| ------ | --------- | ---------------- |
+| result | Any       | Payment Response |
 
 ### 4. openUPIManagement
 
@@ -315,9 +310,9 @@ PayUUPIBoltUISdk.openUPIManagement(screenType);
 
 #### Request Parameters
 
-| Field | Data Type | Optional / Mandatory | Definition |
-|-------|-----------|----------------------|------------|
-| screenType | String | M | To enforce the management screen |
+| Field      | Data Type | Optional / Mandatory | Definition                       |
+| ---------- | --------- | -------------------- | -------------------------------- |
+| screenType | String    | M                    | To enforce the management screen |
 
 #### Response
 
@@ -327,21 +322,21 @@ Refer to SDK Response JSON Format.
 
 The following fields are needed as a request:
 
-| Field | Data Type | Optional / Mandatory | Definition |
-|-------|-----------|----------------------|------------|
-| amount | String | M | Txn Amount |
-| txnId | String | M | Txn Id |
-| productInfo | String | M | Product Info |
-| firstName | String | M | First Name |
-| surl | String | O | Success URL |
-| furl | String | O | Failure URL |
-| additionalParam | Map | O | Additional params if any |
-| udf1 | Any | O | User Defined Fields1 |
-| udf2 | Any | O | User Defined Fields2 |
-| udf3 | Any | O | User Defined Fields3 |
-| udf4 | Any | O | User Defined Fields4 |
-| udf5 | Any | O | User Defined Fields5 |
-| udf6 | Any | O | User Defined Fields6 |
+| Field           | Data Type | Optional / Mandatory | Definition               |
+| --------------- | --------- | -------------------- | ------------------------ |
+| amount          | String    | M                    | Txn Amount               |
+| txnId           | String    | M                    | Txn Id                   |
+| productInfo     | String    | M                    | Product Info             |
+| firstName       | String    | M                    | First Name               |
+| surl            | String    | O                    | Success URL              |
+| furl            | String    | O                    | Failure URL              |
+| additionalParam | Map       | O                    | Additional params if any |
+| udf1            | Any       | O                    | User Defined Fields1     |
+| udf2            | Any       | O                    | User Defined Fields2     |
+| udf3            | Any       | O                    | User Defined Fields3     |
+| udf4            | Any       | O                    | User Defined Fields4     |
+| udf5            | Any       | O                    | User Defined Fields5     |
+| udf6            | Any       | O                    | User Defined Fields6     |
 
 ## Listener/Callback Logic
 
@@ -435,35 +430,35 @@ function handleHashGeneration(hashName, hashString) {
 
 Refer to SDK Response JSON Format.
 
-| Field | Data Type | Definition |
-|-------|-----------|------------|
-| result | Any? | Contains response model if received success callback |
-| code | Int | Status code |
-| message | String? | Message |
-| responseType | Integer | Refer to ResponseType |
+| Field        | Data Type | Definition                                           |
+| ------------ | --------- | ---------------------------------------------------- |
+| result       | Any?      | Contains response model if received success callback |
+| code         | Int       | Status code                                          |
+| message      | String?   | Message                                              |
+| responseType | Integer   | Refer to ResponseType                                |
 
 ## Error Codes and Error Message List
 
-| Response Code | Message |
-|---------------|---------|
-| 0 | Success |
-| 1 | Fail/ Invalid Response/ Missing params |
-| 2 | User cancelled the transaction |
-| 100 | Transaction timeout |
-| 103 | Handshake failed |
-| 104 | UPI bolt not supported |
-| 105 | Device not supported for UPI Bolt |
-| 500 | Something went wrong |
-| 501 | No internet connection |
-| 502 | SDK not found |
+| Response Code | Message                                |
+| ------------- | -------------------------------------- |
+| 0             | Success                                |
+| 1             | Fail/ Invalid Response/ Missing params |
+| 2             | User cancelled the transaction         |
+| 100           | Transaction timeout                    |
+| 103           | Handshake failed                       |
+| 104           | UPI bolt not supported                 |
+| 105           | Device not supported for UPI Bolt      |
+| 500           | Something went wrong                   |
+| 501           | No internet connection                 |
+| 502           | SDK not found                          |
 
 ### Response Type
 
-| Response Type | Response Code | Definition |
-|---------------|---------------|------------|
-| REQUEST_UPI_BOLT | 100 | UPI Bolt Status |
-| REQUEST_TRANSACTION | 124 | Register And Pay |
-| REQUEST_MANAGE | 125 | UPI Management |
+| Response Type       | Response Code | Definition       |
+| ------------------- | ------------- | ---------------- |
+| REQUEST_UPI_BOLT    | 100           | UPI Bolt Status  |
+| REQUEST_TRANSACTION | 124           | Register And Pay |
+| REQUEST_MANAGE      | 125           | UPI Management   |
 
 ## SMS Hash Generation for Android OTP Auto-read
 
