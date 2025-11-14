@@ -5,179 +5,115 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU UPI Bolt SDK enables efficient and seamless payment experiences within your Flutter applications. This SDK eliminates third-party redirection, provides one-click payment capabilities, and includes comprehensive profile management features.
-
-PayU UPI Bolt SDK simplifies the payment process by:
-
-* Eliminating third-party redirection for higher success rates
-* Offering profile management for user accounts and balances
-* Reducing customer drop-offs and enhancing overall experience
-* Providing direct bank integration for faster transaction completion
+PayU UPI Bolt SDK will provide a simpler and more efficient payment experience to the merchants. It will eliminate any third-party redirection and higher success rate. Profile management including accounts and balances for users. Enhancing the overall customer experience and decreasing customer drop-offs.
 
 ## Advantages
 
-### Key Benefits
-
-* **One-click payments** without third-party UPI app redirection
-* **Faster transaction completion** through direct bank integration
-* **Seamless in-app payment experience** for better user retention
-* **Easy integration** leveraging pre-existing customer profiles with banks
-* **5-6% increase in success rates** with better transaction conversion
-* **Complete user funnel insights** for understanding user behavior
+1. One-click payment journey and no hassle of redirection to a third-party UPI application.
+2. Quick completion of transactions because of direct integration with the bank.
+3. Seamless user experience to the customers with in-app payment.
+4. Easy to integrate and get the advantage of existing customer profiles created with banks.
+5. 5-6% higher success rate and better transaction conversion.
+6. Merchants can take advantage of a complete user funnel to understand user behavior.
 
 ## User Journeys in PayU UPI Bolt
 
-### Registration and Pay Journey
+### Registration and Pay
 
-For first-time users, the registration process includes:
+1. Merchant Application can do the User registration for customers who are coming first time for PayU UPI Bolt. The Registration can be done during the checkout process or it can be called in a separate user journey. In case of Merchant is using PayU Checkout Pro SDK, PayU will take care of customer registration.
+2. Once the registration process is initiated, the user will be asked to accept the SMS sending permissions required to verify the SIM card. If the phone has dual SIM, the SIM card selection screen will be shown to customers to select the specific SIM card.
+3. After the device verification, UPI ID creation and the Bank selection will be done. Add bank journey will be completed after adding a bank account connected to the same mobile number used for device verification.
+4. Finally, customers can do a transaction using the added bank account. In case the customer is using the bank account for the first time they will need to set the MPIN as well.
+5. Finally, customers can make a transaction using the added bank account. If the customer is using the bank account for the first time, he will also need to set the MPIN.
 
-1. **User consent** for SMS permissions
-2. **Device verification** using SIM and mobile number
-3. **UPI ID creation** and bank selection
-4. **MPIN setup** (if needed) for first-time users
-5. **Transaction completion** using the added bank account
+### Pay
 
-### Payment Journey
-
-For registered customers:
-
-* **One-click payments** with existing bank accounts
-* **Balance checking** to ensure transaction readiness
-* **MPIN verification** for secure payment processing
+1. Customers who are already registered with PayU UPI Bolt can make a One-click payment.
+2. The customer needs to select the already added bank account and enter the MPIN and the transaction will be completed.
+3. The customer can also check the balance before making a transaction to avoid low-balance transaction failure.
 
 ### Profile Management Journey
 
-Users can manage their payment profiles by:
+1. Customers can add new bank accounts, set MPIN, change MPIN, reset MPIN, delete accounts, and check the balance of already added bank accounts.
+2. Transaction history can be seen and queries can be raised and resolved within the PayU UI Bolt SDK.
+3. Customers can see all the raised disputes from the Dispute history screen.
+4. Customers can also deregister their all accounts with PayU UI Bolt SDK.
 
-* **Managing bank accounts** (add, delete, set/change MPIN, balance checks)
-* **Accessing transaction history** and dispute resolution
-* **Deregistering accounts** from PayU UPI Bolt SDK
+## Steps to Integrate PayU Bolt SDK
 
-## Prerequisites
+### Prerequisites
 
-Before integrating PayU UPI Bolt SDK, ensure you have:
+SDK Compatibility: Ensure that the application's minimum development target is set to version 13 or higher.
 
-* **iOS deployment target**: iOS 17 or higher
-* **Flutter SDK**: Latest stable version
-* **PayU merchant account** with valid merchant key
-* **Required permissions** for SMS and device access
+### UI Bolt Integration
 
-## Integration Steps
+Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
 
-### Step 1: Add SDK Dependency
+### iOS Integration
 
-Add the PayU UPI Bolt Flutter SDK to your project:
+To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your podfile.
+
+**Supported iOS deployment target - iOS 17 and above.**
+
+The following xcframework files will be provided by PayU during onboarding:
+
+1. NPCI - CommonLibrary.xcframework
+2. AXIS - OlivePayLibrary.xcframework
+
+Add these framework in your project.
+
+In Build Settings > Framework Search Path, add `$(PROJECT_DIR)/Frameworks` if it is not added automatically by Xcode.
+
+### Android Integration
+
+Add the following dependency in the build.gradle file of your android app module:
+
+```gradle
+implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.1-dev4'
+implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
+```
+
+Add the given aar file in the libs folder of your android app module:
+
+```
+<your_project>/android/app/libs/SecureComponent-release-prod_05062024_9d3904ab.aar
+```
+
+Install the Flutter package:
 
 ```bash
-flutter pub add payu_upi_bolt_ui_flutter 1.0.0.alpha
+flutter pub add payu_upi_bolt_ui_flutter:^1.0.0-alpha.1
 ```
 
-### Step 2: Platform-Specific Setup
+## SDK Methods
 
-#### iOS Setup
+### 1. init
 
-1. **Add Framework Files**
+It is used to initialize the SDK. This method returns an object that will be used to access other methods available in PayUUPIBoltUI.
 
-   Include the following `.xcframework` files in your iOS project:
+#### Request
 
-   * `CommonLibrary.xcframework` (NPCI)
-   * `OlivePayLibrary.xcframework` (AXIS)
-
-2. **Update Framework Search Path**
-
-   In Xcode, update the Framework Search Path to:
-
-   ```
-   $(PROJECT_DIR)/Frameworks
-   ```
-
-   <br />
-
-#### Android Setup
-
-1. **Add Dependencies**
-
-   Add the following dependencies to your `build.gradle` file:
-
-   ```gradle
-   dependencies {
-       implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.1-dev4'
-       implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
-   }
-   ```
-
-   <br />
-
-2. **Add AAR File**
-
-   Place the `SecureComponent-release-prod_05062024_9d3904ab.aar` file in the `libs` folder of your Android app module.
-
-#### Clear SDK cache
-
-The `clearCache` method is used to clear the cache corresponding to the passed PG value
-
-```
-payUUpiFlutter.clearCache(params: Map)
-```
-
-The following fields are needed as a request for this API:
-
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        pg 
-        `mandatory`
-      </td>
-
-      <td>
-        `String` - PG value to check clear pg specific data
-      </td>
-
-      <td>
-        `"payu"`
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-<br />
-
-### Step 3: Initialize SDK
-
-Initialize the PayU UPI Bolt SDK with your configuration:
+Add the following imports:
 
 ```dart
 import 'package:payu_upi_bolt_ui_flutter/PayUUPIConstantKeys.dart';
 import 'package:payu_upi_bolt_ui_flutter/payu_upi_bolt_ui_flutter.dart';
+```
 
+Initialize the SDK with configuration:
+
+```dart
 var config = {
-  "merchantName": "<merchantName>",  // String
-  "merchantKey": "<merchantKey>",   // String
-  "phone": "<phone>",               // String
-  "email": "<email>",               // String
-  "refId": "<refId>",               // String
-  "pluginTypes": ["<pluginType>"],  // Array<String>
-  "clientId": "clientId",           // String
-  "issuingBanks": ["<issuingBanks>"], // Array<String>
-  "excludedBanksIINs": ["<excludedBanksIIN>"], // Array<String>
-  "isProduction": <isProduction>   // Bool (true = Production, false = Staging)
+  "merchantName": "<merchantName>", // String
+  "merchantKey": "<merchantKey>", // String
+  "phone": "<phone>", // String
+  "email": "<email>", // String
+  "refId": "<refId>", // String
+  "pluginTypes": ["<pluginType>"], // Array \<String>
+  "clientId": "<clientId>", // String
+  "issuingBanks": ["<issuingBanks>"], // Array \<String>
+  "excludedBanksIINs": ["<excludedBanksIIN>"], // Array \<String>
+  "isProduction": <isProduction> // Boolean
 };
 
 // To initialize the SDK
@@ -188,472 +124,256 @@ payUUpiFlutter.initSDK(params: config);
 payUUpiFlutter.reset();
 ```
 
-**Configuration Parameters:**
+#### Request Parameters
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-  <thead>
-    <tr style="background-color: #f8f9fa;">
-      <th style="border: 1px solid #dee2e6; padding: 12px; text-align: left; font-weight: 600;">Parameter</th>
-      <th style="border: 1px solid #dee2e6; padding: 12px; text-align: left; font-weight: 600;">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        merchantName<br/>
-        <code>mandatory</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        Name of your merchant
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        merchantKey<br/>
-        <code>mandatory</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        PayU merchant key
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        phone<br/>
-        <code>mandatory</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        Phone number for registration
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        email<br/>
-        <code>mandatory</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        Customer Email ID
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        pluginTypes<br/>
-        <code>mandatory</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>Array&lt;String&gt;</code><br/>
-        List of Supported Plugin (e.g., [AXIS, HDFC])
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        isProduction<br/>
-        <code>mandatory</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>Bool</code><br/>
-        True (Production), false (Staging)
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        refId<br/>
-        <code>mandatory</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        Reference ID
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        clientId<br/>
-        <code>optional</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        Unique Client ID
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        issuingBanks<br/>
-        <code>optional</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>Array&lt;String&gt;</code><br/>
-        List of Issuing Banks
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        excludedBanksIINs<br/>
-        <code>optional</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>Array&lt;String&gt;</code><br/>
-        Excluded Bank IINs
-      </td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+| Field | Data Type | Optional / Mandatory | Definition |
+|-------|-----------|----------------------|------------|
+| config | Map | M | PayUUPIBoltBaseConfig includes the below fields. |
+| merchantName | String | M | Merchant Name |
+| merchantKey | String | M | PayU Merchant Key |
+| phone | String | M | Phone number for registration |
+| email | String | M | Customer Email Id |
+| pluginTypes | Array \<String> | M | List of Supported Plugin (Values - AXIS or HDFC or BHIM) |
+| isProduction | Boolean | M | Prod - true, staging - false |
+| excludedBanksIINs | Array \<String> | O | List of Bank's IIN to exclude |
+| clientId | String | O | Unique client ID |
+| refId | String | M | Unique reference ID |
+| issuingBanks | Array \<String> | O | List of Issuing Bank's (Values - AXIS or HDFC) |
 
-<br />
+#### Response
 
-<br />
+Refer to SDK Response JSON Format.
 
-### Step 5: Check UPI Bolt Availability
+#### Clear SDK Cache of PayUBolt SDK
 
-Before proceeding with payment flows, verify if UPI Bolt is enabled:
+The `clearCache` method is used to clear the cache corresponding to the passed PG value.
 
 ```dart
-void checkUPIBoltStatus() {
-  payUUpiFlutter.isUPIBoltEnabled();
-}
+payUUpiFlutter.clearCache(params: Map);
 ```
 
-### Step 6: Implement Payment Flow
+| Field | Data Type | Optional / Mandatory | Definition |
+|-------|-----------|----------------------|------------|
+| pg | String | M | PG value to check clear pg specific data |
 
-#### Register and Pay
+#### Check Plugin Registration Status of PayUBolt SDK
 
-For first-time users or new transactions:
+The `isRegistered` method is used to check pg registration status.
 
 ```dart
-// Payment Parameters
-var paymentParams = {
-  "amount": "<txn_amount>",          // Transaction Amount
-  "txnId": "<transaction_id>",       // Transaction ID
-  "productInfo": "<product_info>",   // Description of Product
-  "firstName": "<first_name>",       // Customer First Name
-  "surl": "<success_url>",           // Success Callback URL (Optional)
-  "furl": "<failure_url>",           // Failure Callback URL (Optional)
-  "additionalParam": {},             // (Optional) Additional Parameters
-  "udf1": "<user_defined_field_1>",  // (Optional)
-  "udf2": "<user_defined_field_2>",  // (Optional)
-  "udf3": "<user_defined_field_3>",  // (Optional)
-  "udf4": "<user_defined_field_4>",  // (Optional)
-  "udf5": "<user_defined_field_5>",  // (Optional)
-  "udf6": "<user_defined_field_6>"   // (Optional)
-};
-
-payUUpiFlutter.registerAndPay(params: paymentParams);
+payUUpiFlutter.isRegistered(params: Map);
 ```
 
-**Payment Parameters:**
+| Field | Data Type | Optional / Mandatory | Definition |
+|-------|-----------|----------------------|------------|
+| pg | String | M | PG value to check pg specific registration status |
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-  <thead>
-    <tr style="background-color: #f8f9fa;">
-      <th style="border: 1px solid #dee2e6; padding: 12px; text-align: left; font-weight: 600;">Parameter</th>
-      <th style="border: 1px solid #dee2e6; padding: 12px; text-align: left; font-weight: 600;">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        txnId<br/>
-        <code>mandatory</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        Unique transaction identifier
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        amount<br/>
-        <code>mandatory</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        Transaction amount
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        productInfo<br/>
-        <code>mandatory</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        Description of Product
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        firstName<br/>
-        <code>mandatory</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        Customer First Name
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        surl<br/>
-        <code>optional</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        Success Callback URL
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        furl<br/>
-        <code>optional</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        Failure Callback URL
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        udf1 to udf6<br/>
-        <code>optional</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>String</code><br/>
-        User-defined fields
-      </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        additionalParam<br/>
-        <code>optional</code>
-      </td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">
-        <code>Object</code><br/>
-        Additional Parameters
-      </td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+### 2. isUPIBoltEnabled
 
-### Step 6: Profile Management
+This method is used to check whether the upi bolt is enabled for the merchant or not.
 
-#### UPI Management Screens
-
-Open various UPI management screens:
+#### Request
 
 ```dart
-// Managing UPI Profiles
+payUUpiFlutter.isUPIBoltEnabled();
+```
+
+#### Response
+
+| Field | Data Type | Definition |
+|-------|-----------|------------|
+| code | Int | Status code (Success = 0, Failure = 1) |
+| message | String? | Message |
+
+Refer to SDK Response JSON Format.
+
+### 3. registerAndPay
+
+This API allows you to initialize registration and payment flow. It will internally authenticate and register the customer. After successful authentication and registration, the user will follow the payment journey. Once payment is completed, based on the payment status the merchant will get a callback through the listener.
+
+#### Request
+
+```dart
+payUUpiFlutter.registerAndPay(params: Map);
+```
+
+#### Request Parameters
+
+| Field | Data Type | Optional / Mandatory | Definition |
+|-------|-----------|----------------------|------------|
+| params | Map | M | Refer to Payment Params section |
+
+#### Response
+
+| Field | Data Type | Definition |
+|-------|-----------|------------|
+| result | Any | Payment Response |
+
+Refer to SDK Response JSON Format.
+
+### 4. openUPIManagement
+
+This API allows you to manage UPI accounts and transaction history.
+
+#### Request
+
+```dart
+// Screen Types
 var params = {
-  "screenType": "ALL" // Other options: "TRANSACTIONHISTORY", "MANAGEUPIACCOUNTS", "DISPUTE", "DEREGISTERUPI"
+  "screenType": <String>
 };
 
-payUUpiFlutter.openUPIManagement(params: params);
+// Values
+// "ALL" or "TRANSACTIONHISTORY" or "MANAGEUPIACCOUNTS" or "DISPUTE" or "DEREGISTERUPI"
+
+payUUpiFlutter.openUPIManagement(params: Map);
 ```
 
-**Available Screen Types:**
+#### Request Parameters
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-  <thead>
-    <tr style="background-color: #f8f9fa;">
-      <th style="border: 1px solid #dee2e6; padding: 12px; text-align: left; font-weight: 600;">Screen Type</th>
-      <th style="border: 1px solid #dee2e6; padding: 12px; text-align: left; font-weight: 600;">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">ALL</td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Complete profile management interface</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">TRANSACTIONHISTORY</td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Transaction history view</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">MANAGEUPIACCOUNTS</td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">UPI account management</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">DISPUTE</td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Dispute resolution interface</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">DEREGISTERUPI</td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Account deregistration</td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+| Field | Data Type | Optional / Mandatory | Definition |
+|-------|-----------|----------------------|------------|
+| screenType | String | M | To enforce the management screen |
 
-### Step 7: Implement Callbacks
+#### Response
 
-Implement the required callback methods:
+Refer to SDK Response JSON Format.
+
+## PayUPaymentParams
+
+The following fields are needed as a request:
+
+| Field | Data Type | Optional / Mandatory | Definition |
+|-------|-----------|----------------------|------------|
+| amount | String | M | Txn Amount |
+| txnId | String | M | Txn Id |
+| productInfo | String | M | Product Info |
+| firstName | String | M | First Name |
+| surl | String | O | Success URL |
+| furl | String | O | Failure URL |
+| additionalParam | Map | O | Additional params if any |
+| udf1 | Any | O | User Defined Fields1 |
+| udf2 | Any | O | User Defined Fields2 |
+| udf3 | Any | O | User Defined Fields3 |
+| udf4 | Any | O | User Defined Fields4 |
+| udf5 | Any | O | User Defined Fields5 |
+| udf6 | Any | O | User Defined Fields6 |
+
+## Listener/Callback Logic
+
+The listener/callback contains following methods where the merchant app will get the API response and hash-related callbacks.
 
 ```dart
-// Listener Class:
-class PayUListener implements PayUUPIBoltUiListener {
-  @override
-  void onPayUSuccess(Map response) {
-    print("Transaction Successful: $response");
-    // Handle successful payment
-  }
+@override 
+void onPayUSuccess(Map response) {
+  // It will contain success response
+}
 
-  @override
-  void onPayUFailure(Map response) {
-    print("Transaction Failed: $response");
-    // Handle payment failure
-  }
+@override 
+void onPayUFailure(Map response) {
+  // It will contain failure response
+}
 
-  @override
-  void onPayUCancel(Map response) {
-    print("Transaction Cancelled: $response");
-    // Handle payment cancellation
-  }
+@override 
+void onPayUCancel(Map response) {
+  // It will tell if payment was cancelled
+}
 
-  @override
-  void onErrorReceived(Map response) {
-    print("Error Received: $response");
-    // Handle errors
-  }
+@override 
+void onErrorReceived(Map response) {
+  // It will tell if any error occurred
+}
 
-  @override
-  void onUPIBoltEnabled(Map response) {
-    print("UPI Bolt Enabled: $response");
-  }
+@override 
+void onUPIBoltEnabled(Map response) {
+  // It will tell if isUPIBoltEnabled or not for merchant
+}
 
-  @override
-  void onReset(Map response) {
-    print("SDK Reset Successful: $response");
-  }
+@override 
+void onReset(Map response) {
+  // It will tell the sdk instance reset successfully
+}
 
-  @override
-  void generateHash(Map response) {
-    // SHA-512 Hash Generation Logic
-    var hashValue = "<SHA-512-Hash>";  // Use backend/server to generate
-    
-    var hashResponse = {
-      "hashName": response["hashName"], // Name of Hash
-      "hash": hashValue
-    };
-    payUUpiFlutter.hashGenerated(params: hashResponse);
-  }
+@override 
+void onIsRegistered(Map response) {
+  // It will tell the registration status with plugin
+}
+
+@override 
+void onInitSDK(Map response) {
+  // It will tell if any error occurred during initialisation of instance
+}
+
+@override 
+void generateHash(Map response) {
+  // Refer to Hash generation section below
 }
 ```
 
-**Callback Response Methods:**
+## Hash Generation Logic
 
-1. **`onPayUSuccess(Map response)`**: Called if payment succeeds.
-2. **`onPayUFailure(Map response)`**: Triggered on payment failure.
-3. **`onPayUCancel(Map response)`**: Called when the transaction is cancelled.
-4. **`onErrorReceived(Map response)`**: Invoked when an error occurs.
-5. **`onUPIBoltEnabled(Map response)`**: Checks if UPI Bolt is enabled.
-6. **`onReset(Map response)`**: Confirms SDK has been reset.
-7. **`generateHash(Map response)`**: Invoked to compute required hash.
+The PayU SDKs use hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification.
 
-### Step 8: Hash Generation
+For generating and passing dynamic hashes, the merchant will receive a call from the generateHash method of PayUUPIBoltUiListener. The generateHash() method is called by the SDK each time it needs an individual hash.
 
-Implement secure hash generation for transaction security:
+#### Request
 
 ```dart
-@override
-generateHash(Map response) {
-  let commandName = response["PayUUPIBoltHashConstants.hashName"];
-  let hashStringWithoutSalt = response["PayUUPIBoltHashConstants.hashString"];
-  let postSalt = response["PayUUPIBoltHashConstants.postSalt"]; 
-
-  let hashValue;  
-  if (postSalt != null) {
-    hashValue = "<SHA-512 Hash of (hashStringWithoutSalt + salt + postSalt)>";
+@override 
+void generateHash(Map response) {
+  // Merchant will get Map with type of hash and hash string as value of dictionary.
+  /*
+  They have to sign that string using salt to create hash value and pass that to onCompletion
+  In the map you have to check for three keys to generate hash.
+  1. hashString
+  2. hashName
+  3. postSalt
+  
+  At the end of that hashString append your salt and use SHA-512 algo on that final string to generate hash.
+  Note: If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algo on that final string to generate hash.
+  Once the hash is generated use hashGenerationListener parameter to pass the hash to SDK. Example code:
+  */
+  
+  let commandName = (param[PayUUPIBoltHashConstants.hashName] ?? "");
+  let hashStringWithoutSalt = (param[PayUUPIBoltHashConstants.hashString] ?? "");
+  let postSalt = param[PayUUPIBoltHashConstants.postSalt];
+  
+  // get hash for "commandName" from server
+  // get hash for "hashStringWithoutSalt" from server
+  
+  // After fetching hash set its value in below variable "hashValue"
+  var hashValue = "";
+  if let postSalt = postSalt {
+    let hashString = hashStringWithoutSalt + salt + postSalt;
+    hashValue = "<SHA-512 hash of hashString>";
   } else {
-    hashValue = "<SHA-512 Hash of (hashStringWithoutSalt + salt)>";
+    hashValue = "<SHA-512 hash of hashString>";
   }
-
-  var hashResponse = {"commandName": commandName, "hash": hashValue};
+  
+  var hashResponse = {commandName: hashValue};
   payUUpiFlutter.hashGenerated(params: hashResponse);
 }
 ```
 
-<Callout icon="📘" theme="info">
-  **Note**: Always generate hashes on your secure server. Never expose your salt values in client-side code.
-</Callout>
+#### Response
 
-## Error Handling
+| Field | Data Type | Definition |
+|-------|-----------|------------|
+| result | Any? | Contains response model if received success callback |
+| code | Int | Refer to Response Codes and Messages section |
+| message | String? | Refer to Response Codes and Messages section |
 
-Handle various error scenarios with these error codes:
+## Error Codes and Error Message List
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-  <thead>
-    <tr style="background-color: #f8f9fa;">
-      <th style="border: 1px solid #dee2e6; padding: 12px; text-align: left; font-weight: 600;">Code</th>
-      <th style="border: 1px solid #dee2e6; padding: 12px; text-align: left; font-weight: 600;">Message</th>
-      <th style="border: 1px solid #dee2e6; padding: 12px; text-align: left; font-weight: 600;">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;"><code>0</code></td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Success</td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Transaction completed successfully</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;"><code>1</code></td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Failure/Invalid Response/Missing Params</td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Request failed due to invalid or missing parameters</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;"><code>2</code></td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">User Cancelled Transaction</td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">User cancelled the transaction</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;"><code>100</code></td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Transaction Timeout</td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Transaction exceeded time limit</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;"><code>103</code></td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Handshake Failed</td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Initial connection establishment failed</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;"><code>104</code></td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">UPI Bolt Not Supported</td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Feature not available for merchant</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #dee2e6; padding: 12px;"><code>501</code></td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">No Internet Connection</td>
-      <td style="border: 1px solid #dee2e6; padding: 12px;">Network connectivity issue</td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
-
-**Error Handling Example:**
-
-```dart
-@override
-void onErrorReceived(Map response) {
-  int errorCode = response["errorCode"] ?? -1;
-  String errorMessage = response["errorMessage"] ?? "Unknown error";
-  
-  switch (errorCode) {
-    case 100:
-      // Handle timeout
-      showTimeoutError();
-      break;
-    case 501:
-      // Handle network issues
-      showNetworkError();
-      break;
-    default:
-      // Handle general errors
-      showGeneralError(errorMessage);
-  }
-}
-```
+| Response Code | Message |
+|---------------|---------|
+| 0 | Success |
+| 1 | Fail/ Invalid Response/ Missing params |
+| 2 | User cancelled the transaction |
+| 100 | Transaction timeout |
+| 103 | Handshake failed |
+| 104 | UPI bolt not supported |
+| 105 | Device not supported for UPI Bolt |
+| 500 | Something went wrong |
+| 501 | No internet connection |
+| 502 | SDK not found |
