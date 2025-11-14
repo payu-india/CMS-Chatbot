@@ -5,166 +5,169 @@ hidden: false
 metadata:
   robots: index
 ---
-## What is FlashPay?
+PayU's FlashPay is a mobile payment authentication solution that enables customers to complete card transactions using their device's biometric authentication (fingerprint or face recognition) without leaving the merchant's app. The solution operates within industry-standard 3DS (3D Secure) protocols while complying with Reserve Bank of India (RBI) guidelines for multi-factor authentication.
 
-FlashPay is PayU's advanced payment solution that allows your customers to authenticate card transactions using their device biometrics (fingerprint, face recognition, or voice recognition) instead of entering OTPs. This means faster, more secure payments without customers leaving your mobile app.
+PayU's FlashPay SDK solution provides merchants with a comprehensive toolkit to offer customers a superior, secure, and efficient payment experience. Instead of entering OTP codes or being redirected to a bank portal, customers can authenticate card transactions directly within your app using biometrics—fingerprint, face ID, or other device-supported methods.
 
-**Key Features:**
+**Key highlights:**
 
-* **Biometric Authentication**: Uses fingerprint, face ID, or voice recognition
-* **RBI Compliant**: Meets all Reserve Bank of India guidelines for multi-factor authentication (MFA)
-* **3DS Compatible**: Works with existing 3D Secure payment infrastructure
-* **SDK-Based**: Single software development kit handles everything
-* **End-to-End Security**: Complete authentication management from start to finish
+* Customers authenticate payments using device biometrics without leaving your app
+* Full compliance with RBI's multi-factor authentication requirements
+* Works seamlessly with existing 3DS security infrastructure
+* Reduced payment completion time and improved success rates
 
-## Why Should You Integrate FlashPay?
+## What Problem Does FlashPay Solve?
 
-FlashPay delivers significant benefits for both you as a merchant and your customers:
+If you're a merchant accepting card payments, you likely face these challenges:
 
-### **For Your Business:**
+1. **Slow checkouts** – Customers wait for OTP entry and bank redirects
+2. **Cart abandonment** – Lengthy authentication processes cause customers to drop off
+3. **Failed transactions** – OTP delivery delays or customer errors lead to payment failures
+4. **Poor user experience** – Switching between your app and banks is disruptive
 
-1. **4x Faster Payments**: Transactions complete in seconds instead of minutes
-2. **Higher Success Rates**: 1.5% to 2% improvement in successful payment completions
-3. **Better Customer Experience**: No app switching or OTP delays
-4. **Reduced Cart Abandonment**: Smoother checkout process
-5. **Easy Implementation**: Minimal changes to your existing payment flow
+FlashPay eliminates these friction points by keeping customers within your app during the entire payment authentication process.
 
-### **For Your Customers:**
+## Key Benefits for Your Business and Customers
 
-1. **Quick & Convenient**: Pay with just a fingerprint or face scan
-2. **Enhanced Security**: Continuous monitoring and advanced fraud protection
-3. **Reliable Backup**: Automatic fallback to OTP if biometrics fail
-4. **Universal Support**: Works with all major card networks and bank types
+Integrating FlashPay brings measurable value:
 
-### **Technical Benefits:**
+| Benefit                        | Impact                                                                                                       |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| **4x faster payments**         | Biometric authentication reduces end-to-end transaction time significantly compared to traditional OTP flows |
+| **1.5–2% higher success rate** | Fewer payment failures mean more completed transactions and higher revenue                                   |
+| **Better security**            | Continuous monitoring and lifecycle management enhance fraud prevention                                      |
+| **Flexible fallback**          | If biometrics fail, the system automatically offers OTP as an alternative                                    |
+| **Works with all cards**       | Supports all card networks, guest checkouts, saved cards, network tokens, and issuer tokens                  |
+| **No major changes needed**    | Runs on existing 3DS infrastructure with minimal merchant modifications                                      |
 
-1. **Broad Compatibility**: Supports all card types including guest checkout, saved cards, network tokens, and issuer tokens
-2. **Pre-integrated Networks**: All major card networks are already supported
-3. **Existing Infrastructure**: Uses your current 3D Secure setup
+***
 
-## Getting Started with FlashPay SDK
+## Technical Requirements
 
-To integrate FlashPay, you'll receive detailed technical documentation covering step-by-step integration, callback functions, and communication protocols.
+### Supported Mobile Platforms
 
-**Reference Document**: _"FlashPay_3DS SDK"_ (available in Annexure SDK Integration Guide)
+FlashPay works on:
 
-### Device Compatibility
+* **Android**: Version 6.0 and above (phones only; tablets are not supported)
+* **iOS**: Version 12 and above (phones only; iPads are not supported)
 
-**Android Devices:**
+> **Note:** FlashPay is designed for smartphone users only to ensure optimal biometric capture and authentication.
 
-* **Minimum Version**: Android 6.0 (API level 23) and above
-* **Supported Devices**: Smartphones only
-* **Not Supported**: Android tablets
+### Integration Approach
 
-**iOS Devices:**
+To integrate FlashPay, you'll need to:
 
-* **Minimum Version**: iOS 12 and above
-* **Supported Devices**: iPhones only
-* **Not Supported**: iPads
+1. Integrate the **FlashPay 3DS SDK** into your mobile app
+2. Implement **Payment Aggregator (PA) APIs** for backend communication
+3. Refer to the technical documentation (FlashPay_3DS SDK guide and Merchant_PA_API specifications)
 
-**Why These Requirements?**
-These versions ensure proper biometric sensor support and security features necessary for safe payment authentication.
+***
 
-## Which Customers Can Use FlashPay?
+## How to check whether customers can use FlashPay?
 
-Not all bank cards support FlashPay yet. Banks that have partnered with PayU for FlashPay provide a list of eligible card numbers (called BIN ranges). You can check in real-time whether a customer's card supports FlashPay using our API.
+Not all cards can use FlashPay yet. Banks must first enable their card BINs (Bank Identification Numbers) with PayU.
 
-### Bank Card Verification API
+### How to Check Card Eligibility
 
-**What it does**: Checks if a specific bank card supports FlashPay biometric authentication
+Use the **BIN Info API** to check whether a customer's card is eligible for FlashPay:
 
-**API Name**: "Get BIN Info API"
+**What this API does:**
 
-**When to use**: Every time a customer enters card details or selects a saved card
+* Receives a card's BIN (first 6 digits)
+* Returns whether that card/bank supports FlashPay biometric authentication
+* Provides real-time eligibility status
 
-**What you get**: Real-time eligibility status for FlashPay enrollment
+**When to call it:**
 
-**Reference Document**: Complete API specifications available in API Integration Guide
+* Every time a customer enters new card details (guest checkout)
+* Every time a customer selects a saved card
+* You need the latest eligibility information for accurate UX decisions
 
-### Important Implementation Notes
+### Important Points to Remember
 
-1. **User Experience Management**: Use the API response to show or hide FlashPay options in your app
-2. **Universal Checking**: Works for both new card entries (guest checkout) and previously saved cards
-3. **Real-Time Updates**: Always check eligibility for each transaction to get the latest bank partnerships
-4. **Automatic Updates**: As new banks join FlashPay, their card ranges are automatically included
-5. **Performance**: The API is designed for quick responses to avoid payment delays
+1. **Control your app's experience** – Use BIN eligibility to show or hide FlashPay options to customers
+2. **Works for all card types** – The API supports guest checkouts and saved/tokenized cards
+3. **Call it every transaction** – Banks enable/disable BINs over time; always fetch fresh data
+4. **Future-proof** – The API expands automatically as more banks and BINs are onboarded
 
-## How Customers Register for FlashPay
+## Customer Registration Flow (First-Time Setup)
 
-This section explains how customers can enroll their eligible bank cards for biometric payments during a regular transaction.
+The first time a customer uses a FlashPay-eligible card, they go through a one-time biometric registration process.
 
-### User Experience Flow
+### What Happens During Registration
 
-**Step-by-Step Customer Journey:**
+**Step-by-step process:**
 
-1. **Card Selection**: Customer chooses an eligible card for payment
-2. **Standard Authentication**: Customer enters OTP for current transaction as usual
-3. **Enrollment Offer**: System offers option to enroll for biometric payments
-4. **Biometric Setup**: FlashPay SDK guides customer through biometric enrollment
-5. **Mobile Verification**: System verifies customer's mobile number
-6. **Biometric Capture**: Customer's fingerprint/face/voice is securely registered
-7. **Enrollment Complete**: Registration successful, transaction continues normally
-8. **Transaction Completion**: Current payment is processed successfully
+1. **Customer initiates payment** – They enter card details or select a saved card
+2. **FlashPay eligibility check** – Your app checks if the card is eligible via BIN Info API
+3. **Traditional OTP verification** – Customer enters OTP as usual (this is required for security)
+4. **Biometric enrollment offer** – Bank/system offers customer the option to enroll their fingerprint/face for future payments
+5. **Customer consents** – Customer agrees to enroll biometric authentication
+6. **FlashPay SDK captures biometric** – Device collects fingerprint or face scan
+7. **Mobile verification** – Backend verifies the biometric data
+8. **Registration complete** – Customer's card is now enrolled for biometric payments
+9. **Transaction completes** – Current payment is authorized
 
-### Technical Workflow
+### How Your Merchant App Handles Registration
 
-<br />
+**What your app does during registration:**
 
-### Implementation Guidelines
+1. **Initiate payment normally** – Call the 3DS SDK to collect device attributes and call PA's Payment API
+2. **Bank sends response** – Bank ACS (Access Control Server) validates the card and responds (response is encrypted)
+3. **Extract FlashPay indicator** – Your app extracts the FlashPay indicator from the bank's encrypted response
+4. **Show registration UI** – Pass the response to FlashPay 3DS SDK, which displays:
+   * OTP entry screen
+   * A checkbox/consent option to enroll for biometric authentication
+5. **Receive responses** – After OTP validation and biometric enrollment, FlashPay SDK returns:
+   * OTP validation status (success/failure)
+   * Whether customer consented to biometric registration
+6. **Store registration status** – Save which cards are FlashPay-enrolled so future payments skip registration
+7. **Complete authorization** – Call the Authorization API to debit the customer's account
 
-**Registration Scenarios:**
+### Key Points for Implementation
 
-1. **Guest Checkout**: When customers manually enter card details
-2. **Saved Cards**: When customers use previously tokenized cards
+* **Registration happens once per card** – After initial enrollment, customers use biometric for that card
+* **Happens inline** – Everything occurs within your app during the first payment
+* **OTP is still required for registration** – The first payment always needs OTP entry for security
+* **Track enrollment status** – Tag enrolled cards in your database to optimize the flow for repeat customers
+* **Guest and saved cards** – Registration works for both new card entries and previously saved cards
 
-**Your Integration Steps:**
+## Transaction Authentication Flow (Repeat Payments)
 
-1. **Continue Normal Flow**: Start card payments exactly as you do now
-2. **Use 3DS SDK**: Collect device information as per current process
-3. **Call Payment APIs**: Invoke your payment aggregator APIs as usual
-4. **Handle Bank Response**: Bank will indicate if FlashPay enrollment is possible
-5. **SDK Integration**: FlashPay SDK handles the biometric enrollment process
+Once a customer has registered their card for FlashPay, subsequent payments using that card are much faster and smoother.
 
-**Key Benefits for Implementation:**
+### What Happens During Authentication
 
-* Minimal changes to your existing payment flow
-* Automatic handling of complex biometric processes
-* Seamless integration with current 3DS infrastructure
+**Step-by-step process:**
 
-## How FlashPay Works for Transactions
+1. **Customer selects enrolled card** – They pick a card that's already registered for FlashPay
+2. **Education message shown** – Optional UI reminds customer their card supports biometric auth
+3. **Custom biometric screen** – FlashPay SDK displays a custom authentication screen with biometric prompt
+4. **Customer provides biometric** – Fingerprint, face scan, or other device-supported biometric
+5. **Transaction completes** – Payment is instantly authorized
+6. **Optional fallback** – If biometric fails, customer can automatically or manually fall back to OTP
 
-This explains how customers who have enrolled for FlashPay can complete payments using biometrics without leaving your app.
+### How Your Merchant App Handles Authentication
 
-### User Experience Flow
+**What your app does for repeat payments:**
 
-**Step-by-Step Payment Process:**
+1. **Initiate payment normally** – Call the 3DS SDK and PA's Payment API as usual
+2. **Bank sends response** – Bank ACS responds with FlashPay indicator (encrypted)
+3. **Send to FlashPay SDK** – Pass the response to FlashPay 3DS SDK
+4. **SDK shows biometric screen** – Custom UI prompts customer for fingerprint/face scan
+5. **Customer authenticates** – Biometric is captured and validated locally on the device
+6. **Instant result** – FlashPay returns authentication success/failure immediately
+7. **Smart fallback** – If biometric fails:
+   * System automatically shows OTP fallback option
+   * Customer can manually choose OTP if preferred
+   * Standard OTP flow takes over
+8. **Receive response** – SDK returns authentication result to your app
+9. **Complete authorization** – Call the Authorization API to debit the account
 
-1. **Card Selection**: Customer selects a FlashPay-enrolled card
-2. **Information Display**: App shows that this card is enrolled for biometric payments
-3. **Authentication Screen**: Biometric authentication interface appears with backup options
-4. **Biometric Verification**: Customer provides fingerprint, face scan, or voice authentication
-5. **Transaction Success**: Payment completes instantly without OTP or redirections
+### Key Points for Implementation
 
-### Technical Workflow
-
-### Implementation Guidelines
-
-**Supported Payment Types:**
-
-1. **Guest Checkout**: First-time card entries with FlashPay enrollment
-2. **Saved Cards**: Previously enrolled cards stored in your system
-
-**Integration Requirements:**
-
-1. **Standard SDK Calls**: Use the same 3DS SDK calls as your current implementation
-2. **API Integration**: Standard payment aggregator API calls
-3. **Fallback Handling**: Automatic switching to OTP if biometric authentication fails
-
-**Customer Benefits:**
-
-* No app switching or browser redirections
-* Instant payment completion
-* Secure biometric authentication
-* Reliable backup to OTP when needed
-
-<br />
+* **Much faster** – Biometric authentication is near-instant vs. waiting for OTP
+* **Automatic fallback** – If biometric fails, OTP is ready as a backup
+* **Always available** – Every repeat transaction can use biometric if enrolled
+* **Silent retries** – System may automatically retry biometric once before showing fallback
+* **Secure capture** – Biometric never leaves the customer's device
