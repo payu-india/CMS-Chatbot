@@ -281,42 +281,10 @@ payUUpiFlutter.isUPIBoltEnabled();
 
 #### Response
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        code  
-      </td>
-
-      <td>
-        `Integer` Status code (Success = 0, Failure = 1)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        message  
-
-      </td>
-
-      <td>
-        `String` Message
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Field   | Definition                                       |
+| ------- | ------------------------------------------------ |
+| code    | `Integer` Status code (Success = 0, Failure = 1) |
+| message | `String` Message                                 |
 
 Refer to SDK Response JSON Format.
 
@@ -599,13 +567,13 @@ void generateHash(Map response) {
 
 #### Response
 
-| Field   | Definition                                             |
-| ------- | ------------------------------------------------------ |
-| result  | Contains response model if received success callback   |
-| code    | `Integer` Refer to Response Codes and Messages section |
-| message | `String` Refer to Response Codes and Messages section  |
+| Field   | Definition                                                    |
+| ------- | ------------------------------------------------------------- |
+| result  | Contains response model if received success callback          |
+| code    | `Integer` Refer to [Response Codes](#response-codes) section  |
+| message | `String`  Refer to [Response Codes](#response-codes)  section |
 
-## Error Codes and Error Message List
+## Response Codes
 
 | Response Code | Message                                |
 | ------------- | -------------------------------------- |
