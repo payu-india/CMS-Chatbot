@@ -282,8 +282,8 @@ The following table provides details of some of the test cards that you can use 
 
 | Currency | **Card Number**  | **Expiry** | **CVV** | **OTP** |
 | -------- | ---------------- | ---------- | ------- | ------- |
-| USD $    | 4755964453587236 | 12/2030    | 596     | 111111  |
-| Euro €   | 4020419926566936 | 12/2030    | 041     | 111111  |
+| USD $    | 4755964453587236 | 12/2030    | 596     | 725356  |
+| Euro €   | 4020419926566936 | 12/2030    | 041     | 725356  |
 
 ## Save cards
 
