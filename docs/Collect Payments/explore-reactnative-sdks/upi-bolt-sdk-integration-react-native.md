@@ -225,7 +225,7 @@ PayUUPIBoltUISdk.reset(reactContext);
 
 #### Response
 
-Refer to SDK Response JSON Format.
+Refer to [Response Type](#response-type) table
 
 ### 2. isUPIBoltEnabled
 
@@ -245,7 +245,7 @@ PayUUPIBoltUISdk.isUPIBoltSDKAvailable((response) => {
 
 #### Response
 
-Refer to SDK Response JSON Format.
+Refer to [Response Type](#response-type) table
 
 ### 3. registerAndPay
 
@@ -280,17 +280,40 @@ PayUUPIBoltUISdk.payURegisterAndPay(paymentParams);
 
 #### Request Parameters
 
-| Field  | Data Type | Optional / Mandatory | Definition                      |
-| ------ | --------- | -------------------- | ------------------------------- |
-| params | Map       | M                    | Refer to Payment Params section |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
+
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        params  
+        `mandatory`
+      </td>
+
+      <td>
+        `map` Refer to Payment Params section
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### Response
 
 Refer to SDK Response JSON Format.
 
-| Field  | Data Type | Definition       |
-| ------ | --------- | ---------------- |
-| result | Any       | Payment Response |
+| Field  | Definition                                                        |
+| ------ | ----------------------------------------------------------------- |
+| result | Payment Response. Refer to [Response Type](#response-type)  table |
 
 ### 4. openUPIManagement
 
@@ -310,13 +333,36 @@ PayUUPIBoltUISdk.openUPIManagement(screenType);
 
 #### Request Parameters
 
-| Field      | Data Type | Optional / Mandatory | Definition                       |
-| ---------- | --------- | -------------------- | -------------------------------- |
-| screenType | String    | M                    | To enforce the management screen |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
+
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        screenType  
+        `mandatory`
+      </td>
+
+      <td>
+        `String` To enforce the management screen
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### Response
 
-Refer to SDK Response JSON Format.
+Refer to [Response Type](#response-type) table
 
 ## PayUPaymentParams
 
@@ -493,14 +539,14 @@ function handleHashGeneration(hashName, hashString) {
 
 Refer to SDK Response JSON Format.
 
-| Field        | Data Type | Definition                                           |
-| ------------ | --------- | ---------------------------------------------------- |
-| result       | Any?      | Contains response model if received success callback |
-| code         | Int       | Status code                                          |
-| message      | String?   | Message                                              |
-| responseType | Integer   | Refer to ResponseType                                |
+| Field        | Definition                                               |
+| ------------ | -------------------------------------------------------- |
+| result       | Contains response model if received success callback     |
+| code         | `Integer` Status code                                    |
+| message      | `String` Message                                         |
+| responseType | `Integer` Refer to [Response Type](#response-type) table |
 
-## Error Codes and Error Message List
+## Response type
 
 | Response Code | Message                                |
 | ------------- | -------------------------------------- |
