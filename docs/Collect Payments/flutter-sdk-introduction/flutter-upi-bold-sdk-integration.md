@@ -126,19 +126,74 @@ payUUpiFlutter.reset();
 
 #### Request Parameters
 
-| Field | Data Type | Optional / Mandatory | Definition |
-|-------|-----------|----------------------|------------|
-| config | Map | M | PayUUPIBoltBaseConfig includes the below fields. |
-| merchantName | String | M | Merchant Name |
-| merchantKey | String | M | PayU Merchant Key |
-| phone | String | M | Phone number for registration |
-| email | String | M | Customer Email Id |
-| pluginTypes | Array \<String> | M | List of Supported Plugin (Values - AXIS or HDFC or BHIM) |
-| isProduction | Boolean | M | Prod - true, staging - false |
-| excludedBanksIINs | Array \<String> | O | List of Bank's IIN to exclude |
-| clientId | String | O | Unique client ID |
-| refId | String | M | Unique reference ID |
-| issuingBanks | Array \<String> | O | List of Issuing Bank's (Values - AXIS or HDFC) |
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">config<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> PayUUPIBoltBaseConfig includes the below fields.</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">{...}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">merchantName<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Merchant Name</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"MyStore Inc"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">merchantKey<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> PayU Merchant Key</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"gtKFFx"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">phone<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Phone number for registration</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"+919876543210"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">email<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Customer Email Id</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"customer@example.com"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">pluginTypes<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Supported Plugin (Values - AXIS or HDFC or BHIM)</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC", "BHIM"]</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">isProduction<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Boolean</code> Prod - true, staging - false</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">excludedBanksIINs<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Bank's IIN to exclude</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">["123456", "789012"]</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">clientId<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique client ID</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"CLIENT_001"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">refId<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique reference ID</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"REF_12345678"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">issuingBanks<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Issuing Bank's (Values - AXIS or HDFC)</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC"]</td>
+        </tr>
+    </tbody>
+</table>
+`}</HTMLBlock>
 
 #### Response
 
@@ -152,9 +207,32 @@ The `clearCache` method is used to clear the cache corresponding to the passed P
 payUUpiFlutter.clearCache(params: Map);
 ```
 
-| Field | Data Type | Optional / Mandatory | Definition |
-|-------|-----------|----------------------|------------|
-| pg | String | M | PG value to check clear pg specific data |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
+
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        pg  
+        `mandatory`
+      </td>
+
+      <td>
+        `String` PG value to check clear pg specific data
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### Check Plugin Registration Status of PayUBolt SDK
 
@@ -164,9 +242,32 @@ The `isRegistered` method is used to check pg registration status.
 payUUpiFlutter.isRegistered(params: Map);
 ```
 
-| Field | Data Type | Optional / Mandatory | Definition |
-|-------|-----------|----------------------|------------|
-| pg | String | M | PG value to check pg specific registration status |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
+
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        pg  
+        `mandatory`
+      </td>
+
+      <td>
+        `String` PG value to check pg specific registration status
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### 2. isUPIBoltEnabled
 
@@ -180,10 +281,42 @@ payUUpiFlutter.isUPIBoltEnabled();
 
 #### Response
 
-| Field | Data Type | Definition |
-|-------|-----------|------------|
-| code | Int | Status code (Success = 0, Failure = 1) |
-| message | String? | Message |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
+
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        code  
+      </td>
+
+      <td>
+        `Integer` Status code (Success = 0, Failure = 1)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        message  
+
+      </td>
+
+      <td>
+        `String` Message
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 Refer to SDK Response JSON Format.
 
@@ -199,15 +332,38 @@ payUUpiFlutter.registerAndPay(params: Map);
 
 #### Request Parameters
 
-| Field | Data Type | Optional / Mandatory | Definition |
-|-------|-----------|----------------------|------------|
-| params | Map | M | Refer to Payment Params section |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
+
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        params  
+        `mandatory`
+      </td>
+
+      <td>
+        `Map` Refer to Payment Params section
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### Response
 
-| Field | Data Type | Definition |
-|-------|-----------|------------|
-| result | Any | Payment Response |
+| Field  | Definition       |
+| ------ | ---------------- |
+| result | Payment Response |
 
 Refer to SDK Response JSON Format.
 
@@ -231,9 +387,32 @@ payUUpiFlutter.openUPIManagement(params: Map);
 
 #### Request Parameters
 
-| Field | Data Type | Optional / Mandatory | Definition |
-|-------|-----------|----------------------|------------|
-| screenType | String | M | To enforce the management screen |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
+
+      <th>
+        Definition
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        screenType  
+        `mandatory`
+      </td>
+
+      <td>
+        `String` To enforce the management screen
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### Response
 
@@ -243,21 +422,84 @@ Refer to SDK Response JSON Format.
 
 The following fields are needed as a request:
 
-| Field | Data Type | Optional / Mandatory | Definition |
-|-------|-----------|----------------------|------------|
-| amount | String | M | Txn Amount |
-| txnId | String | M | Txn Id |
-| productInfo | String | M | Product Info |
-| firstName | String | M | First Name |
-| surl | String | O | Success URL |
-| furl | String | O | Failure URL |
-| additionalParam | Map | O | Additional params if any |
-| udf1 | Any | O | User Defined Fields1 |
-| udf2 | Any | O | User Defined Fields2 |
-| udf3 | Any | O | User Defined Fields3 |
-| udf4 | Any | O | User Defined Fields4 |
-| udf5 | Any | O | User Defined Fields5 |
-| udf6 | Any | O | User Defined Fields6 |
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">amount<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Txn Amount</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"100.00"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">txnId<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Txn Id</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"TXN_123456789"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">productInfo<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Product Info</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Product Purchase"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">firstName<br><code>mandatory</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> First Name</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"John"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">surl<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Success URL</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"https://example.com/success"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">furl<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Failure URL</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"https://example.com/failure"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">additionalParam<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> Additional params if any</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">{"param1": "value1"}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">udf1<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields1</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 1"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">udf2<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields2</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 2"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">udf3<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields3</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 3"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">udf4<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields4</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 4"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">udf5<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields5</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 5"</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">udf6<br><code>optional</code></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields6</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 6"</td>
+        </tr>
+    </tbody>
+</table>
+`}</HTMLBlock>
 
 ## Listener/Callback Logic
 
@@ -357,23 +599,23 @@ void generateHash(Map response) {
 
 #### Response
 
-| Field | Data Type | Definition |
-|-------|-----------|------------|
-| result | Any? | Contains response model if received success callback |
-| code | Int | Refer to Response Codes and Messages section |
-| message | String? | Refer to Response Codes and Messages section |
+| Field   | Definition                                             |
+| ------- | ------------------------------------------------------ |
+| result  | Contains response model if received success callback   |
+| code    | `Integer` Refer to Response Codes and Messages section |
+| message | `String` Refer to Response Codes and Messages section  |
 
 ## Error Codes and Error Message List
 
-| Response Code | Message |
-|---------------|---------|
-| 0 | Success |
-| 1 | Fail/ Invalid Response/ Missing params |
-| 2 | User cancelled the transaction |
-| 100 | Transaction timeout |
-| 103 | Handshake failed |
-| 104 | UPI bolt not supported |
-| 105 | Device not supported for UPI Bolt |
-| 500 | Something went wrong |
-| 501 | No internet connection |
-| 502 | SDK not found |
+| Response Code | Message                                |
+| ------------- | -------------------------------------- |
+| 0             | Success                                |
+| 1             | Fail/ Invalid Response/ Missing params |
+| 2             | User cancelled the transaction         |
+| 100           | Transaction timeout                    |
+| 103           | Handshake failed                       |
+| 104           | UPI bolt not supported                 |
+| 105           | Device not supported for UPI Bolt      |
+| 500           | Something went wrong                   |
+| 501           | No internet connection                 |
+| 502           | SDK not found                          |
