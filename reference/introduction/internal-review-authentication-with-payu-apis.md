@@ -246,7 +246,7 @@ const hash = generatePaymentHash(params, salt);
 
 ***
 
-### 2. Split Settlements
+### 2) Split Settlements
 
 #### Hash Formula
 
@@ -361,7 +361,7 @@ function generateSplitSettlementHash(params, salt, splitRequest) {
 
 ***
 
-### 3. Offers Integration
+### 3) Offers Integration
 
 #### Hash Formula
 
@@ -529,7 +529,7 @@ function generateOffersHash(params, salt) {
 
 ***
 
-### 4. Cross-Border Payments (PACB)
+### 4) Cross-Border Payments (PACB)
 
 #### 4.1 General Integration (Without api_version)
 
@@ -622,7 +622,7 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|
 
 ***
 
-### 5. SI Integration (Subscription APIs)
+### 5) SI Integration (Subscription APIs)
 
 #### Hash Formula
 
@@ -674,7 +674,7 @@ def generate_si_hash(params, salt, si_details):
     return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
 ```
 
-### 6. TPV Integration
+### 6) TPV Integration
 
 #### Hash Formula
 
@@ -726,7 +726,7 @@ def generate_tpv_hash(params, salt, beneficiary_detail):
     return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
 ```
 
-### 7. Version 19 _payment API
+### 7) Payment API (Version 19)
 
 #### Hash Formula
 
