@@ -726,7 +726,7 @@ def generate_tpv_hash(params, salt, beneficiary_detail):
     return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
 ```
 
-### 8. Payment API (Version 19)
+### 7. Version 19 _payment API
 
 #### Hash Formula
 
