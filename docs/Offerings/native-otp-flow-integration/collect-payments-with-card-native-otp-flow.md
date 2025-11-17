@@ -45,7 +45,7 @@ Send the following additional parameters to PayU through a server-to-server curl
   <tbody>
     <tr>
       <td>
-        key
+        key <br/>
         <code>mandatory</code>
       </td>
 
@@ -60,7 +60,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        txnid
+        txnid <br/>
         <code>mandatory</code>
       </td>
 
@@ -75,7 +75,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        amount
+        amount <br/>
         <code>mandatory</code>
       </td>
 
@@ -90,7 +90,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        productinfo
+        productinfo <br/>
         <code>mandatory</code>
       </td>
 
@@ -105,7 +105,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        firstname
+        firstname <br/>
         <code>mandatory</code>
       </td>
 
@@ -120,7 +120,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        email
+        email <br/>
         <code>mandatory</code>
       </td>
 
@@ -150,7 +150,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        pg
+        pg <br/>
         <code>mandatory</code>
       </td>
 
@@ -165,22 +165,22 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        bankcode
+        bankcode <br/>
         <code>mandatory</code>
       </td>
 
       <td>
-        <code>String</code> The bank code identifying the card type. For example, AMEX for American Express, VISA for Visa cards, etc.
+        <code>String</code> The bank code identifying the card type. In this regard, include "CC" only.
       </td>
 
       <td>
-        VISA
+        CC
       </td>
     </tr>
 
     <tr>
       <td>
-        ccnum
+        ccnum <br/>
         <code>mandatory</code>
       </td>
 
@@ -195,7 +195,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        ccname
+        ccname <br/>
         <code>mandatory</code>
       </td>
 
@@ -210,7 +210,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        ccvv
+        ccvv <br/>
         <code>mandatory</code>
       </td>
 
@@ -225,7 +225,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        ccexpmon
+        ccexpmon <br/>
         <code>mandatory</code>
       </td>
 
@@ -240,7 +240,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        ccexpyr
+        ccexpyr <br/>
         <code>mandatory</code>
       </td>
 
@@ -255,7 +255,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        surl
+        surl <br/>
         <code>mandatory</code>
       </td>
 
@@ -270,7 +270,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        furl
+        furl <br/>
         <code>mandatory</code>
       </td>
 
@@ -285,12 +285,12 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        hash
+        hash <br/>
         <code>mandatory</code>
       </td>
 
       <td>
-        <code>String</code> The computed hash ensuring security and verifying the transaction integrity.
+        <code>String</code> The computed hash ensuring security and verifying the transaction integrity. 
       </td>
 
       <td>
@@ -300,7 +300,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        panNumber
+        panNumber <br/>
         <code>mandatory</code>
       </td>
 
@@ -315,7 +315,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        s2s_device_info
+        s2s_device_info <br/>
         <code>mandatory</code>
       </td>
 
@@ -330,7 +330,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        s2s_client_ip
+        s2s_client_ip <br/>
         <code>mandatory</code>
       </td>
 
@@ -345,7 +345,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        txn_s2s_flow
+        txn_s2s_flow <br/>
         <code>mandatory</code>
       </td>
 
@@ -360,7 +360,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        address1
+        address1 <br/>
         <code>optional</code>
       </td>
 
@@ -375,7 +375,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        address2
+        address2 <br/>
         <code>optional</code>
       </td>
 
@@ -390,7 +390,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        city
+        city <br/>
         <code>optional</code>
       </td>
 
@@ -405,7 +405,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        state
+        state <br/>
         <code>optional</code>
       </td>
 
@@ -420,7 +420,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        country
+        country <br/>
         <code>optional</code>
       </td>
 
@@ -435,7 +435,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        zipcode
+        zipcode <br/>
         <code>optional</code>
       </td>
 
@@ -450,7 +450,22 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        udf1
+        udf1 <br/>
+        <code>optional</code>
+      </td>
+
+      <td>
+        <code>String</code> User-defined field allowing merchants to store transaction-related metadata.
+      </td>
+
+      <td>
+        Custom Data 
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf2 <br/>
         <code>optional</code>
       </td>
 
@@ -465,7 +480,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        udf2
+        udf3 <br/>
         <code>optional</code>
       </td>
 
@@ -480,7 +495,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        udf3
+        udf4 <br/>
         <code>optional</code>
       </td>
 
@@ -495,7 +510,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        udf4
+        udf5 <br/>
         <code>optional</code>
       </td>
 
@@ -505,36 +520,6 @@ Send the following additional parameters to PayU through a server-to-server curl
 
       <td>
         Custom Data
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf5
-        <code>optional</code>
-      </td>
-
-      <td>
-        <code>String</code> User-defined field allowing merchants to store transaction-related metadata.
-      </td>
-
-      <td>
-        Custom Data
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        api_version
-        <code>optional</code>
-      </td>
-
-      <td>
-        <code>String</code> Specify the API version if using advanced features.
-      </td>
-
-      <td>
-        1
       </td>
     </tr>
   </tbody>
