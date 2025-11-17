@@ -29,9 +29,7 @@ When your customer wants to opt for the EMI option with credit cards, you can us
 
 **Steps to integrate**
 
-<br />
-
-<Cards columns={3}>
+<Cards columns={2}>
   <Card title="1. Check the Card EMI Eligibility" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-1-check-the-card-emi-eligibility">
     Verify if the customer's card is eligible for EMI payments before proceeding
 
