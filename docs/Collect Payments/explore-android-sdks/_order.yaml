@@ -1,4 +1,3 @@
-- flashpay-android-sdk
 - android-checkoutpro-sdk
 - android-core-sdk
 - generate-static-hash-android-sdk-pro
@@ -11,5 +10,6 @@
 - ola-money-sdk
 - payu-bolt-sdk
 - android-checkoutpro-sdk-plugin
+- flashpay-android-sdk
 - faqs-android-sdk
 - hash-generation
