@@ -32,13 +32,15 @@ PayU India API uses merchant key and salt-based authentication. All requests mus
 
 ## Payment APIs (_payment API)
 
-### Hash Formula
+### General integration
+
+#### Hash Formula
 
 ```
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
 ```
 
-### Sample Code
+#### Sample Code
 
 ```php
 <?php
@@ -244,15 +246,15 @@ const hash = generatePaymentHash(params, salt);
 
 ***
 
-### 2. Split Settlements
+## 2. Split Settlements
 
-#### Hash Formula
+### Hash Formula
 
 ```
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|splitRequest)
 ```
 
-#### Code Examples
+### Code Examples
 
 ```php
 <?php
@@ -357,15 +359,17 @@ function generateSplitSettlementHash(params, salt, splitRequest) {
 }
 ```
 
-### 3. Offers Integration
+***
 
-#### Hash Formula
+## 3. Offers Integration
+
+### Hash Formula
 
 ```
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT
 ```
 
-#### Code Examples
+### Code Examples
 
 ```php
 <?php
@@ -523,9 +527,11 @@ function generateOffersHash(params, salt) {
 }
 ```
 
-### 4. Cross-Border Payments (PACB)
+***
 
-#### 4.1 General Integration (Without api_version)
+## 4. Cross-Border Payments (PACB)
+
+### 4.1 General Integration (Without api_version)
 
 #### Hash Formula
 
@@ -567,9 +573,9 @@ function generatePACBGeneralHash($params, $salt) {
 ?>
 ```
 
-#### 4.2 With Additional Charges
+### 4.2 With Additional Charges
 
-##### Hash Formula
+#### Hash Formula
 
 ```
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt|additional_charges
@@ -598,21 +604,23 @@ def generate_pacb_additional_charges_hash(params, salt, additional_charges):
     return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
 ```
 
-#### 4.3 With Additional Charges and Buyer Type
+### 4.3 With Additional Charges and Buyer Type
 
-##### Hash Formula
+#### Hash Formula
 
 ```
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt|additional_charges|buyer_type_business
 ```
 
-#### 4.4 With API Version, Additional Charges, and Buyer Type
+### 4.4 With API Version, Additional Charges, and Buyer Type
 
-##### Hash Formula
+#### Hash Formula
 
 ```
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|si_details|salt|udf_params|buyer_type_business
 ```
+
+***
 
 ### 5. SI Integration (Subscription APIs)
 
