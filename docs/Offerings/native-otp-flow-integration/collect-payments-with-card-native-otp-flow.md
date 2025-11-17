@@ -1179,8 +1179,6 @@ namespace PayUCardlessEmiNativeOtpIntegration
 
 ```
 
-<br />
-
 ## Step 2: Submit the OTP
 
 Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pass the OTP using the **Submit OTP** API. For more information, refer to [Submit OTP API](ref:submit-otp-to-payu).
