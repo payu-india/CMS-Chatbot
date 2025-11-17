@@ -29,6 +29,8 @@ The string used for calculating the hash:
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
 ```
 
+<br />
+
 ### Cross-Border Payments or PACB
 
 #### General integration
