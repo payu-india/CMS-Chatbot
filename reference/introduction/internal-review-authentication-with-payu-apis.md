@@ -19,10 +19,6 @@ metadata:
     - Generate hash for PayU API parameters
   robots: index
 ---
-# PayU Payments India - Hash Logic Implementation Guide
-
-## Authentication Overview
-
 PayU India API uses merchant key and salt-based authentication. All requests must include a `hash` parameter computed using SHA-512 encryption and predefined formulas.
 
 **Key Requirements:**
@@ -33,7 +29,7 @@ PayU India API uses merchant key and salt-based authentication. All requests mus
 
 ---
 
-## 1. Payment APIs (_payment API)
+## Payment APIs (_payment API)
 
 ### Hash Formula
 ```
@@ -206,8 +202,6 @@ params = {
 salt = 'yourSalt'
 hash_value = generate_payment_hash(params, salt)
 ```
-
-#### JavaScript
 ```javascript
 const crypto = require('crypto');
 
@@ -770,8 +764,6 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|
 ```
 
 ### Code Examples
-
-#### PHP
 ```php
 <?php
 function generateV19Hash($params, $salt) {
@@ -804,8 +796,6 @@ function generateV19Hash($params, $salt) {
 }
 ?>
 ```
-
-#### Python
 ```python
 def generate_v19_hash(params, salt):
     key = params['key']
@@ -847,7 +837,6 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 
 ### Code Examples
 
-#### PHP
 ```php
 <?php
 function verifyReverseHash($params, $salt, $receivedHash) {
@@ -874,8 +863,6 @@ function verifyReverseHash($params, $salt, $receivedHash) {
 }
 ?>
 ```
-
-#### Python
 ```python
 def verify_reverse_hash(params, salt, received_hash):
     key = params['key']
