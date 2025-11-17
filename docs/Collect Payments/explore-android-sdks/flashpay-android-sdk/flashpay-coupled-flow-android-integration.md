@@ -7,11 +7,9 @@ metadata:
 ---
 FlashPay solution primarily offers a single comprehensive SDK which is equipped to operate on 3DS protocols and additionally manages e2e authentication, including advanced biometric-based OOB authentication.
 
-## 1. Gradle changes
+## Step 1. Gradle changes
 
-<br />
-
-9PayU SDK offers the following methods to integrate with 3DS 2.0:
+PayU SDK offers the following methods to integrate with 3DS 2.0:
 
 * **SDK Integration**: Min SDK Version is v21 Compile SDK Version is v31 or later
 * **Maven Dependency URL** Use the following code snippet in your app’s build.gradle file:
@@ -29,7 +27,7 @@ implementation 'in.payu:threeds-sdk:1.1.2-SNAPSHOT'
   * Completing authorization through PayU
   * Use our SDK for collecting device details and to render challenge screens.
 
-## 2. Installation
+## Step 2. Installation
 
 ### Payment initialisation method
 
@@ -59,9 +57,9 @@ fun initiatePayment(
 
 Define and configure details for the SDK:
 
-> 📘 Note:
->
-> For uiCustomisation object initialisation, refer to [UI customization](#ui-customization).
+<Callout icon="📘" theme="info">
+  **Note**: For `uiCustomisation` object initialisation, refer to [UI customization](#ui-customization).
+</Callout>
 
 ```kotlin
 PayU3DS2Config: It contains below properties
@@ -450,7 +448,8 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        udf1 `optional`
+        udf1   
+        optional`
       </td>
 
       <td>
@@ -464,7 +463,8 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        udf2`optional`
+        udf2  
+        `optional`
       </td>
 
       <td>
@@ -478,7 +478,8 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        udf3`optional`
+        udf3  
+        `optional`
       </td>
 
       <td>
@@ -492,7 +493,8 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        udf4`optional`
+        udf4  
+        `optional`
       </td>
 
       <td>
@@ -506,7 +508,8 @@ var mPaymentParams =  PaymentParams();
 
     <tr>
       <td>
-        udf5`optional`
+        udf5  
+        `optional`
       </td>
 
       <td>
@@ -566,9 +569,9 @@ To make payment using stored card, pass userCredentials, network token and card 
       mpaymentParams.cardToken = <Card Token>
 ```
 
-> 📘 Saved Card Payments
->
-> Requires both `networkToken` and `cardToken` under `mPaymentParams` for saved card-related transactions.
+<Callout icon="📘" theme="info">
+  **Saved Card Payments**: Requires both `networkToken` and `cardToken` under `mPaymentParams` for saved card-related transactions.
+</Callout>
 
 <br />
 
@@ -643,15 +646,19 @@ hashGenerationListener.onHashGenerated(hashMap)
 2. Optionally append `postSalt` if provided
 3. Use `SHA-512` on the final string to return the computed hash
 
-> 📘 Hash Generation notes:
->
-> * Append your `salt` to the `hashString` and use SHA-512 to generate the hash
-> * If `postSalt` is provided, append it to the hashString after adding salt before hashing
+<Callout icon="📘" theme="info">
+  **Hash Generation notes**:
 
-> 📘 Callout
->
-> * If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algorithm on that final string to generate hash.
-> * There is no need to know the formula for dynamic hashes because PayU SDK gives you the string containing all the required parameters. Your server has to append salt at the end and generate sha512 hash over it.
+  * Append your `salt` to the `hashString` and use SHA-512 to generate the hash
+  * If `postSalt` is provided, append it to the hashString after adding salt before hashing
+</Callout>
+
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algorithm on that final string to generate hash.
+  * There is no need to know the formula for dynamic hashes because PayU SDK gives you the string containing all the required parameters. Your server has to append salt at the end and generate sha512 hash over it.
+</Callout>
 
 ### MFA registration status
 
@@ -691,6 +698,6 @@ fun mfaRegistrationstatus(status: Boolean)
 
 ***
 
-> 📘 Note:
->
-> This integration guide covers the complete setup process for FlashPay Android SDK. Ensure proper implementation of all callback methods and error handling for a seamless user experience.
+<Callout icon="📘" theme="info">
+  **Note**: This integration guide covers the complete setup process for FlashPay Android SDK. Ensure proper implementation of all callback methods and error handling for a seamless user experience.
+</Callout>
