@@ -5,19 +5,19 @@ hidden: false
 metadata:
   robots: index
 ---
-The **Get Checkout Details** (get\_checkout\_details) API is a generic API using which they can get information when you create the custom checkout pages, that will contain the payment options, offers, recommendations, and downtime details. The API provides the following details:
+The **Get Checkout Details** (get_checkout_details) API is a generic API using which they can get information when you create the custom checkout pages, that will contain the payment options, offers, recommendations, and downtime details. The API provides the following details:
 
 * **Payment option details**: The extended details for each payment option are available for the merchant.
-* **Additional charges**: The additional charges are configured for all payment options.\
+* **Additional charges**: The additional charges are configured for all payment options.  
   eligibility details
 * **Downtime details**: The downtime status of the payment options.
 
 **Environment**
 
-|                        |                                                                  |
-| :--------------------- | :--------------------------------------------------------------- |
-| Production Environment | [https://test.payu.in/v2/refund](https://test.payu.in/v2/refund) |
-| Test Environment       | [https://info.payu.in/v2/refund](https://info.payu.in/v2/refund) |
+|                        |                                                                                      |
+| :--------------------- | :----------------------------------------------------------------------------------- |
+| Production Environment | [https://test.payu.in/v3/checkout/details](https://test.payu.in/v3/checkout/details) |
+| Test Environment       | https://info.payu.in/v3/checkout/details                                             |
 
 ## Request headers
 
