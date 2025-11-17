@@ -6,7 +6,6 @@
 - collect-payments-with-emi-using-credit-card
 - collect-payments-with-cardless-emi-using-merchant-hosted-checkout
 - cardless-emi-s2s-integration
-- native-otp-flow-integration
 - collect-payments-with-debit-card-native-otp-flow
 - collect-payments-with-cardless-emi-native-otp-flow
 - integration-checklist-emi
