@@ -30,7 +30,7 @@ PayU India API uses merchant key and salt-based authentication. All requests mus
 
 ***
 
-## Payment APIs (_payment API)
+## 1. Collect Payment API - _payment
 
 ### Hash Formula
 
