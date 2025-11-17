@@ -14,7 +14,7 @@ The steps involved in debit card integration with native OTP flow:
 1. [Check Pre-EMI Eligibility](#step-1-check-pre-emi-eligibility)
 2. [Initiate the payment request](#step-2-initiate-the-payment-request)
 3. [Submit the OTP](#step-3-submit-the-otp)
-4. [Verify the Payment](#step-4-verify-the-payment) 
+4. [Verify the Payment](#step-4-verify-the-payment)
 
 ## Step 1: Check Pre-EMI Eligibility
 
@@ -1302,7 +1302,7 @@ Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pas
 }
 ```
 
-#### Resend OTP
+### Resend OTP
 
 If the customer enters the incorrect OTP or an expired OTP, use [Resend OTP API](ref:resend-otp-api) to handle the **Resend OTP** request made by a customer.
 
