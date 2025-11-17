@@ -20,8 +20,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 
 ## User Journeys in PayU UPI Bolt
 
-### Registration and Pay
-
+<Accordion title="Registration and Pay" icon="fa-folder">
 1. Merchant Application can do the User registration for customers who are coming first time for PayU UPI Bolt. The Registration can be done during the checkout process or it can be called in a separate user journey. In case of Merchant is using PayU Checkout Pro SDK, PayU will take care of customer registration.
 2. Once the registration process is initiated, the user will be asked to accept the SMS sending permissions required to verify the SIM card. If the phone has dual SIM, the SIM card selection screen will be shown to customers to select the specific SIM card.
 3. After the device verification, UPI ID creation and the Bank selection will be done. Add bank journey will be completed after adding a bank account connected to the same mobile number used for device verification.
@@ -29,17 +28,15 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 5. Finally, customers can make a transaction using the added bank account. If the customer is using the bank account for the first time, he will also need to set the MPIN.
 
 <Image align="center" alt="Flutter UPI Bolt UI SDK Integration Registration and Pay Flow" border={false} src="https://files.readme.io/477aa57e491d8be306be606858728a809e562aed4a65bef8663d03703a82d98f-0.jpg" />
-
-### Pay
-
+</Accordion>
+<Accordion title="Pay" icon="fa-folder">
 1. Customers who are already registered with PayU UPI Bolt can make a One-click payment.
 2. The customer needs to select the already added bank account and enter the MPIN and the transaction will be completed.
 3. The customer can also check the balance before making a transaction to avoid low-balance transaction failure.
 
 <Image align="center" alt="Flutter UPI Bolt UI SDK Integration Pay Flow" border={false} src="https://files.readme.io/b3050b0d3581a62b29ddccb4d183cf14f0251e6cbd033cea8916eae364209586-1.jpg" />
-
-### Profile Management Journey
-
+</Accordion>
+<Accordion title="Profile Management Journey" icon="fa-folder">
 1. Customers can add new bank accounts, set MPIN, change MPIN, reset MPIN, delete accounts, and check the balance of already added bank accounts.
 2. Transaction history can be seen and queries can be raised and resolved within the PayU UI Bolt SDK.
 3. Customers can see all the raised disputes from the Dispute history screen.
@@ -48,17 +45,14 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 <Image align="center" alt="Flutter UPI Bolt UI SDK Integration Registration and Profile Management Flow" border={false} src="https://files.readme.io/f6649179d1e3193799da08174d44e0d4a021da5b3bcfbf62b6c7863d13fd26ed-2.jpg" />
 
 ## Steps to Integrate PayU Bolt SDK
-
-### Prerequisites
-
+</Accordion>
+<Accordion title="Prerequisites" icon="fa-folder">
 SDK Compatibility: Ensure that the application's minimum development target is set to version 13 or higher.
-
-### UI Bolt Integration
-
+</Accordion>
+<Accordion title="UI Bolt Integration" icon="fa-folder">
 Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
-
-### iOS Integration
-
+</Accordion>
+<Accordion title="iOS Integration" icon="fa-folder">
 To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your podfile.
 
 **Supported iOS deployment target - iOS 17 and above.**
@@ -75,9 +69,8 @@ Add these framework in your project. The added framework is similar to the follo
 In Build Settings > Framework Search Path, add `$(PROJECT_DIR)/Frameworks` if it is not added automatically by Xcode.
 
 <Image align="center" alt="Flutter UPI Bolt UI SDK Integration PROJECT_DIR config" border={false} src="https://files.readme.io/dfbfe5bb1b9bd93ea6c30e191556643e8a0e870550a40f46225ea071e4eaab0c-4.png" />
-
-### Android Integration
-
+</Accordion>
+<Accordion title="Android Integration" icon="fa-folder">
 Add the following dependency in the build.gradle file of your android app module:
 
 ```gradle
@@ -98,13 +91,8 @@ flutter pub add payu_upi_bolt_ui_flutter:^1.0.0-alpha.1
 ```
 
 ## SDK Methods
-
-### 1. init
-
-It is used to initialize the SDK. This method returns an object that will be used to access other methods available in PayUUPIBoltUI.
-
-#### Request
-
+</Accordion>
+<Accordion title="Request" icon="fa-cog">
 Add the following imports:
 
 ```dart
@@ -135,9 +123,8 @@ payUUpiFlutter.initSDK(params: config);
 // To clear the SDK Instance
 payUUpiFlutter.reset();
 ```
-
-#### Request Parameters
-
+</Accordion>
+<Accordion title="Request Parameters" icon="fa-cog">
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
     <thead>
@@ -206,13 +193,11 @@ payUUpiFlutter.reset();
     </tbody>
 </table>
 `}</HTMLBlock>
-
-#### Response
-
+</Accordion>
+<Accordion title="Response" icon="fa-cog">
 Refer to SDK Response JSON Format.
-
-#### Clear SDK Cache of PayUBolt SDK
-
+</Accordion>
+<Accordion title="Clear SDK Cache of PayUBolt SDK" icon="fa-cog">
 The `clearCache` method is used to clear the cache corresponding to the passed PG value.
 
 ```dart
@@ -245,9 +230,8 @@ payUUpiFlutter.clearCache(params: Map);
     </tr>
   </tbody>
 </Table>
-
-#### Check Plugin Registration Status of PayUBolt SDK
-
+</Accordion>
+<Accordion title="Check Plugin Registration Status of PayUBolt SDK" icon="fa-cog">
 The `isRegistered` method is used to check pg registration status.
 
 ```dart
@@ -280,38 +264,32 @@ payUUpiFlutter.isRegistered(params: Map);
     </tr>
   </tbody>
 </Table>
-
-### 2. isUPIBoltEnabled
-
-This method is used to check whether the upi bolt is enabled for the merchant or not.
-
-#### Request
-
+</Accordion>
+<Accordion title="1. init" icon="fa-folder">
+It is used to initialize the SDK. This method returns an object that will be used to access other methods available in PayUUPIBoltUI.
+</Accordion>
+<Accordion title="Request" icon="fa-cog">
 ```dart
 payUUpiFlutter.isUPIBoltEnabled();
 ```
-
-#### Response
-
+</Accordion>
+<Accordion title="Response" icon="fa-cog">
 | Field   | Definition                                       |
 | ------- | ------------------------------------------------ |
 | code    | `Integer` Status code (Success = 0, Failure = 1) |
 | message | `String` Message                                 |
 
 Refer to SDK Response JSON Format.
-
-### 3. registerAndPay
-
-This API allows you to initialize registration and payment flow. It will internally authenticate and register the customer. After successful authentication and registration, the user will follow the payment journey. Once payment is completed, based on the payment status the merchant will get a callback through the listener.
-
-#### Request
-
+</Accordion>
+<Accordion title="2. isUPIBoltEnabled" icon="fa-folder">
+This method is used to check whether the upi bolt is enabled for the merchant or not.
+</Accordion>
+<Accordion title="Request" icon="fa-cog">
 ```dart
 payUUpiFlutter.registerAndPay(params: Map);
 ```
-
-#### Request Parameters
-
+</Accordion>
+<Accordion title="Request Parameters" icon="fa-cog">
 <Table>
   <thead>
     <tr>
@@ -338,21 +316,18 @@ payUUpiFlutter.registerAndPay(params: Map);
     </tr>
   </tbody>
 </Table>
-
-#### Response
-
+</Accordion>
+<Accordion title="Response" icon="fa-cog">
 | Field  | Definition       |
 | ------ | ---------------- |
 | result | Payment Response |
 
 Refer to SDK Response JSON Format.
-
-### 4. openUPIManagement
-
-This API allows you to manage UPI accounts and transaction history.
-
-#### Request
-
+</Accordion>
+<Accordion title="3. registerAndPay" icon="fa-folder">
+This API allows you to initialize registration and payment flow. It will internally authenticate and register the customer. After successful authentication and registration, the user will follow the payment journey. Once payment is completed, based on the payment status the merchant will get a callback through the listener.
+</Accordion>
+<Accordion title="Request" icon="fa-cog">
 ```dart
 // Screen Types
 var params = {
@@ -364,9 +339,8 @@ var params = {
 
 payUUpiFlutter.openUPIManagement(params: Map);
 ```
-
-#### Request Parameters
-
+</Accordion>
+<Accordion title="Request Parameters" icon="fa-cog">
 <Table>
   <thead>
     <tr>
@@ -393,9 +367,8 @@ payUUpiFlutter.openUPIManagement(params: Map);
     </tr>
   </tbody>
 </Table>
-
-#### Response
-
+</Accordion>
+<Accordion title="Response" icon="fa-cog">
 Refer to SDK Response JSON Format.
 
 ## PayUPaymentParams
@@ -537,9 +510,8 @@ void generateHash(Map response) {
 The PayU SDKs use hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification.
 
 For generating and passing dynamic hashes, the merchant will receive a call from the generateHash method of PayUUPIBoltUiListener. The generateHash() method is called by the SDK each time it needs an individual hash.
-
-#### Request
-
+</Accordion>
+<Accordion title="Request" icon="fa-cog">
 ```dart
 @override 
 void generateHash(Map response) {
@@ -576,9 +548,8 @@ void generateHash(Map response) {
   payUUpiFlutter.hashGenerated(params: hashResponse);
 }
 ```
-
-#### Response
-
+</Accordion>
+<Accordion title="Response" icon="fa-cog">
 | Field   | Definition                                                    |
 | ------- | ------------------------------------------------------------- |
 | result  | Contains response model if received success callback          |
@@ -599,3 +570,7 @@ void generateHash(Map response) {
 | 500           | Something went wrong                   |
 | 501           | No internet connection                 |
 | 502           | SDK not found                          |
+</Accordion>
+<Accordion title="4. openUPIManagement" icon="fa-folder">
+This API allows you to manage UPI accounts and transaction history.
+</Accordion>
