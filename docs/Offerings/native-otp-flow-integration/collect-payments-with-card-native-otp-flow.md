@@ -11,15 +11,10 @@ metadata:
 ---
 The steps involved in cardless EMI with Native OTP:
 
-1. [Check pre-EMI eligibility](#step-1-check-pre-emi-eligibility)
-2. [Initiate the payment request](#step-2-initiate-the-payment-to-payu)
-3. [Submit the OTP](#step-3-submit-the-OTP)
+1. [Initiate the payment request](#step-2-initiate-the-payment-to-payu)
+2. [Submit the OTP](#step-3-submit-the-OTP)
 
-## Step 1: Check pre-EMI eligibility
-
-Before initiating a payment request for a customer, it is necessary to check their eligibility using the **Get Checkout Details** API. For more information, refer to [Get Checkout Details API](ref:get_checkout_details#check-customer-eligibility).
-
-## Step 2: Initiate the payment request
+## Step 1: Initiate the payment request
 
 ### Request parameters
 
@@ -45,7 +40,7 @@ Send the following additional parameters to PayU through a server-to-server curl
   <tbody>
     <tr>
       <td>
-        key <br/>
+        key <br />
         <code>mandatory</code>
       </td>
 
@@ -60,7 +55,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        txnid <br/>
+        txnid <br />
         <code>mandatory</code>
       </td>
 
@@ -75,7 +70,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        amount <br/>
+        amount <br />
         <code>mandatory</code>
       </td>
 
@@ -90,7 +85,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        productinfo <br/>
+        productinfo <br />
         <code>mandatory</code>
       </td>
 
@@ -105,7 +100,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        firstname <br/>
+        firstname <br />
         <code>mandatory</code>
       </td>
 
@@ -120,7 +115,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        email <br/>
+        email <br />
         <code>mandatory</code>
       </td>
 
@@ -150,7 +145,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        pg <br/>
+        pg <br />
         <code>mandatory</code>
       </td>
 
@@ -165,7 +160,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        bankcode <br/>
+        bankcode <br />
         <code>mandatory</code>
       </td>
 
@@ -180,7 +175,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        ccnum <br/>
+        ccnum <br />
         <code>mandatory</code>
       </td>
 
@@ -195,7 +190,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        ccname <br/>
+        ccname <br />
         <code>mandatory</code>
       </td>
 
@@ -210,7 +205,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        ccvv <br/>
+        ccvv <br />
         <code>mandatory</code>
       </td>
 
@@ -225,7 +220,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        ccexpmon <br/>
+        ccexpmon <br />
         <code>mandatory</code>
       </td>
 
@@ -240,7 +235,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        ccexpyr <br/>
+        ccexpyr <br />
         <code>mandatory</code>
       </td>
 
@@ -255,7 +250,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        surl <br/>
+        surl <br />
         <code>mandatory</code>
       </td>
 
@@ -270,7 +265,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        furl <br/>
+        furl <br />
         <code>mandatory</code>
       </td>
 
@@ -285,12 +280,12 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        hash <br/>
+        hash <br />
         <code>mandatory</code>
       </td>
 
       <td>
-        <code>String</code> The computed hash ensuring security and verifying the transaction integrity. 
+        <code>String</code> The computed hash ensuring security and verifying the transaction integrity.
       </td>
 
       <td>
@@ -300,7 +295,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        panNumber <br/>
+        panNumber <br />
         <code>mandatory</code>
       </td>
 
@@ -315,7 +310,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        s2s_device_info <br/>
+        s2s_device_info <br />
         <code>mandatory</code>
       </td>
 
@@ -330,7 +325,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        s2s_client_ip <br/>
+        s2s_client_ip <br />
         <code>mandatory</code>
       </td>
 
@@ -345,7 +340,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        txn_s2s_flow <br/>
+        txn_s2s_flow <br />
         <code>mandatory</code>
       </td>
 
@@ -360,7 +355,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        address1 <br/>
+        address1 <br />
         <code>optional</code>
       </td>
 
@@ -375,7 +370,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        address2 <br/>
+        address2 <br />
         <code>optional</code>
       </td>
 
@@ -390,7 +385,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        city <br/>
+        city <br />
         <code>optional</code>
       </td>
 
@@ -405,7 +400,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        state <br/>
+        state <br />
         <code>optional</code>
       </td>
 
@@ -420,7 +415,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        country <br/>
+        country <br />
         <code>optional</code>
       </td>
 
@@ -435,7 +430,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        zipcode <br/>
+        zipcode <br />
         <code>optional</code>
       </td>
 
@@ -450,22 +445,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        udf1 <br/>
-        <code>optional</code>
-      </td>
-
-      <td>
-        <code>String</code> User-defined field allowing merchants to store transaction-related metadata.
-      </td>
-
-      <td>
-        Custom Data 
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf2 <br/>
+        udf1 <br />
         <code>optional</code>
       </td>
 
@@ -480,7 +460,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        udf3 <br/>
+        udf2 <br />
         <code>optional</code>
       </td>
 
@@ -495,7 +475,7 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        udf4 <br/>
+        udf3 <br />
         <code>optional</code>
       </td>
 
@@ -510,7 +490,22 @@ Send the following additional parameters to PayU through a server-to-server curl
 
     <tr>
       <td>
-        udf5 <br/>
+        udf4 <br />
+        <code>optional</code>
+      </td>
+
+      <td>
+        <code>String</code> User-defined field allowing merchants to store transaction-related metadata.
+      </td>
+
+      <td>
+        Custom Data
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udf5 <br />
         <code>optional</code>
       </td>
 
@@ -1186,7 +1181,7 @@ namespace PayUCardlessEmiNativeOtpIntegration
 
 <br />
 
-## Step 3: Submit the OTP
+## Step 2: Submit the OTP
 
 Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pass the OTP using the **Submit OTP** API. For more information, refer to [Submit OTP API](ref:submit-otp-to-payu).
 
