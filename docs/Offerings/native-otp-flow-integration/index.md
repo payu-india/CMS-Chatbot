@@ -25,7 +25,7 @@ What are the advantages and why should merchants integrate this flow with PayU?
 
 This flow supports the latest native OTP generation flow (server-to-server) via Initiate Payment API, followed by the Submit OTP API, to initiate an S2S=4 transaction.
 
-This part of the includes the following integration:
+PayU supports the following integrations:
 
 * [Cards](https://docs.payu.in/docs/collect-payments-with-card-native-otp-flow)
 * [Debit Card EMI](https://docs.payu.in/docs/collect-payments-with-debit-card-native-otp-flow)
