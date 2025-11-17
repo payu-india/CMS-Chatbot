@@ -24,6 +24,7 @@ Before initiating a payment request for a customer, it is necessary to check the
 ### Request parameters
 
 Send the transaction information to PayU through a server-to-server curl request to initiate the transaction. As a result of this API call, the customer will receive the OTP. For more information, refer to [Collect Payment API - Server-to-Server](ref:_payment_server_to_server).
+
 <HTMLBlock>{`
 <Table align={["left","left","left"]}>
   <thead>
@@ -1238,6 +1239,72 @@ namespace PayUEmiNativeOtpIntegration
 
 Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pass the OTP using the **Submit OTP** API. For more information, refer to [Submit OTP API](ref:submit-otp-to-payu).
 
+### Sample Response
+
+* Success scenario
+
+```json
+{
+  "metaData": {
+    "txnId": "43242dfsdf",
+    "referenceId": "348adsdas7d9ad798as7d87dsad87a9s",
+    "txnStatus": "Enrolled",
+    "unmappedStatus": "pending",
+    "statusCode": "",
+    "message": "",
+    "submitOtp": {
+      "status": "success"
+    }
+  },
+  "result": {
+    "mihpayid": "412345678912343542",
+    "mode": "DC",
+    "status": "success",
+    "key": "hUmBue",
+    "txnid": "0b33346ret72c1d18e878b",
+    "amount": "10.00",
+    "addedon": "2019-12-09 11:42:41",
+    "productinfo": "ProductInfo",
+    "firstname": "Payu-Admin",
+    "lastname": "",
+    "address1": "",
+    "address2": "",
+    "city": "",
+    "state": "",
+    "country": "",
+    "zipcode": "",
+    "email": "test@example.com",
+    "phone": "1234567890",
+    "unmappedstatus": "captured",
+    "hash": "04792dd6264c1dad0d4621..."
+  }
+}
+```
+
+* Failure scenario
+
+```json
+{
+  "metaData": {
+    "txnId": "43242dfsdf",
+    "referenceId": "348adsdas7d9ad798as7d87dsad87a9s",
+    "txnStatus": "Enrolled",
+    "unmappedStatus": "pending",
+    "statusCode": null,
+    "message": null,
+    "submitOtp": {
+      "status": "failed",
+      "attemptsLeft": 2
+    }
+  },
+  "result": {}
+}
+```
+
 #### Resend OTP
 
-If the customer enters the incorrect OTP or an expired OTP, use [Resend OTP API](ref:resend-otp-api) to handle the Resend OTP request made by a customer.
+If the customer enters the incorrect OTP or an expired OTP, use [Resend OTP API](ref:resend-otp-api) to handle the **Resend OTP** request made by a customer.
+
+## Step 3. Verify the Payment
+
+<Verify_Payment_Tabs />
