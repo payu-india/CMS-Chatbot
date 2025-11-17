@@ -9,9 +9,9 @@ PayU's FlashPay SDK solution provides a robust biometric authentication solution
 
 This section outlines the technical specifications and integration requirements for implementing the PayU FlashPay SDK into merchant mobile applications. The document covers the following key integration touchpoints:
 
-- Customer eligibility for FlashPay
-- Customer registration flow
-- Transaction authentication flow
+* Customer eligibility for FlashPay
+* Customer registration flow
+* Transaction authentication flow
 
 The scenarios outlined are designed to work seamlessly with PayU or other Payment Aggregators (PA).
 
@@ -25,11 +25,11 @@ FlashPay offers significant advantages for both merchants and customers:
 4. **Seamless Fallback**: Automatic fallback to OTP-based authentication in case of biometric failures
 5. **Minimal Integration**: Operates on existing 3DS infrastructure with minimal changes required
 6. **Universal Support**: Compatible with all major card networks and supports various card types including:
-   - Guest checkout
-   - Alternative IDs
-   - Network tokens
-   - Issuer tokens
-   - Tokenized cards
+   * Guest checkout
+   * Alternative IDs
+   * Network tokens
+   * Issuer tokens
+   * Tokenized cards
 
 ## SDK Integration
 
@@ -37,15 +37,14 @@ To integrate the FlashPay SDK into your mobile application, refer to the compreh
 
 * Supported Operating Systems
 
-| Platform | Version | Device Support |
-|----------|---------|----------------|
-| Android | 6.0 and above | Smartphones only (tablets not supported) |
-| iOS | 12.0 and above | iPhones only (iPads not supported) |
+| Platform | Version        | Device Support                           |
+| -------- | -------------- | ---------------------------------------- |
+| Android  | 6.0 and above  | Smartphones only (tablets not supported) |
+| iOS      | 12.0 and above | iPhones only (iPads not supported)       |
 
-*  Customer Eligibility for FlashPay
+* Customer Eligibility for FlashPay
 
 Issuing banks provide a list of Bank Identification Numbers (BINs) that are eligible for the FlashPay Biometric MFA Solution. Merchants can use the BIN Info API to verify card eligibility in real-time.
-
 
 ### Key Pointers for Consideration
 
@@ -60,7 +59,7 @@ This section details the step-by-step process for registering a customer's card 
 
 ### Registration Workflow
 
-**Technical Implementation Steps**:
+The technical Implementation steps involves:
 
 1. **Transaction Initiation**: Merchant initiates card payment transaction using 3DS SDK and invokes PA API for payment authorization
 
@@ -69,8 +68,8 @@ This section details the step-by-step process for registering a customer's card 
 3. **SDK Processing**: FlashPay SDK loads OTP authentication screen and captures user consent for biometric enrollment
 
 4. **Post-OTP Validation**:
-   - Authentication status is communicated to merchant via SDK callback and backend webhook
-   - Merchant initiates account debit using PA Authorization API
+   * Authentication status is communicated to merchant via SDK callback and backend webhook
+   * Merchant initiates account debit using PA Authorization API
 
 5. **Registration Storage**: Registration status is saved by merchant for future transaction reference
 
@@ -81,21 +80,19 @@ This section details the step-by-step process for registering a customer's card 
 3. **Status Management**: Enrollment status must be stored and managed by merchant in customer records
 4. **Seamless Integration**: Process integrates seamlessly with existing transaction workflows
 
-## Transaction Authentication Flow
+### Transaction Authentication Workflow
 
 Customers who have successfully registered their cards with FlashPay can authenticate subsequent transactions using biometric authentication directly within the merchant application.
 
-### Authentication Workflow
-
-**Technical Implementation Steps**:
+The technical implementation steps involves:
 
 1. **Authentication Initiation**: Merchant initiates authentication using 3DS SDK and PA API
 
 2. **Bank Processing**: Bank ACS validates the card and sends encrypted response to FlashPay SDK
 
 3. **Biometric Validation**: FlashPay SDK presents biometric authentication interface
-   - Primary: Biometric authentication (fingerprint/face recognition)
-   - Fallback: OTP authentication when biometric validation fails
+   * Primary: Biometric authentication (fingerprint/face recognition)
+   * Fallback: OTP authentication when biometric validation fails
 
 4. **Status Communication**: Validation status is sent to merchant via SDK callback and webhook
 
@@ -112,9 +109,7 @@ Customers who have successfully registered their cards with FlashPay can authent
 
 ### Merchant Integration with FlashPay SDK
 
-For detailed SDK integration guidelines, implementation steps, callback configurations, and communication protocols, refer to the comprehensive documentation:
-
-**Document Reference**: "FlashPay_3DS SDK"
+For detailed SDK integration guidelines, implementation steps, callback configurations, and communication protocols, refer to [3DS 2.0 FlashPay Coupled Flow iOS Integration](doc:3ds-20-flashpay-coupled-flow-ios-integration)
 
 ### Merchant Integration with Payment Aggregator APIs
 
@@ -126,19 +121,18 @@ The following APIs are required for complete Payment Aggregator integration:
 4. **AuthN Data API**: Retrieve detailed authentication results from payment aggregator
 5. **AuthZ API**: Process customer account debit following successful authentication
 
-**Document Reference**: "Merchant_PA_API"
+This part of the document contains detailed API specifications, request/response formats, error handling procedures, and integration examples for seamless payment aggregator connectivity.
 
-This document contains detailed API specifications, request/response formats, error handling procedures, and integration examples for seamless payment aggregator connectivity.
-
----
+***
 
 **Document Information**:
-- **Title**: PayU FlashPay Product Specification Document
-- **Version**: 1.2
-- **Focus**: Technical specifications for FlashPay SDK integration
-- **Scope**: Customer eligibility, registration flows, and transaction authentication processes
-- **Compliance**: RBI guidelines for Multi-Factor Authentication (MFA)
-- **Protocol**: 3D Secure (3DS) with biometric-based out-of-band authentication
+
+* **Title**: PayU FlashPay Product Specification Document
+* **Version**: 1.2
+* **Focus**: Technical specifications for FlashPay SDK integration
+* **Scope**: Customer eligibility, registration flows, and transaction authentication processes
+* **Compliance**: RBI guidelines for Multi-Factor Authentication (MFA)
+* **Protocol**: 3D Secure (3DS) with biometric-based out-of-band authentication
 
 ### BIN Info API
 
@@ -147,7 +141,8 @@ This document contains detailed API specifications, request/response formats, er
 This API provides access to the latest BIN data authorized by participating banks for FlashPay authentication. The API delivers real-time responses to help merchants manage customer user experience effectively.
 
 **Key Features**:
-- Real-time BIN eligibility verification
-- Support for both guest checkout and saved cards
-- Dynamic updates as new issuing banks are onboarded
-- Configurable to include additional BIN data
+
+* Real-time BIN eligibility verification
+* Support for both guest checkout and saved cards
+* Dynamic updates as new issuing banks are onboarded
+* Configurable to include additional BIN data
