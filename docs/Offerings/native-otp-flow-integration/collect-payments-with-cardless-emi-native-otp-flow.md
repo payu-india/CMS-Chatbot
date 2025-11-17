@@ -12,6 +12,7 @@ The steps involved in cardless EMI with Native OTP:
 1. [Check pre-EMI eligibility](#step-1-check-pre-emi-eligibility)
 2. [Initiate the payment request](#step-2-initiate-the-payment-to-payu)
 3. [Submit the OTP](#step-3-submit-the-OTP)
+4. [Verify the Payment](#step-4-verify-the-payment) 
 
 ### Step 1: Check pre-EMI eligibility
 
@@ -81,10 +82,72 @@ Before initiating a payment request for a customer, it is necessary to check the
 
 Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pass the OTP using the **Submit OTP** API. For more information, refer to [Submit OTP API](ref:submit-otp-to-payu).
 
+#### Sample Response
+
+* Success scenario
+
+```json
+{
+  "metaData": {
+    "txnId": "43242dfsdf",
+    "referenceId": "348adsdas7d9ad798as7d87dsad87a9s",
+    "txnStatus": "Enrolled",
+    "unmappedStatus": "pending",
+    "statusCode": "",
+    "message": "",
+    "submitOtp": {
+      "status": "success"
+    }
+  },
+  "result": {
+    "mihpayid": "412345678912343542",
+    "mode": "EMI",
+    "status": "success",
+    "key": "hUmBue",
+    "txnid": "0b33346c19c1d18e878b",
+    "amount": "10.00",
+    "addedon": "2019-12-09 11:42:41",
+    "productinfo": "ProductInfo",
+    "firstname": "Payu-Admin",
+    "lastname": "",
+    "address1": "",
+    "address2": "",
+    "city": "",
+    "state": "",
+    "country": "",
+    "zipcode": "",
+    "email": "test@example.com",
+    "phone": "1234567890",
+    "unmappedstatus": "captured",
+    "hash": "04792dd6264c1dad0d4621..."
+  }
+}
+```
+
+* Failure scenario
+
+```json
+{
+  "metaData": {
+    "txnId": "43122dfsdf",
+    "referenceId": "348adsdas7d9ad798as7d87dsad87a9s",
+    "txnStatus": "Enrolled",
+    "unmappedStatus": "pending",
+    "statusCode": null,
+    "message": null,
+    "submitOtp": {
+      "status": "failed",
+      "attemptsLeft": 2
+    }
+  },
+  "result": {}
+}
+```
+
 #### Resend OTP
 
-If the customer enters the incorrect OTP or an expired OTP, use [Resend OTP API](ref:resend-otp-api) to handle the **Resend OTP** request made by the customer.
+If the customer enters the incorrect OTP or an expired OTP, use [Resend OTP API](ref:resend-otp-api) to handle the **Resend OTP** request made by a customer.
 
-### Step 4: Verify Payment
+## Step 3. Verify the Payment
 
 <Verify_Payment_Tabs />
