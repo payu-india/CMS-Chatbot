@@ -11,8 +11,9 @@ metadata:
 ---
 The steps involved in cards with Native OTP:
 
-1. [Initiate the payment request](#step-2-initiate-the-payment-to-payu)
-2. [Submit the OTP](#step-3-submit-the-OTP)
+1. [Initiate the payment request](#step-1-initiate-the-payment-to-payu)
+2. [Submit the OTP](#step-2-submit-the-OTP)
+3. [Verify the Payment](#step-3-verify-the-payment) 
 
 ## Step 1: Initiate the payment request
 
