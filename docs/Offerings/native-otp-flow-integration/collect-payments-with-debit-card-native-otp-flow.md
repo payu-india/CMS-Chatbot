@@ -14,6 +14,7 @@ The steps involved in debit card integration with native OTP flow:
 1. [Check Pre-EMI Eligibility](#step-1-check-pre-emi-eligibility)
 2. [Initiate the payment request](#step-2-initiate-the-payment-request)
 3. [Submit the OTP](#step-3-submit-the-otp)
+4. [Verify the Payment](#step-4-verify-the-payment) 
 
 ## Step 1: Check Pre-EMI Eligibility
 
