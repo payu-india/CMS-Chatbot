@@ -7,7 +7,7 @@ metadata:
 ---
 FlashPay solution primarily offers advanced biometric-based out-of-band (OOB) authentication. The Wibmo Tridentity SDK enables seamless integration of FlashPay functionality using various API methods and configuration options tailored to business needs.
 
-## Gradle Changes
+## Step 1: Gradle Changes
 
 ### Minimum Requirements
 
@@ -22,7 +22,7 @@ To include the Tridentity SDK, add the following line to your `app/build.gradle`
 implementation 'in.payu:tridentity-sdk:x.x.x-SNAPSHOT'
 ```
 
-## Android Manifest Permissions
+## Step 2: Android Manifest Permissions
 
 The SDK requires specific application-level permissions to enable its functionalities. As per business needs and enabled modes, these permissions must be declared in the `AndroidManifest.xml` file.
 
@@ -64,7 +64,7 @@ Include the following permissions in your AndroidManifest.xml file to enable the
 <uses-permission android:name="android.permission.SEND_SMS" />
 ```
 
-## SDK Configuration
+## Step 3: SDK Configuration
 
 This is a prerequisite step where you invoke the SDK's configuration method to initialize client-specific details. Validation of security checks and required permissions also occurs during this phase.
 
@@ -168,7 +168,8 @@ TridentitySDK.getInstance().configSdk(context, configObject, object : ConfigStat
 ```
 
 Once populated with these parameters, the configuration object is passed to the configSdk method to properly initialize the SDK, with callback handlers managing the configuration success or failure responses.
-```kotlin 
+
+```kotlin
 val configObject = JSONObject()  
 
 configObject.put("env", "UAT") // UAT or PROD 
@@ -190,9 +191,7 @@ configObject.put(“registrationTimeout”, 60)
   From the response object in the onSuccess method check for the **message** flag to get Configuration status.
 </Callout>
 
-<br />
-
-## Customer Enrollment
+## Step 4: Customer Enrollment
 
 This method facilitates user enrollment for Tridentity-based authentication.
 
@@ -234,8 +233,10 @@ TridentitySDK.getInstance().initiateRegistration(activity, regObject, object : R
     }
 })
 ```
+
 The registration object is then passed to the initiateRegistration method to begin the enrollment process, with callback handlers to manage success and error responses during the biometric setup workflow.
-```kotlin 
+
+```kotlin
 val regObject = JSONObject()  
 
 regObject.put("uid", "<>")  
@@ -246,7 +247,7 @@ regObject.put("uid", "<>")  
   From the response object in the onSuccess method, check for the message flag to get the status
 </Callout>
 
-## Check Registration Status
+## Step 5: Check Registration Status
 
 This method retrieves the customer's current registration status in the Tridentity system.
 
@@ -290,16 +291,16 @@ TridentitySDK.getInstance().checkRegistrationStatus(context, custObject, object 
     }
 })
 ```
+
 The customer object is then passed to the checkRegistrationStatus method to perform the verification, with success callbacks specifically looking for a "registration_comm_success" status to confirm successful registration.
-```kotlin 
+
+```kotlin
 val custObject = JSONObject()  
 
 custObject.put("clientId", "<>")     
 ```
 
-<br />
-
-## Process Transaction
+## Step 6: Process Transaction
 
 This method processes transactions and validates them using biometric OOB authentication.
 
@@ -382,8 +383,10 @@ TridentitySDK.getInstance().processTransaction(context, jsonObject, object : Upd
     }
 })
 ```
+
 The populated transaction object is then passed to the processTransaction method to trigger the biometric authentication flow, allowing users to authorize transactions using their enrolled biometric credentials.
-```kotlin 
+
+```kotlin
 val custObject = JSONObject()  
 
 custObject.put("clientId", "<>")  
@@ -393,26 +396,7 @@ custObject.put("txnId", "<>")  
 custObject.put("hashKey", "<>")  
 ```
 
-<br />
-
-## Deregistration
-
-This method is used to deregister a customer from the Tridentity service.
-
-Call the deRegistration method to remove a customer from the Tridentity authentication system:
-
-```kotlin
-TridentitySDK.getInstance().deRegistration(context, object : DeregisterCallBack {
-    override fun onSuccess(event: JSONObject) {
-        // Handle successful deregistration
-    }
-    override fun onError(code: Int, error: String) {
-        // Handle deregistration error
-    }
-})
-```
-
-## UI Customization
+## Step 7:  UI Customization
 
 The SDK allows UI customizations through a configuration object passed in as `themeConfig`.
 
@@ -475,3 +459,22 @@ The SDK allows UI customizations through a configuration object passed in as `th
   </tbody>
 </table>
 `}</HTMLBlock>
+
+## Deregistration 
+
+This method is used to deregister a customer from the Tridentity service.
+
+Call the deRegistration method to remove a customer from the Tridentity authentication system:
+
+```kotlin
+TridentitySDK.getInstance().deRegistration(context, object : DeregisterCallBack {
+    override fun onSuccess(event: JSONObject) {
+        // Handle successful deregistration
+    }
+    override fun onError(code: Int, error: String) {
+        // Handle deregistration error
+    }
+})
+```
+
+##
