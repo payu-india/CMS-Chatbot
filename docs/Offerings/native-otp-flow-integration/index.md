@@ -24,3 +24,9 @@ What are the advantages and why should merchants integrate this flow with PayU?
 * **PayU supports all major banks** — 15+ banks including HDFC, AXIS, ICICI, SBI, KOTAK, RBL, etc. – on this flow for Cards, cardless, CC EMI, DC EMI’s, and BNPLs.
 
 This flow supports the latest native OTP generation flow (server-to-server) via Initiate Payment API, followed by the Submit OTP API, to initiate an S2S=4 transaction.
+
+This part of the includes the following integration:
+
+* [Cards](https://docs.payu.in/docs/collect-payments-with-card-native-otp-flow)
+* [Debit Card EMI](https://docs.payu.in/docs/collect-payments-with-debit-card-native-otp-flow)
+* [Cardless EMI](https://docs.payu.in/docs/collect-payments-with-cardless-emi-native-otp-flow)
