@@ -105,16 +105,18 @@ Send the following additional parameters to PayU through a server-to-server curl
   </tbody>
 </Table>
 
-> 📘 Notes for panNumber:
->
-> * **Only 4-digit number of the PAN**: Pass the 4-digit numeral in a sequential order as in the PAN.
-> * This parameter is mandatory for ICICI Bank and HDFC Bank Cardless EMI. Not mandatory for other banks
-> * The data validation performed is either the whole PAN card number or 4-dig-t number of the PAN.
->   * Whole PAN card Number: For validating the whole PAN Card number:
->     * It should be ten characters long.
->     * The first five characters should be any upper case alphabets.
->     * The next four-characters should be any number from 0 to 9.
->     * The last(tenth) character should be any upper case alphabet. It should not contain any white spaces.
+<Callout icon="📘" theme="info">
+  **Notes for panNumber**:
+
+  * **Only 4-digit number of the PAN**: Pass the 4-digit numeral in a sequential order as in the PAN.
+  * This parameter is mandatory for ICICI Bank and HDFC Bank Cardless EMI. Not mandatory for other banks
+  * The data validation performed is either the whole PAN card number or 4-dig-t number of the PAN.
+    * Whole PAN card Number: For validating the whole PAN Card number:
+      * It should be ten characters long.
+      * The first five characters should be any upper case alphabets.
+      * The next four-characters should be any number from 0 to 9.
+      * The last(tenth) character should be any upper case alphabet. It should not contain any white spaces.
+</Callout>
 
 ### Sample request
 
@@ -129,8 +131,8 @@ curl -X POST "https://test.payu.in/_payment" \
 -d "email=test@gmail.com" \
 -d "phone=9876543210" \
 -d "productinfo=iPhone" \
--d "pg=EMI" \
--d "bankcode=EMI03" \
+-d "pg=CC" \
+-d "bankcode=CC" \
 -d "surl=https://apiplayground-response.herokuapp.com/" \
 -d "furl=https://apiplayground-response.herokuapp.com/" \
 -d "ccnum=1234" \
