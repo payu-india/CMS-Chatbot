@@ -2,6 +2,8 @@
 title: Cardless EMI - Native OTP
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
