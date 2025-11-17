@@ -1,5 +1,5 @@
 ---
-title: Native OTP Flow Integration
+title: Native OTP Flow
 deprecated: false
 hidden: false
 metadata:
