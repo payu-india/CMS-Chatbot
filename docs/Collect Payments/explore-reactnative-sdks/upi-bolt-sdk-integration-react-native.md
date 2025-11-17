@@ -25,6 +25,8 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
 ### Registration and Pay
 
+<Image align="center" alt="UPI Bolt React Native Custome Journey for Registration and Pay" border={false} src="https://files.readme.io/a2d41854641a44082dcb2bc0e38a3bea213ef7c25ca0ce9429d8c8221581ab75-upi_bolt_reactnative_customer_journey_register_pay.jpeg" />
+
 1. Merchant Application can do the User registration for customers who are coming first time for PayU UPI Bolt. The Registration can be done during the checkout process or it can be called in a separate user journey. In case of Merchant is using PayU Checkout Pro SDK, PayU will take care of customer registration.
 2. Once the registration process is initiated, the user will be asked to accept the SMS sending permissions required to verify the SIM card. If the phone has dual SIM, the SIM card selection screen will be shown to customers to select the specific SIM card.
 3. After the device verification, UPI ID creation and the Bank selection will be done. Add bank journey will be completed after adding a bank account connected to the same mobile number used for device verification.
@@ -33,11 +35,15 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
 ### Pay
 
+<Image align="center" alt="UPI Bolt React Native Custome Journey for Pay" border={false} src="https://files.readme.io/fad794f25f0f6b108bc694ee13f79f7a3b5de220f6f90990409f7267e86446bb-upi_bolt_reactnative_customer_journey_pay.jpeg" />
+
 1. Customers who are already registered with PayU UPI Bolt can make a One-click payment.
 2. The customer needs to select the already added bank account and enter the MPIN and the transaction will be completed.
 3. The customer can also check the balance before making a transaction to avoid low-balance transaction failure.
 
 ### Profile Management Journey
+
+<Image align="center" alt="UPI Bolt React Native Custome Journey for Profile Management" border={false} src="https://files.readme.io/556315528c71a4e06f9cb9c4edb40fd651eef3c10b20a9418d569231877d98a7-upi_bolt_reactnative_customer_journey_profile_mgmt.jpeg" />
 
 1. Customers can add new bank accounts, set MPIN, change MPIN, reset MPIN, delete accounts, and check the balance of already added bank accounts.
 2. Transaction history can be seen and queries can be raised and resolved within the PayU UI Bolt SDK.
@@ -73,6 +79,8 @@ The following xcframework files will be provided by PayU during onboarding:
 1. NPCI - CommonLibrary.xcframework
 2. AXIS - OlivePayLibrary.xcframework
 
+<Image align="center" border={false} src="https://files.readme.io/0b4b62bde986356a30777d54104c56e3e195a9b9d33a57f621f9d84be9b2dce4-upi_bolt_reactnative_ios_integration.jpeg" />
+
 Add these framework in your project.
 
 In Build Settings > Framework Search Path, add `$(PROJECT_DIR)/Frameworks` if it is not added automatically by Xcode.
@@ -83,6 +91,8 @@ Install the npm package:
 npm install payu-upi-bolt-ui-rn --save
 react-native link payu-upi-bolt-ui-rn
 ```
+
+<Image align="center" border={false} src="https://files.readme.io/c9528432186e3c248c2598fc5121eb0d1fdd3acb109737141b6d437b583b5329-upi_bolt_reactnative_ios_integration2.jpeg" />
 
 Also, add the following dependency to the podfile of your Xcode app if not exists:
 
