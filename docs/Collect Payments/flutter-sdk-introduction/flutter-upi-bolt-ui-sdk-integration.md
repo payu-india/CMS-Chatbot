@@ -95,10 +95,8 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
     flutter pub add payu_upi_bolt_ui_flutter:^1.0.0-alpha.1
     ```
 
-    ## SDK Methods
-  </Accordion>
 
-  <Accordion title="1. init" icon="fa-folder">
+  <Accordion title="Step 1. Initialization" icon="fa-folder">
     It is used to initialize the SDK. This method returns an object that will be used to access other methods available in PayUUPIBoltUI.
 
     <Accordion title="Request" icon="fa-cog">
@@ -136,72 +134,72 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 
     <Accordion title="Request Parameters" icon="fa-cog">
       <HTMLBlock>{`
-          <table style="width: 100%; border-collapse: collapse;">
-              <thead>
-                  <tr>
-                      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                      <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">config<br><code>mandatory</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> PayUUPIBoltBaseConfig includes the below fields.</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">{...}</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">merchantName<br><code>mandatory</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Merchant Name</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"MyStore Inc"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">merchantKey<br><code>mandatory</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> PayU Merchant Key</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"gtKFFx"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">phone<br><code>mandatory</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Phone number for registration</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"+919876543210"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">email<br><code>mandatory</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Customer Email Id</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"customer@example.com"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">pluginTypes<br><code>mandatory</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Supported Plugin (Values - AXIS or HDFC or BHIM)</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC", "BHIM"]</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">isProduction<br><code>mandatory</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Boolean</code> Prod - true, staging - false</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">excludedBanksIINs<br><code>optional</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Bank's IIN to exclude</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">["123456", "789012"]</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">clientId<br><code>optional</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique client ID</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"CLIENT_001"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">refId<br><code>mandatory</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique reference ID</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"REF_12345678"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">issuingBanks<br><code>optional</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Issuing Bank's (Values - AXIS or HDFC)</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC"]</td>
-                  </tr>
-              </tbody>
-          </table>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">config<br><code>mandatory</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> PayUUPIBoltBaseConfig includes the below fields.</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">{...}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">merchantName<br><code>mandatory</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Merchant Name</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">"MyStore Inc"</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">merchantKey<br><code>mandatory</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> PayU Merchant Key</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">"gtKFFx"</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">phone<br><code>mandatory</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Phone number for registration</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">"+919876543210"</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">email<br><code>mandatory</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Customer Email Id</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">"customer@example.com"</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">pluginTypes<br><code>mandatory</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Supported Plugin (Values - AXIS or HDFC or BHIM)</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC", "BHIM"]</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">isProduction<br><code>mandatory</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><code>Boolean</code> Prod - true, staging - false</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">excludedBanksIINs<br><code>optional</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Bank's IIN to exclude</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">["123456", "789012"]</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">clientId<br><code>optional</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique client ID</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">"CLIENT_001"</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">refId<br><code>mandatory</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique reference ID</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">"REF_12345678"</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px;">issuingBanks<br><code>optional</code></td>
+                            <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Issuing Bank's (Values - AXIS or HDFC)</td>
+                            <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC"]</td>
+                        </tr>
+                    </tbody>
+                </table>
       `}</HTMLBlock>
     </Accordion>
 
@@ -278,325 +276,324 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
         </tbody>
       </Table>
     </Accordion>
+   </Accordion>
+    <Accordion title="Step 2. Check if UPI Bolt is Enabled" icon="fa-folder">
+      This method is used to check whether the upi bolt is enabled for the merchant or not.
 
+      <Accordion title="Request" icon="fa-cog">
+        ```dart
+        payUUpiFlutter.isUPIBoltEnabled();
+        ```
+      </Accordion>
 
-  <Accordion title="Step 2. isUPIBoltEnabled" icon="fa-folder">
-    This method is used to check whether the upi bolt is enabled for the merchant or not.
+      <Accordion title="Response" icon="fa-cog">
+        | Field   | Definition                                       |
+        | ------- | ------------------------------------------------ |
+        | code    | `Integer` Status code (Success = 0, Failure = 1) |
+        | message | `String` Message                                 |
 
-    <Accordion title="Request" icon="fa-cog">
-      ```dart
-      payUUpiFlutter.isUPIBoltEnabled();
-      ```
+        Refer to SDK Response JSON Format.
+      </Accordion>
     </Accordion>
 
-    <Accordion title="Response" icon="fa-cog">
-      | Field   | Definition                                       |
-      | ------- | ------------------------------------------------ |
-      | code    | `Integer` Status code (Success = 0, Failure = 1) |
-      | message | `String` Message                                 |
+    <Accordion title="Step 3. Register and Pay" icon="fa-folder">
+      This API allows you to initialize registration and payment flow. It will internally authenticate and register the customer. After successful authentication and registration, the user will follow the payment journey. Once payment is completed, based on the payment status the merchant will get a callback through the listener.
 
-      Refer to SDK Response JSON Format.
-    </Accordion>
-  </Accordion>
+      <Accordion title="Request" icon="fa-cog">
+        ```dart
+        payUUpiFlutter.registerAndPay(params: Map);
+        ```
+      </Accordion>
 
-  <Accordion title="3. registerAndPay" icon="fa-folder">
-    This API allows you to initialize registration and payment flow. It will internally authenticate and register the customer. After successful authentication and registration, the user will follow the payment journey. Once payment is completed, based on the payment status the merchant will get a callback through the listener.
+      <Accordion title="Request Parameters" icon="fa-cog">
+        <Table>
+          <thead>
+            <tr>
+              <th>
+                Field
+              </th>
 
-    <Accordion title="Request" icon="fa-cog">
-      ```dart
-      payUUpiFlutter.registerAndPay(params: Map);
-      ```
-    </Accordion>
+              <th>
+                Definition
+              </th>
+            </tr>
+          </thead>
 
-    <Accordion title="Request Parameters" icon="fa-cog">
-      <Table>
-        <thead>
-          <tr>
-            <th>
-              Field
-            </th>
+          <tbody>
+            <tr>
+              <td>
+                params
+                `mandatory`
+              </td>
 
-            <th>
-              Definition
-            </th>
-          </tr>
-        </thead>
+              <td>
+                `Map` Refer to Payment Params section
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </Accordion>
 
-        <tbody>
-          <tr>
-            <td>
-              params
-              `mandatory`
-            </td>
+      <Accordion title="Response" icon="fa-cog">
+        | Field  | Definition       |
+        | ------ | ---------------- |
+        | result | Payment Response |
 
-            <td>
-              `Map` Refer to Payment Params section
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-    </Accordion>
-
-    <Accordion title="Response" icon="fa-cog">
-      | Field  | Definition       |
-      | ------ | ---------------- |
-      | result | Payment Response |
-
-      Refer to SDK Response JSON Format.
-    </Accordion>
-  </Accordion>
-
-  <Accordion title="4. openUPIManagement" icon="fa-folder">
-    This API allows you to manage UPI accounts and transaction history.
-
-    <Accordion title="Request" icon="fa-cog">
-      ```dart
-      // Screen Types
-      var params = {
-        "screenType": <String>
-      };
-
-      // Values
-      // "ALL" or "TRANSACTIONHISTORY" or "MANAGEUPIACCOUNTS" or "DISPUTE" or "DEREGISTERUPI"
-
-      payUUpiFlutter.openUPIManagement(params: Map);
-      ```
+        Refer to SDK Response JSON Format.
+      </Accordion>
     </Accordion>
 
-    <Accordion title="Request Parameters" icon="fa-cog">
-      <Table>
-        <thead>
-          <tr>
-            <th>
-              Field
-            </th>
+    <Accordion title="Step 4. UPI Management" icon="fa-folder">
+      This API allows you to manage UPI accounts and transaction history.
 
-            <th>
-              Definition
-            </th>
-          </tr>
-        </thead>
+      <Accordion title="Request" icon="fa-cog">
+        ```dart
+        // Screen Types
+        var params = {
+          "screenType": <String>
+        };
 
-        <tbody>
-          <tr>
-            <td>
-              screenType
-              `mandatory`
-            </td>
+        // Values
+        // "ALL" or "TRANSACTIONHISTORY" or "MANAGEUPIACCOUNTS" or "DISPUTE" or "DEREGISTERUPI"
 
-            <td>
-              `String` To enforce the management screen
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-    </Accordion>
+        payUUpiFlutter.openUPIManagement(params: Map);
+        ```
+      </Accordion>
 
-    <Accordion title="Response" icon="fa-cog">
-      Refer to SDK Response JSON Format.
+      <Accordion title="Request Parameters" icon="fa-cog">
+        <Table>
+          <thead>
+            <tr>
+              <th>
+                Field
+              </th>
 
-      ## PayUPaymentParams
+              <th>
+                Definition
+              </th>
+            </tr>
+          </thead>
 
-      The following fields are needed as a request:
+          <tbody>
+            <tr>
+              <td>
+                screenType
+                `mandatory`
+              </td>
 
-      <HTMLBlock>{`
-          <table style="width: 100%; border-collapse: collapse;">
-              <thead>
-                  <tr>
-                      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                      <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">amount<br><code>mandatory</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Txn Amount</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"100.00"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">txnId<br><code>mandatory</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Txn Id</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"TXN_123456789"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">productInfo<br><code>mandatory</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Product Info</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"Product Purchase"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">firstName<br><code>mandatory</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> First Name</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"John"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">surl<br><code>optional</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Success URL</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"https://example.com/success"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">furl<br><code>optional</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Failure URL</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"https://example.com/failure"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">additionalParam<br><code>optional</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> Additional params if any</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">{"param1": "value1"}</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">udf1<br><code>optional</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields1</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 1"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">udf2<br><code>optional</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields2</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 2"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">udf3<br><code>optional</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields3</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 3"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">udf4<br><code>optional</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields4</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 4"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">udf5<br><code>optional</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields5</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 5"</td>
-                  </tr>
-                  <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;">udf6<br><code>optional</code></td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields6</td>
-                      <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 6"</td>
-                  </tr>
-              </tbody>
-          </table>
-      `}</HTMLBlock>
+              <td>
+                `String` To enforce the management screen
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </Accordion>
 
-      ## Listener/Callback Logic
+      <Accordion title="Response" icon="fa-cog">
+        Refer to SDK Response JSON Format.
 
-      The listener/callback contains following methods where the merchant app will get the API response and hash-related callbacks.
+        ## PayUPaymentParams
 
-      ```dart
-      @override 
-      void onPayUSuccess(Map response) {
-        // It will contain success response
-      }
+        The following fields are needed as a request:
 
-      @override 
-      void onPayUFailure(Map response) {
-        // It will contain failure response
-      }
+        <HTMLBlock>{`
+                  <table style="width: 100%; border-collapse: collapse;">
+                      <thead>
+                          <tr>
+                              <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                              <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                              <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">amount<br><code>mandatory</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Txn Amount</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">"100.00"</td>
+                          </tr>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">txnId<br><code>mandatory</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Txn Id</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">"TXN_123456789"</td>
+                          </tr>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">productInfo<br><code>mandatory</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Product Info</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">"Product Purchase"</td>
+                          </tr>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">firstName<br><code>mandatory</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> First Name</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">"John"</td>
+                          </tr>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">surl<br><code>optional</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Success URL</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">"https://example.com/success"</td>
+                          </tr>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">furl<br><code>optional</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Failure URL</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">"https://example.com/failure"</td>
+                          </tr>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">additionalParam<br><code>optional</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> Additional params if any</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">{"param1": "value1"}</td>
+                          </tr>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">udf1<br><code>optional</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields1</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 1"</td>
+                          </tr>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">udf2<br><code>optional</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields2</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 2"</td>
+                          </tr>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">udf3<br><code>optional</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields3</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 3"</td>
+                          </tr>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">udf4<br><code>optional</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields4</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 4"</td>
+                          </tr>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">udf5<br><code>optional</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields5</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 5"</td>
+                          </tr>
+                          <tr>
+                              <td style="border: 1px solid #ddd; padding: 8px;">udf6<br><code>optional</code></td>
+                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields6</td>
+                              <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 6"</td>
+                          </tr>
+                      </tbody>
+                  </table>
+        `}</HTMLBlock>
 
-      @override 
-      void onPayUCancel(Map response) {
-        // It will tell if payment was cancelled
-      }
+        ## Listener/Callback Logic
 
-      @override 
-      void onErrorReceived(Map response) {
-        // It will tell if any error occurred
-      }
+        The listener/callback contains following methods where the merchant app will get the API response and hash-related callbacks.
 
-      @override 
-      void onUPIBoltEnabled(Map response) {
-        // It will tell if isUPIBoltEnabled or not for merchant
-      }
-
-      @override 
-      void onReset(Map response) {
-        // It will tell the sdk instance reset successfully
-      }
-
-      @override 
-      void onIsRegistered(Map response) {
-        // It will tell the registration status with plugin
-      }
-
-      @override 
-      void onInitSDK(Map response) {
-        // It will tell if any error occurred during initialisation of instance
-      }
-
-      @override 
-      void generateHash(Map response) {
-        // Refer to Hash generation section below
-      }
-      ```
-
-      ## Hash Generation Logic
-
-      The PayU SDKs use hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification.
-
-      For generating and passing dynamic hashes, the merchant will receive a call from the generateHash method of PayUUPIBoltUiListener. The generateHash() method is called by the SDK each time it needs an individual hash.
-    </Accordion>
-
-    <Accordion title="Request" icon="fa-cog">
-      ```dart
-      @override 
-      void generateHash(Map response) {
-        // Merchant will get Map with type of hash and hash string as value of dictionary.
-        /*
-        They have to sign that string using salt to create hash value and pass that to onCompletion
-        In the map you have to check for three keys to generate hash.
-        1. hashString
-        2. hashName
-        3. postSalt
-        
-        At the end of that hashString append your salt and use SHA-512 algo on that final string to generate hash.
-        Note: If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algo on that final string to generate hash.
-        Once the hash is generated use hashGenerationListener parameter to pass the hash to SDK. Example code:
-        */
-        
-        let commandName = (param[PayUUPIBoltHashConstants.hashName] ?? "");
-        let hashStringWithoutSalt = (param[PayUUPIBoltHashConstants.hashString] ?? "");
-        let postSalt = param[PayUUPIBoltHashConstants.postSalt];
-        
-        // get hash for "commandName" from server
-        // get hash for "hashStringWithoutSalt" from server
-        
-        // After fetching hash set its value in below variable "hashValue"
-        var hashValue = "";
-        if let postSalt = postSalt {
-          let hashString = hashStringWithoutSalt + salt + postSalt;
-          hashValue = "<SHA-512 hash of hashString>";
-        } else {
-          hashValue = "<SHA-512 hash of hashString>";
+        ```dart
+        @override 
+        void onPayUSuccess(Map response) {
+          // It will contain success response
         }
-        
-        var hashResponse = {commandName: hashValue};
-        payUUpiFlutter.hashGenerated(params: hashResponse);
-      }
-      ```
-    </Accordion>
 
-    <Accordion title="Response" icon="fa-cog">
-      | Field   | Definition                                                    |
-      | ------- | ------------------------------------------------------------- |
-      | result  | Contains response model if received success callback          |
-      | code    | `Integer` Refer to [Response Codes](#response-codes) section  |
-      | message | `String`  Refer to [Response Codes](#response-codes)  section |
+        @override 
+        void onPayUFailure(Map response) {
+          // It will contain failure response
+        }
 
-      ## Response Codes
+        @override 
+        void onPayUCancel(Map response) {
+          // It will tell if payment was cancelled
+        }
 
-      | Response Code | Message                                |
-      | ------------- | -------------------------------------- |
-      | 0             | Success                                |
-      | 1             | Fail/ Invalid Response/ Missing params |
-      | 2             | User cancelled the transaction         |
-      | 100           | Transaction timeout                    |
-      | 103           | Handshake failed                       |
-      | 104           | UPI bolt not supported                 |
-      | 105           | Device not supported for UPI Bolt      |
-      | 500           | Something went wrong                   |
-      | 501           | No internet connection                 |
-      | 502           | SDK not found                          |
+        @override 
+        void onErrorReceived(Map response) {
+          // It will tell if any error occurred
+        }
+
+        @override 
+        void onUPIBoltEnabled(Map response) {
+          // It will tell if isUPIBoltEnabled or not for merchant
+        }
+
+        @override 
+        void onReset(Map response) {
+          // It will tell the sdk instance reset successfully
+        }
+
+        @override 
+        void onIsRegistered(Map response) {
+          // It will tell the registration status with plugin
+        }
+
+        @override 
+        void onInitSDK(Map response) {
+          // It will tell if any error occurred during initialisation of instance
+        }
+
+        @override 
+        void generateHash(Map response) {
+          // Refer to Hash generation section below
+        }
+        ```
+
+        ## Hash Generation Logic
+
+        The PayU SDKs use hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification.
+
+        For generating and passing dynamic hashes, the merchant will receive a call from the generateHash method of PayUUPIBoltUiListener. The generateHash() method is called by the SDK each time it needs an individual hash.
+      </Accordion>
+
+      <Accordion title="Request" icon="fa-cog">
+        ```dart
+        @override 
+        void generateHash(Map response) {
+          // Merchant will get Map with type of hash and hash string as value of dictionary.
+          /*
+          They have to sign that string using salt to create hash value and pass that to onCompletion
+          In the map you have to check for three keys to generate hash.
+          1. hashString
+          2. hashName
+          3. postSalt
+          
+          At the end of that hashString append your salt and use SHA-512 algo on that final string to generate hash.
+          Note: If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algo on that final string to generate hash.
+          Once the hash is generated use hashGenerationListener parameter to pass the hash to SDK. Example code:
+          */
+          
+          let commandName = (param[PayUUPIBoltHashConstants.hashName] ?? "");
+          let hashStringWithoutSalt = (param[PayUUPIBoltHashConstants.hashString] ?? "");
+          let postSalt = param[PayUUPIBoltHashConstants.postSalt];
+          
+          // get hash for "commandName" from server
+          // get hash for "hashStringWithoutSalt" from server
+          
+          // After fetching hash set its value in below variable "hashValue"
+          var hashValue = "";
+          if let postSalt = postSalt {
+            let hashString = hashStringWithoutSalt + salt + postSalt;
+            hashValue = "<SHA-512 hash of hashString>";
+          } else {
+            hashValue = "<SHA-512 hash of hashString>";
+          }
+          
+          var hashResponse = {commandName: hashValue};
+          payUUpiFlutter.hashGenerated(params: hashResponse);
+        }
+        ```
+      </Accordion>
+
+      <Accordion title="Response" icon="fa-cog">
+        | Field   | Definition                                                    |
+        | ------- | ------------------------------------------------------------- |
+        | result  | Contains response model if received success callback          |
+        | code    | `Integer` Refer to [Response Codes](#response-codes) section  |
+        | message | `String`  Refer to [Response Codes](#response-codes)  section |
+
+        ## Response Codes
+
+        | Response Code | Message                                |
+        | ------------- | -------------------------------------- |
+        | 0             | Success                                |
+        | 1             | Fail/ Invalid Response/ Missing params |
+        | 2             | User cancelled the transaction         |
+        | 100           | Transaction timeout                    |
+        | 103           | Handshake failed                       |
+        | 104           | UPI bolt not supported                 |
+        | 105           | Device not supported for UPI Bolt      |
+        | 500           | Something went wrong                   |
+        | 501           | No internet connection                 |
+        | 502           | SDK not found                          |
+      </Accordion>
     </Accordion>
   </Accordion>
 </Accordion>
-  </Accordion>
