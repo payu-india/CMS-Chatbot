@@ -30,7 +30,7 @@ PayU India API uses merchant key and salt-based authentication. All requests mus
 
 ***
 
-## 1. Collect Payment API - _payment
+## Payment APIs (_payment API)
 
 ### Hash Formula
 
@@ -620,55 +620,7 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|
 
 ***
 
-## 5. General APIs
-
-### Hash Formula
-
-```
-sha512(key|command|var1|salt)
-```
-
-### Code Examples
-
-```php
-<?php
-function generateGeneralAPIHash($key, $command, $var1, $salt) {
-    $hashString = $key . '|' . $command . '|' . $var1 . '|' . $salt;
-    return strtolower(hash('sha512', $hashString));
-}
-
-// Example usage
-$hash = generateGeneralAPIHash('yourKey', 'verify_payment', 'txnid123', 'yourSalt');
-?>
-```
-```java
-public static String generateGeneralAPIHash(String key, String command, String var1, String salt) {
-    String hashString = key + "|" + command + "|" + var1 + "|" + salt;
-    return sha512(hashString);
-}
-```
-```csharp
-public static string GenerateGeneralAPIHash(string key, string command, string var1, string salt)
-{
-    string hashString = $"{key}|{command}|{var1}|{salt}";
-    return Sha512(hashString);
-}
-```
-```python
-def generate_general_api_hash(key, command, var1, salt):
-    hash_string = f"{key}|{command}|{var1}|{salt}"
-    return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
-```
-```javascript
-function generateGeneralAPIHash(key, command, var1, salt) {
-    const hashString = `${key}|${command}|${var1}|${salt}`;
-    return crypto.createHash('sha512').update(hashString).digest('hex');
-}
-```
-
-***
-
-## 6. SI Integration (Subscription APIs)
+### 5. SI Integration (Subscription APIs)
 
 ### Hash Formula
 
@@ -720,7 +672,7 @@ def generate_si_hash(params, salt, si_details):
     return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
 ```
 
-### 7. TPV Integration
+### 6. TPV Integration
 
 #### Hash Formula
 
@@ -844,7 +796,7 @@ def generate_v19_hash(params, salt):
 
 ***
 
-## 9. Reverse Hashing
+## _payment Reverse Hashing
 
 Reverse hashing is used to validate responses from PayU. The reverse hash helps ensure that the response data hasn't been tampered with during transmission.
 
@@ -904,24 +856,52 @@ def verify_reverse_hash(params, salt, received_hash):
     return calculated_hash.lower() == received_hash.lower()
 ```
 
+## General APIs
+
+### Hash Formula
+
+```
+sha512(key|command|var1|salt)
+```
+
+### Code Examples
+
+```php
+<?php
+function generateGeneralAPIHash($key, $command, $var1, $salt) {
+    $hashString = $key . '|' . $command . '|' . $var1 . '|' . $salt;
+    return strtolower(hash('sha512', $hashString));
+}
+
+// Example usage
+$hash = generateGeneralAPIHash('yourKey', 'verify_payment', 'txnid123', 'yourSalt');
+?>
+```
+```java
+public static String generateGeneralAPIHash(String key, String command, String var1, String salt) {
+    String hashString = key + "|" + command + "|" + var1 + "|" + salt;
+    return sha512(hashString);
+}
+```
+```csharp
+public static string GenerateGeneralAPIHash(string key, string command, string var1, string salt)
+{
+    string hashString = $"{key}|{command}|{var1}|{salt}";
+    return Sha512(hashString);
+}
+```
+```python
+def generate_general_api_hash(key, command, var1, salt):
+    hash_string = f"{key}|{command}|{var1}|{salt}"
+    return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
+```
+```javascript
+function generateGeneralAPIHash(key, command, var1, salt) {
+    const hashString = `${key}|${command}|${var1}|${salt}`;
+    return crypto.createHash('sha512').update(hashString).digest('hex');
+}
+```
+
 ***
 
-## Important Notes
-
-1. **Parameter Sequence**: The exact sequence of parameters is crucial for hash generation. Any deviation will result in hash mismatch.
-
-2. **Empty Parameters**: When parameters are not provided, use empty strings but maintain the pipe separators (`|`).
-
-3. **Case Sensitivity**: Always convert the final hash to lowercase for consistency.
-
-4. **Encoding**: Use UTF-8 encoding when generating hashes.
-
-5. **Security**: Never expose your merchant salt in client-side code. Hash generation should always be done on the server side.
-
-6. **Testing**: Always test hash generation with known values before implementing in production.
-
-7. **Documentation**: Refer to the official PayU documentation for any updates to hash logic: [https://devguide.payu.in/api-authentication-security](https://devguide.payu.in/api-authentication-security)
-
-***
-
-_This documentation provides comprehensive code examples for PayU India hash generation across multiple programming languages. Always validate your implementation against PayU's test environment before going live._
+##
