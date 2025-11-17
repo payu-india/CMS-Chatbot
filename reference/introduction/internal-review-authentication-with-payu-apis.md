@@ -32,15 +32,13 @@ PayU India API uses merchant key and salt-based authentication. All requests mus
 
 ## Payment APIs (_payment API)
 
-### 1. General
-
-#### Hash Formula
+### Hash Formula
 
 ```
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
 ```
 
-#### Sample Code
+### Sample Code
 
 ```php
 <?php
@@ -244,67 +242,17 @@ const salt = 'yourSalt';
 const hash = generatePaymentHash(params, salt);
 ```
 
-### 2. SI Integration (Subscription APIs)
+***
 
-#### Hash Formula
+## 2. Split Settlements
 
-```
-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)
-```
-
-#### Code Examples
-
-```php
-<?php
-function generateSIHash($params, $salt, $siDetails) {
-    $key = $params['key'];
-    $txnid = $params['txnid'];
-    $amount = $params['amount'];
-    $productinfo = $params['productinfo'];
-    $firstname = $params['firstname'];
-    $email = $params['email'];
-    $udf1 = isset($params['udf1']) ? $params['udf1'] : '';
-    $udf2 = isset($params['udf2']) ? $params['udf2'] : '';
-    $udf3 = isset($params['udf3']) ? $params['udf3'] : '';
-    $udf4 = isset($params['udf4']) ? $params['udf4'] : '';
-    $udf5 = isset($params['udf5']) ? $params['udf5'] : '';
-    
-    $hashString = $key . '|' . $txnid . '|' . $amount . '|' . $productinfo . '|' . 
-                  $firstname . '|' . $email . '|' . $udf1 . '|' . $udf2 . '|' . 
-                  $udf3 . '|' . $udf4 . '|' . $udf5 . '||||||' . $siDetails . '|' . $salt;
-    
-    return strtolower(hash('sha512', $hashString));
-}
-?>
-```
-```python
-def generate_si_hash(params, salt, si_details):
-    key = params['key']
-    txnid = params['txnid']
-    amount = params['amount']
-    productinfo = params['productinfo']
-    firstname = params['firstname']
-    email = params['email']
-    udf1 = params.get('udf1', '')
-    udf2 = params.get('udf2', '')
-    udf3 = params.get('udf3', '')
-    udf4 = params.get('udf4', '')
-    udf5 = params.get('udf5', '')
-    
-    hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}|{udf2}|{udf3}|{udf4}|{udf5}||||||{si_details}|{salt}"
-    
-    return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
-```
-
-### 3. Split Settlements
-
-#### Hash Formula
+### Hash Formula
 
 ```
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|splitRequest)
 ```
 
-#### Code Examples
+### Code Examples
 
 ```php
 <?php
@@ -409,15 +357,17 @@ function generateSplitSettlementHash(params, salt, splitRequest) {
 }
 ```
 
-### 4. Offers
+***
 
-#### Hash Formula
+## 3. Offers Integration
+
+### Hash Formula
 
 ```
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT
 ```
 
-#### Code Examples
+### Code Examples
 
 ```php
 <?php
@@ -575,11 +525,13 @@ function generateOffersHash(params, salt) {
 }
 ```
 
-### 5. Cross-Border Payments (PACB)
+***
 
-#### 5.1 General Integration (Without api_version)
+## 4. Cross-Border Payments (PACB)
 
-##### Hash Formula
+### 4.1 General Integration (Without api_version)
+
+#### Hash Formula
 
 ```
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt
@@ -619,9 +571,9 @@ function generatePACBGeneralHash($params, $salt) {
 ?>
 ```
 
-#### 5.2 With Additional Charges
+### 4.2 With Additional Charges
 
-##### Hash Formula
+#### Hash Formula
 
 ```
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt|additional_charges
@@ -650,22 +602,128 @@ def generate_pacb_additional_charges_hash(params, salt, additional_charges):
     return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
 ```
 
-#### 5.3 With Additional Charges and Buyer Type
+### 4.3 With Additional Charges and Buyer Type
 
-##### Hash Formula
+#### Hash Formula
 
 ```
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt|additional_charges|buyer_type_business
 ```
 
-#### 5.4 With API Version, Additional Charges, and Buyer Type
+### 4.4 With API Version, Additional Charges, and Buyer Type
 
-##### Hash Formula
+#### Hash Formula
 
 ```
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|si_details|salt|udf_params|buyer_type_business
 ```
-### 6. TPV
+
+***
+
+## 5. General APIs
+
+### Hash Formula
+
+```
+sha512(key|command|var1|salt)
+```
+
+### Code Examples
+
+```php
+<?php
+function generateGeneralAPIHash($key, $command, $var1, $salt) {
+    $hashString = $key . '|' . $command . '|' . $var1 . '|' . $salt;
+    return strtolower(hash('sha512', $hashString));
+}
+
+// Example usage
+$hash = generateGeneralAPIHash('yourKey', 'verify_payment', 'txnid123', 'yourSalt');
+?>
+```
+```java
+public static String generateGeneralAPIHash(String key, String command, String var1, String salt) {
+    String hashString = key + "|" + command + "|" + var1 + "|" + salt;
+    return sha512(hashString);
+}
+```
+```csharp
+public static string GenerateGeneralAPIHash(string key, string command, string var1, string salt)
+{
+    string hashString = $"{key}|{command}|{var1}|{salt}";
+    return Sha512(hashString);
+}
+```
+```python
+def generate_general_api_hash(key, command, var1, salt):
+    hash_string = f"{key}|{command}|{var1}|{salt}"
+    return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
+```
+```javascript
+function generateGeneralAPIHash(key, command, var1, salt) {
+    const hashString = `${key}|${command}|${var1}|${salt}`;
+    return crypto.createHash('sha512').update(hashString).digest('hex');
+}
+```
+
+***
+
+## 6. SI Integration (Subscription APIs)
+
+### Hash Formula
+
+```
+sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)
+```
+
+### Code Examples
+
+```php
+<?php
+function generateSIHash($params, $salt, $siDetails) {
+    $key = $params['key'];
+    $txnid = $params['txnid'];
+    $amount = $params['amount'];
+    $productinfo = $params['productinfo'];
+    $firstname = $params['firstname'];
+    $email = $params['email'];
+    $udf1 = isset($params['udf1']) ? $params['udf1'] : '';
+    $udf2 = isset($params['udf2']) ? $params['udf2'] : '';
+    $udf3 = isset($params['udf3']) ? $params['udf3'] : '';
+    $udf4 = isset($params['udf4']) ? $params['udf4'] : '';
+    $udf5 = isset($params['udf5']) ? $params['udf5'] : '';
+    
+    $hashString = $key . '|' . $txnid . '|' . $amount . '|' . $productinfo . '|' . 
+                  $firstname . '|' . $email . '|' . $udf1 . '|' . $udf2 . '|' . 
+                  $udf3 . '|' . $udf4 . '|' . $udf5 . '||||||' . $siDetails . '|' . $salt;
+    
+    return strtolower(hash('sha512', $hashString));
+}
+?>
+```
+```python
+def generate_si_hash(params, salt, si_details):
+    key = params['key']
+    txnid = params['txnid']
+    amount = params['amount']
+    productinfo = params['productinfo']
+    firstname = params['firstname']
+    email = params['email']
+    udf1 = params.get('udf1', '')
+    udf2 = params.get('udf2', '')
+    udf3 = params.get('udf3', '')
+    udf4 = params.get('udf4', '')
+    udf5 = params.get('udf5', '')
+    
+    hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}|{udf2}|{udf3}|{udf4}|{udf5}||||||{si_details}|{salt}"
+    
+    return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
+```
+
+### 7. TPV Integration
+
+#### Hash Formula
+
 ```
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)
 ```
@@ -714,15 +772,15 @@ def generate_tpv_hash(params, salt, beneficiary_detail):
     return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
 ```
 
-## 7. Payment API with Version 19
+### 8. Payment API (Version 19)
 
-### Hash Formula
+#### Hash Formula
 
 ```
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone
 ```
 
-### Code Examples
+#### Code Examples
 
 ```php
 <?php
@@ -786,7 +844,7 @@ def generate_v19_hash(params, salt):
 
 ***
 
-## 8. General Reverse Hashing
+## 9. Reverse Hashing
 
 Reverse hashing is used to validate responses from PayU. The reverse hash helps ensure that the response data hasn't been tampered with during transmission.
 
@@ -797,105 +855,6 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 ```
 
 ### Code Examples
-
-```php
-<?php
-function verifyReverseHash($params, $salt, $receivedHash) {
-    $key = $params['key'];
-    $txnid = $params['txnid'];
-    $amount = $params['amount'];
-    $productinfo = $params['productinfo'];
-    $firstname = $params['firstname'];
-    $email = $params['email'];
-    $status = $params['status'];
-    $udf1 = isset($params['udf1']) ? $params['udf1'] : '';
-    $udf2 = isset($params['udf2']) ? $params['udf2'] : '';
-    $udf3 = isset($params['udf3']) ? $params['udf3'] : '';
-    $udf4 = isset($params['udf4']) ? $params['udf4'] : '';
-    $udf5 = isset($params['udf5']) ? $params['udf5'] : '';
-    
-    $reverseHashString = $salt . '|' . $status . '||||||' . $udf5 . '|' . $udf4 . '|' . 
-                        $udf3 . '|' . $udf2 . '|' . $udf1 . '|' . $email . '|' . 
-                        $firstname . '|' . $productinfo . '|' . $amount . '|' . $txnid . '|' . $key;
-    
-    $calculatedHash = strtolower(hash('sha512', $reverseHashString));
-    
-    return $calculatedHash === strtolower($receivedHash);
-}
-?>
-```
-```python
-def verify_reverse_hash(params, salt, received_hash):
-    key = params['key']
-    txnid = params['txnid']
-    amount = params['amount']
-    productinfo = params['productinfo']
-    firstname = params['firstname']
-    email = params['email']
-    status = params['status']
-    udf1 = params.get('udf1', '')
-    udf2 = params.get('udf2', '')
-    udf3 = params.get('udf3', '')
-    udf4 = params.get('udf4', '')
-    udf5 = params.get('udf5', '')
-    
-    reverse_hash_string = f"{salt}|{status}||||||{udf5}|{udf4}|{udf3}|{udf2}|{udf1}|{email}|{firstname}|{productinfo}|{amount}|{txnid}|{key}"
-    
-    calculated_hash = hashlib.sha512(reverse_hash_string.encode('utf-8')).hexdigest()
-    
-    return calculated_hash.lower() == received_hash.lower()
-```
-
-
-### 9. General APIs
-
-### Hash Formula
-
-```
-sha512(key|command|var1|salt)
-```
-
-### Code Examples
-
-```php
-<?php
-function generateGeneralAPIHash($key, $command, $var1, $salt) {
-    $hashString = $key . '|' . $command . '|' . $var1 . '|' . $salt;
-    return strtolower(hash('sha512', $hashString));
-}
-
-// Example usage
-$hash = generateGeneralAPIHash('yourKey', 'verify_payment', 'txnid123', 'yourSalt');
-?>
-```
-```java
-public static String generateGeneralAPIHash(String key, String command, String var1, String salt) {
-    String hashString = key + "|" + command + "|" + var1 + "|" + salt;
-    return sha512(hashString);
-}
-```
-```csharp
-public static string GenerateGeneralAPIHash(string key, string command, string var1, string salt)
-{
-    string hashString = $"{key}|{command}|{var1}|{salt}";
-    return Sha512(hashString);
-}
-```
-```python
-def generate_general_api_hash(key, command, var1, salt):
-    hash_string = f"{key}|{command}|{var1}|{salt}"
-    return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
-```
-```javascript
-function generateGeneralAPIHash(key, command, var1, salt) {
-    const hashString = `${key}|${command}|${var1}|${salt}`;
-    return crypto.createHash('sha512').update(hashString).digest('hex');
-}
-```
-
-***
-
-<br />
 
 ```php
 <?php
