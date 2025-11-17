@@ -1,5 +1,5 @@
 ---
-title: Cardless EMI - Native OTP
+title: Cardless EMI - Native OTP Flow
 deprecated: false
 hidden: false
 link:
