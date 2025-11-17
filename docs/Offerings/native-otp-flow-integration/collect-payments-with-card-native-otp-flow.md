@@ -9,7 +9,7 @@ metadata:
   description: ''
   robots: index
 ---
-The steps involved in cardless EMI with Native OTP:
+The steps involved in cards with Native OTP:
 
 1. [Initiate the payment request](#step-2-initiate-the-payment-to-payu)
 2. [Submit the OTP](#step-3-submit-the-OTP)
