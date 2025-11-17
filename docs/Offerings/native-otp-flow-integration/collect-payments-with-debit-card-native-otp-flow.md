@@ -1305,6 +1305,6 @@ Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pas
 
 If the customer enters the incorrect OTP or an expired OTP, use [Resend OTP API](ref:resend-otp-api) to handle the **Resend OTP** request made by a customer.
 
-## Step 3. Verify the Payment
+## Step 4. Verify the Payment
 
 <Verify_Payment_Tabs />
