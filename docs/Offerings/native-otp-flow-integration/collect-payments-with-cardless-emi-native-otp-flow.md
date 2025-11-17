@@ -12,7 +12,7 @@ The steps involved in cardless EMI with Native OTP:
 1. [Check pre-EMI eligibility](#step-1-check-pre-emi-eligibility)
 2. [Initiate the payment request](#step-2-initiate-the-payment-to-payu)
 3. [Submit the OTP](#step-3-submit-the-OTP)
-4. [Verify the Payment](#step-4-verify-the-payment) 
+4. [Verify the Payment](#step-4-verify-the-payment)
 
 ### Step 1: Check pre-EMI eligibility
 
@@ -78,11 +78,11 @@ Before initiating a payment request for a customer, it is necessary to check the
   Additional examples for this request have been provided in **JavaScript, Python, PHP, Java**, and **C#**. Each programming language script includes detailed API integration examples for initiating a Cardless EMI payment.
 </Accordion>
 
-### Step 3: Submit the OTP
+## Step 3: Submit the OTP
 
 Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pass the OTP using the **Submit OTP** API. For more information, refer to [Submit OTP API](ref:submit-otp-to-payu).
 
-#### Sample Response
+### Sample Response
 
 * Success scenario
 
@@ -144,10 +144,10 @@ Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pas
 }
 ```
 
-#### Resend OTP
+### Resend OTP
 
 If the customer enters the incorrect OTP or an expired OTP, use [Resend OTP API](ref:resend-otp-api) to handle the **Resend OTP** request made by a customer.
 
-## Step 3. Verify the Payment
+## Step 4. Verify the Payment
 
 <Verify_Payment_Tabs />
