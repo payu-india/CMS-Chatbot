@@ -92,6 +92,9 @@ flutter pub add payu_upi_bolt_ui_flutter:^1.0.0-alpha.1
 
 ## SDK Methods
 </Accordion>
+<Accordion title="1. init" icon="fa-folder">
+It is used to initialize the SDK. This method returns an object that will be used to access other methods available in PayUUPIBoltUI.
+
 <Accordion title="Request" icon="fa-cog">
 Add the following imports:
 
@@ -265,9 +268,10 @@ payUUpiFlutter.isRegistered(params: Map);
   </tbody>
 </Table>
 </Accordion>
-<Accordion title="1. init" icon="fa-folder">
-It is used to initialize the SDK. This method returns an object that will be used to access other methods available in PayUUPIBoltUI.
 </Accordion>
+<Accordion title="2. isUPIBoltEnabled" icon="fa-folder">
+This method is used to check whether the upi bolt is enabled for the merchant or not.
+
 <Accordion title="Request" icon="fa-cog">
 ```dart
 payUUpiFlutter.isUPIBoltEnabled();
@@ -281,9 +285,10 @@ payUUpiFlutter.isUPIBoltEnabled();
 
 Refer to SDK Response JSON Format.
 </Accordion>
-<Accordion title="2. isUPIBoltEnabled" icon="fa-folder">
-This method is used to check whether the upi bolt is enabled for the merchant or not.
 </Accordion>
+<Accordion title="3. registerAndPay" icon="fa-folder">
+This API allows you to initialize registration and payment flow. It will internally authenticate and register the customer. After successful authentication and registration, the user will follow the payment journey. Once payment is completed, based on the payment status the merchant will get a callback through the listener.
+
 <Accordion title="Request" icon="fa-cog">
 ```dart
 payUUpiFlutter.registerAndPay(params: Map);
@@ -324,9 +329,10 @@ payUUpiFlutter.registerAndPay(params: Map);
 
 Refer to SDK Response JSON Format.
 </Accordion>
-<Accordion title="3. registerAndPay" icon="fa-folder">
-This API allows you to initialize registration and payment flow. It will internally authenticate and register the customer. After successful authentication and registration, the user will follow the payment journey. Once payment is completed, based on the payment status the merchant will get a callback through the listener.
 </Accordion>
+<Accordion title="4. openUPIManagement" icon="fa-folder">
+This API allows you to manage UPI accounts and transaction history.
+
 <Accordion title="Request" icon="fa-cog">
 ```dart
 // Screen Types
@@ -571,6 +577,4 @@ void generateHash(Map response) {
 | 501           | No internet connection                 |
 | 502           | SDK not found                          |
 </Accordion>
-<Accordion title="4. openUPIManagement" icon="fa-folder">
-This API allows you to manage UPI accounts and transaction history.
 </Accordion>
