@@ -29,7 +29,7 @@ The string used for calculating the hash:
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
 ```
 
-### Split during transaction - Split Settlements
+### Split Settlements - Split during transaction
 
 The string used for calculating the hash for split during transaction in Split Settlements:
 
@@ -37,7 +37,7 @@ The string used for calculating the hash for split during transaction in Split S
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|splitRequest)
 ```
 
-### Payment with Offers
+### Offers
 
 The string used for calculating the hash for transactions involving offers:
 
