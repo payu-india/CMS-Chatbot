@@ -1,7 +1,7 @@
 ---
 title: Native OTP Flow Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Integrate with Native OTP Flow for EMI
   description: ''
