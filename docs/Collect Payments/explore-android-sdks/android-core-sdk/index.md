@@ -55,7 +55,7 @@ Supported payment options
 * Compile SDK Version: 31 and above
 * Kotlin version: 1.6.10
 
-For the recommended integration workflow, refer to [Integration Steps](https://docs.payu.in/docs/android-coresdk-integration-steps). After you integrate with the above steps, you can use the APIs listed in the following to integrate web services or TPV integration:
+For the recommended integration workflow, refer to [Integration Steps](https://docs.payu.in/docs/integration-steps-android-core-sdk/). After you integrate with the above steps, you can use the APIs listed in the following to integrate web services or TPV integration:
 
 * [Web Services for Core SDK](https://docs.payu.in/docs/web-services-for-android-core-sdk)
 * [TPV with Android Core SDK](https://docs.payu.in/docs/android-coresdk-tpv-integration)
