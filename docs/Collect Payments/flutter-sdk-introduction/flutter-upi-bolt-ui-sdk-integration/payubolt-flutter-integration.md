@@ -1,11 +1,11 @@
 ---
-title: PayUBolt Flutter Integration
+title: Flutter UPI Bolt Integration
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-PayUBolt SDK enables seamless in-app UPI payments in merchant applications. The SDK provides comprehensive functionality for:
+PayU Bolt SDK enables seamless in-app UPI payments in merchant applications. The SDK provides comprehensive functionality for:
 
 * **Registration**: APIs for device binding and user registration
 * **Payment**: APIs for payment initiation and transaction verification
