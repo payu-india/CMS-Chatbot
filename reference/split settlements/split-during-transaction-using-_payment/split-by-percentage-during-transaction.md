@@ -435,10 +435,12 @@ The following fields are included in the **splitRequest** parameter in a JSON f
 
 ### Sample JSON for splitRequest
 
-> 📘 Notes:
->
-> * **Description of fields**: Refer to [splitRequest JSON fields description](#splitrequest-json-fields-description) field.
-> * Before peruse the following sample code, remove the white spaces as some editors may introduce junk characters.
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * **Description of fields**: Refer to [splitRequest JSON fields description](#splitrequest-json-fields-description) field.
+  * Before peruse the following sample code, remove the white spaces as some editors may introduce junk characters.
+</Callout>
 
 ```plaintext
 {
@@ -466,9 +468,9 @@ The following fields are included in the **splitRequest** parameter in a JSON f
 
 The sample JSON structure for the **splitInfo** field:
 
-> 📘 Note:
->
-> Before peruse the following sample code, remove the white spaces as some editors may introduce junk characters.
+<Callout icon="📘" theme="info">
+  **Note**: Before peruse the following sample code, remove the white spaces as some editors may introduce junk characters.
+</Callout>
 
 ```plaintext
 {
@@ -493,9 +495,9 @@ Added as extra parameter in the calculation of hash in case of providing Split R
 
 You need to generate a string using certain parameters and apply the SHA-512 algorithm to this string. For more information on hashing, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
 
-> 📘 Note:
->
-> Ensure that you use pipe (|) character between these parameters as mentioned in the following code block.
+<Callout icon="📘" theme="info">
+  **Note**: Ensure that you use pipe (|) character between these parameters as mentioned in the following code block.
+</Callout>
 
 The parameter order is in the following code block`:`
 
@@ -510,6 +512,45 @@ Where, `splitRequest` will be at the end of the hash pattern string.
 ```plaintext
 hash('sha512', 'Ax4j7J|payment-txnid-1|10|Product Info|Payu-Admin|test@example.com|||||||||||t5atu4TyCvrJDPxAYrmfJfzd90kbXMfL|{"type":"absolute","splitInfo":{"P41sCY":{"aggregatorSubTxnId":"0e7411799c9f0e96620c11","aggregatorSubAmt":"3","aggregatorCharges":"2"},"P41sCK":{"aggregatorSubTxnId":"0e7411799c9f0e96620c22","aggregatorSubAmt":"5"}}}'));
 ```
+
+## Sample request
+
+```
+curl -X POST "https://secure.payu.in/_payment" \
+--data "key=JPg***r" \
+--data "txnid=TXN20251119061104" \
+--data "amount=100.00" \
+--data "productinfo=Test Product - Mobile Phone" \
+--data "firstname=John" \
+--data "email=john.doe@example.com" \
+--data "phone=9999999999" \
+--data "api_version=6" \
+--data "pg=CC" \
+--data "bankcode=CC" \
+--data "ccnum=4111111111111111" \
+--data "ccname=John Doe" \
+--data "ccvv=123" \
+--data "ccexpmon=12" \
+--data "ccexpyr=2025" \
+--data "surl=https://www.yoursite.com/success" \
+--data "furl=https://www.yoursite.com/failure" \
+--data "splitRequest={\"type\":\"absolute\",\"splitInfo\":{\"P41sCY\":{\"aggregatorSubTxnId\":\"0e7411799c9f0e96620c11\",\"aggregatorSubAmt\":\"30\",\"aggregatorCharges\":\"2\"},\"P41sCK\":{\"aggregatorSubTxnId\":\"0e7411799c9f0e96620c22\",\"aggregatorSubAmt\":\"70\"}}}" \
+--data "hash=8c948bdee25374a4c2ff1141da3fcbe7138d377717a4f15f41913eee01f0de1508710c5f53ba3af4885f722bfa3e54c713832122960491b85eff6c3d366d0919" \
+--data "address1=123 Main Street" \
+--data "address2=Apt 4B" \
+--data "city=New York" \
+--data "state=NY" \
+--data "country=USA" \
+--data "zipcode=10001" \
+--data "udf1=udf1_value" \
+--data "udf2=udf2_value" \
+--data "udf3=udf3_value" \
+--data "udf4=udf4_value" \
+--data "udf5=udf5_value"
+
+```
+
+<br />
 
 ## Check the response from PayU
 
