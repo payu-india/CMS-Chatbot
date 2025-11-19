@@ -16,6 +16,7 @@ next:
 ---
 This part of the document includes the API Reference for the following with "Try It" using S2S Integration:
 
+* [Classic Integration-S2S](ref:_payment_s2s_classic_integration)
 * [Cards Classic Integration](ref:_payment_s2s_classic_integration)
 * [Cards Decoupled Flow](ref:_payment_s2s_decoupled_flow)
 * [Cards Direct Authorization Flow](ref:_payment_s2s_direct_authorization_flow)
