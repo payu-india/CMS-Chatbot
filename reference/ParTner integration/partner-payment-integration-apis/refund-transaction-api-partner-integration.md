@@ -42,23 +42,23 @@ The Refund Transaction for Partner integration can be used for the following pur
       </td>
 
       <td>
-        `String` The refund ID must be specified in this parameter.\
+        `String` The refund ID must be specified in this parameter.  
         `Char limit`: 23 characters
       </td>
 
       <td>
-        test\_ref\_0001
+        test_ref_0001
       </td>
     </tr>
 
     <tr>
       <td>
-        payu\_id\
+        payu_id  
         **mandatory**
       </td>
 
       <td>
-        `String` Partner should pass the payu\_id of the payment transaction for which the refund request is being raised.
+        `String` Partner should pass the payu_id of the payment transaction for which the refund request is being raised.
       </td>
 
       <td>
@@ -68,7 +68,7 @@ The Refund Transaction for Partner integration can be used for the following pur
 
     <tr>
       <td>
-        amount\
+        amount  
         **mandatory**
       </td>
 
@@ -83,7 +83,7 @@ The Refund Transaction for Partner integration can be used for the following pur
 
     <tr>
       <td>
-        reseller\_id\
+        reseller_id  
         **mandatory**
       </td>
 
@@ -98,7 +98,7 @@ The Refund Transaction for Partner integration can be used for the following pur
 
     <tr>
       <td>
-        merchant\_id\
+        merchant_id  
         **mandatory**
       </td>
 
@@ -113,13 +113,13 @@ The Refund Transaction for Partner integration can be used for the following pur
 
     <tr>
       <td>
-        hash\
+        hash  
         **mandatory**
       </td>
 
       <td>
-        `String` This parameter must contain the hash value to be calculated at your end. Following are the strings used for calculating the hash:\
-        sha512(merchant\_id|refund\_id|amount|client\_secret)\
+        `String` This parameter must contain the hash value to be calculated at your end. Following are the strings used for calculating the hash:  
+        sha512(merchant_id|refund_id|amount|client_secret)  
         For more information on sha512, refer to API Authentication and Security.
       </td>
 
@@ -137,7 +137,7 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer 8c9177c718fc77046efe0d18192b98cadf798f2a136f2d31c7e09d60797403b5' \
 --data '{
-    "refund_id": "test_ref_0001",
+    "token": "test_ref_0001",
     "payu_id": 403993715529606983,
     "merchant_id": "8238480",
     "reseller_id": "1212312213",
@@ -148,7 +148,7 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
 
 ## Response parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -172,7 +172,7 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
       </td>
 
       <td>
-        `String` The status can be any of the following:  
+        `String` The status can be any of the following:
 
         * **1** if API call is a success
         * **0** if the API has failed
@@ -199,7 +199,7 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
 
     <tr>
       <td>
-        request\_id
+        request_id
       </td>
 
       <td>
@@ -213,7 +213,7 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
 
     <tr>
       <td>
-        bank\_ref\_num
+        bank_ref_num
       </td>
 
       <td>
@@ -241,7 +241,7 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
 
     <tr>
       <td>
-        error\_code
+        error_code
       </td>
 
       <td>
@@ -329,11 +329,11 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
       </td>
 
       <td>
-         \{\
-        "status": 0,\
-        "msg": "Refund FAILURE - Transactions with same amount and same token not allowed",\
-        "error\_code": 227,\
-        "mihpayid": 403993715529339129\
+         \{  
+        "status": 0,  
+        "msg": "Refund FAILURE - Transactions with same amount and same token not allowed",  
+        "error_code": 227,  
+        "mihpayid": 403993715529339129  
         }
       </td>
     </tr>
@@ -344,11 +344,11 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
       </td>
 
       <td>
-         \{\
-        "status": 0,\
-        "msg": "Refund FAILURE - Two refunds of same amount for same transaction within 5 minutes are not allowed",\
-        "error\_code": 214,\
-        "mihpayid": 17788074728\
+         \{  
+        "status": 0,  
+        "msg": "Refund FAILURE - Two refunds of same amount for same transaction within 5 minutes are not allowed",  
+        "error_code": 214,  
+        "mihpayid": 17788074728  
         }
       </td>
     </tr>
@@ -359,7 +359,7 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
       </td>
 
       <td>
-         \{ "status": 0, "msg": "Refund FAILURE - Invalid amount", "error\_code": 105, "mihpayid": 17842967667 }
+         \{ "status": 0, "msg": "Refund FAILURE - Invalid amount", "error_code": 105, "mihpayid": 17842967667 }
       </td>
     </tr>
 
@@ -369,10 +369,10 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
       </td>
 
       <td>
-         \{\
-        "status": 0,\
-        "msg": "transaction does not exists",\
-        "mihpayid": ""\
+         \{  
+        "status": 0,  
+        "msg": "transaction does not exists",  
+        "mihpayid": ""  
         }
       </td>
     </tr>
@@ -383,7 +383,7 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
       </td>
 
       <td>
-         \{"status":0,"msg":"Refund FAILURE - Token already exists.","error\_code":106,"mihpayid":403993715529339129}
+         \{"status":0,"msg":"Refund FAILURE - Token already exists.","error_code":106,"mihpayid":403993715529339129}
       </td>
     </tr>
 
@@ -403,7 +403,7 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
       </td>
 
       <td>
-         \{"status":0,"msg":"Invalid partner.","error\_code":106,"mihpayid":403993715529339129}
+         \{"status":0,"msg":"Invalid partner.","error_code":106,"mihpayid":403993715529339129}
       </td>
     </tr>
 
