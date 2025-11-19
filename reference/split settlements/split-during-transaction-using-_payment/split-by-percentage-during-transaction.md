@@ -10,20 +10,20 @@ metadata:
 next:
   description: ''
 ---
-You can split during a transaction made using **\_payment** API by percentage, where you must ensure that the sum of percentage of all splits is equal to 100.
+You can split during a transaction made using **_payment** API by percentage, where you must ensure that the sum of percentage of all splits is equal to 100.
 
-> 📘 Note:
->
-> You must specify two decimal places for each split, but ensure the sum of percentage of all splits is equal to 100.
+<Callout icon="📘" theme="info">
+  **Note**: You must specify two decimal places for each split, but ensure the sum of percentage of all splits is equal to 100.
+</Callout>
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                                         |
-| :------------------------- | :---------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
+|                            |                                                                        |
+| :------------------------- | :--------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
 
 ## Request parameters
 
@@ -54,7 +54,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        <Glossary>txnid</Glossary>\
+        <Glossary>txnid</Glossary>  
         `mandatory`
       </td>
 
@@ -95,7 +95,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        email\
+        email  
         `mandatory`
       </td>
 
@@ -106,7 +106,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        phone\
+        phone  
         `mandatory`
       </td>
 
@@ -117,7 +117,18 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        pg\
+        api_version  
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Version of the API must be 7 for Split Settlements.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pg  
         `mandatory`
       </td>
 
@@ -132,13 +143,13 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).
+        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).
       </td>
     </tr>
 
     <tr>
       <td>
-        ccnum\
+        ccnum  
         `mandatory for cards`
       </td>
 
@@ -159,7 +170,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        ccvv\
+        ccvv  
         `mandatory for cards`
       </td>
 
@@ -174,24 +185,24 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        `String` This parameter must contain the card’s expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
+        `String` This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
       </td>
     </tr>
 
     <tr>
       <td>
-        ccexpyr\
+        ccexpyr  
         `mandatory for cards`
       </td>
 
       <td>
-        `String` This parameter must contain the card’s expiry year – as entered by the customer for the transaction. It must be of four digits.
+        `String` This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.
       </td>
     </tr>
 
     <tr>
       <td>
-        furl\
+        furl  
         `mandatory`
       </td>
 
@@ -202,7 +213,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        surl\
+        surl  
         `mandatory`
       </td>
 
@@ -213,7 +224,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        splitRequest\
+        splitRequest  
         `mandatory for Split Settlements`
       </td>
 
@@ -224,7 +235,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        hash\
+        hash  
         `mandatory`
       </td>
 
@@ -239,20 +250,20 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        address1\
+        address1  
         `optional`
       </td>
 
       <td>
         `String` The first line of the billing address.
 
-        * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        * _For Fraud Detection_*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
     </tr>
 
     <tr>
       <td>
-        address2\
+        address2  
         `optional`
       </td>
 
@@ -263,7 +274,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        city\
+        city  
         `optional`
       </td>
 
@@ -274,7 +285,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        state\
+        state  
         `optional`
       </td>
 
@@ -285,7 +296,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        country\
+        country  
         `optional`
       </td>
 
@@ -296,19 +307,19 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        zipcode\
+        zipcode  
         `optional`
       </td>
 
       <td>
-        `String` Billing address zip code.\
+        `String` Billing address zip code.  
         `Character Limit`-20
       </td>
     </tr>
 
     <tr>
       <td>
-        udf1\
+        udf1  
         `optional`
       </td>
 
@@ -319,7 +330,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        udf2\
+        udf2  
         `optional`
       </td>
 
@@ -330,7 +341,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        udf3\
+        udf3  
         `optional`
       </td>
 
@@ -341,7 +352,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        udf4\
+        udf4  
         `optional`
       </td>
 
@@ -352,7 +363,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        udf5\
+        udf5  
         `optional`
       </td>
 
@@ -412,7 +423,7 @@ The following fields are included in the **splitRequest** parameter in a JSON f
         * **aggregatorSubTxnId**: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only for child merchants.
         * **aggregatorSubAmt**: The transaction amount or percentage split for the aggregator is posted in this parameter. This field is mandatory.
         * **aggregatorCharges** (optional): The transaction amount or percentage split for aggregator charges is posted in this parameter. This field is optional.
-          * *Note*\*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.
+          * _Note_*: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.
       </td>
 
       <td>
