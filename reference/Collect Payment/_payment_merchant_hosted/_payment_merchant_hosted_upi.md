@@ -6,6 +6,11 @@ api:
 hidden: false
 metadata:
   title: UPI - Merchant Hosted Checkout
+  description: >-
+    Discover comprehensive integration guides and API references for Merchant
+    Hosted UPI payments with PayU. Learn how to seamlessly integrate UPI payment
+    solutions into your website or app, enabling secure and efficient
+    transactions for your customers.
 ---
 PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to [UPI Handles](doc:upi-handles).
 
