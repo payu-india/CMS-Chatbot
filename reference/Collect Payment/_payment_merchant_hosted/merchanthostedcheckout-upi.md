@@ -4,6 +4,8 @@ api:
   file: updated_upi_merchant_hosted.json
   operationId: MerchantHostedCheckout-UPI
 hidden: false
+metadata:
+  title: UPI - Merchant Hosted Checkout
 ---
 PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to [UPI Handles](doc:upi-handles).
 
