@@ -6,6 +6,26 @@ api:
 hidden: false
 metadata:
   title: Collect Payments with Wallets - Merchant Hosted Checkout
+  description: >-
+    Discover how PayU's Merchant Hosted Wallets streamline online payments for
+    merchants and customers. Learn integration steps, API details, and best
+    practices for secure, efficient transactions. Enhance your e-commerce
+    platform with robust payment solutions.
+  keywords:
+    - Wallets Merchant Hosted Checkout Collect Payment API
+    - Simulator for PayU payment collection
+    - Wallets Custom Checkout integration with PayU
+    - Collect payments using PayU API
+    - Collect Payment API for Wallets Merchant Hosted Checkout
+    - _payment API for Wallets Merchant Hosted Checkout
+    - _payment API simulation for Wallets Custom Checkout
+    - _payment API simulation for Wallets Merchant Hosted Checkout
+    - Digital Wallet Merchant Hosted Checkout Collect  Payment API
+    - Digital Wallet Custom Checkout integration with PayU
+    - Collect Payment API for Digital Wallet Merchant Hosted Checkout
+    - Mobile Wallet Merchant Hosted Checkout Collect Payment API
+    - Mobile Wallet Custom Checkout integration with PayU
+    - Collect Payment API for Mobile Wallet Merchant Hosted Checkout
 ---
 You can collect payments from customers with leading wallets using the Merchant Hosted integration. You need to ensure that **CASH** for the **pg** parameter and wallet code based on the desired wallet for the **bankcode** parameter is posted.
 
