@@ -509,7 +509,7 @@ Where, `splitRequest` will be at the end of the hash pattern string.
 
 **Example**:
 
-```plaintext
+```curl
 hash('sha512', 'Ax4j7J|payment-txnid-1|10|Product Info|Payu-Admin|test@example.com|||||||||||t5atu4TyCvrJDPxAYrmfJfzd90kbXMfL|{"type":"absolute","splitInfo":{"P41sCY":{"aggregatorSubTxnId":"0e7411799c9f0e96620c11","aggregatorSubAmt":"3","aggregatorCharges":"2"},"P41sCK":{"aggregatorSubTxnId":"0e7411799c9f0e96620c22","aggregatorSubAmt":"5"}}}'));
 ```
 
