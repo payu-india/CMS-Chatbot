@@ -4,6 +4,21 @@ api:
   file: updated_payu_hosted.json
   operationId: MerchantHostedCheckout-Wallets
 hidden: false
+metadata:
+  title: Collect Payments API- PayU Hosted Checkout
+  description: >-
+    Streamline your payment process with PayU’s Hosted Checkout API. Utilize our
+    simulator to test and understand payment collection seamlessly. Access
+    comprehensive API references for a smooth integration
+  keywords:
+    - PayU Hosted Checkout Collect Payment API
+    - Simulator for PayU payment collection
+    - Pre-built Checkout integration with PayU
+    - Collect payments using PayU API
+    - Collect Payment API for PayU Hosted Checkout
+    - _payment API for PayU Hosted Checkout
+    - _payment API simulation for Pre-built Checkout
+    - _payment API simulation for PayU Hosted Checkout
 ---
 The Collect Payment API (**_payment** API) is used to collect payments for all the Web Checkout integration. This section provides the API Reference for PayU Hosted Checkout or Pre-Built Checkout.
 
