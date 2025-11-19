@@ -57,57 +57,57 @@ To perform a basic API setup for adding a payment, adding splits (sub-payment) f
 
     <Accordion title="Request parameters" icon="fa-table">
       <HTMLBlock>{`
-                                                                      <table style="width: 100%; border-collapse: collapse;">
-                                                                      <thead>
-                                                                      <tr>
-                                                                        <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-                                                                        <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-                                                                        <th style="border: 1px solid #ddd; padding: 8px;"><strong>Sample Value</strong></th>
-                                                                      </tr>
-                                                                      </thead>
-                                                                      <tbody>
-                                                                      <tr>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>key</p>
-                                                                      </td>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> This parameter must include the Merchant key that was provided by PayU.</p>
-                                                                      </td>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>vDy3i7</p>
-                                                                      </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>api_version</p>
-                                                                      </td>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Version of the API must be 7 for Split Settlements.</p>
-                                                                      </td>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>7</p>
-                                                                      </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>command</p>
-                                                                      </td>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The parameter must contain the name of the web service.</p>
-                                                                      </td>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>payment_split</p>
-                                                                      </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>hash</p>
-                                                                      </td>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The hash string encryption is specified in this parameter. The format of the hash is:<br>|sha512(key|command|var1|salt)<br>Where, var1 contains the fields as described in the var1 description.</p>
-                                                                      </td>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                                                      </td>
-                                                                      </tr>
-                                                                      <tr>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
-                                                                      </td>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string (JSON)</code> This parameter is in a JSON format and fields included in the JSON format are explained the <a href="#json-request-structure">JSON request structure table</a>.</p>
-                                                                      </td>
-                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>For an example, refer the <a href="#request-structure-for-var1-to-be-included-in--payment_split-api">Request Structure</a> subsection.</p>
-                                                                      </td>
-                                                                      </tr>
-                                                                      </tbody>
-                                                                      </table>
+                                                                            <table style="width: 100%; border-collapse: collapse;">
+                                                                            <thead>
+                                                                            <tr>
+                                                                              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+                                                                              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                                                                              <th style="border: 1px solid #ddd; padding: 8px;"><strong>Sample Value</strong></th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            <tr>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p>key</p>
+                                                                            </td>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> This parameter must include the Merchant key that was provided by PayU.</p>
+                                                                            </td>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p>vDy3i7</p>
+                                                                            </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p>api_version</p>
+                                                                            </td>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Version of the API must be 7 for Split Settlements.</p>
+                                                                            </td>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p>7</p>
+                                                                            </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p>command</p>
+                                                                            </td>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The parameter must contain the name of the web service.</p>
+                                                                            </td>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p>payment_split</p>
+                                                                            </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p>hash</p>
+                                                                            </td>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The hash string encryption is specified in this parameter. The format of the hash is:<br>|sha512(key|command|var1|salt)<br>Where, var1 contains the fields as described in the var1 description.</p>
+                                                                            </td>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+                                                                            </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
+                                                                            </td>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string (JSON)</code> This parameter is in a JSON format and fields included in the JSON format are explained the <a href="#json-request-structure">JSON request structure table</a>.</p>
+                                                                            </td>
+                                                                              <td style="border: 1px solid #ddd; padding: 8px;"><p>For an example, refer the <a href="#request-structure-for-var1-to-be-included-in--payment_split-api">Request Structure</a> subsection.</p>
+                                                                            </td>
+                                                                            </tr>
+                                                                            </tbody>
+                                                                            </table>
       `}</HTMLBlock>
 
       <Accordion title="Request structure for var1 to be included in  payment_split API" icon="fa-code">
@@ -139,46 +139,46 @@ To perform a basic API setup for adding a payment, adding splits (sub-payment) f
           The **var1** parameter is in JSON format. The fields in the JSON format are described in the following table:
 
           <HTMLBlock>{`
-                                                                                                        <table style="width: 100%; border-collapse: collapse;">
-                                                                                                        <thead>
-                                                                                                        <tr>
-                                                                                                          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-                                                                                                          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-                                                                                                          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-                                                                                                        </tr>
-                                                                                                        </thead>
-                                                                                                        <tbody>
-                                                                                                        <tr>
-                                                                                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>type</p>
-                                                                                                        </td>
-                                                                                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>The type of split is specified in this field. Use <strong>absolute</strong> in this field. The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator.</p>
-                                                                                                        </td>
-                                                                                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>absolute</p>
-                                                                                                        </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>payuid</p>
-                                                                                                        </td>
-                                                                                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>The payment identifier provided by PayU for the transaction.</p>
-                                                                                                        </td>
-                                                                                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>403993715525003544</p>
-                                                                                                        </td>
-                                                                                                        </tr>
-                                                                                                        <tr>
-                                                                                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>splitInfo</p>
-                                                                                                        </td>
-                                                                                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must include the list of aggregator sub transaction IDs and sub amounts as specified in the <a href="#request-structure-for-var1-to-be-included-in--payment_split-api">Request Structure for var1</a> subsection:  </p>
-                                                                                                        <ul>
-                                                                                                        <li><strong>aggregatorSubTxnId</strong>: The aggregator sub transaction ID is specified in this field.</li>
-                                                                                                        <li><strong>aggregatorSubAmt</strong>: The aggregator sub amount is specified in this field.</li>
-                                                                                                        <li><strong>aggregatorCharges</strong>: The aggregator charges is specified in this field.<strong>Note</strong>: The aggregatorCharges field can only be used by parent merchant to get the aggregator commission.</li>
-                                                                                                        </ul>
-                                                                                                        </td>
-                                                                                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>Refer to <a href="#request-structure-for-var1-to-be-included-in--payment_split-api">Request Structure for var1</a> subsection.</p>
-                                                                                                        </td>
-                                                                                                        </tr>
-                                                                                                        </tbody>
-                                                                                                        </table>
+                                                                                                                  <table style="width: 100%; border-collapse: collapse;">
+                                                                                                                  <thead>
+                                                                                                                  <tr>
+                                                                                                                    <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+                                                                                                                    <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                                                                                                                    <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+                                                                                                                  </tr>
+                                                                                                                  </thead>
+                                                                                                                  <tbody>
+                                                                                                                  <tr>
+                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><p>type</p>
+                                                                                                                  </td>
+                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><p>The type of split is specified in this field. Use <strong>absolute</strong> in this field. The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator.</p>
+                                                                                                                  </td>
+                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><p>absolute</p>
+                                                                                                                  </td>
+                                                                                                                  </tr>
+                                                                                                                  <tr>
+                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><p>payuid</p>
+                                                                                                                  </td>
+                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><p>The payment identifier provided by PayU for the transaction.</p>
+                                                                                                                  </td>
+                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><p>403993715525003544</p>
+                                                                                                                  </td>
+                                                                                                                  </tr>
+                                                                                                                  <tr>
+                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><p>splitInfo</p>
+                                                                                                                  </td>
+                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter must include the list of aggregator sub transaction IDs and sub amounts as specified in the <a href="#request-structure-for-var1-to-be-included-in--payment_split-api">Request Structure for var1</a> subsection:  </p>
+                                                                                                                  <ul>
+                                                                                                                  <li><strong>aggregatorSubTxnId</strong>: The aggregator sub transaction ID is specified in this field.</li>
+                                                                                                                  <li><strong>aggregatorSubAmt</strong>: The aggregator sub amount is specified in this field.</li>
+                                                                                                                  <li><strong>aggregatorCharges</strong>: The aggregator charges is specified in this field.<strong>Note</strong>: The aggregatorCharges field can only be used by parent merchant to get the aggregator commission.</li>
+                                                                                                                  </ul>
+                                                                                                                  </td>
+                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><p>Refer to <a href="#request-structure-for-var1-to-be-included-in--payment_split-api">Request Structure for var1</a> subsection.</p>
+                                                                                                                  </td>
+                                                                                                                  </tr>
+                                                                                                                  </tbody>
+                                                                                                                  </table>
           `}</HTMLBlock>
         </Accordion>
       </Accordion>
@@ -296,190 +296,190 @@ To perform a basic API setup for adding a payment, adding splits (sub-payment) f
       The **splitRequest** parameter  must be included in the **\_payment** API along with the regular parameters.  The following are the request parameters used for split settlements:
 
       <HTMLBlock>{`
-                                                                <table style="width: 100%; border-collapse: collapse;">
-                                                                <thead>
-                                                                <tr>
-                                                                  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                                                                  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;<a href="glossary:key">glossary:key</a>&gt;<br><code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Merchant key provided by PayU during onboarding.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;<a href="glossary:txnid">glossary:txnid</a>&gt;<br> <code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The transaction ID is a reference number for a specific order that is generated by the merchant.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount  <code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The payment amount for the transaction.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>productinfo  <code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>A brief description of the product.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>firstname  <code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The first name of the customer.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The email address of the customer.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br> <code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The phone number of the customer.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>pg<br><code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, &#39;CC&#39; will be the value. </p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>bankcode <code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to <a href="card-type-codes-and-supported-banks-for-cards" target="_blank"> Card Type Codes and Supported Banks for Cards</a>. </p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>ccnum<br> <code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to  <a href="card-number-formats" target="_blank"> Card Number Formats</a> and display error message on invalid input.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>ccname  <code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the name on card – as entered by the customer for the transaction.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>ccvv<br><code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>ccexpmon  <code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the card’s expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>ccexpyr<br><code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the card’s expiry year – as entered by the customer for the transaction. It must be of four digits.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>furl<br><code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The success URL, which is the page PayU will redirect to if the transaction is successful.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>surl<br><code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The Failure URL, which is the page PayU will redirect to if the transaction is failed.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>splitRequest<br><code>mandatory for Split Settlements</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code>The JSON includes the split settlement details. For more information, refer to <a href="#json-request-structure-of-splitrequest-parameter">JSON Request Structure for splitRequest parameter</a>.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>It is the hash calculated by the merchant. The hash calculation logic is:<br><code>sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)</code></p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>address1<br><code>optional</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The first line of the billing address.<br><strong>For Fraud Detection</strong>: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>address2<br><code>optional</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The second line of the billing address.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>city<br><code>optional</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The city where your customer resides as part of the billing address.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>state<br><code>optional</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The state where your customer resides as part of the billing address,</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>country<br><code>optional</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The country where your customer resides.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>zipcode<br><code>optional</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br><code>Character Limit</code>-20</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>udf1<br><code>optional</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>udf2<br><code>optional</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>udf3<br><code>optional</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>udf4<br><code>optional</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>udf5<br><code>optional</code></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</p>
-                                                                </td>
-                                                                </tr>
-                                                                </tbody>
-                                                                </table>
+                                                                      <table style="width: 100%; border-collapse: collapse;">
+                                                                      <thead>
+                                                                      <tr>
+                                                                        <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                                                                        <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                                                                      </tr>
+                                                                      </thead>
+                                                                      <tbody>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;<a href="glossary:key">glossary:key</a>&gt;<br><code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Merchant key provided by PayU during onboarding.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;<a href="glossary:txnid">glossary:txnid</a>&gt;<br> <code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The transaction ID is a reference number for a specific order that is generated by the merchant.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>amount  <code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The payment amount for the transaction.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>productinfo  <code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>A brief description of the product.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>firstname  <code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The first name of the customer.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The email address of the customer.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br> <code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The phone number of the customer.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>pg<br><code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, &#39;CC&#39; will be the value. </p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>bankcode <code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to <a href="card-type-codes-and-supported-banks-for-cards" target="_blank"> Card Type Codes and Supported Banks for Cards</a>. </p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>ccnum<br> <code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to  <a href="card-number-formats" target="_blank"> Card Number Formats</a> and display error message on invalid input.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>ccname  <code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the name on card – as entered by the customer for the transaction.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>ccvv<br><code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>ccexpmon  <code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the card’s expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>ccexpyr<br><code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the card’s expiry year – as entered by the customer for the transaction. It must be of four digits.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>furl<br><code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The success URL, which is the page PayU will redirect to if the transaction is successful.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>surl<br><code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The Failure URL, which is the page PayU will redirect to if the transaction is failed.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>splitRequest<br><code>mandatory for Split Settlements</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code>The JSON includes the split settlement details. For more information, refer to <a href="#json-request-structure-of-splitrequest-parameter">JSON Request Structure for splitRequest parameter</a>.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>It is the hash calculated by the merchant. The hash calculation logic is:<br><code>sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)</code></p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>address1<br><code>optional</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The first line of the billing address.<br><strong>For Fraud Detection</strong>: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>address2<br><code>optional</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The second line of the billing address.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>city<br><code>optional</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The city where your customer resides as part of the billing address.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>state<br><code>optional</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The state where your customer resides as part of the billing address,</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>country<br><code>optional</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The country where your customer resides.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>zipcode<br><code>optional</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br><code>Character Limit</code>-20</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>udf1<br><code>optional</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>udf2<br><code>optional</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>udf3<br><code>optional</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>udf4<br><code>optional</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>udf5<br><code>optional</code></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      </tbody>
+                                                                      </table>
       `}</HTMLBlock>
     </Accordion>
 
@@ -511,41 +511,41 @@ To perform a basic API setup for adding a payment, adding splits (sub-payment) f
       The following fields are included in the **splitRequest** parameter in a JSON format to specify the split details. The fields in the JSON format are described in the following table:
 
       <HTMLBlock>{`
-                                                                <table style="width: 100%; border-collapse: collapse;">
-                                                                <thead>
-                                                                <tr>
-                                                                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-                                                                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-                                                                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>type<br><strong>mandatory</strong></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> Any of the following type of split is specified in this field.  </p>
-                                                                <ul>
-                                                                <li><strong>absolute</strong>: The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment</li>
-                                                                <li><strong>percentage</strong>: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment</li>
-                                                                </ul>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>absolute</p>
-                                                                </td>
-                                                                </tr>
-                                                                <tr>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>splitInfo<br><strong>mandatory</strong></p>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>JSON\` This parameter must include the list of aggregator sub transaction IDs and sub amounts as follows:  </p>
-                                                                <ul>
-                                                                <li><strong>aggregatorSubTxnId</strong>: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only for child merchants.</li>
-                                                                <li><strong>aggregatorSubAmt</strong>: The transaction amount or percentage split for the aggregator is posted in this parameter. This field is mandatory.</li>
-                                                                <li><strong>aggregatorCharges</strong>: The transaction amount or percentage split for aggregator charges is posted in this parameter. This field is optional.<br><strong>Note</strong>: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.</li>
-                                                                </ul>
-                                                                </td>
-                                                                  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                                                </tr>
-                                                                </tbody>
-                                                                </table>
+                                                                      <table style="width: 100%; border-collapse: collapse;">
+                                                                      <thead>
+                                                                      <tr>
+                                                                        <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+                                                                        <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                                                                        <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+                                                                      </tr>
+                                                                      </thead>
+                                                                      <tbody>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>type<br><strong>mandatory</strong></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> Any of the following type of split is specified in this field.  </p>
+                                                                      <ul>
+                                                                      <li><strong>absolute</strong>: The absolute amount is specified for each part of the split. The absolute amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Absolute Split During Payment</li>
+                                                                      <li><strong>percentage</strong>: The percentage of the amount is specified for each part of the split. The percentage of the amount is specified in the aggregatorSubAmt field of the JSON for each child or aggregator. For a sample request and response, refer to Split by Percentage During Payment</li>
+                                                                      </ul>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>absolute</p>
+                                                                      </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>splitInfo<br><strong>mandatory</strong></p>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>JSON\` This parameter must include the list of aggregator sub transaction IDs and sub amounts as follows:  </p>
+                                                                      <ul>
+                                                                      <li><strong>aggregatorSubTxnId</strong>: The transaction ID of the aggregator is posted in this parameter. This field is mandatory and applicable only for child merchants.</li>
+                                                                      <li><strong>aggregatorSubAmt</strong>: The transaction amount or percentage split for the aggregator is posted in this parameter. This field is mandatory.</li>
+                                                                      <li><strong>aggregatorCharges</strong>: The transaction amount or percentage split for aggregator charges is posted in this parameter. This field is optional.<br><strong>Note</strong>: Only the parent aggregators can have the aggregatorCharges field as part of their JSON to collect charges.</li>
+                                                                      </ul>
+                                                                      </td>
+                                                                        <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                                                      </tr>
+                                                                      </tbody>
+                                                                      </table>
       `}</HTMLBlock>
     </Accordion>
 
@@ -582,7 +582,60 @@ To perform a basic API setup for adding a payment, adding splits (sub-payment) f
     </Accordion>
 
     > **Note**: You can implement the convenience fee for any of the above Split APIs. For more information on convenience fee, refer to [Convenience Fee Handling](doc:convenience-fee-handling).
+<Accordion title="Sample request" icon="fa-code">
+```curl
+curl -X POST "https://test.payu.in/_payment" \
+--data "key=JPg***r" \
+--data "txnid=TXN20251119061104" \
+--data "amount=100.00" \
+--data "productinfo=Test Product - Mobile Phone" \
+--data "firstname=John" \
+--data "email=john.doe@example.com" \
+--data "phone=9999999999" \
+--data "api_version=6" \
+--data "pg=CC" \
+--data "bankcode=CC" \
+--data "ccnum=4111111111111111" \
+--data "ccname=John Doe" \
+--data "ccvv=123" \
+--data "ccexpmon=12" \
+--data "ccexpyr=2025" \
+--data "surl=https://www.yoursite.com/success" \
+--data "furl=https://www.yoursite.com/failure" \
+--data "splitRequest={
+  "type": "percentage",
+  "splitInfo": {
+    "merchantKey1": {
+      "aggregatorSubTxnId": "30nknyhkhib",
+      "aggregatorSubAmt": "53.33", // %age wrt to total payable amount
+      "aggregatorCharges": "13.33" // parent merchant commission (Optional) | %age wrt to total payable amount
+    },
+    "merchantKey2": {
+      "aggregatorSubTxnId": "13u0nknou0", //%age wrt to total payable amount
+      "aggregatorSubAmt": "13.33" // %age wrt to total payable amount
+    },
+    "merchantKey3": {
+      "aggregatorSubTxnId": "13u0nknou0",
+      "aggregatorSubAmt": "13.33", // %age wrt to total payable amount
+      "aggregatorCharges": "6.68" // parent merchant commission (Optional) | %age wrt to total payable amount
+    }
+  }
+} \
+--data "hash=8c948bdee25374a4c2ff1141da3fcbe7138d377717a4f15f41913eee01f0de1508710c5f53ba3af4885f722bfa3e54c713832122960491b85eff6c3d366d0919" \
+--data "address1=123 Main Street" \
+--data "address2=Apt 4B" \
+--data "city=New York" \
+--data "state=NY" \
+--data "country=USA" \
+--data "zipcode=10001" \
+--data "udf1=udf1_value" \
+--data "udf2=udf2_value" \
+--data "udf3=udf3_value" \
+--data "udf4=udf4_value" \
+--data "udf5=udf5_value"
 
+```
+</Accordion>
   </Tab>
 </Tabs>
 
