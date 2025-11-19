@@ -16,12 +16,14 @@ This section describes the **_payment** API contract for getting split info of t
 
 New parameter (**splitRequest**) merchant needs to post in the payment request.
 
-> 📘 Notes:
->
-> * Total **aggregatorSubAmt** must be equal to transaction amount posted by merchant.
-> * Merchant key posted in split request must belong to parent key.
-> * Transactions are not allowed on child merchant accounts or child merchant keys.
-> * You must specify two decimal places for each split, but ensure the sum of percentage of all splits is equal to 100 or sum of split amount is equal to transaction amount.
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * Total **aggregatorSubAmt** must be equal to transaction amount posted by merchant.
+  * Merchant key posted in split request must belong to parent key.
+  * Transactions are not allowed on child merchant accounts or child merchant keys.
+  * You must specify two decimal places for each split, but ensure the sum of percentage of all splits is equal to 100 or sum of split amount is equal to transaction amount.
+</Callout>
 
 ## splitRequest parameter to be included with _payment API
 
