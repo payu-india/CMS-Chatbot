@@ -6,6 +6,24 @@ api:
 hidden: false
 metadata:
   title: Collect Payments using EMI - Merchant Hosted Checkout
+  description: >-
+    Explore PayU's Merchant Hosted EMI solutions, enabling easy integration of
+    EMI payment options for e-commerce platforms. Learn about API integration,
+    supported banks, and flexible installment plans to enhance customer
+    experience and boost sales.
+  keywords:
+    - EMI Merchant Hosted Checkout Collect Payment API
+    - Simulator for PayU payment collection
+    - EMI Custom Checkout integration with PayU
+    - Collect payments using PayU API
+    - Collect Payment API for EMI Merchant Hosted Checkout
+    - _payment API for EMI Merchant Hosted Checkout
+    - _payment API simulation for EMI Custom Checkout
+    - _payment API simulation for EMI Merchant Hosted Checkout
+    - "Equated Monthly Installment\_Merchant Hosted Checkout Collect Payment API"
+    - Simulator for PayU payment collection
+    - "Equated Monthly Installment\_Custom Checkout integration with PayU"
+    - "Collect Payment API for Equated Monthly Installment\_Merchant Hosted Checkout"
 ---
 EMI as a payment option gives your customers the freedom and affordability to purchase expensive items without having to deal with banks or NBFCs as intermediaries.
 
