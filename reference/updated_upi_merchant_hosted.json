@@ -116,13 +116,6 @@
                     "type": "string",
                     "description": "The last name of the customer."
                   },
-                  "buyer_type_business": {
-                    "type": "string",
-                    "description": "This parameter is used to identify whether it is a B2B transaction. If 1 is posted, it is a B2B transaction.",
-                    "examples": [
-                      "https://apiplayground-response.herokuapp.com/"
-                    ]
-                  },
                   "curl": {
                     "type": "string",
                     "description": "The Cancel URL, which is the page PayU will redirect to if the transaction is cancelled by customer.",
