@@ -1,11 +1,11 @@
 ---
-title: Cards Decoupled Flow
+title: '[OLD]Cards Decoupled Flow'
 excerpt: ''
 api:
   file: s2s.json
   operationId: S2S-DecoupledFlow
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
