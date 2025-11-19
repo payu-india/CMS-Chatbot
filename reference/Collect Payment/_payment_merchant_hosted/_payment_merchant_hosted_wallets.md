@@ -1,11 +1,11 @@
 ---
-title: Wallets
+title: '[OLD]Wallets'
 excerpt: ''
 api:
   file: merchant-hosted-16.json
   operationId: MerchantHostedCheckout-Wallets
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Collect Payment using Wallets with Merchant Hosted Checkout
   description: >-
