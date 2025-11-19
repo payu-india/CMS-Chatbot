@@ -4,6 +4,8 @@ api:
   file: updated_cards_merchant_hosted.json
   operationId: MerchantHostedCheckout-Cards
 hidden: false
+link:
+  new_tab: false
 ---
 You can collect payments from customers with leading cards using the Merchant Hosted integration. You need to ensure that **CC** or **DC** for the {/* Fixed Glossary component syntax */}<Glossary>pg</Glossary> parameter and card code based on the desired card provider for the {/* Fixed Glossary component syntax */}<Glossary>bankcode</Glossary> parameter is posted.
 
