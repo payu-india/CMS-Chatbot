@@ -92,6 +92,11 @@ Submit the transaction parameters to PayU's payment gateway using the appropriat
 <td>"9999999999"</td>
 </tr>
 <tr>
+<td>api_version<br/><code>mandatory</code></td>
+<td>String - Version of the API</td>
+<td>"6"</td>
+</tr>
+<tr>
 <td>beneficiarydetail<br/><code>mandatory</code></td>
 <td>JSON Object - Account numbers and associated details for verification</td>
 <td>See structure below</td>
@@ -125,81 +130,82 @@ Submit the transaction parameters to PayU's payment gateway using the appropriat
 </table>
 `}</HTMLBlock>
 
-<Accordion title="Hash calculation" icon="fa-code">
-If UDF parameters are defined in the hash calculation, the same UDF fields must be included in the request sent to PayU.  
 
-`sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5| |||||beneficiarydetail|SALT)`  
+  <Accordion title="Hash calculation" icon="fa-code">
+    If UDF parameters are defined in the hash calculation, the same UDF fields must be included in the request sent to PayU.
 
-WithOut UDF Parameters.  
+    `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5| |||||beneficiarydetail|SALT)`
 
-`sha512(key|txnid|amount|productinfo|firstname|email|||||||||||beneficiarydetail|SAL T)`  
+    WithOut UDF Parameters.
 
-Replace SALT with the salt value provided during onboarding.
-</Accordion>
+    `sha512(key|txnid|amount|productinfo|firstname|email|||||||||||beneficiarydetail|SAL T)`
+
+    Replace SALT with the salt value provided during onboarding.
+  </Accordion>
 </Accordion>
 
 <Accordion title="Beneficiary Detail JSON Structure" icon="fa-code">
-```json
-{"beneficiaryName": "Sachin Tendulkar|Nitin Jaisingh|Somya|Nikita","beneficiaryAccountNumber": "1211450021|002001600674|1234673939|87669286932","beneficiaryAccountType": "SAVINGS|SAVINGS|CURRENT|CURRENT","beneficiaryIfscCode": "ICIC0000046|HDFC0000726|ICIC0000046|SBIN0098292","verificationMode": "DEBIT_CARD|NET_BANKING| |AADHAR"} 
-```
+  ```json
+  {"beneficiaryName": "Sachin Tendulkar|Nitin Jaisingh|Somya|Nikita","beneficiaryAccountNumber": "1211450021|002001600674|1234673939|87669286932","beneficiaryAccountType": "SAVINGS|SAVINGS|CURRENT|CURRENT","beneficiaryIfscCode": "ICIC0000046|HDFC0000726|ICIC0000046|SBIN0098292","verificationMode": "DEBIT_CARD|NET_BANKING| |AADHAR"} 
+  ```
 
-<HTMLBlock>{`
-<table>
-    <thead>
-        <tr>
-            <th>Field</th>
-            <th>Description</th>
-            <th>Example</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>beneficiaryName</td>
-            <td>String List of Beneficiary name separated by pipe symbol (|).<br>Maximum 4 names.</td>
-            <td>"Sachin Tendulkar|Nitin Jaisingh|<br/>Somya|Nikita"</td>
-        </tr>
-        <tr>
-            <td>beneficiaryAccountNumber</td>
-            <td>String List of account numbers separated by pipe symbol (|).<br>Maximum 4 accounts.</td>
-            <td>"002001600674|<br/>00000031957292212|<br/>00000035955239352|<br/>00000035955239352"</td>
-        </tr>
-        <tr>
-            <td>beneficiaryAccountType</td>
-            <td>String List of corresponding account type separated by pipe symbol (|). Maximum 4 types in the same order as account numbers.</td>
-            <td>"SAVINGS|SAVINGS|<br/>CURRENT|CURRENT"</td>
-        </tr>
-        <tr>
-            <td>ifscCode</td>
-            <td>String List of corresponding IFSC codes separated by pipe symbol (|). Maximum 4 IFSC codes in the same order as account numbers.</td>
-            <td>"ICIC0000046|<br/>HDFC0000726|<br/>ICIC0000046|<br/>SBIN0098292"</td>
-        </tr>
-        <tr>
-            <td>verificationMode</td>
-            <td>String List of verification mode separated by pipe symbol (|). Maximum 4 modes in the same order as account numbers.</td>
-            <td>"DEBIT_CARD|NET_BANKING<br/>| |AADHAR"</td>
-        </tr>
-    </tbody>
-</table>
-`}</HTMLBlock>
+  <HTMLBlock>{`
+  <table>
+      <thead>
+          <tr>
+              <th>Field</th>
+              <th>Description</th>
+              <th>Example</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>beneficiaryName</td>
+              <td>String List of Beneficiary name separated by pipe symbol (|).<br>Maximum 4 names.</td>
+              <td>"Sachin Tendulkar|Nitin Jaisingh|<br/>Somya|Nikita"</td>
+          </tr>
+          <tr>
+              <td>beneficiaryAccountNumber</td>
+              <td>String List of account numbers separated by pipe symbol (|).<br>Maximum 4 accounts.</td>
+              <td>"002001600674|<br/>00000031957292212|<br/>00000035955239352|<br/>00000035955239352"</td>
+          </tr>
+          <tr>
+              <td>beneficiaryAccountType</td>
+              <td>String List of corresponding account type separated by pipe symbol (|). Maximum 4 types in the same order as account numbers.</td>
+              <td>"SAVINGS|SAVINGS|<br/>CURRENT|CURRENT"</td>
+          </tr>
+          <tr>
+              <td>ifscCode</td>
+              <td>String List of corresponding IFSC codes separated by pipe symbol (|). Maximum 4 IFSC codes in the same order as account numbers.</td>
+              <td>"ICIC0000046|<br/>HDFC0000726|<br/>ICIC0000046|<br/>SBIN0098292"</td>
+          </tr>
+          <tr>
+              <td>verificationMode</td>
+              <td>String List of verification mode separated by pipe symbol (|). Maximum 4 modes in the same order as account numbers.</td>
+              <td>"DEBIT_CARD|NET_BANKING<br/>| |AADHAR"</td>
+          </tr>
+      </tbody>
+  </table>
+  `}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Standing Instruction (SI) Details JSON Structure" icon="fa-code">
-```json
-{
-    "billingAmount": "100.00",
-    "billingCurrency": "INR",
-    "billingCycle": "monthly",
-    "paymentStartDate": "2024-01-15",
-    "paymentEndDate": "2025-01-15",
-    "billingInterval": "1"
-}
-```
+  ```json
+  {
+      "billingAmount": "100.00",
+      "billingCurrency": "INR",
+      "billingCycle": "monthly",
+      "paymentStartDate": "2024-01-15",
+      "paymentEndDate": "2025-01-15",
+      "billingInterval": "1"
+  }
+  ```
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
-```bash
-curl --location 'https://test.payu.in/_payment' --data 'key=JPg***r&txnid=ypl938459435&amount=100&productinfo=Test Product&firstname=John&email=john@example.com&phone=9999999999&beneficiarydetail={"beneficiaryName":"John Doe","beneficiaryAccountNumber":"002001600674","ifscCode":"KTKB0000046"}&si_details={"billingAmount":"100.00","billingCurrency":"INR","billingCycle":"monthly"}&surl=https://www.yoursurl.com&furl=https://www.yourfailureurl.com&hash=generated_hash_value'
-```
+  ```bash
+  curl --location 'https://test.payu.in/_payment' --data 'key=JPg***r&txnid=ypl938459435&amount=100&productinfo=Test Product&firstname=John&email=john@example.com&phone=9999999999&beneficiarydetail={"beneficiaryName":"John Doe","beneficiaryAccountNumber":"002001600674","ifscCode":"KTKB0000046"}&si_details={"billingAmount":"100.00","billingCurrency":"INR","billingCycle":"monthly"}&surl=https://www.yoursurl.com&furl=https://www.yourfailureurl.com&hash=generated_hash_value'
+  ```
 </Accordion>
 
 ## Step 3: Handle and Validate Response
@@ -223,63 +229,62 @@ Process the response from PayU and perform reverse hash validation to ensure tra
 > ```
 
 <Accordion title="Response parameters" icon="fa-code">
-| Parameter        | Description                                                          | Example                               |
-| ---------------- | -------------------------------------------------------------------- | ------------------------------------- |
-| `mihpayid`       | Unique reference number created for the transaction on PayU's system | `"99995401486671"`                    |
-| `merchantid`     | Merchant's unique ID                                                 | `"12345"`                             |
-| `txnid`          | Transaction ID provided in the request                               | `"ypl938459435"`                      |
-| `status`         | Status of the transaction                                            | `"success"`, `"failure"`, `"pending"` |
-| `amount`         | Transaction amount post adjustments                                  | `"100.00"`                            |
-| `bankcode`       | Bank code used in the transaction                                    | `"SBITPV"`, `"UPITPV"`                |
-| `error`          | Error code indicating issues with the transaction                    | `"E000"`                              |
-| `error_Message`  | Description of any errors                                            | `"Transaction failed"`                |
-| `payment_source` | Indicates the payment source                                         | `"payu"`                              |
-| `hash`           | Hash provided in the response for validation                         | Generated hash string                 |
+  | Parameter        | Description                                                          | Example                               |
+  | ---------------- | -------------------------------------------------------------------- | ------------------------------------- |
+  | `mihpayid`       | Unique reference number created for the transaction on PayU's system | `"99995401486671"`                    |
+  | `merchantid`     | Merchant's unique ID                                                 | `"12345"`                             |
+  | `txnid`          | Transaction ID provided in the request                               | `"ypl938459435"`                      |
+  | `status`         | Status of the transaction                                            | `"success"`, `"failure"`, `"pending"` |
+  | `amount`         | Transaction amount post adjustments                                  | `"100.00"`                            |
+  | `bankcode`       | Bank code used in the transaction                                    | `"SBITPV"`, `"UPITPV"`                |
+  | `error`          | Error code indicating issues with the transaction                    | `"E000"`                              |
+  | `error_Message`  | Description of any errors                                            | `"Transaction failed"`                |
+  | `payment_source` | Indicates the payment source                                         | `"payu"`                              |
+  | `hash`           | Hash provided in the response for validation                         | Generated hash string                 |
 </Accordion>
 
 <Accordion title="Net Banking transaction" icon="fa-code">
-```php
-Array(
-    [mihpayid] => 99995401486671
-    [status] => success
-    [key] => travelibibo
-    [txnid] => 4245248agh5519827ec
-    [amount] => 100.00
-    [bankcode] => SBITPV
-    [hash] => e9272f99eace9f6e0a52c871cc0226ac...
-    [payment_source] => payu
-)
-```
+  ```php
+  Array(
+      [mihpayid] => 99995401486671
+      [status] => success
+      [key] => travelibibo
+      [txnid] => 4245248agh5519827ec
+      [amount] => 100.00
+      [bankcode] => SBITPV
+      [hash] => e9272f99eace9f6e0a52c871cc0226ac...
+      [payment_source] => payu
+  )
+  ```
 </Accordion>
 
 <Accordion title="UPI transaction" icon="fa-code">
-```php
-Array(
-    [mihpayid] => 99995401486672
-    [status] => success
-    [key] => merchant_key
-    [txnid] => upi_txn_12345
-    [amount] => 100.00
-    [bankcode] => UPITPV
-    [hash] => d8374b99face8e6e0b53d981dd0337bd...
-    [payment_source] => payu
-)
-```
+  ```php
+  Array(
+      [mihpayid] => 99995401486672
+      [status] => success
+      [key] => merchant_key
+      [txnid] => upi_txn_12345
+      [amount] => 100.00
+      [bankcode] => UPITPV
+      [hash] => d8374b99face8e6e0b53d981dd0337bd...
+      [payment_source] => payu
+  )
+  ```
 </Accordion>
 
 <Accordion title="Sample webhook response" icon="fa-code">
-**Net Banking webhook:**
+  **Net Banking webhook:**
 
-```
-mihpayid=99995401486671&mode=NB&status=success&key=merchant_key&txnid=4245248agh5519827ec&amount=100.00&hash=validation_hash
-```
+  ```
+  mihpayid=99995401486671&mode=NB&status=success&key=merchant_key&txnid=4245248agh5519827ec&amount=100.00&hash=validation_hash
+  ```
 
-**UPI webhook:**
+  **UPI webhook:**
 
-```
-amount=100.00&PG_TYPE=UPI-COLLECT&payment_source=payu&bankcode=UPITPV&mihpayid=99995401486672&status=success&hash=validation_hash
-```
+  ```
+  amount=100.00&PG_TYPE=UPI-COLLECT&payment_source=payu&bankcode=UPITPV&mihpayid=99995401486672&status=success&hash=validation_hash
+  ```
 
-<br />
+  <br />
 </Accordion>
-
