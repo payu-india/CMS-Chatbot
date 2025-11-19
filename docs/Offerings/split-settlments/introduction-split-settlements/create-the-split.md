@@ -56,50 +56,58 @@ To perform a basic API setup for adding a payment, adding splits (sub-payment) f
     <GENERALAPIsEnvironment />
 
     <Accordion title="Request parameters" icon="fa-table">
-      <HTMLBlock>{`
-                                                          <table style="width: 100%; border-collapse: collapse;">
-                                                          <thead>
-                                                          <tr>
-                                                            <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-                                                            <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-                                                            <th style="border: 1px solid #ddd; padding: 8px;"><strong>Sample Value</strong></th>
-                                                          </tr>
-                                                          </thead>
-                                                          <tbody>
-                                                          <tr>
-                                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>key</p>
-                                                          </td>
-                                                            <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> This parameter must include the Merchant key that was provided by PayU.</p>
-                                                          </td>
-                                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>vDy3i7</p>
-                                                          </td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>command</p>
-                                                          </td>
-                                                            <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The parameter must contain the name of the web service.</p>
-                                                          </td>
-                                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>payment_split</p>
-                                                          </td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>hash</p>
-                                                          </td>
-                                                            <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The hash string encryption is specified in this parameter. The format of the hash is:<br>|sha512(key|command|var1|salt)<br>Where, var1 contains the fields as described in the var1 description.</p>
-                                                          </td>
-                                                            <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                                          </td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
-                                                          </td>
-                                                            <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string (JSON)</code> This parameter is in a JSON format and fields included in the JSON format are explained the <a href="#json-request-structure">JSON request structure table</a>.</p>
-                                                          </td>
-                                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>For an example, refer the <a href="#request-structure-for-var1-to-be-included-in--payment_split-api">Request Structure</a> subsection.</p>
-                                                          </td>
-                                                          </tr>
-                                                          </tbody>
-                                                          </table>
+<HTMLBlock>{`
+                                                                <table style="width: 100%; border-collapse: collapse;">
+                                                                <thead>
+                                                                <tr>
+                                                                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+                                                                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                                                                  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Sample Value</strong></th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <tr>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>key</p>
+                                                                </td>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> This parameter must include the Merchant key that was provided by PayU.</p>
+                                                                </td>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>vDy3i7</p>
+                                                                </td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>api_version</p>
+                                                                </td>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Version of the API must be 7 for Split Settlements.</p>
+                                                                </td>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>7</p>
+                                                                </td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>command</p>
+                                                                </td>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The parameter must contain the name of the web service.</p>
+                                                                </td>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>payment_split</p>
+                                                                </td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash</p>
+                                                                </td>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The hash string encryption is specified in this parameter. The format of the hash is:<br>|sha512(key|command|var1|salt)<br>Where, var1 contains the fields as described in the var1 description.</p>
+                                                                </td>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+                                                                </td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
+                                                                </td>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string (JSON)</code> This parameter is in a JSON format and fields included in the JSON format are explained the <a href="#json-request-structure">JSON request structure table</a>.</p>
+                                                                </td>
+                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>For an example, refer the <a href="#request-structure-for-var1-to-be-included-in--payment_split-api">Request Structure</a> subsection.</p>
+                                                                </td>
+                                                                </tr>
+                                                                </tbody>
+                                                                </table>
       `}</HTMLBlock>
 
       <Accordion title="Request structure for var1 to be included in  payment_split API" icon="fa-code">
