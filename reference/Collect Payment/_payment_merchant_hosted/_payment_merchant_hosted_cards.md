@@ -14,6 +14,23 @@ metadata:
     test API calls, ensuring smooth and efficient payment processing. Perfect
     for developers aiming to integrate robust card payment solutions into their
     custom checkout systems.
+  keywords:
+    - Cards Merchant Hosted Checkout Collect Payment API
+    - Simulator for PayU payment collection
+    - Cards Custom Checkout integration with PayU
+    - Collect payments using PayU API
+    - Collect Payment API for Cards Merchant Hosted Checkout
+    - _payment API for Cards Merchant Hosted Checkout
+    - _payment API simulation for Cards Custom Checkout
+    - _payment API simulation for Cards Merchant Hosted Checkout
+    - Credit Cards Merchant Hosted Checkout Collect Payment API
+    - Simulator for PayU payment collection
+    - Credit Cards Custom Checkout integration with PayU
+    - Collect payments using PayU API
+    - Collect Payment API for Credit Cards Merchant Hosted Checkout
+    - _payment API for Credit Cards Merchant Hosted Checkout
+    - _payment API simulation for Credit Cards Custom Checkout
+    - _payment API simulation for Credit Cards Merchant Hosted Checkout
 ---
 You can collect payments from customers with leading cards using the Merchant Hosted integration. You need to ensure that **CC** or **DC** for the {/* Fixed Glossary component syntax */}<Glossary>pg</Glossary> parameter and card code based on the desired card provider for the {/* Fixed Glossary component syntax */}<Glossary>bankcode</Glossary> parameter is posted.
 
