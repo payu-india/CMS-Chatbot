@@ -6,12 +6,20 @@ api:
 hidden: false
 link:
   new_tab: false
+metadata:
+  description: >-
+    Access the PayU API Reference for collecting card payments with Merchant
+    Hosted Checkout. Find detailed documentation on integrating debit or card
+    payments and secure authentication. Utilize the interactive simulator to
+    test API calls, ensuring smooth and efficient payment processing. Perfect
+    for developers aiming to integrate robust card payment solutions into their
+    custom checkout systems.
 ---
 You can collect payments from customers with leading cards using the Merchant Hosted integration. You need to ensure that **CC** or **DC** for the {/* Fixed Glossary component syntax */}<Glossary>pg</Glossary> parameter and card code based on the desired card provider for the {/* Fixed Glossary component syntax */}<Glossary>bankcode</Glossary> parameter is posted.
 
-> 📘 Note:
->
-> PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team ([integration@pay.in](mailto:integration@pay.in)).
+<Callout icon="📘" theme="info">
+  **Note**: PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team ([integration@pay.in](mailto:integration@pay.in)).
+</Callout>
 
 |                            |                                                                    |
 | :------------------------- | :----------------------------------------------------------------- |
@@ -204,7 +212,9 @@ You can collect payments from customers with leading cards using the Merchant Ho
 
 <TransactionStages />
 
-> 📘 Reference
->
-> * For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
-> * Card number formats of various card types: [Card Number Formats](doc:card-number-formats).
+<Callout icon="📘" theme="info">
+  **References:**
+
+  * For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+  * Card number formats of various card types: [Card Number Formats](doc:card-number-formats).
+</Callout>
