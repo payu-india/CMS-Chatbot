@@ -5,6 +5,8 @@ api:
   file: final_updated_s2s_decoupled_flow.json
   operationId: CollectPaymentAPI-S2S
 hidden: false
+link:
+  new_tab: false
 ---
 You can collect card payments without redirection to bank page for entering OTP using S2S integration. This section provides the request and response parameters used in Step 1 of [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s). You can get the sample request and response when use the "Try It" experience. For more information remaining steps of integration, refer to [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s).
 
