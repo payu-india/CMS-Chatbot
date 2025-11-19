@@ -5,7 +5,7 @@ api:
   file: merchant-hosted-25.json
   operationId: MerchantHostedCheckout-UPI
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Collect Payment using UPI with Merchant Hosted Checkout
   description: >-
