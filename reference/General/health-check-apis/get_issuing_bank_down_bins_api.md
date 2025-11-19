@@ -5,7 +5,7 @@ api:
   file: bin-info-10.json
   operationId: GetIssuingBankDownBINs
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Getting Issuing Bank Down Bins
   description: >-
