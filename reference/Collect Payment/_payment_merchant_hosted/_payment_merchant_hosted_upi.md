@@ -5,12 +5,21 @@ api:
   operationId: MerchantHostedCheckout-UPI
 hidden: false
 metadata:
-  title: UPI - Merchant Hosted Checkout
+  title: Collect Payment using UPI - Merchant Hosted Checkout
   description: >-
     Discover comprehensive integration guides and API references for Merchant
     Hosted UPI payments with PayU. Learn how to seamlessly integrate UPI payment
     solutions into your website or app, enabling secure and efficient
     transactions for your customers.
+  keywords:
+    - UPI Merchant Hosted Checkout Collect Payment API
+    - Simulator for PayU payment collection
+    - UPI Custom Checkout integration with PayU
+    - Collect payments using PayU API
+    - Collect Payment API for UPI Merchant Hosted Checkout
+    - _payment API for UPI Merchant Hosted Checkout
+    - _payment API simulation for UPI Custom Checkout
+    - _payment API simulation for UPI Merchant Hosted Checkout
 ---
 PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to [UPI Handles](doc:upi-handles).
 
