@@ -79,6 +79,12 @@ The **splitRequest** parameter  must be included in the **_payment** API along w
 </td>
 </tr>
 <tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>api_version<br><code>mandatory</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Version of the API as 7 for Split Settlements.</p>
+</td>
+</tr>
+<tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>pg<br><code>mandatory</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, &#39;CC&#39; will be the value. </p>
@@ -87,7 +93,7 @@ The **splitRequest** parameter  must be included in the **_payment** API along w
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>bankcode <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer to <a href="card-type-codes-and-supported-banks-for-cards" target="_blank"> Card Type Codes and Supported Banks for Cards</a>. </p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to <a href="card-type-codes-and-supported-banks-for-cards" target="_blank"> Card Type Codes and Supported Banks for Cards</a>. </p>
 </td>
 </tr>
 <tr>
@@ -111,13 +117,13 @@ The **splitRequest** parameter  must be included in the **_payment** API along w
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>ccexpmon  <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the card’s expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.</p>
 </td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>ccexpyr<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the card’s expiry year – as entered by the customer for the transaction. It must be of four digits.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.</p>
 </td>
 </tr>
 <tr>
