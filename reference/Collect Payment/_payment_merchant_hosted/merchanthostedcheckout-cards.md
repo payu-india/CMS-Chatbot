@@ -4,6 +4,17 @@ api:
   file: updated_bnpl_merchant_hosted.json
   operationId: MerchantHostedCheckout-Cards
 hidden: false
+metadata:
+  title: Collect Payments using BNPL - Merchant Hosted Checkout
+  description: >-
+    This section describes step-by-step procedure to integrate _payment API for
+    seamless integration.
+  keywords:
+    - BNPL Seamless Integration
+    - Buy Now Pay Later Seamless Integration
+    - BNPL Mechant Hosted Integration
+    - Buy Now Pay Later Merchant Hosted Integration
+    - ''
 ---
 Buy Now Pay Later (<Glossary>BNPL</Glossary>) allows your customers to spread their payments over a relatively short period instead of paying upfront. You can collect payments from customers with BNPL using the Merchant Hosted Checkout integration.
 
