@@ -441,10 +441,12 @@ The following fields are included in the **splitRequest** parameter in a JSON f
 
 The sample JSON structure for the **splitInfo** field:
 
-> 📘 Notes:
->
-> * **Description of fields**: Refer to [splitRequest JSON fields description](#splitrequest-json-fields-description) field.
-> * Before peruse the following sample code, remove the white spaces as some editors may introduce junk characters.
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * **Description of fields**: Refer to [splitRequest JSON fields description](#splitrequest-json-fields-description) field.
+  * Before peruse the following sample code, remove the white spaces as some editors may introduce junk characters.
+</Callout>
 
 ```plaintext
 {
@@ -469,9 +471,9 @@ Added as extra parameter in the calculation of hash in case of providing Split R
 
 You need to generate a string using certain parameters and apply the SHA-512 algorithm to this string. For more information on hashing, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
 
-> 📘 Note:
->
-> Ensure that you use pipe (|) character between these parameters as mentioned in the following code block.
+<Callout icon="📘" theme="info">
+  **Note**: Ensure that you use pipe (|) character between these parameters as mentioned in the following code block.
+</Callout>
 
 The parameter order is in the following code block`:`
 
@@ -486,7 +488,9 @@ Where, `splitRequest` will be at the end of the hash pattern string.
 ```plaintext
 hash('sha512', 'Ax4j7J|payment-txnid-1|10|Product Info|Payu-Admin|test@example.com|||||||||||t5atu4TyCvrJDPxAYrmfJfzd90kbXMfL|{"type":"absolute","splitInfo":{"P41sCY":{"aggregatorSubTxnId":"0e7411799c9f0e96620c11","aggregatorSubAmt":"3","aggregatorCharges":"2"},"P41sCK":{"aggregatorSubTxnId":"0e7411799c9f0e96620c22","aggregatorSubAmt":"5"}}}'));
 ```
+
 ## Sample request
+
 ```curl
 curl -X POST "https://secure.payu.in/_payment" \
 --data "key=JPg***r" \
@@ -533,6 +537,7 @@ curl -X POST "https://secure.payu.in/_payment" \
 --data "udf4=udf4_value" \
 --data "udf5=udf5_value"
 ```
+
 ## Check the response from PayU
 
 ### Hash validation logic for payment response (Reverse hashing)
@@ -607,9 +612,9 @@ Array
 )
 ```
 
-> 📘 Note:
->
-> In the response, the amount shown in the **amount** field includes the amount shown in the **subvention_amount** field.
+<Callout icon="📘" theme="info">
+  **Note**: In the response, the amount shown in the **amount** field includes the amount shown in the **subvention_amount** field.
+</Callout>
 
 #### Convenience model
 
