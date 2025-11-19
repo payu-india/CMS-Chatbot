@@ -4,6 +4,18 @@ api:
   file: updated_gettingissuingbankdownbins.json
   operationId: GetIssuingBankDownBINs
 hidden: false
+metadata:
+  description: >-
+    The Getting Issuing Bank Down Bins API retrieves card BINs for banks
+    experiencing downtime, with the ability to specify a specific bank or
+    retrieve all banks in JSON format.
+  keywords:
+    - gettingIssuingBankDownBins API Command
+    - Issuing Bank Down BINs API
+    - Check issuing bank status API
+    - Issuing bank downtime API
+    - Bank outage verification API
+    - API Command gettingIssuingBankDownBins
 ---
 The **Getting Issuing Bank Down Bins** API (**gettingIssuingBankDownBins**) is used to retrieve the card BINs for all the banks that are observing either full downtime or partial downtime at an instance.
 
