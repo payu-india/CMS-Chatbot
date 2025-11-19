@@ -1,11 +1,11 @@
 ---
-title: BNPL
+title: '[OLD]BNPL'
 excerpt: ''
 api:
   file: merchant-hosted-26.json
   operationId: MerchantHostedCheckout-Cards
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
