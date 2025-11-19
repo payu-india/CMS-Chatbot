@@ -139,7 +139,7 @@
                   },
                   "hash": {
                     "type": "string",
-                    "description": "It is used to avoid the possibility of transaction tampering"
+                    "description": "It is used to avoid the possibility of transaction tampering. Hash formula: sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||||||SALT)"
                   },
                   "pg": {
                     "const": "CC",
