@@ -516,7 +516,7 @@ hash('sha512', 'Ax4j7J|payment-txnid-1|10|Product Info|Payu-Admin|test@example.c
 ## Sample request
 
 ```
-curl -X POST "https://secure.payu.in/_payment" \
+curl -X POST "https://test.payu.in/_payment" \
 --data "key=JPg***r" \
 --data "txnid=TXN20251119061104" \
 --data "amount=100.00" \
