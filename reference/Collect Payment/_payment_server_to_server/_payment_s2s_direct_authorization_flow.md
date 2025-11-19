@@ -1,21 +1,22 @@
 ---
-title: Cards Direct Authorization Flow
+title: ' [OLD]Cards Direct Authorization Flow'
 excerpt: 'Resource: **_payment**'
 api:
   file: payu-api-29.json
   operationId: S2SDirectAuthorizationFlow
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
 next:
-  description: ''
   pages:
-    - type: basic
-      slug: integrate-with-direct-authorization-s2s
+    - slug: integrate-with-direct-authorization-s2s
       title: Direct Authorization Integration
+      type: basic
 ---
 PayU enables merchants to process direct authorization for pre-authenticated transactions (external MPI/3DSS). This section describes how to integrate with PayU’s direct authorization flow. Initiate an authorization request with the payment details provided post a successful authentication through the MPI/3DSS as explained in this API Reference. You can get the sample request and response when use the "Try It" experience. For more information remaining steps of integration, refer to [Direct Authorization Integration](doc:integrate-with-direct-authorization-s2s).
 
