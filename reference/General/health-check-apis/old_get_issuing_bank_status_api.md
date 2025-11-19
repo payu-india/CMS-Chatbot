@@ -1,5 +1,5 @@
 ---
-title: Get Issuing Bank Status API
+title: '[OLD]Get Issuing Bank Status API'
 excerpt: Issuing Bank Status
 api:
   file: health-check-7.json
