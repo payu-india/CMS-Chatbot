@@ -1,11 +1,12 @@
 ---
 title: Cards
-excerpt: ''
 api:
   file: merchant-hosted-13.json
   operationId: MerchantHostedCheckout-Cards
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: Collect Payments using Cards using Merchant Hosted Checkout
   description: >-
@@ -34,7 +35,6 @@ metadata:
     - _payment API simulation for Credit Cards Merchant Hosted Checkout
   robots: index
 next:
-  description: ''
   pages:
     - slug: collect-payments-with-cards-seamless
       title: Cards Integration
@@ -49,10 +49,10 @@ You can collect payments from customers with leading cards using the Merchant Ho
 >
 > PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team ([integration@pay.in](mailto:integration@pay.in)).
 
-|                            |                                                                     |
-| :------------------------- | :------------------------------------------------------------------ |
-| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
-| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+|                            |                                                                    |
+| :------------------------- | :----------------------------------------------------------------- |
+| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
