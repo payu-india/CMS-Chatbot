@@ -51,7 +51,7 @@
                   "email",
                   "pg",
                   "bankcode",
-                  "ccvv",
+                  "vpa",
                   "hash"
                 ],
                 "type": "object",
