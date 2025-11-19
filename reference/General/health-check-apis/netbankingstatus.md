@@ -1,9 +1,25 @@
 ---
-title: NetBankingStatus
+title: Get Net Banking Status API
 api:
   file: getNetBankingStatus.json
   operationId: NetBankingStatus
 hidden: false
+metadata:
+  title: Get Net Banking Status API
+  description: >-
+    The Get Net Banking Status API  or getNetbankingStatus API command is used
+    to check the status of Net Banking options, indicating whether they are up
+    or down. The API can provide the status of a specific bank or all banks.
+  keywords:
+    - getNetbankingStatus API Command
+    - Net Banking health check API
+    - Check Net Banking health status
+    - Net Banking health check
+    - Online bank Health check
+    - NetBanking health check API
+    - Check NetBanking health status
+    - NetBanking health check
+    - API Command getNetbankingStatus
 ---
 The Get Net Banking Status API (**getNetbankingStatus**) is used to help you in handling the NetBanking Downtime. A few times, one or more Net Banking options may be facing downtime due to issues observed at the bank’s end. This API is used to tell the status of one or all the Net Banking options. The status can be either up or down. If you want to know the status of a specific Net Banking option, the input parameter should contain the corresponding ibibo_code. If you want to know the status of all the Net Banking options, the input parameter should contain the value as default.
 
