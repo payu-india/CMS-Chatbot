@@ -1,11 +1,11 @@
 ---
-title: Pre-Debit Notification API
+title: '[OLD]Pre-Debit Notification API'
 excerpt: predebit
 api:
   file: test_si_collection-9.json
   operationId: predebit
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
