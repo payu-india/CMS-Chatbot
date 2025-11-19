@@ -5,7 +5,7 @@ api:
   file: merchant-hosted-21.json
   operationId: MerchantHostedCheckout-EMI
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Collect Payment using EMI with Merchant Hosted Checkout
   description: >-
