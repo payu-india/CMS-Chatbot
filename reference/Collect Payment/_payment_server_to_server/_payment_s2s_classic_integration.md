@@ -1,11 +1,11 @@
 ---
-title: Cards Classic Integration
+title: '[OLD]Cards Classic Integration'
 excerpt: ''
 api:
   file: merchant-hosted-34.json
   operationId: S2S-ClassicIntegration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
