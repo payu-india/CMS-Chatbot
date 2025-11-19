@@ -534,7 +534,25 @@ curl -X POST "https://secure.payu.in/_payment" \
 --data "ccexpyr=2025" \
 --data "surl=https://www.yoursite.com/success" \
 --data "furl=https://www.yoursite.com/failure" \
---data "splitRequest={\"type\":\"absolute\",\"splitInfo\":{\"P41sCY\":{\"aggregatorSubTxnId\":\"0e7411799c9f0e96620c11\",\"aggregatorSubAmt\":\"30\",\"aggregatorCharges\":\"2\"},\"P41sCK\":{\"aggregatorSubTxnId\":\"0e7411799c9f0e96620c22\",\"aggregatorSubAmt\":\"70\"}}}" \
+--data "splitRequest={
+  "type": "percentage",
+  "splitInfo": {
+    "merchantKey1": {
+      "aggregatorSubTxnId": "30nknyhkhib",
+      "aggregatorSubAmt": "53.33", // %age wrt to total payable amount
+      "aggregatorCharges": "13.33" // parent merchant commission (Optional) | %age wrt to total payable amount
+    },
+    "merchantKey2": {
+      "aggregatorSubTxnId": "13u0nknou0", //%age wrt to total payable amount
+      "aggregatorSubAmt": "13.33" // %age wrt to total payable amount
+    },
+    "merchantKey3": {
+      "aggregatorSubTxnId": "13u0nknou0",
+      "aggregatorSubAmt": "13.33", // %age wrt to total payable amount
+      "aggregatorCharges": "6.68" // parent merchant commission (Optional) | %age wrt to total payable amount
+    }
+  }
+} \
 --data "hash=8c948bdee25374a4c2ff1141da3fcbe7138d377717a4f15f41913eee01f0de1508710c5f53ba3af4885f722bfa3e54c713832122960491b85eff6c3d366d0919" \
 --data "address1=123 Main Street" \
 --data "address2=Apt 4B" \
