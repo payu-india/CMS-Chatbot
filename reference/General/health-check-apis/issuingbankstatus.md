@@ -5,6 +5,22 @@ api:
   file: getIssuingBankStatus.json
   operationId: IssuingBankStatus
 hidden: false
+metadata:
+  title: ' Get Issuing Bank Status API'
+  description: >-
+    The **Get Issuing Bank Status** API (**getIssuingBankStatus**) helps handle
+    credit or debit card issuing bank downtime by providing information on the
+    status of the bank.
+  keywords:
+    - getIssuingBankStatus API Command
+    - Issuing Bank of Credit Card Status API
+    - Issuing Bank of Debit Card Status API
+    - Check issuing bank health that issued credit card API
+    - Check issuing bank health that issued debit card API
+    - Health check of card issuing bank API
+    - Health check of credit card issuing bank API
+    - Health check of debit card issuing bank API
+    - API Command getIssuingBankStatus
 ---
 The **Get Issuing Bank Status** API (**getIssuingBankStatus**) is used to help you handle the credit card or debit card issuing bank downtime.
 
