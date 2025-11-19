@@ -7,6 +7,6 @@
 - old_payment_merchant_hosted_wallets
 - old_payment_merchant_hosted_emi
 - _payment_merchant_hosted_emi
-- _payment_merchant_hosted_bnpl
+- old_payment_merchant_hosted_bnpl
 - merchanthostedcheckout-cards
 - _payment_merchant_hosted_cards-with-transaction-biller-name
