@@ -103,13 +103,6 @@
                     "type": "string",
                     "description": "Each payment option is identified with a unique bank code at PayU. For UPI payments, use UPI as the bankcode value."
                   },
-                  "ccvv": {
-                    "type": "string",
-                    "description": "String Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API.",
-                    "examples": [
-                      "123"
-                    ]
-                  },
                   "hash": {
                     "type": "string",
                     "description": "It is used to avoid the possibility of transaction tampering. Hash formula: sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||"
@@ -156,6 +149,14 @@
                   "udf5": {
                     "type": "string",
                     "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+                  },
+                  "vpa": {
+                    "type": "string",
+                    "description": "Payment Handle or Virtual Payment Address for UPI transactions",
+                    "const": "anything@payu",
+                    "examples": [
+                      "anything@payu"
+                    ]
                   }
                 },
                 "contentMediaType": "application/x-www-form-urlencoded"
