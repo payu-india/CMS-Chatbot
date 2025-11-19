@@ -5,7 +5,7 @@ api:
   file: health-check-7.json
   operationId: IssuingBankStatus
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Get Issuing Bank Status API
   description: >-
