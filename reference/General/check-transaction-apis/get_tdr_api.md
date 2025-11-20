@@ -1,10 +1,10 @@
 ---
-title: Get TDR API
+title: '[OLD]Get TDR API'
 api:
   file: general-33.json
   operationId: get_TDR
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
