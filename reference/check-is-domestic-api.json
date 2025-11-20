@@ -1,1 +1,26 @@
-{"openapi":"3.1.0","info":{"title":"Check is Domestic API","description":"","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://test.payu.in/","variables":{}}],"paths":{"/merchant/postservice.php":{"post":{"summary":"check is domestic","operationId":"checkisdomestic","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"const":"2","type":"string"}},{"name":"content-type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/x-www-form-urlencoded","type":"string"}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","var1","hash"],"type":"object","properties":{"key":{"const":"JPM7Fg","type":"string","description":"This parameter must contain the merchant key that was provided by PayU."},"command":{"const":"check_isDomestic","type":"string","description":"This parameter must contain the check_isDomestic as the command name."},"var1":{"type":"integer","description":"This parameter must include the first six digits of the card number.","contentEncoding":"int32","examples":[512345]},"hash":{"type":"string","description":"This parameter must contain the hash value to be calculated at your end."}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{},"content":{"text/plain":{"schema":{"type":"object","contentMediaType":"text/plain"}}}}},"deprecated":false},"parameters":[]}},"tags":[],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Check is Domestic API",
+    "description": "",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/merchant/postservice.php": {
+      "parameters": []
+    }
+  },
+  "tags": [],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
