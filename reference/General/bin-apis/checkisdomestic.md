@@ -8,6 +8,20 @@ api:
   file: check_isdomestic.json
   operationId: checkisdomestic
 hidden: false
+metadata:
+  title: Check is Domestic API
+  description: >-
+    The document describes the Check is Domestic or Card BIN API, which is used
+    to determine if a BIN number is international or domestic, along with other
+    card details like issuing bank and card type.
+  keywords:
+    - check_isDomestic API Command
+    - Check is Domestic API
+    - Domestic transaction check API
+    - Domestic transaction identification API
+    - Check domestic payment API
+    - Verify domestic transaction API
+    - Integrating PayU Check is Domestic API
 ---
 The **Check is Domestic** or **Card BIN** API is used to detect whether a particular BIN number is international or domestic. It is also useful to determine:
 
