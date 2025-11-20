@@ -1,0 +1,187 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Check is Domestic API",
+    "description": "The Check is Domestic or Card BIN API is used to detect whether a particular BIN number is international or domestic. It is also useful to determine card's issuing bank, card type such as Visa, Master, etc., and card category such as Credit/Debit, etc.",
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/",
+      "description": "Test environment"
+    },
+    {
+      "url": "https://info.payu.in/",
+      "description": "Production environment"
+    }
+  ],
+  "paths": {
+    "/merchant/postservice.php": {
+      "post": {
+        "operationId": "checkisdomestic",
+        "summary": "Check if card BIN is domestic",
+        "description": "Determines whether a particular BIN number is international or domestic and provides detailed card information including issuing bank, card type, and category.",
+        "parameters": [
+          {
+            "name": "form",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "const": "2"
+            },
+            "description": "Form parameter required by PayU API"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "key",
+                  "command",
+                  "var1",
+                  "hash"
+                ],
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Merchant key provided by PayU for authentication. For more information on how to generate the Key and Salt, refer to Generate Merchant Key and Salt on PayU Dashboard for production or Generate Test Merchant Key and Salt for test environment.",
+                    "example": "JP***g"
+                  },
+                  "command": {
+                    "type": "string",
+                    "description": "The specific API operation to execute. For this API, the value must be check_isDomestic.",
+                    "const": "check_isDomestic"
+                  },
+                  "var1": {
+                    "type": "string",
+                    "description": "The first six digits of the credit or debit card number (BIN number). Must always be a 6-digit number.",
+                    "pattern": "^[0-9]{6}$",
+                    "minLength": 6,
+                    "maxLength": 6,
+                    "examples": [
+                      "462273",
+                      "512345"
+                    ]
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "Security hash calculated with sha512 algorithm to ensure secure communication. Hash logic: sha512(key|command|var1|salt). This hash must be regenerated for every new request as parameters may change.",
+                    "example": "df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
+                  }
+                }
+              },
+              "example": {
+                "key": "JP***g",
+                "command": "check_isDomestic",
+                "var1": "462273",
+                "hash": "df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response with card information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "isDomestic": {
+                      "type": "string",
+                      "enum": [
+                        "Y",
+                        "N"
+                      ],
+                      "description": "Response value indicating whether the BIN is domestic or international. Y signifies that the particular BIN is domestic. N signifies that the particular BIN is International."
+                    },
+                    "issuingBank": {
+                      "type": "string",
+                      "description": "The name of the bank that issued the card. If the card is international, it is often returned as UNKNOWN.",
+                      "examples": [
+                        "SCB",
+                        "UNKNOWN"
+                      ]
+                    },
+                    "cardType": {
+                      "type": "string",
+                      "enum": [
+                        "MAST",
+                        "VISA",
+                        "MAES",
+                        "AMEX",
+                        "DINER",
+                        "Unknown"
+                      ],
+                      "description": "The card type. Response value can contain: MAST (Mastercard), VISA, MAES (Maestro), AMEX (American Express), DINER (Diners Club), or Unknown."
+                    },
+                    "cardCategory": {
+                      "type": "string",
+                      "enum": [
+                        "CC",
+                        "DC"
+                      ],
+                      "description": "Response value indicating the card category. CC signifies that the particular BIN is a credit card BIN. DC signifies that the particular BIN is a debit card BIN."
+                    }
+                  },
+                  "required": [
+                    "isDomestic",
+                    "issuingBank",
+                    "cardType",
+                    "cardCategory"
+                  ]
+                },
+                "examples": {
+                  "domestic_card": {
+                    "summary": "Domestic card example - when isDomestic is Y",
+                    "description": "Example response for a domestic card BIN",
+                    "value": {
+                      "isDomestic": "Y",
+                      "issuingBank": "SCB",
+                      "cardType": "VISA",
+                      "cardCategory": "CC"
+                    }
+                  },
+                  "international_card": {
+                    "summary": "International card example - when isDomestic is N",
+                    "description": "Example response for an international card BIN",
+                    "value": {
+                      "isDomestic": "N",
+                      "issuingBank": "UNKNOWN",
+                      "cardType": "Unknown",
+                      "cardCategory": "CC"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters or malformed request"
+          },
+          "401": {
+            "description": "Unauthorized - invalid authentication credentials or hash mismatch"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "examples": {
+      "sample_request_curl": {
+        "summary": "Sample cURL request",
+        "description": "Example cURL command for testing the API",
+        "value": "curl -X POST \"https://test.payu.in/merchant/postservice?form=2\" -H \"accept: application/json\" -H \"Content-Type: application/x-www-form-urlencoded\" -d \"key=JP***g&command=check_isDomestic&var1=462273&hash=df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2\""
+      }
+    }
+  }
+}
