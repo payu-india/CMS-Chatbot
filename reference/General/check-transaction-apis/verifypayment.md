@@ -4,6 +4,19 @@ api:
   file: verify_payment.json
   operationId: verifypayment
 hidden: false
+metadata:
+  title: Verify Payment API
+  description: >-
+
+    The Verify Payment API provides transaction status information, including
+    details such as payment source, card type, and offer availed at cart or
+    transaction level. It also includes response parameters like status,
+    message, and transaction details in JSON format.
+  keywords:
+    - verify_payment
+    - verify_payment command
+    - Verify Payment API
+    - Check Transaction Status API
 ---
 The Verify Payment (**verify_payment**) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU's database after you receive the response, where var1 is your transaction ID.
 
