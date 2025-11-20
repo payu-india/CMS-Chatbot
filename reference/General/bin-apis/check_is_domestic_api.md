@@ -1,10 +1,10 @@
 ---
-title: Check is Domestic API
+title: '[OLD]Check is Domestic API'
 api:
   file: check-is-domestic-api-1.json
   operationId: checkisdomestic
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
