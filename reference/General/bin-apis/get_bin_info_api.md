@@ -1,5 +1,5 @@
 ---
-title: Retrieve BIN information
+title: Get BIN Info API
 excerpt: >-
   Get detailed information about card BIN including issuing bank, card type,
   category, and feature support. Supports three modes: single BIN lookup,
