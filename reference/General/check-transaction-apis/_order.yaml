@@ -3,4 +3,5 @@
 - verify_payment_api
 - old_check_payment_api-1
 - check_payment_api
+- get_tdr_api
 - old_get_tdr_api
