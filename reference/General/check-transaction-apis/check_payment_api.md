@@ -1,5 +1,5 @@
 ---
-title: Check Payment API
+title: '[OLD]Check Payment API'
 api:
   file: general-35.json
   operationId: CheckPaymentAPI
