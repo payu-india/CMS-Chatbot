@@ -1,11 +1,11 @@
 ---
-title: Verify Payment API
+title: '[OLD]Verify Payment API'
 excerpt: ''
 api:
   file: general-34.json
   operationId: verifypayment
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Verify Payment API
   description: >-
