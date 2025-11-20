@@ -1,6 +1,6 @@
 - old_verify_payment_api-1
 - old_check_payment_api
 - verify_payment_api
-- check_payment_api
+- old_check_payment_api-1
 - checkpaymentapi
 - get_tdr_api
