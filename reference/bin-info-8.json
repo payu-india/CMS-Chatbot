@@ -1,186 +1,389 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "BIN Info",
-    "contact": {},
+    "title": "Get BIN Info API",
+    "description": "API to retrieve detailed BIN (Bank Identification Number) information including bank details, card type, category, and various feature support flags. Supports single BIN lookup, feature-based BIN listing, and bulk BIN information retrieval with pagination.",
     "version": "1.0"
   },
   "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
   "servers": [
     {
       "url": "https://test.payu.in/",
-      "variables": {}
+      "description": "Test environment"
+    },
+    {
+      "url": "https://info.payu.in/",
+      "description": "Production environment"
     }
   ],
   "paths": {
     "/merchant/postservice.php": {
       "post": {
-        "summary": "GetBinInfoAPI",
-        "description": "",
         "operationId": "GetBinInfoAPI",
+        "summary": "Retrieve BIN information",
+        "description": "Get detailed information about card BIN including issuing bank, card type, category, and feature support. Supports three modes: single BIN lookup, feature-based filtering, and bulk retrieval.",
         "parameters": [
           {
             "name": "form",
             "in": "query",
-            "description": "",
             "required": true,
             "style": "form",
-            "explode": true,
             "schema": {
-              "const": "2",
               "type": "string",
-              "examples": [
-                "2"
-              ]
-            }
+              "const": "2"
+            },
+            "description": "Form parameter required by PayU API"
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/x-www-form-urlencoded": {
-              "encoding": {},
               "schema": {
+                "type": "object",
                 "required": [
                   "key",
                   "command",
                   "var1",
-                  "var2",
                   "hash"
                 ],
-                "type": "object",
                 "properties": {
                   "key": {
-                    "const": "JPM7Fg",
                     "type": "string",
-                    "description": "The merchant key is a unique identifier for a merchant account that is provided by PayU."
+                    "description": "The merchant's unique identifier provided by PayU for authentication.",
+                    "example": "JPM7Fg"
                   },
                   "command": {
-                    "const": "getBINInfo",
                     "type": "string",
-                    "description": "This parameter must have getBINInfo as command name."
+                    "description": "The specific command for the API call. Must be getBinInfo for this API.",
+                    "const": "getBinInfo"
                   },
                   "var1": {
-                    "type": "integer",
-                    "description": "Specify any of the following values based on the output you require: 1, 2, or 3.",
-                    "contentEncoding": "int32",
+                    "type": "string",
+                    "enum": [
+                      "1",
+                      "2",
+                      "3"
+                    ],
+                    "description": "Specifies the type of request: 1 = single BIN-level information, 2 = feature-based BIN list, 3 = all BIN information",
                     "examples": [
-                      1
+                      "1",
+                      "2",
+                      "3"
                     ]
                   },
                   "var2": {
-                    "type": "integer",
-                    "description": "Specify the BIN number or value based on the value specified in var1.",
-                    "contentEncoding": "int32",
-                    "examples": [
-                      512345
-                    ]
-                  },
-                  "hash": {
                     "type": "string",
-                    "description": "This parameter must contain the hash value to be calculated at your end. Hash logic for this API is: sha512(key|command|var1|salt) sha512"
+                    "description": "Value depends on var1 parameter. If var1=1: specify the BIN number (e.g., 512345). If var1=2: specify 1 (ATM PIN support) or 2 (OTP-on-the-fly support). If var1=3: should be empty.",
+                    "examples": [
+                      "512345",
+                      "1",
+                      "2"
+                    ]
                   },
                   "var3": {
                     "type": "integer",
-                    "description": "Specify the start index in this parameter. By default, the value will be set as 0.",
-                    "contentEncoding": "int32",
-                    "examples": [
-                      0
-                    ]
+                    "description": "Start index for pagination. Useful in paginated requests.",
+                    "default": 0,
+                    "minimum": 0,
+                    "example": 0
                   },
                   "var4": {
                     "type": "integer",
-                    "description": "The offset is specified in this field. This is useful when several card bins are returned and you can display number of bins per page based on the offset. By default, it is set as 100.",
-                    "contentEncoding": "int32",
-                    "examples": [
-                      100
-                    ]
+                    "description": "Offset (number of records to fetch per page). Default value is 100.",
+                    "default": 100,
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "example": 100
                   },
                   "var5": {
                     "type": "string",
-                    "description": "The parameter is used to check whether the Native OTP or SI is supported by the card.",
-                    "examples": [
-                      "0"
-                    ]
+                    "enum": [
+                      "1"
+                    ],
+                    "description": "Set to 1 if fetching additional features like is_zero_redirect_supported or is_si_supported. For single BIN, two extra fields will be returned in the response if this is set.",
+                    "example": "1"
                   },
-                  "var7": {
+                  "hash": {
                     "type": "string",
-                    "description": "The parameter is used to check the SDK version and 3DS version supported by the provided BIN.",
-                    "examples": [
-                      "2.2.0"
-                    ]
+                    "description": "Cryptographic hash value generated using SHA-512 algorithm. Formula: sha512(key|command|var1|salt). Ensures security and integrity of the request.",
+                    "example": "df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
+                  }
+                }
+              },
+              "examples": {
+                "single_bin_request": {
+                  "summary": "Single BIN lookup with extra features",
+                  "value": {
+                    "key": "JPM7Fg",
+                    "command": "getBinInfo",
+                    "var1": "1",
+                    "var2": "512345",
+                    "var5": "1",
+                    "hash": "calculated_hash_value"
                   }
                 },
-                "contentMediaType": "application/x-www-form-urlencoded"
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {},
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "object",
-                  "contentMediaType": "text/plain"
+                "multiple_bins_paginated": {
+                  "summary": "Multiple BINs with pagination",
+                  "value": {
+                    "key": "JPM7Fg",
+                    "command": "getBinInfo",
+                    "var1": "3",
+                    "var3": 1,
+                    "var4": 5,
+                    "hash": "calculated_hash_value"
+                  }
                 }
               }
             }
           }
         },
-        "deprecated": false
-      },
-      "parameters": []
-    }
-  },
-  "components": {
-    "schemas": {
-      "form": {
-        "title": "form",
-        "const": 2,
-        "type": "integer"
-      },
-      "Content-Type": {
-        "title": "Content-Type",
-        "const": "application/x-www-form-urlencoded",
-        "type": "string"
-      },
-      "key": {
-        "title": "key",
-        "const": "JPM7Fg",
-        "type": "string",
-        "description": "The merchant key is a unique identifier for a merchant account that is provided by PayU."
-      },
-      "command": {
-        "title": "command",
-        "const": "getBinInfo",
-        "type": "string",
-        "description": "This parameter must have getBINInfo as command name."
-      },
-      "command1": {
-        "title": "command1",
-        "const": "getBINInfo",
-        "type": "string",
-        "description": "This parameter must have getBINInfo as command name.",
-        "examples": [
-          "getBINInfo"
-        ]
-      },
-      "form1": {
-        "title": "form1",
-        "const": "2",
-        "type": "string",
-        "examples": [
-          "2"
-        ]
+        "responses": {
+          "200": {
+            "description": "Successful response with BIN information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "enum": [
+                        0,
+                        1
+                      ],
+                      "description": "Indicates success (1) or failure (0) of the API call"
+                    },
+                    "data": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "description": "Single BIN response structure",
+                          "properties": {
+                            "bins_data": {
+                              "type": "object",
+                              "properties": {
+                                "issuing_bank": {
+                                  "type": "string",
+                                  "description": "The bank that issued the card",
+                                  "example": "HDFC"
+                                },
+                                "bin": {
+                                  "type": "integer",
+                                  "description": "BIN number of the card",
+                                  "example": 512345
+                                },
+                                "category": {
+                                  "type": "string",
+                                  "enum": [
+                                    "creditcard",
+                                    "debitcard",
+                                    "UNKNOWN"
+                                  ],
+                                  "description": "Specifies credit or debit card category"
+                                },
+                                "card_type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "VISA",
+                                    "MAST",
+                                    "AMEX",
+                                    "MAES",
+                                    "DINER",
+                                    "UNKNOWN"
+                                  ],
+                                  "description": "Indicates the card type"
+                                },
+                                "is_domestic": {
+                                  "type": "integer",
+                                  "enum": [
+                                    0,
+                                    1
+                                  ],
+                                  "description": "Indicates if the card is domestic (1) or international (0)"
+                                },
+                                "is_atmpin_card": {
+                                  "type": "integer",
+                                  "enum": [
+                                    0,
+                                    1
+                                  ],
+                                  "description": "Indicates if the card requires ATM PIN (1 for yes, 0 for no)"
+                                },
+                                "is_otp_on_the_fly": {
+                                  "type": "integer",
+                                  "enum": [
+                                    0,
+                                    1
+                                  ],
+                                  "description": "Specifies if OTP-on-the-fly is supported (1 for yes, 0 for no)"
+                                },
+                                "is_zero_redirect_supported": {
+                                  "type": "integer",
+                                  "enum": [
+                                    0,
+                                    1
+                                  ],
+                                  "description": "Indicates if zero redirect support is available (returned when var5=1)"
+                                },
+                                "is_si_supported": {
+                                  "type": "integer",
+                                  "enum": [
+                                    0,
+                                    1
+                                  ],
+                                  "description": "Notes if Standing Instruction (SI) is supported (returned when var5=1)"
+                                }
+                              },
+                              "required": [
+                                "issuing_bank",
+                                "bin",
+                                "category",
+                                "card_type",
+                                "is_domestic",
+                                "is_atmpin_card",
+                                "is_otp_on_the_fly"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "description": "Multiple BINs response structure",
+                          "properties": {
+                            "total_count": {
+                              "type": "integer",
+                              "description": "Total number of BINs available"
+                            },
+                            "last": {
+                              "type": "integer",
+                              "enum": [
+                                0,
+                                1
+                              ],
+                              "description": "Indicates if the current response is the last page (1 for yes, 0 for no)"
+                            },
+                            "next_start": {
+                              "type": "integer",
+                              "description": "The starting index for the next set of pagination"
+                            },
+                            "bins_data": {
+                              "type": "object",
+                              "additionalProperties": {
+                                "type": "object",
+                                "properties": {
+                                  "issuing_bank": {
+                                    "type": "string"
+                                  },
+                                  "bin": {
+                                    "type": "integer"
+                                  },
+                                  "category": {
+                                    "type": "string"
+                                  },
+                                  "card_type": {
+                                    "type": "string"
+                                  },
+                                  "is_domestic": {
+                                    "type": "integer"
+                                  },
+                                  "is_atmpin_card": {
+                                    "type": "integer"
+                                  },
+                                  "is_otp_on_the_fly": {
+                                    "type": "integer"
+                                  }
+                                }
+                              },
+                              "description": "Object with BIN numbers as keys containing detailed BIN information"
+                            }
+                          },
+                          "required": [
+                            "total_count",
+                            "last",
+                            "bins_data"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "description": "Error message when status is 0",
+                          "examples": [
+                            "Invalid bin passed in var2",
+                            "Invalid var2, it should be empty as var1 is 3"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "single_bin_success": {
+                    "summary": "Successful single BIN response",
+                    "value": {
+                      "status": 1,
+                      "data": {
+                        "bins_data": {
+                          "issuing_bank": "HDFC",
+                          "bin": 512345,
+                          "category": "creditcard",
+                          "card_type": "MAST",
+                          "is_domestic": 1,
+                          "is_atmpin_card": 1,
+                          "is_otp_on_the_fly": 1,
+                          "is_zero_redirect_supported": 1,
+                          "is_si_supported": 0
+                        }
+                      }
+                    }
+                  },
+                  "multiple_bins_success": {
+                    "summary": "Successful multiple BINs response",
+                    "value": {
+                      "status": 1,
+                      "data": {
+                        "total_count": 2580,
+                        "last": 0,
+                        "bins_data": {
+                          "37100": {
+                            "issuing_bank": "AMEX",
+                            "bin": 37100,
+                            "category": "UNKNOWN",
+                            "card_type": "AMEX",
+                            "is_domestic": 1,
+                            "is_atmpin_card": 1,
+                            "is_otp_on_the_fly": 1
+                          }
+                        },
+                        "next_start": 6
+                      }
+                    }
+                  },
+                  "error_response": {
+                    "summary": "Error response",
+                    "value": {
+                      "status": 0,
+                      "data": "Invalid bin passed in var2"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters or malformed request"
+          },
+          "401": {
+            "description": "Unauthorized - invalid authentication credentials or hash mismatch"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
       }
     }
-  },
-  "tags": [],
-  "x-readme": {
-    "explorer-enabled": true,
-    "proxy-enabled": true
   }
 }
