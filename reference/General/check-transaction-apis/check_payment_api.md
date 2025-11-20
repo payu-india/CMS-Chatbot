@@ -4,7 +4,7 @@ api:
   file: general-35.json
   operationId: CheckPaymentAPI
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
