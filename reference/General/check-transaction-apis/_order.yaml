@@ -1,5 +1,5 @@
 - old_verify_payment_api-1
 - old_check_payment_api
-- verifypayment
+- verify_payment_api
 - check_payment_api
 - get_tdr_api
