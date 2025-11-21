@@ -4,6 +4,8 @@ api:
   file: eligible_bins_emi.json
   operationId: EligibleBINsforEMI
 hidden: false
+link:
+  new_tab: false
 ---
 The Eligible BINs for EMI API (**eligibleBinsForEMI**) version 1.0 is used only when the merchant needs the EMI feature of PayU. If you are managing card details on your website, this API can tell the issuing bank of the card bin. It also provides the minimum eligible amount for a particular bank.
 
