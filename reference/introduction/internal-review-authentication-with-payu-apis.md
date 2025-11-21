@@ -256,6 +256,27 @@ sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||
 
 #### Code Examples
 
+```java
+public static String generateSplitSettlementHash(Map<String, String> params, String salt, String splitRequest) {
+    String key = params.get("key");
+    String txnid = params.get("txnid");
+    String amount = params.get("amount");
+    String productinfo = params.get("productinfo");
+    String firstname = params.get("firstname");
+    String email = params.get("email");
+    String udf1 = params.getOrDefault("udf1", "");
+    String udf2 = params.getOrDefault("udf2", "");
+    String udf3 = params.getOrDefault("udf3", "");
+    String udf4 = params.getOrDefault("udf4", "");
+    String udf5 = params.getOrDefault("udf5", "");
+    
+    String hashString = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + 
+                     firstname + "|" + email + "|" + udf1 + "|" + udf2 + "|" + 
+                     udf3 + "|" + udf4 + "|" + udf5 + "||||||" + salt + "|" + splitRequest;
+    
+    return sha512(hashString);
+}
+```
 ```php
 <?php
 function generateSplitSettlementHash($params, $salt, $splitRequest) {
@@ -278,27 +299,6 @@ function generateSplitSettlementHash($params, $salt, $splitRequest) {
     return strtolower(hash('sha512', $hashString));
 }
 ?>
-```
-```java
-public static String generateSplitSettlementHash(Map<String, String> params, String salt, String splitRequest) {
-    String key = params.get("key");
-    String txnid = params.get("txnid");
-    String amount = params.get("amount");
-    String productinfo = params.get("productinfo");
-    String firstname = params.get("firstname");
-    String email = params.get("email");
-    String udf1 = params.getOrDefault("udf1", "");
-    String udf2 = params.getOrDefault("udf2", "");
-    String udf3 = params.getOrDefault("udf3", "");
-    String udf4 = params.getOrDefault("udf4", "");
-    String udf5 = params.getOrDefault("udf5", "");
-    
-    String hashString = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + 
-                     firstname + "|" + email + "|" + udf1 + "|" + udf2 + "|" + 
-                     udf3 + "|" + udf4 + "|" + udf5 + "||||||" + salt + "|" + splitRequest;
-    
-    return sha512(hashString);
-}
 ```
 ```csharp
 public static string GenerateSplitSettlementHash(Dictionary<string, string> parameters, string salt, string splitRequest)
