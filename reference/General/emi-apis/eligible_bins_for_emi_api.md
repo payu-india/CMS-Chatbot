@@ -1,11 +1,11 @@
 ---
-title: Eligible BINs for EMI API v1.0
+title: '[old]Eligible BINs for EMI API v1.0'
 excerpt: ''
 api:
   file: emi-apis-10.json
   operationId: EligibleBINsforEMI
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Eligible BINs for EMI API
   description: >-
