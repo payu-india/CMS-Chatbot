@@ -1,0 +1,161 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "EMI APIs",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/merchant/postservice.php": {
+      "post": {
+        "tags": [
+          "EMI"
+        ],
+        "summary": "EligibleBINsforEMI",
+        "description": "",
+        "operationId": "EligibleBINsforEMI",
+        "parameters": [
+          {
+            "name": "form",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "2",
+              "type": "string"
+            }
+          },
+          {
+            "name": "content-type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/x-www-form-urlencoded",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "key",
+                  "command",
+                  "var1",
+                  "var2",
+                  "hash"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "The merchant key provided by PayU must be included.",
+                    "default": "JPM7Fg"
+                  },
+                  "command": {
+                    "const": "eligibleBinsForEMI",
+                    "type": "string",
+                    "description": "The API command name is eligibleBinsForEMI for this API."
+                  },
+                  "var1": {
+                    "type": "string",
+                    "description": "This parameter needs can include either bin or NET.",
+                    "examples": [
+                      "bin"
+                    ]
+                  },
+                  "var2": {
+                    "type": "integer",
+                    "description": "The first 6/8/9 digits of card number or network token.",
+                    "contentEncoding": "int32",
+                    "examples": [
+                      434668
+                    ]
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "It is used to avoid the possibility of transaction tampering. Hash formula: sha512(key|command|var1|salt)"
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "contentMediaType": "text/plain"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "form": {
+        "title": "form",
+        "const": "2",
+        "type": "string",
+        "examples": [
+          "2"
+        ]
+      },
+      "content-type": {
+        "title": "content-type",
+        "const": "application/x-www-form-urlencoded",
+        "type": "string",
+        "examples": [
+          "application/x-www-form-urlencoded"
+        ]
+      },
+      "key": {
+        "title": "key",
+        "type": "string",
+        "description": "The merchant key provided by PayU must be included.",
+        "examples": [
+          "JPM7Fg"
+        ],
+        "default": "JPM7Fg"
+      },
+      "command": {
+        "title": "command",
+        "const": "eligibleBinsForEMI",
+        "type": "string",
+        "description": "The API command name is eligibleBinForEMI for this API.",
+        "examples": [
+          "eligibleBinsForEMI"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "EMI",
+      "description": ""
+    }
+  ]
+}
