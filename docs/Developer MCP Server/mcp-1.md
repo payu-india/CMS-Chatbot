@@ -1,5 +1,5 @@
 ---
-title: MCP
+title: MCP Server for Developers
 hidden: true
 ---
 The PayU Developer Documentation Portal Model Context Protocol (MCP) server enables AI-powered code editors like Cursor and Windsurf, plus general-purpose tools like Claude Desktop, to interact directly with your PayU Developer Documentation Portal API and documentation.
