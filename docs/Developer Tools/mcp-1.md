@@ -22,46 +22,45 @@ PayU Developer Documentation Portal hosts a remote MCP server at `https://docs.p
 
 <Tabs>
   <Tab title="Cursor">
-    **Add to `~/.cursor/mcp.json`:**
+    **Add to`~/.cursor/mcp.json`:**
 
     ```json
     {
       "mcpServers": {
-        "payu-hosted-checkout": {
+        "payu-developer-docs": {
           "url": "https://docs.payu.in/mcp"
         }
       }
     }
     ```
-
-    </Tab>
-  <Tab title="Windsurf">
-    **Add to `~/.codeium/windsurf/mcp_config.json`:**
-
-    ```json
-    {
-      "mcpServers": {
-        "payu-hosted-checkout": {
-          "url": "https://docs.payu.in/mcp"
-        }
-      }
-    }
-    ```
-
   </Tab>
-  <Tab title="Claude Desktop">
-    **Add to `claude_desktop_config.json`:**
+
+  <Tab title="Windsurf">
+    **Add to`~/.codeium/windsurf/mcp_config.json`:**
 
     ```json
     {
       "mcpServers": {
-        "payu-hosted-checkout": {
+        "payu-developer-docs": {
           "url": "https://docs.payu.in/mcp"
         }
       }
     }
     ```
+  </Tab>
 
+  <Tab title="Claude Desktop">
+    **Add to`claude_desktop_config.json`:**
+
+    ```json
+    {
+      "mcpServers": {
+        "payu-developer-docs": {
+          "url": "https://docs.payu.in/mcp"
+        }
+      }
+    }
+    ```
   </Tab>
 </Tabs>
 
