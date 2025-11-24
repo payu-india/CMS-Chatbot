@@ -183,17 +183,23 @@ Choose the approach that fits your technical capabilities:
 * **Method**: Dashboard or CSV-based operations
 * **Features**: Payment link creation, bulk uploads, automated notifications
 
+For more information, refer to [Subscriptions Dashboard](doc:subscription-dashboard).
+
 **API Integration**  
 
 * **Best for**: Developers requiring full control
 * **Method**: Comprehensive API suite
 * **Features**: Complete subscription workflow management
 
+For more information, refer to [Using API Integration](doc:using-api-integration-recurring-payments)
+
 **Zion Subscription Automation Platform**
 
 * **Best for**: Enterprises requiring minimum technical effort
 * **Method**: Platform-based automation
 * **Features**: Maximum automation with enterprise-grade capabilities
+
+For more information, refer to [Using Zion Subscription Automation](doc:using-zion-subscription-automation-platform)
 
 ## Getting Started
 
