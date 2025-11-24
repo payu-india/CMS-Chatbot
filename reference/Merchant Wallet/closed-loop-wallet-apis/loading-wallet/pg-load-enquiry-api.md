@@ -212,7 +212,7 @@ The **Load Enquiry** API allows you to check the status of a wallet load transac
 ## Sample Request
 
 ```curl
-curl --location --request POST 'hhttps://apitest.payu.in/loyalty-points/ppi/payment/pg-load/enquiry/v1\ 
+curl --location --request POST 'https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/enquiry/v1\ 
 --header 'walletIdentifier: CLW' \ 
 --header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \ 
 --header 'digest: lrGnpxCydiyLo5KPdXrJczwJgtsUbJiBj9N5QHTt+ho=' \ 
