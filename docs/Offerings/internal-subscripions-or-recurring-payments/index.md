@@ -72,10 +72,31 @@ The following video describes PayU’s Recurring Payment Suite offering:
 * Loan EMIs and installment payments
 * Membership fees for clubs and organizations
 
-**Example:**
-_Ashish subscribed to a magazine on the BeSpoke Online Magazine platform. When a special edition became available, he was able to purchase it seamlessly using his stored payment method through a Pre-Debit Transaction without providing new payment consent._
+<Callout icon="👍">
+  **Example:** Ashish subscribed to a magazine on the BeSpoke Online Magazine platform. When a special edition became available, he was able to purchase it seamlessly using his stored payment method through a Pre-Debit Transaction without providing new payment consent.
+</Callout>
 
-## Customer Journey
+## &#x20;Billing Models Supported
+
+### Fixed Amount Recurring
+
+* **Monthly subscriptions**: ₹299/month for streaming service
+* **Annual plans**: ₹2,999/year with discount pricing
+* **Quarterly billing**: ₹750 every 3 months for software license
+
+### Variable Amount Recurring
+
+* **Usage-based**: Cloud storage based on consumption
+* **Tiered pricing**: Different amounts based on plan upgrades
+* **Utility bills**: Amount varies monthly based on usage
+
+### Hybrid Models
+
+* **Freemium to Premium**: Start free, convert to paid automatically
+* **Trial + Subscription**: 7-day trial then ₹199/month
+* **One-time + Recurring**: Setup fee ₹500 + ₹99/month maintenance
+
+### Customer Journey
 
 ### Payment Mode Workflows
 
