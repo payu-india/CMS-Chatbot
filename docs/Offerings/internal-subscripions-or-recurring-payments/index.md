@@ -54,6 +54,15 @@ The following video describes PayU’s Recurring Payment Suite offering:
 * **Net Banking**: Bank-specific recurring setups
 * **Mixed Mode**: Flexibility to switch between modes
 
+The following table provides comparison on various payment mode integration:
+
+| Payment Mode     | Supported Cards/Banks | Consent Required | Pre-debit Notifications | Instant Setup     |
+| ---------------- | --------------------- | ---------------- | ----------------------- | ----------------- |
+| **Credit Cards** | All major issuers     | ✅ Yes            | ✅ Available             | ✅ Yes             |
+| **Debit Cards**  | Select issuers only   | ✅ Yes            | ✅ Available             | ✅ Yes             |
+| **Net Banking**  | Participating banks   | ✅ Yes            | ❌ Not available         | ⚠️ Varies by bank |
+| **UPI**          | All UPI-enabled apps  | ✅ Yes            | ✅ Available             | ✅ Yes             |
+
 ## Use Cases
 
 **Subscription Services**
@@ -199,12 +208,14 @@ For more information, refer to [Using API Integration](doc:using-api-integration
 
 For more information, refer to [Using Zion Subscription Automation](doc:using-zion-subscription-automation-platform)
 
-| Payment Mode     | Supported Cards/Banks | Consent Required | Pre-debit Notifications | Instant Setup     |
-| ---------------- | --------------------- | ---------------- | ----------------------- | ----------------- |
-| **Credit Cards** | All major issuers     | ✅ Yes            | ✅ Available             | ✅ Yes             |
-| **Debit Cards**  | Select issuers only   | ✅ Yes            | ✅ Available             | ✅ Yes             |
-| **Net Banking**  | Participating banks   | ✅ Yes            | ❌ Not available         | ⚠️ Varies by bank |
-| **UPI**          | All UPI-enabled apps  | ✅ Yes            | ✅ Available             | ✅ Yes             |
+The following table provides comparison of the above integrations:
+
+| Variant                              | When to Pick                   | Merchant Suitability    | Trade-offs                   | Supported Payment Modes             | Integration Effort |
+| ------------------------------------ | ------------------------------ | ----------------------- | ---------------------------- | ----------------------------------- | ------------------ |
+| Zero-code / Dashboard / Payment Link | Fastest go-live, no dev needed | Small businesses, NGOs  | Limited customization        | Cards, UPI, NetBanking              | Minimal            |
+| API-first / Full Control             | Custom flows, automation       | SaaS, large enterprises | More dev effort, max control | All (Cards, UPI, NetBanking, eNACH) | High               |
+| Hybrid (Dashboard + API)             | Some automation + dashboard    | Growing businesses      | Balanced, some manual steps  | As enabled in both                  | Moderate           |
+| Zion Plan Management                 | Complex plans, analytics       | Marketplaces, platforms | Advanced, onboarding needed  | As supported by Zion                | Varies             |
 
 ## Getting Started
 
