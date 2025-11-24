@@ -76,9 +76,9 @@ The following video describes PayU’s Recurring Payment Suite offering:
   **Example:** Ashish subscribed to a magazine on the BeSpoke Online Magazine platform. When a special edition became available, he was able to purchase it seamlessly using his stored payment method through a Pre-Debit Transaction without providing new payment consent.
 </Callout>
 
-### &#x20;Industry-Specific Solutions
+## &#x20;Industry-Specific Solutions
 
-#### &#x20;Media & Entertainment
+### &#x20;Media & Entertainment
 
 **Netflix-style Streaming Platform**
 
@@ -87,7 +87,7 @@ The following video describes PayU’s Recurring Payment Suite offering:
 * Family sharing options
 * Automatic renewal with email notifications
 
-#### &#x20;Fitness & Wellness
+### &#x20;Fitness & Wellness
 
 **Gym Chain Subscriptions**
 
@@ -96,7 +96,7 @@ The following video describes PayU’s Recurring Payment Suite offering:
 * Locker rental: ₹200/month
 * Automatic renewal with 3-day grace period
 
-#### &#x20;Education & E-learning
+### &#x20;Education & E-learning
 
 **Online Course Platform**
 
@@ -105,7 +105,7 @@ The following video describes PayU’s Recurring Payment Suite offering:
 * Live session add-ons: ₹150/session
 * Student discount programs
 
-#### &#x20;E-commerce & Retail
+### &#x20;E-commerce & Retail
 
 **Subscription Box Service**
 
@@ -152,9 +152,7 @@ The following video describes PayU’s Recurring Payment Suite offering:
 * **Trial + Subscription**: 7-day trial then ₹199/month
 * **One-time + Recurring**: Setup fee ₹500 + ₹99/month maintenance
 
-### Customer Journey
-
-### Payment Mode Workflows
+## Customer Journey
 
 **Cards Recurring Workflow**
 
@@ -185,7 +183,7 @@ Choose the approach that fits your technical capabilities:
 
 For more information, refer to [Subscriptions Dashboard](doc:subscription-dashboard).
 
-**API Integration**  
+**API Integration**
 
 * **Best for**: Developers requiring full control
 * **Method**: Comprehensive API suite
@@ -201,9 +199,14 @@ For more information, refer to [Using API Integration](doc:using-api-integration
 
 For more information, refer to [Using Zion Subscription Automation](doc:using-zion-subscription-automation-platform)
 
-## Getting Started
+| Payment Mode     | Supported Cards/Banks | Consent Required | Pre-debit Notifications | Instant Setup     |
+| ---------------- | --------------------- | ---------------- | ----------------------- | ----------------- |
+| **Credit Cards** | All major issuers     | ✅ Yes            | ✅ Available             | ✅ Yes             |
+| **Debit Cards**  | Select issuers only   | ✅ Yes            | ✅ Available             | ✅ Yes             |
+| **Net Banking**  | Participating banks   | ✅ Yes            | ❌ Not available         | ⚠️ Varies by bank |
+| **UPI**          | All UPI-enabled apps  | ✅ Yes            | ✅ Available             | ✅ Yes             |
 
-**📋 Prerequisites**
+## Getting Started
 
 * **Account Requirements:**:
   * **Active PayU Merchant Account**: [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard)
@@ -213,3 +216,7 @@ For more information, refer to [Using Zion Subscription Automation](doc:using-zi
   * API key and Salt (for API integration)
   * Webhook endpoints configuration
   * Dashboard access (for zero-code implementation)
+
+## Next Steps
+
+<br />
