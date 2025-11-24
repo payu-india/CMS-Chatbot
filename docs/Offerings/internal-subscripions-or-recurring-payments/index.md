@@ -178,19 +178,22 @@ The following video describes PayU’s Recurring Payment Suite offering:
 Choose the approach that fits your technical capabilities:
 
 **Zero Code Dashboard Integration**
-• **Best for**: Businesses with limited technical resources
-• **Method**: Dashboard or CSV-based operations
-• **Features**: Payment link creation, bulk uploads, automated notifications
+
+* **Best for**: Businesses with limited technical resources
+* **Method**: Dashboard or CSV-based operations
+* **Features**: Payment link creation, bulk uploads, automated notifications
 
 **API Integration**  
-• **Best for**: Developers requiring full control
-• **Method**: Comprehensive API suite
-• **Features**: Complete subscription workflow management
+
+* **Best for**: Developers requiring full control
+* **Method**: Comprehensive API suite
+* **Features**: Complete subscription workflow management
 
 **Zion Subscription Automation Platform**
-• **Best for**: Enterprises requiring minimum technical effort
-• **Method**: Platform-based automation
-• **Features**: Maximum automation with enterprise-grade capabilities
+
+* **Best for**: Enterprises requiring minimum technical effort
+* **Method**: Platform-based automation
+* **Features**: Maximum automation with enterprise-grade capabilities
 
 ## Getting Started
 
