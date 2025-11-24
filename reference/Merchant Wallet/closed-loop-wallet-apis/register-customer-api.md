@@ -9,9 +9,9 @@ The **Register Customer** API allows you to register a new customer and facilita
 
 ## Environment
 
-| Environment | URL                                                      |
-| ----------- | -------------------------------------------------------- |
-| Test        | `http://apitest.payu.in/loyalty-points/v1/wallet/enroll` |
+| Environment | URL                                                       |
+| ----------- | --------------------------------------------------------- |
+| Test        | `https://apitest.payu.in/loyalty-points/v1/wallet/enroll` |
 
 **HTTP Method**: POST
 
@@ -141,7 +141,7 @@ The request body contains both encrypted and decrypted parameters.
 ### Encrypted Packet
 
 ```curl
-curl --location --request POST 'http://apitest.payu.in/loyalty-points/v1/wallet/enroll' \
+curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet/enroll' \
 --header 'walletIdentifier: CLW' \
 --header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \
 --header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="hmac_generated_signature"' \
