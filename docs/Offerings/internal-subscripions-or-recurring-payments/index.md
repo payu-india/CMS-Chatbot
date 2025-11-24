@@ -161,25 +161,6 @@ The following table provides comparison on various payment mode integration:
 * **Trial + Subscription**: 7-day trial then ₹199/month
 * **One-time + Recurring**: Setup fee ₹500 + ₹99/month maintenance
 
-## Customer Journey
-
-**Cards Recurring Workflow**
-
-1. Customer provides consent for card tokenization and payment authorization
-2. Pre-debit notification sent 24-48 hours in advance
-3. Automated charge processing with real-time transaction updates
-
-**Net Banking Recurring Workflow**
-
-1. Bank authorization and standing instruction setup
-2. Direct debit from bank account with automated processing
-
-**UPI Recurring Workflow:**
-
-1. UPI mandate setup with PIN approval and mandate configuration
-2. Notification through UPI apps for review or modification
-3. Automated UPI debit and confirmation
-
 ## Integration Options
 
 Choose the approach that fits your technical capabilities:
