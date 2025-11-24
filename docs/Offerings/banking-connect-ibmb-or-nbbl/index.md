@@ -22,12 +22,16 @@ Banking Connect is PayU's interoperable platform that modernizes net banking tra
 * **Multi-Bank Support**: Single integration for all Banking Connect participating banks
 * **Visual Feedback**: Real-time transaction status updates on desktop interface
 
+<Image align="center" border={false} src="https://files.readme.io/a7f7292beca283f7c0b234ec78fbd10e9d8c726db0ef3fb6f101f04dbab56f40-0.jpg" />
+
 ### Mobile
 
 * **Intent Deep Linking**: Direct app-to-app payment flows
 * **Mobile-Optimized QR**: Enhanced QR display and scanning experience
 * **Native App Integration**: Seamless banking app interactions
 * **Responsive Design**: Optimized checkout experience across mobile devices
+
+<Image align="center" border={false} src="https://files.readme.io/eda272c2c433dde2c9bef22c418404135df794ea4a8554e7e0cbc895b2d2ed3b-3.jpg" />
 
 ### Cross-Platform Features
 
