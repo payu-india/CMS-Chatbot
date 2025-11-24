@@ -76,6 +76,62 @@ The following video describes PayU’s Recurring Payment Suite offering:
   **Example:** Ashish subscribed to a magazine on the BeSpoke Online Magazine platform. When a special edition became available, he was able to purchase it seamlessly using his stored payment method through a Pre-Debit Transaction without providing new payment consent.
 </Callout>
 
+### &#x20;Industry-Specific Solutions
+
+#### &#x20;Media & Entertainment
+
+**Netflix-style Streaming Platform**
+
+* Monthly plans: ₹199, ₹499, ₹649
+* Annual discounts: 2 months free
+* Family sharing options
+* Automatic renewal with email notifications
+
+#### &#x20;Fitness & Wellness
+
+**Gym Chain Subscriptions**
+
+* Monthly membership: ₹1,500
+* Personal training add-ons: ₹500/session
+* Locker rental: ₹200/month
+* Automatic renewal with 3-day grace period
+
+#### &#x20;Education & E-learning
+
+**Online Course Platform**
+
+* Course subscriptions: ₹999/month access to all courses
+* Certification programs: ₹299/month for 6 months
+* Live session add-ons: ₹150/session
+* Student discount programs
+
+#### &#x20;E-commerce & Retail
+
+**Subscription Box Service**
+
+* Monthly beauty box: ₹599
+* Quarterly snack box: ₹1,200
+* Customizable preferences
+* Pause/resume functionality
+
+#### &#x20;Financial Services
+
+**Insurance Premium Collection**
+
+* Monthly health insurance: ₹1,500
+* Quarterly life insurance: ₹3,000
+* Annual vehicle insurance: ₹8,000
+* Automated reminder system
+
+#### &#x20;SaaS & Software
+
+**Business Tools Subscription**
+
+* Basic plan: ₹500/month for 5 users
+* Pro plan: ₹1,000/month for 20 users
+* Enterprise: Custom pricing
+* Usage-based billing for API calls
+
 ## &#x20;Billing Models Supported
 
 ### Fixed Amount Recurring
