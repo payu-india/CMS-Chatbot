@@ -72,7 +72,7 @@ The following video describes PayU’s Recurring Payment Suite offering:
 * Loan EMIs and installment payments
 * Membership fees for clubs and organizations
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Example:** Ashish subscribed to a magazine on the BeSpoke Online Magazine platform. When a special edition became available, he was able to purchase it seamlessly using his stored payment method through a Pre-Debit Transaction without providing new payment consent.
 </Callout>
 
