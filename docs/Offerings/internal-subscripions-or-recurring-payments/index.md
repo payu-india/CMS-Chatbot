@@ -205,15 +205,11 @@ For more information, refer to [Using Zion Subscription Automation](doc:using-zi
 
 **📋 Prerequisites**
 
-**Account Requirements:**
-
-1. **Active PayU Merchant Account**: [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard)
-
-2. **Subscription Feature Enabled**: Contact PayU Key Account Manager for activation
-
-3. **Technical Setup:**: Choose between API, Zion Platform, or Dashboard approach
-
-4. **Technical Requirements** (varies by integration method):
-   * API key and Salt (for API integration)
-   * Webhook endpoints configuration
-   * Dashboard access (for zero-code implementation)
+* **Account Requirements:**:
+  * **Active PayU Merchant Account**: [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard)
+  * **Subscription Feature Enabled**: Contact PayU Key Account Manager for activation
+* **Technical Setup:**: Choose between API, Zion Platform, or Dashboard approach
+* **Technical Requirements** (varies by integration method):
+  * API key and Salt (for API integration)
+  * Webhook endpoints configuration
+  * Dashboard access (for zero-code implementation)
