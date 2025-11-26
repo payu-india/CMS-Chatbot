@@ -5,11 +5,27 @@ hidden: true
 metadata:
   robots: index
 ---
-## Overview
+## Overview [Separate prompt]
 
-### Developers Guide
+A **Closed Loop Wallet** is a digital payment solution that allows customers to store money and make transactions exclusively within your platform or merchant ecosystem. Unlike open-loop wallets (like Paytm or PhonePe) that work across multiple merchants, a closed loop wallet is tied specifically to your business—think of store credits, gift cards, or loyalty wallets.
 
-The purpose of the Prepaid APIs mentioned in this document is to provide a one-stop closed loop wallet solution. The document guides you through the end-to-end journey of a wallet program that encompasses wallet issuance, wallet loading and unloading, lifecycle management, and fetching customer/transaction details.
+PayU's Closed Loop Wallet provides a one-stop solution for:
+
+* **Wallet issuance** – Creating digital wallets for your customers
+* **Wallet loading/unloading** – Adding or withdrawing funds
+* **Lifecycle management** – Managing wallet status and customer profiles
+* **Transaction processing** – Enabling seamless payments within your ecosystem
+
+### Key Terminology
+
+| Term                              | Description                                                                  |
+| :-------------------------------- | :--------------------------------------------------------------------------- |
+| **Closed Loop Wallet (CLW)**      | A digital wallet that can only be used within a specific merchant's platform |
+| **KYC (Know Your Customer)**      | Verification process to validate customer identity                           |
+| **URN (Unique Reference Number)** | A unique identifier assigned to each wallet/card                             |
+| **Load Transaction**              | Adding funds to the wallet                                                   |
+| **Debit Transaction**             | Using wallet balance to make payments                                        |
+| **HMAC-SHA512**                   | The encryption algorithm used for API authentication                         |
 
 ### API Authentication
 
@@ -33,11 +49,11 @@ The following are the HTTP verbs supported by Wibmo Prepaid Platform:
 
 ### HTTP Request Headers
 
-| Parameter                         | Description                                                                                                                                                                              | Example                       |
-| :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------- |
-| walletIdentifier <br/>`mandatory` | `String` - Program Type                                                                                                                                                                  | CLW                           |
-| date <br/>`mandatory`             | `String` - The date and time should be in the GMT time conversion (not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT. | Thu, 17 Feb 2022 08:17:59 GMT |
-| Authorisation <br/> `mandatory`   | `String` - See Authorization format below                                                                                                                                                |                               |
+| Parameter                          | Description                                                                                                                                                                              | Example                       |
+| :--------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------- |
+| walletIdentifier <br />`mandatory` | `String` - Program Type                                                                                                                                                                  | CLW                           |
+| date <br />`mandatory`             | `String` - The date and time should be in the GMT time conversion (not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT. | Thu, 17 Feb 2022 08:17:59 GMT |
+| Authorisation <br /> `mandatory`   | `String` - See Authorization format below                                                                                                                                                |                               |
 
 #### Authorization Field Format
 
