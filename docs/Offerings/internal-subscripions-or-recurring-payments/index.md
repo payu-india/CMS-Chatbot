@@ -17,7 +17,7 @@ metadata:
 ---
 ## What are Recurring Payments?
 
-Recurring payments allow businesses to automatically collect payments from customers at regular intervals without requiring manual intervention each time. Using Standing Instructions (SI), customers provide one-time consent for future transactions, enabling seamless automation of subscription billing, EMIs, utility payments, and more.
+Recurring payments allow businesses to automatically collect payments from customers at regular intervals without requiring manual intervention each time. Using Standing Instructions (SI), customers provide one-time consent for future transactions, enabling seamless automation of subscriptions billing, EMIs, utility payments, and more.
 
 ## Why Choose PayU Subscriptions?
 
@@ -65,7 +65,7 @@ The following table provides comparison on various payment mode integration:
 
 ## Use Cases
 
-**Subscription Services**
+**Subscriptions Services**
 
 * Streaming platforms and digital content
 * Software licenses and SaaS applications
@@ -134,7 +134,7 @@ The following table provides comparison on various payment mode integration:
 
 #### &#x20;SaaS & Software
 
-**Business Tools Subscription**
+**Business Tools Subscriptions**
 
 * Basic plan: ₹500/month for 5 users
 * Pro plan: ₹1,000/month for 20 users
@@ -202,7 +202,7 @@ The following table provides comparison of the above integrations:
 
 * **Account Requirements:**:
   * **Active PayU Merchant Account**: [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard)
-  * **Subscription Feature Enabled**: Contact PayU Key Account Manager for activation
+  * **Subscriptions Feature Enabled**: Contact PayU Key Account Manager for activation
 * **Technical Setup:**: Choose between API, Zion Platform, or Dashboard approach
 * **Technical Requirements** (varies by integration method):
   * API key and Salt (for API integration)
