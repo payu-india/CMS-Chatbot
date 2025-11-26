@@ -33,11 +33,13 @@ When an action is taken on the mandate for SI by the issuing bank for cards, suc
 | Content-Type         | application/json                   |
 | URL                  | URL that you have shared with PayU |
 
-## Cancellation Mandate for Net Banking or eNACH
+## Net Banking or eNACH
+
+### Cancellation Mandate
 
 This webhook implementation for handling PayU payment notifications, specifically for mandate cancellation events. The webhook is integrated to process eNACH (Electronic National Automated Clearing House) payment status updates.
 
-#### Endpoint
+**Endpoint**
 
 | Parameter                     | Description                                                                                                           | Example                                                            |
 | :---------------------------- | :-------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------- |
@@ -45,17 +47,16 @@ This webhook implementation for handling PayU payment notifications, specificall
 | Method<br />`mandatory`       | `String` - HTTP method for the webhook                                                                                | POST                                                               |
 | Content-Type<br />`mandatory` | `String` - Content type of the request                                                                                | application/json                                                   |
 
-***
 
-### Request Specification
+#### Request Specification
 
-#### Content-Type
+**Content-Type**
 
 ```
 "Content-Type": "application/json"
 ```
 
-#### Request Body Structure
+**Request Body Structure**
 
 ```json
 {
@@ -66,7 +67,7 @@ This webhook implementation for handling PayU payment notifications, specificall
 }
 ```
 
-### Request Parameters
+#### Request Parameters
 
 | Parameter                         | Description                                     | Example              |
 | :-------------------------------- | :---------------------------------------------- | :------------------- |
@@ -75,7 +76,7 @@ This webhook implementation for handling PayU payment notifications, specificall
 | status<br />`mandatory`           | `String` - Current status of the operation      | CANCEL_SUCCESS       |
 | authPayuId<br />`mandatory`       | `String` - Unique PayU authorization identifier | 26108200310          |
 
-### Sample Test Request
+#### Sample Test Request
 
 ```bash
 curl -X POST [your_https_url_here]/ \
@@ -154,9 +155,9 @@ curl -X POST [your_https_url_here]/ \
       <td>
         The action that is taken on the mandate by the bank. The action can be either of the following:
 
-        * *MANDATE_MODIFICATION**: Indicates that the mandate is modified .
-        * *MANDATE_CANCELLATION**: Indicates that the mandate is cancelled.
-        * *MANDATE_CANCELLATION_TOKEN_DELETION**: Indicates that the mandate token is deleted.
+        * _MANDATE_MODIFICATION_*: Indicates that the mandate is modified .
+        * _MANDATE_CANCELLATION_*: Indicates that the mandate is cancelled.
+        * _MANDATE_CANCELLATION_TOKEN_DELETION_*: Indicates that the mandate token is deleted.
       </td>
 
       <td>
