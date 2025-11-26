@@ -209,6 +209,4 @@ The following table provides comparison of the above integrations:
   * Webhook endpoints configuration
   * Dashboard access (for zero-code implementation)
 
-## Next Steps
-
 <br />
