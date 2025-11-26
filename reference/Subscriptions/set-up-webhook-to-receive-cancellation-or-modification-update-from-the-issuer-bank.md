@@ -33,11 +33,70 @@ When an action is taken on the mandate for SI by the issuing bank for cards, suc
 | Content-Type         | application/json                   |
 | URL                  | URL that you have shared with PayU |
 
+## Cancellation Mandate for Net Banking or eNACH
+
+This webhook implementation for handling PayU payment notifications, specifically for mandate cancellation events. The webhook is integrated to process eNACH (Electronic National Automated Clearing House) payment status updates.
+
+#### Endpoint
+
+| Parameter                     | Description                                                                                                           | Example                                                            |
+| :---------------------------- | :-------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------- |
+| URL<br />`mandatory`          | `String` - URL configured under the merchant param: notifyMandateRevoke. Contact PayU support to get this configured. | [https://your-domain.com/webhook](https://your-domain.com/webhook) |
+| Method<br />`mandatory`       | `String` - HTTP method for the webhook                                                                                | POST                                                               |
+| Content-Type<br />`mandatory` | `String` - Content type of the request                                                                                | application/json                                                   |
+
+***
+
+### Request Specification
+
+#### Content-Type
+
+```
+"Content-Type": "application/json"
+```
+
+#### Request Body Structure
+
+```json
+{
+  "statusCode": 1,
+  "notificationType": "MANDATE_CANCELLATION",
+  "status": "CANCEL_SUCCESS",
+  "authPayuid": "26108200310"
+}
+```
+
+### Request Parameters
+
+| Parameter                         | Description                                     | Example              |
+| :-------------------------------- | :---------------------------------------------- | :------------------- |
+| statusCode<br />`mandatory`       | `Integer` - Numeric status indicator            | 1                    |
+| notificationType<br />`mandatory` | `String` - Type of notification event           | MANDATE_CANCELLATION |
+| status<br />`mandatory`           | `String` - Current status of the operation      | CANCEL_SUCCESS       |
+| authPayuId<br />`mandatory`       | `String` - Unique PayU authorization identifier | 26108200310          |
+
+### Sample Test Request
+
+```bash
+curl -X POST [your_https_url_here]/ \
+-H "Content-Type: application/json" \
+-d '{
+  "statusCode": 1,
+  "notificationType": "MANDATE_CANCELLATION",
+  "status": "CANCEL_SUCCESS",
+  "authPayuId": "[your_mandate_auth_payuid_here]"
+}'
+```
+
+> 📘 **Note**
+>
+> Replace `[your_https_url_here]` with your actual webhook URL and `[your_mandate_auth_payuid_here]` with the actual mandate authorization PayU ID.
+
 ## Mandate for Cards
 
 ### Payload of Mandate
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -61,9 +120,9 @@ When an action is taken on the mandate for SI by the issuing bank for cards, suc
       </td>
 
       <td>
-        The status of the SI. The status can be any of the following:  
+        The status of the SI. The status can be any of the following:
 
-        * active  
+        * active
         * deleted
       </td>
 
@@ -74,7 +133,7 @@ When an action is taken on the mandate for SI by the issuing bank for cards, suc
 
     <tr>
       <td>
-        authpayuid\
+        authpayuid  
         `mandatory`
       </td>
 
@@ -93,35 +152,35 @@ When an action is taken on the mandate for SI by the issuing bank for cards, suc
       </td>
 
       <td>
-        The action that is taken on the mandate by the bank. The action can be either of the following:  
+        The action that is taken on the mandate by the bank. The action can be either of the following:
 
-        * \*MANDATE\_MODIFICATION\*\*: Indicates that the mandate is modified .  
-        * \*MANDATE\_CANCELLATION\*\*: Indicates that the mandate is cancelled.  
-        * \*MANDATE\_CANCELLATION\_TOKEN\_DELETION\*\*: Indicates that the mandate token is deleted.
+        * *MANDATE_MODIFICATION**: Indicates that the mandate is modified .
+        * *MANDATE_CANCELLATION**: Indicates that the mandate is cancelled.
+        * *MANDATE_CANCELLATION_TOKEN_DELETION**: Indicates that the mandate token is deleted.
       </td>
 
       <td>
-        MANDATE\_MODIFICATION
+        MANDATE_MODIFICATION
       </td>
     </tr>
 
     <tr>
       <td>
-        si\_details
+        si_details
       </td>
 
       <td>
-        Contains the following fields about the SI in a JSON format:\
-        billingAmount: Billing amount of the SI transaction.\
-        paymentStartDate: Start date of SI\
+        Contains the following fields about the SI in a JSON format:  
+        billingAmount: Billing amount of the SI transaction.  
+        paymentStartDate: Start date of SI  
         paymentEndDate: : End date of SI
       </td>
 
       <td>
-         \{\
-        “billingAmount”:”10”,\
-        “paymentStartDate”:”20-06-2022”,\
-        “paymentEndDate”:”30-06-2023”\
+         \{  
+        “billingAmount”:”10”,  
+        “paymentStartDate”:”20-06-2022”,  
+        “paymentEndDate”:”30-06-2023”  
         }
       </td>
     </tr>
@@ -267,7 +326,7 @@ Merchant needs to expose a webhook and needs to request Integration team/PayU te
 
 Status defines acknowledgement from PayU. Possible values are:
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -291,10 +350,10 @@ Status defines acknowledgement from PayU. Possible values are:
       </td>
 
       <td>
-        Returns the status of the transactions and can be any of the following:  
+        Returns the status of the transactions and can be any of the following:
 
-        * **active** –Mandate is in active state  
-        * **revoked** – Mandate is cancelled  
+        * **active** –Mandate is in active state
+        * **revoked** – Mandate is cancelled
         * **pause** – Mandate is paused
       </td>
 
@@ -323,11 +382,11 @@ Status defines acknowledgement from PayU. Possible values are:
       </td>
 
       <td>
-        This parameter returns the action of the mandate and can be any of the following:  
+        This parameter returns the action of the mandate and can be any of the following:
 
-        * MANDATE\_PAUSE: Indicates that the mandate is paused .  
-        * MANDATE\_\\UNPAUSE: Indicates that the mandate is unpaused  
-        * MANDATE\_REVOKE: Indicates that the mandate is cancelled.
+        * MANDATE_PAUSE: Indicates that the mandate is paused .
+        * MANDATE_\UNPAUSE: Indicates that the mandate is unpaused
+        * MANDATE_REVOKE: Indicates that the mandate is cancelled.
       </td>
 
       <td>
@@ -387,7 +446,7 @@ Status defines acknowledgement from PayU. Possible values are:
       </td>
 
       <td>
-        700010006213657\@mybank
+        700010006213657@mybank
       </td>
     </tr>
 
@@ -425,7 +484,7 @@ Status defines acknowledgement from PayU. Possible values are:
       </td>
 
       <td>
-         Unique hash string to validate the authenticity of the Webhook payload. The hash logic is as follows: `status\|action\|authpayuid\|dateTime\|amount\|endDate\|salt`
+         Unique hash string to validate the authenticity of the Webhook payload. The hash logic is as follows: `status|action|authpayuid|dateTime|amount|endDate|salt`
       </td>
 
       <td>
@@ -508,7 +567,7 @@ Status defines acknowledgement from PayU. Possible values are:
 }
 ```
 
-<br/>
+<br />
 
 ### Mandate revoke webhook
 
@@ -530,4 +589,4 @@ Status defines acknowledgement from PayU. Possible values are:
 }
 ```
 
-<br/>
+<br />
