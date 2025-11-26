@@ -33,7 +33,7 @@ When an action is taken on the mandate for SI by the issuing bank for cards, suc
 | Content-Type         | application/json                   |
 | URL                  | URL that you have shared with PayU |
 
-## Net Banking or eNACH
+## Mandate for Net Banking or eNACH
 
 ### Cancellation Mandate
 
@@ -515,14 +515,17 @@ Status defines acknowledgement from PayU. Possible values are:
 }
 ```
 
-<br />
+## Mandate for UPI
+
+> 📘 Note:
+>
+> No unpause webhook will be triggered automatically after the mandate gets unpause. These webhooks are subject to the action taken by the customer from their PSP app only (pause, unpause, revoke).
 
 ### Mandate Pause webhook
 
-> 📘 Notes:
+> 📘 Note:
 >
-> * For every mandate pause, Payu will be able to trigger the mandate unpause webhook, since it is being sent by the ecosystem, post which the Mandate becomes ACTIVE, and further operations can be done for that mandate.
-> * No unpause webhook will be triggered automatically after the mandate gets unpause. These webhooks are subject to the action taken by the customer from their PSP app only (pause, unpause, revoke).
+> For every mandate pause, Payu will be able to trigger the mandate unpause webhook, since it is being sent by the ecosystem, post which the Mandate becomes ACTIVE, and further operations can be done for that mandate.
 
 ```
 {
