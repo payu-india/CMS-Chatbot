@@ -5,6 +5,5 @@
 - accept-chargeback-api
 - accept-contest-chargeback-api
 - contest-chargeback-api
-- register-customer-api-1
 - tempupdate-profile-api
 - tempchange-wallet-status-api
