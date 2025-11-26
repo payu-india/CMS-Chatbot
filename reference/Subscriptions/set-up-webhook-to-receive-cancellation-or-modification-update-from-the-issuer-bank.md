@@ -47,7 +47,6 @@ This webhook implementation for handling PayU payment notifications, specificall
 | Method<br />`mandatory`       | `String` - HTTP method for the webhook                                                                                | POST                                                               |
 | Content-Type<br />`mandatory` | `String` - Content type of the request                                                                                | application/json                                                   |
 
-
 #### Request Specification
 
 **Content-Type**
@@ -516,17 +515,14 @@ Status defines acknowledgement from PayU. Possible values are:
 }
 ```
 
-## Mandate for UPI
-
-> 📘 Note:
->
-> No unpause webhook will be triggered automatically after the mandate gets unpause. These webhooks are subject to the action taken by the customer from their PSP app only (pause, unpause, revoke).
+<br />
 
 ### Mandate Pause webhook
 
-> 📘 Note:
+> 📘 Notes:
 >
-> For every mandate pause, Payu will be able to trigger the mandate unpause webhook, since it is being sent by the ecosystem, post which the Mandate becomes ACTIVE, and further operations can be done for that mandate.
+> * For every mandate pause, Payu will be able to trigger the mandate unpause webhook, since it is being sent by the ecosystem, post which the Mandate becomes ACTIVE, and further operations can be done for that mandate.
+> * No unpause webhook will be triggered automatically after the mandate gets unpause. These webhooks are subject to the action taken by the customer from their PSP app only (pause, unpause, revoke).
 
 ```
 {
