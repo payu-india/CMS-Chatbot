@@ -5,10 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
-<br />
-
-<br />
-
 This API serves as the core component for registering new customers and facilitating the creation of digital wallets on Prepaid Platform. This API will do the following:
 
 1. Register customer.
