@@ -1,5 +1,5 @@
 ---
-title: '# Register Customer API'
+title: '[Temp] Register Customer API'
 deprecated: false
 hidden: true
 metadata:
