@@ -1,5 +1,5 @@
 ---
-title: '[Review]Subscripions or Recurring Payments'
+title: '[Review]Subscriptions or Recurring Payments'
 deprecated: false
 hidden: true
 metadata:
