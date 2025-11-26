@@ -1,7 +1,7 @@
 ---
 title: Connect Agent API Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -406,4 +406,3 @@ curl -X POST \
 
 
 <br />
-
