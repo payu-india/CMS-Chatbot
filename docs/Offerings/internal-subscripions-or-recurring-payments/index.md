@@ -116,7 +116,7 @@ The following table provides comparison on various payment mode integration:
 
 ### &#x20;E-commerce & Retail
 
-**Subscription Box Service**
+**Subscriptions Box Service**
 
 * Monthly beauty box: ₹599
 * Quarterly snack box: ₹1,200
@@ -158,7 +158,7 @@ The following table provides comparison on various payment mode integration:
 ### Hybrid Models
 
 * **Freemium to Premium**: Start free, convert to paid automatically
-* **Trial + Subscription**: 7-day trial then ₹199/month
+* **Trial + Subscriptions**: 7-day trial then ₹199/month
 * **One-time + Recurring**: Setup fee ₹500 + ₹99/month maintenance
 
 ## Integration Options
@@ -177,7 +177,7 @@ For more information, refer to [Subscriptions Dashboard](doc:subscription-dashbo
 
 * **Best for**: Developers requiring full control
 * **Method**: Comprehensive API suite
-* **Features**: Complete subscription workflow management
+* **Features**: Complete subscriptions workflow management
 
 For more information, refer to [Using API Integration](doc:using-api-integration-recurring-payments)
 
