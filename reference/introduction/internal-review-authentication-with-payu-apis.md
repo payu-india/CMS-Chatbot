@@ -726,7 +726,39 @@ def generate_tpv_hash(params, salt, beneficiary_detail):
     return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
 ```
 
-### 7) Payment API (Version 19)
+### 7) Payment API by Version
+
+<br />
+
+|                    |                                                                                                                                                                                                                |                 |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| **key**            | **Hash sequence**                                                                                                                                                                                              | **Api_version** |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10                                                                                                 | 1               |
+| merc_hash_vars_seq | key\|txnid\|amount\|offer_key\|api_version                                                                                                                                                                     | 2               |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|user_credentials\|si\|visaToVisa                                                    | 3               |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|ccnum\|ccvv\|ccexpmon\|ccexpyr                                                                 | 5               |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|beneficiarydetail                                                                              | 6               |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|si_details                                                                                     | 7               |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|surl\|furl                                                                                     | 8               |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|ccnum\|ccvv\|ccexpmon\|ccexpyr\|pg\|bankcode                                                   | 9               |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|offer_product_id\|offer_brand_id                                                    | 10              |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|si_details\|free_trial                                                                         | 11              |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|card_no                                                                                        | 12              |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|splitInfo                                                                                      | 13              |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|offer_auto_apply                                                                    | 14              |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|user_token\|offer_key\|offer_auto_apply\|cart_details                                          | 15              |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|base_split_id                                                                                  | 16              |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|user_token\|offer_key\|offer_auto_apply\|cart_details\|extra_charges                           | 17              |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|phone                                                                                          | 18              |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|user_token\|offer_key\|offer_auto_apply\|cart_details\|extra_charges\|phone                    | 19              |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|beneficiarydetail\|si_details\|user_token\|offer_key\|offer_auto_apply\|cart_details           | 20              |
+| merc_hash_vars_seq | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|beneficiarydetail\|si_details\|user_token\|offer_key\|offer_auto_apply\|cart_details\|products | 21              |
+
+#### Version 6 for TPV Integration
+
+<br />
+
+#### Version 19
 
 #### Hash Formula
 
