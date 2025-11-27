@@ -386,8 +386,6 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
   --data-urlencode 'firstname=John' \
   --data-urlencode 'email=john@example.com' \
   --data-urlencode 'phone=9876543210' \
-  --data-urlencode 'pg=NB' \
-  --data-urlencode 'bankcode=AXIB' \
   --data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
   --data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
   --data-urlencode 'api_version=21' \
@@ -413,8 +411,6 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
       'firstname': 'John',
       'email': 'john@example.com',
       'phone': '9876543210',
-      'pg': 'NB',
-      'bankcode': 'AXIB',
       'surl': 'https://apiplayground-response.herokuapp.com/',
       'furl': 'https://apiplayground-response.herokuapp.com/',
       'api_version': '21',
