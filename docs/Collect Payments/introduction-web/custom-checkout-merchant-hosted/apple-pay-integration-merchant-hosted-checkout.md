@@ -37,6 +37,7 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
 | Production  | `https://secure.payu.in/_payment` |
 
 <Accordion title="Request parameters" icon="fa-table">
+
   | Parameter                    | Description                                                                                                                                                                     | Example                                                      |
   | :--------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------- |
   | key<br />`mandatory`         | `String` - This parameter contains the merchant key provided by PayU during onboarding.                                                                                         | JP\*\*\*g                                                    |
@@ -57,8 +58,9 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | udf4<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
   | udf5<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
 
-<HashingSample />
-
+<br/>
+  <HashingSample />
+<br/>
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
@@ -80,7 +82,6 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
     -d 'furl=https://yoursite.com/failure' \
     -d 'hash=<generated_hash>'
   ```
-
   ```python
   import requests
 
@@ -162,7 +163,6 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
       }
   }
   ```
-
   ```javascript
   async function initiateApplePayPayment() {
       const url = 'https://test.payu.in/_payment';
@@ -278,7 +278,6 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
       }
   }
   ```
-
   ```php
   <?php
 
@@ -329,9 +328,8 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   }
   ?>
   ```
+<br/>
 </Accordion>
-
-***
 
 ## Step 2: Check response from PayU
 
