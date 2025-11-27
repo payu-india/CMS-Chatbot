@@ -1,4 +1,4 @@
 ---
 title: 🔔 Callbacks & Notifications
-hidden: false
+hidden: true
 ---
