@@ -37,7 +37,6 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
 | Production  | `https://secure.payu.in/_payment` |
 
 <Accordion title="Request parameters" icon="fa-table">
-
   | Parameter                    | Description                                                                                                                                                                     | Example                                                      |
   | :--------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------- |
   | key<br />`mandatory`         | `String` - This parameter contains the merchant key provided by PayU during onboarding.                                                                                         | JP\*\*\*g                                                    |
@@ -58,10 +57,16 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | udf4<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
   | udf5<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
 
-<br/>
-  <HashingSample />
-<br/>
+  <br />
+  <Accordion title="Understanding Hashing and sample code" icon="fa-code">
+    <HashingRequestParameters />
+
+    #### Hashing Sample Code
+
+    <HashingSample />
+  </Accordion>
 </Accordion>
+
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -328,7 +333,8 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   }
   ?>
   ```
-<br/>
+
+  <br />
 </Accordion>
 
 ## Step 2: Check response from PayU
