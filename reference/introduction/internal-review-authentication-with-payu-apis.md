@@ -728,8 +728,6 @@ def generate_tpv_hash(params, salt, beneficiary_detail):
 
 ### 7) Payment API by Version
 
-<br />
-
 | api_version | hash logic                                                                                                                                                                                                     |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10                                                                                                 |
