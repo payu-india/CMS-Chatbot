@@ -56,15 +56,8 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | udf3<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
   | udf4<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
   | udf5<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
-</Accordion>
-
-<Accordion title="Hash generation" icon="fa-key">
-  Generate the hash using the following formula:
-
-  ```
-  sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
-  ```
-</Accordion>
+    <HashingSample />
+  </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -435,3 +428,5 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
 ***
 
 ## Step 3: Verify the payment
+
+<Verify_Payment_Tabs />
