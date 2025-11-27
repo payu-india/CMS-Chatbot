@@ -106,7 +106,6 @@ try:
 except requests.exceptions.RequestException as e:
     print(f"Error: {e}")
 ```
-
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -200,7 +199,6 @@ initiateApplePayPayment()
     .then(result => console.log('Payment initiated'))
     .catch(error => console.error('Failed:', error));
 ```
-
 ```java
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
