@@ -50,7 +50,7 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | bankcode<br />`mandatory`    | `String` - This parameter specifies the payment option. For Apple Pay integration, the value must be `APPLEPAY`.                                                                | APPLEPAY                                                     |
   | surl<br />`mandatory`        | `String` - This parameter contains the Success URL. PayU will redirect the customer to this URL after a successful payment.                                                     | [https://yoursite.com/success](https://yoursite.com/success) |
   | furl<br />`mandatory`        | `String` - This parameter contains the Failure URL. PayU will redirect the customer to this URL after a failed payment.                                                         | [https://yoursite.com/failure](https://yoursite.com/failure) |
-  | hash<br />`mandatory`        | `String` - This parameter contains the hash value calculated using SHA-512 algorithm. Hash logic ensures the integrity of the transaction data.                                 | See hash generation                                          |
+  | hash<br />`mandatory`        | `String` - This parameter contains the hash value calculated using SHA-512 algorithm. Hash logic ensures the integrity of the transaction data.                                 | Refer to [Hashing sample code](https://docs.payu.in/docs/apple-pay-integration-merchant-hosted-checkout#/hashing-sample-code)                                         |
   | udf1<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
   | udf2<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
   | udf3<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
@@ -58,6 +58,7 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | udf5<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
 
   <br />
+
   <Accordion title="Understanding Hashing and sample code" icon="fa-code">
     <HashingRequestParameters />
 
@@ -66,7 +67,6 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
     <HashingSample />
   </Accordion>
 </Accordion>
-
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
