@@ -5,22 +5,16 @@ hidden: true
 metadata:
   robots: index
 ---
-<br />
+Use the Collect Payment (**_payment**) API to initiate an Apple Pay payment transaction. This is the primary endpoint to collect payments using Apple Pay.
 
-# Initiate Payment API
+**Endpoint**
 
-Use this API to initiate an Apple Pay payment transaction. This is the primary endpoint to collect payments using Apple Pay.
+| Environment | URL                               |
+| :---------- | :-------------------------------- |
+| Test        | `https://test.payu.in/_payment`   |
+| Production  | `https://secure.payu.in/_payment` |
 
-***
-
-## API Endpoint
-
-| Environment | URL                               | Method |
-| :---------- | :-------------------------------- | :----- |
-| Test        | `https://test.payu.in/_payment`   | POST   |
-| Production  | `https://secure.payu.in/_payment` | POST   |
-
-***
+HTTP Method: **POST**
 
 ## Request Parameters
 
@@ -51,7 +45,6 @@ Use this API to initiate an Apple Pay payment transaction. This is the primary e
 | udf4<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
 | udf5<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
 
-***
 
 ## Hash Generation
 
@@ -60,8 +53,6 @@ Generate the hash using the following formula:
 ```
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
 ```
-
-***
 
 ## Sample Request
 
@@ -83,7 +74,6 @@ curl -X POST \
   -d 'furl=https://yoursite.com/failure' \
   -d 'hash=<generated_hash>'
 ```
-
 ```python
 import requests
 
@@ -165,7 +155,6 @@ class Program
     }
 }
 ```
-
 ```javascript
 async function initiateApplePayPayment() {
     const url = 'https://test.payu.in/_payment';
@@ -282,7 +271,6 @@ public class InitiateApplePayPayment {
     }
 }
 ```
-
 ```php
 <?php
 
@@ -334,8 +322,6 @@ if ($responseData !== null) {
 ?>
 ```
 
-***
-
 ## Response Parameters
 
 | Parameter                         | Description                                                                                                                                | Example                                     |
@@ -363,11 +349,9 @@ if ($responseData !== null) {
 | error<br />`mandatory`            | `String` - This parameter contains the error code. `E000` indicates no error.                                                              | E000                                        |
 | error_Message<br />`mandatory`    | `String` - This parameter contains the description of the error.                                                                           | No Error                                    |
 
-***
-
 ## Sample Response
 
-```php
+```json
 Array
 (
     [mihpayid] => 403993715524045752
