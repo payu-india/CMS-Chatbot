@@ -1,4 +1,4 @@
 ---
 title: 📊 Status Tracking
-hidden: false
+hidden: true
 ---
