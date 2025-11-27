@@ -1,5 +1,5 @@
 ---
-title: _payment Apple Pay Merchant Hosted
+title: Apple Pay
 deprecated: false
 hidden: true
 metadata:
