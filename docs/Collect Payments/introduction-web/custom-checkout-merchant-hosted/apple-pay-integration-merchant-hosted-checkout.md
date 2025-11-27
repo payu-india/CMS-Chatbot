@@ -56,8 +56,10 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | udf3<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
   | udf4<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
   | udf5<br />`optional`         | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                              |
-    <HashingSample />
-  </Accordion>
+
+<HashingSample />
+
+</Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
