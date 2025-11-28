@@ -23,5 +23,5 @@ excerpt: >-
 api:
   file: payu_check_action_status_payuid_oas31.json
   operationId: checkActionStatusWithPayUId
-hidden: false
+hidden: true
 ---
