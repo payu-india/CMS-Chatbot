@@ -1,0 +1,242 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PayU Check Refund Status API (Request ID)",
+    "description": "# PayU Check Refund Status API - Request ID Lookup\n\nThis API allows you to check the status of specific refund requests using the **Request ID** returned from the refund transaction API. It provides detailed information about refund processing status and settlement details.\n\n## 🎯 **API Purpose:**\n- Track specific refund request status using Request ID\n- Get refund processing updates and settlement information\n- Monitor refund lifecycle from initiation to completion\n- Retrieve detailed refund transaction data\n\n## 📋 **Key Features:**\n- ✅ Static command parameter for consistent usage\n- ✅ Secure hash-based authentication\n- ✅ Request ID based refund tracking\n- ✅ Detailed refund status information\n- ✅ Settlement and processing details\n\n## 🔧 **Usage:**\n1. Provide your merchant key (default: JPM7Fg)\n2. Set command to 'check_action_status' (static)\n3. Enter the Request ID returned from refund API in var1\n4. Generate proper security hash\n\n## 📝 **Important Notes:**\n- Request ID is obtained from successful refund transaction API calls\n- This API tracks the lifecycle of specific refund requests\n- Provides real-time status updates on refund processing\n\n## 🌐 **Environment URLs:**\n- **Test:** https://test.payu.in/merchant/postservice.php?form=2\n- **Production:** https://info.payu.in/merchant/postservice.php?form=2\n\n**Perfect for:** Refund status monitoring, customer service queries, reconciliation processes, and audit trails.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "PayU API Support",
+      "url": "https://docs.payu.in/reference/check_action_status_api_with_request_id"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://test.payu.in",
+      "description": "PayU Test Environment"
+    },
+    {
+      "url": "https://info.payu.in",
+      "description": "PayU Production Environment"
+    }
+  ],
+  "paths": {
+    "/merchant/postservice.php": {
+      "post": {
+        "summary": "Check Refund Status with Request ID",
+        "description": "Check the status of a specific refund request using the Request ID.\n\nThis API provides detailed information about:\n- Refund processing status\n- Settlement information  \n- Transaction details\n- Processing timestamps\n- Error messages if any\n\n**Request ID Source:** The Request ID is returned when the cancel_refund_transaction API is successfully executed.",
+        "operationId": "checkRefundStatusWithRequestId",
+        "tags": [
+          "Refund Status"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "key",
+                  "command",
+                  "var1",
+                  "hash"
+                ],
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "default": "JPM7Fg",
+                    "description": "The merchant key provided by PayU. It is a unique identifier for the merchant account.",
+                    "example": "JPM7Fg"
+                  },
+                  "command": {
+                    "type": "string",
+                    "default": "check_action_status",
+                    "description": "The API command name. For this API, the value should be 'check_action_status'.",
+                    "enum": [
+                      "check_action_status"
+                    ]
+                  },
+                  "var1": {
+                    "type": "string",
+                    "description": "The Request ID returned when cancel_refund_transaction API was successfully executed.",
+                    "example": "131278422",
+                    "pattern": "^[0-9]+$"
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "A hash value for security validation. It is calculated using the sha512 algorithm with the format: sha512(key|command|var1|salt).",
+                    "example": "69543c08018121cc882d2f8b1761567367c1806becde3db7f54ab552362677cc08d8dfa4b9411e234e4876e6aba80c05a32e75ed499aff458c7f6027bf4ef2a8"
+                  }
+                }
+              },
+              "example": {
+                "key": "JPM7Fg",
+                "command": "check_action_status",
+                "var1": "131278422",
+                "hash": "69543c08018121cc882d2f8b1761567367c1806becde3db7f54ab552362677cc08d8dfa4b9411e234e4876e6aba80c05a32e75ed499aff458c7f6027bf4ef2a8"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Refund status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Success Response",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "enum": [
+                            1
+                          ],
+                          "description": "Response status (1 for success)"
+                        },
+                        "msg": {
+                          "type": "string",
+                          "description": "Success message",
+                          "example": "Request Id found Successfully"
+                        },
+                        "request_id": {
+                          "type": "string",
+                          "description": "The request ID that was queried"
+                        },
+                        "mihpayid": {
+                          "type": "string",
+                          "description": "PayU transaction ID"
+                        },
+                        "refund_status": {
+                          "type": "string",
+                          "description": "Current status of the refund",
+                          "enum": [
+                            "pending",
+                            "success",
+                            "failed",
+                            "processing"
+                          ]
+                        },
+                        "refund_amount": {
+                          "type": "string",
+                          "description": "Amount being refunded"
+                        },
+                        "bank_ref_no": {
+                          "type": "string",
+                          "description": "Bank reference number"
+                        },
+                        "mode": {
+                          "type": "string",
+                          "description": "Payment mode used"
+                        },
+                        "settlement_date": {
+                          "type": "string",
+                          "description": "Date when refund was settled"
+                        },
+                        "error_code": {
+                          "type": "string",
+                          "description": "Error code if refund failed"
+                        },
+                        "error_message": {
+                          "type": "string",
+                          "description": "Error message if refund failed"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Not Found Response",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "enum": [
+                            0
+                          ],
+                          "description": "Response status (0 for failure)"
+                        },
+                        "msg": {
+                          "type": "string",
+                          "description": "Error message",
+                          "example": "Request Id not found"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful refund status check",
+                    "value": {
+                      "status": 1,
+                      "msg": "Request Id found Successfully",
+                      "request_id": "131278422",
+                      "mihpayid": "403993715527059978",
+                      "refund_status": "success",
+                      "refund_amount": "100.00",
+                      "bank_ref_no": "123456789",
+                      "mode": "CC"
+                    }
+                  },
+                  "not_found": {
+                    "summary": "Request ID not found",
+                    "value": {
+                      "status": 0,
+                      "msg": "Request Id not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "enum": [
+                        0
+                      ]
+                    },
+                    "msg": {
+                      "type": "string",
+                      "example": "Parameter missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "HashAuthentication": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "hash",
+        "description": "SHA512 hash for request authentication using format: sha512(key|command|var1|salt)"
+      }
+    }
+  },
+  "security": [
+    {
+      "HashAuthentication": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Refund Status",
+      "description": "APIs for checking refund status using Request ID"
+    }
+  ]
+}
