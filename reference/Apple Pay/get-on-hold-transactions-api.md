@@ -1,7 +1,7 @@
 ---
 title: Get On-Hold Transactions API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -461,6 +461,3 @@ if ($responseData !== null) {
     }
 }
 ```
-
-
-
