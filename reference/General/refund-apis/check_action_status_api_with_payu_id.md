@@ -1,11 +1,11 @@
 ---
-title: Check Refund Status API with PayU ID
+title: '[OLD]Check Refund Status API with PayU ID'
 excerpt: 'API Command: **check_action_status**'
 api:
   file: general-24.json
   operationId: check_action_status(2ndusage)
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
