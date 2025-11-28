@@ -22,9 +22,19 @@ excerpt: >-
 api:
   file: payu_check_refund_status_requestid_oas31.json
   operationId: checkRefundStatusWithRequestId
-hidden: true
+hidden: false
 link:
   new_tab: false
+metadata:
+  title: Check Refund Status API with Request ID
+  description: >-
+    The document provides information on how to use the
+    cancel_refund_transaction and check_action_status APIs to cancel and check
+    the status of a transaction, respectively, using a Request ID.
+  keywords:
+    - Check Refund Status API with Request ID
+    - check_action_status API Command
+    - Using Request ID to Check Refund Status API
 ---
 Whenever the **cancel_refund_transaction** API is executed successfully to cancel a transaction, a Request ID is returned in the output parameters for that particular request. For more information on the cancel_refund_transaction API, refer to Refund Transaction.
 
