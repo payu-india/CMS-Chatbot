@@ -1,0 +1,351 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PayU Check Action Status API (PayU ID)",
+    "description": "# PayU Check Action Status API - PayU ID Lookup\n\nThis API allows you to check the action status of transactions using the **PayU ID (mihpayid)**. It returns comprehensive transaction history including multiple refund actions, associated request IDs, and their current statuses.\n\n## 🎯 **API Purpose:**\n- Query transaction status using PayU Transaction ID (mihpayid)\n- Retrieve complete transaction lifecycle information\n- Get details of all actions performed on a transaction\n- Track refund status and settlement information\n\n## 📋 **Key Features:**\n- ✅ Static command parameter for consistent usage\n- ✅ Secure hash-based authentication\n- ✅ Comprehensive transaction history retrieval\n- ✅ Multiple action status tracking\n- ✅ Settlement and payment mode details\n\n## 🔧 **Usage:**\n1. Provide your merchant key (default: JPM7Fg)\n2. Set command to 'check_action_status' (static)\n3. Enter the PayU ID (mihpayid) in var1\n4. Set var2 to 'payuid' for PayU ID lookup\n5. Generate proper security hash\n\n## 🌐 **Environment URLs:**\n- **Test:** https://test.payu.in/merchant/postservice.php?form=2\n- **Production:** https://info.payu.in/merchant/postservice.php?form=2\n\n**Perfect for:** Transaction status monitoring, refund tracking, audit trails, and customer support queries.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "PayU API Support",
+      "url": "https://docs.payu.in/reference/check_action_status_api_with_payu_id"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://test.payu.in",
+      "description": "PayU Test Environment"
+    },
+    {
+      "url": "https://info.payu.in",
+      "description": "PayU Production Environment"
+    }
+  ],
+  "paths": {
+    "/merchant/postservice.php": {
+      "post": {
+        "summary": "Check Action Status with PayU ID",
+        "description": "Check the action status of a transaction using PayU Transaction ID (mihpayid).\n\nThis API returns all actions related to a specified PayUID (mihpayid), including:\n- Transaction capture status\n- Refund actions and their statuses  \n- Settlement information\n- Payment mode details\n- Complete transaction timeline\n\n**Important:** This API will return comprehensive transaction history, not limited to refunds but including captures and other transaction statuses.",
+        "operationId": "checkActionStatusWithPayUId",
+        "tags": [
+          "Transaction Status"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "key",
+                  "command",
+                  "var1",
+                  "var2",
+                  "hash"
+                ],
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "default": "JPM7Fg",
+                    "description": "The merchant key provided by PayU. It is a unique identifier for the merchant account.",
+                    "example": "JPM7Fg"
+                  },
+                  "command": {
+                    "type": "string",
+                    "default": "check_action_status",
+                    "description": "The API command name. For this API, the value should be 'check_action_status'.",
+                    "enum": [
+                      "check_action_status"
+                    ]
+                  },
+                  "var1": {
+                    "type": "string",
+                    "description": "PayU ID (mihpayid) for which the action status is to be fetched.",
+                    "example": "403993715521937565",
+                    "pattern": "^[0-9]+$"
+                  },
+                  "var2": {
+                    "type": "string",
+                    "default": "payuid",
+                    "description": "Lookup type, which should be set to 'payuid' to indicate that the API should query using the PayUID (mihpayid).",
+                    "enum": [
+                      "payuid"
+                    ]
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "A hash value for security validation. It is calculated using the sha512 algorithm with the format: sha512(key|command|var1|salt).",
+                    "example": "81bdb5b8e6f4c1234567890abcdef1234567890abcdef1234567890abcdef12"
+                  }
+                }
+              },
+              "example": {
+                "key": "JPM7Fg",
+                "command": "check_action_status",
+                "var1": "403993715521937565",
+                "var2": "payuid",
+                "hash": "81bdb5b8e6f4c1234567890abcdef1234567890abcdef1234567890abcdef12"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Action status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Success Response",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "enum": [
+                            1
+                          ],
+                          "description": "Response status (1 for success)"
+                        },
+                        "msg": {
+                          "type": "string",
+                          "description": "Success message",
+                          "example": "1 out of 1 Transactions Fetched Successfully"
+                        },
+                        "transaction_details": {
+                          "type": "object",
+                          "description": "Detailed transaction information",
+                          "additionalProperties": {
+                            "type": "object",
+                            "properties": {
+                              "mihpayid": {
+                                "type": "string",
+                                "description": "PayU Transaction ID"
+                              },
+                              "request_id": {
+                                "type": "string",
+                                "description": "Request ID for the action"
+                              },
+                              "bank_ref_num": {
+                                "type": "string",
+                                "description": "Bank reference number"
+                              },
+                              "amt": {
+                                "type": "string",
+                                "description": "Transaction amount"
+                              },
+                              "transaction_amount": {
+                                "type": "string",
+                                "description": "Original transaction amount"
+                              },
+                              "txnid": {
+                                "type": "string",
+                                "description": "Transaction ID"
+                              },
+                              "additional_charges": {
+                                "type": "string",
+                                "description": "Additional charges"
+                              },
+                              "productinfo": {
+                                "type": "string",
+                                "description": "Product information"
+                              },
+                              "firstname": {
+                                "type": "string",
+                                "description": "Customer first name"
+                              },
+                              "bankcode": {
+                                "type": "string",
+                                "description": "Bank code"
+                              },
+                              "udf1": {
+                                "type": "string",
+                                "description": "User defined field 1"
+                              },
+                              "udf3": {
+                                "type": "string",
+                                "description": "User defined field 3"
+                              },
+                              "udf4": {
+                                "type": "string",
+                                "description": "User defined field 4"
+                              },
+                              "udf5": {
+                                "type": "string",
+                                "description": "User defined field 5"
+                              },
+                              "field2": {
+                                "type": "string",
+                                "description": "Additional field 2"
+                              },
+                              "field9": {
+                                "type": "string",
+                                "description": "Additional field 9"
+                              },
+                              "payment_source": {
+                                "type": "string",
+                                "description": "Payment source"
+                              },
+                              "PG_TYPE": {
+                                "type": "string",
+                                "description": "Payment gateway type"
+                              },
+                              "bank_ref_no": {
+                                "type": "string",
+                                "description": "Bank reference number"
+                              },
+                              "payuMoneyId": {
+                                "type": "string",
+                                "description": "PayU Money ID"
+                              },
+                              "error_Message": {
+                                "type": "string",
+                                "description": "Error message if any"
+                              },
+                              "cardToken": {
+                                "type": "string",
+                                "description": "Card token"
+                              },
+                              "cardhash": {
+                                "type": "string",
+                                "description": "Card hash"
+                              },
+                              "mode": {
+                                "type": "string",
+                                "description": "Payment mode"
+                              },
+                              "unmappedstatus": {
+                                "type": "string",
+                                "description": "Unmapped status"
+                              },
+                              "status": {
+                                "type": "string",
+                                "description": "Transaction status"
+                              },
+                              "Merchant_UTR": {
+                                "type": "string",
+                                "description": "Merchant UTR"
+                              },
+                              "Settled_At": {
+                                "type": "string",
+                                "description": "Settlement timestamp"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Not Found Response",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "enum": [
+                            0
+                          ],
+                          "description": "Response status (0 for failure)"
+                        },
+                        "msg": {
+                          "type": "string",
+                          "description": "Error message",
+                          "example": "0 out of 1 Transactions Fetched Successfully"
+                        },
+                        "transaction_details": {
+                          "type": "object",
+                          "description": "Error details",
+                          "additionalProperties": {
+                            "type": "string",
+                            "example": "No action status found"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful status check",
+                    "value": {
+                      "status": 1,
+                      "msg": "1 out of 1 Transactions Fetched Successfully",
+                      "transaction_details": {
+                        "403993715521937565": {
+                          "mihpayid": "403993715521937565",
+                          "request_id": "13127842",
+                          "bank_ref_num": "123456789",
+                          "amt": "10.00",
+                          "txnid": "test_txn_123",
+                          "status": "captured",
+                          "mode": "CC"
+                        }
+                      }
+                    }
+                  },
+                  "not_found": {
+                    "summary": "PayU ID not found",
+                    "value": {
+                      "status": 0,
+                      "msg": "0 out of 1 Transactions Fetched Successfully",
+                      "transaction_details": {
+                        "403993715521937565": "No action status found"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "enum": [
+                        0
+                      ]
+                    },
+                    "msg": {
+                      "type": "string",
+                      "example": "Parameter missing"
+                    }
+                  }
+                },
+                "example": {
+                  "status": 0,
+                  "msg": "Parameter missing"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "HashAuthentication": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "hash",
+        "description": "SHA512 hash for request authentication using format: sha512(key|command|var1|salt)"
+      }
+    }
+  },
+  "security": [
+    {
+      "HashAuthentication": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Transaction Status",
+      "description": "APIs for checking transaction status using PayU ID"
+    }
+  ]
+}
