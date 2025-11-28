@@ -22,5 +22,5 @@ excerpt: >-
 api:
   file: payu_check_refund_status_requestid_oas31.json
   operationId: checkRefundStatusWithRequestId
-hidden: false
+hidden: true
 ---
