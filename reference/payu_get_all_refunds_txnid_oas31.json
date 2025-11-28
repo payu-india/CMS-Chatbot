@@ -1,0 +1,289 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PayU Get All Refunds API (Transaction ID)",
+    "description": "# PayU Get All Refunds API - Transaction ID Lookup\n\nThis API allows you to retrieve comprehensive refund history for a specific transaction using the **Transaction ID**. It returns all refund attempts, their statuses, and detailed information for audit and reconciliation purposes.\n\n## 🎯 **API Purpose:**\n- Get complete refund history for a transaction\n- Retrieve all refund attempts (successful and failed)\n- Access detailed refund information for reconciliation\n- Monitor cumulative refund amounts per transaction\n\n## 📋 **Key Features:**\n- ✅ Static command parameter for consistent usage\n- ✅ Secure hash-based authentication\n- ✅ Comprehensive refund history retrieval\n- ✅ Multiple refund tracking per transaction\n- ✅ Detailed settlement and status information\n\n## 🔧 **Usage:**\n1. Provide your merchant key (default: JPM7Fg)\n2. Set command to 'getAllRefundsFromTxnIds' (static)\n3. Enter the Transaction ID in var1\n4. Generate proper security hash\n\n## 📝 **Important Notes:**\n- Returns all refund attempts for the specified transaction\n- Includes both successful and failed refund requests\n- Useful for audit trails and reconciliation processes\n- Shows cumulative refund amounts and remaining balances\n\n## 🌐 **Environment URLs:**\n- **Test:** https://test.payu.in/merchant/postservice.php?form=2\n- **Production:** https://info.payu.in/merchant/postservice.php?form=2\n\n**Perfect for:** Refund reconciliation, audit trails, customer service queries, and financial reporting.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "PayU API Support",
+      "url": "https://docs.payu.in/reference/get_all_refunds_from_transaction_ids_api"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://test.payu.in",
+      "description": "PayU Test Environment"
+    },
+    {
+      "url": "https://info.payu.in",
+      "description": "PayU Production Environment"
+    }
+  ],
+  "paths": {
+    "/merchant/postservice.php": {
+      "post": {
+        "summary": "Get All Refunds from Transaction ID",
+        "description": "Retrieve comprehensive refund history for a specific transaction.\n\nThis API returns detailed information about all refund attempts including:\n- All refund requests (successful and failed)\n- Refund amounts and dates\n- Request IDs for each refund attempt\n- Settlement status and details\n- Remaining refundable amount\n- Transaction summary information\n\n**Transaction ID:** Use the transaction ID from your original payment transaction.",
+        "operationId": "getAllRefundsFromTransactionId",
+        "tags": [
+          "Refund History"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "key",
+                  "command",
+                  "var1",
+                  "hash"
+                ],
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "default": "JPM7Fg",
+                    "description": "The merchant key provided by PayU. It is a unique identifier for the merchant account.",
+                    "example": "JPM7Fg"
+                  },
+                  "command": {
+                    "type": "string",
+                    "default": "getAllRefundsFromTxnIds",
+                    "description": "The API command name. For this API, the value should be 'getAllRefundsFromTxnIds'.",
+                    "enum": [
+                      "getAllRefundsFromTxnIds"
+                    ]
+                  },
+                  "var1": {
+                    "type": "string",
+                    "description": "The transaction ID for which refunds are being searched.",
+                    "example": "131278422",
+                    "pattern": "^[a-zA-Z0-9_-]+$"
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "A hash value for security validation. It is calculated using the sha512 algorithm with the format: sha512(key|command|var1|salt).",
+                    "example": "69543c08018121cc882d2f8b1761567367c1806becde3db7f54ab552362677cc08d8dfa4b9411e234e4876e6aba80c05a32e75ed499aff458c7f6027bf4ef2a8"
+                  }
+                }
+              },
+              "example": {
+                "key": "JPM7Fg",
+                "command": "getAllRefundsFromTxnIds",
+                "var1": "131278422",
+                "hash": "69543c08018121cc882d2f8b1761567367c1806becde3db7f54ab552362677cc08d8dfa4b9411e234e4876e6aba80c05a32e75ed499aff458c7f6027bf4ef2a8"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Refund history retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Success Response",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "enum": [
+                            1
+                          ],
+                          "description": "Response status (1 for success)"
+                        },
+                        "msg": {
+                          "type": "string",
+                          "description": "Success message",
+                          "example": "Refunds found Successfully"
+                        },
+                        "transaction_id": {
+                          "type": "string",
+                          "description": "The transaction ID that was queried"
+                        },
+                        "total_refunds": {
+                          "type": "integer",
+                          "description": "Total number of refund attempts"
+                        },
+                        "total_refund_amount": {
+                          "type": "string",
+                          "description": "Total amount refunded across all attempts"
+                        },
+                        "original_amount": {
+                          "type": "string",
+                          "description": "Original transaction amount"
+                        },
+                        "remaining_refundable": {
+                          "type": "string",
+                          "description": "Remaining amount that can be refunded"
+                        },
+                        "refunds": {
+                          "type": "array",
+                          "description": "List of all refund attempts",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "request_id": {
+                                "type": "string",
+                                "description": "Unique request ID for this refund"
+                              },
+                              "refund_amount": {
+                                "type": "string",
+                                "description": "Amount of this refund"
+                              },
+                              "refund_status": {
+                                "type": "string",
+                                "description": "Status of this refund",
+                                "enum": [
+                                  "success",
+                                  "pending",
+                                  "failed",
+                                  "processing"
+                                ]
+                              },
+                              "refund_date": {
+                                "type": "string",
+                                "description": "Date when refund was initiated"
+                              },
+                              "settlement_date": {
+                                "type": "string",
+                                "description": "Date when refund was settled"
+                              },
+                              "bank_ref_no": {
+                                "type": "string",
+                                "description": "Bank reference number"
+                              },
+                              "error_code": {
+                                "type": "string",
+                                "description": "Error code if refund failed"
+                              },
+                              "error_message": {
+                                "type": "string",
+                                "description": "Error message if refund failed"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "No Refunds Found",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "enum": [
+                            0
+                          ],
+                          "description": "Response status (0 when no refunds found)"
+                        },
+                        "msg": {
+                          "type": "string",
+                          "description": "Message indicating no refunds found",
+                          "example": "No refunds found for this transaction"
+                        },
+                        "transaction_id": {
+                          "type": "string",
+                          "description": "The transaction ID that was queried"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful refund history retrieval",
+                    "value": {
+                      "status": 1,
+                      "msg": "Refunds found Successfully",
+                      "transaction_id": "131278422",
+                      "total_refunds": 2,
+                      "total_refund_amount": "150.00",
+                      "original_amount": "500.00",
+                      "remaining_refundable": "350.00",
+                      "refunds": [
+                        {
+                          "request_id": "req_123456",
+                          "refund_amount": "100.00",
+                          "refund_status": "success",
+                          "refund_date": "2023-11-28 10:30:00",
+                          "settlement_date": "2023-11-29 09:15:00",
+                          "bank_ref_no": "REF123456789"
+                        },
+                        {
+                          "request_id": "req_789012",
+                          "refund_amount": "50.00",
+                          "refund_status": "success",
+                          "refund_date": "2023-11-30 14:20:00",
+                          "settlement_date": "2023-12-01 11:45:00",
+                          "bank_ref_no": "REF987654321"
+                        }
+                      ]
+                    }
+                  },
+                  "no_refunds": {
+                    "summary": "No refunds found for transaction",
+                    "value": {
+                      "status": 0,
+                      "msg": "No refunds found for this transaction",
+                      "transaction_id": "131278422"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "enum": [
+                        0
+                      ]
+                    },
+                    "msg": {
+                      "type": "string",
+                      "example": "Parameter missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "HashAuthentication": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "hash",
+        "description": "SHA512 hash for request authentication using format: sha512(key|command|var1|salt)"
+      }
+    }
+  },
+  "security": [
+    {
+      "HashAuthentication": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Refund History",
+      "description": "APIs for retrieving comprehensive refund history"
+    }
+  ]
+}
