@@ -24,5 +24,5 @@ excerpt: >-
 api:
   file: payu_get_all_refunds_txnid_oas31.json
   operationId: getAllRefundsFromTransactionId
-hidden: false
+hidden: true
 ---
