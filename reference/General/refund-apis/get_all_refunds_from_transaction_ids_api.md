@@ -4,7 +4,7 @@ api:
   file: get-all-refunds-for-txnid-3.json
   operationId: GetAllRefundsfromTransactionIDs
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
