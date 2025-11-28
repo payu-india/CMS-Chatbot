@@ -54,5 +54,5 @@ excerpt: |-
 api:
   file: refund_apis.json
   operationId: post_merchant-postservice-phpmerchant-postservice-php
-hidden: false
+hidden: true
 ---
