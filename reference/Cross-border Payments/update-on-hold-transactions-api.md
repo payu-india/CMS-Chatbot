@@ -9,51 +9,48 @@ Use this API to submit additional customer information required to release on-ho
 
 **Endpoint**
 
-| Environment | URL | Method |
-|:--|:--|:--|
-| Production | `https://oneapi.payu.in/opgsp/updateOnHoldTxnDetails` | POST |
-
+| Environment | URL                                                   | Method |
+| :---------- | :---------------------------------------------------- | :----- |
+| Production  | `https://oneapi.payu.in/opgsp/updateOnHoldTxnDetails` | POST   |
 
 ## Request Headers
 
-| Parameter | Description | Example |
-|:--|:--|:--|
-| mid<br/>`mandatory` | `String` - Merchant ID of the merchant | 180012 |
-| accept<br/>`mandatory` | `String` - Type of JSON required in the API | application/json |
-| Content-Type<br/>`mandatory` | `String` - Content type of the request body | application/json |
-| Authorization<br/>`mandatory` | `String` - HMAC SHA512 authorization header | See overview |
-| Date<br/>`mandatory` | `String` - Current UTC date in HTTP format | Wed, 28 Jun 2023 11:25:19 GMT |
-
+| Parameter                      | Description                                 | Example                       |
+| :----------------------------- | :------------------------------------------ | :---------------------------- |
+| mid<br />`mandatory`           | `String` - Merchant ID of the merchant      | 180012                        |
+| accept<br />`mandatory`        | `String` - Type of JSON required in the API | application/json              |
+| Content-Type<br />`mandatory`  | `String` - Content type of the request body | application/json              |
+| Authorization<br />`mandatory` | `String` - HMAC SHA512 authorization header | See overview                  |
+| Date<br />`mandatory`          | `String` - Current UTC date in HTTP format  | Wed, 28 Jun 2023 11:25:19 GMT |
 
 ## Request Parameters
 
 The request body is an array of transaction update objects.
 
-| Parameter | Description | Example |
-|:--|:--|:--|
-| transactionId<br/>`mandatory` | `String` - The PayU transaction ID (requestId from GET API response) | 12345 |
-| amlockTxnRequestMappingDto<br/>`mandatory` | `Array` - Array of key-value pairs containing the required fields | See below |
+| Parameter                                   | Description                                                          | Example   |
+| :------------------------------------------ | :------------------------------------------------------------------- | :-------- |
+| transactionId<br />`mandatory`              | `String` - The PayU transaction ID (requestId from GET API response) | 12345     |
+| amlockTxnRequestMappingDto<br />`mandatory` | `Array` - Array of key-value pairs containing the required fields    | See below |
 
 ### amlockTxnRequestMappingDto Object
 
-| Parameter | Description | Example |
-|:--|:--|:--|
-| key<br/>`mandatory` | `String` - Field key name (from keyMappingList in GET API response) | city |
-| value<br/>`mandatory` | `String` - Value for the field | Mumbai |
+| Parameter              | Description                                                         | Example |
+| :--------------------- | :------------------------------------------------------------------ | :------ |
+| key<br />`mandatory`   | `String` - Field key name (from keyMappingList in GET API response) | city    |
+| value<br />`mandatory` | `String` - Value for the field                                      | Mumbai  |
 
 ### Common Field Keys
 
-| Key | Display Name | Validation Regex |
-|:--|:--|:--|
-| first_name | First name | ^[A-Za-z]*$ |
-| last_name | Last name | ^[A-Za-z]*$ |
-| address_line | Address | ^[^\<>%$]*$ |
-| city | City | ^[a-zA-Z\s]*$ |
-| state | State | ^[a-zA-Z\s]*$ |
-| zipcode | ZIP Code | ^[1-9][0-9]{5}$ |
-| invoice_id | Invoice ID | ^[a-zA-Z0-9]*$ |
-| dob | Date of Birth | - |
-
+| Key          | Display Name  | Validation Regex |
+| :----------- | :------------ | :--------------- |
+| first_name   | First name    | ^[A-Za-z]*$      |
+| last_name    | Last name     | ^[A-Za-z]*$      |
+| address_line | Address       | ^[^\<>%$]*$      |
+| city         | City          | ^[a-zA-Z\s]*$    |
+| state        | State         | ^[a-zA-Z\s]*$    |
+| zipcode      | ZIP Code      | ^[1-9][0-9]{5}$  |
+| invoice_id   | Invoice ID    | ^[a-zA-Z0-9]*$   |
+| dob          | Date of Birth | -                |
 
 ## Sample Request
 
@@ -151,7 +148,6 @@ try:
 except requests.exceptions.RequestException as e:
     print(f"Error: {e}")
 ```
-
 ```csharp
 using System;
 using System.Net.Http;
@@ -444,25 +440,26 @@ if ($responseData !== null) {
 
 ## Response Parameters
 
-| Parameter | Description | Example |
-|:--|:--|:--|
-| transactionId<br/>`mandatory` | `String` - The transaction ID that was submitted | 22224815621 |
-| action<br/>`optional` | `String` - Action type: capture or refund | capture |
-| responseDTO<br/>`mandatory` | `Object` - Response details object | See below |
+| Parameter                      | Description                                      | Example     |
+| :----------------------------- | :----------------------------------------------- | :---------- |
+| transactionId<br />`mandatory` | `String` - The transaction ID that was submitted | 22224815621 |
+| action<br />`optional`         | `String` - Action type: capture or refund        | capture     |
+| responseDTO<br />`mandatory`   | `Object` - Response details object               | See below   |
 
 ### responseDTO Object
 
-| Parameter | Description | Example |
-|:--|:--|:--|
-| code<br/>`optional` | `String` - Response code. 2000 indicates success. | 2000 |
-| message<br/>`mandatory` | `String` - Response message | Success |
-| status<br/>`mandatory` | `Integer` - Status indicator. 0 indicates success. | 0 |
-| result<br/>`optional` | `String` - Result message for successful operations | Successfully update the fields and run the settlement fallback |
-| traceId<br/>`optional` | `String` - Trace ID for debugging failed requests | 24916044faeafc41f750c7fe63939e47 |
+| Parameter                | Description                                         | Example                                                        |
+| :----------------------- | :-------------------------------------------------- | :------------------------------------------------------------- |
+| code<br />`optional`     | `String` - Response code. 2000 indicates success.   | 2000                                                           |
+| message<br />`mandatory` | `String` - Response message                         | Success                                                        |
+| status<br />`mandatory`  | `Integer` - Status indicator. 0 indicates success.  | 0                                                              |
+| result<br />`optional`   | `String` - Result message for successful operations | Successfully update the fields and run the settlement fallback |
+| traceId<br />`optional`  | `String` - Trace ID for debugging failed requests   | 24916044faeafc41f750c7fe63939e47                               |
 
 ## Sample Response
 
 ### Success Scenario
+
 * Simple transaction
 
 ```json
@@ -477,6 +474,7 @@ if ($responseData !== null) {
     }
 }
 ```
+
 * Multiple transactions
 
 ```json
@@ -514,6 +512,7 @@ if ($responseData !== null) {
 ```
 
 ### Failure scenarios
+
 * Invalid Merchant ID
 
 ```json
@@ -557,17 +556,12 @@ if ($responseData !== null) {
 }
 ```
 
-
-
 ## Response Status Codes
 
-| Value | Meaning | Action to Take |
-|:--|:--|:--|
-| 0 | Response not received yet / Fields updated successfully | Wait for processing or proceed |
-| 1 | Successfully update the fields and run the settlement fallback | No action required - success |
-| -1 | Invalid key value pair passed | Verify the key names and values match the keyMappingList from GET API |
-| -2 | Failed to call PayU API opgsp_update_transaction | Retry the request or contact support |
-| -3 | Exception occurred in updateFieldsForAmlockTxnRetry | Contact support with traceId |
-
-
-
+| Value | Meaning                                                        | Action to Take                                                        |
+| :---- | :------------------------------------------------------------- | :-------------------------------------------------------------------- |
+| 0     | Response not received yet / Fields updated successfully        | Wait for processing or proceed                                        |
+| 1     | Successfully update the fields and run the settlement fallback | No action required - success                                          |
+| -1    | Invalid key value pair passed                                  | Verify the key names and values match the keyMappingList from GET API |
+| -2    | Failed to call PayU API opgsp_update_transaction               | Retry the request or contact support                                  |
+| -3    | Exception occurred in updateFieldsForAmlockTxnRetry            | Contact support with traceId                                          |
