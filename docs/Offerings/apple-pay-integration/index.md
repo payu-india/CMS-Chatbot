@@ -8,6 +8,8 @@ metadata:
 ---
 Apple Pay offers a fast, secure, and seamless payment experience across iOS and watchOS apps, as well as websites on Safari. With a simple Face ID, Touch ID, or a double-click on Apple Watch, users can instantly and securely share their payment, shipping, and contact details to complete transactions.
 
+<Image border={false} />
+
 ## Key Features
 
 | Feature                | Description                                                                 |
