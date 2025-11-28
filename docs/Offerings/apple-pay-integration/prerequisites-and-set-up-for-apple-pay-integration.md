@@ -36,19 +36,18 @@ To enable Apple Pay on your website:
   Ensure correct configuration. When setting up Apple Pay domain verification, follow these requirements:
 
   <Accordion title="File Path and Response" icon="fa-info-circle">
-
     * The verification file must be accessible at the exact path `/.well-known/apple-developer-merchantid-domain-association`.
     * The file must return a direct HTTP 200 status code and not a 301, 302, or any 3xx redirects.
     * Apple does not support HTTP URL redirects for the domain association file.
   </Accordion>
 
-  <Accordion title="Server Configuration" icon="fa-info-server">
+  <Accordion title="Server Configuration" icon="fa-info-circle">
     * The file must be served via HTTPS 1.1 protocol.
     * The HTTP response must return the file as a binary object, not as HTML or plain text.
     * Set the Content-Type header to `application/octet-stream` to indicate this is a binary file download.
   </Accordion>
 
-  <Accordion title="Network Access" icon="fa-info-table">
+  <Accordion title="Network Access" icon="fa-info-circle">
     * Ensure the file is not behind a firewall or access restrictions.
     * If using a firewall, configure it to allow Apple's IP addresses.
   </Accordion>
