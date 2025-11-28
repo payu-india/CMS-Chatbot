@@ -25,6 +25,8 @@ api:
   file: payu_get_all_refunds_txnid_oas31.json
   operationId: getAllRefundsFromTransactionId
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Get All Refunds for a Transaction IDs API
   description: >-
