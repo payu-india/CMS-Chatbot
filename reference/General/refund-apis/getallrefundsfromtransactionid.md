@@ -24,5 +24,16 @@ excerpt: >-
 api:
   file: payu_get_all_refunds_txnid_oas31.json
   operationId: getAllRefundsFromTransactionId
-hidden: true
+hidden: false
+metadata:
+  title: Get All Refunds for a Transaction IDs API
+  description: >-
+    The document describes the **Get All Refunds for a Transaction ID** API
+    command, which retrieves the status of all refund requests for a specific
+    Transaction ID, providing details such as request ID, payment gateway used,
+    refund status, and creation date.
+  keywords:
+    - getAllRefundsFromTxnIds API Command
+    - Get All Refunds from Transaction IDs
+    - Get All Refunds API
 ---
