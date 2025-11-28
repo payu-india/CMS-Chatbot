@@ -1,10 +1,10 @@
 ---
-title: Refund Transaction API
+title: '[OLD]Refund Transaction API'
 api:
   file: cancel_refund_tranasaction-10.json
   operationId: cancel_refund_transaction
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
