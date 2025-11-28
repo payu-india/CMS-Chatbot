@@ -3,9 +3,21 @@ title: Check Action Status with PayU ID
 api:
   file: payu_check_action_status_payuid_oas31.json
   operationId: checkActionStatusWithPayUId
-hidden: true
+hidden: false
 link:
   new_tab: false
+metadata:
+  title: Check Refund Status API with PayU ID
+  description: >-
+    The **check_action_status** API returns the status of capture, refund, and
+    cancel requests for a specific PayUID. More information on payment states
+    can be found in the [Payment States
+    Explanations](https://docs.payu.in/reference/payment-state-explanations)
+    document.
+  keywords:
+    - Check Refund Status API with PayU ID
+    - check_action_status API Command
+    - Using PayU ID to Check Refund Status API
 ---
 The **check_action_status** API has another usage too. For a particular PayUID, it returns any of the following the states:
 
