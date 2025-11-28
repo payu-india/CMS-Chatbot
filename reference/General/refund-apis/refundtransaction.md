@@ -3,9 +3,20 @@ title: Refund Transaction API
 api:
   file: refund_apis.json
   operationId: refundTransaction
-hidden: true
+hidden: false
 link:
   new_tab: false
+metadata:
+  title: Refund Transaction API
+  description: >-
+    The Refund Transaction API allows users to cancel or refund transactions in
+    different states, with specific parameters required for each action. Sample
+    requests and responses are provided for successful and failed scenarios.
+  keywords:
+    - cancel_refund_transaction command
+    - Refund Transaction API
+    - Cancel a Refund API
+    - API for Refund Transaction
 ---
 The Refund Transaction API (**cancel_refund_transaction**) can be used for the following purposes:
 
