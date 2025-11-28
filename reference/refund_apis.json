@@ -159,8 +159,8 @@
                 {
                   "key": "command",
                   "value": "cancel_refund_transaction",
-                  "description": "The API command name. For refund or canceling transactions, the value should be 'cancel_refund_transaction'.",
-                  "type": "text"
+                  "type": "text",
+                  "description": "The API command name. For refund or canceling transactions, the value should be 'cancel_refund_transaction'."
                 },
                 {
                   "key": "var1",
@@ -269,8 +269,8 @@
                 {
                   "key": "command",
                   "value": "getAllRefundsFromTxnIds",
-                  "description": "The API command name. For this API, the value should be 'getAllRefundsFromTxnIds'.",
-                  "type": "text"
+                  "type": "text",
+                  "description": "The API command name. For this API, the value should be 'getAllRefundsFromTxnIds'."
                 },
                 {
                   "key": "var1",
@@ -353,8 +353,8 @@
                 {
                   "key": "command",
                   "value": "check_action_status",
-                  "description": "The API command name. For this API, the value should be 'check_action_status'.",
-                  "type": "text"
+                  "type": "text",
+                  "description": "The API command name. For this API, the value should be 'check_action_status'."
                 },
                 {
                   "key": "var1",
@@ -435,8 +435,8 @@
                 {
                   "key": "command",
                   "value": "check_action_status",
-                  "description": "The API command name. For this API, the value should be 'check_action_status'.",
-                  "type": "text"
+                  "type": "text",
+                  "description": "The API command name. For this API, the value should be 'check_action_status'."
                 },
                 {
                   "key": "var1",
