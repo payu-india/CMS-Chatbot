@@ -1,548 +1,352 @@
 {
+  "openapi": "3.1.0",
   "info": {
-    "_postman_id": "d12c1fa1-52d3-4d21-be2d-b0b514219471",
-    "name": "PayU Refund APIs Collection - All APIs",
-    "description": "🚀 **Ultimate PayU API Collection - Complete Merchant Toolkit**\n\nThis comprehensive collection includes ALL essential PayU merchant APIs in one organized package:\n\n## 📂 **Collection Structure:**\n\n### 🔄 **Transaction Management**\n- **Get Transaction Details API** - Extract transaction details between periods\n\n### 💰 **Refund Operations**\n- **Refund Transaction API** - Initiate full/partial refunds\n- **Get All Refunds from Transaction IDs API** - Comprehensive refund history\n\n### 📊 **Status Tracking**\n- **Check Action Status (Request ID)** - Track specific refund requests\n- **Check Action Status (PayU ID)** - Complete transaction lifecycle\n\n### 🔔 **Callbacks & Notifications**\n- **Refund ARN Callback Example** - Webhook with ARN details\n\n## ✨ **Key Features:**\n- ✅ Automatic hash generation for all APIs\n- ✅ Comprehensive documentation with examples\n- ✅ Organized folder structure for easy navigation\n- ✅ Environment variables for test/production\n- ✅ Sample requests and responses\n- ✅ Security best practices\n- ✅ Complete workflow guidance\n\n## 🛠️ **Quick Setup:**\n1. Import this collection into Postman\n2. Update merchant keys in all requests\n3. Replace salt values in pre-request scripts\n4. Configure environment variables\n5. Test APIs in logical order\n\n## 🌐 **Environment URLs:**\n- **Test:** https://test.payu.in/merchant/postservice.php\n- **Production:** https://info.payu.in/merchant/postservice.php\n\n**Perfect for:** Complete PayU integration, team collaboration, comprehensive testing, and production deployment.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "34549763",
-    "_collection_link": "https://orange-station-272834.postman.co/workspace/a045ba8a-4a29-4c14-87b9-864034c844e8/collection/34549763-d12c1fa1-52d3-4d21-be2d-b0b514219471?action=share&source=collection_link&creator=34549763"
+    "title": "PayU Refund APIs Collection",
+    "description": "🚀 **Ultimate PayU API Collection - Complete Merchant Toolkit**\n\nThis comprehensive collection includes ALL essential PayU merchant APIs in one organized package:\n\n## 📂 **API Operations:**\n\n### 🔄 **Transaction Management**\n- **Get Transaction Details API** - Extract transaction details between periods\n\n### 💰 **Refund Operations**\n- **Refund Transaction API** - Initiate full/partial refunds\n- **Get All Refunds from Transaction IDs API** - Comprehensive refund history\n\n### 📊 **Status Tracking**\n- **Check Action Status (Request ID)** - Track specific refund requests\n- **Check Action Status (PayU ID)** - Complete transaction lifecycle\n\n### 🔔 **Callbacks & Notifications**\n- **Refund ARN Callback Example** - Webhook with ARN details\n\n## ✨ **Key Features:**\n- ✅ Automatic hash generation for all APIs\n- ✅ Comprehensive documentation with examples\n- ✅ Static command parameters for consistent usage\n- ✅ Environment variables for test/production\n- ✅ Sample requests and responses\n- ✅ Security best practices\n- ✅ Complete workflow guidance\n\n## 🛠️ **Quick Setup:**\n1. Configure merchant keys and salt values\n2. Update environment URLs for test/production\n3. Test APIs in logical order\n4. Implement proper error handling\n\n## 🌐 **Environment URLs:**\n- **Test:** https://test.payu.in/merchant/postservice.php\n- **Production:** https://info.payu.in/merchant/postservice.php\n\n**Perfect for:** Complete PayU integration, team collaboration, comprehensive testing, and production deployment.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "PayU API Support",
+      "url": "https://docs.payu.in"
+    }
   },
-  "item": [
+  "servers": [
     {
-      "name": "🔄 Transaction Management",
-      "item": [
-        {
-          "name": "Get Transaction Details API",
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "exec": [
-                  "// Get values from request",
-                  "const key = pm.request.body.urlencoded.get(\"key\");",
-                  "const command = pm.request.body.urlencoded.get(\"command\");",
-                  "const var1 = pm.request.body.urlencoded.get(\"var1\");",
-                  "const salt = \"9KTEuQB3ksq2EuV5SBLsjDRKPA7QsHwk\"; // Replace with your actual salt",
-                  " ",
-                  "const hashString = key + \"|\" + command + \"|\" + var1 + \"|\" + salt;",
-                  " ",
-                  "// Generate SHA-512 hash",
-                  "const hash = CryptoJS.SHA512(hashString).toString();",
-                  " ",
-                  "// Set the hash in the request",
-                  "pm.request.body.urlencoded.upsert({key: \"hash\", value: hash});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "key",
-                  "value": "{{key}}",
-                  "description": "The merchant key provided by PayU",
-                  "type": "text"
-                },
-                {
-                  "key": "command",
-                  "value": "get_Transaction_Details",
-                  "description": "API command name",
-                  "type": "text"
-                },
-                {
-                  "key": "var1",
-                  "value": "2025-09-15",
-                  "description": "Start date (YYYY-MM-DD format)",
-                  "type": "text"
-                },
-                {
-                  "key": "var2",
-                  "value": "2025-09-20",
-                  "description": "End date (YYYY-MM-DD format)",
-                  "type": "text"
-                },
-                {
-                  "key": "var3",
-                  "value": "1",
-                  "description": "Pagination number",
-                  "type": "text"
-                },
-                {
-                  "key": "hash",
-                  "value": "{{hash}}",
-                  "description": "sha512(key|command|var1|salt)",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{baseURL}}?form=2",
-              "host": [
-                "{{baseURL}}"
-              ],
-              "query": [
-                {
-                  "key": "form",
-                  "value": "2"
-                }
-              ]
-            },
-            "description": "**📊 Get Transaction Details API**\n\nRetrieve transaction details between specified date ranges with pagination support.\n\n**🎯 Purpose:**\n- Extract transaction data for reporting and analysis\n- Get comprehensive transaction information\n- Support for date range filtering\n- Pagination for large datasets\n\n**🔧 Parameters:**\n- **var1**: Start date (YYYY-MM-DD format)\n- **var2**: End date (YYYY-MM-DD format)\n- **var3**: Page number for pagination\n\n**💡 Use Cases:**\n- Daily/monthly transaction reports\n- Transaction reconciliation\n- Financial reporting and analysis\n- Data export for accounting systems\n- Business intelligence and analytics\n\n**🔐 Hash Calculation:** `sha512(key|command|var1|salt)`\n\n**🌐 URLs:**\n- **Test:** https://test.payu.in/merchant/postservice.php?form=2\n- **Production:** https://info.payu.in/merchant/postservice.php?form=2\n\n**📝 Sample Response:**\n```json\n{\n  \"status\": 1,\n  \"msg\": \"XX out of XX Transactions Fetched Successfully\",\n  \"count\": 25,\n  \"transaction_details\": {\n    \"txnid1\": { /* transaction details */ },\n    \"txnid2\": { /* transaction details */ }\n  }\n}\n```"
-          },
-          "response": []
-        }
-      ]
+      "url": "https://test.payu.in",
+      "description": "PayU Test Environment"
     },
     {
-      "name": "💰 Refund Operations",
-      "item": [
-        {
-          "name": "Refund Transaction API",
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "exec": [
-                  "// Get values from request",
-                  "const key = pm.request.body.urlencoded.get(\"key\");",
-                  "const command = pm.request.body.urlencoded.get(\"command\");",
-                  "const var1 = pm.request.body.urlencoded.get(\"var1\");",
-                  "const salt = \"9KTEuQB3ksq2EuV5SBLsjDRKPA7QsHwk\"; // Replace with your actual salt",
-                  " ",
-                  "const hashString = key + \"|\" + command + \"|\" + var1 + \"|\" + salt;",
-                  " ",
-                  "// Generate SHA-512 hash",
-                  "const hash = CryptoJS.SHA512(hashString).toString();",
-                  " ",
-                  "// Set the hash in the request",
-                  "pm.request.body.urlencoded.upsert({key: \"hash\", value: hash});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "key",
-                  "value": "JPM7Fg",
-                  "description": "The merchant key provided by PayU. It is a unique identifier for the merchant account.",
-                  "type": "text"
-                },
-                {
-                  "key": "command",
-                  "value": "cancel_refund_transaction",
-                  "type": "text",
-                  "description": "The API command name. For refund or canceling transactions, the value should be 'cancel_refund_transaction'."
-                },
-                {
-                  "key": "var1",
-                  "value": "403993715527059978",
-                  "description": "The PayU Transaction ID (mihpayid) that you receive in the response of a successful payment.",
-                  "type": "text"
-                },
-                {
-                  "key": "var2",
-                  "value": "refund_token_123",
-                  "description": "The Token ID (unique token generated by the merchant). This token should be unique for every refund request and helps track the request. Maximum 23 characters.",
-                  "type": "text"
-                },
-                {
-                  "key": "var3",
-                  "value": "100.00",
-                  "description": "The amount to be refunded. For full refund, this should equal the original transaction amount. For partial refund, this should be less than the original transaction amount.",
-                  "type": "text"
-                },
-                {
-                  "key": "var5",
-                  "value": "https://yourwebsite.com/refund-callback",
-                  "description": "The refund callback (webhook) URL where PayU can send notification regarding the status of the refund.",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "var8",
-                  "value": "{\"refundInfo\":[{\"parentTxnId\":\"403993715527059978\",\"amount\":\"50.00\"}]}",
-                  "description": "Refund split information for split transactions, provided in JSON format. Contains information on amounts to split between sub-merchants or child merchants.",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "hash",
-                  "value": "{{hash}}",
-                  "description": "A hash value for security validation. It is calculated using the sha512 algorithm with the format: sha512(key|command|var1|salt).",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{baseURL}}?form=2",
-              "host": [
-                "{{baseURL}}"
-              ],
-              "query": [
-                {
-                  "key": "form",
-                  "value": "2"
-                }
-              ]
-            },
-            "description": "**💰 Refund Transaction API**\n\nInitiate refunds for PayU transactions with support for full and partial amounts.\n\n**🎯 Purpose:**\n- Process customer refund requests\n- Handle order cancellations\n- Manage partial refunds for returned items\n- Support split transaction refunds\n- Cancel pre-authorized transactions\n\n**🔧 Parameters:**\n- **var1**: PayU transaction ID (mihpayid)\n- **var2**: Unique refund token from merchant\n- **var3**: Amount to be refunded\n- **var5**: Callback URL for notifications (optional)\n- **var8**: JSON for split transaction refunds (optional)\n\n**⚠️ Key Points:**\n- **Captured transactions**: Partial or full refunds allowed\n- **Pre-auth transactions**: Only full amount cancellation\n- **var3 (amount)**: Mandatory for captured transactions\n- **Response**: Extract `request_id` for status tracking\n\n**💡 Use Cases:**\n- Customer return requests\n- Order cancellations\n- Damaged product refunds\n- Partial refunds for returned items\n- Subscription cancellations\n\n**🔐 Hash Calculation:** `sha512(key|command|var1|salt)`\n\n**📝 Sample Response:**\n```json\n{\n  \"status\": 1,\n  \"msg\": \"Refund Request Queued\",\n  \"request_id\": \"req_123456789012345\",\n  \"bank_ref_no\": \"BANK123456789\",\n  \"mihpayid\": \"403993715527059978\"\n}\n```\n\n**🔄 Next Steps:**\nUse the `request_id` from response with **Check Action Status (Request ID)** API to track refund progress."
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Refunds from Transaction IDs API",
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "exec": [
-                  "// Get values from request",
-                  "const key = pm.request.body.urlencoded.get(\"key\");",
-                  "const command = pm.request.body.urlencoded.get(\"command\");",
-                  "const var1 = pm.request.body.urlencoded.get(\"var1\");",
-                  "const salt = \"9KTEuQB3ksq2EuV5SBLsjDRKPA7QsHwk\"; // Replace with your actual salt",
-                  " ",
-                  "const hashString = key + \"|\" + command + \"|\" + var1 + \"|\" + salt;",
-                  " ",
-                  "// Generate SHA-512 hash",
-                  "const hash = CryptoJS.SHA512(hashString).toString();",
-                  " ",
-                  "// Set the hash in the request",
-                  "pm.request.body.urlencoded.upsert({key: \"hash\", value: hash});"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "key",
-                  "value": "JPM7Fg",
-                  "description": "The merchant key provided by PayU. It is a unique identifier for the merchant account.",
-                  "type": "text"
-                },
-                {
-                  "key": "command",
-                  "value": "getAllRefundsFromTxnIds",
-                  "type": "text",
-                  "description": "The API command name. For this API, the value should be 'getAllRefundsFromTxnIds'."
-                },
-                {
-                  "key": "var1",
-                  "value": "403993715527059978",
-                  "description": "The transaction ID for which refunds are being searched.",
-                  "type": "text"
-                },
-                {
-                  "key": "hash",
-                  "value": "{{hash}}",
-                  "description": "A hash value for security validation. It is calculated using the sha512 algorithm with the format: sha512(key|command|var1|salt).",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{baseURL}}merchant/postservice.php",
-              "host": [
-                "{{baseURL}}merchant"
-              ],
-              "path": [
-                "postservice.php"
-              ]
-            },
-            "description": "**📋 Get All Refunds from Transaction IDs API**\n\nRetrieve comprehensive refund details for a specific transaction ID.\n\n**🎯 Purpose:**\n- Get complete refund history for a transaction\n- Retrieve all refund attempts and their statuses\n- Transaction reconciliation and reporting\n- Customer service support and inquiry handling\n\n**🔧 Parameters:**\n- **var1**: Transaction ID for refund details\n- **Limitation**: Only one transaction ID per request\n\n**📊 Returns:**\n- All refund requests for the transaction\n- Refund amounts and current statuses\n- Refund timestamps and processing details\n- Success/failure information with reasons\n- Processing gateway information\n\n**💡 Use Cases:**\n- Customer inquiries: \"What's my refund status?\"\n- Reconciling refund records with bank statements\n- Auditing refund transactions for compliance\n- Comprehensive refund reporting for management\n- Troubleshooting refund discrepancies\n\n**🔐 Hash Calculation:** `sha512(key|command|var1|salt)`\n\n**🌐 URLs:**\n- **Test:** https://test.payu.in/merchant/postservice.php\n- **Production:** https://info.payu.in/merchant/postservice.php\n\n**📝 Sample Response:**\n```json\n{\n  \"status\": 1,\n  \"msg\": \"success\",\n  \"result\": [\n    {\n      \"request_id\": \"req_123456789\",\n      \"amount\": \"100.00\",\n      \"status\": \"success\",\n      \"created_at\": \"2025-09-24 10:30:00\",\n      \"processed_at\": \"2025-09-24 11:45:00\"\n    }\n  ]\n}\n```"
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "📊 Status Tracking",
-      "item": [
-        {
-          "name": "Check Action Status (Request ID)",
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "exec": [
-                  "// Get values from request",
-                  "const key = pm.request.body.urlencoded.get(\"key\");",
-                  "const command = pm.request.body.urlencoded.get(\"command\");",
-                  "const var1 = pm.request.body.urlencoded.get(\"var1\");",
-                  "const salt = \"9KTEuQB3ksq2EuV5SBLsjDRKPA7QsHwk\"; // Replace with your actual salt",
-                  " ",
-                  "const hashString = key + \"|\" + command + \"|\" + var1 + \"|\" + salt;",
-                  " ",
-                  "// Generate SHA-512 hash",
-                  "const hash = CryptoJS.SHA512(hashString).toString();",
-                  " ",
-                  "// Set the hash in the request",
-                  "pm.request.body.urlencoded.upsert({key: \"hash\", value: hash});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              },
-              {
-                "key": "accept",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "key",
-                  "value": "JPM7Fg",
-                  "description": "The merchant key provided by PayU. It is a unique identifier for the merchant account.",
-                  "type": "text"
-                },
-                {
-                  "key": "command",
-                  "value": "check_action_status",
-                  "type": "text",
-                  "description": "The API command name. For this API, the value should be 'check_action_status'."
-                },
-                {
-                  "key": "var1",
-                  "value": "req_123456789012345",
-                  "description": "The Request ID returned when cancel_refund_transaction API was successfully executed.",
-                  "type": "text"
-                },
-                {
-                  "key": "hash",
-                  "value": "{{hash}}",
-                  "description": "A hash value for security validation. It is calculated using the sha512 algorithm with the format: sha512(key|command|var1|salt).",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{baseURL}}?form=2",
-              "host": [
-                "{{baseURL}}"
-              ],
-              "query": [
-                {
-                  "key": "form",
-                  "value": "2"
-                }
-              ]
-            },
-            "description": "**🔍 Check Action Status (Request ID)**\n\nTrack the status of specific refund/cancellation requests using request_id from previous API calls.\n\n**🎯 Purpose:**\n- Monitor specific refund requests in real-time\n- Track cancellation status and progress\n- Get updates on initiated actions\n- Follow up on request_id from refund API responses\n\n**🔧 Parameters:**\n- **var1**: Request ID from `cancel_refund_transaction` response\n- **Source**: Extract from refund API response\n\n**🔄 Workflow:**\n1. **Call** `cancel_refund_transaction` API\n2. **Extract** `request_id` from response\n3. **Use** this API with request_id to check status\n4. **Monitor** until status shows final state\n\n**📊 Typical Status Values:**\n- `success`: Action completed successfully ✅\n- `pending`: Action is in progress ⏳\n- `failure`: Action failed ❌\n- `initiated`: Action has been initiated 🚀\n- `processing`: Action is being processed ⚙️\n\n**💡 Use Cases:**\n- Customer service inquiries about refund status\n- Real-time refund tracking systems\n- Automated monitoring and alerts\n- Integration with merchant dashboards\n- Status validation and confirmation\n\n**🔐 Hash Calculation:** `sha512(key|command|var1|salt)`\n\n**📝 Sample Response:**\n```json\n{\n  \"status\": 1,\n  \"msg\": \"success\",\n  \"request_id\": \"req_123456789012345\",\n  \"bank_ref_no\": \"BANK123456789\",\n  \"mihpayid\": \"403993715527059978\",\n  \"action\": \"refund\",\n  \"action_status\": \"success\",\n  \"amount\": \"100.00\"\n}\n```"
-          },
-          "response": []
-        },
-        {
-          "name": "Check Action Status (PayU ID)",
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "exec": [
-                  "// Get values from request",
-                  "const key = pm.request.body.urlencoded.get(\"key\");",
-                  "const command = pm.request.body.urlencoded.get(\"command\");",
-                  "const var1 = pm.request.body.urlencoded.get(\"var1\");",
-                  "const salt = \"9KTEuQB3ksq2EuV5SBLsjDRKPA7QsHwk\"; // Replace with your actual salt",
-                  " ",
-                  "const hashString = key + \"|\" + command + \"|\" + var1 + \"|\" + salt;",
-                  " ",
-                  "// Generate SHA-512 hash",
-                  "const hash = CryptoJS.SHA512(hashString).toString();",
-                  " ",
-                  "// Set the hash in the request",
-                  "pm.request.body.urlencoded.upsert({key: \"hash\", value: hash});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              },
-              {
-                "key": "accept",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "key",
-                  "value": "JPM7Fg",
-                  "description": "The merchant key provided by PayU. It is a unique identifier for the merchant account.",
-                  "type": "text"
-                },
-                {
-                  "key": "command",
-                  "value": "check_action_status",
-                  "type": "text",
-                  "description": "The API command name. For this API, the value should be 'check_action_status'."
-                },
-                {
-                  "key": "var1",
-                  "value": "403993715527059978",
-                  "description": "PayU ID (mihpayid) for which the action status is to be fetched.",
-                  "type": "text"
-                },
-                {
-                  "key": "var2",
-                  "value": "payuid",
-                  "description": "Lookup type, which should be set to 'payuid' to indicate that the API should query using the PayUID (mihpayid).",
-                  "type": "text"
-                },
-                {
-                  "key": "hash",
-                  "value": "{{hash}}",
-                  "description": "A hash value for security validation. It is calculated using the sha512 algorithm with the format: sha512(key|command|var1|salt).",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{baseURL}}?form=2",
-              "host": [
-                "{{baseURL}}"
-              ],
-              "query": [
-                {
-                  "key": "form",
-                  "value": "2"
-                }
-              ]
-            },
-            "description": "**🔎 Check Action Status (PayU ID)**\n\nGet complete transaction lifecycle and all actions for a specific PayU transaction ID.\n\n**🎯 Purpose:**\n- Track comprehensive transaction history\n- Get all capture and refund actions\n- Complete transaction reconciliation\n- Customer service support with full context\n\n**🔧 Parameters:**\n- **var1**: PayU transaction ID (mihpayid)\n- **var2**: `'payuid'` (indicates PayU ID method - required)\n\n**📊 Returns:**\n- All capture actions with status and amounts\n- All refund actions with status and refund modes\n- Complete transaction action history\n- Action IDs and timestamps\n- Processing gateway information\n\n**💡 Use Cases:**\n- Customer service inquiries with full transaction context\n- Transaction reconciliation and audit trails\n- Comprehensive status reporting for management\n- Understanding complete transaction lifecycle\n- Dispute resolution with complete history\n\n**🔍 Comparison with Request ID API:**\n- **Request ID**: Tracks specific actions\n- **PayU ID**: Shows complete transaction history\n- **Request ID**: Real-time action updates\n- **PayU ID**: Comprehensive lifecycle view\n\n**🔐 Hash Calculation:** `sha512(key|command|var1|salt)`\n\n**📝 Sample Response:**\n```json\n{\n  \"status\": 1,\n  \"msg\": \"1 out of 1 Transactions Fetched Successfully\",\n  \"transaction_details\": {\n    \"403993715521937565\": {\n      \"131278418\": {\n        \"mihpayid\": \"403993715521937565\",\n        \"action\": \"capture\",\n        \"status\": \"SUCCESS\",\n        \"amt\": \"100.00\",\n        \"refund_mode\": \"-\"\n      },\n      \"131278422\": {\n        \"mihpayid\": \"403993715521937565\",\n        \"action\": \"refund\",\n        \"status\": \"success\",\n        \"amt\": \"10.00\",\n        \"refund_mode\": \"Back to Source\"\n      }\n    }\n  }\n}\n```"
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "🔔 Callbacks & Notifications",
-      "item": [
-        {
-          "name": "Refund ARN Callback (Example)",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{callback_auth_token}}",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"TransactionId\": \"TXN123456789\",\n  \"PayuID\": \"403993715527059978\",\n  \"RequestID\": \"req_123456789012345\",\n  \"RefundToken\": \"refund_token_123\",\n  \"PaymentGateway\": \"HDFC Bank\",\n  \"Amount\": \"100.00\",\n  \"Status\": \"success\",\n  \"RefundCreationDate\": \"2025-09-24 10:30:00\",\n  \"bank_ref_no\": \"HDFC123456789\",\n  \"bank_arn\": \"ARN12345678901234567890\",\n  \"success_at\": \"2025-09-24 11:45:30\",\n  \"BaseTxnID\": \"\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{your_callback_url}}/refund-arn-callback",
-              "host": [
-                "{{your_callback_url}}"
-              ],
-              "path": [
-                "refund-arn-callback"
-              ]
-            },
-            "description": "**🔔 Refund ARN Callback (Example)**\n\n⚠️ **Important:** This is NOT an API you call. This is an example of the webhook/callback that PayU sends to YOUR server.\n\n**🎯 Purpose:**\n- PayU sends this callback when refund is processed\n- Contains ARN (Acquirer Reference Number) for customer tracking\n- Provides refund completion notification\n- Enables automated customer communication\n\n**🏷️ ARN Details:**\n- **ARN**: Acquirer Reference Number\n- **Purpose**: Unique identifier from acquiring bank\n- **Customer Usage**: Track refund status with their issuing bank\n- **Importance**: Essential for customer service and dispute resolution\n\n**📋 Callback Parameters:**\n- **TransactionId**: Your merchant transaction ID\n- **PayuID**: PayU's unique transaction identifier\n- **RequestID**: Refund request ID from PayU\n- **RefundToken**: Your refund tracking token\n- **PaymentGateway**: Acquiring bank name\n- **Amount**: Refunded amount\n- **Status**: Refund status (success/failure)\n- **RefundCreationDate**: When refund was initiated\n- **bank_ref_no**: Bank reference number\n- **bank_arn**: 🎯 **Acquirer Reference Number (ARN)**\n- **success_at**: When refund was completed\n- **BaseTxnID**: Reserved for future use\n\n**🛠️ Implementation Steps:**\n1. **Set up endpoint** on your server (e.g., `/refund-arn-callback`)\n2. **Configure URL** in PayU merchant dashboard\n3. **Handle POST requests** from PayU servers\n4. **Extract ARN** and update your refund records\n5. **Notify customer** about refund completion with ARN\n6. **Log callback** for audit and troubleshooting\n\n**🔒 Security Considerations:**\n- **IP Whitelist**: Validate callback source (PayU IP ranges)\n- **Authentication**: Implement token-based auth if needed\n- **Logging**: Log all incoming callbacks for audit\n- **Validation**: Verify transaction details before processing\n- **Idempotency**: Handle duplicate callbacks gracefully\n\n**💬 Customer Communication Example:**\n```\n\"Your refund of ₹100.00 has been processed successfully!\nARN: ARN12345678901234567890\nYou can track this refund with your bank using the ARN number.\nFunds will reflect in your account within 3-7 business days.\"\n```\n\n**🔄 Integration Flow:**\n1. Customer requests refund\n2. You call Refund Transaction API\n3. PayU processes refund\n4. PayU sends this callback with ARN\n5. You update records and notify customer\n6. Customer tracks with bank using ARN"
-          },
-          "response": []
-        }
-      ]
+      "url": "https://info.payu.in",
+      "description": "PayU Production Environment"
     }
   ],
-  "variable": [
+  "paths": {
+    "/merchant/postservice.php": {
+      "post": {
+        "summary": "Refund Transaction API",
+        "description": "Initiate full or partial refunds for captured transactions or cancel authorized transactions.",
+        "operationId": "refundTransaction",
+        "tags": [
+          "Refund Operations"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "key",
+                  "command",
+                  "var1",
+                  "var2",
+                  "var3",
+                  "var5",
+                  "hash"
+                ],
+                "properties": {
+                  "key": {
+                    "$ref": "#/components/schemas/MerchantKey"
+                  },
+                  "command": {
+                    "$ref": "#/components/schemas/RefundTransactionCommand"
+                  },
+                  "var1": {
+                    "$ref": "#/components/schemas/PayUTransactionId"
+                  },
+                  "var2": {
+                    "$ref": "#/components/schemas/RefundTokenId"
+                  },
+                  "var3": {
+                    "$ref": "#/components/schemas/RefundAmount"
+                  },
+                  "var5": {
+                    "$ref": "#/components/schemas/CallbackUrl"
+                  },
+                  "var8": {
+                    "$ref": "#/components/schemas/RefundSplitInfo"
+                  },
+                  "hash": {
+                    "$ref": "#/components/schemas/SecurityHash"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Refund request processed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "Response status (1 for success, 0 for failure)"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Response message"
+                    },
+                    "request_id": {
+                      "type": "string",
+                      "description": "Unique request ID for tracking"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/merchant/postservice.php?form=2": {
+      "post": {
+        "summary": "Multiple PayU API Operations",
+        "description": "Handles multiple PayU API operations including status checks and refund queries",
+        "operationId": "multipleOperations",
+        "tags": [
+          "Status Tracking",
+          "Refund Operations"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "title": "Check Action Status with Request ID",
+                    "type": "object",
+                    "required": [
+                      "key",
+                      "command",
+                      "var1",
+                      "hash"
+                    ],
+                    "properties": {
+                      "key": {
+                        "$ref": "#/components/schemas/MerchantKey"
+                      },
+                      "command": {
+                        "$ref": "#/components/schemas/CheckActionStatusCommand"
+                      },
+                      "var1": {
+                        "$ref": "#/components/schemas/RequestId"
+                      },
+                      "hash": {
+                        "$ref": "#/components/schemas/SecurityHash"
+                      }
+                    }
+                  },
+                  {
+                    "title": "Check Action Status with PayU ID",
+                    "type": "object",
+                    "required": [
+                      "key",
+                      "command",
+                      "var1",
+                      "var2",
+                      "hash"
+                    ],
+                    "properties": {
+                      "key": {
+                        "$ref": "#/components/schemas/MerchantKey"
+                      },
+                      "command": {
+                        "$ref": "#/components/schemas/CheckActionStatusCommand"
+                      },
+                      "var1": {
+                        "$ref": "#/components/schemas/PayUTransactionId"
+                      },
+                      "var2": {
+                        "$ref": "#/components/schemas/LookupType"
+                      },
+                      "hash": {
+                        "$ref": "#/components/schemas/SecurityHash"
+                      }
+                    }
+                  },
+                  {
+                    "title": "Get All Refunds from Transaction IDs",
+                    "type": "object",
+                    "required": [
+                      "key",
+                      "command",
+                      "var1",
+                      "hash"
+                    ],
+                    "properties": {
+                      "key": {
+                        "$ref": "#/components/schemas/MerchantKey"
+                      },
+                      "command": {
+                        "$ref": "#/components/schemas/GetAllRefundsCommand"
+                      },
+                      "var1": {
+                        "type": "string",
+                        "description": "The transaction ID for which refunds are being searched.",
+                        "example": "131278422"
+                      },
+                      "hash": {
+                        "$ref": "#/components/schemas/SecurityHash"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "API operation completed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "description": "Response status"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Response message"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Response data"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MerchantKey": {
+        "type": "string",
+        "default": "JPM7Fg",
+        "description": "The merchant key provided by PayU. It is a unique identifier for the merchant account.",
+        "example": "JPM7Fg"
+      },
+      "RefundTransactionCommand": {
+        "type": "string",
+        "default": "cancel_refund_transaction",
+        "description": "The API command name. For refund or canceling transactions, the value should be 'cancel_refund_transaction'.",
+        "enum": [
+          "cancel_refund_transaction"
+        ]
+      },
+      "CheckActionStatusCommand": {
+        "type": "string",
+        "default": "check_action_status",
+        "description": "The API command name. For this API, the value should be 'check_action_status'.",
+        "enum": [
+          "check_action_status"
+        ]
+      },
+      "GetAllRefundsCommand": {
+        "type": "string",
+        "default": "getAllRefundsFromTxnIds",
+        "description": "The API command name. For this API, the value should be 'getAllRefundsFromTxnIds'.",
+        "enum": [
+          "getAllRefundsFromTxnIds"
+        ]
+      },
+      "GetTransactionDetailsCommand": {
+        "type": "string",
+        "default": "get_transaction_details",
+        "description": "The API command name. For this API, the value should be 'get_transaction_details'.",
+        "enum": [
+          "get_transaction_details"
+        ]
+      },
+      "PayUTransactionId": {
+        "type": "string",
+        "description": "The PayU Transaction ID (mihpayid) that you receive in the response of a successful payment.",
+        "example": "403993715527059978"
+      },
+      "RefundTokenId": {
+        "type": "string",
+        "description": "The Token ID (unique token generated by the merchant). This token should be unique for every refund request and helps track the request. Maximum 23 characters.",
+        "maxLength": 23,
+        "example": "refund_token_123"
+      },
+      "RefundAmount": {
+        "type": "string",
+        "description": "The amount to be refunded. For full refund, this should equal the original transaction amount. For partial refund, this should be less than the original transaction amount.",
+        "pattern": "^\\d+\\.\\d{2}$",
+        "example": "100.00"
+      },
+      "CallbackUrl": {
+        "type": "string",
+        "format": "uri",
+        "description": "The refund callback (webhook) URL where PayU can send notification regarding the status of the refund.",
+        "example": "https://yourwebsite.com/refund-callback"
+      },
+      "RefundSplitInfo": {
+        "type": "string",
+        "description": "Refund split information for split transactions, provided in JSON format. Contains information on amounts to split between sub-merchants or child merchants.",
+        "example": "{\"refundInfo\":[{\"parentTxnId\":\"403993715527059978\",\"amount\":\"50.00\"}]}"
+      },
+      "SecurityHash": {
+        "type": "string",
+        "description": "A hash value for security validation. It is calculated using the sha512 algorithm with the format: sha512(key|command|var1|salt).",
+        "example": "{{hash}}"
+      },
+      "RequestId": {
+        "type": "string",
+        "description": "The Request ID returned when cancel_refund_transaction API was successfully executed.",
+        "example": "req_123456789012345"
+      },
+      "LookupType": {
+        "type": "string",
+        "default": "payuid",
+        "description": "Lookup type, which should be set to 'payuid' to indicate that the API should query using the PayUID (mihpayid).",
+        "enum": [
+          "payuid"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "HashAuthentication": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "hash",
+        "description": "SHA512 hash for request authentication"
+      }
+    }
+  },
+  "security": [
     {
-      "key": "key",
-      "value": "JPM7Fg",
-      "type": "string",
-      "description": "The merchant key provided by PayU"
+      "HashAuthentication": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Refund Operations",
+      "description": "APIs for initiating and managing refunds"
     },
     {
-      "key": "baseURL",
-      "value": "https://test.payu.in/merchant/postservice.php",
-      "type": "string",
-      "description": "Base URL for PayU APIs. Change to https://info.payu.in/merchant/postservice.php for production"
+      "name": "Status Tracking",
+      "description": "APIs for checking transaction and refund status"
     },
     {
-      "key": "your_callback_url",
-      "value": "https://yourdomain.com",
-      "type": "string",
-      "description": "Your domain URL for receiving callbacks from PayU"
-    },
-    {
-      "key": "callback_auth_token",
-      "value": "your_auth_token_here",
-      "type": "string",
-      "description": "Authentication token for securing callback endpoints (optional)"
+      "name": "Transaction Management",
+      "description": "APIs for transaction details and management"
     }
   ]
 }
