@@ -1,5 +1,5 @@
 ---
-title: Copy of Apple Pay Integration-Merchant Hosted Checkout
+title: Apple Pay Integration-PayU Hosted Checkout
 deprecated: false
 hidden: false
 metadata:
