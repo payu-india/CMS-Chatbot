@@ -4,6 +4,8 @@ api:
   file: payu_check_action_status_payuid_oas31.json
   operationId: checkActionStatusWithPayUId
 hidden: true
+link:
+  new_tab: false
 ---
 The **check_action_status** API has another usage too. For a particular PayUID, it returns any of the following the states:
 
