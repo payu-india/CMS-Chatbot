@@ -5,7 +5,7 @@ api:
   file: general-23.json
   operationId: check_action_status(1st_usage)
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
