@@ -7,6 +7,10 @@ metadata:
 ---
 This section describes step-by-step procedure to integrate Apple Pay as a payment method using Merchant Hosted Checkout integration.
 
+<Callout icon="📘" theme="info">
+  **Before you begin**:   Ensure that you have completed the prerequisites before you start the integration. For more information, refer to [Prerequisites and Set up for Apple Pay Integration](doc:prerequisites-and-set-up-for-apple-pay-integration).
+</Callout>
+
 <Cards columns={3}>
   <Card title="1. Initiate the payment to PayU" href="https://docs.payu.in/docs/apple-pay-integration#step-1-initiate-the-payment-to-payu">
     Post the required parameters to PayU for Apple Pay integration
