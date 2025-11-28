@@ -4,6 +4,8 @@ api:
   file: refund_apis.json
   operationId: refundTransaction
 hidden: true
+link:
+  new_tab: false
 ---
 The Refund Transaction API (**cancel_refund_transaction**) can be used for the following purposes:
 
