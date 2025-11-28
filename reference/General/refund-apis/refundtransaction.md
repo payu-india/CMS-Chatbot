@@ -6,5 +6,5 @@ excerpt: >-
 api:
   file: refund_apis.json
   operationId: refundTransaction
-hidden: false
+hidden: true
 ---
