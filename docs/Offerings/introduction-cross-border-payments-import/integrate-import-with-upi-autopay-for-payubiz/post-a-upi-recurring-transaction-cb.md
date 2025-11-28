@@ -165,7 +165,7 @@ Initiate recurring using the **Recurring Payment Transaction** API including the
             <tr>
               <td>var1<br><code>mandatory</code></td>
               <td><code>Object</code> - JSON object combining various mandatory and optional fields needed for the request. Contains authpayuid, invoiceDisplayNumber, amount, txnid, phone, email, and udf1-udf5 fields.</td>
-              <td>{"authpayuid":"auth_pay_123","amount":"1000.00","txnid":"TXN123","phone":"9876543210","email":"customer@example.com"}</td>
+              <td>{"authpayuid":"403993715534484661","amount":"2","txnid":"Rec_403993715534484661_1","firstname":"Sudhanshu","lastname":"Kr","address1":"address ", "address2": "my lane","city":"my city", "state": "my state", "country": "India", "zipcode": "122018","udf1":"buyer'\''s PAN Number|| buyer'\''s DOB","udf3":"invoiceNumber||sellerName"}</td>
             </tr>
           </tbody>
         </table>
@@ -179,12 +179,15 @@ Initiate recurring using the **Recurring Payment Transaction** API including the
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
-    curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=si_transaction&var1={\"authpayuid\": \"6611192557\",\"invoiceDisplayNumber\":\"12345678910\",\"amount\": 3,\"txnid\": \"REC15113506209\",\"phone\": \"9999999999\",\"email\": \"chota.bheem@gmail.com\",\"udf2\": \"\",\"udf3\": \"\",\"udf4\": \"\",\"udf5\": \"\"}&hash=jbUS07Og8BToVZ"
+   curl --location  'https://test.payu.in/merchant/postservice.php?form=2' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=9uMuDK' \
+--data-urlencode 'command=si_transaction' \
+--data-urlencode 'var1={"authpayuid":"403993715534484661","amount":"2","txnid":"Rec_403993715534484661_1","firstname":"Sudhanshu","lastname":"Kr","address1":"address ", "address2": "my lane","city":"my city", "state": "my state", "country": "India", "zipcode": "122018","udf1":"buyer'\''s PAN Number|| buyer'\''s DOB","udf3":"invoiceNumber||sellerName"}' \
+--data-urlencode 'hash= sha512(key|command|var1|salt)'
   ```
 
-  Perfect! I've analyzed your CURL request and converted it to equivalent code in all requested languages. This appears to be a **PayU payment gateway API call** for subscription/installment transactions.
-
-  ## **Python** 🐍
+  ## **Sample Code**
 
   ```python
   import requests
