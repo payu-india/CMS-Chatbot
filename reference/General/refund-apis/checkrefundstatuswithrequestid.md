@@ -23,6 +23,8 @@ api:
   file: payu_check_refund_status_requestid_oas31.json
   operationId: checkRefundStatusWithRequestId
 hidden: true
+link:
+  new_tab: false
 ---
 Whenever the **cancel_refund_transaction** API is executed successfully to cancel a transaction, a Request ID is returned in the output parameters for that particular request. For more information on the cancel_refund_transaction API, refer to Refund Transaction.
 
