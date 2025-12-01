@@ -5,21 +5,17 @@ hidden: true
 metadata:
   robots: index
 ---
-# Before Starting Integration
-
 Before you begin integrating PayU iOS SDKs into your application, complete the following prerequisites to ensure a smooth integration process.
-
----
 
 ## 1. Account Setup
 
 ### Register and Activate Your PayU Account
 
-| Step | Action | Link |
-|------|--------|------|
-| 1 | Register for a PayU Merchant Account | [Register](/docs/register-for-a-merchant-account) |
-| 2 | Complete KYC and activate your account | [Activate Account](/docs/activate-account) |
-| 3 | Access your Test Merchant Key and Salt | [Get Test Credentials](/docs/access-test-merchant-key-and-salt) |
+| Step | Action                                 | Link                                                            |
+| ---- | -------------------------------------- | --------------------------------------------------------------- |
+| 1    | Register for a PayU Merchant Account   | [Register](/docs/register-for-a-merchant-account)               |
+| 2    | Complete KYC and activate your account | [Activate Account](/docs/activate-account)                      |
+| 3    | Access your Test Merchant Key and Salt | [Get Test Credentials](/docs/access-test-merchant-key-and-salt) |
 
 > ⚠️ **Important:** Never use production credentials during development. Always use test credentials until you're ready for go-live.
 
@@ -27,36 +23,36 @@ Before you begin integrating PayU iOS SDKs into your application, complete the f
 
 You'll need the following credentials from the PayU Dashboard:
 
-| Credential | Description | Where to Find |
-|------------|-------------|---------------|
-| **Merchant Key** | Unique identifier for your account | Dashboard → Settings → API Keys |
-| **Merchant Salt** | Used for hash generation | Dashboard → Settings → API Keys |
-| **Client ID** | For OAuth-based authentication | Dashboard → Settings → OAuth |
-| **Client Secret** | For OAuth-based authentication | Dashboard → Settings → OAuth |
+| Credential        | Description                        | Where to Find                   |
+| ----------------- | ---------------------------------- | ------------------------------- |
+| **Merchant Key**  | Unique identifier for your account | Dashboard → Settings → API Keys |
+| **Merchant Salt** | Used for hash generation           | Dashboard → Settings → API Keys |
+| **Client ID**     | For OAuth-based authentication     | Dashboard → Settings → OAuth    |
+| **Client Secret** | For OAuth-based authentication     | Dashboard → Settings → OAuth    |
 
----
+***
 
 ## 2. Development Environment Requirements
 
 ### Minimum System Requirements
 
-| Requirement | Minimum Version | Recommended |
-|-------------|-----------------|-------------|
-| **Xcode** | 14.0+ | Latest stable version |
-| **iOS Deployment Target** | iOS 12.0 | iOS 13.0+ |
-| **Swift** | 5.0+ | 5.7+ |
-| **macOS** | Monterey (12.0) | Ventura (13.0)+ |
+| Requirement               | Minimum Version | Recommended           |
+| ------------------------- | --------------- | --------------------- |
+| **Xcode**                 | 14.0+           | Latest stable version |
+| **iOS Deployment Target** | iOS 12.0        | iOS 13.0+             |
+| **Swift**                 | 5.0+            | 5.7+                  |
+| **macOS**                 | Monterey (12.0) | Ventura (13.0)+       |
 
 ### Package Manager Support
 
 PayU iOS SDKs are available through:
 
-| Package Manager | Supported | Notes |
-|-----------------|-----------|-------|
-| **CocoaPods** | ✅ Yes | Recommended for most projects |
-| **Swift Package Manager** | ✅ Yes | Available for select SDKs |
-| **Carthage** | ⚠️ Limited | Check individual SDK documentation |
-| **Manual Integration** | ✅ Yes | Framework files available |
+| Package Manager           | Supported  | Notes                              |
+| ------------------------- | ---------- | ---------------------------------- |
+| **CocoaPods**             | ✅ Yes      | Recommended for most projects      |
+| **Swift Package Manager** | ✅ Yes      | Available for select SDKs          |
+| **Carthage**              | ⚠️ Limited | Check individual SDK documentation |
+| **Manual Integration**    | ✅ Yes      | Framework files available          |
 
 ### CocoaPods Setup
 
@@ -80,7 +76,7 @@ Then run:
 pod install
 ```
 
----
+***
 
 ## 3. Apple Privacy & Compliance
 
@@ -143,11 +139,9 @@ Depending on the SDK and payment methods you enable, add these to your `Info.pli
 </dict>
 ```
 
----
+***
 
-## 4. Server-Side Requirements
-
-### Hash Generation Setup
+## 4. Server-Side Hash Generation Setup
 
 PayU uses hash-based verification for security. **Hash must be generated on your server, never on the client.**
 
@@ -212,113 +206,49 @@ function generatePayUHash($params, $salt) {
 }
 ```
 
-> 🔒 **Security Note:** Never embed your Salt in the iOS app. Always generate hashes server-side.
+<Callout icon="🔒" theme="default">
+  **Security Note:** Never embed your Salt in the iOS app. Always generate hashes server-side.
+</Callout>
 
----
+***
 
-## 5. Test Environment Setup
-
-### Environment URLs
-
-| Environment | Base URL |
-|-------------|----------|
-| **Sandbox/Test** | `https://test.payu.in` |
-| **Production** | `https://secure.payu.in` |
-
-### Test Cards for Development
-
-| Card Type | Card Number | Expiry | CVV | Result |
-|-----------|-------------|--------|-----|--------|
-| Visa (Success) | 4012001037141112 | Any future date | Any 3 digits | Success |
-| Mastercard (Success) | 5123456789012346 | Any future date | Any 3 digits | Success |
-| Visa (Failure) | 4012001038443335 | Any future date | Any 3 digits | Failure |
-
-### Test UPI IDs
-
-| UPI ID | Result |
-|--------|--------|
-| `success@payu` | Transaction succeeds |
-| `failure@payu` | Transaction fails |
-
-### Test Net Banking
-
-| Bank Code | Result |
-|-----------|--------|
-| `AXNB` | Simulates Axis Bank |
-
-> 📘 **Note:** For a complete list of test credentials, refer to [Test Cards, UPI ID and Wallets](/docs/test-cards-upi-id-and-wallets).
-
----
-
-## 6. Integration Checklist
-
-Use this checklist before starting your integration:
-
-### Account Setup
-- [ ] PayU merchant account created
-- [ ] Account activated (KYC complete)
-- [ ] Test Merchant Key obtained
-- [ ] Test Merchant Salt obtained
-
-### Development Environment
-- [ ] Xcode 14.0+ installed
-- [ ] iOS deployment target set to 12.0+
-- [ ] CocoaPods/SPM configured in your project
-
-### Server-Side Setup
-- [ ] Hash generation endpoint implemented
-- [ ] Hash generation tested with test credentials
-- [ ] Webhook endpoint ready (for payment notifications)
-
-### iOS App Configuration
-- [ ] Privacy manifest entries added
-- [ ] Required permissions added to Info.plist
-- [ ] UPI app schemes added (if using UPI)
-
-### Testing
-- [ ] Test credentials configured in app
-- [ ] Test payment flow verified
-- [ ] Success and failure scenarios tested
-
----
-
-## 7. Choose Your SDK
+## 5. Choose Your SDK
 
 Based on your requirements, select the appropriate SDK:
 
-| Your Requirement | Recommended SDK | Integration Effort | Time Estimate |
-|------------------|-----------------|-------------------|---------------|
-| Fastest integration, pre-built UI | [Checkout Pro SDK](/docs/ios-checkoutpro-sdk) | Low | ~2-3 days |
-| Full UI customization | [Core SDK](/docs/ios-core-sdk) | Medium | ~1-2 weeks |
-| UPI payments only | [UPI SDK](/docs/ios-upi-sdk) | Low | ~1-2 days |
-| Improved card success rates | Core SDK + [Native OTP Assist](/docs/ios-native-otp-assist-sdk) | Medium | ~1 week |
-| One-click UPI payments | [UPI Bolt SDK](/docs/payu-upi-bolt-sdk-ios) | Low | ~1-2 days |
-| Native 3D Secure experience | [3DS 2.0 SDK](/docs/ios-3ds-sdk) | Medium | ~3-5 days |
+| Your Requirement                  | Recommended SDK                                                 | Integration Effort | Time Estimate |
+| --------------------------------- | --------------------------------------------------------------- | ------------------ | ------------- |
+| Fastest integration, pre-built UI | [Checkout Pro SDK](/docs/ios-checkoutpro-sdk)                   | Low                | ~2-3 days     |
+| Full UI customization             | [Core SDK](/docs/ios-core-sdk)                                  | Medium             | ~1-2 weeks    |
+| UPI payments only                 | [UPI SDK](/docs/ios-upi-sdk)                                    | Low                | ~1-2 days     |
+| Improved card success rates       | Core SDK + [Native OTP Assist](/docs/ios-native-otp-assist-sdk) | Medium             | ~1 week       |
+| One-click UPI payments            | [UPI Bolt SDK](/docs/payu-upi-bolt-sdk-ios)                     | Low                | ~1-2 days     |
+| Native 3D Secure experience       | [3DS 2.0 SDK](/docs/ios-3ds-sdk)                                | Medium             | ~3-5 days     |
 
 ### SDK Compatibility Matrix
 
-| SDK | Can Be Combined With |
-|-----|---------------------|
-| Checkout Pro | Native OTP Assist, 3DS 2.0 |
-| Core SDK | Native OTP Assist, 3DS 2.0, UPI SDK, Custom Browser |
-| UPI SDK | Core SDK |
-| UPI Bolt SDK | Standalone |
+| SDK          | Can Be Combined With                                |
+| ------------ | --------------------------------------------------- |
+| Checkout Pro | Native OTP Assist, 3DS 2.0                          |
+| Core SDK     | Native OTP Assist, 3DS 2.0, UPI SDK, Custom Browser |
+| UPI SDK      | Core SDK                                            |
+| UPI Bolt SDK | Standalone                                          |
 
----
+***
 
-## 8. Webhook Setup
+## 6. Webhook Setup
 
 Configure webhooks to receive real-time payment notifications.
 
 ### Required Webhook Events
 
-| Event | Description |
-|-------|-------------|
+| Event             | Description                    |
+| ----------------- | ------------------------------ |
 | `payment.success` | Payment completed successfully |
-| `payment.failed` | Payment failed |
-| `payment.pending` | Payment is pending |
-| `refund.success` | Refund processed successfully |
-| `refund.failed` | Refund failed |
+| `payment.failed`  | Payment failed                 |
+| `payment.pending` | Payment is pending             |
+| `refund.success`  | Refund processed successfully  |
+| `refund.failed`   | Refund failed                  |
 
 ### Webhook Configuration
 
@@ -328,21 +258,23 @@ Configure webhooks to receive real-time payment notifications.
 4. Select the events you want to receive
 5. Save and note the webhook secret for verification
 
-> 📘 **Note:** For detailed webhook setup, refer to [Webhooks for Payments](/docs/webhooks-for-payments).
+<Callout icon="📘" theme="info">
+  **Note:** For detailed webhook setup, refer to [Webhooks for Payments](/docs/webhooks-for-payments).
+</Callout>
 
----
+***
 
-## 9. Support Resources
+## 7. Support Resources
 
-| Resource | Description | Link |
-|----------|-------------|------|
-| **API Reference** | Complete API documentation | [API Docs](/reference) |
-| **Sample Apps** | Working code examples | Check individual SDK docs |
-| **Dashboard** | Manage transactions and settings | [PayU Dashboard](https://dashboard.payu.in) |
-| **Integration Support** | Technical assistance | Contact your Account Manager |
-| **Email Support** | General queries | integration@payu.in |
+| Resource                | Description                      | Link                                              |
+| ----------------------- | -------------------------------- | ------------------------------------------------- |
+| **API Reference**       | Complete API documentation       | [API Docs](/reference)                            |
+| **Sample Apps**         | Working code examples            | Check individual SDK docs                         |
+| **Dashboard**           | Manage transactions and settings | [PayU Dashboard](https://dashboard.payu.in)       |
+| **Integration Support** | Technical assistance             | Contact your Account Manager                      |
+| **Email Support**       | General queries                  | [integration@payu.in](mailto:integration@payu.in) |
 
----
+***
 
 ## Next Steps
 
@@ -352,30 +284,3 @@ Once you've completed the prerequisites above, proceed with your chosen SDK inte
 2. **[Integrate Core SDK](/docs/ios-core-sdk)** - For custom payment flows
 3. **[Test Your Integration](/docs/test-cards-upi-id-and-wallets)** - Using test credentials
 4. **[Go Live Checklist](/docs/production-checklist)** - Before switching to production
-
----
-
-## Frequently Asked Questions
-
-### Can I use multiple SDKs together?
-
-Yes, certain SDKs can be combined. For example, you can use Core SDK with Native OTP Assist SDK to improve card payment success rates. Refer to the compatibility matrix above.
-
-### How long does integration typically take?
-
-- **Checkout Pro SDK:** 2-3 days for basic integration
-- **Core SDK:** 1-2 weeks depending on customization
-- **UPI SDK:** 1-2 days
-
-### Do I need a separate test account?
-
-No, your PayU merchant account includes both test and production environments. Use the test credentials from your dashboard during development.
-
-### What happens if hash generation fails?
-
-The payment will be rejected by PayU. Ensure your server-side hash generation is implemented correctly and all required parameters are included in the correct order.
-
----
-
-*Last updated: December 2024*
-
