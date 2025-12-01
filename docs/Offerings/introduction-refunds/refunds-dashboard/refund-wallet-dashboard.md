@@ -18,7 +18,7 @@ The Refund Wallet allows you to manage, recharge, and configure your refund fund
 
 ## Activate Refund Wallet
 
-Activate your refund wallet if not already activated:
+To activate your refund wallet if not already activated:
 
 1. Navigate to **Settings** > **Preferences** > **Refund Wallet** tab.
 2. Click **Activate Now**.
@@ -34,6 +34,8 @@ Click **Know More** in the ad similar to following screenshot and then click **A
 </Callout>
 
 ## Add Funds to Refund Wallet
+
+To add funds to your refund wallet:
 
 1. Navigate to **Explore Pay** > **Post Payments** tab.
 
@@ -58,7 +60,7 @@ Click **Know More** in the ad similar to following screenshot and then click **A
 
 ## Configure Refund Wallet
 
-After activation, configure your wallet:
+After activation, to configure your wallet:
 
 1. Navigate to **Settings** > **Preferences** > **Refund Wallet** tab.
 
@@ -72,13 +74,15 @@ After activation, configure your wallet:
 
 ### Configure Thresholds and Notifications
 
+To configure wallet threshold amount and email notifications:
+
 1. In the **Set default priority** field, select any of the following:
    * **Refund wallet when settlement is not enough**: Refund Wallet balance will be used to process refunds to your customers when you do not have enough settlement funds.
    * **Refund wallet always**: Refund Wallet balance will always be used to process refunds to your customers. Refund processed via this option will be present in the refund wallet statement but not in settlement MIS.
 2. Enter the threshold limit amount in the **Set low balance limit** field to get notified when your wallet balance is low.
 3. Click **Set Notification**.
 
-  The _Customer Notifications_ page is displayed.
+The _Customer Notifications_ page is displayed.
 
 4. Select the **Refunds** tab.
 
