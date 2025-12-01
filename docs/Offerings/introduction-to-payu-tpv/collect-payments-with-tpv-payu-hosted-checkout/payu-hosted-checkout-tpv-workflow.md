@@ -24,7 +24,7 @@ The customer journey involved when collecting payment using TPV:
 
 The customer chooses to pay via a supported payment mode on PayU checkout.
 
-<Image align="center" border={true} src="https://files.readme.io/45ffbb01f0018847bdc5fdefd1562365754f0cb8fcc29ea4a4a9cf951671e29f-Screenshot_2025-02-24_at_11.52.57_AM.png" className="border" />
+<Image align="center" border={true} width="500px" src="https://files.readme.io/42e28a7140db89ffaeebdbc940acfc84391ba18eea58560aa833fb1c20325e09-tvp_workflow_step1.png" className="border" />
 
 ## Step 2
 
