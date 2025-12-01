@@ -18,12 +18,20 @@ The Refund Wallet allows you to manage, recharge, and configure your refund fund
 
 ## Activate Refund Wallet
 
-To activate your refund wallet if not already activated:
+Activate your refund wallet if not already activated:
 
-1. Navigate to **Settings** > **Preferences** > **Refund Wallet** tab. 
+1. Navigate to **Settings** > **Preferences** > **Refund Wallet** tab.
 2. Click **Activate Now**.
 
-After the refund wallet is activated, you can set the refund wallet priority. For more information, refer to Configure Refund Wallet
+OR
+
+3. Click **Know More** in the ad similar to following screenshot and then click **Activate Now**.
+
+<Image align="center" border={false} src="https://files.readme.io/ffece402fa25ae70215a023ba438920f2b4970c7cb6aad1e647fa73cd60f2ea3-dashboard_refund_wallets_activate_ad.png" />
+
+<Callout icon="📘" theme="info">
+  **Note**: After the refund wallet is activated, you can set the refund wallet priority. For more information, refer to [Configure Refund Wallet](https://docs.payu.in/docs/refund-wallet-dashboard#configure-refund-wallet).
+</Callout>
 
 ## Add Funds to Refund Wallet
 
@@ -31,8 +39,8 @@ After the refund wallet is activated, you can set the refund wallet priority. Fo
 
 <Image align="center" alt="Explore PayU > Post Payment tab" border={true} src="https://files.readme.io/4f0a2e60bcb9623a6e337bb1099c984a283a1d513f5122a60956a411aca1e61f-dashboard_explore_payu_post_payments_tab.png" className="border" />
 
-1. Select the **Refund Wallet** tile.
-2. Click the **Add Funds** button.
+2. Select the **Refund Wallet** tile.
+3. Click the **Add Funds** button.
 
    A popup page is displayed listing the VA, IFSC, and beneficiary details.
 
