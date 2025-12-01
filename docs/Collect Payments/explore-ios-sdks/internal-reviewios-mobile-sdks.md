@@ -17,7 +17,9 @@ Before you begin integrating PayU iOS SDKs into your application, complete the f
 | 2    | Complete KYC and activate your account | [Activate Account](/docs/activate-account)                      |
 | 3    | Access your Test Merchant Key and Salt | [Get Test Credentials](/docs/access-test-merchant-key-and-salt) |
 
-> ⚠️ **Important:** Never use production credentials during development. Always use test credentials until you're ready for go-live.
+<Callout icon="⚠️" theme="warn">
+  **Important:** Never use production credentials during development. Always use test credentials until you're ready for go-live.
+</Callout>
 
 ### Obtain Your Credentials
 
