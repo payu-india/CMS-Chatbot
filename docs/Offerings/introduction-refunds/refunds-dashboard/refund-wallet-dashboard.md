@@ -25,7 +25,7 @@ Activate your refund wallet if not already activated:
 
 OR
 
-3. Click **Know More** in the ad similar to following screenshot and then click **Activate Now**.
+   Click **Know More** in the ad similar to following screenshot and then click **Activate Now**.
 
 <Image align="center" border={false} src="https://files.readme.io/ffece402fa25ae70215a023ba438920f2b4970c7cb6aad1e647fa73cd60f2ea3-dashboard_refund_wallets_activate_ad.png" />
 
@@ -35,7 +35,7 @@ OR
 
 ## Add Funds to Refund Wallet
 
-1. Navigate to **Explore Pay** > **Post Payments** tab. 
+1. Navigate to **Explore Pay** > **Post Payments** tab.
 
 <Image align="center" alt="Explore PayU > Post Payment tab" border={true} src="https://files.readme.io/4f0a2e60bcb9623a6e337bb1099c984a283a1d513f5122a60956a411aca1e61f-dashboard_explore_payu_post_payments_tab.png" className="border" />
 
@@ -50,7 +50,7 @@ OR
   **Note**: Transfer funds from your Settlement-linked account only. Amounts transferred from other accounts will be rejected.
 </Callout>
 
-1. Transfer funds from your Settlement-linked account. 
+1. Transfer funds from your Settlement-linked account.
 
 <Callout icon="📘" theme="info">
   **Notes**:  Funds added to the Refund Wallet **cannot be withdrawn** from PayU Escrow and are used only for processing refunds.
