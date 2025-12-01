@@ -262,7 +262,5 @@ Here is a comparison table that summarizes the key features of the different SDK
 
 Once you've completed the prerequisites above, proceed with your chosen SDK integration:
 
-1. **[Integrate Checkout Pro SDK](/docs/ios-checkoutpro-sdk)** - For quick, ready-to-use checkout
-2. **[Integrate Core SDK](/docs/ios-core-sdk)** - For custom payment flows
-3. **[Test Your Integration](/docs/test-cards-upi-id-and-wallets)** - Using test credentials
-4. **[Go Live Checklist](/docs/production-checklist)** - Before switching to production
+1. **[Integrate Checkout Pro SDK](https://docs.payu.in/docs/ios-checkoutpro-sdk)** - For quick, ready-to-use checkout
+2. **[Integrate Core SDK](https://docs.payu.in/docs/ios-core-sdk)** - For custom payment flows
