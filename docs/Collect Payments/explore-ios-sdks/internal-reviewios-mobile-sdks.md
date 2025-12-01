@@ -146,7 +146,7 @@ PayU uses hash-based verification for security. **Hash must be generated on your
 
 #### Hash Generation Flow
 
-<Image align="center" border={false} width="450px" src="https://files.readme.io/8b56580f2ac5ff0cb20c9a3aefc14d20a43c892d9b9ca98f0607ae283aef40ca-iOS_SDK_Hash_flow.png" />
+<Image border={false} src="https://files.readme.io/04949cb-Screenshot_2023-11-16_at_6.14.14_PM.png" />
 
 #### Hash Formula
 
