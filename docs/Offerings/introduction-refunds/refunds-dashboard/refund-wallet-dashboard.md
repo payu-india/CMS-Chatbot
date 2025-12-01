@@ -25,7 +25,7 @@ Activate your refund wallet if not already activated:
 
 OR
 
-   Click **Know More** in the ad similar to following screenshot and then click **Activate Now**.
+Click **Know More** in the ad similar to following screenshot and then click **Activate Now**.
 
 <Image align="center" border={false} src="https://files.readme.io/ffece402fa25ae70215a023ba438920f2b4970c7cb6aad1e647fa73cd60f2ea3-dashboard_refund_wallets_activate_ad.png" />
 
@@ -66,7 +66,6 @@ After activation, configure your wallet:
 
 2. Perform any of the following:
 
-* **Wallet Priority**: Set refund wallet priority (choose which wallet is used first for refunds).
 * **Threshold Limit**: Set a threshold limit for minimum balance. Fo
 * **Notifications**: Enable notifications (email/SMS) for low balance alerts.
 
@@ -76,9 +75,9 @@ After activation, configure your wallet:
    * **Refund wallet when settlement is not enough**: Refund Wallet balance will be used to process refunds to your customers when you do not have enough settlement funds.
    * **Refund wallet always**: Refund Wallet balance will always be used to process refunds to your customers. Refund processed via this option will be present in the refund wallet statement but not in settlement MIS.
 2. Enter the threshold limit amount in the **Set low balance limit** field to get notified when your wallet balance is low.
-3. Click **Set Notification**. 
+3. Click **Set Notification**.
 
-  The Customer Notifications page is displayed.
+The Customer Notifications page is displayed.
 
 4. Select the **Refunds** tab.
 
