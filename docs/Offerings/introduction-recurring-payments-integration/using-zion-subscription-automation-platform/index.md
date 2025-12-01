@@ -37,7 +37,7 @@ In this integration, you need to post a Consent Transaction and the rest is take
 
 Zion brings together the Billing aspects like Subscription, Invoices into a one-stop solution for managing the end-to-end subscription flow of the merchant.
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/MicrosoftTeams-image-2048x989.png" />
+<Image alt="Zion Platform API Flow" border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/MicrosoftTeams-image-2048x989.png" />
 
 Zion is built over the Recurring Payments or Standing Instructions (SI) platform. This section provides the guidelines for Subscription integration with cards, UPI and Net Banking (eNACH).
 
@@ -51,11 +51,11 @@ PayU’s Subscription platform can be broken up into three blocks to create a se
 
 The following flow diagram illustrates how Subscriptions work:
 
-<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/image-1-1024x317.png" />
+<Image alt="How Zion Subscriptions work?" border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/image-1-1024x317.png" />
 
 The following flow diagram illustrates how a Subscription of the customer opting for 800 INR per month service for a year can be imagined as below.
 
-<Image border={false} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/image-7.png" />
+<Image alt="Zion Subscriptions Example" border={false} src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/image-7.png" />
 
 ## Guidelines for Payment Instruments
 
