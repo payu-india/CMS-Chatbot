@@ -29,9 +29,9 @@ After setting up, no further action is required for subsequent payments, and Pay
 
 It is convenient to use the APIs and the Intuitive Dashboard provides total control over payment flow at any time of the recurring life cycle.
 
-> 📘 Note:
->
-> To activate the Zion platform, contact your PayU Account Manager.
+<Callout icon="📘" theme="info">
+  **Activate Zion platform**: To activate the Zion platform, contact your PayU Account Manager.
+</Callout>
 
 In this integration, you need to post a Consent Transaction and the rest is taken care by PayU.
 
@@ -74,7 +74,9 @@ Hence there are strict guidelines on the SI offering as per RBI:
 
 The customer provides their Net Banking details and signs up for a subscription plan by doing a Net Banking or Debit Card authentication.
 
-## Steps to integrate
+## Quickstart integration
+
+To integrate Zio
 
 1. Create Subscription (define billing plan)
 2. Execute Consent Transaction (customer authorization → get authRefId)
