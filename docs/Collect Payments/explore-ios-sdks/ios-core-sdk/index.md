@@ -20,7 +20,23 @@ metadata:
 next:
   description: ''
 ---
-This section describes the Core SDK components and implementation:
+This part of the documentation describes how to integrate PayU iOS Core SDK.
+
+## When to Use Core SDK
+
+* Use Core SDK when you need complete UI control
+* Use Checkout Pro when you want a pre-built UI
+  [Comparison table with other iOS SDKs]
+
+## Requirements
+
+* iOS 13.0+
+* Xcode 26+
+* Swift 5.0+ / Objective-C
+
+## Next Steps
+
+This part of document describes the Core SDK components and implementation:
 
 * [Objective - Seamless Integration](doc:ios-coresdk-seamless-integration)
 * [Web Services for iOS Core SDK](https://docs.payu.in/docs/ios-coresdk-web-services)
