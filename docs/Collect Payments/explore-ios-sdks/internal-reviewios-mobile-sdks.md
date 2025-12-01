@@ -147,23 +147,7 @@ PayU uses hash-based verification for security. **Hash must be generated on your
 
 #### Hash Generation Flow
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                                                                  │
-│   iOS App                    Your Server                PayU    │
-│      │                           │                        │     │
-│      │──── Request Hash ────────▶│                        │     │
-│      │     (txnid, amount,       │                        │     │
-│      │      productinfo, etc.)   │                        │     │
-│      │                           │                        │     │
-│      │◀─── Return Hash ─────────│                        │     │
-│      │     (SHA-512 hash)        │                        │     │
-│      │                           │                        │     │
-│      │──────────────── Payment Request ──────────────────▶│     │
-│      │                  (includes hash)                   │     │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Image align="center" border={false} src="https://files.readme.io/8b56580f2ac5ff0cb20c9a3aefc14d20a43c892d9b9ca98f0607ae283aef40ca-iOS_SDK_Hash_flow.png" />
 
 #### Hash Formula
 
