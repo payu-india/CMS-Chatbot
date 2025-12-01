@@ -27,7 +27,11 @@ After the refund wallet is activated, you can set the refund wallet priority. Fo
 
 ## Add Funds to Refund Wallet
 
-1. Navigate to **Settings** > **Preferences** > **Refund Wallet** tab.
+1. Navigate to **Explore Pay** > **Post Payments** tab. 
+
+<Image align="center" alt="Explore PayU > Post Payment tab" border={true} src="https://files.readme.io/4f0a2e60bcb9623a6e337bb1099c984a283a1d513f5122a60956a411aca1e61f-dashboard_explore_payu_post_payments_tab.png" className="border" />
+
+1. Select the **Refund Wallet** tile.
 2. Click the **Add Funds** button.
 
   A popup will display VA, IFSC, and beneficiary details.
@@ -52,6 +56,12 @@ After activation, configure your wallet:
 
 * Set a threshold limit to get notified when your wallet balance is low.
 * Add email or SMS contacts for notifications.
+
+### Configure Payment Link Reminders
+
+To configure the payment link reminders:
+
+1. Navigate to **Payment Link Reminders** tab.
 
 ## View Refund Wallet Ledger
 
