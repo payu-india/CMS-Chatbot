@@ -18,21 +18,12 @@ The Refund Wallet allows you to manage, recharge, and configure your refund fund
 
 ## Activate Refund Wallet
 
-1. Settings → Preferences → Refund Wallet Tab → Activate Now
-2. Alternatively, navigate via:
-   * **Explore PayU → PostPayments Tab → Refund Wallet → Learn More → Activate Now**
-   * **Transaction Tab → Refund Wallet advertisement → Know More → Activate Now**
-3. Once activated, you can set the refund wallet priority.
+To activate your refund wallet if not already activated:
 
-## Configure Refund Wallet
+1. Navigate to **Settings** > **Preferences** > **Refund Wallet** tab. 
+2. Click **Activate Now**.
 
-After activation, configure your wallet:
-
-* Navigate to **Settings** > **Preferences** > **Refund Wallet** tab.
-* Perform any of the following:
-  * **Wallet Priority**: Set refund wallet priority (choose which wallet is used first for refunds).
-  * **Threshold Limit**: Set a threshold limit for minimum balance. Fo
-  * **Notifications**: Enable notifications (email/SMS) for low balance alerts.
+After the refund wallet is activated, you can set the refund wallet priority. For more information, refer to Configure Refund Wallet
 
 ## Add Funds to Refund Wallet
 
@@ -47,11 +38,20 @@ After activation, configure your wallet:
   Note: Funds added to the Refund Wallet **cannot be withdrawn** from PayU Escrow and are used only for processing refunds.
 </Callout>
 
-## Configure Thresholds and Notifications
+## Configure Refund Wallet
+
+After activation, configure your wallet:
+
+* Navigate to **Settings** > **Preferences** > **Refund Wallet** tab.
+* Perform any of the following:
+  * **Wallet Priority**: Set refund wallet priority (choose which wallet is used first for refunds).
+  * **Threshold Limit**: Set a threshold limit for minimum balance. Fo
+  * **Notifications**: Enable notifications (email/SMS) for low balance alerts.
+
+### Configure Thresholds and Notifications
 
 * Set a threshold limit to get notified when your wallet balance is low.
 * Add email or SMS contacts for notifications.
-* Access FAQs for common queries in the same section.
 
 ## View Refund Wallet Ledger
 
