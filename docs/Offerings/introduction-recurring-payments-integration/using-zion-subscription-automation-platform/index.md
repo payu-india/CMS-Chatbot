@@ -47,7 +47,7 @@ PayU’s Subscription platform can be broken up into three blocks to create a se
 
 * **Subscription** – Subscription is heart of Zion. It allows merchant to define tailored subscription experience for customer by billing plan with preferred payment instrument. If merchant business case supports billing plans which varies as per customer profile, then merchant can create them directly while defining subscription. For example, Insurance segment where billing amount and billing frequency changes for every customer depending upon his age, salary, medical conditions and nature insurance he is buying. For more information on APIs used, refer to [Manage Subscriptions API](ref:manage-subscriptions).
 * **Consent flow**: In the Video serving platform example, for both the business cases, merchant has full flexibility to create subscription for the customer before Consent transaction or after Consent transaction but for processing it is mandatory and is the only way to generate `authRefId`. This number in turn represents customer’s preferred payment instrument where Zion executes recurring charges as defined in billing cycle. For more information, refer to [Payment Consent Transaction with Merchant Hosted Checkout](ref:payment-consent-transaction-merchant-hosted).
-* **Invoices** – Every (enabled) subscription generates an Invoice on the scheduled billing cycle and charges the customer’s account automatically without any intervention from you or customer. After subscription is setup, Zion automatically charges customer’s payment instrument by generating Invoices. For every successful charge, merchant gets notification over webhook defined by merchant and provided to PayU during Zion onboarding. In some special cases, merchant can also call Invoices himself when billing cycle is of Adhoc nature. After all the invoices respective to all the active plan subscribed by customer are executed, then Subscription gets auto completed. For more information, refer to [Manage Invoice APIs](ref:manage-invoice-apis-for-zion).
+* **Invoices** – Every (enabled) subscription generates an Invoice on the scheduled billing cycle and charges the customer’s account automatically without any intervention from you or customer. After subscription is setup, Zion automatically charges customer’s payment instrument by generating Invoices. For every successful charge, merchant gets notification over webhook defined by merchant and provided to PayU during Zion onboarding. In some special cases, merchant can also call Invoices himself when billing cycle is of Adhoc nature. After all the invoices respective to all the active plan subscribed by customer are executed, then Subscription gets autocomplete. For more information, refer to [Manage Invoice APIs](ref:manage-invoice-apis-for-zion).
 
 The following flow diagram illustrates how Subscriptions work:
 
@@ -78,7 +78,7 @@ The customer provides their Net Banking details and signs up for a subscription 
 
 To integrate Zio
 
-1. Create Subscription (define billing plan)
-2. Execute Consent Transaction (customer authorization → get authRefId)
-3. Configure webhooks for invoice notifications
-4. Zion auto-charges per billing cycle
+1. Create Subscription (define billing plan). For more information on APIs used, refer to [Manage Subscriptions API](ref:manage-subscriptions).
+2. Execute Consent Transaction (customer authorization → get authRefId). For more information, refer to [Payment Consent Transaction with Merchant Hosted Checkout](ref:payment-consent-transaction-merchant-hosted).
+3. Configure webhooks for invoice notifications. 
+4. Zion auto-charges per billing cycle. For more information, refer to [Manage Invoice APIs](ref:manage-invoice-apis-for-zion).
