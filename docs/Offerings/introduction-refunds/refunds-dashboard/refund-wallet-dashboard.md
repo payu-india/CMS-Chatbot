@@ -27,7 +27,7 @@ OR
 
 Click **Know More** in the ad similar to following screenshot and then click **Activate Now**.
 
-<Image align="center" border={false} src="https://files.readme.io/ffece402fa25ae70215a023ba438920f2b4970c7cb6aad1e647fa73cd60f2ea3-dashboard_refund_wallets_activate_ad.png" />
+<Image align="center" alt="Activate Refund Wallet on Dashboard" border={false} src="https://files.readme.io/ffece402fa25ae70215a023ba438920f2b4970c7cb6aad1e647fa73cd60f2ea3-dashboard_refund_wallets_activate_ad.png" />
 
 <Callout icon="📘" theme="info">
   **Note**: After the refund wallet is activated, you can set the refund wallet priority. For more information, refer to [Configure Refund Wallet](https://docs.payu.in/docs/refund-wallet-dashboard#configure-refund-wallet).
@@ -46,7 +46,7 @@ To add funds to your refund wallet:
 
    A popup page is displayed listing the VA, IFSC, and beneficiary details.
 
-<Image align="center" alt="Refund Wallets Add Fund Popup Page" border={false} src="https://files.readme.io/658c821c585d8fcff00edb08f03b10d2e57b53942837a0ef7c001d8db9dbc813-dashboard_refund_wallets_add_fund_popup.png" />
+<Image align="center" alt="Refund Wallets > Add Fund Popup Page" border={false} src="https://files.readme.io/658c821c585d8fcff00edb08f03b10d2e57b53942837a0ef7c001d8db9dbc813-dashboard_refund_wallets_add_fund_popup.png" />
 
 <Callout icon="📘" theme="info">
   **Note**: Transfer funds from your Settlement-linked account only. Amounts transferred from other accounts will be rejected.
@@ -64,7 +64,7 @@ After activation, to configure your wallet:
 
 1. Navigate to **Settings** > **Preferences** > **Refund Wallet** tab.
 
-<Image align="center" border={true} src="https://files.readme.io/ed8a7ba9dea85137ee14bf4b03ab276843514b8dc9f9eb35e5bfe14cc17b5e97-dashboard_refund_wallets_preferences.png" className="border" />
+<Image align="center" alt="Configure Refund Wallet Preferences" border={true} src="https://files.readme.io/ed8a7ba9dea85137ee14bf4b03ab276843514b8dc9f9eb35e5bfe14cc17b5e97-dashboard_refund_wallets_preferences.png" className="border" />
 
 2. Perform any of the following:
 
@@ -86,7 +86,7 @@ The _Customer Notifications_ page is displayed.
 
 4. Select the **Refunds** tab.
 
-<Image align="center" border={true} src="https://files.readme.io/18703b0ca7316b87ccab5588e851e255d3c33222c8a7bf8ba2b597e8be855dba-dashboard_refunds_notifications.png" className="border" />
+<Image align="center" alt="Configure Refund Waleet Notifications.png" border={true} src="https://files.readme.io/18703b0ca7316b87ccab5588e851e255d3c33222c8a7bf8ba2b597e8be855dba-dashboard_refunds_notifications.png" className="border" />
 
 5. Update the email for notifications.
 
@@ -96,7 +96,7 @@ To configure the payment link reminders:
 
 1. Navigate to **Payment Link Reminders** tab.
 
-<Image align="center" border={true} width="450px" src="https://files.readme.io/f6a2cc98dd97b08179651b225618e34fab83046bac856016dc826f7ef9edd43d-dashboard_explore_refund_wallets_payment_link_reminders.png" className="border" />
+<Image align="center" alt="Refund Wallets Payment Link Reminders Configuration" border={true} width="450px" src="https://files.readme.io/f6a2cc98dd97b08179651b225618e34fab83046bac856016dc826f7ef9edd43d-dashboard_explore_refund_wallets_payment_link_reminders.png" className="border" />
 
 2. In the **For links with an expiry date** field,  enter the days before expiry when the reminder must be sent.
 3. In the **For links without any expiry date** field, remove number of days before expiry or retain all of them.
