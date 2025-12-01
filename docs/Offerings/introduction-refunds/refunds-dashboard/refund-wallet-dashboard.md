@@ -50,7 +50,7 @@ OR
   **Note**: Transfer funds from your Settlement-linked account only. Amounts transferred from other accounts will be rejected.
 </Callout>
 
-1. Transfer funds from your Settlement-linked account.
+4. Transfer funds from your Settlement-linked account.
 
 <Callout icon="📘" theme="info">
   **Notes**:  Funds added to the Refund Wallet **cannot be withdrawn** from PayU Escrow and are used only for processing refunds.
@@ -60,18 +60,31 @@ OR
 
 After activation, configure your wallet:
 
-* Navigate to **Settings** > **Preferences** > **Refund Wallet** tab.
-* Perform any of the following:
-  * **Wallet Priority**: Set refund wallet priority (choose which wallet is used first for refunds).
-  * **Threshold Limit**: Set a threshold limit for minimum balance. Fo
-  * **Notifications**: Enable notifications (email/SMS) for low balance alerts.
+1. Navigate to **Settings** > **Preferences** > **Refund Wallet** tab.
+
+<Image align="center" border={true} src="https://files.readme.io/ed8a7ba9dea85137ee14bf4b03ab276843514b8dc9f9eb35e5bfe14cc17b5e97-dashboard_refund_wallets_preferences.png" className="border" />
+
+2. Perform any of the following:
+
+* **Wallet Priority**: Set refund wallet priority (choose which wallet is used first for refunds).
+* **Threshold Limit**: Set a threshold limit for minimum balance. Fo
+* **Notifications**: Enable notifications (email/SMS) for low balance alerts.
 
 ### Configure Thresholds and Notifications
 
-* Set a threshold limit to get notified when your wallet balance is low.
-* Add email or SMS contacts for notifications.
+1. In the **Set default priority** field, select any of the following:
+   * **Refund wallet when settlement is not enough**: Refund Wallet balance will be used to process refunds to your customers when you do not have enough settlement funds.
+   * **Refund wallet always**: Refund Wallet balance will always be used to process refunds to your customers. Refund processed via this option will be present in the refund wallet statement but not in settlement MIS.
+2. Enter the threshold limit amount in the **Set low balance limit** field to get notified when your wallet balance is low.
+3. Click **Set Notification**. 
 
-<Image align="center" border={true} src="https://files.readme.io/ed8a7ba9dea85137ee14bf4b03ab276843514b8dc9f9eb35e5bfe14cc17b5e97-dashboard_refund_wallets_preferences.png" className="border" />
+  The Customer Notifications page is displayed.
+
+4. Select the **Refunds** tab.
+
+<Image align="center" border={true} src="https://files.readme.io/18703b0ca7316b87ccab5588e851e255d3c33222c8a7bf8ba2b597e8be855dba-dashboard_refunds_notifications.png" className="border" />
+
+5. Update the email for notifications.
 
 ### Configure Payment Link Reminders
 
@@ -79,7 +92,10 @@ To configure the payment link reminders:
 
 1. Navigate to **Payment Link Reminders** tab.
 
-<br />
+<Image align="center" border={true} width="450px" src="https://files.readme.io/f6a2cc98dd97b08179651b225618e34fab83046bac856016dc826f7ef9edd43d-dashboard_explore_refund_wallets_payment_link_reminders.png" className="border" />
+
+2. In the **For links with an expiry date** field,  enter the days before expiry when the reminder must be sent.
+3. In the **For links without any expiry date** field, remove number of days before expiry or retain all of them.
 
 ## View Refund Wallet Ledger
 
