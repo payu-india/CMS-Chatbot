@@ -20,8 +20,6 @@ metadata:
     - PayU Hosted Checkout SDK for Mobile
   robots: index
 ---
-# iOS Checkout Pro SDK
-
 Integrate a complete mobile checkout solution into your iOS app with the Checkout Pro SDK. You can accept payments faster with minimal integration effort using our ready-to-use PayU PG integration.
 
 ## What You Can Do
