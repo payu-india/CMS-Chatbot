@@ -47,12 +47,11 @@ You'll need the following credentials from the PayU Dashboard:
 
 PayU iOS SDKs are available through:
 
-| Package Manager           | Supported  | Notes                              |
-| ------------------------- | ---------- | ---------------------------------- |
-| **CocoaPods**             | ✅ Yes      | Recommended for most projects      |
-| **Swift Package Manager** | ✅ Yes      | Available for select SDKs          |
-| **Carthage**              | ⚠️ Limited | Check individual SDK documentation |
-| **Manual Integration**    | ✅ Yes      | Framework files available          |
+| Package Manager           | Supported | Notes                         |
+| ------------------------- | --------- | ----------------------------- |
+| **CocoaPods**             | ✅ Yes     | Recommended for most projects |
+| **Swift Package Manager** | ✅ Yes     | Available for select SDKs     |
+| **Manual Integration**    | ✅ Yes     | Framework files available     |
 
 ### CocoaPods Setup
 
