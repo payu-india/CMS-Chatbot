@@ -80,5 +80,4 @@ To integrate Zio
 
 1. Create Subscription (define billing plan). For more information on APIs used, refer to [Manage Subscriptions API](ref:manage-subscriptions).
 2. Execute Consent Transaction (customer authorization → get authRefId). For more information, refer to [Payment Consent Transaction with Merchant Hosted Checkout](ref:payment-consent-transaction-merchant-hosted).
-3. Configure webhooks for invoice notifications. 
-4. Zion auto-charges per billing cycle. For more information, refer to [Manage Invoice APIs](ref:manage-invoice-apis-for-zion).
+3. Zion auto-charges per billing cycle. For more information, refer to [Manage Invoice APIs](ref:manage-invoice-apis-for-zion).
