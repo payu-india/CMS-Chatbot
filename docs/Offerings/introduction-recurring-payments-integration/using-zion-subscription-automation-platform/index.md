@@ -76,7 +76,7 @@ The customer provides their Net Banking details and signs up for a subscription 
 
 ## Quickstart integration
 
-To integrate Zio
+To quickstart Zion platform integration:
 
 1. Create Subscription (define billing plan). For more information on APIs used, refer to [Manage Subscriptions API](ref:manage-subscriptions).
 2. Execute Consent Transaction (customer authorization → get authRefId). For more information, refer to [Payment Consent Transaction with Merchant Hosted Checkout](ref:payment-consent-transaction-merchant-hosted).
