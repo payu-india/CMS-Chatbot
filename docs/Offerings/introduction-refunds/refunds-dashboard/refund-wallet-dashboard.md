@@ -34,12 +34,18 @@ After the refund wallet is activated, you can set the refund wallet priority. Fo
 1. Select the **Refund Wallet** tile.
 2. Click the **Add Funds** button.
 
-  A popup will display VA, IFSC, and beneficiary details.
+   A popup page is displayed listing the VA, IFSC, and beneficiary details.
 
-1. Transfer funds from your **settlement-linked account only** (transfers from other accounts will be rejected).
+<Image align="center" alt="Refund Wallets Add Fund Popup Page" border={false} src="https://files.readme.io/658c821c585d8fcff00edb08f03b10d2e57b53942837a0ef7c001d8db9dbc813-dashboard_refund_wallets_add_fund_popup.png" />
 
 <Callout icon="📘" theme="info">
-  Note: Funds added to the Refund Wallet **cannot be withdrawn** from PayU Escrow and are used only for processing refunds.
+  **Note**: Transfer funds from your Settlement-linked account only. Amounts transferred from other accounts will be rejected.
+</Callout>
+
+1. Transfer funds from your Settlement-linked account. 
+
+<Callout icon="📘" theme="info">
+  **Notes**:  Funds added to the Refund Wallet **cannot be withdrawn** from PayU Escrow and are used only for processing refunds.
 </Callout>
 
 ## Configure Refund Wallet
@@ -57,11 +63,15 @@ After activation, configure your wallet:
 * Set a threshold limit to get notified when your wallet balance is low.
 * Add email or SMS contacts for notifications.
 
+<Image align="center" border={true} src="https://files.readme.io/ed8a7ba9dea85137ee14bf4b03ab276843514b8dc9f9eb35e5bfe14cc17b5e97-dashboard_refund_wallets_preferences.png" className="border" />
+
 ### Configure Payment Link Reminders
 
 To configure the payment link reminders:
 
 1. Navigate to **Payment Link Reminders** tab.
+
+<br />
 
 ## View Refund Wallet Ledger
 
