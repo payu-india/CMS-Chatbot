@@ -66,8 +66,9 @@ After activation, configure your wallet:
 
 2. Perform any of the following:
 
-* **Threshold Limit**: Set a threshold limit for minimum balance. Fo
-* **Notifications**: Enable notifications (email/SMS) for low balance alerts.
+* **Threshold Limit**: Set a threshold limit for minimum balance. For more information, refer to [Configure Thresholds and Notifications](https://docs.payu.in/?isFramePreview=true#configure-thresholds-and-notifications).
+* **Email Notifications**: Enable email notifications for low balance alerts. For more information, refer to [Configure Thresholds and Notifications](https://docs.payu.in/?isFramePreview=true#configure-thresholds-and-notifications).
+* **Payment Link Reminders**: Configure the payment link reminders before number of days when it will expire. For more information, refer to [Configure Payment Link Reminders](https://docs.payu.in/?isFramePreview=true#configure-payment-link-reminders)
 
 ### Configure Thresholds and Notifications
 
@@ -77,7 +78,7 @@ After activation, configure your wallet:
 2. Enter the threshold limit amount in the **Set low balance limit** field to get notified when your wallet balance is low.
 3. Click **Set Notification**.
 
-The Customer Notifications page is displayed.
+  The _Customer Notifications_ page is displayed.
 
 4. Select the **Refunds** tab.
 
