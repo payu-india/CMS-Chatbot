@@ -21,14 +21,14 @@ Before you begin integrating PayU iOS SDKs into your application, complete the f
 
 ### Obtain Your Credentials
 
-You'll need the following credentials from the PayU Dashboard:
+You'll need the following credentials from the PayU Dashboard. Refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy).
 
-| Credential        | Description                        | Where to Find                   |
-| ----------------- | ---------------------------------- | ------------------------------- |
-| **Merchant Key**  | Unique identifier for your account | Dashboard → Settings → API Keys |
-| **Merchant Salt** | Used for hash generation           | Dashboard → Settings → API Keys |
-| **Client ID**     | For OAuth-based authentication     | Dashboard → Settings → OAuth    |
-| **Client Secret** | For OAuth-based authentication     | Dashboard → Settings → OAuth    |
+| Credential        | Description                        |
+| ----------------- | ---------------------------------- |
+| **Merchant Key**  | Unique identifier for your account |
+| **Merchant Salt** | Used for hash generation           |
+| **Client ID**     | For OAuth-based authentication     |
+| **Client Secret** | For OAuth-based authentication     |
 
 ***
 
@@ -36,12 +36,12 @@ You'll need the following credentials from the PayU Dashboard:
 
 ### Minimum System Requirements
 
-| Requirement               | Minimum Version | Recommended           |
-| ------------------------- | --------------- | --------------------- |
-| **Xcode**                 | 14.0+           | Latest stable version |
-| **iOS Deployment Target** | iOS 12.0        | iOS 13.0+             |
-| **Swift**                 | 5.0+            | 5.7+                  |
-| **macOS**                 | Monterey (12.0) | Ventura (13.0)+       |
+| Requirement               | Minimum Version | Recommended |
+| ------------------------- | --------------- | ----------- |
+| **Xcode**                 | 1.0+            | 26.0        |
+| **iOS Deployment Target** | iOS 13.0        | iOS 15.0+   |
+| **Swift**                 | 5.0+            | 5.7+        |
+| **macOS**                 | Sequoia 15.0    | Tahoe 26.0  |
 
 ### Package Manager Support
 
@@ -156,8 +156,6 @@ hash = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|u
 
 #### Sample Server-Side Code
 
-**Node.js:**
-
 ```javascript
 const crypto = require('crypto');
 
@@ -167,9 +165,6 @@ function generatePayUHash(params, salt) {
     return crypto.createHash('sha512').update(hashString).digest('hex');
 }
 ```
-
-**Python:**
-
 ```python
 import hashlib
 
@@ -178,9 +173,6 @@ def generate_payu_hash(params, salt):
     
     return hashlib.sha512(hash_string.encode()).hexdigest()
 ```
-
-**PHP:**
-
 ```php
 function generatePayUHash($params, $salt) {
     $hashString = $params['key'] . '|' . $params['txnid'] . '|' . $params['amount'] . '|' . $params['productinfo'] . '|' . $params['firstname'] . '|' . $params['email'] . '|' . ($params['udf1'] ?? '') . '|' . ($params['udf2'] ?? '') . '|' . ($params['udf3'] ?? '') . '|' . ($params['udf4'] ?? '') . '|' . ($params['udf5'] ?? '') . '||||||' . $salt;
@@ -192,8 +184,6 @@ function generatePayUHash($params, $salt) {
 <Callout icon="🔒" theme="default">
   **Security Note:** Never embed your Salt in the iOS app. Always generate hashes server-side.
 </Callout>
-
-***
 
 ## 5. Choose Your SDK
 
@@ -207,17 +197,6 @@ Based on your requirements, select the appropriate SDK:
 | Improved card success rates       | Core SDK + [Native OTP Assist](/docs/ios-native-otp-assist-sdk) | Medium             | ~1 week       |
 | One-click UPI payments            | [UPI Bolt SDK](/docs/payu-upi-bolt-sdk-ios)                     | Low                | ~1-2 days     |
 | Native 3D Secure experience       | [3DS 2.0 SDK](/docs/ios-3ds-sdk)                                | Medium             | ~3-5 days     |
-
-### SDK Compatibility Matrix
-
-| SDK          | Can Be Combined With                                |
-| ------------ | --------------------------------------------------- |
-| Checkout Pro | Native OTP Assist, 3DS 2.0                          |
-| Core SDK     | Native OTP Assist, 3DS 2.0, UPI SDK, Custom Browser |
-| UPI SDK      | Core SDK                                            |
-| UPI Bolt SDK | Standalone                                          |
-
-***
 
 ## 6. Webhook Setup
 
@@ -244,20 +223,6 @@ Configure webhooks to receive real-time payment notifications.
 <Callout icon="📘" theme="info">
   **Note:** For detailed webhook setup, refer to [Webhooks for Payments](/docs/webhooks-for-payments).
 </Callout>
-
-***
-
-## 7. Support Resources
-
-| Resource                | Description                      | Link                                              |
-| ----------------------- | -------------------------------- | ------------------------------------------------- |
-| **API Reference**       | Complete API documentation       | [API Docs](/reference)                            |
-| **Sample Apps**         | Working code examples            | Check individual SDK docs                         |
-| **Dashboard**           | Manage transactions and settings | [PayU Dashboard](https://dashboard.payu.in)       |
-| **Integration Support** | Technical assistance             | Contact your Account Manager                      |
-| **Email Support**       | General queries                  | [integration@payu.in](mailto:integration@payu.in) |
-
-***
 
 ## Next Steps
 
