@@ -81,8 +81,8 @@ A simple server-generated redirect that sends customers from your site/app to th
 <PaymentAPIEnvironment />
 
 <Cards columns={1}>
-  <Card title="Generate Code for your PayU Hosted Checkout Integration" href="https://payu.in/integrationlab/payu-hosted" icon="fa-home" target="_blank">
-    Neque porro quisquam est qui dolorem ipsum quia
+  <Card title="Automatically Generate Code for your PayU Hosted Checkout Integration" href="https://payu.in/integrationlab/payu-hosted" icon="fa-home" target="_blank">
+   Autommatically generate code for your eCommerce website to integrate PayU Hosted Checkout with zero coding knowledge.
   </Card>
 </Cards>
 
