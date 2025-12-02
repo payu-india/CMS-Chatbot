@@ -47,6 +47,8 @@ The **Seamless Debit Transaction** API allows you to debit funds from a wallet s
   Note: Either `Customer_id` or `walleturn` must be provided.
 </Callout>
 
+<HashingRequestParameters />
+
 ## Response Parameters
 
 | Parameter     | Description                                        | Example                                                   |
