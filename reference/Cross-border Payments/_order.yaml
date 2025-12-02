@@ -5,9 +5,9 @@
 - udf_update_api
 - old_udf_update_api
 - get-on-hold-transactions-api
+- update-on-hold-transactions-api
 - invoice_upload_api
 - response-code-and-description-invoice-upload-api
 - settlement-detail-range-api-for-cross-border
 - get-settlement-detail-api-cross-border-payments
 - recurring-payments-cb
-- update-on-hold-transactions-api
