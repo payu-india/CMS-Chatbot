@@ -24,10 +24,6 @@ The **Debit Enquiry** API allows you to verify the transaction status.
 
 ## Request Parameters
 
-### Body Parameters
-
-The request body is sent as form-encoded parameters.
-
 <HTMLBlock>{`
 <table>
     <thead>
@@ -258,11 +254,4 @@ curl --location --request POST 'https://test.payu.in/_payment' \
 | Wallet blocked             | Customer wallet is temporarily blocked | Contact support                   |
 | Hash mismatch              | Invalid hash in request                | Verify hash calculation           |
 
-## Security Considerations
-
-1. Use HTTPS for all API communications
-2. Validate all input parameters before processing
-3. Implement rate limiting to prevent abuse
-4. Store sensitive data securely
-5. Monitor for suspicious transaction patterns
-6. Implement proper logging for audit trails
+<br />
