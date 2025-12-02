@@ -24,10 +24,6 @@ The **Non-Seamless Debit Transaction** API allows you to debit funds from a wall
 
 ## Request Parameters
 
-### Body Parameters
-
-The request body is sent as form-encoded parameters.
-
 <HTMLBlock>{`
 <table>
     <thead>
