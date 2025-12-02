@@ -73,7 +73,22 @@ The **Seamless Debit Transaction** API allows you to debit funds from a wallet s
 ```bash
 curl --location --request POST 'https://test.payu.in/_payment' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data-'txnId=56882&key=KPQwN8&productinfo=iPhone&Customer_id=89342546&firstName=Sourav&lastName=Mishra&phone=919988776655&email=sourav.mishra@gmail.com&ws_online_response=https://success.url.com&ws_failure_response=https://failure.url.com&amount=4100&pg=CLW&txn_s2s_flow=4&bankcode=PAY&hash=6e640b...'
+--data 'txnId=56882' \
+--data 'key=KPQwN8' \
+--data 'productinfo=iPhone' \
+--data 'Customer_id=89342546' \
+--data 'firstName=Sourav' \
+--data 'lastName=Mishra' \
+--data 'phone=919988776655' \
+--data 'email=sourav.mishra@gmail.com' \
+--data 'ws_online_response=https://success.url.com' \
+--data 'ws_failure_response=https://failure.url.com' \
+--data 'amount=4100' \
+--data 'pg=CLW' \
+--data 'txn_s2s_flow=4' \
+--data 'bankcode=PAY' \
+--data 'hash=6e640b...'
+
 ```
 
 ## Sample Response
