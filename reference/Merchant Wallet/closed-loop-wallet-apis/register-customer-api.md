@@ -135,14 +135,6 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
 --header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="hmac_generated_signature"' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "token": "h/0YSUd9jKOQ8+2Dc3Phr4s7vxyz123..."
-}'
-```
-
-### Decrypted Packet
-
-```json
-{
   "messageCode": 3510,
   "clientTxnId": "txn12345",
   "requestDateTime": "20230810123015",
@@ -156,20 +148,10 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
   "riskCategory": "Low",
   "productId": 35,
   "formFactorRequired": true
-}
+}'
 ```
 
 ## Sample Response
-
-### Encrypted Response
-
-```json
-{
-  "result": "h/0YSUd9jKOQ8+2Dc3Phr4s7vxyz789..."
-}
-```
-
-### Decrypted Response
 
 ```json
 {
