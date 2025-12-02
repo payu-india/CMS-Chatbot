@@ -5,40 +5,40 @@ hidden: true
 metadata:
   robots: index
 ---
-Use this API to retrieve a list of on-hold transactions that require additional information or action. 
+Use this API to retrieve a list of on-hold transactions that require additional information or action.
 
----
+***
 
 **Endpoint**
 
-| Environment | URL | Method |
-|:--|:--|:--|
-| Production | `https://oneapi.payu.in/opgsp/getOnHoldTxnDetails` | GET |
+| Environment | URL                                                | Method |
+| :---------- | :------------------------------------------------- | :----- |
+| Production  | `https://oneapi.payu.in/opgsp/getOnHoldTxnDetails` | GET    |
 
----
+***
 
 ## Request Headers
 
-| Parameter | Description | Example |
-|:--|:--|:--|
-| mid<br/>`mandatory` | `String` - Merchant ID of the merchant | 8763182 |
-| Authorization<br/>`mandatory` | `String` - HMAC SHA512 authorization header | See overview |
-| Date<br/>`mandatory` | `String` - Current UTC date in HTTP format | Wed, 28 Jun 2023 11:25:19 GMT |
+| Parameter                      | Description                                 | Example                       |
+| :----------------------------- | :------------------------------------------ | :---------------------------- |
+| mid<br />`mandatory`           | `String` - Merchant ID of the merchant      | 8763182                       |
+| Authorization<br />`mandatory` | `String` - HMAC SHA512 authorization header | See overview                  |
+| Date<br />`mandatory`          | `String` - Current UTC date in HTTP format  | Wed, 28 Jun 2023 11:25:19 GMT |
 
----
+***
 
 ## Request Parameters
 
-| Parameter | Description | Example |
-|:--|:--|:--|
-| startDate<br/>`mandatory` | `String` - The start date from which you need to check the data. Format: YYYY-MM-DD | 2025-01-22 |
-| endDate<br/>`mandatory` | `String` - The end date up to which you need the data. Format: YYYY-MM-DD | 2025-01-25 |
-| pageSize<br/>`optional` | `Integer` - Number of records per page. Default: 50 | 10 |
-| pageOffset<br/>`optional` | `Integer` - Page number for pagination. Default: 0 | 0 |
-| orderBy<br/>`optional` | `String` - Field to order results by | addedOn |
-| order<br/>`optional` | `String` - Sort order. Values: ASC, DESC | ASC |
+| Parameter                  | Description                                                                         | Example    |
+| :------------------------- | :---------------------------------------------------------------------------------- | :--------- |
+| startDate<br />`mandatory` | `String` - The start date from which you need to check the data. Format: YYYY-MM-DD | 2025-01-22 |
+| endDate<br />`mandatory`   | `String` - The end date up to which you need the data. Format: YYYY-MM-DD           | 2025-01-25 |
+| pageSize<br />`optional`   | `Integer` - Number of records per page. Default: 50                                 | 10         |
+| pageOffset<br />`optional` | `Integer` - Page number for pagination. Default: 0                                  | 0          |
+| orderBy<br />`optional`    | `String` - Field to order results by                                                | addedOn    |
+| order<br />`optional`      | `String` - Sort order. Values: ASC, DESC                                            | ASC        |
 
----
+***
 
 ## Sample Request
 
@@ -111,7 +111,6 @@ class Program
     }
 }
 ```
-
 ```javascript
 async function getOnHoldTransactions() {
     const baseUrl = 'https://oneapi.payu.in/opgsp/getOnHoldTxnDetails';
@@ -241,49 +240,49 @@ if ($responseData !== null) {
 ?>
 ```
 
----
+***
 
 ## Response Parameters
 
-| Parameter | Description | Example |
-|:--|:--|:--|
-| code<br/>`mandatory` | `String` - Response code. 2000 indicates success. | 2000 |
-| message<br/>`mandatory` | `String` - Response message | Success |
-| status<br/>`mandatory` | `Integer` - Status indicator. 0 indicates success. | 0 |
-| result<br/>`mandatory` | `Object` - Contains the result data with pagination info | See below |
-| pageSize<br/>`mandatory` | `Integer` - Number of records per page | 10 |
-| pages<br/>`mandatory` | `Integer` - Total number of pages | 1 |
-| rows<br/>`mandatory` | `Integer` - Total number of records | 4 |
-| pageOffset<br/>`mandatory` | `Integer` - Current page offset | 0 |
-| data<br/>`mandatory` | `Array` - Array of on-hold transaction objects | See below |
+| Parameter                   | Description                                              | Example   |
+| :-------------------------- | :------------------------------------------------------- | :-------- |
+| code<br />`mandatory`       | `String` - Response code. 2000 indicates success.        | 2000      |
+| message<br />`mandatory`    | `String` - Response message                              | Success   |
+| status<br />`mandatory`     | `Integer` - Status indicator. 0 indicates success.       | 0         |
+| result<br />`mandatory`     | `Object` - Contains the result data with pagination info | See below |
+| pageSize<br />`mandatory`   | `Integer` - Number of records per page                   | 10        |
+| pages<br />`mandatory`      | `Integer` - Total number of pages                        | 1         |
+| rows<br />`mandatory`       | `Integer` - Total number of records                      | 4         |
+| pageOffset<br />`mandatory` | `Integer` - Current page offset                          | 0         |
+| data<br />`mandatory`       | `Array` - Array of on-hold transaction objects           | See below |
 
 ### Transaction Object Parameters
 
-| Parameter | Description | Example |
-|:--|:--|:--|
-| requestId<br/>`mandatory` | `String` - Unique request identifier for the on-hold transaction | 15908344641 |
-| action<br/>`mandatory` | `String` - Action type: capture or refund | capture |
-| displayMessage<br/>`mandatory` | `String` - Message describing the on-hold reason or required action | Please provide additional customer information... |
-| dueDate<br/>`mandatory` | `String` - Due date by which response is required | 2025-01-28 00:00:00 |
-| status<br/>`mandatory` | `String` - Transaction status: needsResponse, rejected, dueDateExpired | needsResponse |
-| keyMapping<br/>`optional` | `String` - JSON string of required fields | \{"invoice_id":""} |
-| merchantTransactionId<br/>`mandatory` | `String` - Merchant's transaction ID | 31011722620 |
-| dateOfTransaction<br/>`mandatory` | `String` - Original transaction date | 2025-01-20 11:52:27 |
-| dateOfFirstSettlementTransaction<br/>`mandatory` | `String` - Date of first settlement attempt | 2025-01-22 22:44:50 |
-| keyMappingList<br/>`optional` | `Array` - List of required fields with validation rules | See below |
-| editable<br/>`mandatory` | `Integer` - Whether the transaction can be updated. 1 = editable, 0 = not editable | 1 |
+| Parameter                                         | Description                                                                        | Example                                           |
+| :------------------------------------------------ | :--------------------------------------------------------------------------------- | :------------------------------------------------ |
+| requestId<br />`mandatory`                        | `String` - Unique request identifier for the on-hold transaction                   | 15908344641                                       |
+| action<br />`mandatory`                           | `String` - Action type: capture or refund                                          | capture                                           |
+| displayMessage<br />`mandatory`                   | `String` - Message describing the on-hold reason or required action                | Please provide additional customer information... |
+| dueDate<br />`mandatory`                          | `String` - Due date by which response is required                                  | 2025-01-28 00:00:00                               |
+| status<br />`mandatory`                           | `String` - Transaction status: needsResponse, rejected, dueDateExpired             | needsResponse                                     |
+| keyMapping<br />`optional`                        | `String` - JSON string of required fields                                          | \{"invoice_id":""}                                |
+| merchantTransactionId<br />`mandatory`            | `String` - Merchant's transaction ID                                               | 31011722620                                       |
+| dateOfTransaction<br />`mandatory`                | `String` - Original transaction date                                               | 2025-01-20 11:52:27                               |
+| dateOfFirstSettlementTransaction<br />`mandatory` | `String` - Date of first settlement attempt                                        | 2025-01-22 22:44:50                               |
+| keyMappingList<br />`optional`                    | `Array` - List of required fields with validation rules                            | See below                                         |
+| editable<br />`mandatory`                         | `Integer` - Whether the transaction can be updated. 1 = editable, 0 = not editable | 1                                                 |
 
 ### keyMappingList Object Parameters
 
-| Parameter | Description | Example |
-|:--|:--|:--|
-| key<br/>`mandatory` | `String` - Field key name | zipcode |
-| displayName<br/>`mandatory` | `String` - Human-readable field name | ZIP Code |
-| value<br/>`optional` | `String` - Current value (empty if not provided) | |
-| order<br/>`mandatory` | `Integer` - Display order of the field | 9 |
-| validationRegex<br/>`mandatory` | `String` - Regex pattern for validation | ^[1-9][0-9]\{5}$ |
+| Parameter                        | Description                                      | Example          |
+| :------------------------------- | :----------------------------------------------- | :--------------- |
+| key<br />`mandatory`             | `String` - Field key name                        | zipcode          |
+| displayName<br />`mandatory`     | `String` - Human-readable field name             | ZIP Code         |
+| value<br />`optional`            | `String` - Current value (empty if not provided) |                  |
+| order<br />`mandatory`           | `Integer` - Display order of the field           | 9                |
+| validationRegex<br />`mandatory` | `String` - Regex pattern for validation          | ^[1-9][0-9]\{5}$ |
 
----
+***
 
 ## Sample Responses
 
