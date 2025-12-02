@@ -26,6 +26,7 @@ Use this API to retrieve a list of on-hold transactions that require additional 
 | Date<br />`mandatory`          | `String` - Current UTC date in HTTP format  | Wed, 28 Jun 2023 11:25:19 GMT                                       |
 
 ### Authorization field format
+<Accordion title="Authorization field format" icon="fa-heading">
 
 The **Authorization** field format is similar to the following example:
 
@@ -117,6 +118,7 @@ The sample header is similar to the following:
 'Digest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0= '
 'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=""'
 ```
+</Accordion>
 
 ## Request Parameters
 
