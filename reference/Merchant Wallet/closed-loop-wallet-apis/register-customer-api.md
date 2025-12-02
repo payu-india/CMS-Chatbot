@@ -21,8 +21,6 @@ The **Register Customer** API allows you to register a new customer and facilita
 
 ## Request Parameters
 
-The request body contains both encrypted and decrypted parameters.
-
 <HTMLBlock>{`
 <table>
   <thead>
