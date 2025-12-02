@@ -1,5 +1,5 @@
 ---
-title: Update On-Hold Transactions API
+title: Update On-Hold Transactions API - CB
 deprecated: false
 hidden: true
 metadata:
