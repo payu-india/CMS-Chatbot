@@ -25,31 +25,6 @@ This API uses HMAC-SHA512 authentication on header.
 
 ## Request Parameters
 
-### Body Parameters
-
-The request body contains both encrypted and decrypted parameters.
-
-#### Encrypted
-
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>token<br/><code>mandatory</code></td>
-      <td><code>String</code> AES-192-CBC encrypted request body containing all the decrypted parameters</td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
-
-#### Decrypted
-
 <HTMLBlock>{`
 <table>
   <thead>
@@ -173,14 +148,6 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
 --header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="hmac_generated_signature"' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "token": "h/0YSUd9jKOQ8+2Dc3Phr4s7vxyz123..."
-}'
-```
-
-### Decrypted Packet
-
-```json
-{
   "messageCode": 1280,
   "clientTxnId": "ABC0987654321",
   "requestDateTime": "20230804182306",
@@ -201,20 +168,10 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
     "pincode": "400001"
   },
   "updateVectors": "emailId,address"
-}
+}'
 ```
 
 ## Sample Response
-
-### Encrypted Response
-
-```json
-{
-  "result": "h/0YSUd9jKOQ8+2Dc3Phr4s7vxyz789..."
-}
-```
-
-### Decrypted Response
 
 ```json
 {
