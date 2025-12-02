@@ -27,11 +27,11 @@ This section describes the step-by-step procedure to process on-hold transaction
 
 Retrieve on-hold transactions using the GET API to identify which transactions require additional information.
 
-<Accordion title="API endpoint" icon="fa-globe">
+**Environment**
   | Environment | URL                                                | Method |
   | :---------- | :------------------------------------------------- | :----- |
   | Production  | `https://oneapi.payu.in/opgsp/getOnHoldTxnDetails` | GET    |
-</Accordion>
+
 
 <Accordion title="Request headers" icon="fa-heading">
   | Parameter                      | Description                                 | Example                       |
