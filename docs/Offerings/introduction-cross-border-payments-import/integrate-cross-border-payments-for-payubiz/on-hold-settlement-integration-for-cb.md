@@ -1,7 +1,7 @@
 ---
 title: On-Hold Settlement Integration for CB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
