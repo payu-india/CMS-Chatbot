@@ -1,7 +1,7 @@
 ---
 title: Customer Journey - PayU Hosted Checkout with LRS Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
