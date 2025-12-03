@@ -114,6 +114,51 @@ A simple server-generated redirect that sends customers from your site/app to th
 
 <br />
 
+<HTMLBlock>{`
+<style>
+.glass-btn {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 16px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+.glass-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+}
+.glass-btn:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+}
+</style>
+
+<a href="https://payu.in/integrationlab/payu-hosted" 
+   target="_blank" 
+   class="glass-btn" 
+   data-tooltip="Generate PayU integration code instantly!">
+    🚀 PayU Code Generator
+</a>
+`}</HTMLBlock>
+
+<br />
+
 <PaymentAPIEnvironment />
 
 ## Step 1:  Start Integration
