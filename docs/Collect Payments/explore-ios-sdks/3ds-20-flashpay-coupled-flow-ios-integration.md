@@ -1,5 +1,5 @@
 ---
-title: 3DS 2.0 FlashPay Coupled Flow iOS Integration
+title: FlashPay Coupled Flow iOS 3DS 2.0 SDK Integration
 deprecated: false
 hidden: true
 metadata:
