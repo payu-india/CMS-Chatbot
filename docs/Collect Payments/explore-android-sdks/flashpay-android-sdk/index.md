@@ -77,6 +77,8 @@ The technical Implementation steps involves:
   **Note**: If the customer has not selected the **Set up your Face ID or Fingerprint for quick and secure payments** check box,  FlashPay SDK initiates biometric enrollment:
 
   <Image align="center" border={false} width="250px" src="https://files.readme.io/955ec58c28e9428b15f1acd6a8eb0b8bc1011df6ad6a910b635b8a35485e0a34-Flashpay_SDK_registraction_flow_biometric.png" />
+
+
 </Callout>
 
 5. Biometric credential is registered
@@ -104,17 +106,29 @@ Customers who have successfully registered their cards with FlashPay can authent
 
 The technical implementation steps involves:
 
-1. **Authentication Initiation**: Merchant initiates authentication using 3DS SDK and PA API
+1. Customer selects enrolled card for authentication.
 
-2. **Bank Processing**: Bank ACS validates the card and sends encrypted response to FlashPay SDK
+<Image align="center" border={true} width="250px" src="https://files.readme.io/9a195225492306df95631d21b8db1b0fda12caba0d5dfb140344e213553bc45f-Flashpay_SDK_registration_flow_eligible_card_selection.png" className="border" />
 
-3. **Biometric Validation**: FlashPay SDK presents biometric authentication interface
-   * Primary: Biometric authentication (fingerprint/face recognition)
-   * Fallback: OTP authentication when biometric validation fails
+2. Customer is educated about biometric authentication
 
-4. **Status Communication**: Validation status is sent to merchant via SDK callback and webhook
+<br />
 
-5. **Transaction Completion**: Merchant confirms authentication result using PA APIs and proceeds with account debit
+<Image align="center" border={true} width="250px" src="https://files.readme.io/9a195225492306df95631d21b8db1b0fda12caba0d5dfb140344e213553bc45f-Flashpay_SDK_registration_flow_eligible_card_selection.png" className="border" />
+
+3. Authentication screen with auto-fallback capability
+
+<Image align="center" border={true} width="250px" src="https://files.readme.io/f70f570575b4fccce24a8d3ab58c642d7ea98def1979668d63b35395c7475250-Flashpay_SDK_registration_flow_educate_about_biometrtic.png" className="border" />
+
+4. Customer validation & biometric capture
+
+<Image align="center" border={true} width="250px" src="https://files.readme.io/c5a320710a861aacd19b42f40dfc770864dabc50769e70afb5ac32ffaadd340d-Flashpay_SDK_registration_flow_device_verification.png" className="border" />
+
+5. Transaction is complete.
+
+<Image align="center" border={true} width="250px" src="https://files.readme.io/5c44d95ed40b62fd80467b939341bc1531f1311dc2ee5a99968c58d20f326aad-Flashpay_SDK_registration_flow_transaction_success.png" className="border" />
+
+<br />
 
 ### Key Authentication Considerations
 
