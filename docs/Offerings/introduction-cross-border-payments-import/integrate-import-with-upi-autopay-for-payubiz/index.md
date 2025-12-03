@@ -1,5 +1,5 @@
 ---
-title: Integrate Import with UPI Autopay for PayUBiz
+title: Integrate Import with UPI Autopay for Cross Border Import
 excerpt: ''
 deprecated: false
 hidden: false
