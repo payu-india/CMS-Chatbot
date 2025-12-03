@@ -1,7 +1,7 @@
 ---
 title: On-Hold Settlement Integration -  CB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -778,6 +778,3 @@ if ($responseData !== null) {
 - [On-Hold Settlement Overview](doc:overview)
 - [Get On-Hold Transactions API](doc:get-on-hold-transactions-api)
 - [Update On-Hold Transactions API](doc:update-on-hold-transactions-api)
-
-
-
