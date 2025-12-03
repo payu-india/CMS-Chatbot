@@ -1,7 +1,7 @@
 ---
 title: Integrate Merchant Hosted Checkout - Cross Border Transaction under LRS
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
