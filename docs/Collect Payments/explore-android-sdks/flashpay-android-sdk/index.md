@@ -61,9 +61,11 @@ This section details the step-by-step process for registering a customer's card 
 
 The technical Implementation steps involves:
 
-1. Customer selects eligible card for Authentication
+1. Customer selects eligible card for authentication.
 
-2. Enters OTP for transaction authentication & opts to enroll for biometric authentication
+<Image align="center" border={true} width="250px" src="https://files.readme.io/9a195225492306df95631d21b8db1b0fda12caba0d5dfb140344e213553bc45f-Flashpay_SDK_registration_flow_eligible_card_selection.png" className="border" />
+
+1. Enters OTP for transaction authentication & opts to enroll for biometric authentication
 
 <Image align="center" border={true} width="250px" src="https://files.readme.io/dc14398d54d33890cde207fabccaa07f7ac400caf73508d00c18cc6a7120f4fb-Flashpay_SDK_registration_flow_otp-input.png" className="border" />
 
