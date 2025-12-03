@@ -81,7 +81,7 @@ The technical Implementation steps involves:
 
 5. Biometric credential is registered
 
-<Image align="center" border={true} width="250px" src="https://files.readme.io/c5a320710a861aacd19b42f40dfc770864dabc50769e70afb5ac32ffaadd340d-Flashpay_SDK_registration_flow_device_verification.png" className="border" />
+<Image align="center" border={true} width="250px" src="https://files.readme.io/cb10d627d74c852966eb74f9d110a290c0013e4711eac08994b6c39e9aca7aef-Flashpay_SDK_registraction_flow_faceid.png" className="border" />
 
 6. Mobile verification is done
 
@@ -114,7 +114,7 @@ The technical implementation steps involves:
 
 3. Customer validation & biometric capture
 
-<Image align="center" border={true} width="250px" src="https://files.readme.io/c5a320710a861aacd19b42f40dfc770864dabc50769e70afb5ac32ffaadd340d-Flashpay_SDK_registration_flow_device_verification.png" className="border" />
+<Image align="center" border={true} width="250px" src="https://files.readme.io/cb10d627d74c852966eb74f9d110a290c0013e4711eac08994b6c39e9aca7aef-Flashpay_SDK_registraction_flow_faceid.png" className="border" />
 
 4. Transaction is complete.
 
