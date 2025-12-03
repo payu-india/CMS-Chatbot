@@ -69,13 +69,15 @@ The technical Implementation steps involves:
 
 <Image align="center" border={true} width="250px" src="https://files.readme.io/9a195225492306df95631d21b8db1b0fda12caba0d5dfb140344e213553bc45f-Flashpay_SDK_registration_flow_eligible_card_selection.png" className="border" />
 
-3. Enters OTP for transaction authentication & opts to enroll for biometric authentication
+3. Enters OTP for transaction authentication & opts to enroll for biometric authentication. Customer must select the **Set up your Face ID or Fingerprint for quick and secure payments** check box.
 
 <Image align="center" border={true} width="250px" src="https://files.readme.io/dc14398d54d33890cde207fabccaa07f7ac400caf73508d00c18cc6a7120f4fb-Flashpay_SDK_registration_flow_otp-input.png" className="border" />
 
-4. FlashPay SDK initiates biometric enrollment
+<Callout icon="📘" theme="info">
+  **Note**: If the customer has not selected the **Set up your Face ID or Fingerprint for quick and secure payments** check box,  FlashPay SDK initiates biometric enrollment:
 
-<Image align="center" border={false} width="250px" src="https://files.readme.io/955ec58c28e9428b15f1acd6a8eb0b8bc1011df6ad6a910b635b8a35485e0a34-Flashpay_SDK_registraction_flow_biometric.png" />
+  <Image align="center" border={false} width="250px" src="https://files.readme.io/955ec58c28e9428b15f1acd6a8eb0b8bc1011df6ad6a910b635b8a35485e0a34-Flashpay_SDK_registraction_flow_biometric.png" />
+</Callout>
 
 5. Biometric credential is registered
 
