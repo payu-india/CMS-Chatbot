@@ -61,17 +61,27 @@ This section details the step-by-step process for registering a customer's card 
 
 The technical Implementation steps involves:
 
-1. **Transaction Initiation**: Merchant initiates card payment transaction using 3DS SDK and invokes PA API for payment authorization
+1. Customer selects eligible card for Authentication
 
-2. **Bank Validation**: Bank ACS validates the card and provides an encrypted authentication response containing FlashPay indicators
+2. Enters OTP for transaction authentication & opts to enroll for biometric authentication
 
-3. **SDK Processing**: FlashPay SDK loads OTP authentication screen and captures user consent for biometric enrollment
+<Image align="center" border={true} width="250px" src="https://files.readme.io/dc14398d54d33890cde207fabccaa07f7ac400caf73508d00c18cc6a7120f4fb-Flashpay_SDK_registration_flow_otp-input.png" className="border" />
 
-4. **Post-OTP Validation**:
-   * Authentication status is communicated to merchant via SDK callback and backend webhook
-   * Merchant initiates account debit using PA Authorization API
+1. FlashPay SDK initiates biometric enrollment
 
-5. **Registration Storage**: Registration status is saved by merchant for future transaction reference
+<Image align="center" border={false} width="250px" src="https://files.readme.io/955ec58c28e9428b15f1acd6a8eb0b8bc1011df6ad6a910b635b8a35485e0a34-Flashpay_SDK_registraction_flow_biometric.png" />
+
+1. Mobile verification is done
+
+<Image align="center" border={true} width="250px" src="https://files.readme.io/c5a320710a861aacd19b42f40dfc770864dabc50769e70afb5ac32ffaadd340d-Flashpay_SDK_registration_flow_device_verification.png" className="border" />
+
+1. FlashPay registration is complete
+
+<Image align="center" border={true} width="250px" src="https://files.readme.io/7023dd572c886b5280cb4bde0e23d65bb55df2656d5ecdab96827ae9e93ce66e-Flashpay_SDK_registration_flow_device_setting_up.png" className="border" />
+
+1. Registration is complete
+
+<Image align="center" border={true} width="250px" src="https://files.readme.io/afde344f38ca6e0ef3cbefdc4201b95335c84ee044948a57d2f292ee0369d072-Flashpay_SDK_registration_flow_device_success.png" className="border" />
 
 ### Key Registration Considerations
 
