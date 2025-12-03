@@ -131,10 +131,7 @@ The technical implementation steps involves:
 
 ### Merchant Integration with FlashPay SDK
 
-For detailed SDK integration guidelines, implementation steps, callback configurations, and communication protocols, refer to any of the following
-
-* [FlashPay Coupled Flow Android Integration](doc:flashpay-coupled-flow-android-integration)
-* [Flashpay Decoupled Flow Android Integration](doc:flashpay-decoupled-flow-android-integration-mfa)
+For detailed SDK integration guidelines, implementation steps, callback configurations, and communication protocols, refer to [FlashPay Coupled Flow iOS 3DS 2.0 SDK Integration](doc:3ds-20-flashpay-coupled-flow-ios-integration).
 
 ### Merchant Integration with Payment Aggregator APIs
 
