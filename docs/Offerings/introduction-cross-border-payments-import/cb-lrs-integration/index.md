@@ -1,7 +1,7 @@
 ---
 title: Liberalised Remittance Scheme (LRS) for Travel & Education
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
