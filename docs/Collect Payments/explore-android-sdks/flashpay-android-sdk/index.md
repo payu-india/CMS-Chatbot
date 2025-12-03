@@ -61,27 +61,31 @@ This section details the step-by-step process for registering a customer's card 
 
 The technical Implementation steps involves:
 
-1. Customer selects eligible card for authentication.
+1. Checkout page is displayed with payment modes
+
+<Image align="center" border={true} width="250px" src="https://files.readme.io/1ecd2143e141c7f95dc6af8af4917ec539f75c5cb2eda5101080c353753afe00-Flashpay_SDK_registration_flow_checkout_page.png" className="border" />
+
+2. Customer selects eligible card for authentication.
 
 <Image align="center" border={true} width="250px" src="https://files.readme.io/9a195225492306df95631d21b8db1b0fda12caba0d5dfb140344e213553bc45f-Flashpay_SDK_registration_flow_eligible_card_selection.png" className="border" />
 
-1. Enters OTP for transaction authentication & opts to enroll for biometric authentication
+3. Enters OTP for transaction authentication & opts to enroll for biometric authentication
 
 <Image align="center" border={true} width="250px" src="https://files.readme.io/dc14398d54d33890cde207fabccaa07f7ac400caf73508d00c18cc6a7120f4fb-Flashpay_SDK_registration_flow_otp-input.png" className="border" />
 
-1. FlashPay SDK initiates biometric enrollment
+4. FlashPay SDK initiates biometric enrollment
 
 <Image align="center" border={false} width="250px" src="https://files.readme.io/955ec58c28e9428b15f1acd6a8eb0b8bc1011df6ad6a910b635b8a35485e0a34-Flashpay_SDK_registraction_flow_biometric.png" />
 
-1. Mobile verification is done
+5. Biometric credential is registered
 
 <Image align="center" border={true} width="250px" src="https://files.readme.io/c5a320710a861aacd19b42f40dfc770864dabc50769e70afb5ac32ffaadd340d-Flashpay_SDK_registration_flow_device_verification.png" className="border" />
 
-1. FlashPay registration is complete
+6. Mobile verification is done
 
 <Image align="center" border={true} width="250px" src="https://files.readme.io/7023dd572c886b5280cb4bde0e23d65bb55df2656d5ecdab96827ae9e93ce66e-Flashpay_SDK_registration_flow_device_setting_up.png" className="border" />
 
-1. Registration is complete
+7. FlashPay registration is complete
 
 <Image align="center" border={true} width="250px" src="https://files.readme.io/afde344f38ca6e0ef3cbefdc4201b95335c84ee044948a57d2f292ee0369d072-Flashpay_SDK_registration_flow_device_success.png" className="border" />
 
