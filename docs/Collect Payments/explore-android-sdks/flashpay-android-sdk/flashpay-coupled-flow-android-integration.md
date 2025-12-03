@@ -1,8 +1,15 @@
 ---
-title: FlashPay Coupled Flow Android Integration
+title: FlashPay Coupled Flow 3DS 2.0 Integration
 deprecated: false
 hidden: false
 metadata:
+  title: FlashPay Coupled Flow 3DS 2.0 Integration - Android SDK
+  description: >-
+    This section describes the step-by-step procedure to integrate FlashPay
+    Coupled Flow 3DS 2.0 on Android SDK
+  keywords:
+    - Android FlashPay Coupled Flow 3DS 2.0 Integration
+    - FlashPay Coupled Flow 3DS 2.0 Integration on Android
   robots: index
 ---
 FlashPay solution primarily offers a single comprehensive SDK which is equipped to operate on 3DS protocols and additionally manages e2e authentication, including advanced biometric-based OOB authentication.
