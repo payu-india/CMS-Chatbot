@@ -1,7 +1,7 @@
 ---
 title: 'Integrate PayU Hosted Checkout - CB LRS '
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
