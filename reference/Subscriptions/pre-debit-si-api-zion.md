@@ -1,11 +1,11 @@
 ---
-title: Pre-Debit SI API - Zion
+title: Pre-Debit SI API
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-Use the ** Pre-Debit SI** API to send pre-debit notifications for upcoming recurring debits with parallel sequencing support.
+Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurring debits with parallel sequencing support.
 
 ## Environment
 
