@@ -1,7 +1,7 @@
 ---
 title: Integrate Parallel Sequencing for UPI AutoPay
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
