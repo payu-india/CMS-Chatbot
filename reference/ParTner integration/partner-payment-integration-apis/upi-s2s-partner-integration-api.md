@@ -63,309 +63,45 @@ The following table lists the request parameter descriptions for Partner Payment
 >
 > The following params are the extra parameters (optional) used compared to the regular **_payment** API, but with a different endpoint:  partner_udf_3, partner_udf_4, shipping_firstname, shipping_lastname, shipping_address1, shipping_address2, shipping_city, shipping_state, shipping_country, shipping_zipcode,  shipping_phone
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>merchant_id  <strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter is the unique Merchant id provided by PayU for your merchant account. The Merchant id acts as the unique identifier (primary key) to identify a particular Merchant Account in our database.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>8488225</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnid<br><strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> This parameter is known as Transaction ID (or OrderID). It is the order reference number generated at your (Merchant’s) end. It is an identifier which you(merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of same Transaction ID again would fail. Hence, it is essential that you post us a unique transaction ID for every new transaction (Please make sure that the transaction ID being sent to us hasn’t been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID’).</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>fd3e847h2</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount  <strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>float</code> This parameter should contain the payment amount of the particular transaction. Note: Type-cast the amount to float type</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>10</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>productinfo  <strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice). </p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>T-shirt</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>firstname  <strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> This parameter must contain the first name of the customer.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Ankit</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> This parameter must contain the email of the customer)</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="mailto:test@gmail.com">test@gmail.com</a></p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>phone  <strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>integer</code> Merchant needs to take the customer’s GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>txn_s2s_flow  <strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>integer</code> This parameter is to indicate the transaction is S2S flow. Pass this parameter value as 4.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>4</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>varchar</code> varchar Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. There are two different methods to calculate hash. Please follow method 1 only. Method 2 is just there for the documentation and is not to be used This is the simplest way of calculating the hash value. Here, please make sure that the api_version parameter is NOT POSTED from your end. For hash calculation, you need to generate a string using certain parameters and apply the sha512 algorithm to this string.<br>Note: You have to use pipe (|) character in between these parameters as mentioned below. The parameter order is mentioned below: sha512(merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|u df5||||||CLIENT_SECRET) All these parameters (and their descriptions) have already been mentioned earlier in this table. Here, SALT (to be provided by PayU), key, txnid, amount productinfo, firstname, email are mandatory parameters and hence can’t b empty in hash calculation above. But, udf1-udf5 are optional and hence you nee to calculate the hash based upon the fact that whether you are posting a particular udf or not. For example, if you are NOT posting udf1. Then, in the has calculation, udf1 field will be left empty. The following examples will clarify various scenarios of hash calculation:  </p>
-<ul>
-<li>Case 1: If all the udf parameters (udf1-udf5) are posted by the merchant. Then, hash=sha512(merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3| udf4|udf5||||||CLIENT_SECRET)</li>
-<li>Case 2: If only some of the udf parameters are posted and others are not. For example, if udf2 and udf4 are posted and udf1, udf3, udf5 are not. Then, hash=sha512(merchant_id|txnid|amount|productinfo|firstname|email||udf2||udf4|||||||CLIENT_SECRET) Case 3: If NONE of the udf parameters (udf1-udf5) are posted. Then, hash=sha512(merchant_id|txnid|amount|productinfo|firstname|email|||||||||||CLIENT_SECRET) Example: If merchant_id=6631711, txnid=12345, amount=10, productinfo=Shopping, firstname=Test, email=<a href="mailto:test@test.com">test@test.com</a>, udf2=abc, udf4=15, CLIENT_SECRET=3sf0jURk91319391949941414195821851313 and udf1, udf3, udf5 are not posted. Then, the hash would be calculated as Case 2 above: sha512(6631711|12345|10|Shopping|Test|<a href="mailto:test@test.com">test@test.com</a>||abc||15|||||||3sf0jURk91319391949941414195821851313) (This value comes out to be 7a83339ccf2dde9d31569b00eea70a60174b3af3ceaa773d17a84b90c9eedad5f744ba02f95a572d8fe8592346ebb537bede49ad1ec786469b4bd77531d19b87) IMPORTANT: For details related to hash at the time of postback from PayU to the merchant, please refer to the later section. This is also absolutely mandatory to avoid any tampering.</li>
-</ul>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>s2s_client_ip  <strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>varchar This parameter must have the source IP of the user</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>s2s_device_info  <strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>varchar This parameter must have the user agent of the device</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>reseller_id  <strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>varchar This parameter is the unique Partner Identifier provided by PayU for your partner account. The Partner Identifier acts as the unique identifier to identify a particular Partner Account in our database.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> 83fe-eb64-021844d8-9397-26535b1bf0c2</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>udf5<br><strong>mandatory</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> This parameter has been made for you to keep any information corresponding to the transaction. Pass <strong>whatsapp</strong> in this field</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>whatsapp</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>address1  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The first line of the billing address.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>address2  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The second line of the billing address.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>city<br><strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The city where your customer resides as part of the billing address.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>state<br><strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The state where your customer resides as part of the billing address.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>country<br><strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The country where your customer resides.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>zipcode<br><strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> Billing address zip code is mandatory for the cardless EMI option.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>partner_udf_3<br><strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter has been made for partner to pass any information corresponding to the transaction.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>partner_udf_4<br><strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter has been made for partner to pass any information corresponding to the transaction.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>shipping_firstname  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The first name of shipping person.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>shipping_lastname  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The last name of shipping person.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>shipping_address1  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The first line of the shipping address.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>shipping_address2  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The second line of the shipping address.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>shipping_city  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The city where your customer resides as part of the shipping address.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>shipping_state  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The state where your customer resides as part of the shipping address.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>shipping_country  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The country where your customer resides as part of the shipping address.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>shipping_zipcode  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> Shipping address zip code.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>shipping_phone  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> The phone no your customer resides as part of the shipping address.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>drop_category  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code>  This parameter can be used if you want to hide one or multiple payment options. For example, if you want to collect the payment using debit card and Net Banking, you can hide the credit card mode of payment.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>enforce_paymethod  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code>  This parameter allows you to customize the payment options for each transaction. You can enforce specific payment modes, cards scheme, and specific banks under Net Banking using this method.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>user_token  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code>This parameter is used to uniquely identify a user for a merchant.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>offer_key  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> List of keys to filter the offer.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>offer_auto_apply</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code>This parameter contains a flag to specify whether the offer can be automatically applied.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>additional_charges  <strong>optional</strong></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code>The additional amount that needs to be charged. The additional amount will be added to the amount of the product by PayU</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| merchant_id<br/>`mandatory` | `String` This parameter is the unique Merchant id provided by PayU for your merchant account. The Merchant id acts as the unique identifier (primary key) to identify a particular Merchant Account in our database. | 8488225 |
+| txnid<br/>`mandatory` | `varchar` This parameter is known as Transaction ID (or OrderID). It is the order reference number generated at your (Merchant's) end. It is an identifier which you(merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of same Transaction ID again would fail. Hence, it is essential that you post us a unique transaction ID for every new transaction (Please make sure that the transaction ID being sent to us hasn't been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID'). | fd3e847h2 |
+| amount<br/>`mandatory` | `float` This parameter should contain the payment amount of the particular transaction. Note: Type-cast the amount to float type | 10 |
+| productinfo<br/>`mandatory` | `varchar` This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice). | T-shirt |
+| firstname<br/>`mandatory` | `varchar` This parameter must contain the first name of the customer. | Ankit |
+| email<br/>`mandatory` | `varchar` This parameter must contain the email of the customer | test@gmail.com |
+| phone<br/>`mandatory` | `integer` Merchant needs to take the customer's GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request. |  |
+| txn_s2s_flow<br/>`mandatory` | `integer` This parameter is to indicate the transaction is S2S flow. Pass this parameter value as 4. | 4 |
+| hash<br/>`mandatory` | `varchar` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. There are two different methods to calculate hash. Please follow method 1 only. Method 2 is just there for the documentation and is not to be used This is the simplest way of calculating the hash value. Here, please make sure that the api_version parameter is NOT POSTED from your end. For hash calculation, you need to generate a string using certain parameters and apply the sha512 algorithm to this string.<br/>Note: You have to use pipe (\|) character in between these parameters as mentioned below. The parameter order is mentioned below: sha512(merchant_id\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|CLIENT_SECRET) All these parameters have already been mentioned earlier in this table. Here, SALT (to be provided by PayU), key, txnid, amount productinfo, firstname, email are mandatory parameters and hence can't be empty in hash calculation above. But, udf1-udf5 are optional and hence you need to calculate the hash based upon the fact that whether you are posting a particular udf or not. For example, if you are NOT posting udf1. Then, in the hash calculation, udf1 field will be left empty. The following examples will clarify various scenarios of hash calculation:<br/>• Case 1: If all the udf parameters (udf1-udf5) are posted by the merchant. Then, hash=sha512(merchant_id\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|CLIENT_SECRET)<br/>• Case 2: If only some of the udf parameters are posted and others are not. For example, if udf2 and udf4 are posted and udf1, udf3, udf5 are not. Then, hash=sha512(merchant_id\|txnid\|amount\|productinfo\|firstname\|email\|\|udf2\|\|udf4\|\|\|\|\|\|\|CLIENT_SECRET)<br/>• Case 3: If NONE of the udf parameters (udf1-udf5) are posted. Then, hash=sha512(merchant_id\|txnid\|amount\|productinfo\|firstname\|email\|\|\|\|\|\|\|\|\|\|\|\|CLIENT_SECRET)<br/>Example: If merchant_id=6631711, txnid=12345, amount=10, productinfo=Shopping, firstname=Test, email=test@test.com, udf2=abc, udf4=15, CLIENT_SECRET=3sf0jURk91319391949941414195821851313 and udf1, udf3, udf5 are not posted. Then, the hash would be calculated as Case 2 above: sha512(6631711\|12345\|10\|Shopping\|Test\|test@test.com\|\|abc\|\|15\|\|\|\|\|\|\|3sf0jURk91319391949941414195821851313)<br/>IMPORTANT: For details related to hash at the time of postback from PayU to the merchant, please refer to the later section. This is also absolutely mandatory to avoid any tampering. |  |
+| s2s_client_ip<br/>`mandatory` | `varchar` This parameter must have the source IP of the user |  |
+| s2s_device_info<br/>`mandatory` | `varchar` This parameter must have the user agent of the device |  |
+| reseller_id<br/>`mandatory` | `varchar` This parameter is the unique Partner Identifier provided by PayU for your partner account. The Partner Identifier acts as the unique identifier to identify a particular Partner Account in our database. | 83fe-eb64-021844d8-9397-26535b1bf0c2 |
+| udf5<br/>`mandatory` | `string` This parameter has been made for you to keep any information corresponding to the transaction. Pass **whatsapp** in this field | whatsapp |
+| address1<br/>`optional` | `string` The first line of the billing address. |  |
+| address2<br/>`optional` | `string` The second line of the billing address. |  |
+| city<br/>`optional` | `string` The city where your customer resides as part of the billing address. |  |
+| state<br/>`optional` | `string` The state where your customer resides as part of the billing address. |  |
+| country<br/>`optional` | `string` The country where your customer resides. |  |
+| zipcode<br/>`optional` | `string` Billing address zip code is mandatory for the cardless EMI option. |  |
+| partner_udf_3<br/>`optional` | This parameter has been made for partner to pass any information corresponding to the transaction. |  |
+| partner_udf_4<br/>`optional` | This parameter has been made for partner to pass any information corresponding to the transaction. |  |
+| shipping_firstname<br/>`optional` | `string` The first name of shipping person. |  |
+| shipping_lastname<br/>`optional` | `string` The last name of shipping person. |  |
+| shipping_address1<br/>`optional` | `string` The first line of the shipping address. |  |
+| shipping_address2<br/>`optional` | `string` The second line of the shipping address. |  |
+| shipping_city<br/>`optional` | `string` The city where your customer resides as part of the shipping address. |  |
+| shipping_state<br/>`optional` | `string` The state where your customer resides as part of the shipping address. |  |
+| shipping_country<br/>`optional` | `string` The country where your customer resides as part of the shipping address. |  |
+| shipping_zipcode<br/>`optional` | `string` Shipping address zip code. |  |
+| shipping_phone<br/>`optional` | `string` The phone no your customer resides as part of the shipping address. |  |
+| drop_category<br/>`optional` | `string` This parameter can be used if you want to hide one or multiple payment options. For example, if you want to collect the payment using debit card and Net Banking, you can hide the credit card mode of payment. |  |
+| enforce_paymethod<br/>`optional` | `string` This parameter allows you to customize the payment options for each transaction. You can enforce specific payment modes, cards scheme, and specific banks under Net Banking using this method. |  |
+| user_token<br/>`optional` | `string` This parameter is used to uniquely identify a user for a merchant. |  |
+| offer_key<br/>`optional` | `string` List of keys to filter the offer. |  |
+| offer_auto_apply<br/>`optional` | `string` This parameter contains a flag to specify whether the offer can be automatically applied. |  |
+| additional_charges<br/>`optional` | `string` The additional amount that needs to be charged. The additional amount will be added to the amount of the product by PayU |  |
+
 
 ### Sample request
 
