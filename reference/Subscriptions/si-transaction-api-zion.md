@@ -1,7 +1,9 @@
 ---
-title: SI Transaction API - Zion
+title: SI Transaction API
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
@@ -200,11 +202,11 @@ echo $response;
 
 ## Response Parameters
 
-| Parameter | Description                                                                         | Example                              |
-| --------- | ----------------------------------------------------------------------------------- | ------------------------------------ |
-| status    | `Integer`<br />Status of the request. `1` indicates success.                        | `1`                                  |
-| message   | `String`<br />Description of the response status.                                   | `Transaction Processed successfully` |
-| details   | `Object`<br />Object containing transaction details keyed by transaction reference. | Refer to [details Object Parameters Description](#details-object-parameters-description)|
+| Parameter | Description                                                                         | Example                                                                                  |
+| --------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| status    | `Integer`<br />Status of the request. `1` indicates success.                        | `1`                                                                                      |
+| message   | `String`<br />Description of the response status.                                   | `Transaction Processed successfully`                                                     |
+| details   | `Object`<br />Object containing transaction details keyed by transaction reference. | Refer to [details Object Parameters Description](#details-object-parameters-description) |
 
 ### details Object Parameters Description
 
@@ -227,7 +229,9 @@ echo $response;
 | email            | `String`<br />Customer email address.                        | ` `                         |
 
 ## Sample Response
+
 **Success scenario**
+
 ```json
 {
     "status": 1,
