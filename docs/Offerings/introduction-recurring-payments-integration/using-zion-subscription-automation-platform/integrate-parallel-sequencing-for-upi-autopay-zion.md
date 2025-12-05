@@ -383,7 +383,7 @@ Use the **SI Transaction** API to execute the recurring transaction. The `mandat
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-check">
-  **Success Response**
+  **Success Scenario**
 
   ```json
   {
