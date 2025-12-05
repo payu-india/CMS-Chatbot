@@ -21,7 +21,7 @@ This section explains how to integrate parallel sequencing for UPI AutoPay trans
     <br />
   </Card>
 
-  <Card title="2. Execute the Transaction" href="#step-2-post-the-transaction-request">
+  <Card title="2. Post the SI Transaction Request" href="#step-2-post-the-transaction-request">
     Execute the recurring transaction using the si\_transaction API with the corresponding sequence number.
 
     <br />
@@ -216,10 +216,10 @@ Use the **Pre-Debit Notification** API to send pre-debit notifications for upcom
 
 Use the **SI Transaction** API to execute the recurring transaction. The `mandateSeqNo` parameter allows parallel execution of multiple sequences.
 
-  | Environment | URL                                                |
-  | ----------- | -------------------------------------------------- |
-  | Test        | `https://test.payu.in/merchant/postservice?form=2` |
-  | Production  | `https://info.payu.in/merchant/postservice?form=2` |
+| Environment | URL                                                |
+| ----------- | -------------------------------------------------- |
+| Test        | `https://test.payu.in/merchant/postservice?form=2` |
+| Production  | `https://info.payu.in/merchant/postservice?form=2` |
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
