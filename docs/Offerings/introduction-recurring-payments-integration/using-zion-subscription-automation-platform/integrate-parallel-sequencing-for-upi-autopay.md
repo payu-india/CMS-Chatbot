@@ -1,8 +1,11 @@
 ---
-title: Parallel Sequencing for UPI AutoPay Integration
+title: Parallel Sequencing for UPI AutoPay Integration - Zion
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
+  title: Parallel Sequencing for UPI AutoPay Integration - Zion
   robots: index
 ---
 This section explains how to integrate parallel sequencing for UPI AutoPay transactions. Parallel sequencing allows you to run pre-debits and executions simultaneously for different sequence numbers.
