@@ -40,6 +40,10 @@ UPI Reserve Pay is ideal for scenarios where payment flexibility and fund assura
 * **Instant Refunds:** Cancelled transactions immediately credit the amount back to the customer’s account.
 * **Seamless Merchant Experience:** Block funds at order placement and capture payment when required. Real-time confirmation ensures confidence for both parties—perfect for pre-orders, reservations, and delayed deliveries.
 
+<Callout icon="👍">
+  **Reference:** All the other API integrations will remain same for One time mandate. For more information, refer to [APIs used in Auth and Capture](doc:apis-used-in-auth-and-capture).
+</Callout>
+
 ## Next Steps
 
 UPI Reserve Pay is supported on the following integrations:
