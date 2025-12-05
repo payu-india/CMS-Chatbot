@@ -1,5 +1,5 @@
 ---
-title: Parallel Sequencing for UPI AutoPay Integration - Zion
+title: Parallel Sequencing for UPI AutoPay Integration
 deprecated: false
 hidden: true
 link:
