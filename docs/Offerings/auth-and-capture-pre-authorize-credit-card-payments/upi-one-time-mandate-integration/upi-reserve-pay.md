@@ -40,7 +40,9 @@ UPI Reserve Pay is ideal for scenarios where payment flexibility and fund assura
 * **Instant Refunds:** Cancelled transactions immediately credit the amount back to the customer’s account.
 * **Seamless Merchant Experience:** Block funds at order placement and capture payment when required. Real-time confirmation ensures confidence for both parties—perfect for pre-orders, reservations, and delayed deliveries.
 
-UPI Reserve Pay is supported on:
+## Next Steps
 
-* **Merchant Hosted Checkout**: For more information, refer to [UPI Reserve Pay One-Time Mandate](ref:upi-reserve-pay-one-time-mandate).
-* **PayU Hosted Checkout**
+UPI Reserve Pay is supported on the following integrations:
+
+* **Merchant Hosted Checkout**: For more information, refer to [UPI Reserve Pay One-Time Mandate - Merchant Hosted](ref:upi-reserve-pay-one-time-mandate-merchant-hosted)
+* **PayU Hosted Checkout**: For more information, refer to [UPI Reserve Pay One-Time Mandate - PayU Hosted](ref:upi-reserve-pay-one-time-mandate-payu-hosted)
