@@ -215,13 +215,41 @@ Use the **Pre-Debit Notification** API to send pre-debit notifications for upcom
 
 ## Step 2: Post the Transaction Request
 
-Use the **SI Transaction** API to execute the recurring transaction. The `mandateSeqNo` parameter allows parallel execution of multiple sequences. 
+Use the **SI Transaction** API to execute the recurring transaction. The `mandateSeqNo` parameter allows parallel execution of multiple sequences.
 
+<Accordion title="Environment" icon="fa-globe">
   | Environment | URL                                                |
   | ----------- | -------------------------------------------------- |
   | Test        | `https://test.payu.in/merchant/postservice?form=2` |
   | Production  | `https://info.payu.in/merchant/postservice?form=2` |
+</Accordion>
 
+<Accordion title="Request Parameters" icon="fa-table">
+  | Parameter                | Description                                                                                                                                                     | Example                                                                |
+  | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+  | key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                                                                                                               | `JP***g`                                                               |
+  | command<br />`mandatory` | `String`<br />The API command name.                                                                                                                             | `si_transaction`                                                       |
+  | var1<br />`mandatory`    | `JSON String`<br />JSON object containing the transaction details. For more information, refer to [var1 Object Parameters](#var1-object-parameters-description) | Refer to [var1 Object Parameters](#var1-object-parameters-description) |
+  | hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.                                                                                                    | `jbUS07Og8BToVZ`                                                       |
+
+  <Accordion title="var1 Object Parameters Description" icon="fa-code">
+    ### var1 Object Parameters Description
+
+    | Parameter                            | Description                                                                      | Example          |
+    | ------------------------------------ | -------------------------------------------------------------------------------- | ---------------- |
+    | authpayuid<br />`mandatory`          | `String`<br />The authorization PayU ID received during mandate creation.        | `6611192557`     |
+    | txnid<br />`mandatory`               | `String`<br />Unique transaction ID for this execution.                          | `REC15113506209` |
+    | amount<br />`mandatory`              | `String`<br />The amount to be debited.                                          | `3`              |
+    | phone<br />`mandatory`               | `String`<br />Customer's phone number.                                           | `9999999999`     |
+    | email<br />`mandatory`               | `String`<br />Customer's email address.                                          | `abc@email.com`  |
+    | invoiceDisplayNumber<br />`optional` | `String`<br />Invoice number to display to the customer.                         | `2345678910`     |
+    | mandateSeqNo<br />`optional`         | `Integer`<br />Sequence number for parallel processing. Valid range: 2 to 11000. | `3`              |
+    | udf2<br />`optional`                 | `String`<br />User-defined field 2.                                              | ` `              |
+    | udf3<br />`optional`                 | `String`<br />User-defined field 3.                                              | ` `              |
+    | udf4<br />`optional`                 | `String`<br />User-defined field 4.                                              | ` `              |
+    | udf5<br />`optional`                 | `String`<br />User-defined field 5.                                              | ` `              |
+  </Accordion>
+</Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
@@ -232,6 +260,7 @@ Use the **SI Transaction** API to execute the recurring transaction. The `mandat
   --data-urlencode 'var1={"authpayuid":"6611192557","invoiceDisplayNumber":"2345678910","amount":"3","txnid":"REC15113506209","phone":"9999999999","email":"abc@email.com","udf2":"","udf3":"","udf4":"","udf5":"","mandateSeqNo":3}' \
   --data-urlencode 'hash=jbUS07Og8BToVZ'
   ```
+
   ```python
   import requests
 
@@ -251,6 +280,7 @@ Use the **SI Transaction** API to execute the recurring transaction. The `mandat
   response = requests.post(url, data=payload, headers=headers)
   print(response.json())
   ```
+
   ```csharp
   using System;
   using System.Net.Http;
@@ -277,6 +307,7 @@ Use the **SI Transaction** API to execute the recurring transaction. The `mandat
       }
   }
   ```
+
   ```javascript
   const executeTransaction = async () => {
       const url = "https://test.payu.in/merchant/postservice?form=2";
@@ -313,6 +344,7 @@ Use the **SI Transaction** API to execute the recurring transaction. The `mandat
 
   executeTransaction();
   ```
+
   ```java
   import java.io.*;
   import java.net.*;
@@ -345,6 +377,7 @@ Use the **SI Transaction** API to execute the recurring transaction. The `mandat
       }
   }
   ```
+
   ```php
   <?php
   $url = "https://test.payu.in/merchant/postservice?form=2";
@@ -383,7 +416,7 @@ Use the **SI Transaction** API to execute the recurring transaction. The `mandat
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-check">
-  **Success Scenario**
+  **Success Response**
 
   ```json
   {
