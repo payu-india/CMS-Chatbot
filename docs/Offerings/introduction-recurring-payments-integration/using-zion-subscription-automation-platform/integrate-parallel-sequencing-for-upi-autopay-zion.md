@@ -10,7 +10,9 @@ metadata:
 ---
 This section explains how to integrate parallel sequencing for UPI AutoPay transactions. Parallel sequencing allows you to run pre-debits and executions simultaneously for different sequence numbers.
 
-> **Note**: Please connect with your Sales Manager to enable this functionality.
+<Callout icon="📘" theme="info">
+  **Enable Parallel Sequencing**: To enable the Parallel Sequencing for UPI Autopay, contact your PayU Account Manager (KAM).
+</Callout>
 
 <Cards columns={2}>
   <Card title="1. Send Pre-Debit Notification" href="#step-1-send-pre-debit-notification">
@@ -247,15 +249,15 @@ Use the **SI Transaction** API to execute the recurring transaction. The `mandat
 </Accordion>
 
 <Accordion title="Request Parameters" icon="fa-table">
-  | Parameter                | Description                                                                                                                                         | Example                                                    |
-  | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-  | key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                                                                                                   | `JP***g`                                                   |
-  | command<br />`mandatory` | `String`<br />The API command name.                                                                                                                 | `si_transaction`                                           |
+  | Parameter                | Description                                                                                                                                                     | Example                                                                |
+  | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+  | key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                                                                                                               | `JP***g`                                                               |
+  | command<br />`mandatory` | `String`<br />The API command name.                                                                                                                             | `si_transaction`                                                       |
   | var1<br />`mandatory`    | `JSON String`<br />JSON object containing the transaction details. For more information, refer to [var1 Object Parameters](#var1-object-parameters-description) | Refer to [var1 Object Parameters](#var1-object-parameters-description) |
-  | hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.                                                                                        | `jbUS07Og8BToVZ`                                           |
+  | hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.                                                                                                    | `jbUS07Og8BToVZ`                                                       |
 
   <Accordion title="var1 Object Parameters Description" icon="fa-code">
-### var1 Object Parameters Description
+    ### var1 Object Parameters Description
 
     | Parameter                            | Description                                                                      | Example          |
     | ------------------------------------ | -------------------------------------------------------------------------------- | ---------------- |
