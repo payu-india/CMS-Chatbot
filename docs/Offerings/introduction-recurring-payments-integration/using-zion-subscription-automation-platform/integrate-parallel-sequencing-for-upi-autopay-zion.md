@@ -8,7 +8,7 @@ metadata:
   title: Parallel Sequencing for UPI AutoPay Integration - Zion
   robots: index
 ---
-This section explains how to integrate parallel sequencing for UPI AutoPay transactions. Parallel sequencing allows you to run pre-debits and executions simultaneously for different sequence numbers.
+This section explains how to integrate parallel sequencing for UPI AutoPay transactions on Zion platform. Parallel sequencing allows you to run pre-debits and executions simultaneously for different sequence numbers.
 
 <Callout icon="📘" theme="info">
   **Enable Parallel Sequencing**: To enable the Parallel Sequencing for UPI Autopay, contact your PayU Account Manager (KAM).
@@ -32,32 +32,13 @@ This section explains how to integrate parallel sequencing for UPI AutoPay trans
 
 ## Step 1: Send Pre-Debit Notification
 
-Use the `pre_debit_SI` API to send pre-debit notifications for upcoming debits. The `mandateSeqNo` parameter enables parallel processing of multiple sequences.
+Use the **Pre-Debit Notification** API to send pre-debit notifications for upcoming debits. The `mandateSeqNo` parameter enables parallel processing of multiple sequences. For more information on Pre-Debit Notification API, refer to  [Pre-Debit SI API](ref:pre-debit-si-api-zion).
 
 | Environment | URL                                                         |
 | ----------- | ----------------------------------------------------------- |
 | Test        | `https://test.info.payu.in/merchant/postservice.php?form=2` |
 | Production  | `https://info.payu.in/merchant/postservice.php?form=2`      |
 
-<Accordion title="Request Parameters" icon="fa-table">
-  | Parameter                | Description                                                      | Example        |
-  | ------------------------ | ---------------------------------------------------------------- | -------------- |
-  | command<br />`mandatory` | `String`<br />The API command name.                              | `pre_debit_SI` |
-  | key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                | `JP***g`       |
-  | hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.     | `abc0ada2e12`  |
-  | var1<br />`mandatory`    | `JSON String`<br />JSON object containing the pre-debit details. | See below      |
-
-  <Accordion title="var1 Object Parameters" icon="fa-code">
-    | Parameter                            | Description                                                                      | Example           |
-    | ------------------------------------ | -------------------------------------------------------------------------------- | ----------------- |
-    | authpayuid<br />`mandatory`          | `String`<br />The authorization PayU ID received during mandate creation.        | `999000000000826` |
-    | requestid<br />`mandatory`           | `String`<br />Unique request ID for tracking the pre-debit request.              | `RCS0123459PD`    |
-    | debitdate<br />`mandatory`           | `String`<br />The date when the debit will occur in YYYY-MM-DD format.           | `2024-11-22`      |
-    | amount<br />`mandatory`              | `String`<br />The amount to be debited.                                          | `125`             |
-    | invoiceDisplayNumber<br />`optional` | `String`<br />Invoice number to display to the customer.                         | `12345678910`     |
-    | mandateSeqNo<br />`optional`         | `Integer`<br />Sequence number for parallel processing. Valid range: 2 to 11000. | `2`               |
-  </Accordion>
-</Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
@@ -68,7 +49,6 @@ Use the `pre_debit_SI` API to send pre-debit notifications for upcoming debits. 
   --data-urlencode 'key=JP***g' \
   --data-urlencode 'hash=abc0ada2e12'
   ```
-
   ```python
   import requests
 
@@ -88,7 +68,6 @@ Use the `pre_debit_SI` API to send pre-debit notifications for upcoming debits. 
   response = requests.post(url, data=payload, headers=headers)
   print(response.json())
   ```
-
   ```csharp
   using System;
   using System.Net.Http;
@@ -115,7 +94,6 @@ Use the `pre_debit_SI` API to send pre-debit notifications for upcoming debits. 
       }
   }
   ```
-
   ```javascript
   const sendPreDebitRequest = async () => {
       const url = "https://test.info.payu.in/merchant/postservice.php?form=2";
@@ -147,7 +125,6 @@ Use the `pre_debit_SI` API to send pre-debit notifications for upcoming debits. 
 
   sendPreDebitRequest();
   ```
-
   ```java
   import java.io.*;
   import java.net.*;
@@ -180,7 +157,6 @@ Use the `pre_debit_SI` API to send pre-debit notifications for upcoming debits. 
       }
   }
   ```
-
   ```php
   <?php
   $url = "https://test.info.payu.in/merchant/postservice.php?form=2";
