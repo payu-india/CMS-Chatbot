@@ -1,5 +1,5 @@
 ---
-title: Cancelling UPI One Time Mandate
+title: Cancelling UPI One-Time Mandate
 excerpt: ''
 deprecated: false
 hidden: false
