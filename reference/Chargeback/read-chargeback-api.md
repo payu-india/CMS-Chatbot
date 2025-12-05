@@ -65,6 +65,13 @@ This must contain the header with token you get using the Chargeback Dashboard i
   </tbody>
 </Table>
 
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * The maximum allowed chargebacks in a single Request is 500 CBs.
+  * The maximum time period for which the chargebacks can be retrieved is 20 days.
+</Callout>
+
 ## With date
 
 This must contain the header with token you get using the Get Token API in the following format:
