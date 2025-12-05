@@ -1,8 +1,14 @@
 ---
-title: UPI Reserve Pay One-Time Mandate
+title: UPI Reserve Pay One-Time Mandate - Merchant Hosted
 deprecated: false
 hidden: true
 metadata:
+  title: UPI Reserve Pay OTM using Merchant Hosted Integration
+  keywords:
+    - UPI Reserve Pay OTM using Merchant Hosted Integration
+    - Reserve Pay OTM
+    - OTM Reserve Pay
+    - Reserve Pay Merchant Hosted
   robots: index
 ---
 This section includes the API reference for UPI Reserve Paym OTM integration. For more information on UPI Reserve Pay, refer to [UPI Reserve Pay](doc:upi-reserve-pay).
