@@ -120,7 +120,6 @@ const sendPreDebitRequest = async () => {
 
 sendPreDebitRequest();
 ```
-
 ```java
 import java.io.*;
 import java.net.*;
