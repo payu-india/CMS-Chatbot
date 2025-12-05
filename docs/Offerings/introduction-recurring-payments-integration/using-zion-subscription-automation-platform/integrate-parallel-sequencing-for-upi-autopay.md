@@ -244,14 +244,15 @@ Use the **SI Transaction** API to execute the recurring transaction. The `mandat
 </Accordion>
 
 <Accordion title="Request Parameters" icon="fa-table">
-  | Parameter                | Description                                                                                                                                          | Example                                                     |
-  | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-  | key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                                                                                                    | `JP***g`                                                    |
-  | command<br />`mandatory` | `String`<br />The API command name.                                                                                                                  | `si_transaction`                                            |
-  | var1<br />`mandatory`    | `JSON String`<br />JSON object containing the transaction details. For more information, refer to [var1 Object Parameters](#var1-object-parameters) | Refer to [var1 Object Parameters](#var1-object-parameters)|
-  | hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.                                                                                         | `jbUS07Og8BToVZ`                                            |
+  | Parameter                | Description                                                                                                                                         | Example                                                    |
+  | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+  | key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                                                                                                   | `JP***g`                                                   |
+  | command<br />`mandatory` | `String`<br />The API command name.                                                                                                                 | `si_transaction`                                           |
+  | var1<br />`mandatory`    | `JSON String`<br />JSON object containing the transaction details. For more information, refer to [var1 Object Parameters](#var1-object-parameters) | Refer to [var1 Object Parameters](#var1-object-parameters) |
+  | hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.                                                                                        | `jbUS07Og8BToVZ`                                           |
 
   <Accordion title="var1 Object Parameters" icon="fa-code">
+<a id="var1-object-parameters"></a>
     | Parameter                            | Description                                                                      | Example          |
     | ------------------------------------ | -------------------------------------------------------------------------------- | ---------------- |
     | authpayuid<br />`mandatory`          | `String`<br />The authorization PayU ID received during mandate creation.        | `6611192557`     |
