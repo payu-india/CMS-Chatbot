@@ -5,34 +5,34 @@ hidden: true
 metadata:
   robots: index
 ---
-Use the Pre-Debit SI API to send pre-debit notifications for upcoming recurring debits with parallel sequencing support.
+Use the ** Pre-Debit SI** API to send pre-debit notifications for upcoming recurring debits with parallel sequencing support.
 
 ## Environment
 
-| Environment | URL |
-|-------------|-----|
-| Test | `https://test.info.payu.in/merchant/postservice.php?form=2` |
-| Production | `https://info.payu.in/merchant/postservice.php?form=2` |
+| Environment | URL                                                         |
+| ----------- | ----------------------------------------------------------- |
+| Test        | `https://test.info.payu.in/merchant/postservice.php?form=2` |
+| Production  | `https://info.payu.in/merchant/postservice.php?form=2`      |
 
 ## Request Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| key<br/>`mandatory` | `String`<br/>Your merchant key provided by PayU. | `JP***g` |
-| command<br/>`mandatory` | `String`<br/>The API command name. | `pre_debit_SI` |
-| hash<br/>`mandatory` | `String`<br/>The hash value generated using the hash logic. | `abc0ada2e12` |
-| var1<br/>`mandatory` | `JSON String`<br/>JSON object containing the pre-debit details. | [var1 Object Parameters Description](var1-object-parameters-description) |
+| Parameter                | Description                                                      | Example                                                                  |
+| ------------------------ | ---------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                | `JP***g`                                                                 |
+| command<br />`mandatory` | `String`<br />The API command name.                              | `pre_debit_SI`                                                           |
+| hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.     | `abc0ada2e12`                                                            |
+| var1<br />`mandatory`    | `JSON String`<br />JSON object containing the pre-debit details. | [var1 Object Parameters Description](var1-object-parameters-description) |
 
 ### var1 Object Parameters Description
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| authpayuid<br/>`mandatory` | `String`<br/>The authorization PayU ID received during mandate creation. | `999000000000826` |
-| requestid<br/>`mandatory` | `String`<br/>Unique request ID for tracking the pre-debit request. | `RCS0123459PD` |
-| debitdate<br/>`mandatory` | `String`<br/>The date when the debit will occur in YYYY-MM-DD format. | `2024-11-22` |
-| amount<br/>`mandatory` | `String`<br/>The amount to be debited. | `125` |
-| invoiceDisplayNumber<br/>`optional` | `String`<br/>Invoice number to display to the customer. | `12345678910` |
-| mandateSeqNo<br/>`optional` | `Integer`<br/>Sequence number for parallel processing. Valid range: 2 to 11000. | `2` |
+| Parameter                            | Description                                                                      | Example           |
+| ------------------------------------ | -------------------------------------------------------------------------------- | ----------------- |
+| authpayuid<br />`mandatory`          | `String`<br />The authorization PayU ID received during mandate creation.        | `999000000000826` |
+| requestid<br />`mandatory`           | `String`<br />Unique request ID for tracking the pre-debit request.              | `RCS0123459PD`    |
+| debitdate<br />`mandatory`           | `String`<br />The date when the debit will occur in YYYY-MM-DD format.           | `2024-11-22`      |
+| amount<br />`mandatory`              | `String`<br />The amount to be debited.                                          | `125`             |
+| invoiceDisplayNumber<br />`optional` | `String`<br />Invoice number to display to the customer.                         | `12345678910`     |
+| mandateSeqNo<br />`optional`         | `Integer`<br />Sequence number for parallel processing. Valid range: 2 to 11000. | `2`               |
 
 ## Sample Request
 
@@ -44,7 +44,6 @@ curl --location 'https://test.info.payu.in/merchant/postservice.php?form=2' \
 --data-urlencode 'key=JP***g' \
 --data-urlencode 'hash=abc0ada2e12'
 ```
-
 ```python
 import requests
 
@@ -64,7 +63,6 @@ headers = {
 response = requests.post(url, data=payload, headers=headers)
 print(response.json())
 ```
-
 ```csharp
 using System;
 using System.Net.Http;
@@ -91,7 +89,6 @@ class Program
     }
 }
 ```
-
 ```javascript
 const sendPreDebitRequest = async () => {
     const url = "https://test.info.payu.in/merchant/postservice.php?form=2";
@@ -156,7 +153,6 @@ public class PreDebitSI {
     }
 }
 ```
-
 ```php
 <?php
 $url = "https://test.info.payu.in/merchant/postservice.php?form=2";
@@ -190,15 +186,15 @@ echo $response;
 
 ## Response Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| status | `String`<br/>Status of the request. `1` indicates success, `0` or error code indicates failure. | `1` |
-| action | `String`<br/>The action performed. | `MANDATE_PRE_DEBIT` |
-| message | `String`<br/>Description of the response status. | `Request Processed Successfully` |
+| Parameter | Description                                                                                      | Example                          |
+| --------- | ------------------------------------------------------------------------------------------------ | -------------------------------- |
+| status    | `String`<br />Status of the request. `1` indicates success, `0` or error code indicates failure. | `1`                              |
+| action    | `String`<br />The action performed.                                                              | `MANDATE_PRE_DEBIT`              |
+| message   | `String`<br />Description of the response status.                                                | `Request Processed Successfully` |
 
 ## Sample Responses
 
-### Success Response
+### Success Scenario
 
 ```json
 {
@@ -208,12 +204,12 @@ echo $response;
 }
 ```
 
-### Error Responses
+### Failure Scenarios
 
-| Scenario | Response |
-|----------|----------|
-| Invalid mandateSeqNo | `{"status":"0","message":"Invalid value for mandateSeqNo","action":"MANDATE_PRE_DEBIT"}` |
-| Pre-debit already sent for sequence | `{"status":"E9254","action":"MANDATE_PRE_DEBIT","message":"Predebit notification already sent for the mandate sequence no. 2"}` |
-| Execution already exists for sequence | `{"status":"E9256","action":"MANDATE_PRE_DEBIT","message":"Execution already sent for the mandate sequence no.:2"}` |
-| Debit date exceeds 30 days | `{"status":"E9260","action":"MANDATE_PRE_DEBIT","message":"Predebit notification can only be sent for a maximum 30 days in advance."}` |
-| Pre-debit sent for past sequence | `{"status":"E9263","action":"MANDATE_PRE_DEBIT","message":"Predebit for calculated sequence sent during incorrect period"}` |
+| Scenario                              | Response                                                                                                                               |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Invalid mandateSeqNo                  | `{"status":"0","message":"Invalid value for mandateSeqNo","action":"MANDATE_PRE_DEBIT"}`                                               |
+| Pre-debit already sent for sequence   | `{"status":"E9254","action":"MANDATE_PRE_DEBIT","message":"Predebit notification already sent for the mandate sequence no. 2"}`        |
+| Execution already exists for sequence | `{"status":"E9256","action":"MANDATE_PRE_DEBIT","message":"Execution already sent for the mandate sequence no.:2"}`                    |
+| Debit date exceeds 30 days            | `{"status":"E9260","action":"MANDATE_PRE_DEBIT","message":"Predebit notification can only be sent for a maximum 30 days in advance."}` |
+| Pre-debit sent for past sequence      | `{"status":"E9263","action":"MANDATE_PRE_DEBIT","message":"Predebit for calculated sequence sent during incorrect period"}`            |
