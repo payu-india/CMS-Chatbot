@@ -1,7 +1,7 @@
 ---
 title: SI Transaction APIs
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
