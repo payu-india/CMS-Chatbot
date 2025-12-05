@@ -16,13 +16,12 @@ Use the **SI Transaction** API to execute recurring transactions with parallel s
 
 ## Request Parameters
 
-| Parameter                | Description                                                        | Example          |
-| ------------------------ | ------------------------------------------------------------------ | ---------------- |
-| key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                  | `JP***g`         |
-| command<br />`mandatory` | `String`<br />The API command name.                                | `si_transaction` |
-| var1<br />`mandatory`    | `JSON String`<br />JSON object containing the transaction details. | For more information, [var1 Object Parameters Description](var1-object-parameters-description.)        |
-| hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.       | `jbUS07Og8BToVZ` |
-
+| Parameter                | Description                                                        | Example                                                                                         |
+| ------------------------ | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                  | `JP***g`                                                                                        |
+| command<br />`mandatory` | `String`<br />The API command name.                                | `si_transaction`                                                                                |
+| var1<br />`mandatory`    | `JSON String`<br />JSON object containing the transaction details. | For more information, [var1 Object Parameters Description](var1-object-parameters-description.) |
+| hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.       | `jbUS07Og8BToVZ`                                                                                |
 
 ### var1 Object Parameters Description
 
@@ -50,7 +49,6 @@ curl --location 'https://test.payu.in/merchant/postservice?form=2' \
 --data-urlencode 'var1={"authpayuid":"6611192557","invoiceDisplayNumber":"2345678910","amount":"3","txnid":"REC15113506209","phone":"9999999999","email":"abc@email.com","udf2":"","udf3":"","udf4":"","udf5":"","mandateSeqNo":3}' \
 --data-urlencode 'hash=jbUS07Og8BToVZ'
 ```
-
 ```python
 import requests
 
@@ -70,7 +68,6 @@ headers = {
 response = requests.post(url, data=payload, headers=headers)
 print(response.json())
 ```
-
 ```csharp
 using System;
 using System.Net.Http;
@@ -97,7 +94,6 @@ class Program
     }
 }
 ```
-
 ```javascript
 const executeTransaction = async () => {
     const url = "https://test.payu.in/merchant/postservice?form=2";
@@ -134,7 +130,6 @@ const executeTransaction = async () => {
 
 executeTransaction();
 ```
-
 ```java
 import java.io.*;
 import java.net.*;
@@ -167,7 +162,6 @@ public class SITransaction {
     }
 }
 ```
-
 ```php
 <?php
 $url = "https://test.payu.in/merchant/postservice?form=2";
@@ -210,9 +204,9 @@ echo $response;
 | --------- | ----------------------------------------------------------------------------------- | ------------------------------------ |
 | status    | `Integer`<br />Status of the request. `1` indicates success.                        | `1`                                  |
 | message   | `String`<br />Description of the response status.                                   | `Transaction Processed successfully` |
-| details   | `Object`<br />Object containing transaction details keyed by transaction reference. | See below                            |
+| details   | `Object`<br />Object containing transaction details keyed by transaction reference. | Refer to [details Object Parameters Description](#details-object-parameters-description)|
 
-### Details Object Parameters
+### details Object Parameters Description
 
 | Parameter        | Description                                                  | Example                     |
 | ---------------- | ------------------------------------------------------------ | --------------------------- |
@@ -232,8 +226,8 @@ echo $response;
 | phone            | `String`<br />Customer phone number.                         | ` `                         |
 | email            | `String`<br />Customer email address.                        | ` `                         |
 
-## Sample Success Response
-
+## Sample Response
+**Success scenario**
 ```json
 {
     "status": 1,
