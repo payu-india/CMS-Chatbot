@@ -8,7 +8,7 @@ metadata:
   title: Parallel Sequencing for UPI AutoPay Integration - Zion
   robots: index
 ---
-This section explains how to integrate parallel sequencing for UPI AutoPay transactions on Zion platform. Parallel sequencing allows you to run pre-debits and executions simultaneously for different sequence numbers.
+This section explains how to integrate parallel sequencing for UPI AutoPay transactions. Parallel sequencing allows you to run pre-debits and executions simultaneously for different sequence numbers.
 
 <Callout icon="📘" theme="info">
   **Enable Parallel Sequencing**: To enable the Parallel Sequencing for UPI Autopay, contact your PayU Account Manager (KAM).
@@ -32,7 +32,7 @@ This section explains how to integrate parallel sequencing for UPI AutoPay trans
 
 ## Step 1: Send Pre-Debit Notification
 
-Use the **Pre-Debit Notification** API to send pre-debit notifications for upcoming debits. The `mandateSeqNo` parameter enables parallel processing of multiple sequences. For more information on Pre-Debit Notification API, refer to  [Pre-Debit SI API](ref:pre-debit-si-api-zion).
+Use the **Pre-Debit Notification** API to send pre-debit notifications for upcoming debits. The `mandateSeqNo` parameter enables parallel processing of multiple sequences. For more information on Pre-Debit Notification API, refer to  [Pre-Debit SI API](ref:pre-debit-si-apii).
 
 | Environment | URL                                                         |
 | ----------- | ----------------------------------------------------------- |
@@ -214,7 +214,7 @@ Use the **Pre-Debit Notification** API to send pre-debit notifications for upcom
 
 ## Step 2: Post the Transaction Request
 
-Use the **SI Transaction** API to execute the recurring transaction. The `mandateSeqNo` parameter allows parallel execution of multiple sequences.
+Use the **SI Transaction** API to execute the recurring transaction. The `mandateSeqNo` parameter allows parallel execution of multiple sequences. For more information, refer to [SI Transaction API](ref:si-transaction-api).
 
 | Environment | URL                                                |
 | ----------- | -------------------------------------------------- |
