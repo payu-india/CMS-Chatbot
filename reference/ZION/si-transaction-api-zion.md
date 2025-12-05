@@ -9,35 +9,36 @@ Use the **SI Transaction** API to execute recurring transactions with parallel s
 
 ## Environment
 
-| Environment | URL |
-|-------------|-----|
-| Test | `https://test.payu.in/merchant/postservice?form=2` |
-| Production | `https://info.payu.in/merchant/postservice?form=2` |
+| Environment | URL                                                |
+| ----------- | -------------------------------------------------- |
+| Test        | `https://test.payu.in/merchant/postservice?form=2` |
+| Production  | `https://info.payu.in/merchant/postservice?form=2` |
 
 ## Request Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| command<br/>`mandatory` | `String`<br/>The API command name. | `si_transaction` |
-| key<br/>`mandatory` | `String`<br/>Your merchant key provided by PayU. | `JP***g` |
-| hash<br/>`mandatory` | `String`<br/>The hash value generated using the hash logic. | `jbUS07Og8BToVZ` |
-| var1<br/>`mandatory` | `JSON String`<br/>JSON object containing the transaction details. | See below |
+| Parameter                | Description                                                        | Example          |
+| ------------------------ | ------------------------------------------------------------------ | ---------------- |
+| key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                  | `JP***g`         |
+| command<br />`mandatory` | `String`<br />The API command name.                                | `si_transaction` |
+| var1<br />`mandatory`    | `JSON String`<br />JSON object containing the transaction details. | For more information, [var1 Object Parameters Description](var1-object-parameters-description.)        |
+| hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.       | `jbUS07Og8BToVZ` |
 
-### var1 Object Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| authpayuid<br/>`mandatory` | `String`<br/>The authorization PayU ID received during mandate creation. | `6611192557` |
-| txnid<br/>`mandatory` | `String`<br/>Unique transaction ID for this execution. | `REC15113506209` |
-| amount<br/>`mandatory` | `String`<br/>The amount to be debited. | `3` |
-| phone<br/>`mandatory` | `String`<br/>Customer's phone number. | `9999999999` |
-| email<br/>`mandatory` | `String`<br/>Customer's email address. | `abc@email.com` |
-| invoiceDisplayNumber<br/>`optional` | `String`<br/>Invoice number to display to the customer. | `2345678910` |
-| mandateSeqNo<br/>`optional` | `Integer`<br/>Sequence number for parallel processing. Valid range: 2 to 11000. | `3` |
-| udf2<br/>`optional` | `String`<br/>User-defined field 2. | ` ` |
-| udf3<br/>`optional` | `String`<br/>User-defined field 3. | ` ` |
-| udf4<br/>`optional` | `String`<br/>User-defined field 4. | ` ` |
-| udf5<br/>`optional` | `String`<br/>User-defined field 5. | ` ` |
+### var1 Object Parameters Description
+
+| Parameter                            | Description                                                                      | Example          |
+| ------------------------------------ | -------------------------------------------------------------------------------- | ---------------- |
+| authpayuid<br />`mandatory`          | `String`<br />The authorization PayU ID received during mandate creation.        | `6611192557`     |
+| txnid<br />`mandatory`               | `String`<br />Unique transaction ID for this execution.                          | `REC15113506209` |
+| amount<br />`mandatory`              | `String`<br />The amount to be debited.                                          | `3`              |
+| phone<br />`mandatory`               | `String`<br />Customer's phone number.                                           | `9999999999`     |
+| email<br />`mandatory`               | `String`<br />Customer's email address.                                          | `abc@email.com`  |
+| invoiceDisplayNumber<br />`optional` | `String`<br />Invoice number to display to the customer.                         | `2345678910`     |
+| mandateSeqNo<br />`optional`         | `Integer`<br />Sequence number for parallel processing. Valid range: 2 to 11000. | `3`              |
+| udf2<br />`optional`                 | `String`<br />User-defined field 2.                                              | ` `              |
+| udf3<br />`optional`                 | `String`<br />User-defined field 3.                                              | ` `              |
+| udf4<br />`optional`                 | `String`<br />User-defined field 4.                                              | ` `              |
+| udf5<br />`optional`                 | `String`<br />User-defined field 5.                                              | ` `              |
 
 ## Sample Request
 
@@ -205,31 +206,31 @@ echo $response;
 
 ## Response Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| status | `Integer`<br/>Status of the request. `1` indicates success. | `1` |
-| message | `String`<br/>Description of the response status. | `Transaction Processed successfully` |
-| details | `Object`<br/>Object containing transaction details keyed by transaction reference. | See below |
+| Parameter | Description                                                                         | Example                              |
+| --------- | ----------------------------------------------------------------------------------- | ------------------------------------ |
+| status    | `Integer`<br />Status of the request. `1` indicates success.                        | `1`                                  |
+| message   | `String`<br />Description of the response status.                                   | `Transaction Processed successfully` |
+| details   | `Object`<br />Object containing transaction details keyed by transaction reference. | See below                            |
 
 ### Details Object Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| authpayuid | `String`<br/>The authorization PayU ID for the mandate. | `999000000000826` |
-| transactionid | `String`<br/>The transaction ID for this execution. | `SITXN03` |
-| amount | `String`<br/>The amount debited. | `125.00` |
-| payuid | `String`<br/>PayU's unique identifier for this transaction. | `999000000000828` |
-| status | `String`<br/>Current status of the transaction. | `in progress` |
-| field9 | `String`<br/>Transaction status code and message. | `92\|Transaction Initiated` |
-| user_credentials | `String`<br/>User credentials if applicable. | ` ` |
-| card_token | `String`<br/>Card token if applicable. | ` ` |
-| udf1 | `String`<br/>User-defined field 1 value. | `null` |
-| udf2 | `String`<br/>User-defined field 2 value. | ` ` |
-| udf3 | `String`<br/>User-defined field 3 value. | ` ` |
-| udf4 | `String`<br/>User-defined field 4 value. | `Executed` |
-| udf5 | `String`<br/>User-defined field 5 value. | `999000000000826` |
-| phone | `String`<br/>Customer phone number. | ` ` |
-| email | `String`<br/>Customer email address. | ` ` |
+| Parameter        | Description                                                  | Example                     |
+| ---------------- | ------------------------------------------------------------ | --------------------------- |
+| authpayuid       | `String`<br />The authorization PayU ID for the mandate.     | `999000000000826`           |
+| transactionid    | `String`<br />The transaction ID for this execution.         | `SITXN03`                   |
+| amount           | `String`<br />The amount debited.                            | `125.00`                    |
+| payuid           | `String`<br />PayU's unique identifier for this transaction. | `999000000000828`           |
+| status           | `String`<br />Current status of the transaction.             | `in progress`               |
+| field9           | `String`<br />Transaction status code and message.           | `92\|Transaction Initiated` |
+| user_credentials | `String`<br />User credentials if applicable.                | ` `                         |
+| card_token       | `String`<br />Card token if applicable.                      | ` `                         |
+| udf1             | `String`<br />User-defined field 1 value.                    | `null`                      |
+| udf2             | `String`<br />User-defined field 2 value.                    | ` `                         |
+| udf3             | `String`<br />User-defined field 3 value.                    | ` `                         |
+| udf4             | `String`<br />User-defined field 4 value.                    | `Executed`                  |
+| udf5             | `String`<br />User-defined field 5 value.                    | `999000000000826`           |
+| phone            | `String`<br />Customer phone number.                         | ` `                         |
+| email            | `String`<br />Customer email address.                        | ` `                         |
 
 ## Sample Success Response
 
