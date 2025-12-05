@@ -1,7 +1,7 @@
 ---
 title: Pre-Debit SI API - Zion
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
