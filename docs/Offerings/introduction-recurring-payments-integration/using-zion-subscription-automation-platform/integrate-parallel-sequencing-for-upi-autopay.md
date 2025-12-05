@@ -1,5 +1,5 @@
 ---
-title: Integrate Parallel Sequencing for UPI AutoPay
+title: Parallel Sequencing for UPI AutoPay Integration
 deprecated: false
 hidden: true
 metadata:
@@ -12,471 +12,454 @@ This section explains how to integrate parallel sequencing for UPI AutoPay trans
 <Cards columns={2}>
   <Card title="1. Send Pre-Debit Notification" href="#step-1-send-pre-debit-notification">
     Send a pre-debit notification to the customer for an upcoming debit with a specific sequence number.
+
     <br />
   </Card>
+
   <Card title="2. Execute the Transaction" href="#step-2-execute-the-transaction">
-    Execute the recurring transaction using the si_transaction API with the corresponding sequence number.
+    Execute the recurring transaction using the si\_transaction API with the corresponding sequence number.
+
     <br />
   </Card>
 </Cards>
 
----
+***
 
 ## Step 1: Send Pre-Debit Notification
 
 Use the `pre_debit_SI` API to send pre-debit notifications for upcoming debits. The `mandateSeqNo` parameter enables parallel processing of multiple sequences.
 
 <Accordion title="Environment" icon="fa-globe">
-
-| Environment | URL |
-|-------------|-----|
-| Test | `https://test.info.payu.in/merchant/postservice.php?form=2` |
-| Production | `https://info.payu.in/merchant/postservice.php?form=2` |
-
+  | Environment | URL                                                         |
+  | ----------- | ----------------------------------------------------------- |
+  | Test        | `https://test.info.payu.in/merchant/postservice.php?form=2` |
+  | Production  | `https://info.payu.in/merchant/postservice.php?form=2`      |
 </Accordion>
 
 <Accordion title="Request Parameters" icon="fa-table">
+  | Parameter                | Description                                                      | Example        |
+  | ------------------------ | ---------------------------------------------------------------- | -------------- |
+  | command<br />`mandatory` | `String`<br />The API command name.                              | `pre_debit_SI` |
+  | key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                | `JP***g`       |
+  | hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.     | `abc0ada2e12`  |
+  | var1<br />`mandatory`    | `JSON String`<br />JSON object containing the pre-debit details. | See below      |
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| command<br/>`mandatory` | `String`<br/>The API command name. | `pre_debit_SI` |
-| key<br/>`mandatory` | `String`<br/>Your merchant key provided by PayU. | `JP***g` |
-| hash<br/>`mandatory` | `String`<br/>The hash value generated using the hash logic. | `abc0ada2e12` |
-| var1<br/>`mandatory` | `JSON String`<br/>JSON object containing the pre-debit details. | See below |
-
-<Accordion title="var1 Object Parameters" icon="fa-code">
-
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| authpayuid<br/>`mandatory` | `String`<br/>The authorization PayU ID received during mandate creation. | `999000000000826` |
-| requestid<br/>`mandatory` | `String`<br/>Unique request ID for tracking the pre-debit request. | `RCS0123459PD` |
-| debitdate<br/>`mandatory` | `String`<br/>The date when the debit will occur in YYYY-MM-DD format. | `2024-11-22` |
-| amount<br/>`mandatory` | `String`<br/>The amount to be debited. | `125` |
-| invoiceDisplayNumber<br/>`optional` | `String`<br/>Invoice number to display to the customer. | `12345678910` |
-| mandateSeqNo<br/>`optional` | `Integer`<br/>Sequence number for parallel processing. Valid range: 2 to 11000. | `2` |
-
-</Accordion>
-
+  <Accordion title="var1 Object Parameters" icon="fa-code">
+    | Parameter                            | Description                                                                      | Example           |
+    | ------------------------------------ | -------------------------------------------------------------------------------- | ----------------- |
+    | authpayuid<br />`mandatory`          | `String`<br />The authorization PayU ID received during mandate creation.        | `999000000000826` |
+    | requestid<br />`mandatory`           | `String`<br />Unique request ID for tracking the pre-debit request.              | `RCS0123459PD`    |
+    | debitdate<br />`mandatory`           | `String`<br />The date when the debit will occur in YYYY-MM-DD format.           | `2024-11-22`      |
+    | amount<br />`mandatory`              | `String`<br />The amount to be debited.                                          | `125`             |
+    | invoiceDisplayNumber<br />`optional` | `String`<br />Invoice number to display to the customer.                         | `12345678910`     |
+    | mandateSeqNo<br />`optional`         | `Integer`<br />Sequence number for parallel processing. Valid range: 2 to 11000. | `2`               |
+  </Accordion>
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
+  ```bash
+  curl --location 'https://test.info.payu.in/merchant/postservice.php?form=2' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'command=pre_debit_SI' \
+  --data-urlencode 'var1={"authpayuid":"999000000000826","requestid":"RCS0123459PD","debitdate":"2024-11-22","amount":"125","invoiceDisplayNumber":"12345678910","mandateSeqNo":2}' \
+  --data-urlencode 'key=JP***g' \
+  --data-urlencode 'hash=abc0ada2e12'
+  ```
 
-```bash
-curl --location 'https://test.info.payu.in/merchant/postservice.php?form=2' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'command=pre_debit_SI' \
---data-urlencode 'var1={"authpayuid":"999000000000826","requestid":"RCS0123459PD","debitdate":"2024-11-22","amount":"125","invoiceDisplayNumber":"12345678910","mandateSeqNo":2}' \
---data-urlencode 'key=JP***g' \
---data-urlencode 'hash=abc0ada2e12'
-```
+  ```python
+  import requests
 
-```python
-import requests
+  url = "https://test.info.payu.in/merchant/postservice.php?form=2"
 
-url = "https://test.info.payu.in/merchant/postservice.php?form=2"
+  payload = {
+      "command": "pre_debit_SI",
+      "var1": '{"authpayuid":"999000000000826","requestid":"RCS0123459PD","debitdate":"2024-11-22","amount":"125","invoiceDisplayNumber":"12345678910","mandateSeqNo":2}',
+      "key": "JP***g",
+      "hash": "abc0ada2e12"
+  }
 
-payload = {
-    "command": "pre_debit_SI",
-    "var1": '{"authpayuid":"999000000000826","requestid":"RCS0123459PD","debitdate":"2024-11-22","amount":"125","invoiceDisplayNumber":"12345678910","mandateSeqNo":2}',
-    "key": "JP***g",
-    "hash": "abc0ada2e12"
-}
+  headers = {
+      "Content-Type": "application/x-www-form-urlencoded"
+  }
 
-headers = {
-    "Content-Type": "application/x-www-form-urlencoded"
-}
+  response = requests.post(url, data=payload, headers=headers)
+  print(response.json())
+  ```
 
-response = requests.post(url, data=payload, headers=headers)
-print(response.json())
-```
+  ```csharp
+  using System;
+  using System.Net.Http;
+  using System.Collections.Generic;
+  using System.Threading.Tasks;
 
-```csharp
-using System;
-using System.Net.Http;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+  class Program
+  {
+      static async Task Main()
+      {
+          using var client = new HttpClient();
+          
+          var content = new FormUrlEncodedContent(new[]
+          {
+              new KeyValuePair<string, string>("command", "pre_debit_SI"),
+              new KeyValuePair<string, string>("var1", "{\"authpayuid\":\"999000000000826\",\"requestid\":\"RCS0123459PD\",\"debitdate\":\"2024-11-22\",\"amount\":\"125\",\"invoiceDisplayNumber\":\"12345678910\",\"mandateSeqNo\":2}"),
+              new KeyValuePair<string, string>("key", "JP***g"),
+              new KeyValuePair<string, string>("hash", "abc0ada2e12")
+          });
+          
+          var response = await client.PostAsync("https://test.info.payu.in/merchant/postservice.php?form=2", content);
+          var result = await response.Content.ReadAsStringAsync();
+          Console.WriteLine(result);
+      }
+  }
+  ```
 
-class Program
-{
-    static async Task Main()
-    {
-        using var client = new HttpClient();
-        
-        var content = new FormUrlEncodedContent(new[]
-        {
-            new KeyValuePair<string, string>("command", "pre_debit_SI"),
-            new KeyValuePair<string, string>("var1", "{\"authpayuid\":\"999000000000826\",\"requestid\":\"RCS0123459PD\",\"debitdate\":\"2024-11-22\",\"amount\":\"125\",\"invoiceDisplayNumber\":\"12345678910\",\"mandateSeqNo\":2}"),
-            new KeyValuePair<string, string>("key", "JP***g"),
-            new KeyValuePair<string, string>("hash", "abc0ada2e12")
-        });
-        
-        var response = await client.PostAsync("https://test.info.payu.in/merchant/postservice.php?form=2", content);
-        var result = await response.Content.ReadAsStringAsync();
-        Console.WriteLine(result);
-    }
-}
-```
+  ```javascript
+  const sendPreDebitRequest = async () => {
+      const url = "https://test.info.payu.in/merchant/postservice.php?form=2";
+      
+      const params = new URLSearchParams();
+      params.append("command", "pre_debit_SI");
+      params.append("var1", JSON.stringify({
+          authpayuid: "999000000000826",
+          requestid: "RCS0123459PD",
+          debitdate: "2024-11-22",
+          amount: "125",
+          invoiceDisplayNumber: "12345678910",
+          mandateSeqNo: 2
+      }));
+      params.append("key", "JP***g");
+      params.append("hash", "abc0ada2e12");
+      
+      const response = await fetch(url, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: params
+      });
+      
+      const data = await response.json();
+      console.log(data);
+  };
 
-```javascript
-const sendPreDebitRequest = async () => {
-    const url = "https://test.info.payu.in/merchant/postservice.php?form=2";
-    
-    const params = new URLSearchParams();
-    params.append("command", "pre_debit_SI");
-    params.append("var1", JSON.stringify({
-        authpayuid: "999000000000826",
-        requestid: "RCS0123459PD",
-        debitdate: "2024-11-22",
-        amount: "125",
-        invoiceDisplayNumber: "12345678910",
-        mandateSeqNo: 2
-    }));
-    params.append("key", "JP***g");
-    params.append("hash", "abc0ada2e12");
-    
-    const response = await fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: params
-    });
-    
-    const data = await response.json();
-    console.log(data);
-};
+  sendPreDebitRequest();
+  ```
 
-sendPreDebitRequest();
-```
+  ```java
+  import java.io.*;
+  import java.net.*;
+  import java.nio.charset.StandardCharsets;
 
-```java
-import java.io.*;
-import java.net.*;
-import java.nio.charset.StandardCharsets;
+  public class PreDebitSI {
+      public static void main(String[] args) throws Exception {
+          String url = "https://test.info.payu.in/merchant/postservice.php?form=2";
+          
+          String params = "command=pre_debit_SI" +
+              "&var1=" + URLEncoder.encode("{\"authpayuid\":\"999000000000826\",\"requestid\":\"RCS0123459PD\",\"debitdate\":\"2024-11-22\",\"amount\":\"125\",\"invoiceDisplayNumber\":\"12345678910\",\"mandateSeqNo\":2}", StandardCharsets.UTF_8) +
+              "&key=JP***g" +
+              "&hash=abc0ada2e12";
+          
+          HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+          conn.setRequestMethod("POST");
+          conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+          conn.setDoOutput(true);
+          
+          try (OutputStream os = conn.getOutputStream()) {
+              os.write(params.getBytes(StandardCharsets.UTF_8));
+          }
+          
+          try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+              String line;
+              while ((line = br.readLine()) != null) {
+                  System.out.println(line);
+              }
+          }
+      }
+  }
+  ```
 
-public class PreDebitSI {
-    public static void main(String[] args) throws Exception {
-        String url = "https://test.info.payu.in/merchant/postservice.php?form=2";
-        
-        String params = "command=pre_debit_SI" +
-            "&var1=" + URLEncoder.encode("{\"authpayuid\":\"999000000000826\",\"requestid\":\"RCS0123459PD\",\"debitdate\":\"2024-11-22\",\"amount\":\"125\",\"invoiceDisplayNumber\":\"12345678910\",\"mandateSeqNo\":2}", StandardCharsets.UTF_8) +
-            "&key=JP***g" +
-            "&hash=abc0ada2e12";
-        
-        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        conn.setDoOutput(true);
-        
-        try (OutputStream os = conn.getOutputStream()) {
-            os.write(params.getBytes(StandardCharsets.UTF_8));
-        }
-        
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-        }
-    }
-}
-```
+  ```php
+  <?php
+  $url = "https://test.info.payu.in/merchant/postservice.php?form=2";
 
-```php
-<?php
-$url = "https://test.info.payu.in/merchant/postservice.php?form=2";
+  $data = array(
+      "command" => "pre_debit_SI",
+      "var1" => json_encode(array(
+          "authpayuid" => "999000000000826",
+          "requestid" => "RCS0123459PD",
+          "debitdate" => "2024-11-22",
+          "amount" => "125",
+          "invoiceDisplayNumber" => "12345678910",
+          "mandateSeqNo" => 2
+      )),
+      "key" => "JP***g",
+      "hash" => "abc0ada2e12"
+  );
 
-$data = array(
-    "command" => "pre_debit_SI",
-    "var1" => json_encode(array(
-        "authpayuid" => "999000000000826",
-        "requestid" => "RCS0123459PD",
-        "debitdate" => "2024-11-22",
-        "amount" => "125",
-        "invoiceDisplayNumber" => "12345678910",
-        "mandateSeqNo" => 2
-    )),
-    "key" => "JP***g",
-    "hash" => "abc0ada2e12"
-);
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/x-www-form-urlencoded"));
 
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/x-www-form-urlencoded"));
+  $response = curl_exec($ch);
+  curl_close($ch);
 
-$response = curl_exec($ch);
-curl_close($ch);
-
-echo $response;
-?>
-```
-
+  echo $response;
+  ?>
+  ```
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-check">
+  **Success Response**
 
-**Success Response**
+  ```json
+  {
+      "status": "1",
+      "action": "MANDATE_PRE_DEBIT",
+      "message": "Request Processed Successfully"
+  }
+  ```
 
-```json
-{
-    "status": "1",
-    "action": "MANDATE_PRE_DEBIT",
-    "message": "Request Processed Successfully"
-}
-```
+  **Error Responses**
 
-**Error Responses**
-
-| Scenario | Response |
-|----------|----------|
-| Invalid mandateSeqNo | `{"status":"0","message":"Invalid value for mandateSeqNo","action":"MANDATE_PRE_DEBIT"}` |
-| Pre-debit already sent for sequence | `{"status":"E9254","action":"MANDATE_PRE_DEBIT","message":"Predebit notification already sent for the mandate sequence no. 2"}` |
-| Execution already exists for sequence | `{"status":"E9256","action":"MANDATE_PRE_DEBIT","message":"Execution already sent for the mandate sequence no.:2"}` |
-| Debit date exceeds 30 days | `{"status":"E9260","action":"MANDATE_PRE_DEBIT","message":"Predebit notification can only be sent for a maximum 30 days in advance."}` |
-| Pre-debit sent for past sequence | `{"status":"E9263","action":"MANDATE_PRE_DEBIT","message":"Predebit for calculated sequence sent during incorrect period"}` |
-
+  | Scenario                              | Response                                                                                                                               |
+  | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+  | Invalid mandateSeqNo                  | `{"status":"0","message":"Invalid value for mandateSeqNo","action":"MANDATE_PRE_DEBIT"}`                                               |
+  | Pre-debit already sent for sequence   | `{"status":"E9254","action":"MANDATE_PRE_DEBIT","message":"Predebit notification already sent for the mandate sequence no. 2"}`        |
+  | Execution already exists for sequence | `{"status":"E9256","action":"MANDATE_PRE_DEBIT","message":"Execution already sent for the mandate sequence no.:2"}`                    |
+  | Debit date exceeds 30 days            | `{"status":"E9260","action":"MANDATE_PRE_DEBIT","message":"Predebit notification can only be sent for a maximum 30 days in advance."}` |
+  | Pre-debit sent for past sequence      | `{"status":"E9263","action":"MANDATE_PRE_DEBIT","message":"Predebit for calculated sequence sent during incorrect period"}`            |
 </Accordion>
 
----
+***
 
-## Step 2: Execute the Transaction
+## Step 2: Post the Transaction
 
 Use the `si_transaction` API to execute the recurring transaction. The `mandateSeqNo` parameter allows parallel execution of multiple sequences.
 
 <Accordion title="Environment" icon="fa-globe">
-
-| Environment | URL |
-|-------------|-----|
-| Test | `https://test.payu.in/merchant/postservice?form=2` |
-| Production | `https://info.payu.in/merchant/postservice?form=2` |
-
+  | Environment | URL                                                |
+  | ----------- | -------------------------------------------------- |
+  | Test        | `https://test.payu.in/merchant/postservice?form=2` |
+  | Production  | `https://info.payu.in/merchant/postservice?form=2` |
 </Accordion>
 
 <Accordion title="Request Parameters" icon="fa-table">
+  | Parameter                | Description                                                        | Example          |
+  | ------------------------ | ------------------------------------------------------------------ | ---------------- |
+  | command<br />`mandatory` | `String`<br />The API command name.                                | `si_transaction` |
+  | key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                  | `JP***g`         |
+  | hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.       | `jbUS07Og8BToVZ` |
+  | var1<br />`mandatory`    | `JSON String`<br />JSON object containing the transaction details. | See below        |
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| command<br/>`mandatory` | `String`<br/>The API command name. | `si_transaction` |
-| key<br/>`mandatory` | `String`<br/>Your merchant key provided by PayU. | `JP***g` |
-| hash<br/>`mandatory` | `String`<br/>The hash value generated using the hash logic. | `jbUS07Og8BToVZ` |
-| var1<br/>`mandatory` | `JSON String`<br/>JSON object containing the transaction details. | See below |
-
-<Accordion title="var1 Object Parameters" icon="fa-code">
-
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| authpayuid<br/>`mandatory` | `String`<br/>The authorization PayU ID received during mandate creation. | `6611192557` |
-| txnid<br/>`mandatory` | `String`<br/>Unique transaction ID for this execution. | `REC15113506209` |
-| amount<br/>`mandatory` | `String`<br/>The amount to be debited. | `3` |
-| phone<br/>`mandatory` | `String`<br/>Customer's phone number. | `9999999999` |
-| email<br/>`mandatory` | `String`<br/>Customer's email address. | `abc@email.com` |
-| invoiceDisplayNumber<br/>`optional` | `String`<br/>Invoice number to display to the customer. | `2345678910` |
-| mandateSeqNo<br/>`optional` | `Integer`<br/>Sequence number for parallel processing. Valid range: 2 to 11000. | `3` |
-| udf2<br/>`optional` | `String`<br/>User-defined field 2. | ` ` |
-| udf3<br/>`optional` | `String`<br/>User-defined field 3. | ` ` |
-| udf4<br/>`optional` | `String`<br/>User-defined field 4. | ` ` |
-| udf5<br/>`optional` | `String`<br/>User-defined field 5. | ` ` |
-
-</Accordion>
-
+  <Accordion title="var1 Object Parameters" icon="fa-code">
+    | Parameter                            | Description                                                                      | Example          |
+    | ------------------------------------ | -------------------------------------------------------------------------------- | ---------------- |
+    | authpayuid<br />`mandatory`          | `String`<br />The authorization PayU ID received during mandate creation.        | `6611192557`     |
+    | txnid<br />`mandatory`               | `String`<br />Unique transaction ID for this execution.                          | `REC15113506209` |
+    | amount<br />`mandatory`              | `String`<br />The amount to be debited.                                          | `3`              |
+    | phone<br />`mandatory`               | `String`<br />Customer's phone number.                                           | `9999999999`     |
+    | email<br />`mandatory`               | `String`<br />Customer's email address.                                          | `abc@email.com`  |
+    | invoiceDisplayNumber<br />`optional` | `String`<br />Invoice number to display to the customer.                         | `2345678910`     |
+    | mandateSeqNo<br />`optional`         | `Integer`<br />Sequence number for parallel processing. Valid range: 2 to 11000. | `3`              |
+    | udf2<br />`optional`                 | `String`<br />User-defined field 2.                                              | ` `              |
+    | udf3<br />`optional`                 | `String`<br />User-defined field 3.                                              | ` `              |
+    | udf4<br />`optional`                 | `String`<br />User-defined field 4.                                              | ` `              |
+    | udf5<br />`optional`                 | `String`<br />User-defined field 5.                                              | ` `              |
+  </Accordion>
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
+  ```bash
+  curl --location 'https://test.payu.in/merchant/postservice?form=2' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'key=JP***g' \
+  --data-urlencode 'command=si_transaction' \
+  --data-urlencode 'var1={"authpayuid":"6611192557","invoiceDisplayNumber":"2345678910","amount":"3","txnid":"REC15113506209","phone":"9999999999","email":"abc@email.com","udf2":"","udf3":"","udf4":"","udf5":"","mandateSeqNo":3}' \
+  --data-urlencode 'hash=jbUS07Og8BToVZ'
+  ```
 
-```bash
-curl --location 'https://test.payu.in/merchant/postservice?form=2' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=JP***g' \
---data-urlencode 'command=si_transaction' \
---data-urlencode 'var1={"authpayuid":"6611192557","invoiceDisplayNumber":"2345678910","amount":"3","txnid":"REC15113506209","phone":"9999999999","email":"abc@email.com","udf2":"","udf3":"","udf4":"","udf5":"","mandateSeqNo":3}' \
---data-urlencode 'hash=jbUS07Og8BToVZ'
-```
+  ```python
+  import requests
 
-```python
-import requests
+  url = "https://test.payu.in/merchant/postservice?form=2"
 
-url = "https://test.payu.in/merchant/postservice?form=2"
+  payload = {
+      "key": "JP***g",
+      "command": "si_transaction",
+      "var1": '{"authpayuid":"6611192557","invoiceDisplayNumber":"2345678910","amount":"3","txnid":"REC15113506209","phone":"9999999999","email":"abc@email.com","udf2":"","udf3":"","udf4":"","udf5":"","mandateSeqNo":3}',
+      "hash": "jbUS07Og8BToVZ"
+  }
 
-payload = {
-    "key": "JP***g",
-    "command": "si_transaction",
-    "var1": '{"authpayuid":"6611192557","invoiceDisplayNumber":"2345678910","amount":"3","txnid":"REC15113506209","phone":"9999999999","email":"abc@email.com","udf2":"","udf3":"","udf4":"","udf5":"","mandateSeqNo":3}',
-    "hash": "jbUS07Og8BToVZ"
-}
+  headers = {
+      "Content-Type": "application/x-www-form-urlencoded"
+  }
 
-headers = {
-    "Content-Type": "application/x-www-form-urlencoded"
-}
+  response = requests.post(url, data=payload, headers=headers)
+  print(response.json())
+  ```
 
-response = requests.post(url, data=payload, headers=headers)
-print(response.json())
-```
+  ```csharp
+  using System;
+  using System.Net.Http;
+  using System.Collections.Generic;
+  using System.Threading.Tasks;
 
-```csharp
-using System;
-using System.Net.Http;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+  class Program
+  {
+      static async Task Main()
+      {
+          using var client = new HttpClient();
+          
+          var content = new FormUrlEncodedContent(new[]
+          {
+              new KeyValuePair<string, string>("key", "JP***g"),
+              new KeyValuePair<string, string>("command", "si_transaction"),
+              new KeyValuePair<string, string>("var1", "{\"authpayuid\":\"6611192557\",\"invoiceDisplayNumber\":\"2345678910\",\"amount\":\"3\",\"txnid\":\"REC15113506209\",\"phone\":\"9999999999\",\"email\":\"abc@email.com\",\"udf2\":\"\",\"udf3\":\"\",\"udf4\":\"\",\"udf5\":\"\",\"mandateSeqNo\":3}"),
+              new KeyValuePair<string, string>("hash", "jbUS07Og8BToVZ")
+          });
+          
+          var response = await client.PostAsync("https://test.payu.in/merchant/postservice?form=2", content);
+          var result = await response.Content.ReadAsStringAsync();
+          Console.WriteLine(result);
+      }
+  }
+  ```
 
-class Program
-{
-    static async Task Main()
-    {
-        using var client = new HttpClient();
-        
-        var content = new FormUrlEncodedContent(new[]
-        {
-            new KeyValuePair<string, string>("key", "JP***g"),
-            new KeyValuePair<string, string>("command", "si_transaction"),
-            new KeyValuePair<string, string>("var1", "{\"authpayuid\":\"6611192557\",\"invoiceDisplayNumber\":\"2345678910\",\"amount\":\"3\",\"txnid\":\"REC15113506209\",\"phone\":\"9999999999\",\"email\":\"abc@email.com\",\"udf2\":\"\",\"udf3\":\"\",\"udf4\":\"\",\"udf5\":\"\",\"mandateSeqNo\":3}"),
-            new KeyValuePair<string, string>("hash", "jbUS07Og8BToVZ")
-        });
-        
-        var response = await client.PostAsync("https://test.payu.in/merchant/postservice?form=2", content);
-        var result = await response.Content.ReadAsStringAsync();
-        Console.WriteLine(result);
-    }
-}
-```
+  ```javascript
+  const executeTransaction = async () => {
+      const url = "https://test.payu.in/merchant/postservice?form=2";
+      
+      const params = new URLSearchParams();
+      params.append("key", "JP***g");
+      params.append("command", "si_transaction");
+      params.append("var1", JSON.stringify({
+          authpayuid: "6611192557",
+          invoiceDisplayNumber: "2345678910",
+          amount: "3",
+          txnid: "REC15113506209",
+          phone: "9999999999",
+          email: "abc@email.com",
+          udf2: "",
+          udf3: "",
+          udf4: "",
+          udf5: "",
+          mandateSeqNo: 3
+      }));
+      params.append("hash", "jbUS07Og8BToVZ");
+      
+      const response = await fetch(url, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: params
+      });
+      
+      const data = await response.json();
+      console.log(data);
+  };
 
-```javascript
-const executeTransaction = async () => {
-    const url = "https://test.payu.in/merchant/postservice?form=2";
-    
-    const params = new URLSearchParams();
-    params.append("key", "JP***g");
-    params.append("command", "si_transaction");
-    params.append("var1", JSON.stringify({
-        authpayuid: "6611192557",
-        invoiceDisplayNumber: "2345678910",
-        amount: "3",
-        txnid: "REC15113506209",
-        phone: "9999999999",
-        email: "abc@email.com",
-        udf2: "",
-        udf3: "",
-        udf4: "",
-        udf5: "",
-        mandateSeqNo: 3
-    }));
-    params.append("hash", "jbUS07Og8BToVZ");
-    
-    const response = await fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: params
-    });
-    
-    const data = await response.json();
-    console.log(data);
-};
+  executeTransaction();
+  ```
 
-executeTransaction();
-```
+  ```java
+  import java.io.*;
+  import java.net.*;
+  import java.nio.charset.StandardCharsets;
 
-```java
-import java.io.*;
-import java.net.*;
-import java.nio.charset.StandardCharsets;
+  public class SITransaction {
+      public static void main(String[] args) throws Exception {
+          String url = "https://test.payu.in/merchant/postservice?form=2";
+          
+          String params = "key=JP***g" +
+              "&command=si_transaction" +
+              "&var1=" + URLEncoder.encode("{\"authpayuid\":\"6611192557\",\"invoiceDisplayNumber\":\"2345678910\",\"amount\":\"3\",\"txnid\":\"REC15113506209\",\"phone\":\"9999999999\",\"email\":\"abc@email.com\",\"udf2\":\"\",\"udf3\":\"\",\"udf4\":\"\",\"udf5\":\"\",\"mandateSeqNo\":3}", StandardCharsets.UTF_8) +
+              "&hash=jbUS07Og8BToVZ";
+          
+          HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+          conn.setRequestMethod("POST");
+          conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+          conn.setDoOutput(true);
+          
+          try (OutputStream os = conn.getOutputStream()) {
+              os.write(params.getBytes(StandardCharsets.UTF_8));
+          }
+          
+          try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+              String line;
+              while ((line = br.readLine()) != null) {
+                  System.out.println(line);
+              }
+          }
+      }
+  }
+  ```
 
-public class SITransaction {
-    public static void main(String[] args) throws Exception {
-        String url = "https://test.payu.in/merchant/postservice?form=2";
-        
-        String params = "key=JP***g" +
-            "&command=si_transaction" +
-            "&var1=" + URLEncoder.encode("{\"authpayuid\":\"6611192557\",\"invoiceDisplayNumber\":\"2345678910\",\"amount\":\"3\",\"txnid\":\"REC15113506209\",\"phone\":\"9999999999\",\"email\":\"abc@email.com\",\"udf2\":\"\",\"udf3\":\"\",\"udf4\":\"\",\"udf5\":\"\",\"mandateSeqNo\":3}", StandardCharsets.UTF_8) +
-            "&hash=jbUS07Og8BToVZ";
-        
-        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        conn.setDoOutput(true);
-        
-        try (OutputStream os = conn.getOutputStream()) {
-            os.write(params.getBytes(StandardCharsets.UTF_8));
-        }
-        
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-        }
-    }
-}
-```
+  ```php
+  <?php
+  $url = "https://test.payu.in/merchant/postservice?form=2";
 
-```php
-<?php
-$url = "https://test.payu.in/merchant/postservice?form=2";
+  $data = array(
+      "key" => "JP***g",
+      "command" => "si_transaction",
+      "var1" => json_encode(array(
+          "authpayuid" => "6611192557",
+          "invoiceDisplayNumber" => "2345678910",
+          "amount" => "3",
+          "txnid" => "REC15113506209",
+          "phone" => "9999999999",
+          "email" => "abc@email.com",
+          "udf2" => "",
+          "udf3" => "",
+          "udf4" => "",
+          "udf5" => "",
+          "mandateSeqNo" => 3
+      )),
+      "hash" => "jbUS07Og8BToVZ"
+  );
 
-$data = array(
-    "key" => "JP***g",
-    "command" => "si_transaction",
-    "var1" => json_encode(array(
-        "authpayuid" => "6611192557",
-        "invoiceDisplayNumber" => "2345678910",
-        "amount" => "3",
-        "txnid" => "REC15113506209",
-        "phone" => "9999999999",
-        "email" => "abc@email.com",
-        "udf2" => "",
-        "udf3" => "",
-        "udf4" => "",
-        "udf5" => "",
-        "mandateSeqNo" => 3
-    )),
-    "hash" => "jbUS07Og8BToVZ"
-);
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/x-www-form-urlencoded"));
 
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/x-www-form-urlencoded"));
+  $response = curl_exec($ch);
+  curl_close($ch);
 
-$response = curl_exec($ch);
-curl_close($ch);
-
-echo $response;
-?>
-```
-
+  echo $response;
+  ?>
+  ```
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-check">
+  **Success Response**
 
-**Success Response**
-
-```json
-{
-    "status": 1,
-    "message": "Transaction Processed successfully",
-    "details": {
-        "CLPOP-VNQKTR_2": {
-            "authpayuid": "999000000000826",
-            "transactionid": "SITXN03",
-            "amount": "125.00",
-            "user_credentials": "",
-            "card_token": "",
-            "payuid": "999000000000828",
-            "status": "in progress",
-            "udf1": null,
-            "field9": "92|Transaction Initiated",
-            "udf2": "",
-            "udf3": "",
-            "udf4": "Executed",
-            "udf5": "999000000000826",
-            "phone": "",
-            "email": ""
-        }
-    }
-}
-```
-
+  ```json
+  {
+      "status": 1,
+      "message": "Transaction Processed successfully",
+      "details": {
+          "CLPOP-VNQKTR_2": {
+              "authpayuid": "999000000000826",
+              "transactionid": "SITXN03",
+              "amount": "125.00",
+              "user_credentials": "",
+              "card_token": "",
+              "payuid": "999000000000828",
+              "status": "in progress",
+              "udf1": null,
+              "field9": "92|Transaction Initiated",
+              "udf2": "",
+              "udf3": "",
+              "udf4": "Executed",
+              "udf5": "999000000000826",
+              "phone": "",
+              "email": ""
+          }
+      }
+  }
+  ```
 </Accordion>
