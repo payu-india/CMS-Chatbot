@@ -16,7 +16,7 @@ This section explains how to integrate parallel sequencing for UPI AutoPay trans
     <br />
   </Card>
 
-  <Card title="2. Execute the Transaction" href="#step-2-execute-the-transaction">
+  <Card title="2. Execute the Transaction" href="#step-2-post-the-transaction-request">
     Execute the recurring transaction using the si\_transaction API with the corresponding sequence number.
 
     <br />
@@ -29,12 +29,10 @@ This section explains how to integrate parallel sequencing for UPI AutoPay trans
 
 Use the `pre_debit_SI` API to send pre-debit notifications for upcoming debits. The `mandateSeqNo` parameter enables parallel processing of multiple sequences.
 
-<Accordion title="Environment" icon="fa-globe">
   | Environment | URL                                                         |
   | ----------- | ----------------------------------------------------------- |
   | Test        | `https://test.info.payu.in/merchant/postservice.php?form=2` |
   | Production  | `https://info.payu.in/merchant/postservice.php?form=2`      |
-</Accordion>
 
 <Accordion title="Request Parameters" icon="fa-table">
   | Parameter                | Description                                                      | Example        |
@@ -234,9 +232,9 @@ Use the `pre_debit_SI` API to send pre-debit notifications for upcoming debits. 
 
 ***
 
-## Step 2: Post the Transaction
+## Step 2: Post the Transaction Request
 
-Use the `si_transaction` API to execute the recurring transaction. The `mandateSeqNo` parameter allows parallel execution of multiple sequences.
+Use the **SI Transaction** API to execute the recurring transaction. The `mandateSeqNo` parameter allows parallel execution of multiple sequences.
 
 <Accordion title="Environment" icon="fa-globe">
   | Environment | URL                                                |
@@ -248,10 +246,10 @@ Use the `si_transaction` API to execute the recurring transaction. The `mandateS
 <Accordion title="Request Parameters" icon="fa-table">
   | Parameter                | Description                                                        | Example          |
   | ------------------------ | ------------------------------------------------------------------ | ---------------- |
-  | command<br />`mandatory` | `String`<br />The API command name.                                | `si_transaction` |
   | key<br />`mandatory`     | `String`<br />Your merchant key provided by PayU.                  | `JP***g`         |
+  | command<br />`mandatory` | `String`<br />The API command name.                                | `si_transaction` |
+  | var1<br />`mandatory`    | `JSON String`<br />JSON object containing the transaction details. For more information, refer to (var1 Object Parameters)[#var1-object-parameters] | Refer to (var1 Object Parameters)[#var1-object-parameters]         |
   | hash<br />`mandatory`    | `String`<br />The hash value generated using the hash logic.       | `jbUS07Og8BToVZ` |
-  | var1<br />`mandatory`    | `JSON String`<br />JSON object containing the transaction details. | See below        |
 
   <Accordion title="var1 Object Parameters" icon="fa-code">
     | Parameter                            | Description                                                                      | Example          |
