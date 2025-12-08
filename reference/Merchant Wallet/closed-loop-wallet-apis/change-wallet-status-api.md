@@ -34,7 +34,7 @@ The **Change Wallet Status** API allows you to change the operational status of 
     <tbody>
         <tr>
             <td>messageCode<br><code>mandatory</code></td>
-            <td><code>Numeric(4)</code> Unique API ID for wallet status change</td>
+            <td><code>Numeric(4)</code> Unique API ID for wallet status change. Only the value <code>3530</code> is allowed</td>
             <td>3530</td>
         </tr>
         <tr>
