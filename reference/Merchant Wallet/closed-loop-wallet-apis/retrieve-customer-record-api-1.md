@@ -34,7 +34,7 @@ The **Retrieve Customer Record** API allows you to fetch customer details using 
     <tbody>
         <tr>
             <td>messageCode <code>mandatory</code></td>
-            <td><code>Numeric (4)</code> - API Code to uniquely identity 'Register Customer' API. You must post only **1930** for this API</td>
+            <td><code>Numeric (4)</code> - API Code to uniquely identity 'Register Customer' API. Only the value <code>1930</code> for this API</td>
             <td><code>1930</code></td>
         </tr>
         <tr>
