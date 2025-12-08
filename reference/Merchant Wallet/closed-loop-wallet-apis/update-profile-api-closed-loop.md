@@ -15,7 +15,7 @@ The **Update Profile** API allows you to update a customer's profile information
 | Test        | `https://apitest.payu.in/loyalty-points/v1/wallet/onboarding/v3/updateProfile` |
 | Production  | `https://api.payu.in/loyalty-points/v1/wallet/onboarding/v3/updateProfile`     |
 
-**HTTP Method**: POST
+**HTTP Method**: PATCH
 
 ## Authentication
 
@@ -52,7 +52,7 @@ This API uses HMAC-SHA512 authentication on header.
     </tr>
     <tr>
       <td>productId<br /><code>mandatory</code></td>
-      <td><code>String(10)</code> Product ID of the product the Customer holds. Wibmo to share.</td>
+      <td><code>String(10)</code> Product ID of the product the Customer holds. This will be <code>provided by PayU</code>.</td>
       <td>16</td>
     </tr>
     <tr>
@@ -72,8 +72,8 @@ This API uses HMAC-SHA512 authentication on header.
     </tr>
     <tr>
       <td>cardProfileId<br /><code>mandatory</code></td>
-      <td><code>numeric(3)</code> Present KYC Profile ID. 150 - full KYC, 30 - Min KYC, 300 - Shortfall KYC</td>
-      <td>Default value is 30</td>
+      <td><code>numeric(3)</code> Present KYC Profile ID. Only the value <code>30</code> is allowed</td>
+      <td>30</td>
     </tr>
     <tr>
       <td>firstName<br /><code>optional</code></td>
