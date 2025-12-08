@@ -33,7 +33,7 @@ The **Register Customer** API allows you to register a new customer and facilita
   <tbody>
     <tr>
       <td>messageCode</br> <code>mandatory</code></td>
-      <td>A unique API code to identify the API request for registering customers. You must post only **3510** for this API. Data type: <code>Numeric(4)</code></td>
+      <td>A unique API code to identify the API request for registering customers. You must post only <code>3510</code> for this API. Data type: <code>Numeric(4)</code></td>
       <td>3510</td>
     </tr>
     <tr>
