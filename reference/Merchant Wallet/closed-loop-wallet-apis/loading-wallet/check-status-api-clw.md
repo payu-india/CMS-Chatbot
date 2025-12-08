@@ -13,8 +13,6 @@ The **Check Status **API will fetch the response dump for any API call based on 
 
 **Environment:**
 
-<br />
-
 | Environment | Endpoint                                                                                                            |
 | :---------- | :------------------------------------------------------------------------------------------------------------------ |
 | Test        | [https://apitest.payu.in/onboarding/v1/checkStatus](https://apitest.payu.in/loyalty-points/v1/wallet/load-account`) |
