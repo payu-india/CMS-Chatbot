@@ -173,11 +173,4 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
 | 401         | Unauthorized - Authentication failed     |
 | 500         | Internal Server Error                    |
 
-## Error Codes
-
-| Error Code | Description                      |
-| ---------- | -------------------------------- |
-| 3511       | Customer registered successfully |
-| 1010       | Invalid message code             |
-| 1020       | Missing required parameters      |
-| 1030       | Customer already exists          |
+<br />
