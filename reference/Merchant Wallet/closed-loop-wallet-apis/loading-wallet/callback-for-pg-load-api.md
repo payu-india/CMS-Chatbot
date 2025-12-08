@@ -18,6 +18,12 @@ When a transaction is completed via the PG Load API, the result is communicated 
 
 ## Callback parameters
 
+### Request Headers
+
+<Closed_Loop_HMAC />
+
+### Body parameters
+
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
