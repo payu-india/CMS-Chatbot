@@ -31,9 +31,9 @@ PayU offers various React Native SDKs that each serve a unique use case. Here is
 
 ## Choose your integration
 
-> 👍 Tip
->
-> The best SDK for you will depend on your specific needs and requirements.
+<Callout icon="👍" theme="okay">
+  **Tip**: The best SDK for you will depend on your specific needs and requirements.
+</Callout>
 
 If you need a quick and easy way to integrate a payment interface into your app, then the Checkout Pro SDK is a good option. If you need more control over the look and feel of the payment interface, then the Core SDK is a good choice. And if you need to accept payments through UPI, OlaMoney, PhonePe, or Native OTP Assist, then the respective SDKs are a good fit.
 
@@ -95,8 +95,8 @@ Here is a comparison table that summarizes the key features of the different SDK
       </td>
 
       <td>
-        * *Low Effort Integration | UPI Checkout
-          OlaMoney SDK|Allows you to integrate | OlaMoney payments into your iOS app.*\*
+        * _Low Effort Integration | UPI Checkout
+          OlaMoney SDK|Allows you to integrate | OlaMoney payments into your iOS app._*
       </td>
     </tr>
 
