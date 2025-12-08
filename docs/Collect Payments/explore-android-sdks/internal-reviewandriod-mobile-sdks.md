@@ -186,27 +186,61 @@ Configure webhooks to receive real-time payment notifications.
 
 ## Choose your integration
 
-> ✅ **Note**: The best SDK for you will depend on your specific needs and requirements.
+<Callout icon="✅" theme="okay">
+  **Note**: The best SDK for you will depend on your specific needs and requirements.
+</Callout>
 
 If you need a quick and easy way to integrate a payment interface into your app, then the Checkout Pro SDK is a good option. If you need more control over the look and feel of the payment interface, then the Core SDK is a good choice. And if you need to accept payments through UPI, OlaMoney, PhonePe, or Native OTP Assist, then the respective SDKs are a good fit.
 
 PayU offers various Android SDKs that each serve a unique use case. Here is a brief overview of the most popular SDKs:
 
-* **Checkout Pro SDK**: The Checkout Pro SDK is a complete, ready-to-use native checkout UI that allows you to integrate a payment interface with minimal effort and get started quickly. The SDK includes a variety of features, such as support for multiple payment methods, a secure payment gateway, and a user-friendly interface.
+<details>
+  <summary><strong>Checkout Pro SDK</strong></summary>
 
-* **Core SDK**: The Core SDK allows you to integrate the PayU payment gateway into your own payment interface. This gives you more control over the look and feel of the payment interface, as well as the ability to add custom features and functionality.
+  The Checkout Pro SDK is a complete, ready-to-use native checkout UI that allows you to integrate a payment interface with minimal effort and get started quickly. The SDK includes a variety of features, such as support for multiple payment methods, a secure payment gateway, and a user-friendly interface.
+</details>
 
-* **UPI SDK**: The UPI SDK allows you to integrate Unified Payments Interface (UPI) payments into your Android app. UPI is a popular payment method in India that allows users to make payments directly from their bank accounts.
+<details>
+  <summary><strong>Core SDK</strong></summary>
 
-* **PhonePe SDK**: PhonePe SDK offers in-app experience to start collecting payments through instruments saved on PhonePe. Supports UPI, card, and wallet payments along with UPI PIN authentication.
+  The Core SDK allows you to integrate the PayU payment gateway into your own payment interface. This gives you more control over the look and feel of the payment interface, as well as the ability to add custom features and functionality.
+</details>
 
-* **Google Pay SDK**: Google Pay SDK offers in-app experience to start collecting payments through instruments saved on Google Pay. Supports UPI, card, and wallet payments along with UPI PIN authentication.
+<details>
+  <summary><strong>UPI SDK</strong></summary>
 
-* **OlaMoney SDK**: The OlaMoney SDK allows you to integrate OlaMoney payments into your Android app. OlaMoney is a digital wallet that allows users to make payments for goods and services online and offline.
+  The UPI SDK allows you to integrate Unified Payments Interface (UPI) payments into your Android app. UPI is a popular payment method in India that allows users to make payments directly from their bank accounts.
+</details>
 
-* **Native OTP Assist SDK**: The Native OTP Assist SDK allows you to capture OTP (One-Time Password) directly from your Android app without redirecting the user to the bank's 3D secure page. This can help to improve the checkout experience and reduce the chances of abandonment.
+<details>
+  <summary><strong>PhonePe SDK</strong></summary>
 
-* **3DS 2.0 SDK**: The 3DS 2.0 SDK provides you the ability to collect additional transaction data such as device location, user's location, and merchant's transaction history. It allows you to protect you and your customers from the threat of payment fraud.
+  PhonePe SDK offers in-app experience to start collecting payments through instruments saved on PhonePe. Supports UPI, card, and wallet payments along with UPI PIN authentication.
+</details>
+
+<details>
+  <summary><strong>Google Pay SDK</strong></summary>
+
+  Google Pay SDK offers in-app experience to start collecting payments through instruments saved on Google Pay. Supports UPI, card, and wallet payments along with UPI PIN authentication.
+</details>
+
+<details>
+  <summary><strong>OlaMoney SDK</strong></summary>
+
+  The OlaMoney SDK allows you to integrate OlaMoney payments into your Android app. OlaMoney is a digital wallet that allows users to make payments for goods and services online and offline.
+</details>
+
+<details>
+  <summary><strong>Native OTP Assist SDK</strong></summary>
+
+  The Native OTP Assist SDK allows you to capture OTP (One-Time Password) directly from your Android app without redirecting the user to the bank's 3D secure page. This can help to improve the checkout experience and reduce the chances of abandonment.
+</details>
+
+<details>
+  <summary><strong>3DS 2.0 SDK</strong></summary>
+
+  The 3DS 2.0 SDK provides you the ability to collect additional transaction data such as device location, user's location, and merchant's transaction history. It allows you to protect you and your customers from the threat of payment fraud.
+</details>
 
 Here is a comparison table that summarizes the key features of the different SDKs:
 
