@@ -12,6 +12,7 @@ The **Register Customer** API allows you to register a new customer and facilita
 | Environment | URL                                                       |
 | ----------- | --------------------------------------------------------- |
 | Test        | `https://apitest.payu.in/loyalty-points/v1/wallet/enroll` |
+| Production  | `https://api.payu.in/loyalty-points/v1/wallet/enroll`     |
 
 **HTTP Method**: POST
 
@@ -88,12 +89,12 @@ The **Register Customer** API allows you to register a new customer and facilita
     </tr>
     <tr>
       <td>kycProfile</br> <code>mandatory</code></td>
-      <td>Type of KYC to be passed if KYC is performed by the calling application. Allowed values: 30 (Minimal KYC), 150 (Full KYC), 300 (Shortfall KYC). Default value: 30. Data type: <code>Numeric(3)</code></td>
+      <td>Type of KYC to be passed if KYC is performed by the calling application. Only the value "30" is allowed that indicated minimum KYC. Default value: 30. Data type: <code>Numeric(3)</code></td>
       <td>30</td>
     </tr>
     <tr>
       <td>riskCategory</br> <code>mandatory</code></td>
-      <td>Risk assessment of the customer. Allowed values: "Low" or "100", "Medium" or "500", "High" or "200". Default value: "Low". Data type: <code>String(20)</code></td>
+      <td>Risk assessment of the customer.  Only the value "100" is allow that indicated Low category. Default value: "100". Data type: <code>String(20)</code></td>
       <td>Low</td>
     </tr>
     <tr>
@@ -103,7 +104,7 @@ The **Register Customer** API allows you to register a new customer and facilita
     </tr>
     <tr>
       <td>formFactorRequired</br> <code>mandatory</code></td>
-      <td>Whether to create the form factor. Indicates if a form factor is required. Allowed values: true (Form factor required), false (Form factor not required). Default value: false. Data type: <code>Boolean</code></td>
+      <td>Whether to create the form factor. Indicates if a form factor is required. Allowed values: Only the value "false" is allowed that indicates Form factor not required. Default value: false. Data type: <code>Boolean</code></td>
       <td>false</td>
     </tr>
   </tbody>
@@ -125,8 +126,6 @@ The **Register Customer** API allows you to register a new customer and facilita
 | responseMessage          | Response message                                       | CUSTOMER REGISTERED SUCCESSFULLY |
 
 ## Sample Request
-
-### Encrypted Packet
 
 ```curl
 curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet/enroll' \
@@ -174,6 +173,7 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
 | 400         | Bad Request - Invalid request parameters |
 | 401         | Unauthorized - Authentication failed     |
 | 500         | Internal Server Error                    |
+| 3510        |                                          |
 
 ## Error Codes
 
