@@ -233,7 +233,7 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/ppi/payme
 "merchantCode": "2", 
 "clientTxnId": "Test_008", 
 "txnAmount": "10000", 
-"status": "FAILED", 
+"status": "SUCCESS", 
 "responseCode": "1303", 
 "refundTxnExist": true, 
 "refundEnquiryResponse": { 
