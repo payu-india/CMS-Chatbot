@@ -1,7 +1,7 @@
 ---
 title: '[Internal Review]Andriod Mobile SDKs'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
