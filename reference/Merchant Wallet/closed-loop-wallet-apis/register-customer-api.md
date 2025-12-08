@@ -33,7 +33,7 @@ The **Register Customer** API allows you to register a new customer and facilita
   <tbody>
     <tr>
       <td>messageCode</br> <code>mandatory</code></td>
-      <td>A unique API code to identify the API request for registering customers. You must post only **3510** for this API. Data type: <code>Numeric(4)</code></td>
+      <td>A unique API code to identify the API request for registering customers. You must post only <code>3510</code> for this API. Data type: <code>Numeric(4)</code></td>
       <td>3510</td>
     </tr>
     <tr>
@@ -88,7 +88,7 @@ The **Register Customer** API allows you to register a new customer and facilita
     </tr>
     <tr>
       <td>kycProfile</br> <code>mandatory</code></td>
-      <td>Type of KYC to be passed if KYC is performed by the calling application. Only the value, **30** is allowed. Data type: <code>Numeric(3)</code></td>
+      <td>Type of KYC to be passed if KYC is performed by the calling application. Only the value <code>30<code> is allowed. Data type: <code>Numeric(3)</code></td>
       <td>30</td>
     </tr>
     <tr>
@@ -98,12 +98,12 @@ The **Register Customer** API allows you to register a new customer and facilita
     </tr>
     <tr>
       <td>productId</br> <code>mandatory</code></td>
-      <td>Unique product or program ID where the customer will be enrolled. This will be provided by PayU. Data type: <code>Numeric(5)</code></td>
+      <td>Unique product or program ID where the customer will be enrolled. This will be <code>provided by PayU</code>. Data type: <code>Numeric(5)</code></td>
       <td>121</td>
     </tr>
     <tr>
       <td>formFactorRequired</br> <code>mandatory</code></td>
-      <td>Whether to create the form factor. Indicates if a form factor is required. This value must be posted as **false**. Data type: <code>Boolean</code></td>
+      <td>Whether to create the form factor. Indicates if a form factor is required. Only the value <code>false</code> is allowed. Data type: <code>Boolean</code></td>
       <td>false</td>
     </tr>
   </tbody>
