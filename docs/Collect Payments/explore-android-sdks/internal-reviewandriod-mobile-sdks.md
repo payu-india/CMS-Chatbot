@@ -10,158 +10,139 @@ Before you begin integrating PayU Android SDKs into your application, complete t
 ## Account Setup
 
 <Accordion title="Register and Activate Your PayU Account" icon="fa-user-plus">
+  | Step | Action                                 | Link                                                            |
+  | ---- | -------------------------------------- | --------------------------------------------------------------- |
+  | 1    | Register for a PayU Merchant Account   | [Register](/docs/register-for-a-merchant-account)               |
+  | 2    | Complete KYC and activate your account | [Activate Account](/docs/activate-account)                      |
+  | 3    | Access your Test Merchant Key and Salt | [Get Test Credentials](/docs/access-test-merchant-key-and-salt) |
 
-| Step | Action                                 | Link                                                            |
-| ---- | -------------------------------------- | --------------------------------------------------------------- |
-| 1    | Register for a PayU Merchant Account   | [Register](/docs/register-for-a-merchant-account)               |
-| 2    | Complete KYC and activate your account | [Activate Account](/docs/activate-account)                      |
-| 3    | Access your Test Merchant Key and Salt | [Get Test Credentials](/docs/access-test-merchant-key-and-salt) |
-
-<Callout icon="⚠️" theme="warn">
-  **Important:** Never use production credentials during development. Always use test credentials until you're ready for go-live.
-</Callout>
-
+  <Callout icon="⚠️" theme="warn">
+    **Important:** Never use production credentials during development. Always use test credentials until you're ready for go-live.
+  </Callout>
 </Accordion>
 
 <Accordion title="Obtain Your Credentials" icon="fa-key">
+  You'll need the following credentials from the PayU Dashboard. Refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy).
 
-You'll need the following credentials from the PayU Dashboard. Refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy).
-
-| Credential        | Description                        |
-| ----------------- | ---------------------------------- |
-| **Merchant Key**  | Unique identifier for your account |
-| **Merchant Salt** | Used for hash generation           |
-| **Client ID**     | For OAuth-based authentication     |
-| **Client Secret** | For OAuth-based authentication     |
-
+  | Credential        | Description                        |
+  | ----------------- | ---------------------------------- |
+  | **Merchant Key**  | Unique identifier for your account |
+  | **Merchant Salt** | Used for hash generation           |
+  | **Client ID**     | For OAuth-based authentication     |
+  | **Client Secret** | For OAuth-based authentication     |
 </Accordion>
-
 
 ## Development Environment Requirements
 
 <Accordion title="Minimum System Requirements" icon="fa-desktop">
-
-| Requirement                    | Minimum Version | Recommended |
-| ------------------------------ | --------------- | ----------- |
-| **Android Studio**             | Arctic Fox+     | Ladybug+    |
-| **Android Min SDK Version**    | API 21 (5.0)    | API 24+     |
-| **Android Target SDK Version** | API 34          | API 34      |
-| **Kotlin**                     | 1.6+            | 1.9+        |
-| **Java**                       | 8               | 11+         |
-| **Gradle**                     | 7.0+            | 8.0+        |
-
+  | Requirement                    | Minimum Version | Recommended |
+  | ------------------------------ | --------------- | ----------- |
+  | **Android Studio**             | Arctic Fox+     | Ladybug+    |
+  | **Android Min SDK Version**    | API 21 (5.0)    | API 24+     |
+  | **Android Target SDK Version** | API 34          | API 34      |
+  | **Kotlin**                     | 1.6+            | 1.9+        |
+  | **Java**                       | 8               | 11+         |
+  | **Gradle**                     | 7.0+            | 8.0+        |
 </Accordion>
 
 <Accordion title="Package Manager Support" icon="fa-box">
+  PayU Android SDKs are available through:
 
-PayU Android SDKs are available through:
-
-| Package Manager        | Supported | Notes                         |
-| ---------------------- | --------- | ----------------------------- |
-| **Maven (Gradle)**     | ✅ Yes     | Recommended for most projects |
-| **Manual Integration** | ✅ Yes     | AAR files available           |
-
+  | Package Manager        | Supported | Notes                         |
+  | ---------------------- | --------- | ----------------------------- |
+  | **Maven (Gradle)**     | ✅ Yes     | Recommended for most projects |
+  | **Manual Integration** | ✅ Yes     | AAR files available           |
 </Accordion>
 
 <Accordion title="Gradle Setup" icon="fa-cogs">
+  Add the PayU repository to your project-level `build.gradle`:
 
-Add the PayU repository to your project-level `build.gradle`:
+  ```groovy
+  // Project-level build.gradle
+  allprojects {
+      repositories {
+          google()
+          mavenCentral()
+          maven { url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsdk-android" }
+      }
+  }
+  ```
 
-```groovy
-// Project-level build.gradle
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsdk-android" }
-    }
-}
-```
+  Add the SDK dependency to your app-level `build.gradle`:
 
-Add the SDK dependency to your app-level `build.gradle`:
+  ```groovy
+  // App-level build.gradle
+  dependencies {
+      // Add the SDK you need
+      implementation 'in.payu:payu-checkoutpro:3.0.0'  // For Checkout Pro SDK
+      // implementation 'in.payu:payu-core:7.10.1'    // For Core SDK
+  }
+  ```
 
-```groovy
-// App-level build.gradle
-dependencies {
-    // Add the SDK you need
-    implementation 'in.payu:payu-checkoutpro:3.0.0'  // For Checkout Pro SDK
-    // implementation 'in.payu:payu-core:7.10.1'    // For Core SDK
-}
-```
-
-Then sync your Gradle files.
-
+  Then sync your Gradle files.
 </Accordion>
-
 
 ## Android Privacy & Compliance
 
 <Accordion title="Required App Permissions" icon="fa-shield">
+  Add the following permissions to your `AndroidManifest.xml`:
 
-Add the following permissions to your `AndroidManifest.xml`:
+  ```xml
+  <!-- Required for network operations -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-```xml
-<!-- Required for network operations -->
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <!-- Required for UPI Intent (opening UPI apps) -->
+  <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+      tools:ignore="QueryAllPackagesPermission" />
 
-<!-- Required for UPI Intent (opening UPI apps) -->
-<uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
-    tools:ignore="QueryAllPackagesPermission" />
-
-<!-- Optional: For SMS-based OTP auto-read -->
-<uses-permission android:name="android.permission.RECEIVE_SMS" />
-<uses-permission android:name="android.permission.READ_SMS" />
-```
-
+  <!-- Optional: For SMS-based OTP auto-read -->
+  <uses-permission android:name="android.permission.RECEIVE_SMS" />
+  <uses-permission android:name="android.permission.READ_SMS" />
+  ```
 </Accordion>
 
 <Accordion title="Package Visibility Configuration (Android 11+)" icon="fa-eye">
+  Starting with Android 11 (API level 30), apps must declare which packages they interact with. Add the following to your `AndroidManifest.xml`:
 
-Starting with Android 11 (API level 30), apps must declare which packages they interact with. Add the following to your `AndroidManifest.xml`:
-
-```xml
-<queries>
-    <!-- UPI Apps -->
-    <intent>
-        <action android:name="android.intent.action.VIEW" />
-        <data android:scheme="upi" />
-    </intent>
-    
-    <!-- Specific payment apps -->
-    <package android:name="com.phonepe.app" />
-    <package android:name="com.google.android.apps.nbu.paisa.user" />
-    <package android:name="net.one97.paytm" />
-    <package android:name="in.org.npci.upiapp" />
-</queries>
-```
-
+  ```xml
+  <queries>
+      <!-- UPI Apps -->
+      <intent>
+          <action android:name="android.intent.action.VIEW" />
+          <data android:scheme="upi" />
+      </intent>
+      
+      <!-- Specific payment apps -->
+      <package android:name="com.phonepe.app" />
+      <package android:name="com.google.android.apps.nbu.paisa.user" />
+      <package android:name="net.one97.paytm" />
+      <package android:name="in.org.npci.upiapp" />
+  </queries>
+  ```
 </Accordion>
 
 <Accordion title="ProGuard/R8 Rules" icon="fa-lock">
+  If you use ProGuard or R8, add the following rules to your `proguard-rules.pro`:
 
-If you use ProGuard or R8, add the following rules to your `proguard-rules.pro`:
+  ```proguard
+  # PayU SDK
+  -keep class com.payu.** { *; }
+  -keep class in.payu.** { *; }
+  -dontwarn com.payu.**
+  -dontwarn in.payu.**
 
-```proguard
-# PayU SDK
--keep class com.payu.** { *; }
--keep class in.payu.** { *; }
--dontwarn com.payu.**
--dontwarn in.payu.**
-
-# Keep models for serialization
--keepclassmembers class * implements java.io.Serializable {
-    static final long serialVersionUID;
-    private static final java.io.ObjectStreamField[] serialPersistentFields;
-    private void writeObject(java.io.ObjectOutputStream);
-    private void readObject(java.io.ObjectInputStream);
-    java.lang.Object writeReplace();
-    java.lang.Object readResolve();
-}
-```
-
+  # Keep models for serialization
+  -keepclassmembers class * implements java.io.Serializable {
+      static final long serialVersionUID;
+      private static final java.io.ObjectStreamField[] serialPersistentFields;
+      private void writeObject(java.io.ObjectOutputStream);
+      private void readObject(java.io.ObjectInputStream);
+      java.lang.Object writeReplace();
+      java.lang.Object readResolve();
+  }
+  ```
 </Accordion>
-
 
 ## Server-Side Hash Generation Setup
 
@@ -174,59 +155,34 @@ The dynamic hashes must be generated at runtime for each transaction and will va
 </Callout>
 
 <Accordion title="Hash Generation Flow" icon="fa-random">
-
-<Image border={false} src="https://files.readme.io/04949cb-Screenshot_2023-11-16_at_6.14.14_PM.png" />
-
+  ![](https://files.readme.io/04949cb-Screenshot_2023-11-16_at_6.14.14_PM.png)
 </Accordion>
-
-<br />
-
-## Choose Your SDK
-
-Based on your requirements, select the appropriate SDK:
-
-| Your Requirement                  | Recommended SDK                                             | Integration Effort |
-| --------------------------------- | ----------------------------------------------------------- | ------------------ |
-| Fastest integration, pre-built UI | [Checkout Pro SDK](/docs/android-checkoutpro-sdk)           | Low                |
-| Full UI customization             | [Core SDK](/docs/android-core-sdk)                          | Medium             |
-| UPI payments only                 | [UPI SDK](/docs/android-upi-sdk)                            | Low                |
-| Google Pay in-app payments        | [Google Pay SDK](/docs/android-google-pay-sdk)              | Low                |
-| PhonePe in-app payments           | [PhonePe SDK](/docs/android-phonepe-sdk)                    | Low                |
-| Improved card success rates       | Core SDK + [Native OTP Assist](/docs/native-otp-assist-sdk) | Medium             |
-| One-click UPI payments            | [UPI Bolt SDK](/docs/payu-bolt-sdk)                         | Low                |
-| Native 3D Secure experience       | [3DS 2.0 SDK](/docs/android-3ds20-sdk)                      | Medium             |
-
 
 ## Webhook Setup
 
 Configure webhooks to receive real-time payment notifications.
 
 <Accordion title="Required Webhook Events" icon="fa-bell">
-
-| Event             | Description                    |
-| ----------------- | ------------------------------ |
-| `payment.success` | Payment completed successfully |
-| `payment.failed`  | Payment failed                 |
-| `payment.pending` | Payment is pending             |
-| `refund.success`  | Refund processed successfully  |
-| `refund.failed`   | Refund failed                  |
-
+  | Event             | Description                    |
+  | ----------------- | ------------------------------ |
+  | `payment.success` | Payment completed successfully |
+  | `payment.failed`  | Payment failed                 |
+  | `payment.pending` | Payment is pending             |
+  | `refund.success`  | Refund processed successfully  |
+  | `refund.failed`   | Refund failed                  |
 </Accordion>
 
 <Accordion title="Webhook Configuration" icon="fa-wrench">
+  1. Navigate to **Dashboard → Settings → Webhooks**
+  2. Click **Create New Webhook**
+  3. Enter your webhook URL (must be HTTPS)
+  4. Select the events you want to receive
+  5. Save and note the webhook secret for verification
 
-1. Navigate to **Dashboard → Settings → Webhooks**
-2. Click **Create New Webhook**
-3. Enter your webhook URL (must be HTTPS)
-4. Select the events you want to receive
-5. Save and note the webhook secret for verification
-
-<Callout icon="📘" theme="info">
-  **Note:** For detailed webhook setup, refer to [Webhooks for Payments](/docs/webhooks-for-payments).
-</Callout>
-
+  <Callout icon="📘" theme="info">
+    **Note:** For detailed webhook setup, refer to [Webhooks for Payments](/docs/webhooks-for-payments).
+  </Callout>
 </Accordion>
-
 
 ## Choose your integration
 
@@ -280,7 +236,6 @@ Here is a comparison table that summarizes the key features of the different SDK
 | [OlaMoney SDK](doc:ola-money-sdk)              | 1.3.9              | 47KB     |
 | [Native OTP SDK](doc:native-otp-assist-sdk)    | 1.6.2              | 194KB    |
 | [3DS 2.0 SDK](doc:android-3ds20-sdk)           | 1.1.2              | 80KB     |
-
 
 ## Next Steps
 
