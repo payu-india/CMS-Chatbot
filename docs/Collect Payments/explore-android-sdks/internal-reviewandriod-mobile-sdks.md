@@ -257,8 +257,7 @@ Here is a comparison table that summarizes the key features of the different SDK
 | [Android 3DS 2.0 SDK](doc:android-3ds20-sdk)               | Power native experience on the new 3DS 2.0 protocol for card transactions.                                                                                                                                                           | **3DS 2.0 Support** \| **Low Effort Integration**                                    |
 | [Android UPI Bolt SDK](doc:payu-bolt-sdk)                  | Allows you to provide a simpler and more efficient payment experience. Eliminates third-party redirection with higher success rate.                                                                                                  | **One-Click Payment** \| **UPI Checkout**                                            |
 
-## Size of SDK
-
+<Accordion title="Size of SDK" icon="fa-circle">
 | SDK Name                                       | Latest SDK Version | SDK Size |
 | :--------------------------------------------- | :----------------- | :------- |
 | [CheckoutPro SDK](doc:android-checkoutpro-sdk) | 3.0.0              | 293KB    |
@@ -270,6 +269,7 @@ Here is a comparison table that summarizes the key features of the different SDK
 | [OlaMoney SDK](doc:ola-money-sdk)              | 1.3.9              | 47KB     |
 | [Native OTP SDK](doc:native-otp-assist-sdk)    | 1.6.2              | 194KB    |
 | [3DS 2.0 SDK](doc:android-3ds20-sdk)           | 1.1.2              | 80KB     |
+</Accordion>
 
 ## Next Steps
 
