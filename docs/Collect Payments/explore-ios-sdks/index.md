@@ -54,7 +54,7 @@ PayU offers various iOS SDKs that each serve a unique use case. Before you begin
 <Accordion title="Minimum System Requirements" icon="fa-desktop">
   | Requirement               | Minimum Version | Recommended |
   | ------------------------- | --------------- | ----------- |
-  | **Xcode**                 | 1.0+            | 26.0        |
+  | **Xcode**                 | 16.0+            | 26.0        |
   | **iOS Deployment Target** | iOS 13.0        | iOS 15.0+   |
   | **Swift**                 | 5.0+            | 5.7+        |
   | **macOS**                 | Sequoia 15.0    | Tahoe 26.0  |
@@ -162,9 +162,16 @@ PayU uses hash-based verification for security. **Hash must be generated on your
 </Accordion>
 
 <Accordion title="Hash Formula" icon="fa-calculator">
+**v1 Hashing**
   ```
   hash = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
   ```
+  **v2 Hashing**
+ ```
+    hash = SHA512(hashStringWithoutSalt | salt)
+ ```
+
+
 </Accordion>
 
 <Accordion title="Sample Server-Side Code" icon="fa-code">
