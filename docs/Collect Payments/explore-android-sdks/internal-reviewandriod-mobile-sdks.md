@@ -84,8 +84,6 @@ dependencies {
 
 Then sync your Gradle files.
 
-***
-
 ## Android Privacy & Compliance
 
 ### Required App Permissions
@@ -152,52 +150,19 @@ If you use ProGuard or R8, add the following rules to your `proguard-rules.pro`:
 
 ## Server-Side Hash Generation Setup
 
-PayU uses hash-based verification for security. **Hash must be generated on your server, never on the client.**
+PayU uses hash-based verification for security. **Hash must be generated on your server, never on the client.** 
+
+The dynamic hashes must be generated at runtime for each transaction and will vary based on the transaction parameters.
+
+<Callout icon="📘" theme="info">
+  **Hashing logic for SDK and Web Integration is different** : For the hashing logic for web integration, refer to [Generate Hash](doc:generate-hash-payu-hosted).
+</Callout>
 
 ### Hash Generation Flow
 
 <Image border={false} src="https://files.readme.io/04949cb-Screenshot_2023-11-16_at_6.14.14_PM.png" />
 
-### Hash Formula
-
-```
-hash = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
-```
-
-### Sample Server-Side Code
-
-```javascript JavaScript
-const crypto = require('crypto');
-
-function generatePayUHash(params, salt) {
-    const hashString = `${params.key}|${params.txnid}|${params.amount}|${params.productinfo}|${params.firstname}|${params.email}|${params.udf1 || ''}|${params.udf2 || ''}|${params.udf3 || ''}|${params.udf4 || ''}|${params.udf5 || ''}||||||${salt}`;
-    
-    return crypto.createHash('sha512').update(hashString).digest('hex');
-}
-```
-
-```python Python
-import hashlib
-
-def generate_payu_hash(params, salt):
-    hash_string = f"{params['key']}|{params['txnid']}|{params['amount']}|{params['productinfo']}|{params['firstname']}|{params['email']}|{params.get('udf1', '')}|{params.get('udf2', '')}|{params.get('udf3', '')}|{params.get('udf4', '')}|{params.get('udf5', '')}||||||{salt}"
-    
-    return hashlib.sha512(hash_string.encode()).hexdigest()
-```
-
-```php PHP
-function generatePayUHash($params, $salt) {
-    $hashString = $params['key'] . '|' . $params['txnid'] . '|' . $params['amount'] . '|' . $params['productinfo'] . '|' . $params['firstname'] . '|' . $params['email'] . '|' . ($params['udf1'] ?? '') . '|' . ($params['udf2'] ?? '') . '|' . ($params['udf3'] ?? '') . '|' . ($params['udf4'] ?? '') . '|' . ($params['udf5'] ?? '') . '||||||' . $salt;
-    
-    return hash('sha512', $hashString);
-}
-```
-
-<Callout icon="🔒" theme="default">
-  **Note:** Never embed your Salt in the Android app. Always generate hashes server-side.
-</Callout>
-
-***
+<br />
 
 ## Choose Your SDK
 
