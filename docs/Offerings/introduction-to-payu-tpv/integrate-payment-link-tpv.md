@@ -639,39 +639,6 @@ After the payment is processed, PayU sends a response to your success or failure
 
 Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
 
-<Accordion title="Verify using Webhooks" icon="fa-bell">
-  Configure webhooks to monitor the status of payments. Webhooks enable a server to communicate with another server by sending an HTTP callback or message. These callbacks are triggered by specific events and operate at the server-to-server (S2S) level.
-
-  **Benefits of using Webhooks:**
-
-  * Real-time notification of payment status changes
-  * Server-to-server communication (more reliable than browser redirects)
-  * Automatic retry mechanism for failed deliveries
-
-  👉 For more details, refer to [Webhooks for Payments](https://docs.payu.in/docs/webhooks-for-payments).
-</Accordion>
-
-<Accordion title="Verify using Verify Payments API" icon="fa-check-circle">
-  Use the Verify Payments API to check the status of a transaction programmatically.
-
-  **Sample Request:**
-
-  ```bash
-  curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JP***g' \
-  --data-urlencode 'command=verify_payment' \
-  --data-urlencode 'var1=TtEmKjWF2uGliF' \
-  --data-urlencode 'hash=<generated_hash>'
-  ```
-
-  **Hash Generation for Verify Payment:**
-
-  ```
-  sha512(key|command|var1|SALT)
-  ```
-
-  👉 For more details, refer to [Verify Payments API](https://docs.payu.in/reference/verify-payment-api).
-</Accordion>
+<Verify_Payment_Tabs />
 
 <br />
