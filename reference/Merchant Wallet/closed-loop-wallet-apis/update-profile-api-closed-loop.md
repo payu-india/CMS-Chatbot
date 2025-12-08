@@ -6,7 +6,7 @@ metadata:
   title: Update Profile API - Closed Loop
   robots: index
 ---
-The **Update Profile** API allows you to update a customer's profile information including name, email, address, and other personal details. This API is useful for maintaining accurate customer information and compliance requirements.
+The **Update Profile** API allows you to update a customer's profile information including name, email, mobile number, address, and other personal details. This API is useful for maintaining accurate customer information and compliance requirements.
 
 ## Environment
 
@@ -121,7 +121,7 @@ This API uses HMAC-SHA512 authentication on header.
 ## Sample Request
 
 ```bash
-curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet/onboarding/v3/updateProfile' \
+curl --location --request PATCH 'https://apitest.payu.in/loyalty-points/v1/wallet/onboarding/v3/updateProfile' \
 --header 'walletIdentifier: CLW' \
 --header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \
 --header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="hmac_generated_signature"' \
