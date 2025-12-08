@@ -18,7 +18,11 @@ The **Check Status **API will fetch the response dump for any API call based on 
 
 ## Request parameters
 
-<WalletHeader />
+### Request header
+
+<Closed_Loop_HMAC />
+
+<br />
 
 ### Request body
 
