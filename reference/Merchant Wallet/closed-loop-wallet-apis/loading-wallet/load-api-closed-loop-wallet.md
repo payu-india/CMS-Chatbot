@@ -85,7 +85,7 @@ The Load API allows you to credit money directly into a customer's wallet withou
         </tr>
         <tr>
             <td>implId<br><code>mandatory</code></td>
-            <td><code>String(100)</code><br>Implementation ID based on the program (refer to Impl Mapping List)</td>
+            <td><code>String(100)</code><br>Implementation ID based on the program. For more information, refer to [IMPL Mapping](#impl-mapping).</td>
             <td>I|70020</td>
         </tr>
         <tr>
@@ -116,6 +116,14 @@ The Load API allows you to credit money directly into a customer's wallet withou
     </tbody>
 </table>
 `}</HTMLBlock>
+
+### IMPL Mapping
+
+| Key            | Value    |
+| -------------- | -------- |
+| fund.flow.type | I        |
+| impl.id        | I\|70190 |
+| impl.type      | PG_TU_I  |
 
 ## Sample Request
 
