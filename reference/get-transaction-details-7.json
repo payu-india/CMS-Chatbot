@@ -29,7 +29,8 @@
             "explode": true,
             "schema": {
               "const": "2",
-              "type": "string"
+              "type": "string",
+              "default": "1"
             }
           },
           {
@@ -40,7 +41,8 @@
             "style": "simple",
             "schema": {
               "const": "application/x-www-form-urlencoded",
-              "type": "string"
+              "type": "string",
+              "default": "application/x-www-form-urlencoded"
             }
           }
         ],
