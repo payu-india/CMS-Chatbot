@@ -24,7 +24,6 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
 ## Request Parameters
 
 <HTMLBlock>{`
-<HTMLBlock>{\`
 <table>
   <thead>
     <tr>
@@ -86,7 +85,6 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
     </tr>
   </tbody>
 </table>
-\`}</HTMLBlock>
 `}</HTMLBlock>
 
 ## Response Parameters
