@@ -35,7 +35,7 @@ The Load API allows you to credit money directly into a customer's wallet withou
     <tbody>
         <tr>
             <td>messageCode<br><code>mandatory</code></td>
-            <td><code>Numeric(4)</code><br>Unique code to identify the Load API request type</td>
+            <td><code>Numeric(4)</code><br>Unique code to identify the Load API request type. You must post only <code>1080</code> for this API</td>
             <td>1080</td>
         </tr>
         <tr>
