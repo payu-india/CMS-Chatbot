@@ -37,7 +37,7 @@ This API uses HMAC-SHA512 authentication on header.
   <tbody>
     <tr>
       <td>messageCode<br /><code>mandatory</code></td>
-      <td><code>numeric(4)</code> API Unique IDentifier.</td>
+      <td><code>numeric(4)</code> The API Unique Identifier for the API. Only the value <code>1280</code> must be posted for this API</td>
       <td>1280</td>
     </tr>
     <tr>
@@ -118,6 +118,37 @@ This API uses HMAC-SHA512 authentication on header.
   **Note**: Either `customerId` or `urn` must be provided.
 </Callout>
 
+## Sample Request
+
+```bash
+curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet/onboarding/v3/updateProfile' \
+--header 'walletIdentifier: CLW' \
+--header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \
+--header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="hmac_generated_signature"' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "messageCode": 1280,
+  "clientTxnId": "ABC0987654321",
+  "requestDateTime": "20230804182306",
+  "productId": "9",
+  "customerId": "62508",
+  "firstName": "Jacob",
+  "lastName": "James",
+  "emailId": "jacob12@example.com",
+  "dateOfBirth": "19951201",
+  "gender": "Male",
+  "address": {
+    "line1": "123 Main Street",
+    "line2": "Apartment 4B",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "400001"
+  },
+  "updateVectors": "emailId,address"
+}'
+```
+
 ## Response Parameters
 
 <HTMLBlock>{`
@@ -137,39 +168,7 @@ This API uses HMAC-SHA512 authentication on header.
 </table>
 `}</HTMLBlock>
 
-## Sample Request
-
-### Encrypted Packet
-
-```bash
-curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet/onboarding/v3/updateProfile' \
---header 'walletIdentifier: CLW' \
---header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="hmac_generated_signature"' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "messageCode": 1280,
-  "clientTxnId": "ABC0987654321",
-  "requestDateTime": "20230804182306",
-  "productId": "9",
-  "customerId": "62508",
-  "firstName": "Jacob",
-  "lastName": "James",
-  "emailId": "jacob12@example.com",
-  "mobileNumber": "919988776655",
-  "dateOfBirth": "19951201",
-  "gender": "Male",
-  "address": {
-    "line1": "123 Main Street",
-    "line2": "Apartment 4B",
-    "city": "Mumbai",
-    "state": "Maharashtra",
-    "country": "India",
-    "pincode": "400001"
-  },
-  "updateVectors": "emailId,address"
-}'
-```
+##
 
 ## Sample Response
 
