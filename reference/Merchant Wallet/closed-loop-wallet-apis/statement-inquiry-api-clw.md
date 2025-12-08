@@ -36,7 +36,7 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
   <tbody>
     <tr>
       <td>messageCode <code>mandatory</code></td>
-      <td>Numeric (4) - API Code to uniquely identify 'statement Inquiry' API</td>
+      <td>Numeric (4) - API Code to uniquely identify 'statement Inquiry' API. Only the value <code>1072</code></td>
       <td>1072</td>
     </tr>
     <tr>
