@@ -9,7 +9,7 @@ Before you begin integrating PayU Android SDKs into your application, complete t
 
 ## Account Setup
 
-### Register and Activate Your PayU Account
+<Accordion title="Register and Activate Your PayU Account" icon="fa-user-plus">
 
 | Step | Action                                 | Link                                                            |
 | ---- | -------------------------------------- | --------------------------------------------------------------- |
@@ -21,7 +21,9 @@ Before you begin integrating PayU Android SDKs into your application, complete t
   **Important:** Never use production credentials during development. Always use test credentials until you're ready for go-live.
 </Callout>
 
-### Obtain Your Credentials
+</Accordion>
+
+<Accordion title="Obtain Your Credentials" icon="fa-key">
 
 You'll need the following credentials from the PayU Dashboard. Refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy).
 
@@ -32,11 +34,12 @@ You'll need the following credentials from the PayU Dashboard. Refer to [Access 
 | **Client ID**     | For OAuth-based authentication     |
 | **Client Secret** | For OAuth-based authentication     |
 
-***
+</Accordion>
+
 
 ## Development Environment Requirements
 
-### Minimum System Requirements
+<Accordion title="Minimum System Requirements" icon="fa-desktop">
 
 | Requirement                    | Minimum Version | Recommended |
 | ------------------------------ | --------------- | ----------- |
@@ -47,7 +50,9 @@ You'll need the following credentials from the PayU Dashboard. Refer to [Access 
 | **Java**                       | 8               | 11+         |
 | **Gradle**                     | 7.0+            | 8.0+        |
 
-### Package Manager Support
+</Accordion>
+
+<Accordion title="Package Manager Support" icon="fa-box">
 
 PayU Android SDKs are available through:
 
@@ -56,7 +61,9 @@ PayU Android SDKs are available through:
 | **Maven (Gradle)**     | ✅ Yes     | Recommended for most projects |
 | **Manual Integration** | ✅ Yes     | AAR files available           |
 
-### Gradle Setup
+</Accordion>
+
+<Accordion title="Gradle Setup" icon="fa-cogs">
 
 Add the PayU repository to your project-level `build.gradle`:
 
@@ -84,9 +91,12 @@ dependencies {
 
 Then sync your Gradle files.
 
+</Accordion>
+
+
 ## Android Privacy & Compliance
 
-### Required App Permissions
+<Accordion title="Required App Permissions" icon="fa-shield">
 
 Add the following permissions to your `AndroidManifest.xml`:
 
@@ -104,7 +114,9 @@ Add the following permissions to your `AndroidManifest.xml`:
 <uses-permission android:name="android.permission.READ_SMS" />
 ```
 
-### Package Visibility Configuration (Android 11+)
+</Accordion>
+
+<Accordion title="Package Visibility Configuration (Android 11+)" icon="fa-eye">
 
 Starting with Android 11 (API level 30), apps must declare which packages they interact with. Add the following to your `AndroidManifest.xml`:
 
@@ -124,7 +136,9 @@ Starting with Android 11 (API level 30), apps must declare which packages they i
 </queries>
 ```
 
-### ProGuard/R8 Rules
+</Accordion>
+
+<Accordion title="ProGuard/R8 Rules" icon="fa-lock">
 
 If you use ProGuard or R8, add the following rules to your `proguard-rules.pro`:
 
@@ -146,11 +160,12 @@ If you use ProGuard or R8, add the following rules to your `proguard-rules.pro`:
 }
 ```
 
-***
+</Accordion>
+
 
 ## Server-Side Hash Generation Setup
 
-PayU uses hash-based verification for security. **Hash must be generated on your server, never on the client.** 
+PayU uses hash-based verification for security. **Hash must be generated on your server, never on the client.**
 
 The dynamic hashes must be generated at runtime for each transaction and will vary based on the transaction parameters.
 
@@ -158,9 +173,11 @@ The dynamic hashes must be generated at runtime for each transaction and will va
   **Hashing logic for SDK and Web Integration is different** : For the hashing logic for web integration, refer to [Generate Hash](doc:generate-hash-payu-hosted).
 </Callout>
 
-### Hash Generation Flow
+<Accordion title="Hash Generation Flow" icon="fa-random">
 
 <Image border={false} src="https://files.readme.io/04949cb-Screenshot_2023-11-16_at_6.14.14_PM.png" />
+
+</Accordion>
 
 <br />
 
@@ -179,11 +196,12 @@ Based on your requirements, select the appropriate SDK:
 | One-click UPI payments            | [UPI Bolt SDK](/docs/payu-bolt-sdk)                         | Low                |
 | Native 3D Secure experience       | [3DS 2.0 SDK](/docs/android-3ds20-sdk)                      | Medium             |
 
+
 ## Webhook Setup
 
 Configure webhooks to receive real-time payment notifications.
 
-### Required Webhook Events
+<Accordion title="Required Webhook Events" icon="fa-bell">
 
 | Event             | Description                    |
 | ----------------- | ------------------------------ |
@@ -193,7 +211,9 @@ Configure webhooks to receive real-time payment notifications.
 | `refund.success`  | Refund processed successfully  |
 | `refund.failed`   | Refund failed                  |
 
-### Webhook Configuration
+</Accordion>
+
+<Accordion title="Webhook Configuration" icon="fa-wrench">
 
 1. Navigate to **Dashboard → Settings → Webhooks**
 2. Click **Create New Webhook**
@@ -204,6 +224,9 @@ Configure webhooks to receive real-time payment notifications.
 <Callout icon="📘" theme="info">
   **Note:** For detailed webhook setup, refer to [Webhooks for Payments](/docs/webhooks-for-payments).
 </Callout>
+
+</Accordion>
+
 
 ## Choose your integration
 
@@ -244,8 +267,6 @@ Here is a comparison table that summarizes the key features of the different SDK
 | [Android 3DS 2.0 SDK](doc:android-3ds20-sdk)               | Power native experience on the new 3DS 2.0 protocol for card transactions.                                                                                                                                                           | **3DS 2.0 Support** \| **Low Effort Integration**                                    |
 | [Android UPI Bolt SDK](doc:payu-bolt-sdk)                  | Allows you to provide a simpler and more efficient payment experience. Eliminates third-party redirection with higher success rate.                                                                                                  | **One-Click Payment** \| **UPI Checkout**                                            |
 
-***
-
 ## Size of SDK
 
 | SDK Name                                       | Latest SDK Version | SDK Size |
@@ -260,11 +281,10 @@ Here is a comparison table that summarizes the key features of the different SDK
 | [Native OTP SDK](doc:native-otp-assist-sdk)    | 1.6.2              | 194KB    |
 | [3DS 2.0 SDK](doc:android-3ds20-sdk)           | 1.1.2              | 80KB     |
 
-***
 
 ## Next Steps
 
-Once you've completed the prerequisites above, proceed with your chosen SDK integration:
+After you've completed the prerequisites above, proceed with your chosen SDK integration:
 
 1. **[Integrate Checkout Pro SDK](/docs/android-checkoutpro-sdk)** - For quick, ready-to-use checkout
 2. **[Integrate Core SDK](/docs/android-core-sdk)** - For custom payment flows
