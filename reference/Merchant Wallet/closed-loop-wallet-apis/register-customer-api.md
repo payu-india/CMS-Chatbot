@@ -155,22 +155,37 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
 {
   "responseCode": "00",
   "messageCode": 3511,
-  "clientTxnId": "txn12345",
+  "clientTxnId": "testRegistration8",
+  "clientId": "7310",
+  "responseDateTime": "20240521140830",
+  "accosaTransactionId": 404,
+  "responseMessage": "CUSTOMER REGISTERED SUCCESSFULLY",
+  "bankId": 6060,
+  "accosaRefNo": "146",
   "formFactor": {
-    "uniqueNumber": "7262334512345678",
-    "urn": 10000234
-  },
-  "responseMessage": "CUSTOMER REGISTERED SUCCESSFULLY"
-}
+    "uniqueNumber": "8543213624292443",
+    "urn": 1000019,
+    "securityCode": "FZ7jUrSXmu7siejprnMCzsL1ZYXqF2sZI0yHMcgRGzI=",
+    "uniqueNumberExpiry": "0529",
+    "accountDetails": [
+      {
+        "accountNumber": "606000003005780",
+        "accountNumberExpiry": "0525"
+      }
+    ]
+  }
+}	
 ```
 
 ## HTTP Status Codes
 
-| Status Code | Description                              |
-| ----------- | ---------------------------------------- |
-| 200         | OK - Request processed successfully      |
-| 400         | Bad Request - Invalid request parameters |
-| 401         | Unauthorized - Authentication failed     |
-| 500         | Internal Server Error                    |
-
-<br />
+| Status Code | Status Description     |
+| ----------- | ---------------------- |
+| **200**     | OK                     |
+| **201**     | Created                |
+| **404**     | Not Found              |
+| **500**     | Internal Server Error  |
+| **403**     | Forbidden              |
+| **400**     | Bad Request            |
+| **401**     | Unauthorized           |
+| **503**     | Service Unavailable    |
