@@ -88,12 +88,12 @@ The **Register Customer** API allows you to register a new customer and facilita
     </tr>
     <tr>
       <td>kycProfile</br> <code>mandatory</code></td>
-      <td>Type of KYC to be passed if KYC is performed by the calling application. Only the value, <code>30</code> is allowed. Data type: <code>Numeric(3)</code></td>
+      <td>Type of KYC to be passed if KYC is performed by the calling application. Only the value, **30** is allowed. Data type: <code>Numeric(3)</code></td>
       <td>30</td>
     </tr>
     <tr>
       <td>riskCategory</br> <code>mandatory</code></td>
-      <td>Risk assessment of the customer. Only the value <code>Low</code> is allowed. Data type: <code>String(20)</code></td>
+      <td>Risk assessment of the customer. This values must be posted as **Low**. Data type: <code>String(20)</code></td>
       <td>Low</td>
     </tr>
     <tr>
@@ -103,7 +103,7 @@ The **Register Customer** API allows you to register a new customer and facilita
     </tr>
     <tr>
       <td>formFactorRequired</br> <code>mandatory</code></td>
-      <td>Whether to create the form factor. Indicates if a form factor is required. This value must be posted as **false**. Data type: <code>Boolean</code></td>
+      <td>Whether to create the form factor. Indicates if a form factor is required. Only the value <code>false</code> is allowed. Data type: <code>Boolean</code></td>
       <td>false</td>
     </tr>
   </tbody>
