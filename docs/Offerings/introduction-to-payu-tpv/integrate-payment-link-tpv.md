@@ -1,7 +1,7 @@
 ---
 title: Integrate Payment Link TPV
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -468,4 +468,3 @@ Where `beneficiarydetail` is the JSON string representation:
 | Equal Count | Account numbers = IFSC codes count | 400 |
 | Account Format | Alphanumeric, max 50 chars | 400 |
 | IFSC Format | Exactly 11 chars: `[A-Z]{4}0[A-Z0-9]{6}` | 400 |
-
