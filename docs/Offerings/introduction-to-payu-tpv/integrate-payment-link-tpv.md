@@ -320,9 +320,11 @@ When the customer initiates payment, the backend converts beneficiary details to
   | furl<br />`mandatory`              | `String`<br />Failure URL where PayU redirects after failed payment.                                                       | `https://yoursite.com/failure`                 |                                     |                 |
   | beneficiarydetail<br />`mandatory` | `JSON String`<br />JSON object with pipe-separated beneficiary account numbers and IFSC codes. Up to 4 accounts supported. | \`\{"beneficiaryAccountNumber":"917732227242\\ | 72522762","ifscCode":"SBIN0007001\\ | HDFC0001234"}\` |
   | api\_version<br />`mandatory`      | `Integer`<br />Must be set to 20 when beneficiary details are present.                                                     | `20`                                           |                                     |                 |
-  | hash<br />`mandatory`              | `String`<br />Hash calculated using the checksum logic.                                                                    | `<generated_hash>`                             |                                     |                 |
+  | hash<br />`mandatory`              | `String`<br />Hash calculated using the checksum logic.   Refer to Hash Generation below this table.                                                                 |     Refer to Hash Generation below this table.   |            |                 |
   | udf1 - udf5<br />`optional`        | `String`<br />User-defined fields for storing additional information.                                                      | ` `                                            |                                     |                 |
 </Accordion>
+
+
 
 <Accordion title="Hash Generation" icon="fa-lock">
   The hash is generated using the following format:
