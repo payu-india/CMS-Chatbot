@@ -7,7 +7,12 @@ metadata:
 ---
 This API will fetch the response dump for Load API call based on the value of "clientTxnId" field.
 
-<br />
+**Environment**
+
+|            |                                                                |
+| :--------- | :------------------------------------------------------------- |
+| Test       | https://apitest.payu.in/loyalty-points/v1/wallet/check-status' |
+| Production | https://api.payu.in/loyalty-points/v1/wallet/check-status'     |
 
 ## Request Header
 
