@@ -114,7 +114,9 @@ The **Load Enquiry** API allows you to check the status of a wallet load transac
       </td>
 
       <td>
-        SUCCESS/FAILED/PENDING
+        Any one of the following:
+
+        * SUCCESS <br/> * FAILED <br/> PENDING <br/> * AUTO_REFUND_DISABLED
       </td>
     </tr>
 
@@ -226,7 +228,9 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/ppi/payme
 
 ## Sample Response
 
-### Successful Transaction
+### Successful
+
+* When refund exists:
 
 ```json
 { 
@@ -297,7 +301,7 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/ppi/payme
 
 ```
 
-#### Failed Transaction
+* When refund is false
 
 ```json
 {
