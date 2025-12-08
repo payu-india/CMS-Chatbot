@@ -154,6 +154,20 @@ The dynamic hashes must be generated at runtime for each transaction and will va
   **Hashing logic for SDK and Web Integration is different** : For the hashing logic for web integration, refer to [Generate Hash](doc:generate-hash-payu-hosted).
 </Callout>
 
+<Accordion title="Hash Formula" icon="fa-calculator">
+  **v1 Hashing**
+
+  ```
+  hash = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
+  ```
+
+  **v2 Hashing**
+
+  ```
+     hash = SHA512(hashStringWithoutSalt | salt)
+  ```
+</Accordion>
+
 <Accordion title="Hash Generation Flow" icon="fa-random">
   ![](https://files.readme.io/04949cb-Screenshot_2023-11-16_at_6.14.14_PM.png)
 </Accordion>
@@ -258,17 +272,17 @@ Here is a comparison table that summarizes the key features of the different SDK
 | [Android UPI Bolt SDK](doc:payu-bolt-sdk)                  | Allows you to provide a simpler and more efficient payment experience. Eliminates third-party redirection with higher success rate.                                                                                                  | **One-Click Payment** \| **UPI Checkout**                                            |
 
 <Accordion title="Size of SDK" icon="fa-circle">
-| SDK Name                                       | Latest SDK Version | SDK Size |
-| :--------------------------------------------- | :----------------- | :------- |
-| [CheckoutPro SDK](doc:android-checkoutpro-sdk) | 3.0.0              | 293KB    |
-| [Core PG SDK](doc:android-core-sdk)            | 7.10.1             | 163KB    |
-| [CustomBrowser SDK](doc:custom-browser-sdk)    | 7.15.4             | 386KB    |
-| [UPI SDK](doc:android-upi-sdk)                 | 1.8.7              | 163KB    |
-| [PhonePe SDK](doc:android-phonepe-sdk)         | 1.8.7              | 68KB     |
-| [Google Pay SDK](doc:android-google-pay-sdk)   | 4.0.0              | 94KB     |
-| [OlaMoney SDK](doc:ola-money-sdk)              | 1.3.9              | 47KB     |
-| [Native OTP SDK](doc:native-otp-assist-sdk)    | 1.6.2              | 194KB    |
-| [3DS 2.0 SDK](doc:android-3ds20-sdk)           | 1.1.2              | 80KB     |
+  | SDK Name                                       | Latest SDK Version | SDK Size |
+  | :--------------------------------------------- | :----------------- | :------- |
+  | [CheckoutPro SDK](doc:android-checkoutpro-sdk) | 3.0.0              | 293KB    |
+  | [Core PG SDK](doc:android-core-sdk)            | 7.10.1             | 163KB    |
+  | [CustomBrowser SDK](doc:custom-browser-sdk)    | 7.15.4             | 386KB    |
+  | [UPI SDK](doc:android-upi-sdk)                 | 1.8.7              | 163KB    |
+  | [PhonePe SDK](doc:android-phonepe-sdk)         | 1.8.7              | 68KB     |
+  | [Google Pay SDK](doc:android-google-pay-sdk)   | 4.0.0              | 94KB     |
+  | [OlaMoney SDK](doc:ola-money-sdk)              | 1.3.9              | 47KB     |
+  | [Native OTP SDK](doc:native-otp-assist-sdk)    | 1.6.2              | 194KB    |
+  | [3DS 2.0 SDK](doc:android-3ds20-sdk)           | 1.1.2              | 80KB     |
 </Accordion>
 
 ## Next Steps
