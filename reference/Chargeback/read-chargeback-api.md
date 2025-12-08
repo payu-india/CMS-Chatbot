@@ -22,11 +22,11 @@ This must contain the header with token you get using the Chargeback Dashboard i
 
 <Callout icon="📘" theme="info">
   **Generate Token**: Use the Chargeback Dashboard to easily generate token in the Chargeback Dashboard. For more information, refer to [Generate Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard).
+</Callout>
 
 ```
 \--header 'X-Optimus-API-Key: <Bearer token>'
 ```
-</Callout>
 
 **Query parameters**
 
@@ -66,9 +66,9 @@ This must contain the header with token you get using the Chargeback Dashboard i
 </Table>
 
 <Callout icon="📘" theme="info">
-  **Notes**:
+  #### Notes:
 
-  * The maximum allowed chargebacks in a single Request is 500 CBs.
+  * The maximum allowed chargebacks in a single request is 500 chargebacks.
   * The maximum time period for which the chargebacks can be retrieved is 20 days.
 </Callout>
 
