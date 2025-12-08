@@ -98,7 +98,7 @@ The **Register Customer** API allows you to register a new customer and facilita
     </tr>
     <tr>
       <td>productId</br> <code>mandatory</code></td>
-      <td>Unique product or program ID where the customer will be enrolled. This will be provided by PayU. Data type: <code>Numeric(5)</code></td>
+      <td>Unique product or program ID where the customer will be enrolled. Data type: <code>Numeric(5)</code></td>
       <td>121</td>
     </tr>
     <tr>
@@ -125,8 +125,6 @@ The **Register Customer** API allows you to register a new customer and facilita
 | responseMessage          | Response message                                       | CUSTOMER REGISTERED SUCCESSFULLY |
 
 ## Sample Request
-
-### Encrypted Packet
 
 ```curl
 curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet/enroll' \
