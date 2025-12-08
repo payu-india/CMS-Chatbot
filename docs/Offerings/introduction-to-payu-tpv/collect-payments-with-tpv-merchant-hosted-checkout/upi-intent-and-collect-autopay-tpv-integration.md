@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-For recurring payment use-case, you can use UPI as a payment instrument. It requires, registration of the mandate and then doing the debit in the customer’s account. During registration, customer validates the billing details of the mandate on the respective application, enters their MPIN (Mobile PIN) and authorizes the mandate. After the registration transaction is successful, you can then use the **Recurring Payment Transaction** API to charge the customer without requiring further intervention. For more information on Recurring Payment API, refer to  [Recurring Payment Transaction API](ref:recurring_payment_api)
+For recurring payment use-case, you can use UPI as a payment instrument. It requires, registration of the mandate and then doing the debit in the customer's account. During registration, customer validates the billing details of the mandate on the respective application, enters their MPIN (Mobile PIN) and authorizes the mandate. After the registration transaction is successful, you can then use the **Recurring Payment Transaction** API to charge the customer without requiring further intervention. For more information on Recurring Payment API, refer to  [Recurring Payment Transaction API](ref:recurring_payment_api)
 
 The Third-Party Verification (TPV) functionality is now being added to the UPI Autopay too.
 
@@ -36,7 +36,7 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
   <Tab title="Intent Autopay TPV">
     ### Intent Autopay Workflow
 
-    The merchant initiates the call to PayU with SI details, **bankcode** as **INTTPV**, and account number + IFSC details. PayU then initiates a mandate call to the bank, including all the SI and account-related parameters. The bank responds to PayU with a reference-Id, which PayU passes to the merchant in an Intent URL. When the customer authorizes the transaction, the bank will validate the account. If the account details match, a success message will be sent to PayU. However, if the account details do not match, Bank will pass validation error to PayU. Internally, Bank will cancel the mandate that has been setup on customer’s account.
+    The merchant initiates the call to PayU with SI details, **bankcode** as **INTTPV**, and account number + IFSC details. PayU then initiates a mandate call to the bank, including all the SI and account-related parameters. The bank responds to PayU with a reference-Id, which PayU passes to the merchant in an Intent URL. When the customer authorizes the transaction, the bank will validate the account. If the account details match, a success message will be sent to PayU. However, if the account details do not match, Bank will pass validation error to PayU. Internally, Bank will cancel the mandate that has been setup on customer's account.
 
     <Callout icon="📘" theme="info">
       **Note**: Validation is done only in the registration step of the mandate. If the account matches, rest of the journey for UPI Autopay will remain as-is.
@@ -50,7 +50,7 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
       **Supported only in Seamless integration**: Currently, PayU supports UPI Intent Autopay only with Seamless integration.
     </Callout>
 
-    <Accordion title="Step 1: Validate VPA" icon="fa-code">
+## Step 1: Validate VPA
       When your customer makes payment through UPI, you can validate the customer's Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API.  For Try-It experience of **validateVpa** API, refer to <Anchor label="Validate VPA Handle API" target="_blank" href="ref:validate_vpa_api">Validate VPA Handle API</Anchor>.
 
       <GENERALAPIsEnvironment />
@@ -61,10 +61,9 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
         ```curl
         curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=validateVPA&var1=9999999999@upi&hash=75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
         ```
-        ````
-        </Accordion>
+      </Accordion>
 
-        <Accordion title="Sample response" icon="fa-reply">
+      <Accordion title="Sample response" icon="fa-reply">
         **Success scenario**
 
         if successfully validated:
@@ -78,7 +77,7 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
            "isAutoPayBankValid":"NA",
            "payerAccountName":"ABC"
         }
-        ````
+        ```
 
         > 📘 Notes:
         >
@@ -178,9 +177,8 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
 
         ```
       </Accordion>
-    </Accordion>
 
-    <Accordion title="Step 2: Post the parameters to PayU" icon="fa-code">
+## Step 2: Post the parameters to PayU
       With the following parameters, make the transaction request with the customer's bank account number to the PayU using the Collect Payment (**\_payment**) API.
 
       **Environment**
@@ -242,9 +240,8 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
         > |udf4|udf5||||||si_details|SALT
         > ```
       </Accordion>
-    </Accordion>
 
-    <Accordion title="Step 3: Check the response from PayU" icon="fa-code" />
+## Step 3: Check the response from PayU
 
     <Accordion title="Hash Validation Logic for Payment Response (Reverse Hashing)" icon="fa-code">
       While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
@@ -254,71 +251,76 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
       ```
       sha512(SALT|si_details|status||||||udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
       ```
-
-      <Accordion title="Response parameters" icon="fa-code">
-        For the response parameter description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
-
-        > 📘 Store the mihpayid and txnid parameter values in response:
-        >
-        > PayU recommends you to make provisions to store the **mihpayid** and **txnid** parameter values (in the response) in your server as proof that TPV has been completed for a customer.
-      </Accordion>
-
-      <Accordion title="Sample response" icon="fa-code">
-        * Success scenario
-
-        On receiving valid request over PayU's payment interface (\_payment), PayU returns JSON object as response object similar to the following in COLLECT:
-
-        ```
-        {
-           "metaData":{
-              "message":null,
-              "referenceId":"c5161bae370de1bd4fb886c6c66567a8",
-              "statusCode":null,
-              "txnId":"a7440cc636e747b635df",
-              "txnStatus":"pending",
-              "unmappedStatus":"pending"
-           },
-           "result":{
-              "postToBank":{
-                 "useMethodGet":true
-              },
-              "issuerUrl":"https://api.payu.in/public/#/c5161bae370de1bd4fb886c6c66567a8/upiLoader"
-           }
-        }
-        ```
-
-        * Failure scenario
-
-        ```
-        {
-           "metaData":{
-              "message":"Transaction failed due to invalid params shared by the merchant",
-              "referenceId":"dde7096af9db932a9fd09b9b4383d8be",
-              "statusCode":"E1101",
-              "txnId":"0c4931ddee7a4f69227f",
-              "txnStatus":"failed",
-              "unmappedStatus":"failure"
-           },
-           "result":{
-              
-           }
-        }
-        ```
-      </Accordion>
     </Accordion>
+
+    <Accordion title="Response parameters" icon="fa-code">
+      For the response parameter description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
+
+      > 📘 Store the mihpayid and txnid parameter values in response:
+      >
+      > PayU recommends you to make provisions to store the **mihpayid** and **txnid** parameter values (in the response) in your server as proof that TPV has been completed for a customer.
+    </Accordion>
+
+    <Accordion title="Sample response" icon="fa-code">
+      * Success scenario
+
+      On receiving valid request over PayU's payment interface (\_payment), PayU returns JSON object as response object similar to the following in COLLECT:
+
+      ```
+      {
+         "metaData":{
+            "message":null,
+            "referenceId":"c5161bae370de1bd4fb886c6c66567a8",
+            "statusCode":null,
+            "txnId":"a7440cc636e747b635df",
+            "txnStatus":"pending",
+            "unmappedStatus":"pending"
+         },
+         "result":{
+            "postToBank":{
+               "useMethodGet":true
+            },
+            "issuerUrl":"https://api.payu.in/public/#/c5161bae370de1bd4fb886c6c66567a8/upiLoader"
+         }
+      }
+      ```
+
+      * Failure scenario
+
+      ```
+      {
+         "metaData":{
+            "message":"Transaction failed due to invalid params shared by the merchant",
+            "referenceId":"dde7096af9db932a9fd09b9b4383d8be",
+            "statusCode":"E1101",
+            "txnId":"0c4931ddee7a4f69227f",
+            "txnStatus":"failed",
+            "unmappedStatus":"failure"
+         },
+         "result":{
+            
+         }
+      }
+      ```
+    </Accordion>
+
+## Step 4. Verify the payment
+
+    <Verify_Payment_Tabs />
+
   </Tab>
 
   <Tab title="Collect Autopay TPV">
     ### Collect Autopay Workflow
 
-    The merchant initiates the call to PayU with SI details, **bankcode** as **UPITPV**, and account number + IFSC details. PayU then initiates a mandate call with all the SI and account-related parameters to the bank. After the customer authorizes the mandate, the bank will validate the account. If the account details match, only then will the success notification be sent to PayU. However, if the account details do not match, Bank will pass validation error to PayU. Internally, Bank will cancel the mandate that has been setup on customer’s account.
+    The merchant initiates the call to PayU with SI details, **bankcode** as **UPITPV**, and account number + IFSC details. PayU then initiates a mandate call with all the SI and account-related parameters to the bank. After the customer authorizes the mandate, the bank will validate the account. If the account details match, only then will the success notification be sent to PayU. However, if the account details do not match, Bank will pass validation error to PayU. Internally, Bank will cancel the mandate that has been setup on customer's account.
 
     > 📘 **Prerequisites**:
     >
     > S2S (Seamless) integration has to be done as per the standard kit. For more information, refer to [UPI Integrations - S2S](doc:upi-integrations-s2s).
     > **PayU Hosted Checkout note supported** Currently, PayU supports UPI Collect Autopay TPV Integration with Seamless integration only.
 
-    <Accordion title="Step 1: Validate VPA" icon="fa-code">
+## Step 1: Validate VPA
       When your customer makes payment through UPI, you can validate the customer's Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API.  For Try-It experience of **validateVpa** API, refer to <Anchor label="Validate VPA Handle API" target="_blank" href="ref:validate_vpa_api">Validate VPA Handle API</Anchor>.
 
       <GENERALAPIsEnvironment />
@@ -329,10 +331,9 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
         ```curl
         curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=validateVPA&var1=9999999999@upi&hash=75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
         ```
-        ````
-        </Accordion>
+      </Accordion>
 
-        <Accordion title="Sample response" icon="fa-reply">
+      <Accordion title="Sample response" icon="fa-reply">
         **Success scenario**
 
         if successfully validated:
@@ -346,7 +347,7 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
            "isAutoPayBankValid":"NA",
            "payerAccountName":"ABC"
         }
-        ````
+        ```
 
         > 📘 Notes:
         >
@@ -446,9 +447,8 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
 
         ```
       </Accordion>
-    </Accordion>
 
-    <Accordion title="Step 2: Post the parameters to PayU" icon="fa-code">
+## Step 2: Post the parameters to PayU
       With the following parameters, make the transaction request with the customer's bank account number to the PayU using the Collect Payment (**\_payment**) API.
 
       **Environment**
@@ -510,73 +510,73 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
         > |udf4|udf5||||||si_details|SALT
         > ```
       </Accordion>
+
+## Step 3: Check the response from PayU
+
+    <Accordion title="Hash Validation Logic for Payment Response (Reverse Hashing)" icon="fa-code">
+      While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
+
+      The order of the parameters is similar to the following code block:
+
+      ```
+      sha512(SALT|si_details|status||||||udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+      ```
     </Accordion>
 
-    <Accordion title="Step 3: Check the response from PayU" icon="fa-code">
-      <Accordion title="Hash Validation Logic for Payment Response (Reverse Hashing)" icon="fa-code">
-        While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
+    <Accordion title="Response parameters" icon="fa-code">
+      For the response parameter description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
 
-        The order of the parameters is similar to the following code block:
-
-        ```
-        sha512(SALT|si_details|status||||||udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-        ```
-      </Accordion>
-
-      <Accordion title="Response parameters" icon="fa-code">
-        For the response parameter description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
-
-        > 📘 Store the mihpayid and txnid parameter values in response:
-        >
-        > PayU recommends you to make provisions to store the **mihpayid** and **txnid** parameter values (in the response) in your server as proof that TPV has been completed for a customer.
-      </Accordion>
-
-      <Accordion title="Sample response" icon="fa-code">
-        * Success scenario
-
-        On receiving valid request over PayU's payment interface (\_payment), PayU returns JSON object as response object similar to the following in COLLECT:
-
-        ```
-        {
-           "metaData":{
-              "message":null,
-              "referenceId":"c5161bae370de1bd4fb886c6c66567a8",
-              "statusCode":null,
-              "txnId":"a7440cc636e747b635df",
-              "txnStatus":"pending",
-              "unmappedStatus":"pending"
-           },
-           "result":{
-              "postToBank":{
-                 "useMethodGet":true
-              },
-              "issuerUrl":"https://api.payu.in/public/#/c5161bae370de1bd4fb886c6c66567a8/upiLoader"
-           }
-        }
-        ```
-
-        * Failure scenario
-
-        ```
-        {
-           "metaData":{
-              "message":"Transaction failed due to invalid params shared by the merchant",
-              "referenceId":"dde7096af9db932a9fd09b9b4383d8be",
-              "statusCode":"E1101",
-              "txnId":"0c4931ddee7a4f69227f",
-              "txnStatus":"failed",
-              "unmappedStatus":"failure"
-           },
-           "result":{
-              
-           }
-        }
-        ```
-
-        ## Step 4. Verify the payment
-
-        <Verify_Payment_Tabs />
-      </Accordion>
+      > 📘 Store the mihpayid and txnid parameter values in response:
+      >
+      > PayU recommends you to make provisions to store the **mihpayid** and **txnid** parameter values (in the response) in your server as proof that TPV has been completed for a customer.
     </Accordion>
+
+    <Accordion title="Sample response" icon="fa-code">
+      * Success scenario
+
+      On receiving valid request over PayU's payment interface (\_payment), PayU returns JSON object as response object similar to the following in COLLECT:
+
+      ```
+      {
+         "metaData":{
+            "message":null,
+            "referenceId":"c5161bae370de1bd4fb886c6c66567a8",
+            "statusCode":null,
+            "txnId":"a7440cc636e747b635df",
+            "txnStatus":"pending",
+            "unmappedStatus":"pending"
+         },
+         "result":{
+            "postToBank":{
+               "useMethodGet":true
+            },
+            "issuerUrl":"https://api.payu.in/public/#/c5161bae370de1bd4fb886c6c66567a8/upiLoader"
+         }
+      }
+      ```
+
+      * Failure scenario
+
+      ```
+      {
+         "metaData":{
+            "message":"Transaction failed due to invalid params shared by the merchant",
+            "referenceId":"dde7096af9db932a9fd09b9b4383d8be",
+            "statusCode":"E1101",
+            "txnId":"0c4931ddee7a4f69227f",
+            "txnStatus":"failed",
+            "unmappedStatus":"failure"
+         },
+         "result":{
+            
+         }
+      }
+      ```
+    </Accordion>
+
+## Step 4. Verify the payment
+
+    <Verify_Payment_Tabs />
+
   </Tab>
 </Tabs>
