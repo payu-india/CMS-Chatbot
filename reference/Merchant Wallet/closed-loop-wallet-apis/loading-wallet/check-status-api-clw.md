@@ -7,18 +7,12 @@ metadata:
 ---
 The **Check Status **API will fetch the response dump for any API call based on the value of **clientTxnId** field.
 
-<Callout icon="📘" theme="info">
-  **Note**: The [Check Status API](ref:check-status-api) is similar for Closed-Loop and Open-Loop wallets.
-</Callout>
-
 **Environment:**
 
 | Environment | Endpoint                                                                                                            |
 | :---------- | :------------------------------------------------------------------------------------------------------------------ |
 | Test        | [https://apitest.payu.in/onboarding/v1/checkStatus](https://apitest.payu.in/loyalty-points/v1/wallet/load-account`) |
 | Production  | [https://api.payu.in/onboarding/v1/checkStatus](https://api.payu.in/onboarding/v1/checkStatus)                      |
-
-<br />
 
 **HTTP Method**: POST
 
@@ -412,21 +406,9 @@ The **Check Status **API will fetch the response dump for any API call based on 
 | 200              | OK                      |
 | 404              | Not Found               |
 | 500              | Internal Server Error   |
-| 400              | Bad Request             |
+| 400              | Bad Rquest              |
 
 ## Sample response
-
-### Packet sample (Encrypted)
-
-```plaintext
-{
-“token”:"Pl8F5kDZcvADIiursiAvvbHNuL9Wv5eaFdorGVFU6FKfIEnV/YskkzJlAov2ZHJWnqGNLOXfBq4SQqw8Ep4sK0gCAAkRXATCb1nSY6s="
-}
-```
-
-### Sample (Decrypted)
-
-* Success Scenario
 
 ```plaintext
 {
