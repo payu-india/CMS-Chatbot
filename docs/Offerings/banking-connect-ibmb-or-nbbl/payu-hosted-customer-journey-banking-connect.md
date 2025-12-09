@@ -37,27 +37,6 @@ This section describes the customer journey for PayU Hosted integration on Deskt
 
 ## Mobile
 
-### QR Flow
-
-1. Customer accesses PayU Hosted Checkout on mobile browser
-2. Banking Connect generates QR code optimized for mobile display
-
-<Image align="center" border={false} src="https://files.readme.io/c482f64ed45db1bb90229403551a697527fa3379b205b4cf642e4dfea47da96c-PayU_Hosted_Mobile_QR_Step3.png" />
-
-3. Customer switches to banking app to scan QR
-
-<Image align="center" border={false} src="https://files.readme.io/01c3ca4d8fb6d0f34b0ca5b13de7b88f940b4e1a52d8b0555b28e0c2719b1307-PayU_Hosted_Mobile_QR_Step4.png" />
-
-4. In-app transaction processing and authentication
-
-<Image align="center" border={false} src="https://files.readme.io/3bac1e0b01559141d24552bfa35c1918b01874731323d73a42cc3c7ef9f213bf-PayU_Hosted_Mobile_QR_Step5.png" />
-
-5. Return to mobile browser with completion status
-
-<Image align="center" border={false} src="https://files.readme.io/24ba78402ed89163b6437a5544ac9fcfb34e5b804e2b5cbb43c0de01270dced3-PayU_Hosted_Mobile_QR_Step6.png" />
-
-6. Mobile-optimized confirmation page display
-
 ### App Intent Flow
 
 1. Customer selects net banking on mobile browser/app
