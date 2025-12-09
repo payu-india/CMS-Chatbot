@@ -8,7 +8,7 @@ metadata:
 This section describes the customer journey for PayU Hosted integration on Desktop and Mobile devices.
 
 <Callout icon="📘" theme="info">
-  **Enable Banking Connect**: Contact your PayU Key Account Manager (KAM) or contact <Anchor label="PayU Support." target="_blank" href="https://help.payu.in">PayU Support.</Anchor>
+  **Enable Banking Connect**: To enable Banking Connect or NBBL, contact your PayU Key Account Manager (KAM) or contact <Anchor label="PayU Support." target="_blank" href="https://help.payu.in">PayU Support.</Anchor>
 </Callout>
 
 ## &#x20;Desktop
