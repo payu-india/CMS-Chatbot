@@ -13,20 +13,15 @@ Merchants can perform **multiple debits** from the reserved amount until it is f
 
 UPI Reserve Pay is ideal for scenarios where payment flexibility and fund assurance are critical:
 
-### E-commerce
-
-* Block the full price at checkout and charge only for items kept after delivery or trial period.
-* Eliminates complex refund processes and reduces risk in **Pay-on-Delivery** workflows.
-
-### Travel & Hospitality
-
-* **Hotel Bookings:** Block estimated stay cost during reservation; debit final charges at checkout. Cancelled bookings instantly release funds.
-* **Flight Bookings:** Manage fare changes without requiring customers to re-authenticate or re-enter payment details.
-
-### Healthcare
-
-* Block estimated treatment cost upfront.
-* Hospitals can debit actual charges for services rendered throughout the care period, simplifying billing.
+* **E-Commerce** (Flash Sales): During sales, ₹10,000 is blocked for products. Final charges (e.g., ₹9,200) are captured, and the balance ₹800 is released if items are unavailable. 
+   
+* **Prepaid Services** (Mobile Recharge): For a recharge of ₹499, ₹550 is blocked to account for plan adjustments. After finalizing the recharge (e.g., ₹499), the balance ₹51 is released. 
+   
+* **Tourism** (Ticket Bookings): Customers block Rs. 2,500 using UPI during ticket booking. If confirmed, funds are captured. If not, the block is released 
+   
+* **BFSI** (Insurance Premium): For a premium range of Rs. 2,500–4,000, Rs. 4,000 is blocked. After policy approval, the exact premium (e.g., Rs. 3,000) is captured, and the balance is released 
+   
+* **Healthcare** (Patient Check-ins): For an estimated Rs. 50,000 hospitalization fee, the amount is blocked. Upon final billing (e.g., Rs. 45,000), the charge is captured, and the excess Rs. 5,000 is released.
 
 ## How It Works
 
@@ -40,7 +35,7 @@ UPI Reserve Pay is ideal for scenarios where payment flexibility and fund assura
 * **Instant Refunds:** Cancelled transactions immediately credit the amount back to the customer’s account.
 * **Seamless Merchant Experience:** Block funds at order placement and capture payment when required. Real-time confirmation ensures confidence for both parties—perfect for pre-orders, reservations, and delayed deliveries.
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Reference:** All the other API integrations will remain same for One time mandate. For more information, refer to [APIs used in Auth and Capture](doc:apis-used-in-auth-and-capture).
 </Callout>
 
