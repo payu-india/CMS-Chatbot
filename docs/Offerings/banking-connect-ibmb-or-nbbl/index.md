@@ -57,6 +57,10 @@ NBBL's Interoperable Platform is a centralized payment system that enables:
 * **Standardized Disputes** - Unified dispute management system
 * **Settlement Framework** - Standardized settlement process similar to IMPS, BBPS, UPI
 
+<Callout icon="📘" theme="info">
+  **Integrations supported**: PayU currently supports PayU Hosted integration or non-seamless integration. PayU is working on Merchant Hosted integration support and it will be live soon.
+</Callout>
+
 ## Desktop Features
 
 * **QR Code Generation**: Dynamic, secure QR codes for mobile app scanning
@@ -80,6 +84,14 @@ NBBL's Interoperable Platform is a centralized payment system that enables:
 * **Universal Compatibility**: Works with existing PayU integrations
 * **Fallback Mechanisms**: Automatic switching between QR, intent, and redirect flows
 * **Real-time Processing**: Instant status updates regardless of device platform
+
+## Banks Supported
+
+Currently, PayU supports the following banks for Banking Connect:
+
+* HDFC Bank
+* ICICI Bank
+* Axis Bank
 
 ## Regulatory Compliance Requirements
 
