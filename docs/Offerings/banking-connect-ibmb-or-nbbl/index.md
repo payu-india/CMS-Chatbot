@@ -58,7 +58,7 @@ NBBL's Interoperable Platform is a centralized payment system that enables:
 * **Settlement Framework** - Standardized settlement process similar to IMPS, BBPS, UPI
 
 <Callout icon="📘" theme="info">
-  **Integrations supported**: PayU currently supports PayU Hosted integration or non-seamless integration. PayU is working on Merchant Hosted integration support and it will be live soon.
+  **Only non-seamless integration supported**: PayU currently **supports PayU Hosted integration** or non-seamless integration. Support for **Merchant Hosted** integration or seamless integration is in progress and will be available shortly.
 </Callout>
 
 ## Desktop Features
