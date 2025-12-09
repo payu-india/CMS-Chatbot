@@ -9,7 +9,8 @@ The following APIs are used for On-hold Settlement and Settlements:
 
 ## On-Hold Settlement APIs
 
-* <br />
+* [Get On-Hold Transactions API](https://docs.payu.in/reference/get-on-hold-transactions-api): To retrieve a list of on-hold transactions that require additional information or action.
+* [Update On-Hold Transactions API](https://docs.payu.in/reference/update-on-hold-transactions-api): To submit additional customer information required to release on-hold settlements. After successful submission, the API updates the transaction fields and triggers a settlement fallback process.
 
 ## Settlement APIs
 
