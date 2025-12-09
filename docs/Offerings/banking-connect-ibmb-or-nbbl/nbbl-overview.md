@@ -1,5 +1,5 @@
 ---
-title: NBBL Overview
+title: NBBL Overview with Merchant Hosted
 deprecated: false
 hidden: true
 metadata:
