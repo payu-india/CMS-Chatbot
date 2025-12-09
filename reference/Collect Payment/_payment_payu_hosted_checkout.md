@@ -33,6 +33,10 @@ The Collect Payment API (**_payment** API) is used to collect payments for all t
 | **Test Environment**       | \<[https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
 
+<Recipe slug="payu-hosted-checkout-curl-request-walkthrough" title="PayU Hosted Checkout cURL Request Walkthrough" />
+
+<br />
+
 <Accordion title="Sample request" icon="fa-code">
   ```curl
   curl -X POST "https://test.payu.in/_payment" \
