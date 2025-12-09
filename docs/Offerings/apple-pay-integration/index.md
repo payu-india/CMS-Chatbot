@@ -10,21 +10,21 @@ Apple Pay offers a fast, secure, and seamless payment experience across iOS and 
 
 ### Key Features for Users
 
-| Feature | Description |
-|:--|:--|
-| One-Tap Checkout | Quick and secure purchases with biometric authentication (Face ID/Touch ID) |
-| Privacy Protection | Card numbers are never stored on device or shared with merchants |
-| Cross-Device Support | Works seamlessly across iPhone, iPad, Mac, and Apple Watch |
-| No Additional Fees | Users are not charged any extra fees for using Apple Pay |
+| Feature              | Description                                                                 |
+| :------------------- | :-------------------------------------------------------------------------- |
+| One-Tap Checkout     | Quick and secure purchases with biometric authentication (Face ID/Touch ID) |
+| Privacy Protection   | Card numbers are never stored on device or shared with merchants            |
+| Cross-Device Support | Works seamlessly across iPhone, iPad, Mac, and Apple Watch                  |
+| No Additional Fees   | Users are not charged any extra fees for using Apple Pay                    |
 
 ### Key Features for Merchants
 
-| Feature | Description |
-|:--|:--|
-| Higher Conversion Rates | Simplified checkout reduces cart abandonment |
-| Enhanced Security | Tokenized transactions reduce fraud risk |
-| 3D Secure Compatible | Apple handles 3DS authentication with issuing bank |
-| No Processing Fees | Apple does not charge merchants for Apple Pay transactions |
+| Feature                 | Description                                                |
+| :---------------------- | :--------------------------------------------------------- |
+| Higher Conversion Rates | Simplified checkout reduces cart abandonment               |
+| Enhanced Security       | Tokenized transactions reduce fraud risk                   |
+| 3D Secure Compatible    | Apple handles 3DS authentication with issuing bank         |
+| No Processing Fees      | Apple does not charge merchants for Apple Pay transactions |
 
 ### How Does Apple Pay Work?
 
@@ -40,44 +40,51 @@ Apple Pay offers a fast, secure, and seamless payment experience across iOS and 
 
 ### Supported Payment Networks
 
-- Visa
-- Mastercard
-- American Express
-- Diners Club
-- Discover (in supported regions)
+* Visa
+* Mastercard
+* American Express
+* Diners Club
+* Discover (in supported regions)
 
 ### Goals
 
-| Goal | Description |
-|:--|:--|
-| Increase Conversion | Reduce checkout friction and cart abandonment |
-| Enhance Security | Leverage tokenization and biometric authentication |
-| Improve User Experience | Provide seamless, one-tap payment experience |
-| Expand Payment Options | Offer modern digital wallet support for customers |
+| Goal                    | Description                                        |
+| :---------------------- | :------------------------------------------------- |
+| Increase Conversion     | Reduce checkout friction and cart abandonment      |
+| Enhance Security        | Leverage tokenization and biometric authentication |
+| Improve User Experience | Provide seamless, one-tap payment experience       |
+| Expand Payment Options  | Offer modern digital wallet support for customers  |
 
----
+***
 
-## Chapter 2: Apple Pay Flow
+## Apple Pay Flow
 
 ### High-Level Flow
 
-
+<Image align="center" border={true} src="https://files.readme.io/1af03612136e19009efdeaf84427ffa904fbda8eb0a9b5db0bb55460f5967a5e-apple_three_lane_diagram.png" className="border" />
 
 ### Technical Summary
 
-| Step | Action | Description |
-|:--|:--|:--|
-| 1 | Customer taps Apple Pay | User initiates payment by tapping the Apple Pay button |
-| 2 | Payment sheet displayed | Apple Pay payment sheet appears with card and shipping info |
-| 3 | Biometric authentication | User authenticates with Face ID, Touch ID, or passcode |
-| 4 | Merchant validation request | Merchant server requests session validation from PayU |
-| 5 | PayU validates with Apple | PayU sends validation request to Apple servers |
-| 6 | Apple returns session | Apple returns a valid merchant session object |
-| 7 | Session returned to merchant | PayU forwards session to merchant for completion |
-| 8 | Payment token generated | Apple generates encrypted payment token with card data |
-| 9 | Payment processing | Merchant sends token to PayU for payment processing |
-| 10 | Transaction response | PayU returns transaction status to merchant |
-| 11 | Confirmation displayed | Merchant shows success/failure to customer |
+1. User initiates payment by tapping the Apple Pay button.
+   Apple Pay payment sheet appears with card and shipping info.
+
+2. User authenticates with Face ID, Touch ID, or passcode.
+
+3. Merchant server requests session validation from PayU.
+
+4. PayU sends validation request to Apple servers.
+
+5. Apple returns a valid merchant session object.
+
+6. PayU forwards session to merchant for completion.
+
+7. Apple generates encrypted payment token with card data.
+
+8.  Merchant sends token to PayU for payment processing.
+
+9. PayU returns transaction status to merchant.
+
+10. Merchant shows success/failure to customer.
 
 ### Flow for Non-Seamless / Selective Seamless Merchants
 
@@ -104,4 +111,3 @@ For merchants with direct API integration:
 9. Merchant sends token to PayU `_payment` API with `pg=APPLEPAY`
 10. PayU processes payment and returns response
 11. Merchant completes payment and shows result
-
