@@ -34,6 +34,7 @@ UPI Reserve Pay is ideal for scenarios where payment flexibility and fund assura
 * **Extended Fund Hold:** Unlike cards (7 days) and standard OTM (60 days), UPI Reserve Pay allows funds to remain blocked for up to **90 days**.
 * **Instant Refunds:** Cancelled transactions immediately credit the amount back to the customer’s account.
 * **Seamless Merchant Experience:** Block funds at order placement and capture payment when required. Real-time confirmation ensures confidence for both parties—perfect for pre-orders, reservations, and delayed deliveries.
+* **Amount Unblocking**: Currently, the releasing of funds is done by remiters but PayU has built a functionality (internal)  to revoke the transactions based on end date to minimise the funds on hold.
 
 <Callout icon="👍" theme="okay">
   **Reference:** All the other API integrations will remain same for One time mandate. For more information, refer to [APIs used in Auth and Capture](doc:apis-used-in-auth-and-capture).
