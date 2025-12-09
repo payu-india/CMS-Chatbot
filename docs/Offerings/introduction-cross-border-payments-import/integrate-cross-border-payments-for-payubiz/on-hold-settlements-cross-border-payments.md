@@ -1,7 +1,7 @@
 ---
 title: On-Hold Settlements - Cross-Border Payments
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
