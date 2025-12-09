@@ -72,7 +72,7 @@ NBBL's Interoperable Platform is a centralized payment system that enables:
 * **Native App Integration**: Seamless banking app interactions
 * **Responsive Design**: Optimized checkout experience across mobile devices
 
-### Cross-Platform Features
+## Cross-Platform Features
 
 * **Device Synchronization**: Transaction continuity across desktop and mobile
 * **Universal Compatibility**: Works with existing PayU integrations
