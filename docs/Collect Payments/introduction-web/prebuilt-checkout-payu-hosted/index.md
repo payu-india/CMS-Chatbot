@@ -41,7 +41,7 @@ The following sample customer journey is for cards payment mode:
 
 <Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Payment Modes" border={true} width="622px" src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" className="border" />
 
-3. The customer chooses a payment mode from the _PayU Payment _page. For example, **Cards (Debit/Credit)**.
+3. The customer chooses a payment mode from the _PayU Payment_ page. For example, **Cards (Debit/Credit)**.
 4. The card details are provided by the customer and clicks **Proceed**.
 
 <Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Card Details page" border={true} width="622px" src="https://files.readme.io/fd09cbd284ffe7fb3b60d03e2acd8a5a51d850dd1795f1eca9879893b3569603-Screenshot_2024-09-06_at_11.56.40_AM.png" className="border" />
