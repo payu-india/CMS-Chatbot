@@ -121,16 +121,6 @@ Before you can initiate payment with PayU, you can check the eligibility using t
                        "customerLinked": true,
 
                         “PayuToken”: “Token12345”
-                   },
-                   "Simpl": {
-                       "status": 1,
-                       "availableBalance": 500, // only if applicable
-                       "kfsLink": https://www.somekfsLink.com, // only if applicable
-                       "eligible": true,
-                       "customerLinked": true,
-
-                       “PayuToken”: “Token78901”
-
                    }
                }
            ]
