@@ -72,6 +72,8 @@ NBBL's Interoperable Platform is a centralized payment system that enables:
 * **Native App Integration**: Seamless banking app interactions
 * **Responsive Design**: Optimized checkout experience across mobile devices
 
+<Image align="center" border={true} src="https://files.readme.io/9ca652247279c924a3dcd8b3784c02a7cb53e57afd8e5386b804d4e25cad2cfe-nbbl_mobile_intent_consolidate.png" className="border" />
+
 ## Cross-Platform Features
 
 * **Device Synchronization**: Transaction continuity across desktop and mobile
