@@ -13,6 +13,8 @@ Banking Connect is PayU's interoperable platform that modernizes net banking tra
 * **Health Check**: Verify Banking Connect endpoint availability every 5 seconds before transactions
 * **Merchant Onboarding**: Bulk upload or API-based merchant registration with Banking Connect
 
+<Image align="center" border={false} src="https://files.readme.io/01ee611a6d58626c7f63c5771a4e5b4a7d309b3caa6c20872cfe0c4a748bef86-NBBL_platform_overview.png" />
+
 ## Features
 
 ### Desktop
