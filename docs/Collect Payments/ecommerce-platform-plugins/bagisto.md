@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-This section describes how to configure the PayU payment method in Bagisto for accepting payments through credit cards, debit cards, net banking, UPI, and wallets.
+This section describes how to configure the PayU payment method in <Anchor label="Bagisto" target="_blank" href="https://bagisto.com/en/">Bagisto</Anchor> for accepting payments through credit cards, debit cards, net banking, UPI, and wallets.
 
 ## Prerequisites
 
