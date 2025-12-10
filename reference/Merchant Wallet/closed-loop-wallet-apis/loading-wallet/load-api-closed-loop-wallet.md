@@ -237,3 +237,53 @@ curl --location --request PATCH 'https://apitest.payu.in/loyalty-points/v1/walle
   "transactionAmount": 1500
 }
 ```
+
+### API Response Codes
+
+| Error Code | Description                                        |
+| ---------- | -------------------------------------------------- |
+| 00         | SUCCESS                                            |
+| 1009       | CARD_CANCELLED_CLOSED_EXPIRED                      |
+| 1010       | CARD_TEMPORARY_BLOCK                               |
+| 1012       | CARD_PENDING_CANCELLATION                          |
+| 1013       | AML MIN LIMIT                                      |
+| 1030       | INVALID_MESSAGE                                    |
+| 1045       | UNABLE_TO_PROCESS_REQUEST                          |
+| 1054       | DUPLICATE REQUEST                                  |
+| 1056       | INVALID MESSAGE CODE                               |
+| 1058       | INVALID_WALLETS                                    |
+| 1088       | INVALID REQUEST DATE format                        |
+| 1093       | INVALID CLIENT TXN ID                              |
+| 1101       | UNKNOWN_SOURCE_ACCOUNT_TYPE                        |
+| 1121       | CARD_CREDIT_DEBIT_BLOCK                            |
+| 1135       | REFUND_AMOUNT_GREATER_THAN_ORIGINAL_TXN_AMOUNT     |
+| 1138       | CURRENCY NOT MATCHING WITH CARD CURRENCY           |
+| 1246       | ORIGINAL_TXN_NOT_EXIST                             |
+| 1247       | SOURCE_ACC_TYPE_NOT_MACHED_WITH_IMPL               |
+| 1303       | CUSTOMER DETAILS NOT PRESENT                       |
+| 1304       | MORE THAN ONE CUSTOMER IDENTIFIER NOT ALLOWED      |
+| 1322       | TRANSACTION AMOUNT CANNOT BE ZERO                  |
+| 1325       | FUND FLOW TYPE MISMATCH                            |
+| 1326       | IMPL ID MISMATCH                                   |
+| 1357       | WALLET DETAILS NOT FOUND                           |
+| 1353       | COOLING OFF PERIOD BETWEEN TWO LOADS NOT COMPLETED |
+| 1354       | CORPORATE_LEVEL_LIMIT_EXCEEDED                     |
+| 1359       | INVALID LOAD AMOUNT                                |
+| 1366       | PROGRAM IS INACTIVE                                |
+| 1367       | PROGRAM NOT FOUND                                  |
+| 1368       | WALLET OR ACCOUNTNO SHOULD BE PRESENT              |
+| 1398       | ACCOUNTNO SHOULD BE PRESENT                        |
+| 1501       | SYSTEM_ERROR_DB                                    |
+| 1504       | SYSTEM_CACHE_FAILURE                               |
+| 6000       | ACCOUNT DORMANT                                    |
+| 6002       | ACCOUNT PERMANENTLY BLOCKED OR CLOSED              |
+| 6014       | ACCOUNT IN TEMPORARILY BLOCKED STATE               |
+| 6016       | ACCOUNT IN CREDIT BLOCKED STATE                    |
+| 6017       | ACCOUNT ALREADY IN CREDIT_DEBIT BLOCKED STATE      |
+| 10153      | AMOUNT IS NOT WITHIN MIN-MAX RANGE                 |
+| 10163      | PROGRAM DAILY LIMIT EXCEEDED                       |
+| 1392       | FUND FLOW TYPE NOT PRESENT IN THE REQUEST          |
+| 6909       | SENDER CUSTOMER NOT FOUND                          |
+| 10044      | SENDER INFO INVALID LENGTH                         |
+| 1319       | SOURCE_ACCOUNT_INVALID_LENGTH                      |
+| 1103       | INVALID_TRANSACTION_AMOUNT                         |
