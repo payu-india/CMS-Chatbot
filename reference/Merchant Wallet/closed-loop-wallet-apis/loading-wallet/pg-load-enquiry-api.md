@@ -116,7 +116,7 @@ The **Load Enquiry** API allows you to check the status of a wallet load transac
       <td>
         Any one of the following:
 
-        * SUCCESS <br/> * FAILED <br/> PENDING <br/> * AUTO_REFUND_DISABLED
+        * SUCCESS <br /> * FAILED <br /> PENDING <br /> * AUTO_REFUND_DISABLED
       </td>
     </tr>
 
@@ -393,6 +393,101 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/ppi/payme
 }
 
 ```
+
+* If refund does not exist for a transaction
+
+```json
+{
+  "merchantCode": "180012",
+  "clientTxnId": "56894",
+  "txnAmount": "4100",
+  "accosaRefNo": null,
+  "status": "FAILED",
+  "responseCode": "00",
+  "refundTxnExist": false,
+  "refundEnquiryResponse": null,
+  "verifyPaymentResponse": {
+    "message": "Success",
+    "status": 1,
+    "result": [
+      {
+        "payuId": 999000000002603,
+        "transactionDetails": {
+          "id": 999000000002603,
+          "transactionId": "61042",
+          "merchantKey": "travelibibo",
+          "merchantName": "Name409208872",
+          "status": "failed",
+          "discount": 0,
+          "amount": 51,
+          "transactionFee": 51,
+          "additionalCharges": 0,
+          "mode": "UPI",
+          "baseTxnId": 999000000002602,
+          "firstName": "FGHJ",
+          "lastName": "FGHJ",
+          "addedOn": "2025-01-09 17:34:36",
+          "phone": "XXXXXX693252",
+          "email": "tegyh@gh.com",
+          "productInfo": "Product Info",
+          "errorCode": "E317",
+          "ibiboCode": "UPI",
+          "address": "",
+          "city": "",
+          "zipcode": "",
+          "cardNo": null,
+          "cardType": null,
+          "cardToken": null,
+          "udf1": "loadTag=PG",
+          "udf2": null,
+          "udf3": null,
+          "udf4": null,
+          "udf5": null,
+          "field0": null,
+          "field1": "kk@okaxis",
+          "field2": null,
+          "field3": "kk@okaxis",
+          "field4": "KUNAL KUKREJA",
+          "field5": "AXI918605XXXXXXXXXXXX61531422612197",
+          "field6": null,
+          "field7": "01",
+          "field8": "googlepay",
+          "field9": "01|PENDING|Completed Using Verify API",
+          "errorMessage": "Bank was unable to authenticate.",
+          "paymentSource": "payu",
+          "partnerToken": null,
+          "clearToken": false,
+          "ccAvenueOrderid": null,
+          "merchantUTR": null,
+          "threeDsEci": null,
+          "threeDSEnrolled": null,
+          "threeDSStatus": null,
+          "appName": "GooglePay",
+          "mcpLookupId": null,
+          "mcpAmount": null,
+          "mcpCurrency": null,
+          "mcpExchangeRate": null,
+          "rupayAuthRefNo": null,
+          "originalCurrency": null,
+          "curl": "https://pp1api.payu.in/loyalty-points/ppi/payment/pg-load/success/v1",
+          "furl": "https://pp1api.payu.in/loyalty-points/ppi/payment/pg-load/success/v1",
+          "surl": null,
+          "state": null,
+          "country": null,
+          "bankRefNo": "868212138432",
+          "ip": "10.50.10.111",
+          "issuingBank": null,
+          "paymentGateway": null,
+          "address2": ""
+        }
+      }
+    ]
+  }
+}
+
+```
+
+<br />
 
 ## Response codes
 
