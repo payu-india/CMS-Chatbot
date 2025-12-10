@@ -18,12 +18,6 @@ When a transaction is completed via the PG Load API, the result is communicated 
 
 ## Callback parameters
 
-### Request Headers
-
-<Closed_Loop_HMAC />
-
-### Body parameters
-
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -184,7 +178,7 @@ When a transaction is completed via the PG Load API, the result is communicated 
       </td>
 
       <td>
-        `String` Used for data integrity verification
+        `String` Used for data integrity verification. You have to implement the following logic to calculate checksum to cross evaluate with one shared in surl/furl 
       </td>
 
       <td>
