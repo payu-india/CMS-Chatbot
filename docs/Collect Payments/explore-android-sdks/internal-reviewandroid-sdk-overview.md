@@ -1,7 +1,7 @@
 ---
 title: '[Internal Review]Android SDK Overview'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
