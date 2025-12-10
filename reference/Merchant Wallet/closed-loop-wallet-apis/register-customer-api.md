@@ -9,9 +9,10 @@ The **Register Customer** API allows you to register a new customer and facilita
 
 ## Environment
 
-| Environment | URL                                                       |
-| ----------- | --------------------------------------------------------- |
-| Test        | `https://apitest.payu.in/loyalty-points/v1/wallet/enroll` |
+| Environment | URL                                                         |
+| ----------- | ----------------------------------------------------------- |
+| Test        | `https://apitest.payu.in/loyalty-points/v1/wallet/enroll`   |
+| Production  | `http:// apitest.payu.in /loyalty- points/v1/wallet/enroll` |
 
 **HTTP Method**: POST
 
