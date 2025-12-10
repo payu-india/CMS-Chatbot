@@ -178,7 +178,7 @@ When a transaction is completed via the PG Load API, the result is communicated 
       </td>
 
       <td>
-        `String` Used for data integrity verification. You have to implement the following logic to calculate checksum to cross evaluate with one shared in surl/furl 
+        `String` Used for data integrity verification. You have to implement the following logic to calculate checksum to cross evaluate with one shared in surl/furl
       </td>
 
       <td>
@@ -203,7 +203,15 @@ status=SUCCESS&AccosaRefNo=12321234&accosaTransactionId=1487&responseCode=00&res
 
 To ensure the integrity of the callback data, a checksum is included in the callback parameters. The merchant should validate this checksum to confirm the authenticity of the response.
 
-The checksum is calculated using the same algorithm and salt as used in the request hash calculation.
+The checksum is calculated using the same algorithm and salt as used in the request hash calculation.  You have to implement the following checksum logic:
+
+```
+ChecksumString: merchantCode|clientTxnId|loadAmount|accosaRefNo|accosaTransactionId|responseCode|responseMessage|merchantSalt 
+ 
+Checksum: sha512(ChecksumString) 
+```
+
+<br />
 
 ## Success and Failure Handling
 
