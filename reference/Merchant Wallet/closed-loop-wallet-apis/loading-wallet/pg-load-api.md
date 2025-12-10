@@ -5,22 +5,18 @@ hidden: false
 metadata:
   robots: index
 ---
-The **PG Load** API allows you to create a credit transaction entry through a payment gateway.
+When a transaction is completed via the PG Load API, the result is communicated back to the merchant through a callback mechanism. The response parameters are sent to the `surl` (success URL) or `furl` (failure URL) that was provided in the original PG Load API request.
 
-## Environment
+## Callback Flow
 
-| Environment | URL                                                                                                                            |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Test        | [https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1](https://apitest.payu.in/loyalty-points/v1/wallet/load-account) |
-| Production  | [https://api.payu.in/loyalty-points/ppi/payment/pg-load/v1](https://api.payu.in/loyalty-points/ppi/payment/pg-load/v1)         |
+1. Merchant initiates the load request using the PG Load API with mandatory fields like `clientTxnId`, `surl`, and `furl`
+2. Customer completes the payment on the payment gateway page
+3. Upon completion:
+   * PayU redirects the customer to the `surl` in case of success
+   * If the transaction fails, the customer is redirected to the `furl`
+4. Callback parameters are sent to these URLs for final status tracking and reconciliation
 
-**HTTP Method**: POST
-
-## Request Headers
-
-<Closed_Loop_HMAC />
-
-## Request Parameters
+## Callback parameters
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -42,241 +38,211 @@ The **PG Load** API allows you to create a credit transaction entry through a pa
   <tbody>
     <tr>
       <td>
-        clientTxnId<br /><code>mandatory</code>
+        merchantCode
+        `mandatory`
       </td>
 
       <td>
-        <code>Alphanumeric(14)</code> Unique transaction ID for this request
+        `Numeric (10)`  Merchant's unique ID provided by PayU for the load-money use case
       </td>
 
       <td>
-        Reload_V3_1234
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        requestDateTime<br /><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>Numeric(14)</code> Timestamp of the transaction (YYYYMMDDHHMMSS format)
-      </td>
-
-      <td>
-        20230822183015
+        180012
       </td>
     </tr>
 
     <tr>
       <td>
-        customerId
-        <code>optional</code>
+        accosaTransactionId
+        `mandatory`
       </td>
 
       <td>
-        <code>Numeric(20)</code> A unique customer ID from calling application to be shared. If the value is not passed in the request, the platform will auto-generate a unique value for this
-        field."
+        `Numeric (10)` Unique Prepaid System transaction ID
       </td>
 
       <td>
-        89342546
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        customer.firstName
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>String(50)</code> Customer first Name. The following validations for this field :  
-
-        1. Start and end with valid characters (no extra characters outside the allowed set).  
-        2. Contain only:   Uppercase letters (A-Z)   Lowercase letters (a-z)   Periods (.)   Spaces ( )   Have at least one character and no invalid symbols like numbers, special characters outside the allowed set, etc.
-        3. Total length of string should be max 50 chars (including space) and it can only contain characters, hyphens and single spaces in b/w words. No double spaces allowed b/w 2 words
-      </td>
-
-      <td>
-        Ashish
+        3591893
       </td>
     </tr>
 
     <tr>
       <td>
-        customer.lastName
-        <code>mandatory</code>
+        responseCode
+        `mandatory`
       </td>
 
       <td>
-        <code>String(50)</code> Customer last name. The following validations are done for this field: 
-
-        1. Start and end with valid characters (no extra characters outside the allowed set).
-        2. Contain only:   Uppercase letters (A-Z)   Lowercase letters (a-z)   Periods (.)   Spaces ( )   Have at least one character and no invalid symbols like numbers, special characters outside the allowed set, etc.
-        3. Total length of string should be max 50 chars (including space) and it can only contain characters, hyphens and single spaces in b/w words. No double spaces allowed b/w 2 words
+        `Numeric (10)` Response code for transaction outcome (00 indicates success)
       </td>
 
       <td>
-        Mishra
+        00
       </td>
     </tr>
 
     <tr>
       <td>
-        customer.mobileNumber<br /><code>mandatory</code>
+        responseMessage
+        `mandatory`
       </td>
 
       <td>
-        <code>Numeric(13)</code> Customer's mobile number with country code
+        `Numeric (10)` Description of the response code
       </td>
 
       <td>
-        919988776655
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        customer.email
-        <br /> <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>String(50)</code> Valid Email address with valid email format
-      </td>
-
-      <td>
-        [ashsih@gmail.com](mailto:ashsih@gmail.com)
+        SUCCESS
       </td>
     </tr>
 
     <tr>
       <td>
-        surl<br /><code>mandatory</code>
+        clientTxnId
+        `mandatory`
       </td>
 
       <td>
-        <code>String</code> This is the URL to which customer is redirected incase if PG Transaction
-        is a success
+        `Numeric (10)` Unique ID generated by the calling application
       </td>
 
       <td>
-        [https://pp1admin.payu.in/test_response](https://pp1admin.payu.in/test_response)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        furl<br /><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>String</code> This is the URL to which customer is redirected incase if PG Transaction
-        is a failure
-      </td>
-
-      <td>
-        [https://pp1admin.payu.in/test_response](https://pp1admin.payu.in/test_response)
+        56894
       </td>
     </tr>
 
     <tr>
       <td>
-        currency<br /><code>mandatory</code>
+        txnAmount
+        `optional`
       </td>
 
       <td>
-        <code>String</code> Currency code of the currency used.
+        `Numeric (10)` Original order amount in implied decimals
       </td>
 
       <td>
-        INR
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        loadAmount<br /><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>Numeric(12)</code> Amount to load (expressed in implied decimals)
-      </td>
-
-      <td>
-        1500
+        4100
       </td>
     </tr>
 
     <tr>
       <td>
-        seamlessTransaction<br /><code>mandatory</code>
+        loadAmount
+        `mandatory`
       </td>
 
       <td>
-        <code>String</code> Identifier if it is a seamless transaction or non seamless. This must be either true or false, where:
-
-        * **false** indicates it is a non-seamless transaction.
-        * **true**indicates it is a seamless transaction.
+        `Numeric (10)` The actual amount loaded into the wallet
       </td>
 
       <td>
-        false
+        4100
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        accosaRefNo
+        `mandatory`
+      </td>
+
+      <td>
+        `Numeric (10)` Auto-generated sequence number
+      </td>
+
+      <td>
+        424
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        status
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Transaction status (SUCCESS, FAILED)
+      </td>
+
+      <td>
+        SUCCESS
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        checksum
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Used for data integrity verification. You have to implement the following logic to calculate checksum to cross evaluate with one shared in surl/furl
+      </td>
+
+      <td>
+        900a98e04b4abc61
+        0bd0cb5623a470a4b0
+        d821d85551ae3baa410
+        11536cfe6b9
       </td>
     </tr>
   </tbody>
 </Table>
 
-## Response Parameters
+## Sample callback response
 
-| Parameter        | Description                                                | Example**                                                                                                                            |
-| ---------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| referenceId      | Reference ID of Transaction                                | e47293311906aeb0eb65168adacdce01                                                                                                     |
-| data.redirectUrl | Redirection link                                           | "[https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0](https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0)" |
-| seamlessTxn      | Identifier if it is a seamless transaction or non seamless | true/false                                                                                                                           |
+When the transaction is completed, PayU sends the following parameters to your success or failure URL:
 
-## Sample Request
-
-```curl
-curl --location --request POST 'https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1' \ 
---header 'walletIdentifier: CLW' \ 
---header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \ 
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="v15rnvh1InSEWRq6EW9BCfXlxO0QI/4Sxxmdxd2f4Q0="' \ 
---header 'Content-Type: application/json' \ 
---data-raw '{  
-"clientTxnId": "testRegistration10",  
-"requestDateTime": "20230620123143",  {  "customer": {  "firstName": "FGHJ",  "lastName": "DFTTYUI",  "email": "tegyh@gh.com",  "mobileNumber": "919999999999"  },  "surl": "https://pp1admin.payu.in/test_response",  "furl": "https://pp1admin.payu.in/test_response",  "currency": "INR",  "loadAmount": 4100,  "customerId": "2201919",  "seamlessTxn": false  }
+```
+status=SUCCESS&AccosaRefNo=12321234&accosaTransactionId=1487&responseCode=00&responseMessage=Success&merchantCode=Vb007&clientTxnId=2023LOAD10000000003&txnAmount=1000&checksum=900a98e04b4abc610bd0cb5623a470a4b0d821d85551ae3baa41011536cfe6b9&loadAmount=4100
 ```
 
-## Sample Response
+## Checksum verification
 
-```json
-{ 
-"referenceId": "e47293311906aeb0eb65168adacdce01", 
-"data": { 
-       "redirectUrl": "https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0"
-}, 
-"seamlessTxn": false
-}
-```
+To ensure the integrity of the callback data, a checksum is included in the callback parameters. The merchant should validate this checksum to confirm the authenticity of the response.
+
+<Callout icon="📘" theme="info">
+  **Checksum logic**: The checksum is calculated using the same algorithm and salt as used in the request hash calculation.  You have to implement the following checksum logic:
+
+  ```
+  ChecksumString: merchantCode|clientTxnId|loadAmount|accosaRefNo|accosaTransactionId|responseCode|responseMessage|merchantSalt 
+   
+  Checksum: sha512(ChecksumString) 
+  ```
+</Callout>
+
+## Success and Failure Handling
+
+### Success scenario
+
+When a transaction is successful:
+
+* The customer is redirected to the `surl` provided in the original request
+* The `responseCode` will be "00"
+* The `status` will be "SUCCESS"
+* The wallet will be credited with the amount specified in `loadAmount`
+
+### Failure scenario
+
+When a transaction fails:
+
+* The customer is redirected to the `furl` provided in the original request
+* The `responseCode` will not be "00"
+* The `status` will be "FAILED"
+* An appropriate error message will be included in the `responseMessage` parameter
 
 ## HTTP Status Codes
 
-| Status Code | Description                              |
-| ----------- | ---------------------------------------- |
-| 200         | OK - Request processed successfully      |
-| 400         | Bad Request - Invalid request parameters |
-| 401         | Unauthorized - Authentication failed     |
-| 404         | Not Found - Wallet not found             |
-| 500         | Internal Server Error                    |
-
-## Error Codes
-
-| Error Code | Description                 |
-| ---------- | --------------------------- |
-| 1081       | Load transaction successful |
-| 1010       | Invalid message code        |
-| 1020       | Missing required parameters |
-| 1040       | Wallet not found            |
-| 1050       | Transaction limit exceeded  |
+| HTTP Status Code | Status Description     |
+| ---------------- | ---------------------- |
+|                  |                        |
+| **200**          | OK                     |
+| **201**          | Created                |
+| **404**          | Not Found              |
+| **500**          | Internal Server Error  |
+| **403**          | Forbidden              |
+| **400**          | Bad Request            |
+| **401**          | Unauthorized           |
+| **503**          | Service Unavailable    |
