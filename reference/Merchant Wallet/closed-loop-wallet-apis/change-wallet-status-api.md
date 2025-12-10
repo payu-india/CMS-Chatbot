@@ -7,6 +7,20 @@ metadata:
 ---
 The **Change Wallet Status** API allows you to change the operational status of a wallet. This includes temporarily blocking, marking as dormant, or permanently closing a wallet. This API is essential for wallet lifecycle management and compliance requirements.
 
+<br />
+
+| Status       | Description                                                                                                                                                                  |   |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
+| Active       | Wallet is in the active state, it can used for all sorts of transactions.                                                                                                    |   |
+| Custom       | Wallet will be Custom Blocked (partial transactions will be allowed): <br/> * Cashback and refund can be received.<br/> * Load can be blocked while unload may work or vice versa.  |   |
+| Temporary    | Wallet will be Temporary Blocked (No transactions will be permitted)                                                                                                         |   |
+| Permanent    | Wallet will be permanently blocked                                                                                                                                           |   |
+| Closed       | Wallet will be closed                                                                                                                                                        |   |
+| Debit        | All debits from the wallet will be temporarily blocked                                                                                                                       |   |
+| Credit       | All credits to the wallet will be temporarily blocked                                                                                                                        |   |
+| CreditDebit  | All Credits and Debits will not be allowed, except system reversal credits and debits.                                                                                       |   |
+| Dormant      | Wallet will be in a dormant state. (same as temporary blocked)                                                                                                               |   |
+
 ## Environment
 
 | Environment | URL                                                                        |
