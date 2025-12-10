@@ -35,6 +35,7 @@ PayU provides a plugin to integrate with the following e-commerce enablers:
   * [Zoho Billing](doc:enable-payu-for-zoho-billing)
   * [Zoho Inventory](doc:enable-payu-for-zoho-inventory)
 * [Fynd Store](doc:fynd-integration)
+* [Bagisto](https://docs.payu.in/docs/bagisto.)
 
 ## Prerequisites for integration
 
