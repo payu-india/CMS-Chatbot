@@ -6,7 +6,7 @@ metadata:
   title: Update Profile API - Closed Loop
   robots: index
 ---
-The **Update Profile** API allows you to update a customer's profile information including name, email, mobile number, address, and other personal details. This API is useful for maintaining accurate customer information and compliance requirements.
+The **Update Profile** API allows you to update a customer's profile information including name, email, address, and other personal details. This API is useful for maintaining accurate customer information and compliance requirements.
 
 ## Environment
 
