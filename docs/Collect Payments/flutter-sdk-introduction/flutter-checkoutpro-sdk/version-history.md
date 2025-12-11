@@ -29,6 +29,8 @@ metadata:
 
       <td style={{ textAlign: "left" }}>
         * Bug Fixes
+        * Dynamic card scheme enforcement
+        * CF phase 2
       </td>
     </tr>
 
@@ -38,9 +40,7 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * Coupon-based Offers
-        * eNACH TPV support
-        * Socket SDK Update
+        * Bug fixes
         * CF PE Phase 1 Implementation
       </td>
     </tr>
@@ -51,7 +51,11 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Hybrid changes to support different environments
+        * Bug fixes
+
+        * Security fixes
+
+        * One-Time Mandate (OTM) support
       </td>
     </tr>
 
@@ -61,9 +65,7 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * One-Time Mandate (OTM) support
-        * Standing Instruction (SI) Supported Apps
-        * Enforce Offer Mechanism
+        * Wealth tech implementationBug fixes
       </td>
     </tr>
 
@@ -73,18 +75,8 @@ metadata:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Bug fix related to offers
-      </td>
-    </tr>
-
-    <tr>
-      <td style={{ textAlign: "left" }}>
-        1.3.0
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        Issuer-led Offers  
-        Additional feature enhancements
+        * Dynamic cnv fee emi changes
+        * Bug fixes
       </td>
     </tr>
   </tbody>
