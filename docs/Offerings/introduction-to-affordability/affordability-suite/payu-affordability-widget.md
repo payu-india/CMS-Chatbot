@@ -151,47 +151,6 @@ _[Figure 7: Mobile Widget Anatomy]_
 * **Improved Offer Visibility**: Better discoverability of promotions and discounts
 * **Minimal Development Effort**: Quick integration with simple HTML embed
 
-## Entry Points and User Flows
-
-### New-to-Bank (NTB) Flow (Upcoming)
-
-_[Figure 8: NTB User Flow Diagram]_  
-`[PLACEHOLDER: Flowchart showing the journey for customers not eligible for existing EMI options, leading to quick digital loan application]`
-
-For customers not eligible for standard EMI options:
-
-1. Widget displays alternative options
-2. Customer can apply for quick digital loans
-3. Seamless onboarding process within the widget
-
-### Existing Customer Flow
-
-_[Figure 9: Existing Customer Flow]_  
-`[PLACEHOLDER: Flowchart showing the journey for eligible customers with existing cards/accounts]`
-
-For eligible customers:
-
-1. Personalized EMI and BNPL options displayed
-2. Real-time eligibility check
-3. Direct selection and checkout integration
-
-## Performance Considerations
-
-### Loading Strategy
-
-* Widget loads after merchant website completion
-* Asynchronous loading prevents blocking of main content
-* Minimal JavaScript footprint for fast execution
-
-### Optimization Features
-
-_[Figure 10: Performance Metrics Dashboard]_  
-`[PLACEHOLDER: Screenshot of performance monitoring dashboard showing load times, conversion rates, and user engagement metrics]`
-
-* Lazy loading of widget content
-* Cached offer information for returning customers
-* Optimized API calls for real-time data
-
 ## Customization Options
 
 ### Current Customization
