@@ -167,20 +167,6 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        vpa  `mandatory for UPI Collect`
-      </td>
-
-      <td>
-        This parameter contains the customer's VPA handle. For the list UPI handles supported, refer to UPI Handles  The merchant is advised to check the validity of the VPA through using the VPA Validation API. PayU extends support for the same if required. For more information on using VPA Validation API, refer to [Validate VPA API](ref:validate_vpa_api).
-      </td>
-
-      <td>
-        abc@payu
-      </td>
-    </tr>
-
-    <tr>
-      <td>
         pre_authorize  `mandatory for Pre-Auth`
       </td>
 
