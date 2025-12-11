@@ -167,35 +167,6 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        pg  `mandatory`
-      </td>
-
-      <td>
-        It defines the payment category for which you wish to perform UPI One-Time Mandate. For UPI, **pg= UPI**
-      </td>
-
-      <td>
-        UPI
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankcode  `mandatory`
-      </td>
-
-      <td>
-        It defines the bank with which you wish to perform UPI using the bank code. Use **UPI** or **INTENT** according to the use case.
-      </td>
-
-      <td>
-        * **UPI**: Used for UPI Collect
-        * **INTENT**: Used for UPI Intent
-      </td>
-    </tr>
-
-    <tr>
-      <td>
         vpa  `mandatory for UPI Collect`
       </td>
 
