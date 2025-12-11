@@ -13,27 +13,30 @@ The PayU Affordability Widget is a lightweight, customizable solution that enabl
 
 ## Key Features
 
-### Customer-Facing Features
+* **Influence customer decisioning at the time of product selection**​
+  Customers can discover offers + available affordability options at the time of purchase selection thereby nudging customers to make purchases & improve top of the funnel conversion rates​
 
-* **EMI Calculator**: Transparent display of interest rates, payment amounts, and eligibility
-* **BNPL Integration**: Quick access to Buy Now Pay Later options for amounts under ₹5,000
-* **Personalized Offers**: Customized offers based on user tokens, cookies, customer ID, or mobile number
-* **Comprehensive Affordability Options**: Credit Card EMI, Debit Card EMI, and Cardless EMI plans
-* **Responsive Design**: Optimized for both desktop and mobile devices
+* **Informed decision about the customized affordability rates & eligibility**​
+  Customers can quickly use the EMI calculator to check rate of interests and EMI payment amounts. Customers to get customised options and offers basis They may also enter card/ mobile number to quickly check eligibility in the specific purchase context​
 
-### Merchant-Facing Features
+* **Entry Point to the NTB flow (Upcoming feature)**​
+  Ineligible customers may apply for a quick digital loan to complete the purchase​
 
-* **Zero Integration Effort**: Simple HTML embed with 4-5 lines of code
-* **Fast Loading**: Lightweight widget that loads after merchant website completion
-* **Customizable Design**: Widget appearance can be customized to match website themes (upcoming)
-* **Custom Promotions**: Ability to send targeted messages and offers to customers
-* **Performance Optimized**: Minimal impact on website loading times
+* **Improved discoverability of offers (Upcoming feature) **​
+  Customers can compare and evaluate customized (basis token/cookie/mobile) offers on the PDP page itself. Additionally, customers can check eligibility of offers basis their cust id/mobile /card number​
+
+* **Custom Promotions (Upcoming feature ) **​
+  Merchants can specify custom messages/promotions which can be displayed on the widget​
+
+* **Zero integration Effort**​
+  Merchants need to embed a 4–5-line HTML code (via a JS file) to display widgets on their PDP pages​
+
+* **Customize to merchant’s specific website theme (Upcoming feature)**​
+  Merchants to choose widget orientation /color scheme etc to ensure widget fits in their website seamlessly. Additionally, merchant can control specific features to be enabled/disabled ​
 
 ## Widget Components
 
-### 1. Main Affordability Widget
-
-<Image border={false} />
+### Affordability Widget
 
 The main widget displays:
 
@@ -41,12 +44,9 @@ The main widget displays:
 * Consolidated affordability options in a single interface
 * PayU branding and trust indicators
 
-### 2. Expanded Drawer View
+<Image align="center" border={true} src="https://files.readme.io/37de7e8844ab437abd7e0fc3c5603a3f4ab5cb218bfe7b4f2f98b03300c990a2-widget_expanded_view.png" className="border" />
 
-_[Figure 2: PayU Affordability Widget - Expanded Drawer]_  
-`[PLACEHOLDER: Screenshot showing the expanded drawer with detailed EMI and BNPL options]`
-
-The expanded view includes:
+In the above example:
 
 * **BNPL Options**: For purchases under ₹5,000
 * **Credit Card EMI**: Various tenure options with interest rates
@@ -54,12 +54,11 @@ The expanded view includes:
 * **Cardless EMI**: Digital loan options
 * Offer descriptions, effective pricing, and discount information
 
-### 3. Offers Widget
+### Offers Widget
 
-_[Figure 3: Offers Widget Display]_  
-`[PLACEHOLDER: Screenshot showing the offers widget with active promotions and discounts]`
+<Image align="center" border={false} src="https://files.readme.io/29f91c78fe57f01127f928c2317adc8bd253ebabe496394ccb90b7a1678a3aa9-figure_08_widget_screenshot.png" />
 
-Displays:
+The above screenshot displays an example of offers integration:
 
 * Active merchant-specific offers
 * Personalized promotions
