@@ -296,3 +296,24 @@ When a transaction fails:
 | 10044      | SENDER INFO INVALID LENGTH                         |
 | 1319       | SOURCE_ACCOUNT_INVALID_LENGTH                      |
 | 1103       | INVALID_TRANSACTION_AMOUNT                         |
+| 6911 | Invalid reserved field 1 |
+| 6912 | Invalid reserved field 2 |
+| 6913 | Invalid reserved field 3 |
+| 1298 | INVALID_SOURCE_ACCOUNT_TYPE |
+| 1322 | Transaction amount cannot be zero |
+| 10012 | IMPLID NOT PRESENT |
+| 10013 | IMPLTYPE NOT PRESENT |
+| 6933 | INVALID SOURCE TYPE |
+| 84114 | Invalid data type for field TransactionAmount |
+| 9343 | CLIENT TXN ID IS MANDATORY |
+| 303178 | Request DateTime Length should not be more than 14 characters |
+| 1361 | INVALID ACCOUNT NUMBER |
+| 6935 | SOURCE TYPE SHOULD BE 0 OR 1 |
+| 10160 | WALLET DAILY LIMIT EXCEEDED |
+| 10164 | WALLET MONTHLY LIMIT EXCEEDED |
+| 10168 | WALLET YEARLY LIMIT EXCEEDED |
+| 10216 | WALLET DAILY COUNT EXCEEDED |
+| 10220 | WALLET MONTHLY COUNT EXCEEDED |
+| 10224 | WALLET YEARLY COUNT EXCEEDED |
+| 13047 | WALLET_PER_TRANSACTION_LIMIT_EXCEEDED |
+| 13048 | WALLET_MAX_BAL_WALLET_LIMIT_EXCEEDED |
