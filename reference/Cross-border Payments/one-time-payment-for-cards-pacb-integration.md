@@ -1,7 +1,7 @@
 ---
 title: One-Time Payment for Cards - PACB Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -104,4 +104,3 @@ For transactions using network tokens (Visa/Mastercard tokens). Refer to [Using 
 > ⚠️ Important:
 >
 > When using network tokens, the `ccexpyr` and `ccexpmon` should contain the **token expiry** values, not the original card expiry values.
-
