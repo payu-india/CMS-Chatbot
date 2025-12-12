@@ -9,27 +9,23 @@ Use this API to execute recurring payment transactions for customers who have al
 
 **API Endpoint**
 
-| Environment | URL                                                | Method |
-| :---------- | :------------------------------------------------- | :----- |
-| Production  | `https://info.payu.in/merchant/postservice?form=2` | POST   |
-| Test        | `https://test.payu.in/merchant/postservice?form=2` | POST   |
+| Environment | URL                                                |
+| :---------- | :------------------------------------------------- |
+| Production  | `https://info.payu.in/merchant/postservice?form=2` |
+| Test        | `https://test.payu.in/merchant/postservice?form=2` |
 
-***
+HTTP Method: **POST**
 
 ## Request Parameters
 
-| Parameter                | Description                                                                         | Example                                               |
-| :----------------------- | :---------------------------------------------------------------------------------- | :---------------------------------------------------- |
-| key<br />`mandatory`     | `String` - Merchant Key provided by PayU                                            | JPM7Fg                                                |
-| command<br />`mandatory` | `String` - API command. Must be `si_transaction`                                    | si_transaction                                        |
-| var1<br />`mandatory`    | `JSON Object` - Transaction details object containing mandatory and optional fields | See [var1 Object Parameters](#var1-object-parameters) |
-| hash<br />`mandatory`    | `String` - SHA512 hash: `sha512(key\|command\|var1\|salt)`                          | 9f5faabedb...                                         |
+| Parameter                | Description                                                                         | Example                                            |
+| :----------------------- | :---------------------------------------------------------------------------------- | :------------------------------------------------- |
+| key<br />`mandatory`     | `String` - Merchant Key provided by PayU                                            | JPM7Fg                                             |
+| command<br />`mandatory` | `String` - API command. Must be `si_transaction`                                    | si_transaction                                     |
+| var1<br />`mandatory`    | `JSON Object` - Transaction details object containing mandatory and optional fields | Refer to [var1 Object Fields](#var1-object-fields) |
+| hash<br />`mandatory`    | `String` - SHA512 hash: `sha512(key\|command\|var1\|salt)`                          | 9f5faabedb...                                      |
 
-***
-
-## var1 Object Parameters
-
-### Core Transaction Parameters
+## var1 Object Fields
 
 | Parameter                                          | Description                                                                                                                                                                                                                                                                                                                                                                                  | Example                                                                                                                      |
 | :------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
@@ -121,9 +117,9 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 }&hash=jbUS07Og8BToVZ..."
 ```
 
-> ⚠️ **Note**: For UPI Mandate/Recurring transactions, `udf4` should NOT be passed and `invoiceDisplayNumber` is not required (only mandatory for Cards SI).
-
-***
+<Callout icon="📘">
+  **Note**: For UPI Mandate/Recurring transactions, `udf4` should NOT be passed and `invoiceDisplayNumber` is not required (only mandatory for Cards SI).
+</Callout>
 
 ## Sample var1 JSON Objects
 
@@ -202,8 +198,6 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
   "udf5": "CORPINV001"
 }
 ```
-
-***
 
 ## Response Parameters
 
