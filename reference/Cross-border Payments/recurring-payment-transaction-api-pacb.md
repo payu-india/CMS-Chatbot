@@ -247,8 +247,6 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 | failed      | Transaction failed                                                                                                          |
 | in-progress | Transaction is being processed                                                                                              |
 
-***
-
 ## Failure Responses
 
 ### Invalid Hash
@@ -301,19 +299,13 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 
 ## Important Notes
 
-> 📘 **Notes**
->
-> * Banks do not support refunds for Net Banking Recurring Payment transactions (e-NACH), so you will get an error message "Refund not accepted for txn" or Error 232.
-> * Always call the **Pre-Debit Notification API** before calling this API to check mandate status.
-> * For UPI, "pending" transactions typically get converted to `captured` or `failed` within 10 minutes. Call the Query API after 10 minutes.
-> * For Net Banking, "pending" transactions may take up to T+2 days to get final status.
+<Callout icon="📘" theme="info">
+  **Notes**
 
-> 🚧 **Assumptions**
->
-> The merchant has already performed a successful registration transaction with Net Banking/UPI/Card and the `mihpayid` is received in response and mapped to the customer.
-
-> ⚠️ **Hash Generation**
->
-> Hash formula: `sha512(key|command|var1|salt)`
+  * Banks do not support refunds for Net Banking Recurring Payment transactions (e-NACH), so you will get an error message "Refund not accepted for txn" or Error 232.
+  * Always call the **Pre-Debit Notification API** before calling this API to check mandate status.
+  * For UPI, "pending" transactions typically get converted to `captured` or `failed` within 10 minutes. Call the Query API after 10 minutes.
+  * For Net Banking, "pending" transactions may take up to T+2 days to get final status.
+</Callout>
 
 <br />
