@@ -1,7 +1,7 @@
 ---
 title: Recurring Payment Transaction API - PACB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
