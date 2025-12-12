@@ -1,7 +1,7 @@
 ---
 title: S2S Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
