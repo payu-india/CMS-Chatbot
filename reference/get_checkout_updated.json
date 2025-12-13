@@ -1,0 +1,342 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Others",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/merchant",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/postservice.php": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "get-checkout_details",
+        "description": "Retrieves detailed checkout information for a transaction, including payment options, additional charges, tax specifications, and eligibility checks for EMI and Buy Now Pay Later modes. Merchants use this API to dynamically configure the payment experience before initiating a transaction.",
+        "operationId": "get-checkout_details",
+        "parameters": [
+          {
+            "name": "form",
+            "in": "query",
+            "description": "Specifies the form type. Must be set to 2 for this request.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/form"
+                },
+                {}
+              ]
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Indicates the media type of the request body. Must be application/x-www-form-urlencoded.",
+            "required": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Content-Type"
+                },
+                {}
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "key",
+                  "command",
+                  "var1",
+                  "hash"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "examples": [
+                      "JPM7Fg"
+                    ]
+                  },
+                  "command": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/command"
+                      },
+                      {}
+                    ]
+                  },
+                  "var1": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/var1"
+                      },
+                      {}
+                    ]
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "It is used to avoid the possibility of transaction tampering. Hash formula: sha512(key|command|var1|salt)"
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "var1": {
+        "title": "var1",
+        "required": [
+          "requestId",
+          "transactionDetails",
+          "usecase"
+        ],
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "This parameter must contain the request ID."
+          },
+          "transactionDetails": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionDetails"
+              },
+              {}
+            ]
+          },
+          "usecase": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/useCase"
+              },
+              {}
+            ]
+          }
+        },
+        "description": "Contains request-specific details such as requestId, transaction details, and use case flags for extended payment information, additional charges, tax specifications, and eligibility checks."
+      },
+      "TransactionDetails": {
+        "title": "TransactionDetails",
+        "required": [
+          "amount",
+          "txnid"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string",
+            "description": "This field contains the transaction amount.",
+            "examples": [
+              "100.00"
+            ]
+          },
+          "txnid": {
+            "type": "string",
+            "description": "This fields contains the transaction ID."
+          }
+        },
+        "description": "Includes essential transaction information like amount and transaction ID."
+      },
+      "useCase": {
+        "title": "useCase",
+        "type": "object",
+        "properties": {
+          "getExtendedPaymentDetails": {
+            "type": "string",
+            "description": "This flag is posted as true to check EMI eligibility based on mobile number and/or card number depending on the payment method used. Also, checks the eligibility for “Buy Now Pay Later” payment modes.",
+            "examples": [
+              "true"
+            ]
+          },
+          "getAdditionalCharges": {
+            "type": "string",
+            "description": "This flag is posted as true to return the additional charges configured for all payment options.",
+            "examples": [
+              "true"
+            ]
+          },
+          "getTaxSpecification": {
+            "type": "string",
+            "description": "This flag is posted as true to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option.",
+            "examples": [
+              "true"
+            ]
+          },
+          "checkDownStatus": {
+            "type": "string",
+            "description": "This flag is posted as true to return the downtime of the payment options.",
+            "examples": [
+              "true"
+            ]
+          },
+          "checkCustomerEligibility": {
+            "type": "string",
+            "description": "This flag is posted as true to check the customer eligibility.",
+            "examples": [
+              "true"
+            ]
+          },
+          "filters": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Filters"
+              },
+              {}
+            ]
+          }
+        },
+        "description": "Defines optional flags to request extended payment details, additional charges, tax specifications, downtime status, and customer eligibility checks."
+      },
+      "Filters": {
+        "title": "Filters",
+        "required": [
+          "paymentOptions"
+        ],
+        "type": "object",
+        "properties": {
+          "paymentOptions": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentOptions"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "paymentOptions": {
+              "emi": {
+                "dc": "ICIC"
+              }
+            }
+          }
+        ],
+        "description": "Specifies filters for payment options, such as EMI or BNPL eligibility checks for specific banks or institutions."
+      },
+      "PaymentOptions": {
+        "title": "PaymentOptions",
+        "type": "object",
+        "properties": {
+          "emi": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Emi"
+              },
+              {}
+            ]
+          },
+          "bnpl": {
+            "type": "string",
+            "description": "This parameter must contain the list of banks or financial institutions for which eligibility check is regard. Include \"all\" for all the banks.",
+            "examples": [
+              "lazypay"
+            ]
+          }
+        },
+        "description": "Lists payment options and associated eligibility parameters for EMI and BNPL modes."
+      },
+      "Emi": {
+        "title": "Emi",
+        "type": "object",
+        "properties": {
+          "dc": {
+            "type": "string",
+            "description": "This parameter must contain the list of banks for which eligibility check is regard. Include \"all\" for all the banks.",
+            "examples": [
+              "ICIC"
+            ]
+          },
+          "cc": {
+            "type": "string",
+            "description": "This parameter must contain the list of banks for which eligibility check is regard. Include \"all\" for all the banks.",
+            "examples": [
+              "ICIC"
+            ]
+          },
+          "cardless": {
+            "type": "string",
+            "description": "This parameter must contain the list of banks for which eligibility check is regard. Include \"all\" for all the banks.",
+            "examples": [
+              "ICIC"
+            ]
+          }
+        },
+        "description": "Defines EMI-related eligibility checks for debit cards, credit cards, and cardless EMI options."
+      },
+      "UseCase2": {
+        "title": "UseCase2",
+        "required": [
+          "checkCustomerEligibility"
+        ],
+        "type": "object",
+        "properties": {
+          "checkCustomerEligibility": {
+            "type": "boolean"
+          }
+        }
+      },
+      "command": {
+        "title": "command",
+        "const": "get_checkout_details",
+        "type": "string",
+        "description": "The command to execute. For this API, it must always be 'get_checkout_details'.",
+        "examples": [
+          "get_checkout_details"
+        ]
+      },
+      "Content-Type": {
+        "title": "Content-Type",
+        "const": "application/x-www-form-urlencoded",
+        "type": "string",
+        "examples": [
+          "application/x-www-form-urlencoded"
+        ]
+      },
+      "form": {
+        "title": "form",
+        "const": 2,
+        "type": "integer",
+        "examples": [
+          2
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
+}
