@@ -1,7 +1,7 @@
 ---
 title: Registration Mandate for Cards - PACB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -77,4 +77,3 @@ For mandate registration using network tokens:
 > 📘 Note:
 >
 > Network token details cannot be passed during mandate registration. Use the Update SI API to add network token information after the mandate is registered.
-
