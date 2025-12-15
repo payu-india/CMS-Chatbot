@@ -1,5 +1,5 @@
 ---
-title: Cards Integration -CB
+title: SI Mandate - Cards CB Integration
 deprecated: false
 hidden: false
 metadata:
