@@ -556,3 +556,6 @@ When no refund exists for a transaction (auto refund disabled), the response for
 | 10220         | WALLET MONTHLY COUNT EXCEEDED                                  |
 | 10224         | WALLET YEARLY COUNT EXCEEDED                                   |
 | 13047         | WALLET_PER_TRANSACTION_LIMIT_EXCEEDED                          |
+| 13048         | WALLET_MAX_BAL_WALLET_LIMIT_EXCEEDED                           |
+
+<br />
