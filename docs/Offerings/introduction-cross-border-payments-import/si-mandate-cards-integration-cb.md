@@ -1,7 +1,7 @@
 ---
 title: SI Mandate - Cards CB Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
