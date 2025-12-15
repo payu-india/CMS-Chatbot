@@ -5,34 +5,11 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: Mandate Registration for Cards
-excerpt: >-
-  Standing Instruction (SI) mandate registration parameters for recurring card 
-  payments in S2S integration.
-deprecated: false
-hidden: false
-metadata:
-  title: S2S Mandate Registration for Cards
-  description: >-
-    Learn how to register card mandates for recurring payments using S2S integration with PayU.
-  keywords:
-    - Mandate registration
-    - Standing Instruction
-    - SI registration
-    - Recurring payments
-  robots: index
-next:
-  description: ''
----
-
-## Mandate Registration for Cards
-
 For Standing Instruction (SI) mandate registrations, append the following parameters to your basic S2S payload.
 
 **HTTP Method**: POST
 
-**Environment**
+### Environment
 
 |                        |                                                                     |
 | :--------------------- | :------------------------------------------------------------------ |
@@ -71,6 +48,11 @@ The following table lists all the request parameters for S2S mandate registratio
 | `si` | `String` This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain `1` for a successful consent. Without this parameter sent as `1`, subscription cannot be set up. | `1` |
 | `si_details` | `String` JSON object containing mandate details. This parameter represents mandatory details which need to be passed during registration transaction from merchant system to PayU. **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor. For more information, refer to [SI Parameter JSON Details](ref:si-parameter-json-details). | `{"billingAmount":"200.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01","siTokenRequestor":"2"}` |
 | `api_version` | `String` The API version for this API. Must be set to `7` for SI transactions. | `7` |
+| `udf1` | `String` User-defined field 1. For PACB: Buyer's PAN number. Character Limit: 255 | `AELPR****E` |
+| `udf2` | `String` User-defined field 2. Character Limit: 255 | |
+| `udf3` | `String` User-defined field 3. For PACB: Buyer's DOB (DD-MM-YYYY). Character Limit: 255 | `02-02-1980` |
+| `udf4` | `String` User-defined field 4. For PA2PA: Merchant legal entity name. Character Limit: 255 | `XYZ Pvt. Ltd.` |
+| `udf5` | `String` User-defined field 5. Invoice ID or invoice number. Character Limit: 255 | `098450845` |
 
 ### S2S Flow Parameters (Mandatory for S2S)
 
@@ -92,11 +74,6 @@ The following table lists all the request parameters for S2S mandate registratio
 | `country` | `String` Customer's country. Character Limit: 50 | `India` |
 | `zipcode` | `String` Billing address zip code. Character Limit: 20 | `400001` |
 | `curl` | `String` Cancel URL - page PayU redirects to if transaction is cancelled. | `https://example.com/cancel` |
-| `udf1` | `String` User-defined field 1. For PACB: Buyer's PAN number. Character Limit: 255 | `AELPR****E` |
-| `udf2` | `String` User-defined field 2. Character Limit: 255 | |
-| `udf3` | `String` User-defined field 3. For PACB: Buyer's DOB (DD-MM-YYYY). Character Limit: 255 | `02-02-1980` |
-| `udf4` | `String` User-defined field 4. Character Limit: 255 | |
-| `udf5` | `String` User-defined field 5. Invoice ID or invoice number. Character Limit: 255 | `098450845` |
 | `user_credentials` | `String` Format: `merchant_key:customer_id`. Optional during SI registration. Use if you want customers to pay using the card tokenized during mandate registration. | `PRiQvJ:customer_1112` |
 
 ### si_details Object Structure
@@ -153,14 +130,19 @@ curl --location --request POST 'https://test.payu.in/_payment' \
 --data-urlencode 'api_version=7' \
 --data-urlencode 'si=1' \
 --data-urlencode 'si_details={"billingAmount":"200.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01","siTokenRequestor":"2"}' \
+--data-urlencode 'udf1=AELPR****E' \
+--data-urlencode 'udf2=' \
+--data-urlencode 'udf3=02-02-1980' \
+--data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+--data-urlencode 'udf5=098450845' \
 --data-urlencode 'txn_s2s_flow=4' \
 --data-urlencode 's2s_client_ip=10.200.12.12' \
 --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
 --data-urlencode 'hash=YOUR_CALCULATED_HASH'
 ```
 
-> ⚠️ **Important**: 
-> 
+> ⚠️ **Important**:
+>
 > - Replace `YOUR_CALCULATED_HASH` with the actual hash value calculated using the formula: `SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||||si_details|SALT)`
 > - Ensure all placeholder values are replaced with actual transaction data
 > - The `si_details` JSON must be properly URL-encoded when sending the request
@@ -173,7 +155,7 @@ curl --location --request POST 'https://test.payu.in/_payment' \
 >
 > When `api_version=7` is passed in the payload, the `hash` must be generated with the following sequence:
 
-```
+```text
 SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||||si_details|SALT)
 ```
 
@@ -189,8 +171,3 @@ For mandate registration using network tokens:
 > 📘 Note:
 >
 > Network token details cannot be passed during mandate registration. Use the Update SI API to add network token information after the mandate is registered.
-
-
-
-
-
