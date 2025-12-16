@@ -1,8 +1,11 @@
 ---
-title: 'Integrate PayU Hosted Checkout - CB LRS '
+title: Integrate PayU Hosted Checkout
 deprecated: false
 hidden: false
 metadata:
+  title: 'Integrate PayU Hosted Checkout - CB LRS '
+  keywords:
+    - Integrate PayU Hosted Checkout for CB LRS
   robots: index
 ---
 PayU’s **_payment** API supports LRS transactions by capturing the following information in addition to the typical PayU Hosted Checkout transaction for cross-border paymentsL
