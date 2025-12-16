@@ -1,7 +1,7 @@
 ---
 title: Cards with PayU Tokenization - One-Time PACB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
