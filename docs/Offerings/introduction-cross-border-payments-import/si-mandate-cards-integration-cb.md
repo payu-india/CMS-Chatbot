@@ -11,24 +11,19 @@ This integration guide walks you through implementing Standing Instruction (SI) 
 
 Before starting the integration, ensure you have:
 
-- Active PayU merchant account with PACB enabled
-- Merchant Key and Salt from PayU dashboard
-- Test environment access for development
+* Active PayU merchant account with PACB enabled
+* Merchant Key and Salt from PayU dashboard
+* Test environment access for development
 
-## Step 1: Understand the Request Parameters
+## Step 1: Post the Request
 
-Before implementing, familiarize yourself with the required parameters. Refer to the [API Reference](doc:s2s-mandate-registration-cards) for complete parameter details.
+Before implementing, familiarize yourself with the required parameters. 
 
 ### Key Parameters for Mandate Registration
 
-- **Mandatory Parameters**: key, txnid, amount, productinfo, firstname, email, phone, surl, furl, hash, pg, bankcode, card details (ccnum, ccvv, ccname, ccexpmon, ccexpyr), si, si_details, api_version, udf1-udf5
-- **S2S Flow Parameters**: txn_s2s_flow, s2s_client_ip, s2s_device_info
-- **SI Details**: JSON object containing billing cycle, amounts, and dates
-
----
-
-
-## Step 3: Build the Request
+* **Mandatory Parameters**: key, txnid, amount, productinfo, firstname, email, phone, surl, furl, hash, pg, bankcode, card details (ccnum, ccvv, ccname, ccexpmon, ccexpyr), si, si_details, api_version, udf1-udf5
+* **S2S Flow Parameters**: txn_s2s_flow, s2s_client_ip, s2s_device_info
+* **SI Details**: JSON object containing billing cycle, amounts, and dates
 
 Construct the request payload with all required parameters. Ensure `si_details` is properly formatted as a JSON string.
 
@@ -64,12 +59,12 @@ Construct the request payload with all required parameters. Ensure `si_details` 
   "s2s_client_ip": "10.200.12.12",
   "s2s_device_info": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0",
   "hash": "generated_hash_value"
-}
+
 ```
 
----
+***
 
-## Step 4: Send the Request
+### Sample Request
 
 Send a POST request to PayU's API endpoint with the payload.
 
@@ -264,9 +259,9 @@ axios.post(url, qs.stringify(payload), {
 });
 ```
 
----
+***
 
-## Step 5: Handle the Response
+## Step 2: Check the Response from PayU
 
 The API returns a JSON response. For S2S4 flow, you'll receive an OTP enrollment response if the card requires OTP authentication.
 
@@ -312,9 +307,9 @@ The API returns a JSON response. For S2S4 flow, you'll receive an OTP enrollment
 
 For detailed response handling, refer to [S2S Response Handling](doc:s2s-response-handling).
 
----
+***
 
-## Step 6: Process Webhooks
+## Step 3: Configure Webhooks
 
 Configure webhooks to receive real-time transaction status updates. PayU will send POST requests to your webhook URL.
 
@@ -349,78 +344,28 @@ function validateWebhookHash($response, $salt) {
 
 For detailed webhook handling, refer to [S2S Webhook Handling](doc:s2s-webhook-handling).
 
----
+***
 
-## Step 7: Verify Mandate Registration
+## Step 4: Verify Mandate Registration
 
 After successful registration, verify the mandate status:
 
 1. **Check Response Parameters**:
-   - `status` should be "success"
-   - `payment_source` should be "sist"
-   - `cardToken` should be present
-   - `mihpayid` should be returned
+   * `status` should be "success"
+   * `payment_source` should be "sist"
+   * `cardToken` should be present
+   * `mihpayid` should be returned
 
 2. **Store Mandate Details**:
-   - Save `mihpayid` for future recurring payments
-   - Store `cardToken` if tokenization is enabled
-   - Save mandate expiry dates from `si_details`
+   * Save `mihpayid` for future recurring payments
+   * Store `cardToken` if tokenization is enabled
+   * Save mandate expiry dates from `si_details`
 
 3. **Test Recurring Payment**:
-   - Use the stored `mihpayid` to initiate a recurring payment
-   - Verify the payment processes successfully
+   * Use the stored `mihpayid` to initiate a recurring payment
+   * Verify the payment processes successfully
 
----
-
-## Best Practices
-
-### Security
-
-1. **Never expose sensitive data**: Keep merchant key and salt secure on the server
-2. **Validate all inputs**: Sanitize and validate all user inputs before processing
-3. **Use HTTPS**: Always use HTTPS for all API communications
-4. **Validate webhooks**: Always verify webhook hash before processing
-5. **PCI Compliance**: Ensure your infrastructure meets PCI-DSS requirements
-
-### Error Handling
-
-1. **Handle all error codes**: Implement comprehensive error handling
-2. **Log errors**: Maintain detailed logs for debugging
-3. **Retry logic**: Implement retry logic for transient failures
-4. **User feedback**: Provide clear error messages to users
-
-### Performance
-
-1. **Async processing**: Process webhooks asynchronously
-2. **Cache responses**: Cache static data where appropriate
-3. **Connection pooling**: Use connection pooling for API calls
-4. **Timeout handling**: Set appropriate timeouts for API calls
-
----
-
-## Testing
-
-### Test Environment
-
-Use the test environment for development and testing:
-
-- **Test URL**: `https://test.payu.in/_payment`
-- **Test Cards**: Use PayU's test card numbers
-- **Test Credentials**: Use test merchant key and salt
-
-### Test Scenarios
-
-1. **Successful Registration**: Test with valid card details
-2. **OTP Flow**: Test cards that require OTP authentication
-3. **Error Cases**: Test with invalid card details, expired cards, etc.
-4. **Webhook Handling**: Verify webhook processing
-5. **Edge Cases**: Test with various billing cycles and amounts
-
-### Test Cards
-
-Refer to PayU's test card documentation for available test cards.
-
----
+***
 
 ## Troubleshooting
 
@@ -439,35 +384,4 @@ Refer to PayU's test card documentation for available test cards.
 3. **Check response**: Review complete API responses
 4. **Test incrementally**: Test each step separately
 
----
-
-## Next Steps
-
-After successful mandate registration:
-
-1. **Process Recurring Payments**: Use the stored mandate to process recurring payments
-2. **Monitor Mandates**: Track mandate status and expiry dates
-3. **Handle Modifications**: Implement mandate modification and cancellation flows
-4. **Update Network Tokens**: Use Update SI API to add network token details if needed
-
-For processing recurring payments, refer to [Cross-Border Recurring Payments](doc:s2s-cross-border-recurring).
-
----
-
-## Additional Resources
-
-- [API Reference](doc:s2s-mandate-registration-cards)
-- [Response Handling](doc:s2s-response-handling)
-- [Webhook Handling](doc:s2s-webhook-handling)
-- [SI Parameter JSON Details](ref:si-parameter-json-details)
-- [Update SI API](ref:update-si-api)
-
----
-
-## Support
-
-For integration support:
-
-- **Documentation**: [PayU Developer Portal](https://docs.payu.in)
-- **Support**: Contact your PayU account manager
-- **Status**: Check [PayU Status Page](https://status.payu.in)
+<br />
