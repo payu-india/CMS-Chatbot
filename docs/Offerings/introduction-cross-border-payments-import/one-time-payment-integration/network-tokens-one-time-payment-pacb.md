@@ -1,7 +1,7 @@
 ---
 title: Network Tokens - One-Time Payment PACB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
