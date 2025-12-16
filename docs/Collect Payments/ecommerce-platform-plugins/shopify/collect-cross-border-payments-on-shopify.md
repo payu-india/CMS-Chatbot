@@ -16,8 +16,6 @@ next:
       title: Cross-Border Payments
       type: basic
 ---
-# &#x20; Introduction
-
 Shopify merchants located outside India can utilize PayU to provide Indian payment methods (UPI, Netbanking, Credit & Debit cards) on their checkouts and get the funds settled to an offshore bank account in any desired foreign currency, as part of PayU's [PA-Cross-border](https://docs.payu.in/docs/introduction-cross-border-payments-import#/) stack.
 
 ## Steps to accept payments from Indian customers on your Shopify Store
