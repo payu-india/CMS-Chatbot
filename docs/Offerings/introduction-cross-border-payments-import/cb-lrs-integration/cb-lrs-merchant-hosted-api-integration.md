@@ -1,8 +1,12 @@
 ---
-title: Integrate Merchant Hosted Checkout - Cross Border Transaction under LRS
+title: Integrate Merchant Hosted Checkout
 deprecated: false
 hidden: false
 metadata:
+  title: Integrate Merchant Hosted Checkout - Cross Border Transaction under LRS
+  keywords:
+    - Integrate Merchant Hosted Checkout for Cross Border Transaction under LRS
+    - Integrate Merchant Hosted Checkout for CB LRS
   robots: index
 ---
 PayU’s **_payment** API supports LRS implementation using the following parameters mandatorily in an S2S transaction:
