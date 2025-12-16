@@ -7,9 +7,10 @@ metadata:
 ---
 This section describes the customer journey for PayU Hosted integration on Desktop and Mobile devices.
 
-<Callout icon="📘" theme="info">
-  **Enable Banking Connect**: To enable Banking Connect or NBBL, contact your PayU Key Account Manager (KAM) or contact <Anchor label="PayU Support." target="_blank" href="https://help.payu.in">PayU Support.</Anchor>
-</Callout>
+> 📘 Notes:
+>
+> * **Enable Banking Connect**: To enable Banking Connect or NBBL, contact your PayU Key Account Manager (KAM) or contact <Anchor label="PayU Support." target="_blank" href="https://help.payu.in">PayU Support.</Anchor>
+> * **Collect customer mobile number**: For NBBL, you must collect the customer mobile number. For more information, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted) > [Web Integration](doc:web-integration-virtual-cards).
 
 ## &#x20;Desktop
 
