@@ -1,7 +1,7 @@
 ---
 title: Plain Cards with Tokenization Integration - One-Time PACB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
