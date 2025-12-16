@@ -5,48 +5,47 @@ hidden: false
 metadata:
   robots: index
 ---
-
 The UDF Update API allows you to update User Defined Fields (UDF1-UDF5 and additional UDFs if enabled) for a completed transaction.
 
 ## Use Cases
 
-- Update customer-related metadata after transaction completion
-- Add invoice or order details to transaction records
-- Store additional business-specific information against transactions
+* Update customer-related metadata after transaction completion
+* Add invoice or order details to transaction records
+* Store additional business-specific information against transactions
 
-> **Note:** To update UDF6-UDF10, the additional UDFs` merchant parameter must be enabled for your MID. To enable additional UDFs, contact your PayU Key Account Manager or PayU Support.
+> **Note:** To update UDF6-UDF10, the additional UDFs` merchant parameter must be enabled for your MID. To enable additional UDFs, contact your PayU Key Account Manager or <Anchor label="PayU Support" target="_blank" href="https://help.payu.in">PayU Support</Anchor>.
 
 ## Environment
 
-| Environment | URL |
-|-------------|-----|
-| Test | `https://pp1info.payu.in/merchant/postservice.php?form=2` |
-| Production | `https://info.payu.in/merchant/postservice.php?form=2` |
+| Environment | URL                                                       |
+| ----------- | --------------------------------------------------------- |
+| Test        | `https://pp1info.payu.in/merchant/postservice.php?form=2` |
+| Production  | `https://info.payu.in/merchant/postservice.php?form=2`    |
 
 ## Request Header Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| date<br/>`mandatory` | `String`<br/>Current date in RFC 2616 format (UTC). | `Sat, 13 Sep 2025 12:04:53 GMT` |
-| digest<br/>`mandatory` | `String`<br/>Base64 encoded SHA256 digest of the request body. | `TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=` |
-| authorization<br/>`mandatory` | `String`<br/>HMAC SHA512 authorization header containing merchant credentials. | `hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="<signature>"` |
-| Content-Type<br/>`mandatory` | `String`<br/>Content type of the request. | `application/json` |
+| Parameter                      | Description                                                                     | Example                                                                               |
+| ------------------------------ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| date<br />`mandatory`          | `String`<br />Current date in RFC 2616 format (UTC).                            | `Sat, 13 Sep 2025 12:04:53 GMT`                                                       |
+| digest<br />`mandatory`        | `String`<br />Base64 encoded SHA256 digest of the request body.                 | `TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=`                                        |
+| authorization<br />`mandatory` | `String`<br />HMAC SHA512 authorization header containing merchant credentials. | `hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="<signature>"` |
+| Content-Type<br />`mandatory`  | `String`<br />Content type of the request.                                      | `application/json`                                                                    |
 
 ## Request Body Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| key<br/>`mandatory` | `String`<br/>Merchant key provided by PayU. | `smsplus` |
-| hash<br/>`mandatory` | `String`<br/>SHA512 hash for request verification. | `17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b` |
-| command<br/>`mandatory` | `String`<br/>API command identifier. Must be `udf_update`. | `udf_update` |
-| var1<br/>`mandatory` | `String`<br/>Transaction ID (txnid) of the transaction to update. | `c82847d52a146dca3830` |
-| var2<br/>`optional` | `String`<br/>New value for UDF1. | `updatedudf2_again` |
-| var3<br/>`optional` | `String`<br/>New value for UDF2. | `fsdfdsfd` |
-| var4<br/>`optional` | `String`<br/>New value for UDF3. | `fdsfdsfdsfds` |
-| var5<br/>`optional` | `String`<br/>New value for UDF4. | `fdsfsdf` |
-| var6<br/>`optional` | `String`<br/>New value for UDF5. | `udf5value` |
-| var7<br/>`optional` | `String`<br/>New value for UDF6. | `fweew` |
-| var8<br/>`optional` | `String`<br/>New value for UDF7. | `dfweewd` |
+| Parameter                | Description                                                        | Example                                                                                                                            |
+| ------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| key<br />`mandatory`     | `String`<br />Merchant key provided by PayU.                       | `smsplus`                                                                                                                          |
+| hash<br />`mandatory`    | `String`<br />SHA512 hash for request verification.                | `17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b` |
+| command<br />`mandatory` | `String`<br />API command identifier. Must be `udf_update`.        | `udf_update`                                                                                                                       |
+| var1<br />`mandatory`    | `String`<br />Transaction ID (txnid) of the transaction to update. | `c82847d52a146dca3830`                                                                                                             |
+| var2<br />`optional`     | `String`<br />New value for UDF1.                                  | `updatedudf2_again`                                                                                                                |
+| var3<br />`optional`     | `String`<br />New value for UDF2.                                  | `fsdfdsfd`                                                                                                                         |
+| var4<br />`optional`     | `String`<br />New value for UDF3.                                  | `fdsfdsfdsfds`                                                                                                                     |
+| var5<br />`optional`     | `String`<br />New value for UDF4.                                  | `fdsfsdf`                                                                                                                          |
+| var6<br />`optional`     | `String`<br />New value for UDF5.                                  | `udf5value`                                                                                                                        |
+| var7<br />`optional`     | `String`<br />New value for UDF6.                                  | `fweew`                                                                                                                            |
+| var8<br />`optional`     | `String`<br />New value for UDF7.                                  | `dfweewd`                                                                                                                          |
 
 ## Hash Generation
 
@@ -101,7 +100,6 @@ data = {
 response = requests.post(url, headers=headers, data=data)
 print(response.json())
 ```
-
 ```csharp
 using System;
 using System.Net.Http;
@@ -170,7 +168,6 @@ const updateUdf = async () => {
 
 updateUdf();
 ```
-
 ```java
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -267,18 +264,18 @@ echo $response;
 
 ## Response Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| transaction_id | `String`<br/>Transaction ID that was updated. | `c82847d52a146dca3830` |
-| status | `String`<br/>Status message indicating success or failure. | `UDF values updated` |
-| udf1 | `String`<br/>Updated value of UDF1. | `updatedudf2_again` |
-| udf2 | `String`<br/>Updated value of UDF2. | `fsdfdsfd` |
-| udf3 | `String`<br/>Updated value of UDF3. | `fdsfdsfdsfds` |
-| udf4 | `String`<br/>Updated value of UDF4. | `fdsfsdf` |
-| udf5 | `String`<br/>Updated value of UDF5. | `` |
-| udf6 | `String`<br/>Updated value of UDF6 (if AdditionalNoOfUDFs enabled). | `fweew` |
-| udf7 | `String`<br/>Updated value of UDF7 (if AdditionalNoOfUDFs enabled). | `dfweewd` |
-| msg | `String`<br/>Error message returned on failure. | `Update not allowed on provided Field` |
+| Parameter      | Description                                                          | Example                                |
+| -------------- | -------------------------------------------------------------------- | -------------------------------------- |
+| transaction_id | `String`<br />Transaction ID that was updated.                       | `c82847d52a146dca3830`                 |
+| status         | `String`<br />Status message indicating success or failure.          | `UDF values updated`                   |
+| udf1           | `String`<br />Updated value of UDF1.                                 | `updatedudf2_again`                    |
+| udf2           | `String`<br />Updated value of UDF2.                                 | `fsdfdsfd`                             |
+| udf3           | `String`<br />Updated value of UDF3.                                 | `fdsfdsfdsfds`                         |
+| udf4           | `String`<br />Updated value of UDF4.                                 | `fdsfsdf`                              |
+| udf5           | `String`<br />Updated value of UDF5.                                 | ``                                     |
+| udf6           | `String`<br />Updated value of UDF6 (if AdditionalNoOfUDFs enabled). | `fweew`                                |
+| udf7           | `String`<br />Updated value of UDF7 (if AdditionalNoOfUDFs enabled). | `dfweewd`                              |
+| msg            | `String`<br />Error message returned on failure.                     | `Update not allowed on provided Field` |
 
 ## Sample Responses
 
@@ -298,7 +295,9 @@ When UDF values are updated successfully:
     "udf7": "fweew"
 }
 ```
+
 ### Failure scenarios
+
 #### Update Not Allowed
 
 When attempting to update a field that is not permitted:
@@ -341,4 +340,3 @@ When the merchant is not authorized:
 3. **Field Restrictions**: Some fields may be restricted from updates based on your merchant configuration. If you receive "Update not allowed on provided Field" error, contact PayU support.
 
 4. **Transaction Existence**: Ensure the transaction ID (var1) exists in the system before attempting to update UDF values.
-
