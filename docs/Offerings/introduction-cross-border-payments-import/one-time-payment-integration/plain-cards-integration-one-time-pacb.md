@@ -1,7 +1,7 @@
 ---
 title: Plain Cards Integration - One-Time PACB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -491,4 +491,3 @@ If any error message is displayed with an error code, refer to [Error Codes](ref
 > 📘 Reference
 >
 > For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
-
