@@ -1,5 +1,5 @@
 ---
-title: Customer Journey - PayU Hosted Checkout with LRS Integration
+title: Customer Journey - PayU Hosted Checkout
 deprecated: false
 hidden: false
 link:
