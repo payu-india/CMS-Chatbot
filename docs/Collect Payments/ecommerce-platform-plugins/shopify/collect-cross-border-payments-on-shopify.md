@@ -49,7 +49,7 @@ Implement the **Update UDF** API for cross-border payments to update the followi
 1. List your catalogue of products / SKUs in Indian National Rupees (INR) currency: Use [Shopify Markets](https://shopify.dev/docs/apps/build/markets) to manage regional pricing and present prices in INR to customers by creating an India-specific catalogue. For more information, refer to [Shopify Markets Documentation](https://shopify.dev/docs/apps/build/markets).
 2. [Optional] Limit visibility of PayU payment option only to Indian customers. You can utilize third-party apps on Shopify App store such as - [Localized Payments](https://apps.shopify.com/localized-payments), [HidePay](https://apps.shopify.com/hidepay) etc.
 
-# &#x20;FAQs
+## &#x20;FAQs
 
 ### How to manage refunds? Is there support for partial refunds?
 
