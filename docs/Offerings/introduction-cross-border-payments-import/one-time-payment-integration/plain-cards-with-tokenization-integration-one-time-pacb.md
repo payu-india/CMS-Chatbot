@@ -1,5 +1,5 @@
 ---
-title: Plain Cards with Tokenization Integration - One-Time PACB
+title: Plain Cards with Tokenization - One-Time PACB
 deprecated: false
 hidden: true
 metadata:
