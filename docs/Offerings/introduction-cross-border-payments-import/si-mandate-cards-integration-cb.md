@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This integration guide walks you through implementing Standing Instruction (SI) mandate registration for recurring card payments using PayU's Server-to-Server (S2S) integration with PACB (Payment Aggregator Cross Border) flow.
+This section describes the Registration consent transaction for recurring card payments using PayU's Server-to-Server (S2S) integration with PACB (Payment Aggregator Cross Border) flow.
 
 ## Prerequisites
 
