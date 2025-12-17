@@ -1,0 +1,637 @@
+---
+title: UPI Consent Transaction - CB
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
+This section describes step-by-step procedure to implement UPI Consent Transaction (SI mandate registration) for recurring UPI payments using PayU's Server-to-Server (S2S) integration with the Legacy Decoupled flow.
+
+## Prerequisites
+
+Before starting the integration, ensure you have:
+
+* Active PayU merchant account with UPI recurring payments enabled
+* Merchant Key and Salt from PayU dashboard
+* Test environment access for development
+* Understanding of UPI payment flow (Collect vs Intent)
+
+<Cards columns={3}>
+  <Card title="1. Post the Request" href="#step-1-post-the-request">
+    Send the UPI consent transaction request with S2S parameters.
+    <br />
+  </Card>
+  <Card title="2. Check Response from PayU" href="#step-2-check-the-response-from-payu">
+    Handle the response for UPI Collect and UPI Intent flows.
+    <br />
+  </Card>
+  <Card title="3. Configure Webhooks" href="#step-3-configure-webhooks">
+    Set up webhooks to receive transaction status updates.
+    <br />
+  </Card>
+  <Card title="4. Verify Mandate Registration" href="#step-4-verify-mandate-registration">
+    Confirm the mandate registration was successful.
+    <br />
+  </Card>
+</Cards>
+
+---
+
+## Step 1: Post the Request
+
+Before implementing, familiarize yourself with the required parameters.
+
+<Accordion title="Key Parameters for UPI Mandate Registration" icon="fa-list">
+
+**Mandatory Parameters:**
+- `key`, `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `lastname`
+- `surl`, `furl`, `hash`
+- `pg` (must be `UPI`)
+- `bankcode` (`UPI` for Collect, `INTENT` for Intent)
+- `si` (must be `1`)
+- `si_details` (JSON object with mandate details)
+- `api_version` (must be `7`)
+
+**UPI-Specific Parameters:**
+- `vpa` (mandatory for UPI Collect - customer's VPA handle)
+
+**S2S Flow Parameters (for UPI Intent):**
+- `txn_s2s_flow` = `4` (Legacy Decoupled flow)
+- `s2s_client_ip` (customer's source IP)
+- `s2s_device_info` (customer's device/user agent)
+
+</Accordion>
+
+<Accordion title="S2S Parameters" icon="fa-server">
+
+The following S2S parameters must be included for UPI Intent flow:
+
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| txn_s2s_flow<br/>`mandatory` | `Integer`<br/>This parameter must be passed with the value as `4` for Legacy Decoupled flow. | `4` |
+| s2s_client_ip<br/>`mandatory` | `String`<br/>This parameter must have the source IP of the customer. | `10.200.12.12` |
+| s2s_device_info<br/>`mandatory` | `String`<br/>This parameter must have the customer agent's device information. | `Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0` |
+
+</Accordion>
+
+<Accordion title="si_details JSON Object" icon="fa-code">
+
+The `si_details` parameter is a JSON object containing mandate details:
+
+```json
+{
+  "billingAmount": "10.00",
+  "billingCurrency": "INR",
+  "billingCycle": "MONTHLY",
+  "billingInterval": 1,
+  "paymentStartDate": "2025-06-05",
+  "paymentEndDate": "2025-12-01"
+}
+```
+
+| Field | Description | Example |
+|-------|-------------|---------|
+| billingAmount<br/>`mandatory` | `String`<br/>Maximum amount for recurring transactions. | `10.00` |
+| billingCurrency<br/>`mandatory` | `String`<br/>Currency code. | `INR` |
+| billingCycle<br/>`mandatory` | `String`<br/>Billing frequency: `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ADHOC`. | `MONTHLY` |
+| billingInterval<br/>`mandatory` | `Integer`<br/>Interval between billing cycles. | `1` |
+| paymentStartDate<br/>`mandatory` | `String`<br/>Mandate start date (YYYY-MM-DD). | `2025-06-05` |
+| paymentEndDate<br/>`mandatory` | `String`<br/>Mandate end date (YYYY-MM-DD). | `2025-12-01` |
+
+</Accordion>
+
+<Accordion title="Hash Generation" icon="fa-lock">
+
+For UPI consent transactions with `api_version=7`, generate the hash using the following formula:
+
+```
+HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)
+```
+
+> **Important**: The `si_details` JSON string must be included in the hash calculation.
+
+</Accordion>
+
+### Request Payload Structure
+
+#### UPI Collect Flow
+
+```json
+{
+  "key": "JPM7Fg",
+  "txnid": "upiConsentTxn12345",
+  "amount": "10.00",
+  "productinfo": "Monthly Subscription",
+  "firstname": "Ashish",
+  "lastname": "Verma",
+  "email": "test@payu.in",
+  "phone": "9988776655",
+  "surl": "https://example.com/success",
+  "furl": "https://example.com/failure",
+  "pg": "UPI",
+  "bankcode": "UPI",
+  "vpa": "customer@upi",
+  "api_version": "7",
+  "si": "1",
+  "si_details": "{\"billingAmount\":\"10.00\",\"billingCurrency\":\"INR\",\"billingCycle\":\"MONTHLY\",\"billingInterval\":1,\"paymentStartDate\":\"2025-06-05\",\"paymentEndDate\":\"2025-12-01\"}",
+  "hash": "generated_hash_value"
+}
+```
+
+#### UPI Intent Flow (with S2S Parameters)
+
+```json
+{
+  "key": "JPM7Fg",
+  "txnid": "upiIntentTxn12345",
+  "amount": "10.00",
+  "productinfo": "Monthly Subscription",
+  "firstname": "Ashish",
+  "lastname": "Verma",
+  "email": "test@payu.in",
+  "phone": "9988776655",
+  "surl": "https://example.com/success",
+  "furl": "https://example.com/failure",
+  "pg": "UPI",
+  "bankcode": "INTENT",
+  "api_version": "7",
+  "si": "1",
+  "si_details": "{\"billingAmount\":\"10.00\",\"billingCurrency\":\"INR\",\"billingCycle\":\"MONTHLY\",\"billingInterval\":1,\"paymentStartDate\":\"2025-06-05\",\"paymentEndDate\":\"2025-12-01\"}",
+  "txn_s2s_flow": "4",
+  "s2s_client_ip": "10.200.12.12",
+  "s2s_device_info": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0",
+  "hash": "generated_hash_value"
+}
+```
+
+---
+
+### Sample Requests
+
+<Accordion title="UPI Collect - cURL" icon="fa-code">
+
+```bash
+curl --location --request POST 'https://test.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=JPM7Fg' \
+--data-urlencode 'txnid=upiConsentTxn12345' \
+--data-urlencode 'amount=10.00' \
+--data-urlencode 'firstname=Ashish' \
+--data-urlencode 'lastname=Verma' \
+--data-urlencode 'email=test@payu.in' \
+--data-urlencode 'phone=9988776655' \
+--data-urlencode 'productinfo=Monthly Subscription' \
+--data-urlencode 'surl=https://example.com/success' \
+--data-urlencode 'furl=https://example.com/failure' \
+--data-urlencode 'pg=UPI' \
+--data-urlencode 'bankcode=UPI' \
+--data-urlencode 'vpa=customer@upi' \
+--data-urlencode 'api_version=7' \
+--data-urlencode 'si=1' \
+--data-urlencode 'si_details={"billingAmount":"10.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01"}' \
+--data-urlencode 'hash=YOUR_CALCULATED_HASH'
+```
+
+</Accordion>
+
+<Accordion title="UPI Intent - cURL" icon="fa-code">
+
+```bash
+curl --location --request POST 'https://test.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=JPM7Fg' \
+--data-urlencode 'txnid=upiIntentTxn12345' \
+--data-urlencode 'amount=10.00' \
+--data-urlencode 'firstname=Ashish' \
+--data-urlencode 'lastname=Verma' \
+--data-urlencode 'email=test@payu.in' \
+--data-urlencode 'phone=9988776655' \
+--data-urlencode 'productinfo=Monthly Subscription' \
+--data-urlencode 'surl=https://example.com/success' \
+--data-urlencode 'furl=https://example.com/failure' \
+--data-urlencode 'pg=UPI' \
+--data-urlencode 'bankcode=INTENT' \
+--data-urlencode 'api_version=7' \
+--data-urlencode 'si=1' \
+--data-urlencode 'si_details={"billingAmount":"10.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01"}' \
+--data-urlencode 'txn_s2s_flow=4' \
+--data-urlencode 's2s_client_ip=10.200.12.12' \
+--data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+--data-urlencode 'hash=YOUR_CALCULATED_HASH'
+```
+
+</Accordion>
+
+<Accordion title="Python Example" icon="fa-code">
+
+```python
+import requests
+import json
+import hashlib
+
+url = 'https://test.payu.in/_payment'
+
+# SI Details
+si_details = {
+    'billingAmount': '10.00',
+    'billingCurrency': 'INR',
+    'billingCycle': 'MONTHLY',
+    'billingInterval': 1,
+    'paymentStartDate': '2025-06-05',
+    'paymentEndDate': '2025-12-01'
+}
+
+si_details_json = json.dumps(si_details)
+
+# UPI Intent Payload with S2S parameters
+payload = {
+    'key': 'JPM7Fg',
+    'txnid': 'upiIntentTxn12345',
+    'amount': '10.00',
+    'productinfo': 'Monthly Subscription',
+    'firstname': 'Ashish',
+    'lastname': 'Verma',
+    'email': 'test@payu.in',
+    'phone': '9988776655',
+    'surl': 'https://example.com/success',
+    'furl': 'https://example.com/failure',
+    'pg': 'UPI',
+    'bankcode': 'INTENT',
+    'api_version': '7',
+    'si': '1',
+    'si_details': si_details_json,
+    'txn_s2s_flow': '4',
+    's2s_client_ip': '10.200.12.12',
+    's2s_device_info': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0',
+    'hash': hash_value  # Generated hash
+}
+
+headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+}
+
+response = requests.post(url, data=payload, headers=headers)
+
+if response.status_code == 200:
+    response_data = response.json()
+    print('Response:', response_data)
+    # Process the response
+else:
+    print(f'Error: {response.status_code}')
+```
+
+</Accordion>
+
+<Accordion title="PHP Example" icon="fa-code">
+
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$si_details = json_encode([
+    'billingAmount' => '10.00',
+    'billingCurrency' => 'INR',
+    'billingCycle' => 'MONTHLY',
+    'billingInterval' => 1,
+    'paymentStartDate' => '2025-06-05',
+    'paymentEndDate' => '2025-12-01'
+]);
+
+// UPI Intent with S2S parameters
+$data = [
+    'key' => 'JPM7Fg',
+    'txnid' => 'upiIntentTxn12345',
+    'amount' => '10.00',
+    'productinfo' => 'Monthly Subscription',
+    'firstname' => 'Ashish',
+    'lastname' => 'Verma',
+    'email' => 'test@payu.in',
+    'phone' => '9988776655',
+    'surl' => 'https://example.com/success',
+    'furl' => 'https://example.com/failure',
+    'pg' => 'UPI',
+    'bankcode' => 'INTENT',
+    'api_version' => '7',
+    'si' => '1',
+    'si_details' => $si_details,
+    'txn_s2s_flow' => '4',
+    's2s_client_ip' => $_SERVER['REMOTE_ADDR'],
+    's2s_device_info' => $_SERVER['HTTP_USER_AGENT'],
+    'hash' => $hash // Generated hash
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/x-www-form-urlencoded'
+]);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+if ($httpCode == 200) {
+    $responseData = json_decode($response, true);
+    print_r($responseData);
+} else {
+    echo "Error: " . $httpCode;
+}
+?>
+```
+
+</Accordion>
+
+<Accordion title="Node.js Example" icon="fa-code">
+
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const siDetails = JSON.stringify({
+    billingAmount: '10.00',
+    billingCurrency: 'INR',
+    billingCycle: 'MONTHLY',
+    billingInterval: 1,
+    paymentStartDate: '2025-06-05',
+    paymentEndDate: '2025-12-01'
+});
+
+// UPI Intent with S2S parameters
+const payload = {
+    key: 'JPM7Fg',
+    txnid: 'upiIntentTxn12345',
+    amount: '10.00',
+    productinfo: 'Monthly Subscription',
+    firstname: 'Ashish',
+    lastname: 'Verma',
+    email: 'test@payu.in',
+    phone: '9988776655',
+    surl: 'https://example.com/success',
+    furl: 'https://example.com/failure',
+    pg: 'UPI',
+    bankcode: 'INTENT',
+    api_version: '7',
+    si: '1',
+    si_details: siDetails,
+    txn_s2s_flow: '4',
+    s2s_client_ip: '10.200.12.12',
+    s2s_device_info: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0',
+    hash: hash // Generated hash
+};
+
+axios.post(url, qs.stringify(payload), {
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+})
+.then(response => {
+    console.log('Response:', response.data);
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+```
+
+</Accordion>
+
+> 📘 **Note**
+>
+> Before you make payment request to PayU, it is recommended to validate the UPI handle provided by your customer is eligible for recurring payment using the validateVPA API. For more information, refer to [Validate VPA API](ref:validate_vpa_api).
+
+---
+
+## Step 2: Check the Response from PayU
+
+The API returns different response structures for UPI Collect and UPI Intent flows.
+
+<Accordion title="UPI Collect Response" icon="fa-check">
+
+For UPI Collect, the response is returned in URL-encoded format (application/x-www-form-urlencoded):
+
+```json
+{
+    "mihpayid": "403993715525317379",
+    "mode": "UPI",
+    "status": "success",
+    "unmappedstatus": "captured",
+    "key": "JPM7Fg",
+    "txnid": "upiConsentTxn12345",
+    "amount": "10.00",
+    "discount": "0.00",
+    "net_amount_debit": "10",
+    "addedon": "2025-06-05 16:00:53",
+    "productinfo": "Monthly Subscription",
+    "firstname": "Ashish",
+    "lastname": "Verma",
+    "email": "test@payu.in",
+    "phone": "9988776655",
+    "hash": "response_hash_value",
+    "field1": "customer@upi",
+    "field7": "Transaction completed successfully",
+    "field9": "Transaction completed successfully",
+    "payment_source": "sist",
+    "PG_TYPE": "UPI-PG",
+    "bank_ref_num": "upiConsentTxn12345",
+    "bankcode": "UPI",
+    "error": "E000",
+    "error_Message": "No Error"
+}
+```
+
+</Accordion>
+
+<Accordion title="UPI Intent Response" icon="fa-check">
+
+For UPI Intent with S2S flow, the response is a JSON object containing the intent URI:
+
+```json
+{
+   "metaData": {
+      "message": null,
+      "referenceId": "5ae6e6d94b4b5f9dee282b95f6020c98",
+      "statusCode": null,
+      "txnId": "upiIntentTxn12345",
+      "txnStatus": "pending",
+      "unmappedStatus": "pending"
+   },
+   "result": {
+      "paymentId": "15257049438",
+      "merchantName": "Your Merchant Name",
+      "merchantVpa": "merchant@hdfcbank",
+      "amount": "10.00",
+      "intentURIData": "upi://mandate?pa=merchant@hdfcbank&pn=MERCHANT NAME&mn=&tid=upiIntentTxn12345&validitystart=05062025&validityend=01122025&am=10.00&amrule=MAX&recur=MONTHLY&recurvalue=30&recurtype=&tr=15257049438&cu=INR&mc=5411&tn=UPI Transaction for upiIntentTxn12345&mode=13&purpose=14&orgid=159240&rev=Y&block=N&txnType=CREATE",
+      "postToBank": {
+         "token": "C6ABAA6A-F0CE-432A-61C1-CFA48EDE847B",
+         "amount": "10.00",
+         "mihpayid": "5ae6e6d94b4b5f9dee282b95f6020c98",
+         "disableIntentSeamlessFailure": "0",
+         "payeeVpa": "merchant@hdfcbank",
+         "payeeName": "Your Merchant Name",
+         "additionalCharges": 0,
+         "transactionFee": "10.00"
+      },
+      "issuerUrl": "https://secure.payu.in/intentSeamlessHandler.php"
+   }
+}
+```
+
+</Accordion>
+
+<Accordion title="Response Handling Logic" icon="fa-info-circle">
+
+### Expected Values for Successful Registration
+
+| Response Parameter | Expected Value | Description |
+|--------------------|----------------|-------------|
+| status | `success` | Indicates that the transaction is successful with the UPI provider |
+| payment_source | `sist` | Indicates UPI details have been marked correctly for Standing Instruction |
+| mihpayid | `<mihpayid>` | PayU's transaction acknowledgment for a Consent transaction |
+
+### Handling UPI Intent Response
+
+1. Extract the `intentURIData` from the response
+2. Launch the UPI app using the intent URI
+3. Wait for the customer to approve the mandate
+4. Receive the final status via webhook or callback
+
+</Accordion>
+
+---
+
+## Step 3: Configure Webhooks
+
+Configure webhooks to receive real-time transaction status updates. PayU will send POST requests to your webhook URL.
+
+<Accordion title="Webhook Configuration" icon="fa-cog">
+
+Request the PayU Integration team to configure the webhook URL against the **ws_online_response** parameter. Once configured, you will receive transaction updates via HTTP POST.
+
+</Accordion>
+
+<Accordion title="Webhook Payload Example" icon="fa-code">
+
+```text
+unmappedstatus=success&phone=9988776655&txnid=upiConsentTxn12345&hash=84e335094bbcb2ddaa0f9a488eb338e143b273765d89c9dfa502402562d0b6f3c7935e28194ca92f380be7c84c3695415b106dcf52cb016a15fcf6adc98d724&status=success&firstname=Ashish&productinfo=Monthly Subscription&mode=UPI&amount=10.00&email=test@payu.in&mihpayid=403993715525317379&surl=https://example.com/success&payment_source=sist
+```
+
+</Accordion>
+
+<Accordion title="Webhook Validation" icon="fa-lock">
+
+Always validate the webhook hash before processing:
+
+```php
+function validateWebhookHash($response, $salt) {
+    $hashSequence = "status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key";
+    $hashVarsSeq = explode('|', $hashSequence);
+    
+    $hashString = $salt . '|';
+    foreach(array_reverse($hashVarsSeq) as $hashVar) {
+        $hashString .= isset($response[$hashVar]) ? $response[$hashVar] : '';
+        $hashString .= '|';
+    }
+    $hashString = rtrim($hashString, '|');
+    
+    $calculatedHash = strtolower(hash('sha512', $hashString));
+    $receivedHash = strtolower($response['hash']);
+    
+    return $calculatedHash === $receivedHash;
+}
+```
+
+</Accordion>
+
+<Accordion title="Handling Mandate Status Updates" icon="fa-bell">
+
+If the mandate is not confirmed by the customer or is rejected by the bank, the status is communicated as "failure" over webhook.
+
+| Status | Description |
+|--------|-------------|
+| `success` | Mandate registered successfully |
+| `failure` | Mandate registration failed or rejected |
+| `pending` | Mandate registration is pending customer approval |
+
+For more information, refer to [Set up WebHook to Receive Cancellation or Modification Update from the Issuer Bank](ref:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank).
+
+</Accordion>
+
+---
+
+## Step 4: Verify Mandate Registration
+
+After successful registration, verify the mandate status:
+
+<Accordion title="Verification Checklist" icon="fa-check-circle">
+
+1. **Check Response Parameters**:
+   - `status` should be `success`
+   - `payment_source` should be `sist`
+   - `mihpayid` should be returned
+
+2. **Store Mandate Details**:
+   - Save `mihpayid` for future recurring payments
+   - Save mandate expiry dates from `si_details`
+   - Store customer's VPA for reference
+
+3. **Test Subsequent Payment**:
+   - Use the stored mandate details to initiate a subsequent recurring payment
+   - Verify the payment processes successfully
+
+</Accordion>
+
+---
+
+## UPI Payment Limits
+
+<Accordion title="Transaction Limits" icon="fa-info-circle">
+
+| Transaction Type | Limit |
+|------------------|-------|
+| Auto-debit | Rs. 15,000 |
+| Auto-debit (Insurance premiums, Credit card bill payments) | Rs. 1,00,000 |
+| With PIN | Rs. 1,00,000 |
+
+</Accordion>
+
+---
+
+## Troubleshooting
+
+<Accordion title="Common Issues" icon="fa-exclamation-triangle">
+
+1. **Hash Mismatch**: Verify hash generation formula includes `si_details` and ensure all parameters are in correct order
+2. **Invalid si_details**: Ensure JSON is properly formatted and URL-encoded
+3. **VPA Validation Failed**: Use the [Validate VPA API](ref:validate_vpa_api) before initiating the transaction
+4. **Missing Parameters**: Verify all mandatory parameters are included
+5. **Webhook Not Received**: Verify webhook URL is accessible and properly configured
+6. **Intent URI Not Working**: Ensure the UPI app supports mandate creation
+
+</Accordion>
+
+<Accordion title="Debug Tips" icon="fa-bug">
+
+1. **Log all requests**: Log request payloads (excluding sensitive data)
+2. **Verify parameters**: Double-check all parameter values
+3. **Check response**: Review complete API responses
+4. **Test incrementally**: Test each flow (Collect vs Intent) separately
+5. **Validate VPA first**: Always validate the VPA handle before initiating consent transaction
+
+</Accordion>
+
+---
+
+## Related Documentation
+
+- [UPI Consent Transaction API Reference](ref:upi-recurring-payment-consent-transaction)
+- [SI Parameter JSON Details](ref:si-parameter-json-details)
+- [Manage UPI Recurring Transaction](ref:api-commands-to-manage-upi-recurring-transaction)
+- [Validate VPA API](ref:validate_vpa_api)
+- [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments)
+
+<br />
+
