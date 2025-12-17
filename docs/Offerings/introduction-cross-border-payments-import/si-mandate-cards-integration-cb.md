@@ -17,7 +17,7 @@ Before starting the integration, ensure you have:
 
 ## Step 1: Post the Request
 
-Before implementing, familiarize yourself with the required parameters. 
+Before implementing, familiarize yourself with the required parameters.
 
 ### Key Parameters for Mandate Registration
 
@@ -68,7 +68,6 @@ Construct the request payload with all required parameters. Ensure `si_details` 
 
 Send a POST request to PayU's API endpoint with the payload.
 
-### PHP Example
 
 ```php
 <?php
@@ -135,9 +134,6 @@ if ($httpCode == 200) {
 }
 ?>
 ```
-
-### Python Example
-
 ```python
 import requests
 import json
@@ -196,9 +192,6 @@ else:
     # Handle error
     print(f"Error: {response.status_code}")
 ```
-
-### Node.js Example
-
 ```javascript
 const axios = require('axios');
 const qs = require('querystring');
