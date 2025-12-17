@@ -1,8 +1,12 @@
 ---
-title: UPI Reserve Pay
+title: UPI Reserve Pay - Pre-Authorize Payments
 deprecated: false
 hidden: false
 metadata:
+  title: UPI Reserve Pay - Pre-Authorize Payments
+  keywords:
+    - UPI Reserve Pay - Pre-Authorize Payments
+    - UPI Pre-authorize Reserve Pay
   robots: index
 ---
 **UPI Reserve Pay** enables customers to securely block funds in their account for up to **90 days** at the time of transaction. The actual payment is deducted only when the merchant initiates a debit request. If the transaction is not completed, the reserved amount is automatically released back to the customer’s account.
