@@ -1,0 +1,464 @@
+---
+title: Auth Status Check API
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
+Use this API to retrieve 3DS2 authentication results when using the `auth_only=2` flow. Unlike 3DS1.0, 3DS2.0 cannot return the authentication response via the browser, so this API must be called to check the authentication status.
+<Callout icon="📘" theme="info">
+  **Notes**
+
+  * This API is specifically for `auth_only=2` flow. For `auth_only=1`, the authentication response is returned automatically.
+  * The `referenceId` is obtained from the initial payment response in `metaData.referenceId`.
+  * The hash must include the literal string `"admin"` as part of the hash calculation.
+  * Ensure the `Date` header matches the date used in hash calculation.
+  * For Type 2 (POST) requests, the `cres` parameter in the request body contains the CRes received from ACS.
+</Callout>
+
+
+**API Endpoint**
+
+| Environment | URL                                          |
+| :---------- | :------------------------------------------- |
+| Test        | `https://test.payu.in/decoupled/AuthData`    |
+| Production  | `https://secure.payu.in/decoupled/AuthData`  |
+
+HTTP Method: **GET** (Type 1) or **POST** (Type 2)
+
+
+## Request Types
+
+The AuthData API supports two request types based on the payment gateway:
+
+| Request Type | Method | Payment Gateways                  |
+| :----------- | :----- | :-------------------------------- |
+| Type 1       | GET    | Internal 3DSS and MPGS PGs        |
+| Type 2       | POST   | Cyber and Blazecard PGs           |
+
+***
+
+## Request Headers
+
+| Parameter                   | Description                                                                                      | Example                          |
+| :-------------------------- | :----------------------------------------------------------------------------------------------- | :------------------------------- |
+| key<br />`mandatory`        | `String`<br />Merchant key provided by PayU during onboarding.                                   | smsplus                          |
+| hash<br />`mandatory`       | `String`<br />SHA512 hash calculated using the formula: `sha512(key\|mihpayid\|admin\|date)`     | 5cfbd52bf5c9c11322d17868...      |
+| Date<br />`mandatory`       | `String`<br />Current date and time in UTC format.                                               | Tue, 07 Mar 2023 10:46:50 GMT    |
+| Content-Type<br />`conditional` | `String`<br />Required for POST requests (Type 2). Must be `application/json`.              | application/json                 |
+
+
+
+## Query Parameters (Type 1 - GET)
+
+| Parameter                   | Description                                                                                      | Example                            |
+| :-------------------------- | :----------------------------------------------------------------------------------------------- | :--------------------------------- |
+| referenceId<br />`mandatory`| `String`<br />The reference ID returned in the initial payment response (`metaData.referenceId`).| 7f40a6b79403b028e824dd18d610a4e7  |
+
+***
+
+## Request Body Parameters (Type 2 - POST)
+
+| Parameter               | Description                                                                                          | Example                |
+| :---------------------- | :--------------------------------------------------------------------------------------------------- | :--------------------- |
+| cres<br />`mandatory`   | `String`<br />Base64 encoded CRes (Challenge Response) received from ACS after authentication.       | eyJtZXNzYWdlVHlwZSI... |
+
+***
+
+## Hash Generation
+
+Generate the hash for the AuthData API using the following formula:
+
+```
+hash = SHA512(key | mihpayid | "admin" | date)
+```
+
+### Hash Generation Sample Code
+```javascript
+var mihpayid = '999000000000704';
+var merchantKey = "smsplus";
+var date = new Date();
+date = date.toUTCString();
+
+var hashString = merchantKey + "|" + mihpayid + "|" + "admin" + "|" + date;
+console.log("Hash string: " + hashString);
+
+var hashResult = CryptoJS.SHA512(hashString).toString(CryptoJS.enc.Hex);
+console.log("Hash: " + hashResult);
+
+// Set environment variables for request
+pm.environment.set("mihpayid", mihpayid);
+pm.environment.set("hash", hashResult);
+pm.environment.set("key", merchantKey);
+pm.environment.set("date", date);
+```
+```python
+import hashlib
+from datetime import datetime
+
+mihpayid = '999000000000704'
+merchant_key = 'smsplus'
+date = datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
+
+hash_string = f"{merchant_key}|{mihpayid}|admin|{date}"
+hash_result = hashlib.sha512(hash_string.encode()).hexdigest()
+
+print(f"Hash string: {hash_string}")
+print(f"Hash: {hash_result}")
+```
+```php
+<?php
+$mihpayid = '999000000000704';
+$merchantKey = 'smsplus';
+$date = gmdate('D, d M Y H:i:s') . ' GMT';
+
+$hashString = $merchantKey . '|' . $mihpayid . '|' . 'admin' . '|' . $date;
+$hash = hash('sha512', $hashString);
+
+echo "Hash string: " . $hashString . "\n";
+echo "Hash: " . $hash . "\n";
+?>
+```
+
+
+## Sample Request
+
+### Type 1 - GET Request (Internal 3DSS and MPGS PGs)
+
+```bash
+curl --location 'https://secure.payu.in/decoupled/AuthData?referenceId=7f40a6b79403b028e824dd18d610a4e7' \
+--header 'key: smsplus' \
+--header 'hash: 5cfbd52bf5c9c11322d17868e9f0f64a3e3504a53ab9718b12471287ac02fef2d324a2a52aefdde53f83c94ae424fc8170eeabcb91acfcc0793cc04323cf9d35' \
+--header 'Date: Tue, 07 Mar 2023 10:46:50 GMT'
+```
+```python
+import requests
+import hashlib
+from datetime import datetime
+
+url = 'https://secure.payu.in/decoupled/AuthData'
+
+mihpayid = '999000000000704'
+merchant_key = 'smsplus'
+reference_id = '7f40a6b79403b028e824dd18d610a4e7'
+date = datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
+
+# Generate hash
+hash_string = f"{merchant_key}|{mihpayid}|admin|{date}"
+hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
+
+headers = {
+    'key': merchant_key,
+    'hash': hash_value,
+    'Date': date
+}
+
+params = {
+    'referenceId': reference_id
+}
+
+response = requests.get(url, headers=headers, params=params)
+
+if response.status_code == 200:
+    print('Response:', response.json())
+else:
+    print(f'Error: {response.status_code}')
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        var url = "https://secure.payu.in/decoupled/AuthData";
+        var mihpayid = "999000000000704";
+        var merchantKey = "smsplus";
+        var referenceId = "7f40a6b79403b028e824dd18d610a4e7";
+        var date = DateTime.UtcNow.ToString("ddd, dd MMM yyyy HH:mm:ss") + " GMT";
+
+        // Generate hash
+        var hashString = $"{merchantKey}|{mihpayid}|admin|{date}";
+        var hashValue = ComputeSha512Hash(hashString);
+
+        using var client = new HttpClient();
+        client.DefaultRequestHeaders.Add("key", merchantKey);
+        client.DefaultRequestHeaders.Add("hash", hashValue);
+        client.DefaultRequestHeaders.Add("Date", date);
+
+        var response = await client.GetAsync($"{url}?referenceId={referenceId}");
+        var responseString = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(responseString);
+    }
+
+    static string ComputeSha512Hash(string input)
+    {
+        using var sha512 = SHA512.Create();
+        byte[] bytes = sha512.ComputeHash(Encoding.UTF8.GetBytes(input));
+        return BitConverter.ToString(bytes).Replace("-", "").ToLower();
+    }
+}
+```
+```javascript
+const crypto = require('crypto');
+const axios = require('axios');
+
+const url = 'https://secure.payu.in/decoupled/AuthData';
+const mihpayid = '999000000000704';
+const merchantKey = 'smsplus';
+const referenceId = '7f40a6b79403b028e824dd18d610a4e7';
+const date = new Date().toUTCString();
+
+// Generate hash
+const hashString = `${merchantKey}|${mihpayid}|admin|${date}`;
+const hashValue = crypto.createHash('sha512').update(hashString).digest('hex');
+
+axios.get(url, {
+    params: { referenceId: referenceId },
+    headers: {
+        'key': merchantKey,
+        'hash': hashValue,
+        'Date': date
+    }
+})
+.then(response => {
+    console.log('Response:', response.data);
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+```
+```java
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
+public class AuthDataApiGet {
+    public static void main(String[] args) throws Exception {
+        String baseUrl = "https://secure.payu.in/decoupled/AuthData";
+        String mihpayid = "999000000000704";
+        String merchantKey = "smsplus";
+        String referenceId = "7f40a6b79403b028e824dd18d610a4e7";
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss", Locale.US);
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        String date = sdf.format(new Date()) + " GMT";
+
+        // Generate hash
+        String hashString = merchantKey + "|" + mihpayid + "|admin|" + date;
+        String hashValue = sha512(hashString);
+
+        URL url = new URL(baseUrl + "?referenceId=" + referenceId);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("key", merchantKey);
+        conn.setRequestProperty("hash", hashValue);
+        conn.setRequestProperty("Date", date);
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String inputLine;
+        StringBuilder response = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        System.out.println("Response: " + response.toString());
+    }
+
+    private static String sha512(String input) throws Exception {
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        byte[] digest = md.digest(input.getBytes(StandardCharsets.UTF_8));
+        StringBuilder sb = new StringBuilder();
+        for (byte b : digest) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
+    }
+}
+```
+```php
+<?php
+$url = 'https://secure.payu.in/decoupled/AuthData';
+$mihpayid = '999000000000704';
+$merchantKey = 'smsplus';
+$referenceId = '7f40a6b79403b028e824dd18d610a4e7';
+$date = gmdate('D, d M Y H:i:s') . ' GMT';
+
+// Generate hash
+$hashString = $merchantKey . '|' . $mihpayid . '|' . 'admin' . '|' . $date;
+$hash = hash('sha512', $hashString);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url . '?referenceId=' . $referenceId);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'key: ' . $merchantKey,
+    'hash: ' . $hash,
+    'Date: ' . $date
+]);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+if ($httpCode == 200) {
+    echo $response;
+} else {
+    echo "Error: " . $httpCode;
+}
+?>
+```
+
+### Type 2 - POST Request (Cyber and Blazecard PGs)
+
+```bash
+curl --location 'https://secure.payu.in/decoupled/AuthData?referenceId=224845c3c891a0925d0554b390d70e71' \
+--header 'key: smsplus' \
+--header 'hash: 3f6759853702db56124ce7d1515e98cf7fdc58617253422a43c63f38aa7660e8a500bc97ba642ad3c1fb7d0a7264050b8cd28015c4448eb45c9d4cff2cdf61c1' \
+--header 'Date: Tue, 12 Mar 2024 10:54:29 GMT' \
+--header 'Content-Type: application/json' \
+--data '{
+    "cres": "eyJtZXNzYWdlVHlwZSI6IkNSZXMiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiJlYzI5NWMwNS0xNWViLTRjNjktYmYyNi1iMzQ4YzZjZmEwY2QiLCJ0cmFuc1N0YXR1cyI6IlkifQ=="
+}'
+```
+```python
+import requests
+import hashlib
+from datetime import datetime
+import json
+
+url = 'https://secure.payu.in/decoupled/AuthData'
+
+mihpayid = '999000000000704'
+merchant_key = 'smsplus'
+reference_id = '224845c3c891a0925d0554b390d70e71'
+date = datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
+
+# Generate hash
+hash_string = f"{merchant_key}|{mihpayid}|admin|{date}"
+hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
+
+headers = {
+    'key': merchant_key,
+    'hash': hash_value,
+    'Date': date,
+    'Content-Type': 'application/json'
+}
+
+params = {
+    'referenceId': reference_id
+}
+
+data = {
+    'cres': 'eyJtZXNzYWdlVHlwZSI6IkNSZXMiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiJlYzI5NWMwNS0xNWViLTRjNjktYmYyNi1iMzQ4YzZjZmEwY2QiLCJ0cmFuc1N0YXR1cyI6IlkifQ=='
+}
+
+response = requests.post(url, headers=headers, params=params, json=data)
+
+if response.status_code == 200:
+    print('Response:', response.json())
+else:
+    print(f'Error: {response.status_code}')
+```
+
+***
+
+## Response Parameters
+
+| Parameter                          | Description                                                                                          | Example                              |
+| :--------------------------------- | :--------------------------------------------------------------------------------------------------- | :----------------------------------- |
+| payuid<br />`String`               | PayU transaction ID for the authenticated transaction.                                               | 999000000000542                      |
+| eci<br />`String`                  | Electronic Commerce Indicator. Values: `05` (Visa), `02` (Mastercard) for successful authentication.| 05                                   |
+| cavv<br />`String`                 | Cardholder Authentication Verification Value. Base64 encoded authentication token.                   | AAIBBGOAZgAAAABkNWAgdQAAAAA=         |
+| threeDSTransStatus<br />`String`   | 3DS transaction status. See [Transaction Status Values](#transaction-status-values).                 | Y                                    |
+| threeDSTransStatusReason<br />`String` | Reason for transaction status (if not successful). Null for successful transactions.             | null                                 |
+| flowType<br />`String`             | Type of authentication flow: `Challenge` or `Frictionless`.                                          | Challenge                            |
+| threeDSTransID<br />`String`       | 3DS Transaction ID assigned by ACS.                                                                  | c3947b6b-9f19-40fa-b184-6c489a22bedc |
+| threeDSServerTransID<br />`String` | 3DS Server Transaction ID.                                                                           | 505bbed1-fea8-42f4-a182-6b22c4a828cd |
+| threeDSVersion<br />`String`       | Version of 3DS protocol used.                                                                        | 2.2.0                                |
+| status<br />`String`               | Overall API response status: `SUCCESS` or `FAILURE`.                                                 | SUCCESS                              |
+
+***
+
+## Transaction Status Values
+
+| Status | Description                                                      |
+| :----- | :--------------------------------------------------------------- |
+| Y      | Authentication successful                                        |
+| N      | Authentication failed or not attempted                           |
+| U      | Unable to authenticate (technical issues)                        |
+| A      | Authentication attempted but not verified                        |
+| C      | Challenge required                                               |
+| R      | Authentication rejected                                          |
+
+***
+
+## Sample Response
+
+### Success Response
+
+```json
+{
+    "payuid": "999000000000542",
+    "eci": "05",
+    "cavv": "AAIBBGOAZgAAAABkNWAgdQAAAAA=",
+    "threeDSTransStatus": "Y",
+    "threeDSTransStatusReason": null,
+    "flowType": "Challenge",
+    "threeDSTransID": "c3947b6b-9f19-40fa-b184-6c489a22bedc",
+    "threeDSServerTransID": "505bbed1-fea8-42f4-a182-6b22c4a828cd",
+    "threeDSVersion": "2.2.0",
+    "status": "SUCCESS"
+}
+```
+
+### Frictionless Flow Response
+
+```json
+{
+    "payuid": "999000000000543",
+    "eci": "05",
+    "cavv": "AAIBBGOAZgAAAABkNWAgdQAAAAA=",
+    "threeDSTransStatus": "Y",
+    "threeDSTransStatusReason": null,
+    "flowType": "Frictionless",
+    "threeDSTransID": "46299007-eeef-4b39-aba6-d170e095bdd2",
+    "threeDSServerTransID": "505bbed1-fea8-42f4-a182-6b22c4a828cd",
+    "threeDSVersion": "2.1.0",
+    "status": "SUCCESS"
+}
+```
+
+### Failed Authentication Response
+
+```json
+{
+    "payuid": "999000000000544",
+    "eci": null,
+    "cavv": null,
+    "threeDSTransStatus": "N",
+    "threeDSTransStatusReason": "Authentication failed",
+    "flowType": "Challenge",
+    "threeDSTransID": "c3947b6b-9f19-40fa-b184-6c489a22bedc",
+    "threeDSServerTransID": "505bbed1-fea8-42f4-a182-6b22c4a828cd",
+    "threeDSVersion": "2.2.0",
+    "status": "FAILURE"
+}
+```
+
+***
+
+
+
