@@ -1,5 +1,5 @@
 ---
-title: SI Mandate - Cards CB Integration
+title: Registrations Consent Transaction - Cards CB Integration
 deprecated: false
 hidden: true
 metadata:
