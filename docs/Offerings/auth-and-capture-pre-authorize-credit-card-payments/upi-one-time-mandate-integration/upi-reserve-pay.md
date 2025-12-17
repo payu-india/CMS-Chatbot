@@ -42,7 +42,7 @@ UPI Reserve Pay is ideal for scenarios where payment flexibility and fund assura
 
 ## Next Steps
 
-UPI Reserve Pay is supported on the following integrations:
+UPI Reserve Pay is supported on the following APIs:
 
 * **Merchant Hosted Checkout**: For more information, refer to [UPI Reserve Pay One-Time Mandate - Merchant Hosted](ref:upi-reserve-pay-one-time-mandate-merchant-hosted)
 * **PayU Hosted Checkout**: For more information, refer to [UPI Reserve Pay One-Time Mandate - PayU Hosted](ref:upi-reserve-pay-one-time-mandate-payu-hosted)
