@@ -45,6 +45,10 @@ The following table lists all the request parameters for S2S mandate registratio
 | ccname<br />`mandatory`           | `String`<br />Cardholder name as entered by the customer.                                                              | `Test User`                                                   |
 | ccexpmon<br />`mandatory`         | `String`<br />Card expiry month in MM format (01-12).                                                                  | `09`                                                          |
 | ccexpyr<br />`mandatory`          | `String`<br />Card expiry year in YYYY format.                                                                         | `2026`                                                        |
+| udf1<br/>`mandatory for LRS S2S transaction` | `String` The Permanent Account Number (PAN) of the buyer must be collected in this field. | AELPR****E |
+| udf3<br/>`mandatory for LRS S2S transaction` | `String` The date of birth of the buyer must be collected using this field in the DD-MM-YYYY format as on their Permanent Account Number (PAN).<br/><br/>_Note: This should be validated by PAN Status Check API_ | 02-02-1980 |
+| udf4<br/>`mandatory for payment aggregators` | `String` This parameter must include end merchant legal entity name. | XYZ Pvt. Ltd. |
+| udf5<br/>`mandatory` | `String` The invoice ID or invoice number must be collected using this field. | INV123456 |
 | txn_s2s_flow<br />`mandatory`     | `Integer`<br />Parameter to enable S2S flow. Set to `4` for S2S4 flow.                                                 | `4`                                                           |
 | s2s_client_ip<br />`mandatory`    | `String`<br />Client IP captured by merchant in S2S flow. Required for fraud detection.                                | `10.200.12.12`                                                |
 | s2s_device_info<br />`mandatory`  | `String`<br />User Agent captured by merchant in S2S flow.                                                             | `Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0` |
