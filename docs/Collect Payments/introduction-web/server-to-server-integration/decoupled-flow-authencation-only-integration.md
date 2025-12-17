@@ -1,7 +1,7 @@
 ---
 title: Decoupled Flow - Authencation Only Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -754,4 +754,3 @@ The response from PayU for Merchant Hosted and S2S integration is similar.
 ## Step 5. Verify the payment
 
 <Verify_Payment_Tabs />
-
