@@ -1,7 +1,7 @@
 ---
 title: UPI Consent Transaction - CB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -634,4 +634,3 @@ After successful registration, verify the mandate status:
 - [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments)
 
 <br />
-
