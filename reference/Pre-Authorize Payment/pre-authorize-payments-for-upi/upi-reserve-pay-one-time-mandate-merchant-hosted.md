@@ -1,7 +1,7 @@
 ---
 title: UPI Reserve Pay One-Time Mandate - Merchant Hosted
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: UPI Reserve Pay OTM using Merchant Hosted Integration
   keywords:
