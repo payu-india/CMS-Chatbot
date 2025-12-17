@@ -1,5 +1,5 @@
 ---
-title: Registrations Consent Transaction - Cards CB Integration
+title: Cards Consent Transaction - CB Integration
 deprecated: false
 hidden: true
 metadata:
