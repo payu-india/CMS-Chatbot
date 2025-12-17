@@ -10,20 +10,20 @@ metadata:
 next:
   description: ''
 ---
-You can split after a transaction is complete using the  payment\_split API by percentage, where you must ensure that the sum of the percentage of all splits is equal to 100.
+You can split after a transaction is complete using the  payment_split API by percentage, where you must ensure that the sum of the percentage of all splits is equal to 100.
 
 > 📘 Note:
-> 
+>
 > You must specify two decimal places for each split, but ensure the sum of the percentage of all splits is equal to 100.
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                        |
-| :------------------------- | :----------------------------------------------------- |
-| **Test Environment**       | \<https://test.payu.in/merchant/postservice.php?form=2> |
-| **Production Environment** | \<https://info.payu.in/merchant/postservice.php?form=2> |
+|                            |                                                                                                                  |
+| :------------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/merchant/postservice.php?form=2>](https://test.payu.in/merchant/postservice.php?form=2>) |
+| **Production Environment** | \<[https://info.payu.in/merchant/postservice.php?form=2>](https://info.payu.in/merchant/postservice.php?form=2>) |
 
 ## Request parameters
 
@@ -94,7 +94,7 @@ HTTP Method: **POST**
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>payuid</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>payuId</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>The payment identifier provided by PayU for the transaction.</p>
 </td>
@@ -117,7 +117,7 @@ HTTP Method: **POST**
 </table>
 `}</HTMLBlock>
 
-## Request structure for var1 to be included in payment\_split API
+## Request structure for var1 to be included in payment_split API
 
 The sample JSON structure for a split request:
 
