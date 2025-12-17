@@ -1,7 +1,7 @@
 ---
 title: Auth Status Check API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -459,6 +459,3 @@ else:
 ```
 
 ***
-
-
-
