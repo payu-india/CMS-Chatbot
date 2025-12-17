@@ -1,10 +1,10 @@
 ---
-title: Integrate Import with UPI Autopay for Cross Border Import
+title: Integrate Import with UPI Autopay
 excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: Integrate Import with UPI Autopay for PayUBiz
+  title: Integrate Import with UPI Autopay for Cross Border Import
   description: >-
     Learn how to integrate UPI Autopay with cross-border payments using PayUBiz.
     This guide provides detailed instructions, request parameters, and sample
