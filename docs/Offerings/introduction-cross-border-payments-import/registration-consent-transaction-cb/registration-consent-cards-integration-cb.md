@@ -28,7 +28,7 @@ Before implementing, familiarize yourself with the required parameters.
 Construct the request payload with all required parameters. Ensure `si_details` is properly formatted as a JSON string.
 
 <Callout icon="📘" theme="info">
-  **Reference:** For the API reference, refer to [Registration Mandate for Cards - CB](ref:registration-mandate-for-cards-pacb).
+  **Reference:** For the API reference, refer to <Anchor label="Registration Mandate for Cards - CB" target="_blank" href="ref:registration-mandate-for-cards-pacb">Registration Mandate for Cards - CB</Anchor>.
 </Callout>
 
 | Parameter                         | Description                                                                                                                                                                                                         | Example                                                       |
@@ -94,8 +94,6 @@ Construct the request payload with all required parameters. Ensure `si_details` 
   "hash": "generated_hash_value"
 
 ```
-
-***
 
 ### Sample Request
 
@@ -478,8 +476,6 @@ The API returns a JSON response. For S2S4 flow, you'll receive an OTP enrollment
 
 For detailed response handling, refer to [S2S Response Handling](doc:s2s-response-handling).
 
-***
-
 ## Step 3: Configure Webhooks
 
 Configure webhooks to receive real-time transaction status updates. PayU will send POST requests to your webhook URL.
@@ -515,8 +511,6 @@ function validateWebhookHash($response, $salt) {
 
 For detailed webhook handling, refer to [S2S Webhook Handling](doc:s2s-webhook-handling).
 
-***
-
 ## Step 4: Verify Mandate Registration
 
 After successful registration, verify the mandate status:
@@ -535,24 +529,5 @@ After successful registration, verify the mandate status:
 3. **Test Recurring Payment**:
    * Use the stored `mihpayid` to initiate a recurring payment
    * Verify the payment processes successfully
-
-***
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Hash Mismatch**: Verify hash generation formula and ensure all parameters are included
-2. **Invalid si_details**: Ensure JSON is properly formatted and URL-encoded
-3. **Missing Parameters**: Verify all mandatory parameters are included
-4. **OTP Issues**: Check OTP handling flow and bank redirects
-5. **Webhook Not Received**: Verify webhook URL is accessible and properly configured
-
-### Debug Tips
-
-1. **Log all requests**: Log request payloads (excluding sensitive data)
-2. **Verify parameters**: Double-check all parameter values
-3. **Check response**: Review complete API responses
-4. **Test incrementally**: Test each step separately
 
 <br />
