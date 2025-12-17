@@ -68,88 +68,57 @@ Construct the request payload with all required parameters. Ensure `si_details` 
 
 Send a POST request to PayU's API endpoint with the payload.
 
-
-```php
-<?php
-$url = 'https://test.payu.in/_payment';
-
-$data = [
-    'key' => 'JPM7Fg',
-    'txnid' => 'payuTestMandate12345',
-    'amount' => '100.00',
-    'productinfo' => 'Subscription Plan',
-    'firstname' => 'Ashish',
-    'email' => 'test@payu.in',
-    'phone' => '9988776655',
-    'surl' => 'https://example.com/success',
-    'furl' => 'https://example.com/failure',
-    'pg' => 'CC',
-    'bankcode' => 'CC',
-    'ccnum' => '5506900480000008',
-    'ccname' => 'Test User',
-    'ccvv' => '123',
-    'ccexpmon' => '09',
-    'ccexpyr' => '2026',
-    'api_version' => '7',
-    'si' => '1',
-    'si_details' => json_encode([
-        'billingAmount' => '200.00',
-        'billingCurrency' => 'INR',
-        'billingCycle' => 'ADHOC',
-        'billingInterval' => 1,
-        'paymentStartDate' => '2025-06-05',
-        'paymentEndDate' => '2025-12-01',
-        'siTokenRequestor' => '2'
-    ]),
-    'udf1' => 'AELPR****E',
-    'udf2' => '',
-    'udf3' => '02-02-1980',
-    'udf4' => 'XYZ Pvt. Ltd.',
-    'udf5' => '098450845',
-    'txn_s2s_flow' => '4',
-    's2s_client_ip' => $_SERVER['REMOTE_ADDR'],
-    's2s_device_info' => $_SERVER['HTTP_USER_AGENT'],
-    'hash' => $hash // Generated hash from Step 2
-];
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Content-Type: application/x-www-form-urlencoded'
-]);
-
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-
-// Handle response
-if ($httpCode == 200) {
-    $responseData = json_decode($response, true);
-    // Process the response
-} else {
-    // Handle error
-}
-?>
+```curl
+curl --location --request POST 'https://test.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=JPM7Fg' \
+--data-urlencode 'txnid=payuTestMandate12345' \
+--data-urlencode 'amount=100.00' \
+--data-urlencode 'firstname=Ashish' \
+--data-urlencode 'email=test@payu.in' \
+--data-urlencode 'phone=9988776655' \
+--data-urlencode 'productinfo=Subscription Plan' \
+--data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'pg=CC' \
+--data-urlencode 'bankcode=CC' \
+--data-urlencode 'ccnum=5506900480000008' \
+--data-urlencode 'ccname=Test User' \
+--data-urlencode 'ccvv=123' \
+--data-urlencode 'ccexpmon=09' \
+--data-urlencode 'ccexpyr=2026' \
+--data-urlencode 'api_version=7' \
+--data-urlencode 'si=1' \
+--data-urlencode 'si_details={"billingAmount":"200.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01","siTokenRequestor":"2"}' \
+--data-urlencode 'udf1=AELPR****E' \
+--data-urlencode 'udf2=' \
+--data-urlencode 'udf3=02-02-1980' \
+--data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+--data-urlencode 'udf5=098450845' \
+--data-urlencode 'txn_s2s_flow=4' \
+--data-urlencode 's2s_client_ip=10.200.12.12' \
+--data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+--data-urlencode 'hash=YOUR_CALCULATED_HASH'
 ```
 ```python
 import requests
-import json
 
-url = 'https://test.payu.in/_payment'
+url = "https://test.payu.in/_payment"
 
-payload = {
+headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+}
+
+data = {
     'key': 'JPM7Fg',
     'txnid': 'payuTestMandate12345',
     'amount': '100.00',
-    'productinfo': 'Subscription Plan',
     'firstname': 'Ashish',
     'email': 'test@payu.in',
     'phone': '9988776655',
-    'surl': 'https://example.com/success',
-    'furl': 'https://example.com/failure',
+    'productinfo': 'Subscription Plan',
+    'surl': 'https://test.payu.in/admin/test_response',
+    'furl': 'https://test.payu.in/admin/test_response',
     'pg': 'CC',
     'bankcode': 'CC',
     'ccnum': '5506900480000008',
@@ -159,15 +128,7 @@ payload = {
     'ccexpyr': '2026',
     'api_version': '7',
     'si': '1',
-    'si_details': json.dumps({
-        'billingAmount': '200.00',
-        'billingCurrency': 'INR',
-        'billingCycle': 'ADHOC',
-        'billingInterval': 1,
-        'paymentStartDate': '2025-06-05',
-        'paymentEndDate': '2025-12-01',
-        'siTokenRequestor': '2'
-    }),
+    'si_details': '{"billingAmount":"200.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01","siTokenRequestor":"2"}',
     'udf1': 'AELPR****E',
     'udf2': '',
     'udf3': '02-02-1980',
@@ -176,80 +137,264 @@ payload = {
     'txn_s2s_flow': '4',
     's2s_client_ip': '10.200.12.12',
     's2s_device_info': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0',
-    'hash': hash_value  # Generated hash from Step 2
+    'hash': 'YOUR_CALCULATED_HASH'
 }
 
-headers = {
-    'Content-Type': 'application/x-www-form-urlencoded'
+try:
+    response = requests.post(url, headers=headers, data=data)
+    print("Status Code:", response.status_code)
+    print("Response:", response.text)
+except requests.exceptions.RequestException as e:
+    print("Error:", e)
+```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        string url = "https://test.payu.in/_payment";
+        
+        using HttpClient client = new HttpClient();
+        
+        List<KeyValuePair<string, string>> postData = new List<KeyValuePair<string, string>>()
+        {
+            new KeyValuePair<string, string>("key", "JPM7Fg"),
+            new KeyValuePair<string, string>("txnid", "payuTestMandate12345"),
+            new KeyValuePair<string, string>("amount", "100.00"),
+            new KeyValuePair<string, string>("firstname", "Ashish"),
+            new KeyValuePair<string, string>("email", "test@payu.in"),
+            new KeyValuePair<string, string>("phone", "9988776655"),
+            new KeyValuePair<string, string>("productinfo", "Subscription Plan"),
+            new KeyValuePair<string, string>("surl", "https://test.payu.in/admin/test_response"),
+            new KeyValuePair<string, string>("furl", "https://test.payu.in/admin/test_response"),
+            new KeyValuePair<string, string>("pg", "CC"),
+            new KeyValuePair<string, string>("bankcode", "CC"),
+            new KeyValuePair<string, string>("ccnum", "5506900480000008"),
+            new KeyValuePair<string, string>("ccname", "Test User"),
+            new KeyValuePair<string, string>("ccvv", "123"),
+            new KeyValuePair<string, string>("ccexpmon", "09"),
+            new KeyValuePair<string, string>("ccexpyr", "2026"),
+            new KeyValuePair<string, string>("api_version", "7"),
+            new KeyValuePair<string, string>("si", "1"),
+            new KeyValuePair<string, string>("si_details", "{\"billingAmount\":\"200.00\",\"billingCurrency\":\"INR\",\"billingCycle\":\"ADHOC\",\"billingInterval\":1,\"paymentStartDate\":\"2025-06-05\",\"paymentEndDate\":\"2025-12-01\",\"siTokenRequestor\":\"2\"}"),
+            new KeyValuePair<string, string>("udf1", "AELPR****E"),
+            new KeyValuePair<string, string>("udf2", ""),
+            new KeyValuePair<string, string>("udf3", "02-02-1980"),
+            new KeyValuePair<string, string>("udf4", "XYZ Pvt. Ltd."),
+            new KeyValuePair<string, string>("udf5", "098450845"),
+            new KeyValuePair<string, string>("txn_s2s_flow", "4"),
+            new KeyValuePair<string, string>("s2s_client_ip", "10.200.12.12"),
+            new KeyValuePair<string, string>("s2s_device_info", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0"),
+            new KeyValuePair<string, string>("hash", "YOUR_CALCULATED_HASH")
+        };
+        
+        FormUrlEncodedContent content = new FormUrlEncodedContent(postData);
+        
+        try
+        {
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {(int)response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
+        }
+    }
 }
-
-response = requests.post(url, data=payload, headers=headers)
-
-if response.status_code == 200:
-    response_data = response.json()
-    # Process the response
-else:
-    # Handle error
-    print(f"Error: {response.status_code}")
 ```
 ```javascript
-const axios = require('axios');
-const qs = require('querystring');
-
-const url = 'https://test.payu.in/_payment';
-
-const payload = {
-    key: 'JPM7Fg',
-    txnid: 'payuTestMandate12345',
-    amount: '100.00',
-    productinfo: 'Subscription Plan',
-    firstname: 'Ashish',
-    email: 'test@payu.in',
-    phone: '9988776655',
-    surl: 'https://example.com/success',
-    furl: 'https://example.com/failure',
-    pg: 'CC',
-    bankcode: 'CC',
-    ccnum: '5506900480000008',
-    ccname: 'Test User',
-    ccvv: '123',
-    ccexpmon: '09',
-    ccexpyr: '2026',
-    api_version: '7',
-    si: '1',
-    si_details: JSON.stringify({
-        billingAmount: '200.00',
-        billingCurrency: 'INR',
-        billingCycle: 'ADHOC',
-        billingInterval: 1,
-        paymentStartDate: '2025-06-05',
-        paymentEndDate: '2025-12-01',
-        siTokenRequestor: '2'
-    }),
-    udf1: 'AELPR****E',
-    udf2: '',
-    udf3: '02-02-1980',
-    udf4: 'XYZ Pvt. Ltd.',
-    udf5: '098450845',
-    txn_s2s_flow: '4',
-    s2s_client_ip: '10.200.12.12',
-    s2s_device_info: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0',
-    hash: hash  // Generated hash from Step 2
-};
-
-axios.post(url, qs.stringify(payload), {
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+async function makePayment() {
+    const url = "https://test.payu.in/_payment";
+    
+    const formData = new URLSearchParams();
+    formData.append('key', 'JPM7Fg');
+    formData.append('txnid', 'payuTestMandate12345');
+    formData.append('amount', '100.00');
+    formData.append('firstname', 'Ashish');
+    formData.append('email', 'test@payu.in');
+    formData.append('phone', '9988776655');
+    formData.append('productinfo', 'Subscription Plan');
+    formData.append('surl', 'https://test.payu.in/admin/test_response');
+    formData.append('furl', 'https://test.payu.in/admin/test_response');
+    formData.append('pg', 'CC');
+    formData.append('bankcode', 'CC');
+    formData.append('ccnum', '5506900480000008');
+    formData.append('ccname', 'Test User');
+    formData.append('ccvv', '123');
+    formData.append('ccexpmon', '09');
+    formData.append('ccexpyr', '2026');
+    formData.append('api_version', '7');
+    formData.append('si', '1');
+    formData.append('si_details', '{"billingAmount":"200.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01","siTokenRequestor":"2"}');
+    formData.append('udf1', 'AELPR****E');
+    formData.append('udf2', '');
+    formData.append('udf3', '02-02-1980');
+    formData.append('udf4', 'XYZ Pvt. Ltd.');
+    formData.append('udf5', '098450845');
+    formData.append('txn_s2s_flow', '4');
+    formData.append('s2s_client_ip', '10.200.12.12');
+    formData.append('s2s_device_info', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0');
+    formData.append('hash', 'YOUR_CALCULATED_HASH');
+    
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData
+    };
+    
+    try {
+        const response = await fetch(url, requestOptions);
+        const responseText = await response.text();
+        
+        console.log('Status Code:', response.status);
+        console.log('Response:', responseText);
+    } catch (error) {
+        console.error('Error:', error);
     }
-})
-.then(response => {
-    console.log('Response:', response.data);
-    // Process the response
-})
-.catch(error => {
-    console.error('Error:', error);
-    // Handle error
-});
+}
+
+makePayment();
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
+
+public class PayUPayment {
+    public static void main(String[] args) {
+        try {
+            String url = "https://test.payu.in/_payment";
+            URL obj = new URL(url);
+            HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+            
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setDoOutput(true);
+            
+            StringBuilder postData = new StringBuilder();
+            postData.append("key=").append(URLEncoder.encode("JPM7Fg", StandardCharsets.UTF_8));
+            postData.append("&txnid=").append(URLEncoder.encode("payuTestMandate12345", StandardCharsets.UTF_8));
+            postData.append("&amount=").append(URLEncoder.encode("100.00", StandardCharsets.UTF_8));
+            postData.append("&firstname=").append(URLEncoder.encode("Ashish", StandardCharsets.UTF_8));
+            postData.append("&email=").append(URLEncoder.encode("test@payu.in", StandardCharsets.UTF_8));
+            postData.append("&phone=").append(URLEncoder.encode("9988776655", StandardCharsets.UTF_8));
+            postData.append("&productinfo=").append(URLEncoder.encode("Subscription Plan", StandardCharsets.UTF_8));
+            postData.append("&surl=").append(URLEncoder.encode("https://test.payu.in/admin/test_response", StandardCharsets.UTF_8));
+            postData.append("&furl=").append(URLEncoder.encode("https://test.payu.in/admin/test_response", StandardCharsets.UTF_8));
+            postData.append("&pg=").append(URLEncoder.encode("CC", StandardCharsets.UTF_8));
+            postData.append("&bankcode=").append(URLEncoder.encode("CC", StandardCharsets.UTF_8));
+            postData.append("&ccnum=").append(URLEncoder.encode("5506900480000008", StandardCharsets.UTF_8));
+            postData.append("&ccname=").append(URLEncoder.encode("Test User", StandardCharsets.UTF_8));
+            postData.append("&ccvv=").append(URLEncoder.encode("123", StandardCharsets.UTF_8));
+            postData.append("&ccexpmon=").append(URLEncoder.encode("09", StandardCharsets.UTF_8));
+            postData.append("&ccexpyr=").append(URLEncoder.encode("2026", StandardCharsets.UTF_8));
+            postData.append("&api_version=").append(URLEncoder.encode("7", StandardCharsets.UTF_8));
+            postData.append("&si=").append(URLEncoder.encode("1", StandardCharsets.UTF_8));
+            postData.append("&si_details=").append(URLEncoder.encode("{\"billingAmount\":\"200.00\",\"billingCurrency\":\"INR\",\"billingCycle\":\"ADHOC\",\"billingInterval\":1,\"paymentStartDate\":\"2025-06-05\",\"paymentEndDate\":\"2025-12-01\",\"siTokenRequestor\":\"2\"}", StandardCharsets.UTF_8));
+            postData.append("&udf1=").append(URLEncoder.encode("AELPR****E", StandardCharsets.UTF_8));
+            postData.append("&udf2=").append(URLEncoder.encode("", StandardCharsets.UTF_8));
+            postData.append("&udf3=").append(URLEncoder.encode("02-02-1980", StandardCharsets.UTF_8));
+            postData.append("&udf4=").append(URLEncoder.encode("XYZ Pvt. Ltd.", StandardCharsets.UTF_8));
+            postData.append("&udf5=").append(URLEncoder.encode("098450845", StandardCharsets.UTF_8));
+            postData.append("&txn_s2s_flow=").append(URLEncoder.encode("4", StandardCharsets.UTF_8));
+            postData.append("&s2s_client_ip=").append(URLEncoder.encode("10.200.12.12", StandardCharsets.UTF_8));
+            postData.append("&s2s_device_info=").append(URLEncoder.encode("Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0", StandardCharsets.UTF_8));
+            postData.append("&hash=").append(URLEncoder.encode("YOUR_CALCULATED_HASH", StandardCharsets.UTF_8));
+            
+            try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
+                wr.writeBytes(postData.toString());
+                wr.flush();
+            }
+            
+            int responseCode = connection.getResponseCode();
+            System.out.println("Status Code: " + responseCode);
+            
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+            
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            
+            System.out.println("Response: " + response.toString());
+            
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://test.payu.in/_payment";
+
+$postData = array(
+    'key' => 'JPM7Fg',
+    'txnid' => 'payuTestMandate12345',
+    'amount' => '100.00',
+    'firstname' => 'Ashish',
+    'email' => 'test@payu.in',
+    'phone' => '9988776655',
+    'productinfo' => 'Subscription Plan',
+    'surl' => 'https://test.payu.in/admin/test_response',
+    'furl' => 'https://test.payu.in/admin/test_response',
+    'pg' => 'CC',
+    'bankcode' => 'CC',
+    'ccnum' => '5506900480000008',
+    'ccname' => 'Test User',
+    'ccvv' => '123',
+    'ccexpmon' => '09',
+    'ccexpyr' => '2026',
+    'api_version' => '7',
+    'si' => '1',
+    'si_details' => '{"billingAmount":"200.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01","siTokenRequestor":"2"}',
+    'udf1' => 'AELPR****E',
+    'udf2' => '',
+    'udf3' => '02-02-1980',
+    'udf4' => 'XYZ Pvt. Ltd.',
+    'udf5' => '098450845',
+    'txn_s2s_flow' => '4',
+    's2s_client_ip' => '10.200.12.12',
+    's2s_device_info' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0',
+    'hash' => 'YOUR_CALCULATED_HASH'
+);
+
+$options = array(
+    'http' => array(
+        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method' => 'POST',
+        'content' => http_build_query($postData)
+    )
+);
+
+$context = stream_context_create($options);
+
+try {
+    $result = file_get_contents($url, false, $context);
+    
+    if ($result === FALSE) {
+        echo "Error: Failed to make request\n";
+    } else {
+        $http_response_header = $http_response_header ?? [];
+        echo "Status: " . (isset($http_response_header[0]) ? $http_response_header[0] : 'Unknown') . "\n";
+        echo "Response: " . $result . "\n";
+    }
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage() . "\n";
+}
+?>
 ```
 
 ***
