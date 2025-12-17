@@ -13,17 +13,17 @@ next:
 You must specify two decimal places for each split, but ensure the sum split amounts are equal to the transaction amount.
 
 > 📘 Note:
-> 
+>
 > You must specify two decimal places for each split, but ensure the sum of the percentage of all splits is equal to 100.
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                        |
-| :------------------------- | :----------------------------------------------------- |
-| **Test Environment**       | \<https://test.payu.in/merchant/postservice.php?form=2> |
-| **Production Environment** | \<https://info.payu.in/merchant/postservice.php?form=2> |
+|                            |                                                                                                                  |
+| :------------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/merchant/postservice.php?form=2>](https://test.payu.in/merchant/postservice.php?form=2>) |
+| **Production Environment** | \<[https://info.payu.in/merchant/postservice.php?form=2>](https://info.payu.in/merchant/postservice.php?form=2>) |
 
 ## Request parameters
 
@@ -96,7 +96,7 @@ The **var1** parameter is in JSON format. The fields in the JSON format are desc
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>payuid</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>payuId</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>The payment identifier provided by PayU for the transaction.</p>
 </td>
@@ -120,7 +120,7 @@ The **var1** parameter is in JSON format. The fields in the JSON format are desc
 </table>
 `}</HTMLBlock>
 
-## Request structure for var1 to be included in payment\_split API
+## Request structure for var1 to be included in payment_split API
 
 ```plaintext
 {  "type": "absolute",  
