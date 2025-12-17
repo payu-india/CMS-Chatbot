@@ -1,5 +1,5 @@
 ---
-title: UPI Reserve Pay - Pre-Authorize Payments
+title: UPI Reserve Pay
 deprecated: false
 hidden: false
 metadata:
