@@ -42,6 +42,10 @@ Post the payment parameters to PayU's `_payment` API endpoint with tokenization 
 
 **Content Type**: application/x-www-form-urlencoded
 
+<Callout icon="📘" theme="info">
+  **Reference:** For more information, refer to <Anchor label="One-Time Payment for Cards - CB" target="_blank" href="ref:one-time-payment-for-cards-pacb-integration">One-Time Payment for Cards - CB</Anchor>.
+</Callout>
+
 <Accordion title="Request Parameters" icon="fa-table">
   | Parameter                          | Description                                                                                                            | Example                                                       |
   | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
@@ -420,7 +424,6 @@ After the payment is complete, verify the transaction status and retrieve the st
 <br />
 
 <br />
-
 
 <Accordion title="Retrieve Stored Token" icon="fa-credit-card">
   After a successful transaction with `store_card=1`, use the **Get User Cards API** to retrieve the stored token for future transactions.
