@@ -52,6 +52,10 @@ Post the payment parameters to PayU's `_payment` API endpoint with the stored Pa
   **Content Type**: application/x-www-form-urlencoded
 </Accordion>
 
+<Callout icon="📘" theme="info">
+  **Reference:** For more information, refer to <Anchor label="One-Time Payment for Cards - CB" target="_blank" href="ref:one-time-payment-for-cards-pacb-integration">One-Time Payment for Cards - CB</Anchor>.
+</Callout>
+
 <Accordion title="Request Parameters" icon="fa-table">
   | Parameter                               | Description                                                                                                            | Example                                                       |
   | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
