@@ -83,8 +83,38 @@ The `si_details` parameter is a JSON object containing the following fields:
 
 The sample code block for S2S mandate registration for cards is similar to the following:
 
-
-
+```curl
+curl --location --request POST 'https://test.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=JPM7Fg' \
+--data-urlencode 'txnid=payuTestMandate12345' \
+--data-urlencode 'amount=100.00' \
+--data-urlencode 'firstname=Ashish' \
+--data-urlencode 'email=test@payu.in' \
+--data-urlencode 'phone=9988776655' \
+--data-urlencode 'productinfo=Subscription Plan' \
+--data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'pg=CC' \
+--data-urlencode 'bankcode=CC' \
+--data-urlencode 'ccnum=5506900480000008' \
+--data-urlencode 'ccname=Test User' \
+--data-urlencode 'ccvv=123' \
+--data-urlencode 'ccexpmon=09' \
+--data-urlencode 'ccexpyr=2026' \
+--data-urlencode 'api_version=7' \
+--data-urlencode 'si=1' \
+--data-urlencode 'si_details={"billingAmount":"200.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01","siTokenRequestor":"2"}' \
+--data-urlencode 'udf1=AELPR****E' \
+--data-urlencode 'udf2=' \
+--data-urlencode 'udf3=02-02-1980' \
+--data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+--data-urlencode 'udf5=098450845' \
+--data-urlencode 'txn_s2s_flow=4' \
+--data-urlencode 's2s_client_ip=10.200.12.12' \
+--data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+--data-urlencode 'hash=YOUR_CALCULATED_HASH'
+```
 ```python
 import requests
 
