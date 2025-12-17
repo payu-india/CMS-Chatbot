@@ -1,7 +1,7 @@
 ---
 title: UPI Reserve Pay
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
