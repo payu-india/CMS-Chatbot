@@ -1,7 +1,7 @@
 ---
 title: UPI Reserve Pay One-Time Mandate - PayU Hosted
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: UPI Reserve Pay One-Time Mandate - PayU Hosted
   keywords:
