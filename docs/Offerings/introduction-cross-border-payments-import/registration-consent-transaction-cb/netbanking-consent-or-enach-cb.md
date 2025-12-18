@@ -1,5 +1,5 @@
 ---
-title: NetBanking Consent or ENACH - CB
+title: Net Banking Consent transaction - CB
 deprecated: false
 hidden: true
 metadata:
@@ -498,5 +498,3 @@ After successful registration, verify the mandate status:
      * Use the stored mandate details to initiate a subsequent recurring payment
      * Verify the payment processes successfully
 </Accordion>
-
-
