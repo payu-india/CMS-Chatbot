@@ -140,12 +140,12 @@ next:
 <tr><td>Standard Chartered Bank</td><td>EMISCB12</td><td>12 Months</td><td>15</td><td>2500</td><td>N/A</td><td>1 percent</td><td>N/A</td></tr>
 <tr><td>Standard Chartered Bank</td><td>EMISCB18</td><td>18 Months</td><td>15</td><td>2500</td><td>N/A</td><td>1 percent</td><td>N/A</td></tr>
 <tr><td>Standard Chartered Bank</td><td>EMISCB24</td><td>24 Months</td><td>15</td><td>2500</td><td>N/A</td><td>1 percent</td><td>N/A</td></tr>
-<tr><td>State Bank of India</td><td>SBI03</td><td>3 Months</td><td>17</td><td>2500</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
-<tr><td>State Bank of India</td><td>SBI06</td><td>6 months</td><td>16</td><td>2500</td><td>N/A</td><td>Rs. 69</td><td>N/A</td></tr>
-<tr><td>State Bank of India</td><td>SBI09</td><td>9 months</td><td>16</td><td>2500</td><td>N/A</td><td>Rs. 99</td><td>N/A</td></tr>
-<tr><td>State Bank of India</td><td>SBI12</td><td>12 months</td><td>15.50</td><td>2500</td><td>N/A</td><td>Rs. 99</td><td>N/A</td></tr>
+<tr><td>State Bank of India</td><td>SBI03</td><td>3 Months</td><td>16.75</td><td>2500</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+<tr><td>State Bank of India</td><td>SBI06</td><td>6 months</td><td>16</td><td>2500</td><td>N/A</td><td>Rs. 40</td><td>N/A</td></tr>
+<tr><td>State Bank of India</td><td>SBI09</td><td>9 months</td><td>16</td><td>2500</td><td>N/A</td><td>Rs. 79</td><td>N/A</td></tr>
+<tr><td>State Bank of India</td><td>SBI12</td><td>12 months</td><td>15.50</td><td>2500</td><td>N/A</td><td>Rs. 159</td><td>N/A</td></tr>
 <tr><td>State Bank of India</td><td>SBI18</td><td>18 Months</td><td>15.50</td><td>10000</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
-<tr><td>State Bank of India</td><td>SBI24</td><td>24 months</td><td>15.50</td><td>10000</td><td>N/A</td><td>Rs. 269</td><td>N/A</td></tr>
+<tr><td>State Bank of India</td><td>SBI24</td><td>24 months</td><td>15.50</td><td>10000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
 <tr><td>Yes Bank</td><td>EMIY03</td><td>3 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 249</td><td>N/A</td></tr>
 <tr><td>Yes Bank</td><td>EMIY06</td><td>6 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 249</td><td>N/A</td></tr>
 <tr><td>Yes Bank</td><td>EMIY09</td><td>9 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 249</td><td>N/A</td></tr>
@@ -177,6 +177,10 @@ next:
 <tr><td>Axio</td><td>AXIO12</td><td>12 months</td><td>N/A</td><td>99</td><td>60000</td><td>N/A</td></tr>
 <tr><td>Axio</td><td>AXIO18</td><td>18 months</td><td>N/A</td><td>99</td><td>60000</td><td>N/A</td></tr>
 <tr><td>Axio</td><td>AXIO24</td><td>24 months</td><td>N/A</td><td>99</td><td>60000</td><td>N/A</td></tr>
+<tr><td>FIBE EMI</td><td>FIBECL03</td><td>3 months</td><td>N/A</td><td>7000</td><td>500000</td><td>N/A</td></tr>
+<tr><td>FIBE EMI</td><td>FIBECL06</td><td>6 months</td><td>N/A</td><td>7000</td><td>500000</td><td>N/A</td></tr>
+<tr><td>FIBE EMI</td><td>FIBECL09</td><td>9 months</td><td>N/A</td><td>7000</td><td>500000</td><td>N/A</td></tr>
+<tr><td>FIBE EMI</td><td>FIBECL12</td><td>12 months</td><td>N/A</td><td>7000</td><td>500000</td><td>N/A</td></tr>
 <tr><td>HDFC Cardless EMI</td><td>HDFCCL03</td><td>3 months</td><td>16</td><td>5000</td><td>500000</td><td>Rs. 299</td></tr>
 <tr><td>HDFC Cardless EMI</td><td>HDFCCL06</td><td>6 months</td><td>16</td><td>5000</td><td>500000</td><td>Rs. 299</td></tr>
 <tr><td>HDFC Cardless EMI</td><td>HDFCCL09</td><td>9 months</td><td>16</td><td>5000</td><td>500000</td><td>Rs. 299</td></tr>
@@ -186,6 +190,14 @@ next:
 <tr><td>Home Credit Ujjwal EMI Card</td><td>HMECDT06</td><td>6 Months</td><td>25</td><td>4000</td><td>99999999</td><td>Rs. 299</td></tr>
 <tr><td>Home Credit Ujjwal EMI Card</td><td>HMECDT09</td><td>9 Months</td><td>25</td><td>4000</td><td>99999999</td><td>Rs. 299</td></tr>
 <tr><td>Home Credit Ujjwal EMI Card</td><td>HMECDT12</td><td>12 Months</td><td>25</td><td>4000</td><td>99999999</td><td>Rs. 299</td></tr>
+<tr><td>ICICI Cardless EMI</td><td>ICICCL03</td><td>3 months</td><td>18</td><td>7000</td><td>500000</td><td>N/A</td></tr>
+<tr><td>ICICI Cardless EMI</td><td>ICICCL06</td><td>6 months</td><td>18</td><td>7000</td><td>500000</td><td>N/A</td></tr>
+<tr><td>ICICI Cardless EMI</td><td>ICICCL09</td><td>9 months</td><td>18</td><td>7000</td><td>500000</td><td>N/A</td></tr>
+<tr><td>ICICI Cardless EMI</td><td>ICICCL12</td><td>12 months</td><td>18</td><td>7000</td><td>500000</td><td>N/A</td></tr>
+<tr><td>IDFC Cardless EMI</td><td>IDFCCL03</td><td>3 months</td><td>23</td><td>10000</td><td>50000</td><td>N/A</td></tr>
+<tr><td>IDFC Cardless EMI</td><td>IDFCCL06</td><td>6 months</td><td>23</td><td>10000</td><td>50000</td><td>N/A</td></tr>
+<tr><td>IDFC Cardless EMI</td><td>IDFCCL09</td><td>9 months</td><td>23</td><td>10000</td><td>50000</td><td>N/A</td></tr>
+<tr><td>IDFC Cardless EMI</td><td>IDFCCL12</td><td>12 months</td><td>23</td><td>10000</td><td>50000</td><td>N/A</td></tr>
 <tr><td>LazyPay EMI</td><td>LPEMI</td><td>LazyPay Emi</td><td>N/A</td><td>3000</td><td>100000</td><td>N/A</td></tr>
 <tr><td>LazyPay EMI</td><td>LPEMI03</td><td>3 months</td><td>N/A</td><td>3000</td><td>60000</td><td>N/A</td></tr>
 <tr><td>LazyPay EMI</td><td>LPEMI06</td><td>6 months</td><td>N/A</td><td>6000</td><td>100000</td><td>N/A</td></tr>
