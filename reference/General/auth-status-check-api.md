@@ -6,8 +6,9 @@ metadata:
   robots: index
 ---
 Use this API to retrieve 3DS2 authentication results when using the `auth_only=2` flow. Unlike 3DS1.0, 3DS2.0 cannot return the authentication response via the browser, so this API must be called to check the authentication status.
+
 <Callout icon="📘" theme="info">
-  **Notes**
+  **Notes:**
 
   * This API is specifically for `auth_only=2` flow. For `auth_only=1`, the authentication response is returned automatically.
   * The `referenceId` is obtained from the initial payment response in `metaData.referenceId`.
@@ -16,52 +17,48 @@ Use this API to retrieve 3DS2 authentication results when using the `auth_only=2
   * For Type 2 (POST) requests, the `cres` parameter in the request body contains the CRes received from ACS.
 </Callout>
 
-
 **API Endpoint**
 
-| Environment | URL                                          |
-| :---------- | :------------------------------------------- |
-| Test        | `https://test.payu.in/decoupled/AuthData`    |
-| Production  | `https://secure.payu.in/decoupled/AuthData`  |
+| Environment | URL                                         |
+| :---------- | :------------------------------------------ |
+| Test        | `https://test.payu.in/decoupled/AuthData`   |
+| Production  | `https://secure.payu.in/decoupled/AuthData` |
 
 HTTP Method: **GET** (Type 1) or **POST** (Type 2)
-
 
 ## Request Types
 
 The AuthData API supports two request types based on the payment gateway:
 
-| Request Type | Method | Payment Gateways                  |
-| :----------- | :----- | :-------------------------------- |
-| Type 1       | GET    | Internal 3DSS and MPGS PGs        |
-| Type 2       | POST   | Cyber and Blazecard PGs           |
+| Request Type | Method | Payment Gateways           |
+| :----------- | :----- | :------------------------- |
+| Type 1       | GET    | Internal 3DSS and MPGS PGs |
+| Type 2       | POST   | Cyber and Blazecard PGs    |
 
 ***
 
 ## Request Headers
 
-| Parameter                   | Description                                                                                      | Example                          |
-| :-------------------------- | :----------------------------------------------------------------------------------------------- | :------------------------------- |
-| key<br />`mandatory`        | `String`<br />Merchant key provided by PayU during onboarding.                                   | smsplus                          |
-| hash<br />`mandatory`       | `String`<br />SHA512 hash calculated using the formula: `sha512(key\|mihpayid\|admin\|date)`     | 5cfbd52bf5c9c11322d17868...      |
-| Date<br />`mandatory`       | `String`<br />Current date and time in UTC format.                                               | Tue, 07 Mar 2023 10:46:50 GMT    |
-| Content-Type<br />`conditional` | `String`<br />Required for POST requests (Type 2). Must be `application/json`.              | application/json                 |
-
-
+| Parameter                       | Description                                                                                  | Example                       |
+| :------------------------------ | :------------------------------------------------------------------------------------------- | :---------------------------- |
+| key<br />`mandatory`            | `String`<br />Merchant key provided by PayU during onboarding.                               | smsplus                       |
+| hash<br />`mandatory`           | `String`<br />SHA512 hash calculated using the formula: `sha512(key\|mihpayid\|admin\|date)` | 5cfbd52bf5c9c11322d17868...   |
+| Date<br />`mandatory`           | `String`<br />Current date and time in UTC format.                                           | Tue, 07 Mar 2023 10:46:50 GMT |
+| Content-Type<br />`conditional` | `String`<br />Required for POST requests (Type 2). Must be `application/json`.               | application/json              |
 
 ## Query Parameters (Type 1 - GET)
 
-| Parameter                   | Description                                                                                      | Example                            |
-| :-------------------------- | :----------------------------------------------------------------------------------------------- | :--------------------------------- |
-| referenceId<br />`mandatory`| `String`<br />The reference ID returned in the initial payment response (`metaData.referenceId`).| 7f40a6b79403b028e824dd18d610a4e7  |
+| Parameter                    | Description                                                                                       | Example                          |
+| :--------------------------- | :------------------------------------------------------------------------------------------------ | :------------------------------- |
+| referenceId<br />`mandatory` | `String`<br />The reference ID returned in the initial payment response (`metaData.referenceId`). | 7f40a6b79403b028e824dd18d610a4e7 |
 
 ***
 
 ## Request Body Parameters (Type 2 - POST)
 
-| Parameter               | Description                                                                                          | Example                |
-| :---------------------- | :--------------------------------------------------------------------------------------------------- | :--------------------- |
-| cres<br />`mandatory`   | `String`<br />Base64 encoded CRes (Challenge Response) received from ACS after authentication.       | eyJtZXNzYWdlVHlwZSI... |
+| Parameter             | Description                                                                                    | Example                |
+| :-------------------- | :--------------------------------------------------------------------------------------------- | :--------------------- |
+| cres<br />`mandatory` | `String`<br />Base64 encoded CRes (Challenge Response) received from ACS after authentication. | eyJtZXNzYWdlVHlwZSI... |
 
 ***
 
@@ -74,6 +71,7 @@ hash = SHA512(key | mihpayid | "admin" | date)
 ```
 
 ### Hash Generation Sample Code
+
 ```javascript
 var mihpayid = '999000000000704';
 var merchantKey = "smsplus";
@@ -119,7 +117,6 @@ echo "Hash string: " . $hashString . "\n";
 echo "Hash: " . $hash . "\n";
 ?>
 ```
-
 
 ## Sample Request
 
@@ -377,31 +374,31 @@ else:
 
 ## Response Parameters
 
-| Parameter                          | Description                                                                                          | Example                              |
-| :--------------------------------- | :--------------------------------------------------------------------------------------------------- | :----------------------------------- |
-| payuid<br />`String`               | PayU transaction ID for the authenticated transaction.                                               | 999000000000542                      |
-| eci<br />`String`                  | Electronic Commerce Indicator. Values: `05` (Visa), `02` (Mastercard) for successful authentication.| 05                                   |
-| cavv<br />`String`                 | Cardholder Authentication Verification Value. Base64 encoded authentication token.                   | AAIBBGOAZgAAAABkNWAgdQAAAAA=         |
-| threeDSTransStatus<br />`String`   | 3DS transaction status. See [Transaction Status Values](#transaction-status-values).                 | Y                                    |
-| threeDSTransStatusReason<br />`String` | Reason for transaction status (if not successful). Null for successful transactions.             | null                                 |
-| flowType<br />`String`             | Type of authentication flow: `Challenge` or `Frictionless`.                                          | Challenge                            |
-| threeDSTransID<br />`String`       | 3DS Transaction ID assigned by ACS.                                                                  | c3947b6b-9f19-40fa-b184-6c489a22bedc |
-| threeDSServerTransID<br />`String` | 3DS Server Transaction ID.                                                                           | 505bbed1-fea8-42f4-a182-6b22c4a828cd |
-| threeDSVersion<br />`String`       | Version of 3DS protocol used.                                                                        | 2.2.0                                |
-| status<br />`String`               | Overall API response status: `SUCCESS` or `FAILURE`.                                                 | SUCCESS                              |
+| Parameter                              | Description                                                                                          | Example                              |
+| :------------------------------------- | :--------------------------------------------------------------------------------------------------- | :----------------------------------- |
+| payuid<br />`String`                   | PayU transaction ID for the authenticated transaction.                                               | 999000000000542                      |
+| eci<br />`String`                      | Electronic Commerce Indicator. Values: `05` (Visa), `02` (Mastercard) for successful authentication. | 05                                   |
+| cavv<br />`String`                     | Cardholder Authentication Verification Value. Base64 encoded authentication token.                   | AAIBBGOAZgAAAABkNWAgdQAAAAA=         |
+| threeDSTransStatus<br />`String`       | 3DS transaction status. See [Transaction Status Values](#transaction-status-values).                 | Y                                    |
+| threeDSTransStatusReason<br />`String` | Reason for transaction status (if not successful). Null for successful transactions.                 | null                                 |
+| flowType<br />`String`                 | Type of authentication flow: `Challenge` or `Frictionless`.                                          | Challenge                            |
+| threeDSTransID<br />`String`           | 3DS Transaction ID assigned by ACS.                                                                  | c3947b6b-9f19-40fa-b184-6c489a22bedc |
+| threeDSServerTransID<br />`String`     | 3DS Server Transaction ID.                                                                           | 505bbed1-fea8-42f4-a182-6b22c4a828cd |
+| threeDSVersion<br />`String`           | Version of 3DS protocol used.                                                                        | 2.2.0                                |
+| status<br />`String`                   | Overall API response status: `SUCCESS` or `FAILURE`.                                                 | SUCCESS                              |
 
 ***
 
 ## Transaction Status Values
 
-| Status | Description                                                      |
-| :----- | :--------------------------------------------------------------- |
-| Y      | Authentication successful                                        |
-| N      | Authentication failed or not attempted                           |
-| U      | Unable to authenticate (technical issues)                        |
-| A      | Authentication attempted but not verified                        |
-| C      | Challenge required                                               |
-| R      | Authentication rejected                                          |
+| Status | Description                               |
+| :----- | :---------------------------------------- |
+| Y      | Authentication successful                 |
+| N      | Authentication failed or not attempted    |
+| U      | Unable to authenticate (technical issues) |
+| A      | Authentication attempted but not verified |
+| C      | Challenge required                        |
+| R      | Authentication rejected                   |
 
 ***
 
