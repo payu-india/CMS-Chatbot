@@ -1,17 +1,16 @@
 ---
 title: PayU Hosted Checkout - CB
-excerpt: ''
 api:
   file: merchant-hosted-40.json
   operationId: PayUHostedCheckout
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The Collect Payment API (**_payment** API) can be used to collect payments for the Cross Border Payments. The **buyer_type_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
 
