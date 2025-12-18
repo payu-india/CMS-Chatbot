@@ -25,17 +25,6 @@ Use this API to retrieve 3DS2 authentication results when using the `auth_only=2
 
 HTTP Method:  **POST** 
 
-## Request Types
-
-The AuthData API supports two request types based on the payment gateway:
-
-| Request Type | Method | Payment Gateways           |
-| :----------- | :----- | :------------------------- |
-| Type 1       | GET    | Internal 3DSS and MPGS PGs |
-| Type 2       | POST   | Cyber and Blazecard PGs    |
-
-***
-
 ## Request Headers
 
 | Parameter                       | Description                                                                                  | Example                       |
