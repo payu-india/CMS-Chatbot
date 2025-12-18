@@ -34,45 +34,50 @@ next:
       title: Introduction
       type: basic
 ---
----
-title: Payment Consent Transaction using PayU Hosted Checkout
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Payment Consent Transaction using PayU Hosted Checkout
-  description: >-
-    Learn how to set up a Payment Consent or Registration transaction using PayU
-    Hosted Checkout. This API documentation provides detailed instructions for
-    integrating PayU's payment consent feature, enabling seamless recurring and
-    subscription payments.
-  keywords:
-    - PayU Payment Consent API
-    - ' PayU Hosted Checkout Subscription Registration Transaction'
-    - ' Payment Consent Transaction for PayU Hosted Checkout'
-    - ' PayU recurring payments registration transaction'
-    - ' PayU hosted checkout subscription payments registration'
-    - ' PayU hosted checkout subscription transaction consent'
-    - ' Prebuilt Autopay integration'
-    - ' Autopay for UPI non-PACB flow'
-    - ' Pre-built Autopay Consent Transaction'
-    - ' PayU Hosted Autopay'
-    - ' Autopay for PayU Hosted non-PACB flow'
-    - ' PayU Hosted Autopay Consent Transaction'
-  robots: index
-next:
-  description: ''
-  pages:
-    - slug: customer-experience-and-workflow-recurring-payments
-      title: Customer Experience and Workflow
-      type: basic
-    - slug: introduction-recurring-payments-integration
-      title: Introduction
-      type: basic
----
-
 This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration.
-/re
+
+<Callout icon="👍" theme="okay">
+  Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge:
+
+  <HTMLBlock>{`
+            <style>
+            .tooltip-btn {
+                position: relative;
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold; /* Added this line */
+            }
+            .tooltip-btn:hover::after {
+                content: attr(data-tooltip);
+                position: absolute;
+                bottom: 125%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #333;
+                color: white;
+                padding: 5px 10px;
+                border-radius: 4px;
+                white-space: nowrap;
+                font-size: 12px;
+                z-index: 1;
+            }
+            </style>
+
+            <button onclick="window.open('https://payu.in/subscription', '_blank')" 
+                    class="tooltip-btn" 
+                    data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
+                Click Here to Generate Code
+            </button>
+  `}</HTMLBlock>
+
+
+</Callout>
+
+<br />
 
 HTTP Method: **POST**
 
