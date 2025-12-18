@@ -70,16 +70,18 @@ next:
       title: Introduction
       type: basic
 ---
+
 This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration.
+/re
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                                     |
-| :------------------------- | :------------------------------------------------------------------ |
-| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
-| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+|                            |                                                                    |
+| :------------------------- | :----------------------------------------------------------------- |
+| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
 
 ## Request parameters
 
@@ -347,7 +349,7 @@ For parameters address1, address2, city, state, country, product info, email, an
 
 * Characters: A to Z, a to z, 0 to 9
 * – (Minus)
-* \_ (Underscore)
+* _ (Underscore)
 * @ ()
 * / (Slash)
 * (Space)
