@@ -14,7 +14,6 @@ Use this API to retrieve 3DS2 authentication results when using the `auth_only=2
   * The `referenceId` is obtained from the initial payment response in `metaData.referenceId`.
   * The hash must include the literal string `"admin"` as part of the hash calculation.
   * Ensure the `Date` header matches the date used in hash calculation.
-  * For Type 2 (POST) requests, the `cres` parameter in the request body contains the CRes received from ACS.
 </Callout>
 
 **API Endpoint**
@@ -24,7 +23,7 @@ Use this API to retrieve 3DS2 authentication results when using the `auth_only=2
 | Test        | `https://test.payu.in/decoupled/AuthData`   |
 | Production  | `https://secure.payu.in/decoupled/AuthData` |
 
-HTTP Method: **GET** (Type 1) or **POST** (Type 2)
+HTTP Method:  **POST** 
 
 ## Request Types
 
@@ -46,7 +45,7 @@ The AuthData API supports two request types based on the payment gateway:
 | Date<br />`mandatory`           | `String`<br />Current date and time in UTC format.                                           | Tue, 07 Mar 2023 10:46:50 GMT |
 | Content-Type<br />`conditional` | `String`<br />Required for POST requests (Type 2). Must be `application/json`.               | application/json              |
 
-## Request Body Parameters 
+## Request Body Parameters
 
 | Parameter                    | Description                                                                                       | Example                          |
 | :--------------------------- | :------------------------------------------------------------------------------------------------ | :------------------------------- |
