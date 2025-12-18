@@ -12,6 +12,47 @@ next:
 ---
 PayU Checkout Plus is the most convenient way to collect payment on your website. Add the inline JS script to your website’s header section, then call the bolt.launch() function and pass the transaction data objects when your customers click the payment button. PayU will take care of the payment and returns to your page when it is done.
 
+<Callout icon="👍" theme="okay">
+  Automatically generate code including hashing for your eCommerce website to integrate Checkout Plus with zero coding knowledge:
+
+  <HTMLBlock>{`
+            <style>
+            .tooltip-btn {
+                position: relative;
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold; /* Added this line */
+            }
+            .tooltip-btn:hover::after {
+                content: attr(data-tooltip);
+                position: absolute;
+                bottom: 125%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #333;
+                color: white;
+                padding: 5px 10px;
+                border-radius: 4px;
+                white-space: nowrap;
+                font-size: 12px;
+                z-index: 1;
+            }
+            </style>
+
+            <button onclick="window.open('https://payu.in/integrationlab/https://payu.in/checkoutplus', '_blank')" 
+                    class="tooltip-btn" 
+                    data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Checkout Plust with zero coding knowledge.">
+                Click Here to Generate Code
+            </button>
+  `}</HTMLBlock>
+</Callout>
+
+<br />
+
 <Callout icon="📘" theme="info">
   **Note**: The Checkout Plus integration is not recommended for the app browsers. For example, WebView, Chrome Custom tab, etc. Although there is Redirection Web Checkout which can be integrated. For more information, refer to following:
 
@@ -24,25 +65,23 @@ PayU Checkout Plus is the most convenient way to collect payment on your website
 **Steps to integrate**
 
 <Cards columns={3}>
-<Card 
-  title="1. Add the inline script in the HTML Header" 
-  href="#step-1-add-meta-tags--scripts-in-the-html-header">
-  Add the required meta tags and inline scripts in your HTML header to initialize PayU
- <br />
-</Card>
-<Card 
-  title="2. Pass the transaction request objects" 
-  href="#step-2-pass-transaction-request-objects" >
-  Configure and pass the transaction request objects with all necessary payment parameters
-<br />
-</Card>
+  <Card title="1. Add the inline script in the HTML Header" href="#step-1-add-meta-tags--scripts-in-the-html-header">
+    Add the required meta tags and inline scripts in your HTML header to initialize PayU
 
-<Card 
-  title="3. Fetch the response using the responseHandler function" 
-	href="#step-3-fetch-the-response-using-responsehandler">
-  Implement the responseHandler function to capture and process payment responses
-<br />
-</Card>
+    <br />
+  </Card>
+
+  <Card title="2. Pass the transaction request objects" href="#step-2-pass-transaction-request-objects">
+    Configure and pass the transaction request objects with all necessary payment parameters
+
+    <br />
+  </Card>
+
+  <Card title="3. Fetch the response using the responseHandler function" href="#step-3-fetch-the-response-using-responsehandler">
+    Implement the responseHandler function to capture and process payment responses
+
+    <br />
+  </Card>
 </Cards>
 
 For more information on handling any errors during a transaction, refer to the [CatchException](https://docs.payu.in/docs/integrate-checkout-plus#catchexception) section of this document.
