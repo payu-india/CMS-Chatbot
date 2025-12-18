@@ -1,7 +1,7 @@
 ---
 title: NetBanking Consent or ENACH - CB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -111,4 +111,3 @@ The following are the additional request parameter required for cross-border pay
 
 ## Step 3: Verify Payment
 <Verify_Payment_Tabs />
-
