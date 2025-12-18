@@ -22,6 +22,10 @@ metadata:
 ---
 The Collect Payment API (**_payment** API) is used to collect payments for all the Web Checkout integration. This section provides the API Reference for PayU Hosted Checkout or Pre-Built Checkout.
 
+<PayU_Labs />
+
+<br />
+
 <Callout icon="📘" theme="info">
   **Reference**: For an example of how to submit a payment request on your[website, refer to [Submitting Payment Request on your Website](doc:submitting-payment-request-on-your-website). To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](doc:handling-the-redirect-urls) .
 </Callout>
