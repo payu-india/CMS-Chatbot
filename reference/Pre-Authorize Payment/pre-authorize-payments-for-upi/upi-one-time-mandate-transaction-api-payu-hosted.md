@@ -12,10 +12,8 @@ next:
 ---
 This section describes the request and response parameters with sample request and response for UPI One-Time mandate Intent and Collect flow with PayU Hosted Checkout integration (non-seamless flow). For more information on integration, refer to [UPI One-Time Mandate](doc:upi-intent-one-time-mandate-integration-payu-hosted).
 
-<br />
-
 <Callout icon="👍" theme="okay">
-  Automatically generate code including hashing for your eCommerce website to integrate UPI One-Time Mandate - PayU Hosted Checkout with zero coding knowledge:
+  Automatically generate code including hashing for your eCommerce website to integrate TPV - PayU Hosted Checkout with zero coding knowledge:
 
   <HTMLBlock>{`
                   <style>
@@ -45,12 +43,14 @@ This section describes the request and response parameters with sample request a
                   }
                   </style>
 
-                  <button onclick="window.open('https://payu.in/integrationlab/upiotm', '_blank')" 
+                  <button onclick="window.open('https://payu.in/integrationlab/tpv', '_blank')" 
                           class="tooltip-btn" 
-                          data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate TPV - PayU Hosted Checkout with zero coding knowledge.">
+                          data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate One-Time Mandate - PayU Hosted Checkout with zero coding knowledge.">
                       Click Here to Generate Code
                   </button>
   `}</HTMLBlock>
+
+
 </Callout>
 
 ## Request Parameters
