@@ -1,5 +1,5 @@
 ---
-title: Net Banking Consent transaction - CB
+title: Net Banking Consent Transaction - CB
 deprecated: false
 hidden: true
 metadata:
