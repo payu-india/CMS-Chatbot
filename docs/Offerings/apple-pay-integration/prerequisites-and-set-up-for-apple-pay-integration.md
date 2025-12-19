@@ -43,13 +43,13 @@ To enable Apple Pay on your website:
 
   <Accordion title="Server Configuration" icon="fa-info-circle">
     * The file must be served via HTTPS 1.1 protocol.
-    * The HTTP response must return the file as a binary object, not as HTML or plain text.
+    * The HTTP response can be as plaintextreturn or file as a binary object, not as HTML or plain text.
     * Set the Content-Type header to `application/octet-stream` to indicate this is a binary file download.
   </Accordion>
 
   <Accordion title="Network Access" icon="fa-info-circle">
     * Ensure the file is not behind a firewall or access restrictions.
-    * If using a firewall, configure it to allow Apple's IP addresses.
+    * If using a firewall, configure it to allow Apple's IP addresses. For more information on Apple's IP address, refer to [Apple documentation](https://developer.apple.com/documentation/applepayontheweb/setting-up-your-server%23Allow-Apple-IP-Addresses-for-Domain-Verification)
   </Accordion>
 </Callout>
 
