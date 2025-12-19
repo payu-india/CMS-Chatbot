@@ -43,7 +43,7 @@ To enable Apple Pay on your website:
 
   <Accordion title="Server Configuration" icon="fa-info-circle">
     * The file must be served via HTTPS 1.1 protocol.
-    * The HTTP response can be as plaintextreturn or file as a binary object, not as HTML or plain text.
+    * The HTTP response can be as plaintext or a file (binary object), not as HTML or plain text.
     * Set the Content-Type header to `application/octet-stream` to indicate this is a binary file download.
   </Accordion>
 
