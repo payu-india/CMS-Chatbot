@@ -1,7 +1,7 @@
 ---
 title: Integrate Merchant Hosted UPI - Subscriptions
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -712,4 +712,3 @@ To capture the final status of "pending" transaction to either "captured" or "fa
 > For UPI, call the **verify\_settlement** API after 10 mins from time of initiation whereas for Net Banking it can be called up to T+2 once in a day.
 </Accordion>
 </Accordion>
-
