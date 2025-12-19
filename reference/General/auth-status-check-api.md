@@ -23,9 +23,11 @@ Use this API to retrieve 3DS2 authentication results when using the `auth_only=2
 | Test        | `https://test.payu.in/decoupled/AuthData`   |
 | Production  | `https://secure.payu.in/decoupled/AuthData` |
 
-HTTP Method:  **POST** 
+HTTP Method:  **POST**
 
-## Request Headers
+## Request Parameters 
+
+### Headers
 
 | Parameter                       | Description                                                                                  | Example                       |
 | :------------------------------ | :------------------------------------------------------------------------------------------- | :---------------------------- |
@@ -34,12 +36,17 @@ HTTP Method:  **POST**
 | Date<br />`mandatory`           | `String`<br />Current date and time in UTC format.                                           | Tue, 07 Mar 2023 10:46:50 GMT |
 | Content-Type<br />`conditional` | `String`<br />Required for POST requests (Type 2). Must be `application/json`.               | application/json              |
 
-## Request Body Parameters
+### Query Parameter
 
 | Parameter                    | Description                                                                                       | Example                          |
 | :--------------------------- | :------------------------------------------------------------------------------------------------ | :------------------------------- |
 | referenceId<br />`mandatory` | `String`<br />The reference ID returned in the initial payment response (`metaData.referenceId`). | 7f40a6b79403b028e824dd18d610a4e7 |
-| cres<br />`mandatory`        | `String`<br />Base64 encoded CRes (Challenge Response) received from ACS after authentication.    | eyJtZXNzYWdlVHlwZSI...           |
+
+### Body Parameter
+
+| Parameter             | Description                                                                                    | Example                |
+| :-------------------- | :--------------------------------------------------------------------------------------------- | :--------------------- |
+| cres<br />`mandatory` | `String`<br />Base64 encoded CRes (Challenge Response) received from ACS after authentication. | eyJtZXNzYWdlVHlwZSI... |
 
 ***
 
