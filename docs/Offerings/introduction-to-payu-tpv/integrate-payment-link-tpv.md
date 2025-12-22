@@ -12,21 +12,19 @@ This section describes the steps to integrate Payment Link TPV (Third Party Veri
 </Callout>
 
 <Accordion title="Customer Journey" icon="fa-info-circle">
+  **Step 1**:  Merchant creates a payment link with TPV details.
 
-**Step 1**:  Merchant creates a payment link with TPV details. 
+  **Step 2**: The API returns a short URL (e.g. [https://v.payu.in/PAYUMN/fIishvrkWhFD](https://v.payu.in/PAYUMN/fIishvrkWhFD)).
 
-**Step 2**: The API returns a short URL (e.g. [https://v.payu.in/PAYUMN/fIishvrkWhFD](https://v.payu.in/PAYUMN/fIishvrkWhFD)).
+  **Step 3**: Customer opens this link, fills relevant details and clicks make payment (similar to the following screenshot)
 
-**Step 3**: Customer opens this link, fills relevant details and clicks make payment (similar to the following screenshot)
+  <Image align="center" src="https://files.readme.io/117c859ee1b0d4cd3c2f25635ee1d14eba547e86da0a839f3e197669b8ea9c77-tpv_payment_link_customer_link.png" width="450px" />
 
-<Image align="center" border={false} width="450px" src="https://files.readme.io/117c859ee1b0d4cd3c2f25635ee1d14eba547e86da0a839f3e197669b8ea9c77-tpv_payment_link_customer_link.png" />
+  **Step 4**: Customer is redirected to checkout page.
 
-**Step 4**: Customer is redirected to checkout page.
+  <Image align="center" src="https://files.readme.io/82462bb510803c6a5bc11d082578828e39ade3175773cf6835634822f4ccbff6-tpv_payment_link_checkout_page.png" width="450px" />
 
-<Image align="center" border={false} width="450px" src="https://files.readme.io/82462bb510803c6a5bc11d082578828e39ade3175773cf6835634822f4ccbff6-tpv_payment_link_checkout_page.png" />
-
-**Step 5**: Merchant can view the transaction status in the **PayU Dashboard** > **Payment Links** tab.
-
+  **Step 5**: Merchant can view the transaction status in the **PayU Dashboard** > **Payment Links** tab.
 </Accordion>
 
 <Cards columns={3}>
@@ -36,25 +34,13 @@ This section describes the steps to integrate Payment Link TPV (Third Party Veri
     <br />
   </Card>
 
-  <Card title="2. Intermediate Page" href="#step-2-intermediate-page">
-    Backend sends beneficiary details to prepayment page (internally).
-
-    <br />
-  </Card>
-
-  <Card title="3. Post Parameters to PayU" href="#step-3-post-parameters-to-payu">
-    Backend converts data and posts to \_payment API with api\_version 20.
-
-    <br />
-  </Card>
-
-  <Card title="4. Check Response from PayU" href="#step-4-check-response-from-payu">
+  <Card title="2. Check Response from PayU" href="#step-2-check-response-from-payu">
     Check and handle the response received from PayU after payment processing.
 
     <br />
   </Card>
 
-  <Card title="5. Verify the Payment" href="#step-5-verify-the-payment">
+  <Card title="3. Verify the Payment" href="#step-5-verify-the-payment">
     Verify the payment status using webhooks or Verify Payments API.
 
     <br />
@@ -299,11 +285,14 @@ Create a payment link with beneficiary account details using the Create Payment 
   ?>
   ```
 </Accordion>
-## Step 2: Check the PayU Response
+
+## Step 2: Check Response from PayU
+
 The Payment Link is Generated and you must share it with your customer.
+
 <Accordion title="Sample Response" icon="fa-check">
   ```json
- {
+  {
   "status": 0,
   "message": "PaymentLink generated",
   "result": {
@@ -352,7 +341,7 @@ The Payment Link is Generated and you must share it with your customer.
   },
   "errorCode": null,
   "guid": "4546173a-7432-48e5-9e62-4782a1e48371"
-}
+  }
   ```
 </Accordion>
 
