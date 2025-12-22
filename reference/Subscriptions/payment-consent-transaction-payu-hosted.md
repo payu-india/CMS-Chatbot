@@ -34,48 +34,46 @@ next:
       title: Introduction
       type: basic
 ---
-This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration.
+This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration with **_payment** API.
 
 <Callout icon="👍" theme="okay">
-  Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge:
+  Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-              <style>
-              .tooltip-btn {
-                  position: relative;
-                  background-color: #4CAF50;
-                  color: white;
-                  padding: 10px 20px;
-                  border: none;
-                  border-radius: 5px;
-                  cursor: pointer;
-                  font-weight: bold; /* Added this line */
-              }
-              .tooltip-btn:hover::after {
-                  content: attr(data-tooltip);
-                  position: absolute;
-                  bottom: 125%;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  background-color: #333;
-                  color: white;
-                  padding: 5px 10px;
-                  border-radius: 4px;
-                  white-space: nowrap;
-                  font-size: 12px;
-                  z-index: 1;
-              }
-              </style>
+                  <style>
+                  .tooltip-btn {
+                      position: relative;
+                      background-color: #4CAF50;
+                      color: white;
+                      padding: 10px 20px;
+                      border: none;
+                      border-radius: 5px;
+                      cursor: pointer;
+                      font-weight: bold; /* Added this line */
+                  }
+                  .tooltip-btn:hover::after {
+                      content: attr(data-tooltip);
+                      position: absolute;
+                      bottom: 125%;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      background-color: #333;
+                      color: white;
+                      padding: 5px 10px;
+                      border-radius: 4px;
+                      white-space: nowrap;
+                      font-size: 12px;
+                      z-index: 1;
+                  }
+                  </style>
 
-              <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
-                      class="tooltip-btn" 
-                      data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
-                  Click Here to Generate Code
-              </button>
+                  <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
+                          class="tooltip-btn" 
+                          data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
+                      Experience the flow and get the code
+                  </button>
   `}</HTMLBlock>
 </Callout>
-
-<br />
 
 HTTP Method: **POST**
 
