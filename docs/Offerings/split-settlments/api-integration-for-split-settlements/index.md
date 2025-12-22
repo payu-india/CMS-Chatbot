@@ -12,9 +12,48 @@ next:
 ---
 The recommended workflow for using Split Settlements using API Integration:
 
-> 👍 Before you begin:
->
-> Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+<Callout icon="👍" theme="okay">
+  Experience the end-to-end **PayU Hosted > Split Settlements** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+
+  <HTMLBlock>{`
+                      <style>
+                      .tooltip-btn {
+                          position: relative;
+                          background-color: #4CAF50;
+                          color: white;
+                          padding: 10px 20px;
+                          border: none;
+                          border-radius: 5px;
+                          cursor: pointer;
+                          font-weight: bold; /* Added this line */
+                      }
+                      .tooltip-btn:hover::after {
+                          content: attr(data-tooltip);
+                          position: absolute;
+                          bottom: 125%;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          background-color: #333;
+                          color: white;
+                          padding: 5px 10px;
+                          border-radius: 4px;
+                          white-space: nowrap;
+                          font-size: 12px;
+                          z-index: 1;
+                      }
+                      </style>
+
+                      <button onclick="window.open('https://payu.in/integrationlab/split', '_blank')" 
+                              class="tooltip-btn" 
+                              data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
+                           Experience the flow and get the code
+                      </button>
+  `}</HTMLBlock>
+</Callout>
+
+<Callout icon="👍" theme="okay">
+  **Before you begin**: Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+</Callout>
 
 1. Register as a merchant with PayU.
 2. Onboard child merchants with the following steps:
@@ -23,11 +62,11 @@ The recommended workflow for using Split Settlements using API Integration:
 3. Create the split using any of the following methods:
 
 * Split During Transaction
-  * [Absolute Split During Transaction using **\_payment** API](/reference/absolute-split-during-transaction)
-  * [Split by Percentage During Transaction using **\_payment** API](/reference/split-by-percentage-during-transaction)
+  * [Absolute Split During Transaction using **_payment** API](/reference/absolute-split-during-transaction)
+  * [Split by Percentage During Transaction using **_payment** API](/reference/split-by-percentage-during-transaction)
 * Split After Transaction
-  * [Absolute Split After Transaction using **payment\_split** API](/reference/absolute-split-after-transaction)
-  * [Split by Percentage after Transaction using **payment\_split** API](/reference/split-by-percentage-after-transaction)
+  * [Absolute Split After Transaction using **payment_split** API](/reference/absolute-split-after-transaction)
+  * [Split by Percentage after Transaction using **payment_split** API](/reference/split-by-percentage-after-transaction)
 * Release the settlement amount using the following APIs
   * [Release Settlement API](ref:release_settlement_api)
   * [Settlement Reconciliation API](ref:settlement-reconciliation-api)
