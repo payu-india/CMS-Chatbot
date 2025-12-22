@@ -10,7 +10,7 @@ For UPI integration, you need to post transaction details to PayU with beneficia
 The request parameters for UPI integration are the similar as in Net-Banking integration. The `beneficiarydetail` parameter should include the UPI beneficiary details.
 
 <Callout icon="👍" theme="okay">
-  Experience the end-to-end Net Banking TPV flow and instantly generate the complete code for seamless, zero-coding integration into your website
+  Experience the end-to-end UPI TPV flow and instantly generate the complete code for seamless, zero-coding integration into your website
 
   <HTMLBlock>{`
                   <style>
