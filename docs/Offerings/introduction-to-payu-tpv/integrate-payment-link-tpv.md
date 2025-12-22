@@ -64,7 +64,9 @@ Create a payment link with beneficiary account details using the Create Payment 
   | customerName<br />`optional`        | `String`<br />Customer's name.                                       | `John Doe`             |
   | customerEmail<br />`optional`       | `String`<br />Customer's email address.                              | `john.doe@example.com` |
   | customerPhone<br />`optional`       | `String`<br />Customer's phone number.                               | `9876543210`           |
-  | beneficiarydetail<br />`optional`   | `Object`<br />Object containing beneficiary account details for TPV. | See below              |
+  | maxPaymentsAllowed<br />`optional`       | `String`<br />This parameter must contain maximum number of payments allowed.                               | `1`           |
+
+  | beneficiarydetail<br />`optional`   | `Object`<br />Object containing beneficiary account details for TPV. | Refer to  [beneficiarydetail Object Parameters](#beneficiarydetail-object-parameters)      |
   | source<br />`optional`              | `String`<br />Source of the payment link creation.                   | `API`                  |
 
   <Accordion title="beneficiarydetail Object Parameters" icon="fa-code">
@@ -74,7 +76,12 @@ Create a payment link with beneficiary account details using the Create Payment 
     | ifscCode<br />`mandatory`                 | `List<String>`<br />Array of IFSC codes corresponding to each account number. | `["SBIN0007001", "HDFC0001234"]` |
   </Accordion>
 </Accordion>
+<Callout icon="📘" theme="info">
+  **Notes:**
 
+  * Account numbers and IFSC codes in the `beneficiarydetail` object must have equal count
+  * `maxPaymentsAllowed` must be 1 (single payment only)
+</Callout>
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
   curl --location 'https://test.payu.in/paymentlink/create' \
@@ -290,6 +297,8 @@ Create a payment link with beneficiary account details using the Create Payment 
 </Accordion>
 
 ***
+
+
 
 ## Step 2: Post Parameters to PayU
 
