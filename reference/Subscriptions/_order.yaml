@@ -1,5 +1,5 @@
 - si-transaction-api
-- pre-debit-si-api
+- pre-debit-si-api-parallel-sequencing
 - payment-consent-transaction-payu-hosted
 - pay-and-subscribe-consent-transaction
 - payment-consent-transaction-merchant-hosted
