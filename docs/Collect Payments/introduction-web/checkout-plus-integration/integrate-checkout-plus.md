@@ -10,48 +10,46 @@ metadata:
 next:
   description: ''
 ---
-PayU Checkout Plus is the most convenient way to collect payment on your website. Add the inline JS script to your website’s header section, then call the bolt.launch() function and pass the transaction data objects when your customers click the payment button. PayU will take care of the payment and returns to your page when it is done.
+PayU Checkout Plus is the most convenient way to collect payment on your website. Add the inline JS script to your website’s header section, then call the bolt.launch() function and pass the transaction data objects when your customers click **Payment** . PayU will take care of the payment and returns to your page when it is done.
 
 <Callout icon="👍" theme="okay">
-  Automatically generate code including hashing for your eCommerce website to integrate Checkout Plus with zero coding knowledge:
+  Experience the end-to-end PayU Hosted Checkout flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-            <style>
-            .tooltip-btn {
-                position: relative;
-                background-color: #4CAF50;
-                color: white;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-weight: bold; /* Added this line */
-            }
-            .tooltip-btn:hover::after {
-                content: attr(data-tooltip);
-                position: absolute;
-                bottom: 125%;
-                left: 50%;
-                transform: translateX(-50%);
-                background-color: #333;
-                color: white;
-                padding: 5px 10px;
-                border-radius: 4px;
-                white-space: nowrap;
-                font-size: 12px;
-                z-index: 1;
-            }
-            </style>
+                <style>
+                .tooltip-btn {
+                    position: relative;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold; /* Added this line */
+                }
+                .tooltip-btn:hover::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: 125%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    z-index: 1;
+                }
+                </style>
 
-            <button onclick="window.open('https://payu.in/integrationlab/https://payu.in/checkoutplus', '_blank')" 
-                    class="tooltip-btn" 
-                    data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Checkout Plust with zero coding knowledge.">
-                Click Here to Generate Code
-            </button>
+                <button onclick="window.open('https://payu.in/integrationlab/https://payu.in/checkoutplus', '_blank')" 
+                        class="tooltip-btn" 
+                        data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Checkout Plust with zero coding knowledge.">
+                    Experience the flow and get the code
+                </button>
   `}</HTMLBlock>
 </Callout>
-
-<br />
 
 <Callout icon="📘" theme="info">
   **Note**: The Checkout Plus integration is not recommended for the app browsers. For example, WebView, Chrome Custom tab, etc. Although there is Redirection Web Checkout which can be integrated. For more information, refer to following:
