@@ -1,6 +1,7 @@
 ---
 name: PayU_Labs
 ---
+<Callout icon="👍">
 Experience the end-to-end PayU Hosted Checkout flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
 <HTMLBlock>{`
@@ -37,3 +38,4 @@ Experience the end-to-end PayU Hosted Checkout flow and instantly generate the c
                 Experience the flow and get the code
             </button>
 `}</HTMLBlock>
+</Callout>
