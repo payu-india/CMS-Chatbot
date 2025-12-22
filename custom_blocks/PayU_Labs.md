@@ -1,10 +1,9 @@
 ---
 name: PayU_Labs
 ---
-<Callout icon="👍" theme="okay">
-  Experience the flow, generate code for the website to integrate PayU Hosted Checkout with zero coding knowledge. 
+Experience the end-to-end PayU Hosted Checkout flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
-  <HTMLBlock>{`
+<HTMLBlock>{`
             <style>
             .tooltip-btn {
                 position: relative;
@@ -34,8 +33,7 @@ name: PayU_Labs
 
             <button onclick="window.open('https://payu.in/integrationlab/payu-hosted', '_blank')" 
                     class="tooltip-btn" 
-                    data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate PayU Hosted Checkout with zero coding knowledge.">
-                Click Here to Generate Code
+                    data-tooltip="Click here to see the PayU Hosted Checkout end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+                Experience the flow and get the code
             </button>
-  `}</HTMLBlock>
-</Callout>
+`}</HTMLBlock>
