@@ -11,6 +11,24 @@ This section describes the steps to integrate Payment Link TPV (Third Party Veri
   **Note**: Ensure Payment Link with TPV is activated for your account. Contact your PayU account manager if this configuration is not active.
 </Callout>
 
+<Accordion title="Customer Journey" icon="fa-info-circle">
+
+**Step 1**:  Merchant creates a payment link with TPV details. 
+
+**Step 2**: The API returns a short URL (e.g. [https://v.payu.in/PAYUMN/fIishvrkWhFD](https://v.payu.in/PAYUMN/fIishvrkWhFD)).
+
+**Step 3**: Customer opens this link, fills relevant details and clicks make payment (similar to the following screenshot)
+
+<Image align="center" border={false} width="450px" src="https://files.readme.io/117c859ee1b0d4cd3c2f25635ee1d14eba547e86da0a839f3e197669b8ea9c77-tpv_payment_link_customer_link.png" />
+
+**Step 4**: Customer is redirected to checkout page.
+
+<Image align="center" border={false} width="450px" src="https://files.readme.io/82462bb510803c6a5bc11d082578828e39ade3175773cf6835634822f4ccbff6-tpv_payment_link_checkout_page.png" />
+
+**Step 5**: Merchant can view the transaction status in the **PayU Dashboard** > **Payment Links** tab.
+
+</Accordion>
+
 <Cards columns={3}>
   <Card title="1. Create Payment Link" href="#step-1-create-payment-link">
     Create a payment link with beneficiary account details for TPV verification.
@@ -55,19 +73,19 @@ Create a payment link with beneficiary account details using the Create Payment 
 </Accordion>
 
 <Accordion title="Request Parameters" icon="fa-table">
-  | Parameter                           | Description                                                          | Example                |
-  | ----------------------------------- | -------------------------------------------------------------------- | ---------------------- |
-  | amount<br />`mandatory`             | `Decimal`<br />The payment amount.                                   | `5000.00`              |
-  | maxPaymentsAllowed<br />`mandatory` | `Integer`<br />Must be 1 for TPV flow (single payment only).         | `1`                    |
-  | invoiceNumber<br />`mandatory`      | `String`<br />Unique invoice number for the payment link.            | `INV123456789012`      |
-  | description<br />`optional`         | `String`<br />Description of the payment.                            | `Payment for services` |
-  | customerName<br />`optional`        | `String`<br />Customer's name.                                       | `John Doe`             |
-  | customerEmail<br />`optional`       | `String`<br />Customer's email address.                              | `john.doe@example.com` |
-  | customerPhone<br />`optional`       | `String`<br />Customer's phone number.                               | `9876543210`           |
-  | maxPaymentsAllowed<br />`optional`       | `String`<br />This parameter must contain maximum number of payments allowed.                               | `1`           |
+  | Parameter                           | Description                                                                   | Example                |
+  | ----------------------------------- | ----------------------------------------------------------------------------- | ---------------------- |
+  | amount<br />`mandatory`             | `Decimal`<br />The payment amount.                                            | `5000.00`              |
+  | maxPaymentsAllowed<br />`mandatory` | `Integer`<br />Must be 1 for TPV flow (single payment only).                  | `1`                    |
+  | invoiceNumber<br />`mandatory`      | `String`<br />Unique invoice number for the payment link.                     | `INV123456789012`      |
+  | description<br />`optional`         | `String`<br />Description of the payment.                                     | `Payment for services` |
+  | customerName<br />`optional`        | `String`<br />Customer's name.                                                | `John Doe`             |
+  | customerEmail<br />`optional`       | `String`<br />Customer's email address.                                       | `john.doe@example.com` |
+  | customerPhone<br />`optional`       | `String`<br />Customer's phone number.                                        | `9876543210`           |
+  | maxPaymentsAllowed<br />`optional`  | `String`<br />This parameter must contain maximum number of payments allowed. | `1`                    |
 
-  | beneficiarydetail<br />`optional`   | `Object`<br />Object containing beneficiary account details for TPV. | Refer to  [beneficiarydetail Object Parameters](#beneficiarydetail-object-parameters)      |
-  | source<br />`optional`              | `String`<br />Source of the payment link creation.                   | `API`                  |
+  \| beneficiarydetail<br />`optional`   | `Object`<br />Object containing beneficiary account details for TPV. | Refer to  [beneficiarydetail Object Parameters](#beneficiarydetail-object-parameters)      |
+  \| source<br />`optional`              | `String`<br />Source of the payment link creation.                   | `API`                  |
 
   <Accordion title="beneficiarydetail Object Parameters" icon="fa-code">
     | Parameter                                 | Description                                                                   | Example                          |
@@ -76,12 +94,14 @@ Create a payment link with beneficiary account details using the Create Payment 
     | ifscCode<br />`mandatory`                 | `List<String>`<br />Array of IFSC codes corresponding to each account number. | `["SBIN0007001", "HDFC0001234"]` |
   </Accordion>
 </Accordion>
+
 <Callout icon="📘" theme="info">
   **Notes:**
 
   * Account numbers and IFSC codes in the `beneficiarydetail` object must have equal count
   * `maxPaymentsAllowed` must be 1 (single payment only)
 </Callout>
+
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
   curl --location 'https://test.payu.in/paymentlink/create' \
@@ -297,8 +317,6 @@ Create a payment link with beneficiary account details using the Create Payment 
 </Accordion>
 
 ***
-
-
 
 ## Step 2: Post Parameters to PayU
 
