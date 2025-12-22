@@ -7,7 +7,9 @@ metadata:
 ---
 This section describes the steps to integrate Payment Link TPV (Third Party Verification) - from payment link creation to payment processing.
 
-> **Note**: Ensure Payment Link with TPV is activated for your account. Contact your PayU account manager if this configuration is not active.
+<Callout icon="📘" theme="info">
+  **Note**: Ensure Payment Link with TPV is activated for your account. Contact your PayU account manager if this configuration is not active.
+</Callout>
 
 <Cards columns={3}>
   <Card title="1. Create Payment Link" href="#step-1-create-payment-link">
