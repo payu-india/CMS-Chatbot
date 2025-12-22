@@ -12,6 +12,47 @@ next:
 ---
 This section describes the **_payment** API contract for getting split info of the parent transaction in the Aggregator flow.
 
+<br />
+
+<Callout icon="👍" theme="okay">
+  Experience the end-to-end **PayU Hosted > Split Settlements** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+
+  <HTMLBlock>{`
+                        <style>
+                        .tooltip-btn {
+                            position: relative;
+                            background-color: #4CAF50;
+                            color: white;
+                            padding: 10px 20px;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-weight: bold; /* Added this line */
+                        }
+                        .tooltip-btn:hover::after {
+                            content: attr(data-tooltip);
+                            position: absolute;
+                            bottom: 125%;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            background-color: #333;
+                            color: white;
+                            padding: 5px 10px;
+                            border-radius: 4px;
+                            white-space: nowrap;
+                            font-size: 12px;
+                            z-index: 1;
+                        }
+                        </style>
+
+                        <button onclick="window.open('https://payu.in/integrationlab/split', '_blank')" 
+                                class="tooltip-btn" 
+                                data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
+                             Experience the flow and get the code
+                        </button>
+  `}</HTMLBlock>
+</Callout>
+
 <PaymentAPIEnvironment />
 
 New parameter (**splitRequest**) merchant needs to post in the payment request.
@@ -438,19 +479,19 @@ A sample value in JSON format for the **splitInfo** parameter:
 }
 ```
 
-> 📘 Refunds for Split Transactions:
->
-> You must include the var8 parameter similar to the following JSON array format with the refund details of split where **child_merchant_key_x** must be substituted with the child merchant key. For more information, refer to  [Refund Transaction API > Other request parameters](ref:refund_transaction_api#other-request-parameters)
->
-> ```plaintext
-> {
->    "child_merchant_key_1":{
->       "amount":100,
->       "aggregatorRefundAmount":40
->    },
->    "child_merchant_key_2":{
->       "amount":20,
->       "aggregatorRefundAmount":0
->    }
-> }
-> ```
+<Callout icon="📘" theme="info">
+  **Refunds for Split Transactions**: You must include the var8 parameter similar to the following JSON array format with the refund details of split where **child_merchant_key_x** must be substituted with the child merchant key. For more information, refer to  [Refund Transaction API > Other request parameters](ref:refund_transaction_api#other-request-parameters)
+
+  ```plaintext
+  {
+     "child_merchant_key_1":{
+        "amount":100,
+        "aggregatorRefundAmount":40
+     },
+     "child_merchant_key_2":{
+        "amount":20,
+        "aggregatorRefundAmount":0
+     }
+  }
+  ```
+</Callout>
