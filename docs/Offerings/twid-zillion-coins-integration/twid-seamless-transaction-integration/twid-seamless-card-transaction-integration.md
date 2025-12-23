@@ -1,7 +1,7 @@
 ---
 title: TWID Seamless Card Transaction Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: TWID Seamless Card Transaction Integration
   robots: index
@@ -941,4 +941,3 @@ echo "Response: " . $response . "\n";
 }
 ```
 </Accordion>
-
