@@ -1,7 +1,7 @@
 ---
 title: TWID Seamless Transaction Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -872,4 +872,3 @@ echo "Response: " . $response . "\n";
 }
 ```
 </Accordion>
-
