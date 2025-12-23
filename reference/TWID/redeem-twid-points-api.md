@@ -84,35 +84,7 @@ HTTP Method: **POST**
   </tbody>
 </Table>
 `}</HTMLBlock>
-
-## Response Parameters
-
-| Parameter          | Description                                                                           | Example                                       |
-| ------------------ | ------------------------------------------------------------------------------------- | --------------------------------------------- |
-| status             | `String` - Outcome of the transaction (e.g., SUCCESS or validation error information) | `"SUCCESS"`                                   |
-| loyaltyTxnId       | `String` - Reference ID used to confirm the redemption transaction                    | `"1821b1e2-34dd-47e3-9b54-b56b9d352a6b"`      |
-| rewardPartnerRefId | `String` - A partner reference ID, which can also be used for reconciliation purposes | `"7251637276230479872"`                       |
-| acsTemplate        | `String` - Reserved API field (currently unused)                                      | `null`                                        |
-| issueCode          | `String` - Error code (for failure responses)                                         | `"LS404-401"`                                 |
-| errorMessage       | `String` - Error description (for failure responses)                                  | `"Transaction details not present in the DB"` |
-| errorType          | `String` - Type of error (for failure responses)                                      | `"VALIDATION_EXCEPTION"`                      |
-
-## Request Example
-
-<br />
-
-<br />
-
-### JSON Payload
-
-```json
-{
-  "loyaltyTxnId": "bd1a77b6-1596-46e1-b79f-2770bcb636c7",
-  "loyaltyProvider": "TWID"
-}
-```
-
-<br />
+## Sample Request
 
 ### Non-seamless Integration
 
@@ -125,7 +97,6 @@ curl -X POST "{{loyalty-service-url}}/payment/v1/continue" \
     "loyaltyProvider": "TWID"
   }'
 ```
-
 ```python
 import requests
 import json
@@ -146,7 +117,6 @@ response = requests.post(url, headers=headers, json=payload)
 print("Status Code:", response.status_code)
 print("Response:", response.text)
 ```
-
 ```csharp
 using System;
 using System.Net.Http;
@@ -180,7 +150,6 @@ class Program
     }
 }
 ```
-
 ```javascript
 const url = "{{loyalty-service-url}}/payment/v1/continue";
 
@@ -212,7 +181,6 @@ async function makeRequest() {
 
 makeRequest();
 ```
-
 ```java
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -253,7 +221,6 @@ public class ApiRequest {
     }
 }
 ```
-
 ```php
 <?php
 
@@ -298,7 +265,6 @@ curl -X POST "{{loyalty-service-url}}/payment/v1/continue" \
     "loyaltyProvider": "TWID"
   }'
 ```
-
 ```python
 import requests
 import json
@@ -320,7 +286,6 @@ response = requests.post(url, headers=headers, json=payload)
 print("Status Code:", response.status_code)
 print("Response:", response.text)
 ```
-
 ```csharp
 using System;
 using System.Net.Http;
@@ -355,7 +320,6 @@ class Program
     }
 }
 ```
-
 ```javascript
 const url = "{{loyalty-service-url}}/payment/v1/continue";
 
@@ -388,7 +352,6 @@ async function makeRequest() {
 
 makeRequest();
 ```
-
 ```java
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -430,7 +393,6 @@ public class ApiRequest {
     }
 }
 ```
-
 ```php
 <?php
 
@@ -463,6 +425,20 @@ echo "Status Code: " . $httpCode . "\n";
 echo "Response: " . $response . "\n";
 ?>
 ```
+
+
+## Response Parameters
+
+| Parameter          | Description                                                                           | Example                                       |
+| ------------------ | ------------------------------------------------------------------------------------- | --------------------------------------------- |
+| status             | `String` - Outcome of the transaction (e.g., SUCCESS or validation error information) | `"SUCCESS"`                                   |
+| loyaltyTxnId       | `String` - Reference ID used to confirm the redemption transaction                    | `"1821b1e2-34dd-47e3-9b54-b56b9d352a6b"`      |
+| rewardPartnerRefId | `String` - A partner reference ID, which can also be used for reconciliation purposes | `"7251637276230479872"`                       |
+| acsTemplate        | `String` - Reserved API field (currently unused)                                      | `null`                                        |
+| issueCode          | `String` - Error code (for failure responses)                                         | `"LS404-401"`                                 |
+| errorMessage       | `String` - Error description (for failure responses)                                  | `"Transaction details not present in the DB"` |
+| errorType          | `String` - Type of error (for failure responses)                                      | `"VALIDATION_EXCEPTION"`                      |
+
 
 ## Sample response
 
