@@ -12,14 +12,15 @@ hidden: false
 metadata:
   robots: index
 ---
+
 The **Fetch Balance All** API retrieves balance information from multiple specified loyalty providers.
 
 ## Environment
 
-|            |                                              |
-| :--------- | :------------------------------------------- |
-| Production | https://api.payu.in/loyalty-points/v1/balance/all |
-| Test       | https://apitest.payu.in/loyalty-points/v1/balance/all |
+|            |                                                                                                                |
+| :--------- | :------------------------------------------------------------------------------------------------------------- |
+| Production | [https://api.payu.in/loyalty-points/v1/balance/all](https://api.payu.in/loyalty-points/v1/balance/all)         |
+| Test       | [https://apitest.payu.in/loyalty-points/v1/balance/all](https://apitest.payu.in/loyalty-points/v1/balance/all) |
 
 HTTP Method: **POST**
 
@@ -113,7 +114,6 @@ curl -X POST "{{loyalty-service-url}}/v1/balance/all" \
     "orderAmount": 1000
   }'
 ```
-
 ```python
 import requests
 import json
@@ -135,7 +135,6 @@ response = requests.post(url, headers=headers, json=payload)
 print("Status Code:", response.status_code)
 print("Response:", response.text)
 ```
-
 ```csharp
 using System;
 using System.Net.Http;
@@ -246,7 +245,6 @@ public class ApiRequest {
     }
 }
 ```
-
 ```php
 <?php
 
@@ -293,7 +291,6 @@ curl -X POST "{{loyalty-service-url}}/v1/balance/all" \
     "orderAmount": 1000
   }'
 ```
-
 ```python
 import requests
 import json
@@ -316,7 +313,6 @@ response = requests.post(url, headers=headers, json=payload)
 print("Status Code:", response.status_code)
 print("Response:", response.text)
 ```
-
 ```csharp
 using System;
 using System.Net.Http;
@@ -352,7 +348,6 @@ class Program
     }
 }
 ```
-
 ```javascript
 const url = "{{loyalty-service-url}}/v1/balance/all";
 
@@ -386,7 +381,6 @@ async function makeRequest() {
 
 makeRequest();
 ```
-
 ```java
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -430,7 +424,6 @@ public class ApiRequest {
     }
 }
 ```
-
 ```php
 <?php
 
