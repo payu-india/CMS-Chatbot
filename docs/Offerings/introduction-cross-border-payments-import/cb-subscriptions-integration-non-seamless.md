@@ -325,7 +325,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
     <tr>
       <td style={{ textAlign: "left" }}>
         udf4 <br/>
-        <code>mandatory for payment aggregators</code>
+        <code>mandatory <br/>for payment<br/> aggregators</code>
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -341,7 +341,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
     <tr>
       <td style={{ textAlign: "left" }}>
         udf5 <br/>
-        <code>mandatory for cross-border payments</code>
+        <code>mandatory <br/>for cross-border<br/> payments</code>
       </td>
 
       <td style={{ textAlign: "left" }}>
