@@ -10,16 +10,16 @@ metadata:
 next:
   description: ''
 ---
-The Revoke Token API (**revoke\_token**) is used to revoke or delete the token generated earlier using the Get Token API. For more information, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
+The Revoke Token API (**revoke_token**) is used to revoke or delete the token generated earlier using the Get Token API. For more information, refer to [Get Access Token](ref:get-token-api-for-payment-links).
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                              |
-| -------------------------- | -------------------------------------------- |
-| **Test Environment**       | \<https://uat-accounts.payu.in/payment-links> |
-| **Production Environment** | \<https://accounts.payu.in/payment-links>     |
+|                            |                                                                                              |
+| -------------------------- | -------------------------------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://uat-accounts.payu.in/payment-links>](https://uat-accounts.payu.in/payment-links>) |
+| **Production Environment** | \<[https://accounts.payu.in/payment-links>](https://accounts.payu.in/payment-links>)         |
 
 ## Request parameters
 
