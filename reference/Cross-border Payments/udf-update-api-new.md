@@ -13,7 +13,9 @@ The UDF Update API allows you to update User Defined Fields (UDF1-UDF5 and addit
 * Add invoice or order details to transaction records
 * Store additional business-specific information against transactions
 
-> **Note:** To update UDF6-UDF10, the additional UDFs` merchant parameter must be enabled for your MID. To enable additional UDFs, contact your PayU Key Account Manager or <Anchor label="PayU Support" target="_blank" href="https://help.payu.in">PayU Support</Anchor>.
+<Callout icon="📘" theme="info">
+  **Note:** To update udf6 to udf10, the additional UDFs` merchant parameter must be enabled for your MID. To enable additional UDFs, contact your PayU Key Account Manager or <Anchor label="PayU Support" target="_blank" href="https://help.payu.in">PayU Support</Anchor>.
+</Callout>
 
 ## Environment
 
@@ -33,18 +35,19 @@ The UDF Update API allows you to update User Defined Fields (UDF1-UDF5 and addit
 
 ## Request Body Parameters
 
-| Parameter                | Description                                                                                                          | Example                                                                                                                            |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| key<br />`mandatory`     | `String`<br />Merchant key provided by PayU.                                                                         | `smsplus`                                                                                                                          |
-| hash<br />`mandatory`    | `String`<br />SHA512 hash for request verification.                                                                  | `17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b` |
-| command<br />`mandatory` | `String`<br />API command identifier. Must be `udf_update`.                                                          | `udf_update`                                                                                                                       |
-| var1<br />`mandatory`    | `String`<br />Transaction ID (txnid) of the transaction to update.                                                   | `c82847d52a146dca3830`                                                                                                             |
-| var2<br />`optional`     | `String`<br />New value for UDF1.                                                                                    | `updatedudf2_again`                                                                                                                |
-| var3<br />`optional`     | `String`<br />New value for UDF2.                                                                                    | `fsdfdsfd`                                                                                                                         |
-| var4<br />`optional`     | `String`<br />New value for UDF3.                                                                                    | `fdsfdsfdsfds`                                                                                                                     |
-| var5<br />`optional`     | `String`<br />New value for UDF4.                                                                                    | `fdsfsdf`                                                                                                                          |
-| var6<br />`optional`     | `String`<br />New value for UDF5.                                                                                    | `udf5value`                                                                                                                        |
-| var8<br />`optional`     | `String`<br />This parameter must contain the udf5 of transaction and must contain the Invoice ID or invoice number. | `dfweewd`                                                                                                                          |
+| Parameter                | Description                                                        | Example                                                                                                                            |
+| ------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| key<br />`mandatory`     | `String`<br />Merchant key provided by PayU.                       | `smsplus`                                                                                                                          |
+| hash<br />`mandatory`    | `String`<br />SHA512 hash for request verification.                | `17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b` |
+| command<br />`mandatory` | `String`<br />API command identifier. Must be `udf_update`.        | `udf_update`                                                                                                                       |
+| var1<br />`mandatory`    | `String`<br />Transaction ID (txnid) of the transaction to update. | `c82847d52a146dca3830`                                                                                                             |
+| var2<br />`optional`     | `String`<br />New value for UDF1.                                  | `updatedudf2_again`                                                                                                                |
+| var3<br />`optional`     | `String`<br />New value for UDF2.                                  | `fsdfdsfd`                                                                                                                         |
+| var4<br />`optional`     | `String`<br />New value for UDF3.                                  | `fdsfdsfdsfds`                                                                                                                     |
+| var5<br />`optional`     | `String`<br />New value for UDF4.                                  | `fdsfsdf`                                                                                                                          |
+| var6<br />`optional`     | `String`<br />New value for UDF5.                                  | `udf5value`                                                                                                                        |
+| var7<br />`optional`     | `String`<br />New value for UDF6.                                  | `fweew`                                                                                                                            |
+| var8<br />`optional`     | `String`<br />New value for UDF7.                                  | `dfweewd`                                                                                                                          |
 
 ## Hash Generation
 
