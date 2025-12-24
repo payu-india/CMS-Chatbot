@@ -51,10 +51,10 @@ HTTP Method: **PUT**
 
 ## Request headers
 
-| Parameter                 | Description                                                                                                                                       |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mid`  mandatory`          | `String` This contains the merchant identifier.                                                                                                   |
-| Authorization` mandatory` | Bearer `String` This contains the client_token. For more information, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links) . |
+| Parameter                 | Description                                                                                                                             |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| mid`  mandatory`          | `String` This contains the merchant identifier.                                                                                         |
+| Authorization` mandatory` | Bearer `String` This contains the client_token. For more information, refer to [Get Access Token](ref:get-token-api-for-payment-links). |
 
 ## Request parameters
 
