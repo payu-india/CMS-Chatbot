@@ -1,5 +1,5 @@
 ---
-title: TWID Pay Redemption Integraiton
+title: TWID Pay Redemption Integration
 deprecated: false
 hidden: true
 link:
