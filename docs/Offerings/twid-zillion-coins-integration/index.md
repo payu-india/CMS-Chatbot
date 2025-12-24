@@ -57,6 +57,12 @@ TWID Rewards is a loyalty points integration solution that leverages India's lar
 * **Quick Commerce**: Instant reward point validation for time-sensitive transactions 
 * **Entertainment & Travel**: Point redemption for bookings, tickets, and experiential purchases
 
-<br />
+## Next Steps
+
+Integrate TWID Rewards using the step-by-step in each of the following integration:
+
+* [TWID Pay Redemption Integration](https://docs.payu.in/docs/twid-pay-redemption-integration)
+* [TWID Seamless Transaction Integration](https://docs.payu.in/docs/twid-seamless-transaction-integration)
+* [TWID Refund Integration](https://docs.payu.in/docs/twid-refund-integration)
 
 <br />
