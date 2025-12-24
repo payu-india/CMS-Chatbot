@@ -434,109 +434,13 @@ Array
 
 Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
 
-### 1. Verify using Webhooks
+<Verify_Payment_Tabs />
 
-Configure the webhooks to monitor the status of payments. Webhooks enable a server to communicate with another server by sending an HTTP callback or message. These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.
+<br />
 
-👉 For more details, refer to [Webhooks for Payments](https://docs.payu.in/reference/webhooks).
+<br />
 
-### 2. Verify using Verify Payment API
-
-The Verify Payment (**verify_payment**) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU's database after you receive the response, where var1 is your transaction ID.
-
-For detailed information about the Verify Payment API, refer to [Verify Payment API](ref:verify_payment_api).
-
-**Environment**
-
-|                        |                                                                                                              |
-| :--------------------- | :----------------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
-| Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
-
-> **Note**: The hash logic for Verify Payment API is:
-> `sha512(key|command|var1|salt)`
-
-#### Sample Request
-
-```curl
-curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JP***g' \
-  --data-urlencode 'command=verify_payment' \
-  --data-urlencode 'var1=IhfgcZnXR4o4nB' \
-  --data-urlencode 'hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
-```
-
-#### Sample Response
-
-* If credit card payment is made, the response is similar to the following:
-
-```json
-{
-    "status": 1,
-    "msg": "1 out of 1 Transactions Fetched Successfully",
-    "transaction_details": {
-        "1733900931584": {
-            "mihpayid": "21820644083",
-            "request_id": null,
-            "bank_ref_num": null,
-            "amt": "1.00",
-            "transaction_amount": "1.00",
-            "txnid": "1733900931584",
-            "additional_charges": "0.00",
-            "productinfo": "iPhone Subscription",
-            "firstname": "PayU User",
-            "bankcode": "MAST",
-            "udf1": "AELPR1234E",
-            "udf2": "",
-            "udf3": "02-02-1980",
-            "udf4": "XYZ Pvt. Ltd.",
-            "udf5": "INV123456",
-            "field2": null,
-            "field9": "OTP/ATM page expired due to no user action",
-            "error_code": "E1602",
-            "addedon": "2024-12-11 12:43:03",
-            "payment_source": "payu",
-            "card_type": "MAST",
-            "error_Message": "Bank was unable to authenticate.",
-            "net_amount_debit": "0.00",
-            "disc": "0.00",
-            "mode": "DC",
-            "PG_TYPE": "DC-PG",
-            "card_no": "XXXXXXXXXXXX7596",
-            "status": "success",
-            "unmappedstatus": "captured",
-            "Merchant_UTR": null,
-            "Settled_At": null,
-            "cardhash": "095d184331be367bb92aa3eeecb57d0728de96cc598dd563d407982d75021149",
-            "name_on_card": null,
-            "card_token": "4e97156bc2d6320cdfe15",
-            "field4": null,
-            "threeDSVersion": "2.2.0",
-            "offerAvailed": null
-        }
-    }
-}
-```
-
-#### Failure Responses
-
-* If txnID is not found, the response is similar to the following:
-
-```json
-{
-    "status": 0,
-    "msg": "0 out of 1 Transactions Fetched Successfully",
-    "transaction_details": {
-        "IhfgcZnXR4o4nB": {
-            "mihpayid": "Not Found",
-            "status": "Not Found"
-        }
-    }
-}
-```
-
-### Important Notes for Cross-Border Subscriptions
+## Important Notes for Cross-Border Subscriptions
 
 <Callout icon="📘" theme="info">
   **Notes**:
@@ -547,4 +451,3 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
   * **udf4**: This parameter must contain the "MerchantName" passed in udf3 in case of PA2PA integration, for UPI mandate consent and recurring transaction, this parameter value should not be passed.
   * **udf5**: This parameter must contain the "invoiceId" for every merchant, this field is mandatory during or after the transaction (using the udf_update API post successful transaction).
 </Callout>
-
