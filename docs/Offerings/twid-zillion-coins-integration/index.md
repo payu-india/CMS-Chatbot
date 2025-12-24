@@ -1,12 +1,10 @@
 ---
-title: TWID Rewards & Zillion Coins Integration
+title: TWID Rewards Integration
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-## TWID Rewards
-
 TWID Rewards is a loyalty points integration solution that leverages India's largest reward points network and integrates seamlessly with the PayU payment platform. It connects merchants to over 300 million users and allows them to earn and redeem reward points from over 20 leading issuers in a unified, frictionless checkout experience.
 
 ## Product Ecosystem
@@ -59,6 +57,6 @@ TWID Rewards is a loyalty points integration solution that leverages India's lar
 * **Quick Commerce**: Instant reward point validation for time-sensitive transactions 
 * **Entertainment & Travel**: Point redemption for bookings, tickets, and experiential purchases
 
-## Zillion Coins
+<br />
 
 <br />
