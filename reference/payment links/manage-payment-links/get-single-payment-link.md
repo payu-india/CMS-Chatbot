@@ -23,7 +23,7 @@ HTTP Method: **GET**
 
 > 📘 Note:
 >
-> The access token with the scope as **read_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
+> The access token with the scope as **read_payment_links** is required on the header. For more information on getting the access token, refer to [Get Access Token](ref:get-token-api-for-payment-links).
 
 ## Request headers
 
