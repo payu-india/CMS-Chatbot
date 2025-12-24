@@ -14,7 +14,7 @@ The UDF Update API allows you to update User Defined Fields (UDF1-UDF5 and addit
 * Store additional business-specific information against transactions
 
 <Callout icon="📘" theme="info">
-  **Note:** To update udf6 to udf10, the additional UDFs` merchant parameter must be enabled for your MID. To enable additional UDFs, contact your PayU Key Account Manager or <Anchor label="PayU Support" target="_blank" href="https://help.payu.in">PayU Support</Anchor>.
+  **Note:** To update udf6 and udf7, the additional UDFs` merchant parameter must be enabled for your MID. To enable additional UDFs, contact your PayU Key Account Manager or <Anchor label="PayU Support" target="_blank" href="https://help.payu.in">PayU Support</Anchor>.
 </Callout>
 
 ## Environment
