@@ -1,5 +1,5 @@
 ---
-title: Registraiton Consent Transaction - CB
+title: Registration Consent Transaction - CB
 deprecated: false
 hidden: true
 metadata:
