@@ -33,6 +33,10 @@ The CB Subscription integration consists of three main components:
 * Intelligent retry mechanisms for failed payments
 * Real-time payment status notifications
 
+<Callout icon="👍">
+  **Reference:** For recurring payments with CB, you must pass the UDF parameters with invoice ID and customer details. For more information, refer to [Recurring Payment Transaction API - PACB](ref:recurring-payment-transaction-api-pacb).
+</Callout>
+
 ### 3. Pre-Debit Transaction
 
 **Purpose**: Notify customers and validate account status before executing recurring payments.
@@ -43,6 +47,10 @@ The CB Subscription integration consists of three main components:
 * Account balance verification
 * Compliance with regulatory pre-debit requirements
 * Risk assessment and fraud prevention
+
+<Callout icon="👍">
+  **Reference:** For pre-debit transaction, you must use the regular API. For more 
+</Callout>
 
 ## Payment Method Support
 
