@@ -1,7 +1,7 @@
 ---
 title: CB Subscriptions Integration - Non Seamless
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -268,4 +268,3 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
   * **udf4**: This parameter must contain the "MerchantName" passed in udf3 in case of PA2PA integration, for UPI mandate consent and recurring transaction, this parameter value should not be passed.
   * **udf5**: This parameter must contain the "invoiceId" for every merchant, this field is mandatory during or after the transaction (using the udf_update API post successful transaction).
 </Callout>
-
