@@ -172,22 +172,4 @@ Integrate TWID pay to enable customers to redeem their TWID loyalty points durin
   </Accordion>
 </Accordion>
 
-## Integration Flow
-
-### Error Handling
-
-All APIs may return error responses. Implement proper error handling for:
-
-* Invalid parameters
-* Insufficient balance
-* Authentication failures
-* Network timeouts
-* Server errors
-
-### Security Best Practices
-
-1. **Secure Storage**: Store API keys and merchant credentials securely
-2. **HTTPS Only**: All API calls must use HTTPS
-3. **Input Validation**: Validate all input parameters before API calls
-4. **Error Logging**: Log errors for debugging but avoid logging sensitive data
-5. **Timeout Handling**: Implement appropriate timeout values for API calls
+<br />
