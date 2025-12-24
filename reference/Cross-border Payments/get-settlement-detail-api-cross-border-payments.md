@@ -22,7 +22,7 @@ Get Settlement Detail API are build on top of settlement data that provides sett
 
 ### Authorization header
 
-* Date: date time when request was triggerd (`Wed, 28 Jun 2023 11:25:19 GMT`)
+* Date: date time when request was triggered (`Wed, 28 Jun 2023 11:25:19 GMT`)
 
 ```javascript
 var date = new Date().toUTCString()
