@@ -5,11 +5,13 @@ hidden: true
 metadata:
   robots: index
 ---
-When processing outward settlements from India, authorized banks (AD-1) require additional information as per RBI regulations. Sometimes, settlements are **put on hold** or **rejected by the bank**. This guide explains:
+When processing outward settlements from India, authorized banks (AD-1) require additional information as per RBI regulations. Sometimes, settlements are **put on hold** or **rejected by the bank**. This section explains:
 
 * Why settlements may be on hold
 * How to identify such transactions
 * Steps to resolve and unblock them
+
+Also, this section describes the step-by-step procedure to process on-hold transactions. The integration involves retrieving transactions that require additional information and submitting the required details to release settlements.
 
 ## Transaction Statuses & Next Steps
 
@@ -33,7 +35,7 @@ If the transaction status is **Needs Response**, additional information is requi
 | **Non-Individual cases cannot be processed**   | Transactions involving entities other than individuals are not allowed. |                                                                                                                                                                                                                            |
 | **Amlock match found and cannot be processed** |                                                                         |                                                                                                                                                                                                                            |
 
-### **Key Tips for Merchants**
+### Key Tips for Merchants
 
 * Always ensure **buyer details** (name, address, PAN, DOB) are accurate before initiating settlements.
 * Keep **invoice numbers** ready and update them promptly.
