@@ -22,7 +22,7 @@ HTTP Method: **GET**
 | **Production Environment** | \<[https://oneapi.payu.in/payment-links](https://oneapi.payu.in/payment-links)>       |
 
 <Callout icon="📘" theme="info">
-  **Note**: The access token with the scope as **read_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API - Payment Links](ref:get-token-api-payment-links).
+  **Note**: The access token with the scope as **read_payment_links** is required on the header. For more information on getting the access token, refer to [Get Access Token](ref:get-token-api-for-payment-links).
 </Callout>
 
 ## Request headers
