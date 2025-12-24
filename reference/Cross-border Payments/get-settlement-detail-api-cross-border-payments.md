@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-Settlement Details APIs are build on top of settlement data that provides settlement details.
+Get Settlement Detail API are build on top of settlement data that provides settlement details.
 
 ## Endpoint
 
@@ -154,7 +154,7 @@ HTTP status is 200 for all success response
 **Request**
 
 ```bash
-curl --location 'http://127.0.0.1:8090/treasury/int/payu/settlement/settlementDetails?settledOn=2024-04-08&pageSize=20000&page=1' \
+curl --location 'https://info.payu.intreasury/int/payu/settlement/settlementDetails?settledOn=2024-04-08&pageSize=20000&page=1' \
 --header 'mid: 135670'
 ```
 
