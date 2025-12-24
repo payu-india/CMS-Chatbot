@@ -1,11 +1,11 @@
 ---
-title: Using MOTO with Network Tokens
+title: Using 1FA with Network Tokens
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-This scenario is applicable if you want to collect payments using MOTO (Mail Order Telephone Order) transactions with network tokens.
+This scenario is applicable if you want to collect payments using 1FA or MOTO (Mail Order Telephone Order) transactions with network tokens.
 
 HTTP Method: **POST**
 
@@ -13,14 +13,14 @@ HTTP Method: **POST**
 
 ## Applicable scenarios
 
-* Processing MOTO payments for corporate cards in the Hotel and Travel Industry
+* Processing 1FA payments for tokenized corporate cards only in the Hotel and Travel Industry
 * Merchant has the card token, TAVV (Cryptogram), and the last four digits of the card
 * The token could be created by the merchant or through another partner
-* Transactions that are exempt from 2FA as per RBI guidelines for MOTO payments
+* Transactions that are exempt from 2FA as per RBI guidelines for 1FA payments
 * For now, PayU is only supporting direct token cards in the request from the merchant
 
 <Callout icon="📘" theme="info">
-  **Note**: This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sending the card transaction request in the form of authentication. MOTO transactions must comply with RBI and PCI DSS guidelines and are restricted to corporate cards in specific industries.
+  **Note**: This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sending the card transaction request in the form of authentication. 1FA transactions must comply with RBI and PCI DSS guidelines and are restricted to corporate cards in specific industries.
 </Callout>
 
 ## Request Parameters
@@ -513,8 +513,8 @@ HTTP Method: **POST**
 
 > 📘 Notes for additional_info
 >
-> * **last4Digits**: The last 4 digits of the card. This parameter is mandatory for MOTO transactions to ensure proper card identification.
-> * **<Glossary>TAVV</Glossary>**: Token Authentication Verification Value (also known as cryptogram). This is mandatory for MOTO transactions to ensure the authenticity of the tokenized card.
+> * **last4Digits**: The last 4 digits of the card. This parameter is mandatory for 1FA with network tokens transactions to ensure proper card identification.
+> * **<Glossary>TAVV</Glossary>**: Token Authentication Verification Value (also known as cryptogram). This is mandatory for 1FA transactions to ensure the authenticity of the tokenized card.
 
 ## Sample Request
 
@@ -604,9 +604,9 @@ HTTP Method: **POST**
 
 > 📘 Important Notes for MOTO Transactions
 >
-> * MOTO transactions are restricted to corporate cards in the Hotel and Travel Industry as per RBI guidelines
-> * All MOTO transactions must be tokenized and comply with PCI DSS standards
-> * The merchant must be pre-approved and KYC compliant to process MOTO transactions
-> * RMS (Risk Management Service) will validate MOTO eligibility during transaction processing
-> * MOTO transactions are exempt from 2FA but maintain other security measures like cryptogram validation
-> * A separate Payment Gateway ID is used for MOTO transactions for reconciliation purposes
+> * 1FA transactions are restricted to tokenized corporate cards only in the Hotel and Travel Industry as per RBI guidelines
+> * All 1FA transactions must be tokenized and comply with PCI DSS standards
+> * The merchant must be pre-approved and KYC compliant to process 1FA transactions
+> * RMS (Risk Management Service) will validate 1FA eligibility during transaction processing
+> * 1FA transactions are exempt from 2FA but maintain other security measures like cryptogram validation
+> * A separate Payment Gateway ID is used for 1FA transactions for reconciliation purposes
