@@ -1,5 +1,5 @@
 ---
-title: Subscriptions Integration - CB
+title: Subscriptions with Merchant Hosted Integration - CB
 deprecated: false
 hidden: true
 metadata:
