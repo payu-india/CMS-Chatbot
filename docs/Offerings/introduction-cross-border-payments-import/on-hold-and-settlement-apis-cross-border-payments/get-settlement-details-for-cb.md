@@ -1,7 +1,7 @@
 ---
 title: Get Settlement Details for CB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
