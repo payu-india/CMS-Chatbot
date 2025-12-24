@@ -45,7 +45,7 @@ HTTP Method: **GET**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br><strong>mandatory</strong></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer <code>String</code> This contains the client_token. For getting a token, refer to <a href="https://docs.payu.in/docs/get-token-api-payment-links">Get Token API - Payment Links</a> .</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer <code>String</code> This contains the client_token. For getting a token, refer to <a href="https://docs.payu.in/reference/get-token-api-for-payment-links">Get Access Token API</a> .</p>
 </td>
 </tr>
 </tbody>
