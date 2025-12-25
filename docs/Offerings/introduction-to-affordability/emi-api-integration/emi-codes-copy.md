@@ -16,12 +16,12 @@ next:
 <tr><td>American Express</td><td>EMIAMEX3</td><td>3 months</td><td>14</td><td>5000</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>American Express</td><td>EMIAMEX6</td><td>6 months</td><td>14</td><td>5000</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>American Express</td><td>EMIAMEX9</td><td>9 months</td><td>14</td><td>5000</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
-<tr><td>AU Small Finance Bank</td><td>AUSF03</td><td>3 Months</td><td>16</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
-<tr><td>AU Small Finance Bank</td><td>AUSF06</td><td>6 Months</td><td>16</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
-<tr><td>AU Small Finance Bank</td><td>AUSF09</td><td>9 Months</td><td>16</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
-<tr><td>AU Small Finance Bank</td><td>AUSF12</td><td>12 Months</td><td>16</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
-<tr><td>AU Small Finance Bank</td><td>AUSF18</td><td>18 Months</td><td>16</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
-<tr><td>AU Small Finance Bank</td><td>AUSF24</td><td>24 Months</td><td>16</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
+<tr><td>AU Small Finance Bank</td><td>AUSF03</td><td>3 Months</td><td>14</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
+<tr><td>AU Small Finance Bank</td><td>AUSF06</td><td>6 Months</td><td>14</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
+<tr><td>AU Small Finance Bank</td><td>AUSF09</td><td>9 Months</td><td>14</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
+<tr><td>AU Small Finance Bank</td><td>AUSF12</td><td>12 Months</td><td>14</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
+<tr><td>AU Small Finance Bank</td><td>AUSF18</td><td>18 Months</td><td>14</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
+<tr><td>AU Small Finance Bank</td><td>AUSF24</td><td>24 Months</td><td>14</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>Axis Bank</td><td>EMIA3</td><td>3 Months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 299</td><td>Rs. 100</td></tr>
 <tr><td>Axis Bank</td><td>EMIA6</td><td>6 months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 299</td><td>Rs. 100</td></tr>
 <tr><td>Axis Bank</td><td>EMIA9</td><td>9 months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 299</td><td>Rs. 100</td></tr>
