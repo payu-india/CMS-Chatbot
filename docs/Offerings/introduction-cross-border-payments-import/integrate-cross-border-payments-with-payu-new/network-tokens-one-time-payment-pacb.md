@@ -1,11 +1,12 @@
 ---
 title: '[S2S] Process Saved Cards with a Network Token'
+excerpt: Process a saved card transactions via PayU (using a network token)
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-This section describes how to integrate card payments using Network Tokens (Visa/Mastercard tokens) for PACB (PA to PA Cross-Border) transactions. Network tokens provide enhanced security and higher approval rates compared to traditional card-on-file transactions.
+This section describes how to integrate card payments using Network Tokens (Visa/Mastercard tokens) for cross-border transactions. Network tokens provide enhanced security and higher approval rates compared to traditional card-on-file transactions.
 
 <Cards columns={3}>
   <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
