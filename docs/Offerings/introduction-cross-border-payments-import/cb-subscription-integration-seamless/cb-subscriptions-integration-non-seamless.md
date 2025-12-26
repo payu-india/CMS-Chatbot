@@ -3,6 +3,16 @@ title: PayU Hosted Integration -Cross-Border Payments
 deprecated: false
 hidden: true
 metadata:
+  title: >-
+    PayU Hosted Integration -Subscriptions Integration with Cross-Border
+    Payments
+  robots: index
+---
+---
+title: PayU Hosted Integration -Cross-Border Payments
+deprecated: false
+hidden: true
+metadata:
   robots: index
 ---
 ---
@@ -79,7 +89,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 ```bash
 curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=fM3O2HnkpJ8XEC&amount=100.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone Subscription&address1=123 Main Street&city=New Delhi&state=Delhi&country=India&si=1&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&udf1=AELPR1234E&udf3=02-02-1980&udf4=XYZ Pvt. Ltd.&udf5=INV123456&si_details={"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}&hash=2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5"
+  -d "key=JP***g&txnid=fM3O2HnkpJ8XEC&amount=100.00&firstname=PayU User&lastname=Kumar&email=test@gmail.com&phone=9876543210&productinfo=iPhone Subscription&address1=123 Main Street&city=New Delhi&state=Delhi&country=India&si=1&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&udf1=AELPR1234E&udf3=02-02-1980&udf4=XYZ Pvt. Ltd.&udf5=INV123456&buyer_type_business=1&udf_params={\"udf7\":\"0100000029\",\"udf8\":\"99953729071\"}&si_details={\"billingAmount\": \"100.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2022-09-01\",\"paymentEndDate\": \"2022-12-01\"}&hash=2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5"
 ```
 ```python
 import requests
@@ -92,6 +102,7 @@ def payu_payment():
         'txnid': 'fM3O2HnkpJ8XEC',
         'amount': '100.00',
         'firstname': 'PayU User',
+        'lastname': 'Kumar',
         'email': 'test@gmail.com',
         'phone': '9876543210',
         'productinfo': 'iPhone Subscription',
@@ -106,6 +117,8 @@ def payu_payment():
         'udf3': '02-02-1980',
         'udf4': 'XYZ Pvt. Ltd.',
         'udf5': 'INV123456',
+        'buyer_type_business': '1',
+        'udf_params': '{"udf7":"0100000029","udf8":"99953729071"}',
         'si_details': '{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}',
         'hash': '2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5'
     }
@@ -150,6 +163,7 @@ public class PayUPayment
                 new KeyValuePair<string, string>("txnid", "fM3O2HnkpJ8XEC"),
                 new KeyValuePair<string, string>("amount", "100.00"),
                 new KeyValuePair<string, string>("firstname", "PayU User"),
+                new KeyValuePair<string, string>("lastname", "Kumar"),
                 new KeyValuePair<string, string>("email", "test@gmail.com"),
                 new KeyValuePair<string, string>("phone", "9876543210"),
                 new KeyValuePair<string, string>("productinfo", "iPhone Subscription"),
@@ -164,6 +178,8 @@ public class PayUPayment
                 new KeyValuePair<string, string>("udf3", "02-02-1980"),
                 new KeyValuePair<string, string>("udf4", "XYZ Pvt. Ltd."),
                 new KeyValuePair<string, string>("udf5", "INV123456"),
+                new KeyValuePair<string, string>("buyer_type_business", "1"),
+                new KeyValuePair<string, string>("udf_params", "{\"udf7\":\"0100000029\",\"udf8\":\"99953729071\"}"),
                 new KeyValuePair<string, string>("si_details", "{\"billingAmount\": \"100.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2022-09-01\",\"paymentEndDate\": \"2022-12-01\"}"),
                 new KeyValuePair<string, string>("hash", "2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5")
             };
@@ -193,6 +209,7 @@ async function processPayment() {
     formData.append('txnid', 'fM3O2HnkpJ8XEC');
     formData.append('amount', '100.00');
     formData.append('firstname', 'PayU User');
+    formData.append('lastname', 'Kumar');
     formData.append('email', 'test@gmail.com');
     formData.append('phone', '9876543210');
     formData.append('productinfo', 'iPhone Subscription');
@@ -207,6 +224,8 @@ async function processPayment() {
     formData.append('udf3', '02-02-1980');
     formData.append('udf4', 'XYZ Pvt. Ltd.');
     formData.append('udf5', 'INV123456');
+    formData.append('buyer_type_business', '1');
+    formData.append('udf_params', '{"udf7":"0100000029","udf8":"99953729071"}');
     formData.append('si_details', '{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}');
     formData.append('hash', '2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5');
 
@@ -258,6 +277,7 @@ public class PayUPayment {
             parameters.put("txnid", "fM3O2HnkpJ8XEC");
             parameters.put("amount", "100.00");
             parameters.put("firstname", "PayU User");
+            parameters.put("lastname", "Kumar");
             parameters.put("email", "test@gmail.com");
             parameters.put("phone", "9876543210");
             parameters.put("productinfo", "iPhone Subscription");
@@ -272,6 +292,8 @@ public class PayUPayment {
             parameters.put("udf3", "02-02-1980");
             parameters.put("udf4", "XYZ Pvt. Ltd.");
             parameters.put("udf5", "INV123456");
+            parameters.put("buyer_type_business", "1");
+            parameters.put("udf_params", "{\"udf7\":\"0100000029\",\"udf8\":\"99953729071\"}");
             parameters.put("si_details", "{\"billingAmount\": \"100.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2022-09-01\",\"paymentEndDate\": \"2022-12-01\"}");
             parameters.put("hash", "2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5");
 
@@ -325,6 +347,7 @@ function processPayment() {
         'txnid' => 'fM3O2HnkpJ8XEC',
         'amount' => '100.00',
         'firstname' => 'PayU User',
+        'lastname' => 'Kumar',
         'email' => 'test@gmail.com',
         'phone' => '9876543210',
         'productinfo' => 'iPhone Subscription',
@@ -339,6 +362,8 @@ function processPayment() {
         'udf3' => '02-02-1980',
         'udf4' => 'XYZ Pvt. Ltd.',
         'udf5' => 'INV123456',
+        'buyer_type_business' => '1',
+        'udf_params' => '{"udf7":"0100000029","udf8":"99953729071"}',
         'si_details' => '{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}',
         'hash' => '2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5'
     );
