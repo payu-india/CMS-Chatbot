@@ -16,6 +16,8 @@ Before starting the integration, ensure you have:
 * Test environment access for development
 * Understanding of UPI payment flow (Collect vs Intent)
 
+#### Payment consent flow
+
 <Cards columns={2}>
   <Card title="1. Post the Request" href="#step-1-post-the-request">
     Send the UPI consent transaction request with S2S parameters.
@@ -40,7 +42,19 @@ Before starting the integration, ensure you have:
 
     <br />
   </Card>
+</Cards>
 
+
+#### Recurring Payments Flow
+
+<Cards columns={2}>
+  <Card title="1. Pre-Debit SI Notification" href="#step-1-pre-debit-si-notification">
+    Send pre-debit notifications for upcoming recurring debits.
+  </Card>
+
+  <Card title="2. Recurring Payment Transaction" href="#step-2-recurring-payment-transaction">
+    Execute recurring payment transactions using the registered mandate.
+  </Card>
 </Cards>
 
 ***
