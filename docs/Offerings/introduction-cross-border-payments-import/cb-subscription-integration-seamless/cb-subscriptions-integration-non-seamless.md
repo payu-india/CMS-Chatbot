@@ -1,5 +1,5 @@
 ---
-title: CB Subscriptions Integration - Non Seamless
+title: PayU Hosted Integration -Cross-Border Payments
 deprecated: false
 hidden: true
 metadata:
