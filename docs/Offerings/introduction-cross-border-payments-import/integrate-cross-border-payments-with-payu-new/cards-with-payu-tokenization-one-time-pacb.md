@@ -1,5 +1,5 @@
 ---
-title: Cards with PayU Tokenization - One-Time PACB
+title: Cards with PayU Tokenization - Merchant Hosted
 deprecated: false
 hidden: true
 metadata:
