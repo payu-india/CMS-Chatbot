@@ -94,6 +94,7 @@ Construct the request payload with all required parameters. Ensure `si_details` 
   "amount": "100.00",
   "productinfo": "Subscription Plan",
   "firstname": "Ashish",
+  "lastname": "Kumar",
   "email": "test@payu.in",
   "phone": "9988776655",
   "surl": "https://example.com/success",
@@ -113,11 +114,12 @@ Construct the request payload with all required parameters. Ensure `si_details` 
   "udf3": "02-02-1980",
   "udf4": "XYZ Pvt. Ltd.",
   "udf5": "098450845",
+  "buyer_type_business": "1",
+  "udf_params": "{\"udf7\":\"0100000029\",\"udf8\":\"99953729071\"}",
   "txn_s2s_flow": "4",
   "s2s_client_ip": "10.200.12.12",
   "s2s_device_info": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0",
   "hash": "generated_hash_value"
-
 ```
 
 ### Sample Request
@@ -131,6 +133,7 @@ curl --location --request POST 'https://test.payu.in/_payment' \
 --data-urlencode 'txnid=payuTestMandate12345' \
 --data-urlencode 'amount=100.00' \
 --data-urlencode 'firstname=Ashish' \
+--data-urlencode 'lastname=Kumar' \
 --data-urlencode 'email=test@payu.in' \
 --data-urlencode 'phone=9988776655' \
 --data-urlencode 'productinfo=Subscription Plan' \
@@ -151,6 +154,8 @@ curl --location --request POST 'https://test.payu.in/_payment' \
 --data-urlencode 'udf3=02-02-1980' \
 --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
 --data-urlencode 'udf5=098450845' \
+--data-urlencode 'buyer_type_business=1' \
+--data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
 --data-urlencode 'txn_s2s_flow=4' \
 --data-urlencode 's2s_client_ip=10.200.12.12' \
 --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
@@ -170,6 +175,7 @@ data = {
     'txnid': 'payuTestMandate12345',
     'amount': '100.00',
     'firstname': 'Ashish',
+    'lastname': 'Kumar',
     'email': 'test@payu.in',
     'phone': '9988776655',
     'productinfo': 'Subscription Plan',
@@ -190,6 +196,8 @@ data = {
     'udf3': '02-02-1980',
     'udf4': 'XYZ Pvt. Ltd.',
     'udf5': '098450845',
+    'buyer_type_business': '1',
+    'udf_params': '{"udf7":"0100000029","udf8":"99953729071"}',
     'txn_s2s_flow': '4',
     's2s_client_ip': '10.200.12.12',
     's2s_device_info': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0',
@@ -223,6 +231,7 @@ class Program
             new KeyValuePair<string, string>("txnid", "payuTestMandate12345"),
             new KeyValuePair<string, string>("amount", "100.00"),
             new KeyValuePair<string, string>("firstname", "Ashish"),
+            new KeyValuePair<string, string>("lastname", "Kumar"),
             new KeyValuePair<string, string>("email", "test@payu.in"),
             new KeyValuePair<string, string>("phone", "9988776655"),
             new KeyValuePair<string, string>("productinfo", "Subscription Plan"),
@@ -243,6 +252,8 @@ class Program
             new KeyValuePair<string, string>("udf3", "02-02-1980"),
             new KeyValuePair<string, string>("udf4", "XYZ Pvt. Ltd."),
             new KeyValuePair<string, string>("udf5", "098450845"),
+            new KeyValuePair<string, string>("buyer_type_business", "1"),
+            new KeyValuePair<string, string>("udf_params", "{\"udf7\":\"0100000029\",\"udf8\":\"99953729071\"}"),
             new KeyValuePair<string, string>("txn_s2s_flow", "4"),
             new KeyValuePair<string, string>("s2s_client_ip", "10.200.12.12"),
             new KeyValuePair<string, string>("s2s_device_info", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0"),
@@ -275,6 +286,7 @@ async function makePayment() {
     formData.append('txnid', 'payuTestMandate12345');
     formData.append('amount', '100.00');
     formData.append('firstname', 'Ashish');
+    formData.append('lastname', 'Kumar');
     formData.append('email', 'test@payu.in');
     formData.append('phone', '9988776655');
     formData.append('productinfo', 'Subscription Plan');
@@ -295,6 +307,8 @@ async function makePayment() {
     formData.append('udf3', '02-02-1980');
     formData.append('udf4', 'XYZ Pvt. Ltd.');
     formData.append('udf5', '098450845');
+    formData.append('buyer_type_business', '1');
+    formData.append('udf_params', '{"udf7":"0100000029","udf8":"99953729071"}');
     formData.append('txn_s2s_flow', '4');
     formData.append('s2s_client_ip', '10.200.12.12');
     formData.append('s2s_device_info', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0');
@@ -342,6 +356,7 @@ public class PayUPayment {
             postData.append("&txnid=").append(URLEncoder.encode("payuTestMandate12345", StandardCharsets.UTF_8));
             postData.append("&amount=").append(URLEncoder.encode("100.00", StandardCharsets.UTF_8));
             postData.append("&firstname=").append(URLEncoder.encode("Ashish", StandardCharsets.UTF_8));
+            postData.append("&lastname=").append(URLEncoder.encode("Kumar", StandardCharsets.UTF_8));
             postData.append("&email=").append(URLEncoder.encode("test@payu.in", StandardCharsets.UTF_8));
             postData.append("&phone=").append(URLEncoder.encode("9988776655", StandardCharsets.UTF_8));
             postData.append("&productinfo=").append(URLEncoder.encode("Subscription Plan", StandardCharsets.UTF_8));
@@ -362,6 +377,8 @@ public class PayUPayment {
             postData.append("&udf3=").append(URLEncoder.encode("02-02-1980", StandardCharsets.UTF_8));
             postData.append("&udf4=").append(URLEncoder.encode("XYZ Pvt. Ltd.", StandardCharsets.UTF_8));
             postData.append("&udf5=").append(URLEncoder.encode("098450845", StandardCharsets.UTF_8));
+            postData.append("&buyer_type_business=").append(URLEncoder.encode("1", StandardCharsets.UTF_8));
+            postData.append("&udf_params=").append(URLEncoder.encode("{\"udf7\":\"0100000029\",\"udf8\":\"99953729071\"}", StandardCharsets.UTF_8));
             postData.append("&txn_s2s_flow=").append(URLEncoder.encode("4", StandardCharsets.UTF_8));
             postData.append("&s2s_client_ip=").append(URLEncoder.encode("10.200.12.12", StandardCharsets.UTF_8));
             postData.append("&s2s_device_info=").append(URLEncoder.encode("Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0", StandardCharsets.UTF_8));
@@ -401,6 +418,7 @@ $postData = array(
     'txnid' => 'payuTestMandate12345',
     'amount' => '100.00',
     'firstname' => 'Ashish',
+    'lastname' => 'Kumar',
     'email' => 'test@payu.in',
     'phone' => '9988776655',
     'productinfo' => 'Subscription Plan',
@@ -421,6 +439,8 @@ $postData = array(
     'udf3' => '02-02-1980',
     'udf4' => 'XYZ Pvt. Ltd.',
     'udf5' => '098450845',
+    'buyer_type_business' => '1',
+    'udf_params' => '{"udf7":"0100000029","udf8":"99953729071"}',
     'txn_s2s_flow' => '4',
     's2s_client_ip' => '10.200.12.12',
     's2s_device_info' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0',
