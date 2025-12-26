@@ -2,7 +2,7 @@
 title: Payment Journey & Workflow
 excerpt: >-
   Illustrative example of the payment journey in a cross-border (Outward)
-  transaction
+  Transaction
 deprecated: false
 hidden: false
 metadata:
@@ -24,7 +24,4 @@ PayU has partnered with **AD-1 CATEGORY Bank** to complete the settlement via SW
 1. Funds will be transferred by acquirers into PayU’s domestic pool account ("Nodal Bank Account"). This is an automated process.
 2. PayU instructs the AD-1 category bank to make the transfer to merchants over a file shared through SFTP. After the cross-border settlement is completed, the AD-1 category bank shares a response file and a unique transaction reference.
 
-Transactional flows & integrations remain the same for PACB merchants, and merchants need to perform the following:
-
-* Merchant has to share invoice numbers in the UDF5 field while doing transactions in real-time.
-* Post successful transaction AWB copy has to be submitted.
+<br />
