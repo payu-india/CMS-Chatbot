@@ -40,6 +40,23 @@ Before starting the integration, ensure you have:
 
     <br />
   </Card>
+ <Card title="5. Recurring Payment Transaction" href="#step-5-recurring-payment-transaction">
+    Execute recurring payment transactions using the registered mandate.
+
+    <br />
+  </Card>
+
+  <Card title="6. Pre-Debit SI Notification" href="#step-6-pre-debit-si-notification">
+    Send pre-debit notifications for upcoming recurring debits.
+
+    <br />
+  </Card>
+
+  <Card title="7. Update Invoice ID" href="#step-7-update-invoice-id-conditional">
+    Update Invoice ID using the UDF Update API if unavailable during transaction.
+
+    <br />
+  </Card>
 </Cards>
 
 ***
