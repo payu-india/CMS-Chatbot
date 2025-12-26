@@ -575,12 +575,12 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
 
 ### Request Parameters
 
-| Parameter                             | Description                                                            | Example               |
-| :------------------------------------ | :--------------------------------------------------------------------- | :-------------------- |
-| key <br /> <code>mandatory</code>     | <code>String</code> Your merchant key provided by PayU.                | JP***g                |
-| command <br /> <code>mandatory</code> | <code>String</code> The API command name.                              | pre_debit_SI          |
-| hash <br /> <code>mandatory</code>    | <code>String</code> The hash value generated using the hash logic.     | abc0ada2e12           |
-| var1 <br /> <code>mandatory</code>    | <code>JSON String</code> JSON object containing the pre-debit details. | See var1 Object below |
+| Parameter                             | Description                                                                                                                                                   | Example               |
+| :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------- |
+| key <br /> <code>mandatory</code>     | <code>String</code> Your merchant key provided by PayU.                                                                                                       | JP***g                |
+| command <br /> <code>mandatory</code> | <code>String</code> The API command name.                                                                                                                     | pre_debit_SI          |
+| hash <br /> <code>mandatory</code>    | <code>String</code> The hash value generated using the hash logic.                                                                                            | abc0ada2e12           |
+| var1 <br /> <code>mandatory</code>    | <code>JSON String</code> JSON object containing the pre-debit details. For more information refer to [var1 Object Parameters](#var1-object-parameters) table. | See var1 Object below |
 
 ##### Hash logic
 
@@ -616,7 +616,7 @@ hash = sha512(key|command|var1|salt)
       </td>
 
       <td>
-        <code>String</code> The authorization PayU ID received during mandate creation.
+        <code>String</code> The mihpayuid received after the successful consent transaction.
       </td>
 
       <td>
