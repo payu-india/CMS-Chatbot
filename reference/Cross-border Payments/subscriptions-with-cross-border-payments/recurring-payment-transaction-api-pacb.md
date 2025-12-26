@@ -112,8 +112,7 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
   \"buyer_type_business\": \"0\",
   \"udf1\": \"ABCDE1234F||15-08-1990\",
   \"udf2\": \"\",
-  \"udf3\": \"INV123456||MerchantABC\",
-  \"udf5\": \"INV789012\"
+  \"udf3\": \"INV123456||MerchantABC\"
 }&hash=jbUS07Og8BToVZ..."
 ```
 
@@ -168,8 +167,7 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
   "buyer_type_business": "0",
   "udf1": "ABCDE1234F||15-08-1990",
   "udf2": "",
-  "udf3": "INV123456||MerchantABC",
-  "udf5": "INV789012"
+  "udf3": "INV123456||MerchantABC"
 }
 ```
 
