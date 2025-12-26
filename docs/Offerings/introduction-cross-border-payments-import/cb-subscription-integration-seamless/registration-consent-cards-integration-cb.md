@@ -1,5 +1,5 @@
 ---
-title: Cards Consent Transaction - CB Integration
+title: '[S2S] Cards Consent Transaction - Cross-Border'
 deprecated: false
 hidden: true
 metadata:
