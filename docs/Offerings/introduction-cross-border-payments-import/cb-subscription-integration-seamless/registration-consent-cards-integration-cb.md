@@ -599,7 +599,7 @@ After successful registration, verify the mandate status:
 | ---------------------- | -------------------------------- | --------------------------------------------------------------------------------------- |
 | status                 | success                          | Indicates that the transaction is successful with the UPI provider                      |
 | payment_source         | SIST                             | Indicates that UPI details have been marked correctly for Standing Instruction          |
-| mihpayid               | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction                   |
+| mihpayid               | \<mihpayid number> sent by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction                   |
 | cardToken              | Alphanumeric string              | Mandatory to be validated if mode is CC or DC returned in response. Should not be empty |
 
 1. **Store Mandate Details**:
