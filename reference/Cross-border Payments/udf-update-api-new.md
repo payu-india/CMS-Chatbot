@@ -1,11 +1,11 @@
 ---
-title: UDF Update API - New
+title: UDF Update API
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
-The UDF Update API allows you to update User Defined Fields (UDF1-UDF5 and additional UDFs if enabled) for a completed transaction.
+The UDF Update API allows you to update User Defined Fields (UDF1-UDF7 and additional UDFs if enabled) for a completed transaction.
 
 ## Use Cases
 
@@ -35,7 +35,7 @@ The UDF Update API allows you to update User Defined Fields (UDF1-UDF5 and addit
 
 ## Request Body Parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -115,12 +115,12 @@ The UDF Update API allows you to update User Defined Fields (UDF1-UDF5 and addit
       </td>
 
       <td>
-        `String`<br />New value for UDF1. Contains the buyer's PAN. <br/>For UPI recurring, format is "Buyer's PAN||Buyer's DOB". Character limit: 255.
+        `String`<br />New value for UDF1. Contains the buyer's PAN. <br />For UPI recurring, format is "Buyer's PAN||Buyer's DOB". Character limit: 255.
       </td>
 
       <td>
         AAAPZ1234C  
-        For UPI: `AAAPZ1234C\|\|22-08-1972`
+        For UPI: `AAAPZ1234C||22-08-1972`
       </td>
     </tr>
 
@@ -130,12 +130,12 @@ The UDF Update API allows you to update User Defined Fields (UDF1-UDF5 and addit
       </td>
 
       <td>
-        `String`<br />New value for UDF3.This parameter must contains the Buyer's DOB. <br/>For UPI recurring, format is "InvoiceID||MerchantName". Character limit: 255.
+        `String`<br />New value for UDF3.This parameter must contains the Buyer's DOB. <br />For UPI recurring, format is "InvoiceID||MerchantName". Character limit: 255.
       </td>
 
       <td>
         22-08-1972  
-        For UPI: `inv435345\|Ashish`
+        For UPI: `inv435345|Ashish`
       </td>
     </tr>
 
