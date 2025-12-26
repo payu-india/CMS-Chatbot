@@ -35,19 +35,167 @@ The UDF Update API allows you to update User Defined Fields (UDF1-UDF5 and addit
 
 ## Request Body Parameters
 
-| Parameter                | Description                                                        | Example                                                                                                                            |
-| ------------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| key<br />`mandatory`     | `String`<br />Merchant key provided by PayU.                       | `smsplus`                                                                                                                          |
-| hash<br />`mandatory`    | `String`<br />SHA512 hash for request verification.                | `17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b` |
-| command<br />`mandatory` | `String`<br />API command identifier. Must be `udf_update`.        | `udf_update`                                                                                                                       |
-| var1<br />`mandatory`    | `String`<br />Transaction ID (txnid) of the transaction to update. | `c82847d52a146dca3830`                                                                                                             |
-| var2<br />`optional`     | `String`<br />New value for UDF1.                                  | `updatedudf2_again`                                                                                                                |
-| var3<br />`optional`     | `String`<br />New value for UDF2.                                  | `fsdfdsfd`                                                                                                                         |
-| var4<br />`optional`     | `String`<br />New value for UDF3.                                  | `fdsfdsfdsfds`                                                                                                                     |
-| var5<br />`optional`     | `String`<br />New value for UDF4.                                  | `fdsfsdf`                                                                                                                          |
-| var6<br />`optional`     | `String`<br />New value for UDF5.                                  | `udf5value`                                                                                                                        |
-| var7<br />`optional`     | `String`<br />New value for UDF6.                                  | `fweew`                                                                                                                            |
-| var8<br />`optional`     | `String`<br />New value for UDF7.                                  | `dfweewd`                                                                                                                          |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key<br />`mandatory`
+      </td>
+
+      <td>
+        `String`<br />Merchant key provided by PayU.
+      </td>
+
+      <td>
+        `smsplus`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash<br />`mandatory`
+      </td>
+
+      <td>
+        `String`<br />SHA512 hash for request verification.
+      </td>
+
+      <td>
+        `17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        command<br />`mandatory`
+      </td>
+
+      <td>
+        `String`<br />API command identifier. Must be `udf_update`.
+      </td>
+
+      <td>
+        `udf_update`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var1<br />`mandatory`
+      </td>
+
+      <td>
+        `String`<br />Transaction ID (txnid) of the transaction to update.
+      </td>
+
+      <td>
+        `my_order_642`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var2<br />`optional`
+      </td>
+
+      <td>
+        `String`<br />New value for UDF1. Contains the buyer's PAN. <br/>For UPI recurring, format is "Buyer's PAN||Buyer's DOB". Character limit: 255.
+      </td>
+
+      <td>
+        AAAPZ1234C  
+        For UPI: `AAAPZ1234C\|\|22-08-1972`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var4<br />`optional`
+      </td>
+
+      <td>
+        `String`<br />New value for UDF3.This parameter must contains the Buyer's DOB. <br/>For UPI recurring, format is "InvoiceID||MerchantName". Character limit: 255.
+      </td>
+
+      <td>
+        22-08-1972  
+        For UPI: `inv435345\|Ashish`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var5<br />`optional`
+      </td>
+
+      <td>
+        `String`<br />New value for UDF2.
+      </td>
+
+      <td>
+        `fdsfsdf`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var6<br />`optional`
+      </td>
+
+      <td>
+        `String`<br />New value for UDF5.
+      </td>
+
+      <td>
+        `udf5value`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var7<br />`optional`
+      </td>
+
+      <td>
+        `String`<br />New value for UDF6.
+      </td>
+
+      <td>
+        `fweew`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var8<br />`optional`
+      </td>
+
+      <td>
+        `String`<br />New value for UDF7.
+      </td>
+
+      <td>
+        `dfweewd`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ## Hash Generation
 
