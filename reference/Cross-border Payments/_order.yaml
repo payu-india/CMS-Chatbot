@@ -11,6 +11,6 @@
 - response-code-and-description-invoice-upload-api
 - settlement-detail-range-api-for-cross-border
 - get-settlement-detail-api-cross-border-payments
-- recurring-payment-transaction-api-pacb
 - one-time-payment-for-cards-pacb-integration
+- recurring-payment-transaction-api-pacb
 - registration-consent-transaction-cb
