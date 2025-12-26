@@ -117,6 +117,10 @@ Construct the request payload with all required parameters. Ensure `si_details` 
 | user_credentials<br />`mandatory`                                                        | `String`<br />Format: `merchant_key:customer_id`. Required for token provisioning.                                                                                                                             | `JPM7Fg:customer_1112`                                                                                                                                                    |
 | store_card<br />`mandatory`                                                              | `Integer`<br />Set to `1` to store the card token.                                                                                                                                                             | `1`                                                                                                                                                                       |
 
+<PACB_Hashing />
+
+<br />
+
 #### Request Payload Structure
 
 ```json
