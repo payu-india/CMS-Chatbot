@@ -1,5 +1,5 @@
 ---
-title: Network Tokens - Merchant Hosted
+title: '[S2S] Process Saved Cards with a Network Token'
 deprecated: false
 hidden: true
 metadata:
