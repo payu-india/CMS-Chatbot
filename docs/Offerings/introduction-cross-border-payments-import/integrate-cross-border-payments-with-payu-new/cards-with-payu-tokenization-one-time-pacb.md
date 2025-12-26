@@ -1,11 +1,14 @@
 ---
-title: Cards with PayU Tokenization - Merchant Hosted
+title: '[S2S] Process Saved Cards with a PayU Token'
+excerpt: Process a saved card transactions via PayU (using PayU generated token)
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-This section describes the steps to integrate card payments using previously stored PayU tokens for PACB (PA to PA Cross-Border) transactions. Use this flow when the customer has already saved their card through a previous tokenization transaction.
+This section describes the steps to integrate card payments using previously stored PayU tokens for cross-border transactions.   
+
+**Use this flow when the customer has already saved their card through a previous tokenization transaction.**
 
 <Cards columns={3}>
   <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
