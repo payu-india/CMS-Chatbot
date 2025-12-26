@@ -157,8 +157,7 @@ Before implementing, familiarize yourself with the required parameters.
   \< PACB\_Hashing />
 </Accordion>
 
-### Request Payload Structure
-
+<Accordion title="Request Payload Structure" icon="fa-file-code">
 #### UPI Collect Flow
 
 ```json
@@ -168,19 +167,19 @@ Before implementing, familiarize yourself with the required parameters.
   "amount": "10.00",
   "productinfo": "Monthly Subscription",
   "firstname": "Ashish",
-  "lastname": "Kumar",
-  "email": "abc@payu.in",
+    "lastname": "Kumar",
+    "email": "abc@payu.in",
   "phone": "9988776655",
-  "address1": "34 Saikripa-Estate, Tilak Nagar",
-  "city": "Mumbai",
-  "state": "Maharashtra",
-  "country": "India",
-  "zipcode": "400004",
+    "address1": "34 Saikripa-Estate, Tilak Nagar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "zipcode": "400004",
   "surl": "https://example.com/success",
   "furl": "https://example.com/failure",
-  "udf1": "AAAPZ1234C||22/08/1972",
-  "udf3": "INV-123_1231||MerchantName",
-  "buyer_type_business": "1",
+    "udf1": "AAAPZ1234C||22/08/1972",
+    "udf3": "INV-123_1231||MerchantName",
+    "buyer_type_business": "1",
   "pg": "UPI",
   "bankcode": "UPI",
   "vpa": "customer@upi",
@@ -200,19 +199,19 @@ Before implementing, familiarize yourself with the required parameters.
   "amount": "10.00",
   "productinfo": "Monthly Subscription",
   "firstname": "Ashish",
-  "lastname": "Kumar",
-  "email": "abc@payu.in",
+    "lastname": "Kumar",
+    "email": "abc@payu.in",
   "phone": "9988776655",
-  "address1": "34 Saikripa-Estate, Tilak Nagar",
-  "city": "Mumbai",
-  "state": "Maharashtra",
-  "country": "India",
-  "zipcode": "400004",
+    "address1": "34 Saikripa-Estate, Tilak Nagar",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "zipcode": "400004",
   "surl": "https://example.com/success",
   "furl": "https://example.com/failure",
-  "udf1": "AAAPZ1234C||22/08/1972",
-  "udf3": "INV-123_1231||MerchantName",
-  "buyer_type_business": "1",
+    "udf1": "AAAPZ1234C||22/08/1972",
+    "udf3": "INV-123_1231||MerchantName",
+    "buyer_type_business": "1",
   "pg": "UPI",
   "bankcode": "INTENT",
   "api_version": "7",
@@ -220,12 +219,13 @@ Before implementing, familiarize yourself with the required parameters.
   "si_details": "{\"billingAmount\":\"10.00\",\"billingCurrency\":\"INR\",\"billingCycle\":\"MONTHLY\",\"billingInterval\":1,\"paymentStartDate\":\"2025-06-05\",\"paymentEndDate\":\"2025-12-01\"}",
   "txn_s2s_flow": "4",
   "s2s_client_ip": "10.200.12.12",
-  "s2s_device_info": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+    "s2s_device_info": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
   "hash": "generated_hash_value"
 }
 ```
+</Accordion>
 
-### Sample Requests
+<Accordion title="Sample Requests" icon="fa-terminal" defaultOpen>
 
 <Accordion title="UPI Collect - cURL" icon="fa-code">
   ```bash
@@ -478,6 +478,7 @@ Before implementing, familiarize yourself with the required parameters.
   });
   ```
 </Accordion>
+</Accordion>
 
 > 📘 **Note**
 >
@@ -657,16 +658,16 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
 | Production  | `https://info.payu.in/merchant/postservice?form=2` |
 | Test        | `https://test.payu.in/merchant/postservice?form=2` |
 
-### Request Parameters
+<Accordion title="Request Parameters" icon="fa-list">
+  | Parameter                             | Description                                                                                  | Example                           |
+  | :------------------------------------ | :------------------------------------------------------------------------------------------- | :-------------------------------- |
+  | key <br /> <code>mandatory</code>     | <code>String</code> Merchant Key provided by PayU                                            | JPM7Fg                            |
+  | command <br /> <code>mandatory</code> | <code>String</code> API command. Must be `si_transaction`                                    | si_transaction                    |
+  | var1 <br /> <code>mandatory</code>    | <code>JSON Object</code> Transaction details object containing mandatory and optional fields | Refer to var1 Object Fields below |
+  | hash <br /> <code>mandatory</code>    | <code>String</code> SHA512 hash: `sha512(key\|command\|var1\|salt)`                          | 9f5faabedb...                     |
+</Accordion>
 
-| Parameter                             | Description                                                                                  | Example                           |
-| :------------------------------------ | :------------------------------------------------------------------------------------------- | :-------------------------------- |
-| key <br /> <code>mandatory</code>     | <code>String</code> Merchant Key provided by PayU                                            | JPM7Fg                            |
-| command <br /> <code>mandatory</code> | <code>String</code> API command. Must be `si_transaction`                                    | si_transaction                    |
-| var1 <br /> <code>mandatory</code>    | <code>JSON Object</code> Transaction details object containing mandatory and optional fields | Refer to var1 Object Fields below |
-| hash <br /> <code>mandatory</code>    | <code>String</code> SHA512 hash: `sha512(key\|command\|var1\|salt)`                          | 9f5faabedb...                     |
-
-### var1 Object Fields
+<Accordion title="var1 Object Fields" icon="fa-table">
 
 | Parameter                                                       | Description                                                                                                                                                               | Example                                             |
 | :-------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------- |
@@ -684,6 +685,7 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
 | email <br /> <code>optional</code>                              | <code>String</code> The email address of the customer.                                                                                                                    | [customer@example.com](mailto:customer@example.com) |
 | invoiceDisplayNumber <br /> <code>mandatory for Cards SI</code> | <code>String</code> A unique display number by merchant for every subsequent invoice/recurring charge. This must be the same value passed during `pre_debit_si` API call. | 12345678910                                         |
 | udf5 <br /> <code>mandatory</code>                              | <code>String</code> Invoice ID for every merchant. This field is mandatory during or after the transaction.                                                               | INV789012                                           |
+</Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
@@ -939,16 +941,16 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
 | Test        | `https://test.info.payu.in/merchant/postservice.php?form=2` |
 | Production  | `https://info.payu.in/merchant/postservice.php?form=2`      |
 
-### Request Parameters
+<Accordion title="Request Parameters" icon="fa-list">
+  | Parameter                             | Description                                                            | Example               |
+  | :------------------------------------ | :--------------------------------------------------------------------- | :-------------------- |
+  | key <br /> <code>mandatory</code>     | <code>String</code> Your merchant key provided by PayU.                | JP***g                |
+  | command <br /> <code>mandatory</code> | <code>String</code> The API command name.                              | pre_debit_SI          |
+  | hash <br /> <code>mandatory</code>    | <code>String</code> The hash value generated using the hash logic.     | abc0ada2e12           |
+  | var1 <br /> <code>mandatory</code>    | <code>JSON String</code> JSON object containing the pre-debit details. | See var1 Object below |
+</Accordion>
 
-| Parameter                             | Description                                                            | Example               |
-| :------------------------------------ | :--------------------------------------------------------------------- | :-------------------- |
-| key <br /> <code>mandatory</code>     | <code>String</code> Your merchant key provided by PayU.                | JP***g                |
-| command <br /> <code>mandatory</code> | <code>String</code> The API command name.                              | pre_debit_SI          |
-| hash <br /> <code>mandatory</code>    | <code>String</code> The hash value generated using the hash logic.     | abc0ada2e12           |
-| var1 <br /> <code>mandatory</code>    | <code>JSON String</code> JSON object containing the pre-debit details. | See var1 Object below |
-
-### var1 Object Parameters
+<Accordion title="var1 Object Parameters" icon="fa-table">
 
 | Parameter                                         | Description                                                                            | Example         |
 | :------------------------------------------------ | :------------------------------------------------------------------------------------- | :-------------- |
@@ -958,6 +960,7 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
 | amount <br /> <code>mandatory</code>              | <code>String</code> The amount to be debited.                                          | 125             |
 | invoiceDisplayNumber <br /> <code>optional</code> | <code>String</code> Invoice number to display to the customer.                         | 12345678910     |
 | mandateSeqNo <br /> <code>optional</code>         | <code>Integer</code> Sequence number for parallel processing. Valid range: 2 to 11000. | 2               |
+</Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
@@ -1130,13 +1133,13 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
   | Pre-debit sent for past sequence      | `{"status":"E9263","action":"MANDATE_PRE_DEBIT","message":"Predebit for calculated sequence sent during incorrect period"}`            |
 </Accordion>
 
-### Response Parameters
-
-| Parameter | Description                                                                                            | Example                        |
-| :-------- | :----------------------------------------------------------------------------------------------------- | :----------------------------- |
-| status    | <code>String</code> Status of the request. `1` indicates success, `0` or error code indicates failure. | 1                              |
-| action    | <code>String</code> The action performed.                                                              | MANDATE_PRE_DEBIT              |
-| message   | <code>String</code> Description of the response status.                                                | Request Processed Successfully |
+<Accordion title="Response Parameters" icon="fa-reply">
+  | Parameter | Description                                                                                            | Example                        |
+  | :-------- | :----------------------------------------------------------------------------------------------------- | :----------------------------- |
+  | status    | <code>String</code> Status of the request. `1` indicates success, `0` or error code indicates failure. | 1                              |
+  | action    | <code>String</code> The action performed.                                                              | MANDATE_PRE_DEBIT              |
+  | message   | <code>String</code> Description of the response status.                                                | Request Processed Successfully |
+</Accordion>
 
 ## Step 7: Update Invoice ID [Conditional]
 
@@ -1246,7 +1249,7 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
   ```
 </Accordion>
 
-
+##
 
 ## Related Documentation
 
@@ -1255,3 +1258,5 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
 * [Manage UPI Recurring Transaction](ref:api-commands-to-manage-upi-recurring-transaction)
 * [Validate VPA API](ref:validate_vpa_api)
 * [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments)
+
+<br />
