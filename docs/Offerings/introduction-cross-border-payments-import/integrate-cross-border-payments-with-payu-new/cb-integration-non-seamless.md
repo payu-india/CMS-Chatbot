@@ -7,9 +7,9 @@ metadata:
 ---
 This section describes how to integrate Cross-Border Subscriptions with PayU Hosted Checkout integration using **_payment** API.
 
-## Step 1: Payment Consent Transaction using PayU Hosted Checkout
+## Step 1: Post the Payment Request with PayU 
 
-For detailed information about the Payment Consent Transaction using PayU Hosted Checkout, refer to [Payment Consent Transaction using PayU Hosted Checkout](ref:payment-consent-transaction-payu-hosted).
+For detailed information about the Payment Consent Transaction using PayU Hosted Checkout, refer to [PayU Hosted Checkout - CB](ref:_payment_cross-border_payu_hosted_checkout)
 
 <Callout icon="📘" theme="info">
   **Note**: For Cross-Border Payments, the UDF parameters (udf1, udf2, udf3, udf4, and udf5) have specific requirements as described in the Request parameters table below.
@@ -49,8 +49,6 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 <Accordion title="My Accordion Title" icon="fa-info-circle">
   <HashingSample />
 </Accordion>
-
-<br />
 
 ## Sample request
 
@@ -198,7 +196,6 @@ async function processPayment() {
 
 processPayment();
 ```
-
 ```java
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -338,7 +335,8 @@ function processPayment() {
 processPayment();
 ?>
 ```
-### Sample Response
+
+## Step 2: Check Response from PayU
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
 
