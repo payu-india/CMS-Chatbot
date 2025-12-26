@@ -44,7 +44,6 @@ Before starting the integration, ensure you have:
   </Card>
 </Cards>
 
-
 #### Recurring Payments Flow
 
 <Cards columns={2}>
@@ -124,7 +123,7 @@ Before implementing, familiarize yourself with the required parameters.
 </Accordion>
 
 <Accordion title="Hashing Logic" icon="fa-table">
-  \< PACB\_Hashing />
+  < PACB_Hashing />
 </Accordion>
 
 <Accordion title="si_details JSON Object" icon="fa-code">
