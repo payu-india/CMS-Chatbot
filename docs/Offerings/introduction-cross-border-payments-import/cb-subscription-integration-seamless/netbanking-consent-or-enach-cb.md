@@ -15,6 +15,8 @@ Before starting the integration, ensure you have:
 * Merchant Key and Salt from PayU dashboard
 * Test environment access for development
 
+#### Payment consent flow
+
 <Cards columns={2}>
   <Card title="1. Post the Request" href="#step-1-post-the-request">
     Send the ENACH consent transaction request with S2S parameters.
@@ -31,13 +33,17 @@ Before starting the integration, ensure you have:
   <Card title="4. Verify Mandate Registration" href="#step-4-verify-mandate-registration">
     Confirm the mandate registration was successful.
   </Card>
+</Cards>
 
-  <Card title="5. Recurring Payment Transaction" href="#step-5-recurring-payment-transaction">
-    Execute recurring payment transactions using the registered mandate.
+#### Recurring Payments Flow
+
+<Cards columns={2}>
+  <Card title="1. Pre-Debit SI Notification" href="#step-1-pre-debit-si-notification">
+    Send pre-debit notifications for upcoming recurring debits.
   </Card>
 
-  <Card title="6. Pre-Debit SI Notification" href="#step-6-pre-debit-si-notification">
-    Send pre-debit notifications for upcoming recurring debits.
+  <Card title="2. Recurring Payment Transaction" href="#step-2-recurring-payment-transaction">
+    Execute recurring payment transactions using the registered mandate.
   </Card>
 </Cards>
 
