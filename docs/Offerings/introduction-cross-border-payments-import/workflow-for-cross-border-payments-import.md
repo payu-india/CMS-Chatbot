@@ -15,9 +15,9 @@ next:
 ---
 Different parties are involved in the settlement for Cross-Border Payments - Import merchants. Transactional flow has no changes.
 
-<Image align="center" src="https://files.readme.io/c051d23-cross-border-import-workflow.png" />
+<Image align="center" border={false} src="https://files.readme.io/c051d23-cross-border-import-workflow.png" />
 
-PayU has tied up with **AD-1 CATEGORY bank** to do the settlement. This account is owned/controlled by PayU and acts as an “**Import Collection (IC) Account**.”
+PayU has tied up with **AD-1 CATEGORY bank** to do the settlement. This account is owned/controlled by PayU and acts as an “**Outward Collection Account (OCA)**.”
 
 1. Funds will be transferred by acquirers into PayU’s Nodal only. This is an automated process.
 2. PayU instructs the AD-1 category bank to make the transfer to merchants over a file shared through SFTP. After it is transferred, the AD-1 category bank shares a response file and marks the UTR.
