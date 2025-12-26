@@ -20,12 +20,14 @@ This section describes how to set up a Payment Consent or Registration transacti
   <Card title="2. Check Response from PayU" href="#step-2-check-the-response-from-payu">
     Handle the response for Net Banking flow.
   </Card>
+  <Card title="3. Verify Payment" href="#step-3-verify_the_payment">
+    Handle the response for Net Banking flow.
+  </Card>
 </Cards>
 
 #### Recurring Payments Flow
 
 <Cards columns={2}>
-
   <Card title="1. Pre-Debit SI Notification" href="#step-1-pre-debit-si-notification">
     Send pre-debit notifications for upcoming recurring debits.
   </Card>
