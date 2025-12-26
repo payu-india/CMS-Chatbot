@@ -28,8 +28,6 @@ This section describes how to set up a Payment Consent or Registration transacti
   <Card title="4. Recurring Payment Transaction" href="#step-5-recurring-payment-transaction">
     Execute recurring payment transactions using the registered mandate.
   </Card>
-
-
 </Cards>
 
 ## Step 1: Payment Consent Transaction using PayU Hosted Checkout
@@ -468,14 +466,14 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
 
 ### var1 Object Parameters
 
-| Parameter                                         | Description                                                                            | Example         |
-| :------------------------------------------------ | :------------------------------------------------------------------------------------- | :-------------- |
-| authpayuid <br /> <code>mandatory</code>          | <code>String</code> The authorization PayU ID received during mandate creation.        | 999000000000826 |
-| requestid <br /> <code>mandatory</code>           | <code>String</code> Unique request ID for tracking the pre-debit request.              | RCS0123459PD    |
-| debitdate <br /> <code>mandatory</code>           | <code>String</code> The date when the debit will occur in YYYY-MM-DD format.           | 2024-11-22      |
-| amount <br /> <code>mandatory</code>              | <code>String</code> The amount to be debited.                                          | 125             |
-| invoiceDisplayNumber <br /> <code>optional</code> | <code>String</code> Invoice number to display to the customer.                         | 12345678910     |
-| mandateSeqNo <br /> <code>optional</code>         | <code>Integer</code> Sequence number for parallel processing. Valid range: 2 to 11000. | 2               |
+| Parameter                                                    | Description                                                                            | Example         |
+| :----------------------------------------------------------- | :------------------------------------------------------------------------------------- | :-------------- |
+| authpayuid <br /> <code>mandatory</code>                     | <code>String</code> The authorization PayU ID received during mandate creation.        | 999000000000826 |
+| requestid <br /> <code>mandatory</code>                      | <code>String</code> Unique request ID for tracking the pre-debit request.              | RCS0123459PD    |
+| debitdate <br /> <code>mandatory</code>                      | <code>String</code> The date when the debit will occur in YYYY-MM-DD format.           | 2024-11-22      |
+| amount <br /> <code>mandatory</code>                         | <code>String</code> The amount to be debited.                                          | 125             |
+| invoiceDisplayNumber <br /> <code>mandatory for cards</code> | <code>String</code> Invoice number to display to the customer.                         | 12345678910     |
+| mandateSeqNo <br /> <code>optional</code>                    | <code>Integer</code> Sequence number for parallel processing. Valid range: 2 to 11000. | 2               |
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
