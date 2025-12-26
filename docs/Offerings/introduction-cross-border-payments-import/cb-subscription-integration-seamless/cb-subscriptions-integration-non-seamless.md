@@ -616,7 +616,7 @@ hash = sha512(key|command|var1|salt)
       </td>
 
       <td>
-        <code>String</code> The mihpayuid received after the successful consent transaction.
+        <code>String</code> The mihpayid received during the successful consent transaction.
       </td>
 
       <td>
