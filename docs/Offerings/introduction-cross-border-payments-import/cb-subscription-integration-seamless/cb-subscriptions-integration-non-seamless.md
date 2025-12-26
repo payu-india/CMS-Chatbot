@@ -429,8 +429,6 @@ Upon receiving the response, PayU recommends performing a reconciliation step to
 
 <Verify_Payment_Tabs />
 
-<br />
-
 ## Step 3: Recurring Payment Transaction
 
 Use the **Recurring Payment Transaction** API to execute recurring payment transactions for customers who have already completed a successful mandate/registration transaction with Net Banking, UPI, or Cards. For detailed API reference, refer to [Recurring Payment Transaction API - PACB](ref:recurring-payment-transaction-api-pacb).
@@ -1028,8 +1026,6 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
   }
   ```
 </Accordion>
-
-##
 
 ## Important Notes for Cross-Border Subscriptions
 
