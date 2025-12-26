@@ -10,7 +10,7 @@ metadata:
 ---
 This section describes how to set up a Payment Consent or Registration transaction for Cross-Border Subscriptions using PayU Hosted Checkout integration with **_payment** API.
 
-<br />
+#### Payment Consent Flow
 
 <Cards columns={2}>
   <Card title="1. Post the Request" href="#step-1-post-the-request">
@@ -21,6 +21,9 @@ This section describes how to set up a Payment Consent or Registration transacti
     Handle the response for Net Banking flow.
   </Card>
 </Cards>
+
+#### Recurring Payments Flow
+
 <Cards columns={2}>
 
   <Card title="1. Pre-Debit SI Notification" href="#step-1-pre-debit-si-notification">
