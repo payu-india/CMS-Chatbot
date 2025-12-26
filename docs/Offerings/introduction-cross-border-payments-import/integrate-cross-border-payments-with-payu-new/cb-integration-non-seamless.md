@@ -347,7 +347,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
       </td>
 
       <td>
-        \{"udf7":"0100000029",<br/>"udf8":"99953729071"}
+        \{"udf7":"0100000029",<br />"udf8":"99953729071"}
       </td>
     </tr>
 
@@ -372,7 +372,10 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 You must hash the request parameters using the following hash logic:
 
 Parameters in the below sequence needs to be checked before generating the hash, if these params are being posted, it needs to be added in the hash calculation:
+
+```
 |additional_charges|miles|base_payuid|base_merchantid|paisa_mecode|subvention_amount|subvention_eligibility|merchant_data|payoutdetails|loan_id|twid_customer_hash|splitrequest|percentage_additional_charges|force_pa|udf_params|buyer_type_business
+```
 
 * **Case1 example**: Simple Hashing, if the merchant is not sending the api_version in the payment request, then it will be treated as hash sequence version 1.
 
