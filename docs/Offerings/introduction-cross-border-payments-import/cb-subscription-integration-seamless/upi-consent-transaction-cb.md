@@ -19,38 +19,26 @@ Before starting the integration, ensure you have:
 <Cards columns={3}>
   <Card title="1. Post the Request" href="#step-1-post-the-request">
     Send the UPI consent transaction request with S2S parameters.
-
-    <br />
   </Card>
 
   <Card title="2. Check Response from PayU" href="#step-2-check-the-response-from-payu">
     Handle the response for UPI Collect and UPI Intent flows.
-
-    <br />
   </Card>
 
   <Card title="3. Configure Webhooks" href="#step-3-configure-webhooks">
     Set up webhooks to receive transaction status updates.
-
-    <br />
   </Card>
 
   <Card title="4. Verify Mandate Registration" href="#step-4-verify-mandate-registration">
     Confirm the mandate registration was successful.
-
-    <br />
   </Card>
 
   <Card title="5. Recurring Payment Transaction" href="#step-5-recurring-payment-transaction">
     Execute recurring payment transactions using the registered mandate.
-
-    <br />
   </Card>
 
   <Card title="6. Pre-Debit SI Notification" href="#step-6-pre-debit-si-notification">
     Send pre-debit notifications for upcoming recurring debits.
-
-    <br />
   </Card>
 </Cards>
 
@@ -97,11 +85,11 @@ Before implementing, familiarize yourself with the required parameters.
   | `lastname`<br />`mandatory`                                                           | `String` The last name of the customer.                                                                                                                                                                                                                                 | Kumar                                       |
   | `email`<br />`mandatory`                                                              | `String` The email address of the customer.                                                                                                                                                                                                                             | [abc@payu.in](mailto:abc@payu.in)           |
   | `phone`<br />`mandatory`                                                              | `String` The phone number of the customer.                                                                                                                                                                                                                              |                                             |
-  | `address1`<br />`optional but recommended for higher approval rate`                                                           | `String` The first line of the billing address. H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai **Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar             |
-  | `address2`<br />`optional but recommended for higher approval rate`                                                           | `String` The second line of the billing address.                                                                                                                                                                                                                        |                                             |
-  | `city`<br />`optional but recommended for higher approval rate`                                                               | `String` The city where your customer resides as part of the billing address.                                                                                                                                                                                           | Mumbai                                      |
-  | `state`<br />`optional but recommended for higher approval rate`                                                              | `String` The state where your customer resides as part of the billing address.                                                                                                                                                                                          | Maharashtra                                 |
-  | `country`<br />`optional but recommended for higher approval rate`                                                            | `String` The country where your customer resides.                                                                                                                                                                                                                       | India                                       |
+  | `address1`<br />`optional but recommended for higher approval rate`                   | `String` The first line of the billing address. H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai **Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar             |
+  | `address2`<br />`optional but recommended for higher approval rate`                   | `String` The second line of the billing address.                                                                                                                                                                                                                        |                                             |
+  | `city`<br />`optional but recommended for higher approval rate`                       | `String` The city where your customer resides as part of the billing address.                                                                                                                                                                                           | Mumbai                                      |
+  | `state`<br />`optional but recommended for higher approval rate`                      | `String` The state where your customer resides as part of the billing address.                                                                                                                                                                                          | Maharashtra                                 |
+  | `country`<br />`optional but recommended for higher approval rate`                    | `String` The country where your customer resides.                                                                                                                                                                                                                       | India                                       |
   | `zipcode`<br />`mandatory`                                                            | `String` Billing address zip code is mandatory for the cardless EMI option. Character Limit-20                                                                                                                                                                          | 400004                                      |
   | `pg`<br />`mandatory for seamless/s2s flow`                                           | `String` It defines the payment category and post **UPI**.                                                                                                                                                                                                              | UPI                                         |
   | `bankcode`<br />`mandatory for seamless/s2s flow`                                     | `String` Each payment option is identified with a unique bank code at PayU. For UPI Autopay, post **UPI**.                                                                                                                                                              | UPI                                         |
@@ -647,92 +635,92 @@ Initiate recurring using the **Recurring Payment Transaction** API including the
 
 <Accordion title="Request parameters" icon="fa-table">
   <HTMLBlock>{`
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Parameter</th>
-                      <th>Description</th>
-                      <th>Example</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>amount<br><code>mandatory</code></td>
-                      <td><code>String</code> - Monetary value of the recurring transaction. Part of var1 JSON object.</td>
-                      <td>1000.00</td>
-                    </tr>
-                    <tr>
-                      <td>authpayuid<br><code>mandatory</code></td>
-                      <td><code>String</code> - Unique authentication payment ID from an earlier successful registration. Part of var1 JSON object. Required for recurring payments.</td>
-                      <td>auth_pay_123456789</td>
-                    </tr>
-                    <tr>
-                      <td>command<br><code>mandatory</code></td>
-                      <td><code>String</code> - Specifies the API command type. For the recurring payment API, the value will be "si_transaction".</td>
-                      <td>si_transaction</td>
-                    </tr>
-                    <tr>
-                      <td>email<br><code>mandatory</code></td>
-                      <td><code>String</code> - Customer's email ID for communication and receipts. Part of var1 JSON object.</td>
-                      <td>customer@example.com</td>
-                    </tr>
-                    <tr>
-                      <td>hash<br><code>mandatory</code></td>
-                      <td><code>String</code> - A SHA512 hash generated by concatenating specific fields (key|command|var1|salt) and securely hashed. Used for authentication.</td>
-                      <td>abcd1234567890efgh...</td>
-                    </tr>
-                    <tr>
-                      <td>invoiceDisplayNumber<br><code>optional</code></td>
-                      <td><code>String</code> - User-friendly invoice number to display to the customer. Part of var1 JSON object.</td>
-                      <td>INV-2024-001</td>
-                    </tr>
-                    <tr>
-                      <td>key<br><code>mandatory</code></td>
-                      <td><code>String</code> - Contains the merchant key provided by PayU. Used for authentication.</td>
-                      <td>rjQUPktU</td>
-                    </tr>
-                    <tr>
-                      <td>phone<br><code>mandatory</code></td>
-                      <td><code>String</code> - Customer's contact number. Part of var1 JSON object. Echoed back in responses.</td>
-                      <td>9876543210</td>
-                    </tr>
-                    <tr>
-                      <td>txnid<br><code>mandatory</code></td>
-                      <td><code>String</code> - Merchant-generated unique transaction ID. Part of var1 JSON object.</td>
-                      <td>TXN123456789</td>
-                    </tr>
-                    <tr>
-                      <td>udf1<br><code>mandatory</code></td>
-                      <td><code>String</code> - Must include the PAN and DOB of the buyer in the format: PAN||DOB. The PAN and DOB are separated with two pipe (||) characters.</td>
-                      <td>ABCDE1234F||1990-01-15</td>
-                    </tr>
-                    <tr>
-                      <td>udf2<br><code>optional</code></td>
-                      <td><code>String</code> - Custom user-defined field for additional data. Part of var1 JSON object. Echoed back in responses.</td>
-                      <td>additional_info_2</td>
-                    </tr>
-                    <tr>
-                      <td>udf3<br><code>mandatory</code></td>
-                      <td><code>String</code> - Must include the invoice_id and seller name (for PACB reseller use case) in the format: invoice_id||sellerName. The invoice_id and seller name are separated with two pipe (||) characters.</td>
-                      <td>INV-789||SellerName</td>
-                    </tr>
-                    <tr>
-                      <td>udf4<br><code>optional</code></td>
-                      <td><code>String</code> - Custom user-defined field for additional data. Part of var1 JSON object. Echoed back in responses.</td>
-                      <td>additional_info_4</td>
-                    </tr>
-                    <tr>
-                      <td>udf5<br><code>optional</code></td>
-                      <td><code>String</code> - Custom user-defined field for additional data. Part of var1 JSON object. Echoed back in responses.</td>
-                      <td>additional_info_5</td>
-                    </tr>
-                    <tr>
-                      <td>var1<br><code>mandatory</code></td>
-                      <td><code>Object</code> - JSON object combining various mandatory and optional fields needed for the request. Contains authpayuid, invoiceDisplayNumber, amount, txnid, phone, email, and udf1-udf5 fields.</td>
-                      <td>{"authpayuid":"403993715534484661","amount":"2","txnid":"Rec_403993715534484661_1","firstname":"Sudhanshu","lastname":"Kr","address1":"address ", "address2": "my lane","city":"my city", "state": "my state", "country": "India", "zipcode": "122018","udf1":"buyer'\''s PAN Number|| buyer'\''s DOB","udf3":"invoiceNumber||sellerName"}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>amount<br><code>mandatory</code></td>
+                        <td><code>String</code> - Monetary value of the recurring transaction. Part of var1 JSON object.</td>
+                        <td>1000.00</td>
+                      </tr>
+                      <tr>
+                        <td>authpayuid<br><code>mandatory</code></td>
+                        <td><code>String</code> - Unique authentication payment ID from an earlier successful registration. Part of var1 JSON object. Required for recurring payments.</td>
+                        <td>auth_pay_123456789</td>
+                      </tr>
+                      <tr>
+                        <td>command<br><code>mandatory</code></td>
+                        <td><code>String</code> - Specifies the API command type. For the recurring payment API, the value will be "si_transaction".</td>
+                        <td>si_transaction</td>
+                      </tr>
+                      <tr>
+                        <td>email<br><code>mandatory</code></td>
+                        <td><code>String</code> - Customer's email ID for communication and receipts. Part of var1 JSON object.</td>
+                        <td>customer@example.com</td>
+                      </tr>
+                      <tr>
+                        <td>hash<br><code>mandatory</code></td>
+                        <td><code>String</code> - A SHA512 hash generated by concatenating specific fields (key|command|var1|salt) and securely hashed. Used for authentication.</td>
+                        <td>abcd1234567890efgh...</td>
+                      </tr>
+                      <tr>
+                        <td>invoiceDisplayNumber<br><code>optional</code></td>
+                        <td><code>String</code> - User-friendly invoice number to display to the customer. Part of var1 JSON object.</td>
+                        <td>INV-2024-001</td>
+                      </tr>
+                      <tr>
+                        <td>key<br><code>mandatory</code></td>
+                        <td><code>String</code> - Contains the merchant key provided by PayU. Used for authentication.</td>
+                        <td>rjQUPktU</td>
+                      </tr>
+                      <tr>
+                        <td>phone<br><code>mandatory</code></td>
+                        <td><code>String</code> - Customer's contact number. Part of var1 JSON object. Echoed back in responses.</td>
+                        <td>9876543210</td>
+                      </tr>
+                      <tr>
+                        <td>txnid<br><code>mandatory</code></td>
+                        <td><code>String</code> - Merchant-generated unique transaction ID. Part of var1 JSON object.</td>
+                        <td>TXN123456789</td>
+                      </tr>
+                      <tr>
+                        <td>udf1<br><code>mandatory</code></td>
+                        <td><code>String</code> - Must include the PAN and DOB of the buyer in the format: PAN||DOB. The PAN and DOB are separated with two pipe (||) characters.</td>
+                        <td>ABCDE1234F||1990-01-15</td>
+                      </tr>
+                      <tr>
+                        <td>udf2<br><code>optional</code></td>
+                        <td><code>String</code> - Custom user-defined field for additional data. Part of var1 JSON object. Echoed back in responses.</td>
+                        <td>additional_info_2</td>
+                      </tr>
+                      <tr>
+                        <td>udf3<br><code>mandatory</code></td>
+                        <td><code>String</code> - Must include the invoice_id and seller name (for PACB reseller use case) in the format: invoice_id||sellerName. The invoice_id and seller name are separated with two pipe (||) characters.</td>
+                        <td>INV-789||SellerName</td>
+                      </tr>
+                      <tr>
+                        <td>udf4<br><code>optional</code></td>
+                        <td><code>String</code> - Custom user-defined field for additional data. Part of var1 JSON object. Echoed back in responses.</td>
+                        <td>additional_info_4</td>
+                      </tr>
+                      <tr>
+                        <td>udf5<br><code>optional</code></td>
+                        <td><code>String</code> - Custom user-defined field for additional data. Part of var1 JSON object. Echoed back in responses.</td>
+                        <td>additional_info_5</td>
+                      </tr>
+                      <tr>
+                        <td>var1<br><code>mandatory</code></td>
+                        <td><code>Object</code> - JSON object combining various mandatory and optional fields needed for the request. Contains authpayuid, invoiceDisplayNumber, amount, txnid, phone, email, and udf1-udf5 fields.</td>
+                        <td>{"authpayuid":"403993715534484661","amount":"2","txnid":"Rec_403993715534484661_1","firstname":"Sudhanshu","lastname":"Kr","address1":"address ", "address2": "my lane","city":"my city", "state": "my state", "country": "India", "zipcode": "122018","udf1":"buyer'\''s PAN Number|| buyer'\''s DOB","udf3":"invoiceNumber||sellerName"}</td>
+                      </tr>
+                    </tbody>
+                  </table>
   `}</HTMLBlock>
 
   > 📘 Notes: For the UDFs above:
