@@ -547,8 +547,6 @@ The API returns a JSON response. For S2S4 flow, you'll receive an OTP enrollment
 3. **Store Mandate Details**: On successful registration, store `mihpayid` and mandate details for future recurring payments
 4. **Error Handling**: Check for error codes and handle accordingly
 
-For detailed response handling, refer to [S2S Response Handling](doc:s2s-response-handling).
-
 ## Step 3: Configure Webhooks
 
 Configure webhooks to receive real-time transaction status updates. PayU will send POST requests to your webhook URL.
