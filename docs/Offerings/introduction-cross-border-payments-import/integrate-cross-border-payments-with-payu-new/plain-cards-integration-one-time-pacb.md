@@ -1,5 +1,6 @@
 ---
 title: '[S2S] Plain Cards Integration - Merchant Hosted Integration'
+excerpt: Process a one-time card transactions via PayU (without tokenization)
 deprecated: false
 hidden: true
 metadata:
