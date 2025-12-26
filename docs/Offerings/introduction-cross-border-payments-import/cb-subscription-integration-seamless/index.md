@@ -22,6 +22,14 @@ The CB Subscription integration consists of three main components:
 * Customer consent validation and authentication
 * Token generation for secure recurring payments
 
+Refer to the following sections on how to integrate Registration Consent Transaction with Cross-Border Payments:
+
+* [PayU Hosted Integration](doc:cb-subscriptions-integration-non-seamless)
+* S2S
+  * [Cards Consent Transaction](https://docs.payu.in/docs/registration-consent-cards-integration-cb)
+  * [UPI Consent Transaction](https://docs.payu.in/docs/upi-consent-transaction-cb)
+  * [Net Banking Consent Transaction](doc:netbanking-consent-or-enach-cb)
+
 ### 2. Recurring Payment Transaction
 
 **Purpose**: Execute automated payments based on registered mandates.
@@ -33,7 +41,7 @@ The CB Subscription integration consists of three main components:
 * Intelligent retry mechanisms for failed payments
 * Real-time payment status notifications
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Reference:** For recurring payments with CB, you must pass the UDF parameters with invoice ID and customer details. For more information, refer to [Recurring Payment Transaction API - PACB](ref:recurring-payment-transaction-api-pacb).
 </Callout>
 
@@ -48,7 +56,7 @@ The CB Subscription integration consists of three main components:
 * Compliance with regulatory pre-debit requirements
 * Risk assessment and fraud prevention
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Reference:** For pre-debit transaction, you must use the **Pre-Debit Notification** API. For more information, refer to [Pre-Debit SI API](ref:pre-debit-si-api-parallel-sequencing)
 </Callout>
 
@@ -104,10 +112,8 @@ The CB Subscription integration consists of three main components:
 | Transaction Status   | `/verify_payment` |
 | Mandate Management   | `/manage_mandate` |
 
-This part of the documentation includes the following sections on how to integrate Registration Consent Transaction with Cross-Border Payments:
+<br />
 
-* [Cards Consent Transaction](https://docs.payu.in/docs/registration-consent-cards-integration-cb)
-* [UPI Consent Transaction](https://docs.payu.in/docs/upi-consent-transaction-cb)
-* [Net Banking Consent Transaction](doc:netbanking-consent-or-enach-cb)
+*
 
 <br />
