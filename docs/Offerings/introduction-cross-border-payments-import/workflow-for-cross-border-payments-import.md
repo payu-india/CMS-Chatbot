@@ -1,8 +1,8 @@
 ---
-title: Payment Journey & Workflow
+title: Payment Journey & Workflow for Merchants
 excerpt: >-
-  Illustrative example of the payment journey in a cross-border (Outward)
-  Transaction
+  Illustrative example of the payment journey in a Cross-Border Transaction
+  (Outward)
 deprecated: false
 hidden: false
 metadata:
