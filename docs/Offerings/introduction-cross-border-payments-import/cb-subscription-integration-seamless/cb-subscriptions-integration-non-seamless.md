@@ -466,14 +466,110 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
 
 ### var1 Object Parameters
 
-| Parameter                                                    | Description                                                                            | Example         |
-| :----------------------------------------------------------- | :------------------------------------------------------------------------------------- | :-------------- |
-| authpayuid <br /> <code>mandatory</code>                     | <code>String</code> The authorization PayU ID received during mandate creation.        | 999000000000826 |
-| requestid <br /> <code>mandatory</code>                      | <code>String</code> Unique request ID for tracking the pre-debit request.              | RCS0123459PD    |
-| debitdate <br /> <code>mandatory</code>                      | <code>String</code> The date when the debit will occur in YYYY-MM-DD format.           | 2024-11-22      |
-| amount <br /> <code>mandatory</code>                         | <code>String</code> The amount to be debited.                                          | 125             |
-| invoiceDisplayNumber <br /> <code>mandatory for cards</code> | <code>String</code> Invoice number to display to the customer.                         | 12345678910     |
-| mandateSeqNo <br /> <code>optional</code>                    | <code>Integer</code> Sequence number for parallel processing. Valid range: 2 to 11000. | 2               |
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        authpayuid <br /> <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> The authorization PayU ID received during mandate creation.
+      </td>
+
+      <td>
+        999000000000826
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        requestid <br /> <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> Unique request ID for tracking the pre-debit request.
+      </td>
+
+      <td>
+        RCS0123459PD
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        debitdate <br /> <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> The date when the debit will occur in YYYY-MM-DD format.
+      </td>
+
+      <td>
+        2024-11-22
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount <br /> <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> The amount to be debited.
+      </td>
+
+      <td>
+        125
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        invoiceDisplayNumber <br /> <code>mandatory for cards</code>
+      </td>
+
+      <td>
+        <code>String</code> Invoice number to display to the customer.
+      </td>
+
+      <td>
+        12345678910
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        action  
+        <code>optional</code>
+      </td>
+
+      <td>
+        Pass "Retrieve" or "Delete" according to the action need to be performed. For more information, refer to Additional Information table..
+      </td>
+
+      <td>
+        Retrieve
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
