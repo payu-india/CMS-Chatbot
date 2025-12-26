@@ -19,7 +19,7 @@ For detailed information about the Payment Consent Transaction using PayU Hosted
 
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -253,7 +253,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
       </td>
 
       <td>
-        <code>String</code> The Permanent Account Number (PAN primary taxation ID in India) of the buyer must be collected in this field.  
+        <code>String</code> The Permanent Account Number (PAN primary taxation ID in India) of the buyer must be collected in this field.
 
         Character limit: 10 character alphanumeric
       </td>
@@ -325,7 +325,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
       </td>
 
       <td>
-        <code>Binary</code> To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0".  
+        <code>Binary</code> To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0".
 
         _Note: This will be included in hash if posted (covered in next section)_
       </td>
@@ -343,13 +343,13 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
       <td>
         <code>String JSON</code>
 
-        UDF7 value to capture "Import /Export Code" of the buyer 
+        UDF7 value to capture "Import /Export Code" of the buyer
 
         UDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports)
       </td>
 
       <td>
-        \{"udf7":"0100000029","udf8":"99953729071"\}
+        \{"udf7":"0100000029","udf8":"99953729071"}
       </td>
     </tr>
 
@@ -371,11 +371,22 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 
 ### Hashing
 
-You must hash the request parameters using the following hash logic:
+You must hash the request parameters using the following hash logic:  
 
-```
-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
-```
+Parameters in the below sequence needs to be checked before generating the hash, if these params are being posted, it needs to be added in the hash calculation:
+|additional_charges|miles|base_payuid|base_merchantid|paisa_mecode|subvention_amount|subvention_eligibility|merchant_data|payoutdetails|loan_id|twid_customer_hash|splitrequest|percentage_additional_charges|force_pa|udf_params|buyer_type_business
+
+Case1 example: Simple Hashing, if the merchant is not sending the api_version in the payment request, then it will be treated as hash sequence version 1.
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt
+
+Case2 example:  if the merchant is passing the additional_charges in the payment request then they have to append the additional_charges value in the raw hash sequence as below.
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt|additional_charges
+
+Case3 example: If the merchant wants to pass additional_charges, buyer_type_business in the payment request, then hash formula for payment request will be:
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt|additional_charges|buyer_type_business
+
+Case4 example: if the merchant wants to pass the api_version = 7 and buyer_type_business, udf_params in the payment request.
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|si_details|salt|udf_params|buyer_type_business
 
 For more information, refer to  <a href="generate-hash-merchant-hosted" target="_blank"> Generate Hash</a>.
 
