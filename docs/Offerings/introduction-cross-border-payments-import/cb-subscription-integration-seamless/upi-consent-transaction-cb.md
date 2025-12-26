@@ -1,7 +1,7 @@
 ---
 title: '[S2S] UPI Consent Transaction - Cross Border'
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
