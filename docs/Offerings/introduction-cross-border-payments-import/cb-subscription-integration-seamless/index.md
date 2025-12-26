@@ -1,5 +1,5 @@
 ---
-title: Subscriptions with Merchant Hosted Integration - CB
+title: Subscriptions with Cross-Border Payments
 deprecated: false
 hidden: true
 metadata:
