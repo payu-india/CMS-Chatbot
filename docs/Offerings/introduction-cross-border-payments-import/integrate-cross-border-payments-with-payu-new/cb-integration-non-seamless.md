@@ -347,7 +347,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
       </td>
 
       <td>
-        \{"udf7":"0100000029","udf8":"99953729071"}
+        \{"udf7":"0100000029",<br/>"udf8":"99953729071"}
       </td>
     </tr>
 
