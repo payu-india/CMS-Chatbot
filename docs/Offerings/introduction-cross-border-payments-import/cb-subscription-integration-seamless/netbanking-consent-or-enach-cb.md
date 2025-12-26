@@ -508,9 +508,12 @@ After successful registration, verify the mandate status:
 
 <Accordion title="Verification Checklist" icon="fa-check-circle">
   1. **Check Response Parameters**:
-     * `status` should be `success`
-     * `payment_source` should be `sist`
-     * `mihpayid` should be returned
+| **Response Parameter** | **Expected Value**               | **Description**                                                                         |
+| ---------------------- | -------------------------------- | --------------------------------------------------------------------------------------- |
+| status                 | success                          | Indicates that the transaction is successful with the UPI provider                      |
+| payment_source         | SIST                             | Indicates that UPI details have been marked correctly for Standing Instruction          |
+| mihpayid               | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction                   |
+
 
   2. **Store Mandate Details**:
      * Save `mihpayid` for future recurring payments
