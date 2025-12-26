@@ -485,35 +485,17 @@ The API returns different response structures for UPI Collect and UPI Intent flo
 <Accordion title="UPI Collect Response" icon="fa-check">
   For UPI Collect, the response is returned in URL-encoded format (application/x-www-form-urlencoded):
 
-  ```json
-  {
-      "mihpayid": "403993715525317379",
-      "mode": "UPI",
-      "status": "success",
-      "unmappedstatus": "captured",
-      "key": "JPM7Fg",
-      "txnid": "upiConsentTxn12345",
-      "amount": "10.00",
-      "discount": "0.00",
-      "net_amount_debit": "10",
-      "addedon": "2025-06-05 16:00:53",
-      "productinfo": "Monthly Subscription",
-      "firstname": "Ashish",
-      "lastname": "Verma",
-      "email": "test@payu.in",
-      "phone": "9988776655",
-      "hash": "response_hash_value",
-      "field1": "customer@upi",
-      "field7": "Transaction completed successfully",
-      "field9": "Transaction completed successfully",
-      "payment_source": "sist",
-      "PG_TYPE": "UPI-PG",
-      "bank_ref_num": "upiConsentTxn12345",
-      "bankcode": "UPI",
-      "error": "E000",
-      "error_Message": "No Error"
-  }
+   ```plaintext
+  eyJzdGF0dXMiOiJzdWNjZXNzIiwicmVzdWx0Ijp7Im1paHBheWlkIjoiNzYwMTI2NTU4NSIsIm1vZGUiOiJVUEkiLCJzdGF0dXMiOiJwZW5kaW5nIiwia2V5IjoiTWVyY2hhbnRLZXkiLCJ0eG5pZCI6IjZiMmYzZDY4NWVjMWJiYTdkZDRiIiwiYW1vdW50IjoiMTAuMDAiLCJhZGRlZG9uIjoiMjAxOC0xMS0wMSAxOTo1NjozMiIsInByb2R1Y3RpbmZvIjoiUHJvZHVjdCBJbmZvIiwiZmlyc3RuYW1lIjoiUGF5dS1Vc2VyIiwibGFzdG5hbWUiOiIiLCJhZGRyZXNzMSI6IiIsImFkZHJlc3MyIjoiIiwiY2l0eSI6IiIsInN0YXRlIjoiIiwiY291bnRyeSI6IiIsInppcGNvZGUiOiIiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJwaG9uZSI6IjEyMzQ1Njc4OTAiLCJ1ZGYxIjoiIiwidWRmMiI6IiIsInVkZjMiOiIiLCJ1ZGY0IjoiIiwidWRmNSI6IiIsInVkZjYiOiIiLCJ1ZGY3IjoiIiwidWRmOCI6IiIsInVkZjkiOiIiLCJ1ZGYxMCI6IiIsImNhcmRfdG9rZW4iOiIiLCJjYXJkX25vIjoiIiwiZmllbGQwIjoiIiwiZmllbGQxIjoiYWJjZEB1cGkiLCJmaWVsZDIiOiIiLCJmaWVsZDMiOiIiLCJmaWVsZDQiOiIiLCJmaWVsZDUiOiIiLCJmaWVsZDYiOiIiLCJmaWVsZDciOiIiLCJmaWVsZDgiOiIiLCJmaWVsZDkiOiIiLCJwYXltZW50X3NvdXJjZSI6InBheXVQdXJlUzJTIiwiUEdfVFlQRSI6IkFYSVNVIiwiZXJyb3IiOiJFMDAwIiwiZXJyb3JfTWVzc2FnZSI6Ik5vIEVycm9yIiwibmV0X2Ftb3VudF9kZWJpdCI6IjAiLCJhZGRpdGlvbmFsQ2hhcmdlcyI6IjI5LjUiLCJ1bm1hcHBlZHN0YXR1cyI6ImluIHByb2dyZXNzIiwiaGFzaCI6IjU2NzQ3OGE5ZDUyMzhlZTIyZGFhMDM2ZWMwMjAxMzk0OGY2YjgwNGUzMWNhYzNkYmQyMDc1NmU5ZjFkNDFlMjI4ZTQxYzJkYjcwZmU4ZWRlZmMyNDBiOTQwODZlN2QzN2Y4ZDQ2OTA4MzU4Y2NjNzA4Y2JjNWVlNTJjMjlkYWEwIiwiYmFua19yZWZfbm8iOiJBWEk5MTEwMDAwMDAwMDQ5MTg0NzY2MTU0MTc5OTcwNTY5OCIsImJhbmtfcmVmX251bSI6IkFYSTkxMTAwMDAwMDAwNDkxODQ3NjYxNTQxNzk5NzA1Njk4IiwiYmFua2NvZGUiOiJVUEkiLCJzdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UiLCJjdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UiLCJmdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UifX0
   ```
+
+  **Base64 decoded response:**
+
+  ```plaintext
+  {"status":"success","result":{"mihpayid":"7601265585","mode":"UPI","status":"pending","key":"MerchantKey","txnid":"6b2f3d685ec1bba7dd4b","amount":"10.00","addedon":"2018-11-01
+  19:56:32","productinfo":"ProductInfo","firstname":"PayuUser","lastname":"","address1":"","address2":"","city":"","state":"","country":"","zipcode":"","email":"test@example.com","phone":"1234567890","udf1":"","udf2":"","udf3":"","udf4":"","udf5":"","udf6":"","udf7":"","udf8":"","udf9":"","udf10":"","card_token":"","card_no":"","field0":"","field1":"abcd@upi","field2":"","field3":"","field4":"","field5":"","field6":"","field7":"","field8":"","field9":"","payment_source":"payuPureS2S","PG_TYPE":"AXISU","error":"E000","error_Message":"NoError","net_amount_debit":"0","additionalCharges":"29.5","unmappedstatus":"inprogress","hash":"567478a9d5238ee22daa036ec02013948f6b804e31cac3dbd20756e9f1d41e228e41c2db70fe8edefc240b94086e7d37f8d46908358ccc708cbc5ee52c29daa0","bank_ref_no":"AXI91100000000491847661541799705698","bank_ref_num":"AXI91100000000491847661541799705698","bankcode":"UPI","surl":"https:\/\/admin.payu.in\/test_response","curl":"https:\/\/admin.payu.in\/test_response","furl":"https:\/\/admin.payu.in\/test_response"}}
+  ```
+
 </Accordion>
 
 <Accordion title="UPI Intent Response" icon="fa-check">
@@ -567,6 +549,10 @@ The API returns different response structures for UPI Collect and UPI Intent flo
   3. Wait for the customer to approve the mandate
   4. Receive the final status via webhook or callback
 </Accordion>
+
+<Callout icon="📘" theme="info">
+  If you want to use PayU's timer page for UPI collect, you can use the **result.acsTemplate** and **base64decode** it to redirect the customer on given HTML.
+</Callout>
 
 ***
 
