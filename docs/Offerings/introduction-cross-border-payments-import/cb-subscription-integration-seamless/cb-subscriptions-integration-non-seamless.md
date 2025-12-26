@@ -20,12 +20,14 @@ This section describes how to set up a Payment Consent or Registration transacti
   <Card title="2. Check Response from PayU" href="#step-2-check-the-response-from-payu">
     Handle the response for Net Banking flow.
   </Card>
+</Cards>
+<Cards columns={2}>
 
-  <Card title="3. Pre-Debit SI Notification" href="#step-6-pre-debit-si-notification">
+  <Card title="1. Pre-Debit SI Notification" href="#step-1-pre-debit-si-notification">
     Send pre-debit notifications for upcoming recurring debits.
   </Card>
 
-  <Card title="4. Recurring Payment Transaction" href="#step-5-recurring-payment-transaction">
+  <Card title="2. Recurring Payment Transaction" href="#step-2-recurring-payment-transaction">
     Execute recurring payment transactions using the registered mandate.
   </Card>
 </Cards>
@@ -447,6 +449,116 @@ Array
 Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
 
 <Verify_Payment_Tabs />
+
+### Step 3: Update Invoice ID [Optional]
+
+If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter.
+
+<GENERALAPIsEnvironment />
+
+<Accordion title="Sample request other then UPI AutoPay" icon="fa-code">
+  ```
+    curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
+    --form 'key="PRiQvJ"' \
+    --form 'command="udf_update"' \
+    --form 'var1="my_order_642"' \
+    --form 'var2="AAAPZ1234C"' \
+    --form 'var4="22/08/1972"' \
+    --form 'var5="SellerName"' \
+    --form 'var6="INV000000005"' \
+    --form 'hash="{{hash}}"'
+  ```
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
+  ### Success Scenario
+
+  * If successfully updated for cards
+
+  ```JSON
+  {
+      "status": "UDF values updated",
+      "transaction_id": "my_order_64240",
+      "udf1": "AAAPZ1234C",
+      "udf2": "",
+      "udf3": "22/08/1972",
+      "udf4": "SellerName",
+      "udf5": "INV000000005"
+  }
+  ```
+
+  * If successfully updated for UPI autopay:
+
+  ```JSON
+  {
+      "status": "UDF values updated",
+      "transaction_id": "my_order_64240",
+      "udf1": "AAAPZ1234C",
+      "udf2": "",
+      "udf3": "22/08/1972",
+      "udf4": "SellerName",
+      "udf5": "INV000000005"
+  }
+  ```
+
+  ### Failure Scenarios
+
+  * If the transaction ID is empty
+
+  ```JSON
+  ( 
+  [status] => 0 
+  [msg] => Parameter missing 
+  ) 
+  ```
+
+  * If the transaction ID is invalid
+
+  ```JSON
+  ( 
+  [status] => 0 
+  [msg] => Invalid TXN ID 
+  ) 
+  ```
+
+  * If Hash is invalid:
+
+  ```JSON
+  {
+      "status": 0,
+      "msg": "Invalid Hash."
+  }
+  ```
+
+  * If the merchant is not enabled for UDF updates:
+
+  ```JSON
+  {
+    "status": "0",
+    "msg": "Update not allowed on provided Field"
+  }
+  ```
+
+  * If no data found in the transaction ID:
+
+  ```JSON
+  {
+    "status": "0",
+    "msg": "No Data Found for txnid: 3424"
+  }
+  ```
+
+  * If the merchant is inactive:
+
+  ```JSON
+  {
+    "msg": "Merchant is not authorized to use PayU API",
+    "status": 0
+  }
+  ```
+</Accordion>
+
+###
 
 ## Recurring Payments Flow
 
