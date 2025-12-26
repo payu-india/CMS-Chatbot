@@ -1,5 +1,5 @@
 ---
-title: PayU Hosted CB Integration
+title: '[Redirect] PayU Hosted Payment Integration - Cross Border Outward'
 deprecated: false
 hidden: true
 metadata:
