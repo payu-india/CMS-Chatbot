@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-CB (Cross-Border) Subscription integration enables you to set up automated recurring payment systems for international customers. This comprehensive solution supports multiple payment methods including Cards, UPI, and Net Banking, allowing businesses to streamline their subscription billing processes while maintaining compliance with cross-border payment regulations.
+Cross-Border Subscription integration enables you to set up automated recurring payment systems for Indian customers. This comprehensive solution supports multiple payment methods including Cards, UPI, and Net Banking, allowing businesses to streamline their subscription billing processes while maintaining compliance with cross-border payment regulations.
 
 ## Transaction Flow Components
 
