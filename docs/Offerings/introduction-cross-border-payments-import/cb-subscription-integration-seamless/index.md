@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-Cross-Border Subscription integration enables you to set up automated recurring payment systems for Indian customers. This comprehensive solution supports multiple payment methods including Cards, UPI, and Net Banking, allowing businesses to streamline their subscription billing processes while maintaining compliance with cross-border payment regulations.
+CB (Cross-Border) Subscription integration enables you to set up automated recurring payment systems for international customers. This comprehensive solution supports multiple payment methods including Cards, UPI, and Net Banking, allowing businesses to streamline their subscription billing processes while maintaining compliance with cross-border payment regulations.
 
 ## Transaction Flow Components
 
@@ -60,8 +60,6 @@ Refer to the following sections on how to integrate Registration Consent Transac
   **Reference:** For recurring payments with CB, you must pass the UDF parameters with invoice ID and customer details. For more information, refer to [Recurring Payment Transaction API - PACB](ref:recurring-payment-transaction-api-pacb).
 </Callout>
 
-###
-
 ## Payment Method Support
 
 ### 💳 Cards (Credit/Debit)
@@ -104,5 +102,18 @@ Refer to the following sections on how to integrate Registration Consent Transac
 * Mandate details with billing schedule
 * Customer bank account validation
 * Secure hash authentication
+
+## API Endpoints Summary
+
+| Function             | Endpoint          |
+| -------------------- | ----------------- |
+| Registration Consent | `/payment`        |
+| Recurring Payment    | `/payment`        |
+| Transaction Status   | `/verify_payment` |
+| Mandate Management   | `/manage_mandate` |
+
+<br />
+
+* <br />
 
 <br />
