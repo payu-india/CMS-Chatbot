@@ -113,7 +113,3 @@ Refer to the following sections on how to integrate Registration Consent Transac
 | Mandate Management   | `/manage_mandate` |
 
 <br />
-
-* <br />
-
-<br />
