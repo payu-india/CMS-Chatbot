@@ -944,7 +944,7 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
 | action    | <code>String</code> The action performed.                                                              | MANDATE_PRE_DEBIT              |
 | message   | <code>String</code> Description of the response status.                                                | Request Processed Successfully |
 
-## Step 5: Update Invoice ID [Conditional]
+## Step 5: Update Invoice ID [Optional]
 
 If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter.
 
