@@ -86,7 +86,9 @@ Before implementing, familiarize yourself with the required parameters.
   | bankcode<br />`mandatory`                                                                  | `String`<br />Bank code for the payment option. Refer to [Bank Code List](https://docs.payu.in/docs/net-banking-codes) for the list of supported banks and their codes.                                        | Refer to [Bank Code List](https://docs.payu.in/docs/net-banking-codes) |
   | si<br />`mandatory`                                                                        | `String`<br />Signifies successful consent taken from the user. Must be `1` for subscription setup.                                                                                                            | 1                                                                      |
   | si\_details<br />`mandatory`                                                               | `JSON String`<br />JSON object containing mandate details (billingAmount, billingCurrency, billingCycle, etc.). Refer to si\_details JSON Object below.                                                        | See si\_details accordion                                              |
-  | api\_version<br />`mandatory`                                                              | `String`<br />The API version. Must be `7` for SI transactions.                                                                                                                                                | 7                                                                      |
+ | beneficiarydetail
+`mandatory for Net Banking` | `varchar` This object represents bank account details of the customer which involves account number, name on the account and account type and needs to be passed if the recurring transaction needs to be set up against Net Banking. It includes the fields as mentioned in the [beneficiarydetail fields description](https://docs.payu.in/docs/upi-collection-s2s?isFramePreview=true#beneficiarydetail-fields-description) table. | Refer to next sectoin |
+ | api\_version<br />`mandatory`                                                              | `String`<br />The API version. Must be `7` for SI transactions.                                                                                                                                                | 7                                                                      |
   | udf1<br />`optional but recommended for higher approval rate`                              | `String`<br />The Permanent Account Number (PAN) of the buyer must be collected in this field.                                                                                                                 | AELPR\*\*\*\*E                                                         |
   | udf3<br />`optional but recommended for higher approval rate`                              | `String` Date of Birth (DOB) of buyer in DD-MM-YYYY                                                                                                                                                            | 02-02-1980                                                             |
   | udf4<br />`mandatory for payment aggregators`                                              | `String` End merchant legal entity name. For UPI, this field should not be passed. Character limit: 255.                                                                                                       | XYZ Pvt. Ltd.                                                          |
@@ -105,6 +107,66 @@ Before implementing, familiarize yourself with the required parameters.
   <Accordion title="Hash Logic" icon="fa-info-circle">
     <PACB_Hashing />
   </Accordion>
+</Accordion>
+
+<Accordion title="beneficiarydetail fields description" icon="fa-info-circle">
+
+#### Sample object
+
+```
+{"beneficiaryName": "Sachin Tendulkar","beneficiaryAccountNumber": "1211450021","beneficiaryAccountType": "SAVINGS", "beneficiaryIfscCode":"ICIC0000046", "verificationMode":"DEBIT_CARD"}
+```
+
+#### description
+
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryName</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Registered name against customer’s account</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryAccountNumber</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Account number against which recurring transactions need to be executed.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryAccountType</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>SAVINGS or CURRENT</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryIfscCode</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>11-digit IFSC code of the customer bank</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>verificationMode</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The verification mode can be any of the following:  </p>
+<ul>
+<li><strong>DEBIT_CARD</strong> – authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow.</li>
+<li><strong>AADHAAR</strong> – authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow.  If no value is provided, then it will trigger Net Banking login password flow.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
+
+##
 </Accordion>
 
 <Accordion title="si_details JSON Object" icon="fa-code">
