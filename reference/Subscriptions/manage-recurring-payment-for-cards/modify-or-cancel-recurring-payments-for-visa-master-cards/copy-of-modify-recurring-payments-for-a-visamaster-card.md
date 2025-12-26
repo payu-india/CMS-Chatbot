@@ -1,8 +1,8 @@
 ---
-title: Copy of Modify Recurring Payments for a VISA/MASTER Card
+title: Modify Recurring Payments for a VISA/MASTER Card - Cross-Border Payments
 excerpt: 'Resource: **_payment**'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Modify the Recurring Payments for a VISA/MASTER Card
   description: >-
