@@ -1,11 +1,12 @@
 ---
-title: Plain Cards with Tokenization - Merchant Hosted
+title: '[S2S] Process Card Transactions with PayU Tokenization '
+excerpt: Collect payments via Cards and tokenize them for future transactions
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-This section describes the steps to integrate plain card payments with tokenization for PACB (PA to PA Cross-Border) transactions. This flow allows you to store the card token for future transactions while processing the current payment.
+This section describes the steps to integrate credit / debit card payments with tokenization done on PayU Token Hub. This flow helps to store the card token for future transactions while processing the current payment.
 
 <Cards columns={3}>
   <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
