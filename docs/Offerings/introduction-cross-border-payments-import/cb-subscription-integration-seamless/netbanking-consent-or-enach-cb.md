@@ -535,7 +535,7 @@ Configure webhooks to receive real-time transaction status updates. PayU will se
   ```
 </Accordion>
 
-<Accordion title="Sample Response" icon="fa-circle">
+<Accordion title="Sample Response" icon="fa-circl">
 The final response is similar to the following:
 
   ```json
