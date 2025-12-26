@@ -123,7 +123,7 @@ Before implementing, familiarize yourself with the required parameters.
 </Accordion>
 
 <Accordion title="Hashing Logic" icon="fa-table">
-  < PACB_Hashing />
+  <PACB_Hashing />
 </Accordion>
 
 <Accordion title="si_details JSON Object" icon="fa-code">
