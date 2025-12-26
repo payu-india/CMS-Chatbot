@@ -15,6 +15,52 @@ Before starting the integration, ensure you have:
 * Merchant Key and Salt from PayU dashboard
 * Test environment access for development
 
+<br />
+
+<Cards columns={2}>
+  <Card title="1. Post the Request" href="#step-1-post-the-request">
+    Send the ENACH consent transaction request with S2S parameters.
+
+    <br />
+  </Card>
+
+  <Card title="2. Check Response from PayU" href="#step-2-check-the-response-from-payu">
+    Handle the response for Net Banking flow.
+
+    <br />
+  </Card>
+
+  <Card title="3. Configure Webhooks" href="#step-3-configure-webhooks">
+    Set up webhooks to receive transaction status updates.
+
+    <br />
+  </Card>
+
+  <Card title="4. Verify Mandate Registration" href="#step-4-verify-mandate-registration">
+    Confirm the mandate registration was successful.
+
+    <br />
+  </Card>
+
+  <Card title="5. Recurring Payment Transaction" href="#step-5-recurring-payment-transaction">
+    Execute recurring payment transactions using the registered mandate.
+
+    <br />
+  </Card>
+
+  <Card title="6. Pre-Debit SI Notification" href="#step-6-pre-debit-si-notification">
+    Send pre-debit notifications for upcoming recurring debits.
+
+    <br />
+  </Card>
+
+  <Card title="7. Update Invoice ID" href="#step-7-update-invoice-id-conditional">
+    Update Invoice ID using the UDF Update API if unavailable during transaction.
+
+    <br />
+  </Card>
+</Cards>
+
 ## Step 1: Post the Request
 
 Before implementing, familiarize yourself with the required parameters.
