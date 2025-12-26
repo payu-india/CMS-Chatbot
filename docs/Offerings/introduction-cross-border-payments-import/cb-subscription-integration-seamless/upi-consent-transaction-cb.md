@@ -615,7 +615,7 @@ After successful registration, verify the mandate status:
   1. **Check Response Parameters**:
      * `status` should be `success`
      * `payment_source` should be `sist`
-     * `mihpayid` should be returned
+     * `mihpayid` should not be null
 
   2. **Store Mandate Details**:
      * Save `mihpayid` for future recurring payments
