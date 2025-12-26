@@ -38,7 +38,6 @@ This section describes how to set up a Payment Consent or Registration transacti
 
 ### Step 1: Payment Consent Transaction using PayU Hosted Checkout
 
-For detailed information about the Payment Consent Transaction using PayU Hosted Checkout, refer to [Payment Consent Transaction using PayU Hosted Checkout](ref:payment-consent-transaction-payu-hosted).
 
 <Callout icon="📘" theme="info">
   **Note**: For Cross-Border Payments, the UDF parameters (udf1, udf2, udf3, udf4, and udf5) have specific requirements as described in the Request parameters table below.
