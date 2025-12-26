@@ -59,9 +59,9 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 | email<br /><code>mandatory</code>                                                        | <code>varchar</code> Contains the email of the customer; highly recommended accuracy as fraud detection relies on this. Character limit: 50.                                                                                                                                                                                                                                                                                                                                                                                                                                           | [Ashish@test.com](mailto:Ashish@test.com)                                                                                                                                 |
 | phone<br /><code>mandatory</code>                                                        | <code>varchar</code> Customer phone number for fraud detection and user tracking. Character limit: 50.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 9843176540                                                                                                                                                                |
 | address1<br /><code>optional but recommended for higher approval rate</code>             | <code>varchar</code> The customer's primary billing address line. This field is required for billing and fraud prevention purposes. Character limit: 255.                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                           |
-| city<br /><code>optional but recommended for higher approval rate</code>                 | <code>varchar</code> The customer's billing city. This field is required for billing and fraud prevention purposes. Character limit: 50.                                                                                                                                                                                                                                                                                                                                                                                                                                               | New Delhi                                                                                                                                                                  |
-| state<br /><code>optional but recommended for higher approval rate</code>                | <code>varchar</code> The customer's billing state or province. This field is required for billing and fraud prevention purposes. Character limit: 50.                                                                                                                                                                                                                                                                                                                                                                                                                                  | Delhi                                                                                                                                                                        |
-| country<br /><code>optional but recommended for higher approval rate</code>              | <code>varchar</code> The customer's billing country code. This field is required for billing and fraud prevention purposes. Use ISO 3166-1 alpha-2 country codes. Character limit: 2.                                                                                                                                                                                                                                                                                                                                                                                                  | India                                                                                                                                                                        |
+| city<br /><code>optional but recommended for higher approval rate</code>                 | <code>varchar</code> The customer's billing city. This field is required for billing and fraud prevention purposes. Character limit: 50.                                                                                                                                                                                                                                                                                                                                                                                                                                               | New York                                                                                                                                                                  |
+| state<br /><code>optional but recommended for higher approval rate</code>                | <code>varchar</code> The customer's billing state or province. This field is required for billing and fraud prevention purposes. Character limit: 50.                                                                                                                                                                                                                                                                                                                                                                                                                                  | NY                                                                                                                                                                        |
+| country<br /><code>optional but recommended for higher approval rate</code>              | <code>varchar</code> The customer's billing country code. This field is required for billing and fraud prevention purposes. Use ISO 3166-1 alpha-2 country codes. Character limit: 2.                                                                                                                                                                                                                                                                                                                                                                                                  | US                                                                                                                                                                        |
 | zipcode<br /><code>mandatory</code>                                                      | <code>varchar</code> The customer's billing postal/zip code. This field is required for billing and fraud prevention purposes. Character limit: 20.                                                                                                                                                                                                                                                                                                                                                                                                                                    | 10001                                                                                                                                                                     |
 | surl<br /><code>mandatory</code>                                                         | <code>URL</code> The success URL to which PayU redirects after a successful transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | [https://example.com/success](https://example.com/success)                                                                                                                |
 | furl<br /><code>mandatory</code>                                                         | <code>URL</code> The failure URL to which PayU redirects after a failed transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | [https://example.com/failure](https://example.com/failure)                                                                                                                |
@@ -566,12 +566,12 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
 
 ### Step 1: Pre-Debit SI Notification
 
-Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurring debits with parallel sequencing support. This notification must be sent before executing the recurring transaction for Cards SI. For detailed API reference, refer to [Pre-Debit SI API](ref:pre-debit-si-api-parallel-sequencing).
+Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurring debits with parallel sequencing support. This notification mandator for Cards and UPI recurring only and not required for ENACH recurring.
 
-| Environment | URL                                                         |
-| :---------- | :---------------------------------------------------------- |
-| Test        | `https://test.info.payu.in/merchant/postservice.php?form=2` |
-| Production  | `https://info.payu.in/merchant/postservice.php?form=2`      |
+| Environment | URL                                                    |
+| :---------- | :----------------------------------------------------- |
+| Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
+| Production  | `https://info.payu.in/merchant/postservice.php?form=2` |
 
 ### Request Parameters
 
@@ -581,6 +581,14 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
 | command <br /> <code>mandatory</code> | <code>String</code> The API command name.                              | pre_debit_SI          |
 | hash <br /> <code>mandatory</code>    | <code>String</code> The hash value generated using the hash logic.     | abc0ada2e12           |
 | var1 <br /> <code>mandatory</code>    | <code>JSON String</code> JSON object containing the pre-debit details. | See var1 Object below |
+
+##### Hash logic
+
+The hash is generated using the following formula:
+
+```
+hash = sha512(key|command|var1|salt)
+```
 
 ### var1 Object Parameters
 
@@ -694,7 +702,7 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
   curl --location 'https://test.info.payu.in/merchant/postservice.php?form=2' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
   --data-urlencode 'command=pre_debit_SI' \
-  --data-urlencode 'var1={"authpayuid":"999000000000826","requestid":"RCS0123459PD","debitdate":"2024-11-22","amount":"125","invoiceDisplayNumber":"12345678910","mandateSeqNo":2}' \
+  --data-urlencode 'var1={"authpayuid":"999000000000826","requestid":"RCS0123459PD","debitdate":"2024-11-22","amount":"125","invoiceDisplayNumber":"12345678910"}' \
   --data-urlencode 'key=JP***g' \
   --data-urlencode 'hash=abc0ada2e12'
   ```
@@ -705,7 +713,7 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
 
   payload = {
       "command": "pre_debit_SI",
-      "var1": '{"authpayuid":"999000000000826","requestid":"RCS0123459PD","debitdate":"2024-11-22","amount":"125","invoiceDisplayNumber":"12345678910","mandateSeqNo":2}',
+      "var1": '{"authpayuid":"999000000000826","requestid":"RCS0123459PD","debitdate":"2024-11-22","amount":"125","invoiceDisplayNumber":"12345678910"}',
       "key": "JP***g",
       "hash": "abc0ada2e12"
   }
@@ -732,7 +740,7 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
           var content = new FormUrlEncodedContent(new[]
           {
               new KeyValuePair<string, string>("command", "pre_debit_SI"),
-              new KeyValuePair<string, string>("var1", "{\"authpayuid\":\"999000000000826\",\"requestid\":\"RCS0123459PD\",\"debitdate\":\"2024-11-22\",\"amount\":\"125\",\"invoiceDisplayNumber\":\"12345678910\",\"mandateSeqNo\":2}"),
+              new KeyValuePair<string, string>("var1", "{\"authpayuid\":\"999000000000826\",\"requestid\":\"RCS0123459PD\",\"debitdate\":\"2024-11-22\",\"amount\":\"125\",\"invoiceDisplayNumber\":\"12345678910\"}"),
               new KeyValuePair<string, string>("key", "JP***g"),
               new KeyValuePair<string, string>("hash", "abc0ada2e12")
           });
@@ -754,8 +762,7 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
           requestid: "RCS0123459PD",
           debitdate: "2024-11-22",
           amount: "125",
-          invoiceDisplayNumber: "12345678910",
-          mandateSeqNo: 2
+          invoiceDisplayNumber: "12345678910"
       }));
       params.append("key", "JP***g");
       params.append("hash", "abc0ada2e12");
@@ -784,7 +791,7 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
           String url = "https://test.info.payu.in/merchant/postservice.php?form=2";
           
           String params = "command=pre_debit_SI" +
-              "&var1=" + URLEncoder.encode("{\"authpayuid\":\"999000000000826\",\"requestid\":\"RCS0123459PD\",\"debitdate\":\"2024-11-22\",\"amount\":\"125\",\"invoiceDisplayNumber\":\"12345678910\",\"mandateSeqNo\":2}", StandardCharsets.UTF_8) +
+              "&var1=" + URLEncoder.encode("{\"authpayuid\":\"999000000000826\",\"requestid\":\"RCS0123459PD\",\"debitdate\":\"2024-11-22\",\"amount\":\"125\",\"invoiceDisplayNumber\":\"12345678910\"}", StandardCharsets.UTF_8) +
               "&key=JP***g" +
               "&hash=abc0ada2e12";
           
@@ -817,8 +824,7 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
           "requestid" => "RCS0123459PD",
           "debitdate" => "2024-11-22",
           "amount" => "125",
-          "invoiceDisplayNumber" => "12345678910",
-          "mandateSeqNo" => 2
+          "invoiceDisplayNumber" => "12345678910"
       )),
       "key" => "JP***g",
       "hash" => "abc0ada2e12"
