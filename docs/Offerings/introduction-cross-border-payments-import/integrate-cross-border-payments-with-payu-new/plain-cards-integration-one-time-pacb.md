@@ -1,5 +1,5 @@
 ---
-title: Plain Cards Integration - One-Time PACB
+title: Plain Cards Integration - Merchant Hosted
 deprecated: false
 hidden: true
 metadata:
