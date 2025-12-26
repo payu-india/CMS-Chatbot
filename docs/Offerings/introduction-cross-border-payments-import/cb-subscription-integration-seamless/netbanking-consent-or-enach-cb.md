@@ -1,5 +1,5 @@
 ---
-title: Net Banking Consent Transaction - CB
+title: Net Banking Consent Transaction - Cross-Border Payments
 deprecated: false
 hidden: true
 metadata:
