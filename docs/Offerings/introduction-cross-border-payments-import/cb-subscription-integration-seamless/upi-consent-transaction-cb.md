@@ -45,7 +45,9 @@ Before starting the integration, ensure you have:
 
 ***
 
-## Step 1: Post the Request
+## Payment Consent Transaction
+
+### Step 1: Post the Request
 
 Before implementing, familiarize yourself with the required parameters.
 
@@ -467,7 +469,7 @@ Before implementing, familiarize yourself with the required parameters.
 
 ***
 
-## Step 2: Check the Response from PayU
+### Step 2: Check the Response from PayU
 
 The API returns different response structures for UPI Collect and UPI Intent flows.
 
@@ -559,7 +561,7 @@ The API returns different response structures for UPI Collect and UPI Intent flo
 
 ***
 
-## Step 3: Configure Webhooks
+### Step 3: Configure Webhooks
 
 Configure webhooks to receive real-time transaction status updates. PayU will send POST requests to your webhook URL.
 
@@ -610,7 +612,7 @@ Configure webhooks to receive real-time transaction status updates. PayU will se
 
 ***
 
-## Step 4: Verify Mandate Registration
+### Step 4: Verify Mandate Registration
 
 After successful registration, verify the mandate status:
 
