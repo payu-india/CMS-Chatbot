@@ -551,9 +551,8 @@ The API returns a JSON response. For S2S4 flow, you'll receive an OTP enrollment
 #### Response Handling Logic
 
 1. **Check Transaction Status**: Verify `metaData.txnStatus` and `metaData.unmappedStatus`
-2. **OTP Handling**: If `txnStatus` is "Enrolled", handle OTP flow using `result.acsTemplate` or `result.otpPostUrl`
-3. **Store Mandate Details**: On successful registration, store `mihpayid` and mandate details for future recurring payments
-4. **Error Handling**: Check for error codes and handle accordingly
+2. **Store Mandate Details**: On successful registration, store `mihpayid` and mandate details for future recurring payments
+3. **Error Handling**: Check for error codes and handle accordingly
 
 ### Step 3: Configure Webhooks
 
@@ -595,17 +594,20 @@ For detailed webhook handling, refer to [S2S Webhook Handling](doc:s2s-webhook-h
 After successful registration, verify the mandate status:
 
 1. **Check Response Parameters**:
-   * `status` should be "success"
-   * `payment_source` should be "sist"
-   * `cardToken` should be present
-   * `mihpayid` should be returned
 
-2. **Store Mandate Details**:
+| **Response Parameter** | **Expected Value**               | **Description**                                                                         |
+| ---------------------- | -------------------------------- | --------------------------------------------------------------------------------------- |
+| status                 | success                          | Indicates that the transaction is successful with the UPI provider                      |
+| payment_source         | SIST                             | Indicates that UPI details have been marked correctly for Standing Instruction          |
+| mihpayid               | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction                   |
+| cardToken              | Alphanumeric string              | Mandatory to be validated if mode is CC or DC returned in response. Should not be empty |
+
+1. **Store Mandate Details**:
    * Save `mihpayid` for future recurring payments
    * Store `cardToken` if tokenization is enabled
    * Save mandate expiry dates from `si_details`
 
-3. **Test Recurring Payment**:
+2. **Test Recurring Payment**:
    * Use the stored `mihpayid` to initiate a recurring payment
    * Verify the payment processes successfully
 
