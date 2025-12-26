@@ -73,9 +73,8 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
   <HashingSample />
 </Accordion>
 
-<br />
+### Sample request
 
-## Sample request
 ```bash
 curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
