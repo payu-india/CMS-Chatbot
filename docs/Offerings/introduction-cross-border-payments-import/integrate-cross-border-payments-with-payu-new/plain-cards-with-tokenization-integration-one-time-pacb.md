@@ -1,5 +1,5 @@
 ---
-title: Plain Cards with Tokenization - One-Time PACB
+title: Plain Cards with Tokenization - Merchant Hosted
 deprecated: false
 hidden: true
 metadata:
