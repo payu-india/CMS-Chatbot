@@ -149,11 +149,13 @@ Before implementing, familiarize yourself with the required parameters.
   "phone": "9988776655",
   "surl": "https://example.com/success",
   "furl": "https://example.com/failure",
-  "udf1": "",
+  "udf1": "AELPR1234E",
   "udf2": "",
-  "udf3": "",
-  "udf4": "",
-  "udf5": "",
+  "udf3": "02-02-1980",
+  "udf4": "XYZ Pvt. Ltd.",
+  "udf5": "INV123456",
+  "buyer_type_business": "1",
+  "udf_params": "{\"udf7\":\"0100000029\",\"udf8\":\"99953729071\"}",
   "pg": "NB",
   "bankcode": "SBIB",
   "api_version": "7",
@@ -165,7 +167,7 @@ Before implementing, familiarize yourself with the required parameters.
 
 ### Sample Requests
 
-<Accordion title="Sample requests in various language bindings" icon="fa-code">
+<Accordion title="Net Banking - cURL" icon="fa-code">
   ```bash
   curl --location --request POST 'https://test.payu.in/_payment' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -179,11 +181,13 @@ Before implementing, familiarize yourself with the required parameters.
   --data-urlencode 'productinfo=Monthly Subscription' \
   --data-urlencode 'surl=https://example.com/success' \
   --data-urlencode 'furl=https://example.com/failure' \
-  --data-urlencode 'udf1=' \
+  --data-urlencode 'udf1=AELPR1234E' \
   --data-urlencode 'udf2=' \
-  --data-urlencode 'udf3=' \
-  --data-urlencode 'udf4=' \
-  --data-urlencode 'udf5=' \
+  --data-urlencode 'udf3=02-02-1980' \
+  --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+  --data-urlencode 'udf5=INV123456' \
+  --data-urlencode 'buyer_type_business=1' \
+  --data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
   --data-urlencode 'pg=NB' \
   --data-urlencode 'bankcode=SBIB' \
   --data-urlencode 'api_version=7' \
@@ -218,11 +222,11 @@ Before implementing, familiarize yourself with the required parameters.
   productinfo = 'Monthly Subscription'
   firstname = 'Ashish'
   email = 'test@payu.in'
-  udf1 = ''
+  udf1 = 'AELPR1234E'
   udf2 = ''
-  udf3 = ''
-  udf4 = ''
-  udf5 = ''
+  udf3 = '02-02-1980'
+  udf4 = 'XYZ Pvt. Ltd.'
+  udf5 = 'INV123456'
 
   hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}|{udf2}|{udf3}|{udf4}|{udf5}||||||{si_details_json}|{salt}"
   hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
@@ -244,6 +248,8 @@ Before implementing, familiarize yourself with the required parameters.
       'udf3': udf3,
       'udf4': udf4,
       'udf5': udf5,
+      'buyer_type_business': '1',
+      'udf_params': '{"udf7":"0100000029","udf8":"99953729071"}',
       'pg': 'NB',
       'bankcode': 'SBIB',
       'api_version': '7',
@@ -290,11 +296,13 @@ Before implementing, familiarize yourself with the required parameters.
       'phone' => '9988776655',
       'surl' => 'https://example.com/success',
       'furl' => 'https://example.com/failure',
-      'udf1' => '',
+      'udf1' => 'AELPR1234E',
       'udf2' => '',
-      'udf3' => '',
-      'udf4' => '',
-      'udf5' => '',
+      'udf3' => '02-02-1980',
+      'udf4' => 'XYZ Pvt. Ltd.',
+      'udf5' => 'INV123456',
+      'buyer_type_business' => '1',
+      'udf_params' => '{"udf7":"0100000029","udf8":"99953729071"}',
       'pg' => 'NB',
       'bankcode' => 'SBIB',
       'api_version' => '7',
@@ -351,11 +359,13 @@ Before implementing, familiarize yourself with the required parameters.
       phone: '9988776655',
       surl: 'https://example.com/success',
       furl: 'https://example.com/failure',
-      udf1: '',
+      udf1: 'AELPR1234E',
       udf2: '',
-      udf3: '',
-      udf4: '',
-      udf5: '',
+      udf3: '02-02-1980',
+      udf4: 'XYZ Pvt. Ltd.',
+      udf5: 'INV123456',
+      buyer_type_business: '1',
+      udf_params: '{"udf7":"0100000029","udf8":"99953729071"}',
       pg: 'NB',
       bankcode: 'SBIB',
       api_version: '7',
