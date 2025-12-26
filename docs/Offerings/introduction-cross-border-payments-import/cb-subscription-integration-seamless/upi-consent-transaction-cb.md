@@ -552,7 +552,7 @@ The API returns different response structures for UPI Collect and UPI Intent flo
 Configure webhooks to receive real-time transaction status updates. PayU will send POST requests to your webhook URL.
 
 <Accordion title="Webhook Configuration" icon="fa-cog">
-  Request the PayU Integration team to configure the webhook URL against the **ws\_online\_response** parameter. Once configured, you will receive transaction updates via HTTP POST.
+  You can configure the webhook from Payu dashboard directly for payment success/failure events. For more information, refer to [Create a New Webhook](https://docs.payu.in/docs/create-a-new-webhook). Once configured, you will receive transaction updates via HTTP POST.
 </Accordion>
 
 <Accordion title="Webhook Payload Example" icon="fa-code">
@@ -585,7 +585,6 @@ Configure webhooks to receive real-time transaction status updates. PayU will se
 </Accordion>
 
 <Accordion title="Expected Values for Successful Registration" icon="fa-table">
-
   | Response Parameter | Expected Value | Description                                                               |
   | ------------------ | -------------- | ------------------------------------------------------------------------- |
   | status             | `success`      | Indicates that the transaction is successful with the UPI provider        |
