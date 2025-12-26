@@ -41,7 +41,9 @@ Before starting the integration, ensure you have:
   </Card>
 </Cards>
 
-## Step 1: Post the Request
+## Payment Consent Flow
+
+### Step 1: Post the Request
 
 Before implementing, familiarize yourself with the required parameters.
 
@@ -79,15 +81,15 @@ Before implementing, familiarize yourself with the required parameters.
   | si<br />`mandatory`                                                                        | `String`<br />Signifies successful consent taken from the user. Must be `1` for subscription setup.                                                                                                            | 1                                                                      |
   | si\_details<br />`mandatory`                                                               | `JSON String`<br />JSON object containing mandate details (billingAmount, billingCurrency, billingCycle, etc.). Refer to si\_details JSON Object below.                                                        | See si\_details accordion                                              |
   | api\_version<br />`mandatory`                                                              | `String`<br />The API version. Must be `7` for SI transactions.                                                                                                                                                | 7                                                                      |
-  | udf1<br />`optional but recommended for higher approval rate`                                                               | `String`<br />The Permanent Account Number (PAN) of the buyer must be collected in this field.                                                                                                                 | AELPR\*\*\*\*E                                                         |
+  | udf1<br />`optional but recommended for higher approval rate`                              | `String`<br />The Permanent Account Number (PAN) of the buyer must be collected in this field.                                                                                                                 | AELPR\*\*\*\*E                                                         |
   | udf3<br />`optional but recommended for higher approval rate`                              | `String` Date of Birth (DOB) of buyer in DD-MM-YYYY                                                                                                                                                            | 02-02-1980                                                             |
   | udf4<br />`mandatory for payment aggregators`                                              | `String` End merchant legal entity name. For UPI, this field should not be passed. Character limit: 255.                                                                                                       | XYZ Pvt. Ltd.                                                          |
   | udf5<br />`mandatory for cross-border payments`                                            | `String` Contains invoice ID for the merchant. Character limit: 255.                                                                                                                                           | INV123456                                                              |
-  | address1<br />`optional but recommended for higher approval rate`                                                                   | `String`<br />First line of billing address. Character Limit: 100                                                                                                                                              | H.No-17, Block C                                                       |
+  | address1<br />`optional but recommended for higher approval rate`                          | `String`<br />First line of billing address. Character Limit: 100                                                                                                                                              | H.No-17, Block C                                                       |
   | address2<br />`optional`                                                                   | `String`<br />Second line of billing address. Character Limit: 100                                                                                                                                             | Tilak Nagar                                                            |
-  | city<br />`optional but recommended for higher approval rate`                                                                       | `String`<br />Customer's city.                                                                                                                                                                                 | Mumbai                                                                 |
-  | state<br />`optional but recommended for higher approval rate`                                                                      | `String`<br />Customer's state.                                                                                                                                                                                | Maharashtra                                                            |
-  | country<br />`optional but recommended for higher approval rate`                                                                    | `String`<br />Customer's country. Character Limit: 50                                                                                                                                                          | India                                                                  |
+  | city<br />`optional but recommended for higher approval rate`                              | `String`<br />Customer's city.                                                                                                                                                                                 | Mumbai                                                                 |
+  | state<br />`optional but recommended for higher approval rate`                             | `String`<br />Customer's state.                                                                                                                                                                                | Maharashtra                                                            |
+  | country<br />`optional but recommended for higher approval rate`                           | `String`<br />Customer's country. Character Limit: 50                                                                                                                                                          | India                                                                  |
   | zipcode<br />`optional`                                                                    | `String`<br />Billing address zip code. Character Limit: 20                                                                                                                                                    | 400004                                                                 |
   | free\_trial<br />`optional`                                                                | `String`<br />Set to `1` for free trial use cases. PayU adjusts the transaction amount as INR 2.00 for Net Banking.                                                                                            | 1                                                                      |
   | buyer\_type\_business<br />`optional in case of B2B transaction for cross-border payments` | `Binary` To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0".<br />**Note**: This will be included in hash if posted (covered in next section). | 1                                                                      |
@@ -133,9 +135,9 @@ Before implementing, familiarize yourself with the required parameters.
   > **Important**: The `si_details` JSON string must be included in the hash calculation.
 </Accordion>
 
-### Request Payload Structure
+#### Request Payload Structure
 
-#### Net Banking Flow
+**Net Banking Flow**
 
 ```json
 {
@@ -165,7 +167,7 @@ Before implementing, familiarize yourself with the required parameters.
 }
 ```
 
-### Sample Requests
+#### Sample Requests
 
 <Accordion title="Net Banking - cURL" icon="fa-code">
   ```bash
@@ -394,7 +396,7 @@ Before implementing, familiarize yourself with the required parameters.
 
 ***
 
-## Step 2: Check the Response from PayU
+### Step 2: Check the Response from PayU
 
 The API returns response structure for Net Banking flow.
 
@@ -443,7 +445,7 @@ The API returns response structure for Net Banking flow.
 
 ***
 
-## Step 3: Configure Webhooks
+### Step 3: Configure Webhooks
 
 Configure webhooks to receive real-time transaction status updates. PayU will send POST requests to your webhook URL.
 
@@ -494,7 +496,7 @@ Configure webhooks to receive real-time transaction status updates. PayU will se
 
 ***
 
-## Step 4: Verify Mandate Registration
+### Step 4: Verify Mandate Registration
 
 After successful registration, verify the mandate status:
 
@@ -514,7 +516,117 @@ After successful registration, verify the mandate status:
      * Verify the payment processes successfully
 </Accordion>
 
-## Step 5: Recurring Payment Transaction
+### Step 5: Update Invoice ID [Conditional]
+
+If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter.
+
+<GENERALAPIsEnvironment />
+
+<Accordion title="Sample request other then UPI AutoPay" icon="fa-code">
+  ```
+    curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
+    --form 'key="PRiQvJ"' \
+    --form 'command="udf_update"' \
+    --form 'var1="my_order_642"' \
+    --form 'var2="AAAPZ1234C"' \
+    --form 'var4="22/08/1972"' \
+    --form 'var5="SellerName"' \
+    --form 'var6="INV000000005"' \
+    --form 'hash="{{hash}}"'
+  ```
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
+  ### Success Scenario
+
+  * If successfully updated for cards
+
+  ```JSON
+  {
+      "status": "UDF values updated",
+      "transaction_id": "my_order_64240",
+      "udf1": "AAAPZ1234C",
+      "udf2": "",
+      "udf3": "22/08/1972",
+      "udf4": "SellerName",
+      "udf5": "INV000000005"
+  }
+  ```
+
+  * If successfully updated for UPI autopay:
+
+  ```JSON
+  {
+      "status": "UDF values updated",
+      "transaction_id": "my_order_64240",
+      "udf1": "AAAPZ1234C",
+      "udf2": "",
+      "udf3": "22/08/1972",
+      "udf4": "SellerName",
+      "udf5": "INV000000005"
+  }
+  ```
+
+  ### Failure Scenarios
+
+  * If the transaction ID is empty
+
+  ```JSON
+  ( 
+  [status] => 0 
+  [msg] => Parameter missing 
+  ) 
+  ```
+
+  * If the transaction ID is invalid
+
+  ```JSON
+  ( 
+  [status] => 0 
+  [msg] => Invalid TXN ID 
+  ) 
+  ```
+
+  * If Hash is invalid:
+
+  ```JSON
+  {
+      "status": 0,
+      "msg": "Invalid Hash."
+  }
+  ```
+
+  * If the merchant is not enabled for UDF updates:
+
+  ```JSON
+  {
+    "status": "0",
+    "msg": "Update not allowed on provided Field"
+  }
+  ```
+
+  * If no data found in the transaction ID:
+
+  ```JSON
+  {
+    "status": "0",
+    "msg": "No Data Found for txnid: 3424"
+  }
+  ```
+
+  * If the merchant is inactive:
+
+  ```JSON
+  {
+    "msg": "Merchant is not authorized to use PayU API",
+    "status": 0
+  }
+  ```
+</Accordion>
+
+## Recurring Payments Flow
+
+### Step 1: Recurring Payment Transaction
 
 Use the **Recurring Payment Transaction** API to execute recurring payment transactions for customers who have already completed a successful mandate/registration transaction with Net Banking, UPI, or Cards. For detailed API reference, refer to [Recurring Payment Transaction API - PACB](ref:recurring-payment-transaction-api-pacb).
 
@@ -796,7 +908,7 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
 
 ***
 
-## Step 6: Pre-Debit SI Notification
+## Step 2: Pre-Debit SI Notification
 
 Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurring debits with parallel sequencing support. This notification must be sent before executing the recurring transaction for Cards SI. For detailed API reference, refer to [Pre-Debit SI API](ref:pre-debit-si-api-parallel-sequencing).
 
@@ -1004,7 +1116,7 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
 | action    | <code>String</code> The action performed.                                                              | MANDATE_PRE_DEBIT              |
 | message   | <code>String</code> Description of the response status.                                                | Request Processed Successfully |
 
-## Step 7: Update Invoice ID [Conditional]
+## Step 3: Update Invoice ID [Conditional]
 
 If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter.
 
@@ -1112,4 +1224,4 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
   ```
 </Accordion>
 
-##
+<br />
