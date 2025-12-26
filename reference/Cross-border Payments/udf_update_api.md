@@ -4,7 +4,7 @@ api:
   file: opgsp-invoice-4.json
   operationId: udf_update-OPGSP
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
