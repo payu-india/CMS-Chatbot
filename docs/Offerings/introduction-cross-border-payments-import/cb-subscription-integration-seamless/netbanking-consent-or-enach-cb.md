@@ -1,5 +1,5 @@
 ---
-title: Net Banking Consent Transaction - Cross-Border Payments
+title: '[S2S] Net Banking Consent Transaction - Cross-Border'
 deprecated: false
 hidden: true
 metadata:
