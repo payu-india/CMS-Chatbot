@@ -1,4 +1,3 @@
-- cb-modify-recurring-payments-for-a-visamaster-card
 - _payment_cross-border_payu_hosted_checkout
 - merchant-hosted-integration-cb
 - udf_update_api
@@ -6,6 +5,7 @@
 - _payment_merchant_hosted_cb_lrs
 - old_udf_update_api
 - udf-update-api-new
+- cb-modify-recurring-payments-for-a-visamaster-card
 - get-on-hold-transactions-api
 - update-on-hold-transactions-api
 - invoice_upload_api
