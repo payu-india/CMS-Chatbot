@@ -17,9 +17,7 @@ This section describes how to set up a Payment Consent or Registration transacti
     Send the ENACH consent transaction request with S2S parameters.
   </Card>
 
-  <Card title="2. Check Response from PayU" href="#step-2-check-the-response-from-payu">
-    Handle the response for Net Banking flow.
-  </Card>
+
   <Card title="3. Verify Payment" href="#step-3-verify_the_payment">
     Handle the response for Net Banking flow.
   </Card>
@@ -47,7 +45,7 @@ For detailed information about the Payment Consent Transaction using PayU Hosted
   **Note**: For Cross-Border Payments, the UDF parameters (udf1, udf2, udf3, udf4, and udf5) have specific requirements as described in the Request parameters table below.
 </Callout>
 
-### Request parameters
+#### Request parameters
 
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
