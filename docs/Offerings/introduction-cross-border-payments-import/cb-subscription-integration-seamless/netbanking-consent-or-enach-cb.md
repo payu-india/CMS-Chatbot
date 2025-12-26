@@ -165,7 +165,7 @@ Before implementing, familiarize yourself with the required parameters.
 
 ### Sample Requests
 
-<Accordion title="Net Banking - cURL" icon="fa-code">
+<Accordion title="Sample requests in various language bindings" icon="fa-code">
   ```bash
   curl --location --request POST 'https://test.payu.in/_payment' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
