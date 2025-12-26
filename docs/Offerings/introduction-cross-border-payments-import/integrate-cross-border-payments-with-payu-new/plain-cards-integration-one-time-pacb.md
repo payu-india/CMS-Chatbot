@@ -1,11 +1,11 @@
 ---
-title: Plain Cards Integration - Merchant Hosted
+title: '[S2S] Plain Cards Integration - Merchant Hosted Integration'
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-This section explains how to integrate plain card payments for PACB (PA to PA Cross-Border) transactions using the Server-to-Server (S2S) flow. This is the standard card transaction flow without tokenization.
+This section explains how to integrate plain card payments for cross-border transactions using the Server-to-Server (S2S) flow. This is the standard card transaction flow without tokenization.
 
 <Cards columns={3}>
   <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
