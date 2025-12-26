@@ -15,9 +15,7 @@ Before starting the integration, ensure you have:
 * Merchant Key and Salt from PayU dashboard
 * Test environment access for development
 
-<br />
-
-<Cards columns={2}>
+<Cards columns={3}>
   <Card title="1. Post the Request" href="#step-1-post-the-request">
     Send the ENACH consent transaction request with S2S parameters.
 
@@ -54,11 +52,6 @@ Before starting the integration, ensure you have:
     <br />
   </Card>
 
-  <Card title="7. Update Invoice ID" href="#step-7-update-invoice-id-conditional">
-    Update Invoice ID using the UDF Update API if unavailable during transaction.
-
-    <br />
-  </Card>
 </Cards>
 
 ## Step 1: Post the Request
