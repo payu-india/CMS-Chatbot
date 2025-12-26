@@ -1,6 +1,8 @@
 ---
-title: Workflow for Import
-excerpt: ''
+title: Payment Journey & Workflow
+excerpt: >-
+  Illustrative example of the payment journey in a cross-border (Outward)
+  transaction
 deprecated: false
 hidden: false
 metadata:
@@ -13,17 +15,16 @@ metadata:
 next:
   description: ''
 ---
-Different parties are involved in the settlement for Cross-Border Payments - Import merchants. Transactional flow has no changes.
+<br />
 
 <Image align="center" border={false} src="https://files.readme.io/c051d23-cross-border-import-workflow.png" />
 
-PayU has tied up with **AD-1 CATEGORY bank** to do the settlement. This account is owned/controlled by PayU and acts as an “**Outward Collection Account (OCA)**.”
+PayU has partnered with **AD-1 CATEGORY Bank** to complete the settlement via SWIFT. This account is owned/controlled by PayU and acts as an “**Outward Collection Account (OCA)**.” (erstwhile Import Collection Account)
 
-1. Funds will be transferred by acquirers into PayU’s Nodal only. This is an automated process.
-2. PayU instructs the AD-1 category bank to make the transfer to merchants over a file shared through SFTP. After it is transferred, the AD-1 category bank shares a response file and marks the UTR.
-3. Invoice copies are shared with the AD-1 category bank team every fortnight for the transaction to be settled.
+1. Funds will be transferred by acquirers into PayU’s domestic pool account ("Nodal Bank Account"). This is an automated process.
+2. PayU instructs the AD-1 category bank to make the transfer to merchants over a file shared through SFTP. After the cross-border settlement is completed, the AD-1 category bank shares a response file and a unique transaction reference.
 
 Transactional flows & integrations remain the same for PACB merchants, and merchants need to perform the following:
 
 * Merchant has to share invoice numbers in the UDF5 field while doing transactions in real-time.
-* Post successful transaction, invoice/AWB copy has to be submitted.
+* Post successful transaction AWB copy has to be submitted.
