@@ -496,6 +496,10 @@ The API returns response structure for Net Banking flow.
 
 ***
 
+<Callout icon="📘" theme="info">
+  Redirect the customer using the result.acsTemplate(base64encoded) to their bank's page for authentication. The final response will be posted to surl/furl and the configured Webhook.
+</Callout>
+
 ### Step 3: Configure Webhooks
 
 Configure webhooks to receive real-time transaction status updates. PayU will send POST requests to your webhook URL.
