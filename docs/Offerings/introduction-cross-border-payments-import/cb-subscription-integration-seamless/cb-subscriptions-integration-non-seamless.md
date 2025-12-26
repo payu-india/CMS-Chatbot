@@ -1,5 +1,5 @@
 ---
-title: PayU Hosted Integration -Cross-Border Payments
+title: '[Redirect] Subscriptions on PayU Hosted Page - Cross-Border'
 deprecated: false
 hidden: true
 metadata:
