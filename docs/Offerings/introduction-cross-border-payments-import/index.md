@@ -48,8 +48,9 @@ The advantages for the overseas merchant include: 
 
 Merchants cannot sell products / services for more than Rs. 850,000 (8.5 Lacs) per transaction.
 
-* Every transaction must be accompanied by a copy of the (digital) invoice. 
-* Every transaction must be accompanied by a copy of the AWB once the product(s) has been shipped. 
+* Every transaction must be accompanied with buyer's details - First Name, Last Name & Billing Zipcode
+* Every transaction must be accompanied by an "invoice ID"
+* Every transaction must be accompanied by a copy of the AWB once the product(s) has been shipped (applicable in case of physical goods)
 
 The customers or end-users will be able to pay using their Indian debit cards and Net Banking on merchant’s websites, which was till now accepted only foreign transactions enabled credit cards.
 
