@@ -16,7 +16,7 @@ Before starting the integration, ensure you have:
 * Test environment access for development
 * Understanding of UPI payment flow (Collect vs Intent)
 
-<Cards columns={2}>
+<Cards columns={3}>
   <Card title="1. Post the Request" href="#step-1-post-the-request">
     Send the UPI consent transaction request with S2S parameters.
 
@@ -40,7 +40,8 @@ Before starting the integration, ensure you have:
 
     <br />
   </Card>
- <Card title="5. Recurring Payment Transaction" href="#step-5-recurring-payment-transaction">
+
+  <Card title="5. Recurring Payment Transaction" href="#step-5-recurring-payment-transaction">
     Execute recurring payment transactions using the registered mandate.
 
     <br />
@@ -52,11 +53,6 @@ Before starting the integration, ensure you have:
     <br />
   </Card>
 
-  <Card title="7. Update Invoice ID" href="#step-7-update-invoice-id-conditional">
-    Update Invoice ID using the UDF Update API if unavailable during transaction.
-
-    <br />
-  </Card>
 </Cards>
 
 ***
