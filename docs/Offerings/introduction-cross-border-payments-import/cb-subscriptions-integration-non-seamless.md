@@ -70,8 +70,6 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 | hash<br/>`mandatory` | `String` Crucial security parameter using SHA512 hash encryption. Formula incorporates key, txnid, amount, productinfo, firstname, email, udf fields, si_details, and merchant salt. | \<Generated Hash> |
 
 
-<HashingRequestParameters />
-
 <Accordion title="My Accordion Title" icon="fa-info-circle">
   <PACB_Hashing />
 </Accordion>
