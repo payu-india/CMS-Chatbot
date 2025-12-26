@@ -1,6 +1,7 @@
 - rbi-guidelines-for-cross-border-payments
 - workflow-for-cross-border-payments-import
 - integrate-cross-border-payments-for-payubiz
+- copy-of-integrate-cross-border-payments-with-payu
 - one-time-payment-integration
 - integrate-import-with-upi-autopay-for-payubiz
 - cb-subscriptions-integration-non-seamless
@@ -12,4 +13,3 @@
 - on-hold-and-settlement-apis-cross-border-payments
 - upi-autopay-integration-cross-border-payments-import
 - steps-to-integrate-cross-border-payments-import
-- copy-of-integrate-cross-border-payments-with-payu
