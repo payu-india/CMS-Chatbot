@@ -1,5 +1,5 @@
 ---
-title: '[S2S} UPI Consent Transaction - Cross Border'
+title: '[S2S] UPI Consent Transaction - Cross Border'
 deprecated: false
 hidden: true
 metadata:
