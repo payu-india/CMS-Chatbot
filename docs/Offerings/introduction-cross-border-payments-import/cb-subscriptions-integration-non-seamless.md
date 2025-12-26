@@ -70,16 +70,309 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 <HashingRequestParameters />
 
 <Accordion title="My Accordion Title" icon="fa-info-circle">
-<HashingSample />
+  <HashingSample />
 </Accordion>
+
 <br />
 
 ## Sample request
-
-```curl
+```bash
 curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=fM3O2HnkpJ8XEC&amount=100.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone Subscription&pg=cc#bankcode=AIRPENCC&si=1&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&udf1=AELPR1234E&udf3=02-02-1980&udf4=XYZ Pvt. Ltd.&udf5=INV123456&si_details={\"billingAmount\": \"100.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2022-09-01\",\"paymentEndDate\": \"2022-12-01\"}&hash=2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5"
+  -d "key=JP***g&txnid=fM3O2HnkpJ8XEC&amount=100.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone Subscription&address1=123 Main Street&city=New Delhi&state=Delhi&country=India&si=1&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&udf1=AELPR1234E&udf3=02-02-1980&udf4=XYZ Pvt. Ltd.&udf5=INV123456&si_details={"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}&hash=2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5"
+```
+```python
+import requests
+
+def payu_payment():
+    url = "https://test.payu.in/_payment"
+    
+    form_data = {
+        'key': 'JP***g',
+        'txnid': 'fM3O2HnkpJ8XEC',
+        'amount': '100.00',
+        'firstname': 'PayU User',
+        'email': 'test@gmail.com',
+        'phone': '9876543210',
+        'productinfo': 'iPhone Subscription',
+        'address1': '123 Main Street',
+        'city': 'New Delhi',
+        'state': 'Delhi',
+        'country': 'India',
+        'si': '1',
+        'surl': 'https://apiplayground-response.herokuapp.com/',
+        'furl': 'https://apiplayground-response.herokuapp.com/',
+        'udf1': 'AELPR1234E',
+        'udf3': '02-02-1980',
+        'udf4': 'XYZ Pvt. Ltd.',
+        'udf5': 'INV123456',
+        'si_details': '{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}',
+        'hash': '2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5'
+    }
+    
+    headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+    
+    try:
+        response = requests.post(url, data=form_data, headers=headers)
+        print(f"Status Code: {response.status_code}")
+        print(f"Response: {response.text}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
+
+payu_payment()
+```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+public class PayUPayment
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    public static async Task Main(string[] args)
+    {
+        await ProcessPayment();
+    }
+
+    public static async Task ProcessPayment()
+    {
+        try
+        {
+            string url = "https://test.payu.in/_payment";
+            
+            var formParams = new List<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>("key", "JP***g"),
+                new KeyValuePair<string, string>("txnid", "fM3O2HnkpJ8XEC"),
+                new KeyValuePair<string, string>("amount", "100.00"),
+                new KeyValuePair<string, string>("firstname", "PayU User"),
+                new KeyValuePair<string, string>("email", "test@gmail.com"),
+                new KeyValuePair<string, string>("phone", "9876543210"),
+                new KeyValuePair<string, string>("productinfo", "iPhone Subscription"),
+                new KeyValuePair<string, string>("address1", "123 Main Street"),
+                new KeyValuePair<string, string>("city", "New Delhi"),
+                new KeyValuePair<string, string>("state", "Delhi"),
+                new KeyValuePair<string, string>("country", "India"),
+                new KeyValuePair<string, string>("si", "1"),
+                new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
+                new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
+                new KeyValuePair<string, string>("udf1", "AELPR1234E"),
+                new KeyValuePair<string, string>("udf3", "02-02-1980"),
+                new KeyValuePair<string, string>("udf4", "XYZ Pvt. Ltd."),
+                new KeyValuePair<string, string>("udf5", "INV123456"),
+                new KeyValuePair<string, string>("si_details", "{\"billingAmount\": \"100.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2022-09-01\",\"paymentEndDate\": \"2022-12-01\"}"),
+                new KeyValuePair<string, string>("hash", "2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5")
+            };
+
+            HttpContent formContent = new FormUrlEncodedContent(formParams);
+            formContent.Headers.ContentType.MediaType = "application/x-www-form-urlencoded";
+
+            HttpResponseMessage response = await client.PostAsync(url, formContent);
+            string responseContent = await response.Content.ReadAsStringAsync();
+
+            Console.WriteLine($"Status Code: {(int)response.StatusCode}");
+            Console.WriteLine($"Response: {responseContent}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+```
+```javascript
+async function processPayment() {
+    const url = "https://test.payu.in/_payment";
+    
+    const formData = new URLSearchParams();
+    formData.append('key', 'JP***g');
+    formData.append('txnid', 'fM3O2HnkpJ8XEC');
+    formData.append('amount', '100.00');
+    formData.append('firstname', 'PayU User');
+    formData.append('email', 'test@gmail.com');
+    formData.append('phone', '9876543210');
+    formData.append('productinfo', 'iPhone Subscription');
+    formData.append('address1', '123 Main Street');
+    formData.append('city', 'New Delhi');
+    formData.append('state', 'Delhi');
+    formData.append('country', 'India');
+    formData.append('si', '1');
+    formData.append('surl', 'https://apiplayground-response.herokuapp.com/');
+    formData.append('furl', 'https://apiplayground-response.herokuapp.com/');
+    formData.append('udf1', 'AELPR1234E');
+    formData.append('udf3', '02-02-1980');
+    formData.append('udf4', 'XYZ Pvt. Ltd.');
+    formData.append('udf5', 'INV123456');
+    formData.append('si_details', '{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}');
+    formData.append('hash', '2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5');
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
+        });
+
+        const responseText = await response.text();
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
+processPayment();
+```
+```java
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+
+public class PayUPayment {
+    public static void main(String[] args) {
+        processPayment();
+    }
+
+    public static void processPayment() {
+        try {
+            String apiUrl = "https://test.payu.in/_payment";
+            URL url = new URL(apiUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setDoOutput(true);
+
+            Map<String, String> parameters = new HashMap<>();
+            parameters.put("key", "JP***g");
+            parameters.put("txnid", "fM3O2HnkpJ8XEC");
+            parameters.put("amount", "100.00");
+            parameters.put("firstname", "PayU User");
+            parameters.put("email", "test@gmail.com");
+            parameters.put("phone", "9876543210");
+            parameters.put("productinfo", "iPhone Subscription");
+            parameters.put("address1", "123 Main Street");
+            parameters.put("city", "New Delhi");
+            parameters.put("state", "Delhi");
+            parameters.put("country", "India");
+            parameters.put("si", "1");
+            parameters.put("surl", "https://apiplayground-response.herokuapp.com/");
+            parameters.put("furl", "https://apiplayground-response.herokuapp.com/");
+            parameters.put("udf1", "AELPR1234E");
+            parameters.put("udf3", "02-02-1980");
+            parameters.put("udf4", "XYZ Pvt. Ltd.");
+            parameters.put("udf5", "INV123456");
+            parameters.put("si_details", "{\"billingAmount\": \"100.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2022-09-01\",\"paymentEndDate\": \"2022-12-01\"}");
+            parameters.put("hash", "2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5");
+
+            StringBuilder postData = new StringBuilder();
+            for (Map.Entry<String, String> param : parameters.entrySet()) {
+                if (postData.length() != 0) {
+                    postData.append('&');
+                }
+                postData.append(URLEncoder.encode(param.getKey(), StandardCharsets.UTF_8));
+                postData.append('=');
+                postData.append(URLEncoder.encode(String.valueOf(param.getValue()), StandardCharsets.UTF_8));
+            }
+
+            byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
+            connection.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+
+            try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
+                wr.write(postDataBytes);
+            }
+
+            int responseCode = connection.getResponseCode();
+            System.out.println("Status Code: " + responseCode);
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                responseCode >= 200 && responseCode < 300 ? 
+                connection.getInputStream() : connection.getErrorStream()
+            ));
+            
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            System.out.println("Response: " + response.toString());
+
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```php
+<?php
+function processPayment() {
+    $url = "https://test.payu.in/_payment";
+    
+    $postData = array(
+        'key' => 'JP***g',
+        'txnid' => 'fM3O2HnkpJ8XEC',
+        'amount' => '100.00',
+        'firstname' => 'PayU User',
+        'email' => 'test@gmail.com',
+        'phone' => '9876543210',
+        'productinfo' => 'iPhone Subscription',
+        'address1' => '123 Main Street',
+        'city' => 'New Delhi',
+        'state' => 'Delhi',
+        'country' => 'India',
+        'si' => '1',
+        'surl' => 'https://apiplayground-response.herokuapp.com/',
+        'furl' => 'https://apiplayground-response.herokuapp.com/',
+        'udf1' => 'AELPR1234E',
+        'udf3' => '02-02-1980',
+        'udf4' => 'XYZ Pvt. Ltd.',
+        'udf5' => 'INV123456',
+        'si_details' => '{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}',
+        'hash' => '2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5'
+    );
+
+    $options = array(
+        CURLOPT_URL => $url,
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => http_build_query($postData),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/x-www-form-urlencoded'
+        ),
+        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYHOST => false
+    );
+
+    $ch = curl_init();
+    curl_setopt_array($ch, $options);
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    
+    if ($response === false) {
+        echo "Error: " . curl_error($ch) . "\n";
+    } else {
+        echo "Status Code: " . $httpCode . "\n";
+        echo "Response: " . $response . "\n";
+    }
+    
+    curl_close($ch);
+}
+
+processPayment();
+?>
 ```
 
 ### Sample Response
