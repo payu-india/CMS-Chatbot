@@ -8,34 +8,6 @@ metadata:
     Payments
   robots: index
 ---
----
-title: PayU Hosted Integration -Cross-Border Payments
-deprecated: false
-hidden: true
-metadata:
-  robots: index
----
----
-title: CB Subscriptions Integration
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: CB Subscriptions Integration
-  description: >-
-    Learn how to integrate Cross-Border Subscriptions using PayU Hosted Checkout.
-    This guide covers Payment Consent Transaction with Cross-Border specific UDF
-    parameters and payment verification.
-  keywords:
-    - CB Subscriptions Integration
-    - Cross-Border Subscriptions
-    - Payment Consent Transaction CB
-    - Verify Payment CB
-  robots: index
-next:
-  description: ''
----
-
 This section describes how to set up a Payment Consent or Registration transaction for Cross-Border Subscriptions using PayU Hosted Checkout integration with **_payment** API.
 
 ## Step 1: Payment Consent Transaction using PayU Hosted Checkout
