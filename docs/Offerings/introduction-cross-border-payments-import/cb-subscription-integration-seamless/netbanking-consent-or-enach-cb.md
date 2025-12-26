@@ -29,10 +29,6 @@ Before starting the integration, ensure you have:
   <Card title="3. Configure Webhooks" href="#step-3-configure-webhooks">
     Set up webhooks to receive transaction status updates.
   </Card>
-
-  <Card title="4. Verify Mandate Registration" href="#step-4-verify-mandate-registration">
-    Confirm the mandate registration was successful.
-  </Card>
 </Cards>
 
 #### Recurring Payments Flow
@@ -119,50 +115,50 @@ Before implementing, familiarize yourself with the required parameters.
   #### description
 
   <HTMLBlock>{`
-    <table style="width: 100%; border-collapse: collapse;">
-    <thead>
-    <tr>
-      <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryName</p>
-    </td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>Registered name against customer’s account</p>
-    </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryAccountNumber</p>
-    </td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>Account number against which recurring transactions need to be executed.</p>
-    </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryAccountType</p>
-    </td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>SAVINGS or CURRENT</p>
-    </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryIfscCode</p>
-    </td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>11-digit IFSC code of the customer bank</p>
-    </td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>verificationMode</p>
-    </td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>The verification mode can be any of the following:  </p>
-    <ul>
-    <li><strong>DEBIT_CARD</strong> – authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow.</li>
-    <li><strong>AADHAAR</strong> – authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow.  If no value is provided, then it will trigger Net Banking login password flow.</li>
-    </ul>
-    </td>
-    </tr>
-    </tbody>
-    </table>
+      <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+      <tr>
+        <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryName</p>
+      </td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>Registered name against customer’s account</p>
+      </td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryAccountNumber</p>
+      </td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>Account number against which recurring transactions need to be executed.</p>
+      </td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryAccountType</p>
+      </td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>SAVINGS or CURRENT</p>
+      </td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryIfscCode</p>
+      </td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>11-digit IFSC code of the customer bank</p>
+      </td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>verificationMode</p>
+      </td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>The verification mode can be any of the following:  </p>
+      <ul>
+      <li><strong>DEBIT_CARD</strong> – authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow.</li>
+      <li><strong>AADHAAR</strong> – authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow.  If no value is provided, then it will trigger Net Banking login password flow.</li>
+      </ul>
+      </td>
+      </tr>
+      </tbody>
+      </table>
   `}</HTMLBlock>
 
   ##
@@ -466,24 +462,26 @@ Before implementing, familiarize yourself with the required parameters.
 ### Step 2: Check the Response from PayU
 
 The API returns response structure for Net Banking flow.
+
 <Accordion title="Net Banking Response" icon="fa-check">
   For Net Banking, the response is returned in URL-encoded format (application/x-www-form-urlencoded):
-```json
-{
-    "metaData": {
-        "message": null,
-        "referenceId": "cf0f49bb21893055c5ad7182642fc4cf3e1135385b9e55d0b6b0f5e45a19ee74",
-        "statusCode": null,
-        "txnId": "my_order_2542",
-        "txnStatus": "pending",
-        "unmappedStatus": "pending"
-    },
-    "result": {
-        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vcGdzaW0wMS5wYXl1LmluL2luaXRpYXRlIiBtZXRob2Q9InBvc3QiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lcmNoYW50TmFtZSIgdmFsdWU9IlBBWVUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lcmNoYW50Q29kZSIgdmFsdWU9IlNsRXNjdUpBOTgiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lck5hbWUiIHZhbHVlPSJTdWRoYW5zaHUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InR4bkFtb3VudCIgdmFsdWU9IjIuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InR4bkRhdGUiIHZhbHVlPSIyMDI1LTEyLTI2Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5DdXJyZW5jeSIgdmFsdWU9IklOUiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iY3VzdE5hbWUiIHZhbHVlPSJzdWRoYW5zaHUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImN1c3RFbWFpbCIgdmFsdWU9InRlc3RAdGVzdC5jb20iPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImN1c3RNb2JpbGUiIHZhbHVlPSI5OTk5OTk5OTk5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5SZWZJZCIgdmFsdWU9Im15X29yZGVyXzI1NDIiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImxpdmVtb2RlIiB2YWx1ZT0iZmFsc2UiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InNvdXJjZSIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iUlUiIHZhbHVlPSJodHRwczovL3Rlc3QucGF5dS5pbi9jZjBmNDliYjIxODkzMDU1YzVhZDcxODI2NDJmYzRjZjMyYTNkNjQ3YWUwODA5ZDJhMDM0MzJmOTIxOTg4NzIxL1Rlc3RQZ19yZXNwb25zZS5waHAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1vZGUiIHZhbHVlPSJUa0k9Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5EZXNjcmlwdGlvbiIgdmFsdWU9IlRlc3QgTmV0IEJhbmtpbmcgUGF5bWVudCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iaWJpYm9fY29kZSIgdmFsdWU9IkFYSUIiPjwvZm9ybT48c2NyaXB0IHR5cGU9J3RleHQvamF2YXNjcmlwdCc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB3aW5kb3cub25sb2FkPWZ1bmN0aW9uKCl7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZm9ybXNbJ3BheW1lbnRfcG9zdCddLnN1Ym1pdCgpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA8L3NjcmlwdD48L2JvZHk+PC9odG1sPg==",
-        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
-    }
-}
-```
+
+  ```json
+  {
+      "metaData": {
+          "message": null,
+          "referenceId": "cf0f49bb21893055c5ad7182642fc4cf3e1135385b9e55d0b6b0f5e45a19ee74",
+          "statusCode": null,
+          "txnId": "my_order_2542",
+          "txnStatus": "pending",
+          "unmappedStatus": "pending"
+      },
+      "result": {
+          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vcGdzaW0wMS5wYXl1LmluL2luaXRpYXRlIiBtZXRob2Q9InBvc3QiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lcmNoYW50TmFtZSIgdmFsdWU9IlBBWVUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lcmNoYW50Q29kZSIgdmFsdWU9IlNsRXNjdUpBOTgiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lck5hbWUiIHZhbHVlPSJTdWRoYW5zaHUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InR4bkFtb3VudCIgdmFsdWU9IjIuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InR4bkRhdGUiIHZhbHVlPSIyMDI1LTEyLTI2Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5DdXJyZW5jeSIgdmFsdWU9IklOUiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iY3VzdE5hbWUiIHZhbHVlPSJzdWRoYW5zaHUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImN1c3RFbWFpbCIgdmFsdWU9InRlc3RAdGVzdC5jb20iPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImN1c3RNb2JpbGUiIHZhbHVlPSI5OTk5OTk5OTk5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5SZWZJZCIgdmFsdWU9Im15X29yZGVyXzI1NDIiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImxpdmVtb2RlIiB2YWx1ZT0iZmFsc2UiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InNvdXJjZSIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iUlUiIHZhbHVlPSJodHRwczovL3Rlc3QucGF5dS5pbi9jZjBmNDliYjIxODkzMDU1YzVhZDcxODI2NDJmYzRjZjMyYTNkNjQ3YWUwODA5ZDJhMDM0MzJmOTIxOTg4NzIxL1Rlc3RQZ19yZXNwb25zZS5waHAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1vZGUiIHZhbHVlPSJUa0k9Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5EZXNjcmlwdGlvbiIgdmFsdWU9IlRlc3QgTmV0IEJhbmtpbmcgUGF5bWVudCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iaWJpYm9fY29kZSIgdmFsdWU9IkFYSUIiPjwvZm9ybT48c2NyaXB0IHR5cGU9J3RleHQvamF2YXNjcmlwdCc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB3aW5kb3cub25sb2FkPWZ1bmN0aW9uKCl7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZm9ybXNbJ3BheW1lbnRfcG9zdCddLnN1Ym1pdCgpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA8L3NjcmlwdD48L2JvZHk+PC9odG1sPg==",
+          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+      }
+  }
+  ```
 </Accordion>
 
 <Accordion title="Response Handling Logic" icon="fa-info-circle">
@@ -536,7 +534,7 @@ Configure webhooks to receive real-time transaction status updates. PayU will se
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-circl">
-The final response is similar to the following:
+  The final response is similar to the following:
 
   ```json
   {
@@ -582,29 +580,7 @@ The final response is similar to the following:
 
 ***
 
-### Step 4: Verify Mandate Registration
-
-After successful registration, verify the mandate status:
-
-<Accordion title="Verification Checklist" icon="fa-check-circle">
-  1. **Check Response Parameters**:
-     \| **Response Parameter** | **Expected Value**               | **Description**                                                                         |
-     \| ---------------------- | -------------------------------- | --------------------------------------------------------------------------------------- |
-     \| status                 | success                          | Indicates that the transaction is successful with the UPI provider                      |
-     \| payment\_source         | SIST                             | Indicates that UPI details have been marked correctly for Standing Instruction          |
-     \| mihpayid               | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction                   |
-
-  2. **Store Mandate Details**:
-     * Save `mihpayid` for future recurring payments
-     * Save mandate expiry dates from `si_details`
-     * Store customer's bank details for reference
-
-  3. **Test Subsequent Payment**:
-     * Use the stored mandate details to initiate a subsequent recurring payment
-     * Verify the payment processes successfully
-</Accordion>
-
-### Step 5: Update Invoice ID [Conditional]
+### Step 4: Update Invoice ID [Conditional]
 
 If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter.
 
