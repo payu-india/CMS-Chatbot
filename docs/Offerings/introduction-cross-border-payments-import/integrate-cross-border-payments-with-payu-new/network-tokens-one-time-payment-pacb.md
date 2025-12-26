@@ -1,5 +1,5 @@
 ---
-title: Network Tokens - One-Time Payment PACB
+title: Network Tokens - Merchant Hosted
 deprecated: false
 hidden: true
 metadata:
