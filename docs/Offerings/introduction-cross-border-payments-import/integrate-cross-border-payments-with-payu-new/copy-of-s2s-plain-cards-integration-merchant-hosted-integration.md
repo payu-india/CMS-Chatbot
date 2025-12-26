@@ -1,12 +1,12 @@
 ---
-title: Copy of [S2S] Plain Cards Integration - Merchant Hosted Integration
+title: '[S2S] NetBanking Integration'
 excerpt: Process a one-time card transactions via PayU (without tokenization)
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-This section explains how to integrate plain card payments for cross-border transactions using the Server-to-Server (S2S) flow. This is the standard card transaction flow without tokenization.
+This section explains how to integrate NetBanking payments for cross-border transactions using the Server-to-Server (S2S) flow. 
 
 <Cards columns={3}>
   <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
@@ -60,13 +60,8 @@ Post the payment parameters to PayU's `_payment` API endpoint to initiate a plai
   | surl<br />`mandatory`              | `String`<br />The Success URL - page PayU will redirect to if the transaction is successful.                           | `https://example.com/success`                                 |
   | furl<br />`mandatory`              | `String`<br />The Failure URL - page PayU will redirect to if the transaction fails.                                   | `https://example.com/failure`                                 |
   | hash<br />`mandatory`              | `String`<br />Hash calculated for transaction security.                                                                | `<generated_hash>`                                            |
-  | pg<br />`mandatory`                | `String`<br />Payment gateway type. For cards, use `CC`.                                                               | `CC`                                                          |
-  | bankcode<br />`mandatory`          | `String`<br />Bank code for the payment option. Use `CC` for credit cards, `DC` for debit cards.                       | `CC`                                                          |
-  | ccnum<br />`mandatory`             | `String`<br />13-19 digit card number (15 for AMEX, 13-19 for Maestro). Validate with LUHN algorithm.                  | `5506900480000008`                                            |
-  | ccvv<br />`mandatory`              | `String`<br />3-digit CVV (4 digits for AMEX).                                                                         | `123`                                                         |
-  | ccname<br />`mandatory`            | `String`<br />Cardholder name as entered by the customer.                                                              | `Test User`                                                   |
-  | ccexpmon<br />`mandatory`          | `String`<br />Card expiry month in MM format (01-12).                                                                  | `09`                                                          |
-  | ccexpyr<br />`mandatory`           | `String`<br />Card expiry year in YYYY format.                                                                         | `2026`                                                        |
+  | pg<br />`mandatory`                | `String`<br /> This parameter defined the payment gateway. For NetBanking, pg=NB.                                                       | `NB`                                                          |
+  | bankcode<br />`mandatory`          | `String`<br />. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bank codes that can be used with the **bankcode** parameter, refer to [Net Banking Codes](https://docs.payu.in/docs/net-banking-codes).<br/> _Reference_: For the test Net Banking credentials, refer to [Test Cards, UPI ID and Wallets](https://docs.payu.in/docs/net-banking-codes).                       | `TESTPGNB`                                                          |
   | txn\_s2s\_flow<br />`mandatory`    | `Integer`<br />Parameter to enable S2S flow. Set to `4` for S2S4 flow.                                                 | `4`                                                           |
   | s2s\_client\_ip<br />`mandatory`   | `String`<br />Client IP captured by merchant in S2S flow. Required for fraud detection.                                | `10.200.12.12`                                                |
   | s2s\_device\_info<br />`mandatory` | `String`<br />User Agent captured by merchant in S2S flow.                                                             | `Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0` |
