@@ -18,40 +18,27 @@ Before starting the integration, ensure you have:
 <Cards columns={2}>
   <Card title="1. Post the Request" href="#step-1-post-the-request">
     Send the ENACH consent transaction request with S2S parameters.
-
-    <br />
   </Card>
 
   <Card title="2. Check Response from PayU" href="#step-2-check-the-response-from-payu">
     Handle the response for Net Banking flow.
-
-    <br />
   </Card>
 
   <Card title="3. Configure Webhooks" href="#step-3-configure-webhooks">
     Set up webhooks to receive transaction status updates.
-
-    <br />
   </Card>
 
   <Card title="4. Verify Mandate Registration" href="#step-4-verify-mandate-registration">
     Confirm the mandate registration was successful.
-
-    <br />
   </Card>
 
   <Card title="5. Recurring Payment Transaction" href="#step-5-recurring-payment-transaction">
     Execute recurring payment transactions using the registered mandate.
-
-    <br />
   </Card>
 
   <Card title="6. Pre-Debit SI Notification" href="#step-6-pre-debit-si-notification">
     Send pre-debit notifications for upcoming recurring debits.
-
-    <br />
   </Card>
-
 </Cards>
 
 ## Step 1: Post the Request
@@ -92,15 +79,15 @@ Before implementing, familiarize yourself with the required parameters.
   | si<br />`mandatory`                                                                        | `String`<br />Signifies successful consent taken from the user. Must be `1` for subscription setup.                                                                                                            | 1                                                                      |
   | si\_details<br />`mandatory`                                                               | `JSON String`<br />JSON object containing mandate details (billingAmount, billingCurrency, billingCycle, etc.). Refer to si\_details JSON Object below.                                                        | See si\_details accordion                                              |
   | api\_version<br />`mandatory`                                                              | `String`<br />The API version. Must be `7` for SI transactions.                                                                                                                                                | 7                                                                      |
-  | udf1<br />`mandatory for CB`                                                               | `String`<br />The Permanent Account Number (PAN) of the buyer must be collected in this field.                                                                                                                 | AELPR\*\*\*\*E                                                         |
+  | udf1<br />`optional but recommended for higher approval rate`                                                               | `String`<br />The Permanent Account Number (PAN) of the buyer must be collected in this field.                                                                                                                 | AELPR\*\*\*\*E                                                         |
   | udf3<br />`optional but recommended for higher approval rate`                              | `String` Date of Birth (DOB) of buyer in DD-MM-YYYY                                                                                                                                                            | 02-02-1980                                                             |
   | udf4<br />`mandatory for payment aggregators`                                              | `String` End merchant legal entity name. For UPI, this field should not be passed. Character limit: 255.                                                                                                       | XYZ Pvt. Ltd.                                                          |
   | udf5<br />`mandatory for cross-border payments`                                            | `String` Contains invoice ID for the merchant. Character limit: 255.                                                                                                                                           | INV123456                                                              |
-  | address1<br />`optional`                                                                   | `String`<br />First line of billing address. Character Limit: 100                                                                                                                                              | H.No-17, Block C                                                       |
+  | address1<br />`optional but recommended for higher approval rate`                                                                   | `String`<br />First line of billing address. Character Limit: 100                                                                                                                                              | H.No-17, Block C                                                       |
   | address2<br />`optional`                                                                   | `String`<br />Second line of billing address. Character Limit: 100                                                                                                                                             | Tilak Nagar                                                            |
-  | city<br />`optional`                                                                       | `String`<br />Customer's city.                                                                                                                                                                                 | Mumbai                                                                 |
-  | state<br />`optional`                                                                      | `String`<br />Customer's state.                                                                                                                                                                                | Maharashtra                                                            |
-  | country<br />`optional`                                                                    | `String`<br />Customer's country. Character Limit: 50                                                                                                                                                          | India                                                                  |
+  | city<br />`optional but recommended for higher approval rate`                                                                       | `String`<br />Customer's city.                                                                                                                                                                                 | Mumbai                                                                 |
+  | state<br />`optional but recommended for higher approval rate`                                                                      | `String`<br />Customer's state.                                                                                                                                                                                | Maharashtra                                                            |
+  | country<br />`optional but recommended for higher approval rate`                                                                    | `String`<br />Customer's country. Character Limit: 50                                                                                                                                                          | India                                                                  |
   | zipcode<br />`optional`                                                                    | `String`<br />Billing address zip code. Character Limit: 20                                                                                                                                                    | 400004                                                                 |
   | free\_trial<br />`optional`                                                                | `String`<br />Set to `1` for free trial use cases. PayU adjusts the transaction amount as INR 2.00 for Net Banking.                                                                                            | 1                                                                      |
   | buyer\_type\_business<br />`optional in case of B2B transaction for cross-border payments` | `Binary` To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0".<br />**Note**: This will be included in hash if posted (covered in next section). | 1                                                                      |
