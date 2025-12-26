@@ -325,9 +325,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
       </td>
 
       <td>
-        <code>Binary</code> To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0".
-
-        _Note: This will be included in hash if posted (covered in next section)_
+        <code>Binary</code> To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0".<br />**Note**: This will be included in hash if posted (covered in next section).
       </td>
 
       <td>
@@ -343,7 +341,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
       <td>
         <code>String JSON</code>
 
-        UDF7 value to capture "Import /Export Code" of the buyer
+        UDF7 value to capture "Import or Export Code" of the buyer
 
         UDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports)
       </td>
@@ -388,7 +386,7 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt|additional_charges
 ```
 
-**Case3 example**: If the merchant wants to pass additional_charges, buyer_type_business in the payment request, then hash formula for payment request will be:
+* **Case3 example**: If the merchant wants to pass additional_charges, buyer_type_business in the payment request, then hash formula for payment request will be:
 
 ```
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt|additional_charges|buyer_type_business
@@ -397,7 +395,7 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|
 * **Case4 example**: if the merchant wants to pass the api_version = 7 and buyer_type_business, udf_params in the payment request.
 
 ```
-* key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|si_details|salt|udf_params|buyer_type_business
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|si_details|salt|udf_params|buyer_type_business
 ```
 
 For more information, refer to  <a href="generate-hash-merchant-hosted" target="_blank"> Generate Hash</a>.
@@ -682,7 +680,6 @@ if (curl_errno($curl)) {
 curl_close($curl);
 ?>
 ```
-
 
 ## Step 2: Check Response from PayU
 
