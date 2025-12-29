@@ -12,8 +12,7 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
 | Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
 | Production  | `https://info.payu.in/merchant/postservice.php?form=2` |
 
-### Request Parameters
-
+<Accordion title="Request Parameters" icon="fa-info-circle">
 | Parameter                             | Description                                                                                                                                                   | Example               |
 | :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------- |
 | key <br /> <code>mandatory</code>     | <code>String</code> Your merchant key provided by PayU.                                                                                                       | JP***g                |
@@ -135,6 +134,8 @@ hash = sha512(key|command|var1|salt)
     </tr>
   </tbody>
 </Table>
+</Accordion>
+
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
@@ -592,8 +593,6 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
   | failed      | Transaction failed                                                           |
   | in-progress | Transaction is being processed                                               |
 </Callout>
-
-
 
 ### Step 3: Update Invoice ID [Optional]
 
