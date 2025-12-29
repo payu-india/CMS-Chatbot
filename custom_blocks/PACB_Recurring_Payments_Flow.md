@@ -13,129 +13,128 @@ Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurr
 | Production  | `https://info.payu.in/merchant/postservice.php?form=2` |
 
 <Accordion title="Request Parameters" icon="fa-info-circle">
-| Parameter                             | Description                                                                                                                                                   | Example               |
-| :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------- |
-| key <br /> <code>mandatory</code>     | <code>String</code> Your merchant key provided by PayU.                                                                                                       | JP***g                |
-| command <br /> <code>mandatory</code> | <code>String</code> The API command name.                                                                                                                     | pre_debit_SI          |
-| hash <br /> <code>mandatory</code>    | <code>String</code> The hash value generated using the hash logic.                                                                                            | abc0ada2e12           |
-| var1 <br /> <code>mandatory</code>    | <code>JSON String</code> JSON object containing the pre-debit details. For more information refer to [var1 Object Parameters](#var1-object-parameters) table. | See var1 Object below |
+  | Parameter                             | Description                                                                                                                                                   | Example               |
+  | :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------- |
+  | key <br /> <code>mandatory</code>     | <code>String</code> Your merchant key provided by PayU.                                                                                                       | JP\*\*\*g             |
+  | command <br /> <code>mandatory</code> | <code>String</code> The API command name.                                                                                                                     | pre\_debit\_SI        |
+  | hash <br /> <code>mandatory</code>    | <code>String</code> The hash value generated using the hash logic.                                                                                            | abc0ada2e12           |
+  | var1 <br /> <code>mandatory</code>    | <code>JSON String</code> JSON object containing the pre-debit details. For more information refer to [var1 Object Parameters](#var1-object-parameters) table. | See var1 Object below |
 
-##### Hash logic
+  ##### Hash logic
 
-The hash is generated using the following formula:
+  The hash is generated using the following formula:
 
-```
-hash = sha512(key|command|var1|salt)
-```
+  ```
+  hash = sha512(key|command|var1|salt)
+  ```
 
-### var1 Object Parameters
+  ### var1 Object Parameters
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+  <Table align={["left","left","left"]}>
+    <thead>
+      <tr>
+        <th>
+          Parameter
+        </th>
 
-      <th>
-        Description
-      </th>
+        <th>
+          Description
+        </th>
 
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
+        <th>
+          Example
+        </th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr>
-      <td>
-        authpayuid <br /> <code>mandatory</code>
-      </td>
+    <tbody>
+      <tr>
+        <td>
+          authpayuid <br /> <code>mandatory</code>
+        </td>
 
-      <td>
-        <code>String</code> The mihpayid received during the successful consent transaction.
-      </td>
+        <td>
+          <code>String</code> The mihpayid received during the successful consent transaction.
+        </td>
 
-      <td>
-        999000000000826
-      </td>
-    </tr>
+        <td>
+          999000000000826
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        requestid <br /> <code>mandatory</code>
-      </td>
+      <tr>
+        <td>
+          requestid <br /> <code>mandatory</code>
+        </td>
 
-      <td>
-        <code>String</code> Unique request ID for tracking the pre-debit request.
-      </td>
+        <td>
+          <code>String</code> Unique request ID for tracking the pre-debit request.
+        </td>
 
-      <td>
-        RCS0123459PD
-      </td>
-    </tr>
+        <td>
+          RCS0123459PD
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        debitdate <br /> <code>mandatory</code>
-      </td>
+      <tr>
+        <td>
+          debitdate <br /> <code>mandatory</code>
+        </td>
 
-      <td>
-        <code>String</code> The date when the debit will occur in YYYY-MM-DD format.
-      </td>
+        <td>
+          <code>String</code> The date when the debit will occur in YYYY-MM-DD format.
+        </td>
 
-      <td>
-        2024-11-22
-      </td>
-    </tr>
+        <td>
+          2024-11-22
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        amount <br /> <code>mandatory</code>
-      </td>
+      <tr>
+        <td>
+          amount <br /> <code>mandatory</code>
+        </td>
 
-      <td>
-        <code>String</code> The amount to be debited.
-      </td>
+        <td>
+          <code>String</code> The amount to be debited.
+        </td>
 
-      <td>
-        125
-      </td>
-    </tr>
+        <td>
+          125
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        invoiceDisplayNumber <br /> <code>mandatory for cards</code>
-      </td>
+      <tr>
+        <td>
+          invoiceDisplayNumber <br /> <code>mandatory for cards</code>
+        </td>
 
-      <td>
-        <code>String</code> Invoice number to display to the customer.
-      </td>
+        <td>
+          <code>String</code> Invoice number to display to the customer.
+        </td>
 
-      <td>
-        12345678910
-      </td>
-    </tr>
+        <td>
+          12345678910
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        action  
-        <code>optional</code>
-      </td>
+      <tr>
+        <td>
+          action
+          <code>optional</code>
+        </td>
 
-      <td>
-        Pass "Retrieve" or "Delete" according to the action need to be performed. For more information, refer to Additional Information table..
-      </td>
+        <td>
+          Pass "Retrieve" or "Delete" according to the action need to be performed. For more information, refer to Additional Information table..
+        </td>
 
-      <td>
-        Retrieve
-      </td>
-    </tr>
-  </tbody>
-</Table>
+        <td>
+          Retrieve
+        </td>
+      </tr>
+    </tbody>
+  </Table>
 </Accordion>
-
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
@@ -323,7 +322,7 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
 | Production  | `https://info.payu.in/merchant/postservice?form=2` |
 | Test        | `https://test.payu.in/merchant/postservice?form=2` |
 
-### Request Parameters
+<Accordion title="Request Parameters" icon="fa-info-circle">
 
 | Parameter                             | Description                                                                                  | Example                           |
 | :------------------------------------ | :------------------------------------------------------------------------------------------- | :-------------------------------- |
@@ -350,7 +349,7 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
 | email <br /> <code>optional</code>                              | <code>String</code> The email address of the customer.                                                                                                                    | [customer@example.com](mailto:customer@example.com) |
 | invoiceDisplayNumber <br /> <code>mandatory for Cards SI</code> | <code>String</code> A unique display number by merchant for every subsequent invoice/recurring charge. This must be the same value passed during `pre_debit_si` API call. | 12345678910                                         |
 | udf5 <br /> <code>mandatory</code>                              | <code>String</code> Invoice ID for every merchant. This field is mandatory during or after the transaction.                                                               | INV789012                                           |
-
+</Accordion>
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
   curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
