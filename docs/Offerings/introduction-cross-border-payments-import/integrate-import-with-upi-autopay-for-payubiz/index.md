@@ -2,7 +2,7 @@
 title: Integrate Import with UPI Autopay
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Integrate Import with UPI Autopay for Cross Border Import
   description: >-
