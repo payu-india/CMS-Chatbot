@@ -216,12 +216,13 @@ curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
 --form 'key="smsplus"' \
 --form 'hash="17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b"' \
 --form 'command="udf_update"' \
---form 'var1="c82847d52a146dca3830"' \
---form 'var2="updatedudf2_again"' \
---form 'var3="fsdfdsfd"' \
---form 'var4="fdsfdsfdsfds"' \
---form 'var5="fdsfsdf"' \
---form 'var7="fweew"'
+--form 'var1="my_order_642"' \
+--form 'var2="AAAPZ1234C"' \
+--form 'var4="22-08-1972"' \
+--form 'var5=""' \
+--form 'var6="udf5value"' \
+--form 'var7="fweew"' \
+--form 'var8="0100000029"'
 ```
 ```python
 import requests
@@ -229,186 +230,223 @@ import requests
 url = "https://info.payu.in/merchant/postservice.php?form=2"
 
 headers = {
-    "date": "Sat, 13 Sep 2025 12:04:53 GMT",
-    "digest": "TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=",
-    "authorization": 'hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="65178bc488a7cd9cc631b722c6f37f439cd3ac9f2c9c018b30d9338d7a3d1fc6c518a316ad7d67becc2834473ecf125c730522ad04e62618b04a22e16acee33a"',
-    "Content-Type": "application/json"
+    'date': 'Sat, 13 Sep 2025 12:04:53 GMT',
+    'digest': 'TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=',
+    'authorization': 'hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="65178bc488a7cd9cc631b722c6f37f439cd3ac9f2c9c018b30d9338d7a3d1fc6c518a316ad7d67becc2834473ecf125c730522ad04e62618b04a22e16acee33a"',
+    'Content-Type': 'application/json'
 }
 
 data = {
-    "key": "smsplus",
-    "hash": "17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b",
-    "command": "udf_update",
-    "var1": "c82847d52a146dca3830",
-    "var2": "updatedudf2_again",
-    "var3": "fsdfdsfd",
-    "var4": "fdsfdsfdsfds",
-    "var5": "fdsfsdf",
-    "var7": "fweew"
+    'key': 'smsplus',
+    'hash': '17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b',
+    'command': 'udf_update',
+    'var1': 'my_order_642',
+    'var2': 'AAAPZ1234C',
+    'var4': '22-08-1972',
+    'var5': '',
+    'var6': 'udf5value',
+    'var7': 'fweew',
+    'var8': '0100000029'
 }
 
-response = requests.post(url, headers=headers, data=data)
-print(response.json())
+try:
+    response = requests.post(url, headers=headers, data=data)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Request failed: {e}")
 ```
+
 ```csharp
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 class Program
 {
-    static async Task Main()
+    static async Task Main(string[] args)
     {
-        using (HttpClient client = new HttpClient())
+        var client = new HttpClient();
+        var url = "https://info.payu.in/merchant/postservice.php?form=2";
+        
+        var formData = new List<KeyValuePair<string, string>>
         {
-            client.DefaultRequestHeaders.Add("date", "Sat, 13 Sep 2025 12:04:53 GMT");
-            client.DefaultRequestHeaders.Add("digest", "TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=");
-            client.DefaultRequestHeaders.Add("authorization", "hmac username=\"PRiQvJ\", algorithm=\"sha512\", headers=\"date\", signature=\"65178bc488a7cd9cc631b722c6f37f439cd3ac9f2c9c018b30d9338d7a3d1fc6c518a316ad7d67becc2834473ecf125c730522ad04e62618b04a22e16acee33a\"");
+            new KeyValuePair<string, string>("key", "smsplus"),
+            new KeyValuePair<string, string>("hash", "17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b"),
+            new KeyValuePair<string, string>("command", "udf_update"),
+            new KeyValuePair<string, string>("var1", "my_order_642"),
+            new KeyValuePair<string, string>("var2", "AAAPZ1234C"),
+            new KeyValuePair<string, string>("var4", "22-08-1972"),
+            new KeyValuePair<string, string>("var5", ""),
+            new KeyValuePair<string, string>("var6", "udf5value"),
+            new KeyValuePair<string, string>("var7", "fweew"),
+            new KeyValuePair<string, string>("var8", "0100000029")
+        };
 
-            var formData = new FormUrlEncodedContent(new[]
-            {
-                new KeyValuePair<string, string>("key", "smsplus"),
-                new KeyValuePair<string, string>("hash", "17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b"),
-                new KeyValuePair<string, string>("command", "udf_update"),
-                new KeyValuePair<string, string>("var1", "c82847d52a146dca3830"),
-                new KeyValuePair<string, string>("var2", "updatedudf2_again"),
-                new KeyValuePair<string, string>("var3", "fsdfdsfd"),
-                new KeyValuePair<string, string>("var4", "fdsfdsfdsfds"),
-                new KeyValuePair<string, string>("var5", "fdsfsdf"),
-                new KeyValuePair<string, string>("var7", "fweew")
-            });
+        var formContent = new FormUrlEncodedContent(formData);
+        
+        client.DefaultRequestHeaders.Add("date", "Sat, 13 Sep 2025 12:04:53 GMT");
+        client.DefaultRequestHeaders.Add("digest", "TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=");
+        client.DefaultRequestHeaders.Add("authorization", "hmac username=\"PRiQvJ\", algorithm=\"sha512\", headers=\"date\", signature=\"65178bc488a7cd9cc631b722c6f37f439cd3ac9f2c9c018b30d9338d7a3d1fc6c518a316ad7d67becc2834473ecf125c730522ad04e62618b04a22e16acee33a\"");
 
-            string url = "https://info.payu.in/merchant/postservice.php?form=2";
-            HttpResponseMessage response = await client.PostAsync(url, formData);
-            string responseBody = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(responseBody);
+        try
+        {
+            var response = await client.PostAsync(url, formContent);
+            var responseContent = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseContent}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine($"Request failed: {e.Message}");
+        }
+        finally
+        {
+            client.Dispose();
         }
     }
 }
 ```
 ```javascript
-const updateUdf = async () => {
-    const url = 'https://info.payu.in/merchant/postservice.php?form=2';
-
+async function updateUdf() {
+    const url = "https://info.payu.in/merchant/postservice.php?form=2";
+    
     const formData = new FormData();
     formData.append('key', 'smsplus');
     formData.append('hash', '17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b');
     formData.append('command', 'udf_update');
-    formData.append('var1', 'c82847d52a146dca3830');
-    formData.append('var2', 'updatedudf2_again');
-    formData.append('var3', 'fsdfdsfd');
-    formData.append('var4', 'fdsfdsfdsfds');
-    formData.append('var5', 'fdsfsdf');
+    formData.append('var1', 'my_order_642');
+    formData.append('var2', 'AAAPZ1234C');
+    formData.append('var4', '22-08-1972');
+    formData.append('var5', '');
+    formData.append('var6', 'udf5value');
     formData.append('var7', 'fweew');
+    formData.append('var8', '0100000029');
 
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'date': 'Sat, 13 Sep 2025 12:04:53 GMT',
-            'digest': 'TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=',
-            'authorization': 'hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="65178bc488a7cd9cc631b722c6f37f439cd3ac9f2c9c018b30d9338d7a3d1fc6c518a316ad7d67becc2834473ecf125c730522ad04e62618b04a22e16acee33a"'
-        },
-        body: formData
-    });
+    const headers = {
+        'date': 'Sat, 13 Sep 2025 12:04:53 GMT',
+        'digest': 'TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=',
+        'authorization': 'hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="65178bc488a7cd9cc631b722c6f37f439cd3ac9f2c9c018b30d9338d7a3d1fc6c518a316ad7d67becc2834473ecf125c730522ad04e62618b04a22e16acee33a"'
+    };
 
-    const data = await response.json();
-    console.log(data);
-};
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: headers,
+            body: formData
+        });
+        
+        const responseText = await response.text();
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+    } catch (error) {
+        console.error(`Request failed: ${error.message}`);
+    }
+}
 
 updateUdf();
 ```
+
 ```java
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringJoiner;
 
-public class UdfUpdate {
-    public static void main(String[] args) throws Exception {
-        String url = "https://info.payu.in/merchant/postservice.php?form=2";
-
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("POST");
-        con.setRequestProperty("date", "Sat, 13 Sep 2025 12:04:53 GMT");
-        con.setRequestProperty("digest", "TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=");
-        con.setRequestProperty("authorization", "hmac username=\"PRiQvJ\", algorithm=\"sha512\", headers=\"date\", signature=\"65178bc488a7cd9cc631b722c6f37f439cd3ac9f2c9c018b30d9338d7a3d1fc6c518a316ad7d67becc2834473ecf125c730522ad04e62618b04a22e16acee33a\"");
-        con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-
-        Map<String, String> params = new HashMap<>();
-        params.put("key", "smsplus");
-        params.put("hash", "17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b");
-        params.put("command", "udf_update");
-        params.put("var1", "c82847d52a146dca3830");
-        params.put("var2", "updatedudf2_again");
-        params.put("var3", "fsdfdsfd");
-        params.put("var4", "fdsfdsfdsfds");
-        params.put("var5", "fdsfsdf");
-        params.put("var7", "fweew");
-
-        StringJoiner sj = new StringJoiner("&");
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            sj.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue(), "UTF-8"));
+public class PayUUdfUpdate {
+    public static void main(String[] args) {
+        try {
+            URL url = new URL("https://info.payu.in/merchant/postservice.php?form=2");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("date", "Sat, 13 Sep 2025 12:04:53 GMT");
+            connection.setRequestProperty("digest", "TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=");
+            connection.setRequestProperty("authorization", "hmac username=\"PRiQvJ\", algorithm=\"sha512\", headers=\"date\", signature=\"65178bc488a7cd9cc631b722c6f37f439cd3ac9f2c9c018b30d9338d7a3d1fc6c518a316ad7d67becc2834473ecf125c730522ad04e62618b04a22e16acee33a\"");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setDoOutput(true);
+            
+            String formData = "key=smsplus" +
+                "&hash=17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b" +
+                "&command=udf_update" +
+                "&var1=my_order_642" +
+                "&var2=AAAPZ1234C" +
+                "&var4=22-08-1972" +
+                "&var5=" +
+                "&var6=udf5value" +
+                "&var7=fweew" +
+                "&var8=0100000029";
+            
+            try (DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream())) {
+                outputStream.write(formData.getBytes(StandardCharsets.UTF_8));
+            }
+            
+            int responseCode = connection.getResponseCode();
+            System.out.println("Status Code: " + responseCode);
+            
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    responseCode >= 200 && responseCode < 300 ? 
+                    connection.getInputStream() : connection.getErrorStream()))) {
+                
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line).append("\n");
+                }
+                System.out.println("Response: " + response.toString());
+            }
+            
+        } catch (Exception e) {
+            System.err.println("Request failed: " + e.getMessage());
         }
-
-        con.setDoOutput(true);
-        try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
-            wr.writeBytes(sj.toString());
-        }
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-
-        System.out.println(response.toString());
     }
 }
 ```
 ```php
 <?php
-$curl = curl_init();
+$url = "https://info.payu.in/merchant/postservice.php?form=2";
 
-$postFields = [
+$data = [
     'key' => 'smsplus',
     'hash' => '17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b',
     'command' => 'udf_update',
-    'var1' => 'c82847d52a146dca3830',
-    'var2' => 'updatedudf2_again',
-    'var3' => 'fsdfdsfd',
-    'var4' => 'fdsfdsfdsfds',
-    'var5' => 'fdsfsdf',
-    'var7' => 'fweew'
+    'var1' => 'my_order_642',
+    'var2' => 'AAAPZ1234C',
+    'var4' => '22-08-1972',
+    'var5' => '',
+    'var6' => 'udf5value',
+    'var7' => 'fweew',
+    'var8' => '0100000029'
 ];
 
-curl_setopt_array($curl, [
-    CURLOPT_URL => 'https://info.payu.in/merchant/postservice.php?form=2',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_POST => true,
-    CURLOPT_POSTFIELDS => $postFields,
-    CURLOPT_HTTPHEADER => [
-        'date: Sat, 13 Sep 2025 12:04:53 GMT',
-        'digest: TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=',
-        'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="65178bc488a7cd9cc631b722c6f37f439cd3ac9f2c9c018b30d9338d7a3d1fc6c518a316ad7d67becc2834473ecf125c730522ad04e62618b04a22e16acee33a"',
-        'Content-Type: application/json'
-    ],
-]);
+$headers = [
+    'date: Sat, 13 Sep 2025 12:04:53 GMT',
+    'digest: TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=',
+    'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="65178bc488a7cd9cc631b722c6f37f439cd3ac9f2c9c018b30d9338d7a3d1fc6c518a316ad7d67becc2834473ecf125c730522ad04e62618b04a22e16acee33a"',
+    'Content-Type: application/x-www-form-urlencoded'
+];
 
-$response = curl_exec($curl);
-curl_close($curl);
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-echo $response;
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Request failed: " . curl_error($ch);
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
 ?>
 ```
 
