@@ -1,5 +1,5 @@
 ---
-title: v2 Refunds Introduction
+title: Refunds Introduction
 deprecated: false
 hidden: false
 metadata:
