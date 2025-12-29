@@ -61,6 +61,8 @@ Before starting the integration, ensure you have:
 
 Before implementing, familiarize yourself with the required parameters.
 
+<Accordion title="Request Parameters" icon="fa-info-table">
+
 #### Key Parameters for Mandate Registration
 
 * **Mandatory Parameters**: key, txnid, amount, productinfo, firstname, email, phone, surl, furl, hash, pg, bankcode, card details (ccnum, ccvv, ccname, ccexpmon, ccexpyr), si, si_details, api_version, udf1-udf5
@@ -119,7 +121,9 @@ Construct the request payload with all required parameters. Ensure `si_details` 
 
 <PACB_Hashing />
 
-<br />
+</Accordion>
+
+<Accordion title="Sample Request" icon="fa-info-circle">
 
 #### Request Payload Structure
 
@@ -511,11 +515,14 @@ try {
 
 ***
 
+### 
+</Accordion>
+
 ### Step 2: Check the Response from PayU
 
 The API returns a JSON response. For S2S4 flow, you'll receive an OTP enrollment response if the card requires OTP authentication.
 
-#### Successful Response Structure
+<Accordion title="Success Response " icon="fa-info-circle">
 
 ```json
 {
@@ -548,6 +555,8 @@ The API returns a JSON response. For S2S4 flow, you'll receive an OTP enrollment
 }
 ```
 
+</Accordion>
+
 #### Response Handling Logic
 
 1. **Check Transaction Status**: Verify `metaData.txnStatus` and `metaData.unmappedStatus`
@@ -556,7 +565,8 @@ The API returns a JSON response. For S2S4 flow, you'll receive an OTP enrollment
 
 ### Step 3: Configure Webhooks
 
-Configure webhooks to receive real-time transaction status updates. PayU will send POST requests to your webhook URL.
+<Accordion title="Configure Webhooks" icon="fa-info-circle">
+  Configure webhooks to receive real-time transaction status updates. PayU will send POST requests to your webhook URL.
 
 #### Webhook Payload Example
 
@@ -589,28 +599,31 @@ function validateWebhookHash($response, $salt) {
 
 For detailed webhook handling, refer to [S2S Webhook Handling](doc:s2s-webhook-handling).
 
+</Accordion>
+
 ### Step 4: Verify Mandate Registration
 
+<Accordion title="Verify Mandate" icon="fa-info-circle">
 After successful registration, verify the mandate status:
 
 1. **Check Response Parameters**:
 
-| **Response Parameter** | **Expected Value**               | **Description**                                                                         |
-| ---------------------- | -------------------------------- | --------------------------------------------------------------------------------------- |
-| status                 | success                          | Indicates that the transaction is successful with the UPI provider                      |
-| payment_source         | SIST                             | Indicates that UPI details have been marked correctly for Standing Instruction          |
+| **Response Parameter** | **Expected Value**              | **Description**                                                                         |
+| ---------------------- | ------------------------------- | --------------------------------------------------------------------------------------- |
+| status                 | success                         | Indicates that the transaction is successful with the UPI provider                      |
+| payment_source         | SIST                            | Indicates that UPI details have been marked correctly for Standing Instruction          |
 | mihpayid               | \<mihpayid number> sent by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction                   |
-| cardToken              | Alphanumeric string              | Mandatory to be validated if mode is CC or DC returned in response. Should not be empty |
+| cardToken              | Alphanumeric string             | Mandatory to be validated if mode is CC or DC returned in response. Should not be empty |
 
-1. **Store Mandate Details**:
+2. **Store Mandate Details**:
    * Save `mihpayid` for future recurring payments
    * Store `cardToken` if tokenization is enabled
    * Save mandate expiry dates from `si_details`
 
-2. **Test Recurring Payment**:
+3. **Test Recurring Payment**:
    * Use the stored `mihpayid` to initiate a recurring payment
    * Verify the payment processes successfully
-
+</Accordion>
 <br />
 
 <PACB_Recurring_Payments_Flow />
