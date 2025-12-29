@@ -187,7 +187,7 @@ The UDF Update API allows you to update User Defined Fields (UDF1-UDF7 and addit
       </td>
 
       <td>
-        `String`<br />New value for UDF7.
+        `String`<br />New value for UDF7.  UDF7 value to capture "Import or Export Code" of the buyer.
       </td>
 
       <td>
