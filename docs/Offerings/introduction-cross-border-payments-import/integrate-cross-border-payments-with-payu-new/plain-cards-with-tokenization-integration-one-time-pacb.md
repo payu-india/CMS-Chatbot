@@ -358,7 +358,7 @@ After posting the payment request, PayU returns a response containing transactio
   | Parameter                | Description                                                                | Example                                                            |
   | ------------------------ | -------------------------------------------------------------------------- | ------------------------------------------------------------------ |
   | metaData                 | `Object`<br />JSON object containing transaction metadata.                 | -                                                                  |
-  | metaData.referenceId     | `String`<br />PayU reference ID to be sent back in subsequent calls.       | `5a3e7cb9884e003dce1f28f965478a9a12fb9244fc15be91b0b3de48763a12e7` |
+  | metaData.referenceId     | `String`<br />PayU reference ID to be sent back in subsequent calls.       | `5a3e7cb9884e003<br />dce1f28f9654<br />78a9a12fb924<br />4fc15be91b0b<br />3de48763a12e7` |
   | metaData.txnId           | `String`<br />Merchant's transaction ID.                                   | `payuTestTransaction12345`                                         |
   | metaData.txnStatus       | `String`<br />Transaction status (e.g., "Enrolled").                       | `Enrolled`                                                         |
   | metaData.unmappedStatus  | `String`<br />Status for flow control: `pending`, `captured`, or `failed`. | `pending`                                                          |
