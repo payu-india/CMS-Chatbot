@@ -59,22 +59,21 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 </table>
 `}</HTMLBlock>
 
-<br />
-
 ## Sample request
 
 ```bash
-curl --location 'https://apitest.payu.in/v2/refund/' \
+curl --location 'http://apitest.payu.in/v2/refund/' \
 --header 'Content-Type: application/json' \
---header 'date: Tue, 15 Jul 2025 08:47:13 GMT' \
---header 'Authorization: hmac username="KOEfPI", algorithm="sha512", headers="date", signature="33560cfbfe91d98dc4d395de8e212e9f9c8e8d88459c4ac2948962ad5e7ecdd0f23b695d4aacd1ac3a94bf912ece4f61fe9e0a8566b7b016c8a52fc1a0299d3c"' \
+--header 'mid: 2' \
 --header 'Cookie: PHPSESSID=pemnb8cccqkdqc0d4o0uh6mvg0' \
+--header 'authorization: hmac username="a4vGC2", algorithm="sha512", headers="date", signature="d83ee842949292e4f7cf44c6bb32efd44f756e9cd03fc36d9e291b6f336f94bb2ace87fd92571149edbaa2db72eaa65514e4b2d13b44d24b508fdd587e8ee212"' \
+--header 'date: Fri, 26 Dec 2025 12:35:10 GMT' \
 --data '{
-    "payuId" : "9999999900009081231239182",
-    "refundToken": "adij90",
-    "amount": 2,
-    "refundDetails": {},
-    "refundSplitRequest": null
+    "payuId": "403993715535403598",
+    "amount": 1,
+    "token": "4352398",
+    "source": 1,
+    "merchantCallbackUrl": "https://merchant.example.com/refund/callback"
 }'
 ```
 
