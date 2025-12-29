@@ -21,9 +21,9 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 
 ### Request body
 
-> 📘 Note:
->
-> At least one of the following parameters must be provided: `requestId`, `payuId`, or `tokenId`.
+<Callout icon="📘" theme="info">
+  **Note**: At least one of the following parameters must be provided: `requestId`, `payuId`, or `tokenId`.
+</Callout>
 
 <br />
 
@@ -47,7 +47,7 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
   <tbody>
     <tr>
       <td>
-        requestId
+        requestId<br/>
         `conditional`
       </td>
 
@@ -62,7 +62,7 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 
     <tr>
       <td>
-        payuId
+        payuId<br/>
         `conditional`
       </td>
 
@@ -77,7 +77,7 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 
     <tr>
       <td>
-        tokenId
+        tokenId<br/>
         `conditional`
       </td>
 
