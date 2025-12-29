@@ -12,7 +12,7 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 
 |                        |                                                                                  |
 | :--------------------- | :------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/v2/refunds/status](https://test.payu.in/v2/refundstatus)   |
+| Test Environment       | https://apitest.payu.in/v2/refunds/status                                        |
 | Production Environment | [https://info.payu.in/v2/refunds/status](https://info.payu.in/v2/refunds/status) |
 
 ## Request headers
@@ -95,16 +95,14 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 ## Sample request
 
 ```bash
-curl --location 'http://info.payu.in/v2/refunds/status' \
---header 'mid: 8006653' \
+curl --location 'https://apitest.payu.in/v2/refunds/status' \
+--header 'Authorization: hmac username="a4vGC2", algorithm="sha512", headers="date", signature="de60f419117f667dda7a7c7f403474e4cd8aa7de3137f116ddfaac90cb6112148f20ef5fb5f470826dacb820c36fa74c95236e5bfbc2ab61cc03d9791a49dc35"' \
+--header 'date: Mon, 29 Dec 2025 09:57:23 GMT' \
+--header 'Info-Command: check_action_status' \
 --header 'Content-Type: application/json' \
---header 'Authorization: hmac username="KOEfPI", algorithm="sha512", headers="date", signature="33560cfbfe91d98dc4d395de8e212e9f9c8e8d88459c4ac2948962ad5e7ecdd0f23b695d4aacd1ac3a94bf912ece4f61fe9e0a8566b7b016c8a52fc1a0299d3c"' \
 --data '{
-    "payuId": [
-        "999000000000462"
-    ],
     "requestId": [
-        "999000000000462"
+        "139128152"
     ]
 }'
 ```
@@ -260,3 +258,5 @@ curl --location 'http://info.payu.in/v2/refunds/status' \
 ```
 {    "message": "Unauthorized",    "request_id": "44303808ec378607cdf3ab352d7d0845"}
 ```
+
+<br />
