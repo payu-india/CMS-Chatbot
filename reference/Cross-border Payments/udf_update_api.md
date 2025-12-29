@@ -187,7 +187,7 @@ The UDF Update API allows you to update User Defined Fields (UDF1-UDF7 and addit
       </td>
 
       <td>
-        `String`<br />New value for UDF7.
+        `String`<br />New value for UDF7. This must include the IEC (Importer-Exporter Code).
       </td>
 
       <td>
@@ -473,12 +473,12 @@ When UDF values are updated successfully:
 {
     "transaction_id": "c82847d52a146dca3830",
     "udf5": "",
-    "udf3": "fdsfdsfdsfds",
+    "udf3": "22-08-1972",
     "udf4": "fdsfsdf",
-    "udf1": "updatedudf2_again",
+    "udf1": "AAAPZ1234C",
     "udf2": "fsdfdsfd",
     "status": "UDF values updated",
-    "udf7": "fweew"
+    "udf7": "0100000029"
 }
 ```
 
