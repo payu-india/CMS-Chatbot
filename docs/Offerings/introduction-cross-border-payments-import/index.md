@@ -60,6 +60,4 @@ The customers or end-users will be able to pay using their Indian debit cards an
 * Reconciliation and settlement queries can be directly raised to PayU.
 * Overseas merchants can easily offer services to Indian consumers.
 
-To get started with integration, refer to: [Integrate Import for PayUBiz](doc:integrate-cross-border-payments-for-payubiz).
-
-After the integration is complete, you can integrate UPI autopay for cross-border payment-import integration. For more information, refer to [UPI Autopay Integration.](doc:upi-autopay-integration-cross-border-payments-import)
+To get started with integration, refer to: [Integrate Import for PayUBiz](doc:integrate-cross-border-payments-for-payubiz). For Subscriptions with various payment methods, refer to [Subscriptions with Cross-Border Payments](doc:cb-subscription-integration-seamless).
