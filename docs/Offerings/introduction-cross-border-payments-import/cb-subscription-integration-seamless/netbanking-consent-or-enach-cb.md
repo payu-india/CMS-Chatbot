@@ -15,7 +15,7 @@ Before starting the integration, ensure you have:
 * Merchant Key and Salt from PayU dashboard
 * Test environment access for development
 
-#### Payment consent flow
+**Payment consent flow**
 
 <Cards columns={2}>
   <Card title="1. Post the Request" href="#step-1-post-the-request">
@@ -31,7 +31,7 @@ Before starting the integration, ensure you have:
   </Card>
 </Cards>
 
-#### Recurring Payments Flow
+**Recurring Payments Flow**
 
 <Cards columns={2}>
   <Card title="1. Pre-Debit SI Notification" href="#step-1-pre-debit-si-notification">
@@ -115,50 +115,50 @@ Before implementing, familiarize yourself with the required parameters.
   #### description
 
   <HTMLBlock>{`
-      <table style="width: 100%; border-collapse: collapse;">
-      <thead>
-      <tr>
-        <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-        <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryName</p>
-      </td>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>Registered name against customer’s account</p>
-      </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryAccountNumber</p>
-      </td>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>Account number against which recurring transactions need to be executed.</p>
-      </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryAccountType</p>
-      </td>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>SAVINGS or CURRENT</p>
-      </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryIfscCode</p>
-      </td>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>11-digit IFSC code of the customer bank</p>
-      </td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>verificationMode</p>
-      </td>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>The verification mode can be any of the following:  </p>
-      <ul>
-      <li><strong>DEBIT_CARD</strong> – authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow.</li>
-      <li><strong>AADHAAR</strong> – authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow.  If no value is provided, then it will trigger Net Banking login password flow.</li>
-      </ul>
-      </td>
-      </tr>
-      </tbody>
-      </table>
+        <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryName</p>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>Registered name against customer’s account</p>
+        </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryAccountNumber</p>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>Account number against which recurring transactions need to be executed.</p>
+        </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryAccountType</p>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>SAVINGS or CURRENT</p>
+        </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryIfscCode</p>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>11-digit IFSC code of the customer bank</p>
+        </td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>verificationMode</p>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>The verification mode can be any of the following:  </p>
+        <ul>
+        <li><strong>DEBIT_CARD</strong> – authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow.</li>
+        <li><strong>AADHAAR</strong> – authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow.  If no value is provided, then it will trigger Net Banking login password flow.</li>
+        </ul>
+        </td>
+        </tr>
+        </tbody>
+        </table>
   `}</HTMLBlock>
 
   ##
