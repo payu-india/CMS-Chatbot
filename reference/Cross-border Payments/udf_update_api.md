@@ -348,7 +348,6 @@ async function updateUdf() {
 
 updateUdf();
 ```
-
 ```java
 import java.io.*;
 import java.net.HttpURLConnection;
