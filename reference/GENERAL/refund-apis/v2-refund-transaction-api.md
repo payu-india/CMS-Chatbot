@@ -11,7 +11,7 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 |                        |                                                                                                        |
 | :--------------------- | :----------------------------------------------------------------------------------------------------- |
-| Production Environment | https://secure.payu.in/v2/refund/                                                                      |
+| Production Environment | [http://info.payu.in/refund/v1/refundInitiation](http://info.payu.in/refund/v1/refundInitiation)       |
 | Test Environment       | [http://apitest.payu.in/refund/v1/refundInitiation](http://apitest.payu.in/refund/v1/refundInitiation) |
 
 ## Request header
@@ -157,10 +157,38 @@ curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
 
 #### Failure Response
 
-```json
+Any of the following response is displayed when the refund request is rejected:
+
+```
 {
-  "status": 0,
-  "errorcode": "4000",
-  "message": "Refund request rejected"
+    "status": 0,
+    "statusCode": 106,
+    "message": "Error code 106",
+    "payuId": 403993715535614400,
+    "refundToken": "43221129280909"
+}
+```
+
+<br />
+
+```
+{
+    "status": 0,
+    "statusCode": 231,
+    "message": "Error code 231",
+    "payuId": 403993715535614400,
+    "refundToken": "43221129280909"
+}
+```
+
+<br />
+
+```
+{
+    "status": 0,
+    "statusCode": 214,
+    "message": "Error code 214",
+    "payuId": 403993715535614400,
+    "refundToken": "43221129280909"
 }
 ```
