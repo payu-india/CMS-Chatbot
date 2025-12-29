@@ -192,3 +192,89 @@ Any of the following response is displayed when the refund request is rejected:
     "refundToken": "43221129280909"
 }
 ```
+
+## Error Codes
+
+| ID | status_code | Description                                                                                                  |
+| -- | ----------- | ------------------------------------------------------------------------------------------------------------ |
+| 1  | 100         | SUCCESS                                                                                                      |
+| 2  | 101         | PENDING                                                                                                      |
+| 3  | 102         | QUEUED                                                                                                       |
+| 4  | 103         | REJECT - Request rejected on reconfirmation                                                                  |
+| 5  | 104         | RECONFIRM - Confirmation required                                                                            |
+| 6  | 105         | Refund FAILURE - Invalid amount                                                                              |
+| 7  | 106         | Refund FAILURE - Token already exists.                                                                       |
+| 8  | 107         | Refund FAILURE - Upgraded to refund                                                                          |
+| 9  | 108         | Refund FAILURE                                                                                               |
+| 10 | 109         | Refund FAILURE - Request is already logged                                                                   |
+| 11 | 110         | Refund FAILURE - More than one partial refund of Maestro transactions are not allowed                        |
+| 12 | 111         | Refund FAILURE - Invalid transaction status                                                                  |
+| 13 | 112         | RISK\_QUEUED                                                                                                 |
+| 14 | 113         | Refund FAILURE - Invalid Amount - Chargeback of amount present                                               |
+| 15 | 115         | Refund FAILURE - Invalid status to be updated                                                                |
+| 16 | 116         | Refund FAILURE - Transaction Not Found                                                                       |
+| 17 | 117         | Refund FAILURE - Amount Does not Match                                                                       |
+| 18 | 119         | Refund FAILURE - No such Request Found                                                                       |
+| 19 | 120         | Refund FAILURE - Transaction lock could not be obtained.                                                     |
+| 20 | 121         | Refund FAILURE - Incorrect/Empty value passed in retry                                                       |
+| 21 | 122         | APPROVAL PENDING                                                                                             |
+| 22 | 123         | Refund FAILURE - Request set as pending - requires manual follow-up                                          |
+| 23 | 124         | Refund FAILURE - Input Data missing                                                                          |
+| 24 | 125         | Refund FAILURE - Merchant Failed the pending refund                                                          |
+| 25 | 126         | IN\_PROGRESS                                                                                                 |
+| 26 | 127         | REQUESTED                                                                                                    |
+| 27 | 128         | Refund FAILURE - Partial refunds not allowed                                                                 |
+| 28 | 129         | Refund FAILURE - Remark is mandatory for retry 0                                                             |
+| 29 | 130         | Refund FAILURE - Refunds not allowed after                                                                   |
+| 30 | 214         | Refund FAILURE - Two refunds of same amount for same transaction within 5 minutes are not allowed            |
+| 31 | 225         | PENDING - Overdraft has occurred. Kindly recheck the status tomorrow.                                        |
+| 32 | 226         | PENDING - Capture has been initiated today. Please check for refund status tomorrow.                         |
+| 33 | 227         | Refund FAILURE - Transactions with same amount and same token not allowed                                    |
+| 34 | 230         | Refund FAILURE - Purged Transaction. Refund request requires manual follow-up                                |
+| 35 | 231         | Refund could not be initiated due to some internal error                                                     |
+| 36 | 232         | Refund FAILURE - Refund could not be initiated. Either refunds are not supported or need manual intervention |
+| 37 | 233         | BLOCKED - Refund/Cancel Blocked From Merchant Panel. Contact KM.                                             |
+| 38 | 234         | BLOCKED - Refund/Cancel Blocked From Merchant Panel And API. Contact KM.                                     |
+| 39 | 235         | BLOCKED - Refund/Cancel Blocked. Contact KM.                                                                 |
+| 40 | 236         | Refund FAILURE - Refund not possible on this transaction                                                     |
+| 41 | 237         | Validation Failure for \{key\_name}. Special Characters Not Allowed                                          |
+| 42 | 238         | Validation Failure for \{key\_name}. Mandatory Field.                                                        |
+| 43 | 239         | API based alternate instant refunds not activated.                                                           |
+| 44 | 240         | Refund FAILURE - Store card failed                                                                           |
+| 45 | 241         | Refund is not supported by the bank because the payment is more than days.                                   |
+| 46 | 242         | Refund FAILURE - Bank Code Not Supported. Raise it to PayU support team                                      |
+| 47 | 243         | Virtual account setup to process instant refund is incomplete                                                |
+| 48 | 244         | Beneficiary Code for Virtual Account Not Set                                                                 |
+| 49 | 245         | BBPS transaction is not successful                                                                           |
+| 50 | 246         | value is Invalid for the Merchant SKU.                                                                       |
+| 51 | 247         | not allowed as no offers found for the SKU.                                                                  |
+| 52 | 248         | BAL\_CHECK\_INIT                                                                                             |
+| 53 | 249         | RETRY                                                                                                        |
+| 54 | 250         | Refund FAILURE - Refund Failed On Uploading Successful Chargeback                                            |
+| 55 | 251         | Refund Blocked for this PGMID by Bank                                                                        |
+| 56 | 252         | Refund FAILURE - Refunds are not allowed from panel for this MID                                             |
+| 57 | 253         | Refund FAILURE - Instant refunds invalid mode                                                                |
+| 58 | 254         | Refund FAILURE - Remarks cannot contain special characters                                                   |
+| 59 | 255         | Refund FAILURE - Token Length Exceeded for Refund                                                            |
+| 60 | 256         | Refund FAILURE - Refund not supported on split transactions. Please initiate refund on the order transaction |
+| 61 | 258         | initiated                                                                                                    |
+| 62 | 259         | REQUESTED\_RETRY                                                                                             |
+| 63 | 261         | Refund FAILURE - Error while processing request                                                              |
+| 64 | 262         | Refund FAILURE - Error while processing request                                                              |
+| 65 | 263         | Refund FAILURE - Invalid requested amount                                                                    |
+| 66 | 264         | Refund FAILURE - Error while processing request                                                              |
+| 67 | 265         | Refund FAILURE - Error while processing request                                                              |
+| 68 | 266         | Refund FAILURE - Chargeback is pending against this transaction                                              |
+| 69 | 267         | Refund FAILURE - Lock acquired on TransactionMetaData                                                        |
+| 70 | 299         | Refund FAILURE - Blocking refund initiation for Type A Merchant                                              |
+| 71 | 301         | Refund FAILURE - Capture already successful for this transaction                                             |
+| 72 | 302         | Refund FAILURE - Please try after some time                                                                  |
+| 73 | 303         | Refund FAILURE - Amount greater than maximum capturable amount                                               |
+| 74 | 304         | Refund FAILURE - Amount less than allowed                                                                    |
+| 75 | 305         | Refund FAILURE - Amount more than allowed                                                                    |
+| 76 | 306         | Refund FAILURE - Invalid amount tolerance configuration                                                      |
+| 77 | 424         | Refund FAILURE - Transaction upgraded to capture/refund.                                                     |
+| 78 | 500         | Refund FAILURE - Some Exception Occurred.                                                                    |
+| 79 | 501         | Successfully Updated                                                                                         |
+| 80 | 502         | Failed to update                                                                                             |
+| 81 | 270         | FAILURE - Transaction not eligible for Instant Refund                                                        |
