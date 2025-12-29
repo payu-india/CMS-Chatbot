@@ -90,7 +90,7 @@ curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
 --data '{
     "payuId": "999000000000478",
     "refundToken": "a*bv***w",
-    "amount": 0.1,
+    "amount": 0.21,
     "refundSplitRequest": {
         "33rOiT": {
             "amount": 0.21
