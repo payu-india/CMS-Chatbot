@@ -2,7 +2,7 @@
 title: Refer merchants using APIs
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Refer Merchants using Integration APIs
   description: >-
