@@ -355,20 +355,20 @@ Post the payment parameters to PayU's `_payment` API endpoint with tokenization 
 After posting the payment request, PayU returns a response containing transaction status and next steps for 3DS authentication.
 
 <Accordion title="Response Parameters" icon="fa-table">
-  | Parameter                | Description                                                                | Example                                                                                |
-  | ------------------------ | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-  | metaData                 | `Object`<br />JSON object containing transaction metadata.                 | -                                                                                      |
-  | metaData.referenceId     | `String`<br />PayU reference ID to be sent back in subsequent calls.       | `5a3e7cb9884e003 dce1f28f9654 78a9a12fb924 4fc15be91b0b 3de48763a12e7` |
-  | metaData.txnId           | `String`<br />Merchant's transaction ID.                                   | `payuTestTransaction12345`                                                             |
-  | metaData.txnStatus       | `String`<br />Transaction status (e.g., "Enrolled").                       | `Enrolled`                                                                             |
-  | metaData.unmappedStatus  | `String`<br />Status for flow control: `pending`, `captured`, or `failed`. | `pending`                                                                              |
-  | result.otpPostUrl        | `String`<br />URL to post OTP for verification.                            | `https://test.payu.in/ResponseHandler.php`                                             |
-  | result.acsTemplate       | `String`<br />Base64 encoded HTML form for bank ACS redirect.              | `PGh0bWw+PGJvZHk+...`                                                                  |
-  | binData.pureS2SSupported | `Boolean`<br />Whether native S2S OTP flow is supported.                   | `true`                                                                                 |
-  | binData.issuingBank      | `String`<br />Card issuing bank.                                           | `AXIS`                                                                                 |
-  | binData.category         | `String`<br />Card category (`creditcard` or `debitcard`).                 | `creditcard`                                                                           |
-  | binData.cardType         | `String`<br />Card network (`VISA`, `MAST`, `RUPAY`).                      | `MAST`                                                                                 |
-  | binData.isDomestic       | `Boolean`<br />Whether the card is domestic.                               | `true`                                                                                 |
+  | Parameter                | Description                                                                | Example                                                                |
+  | ------------------------ | -------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+  | metaData                 | `Object`<br />JSON object containing transaction metadata.                 | -                                                                      |
+  | metaData.referenceId     | `String`<br />PayU reference ID to be sent back in subsequent calls.       | `5a3e7cb9884e003` |
+  | metaData.txnId           | `String`<br />Merchant's transaction ID.                                   | `payuTestTransaction12345`                                             |
+  | metaData.txnStatus       | `String`<br />Transaction status (e.g., "Enrolled").                       | `Enrolled`                                                             |
+  | metaData.unmappedStatus  | `String`<br />Status for flow control: `pending`, `captured`, or `failed`. | `pending`                                                              |
+  | result.otpPostUrl        | `String`<br />URL to post OTP for verification.                            | `https://test.payu.in/ResponseHandler.php`                             |
+  | result.acsTemplate       | `String`<br />Base64 encoded HTML form for bank ACS redirect.              | `PGh0bWw+PGJvZHk+...`                                                  |
+  | binData.pureS2SSupported | `Boolean`<br />Whether native S2S OTP flow is supported.                   | `true`                                                                 |
+  | binData.issuingBank      | `String`<br />Card issuing bank.                                           | `AXIS`                                                                 |
+  | binData.category         | `String`<br />Card category (`creditcard` or `debitcard`).                 | `creditcard`                                                           |
+  | binData.cardType         | `String`<br />Card network (`VISA`, `MAST`, `RUPAY`).                      | `MAST`                                                                 |
+  | binData.isDomestic       | `Boolean`<br />Whether the card is domestic.                               | `true`                                                                 |
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-code">
