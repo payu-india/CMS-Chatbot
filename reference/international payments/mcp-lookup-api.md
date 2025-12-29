@@ -41,22 +41,35 @@ The MCP Lookup V2 API allows merchants to fetch MCP (Multi-Currency Pricing) loo
 
 ## Request Parameters
 
-| Parameter                                         | Description                                                                            | Example                            |
-| ------------------------------------------------- | -------------------------------------------------------------------------------------- | ---------------------------------- |
-| key <br /> <code>mandatory</code>                 | <code>String</code> Your merchant key provided by PayU                                 | MERCHANT_KEY                       |
-| baseAmount <br /> <code>mandatory</code>          | <code>Object</code> Contains value and currency fields for the base transaction amount | \{"value": 100, "currency": "INR"} |
-| baseAmount.value <br /> <code>mandatory</code>    | <code>Integer</code> The transaction amount value                                      | 100                                |
-| baseAmount.currency <br /> <code>mandatory</code> | <code>String</code> The currency code for the transaction                              | INR                                |
-| ccNum <br /> <code>mandatory</code>               | <code>String</code> The card number for MCP lookup                                     | 4111111111111111                   |
-| merchantOrderId <br /> <code>mandatory</code>     | <code>String</code> Unique merchant reference for the order                            | 63d8bf8c8b95a999000000000740       |
-| productType <br /> <code>mandatory</code>         | <code>String</code> Type of product. Must be set to MCP                                | MCP                                |
-| signature <br /> <code>mandatory</code>           | <code>String</code> SHA512 hash signature for authentication                           | \<Your_Signature>                  |
+| Parameter                                     | Description                                                                                                                                                                   | Example                            |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| key <br /> <code>mandatory</code>             | <code>String</code> Your merchant key provided by PayU                                                                                                                        | MERCHANT_KEY                       |
+| baseAmount <br /> <code>mandatory</code>      | <code>Object</code> Contains value and currency fields for the base transaction amount. For more information, refer to base [baseAmount JSON Object](baseamount-json-object). | \{"value": 100, "currency": "INR"} |
+| ccNum <br /> <code>mandatory</code>           | <code>String</code> The card number for MCP lookup                                                                                                                            | 4111111111111111                   |
+| merchantOrderId <br /> <code>mandatory</code> | <code>String</code> Unique merchant reference for the order                                                                                                                   | 63d8bf8c8b95a999000000000740       |
+| productType <br /> <code>mandatory</code>     | <code>String</code> Type of product. Must be set to MCP                                                                                                                       | MCP                                |
+| signature <br /> <code>mandatory</code>       | <code>String</code> SHA512 hash signature for authentication. For more information, refer to [Signature Calculation](#signature-calculation)                                  | \<Your_Signature>                  |
 
-## Signature Calculation
+### baseAmount JSON Object
+
+#### Sample JSON object
+
+```
+{"value": 100, "currency": "INR"}
+```
+
+#### Field Descriptions
+
+| Field                                             | Description                                               |     |
+| ------------------------------------------------- | --------------------------------------------------------- | --- |
+| baseAmount.value <br /> <code>mandatory</code>    | <code>Integer</code> The transaction amount value         | 100 |
+| baseAmount.currency <br /> <code>mandatory</code> | <code>String</code> The currency code for the transaction | INR |
+
+### Signature Calculation
 
 The signature is calculated using SHA512 hash of the pipe-separated values of the request body concatenated with the merchant salt.
 
-### Sample Code for Signature Calculation (JavaScript)
+#### Sample Code for Signature Calculation (JavaScript)
 
 ```javascript
 // Variables
