@@ -23,31 +23,34 @@ metadata:
 
 The MCP Lookup V2 API allows merchants to fetch MCP (Multi-Currency Pricing) lookup IDs for seamless and SDK integrations. This API is designed for MCP 2.0 and supports 3DS2 authentication.
 
-> **Notes**: 
-- This API replaces the older MCP 1.0 lookup API which does not work with MCP 2.0 and 3DS2. 
-- Ensure the `productType` is always set to `MCP`
-- The `lookupId` returned in the response should be used for subsequent MCP transactions
-- The signature must be calculated using the exact order of parameters as shown above
-- For 3DS2 compliance, ensure your integration supports the latest authentication flow
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * This API replaces the older MCP 1.0 lookup API which does not work with MCP 2.0 and 3DS2.
+  * Ensure the `productType` is always set to `MCP`
+  * The `lookupId` returned in the response should be used for subsequent MCP transactions
+  * The signature must be calculated using the exact order of parameters as shown above
+  * For 3DS2 compliance, ensure your integration supports the latest authentication flow
+</Callout>
 
 ## Environment
 
-| Environment | URL |
-|-------------|-----|
-| Production | `https://secure.payu.in/McpLookupV2` |
+| Environment | URL                                  |
+| ----------- | ------------------------------------ |
+| Production  | `https://secure.payu.in/McpLookupV2` |
 
 ## Request Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| key <br/> <code>mandatory</code> | <code>String</code> Your merchant key provided by PayU | MERCHANT_KEY |
-| baseAmount <br/> <code>mandatory</code> | <code>Object</code> Contains value and currency fields for the base transaction amount | \{"value": 100, "currency": "INR"} |
-| baseAmount.value <br/> <code>mandatory</code> | <code>Integer</code> The transaction amount value | 100 |
-| baseAmount.currency <br/> <code>mandatory</code> | <code>String</code> The currency code for the transaction | INR |
-| ccNum <br/> <code>mandatory</code> | <code>String</code> The card number for MCP lookup | 4111111111111111 |
-| merchantOrderId <br/> <code>mandatory</code> | <code>String</code> Unique merchant reference for the order | 63d8bf8c8b95a999000000000740 |
-| productType <br/> <code>mandatory</code> | <code>String</code> Type of product. Must be set to MCP | MCP |
-| signature <br/> <code>mandatory</code> | <code>String</code> SHA512 hash signature for authentication | \<Your_Signature> |
+| Parameter                                         | Description                                                                            | Example                            |
+| ------------------------------------------------- | -------------------------------------------------------------------------------------- | ---------------------------------- |
+| key <br /> <code>mandatory</code>                 | <code>String</code> Your merchant key provided by PayU                                 | MERCHANT_KEY                       |
+| baseAmount <br /> <code>mandatory</code>          | <code>Object</code> Contains value and currency fields for the base transaction amount | \{"value": 100, "currency": "INR"} |
+| baseAmount.value <br /> <code>mandatory</code>    | <code>Integer</code> The transaction amount value                                      | 100                                |
+| baseAmount.currency <br /> <code>mandatory</code> | <code>String</code> The currency code for the transaction                              | INR                                |
+| ccNum <br /> <code>mandatory</code>               | <code>String</code> The card number for MCP lookup                                     | 4111111111111111                   |
+| merchantOrderId <br /> <code>mandatory</code>     | <code>String</code> Unique merchant reference for the order                            | 63d8bf8c8b95a999000000000740       |
+| productType <br /> <code>mandatory</code>         | <code>String</code> Type of product. Must be set to MCP                                | MCP                                |
+| signature <br /> <code>mandatory</code>           | <code>String</code> SHA512 hash signature for authentication                           | \<Your_Signature>                  |
 
 ## Signature Calculation
 
@@ -88,7 +91,6 @@ postman.setGlobalVariable("mpiBIZSignature", result);
 ```
 signature = SHA512(key|baseAmount.value|baseAmount.currency|ccNum|merchantOrderId|productType|salt)
 ```
-
 
 ## Sample Request
 
@@ -279,19 +281,19 @@ echo "Response: " . $response . "\n";
 
 ## Response Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| resultCode <br/> <code>mandatory</code> | <code>Integer</code> Result code of the API call. 0 indicates success. | 0 |
-| resultMessage <br/> <code>mandatory</code> | <code>String</code> Description of the result | SUCCESS |
-| baseAmount <br/> <code>mandatory</code> | <code>Object</code> The base amount echoed back with value and currency | \{"value": 10000, "currency": "INR"} |
-| supportedCardSchemes <br/> <code>optional</code> | <code>Array</code> List of supported card schemes for MCP | [] |
-| mcpConversionBeans <br/> <code>mandatory</code> | <code>Array</code> Array of MCP conversion details containing offer information | See sample response |
-| mcpConversionBeans[].offerAmount <br/> <code>mandatory</code> | <code>Float</code> The converted offer amount in the target currency | 182.3 |
-| mcpConversionBeans[].offerCurrency <br/> <code>mandatory</code> | <code>String</code> The target currency code for the offer | USD |
-| mcpConversionBeans[].offerExchangeRate <br/> <code>mandatory</code> | <code>Float</code> The exchange rate used for conversion | 0.01823 |
-| mcpConversionBeans[].merchantOrderId <br/> <code>mandatory</code> | <code>String</code> The merchant order ID echoed back | 63d8bf8c8b95a999000000000740 |
-| mcpConversionBeans[].lookupId <br/> <code>mandatory</code> | <code>String</code> The unique MCP lookup ID for this conversion | MCP6913813325270050797 |
-| mcpConversionBeans[].createdAt <br/> <code>mandatory</code> | <code>Integer</code> Timestamp of when the lookup was created | 1675149047431 |
+| Parameter                                                            | Description                                                                     | Example                              |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------ |
+| resultCode <br /> <code>mandatory</code>                             | <code>Integer</code> Result code of the API call. 0 indicates success.          | 0                                    |
+| resultMessage <br /> <code>mandatory</code>                          | <code>String</code> Description of the result                                   | SUCCESS                              |
+| baseAmount <br /> <code>mandatory</code>                             | <code>Object</code> The base amount echoed back with value and currency         | \{"value": 10000, "currency": "INR"} |
+| supportedCardSchemes <br /> <code>optional</code>                    | <code>Array</code> List of supported card schemes for MCP                       | []                                   |
+| mcpConversionBeans <br /> <code>mandatory</code>                     | <code>Array</code> Array of MCP conversion details containing offer information | See sample response                  |
+| mcpConversionBeans[].offerAmount <br /> <code>mandatory</code>       | <code>Float</code> The converted offer amount in the target currency            | 182.3                                |
+| mcpConversionBeans[].offerCurrency <br /> <code>mandatory</code>     | <code>String</code> The target currency code for the offer                      | USD                                  |
+| mcpConversionBeans[].offerExchangeRate <br /> <code>mandatory</code> | <code>Float</code> The exchange rate used for conversion                        | 0.01823                              |
+| mcpConversionBeans[].merchantOrderId <br /> <code>mandatory</code>   | <code>String</code> The merchant order ID echoed back                           | 63d8bf8c8b95a999000000000740         |
+| mcpConversionBeans[].lookupId <br /> <code>mandatory</code>          | <code>String</code> The unique MCP lookup ID for this conversion                | MCP6913813325270050797               |
+| mcpConversionBeans[].createdAt <br /> <code>mandatory</code>         | <code>Integer</code> Timestamp of when the lookup was created                   | 1675149047431                        |
 
 ## Sample Response
 
@@ -320,6 +322,3 @@ echo "Response: " . $response . "\n";
 ```
 
 > **Note**: The token value in mcpConversionBeans has been trimmed in this example.
-
-
-
