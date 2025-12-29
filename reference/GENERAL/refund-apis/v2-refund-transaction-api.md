@@ -9,10 +9,10 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 **Endpoint**
 
-|                        |                                                                         |
-| :--------------------- | :---------------------------------------------------------------------- |
-| Production Environment | [https://api.payu.in/v2/refund/](https://api.payu.in/v2/refund/)        |
-| Test Environment       | [https://apitest.payu.in/v2/refund/](http://apitest.payu.in/v2/refund/) |
+|                        |                                                    |
+| :--------------------- | :------------------------------------------------- |
+| Production Environment |                                                    |
+| Test Environment       | http://apitest.payu.in/refund/v1/refundInitiation' |
 
 ## Request header
 
@@ -61,33 +61,36 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 ## Sample request
 
-```bash
-curl --location 'http://apitest.payu.in/v2/refund/' \
+<Callout icon="📘" theme="info">
+  **Note**: The following sample request is for Test Environment. 
+</Callout>
+
+```curl
+curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
+--header 'Authorization: hmac username="a4vGC2", algorithm="sha512", headers="date", signature="f861738a3b1c73230d0352e4b8eaa47d4140912011f5e6768d7a8307edb59f2adeb226559128239193ade16ee4ad1b646e414e27435cb70e236361f25e03482c"' \
+--header 'date: Mon, 29 Dec 2025 09:45:14 GMT' \
 --header 'Content-Type: application/json' \
---header 'mid: 2' \
---header 'Cookie: PHPSESSID=pemnb8cccqkdqc0d4o0uh6mvg0' \
---header 'authorization: hmac username="a4vGC2", algorithm="sha512", headers="date", signature="d83ee842949292e4f7cf44c6bb32efd44f756e9cd03fc36d9e291b6f336f94bb2ace87fd92571149edbaa2db72eaa65514e4b2d13b44d24b508fdd587e8ee212"' \
---header 'date: Fri, 26 Dec 2025 12:35:10 GMT' \
 --data '{
-    "payuId": "403993715535403598",
-    "amount": 1,
-    "token": "4352398",
+    "payuId": "403993715535614124",
+    "amount": 100,
+    "refundToken": "435239928",
     "source": 1,
-    "merchantCallbackUrl": "https://merchant.example.com/refund/callback"
+    "merchantCallbackUrl": "https://merchant.example.com/refund/callback",
+    "var1Type": "REWARD_REFUND"
 }'
+ 
 ```
 
 ### With Split Settlements
 
 ```
-curl --location 'https://apitest.payu.in/v2/refund/' \
+curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
 --header 'Content-Type: application/json' \
 --header 'mid: 8006653' \
 --data '{
-    "mihpayId": "999000000000478",
+    "payuId": "999000000000478",
     "refundToken": "a*bv***w",
     "amount": 0.1,
-    "refundDetails": {},
     "refundSplitRequest": {
         "33rOiT": {
             "amount": 0.21
@@ -95,8 +98,6 @@ curl --location 'https://apitest.payu.in/v2/refund/' \
     }
 }'
 ```
-
-##
 
 ## Response parameters
 
@@ -119,10 +120,12 @@ curl --location 'https://apitest.payu.in/v2/refund/' \
 
 ```json
 {
-  "status": 1,
-  "statusCode": 102,
-  "message": "Refund request accepted",
-  "refundId": "123456789"
+    "status": 1,
+    "statusCode": 102,
+    "message": "Refund request accepted",
+    "payuId": 403993715535614124,
+    "requestId": "139136064",
+    "refundToken": "435239928"
 }
 ```
 
