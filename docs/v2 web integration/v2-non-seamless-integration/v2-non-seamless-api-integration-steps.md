@@ -1,5 +1,5 @@
 ---
-title: API Integration - Non-Seamless
+title: API Integration - PayU Hosted Checkout
 excerpt: ''
 deprecated: false
 hidden: false
@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-This document provides a comprehensive guide for integrating with **v2 Non-Seamless** using the `v2/payments` API. The hosted checkout integration allows you to redirect customers to PayU's secure payment page, minimising PCI compliance requirements while providing a seamless payment experience.
+This document provides a comprehensive guide for integrating with **PayU Hosted Checkout** or **v2 Non-Seamless** using the `v2/payments` API. The hosted checkout integration allows you to redirect customers to PayU's secure payment page, minimising PCI compliance requirements while providing a seamless payment experience.
 
 <V2_Prerequisite_Payment_Integration />
 
