@@ -27,10 +27,8 @@ The MCP Lookup V2 API allows merchants to fetch MCP (Multi-Currency Pricing) loo
   **Notes**:
 
   * This API replaces the older MCP 1.0 lookup API which does not work with MCP 2.0 and 3DS2.
-  * Ensure the `productType` is always set to `MCP`
-  * The `lookupId` returned in the response should be used for subsequent MCP transactions
-  * The signature must be calculated using the exact order of parameters as shown above
-  * For 3DS2 compliance, ensure your integration supports the latest authentication flow
+  * The signature must be calculated using the exact order of parameters . For more information, refer to [Signature Calculation](#signature-calculation).
+  * For 3DS2 compliance, ensure your integration supports the latest authentication flow.
 </Callout>
 
 ## Environment
@@ -41,14 +39,110 @@ The MCP Lookup V2 API allows merchants to fetch MCP (Multi-Currency Pricing) loo
 
 ## Request Parameters
 
-| Parameter                                     | Description                                                                                                                                                                   | Example                            |
-| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| key <br /> <code>mandatory</code>             | <code>String</code> Your merchant key provided by PayU                                                                                                                        | MERCHANT_KEY                       |
-| baseAmount <br /> <code>mandatory</code>      | <code>Object</code> Contains value and currency fields for the base transaction amount. For more information, refer to base [baseAmount JSON Object](baseamount-json-object). | \{"value": 100, "currency": "INR"} |
-| ccNum <br /> <code>mandatory</code>           | <code>String</code> The card number for MCP lookup                                                                                                                            | 4111111111111111                   |
-| merchantOrderId <br /> <code>mandatory</code> | <code>String</code> Unique merchant reference for the order                                                                                                                   | 63d8bf8c8b95a999000000000740       |
-| productType <br /> <code>mandatory</code>     | <code>String</code> Type of product. Must be set to MCP                                                                                                                       | MCP                                |
-| signature <br /> <code>mandatory</code>       | <code>String</code> SHA512 hash signature for authentication. For more information, refer to [Signature Calculation](#signature-calculation)                                  | \<Your_Signature>                  |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key <br /> <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> Your merchant key provided by PayU
+      </td>
+
+      <td>
+        MERCHANT_KEY
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        baseAmount <br /> <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>Object</code> Contains value and currency fields for the base transaction amount. For more information, refer to base [baseAmount JSON Object](baseamount-json-object).
+      </td>
+
+      <td>
+        \{"value": 100, "currency": "INR"}
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccNum <br /> <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> The card number for MCP lookup
+      </td>
+
+      <td>
+        4111111111111111
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchantOrderId <br /> <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> Unique merchant reference for the order
+      </td>
+
+      <td>
+        63d8bf8c8b95a999000000000740
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productType <br /> <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> Type of product. Must be set to MCP.  <br/> **Note:** 
+         Ensure the `productType` is always set to `MCP`.
+      </td>
+
+      <td>
+        MCP
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        signature <br /> <code>mandatory</code>
+      </td>
+
+      <td>
+        <code>String</code> SHA512 hash signature for authentication. For more information, refer to [Signature Calculation](#signature-calculation) .
+      </td>
+
+      <td>
+        \<Your_Signature>
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### baseAmount JSON Object
 
@@ -311,6 +405,10 @@ echo "Response: " . $response . "\n";
 ## Sample Response
 
 ### Success Response
+
+<Callout icon="📘" theme="info">
+  **Note**: The `lookupId` returned in the response should be used for subsequent MCP transactions
+</Callout>
 
 ```json
 {
