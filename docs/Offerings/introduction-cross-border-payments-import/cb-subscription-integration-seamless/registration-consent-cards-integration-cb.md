@@ -17,7 +17,7 @@ Before starting the integration, ensure you have:
 
 **Payment consent flow**
 
-<Cards columns={3}>
+<Cards columns={2}>
   <Card title="1. Post the Request" href="#step-1-post-the-request">
     Send the ENACH consent transaction request with S2S parameters.
 
