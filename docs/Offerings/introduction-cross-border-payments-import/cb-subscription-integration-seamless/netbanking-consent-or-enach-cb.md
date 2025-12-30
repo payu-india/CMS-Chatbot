@@ -709,7 +709,7 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
 | Production  | `https://info.payu.in/merchant/postservice?form=2` |
 | Test        | `https://test.payu.in/merchant/postservice?form=2` |
 
-#### Request Parameters
+<Accordion title="Request Parameters" icon="fa-code">
 
 | Parameter                             | Description                                                                                  | Example                           |
 | :------------------------------------ | :------------------------------------------------------------------------------------------- | :-------------------------------- |
@@ -736,7 +736,7 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
 | email <br /> <code>optional</code>                              | <code>String</code> The email address of the customer.                                                                                                                    | [customer@example.com](mailto:customer@example.com) |
 | invoiceDisplayNumber <br /> <code>mandatory for Cards SI</code> | <code>String</code> A unique display number by merchant for every subsequent invoice/recurring charge. This must be the same value passed during `pre_debit_si` API call. | 12345678910                                         |
 | udf5 <br /> <code>mandatory</code>                              | <code>String</code> Invoice ID for every merchant. This field is mandatory during or after the transaction.                                                               | INV789012                                           |
-
+</Accordion>
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
   curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
@@ -1097,5 +1097,3 @@ If the Invoice ID value was unavailable when posting the transaction or you miss
   }
   ```
 </Accordion>
-
-##
