@@ -42,7 +42,7 @@ Refer to the following sections on how to integrate Registration Consent Transac
 * Risk assessment and fraud prevention
 
 <Callout icon="👍" theme="okay">
-  **Reference:** For pre-debit transaction, you must use the **Pre-Debit Notification** API. For more information, refer to [Pre-Debit SI API](ref:pre-debit-si-api-parallel-sequencing)
+  **Reference:** For pre-debit transaction, you must use the **Pre-Debit Notification** API. For more information, refer to <Anchor label="Pre-Debit Notification" target="_blank" href="ref:pre_debit_notification_api">Pre-Debit Notification</Anchor>.
 </Callout>
 
 ### 3. Recurring Payment Transaction
