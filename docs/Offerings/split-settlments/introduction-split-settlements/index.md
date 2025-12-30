@@ -176,7 +176,7 @@ You can create child merchants using the **Create Child Merchant** API. For more
 
 ***
 
-## **Step 3: Update Bank Details**
+## Step 3: Update Bank Details
 
 After adding the child merchant in [Step 2: Create a child merchant](#step-2-create-a-child-merchant), update the bank details of the child merchant using the **Create Child Merchant** API again. For more information, refer to [Create Child Merchant API](ref:create-child-merchant-api) under API Reference.
 
