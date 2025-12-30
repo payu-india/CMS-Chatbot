@@ -14,6 +14,26 @@ metadata:
 ---
 PayU Hosted Checkout integration for **TPV (Third Party Verification) Payment Mode** supports both **Net Banking (NB)** and **Unified Payment Interface (UPI)** payment methods for subscription-based or autopay payments.
 
+**Steps to integrate**
+
+<Cards columns={3}>
+  <Card title="1. Create Transaction" href="#step-1-create-transaction-with-beneficiary-and-si-details">
+    Create transaction with beneficiary and SI details for autopay
+
+    <br />
+  </Card>
+
+  <Card title="2. Post Parameters" href="#step-2-post-transaction-parameters">
+    Post transaction parameters to PayU payment gateway
+
+    <br />
+  </Card>
+
+  <Card title="3. Handle Response" href="#step-3-handle-and-validate-response">
+    Handle and validate response with reverse hash
+  </Card>
+</Cards>
+
 ## Customer journey
 
 The customer journey involves three key steps:
@@ -46,90 +66,89 @@ Submit the transaction parameters to PayU's payment gateway using the appropriat
 | **Production** | `https://secure.payu.in/_payment` |
 
 <Accordion title="Request parameters" icon="fa-code">
-<HTMLBlock>{`
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>key<br/><code>mandatory</code></td>
-<td>String - Merchant key provided by PayU during onboarding</td>
-<td>"JPg***r"</td>
-</tr>
-<tr>
-<td>txnid<br/><code>mandatory</code></td>
-<td>String - Unique transaction ID for each order</td>
-<td>"ypl938459435"</td>
-</tr>
-<tr>
-<td>amount<br/><code>mandatory</code></td>
-<td>String - Transaction amount</td>
-<td>"100"</td>
-</tr>
-<tr>
-<td>productinfo<br/><code>mandatory</code></td>
-<td>String - Product description</td>
-<td>"Test Product"</td>
-</tr>
-<tr>
-<td>firstname<br/><code>mandatory</code></td>
-<td>String - Customer's first name</td>
-<td>"John"</td>
-</tr>
-<tr>
-<td>email<br/><code>mandatory</code></td>
-<td>String - Customer's email address</td>
-<td>"john@example.com"</td>
-</tr>
-<tr>
-<td>phone<br/><code>mandatory</code></td>
-<td>String - Customer's phone number</td>
-<td>"9999999999"</td>
-</tr>
-<tr>
-<td>api_version<br/><code>mandatory</code></td>
-<td>String - Version of the API</td>
-<td>"6"</td>
-</tr>
-<tr>
-<td>beneficiarydetail<br/><code>mandatory</code></td>
-<td>JSON Object - Account numbers and associated details for verification</td>
-<td>See structure below</td>
-</tr>
-<tr>
-<td>si_details<br/><code>mandatory</code></td>
-<td>JSON Object - Standing instruction details for autopay</td>
-<td>See structure below</td>
-</tr>
-<tr>
-<td>free_trial<br/><code>optional</code></td>
-<td>String - Parameter to setup free trial periods</td>
-<td>"1"</td>
-</tr>
-<tr>
-<td>surl<br/><code>mandatory</code></td>
-<td>String - Success URL for transaction response</td>
-<td>"https://www.yoursurl.com"</td>
-</tr>
-<tr>
-<td>furl<br/><code>mandatory</code></td>
-<td>String - Failure URL for transaction response</td>
-<td>"https://www.yourfailureurl.com"</td>
-</tr>
-<tr>
-<td>hash<br/><code>mandatory</code></td>
-<td>String - SHA512 Hash for securing the transaction request. For more information, refer to <a href="#hash-calcuation" Hash calculation </a></td>
-<td>Generated using hash formula</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
+  <HTMLBlock>{`
+  <table>
+  <thead>
+  <tr>
+  <th>Parameter</th>
+  <th>Description</th>
+  <th>Example</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>key<br/><code>mandatory</code></td>
+  <td>String - Merchant key provided by PayU during onboarding</td>
+  <td>"JPg***r"</td>
+  </tr>
+  <tr>
+  <td>txnid<br/><code>mandatory</code></td>
+  <td>String - Unique transaction ID for each order</td>
+  <td>"ypl938459435"</td>
+  </tr>
+  <tr>
+  <td>amount<br/><code>mandatory</code></td>
+  <td>String - Transaction amount</td>
+  <td>"100"</td>
+  </tr>
+  <tr>
+  <td>productinfo<br/><code>mandatory</code></td>
+  <td>String - Product description</td>
+  <td>"Test Product"</td>
+  </tr>
+  <tr>
+  <td>firstname<br/><code>mandatory</code></td>
+  <td>String - Customer's first name</td>
+  <td>"John"</td>
+  </tr>
+  <tr>
+  <td>email<br/><code>mandatory</code></td>
+  <td>String - Customer's email address</td>
+  <td>"john@example.com"</td>
+  </tr>
+  <tr>
+  <td>phone<br/><code>mandatory</code></td>
+  <td>String - Customer's phone number</td>
+  <td>"9999999999"</td>
+  </tr>
+  <tr>
+  <td>api_version<br/><code>mandatory</code></td>
+  <td>String - Version of the API</td>
+  <td>"6"</td>
+  </tr>
+  <tr>
+  <td>beneficiarydetail<br/><code>mandatory</code></td>
+  <td>JSON Object - Account numbers and associated details for verification</td>
+  <td>See structure below</td>
+  </tr>
+  <tr>
+  <td>si_details<br/><code>mandatory</code></td>
+  <td>JSON Object - Standing instruction details for autopay</td>
+  <td>See structure below</td>
+  </tr>
+  <tr>
+  <td>free_trial<br/><code>optional</code></td>
+  <td>String - Parameter to setup free trial periods</td>
+  <td>"1"</td>
+  </tr>
+  <tr>
+  <td>surl<br/><code>mandatory</code></td>
+  <td>String - Success URL for transaction response</td>
+  <td>"https://www.yoursurl.com"</td>
+  </tr>
+  <tr>
+  <td>furl<br/><code>mandatory</code></td>
+  <td>String - Failure URL for transaction response</td>
+  <td>"https://www.yourfailureurl.com"</td>
+  </tr>
+  <tr>
+  <td>hash<br/><code>mandatory</code></td>
+  <td>String - SHA512 Hash for securing the transaction request. For more information, refer to <a href="#hash-calcuation" Hash calculation </a></td>
+  <td>Generated using hash formula</td>
+  </tr>
+  </tbody>
+  </table>
+  `}</HTMLBlock>
 
   <Accordion title="Hash calculation" icon="fa-code">
     If UDF parameters are defined in the hash calculation, the same UDF fields must be included in the request sent to PayU.
@@ -150,42 +169,42 @@ Submit the transaction parameters to PayU's payment gateway using the appropriat
   ```
 
   <HTMLBlock>{`
-  <table>
-      <thead>
-          <tr>
-              <th>Field</th>
-              <th>Description</th>
-              <th>Example</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>beneficiaryName</td>
-              <td>String List of Beneficiary name separated by pipe symbol (|).<br>Maximum 4 names.</td>
-              <td>"Sachin Tendulkar|Nitin Jaisingh|<br/>Somya|Nikita"</td>
-          </tr>
-          <tr>
-              <td>beneficiaryAccountNumber</td>
-              <td>String List of account numbers separated by pipe symbol (|).<br>Maximum 4 accounts.</td>
-              <td>"002001600674|<br/>00000031957292212|<br/>00000035955239352|<br/>00000035955239352"</td>
-          </tr>
-          <tr>
-              <td>beneficiaryAccountType</td>
-              <td>String List of corresponding account type separated by pipe symbol (|). Maximum 4 types in the same order as account numbers.</td>
-              <td>"SAVINGS|SAVINGS|<br/>CURRENT|CURRENT"</td>
-          </tr>
-          <tr>
-              <td>ifscCode</td>
-              <td>String List of corresponding IFSC codes separated by pipe symbol (|). Maximum 4 IFSC codes in the same order as account numbers.</td>
-              <td>"ICIC0000046|<br/>HDFC0000726|<br/>ICIC0000046|<br/>SBIN0098292"</td>
-          </tr>
-          <tr>
-              <td>verificationMode</td>
-              <td>String List of verification mode separated by pipe symbol (|). Maximum 4 modes in the same order as account numbers.</td>
-              <td>"DEBIT_CARD|NET_BANKING<br/>| |AADHAR"</td>
-          </tr>
-      </tbody>
-  </table>
+    <table>
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>beneficiaryName</td>
+                <td>String List of Beneficiary name separated by pipe symbol (|).<br>Maximum 4 names.</td>
+                <td>"Sachin Tendulkar|Nitin Jaisingh|<br/>Somya|Nikita"</td>
+            </tr>
+            <tr>
+                <td>beneficiaryAccountNumber</td>
+                <td>String List of account numbers separated by pipe symbol (|).<br>Maximum 4 accounts.</td>
+                <td>"002001600674|<br/>00000031957292212|<br/>00000035955239352|<br/>00000035955239352"</td>
+            </tr>
+            <tr>
+                <td>beneficiaryAccountType</td>
+                <td>String List of corresponding account type separated by pipe symbol (|). Maximum 4 types in the same order as account numbers.</td>
+                <td>"SAVINGS|SAVINGS|<br/>CURRENT|CURRENT"</td>
+            </tr>
+            <tr>
+                <td>ifscCode</td>
+                <td>String List of corresponding IFSC codes separated by pipe symbol (|). Maximum 4 IFSC codes in the same order as account numbers.</td>
+                <td>"ICIC0000046|<br/>HDFC0000726|<br/>ICIC0000046|<br/>SBIN0098292"</td>
+            </tr>
+            <tr>
+                <td>verificationMode</td>
+                <td>String List of verification mode separated by pipe symbol (|). Maximum 4 modes in the same order as account numbers.</td>
+                <td>"DEBIT_CARD|NET_BANKING<br/>| |AADHAR"</td>
+            </tr>
+        </tbody>
+    </table>
   `}</HTMLBlock>
 </Accordion>
 
