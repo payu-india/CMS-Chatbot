@@ -103,15 +103,6 @@ Refer to the following sections on how to integrate Registration Consent Transac
 * Customer bank account validation
 * Secure hash authentication
 
-## API Endpoints Summary
-
-| Function             | Endpoint          |
-| -------------------- | ----------------- |
-| Registration Consent | `/payment`        |
-| Recurring Payment    | `/payment`        |
-| Transaction Status   | `/verify_payment` |
-| Mandate Management   | `/manage_mandate` |
-
 <br />
 
 * <br />
