@@ -105,6 +105,4 @@ Refer to the following sections on how to integrate Registration Consent Transac
 
 <br />
 
-* <br />
-
 <br />
