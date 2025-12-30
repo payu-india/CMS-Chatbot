@@ -12,42 +12,66 @@ For Net Banking integration, you need to post transaction details to PayU with b
   Experience the end-to-end Net Banking TPV flow and instantly generate the complete code for seamless, zero-coding integration into your website
 
   <HTMLBlock>{`
-                <style>
-                .tooltip-btn {
-                    position: relative;
-                    background-color: #4CAF50;
-                    color: white;
-                    padding: 10px 20px;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-weight: bold; /* Added this line */
-                }
-                .tooltip-btn:hover::after {
-                    content: attr(data-tooltip);
-                    position: absolute;
-                    bottom: 125%;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background-color: #333;
-                    color: white;
-                    padding: 5px 10px;
-                    border-radius: 4px;
-                    white-space: nowrap;
-                    font-size: 12px;
-                    z-index: 1;
-                }
-                </style>
+                  <style>
+                  .tooltip-btn {
+                      position: relative;
+                      background-color: #4CAF50;
+                      color: white;
+                      padding: 10px 20px;
+                      border: none;
+                      border-radius: 5px;
+                      cursor: pointer;
+                      font-weight: bold; /* Added this line */
+                  }
+                  .tooltip-btn:hover::after {
+                      content: attr(data-tooltip);
+                      position: absolute;
+                      bottom: 125%;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      background-color: #333;
+                      color: white;
+                      padding: 5px 10px;
+                      border-radius: 4px;
+                      white-space: nowrap;
+                      font-size: 12px;
+                      z-index: 1;
+                  }
+                  </style>
 
-                <button onclick="window.open('https://payu.in/integrationlab/tpv', '_blank')" 
-                        class="tooltip-btn" 
-                        data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate TPV - PayU Hosted Checkout with zero coding knowledge.">
-                    Experience the flow and get the code
-                </button>
+                  <button onclick="window.open('https://payu.in/integrationlab/tpv', '_blank')" 
+                          class="tooltip-btn" 
+                          data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate TPV - PayU Hosted Checkout with zero coding knowledge.">
+                      Experience the flow and get the code
+                  </button>
   `}</HTMLBlock>
 </Callout>
 
-<br />
+**Steps to integrate**
+
+<Cards columns={4}>
+  <Card title="1. Create Transaction" href="#step-1-create-transaction-with-beneficiary-details">
+    Create transaction with beneficiary account details for validation
+
+    <br />
+  </Card>
+
+  <Card title="2. Post Parameters" href="#step-2-post-the-parameters-to-payu">
+    Post the required parameters to PayU payment endpoint
+
+    <br />
+  </Card>
+
+  <Card title="3. Check Response" href="#step-3-check-the-response-from-payu">
+    Check the transaction response from PayU
+
+    <br />
+  </Card>
+
+  <Card title="4. Verify Payment" href="#step-4-verify-the-payment">
+    Verify the payment using verify\_payment API
+  </Card>
+</Cards>
 
 ## Step 1: Create transaction with beneficiary details
 
@@ -65,77 +89,77 @@ Create a transaction by including a JSON object with beneficiary details (accoun
   | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
   <HTMLBlock>{`
-          <table class="request-parameters-table">
-            <thead>
-              <tr>
-                <th>Parameter</th>
-                <th>Description</th>
-                <th>Example</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>key<br/><code>mandatory</code></td>
-                <td><code>String</code> Merchant key provided by PayU during onboarding</td>
-                <td>JPg***r</td>
-              </tr>
-              <tr>
-                <td>txnid<br/><code>mandatory</code></td>
-                <td><code>String</code> The transaction ID is a unique reference for each order. Duplicate transaction IDs are not allowed.</td>
-                <td>ypl938459435</td>
-              </tr>
-              <tr>
-                <td>amount<br/><code>mandatory</code></td>
-                <td><code>String</code> Transaction amount</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>productinfo<br/><code>mandatory</code></td>
-                <td><code>String</code> Product description</td>
-                <td>Test Product</td>
-              </tr>
-              <tr>
-                <td>firstname<br/><code>mandatory</code></td>
-                <td><code>String</code> Customer's first name</td>
-                <td>John</td>
-              </tr>
-              <tr>
-                <td>email<br/><code>mandatory</code></td>
-                <td><code>String</code> Customer's email address</td>
-                <td>john@example.com</td>
-              </tr>
-              <tr>
-                <td>phone<br/><code>mandatory</code></td>
-                <td><code>String</code> Customer's phone number</td>
-                <td>9999999999</td>
-              </tr>
-              <tr>
-                <td>beneficiarydetail<br/><code>mandatory</code></td>
-                <td><code>String</code> JSON object that contains account numbers and corresponding IFSC codes (max 4 accounts) in the same order</td>
-                <td>Refer to <a href="#beneficiarydetail-json-object-fields">beneficiarydetail JSON Object Fields</a></td>
-              </tr>
-              <tr>
-                <td>surl<br/><code>mandatory</code></td>
-                <td><code>String</code> Success URL - PayU will make a POST request with transaction response to this URL if the transaction is successful</td>
-                <td>https://www.yoursurl.com</td>
-              </tr>
-              <tr>
-                <td>furl<br/><code>mandatory</code></td>
-                <td><code>String</code> Failure URL - PayU will make a POST request with transaction response to this URL if the transaction fails</td>
-                <td>https://www.yourfurl.com</td>
-              </tr>
-              <tr>
-                <td>api_version<br/><code>mandatory</code></td>
-                <td><code>String</code> Version of the API</td>
-                <td>6</td>
-              </tr>
-              <tr>
-                <td>hash<br/><code>mandatory</code></td>
-                <td><code>String</code> SHA512 hash calculated using the formula:<br/>sha512(key|txnid|amount|productinfo|firstname|<br/>email|udf1|udf2|udf3|udf4|udf5||||||<br/>beneficiarydetail|SALT)</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="request-parameters-table">
+              <thead>
+                <tr>
+                  <th>Parameter</th>
+                  <th>Description</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>key<br/><code>mandatory</code></td>
+                  <td><code>String</code> Merchant key provided by PayU during onboarding</td>
+                  <td>JPg***r</td>
+                </tr>
+                <tr>
+                  <td>txnid<br/><code>mandatory</code></td>
+                  <td><code>String</code> The transaction ID is a unique reference for each order. Duplicate transaction IDs are not allowed.</td>
+                  <td>ypl938459435</td>
+                </tr>
+                <tr>
+                  <td>amount<br/><code>mandatory</code></td>
+                  <td><code>String</code> Transaction amount</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td>productinfo<br/><code>mandatory</code></td>
+                  <td><code>String</code> Product description</td>
+                  <td>Test Product</td>
+                </tr>
+                <tr>
+                  <td>firstname<br/><code>mandatory</code></td>
+                  <td><code>String</code> Customer's first name</td>
+                  <td>John</td>
+                </tr>
+                <tr>
+                  <td>email<br/><code>mandatory</code></td>
+                  <td><code>String</code> Customer's email address</td>
+                  <td>john@example.com</td>
+                </tr>
+                <tr>
+                  <td>phone<br/><code>mandatory</code></td>
+                  <td><code>String</code> Customer's phone number</td>
+                  <td>9999999999</td>
+                </tr>
+                <tr>
+                  <td>beneficiarydetail<br/><code>mandatory</code></td>
+                  <td><code>String</code> JSON object that contains account numbers and corresponding IFSC codes (max 4 accounts) in the same order</td>
+                  <td>Refer to <a href="#beneficiarydetail-json-object-fields">beneficiarydetail JSON Object Fields</a></td>
+                </tr>
+                <tr>
+                  <td>surl<br/><code>mandatory</code></td>
+                  <td><code>String</code> Success URL - PayU will make a POST request with transaction response to this URL if the transaction is successful</td>
+                  <td>https://www.yoursurl.com</td>
+                </tr>
+                <tr>
+                  <td>furl<br/><code>mandatory</code></td>
+                  <td><code>String</code> Failure URL - PayU will make a POST request with transaction response to this URL if the transaction fails</td>
+                  <td>https://www.yourfurl.com</td>
+                </tr>
+                <tr>
+                  <td>api_version<br/><code>mandatory</code></td>
+                  <td><code>String</code> Version of the API</td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <td>hash<br/><code>mandatory</code></td>
+                  <td><code>String</code> SHA512 hash calculated using the formula:<br/>sha512(key|txnid|amount|productinfo|firstname|<br/>email|udf1|udf2|udf3|udf4|udf5||||||<br/>beneficiarydetail|SALT)</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
   `}</HTMLBlock>
 
   > 📘 Hash calculation
