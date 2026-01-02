@@ -40,38 +40,38 @@ This section describes how to set up a Payment Consent or Registration transacti
   Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                  <style>
-                  .tooltip-btn {
-                      position: relative;
-                      background-color: #4CAF50;
-                      color: white;
-                      padding: 10px 20px;
-                      border: none;
-                      border-radius: 5px;
-                      cursor: pointer;
-                      font-weight: bold; /* Added this line */
-                  }
-                  .tooltip-btn:hover::after {
-                      content: attr(data-tooltip);
-                      position: absolute;
-                      bottom: 125%;
-                      left: 50%;
-                      transform: translateX(-50%);
-                      background-color: #333;
-                      color: white;
-                      padding: 5px 10px;
-                      border-radius: 4px;
-                      white-space: nowrap;
-                      font-size: 12px;
-                      z-index: 1;
-                  }
-                  </style>
+                    <style>
+                    .tooltip-btn {
+                        position: relative;
+                        background-color: #4CAF50;
+                        color: white;
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-weight: bold; /* Added this line */
+                    }
+                    .tooltip-btn:hover::after {
+                        content: attr(data-tooltip);
+                        position: absolute;
+                        bottom: 125%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: #333;
+                        color: white;
+                        padding: 5px 10px;
+                        border-radius: 4px;
+                        white-space: nowrap;
+                        font-size: 12px;
+                        z-index: 1;
+                    }
+                    </style>
 
-                  <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
-                          class="tooltip-btn" 
-                          data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
-                      Experience the flow and get the code
-                  </button>
+                    <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
+                            class="tooltip-btn" 
+                            data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
+                        Experience the flow and get the code
+                    </button>
   `}</HTMLBlock>
 </Callout>
 
@@ -278,7 +278,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 
       <td style={{ textAlign: "left" }}>
         This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.
-        <br/><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections: <br/>- <a href="ref:manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a> <br/>- <a href="ref:api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a>
+        <br/><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections: <br/>- <a href="https://docs.payu.in/docs/manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a> <br/>- <href="https://docs.payu.in/docs/api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a>
       </td>
 
       <td style={{ textAlign: "left" }}>
