@@ -38,7 +38,7 @@ For more information on how to create a SKU-based offer, refer to [Create a SKU-
 
 To configure SKU-based offers on Shopify:
 
-1. Download SKUs IDs from Shopify. For more information, refer to [Download SKUs IDs from Shopify](doc:download-skus-ids-from-shopify).
+1. Download SKUs IDs from Shopify. For more information, refer to [Download SKUs IDs from Shopify](doc:#download-skus-ids-from-shopify).
 2. Create any SKU based offer on PayU dashboard. For more information, refer to [Create a SKU-Based Offer](doc:create-a-sku-based-offer). 
 
 > 📘 Note:
