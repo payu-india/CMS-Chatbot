@@ -38,7 +38,7 @@ The PayU Loyalty Edge integrates loyalty points into transaction processes, enab
 To launch a loyalty campaign using PayU Dashboard:
 
 1. [Enable Loyalty Edge](doc:enable-loyalty-edge)
-2. [Set up a Loyalty](doc:set-up-loyalty)
-3. [Create a New Campaign](doc:create-a-new-campaign)
+2. [Set up a Loyalty](https://docs.payu.in/docs/launch-loyalty-program-using-dashboard/#step-1-setup-loyalty)
+3. [Create a New Campaign](https://docs.payu.in/docs/launch-loyalty-program-using-dashboard/#step-2-create-a-new-campaign)
 
-After you create a campaign, you can update the campaign details. For more information, refer to [Manage Loyalty Edge Campaigns](doc:manage-loyalty-edge-campaigns)
+After you create a campaign, you can update the campaign details. For more information, refer to [Manage Loyalty Edge Campaigns](https://docs.payu.in/docs/launch-loyalty-program-using-dashboard/#manage-loyalty-edge-campaigns)
