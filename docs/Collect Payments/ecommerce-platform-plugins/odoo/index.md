@@ -31,4 +31,6 @@ The PayU India plugin for Odoo allows store owners to accept online payments sec
 
 ## Before You Begin
 
-You’ll need to register for a PayU merchant account before starting the integration. For more details, refer to [Register for a Merchant Account](https://www.payu.in/merchant-signup).
+You’ll need to register for a PayU merchant account before starting the integration. For more details, refer to <Anchor label="Register for a Merchant Account" target="_blank" href="https://onboarding.payu.in/app/account/signup">Register for a Merchant Account</Anchor>.
+
+<br />
