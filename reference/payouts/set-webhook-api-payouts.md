@@ -19,7 +19,7 @@ You can configure webhooks using PayU Dashboard too. For more information, check
 
 ## Request header parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -90,7 +90,7 @@ You can configure webhooks using PayU Dashboard too. For more information, check
 
 ## Request Parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -115,11 +115,11 @@ You can configure webhooks using PayU Dashboard too. For more information, check
       </td>
 
       <td>
-        Configure the webhooks for different type of events. The event can be any of the following:
+        Configure the webhooks for different type of events. 
       </td>
 
       <td>
-        transfer\_reversed
+        transfer_reversed
       </td>
     </tr>
 
