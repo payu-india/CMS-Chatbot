@@ -16,14 +16,10 @@ The **pre_authorize** parameter is used to pre-authorize Debit Card payments usi
 <Cards columns={2}>
   <Card title="1. Post the Pre-Auth Transaction Request" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-1-post-the-pre-auth-transaction-request">
     Submit the pre-authorization transaction request to PayU for payment hold
-
-    <br />
   </Card>
 
   <Card title="2. Check the Response from PayU" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-2-check-the-response-from-payu">
     Handle and process the response received from PayU after pre-auth request submission
-
-    <br />
   </Card>
 
   <Card title="3. Capture a Pre-Authorized Payment" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-3-capture-a-pre-authorized-payment">
@@ -33,7 +29,6 @@ The **pre_authorize** parameter is used to pre-authorize Debit Card payments usi
   <Card title="4. Check Action Status" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-4-check-action-status">
     Verify the status of the capture action and confirm transaction completion
 
-    <br />
   </Card>
 </Cards>
 
