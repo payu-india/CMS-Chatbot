@@ -133,7 +133,7 @@ To pause an existing offer:
 
 ## Resume a Paused Offer
 
-If you had paused an offer as described in [Pause an Offer](#pause-an-offer), you can resume it as described in this section when required.
+If you had paused an offer as described in [Pause an Offer](https://docs.payu.in/docs/manage-offers/#pause-an-offer), you can resume it as described in this section when required.
 
 To resume a paused offer:
 
@@ -173,7 +173,7 @@ To clone an existing offer:
 
 ## Deactivate an Offer
 
-When you want to deactivate an offer due to some unavoidable reasons, you can deactivate an offer as described in this section. If you want to pause an offer temporarily, refer to [Pause an Offer](doc:pause-an-offer).
+When you want to deactivate an offer due to some unavoidable reasons, you can deactivate an offer as described in this section. If you want to pause an offer temporarily, refer to [Pause an Offer](https://docs.payu.in/docs/manage-offers/pause-an-offer).
 
 To deactivate an existing offer:
 
