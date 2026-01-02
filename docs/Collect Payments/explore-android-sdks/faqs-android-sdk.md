@@ -147,11 +147,11 @@ CustomBrowser Configuration is the process of configuring the PayU Mobile Androi
 
 * **How can I configure the PayU Mobile Android SDK to use a CustomBrowser?**
 
-To configure the PayU Mobile Android SDK to use a custom browser, you need to implement the CustomBrowser class and configure the SDK to use this class for payment processing. For more information, refer to [Integration with CustomBrowser](https://docs.payu.in/docs/android-custombrowser-integration-steps).
+To configure the PayU Mobile Android SDK to use a custom browser, you need to implement the CustomBrowser class and configure the SDK to use this class for payment processing. For more information, refer to [Integration with CustomBrowser](https://docs.payu.in/docs/integration-steps-android-customer-browser).
 
 * **What are the advantages of using a CustomBrowser for payment processing?**
 
-Using a custom browser for payment processing provides a more seamless payment experience for the user, as the payment screens can be customized to match the look and feel of the app. For more information, refer to [Integration with CustomBrowser](https://docs.payu.in/docs/custom-browser-sdk#/).
+Using a custom browser for payment processing provides a more seamless payment experience for the user, as the payment screens can be customized to match the look and feel of the app. For more information, refer to [Integration with CustomBrowser](https://docs.payu.in/docs/custom-browser-sdk/).
 
 * **How does the CustomBrowser affect the security of payment processing?**
 
@@ -319,7 +319,7 @@ PayU Android SDK supports PhonePe transactions for making payments, requesting p
 
 * **What is the difference between PayU CheckoutPro and Non-Seamless?**
 
-**PayU CheckoutPro** and **Non-Seamless** integration are the same. For more information, refer to the (Explore Android SDKs)[https://docs.payu.in/docs/explore-android-sdks/]
+**PayU CheckoutPro** and **Non-Seamless** integration are the same. For more information, refer to the (Explore Android SDKs)[[https://docs.payu.in/docs/explore-android-sdks/](https://docs.payu.in/docs/explore-android-sdks/)]
 
 * **Why do we need so many hashes?**
 
