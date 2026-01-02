@@ -137,7 +137,7 @@ The React Native UPI SDK integration involves the following steps:
   }
   ```
 
-  For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/ios-standing-instructions-parameters).
+  For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](doc:ios-standing-instructions-parameters).
 
   ***
 </Accordion>
@@ -156,7 +156,7 @@ The React Native UPI SDK integration involves the following steps:
   }
   ```
 
-  For hash generation logic refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk).
+  For hash generation logic refer to [Generate Hash](doc:hash-generation-for-checkoutpro-sdk).
 
   <Callout icon="📘" theme="info">
     **Note**: You must always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
