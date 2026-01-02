@@ -27,14 +27,10 @@ This section describes what is Native OTP flow with benefits and how to implemen
 <Cards columns={3}>
   <Card title="1. Check the BNPL Eligibility" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-1-check-the-bnpl-eligibility">
     Verify customer eligibility for Buy Now Pay Later options using PayU hosted checkout
-
-    <br />
   </Card>
 
   <Card title="2. Initiate the Payment" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-2-initiate-the-payment">
     Start the payment process using PayU hosted checkout integration with offers
-
-    <br />
   </Card>
 
   <Card title="3. Check the Response from PayU" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-3-check-the-response-from-payu">
@@ -43,8 +39,6 @@ This section describes what is Native OTP flow with benefits and how to implemen
 
   <Card title="4. Submit the OTP" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-4-submit-the-otp">
     Submit and validate OTP for authentication in the BNPL payment flow
-
-    <br />
   </Card>
 
   <Card title="5. Verify the Payment" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-5-verify-the-payment">
