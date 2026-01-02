@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-You can accept Cash on Delivery (COD) payments for your store on Shopify and account them using the CommercePro COD app.  To install the CommercePro COD app, refer to [Install CommercePro COD App](doc:install-commercepro-cod-app-shopify)
+You can accept Cash on Delivery (COD) payments for your store on Shopify and account them using the CommercePro COD app.  To install the CommercePro COD app, refer to [Install CommercePro COD App](doc:install-commercepro-checkout-app)
 
 ## Use cases
 
