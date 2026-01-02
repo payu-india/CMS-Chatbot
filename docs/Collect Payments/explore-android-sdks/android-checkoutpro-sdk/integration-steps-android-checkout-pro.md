@@ -130,8 +130,6 @@ To initiate a payment, your app must send transactional information to the Check
       .build()  
   ```
 
-  For parameter descriptions and sample values, refer to [Payment Params Definition](https://docs.payu.in/docs/android-checkoutpro-integration-steps#step-35-payment-param-definitions) .
-
   > 📘 Important:
   >
   > * The URLs used in surl and furl are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed. For more information, refer to [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
