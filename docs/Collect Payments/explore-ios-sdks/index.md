@@ -210,14 +210,14 @@ PayU uses hash-based verification for security. **Hash must be generated on your
 
 Based on your requirements, select the appropriate SDK:
 
-| Your Requirement                  | Recommended SDK                                               | Integration Effort | Time Estimate |
-| --------------------------------- | ------------------------------------------------------------- | ------------------ | ------------- |
-| Fastest integration, pre-built UI | [Checkout Pro SDK](doc:ios-checkoutpro-sdk)                   | Low                | ~2-3 days     |
-| Full UI customization             | [Core SDK](doc:ios-core-sdk)                                  | Medium             | ~1-2 weeks    |
-| UPI payments only                 | [UPI SDK](docs:ios-upi-sdk)                                   | Low                | ~1-2 days     |
-| Improved card success rates       | Core SDK + [Native OTP Assist](doc:ios-native-otp-assist-sdk) | Medium             | ~1 week       |
-| One-click UPI payments            | [UPI Bolt SDK](doc:payu-upi-bolt-sdk-ios)                     | Low                | ~1-2 days     |
-| Native 3D Secure experience       | [3DS 2.0 SDK]doc:ios-3ds-sdk)                                 | Medium             | ~3-5 days     |
+| Your Requirement                  | Recommended SDK                                               | Integration Effort |
+| --------------------------------- | ------------------------------------------------------------- | ------------------ |
+| Fastest integration, pre-built UI | [Checkout Pro SDK](doc:ios-checkoutpro-sdk)                   | Low                |
+| Full UI customization             | [Core SDK](doc:ios-core-sdk)                                  | Medium             |
+| UPI payments only                 | [UPI SDK](docs:ios-upi-sdk)                                   | Low                |
+| Improved card success rates       | Core SDK + [Native OTP Assist](doc:ios-native-otp-assist-sdk) | Medium             |
+| One-click UPI payments            | [UPI Bolt SDK](doc:payu-upi-bolt-sdk-ios)                     | Low                |
+| Native 3D Secure experience       | [3DS 2.0 SDK]doc:ios-3ds-sdk)                                 | Medium             |
 
 ## 6. Webhook Setup
 
