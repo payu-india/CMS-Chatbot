@@ -27,11 +27,11 @@ PayU offers various iOS SDKs that each serve a unique use case. Before you begin
 ## 1. Account Setup
 
 <Accordion title="Register and Activate Your PayU Account" icon="fa-user-plus">
-  | Step | Action                                 | Link                                                            |
-  | ---- | -------------------------------------- | --------------------------------------------------------------- |
-  | 1    | Register for a PayU Merchant Account   | [Register](/docs/register-for-a-merchant-account)               |
-  | 2    | Complete KYC and activate your account | [Activate Account](doc:activate-account)                      |
-  | 3    | Access your Test Merchant Key and Salt | [Get Test Credentials]doc:access-test-merchant-key-and-salt) |
+  | Step | Action                                 | Link                                                          |
+  | ---- | -------------------------------------- | ------------------------------------------------------------- |
+  | 1    | Register for a PayU Merchant Account   | [Register](doc:register-for-a-merchant-account)             |
+  | 2    | Complete KYC and activate your account | [Activate Account](doc:complete-your-kyc)                      |
+  | 3    | Access your Test Merchant Key and Salt | \[Get Test Credentials]doc:access-test-merchant-key-and-salt) |
 
   <Callout icon="⚠️" theme="warn">
     **Important:** Never use production credentials during development. Always use test credentials until you're ready for go-live.
@@ -210,14 +210,14 @@ PayU uses hash-based verification for security. **Hash must be generated on your
 
 Based on your requirements, select the appropriate SDK:
 
-| Your Requirement                  | Recommended SDK                                                 | Integration Effort | Time Estimate |
-| --------------------------------- | --------------------------------------------------------------- | ------------------ | ------------- |
+| Your Requirement                  | Recommended SDK                                               | Integration Effort | Time Estimate |
+| --------------------------------- | ------------------------------------------------------------- | ------------------ | ------------- |
 | Fastest integration, pre-built UI | [Checkout Pro SDK](doc:ios-checkoutpro-sdk)                   | Low                | ~2-3 days     |
 | Full UI customization             | [Core SDK](doc:ios-core-sdk)                                  | Medium             | ~1-2 weeks    |
-| UPI payments only                 | [UPI SDK](docs:ios-upi-sdk)                                    | Low                | ~1-2 days     |
+| UPI payments only                 | [UPI SDK](docs:ios-upi-sdk)                                   | Low                | ~1-2 days     |
 | Improved card success rates       | Core SDK + [Native OTP Assist](doc:ios-native-otp-assist-sdk) | Medium             | ~1 week       |
 | One-click UPI payments            | [UPI Bolt SDK](doc:payu-upi-bolt-sdk-ios)                     | Low                | ~1-2 days     |
-| Native 3D Secure experience       | [3DS 2.0 SDK]doc:ios-3ds-sdk)                                | Medium             | ~3-5 days     |
+| Native 3D Secure experience       | [3DS 2.0 SDK]doc:ios-3ds-sdk)                                 | Medium             | ~3-5 days     |
 
 ## 6. Webhook Setup
 
