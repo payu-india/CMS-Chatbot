@@ -29,7 +29,9 @@ PayU's UPI SDK is a framework for integrating UPI payments in your app in an eas
 
 * Intent payments* (Make UPI payments by transitioning users from your app to UPI app like Google Pay/PhonePe )
 
-> **Note**: 'intent' as in Android, not in iOS. Using this word here due to its widespread understanding across domains.)
+<Callout icon="📘" theme="info">
+  **Note**: 'intent' as in Android, not in iOS. Using this word here due to its widespread understanding across domains.)
+</Callout>
 
 * UPI Collect Payments.
 * Google Pay fallback options (If Google Pay is not installed on iOS device). It can use Google Pay registered mobile number instead of VPA for UPI collect payments.
@@ -359,8 +361,7 @@ Hassle-free integration
 </Accordion>
 
 <Accordion title="Test the Integration and Go-live" icon="fa-code">
+  <IOS_Test_the_Integration />
 
-<IOS_Test_the_Integration />
-
-<IOS_Go_Live />
+  <IOS_Go_Live />
 </Accordion>
