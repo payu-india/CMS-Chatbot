@@ -19,4 +19,4 @@ The following APIs are used to create or update the status/expiry of payment lin
 
 > 📘 Note:
 >
-> All the above APIs must be used with a bearer token that must be generated using the [Get Token API](ref:get-token-api-payment-links), where the scope must be specified as indicated.  The[Revoke Token API](ref:revoke-token-api-payment-links)must be used to revoke or cancel the token.
+> All the above APIs must be used with a bearer token that must be generated using the <Anchor label="Get Token API" target="_blank" href="https://docs.payu.in/reference/generate-token-using-private-client-id">Get Token API</Anchor>, where the scope must be specified as indicated.  The[Revoke Token API](ref:revoke-token-api-payment-links)must be used to revoke or cancel the token.
