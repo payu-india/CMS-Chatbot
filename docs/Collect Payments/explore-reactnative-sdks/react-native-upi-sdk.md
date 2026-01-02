@@ -263,7 +263,7 @@ The React Native UPI SDK integration involves the following steps:
 </Accordion>
 
 <Accordion title="Step 7: Make payment" icon="fa-code">
-  <Accordion title="(Launch with Activity)" icon="fa-code">
+  <Accordion title="Launch with Activity" icon="fa-code">
     Use the code snippet mentioned below to make the payment:
 
     ```Text React.js
@@ -278,7 +278,7 @@ The React Native UPI SDK integration involves the following steps:
     ```
   </Accordion>
 
-  <Accordion title="(Launch with Fragment)" icon="fa-code">
+  <Accordion title="Launch with Fragment" icon="fa-code">
     Use the code snippet mentioned below to make the payment:
 
     ```Text React Native
