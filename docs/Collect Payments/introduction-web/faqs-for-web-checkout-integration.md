@@ -138,7 +138,7 @@ Yes, you can enforce payment modes with PayU Hosted Checkout integration. For mo
 
   The endpoint for PayUMoney or PayU remains the same, that is:
 
-  [https://secure.payu.in/\_payment](https://secure.payu.in/_payment)
+  [https://secure.payu.in/_payment](https://secure.payu.in/_payment)
 
 * **I migrated from PayUMoney to PayU and I am getting the payment failed error in the response with the following request parameters:**
 
@@ -147,7 +147,7 @@ Yes, you can enforce payment modes with PayU Hosted Checkout integration. For mo
 
 You need to remove the ‘**one_click_checkout’=>1**‘ parameter and its value (on Line 11) from the request as it is applicable only for PayUMoney only. For more information on the request parameters, refer to any of the following based on the integration:
 
-* [Integration Steps for PayU Hosted Checkout](doc:integrate-with-payu-hosted-checkout)
+* [Integration Steps for PayU Hosted Checkout](doc:prebuilt-checkout-page-integration)
 
 * [Custom Checkout](doc:custom-checkout-merchant-hosted)
 
@@ -192,9 +192,9 @@ You must the following endpoint or environment for the **Verify Payment** API:
 
   Check whether you are using the **Production** endpoint for Production Key and Salt. For PayU Hosted or Merchant Hosted integrations, you have to use the following endpoints with **_payment** API:
 
-| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
-| -------------------------- | ------------------------------------------------------------------- |
-| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
+| -------------------------- | ------------------------------------------------------------------ |
+| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
 If the Key and Salt are still not working, contact your KAM or raise a ticket with PayU support on [help.payu.in](https://help.payu.in/).
 
@@ -228,8 +228,8 @@ If the Key and Salt are still not working, contact your KAM or raise a ticket wi
 
   HTTP response code: 400
 
-| curl -X POST "[\<[https://test.payu.in/\_payment](https://test.payu.in/_payment)>] -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=c52cfa446d&amount=253.00&productinfo=rbl&firstname=ashish&email=[ashish@gmail.com](mailto:ashish@gmail.com)&phone=9876543210&txn_s2s_flow=4&lastname=kumar&surl=\<[https://apiplayground-response.herokuapp.com/\&furl=https://apiplayground-response.herokuapp.com/\&hash=6935fd3653463af23cf90363e5bfafde89cc403f54f6d6e958fcfcfd9b4a03c87c2c76630b04c3238ed297cbdb9c58932154188b85987c0f9bc3f0862e836a22\&enforce\_paymethod=netbanking](https://apiplayground-response.herokuapp.com/\&furl=https://apiplayground-response.herokuapp.com/\&hash=6935fd3653463af23cf90363e5bfafde89cc403f54f6d6e958fcfcfd9b4a03c87c2c76630b04c3238ed297cbdb9c58932154188b85987c0f9bc3f0862e836a22\&enforce_paymethod=netbanking) | UPI&s2s_client_ip=0:0:0:0:0:0:0:1&s2s_device_info=PostmanRuntime/7.29.2&salt_version=1>" |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
+| curl -X POST "[\<[https://test.payu.in/_payment](https://test.payu.in/_payment)>] -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=c52cfa446d&amount=253.00&productinfo=rbl&firstname=ashish&email=[ashish@gmail.com](mailto:ashish@gmail.com)&phone=9876543210&txn_s2s_flow=4&lastname=kumar&surl=\<[https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6935fd3653463af23cf90363e5bfafde89cc403f54f6d6e958fcfcfd9b4a03c87c2c76630b04c3238ed297cbdb9c58932154188b85987c0f9bc3f0862e836a22&enforce_paymethod=netbanking](https://apiplayground-response.herokuapp.com/\&furl=https://apiplayground-response.herokuapp.com/\&hash=6935fd3653463af23cf90363e5bfafde89cc403f54f6d6e958fcfcfd9b4a03c87c2c76630b04c3238ed297cbdb9c58932154188b85987c0f9bc3f0862e836a22\&enforce_paymethod=netbanking) | UPI&s2s_client_ip=0:0:0:0:0:0:0:1&s2s_device_info=PostmanRuntime/7.29.2&salt_version=1>" |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
 
 You must remove the **txn_s2s_flow=4** parameter from the payment request. The **txn_s2s_flow** parameter must be used only for Seamless integration (Merchant Hosted or S2S Integration).
 
