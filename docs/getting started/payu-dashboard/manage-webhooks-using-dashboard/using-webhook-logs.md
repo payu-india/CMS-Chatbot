@@ -1,7 +1,7 @@
 ---
 title: Using Webhook Logs
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -33,5 +33,3 @@ The tabulated webhooks logs on the right-pane displays:
 * Check the **Response Code** for clues (e.g., `500` indicates a server error).
 * Ensure your webhook endpoint is reachable and responds within the required timeout.
 * Retry failed webhooks manually if supported.
-
-
