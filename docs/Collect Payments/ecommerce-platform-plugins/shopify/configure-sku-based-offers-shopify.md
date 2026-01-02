@@ -47,8 +47,7 @@ To configure SKU-based offers on Shopify:
 
 <Image align="center" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/05/Screenshot-2022-05-26-at-11.20.54-AM-875x1024.png" className="border" />
 
-3. Configure webhooks to get the status of SKU-based offers. For more information, refer to [Configure Checkout SKU-Based Offers Webhooks](doc:configure-checkout-sku-offers-webhooks-for-shopify).
-4. You can do reconciliation :
+3. You can do reconciliation :
    * Integrate with **Verify Payment API** for reconciliation. For refer to [Verify Payment API](ref:verify_payment_api).
    * To manually reconcile, refer to [Reconcile Shopify Transactions](doc:reconcile-shopify-transactions).
 
