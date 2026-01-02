@@ -73,9 +73,9 @@ Click the **Subscriptions** sub-tab on this screen to view and download all the 
 
 You can use the following button at the top-left to manage the payment link:
 
-* **Deactivate Link**: For more information, refer to [Deactivate a Subscription Payment Link](doc:#deactivate-a-subscription-payment-link).
-* **Duplicate Link**: For more information, refer to [Duplicate a Subscription Payment Link](doc:#duplicate-a-subscription-payment-link)
-* **Share**: For more information, refer to [Share a Subscription Payment Link](doc:#share-a-subscription-payment-link).
+* **Deactivate Link**: For more information, refer to [Deactivate a Subscription Payment Link](doc:#deactivate-a-payment-link).
+* **Duplicate Link**: For more information, refer to [Duplicate a Subscription Payment Link](doc:#duplicate-a-payment-link)
+* **Share**: For more information, refer to [Share a Subscription Payment Link](doc:#share-a-payment-link).
 
 ## Deactivate a Payment Link
 
