@@ -27,7 +27,7 @@ You can accept Cash on Delivery (COD) payments for your store on Shopify and acc
 * In-house AI model for RTO intelligence to limit COD based on multiple parameters such as cart value, user phone number, pin-code, SKUs added etc.
 
 <Callout icon="📘" theme="info">
-  **Reference**: To configure the RTO settings, refer to [Configure RTO Settings](#configure-rto-settings-shopify-cod).
+  **Reference**: To configure the RTO settings, refer to [Configure RTO Settings](https://docs.payu.in/update/docs/commercepro-cod-app-shopify/#configure-rto-settings-shopify-cod).
 </Callout>
 
 ## Install CommercePro COD App
