@@ -29,7 +29,7 @@ PayU offers various iOS SDKs that each serve a unique use case. Before you begin
 <Accordion title="Register and Activate Your PayU Account" icon="fa-user-plus">
   | Step | Action                                 | Link                                                          |
   | ---- | -------------------------------------- | ------------------------------------------------------------- |
-  | 1    | Register for a PayU Merchant Account   | [Register](doc:register-for-a-merchant-account-on-dashboard)               |
+  | 1    | Register for a PayU Merchant Account   | [Register](doc:register-for-a-merchant-account-on-dashboard)  |
   | 2    | Complete KYC and activate your account | [Activate Account](doc:complete-your-kyc)                     |
   | 3    | Access your Test Merchant Key and Salt | [Get Test Credentials](doc:access-test-merchant-key-and-salt) |
 
@@ -241,7 +241,7 @@ Configure webhooks to receive real-time payment notifications.
   5. Save and note the webhook secret for verification
 
   <Callout icon="📘" theme="info">
-    **Note:** For detailed webhook setup, refer to [Webhooks for Payments](/docs/webhooks-for-payments).
+    **Note:** For detailed webhook setup, refer to [Webhooks for Payments](doc:webhooks-for-payments).
   </Callout>
 </Accordion>
 
@@ -257,7 +257,7 @@ Here is a comparison table that summarizes the key features of the different SDK
 
 | SDK                                                                  | Features                                                                                                                                                                                                                             | Use Case                                                                                           |
 | :------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------- |
-| [iOS CheckoutPro SDK](https://docs.payu.in/docs/ios-checkoutpro-sdk) | Complete ready-to-use native checkout UI allows you to get started quickly with minimal effort. This SDK is a great choice for small and medium sized businesses that operates on limited tech resource.                             | \| **Low Effort Integration**, \| **Non-Seamless Checkout** \| **Limited Tech** \| **Resource** \| |
+| [iOS CheckoutPro SDK](doc:ios-checkoutpro-sdk) | Complete ready-to-use native checkout UI allows you to get started quickly with minimal effort. This SDK is a great choice for small and medium sized businesses that operates on limited tech resource.                             | \| **Low Effort Integration**, \| **Non-Seamless Checkout** \| **Limited Tech** \| **Resource** \| |
 | [iOS Core SDK](doc:ios-core-sdk)                                     | Create your own UI for the payment flow by leveraging various methods exposed in the Core SDK. This SDK is more suitable for larger enterprises that can allocate dedicated engineering resource to develop customised payment flow. | \| **Seamless Checkout** \| **Medium Effort** \|  **Enterprise Businesses** \|                     |
 | [iOS UPI SDK](doc:ios-upi-sdk)                                       | This SDK best suited for creating a custom payment UI for UPI only checkout.                                                                                                                                                         | **Low Effort Integration**\|**UPI Checkout**                                                       |
 | [iOS Ola Money SDK](doc:ios-olamoney-sdk)                            | Allows you to integrate OlaMoney payments into your iOS app.                                                                                                                                                                         | **Low Effort Integration**\|**OlaMoney Checkout**                                                  |
@@ -270,5 +270,5 @@ Here is a comparison table that summarizes the key features of the different SDK
 
 Once you've completed the prerequisites above, proceed with your chosen SDK integration:
 
-1. **[Integrate Checkout Pro SDK](https://docs.payu.in/docs/ios-checkoutpro-sdk)** - For quick, ready-to-use checkout
-2. **[Integrate Core SDK](https://docs.payu.in/docs/ios-core-sdk)** - For custom payment flows
+1. **[Integrate Checkout Pro SDK](doc:ios-checkoutpro-sdk)** - For quick, ready-to-use checkout
+2. **[Integrate Core SDK](doc:ios-core-sdk)** - For custom payment flows
