@@ -117,7 +117,7 @@ After you update the basic details of the offer, you can check the audit trials 
 
 ## Pause an Offer
 
-You can pause an offer temporarily for customers and resume it back when required. If you want to deactivate the offer permanently for your customers, refer to [Deactivate an Offer](doc:deactivate-an-offer).
+You can pause an offer temporarily for customers and resume it back when required. If you want to deactivate the offer permanently for your customers, refer to [Deactivate an Offer](https://docs.payu.in/docs/manage-offers/#deactivate-an-offer).
 
 To pause an existing offer:
 
