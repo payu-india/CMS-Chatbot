@@ -30,16 +30,16 @@ The steps to integrate involves:
 The following parameters (mandatory) must be posted using any of the following seamless integration and refer to the corresponding section of [Web Checkout Integration](doc:introduction-web) documentation for the complete list of parameters to be posted:
 
 * [Merchant Hosted Checkout > Cards](doc:collect-payments-with-cards-seamless)
-* [Server-to-Server > General Integration](doc:integration-with-s2s)
+* [Server-to-Server > General Integration](doc:integrate-with-s2s)
 
 ### Request parameters
 
 **Environment**
 
-|                            |                                                                         |
-| :------------------------- | :---------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
+|                            |                                                                        |
+| :------------------------- | :--------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -389,7 +389,7 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        The LRS service type decides the tax amount based on the nature of business. For more information, refer to the [lrs\_service\_type parameter values](#lrs_service_type-parameter-values) table.
+        The LRS service type decides the tax amount based on the nature of business. For more information, refer to the [lrs_service_type parameter values](#lrs_service_type-parameter-values) table.
       </td>
 
       <td>
