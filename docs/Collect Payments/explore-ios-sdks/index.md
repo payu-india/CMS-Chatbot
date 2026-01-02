@@ -30,8 +30,8 @@ PayU offers various iOS SDKs that each serve a unique use case. Before you begin
   | Step | Action                                 | Link                                                            |
   | ---- | -------------------------------------- | --------------------------------------------------------------- |
   | 1    | Register for a PayU Merchant Account   | [Register](/docs/register-for-a-merchant-account)               |
-  | 2    | Complete KYC and activate your account | [Activate Account](/docs/activate-account)                      |
-  | 3    | Access your Test Merchant Key and Salt | [Get Test Credentials](/docs/access-test-merchant-key-and-salt) |
+  | 2    | Complete KYC and activate your account | [Activate Account](doc:activate-account)                      |
+  | 3    | Access your Test Merchant Key and Salt | [Get Test Credentials]doc:access-test-merchant-key-and-salt) |
 
   <Callout icon="⚠️" theme="warn">
     **Important:** Never use production credentials during development. Always use test credentials until you're ready for go-live.
@@ -54,7 +54,7 @@ PayU offers various iOS SDKs that each serve a unique use case. Before you begin
 <Accordion title="Minimum System Requirements" icon="fa-desktop">
   | Requirement               | Minimum Version | Recommended |
   | ------------------------- | --------------- | ----------- |
-  | **Xcode**                 | 16.0+            | 26.0        |
+  | **Xcode**                 | 16.0+           | 26.0        |
   | **iOS Deployment Target** | iOS 13.0        | iOS 15.0+   |
   | **Swift**                 | 5.0+            | 5.7+        |
   | **macOS**                 | Sequoia 15.0    | Tahoe 26.0  |
@@ -162,16 +162,17 @@ PayU uses hash-based verification for security. **Hash must be generated on your
 </Accordion>
 
 <Accordion title="Hash Formula" icon="fa-calculator">
-**v1 Hashing**
+  **v1 Hashing**
+
   ```
   hash = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
   ```
+
   **v2 Hashing**
- ```
-    hash = SHA512(hashStringWithoutSalt | salt)
- ```
 
-
+  ```
+     hash = SHA512(hashStringWithoutSalt | salt)
+  ```
 </Accordion>
 
 <Accordion title="Sample Server-Side Code" icon="fa-code">
@@ -211,12 +212,12 @@ Based on your requirements, select the appropriate SDK:
 
 | Your Requirement                  | Recommended SDK                                                 | Integration Effort | Time Estimate |
 | --------------------------------- | --------------------------------------------------------------- | ------------------ | ------------- |
-| Fastest integration, pre-built UI | [Checkout Pro SDK](/docs/ios-checkoutpro-sdk)                   | Low                | ~2-3 days     |
-| Full UI customization             | [Core SDK](/docs/ios-core-sdk)                                  | Medium             | ~1-2 weeks    |
-| UPI payments only                 | [UPI SDK](/docs/ios-upi-sdk)                                    | Low                | ~1-2 days     |
-| Improved card success rates       | Core SDK + [Native OTP Assist](/docs/ios-native-otp-assist-sdk) | Medium             | ~1 week       |
-| One-click UPI payments            | [UPI Bolt SDK](/docs/payu-upi-bolt-sdk-ios)                     | Low                | ~1-2 days     |
-| Native 3D Secure experience       | [3DS 2.0 SDK](/docs/ios-3ds-sdk)                                | Medium             | ~3-5 days     |
+| Fastest integration, pre-built UI | [Checkout Pro SDK](doc:ios-checkoutpro-sdk)                   | Low                | ~2-3 days     |
+| Full UI customization             | [Core SDK](doc:ios-core-sdk)                                  | Medium             | ~1-2 weeks    |
+| UPI payments only                 | [UPI SDK](docs:ios-upi-sdk)                                    | Low                | ~1-2 days     |
+| Improved card success rates       | Core SDK + [Native OTP Assist](doc:ios-native-otp-assist-sdk) | Medium             | ~1 week       |
+| One-click UPI payments            | [UPI Bolt SDK](doc:payu-upi-bolt-sdk-ios)                     | Low                | ~1-2 days     |
+| Native 3D Secure experience       | [3DS 2.0 SDK]doc:ios-3ds-sdk)                                | Medium             | ~3-5 days     |
 
 ## 6. Webhook Setup
 
