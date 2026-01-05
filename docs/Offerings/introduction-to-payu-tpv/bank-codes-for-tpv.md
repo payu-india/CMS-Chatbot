@@ -44,5 +44,6 @@ The following codes must be used as the value for the <Glossary>bankcode</Glossa
 | South Indian Bank                | SIBNBTPV |
 | Standard Chartered Bank          | SCBNBTPV |
 | State Bank of India              | SBINBTPV |
+| Tamilnad Mercantile Bank         | TMBTPV   |
 | UCO Bank                         | UCONBTPV |
 | Yes Bank                         | YESNBTPV |
