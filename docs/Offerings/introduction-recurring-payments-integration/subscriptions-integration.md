@@ -30,12 +30,12 @@ PayU Subscriptions allow you to charge your customers automatically on a recurri
 
 ## Key Features
 
-- **Automated Recurring Billing**: Charge customers automatically based on predefined schedules
-- **RBI Compliance**: Fully compliant with RBI guidelines for recurring payments
-- **Smart Retry Logic**: Automatically retry failed payments with configurable schedules
-- **Flexible Billing Models**: Support for fixed, variable, and usage-based billing
-- **Comprehensive Webhooks**: Real-time notifications for all subscription events
-- **Customer Management**: Complete customer lifecycle management with payment method tokenization
+* **Automated Recurring Billing**: Charge customers automatically based on predefined schedules
+* **RBI Compliance**: Fully compliant with RBI guidelines for recurring payments
+* **Smart Retry Logic**: Automatically retry failed payments with configurable schedules
+* **Flexible Billing Models**: Support for fixed, variable, and usage-based billing
+* **Comprehensive Webhooks**: Real-time notifications for all subscription events
+* **Customer Management**: Complete customer lifecycle management with payment method tokenization
 
 ## Workflow
 
@@ -59,11 +59,11 @@ For more information, refer to [Payment Consent Transaction with Merchant Hosted
 
 **Different modes to integrate:**
 
-- **UPI Integration**: Customers are redirected to their UPI app for mandate approval through intent-based flows, providing a familiar mobile-first experience. For more information, refer to [UPI Recurring Payment Consent Transaction](ref:upi-recurring-payment-consent-transaction).
+* **UPI Integration**: Customers are redirected to their UPI app for mandate approval through intent-based flows, providing a familiar mobile-first experience. For more information, refer to [UPI Recurring Payment Consent Transaction](ref:upi-recurring-payment-consent-transaction).
 
-- **Cards Integration**: Card-based subscriptions utilize redirect flows to PayU's secure tokenization interface, ensuring PCI DSS compliance and RBI tokenization requirements. For more information, refer to [Cards Recurring Payment Consent Transaction](ref:credit-card-recurring-payment-consent-transaction).
+* **Cards Integration**: Card-based subscriptions utilize redirect flows to PayU's secure tokenization interface, ensuring PCI DSS compliance and RBI tokenization requirements. For more information, refer to [Cards Recurring Payment Consent Transaction](ref:credit-card-recurring-payment-consent-transaction).
 
-- **ENACH Integration**: Direct integration with NPCI's ENACH infrastructure enables automated mandate creation for net banking customers, supporting both physical and digital mandate workflows. For more information, refer to [Net Banking Recurring Payment Consent Transaction](ref:netbanking-recurring-payment-consent-transaction).
+* **ENACH Integration**: Direct integration with NPCI's ENACH infrastructure enables automated mandate creation for net banking customers, supporting both physical and digital mandate workflows. For more information, refer to [Net Banking Recurring Payment Consent Transaction](ref:netbanking-recurring-payment-consent-transaction).
 
 <Callout icon="📘" theme="info">
   **Note**: Once the authorization transaction is successful, PayU returns the `mihpayid`, `txnid`, and `hash`.
@@ -73,11 +73,11 @@ For more information, refer to [Payment Consent Transaction with Merchant Hosted
 
 Before proceeding to hit pre-debit/recurring payments, check the mandate status using the following APIs:
 
-| Payment Mode | API Reference |
-|--------------|---------------|
-| **Cards** | The Check Mandate Status API enables you to understand the current state of the mandate with cards at any time. Refer to [Check Mandate Status API](ref:check-mandate-status-api). |
-| **UPI Autopay** | Used to understand the current state of the UPI mandate at any time. Refer to [Get Mandate Status API (for UPI only)](ref:get-mandate-status-api-for-upi-only). |
-| **ENACH/Net Banking** | Check the Net Banking Mandate Status API. Refer to [Net Banking Mandate Status API](ref:net_banking_mandate_status_api). |
+| Payment Mode          | API Reference                                                                                                                                                                      |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Cards**             | The Check Mandate Status API enables you to understand the current state of the mandate with cards at any time. Refer to [Check Mandate Status API](ref:check-mandate-status-api). |
+| **UPI Autopay**       | Used to understand the current state of the UPI mandate at any time. Refer to [Get Mandate Status API (for UPI only)](ref:get-mandate-status-api-for-upi-only).                    |
+| **ENACH/Net Banking** | Check the Net Banking Mandate Status API. Refer to [Net Banking Mandate Status API](ref:net_banking_mandate_status_api).                                                           |
 
 ### Step 3: Recurring Payment Processing
 
@@ -102,22 +102,25 @@ For more information, refer to [Recurring Payment Transaction API](ref:recurring
 #### Step 3.3: Modify or Cancel Recurring Payments
 
 **For Cards (VISA/Mastercard):**
-- [Modify the Recurring Payments for a Card](ref:modify-the-recurring-payments-for-a-card)
-- [Cancel the Recurring Payment for Cards](ref:cancel-the-recurring-payment-for-cards)
+
+* [Modify the Recurring Payments for a Card](ref:modify-the-recurring-payments-for-a-card)
+* [Cancel the Recurring Payment for Cards](ref:cancel-the-recurring-payment-for-cards)
 
 **For Cards (AMEX):**
-- [Modify Recurring Payments for AMEX Card](ref:modify-recurring-payments-for-amex-card)
-- [Cancel Recurring Payment for AMEX Card](ref:cancel-recurring-payment-for-a-amex-card)
+
+* [Modify Recurring Payments for AMEX Card](ref:modify-recurring-payments-for-amex-card)
+* [Cancel Recurring Payment for AMEX Card](ref:cancel-recurring-payment-for-a-amex-card)
 
 **For ENACH/Net Banking:**
 
 PayU's ENACH APIs enable net banking mandate status monitoring, cancellation management, and UMRN tracking for seamless recurring payment administration across participating banks.
 
-- [Cancel the Recurring Payment for Net Banking](ref:cancel-the-recurring-payment-for-net-banking)
+* [Cancel the Recurring Payment for Net Banking](ref:cancel-the-recurring-payment-for-net-banking)
 
 **For UPI:**
-- [Modify the Recurring Payment for UPI](ref:modify-the-recurring-payment-for-upi)
-- [Cancel the Recurring Payment for UPI](ref:cancel-the-recurring-payment-for-upi)
+
+* [Modify the Recurring Payment for UPI](ref:modify-the-recurring-payment-for-upi)
+* [Cancel the Recurring Payment for UPI](ref:cancel-the-recurring-payment-for-upi)
 
 ## Manage Mandates
 
@@ -125,15 +128,15 @@ PayU's ENACH APIs enable net banking mandate status monitoring, cancellation man
 
 Before proceeding to hit pre-debit/recurring payments, check the mandate status:
 
-| Payment Mode | API |
-|--------------|-----|
-| Cards | [Check Mandate Status API](ref:check-mandate-status-api) |
-| UPI Autopay | [Get Mandate Status API (for UPI only)](ref:get-mandate-status-api-for-upi-only) |
-| ENACH | [Net Banking Mandate Status API](ref:net_banking_mandate_status_api) |
+| Payment Mode | API                                                                              |
+| ------------ | -------------------------------------------------------------------------------- |
+| Cards        | [Check Mandate Status API](ref:check-mandate-status-api)                         |
+| UPI Autopay  | [Get Mandate Status API (for UPI only)](ref:get-mandate-status-api-for-upi-only) |
+| ENACH        | [Net Banking Mandate Status API](ref:net_banking_mandate_status_api)             |
 
 ### Additional Mandate Management APIs
 
-- **Validate VPA API**: Use this API to validate if a VPA supports recurring payments before initiating a UPI mandate. Refer to [Validate VPA API](ref:validate_vpa_api).
+* **Validate VPA API**: Use this API to validate if a VPA supports recurring payments before initiating a UPI mandate. Refer to [Validate VPA API](ref:validate_vpa_api).
 
 ## Customization and Advanced Features
 
@@ -154,23 +157,3 @@ For more information, refer to [Introduction to PayU TPV](doc:introduction-to-pa
 For enterprises requiring deeper control over the mandate lifecycle, direct ENACH integration bypasses standard redirect flows. This approach enables merchants to handle mandate creation, modification, and cancellation through direct API calls to NPCI infrastructure, providing complete control over the customer journey while maintaining regulatory compliance.
 
 For more information, refer to [Net Banking Recurring Payment Consent Transaction](ref:netbanking-recurring-payment-consent-transaction).
-
-## Quick Reference: API Summary
-
-| API | Purpose | Applicable Payment Modes |
-|-----|---------|-------------------------|
-| [Payment Consent Transaction (PayU Hosted)](ref:payment-consent-transaction-payu-hosted) | Create subscription with PayU Checkout | Cards, UPI, Net Banking |
-| [Payment Consent Transaction (Merchant Hosted)](ref:payment-consent-transaction-merchant-hosted) | Create subscription with custom checkout | Cards, UPI, Net Banking |
-| [Pre-Debit Notification API](ref:pre_debit_notification_api) | Send pre-debit notification | Cards, UPI |
-| [Recurring Payment Transaction API](ref:recurring_payment_api) | Process recurring payment | Cards, UPI, Net Banking |
-| [Check Mandate Status API](ref:check-mandate-status-api) | Check card mandate status | Cards |
-| [Get Mandate Status API (UPI)](ref:get-mandate-status-api-for-upi-only) | Check UPI mandate status | UPI |
-| [Net Banking Mandate Status API](ref:net_banking_mandate_status_api) | Check ENACH mandate status | Net Banking |
-| [Validate VPA API](ref:validate_vpa_api) | Validate VPA for recurring | UPI |
-
-## Related Resources
-
-- [Using API Integration](doc:using-api-integration-recurring-payments)
-- [Using Zion Subscription Automation](doc:using-zion-subscription-automation-platform)
-- [Subscriptions Dashboard](doc:subscription-dashboard)
-
