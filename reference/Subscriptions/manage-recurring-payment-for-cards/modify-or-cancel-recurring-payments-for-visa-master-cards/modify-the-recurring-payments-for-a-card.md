@@ -710,7 +710,30 @@ For a yearly plan starting from 1st January 2019, having a monthly billing amoun
 ## Sample request
 
 ```curl
-curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP**g&txnid=56bb2e3fcb510f1c1521&amount=10000&firstname=Payu-Admin&email=test@example.com&phone=1234567890&productinfo=iPhone&api_version=7&si=3&pg=CC&bankcode=UTIBENCC&surl=https://test.payu.in/admin/test_response&furl=https://test.payu.in/admin/test_response&ccnum=5123456789012346&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=Test User&si_details={"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01","authpayuid" : "403993715525316543","action":"modify"}&hash=e36568b2dfc460eab0eb3387fb7d90543ed861154f273b9593d6fcc152ed93a91e529c2f4be0965eeb57104e82d58889fa5efb52811ec78cbd1ad646e39c29a0"
+curl --location 'https://secure.payu.in/_payment' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'txnid=my_order_47719' \
+--data-urlencode 'amount=1.00' \
+--data-urlencode 'firstname=Payu-Admin' \
+--data-urlencode 'email=test@example.com' \
+--data-urlencode 'phone=1234567890' \
+--data-urlencode 'productinfo=my_order_47719' \
+--data-urlencode 'api_version=7' \
+--data-urlencode 'si=3' \
+--data-urlencode 'pg=CC' \
+--data-urlencode 'bankcode=UTIBENCC' \
+--data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'ccnum=5123456789012346' \
+--data-urlencode 'ccexpmon=05' \
+--data-urlencode 'ccexpyr=2030' \
+--data-urlencode 'ccvv=123' \
+--data-urlencode 'ccname=Test User' \
+--data-urlencode 'si_details={billingAmount:100.00,billingCurrency:INR,billingCycle:MONTHLY,billingInterval:1,paymentStartDate:2022-09-01,paymentEndDate:2022-12-01,authpayuid:403993715525316543,action:modify}' \
+--data-urlencode 'hash=595badfd425f3086f29a797d07dd71a86036d0076ef1464601a6e5fb6a55835cc69c410dec3cd52085c0e883bc2424f3c3f83737b2539412d3af615538a7fc23'
 ```
 
 ## Sample response
@@ -731,31 +754,31 @@ Array
     [addedon] => 2025-10-14 15:44:41
     [productinfo] => Product Info
     [firstname] => Payu-Admin
-    [lastname] =>
-    [address1] =>
-    [address2] =>
-    [city] =>
-    [state] =>
-    [country] =>
-    [zipcode] =>
+    [lastname] => 
+    [address1] => 
+    [address2] => 
+    [city] => 
+    [state] => 
+    [country] => 
+    [zipcode] => 
     [email] => test@example.com
     [phone] => 1234567890
-    [udf1] =>
-    [udf2] =>
-    [udf3] =>
-    [udf4] =>
-    [udf5] =>
-    [udf6] =>
-    [udf7] =>
-    [udf8] =>
-    [udf9] =>
-    [udf10] =>
+    [udf1] => 
+    [udf2] => 
+    [udf3] => 
+    [udf4] => 
+    [udf5] => 
+    [udf6] => 
+    [udf7] => 
+    [udf8] => 
+    [udf9] => 
+    [udf10] => 
     [hash] => 13f0cc034ec407db13a666f5ef4598798efab154791464537008c9e02e05a232b6fa3bd575b016e7631246dfb8d4911613150d677106c2fd14494da9b7a21122
     [field1] => CBC10141015051509EGR573
     [field2] => 185869
-    [field3] =>
-    [field4] =>
-    [field5] =>
+    [field3] => 
+    [field4] => 
+    [field5] => 
     [field6] => 05
     [field7] => AUTHPOSITIVE
     [field8] => 0 | Transaction Completed
@@ -769,5 +792,4 @@ Array
     [error_Message] => No Error
     [cardnum] => XXXXXXXXXXXX4879
 )
-
 ```
