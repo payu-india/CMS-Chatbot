@@ -30,9 +30,9 @@ next:
 ---
 This section describes how to use the **_payment** API to update an existing recurring payment for American Express (AMEX) cards.
 
-> 📘 Note:
->
-> As per RBI guidelines while modifying the recurring payment, taking consent from the customer and doing an additional factor of authentication is mandatory. You must ensure this is done before using this API. You need to pass **authPayuId** and **action** fields to modify the billing details as part of JSON using this API as described in this section.
+<Callout icon="📘" theme="info">
+  **Note**: As per RBI guidelines while modifying the recurring payment, taking consent from the customer and doing an additional factor of authentication is mandatory. You must ensure this is done before using this API. You need to pass **authPayuId** and **action** fields to modify the billing details as part of JSON using this API as described in this section.
+</Callout>
 
 HTTP Method: **POST**
 
@@ -520,9 +520,29 @@ For a yearly plan starting from 1st January 2019, having a monthly billing amoun
 ## Sample request
 
 ```bash
-curl 'https://test.payu.in/_payment' \
- --data-raw 'key=JP***g&txnid=d5e7e5e6324a7860fbc6&amount=1&firstname=Payu-Admin&email=test%40example.com&phone=1234567890&productinfo=Product+Info&api_version=1&si=3&pg=CC&bankcode=AMEX&surl=https%3A%2F%2Fpp58admin.payu.in%2Ftest_response&furl=https%3A%2F%2Fpp58admin.payu.in%2Ftest_response&ccnum=&ccname=Test+User&ccexpmon=05&ccexpyr=2025&ccvv=123&si_details={"billingAmount":"10.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,
- "paymentStartDate": "2022-02-04","paymentEndDate": "2022-12-12","action": "modify","authPayuId": "123"}&hash=3b0eec9b39c5866af2d6b1346df434efe800ea3ad7ea1d59ce22bf935178434383aa3316a0151ea9a6248c5785996d19a25f9aa819b8097af612c9ac76d55689'
+curl --location 'https://secure.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'txnid=my_order_96977' \
+--data-urlencode 'amount=1' \
+--data-urlencode 'firstname=Payu-Admin' \
+--data-urlencode 'email=test@example.com' \
+--data-urlencode 'phone=1234567890' \
+--data-urlencode 'productinfo=my_order_96977' \
+--data-urlencode 'api_version=1' \
+--data-urlencode 'si=3' \
+--data-urlencode 'pg=CC' \
+--data-urlencode 'bankcode=AMEX' \
+--data-urlencode 'surl=https://pp58admin.payu.in/test_response' \
+--data-urlencode 'furl=https://pp58admin.payu.in/test_response' \
+--data-urlencode 'ccnum=' \
+--data-urlencode 'ccname=Test User' \
+--data-urlencode 'ccexpmon=05' \
+--data-urlencode 'ccexpyr=2025' \
+--data-urlencode 'ccvv=123' \
+--data-urlencode 'si_details={"billingAmount":"10.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2022-02-04","paymentEndDate":"2022-12-12","action":"modify","authPayuId":"25630089596"}' \
+--data-urlencode 'hash=65f4d07a452916828aba740ec36f81c7de7f041d7349a0a89b873be9f3ec0caa78cabdfa5654b032b144bc1192ce304ae5f6a96513cbee3747e931c08dd3a09c'
 ```
 
 ## Sample response
@@ -530,52 +550,52 @@ curl 'https://test.payu.in/_payment' \
 ```
 Array
 (
-    [mihpayid] => 23500009465
+    [mihpayid] => 25630224100
     [mode] => CC
     [status] => success
     [unmappedstatus] => auth
     [key] => BmTY3G
-    [txnid] => 8811cf2b9b1c03bda765
+    [txnid] => bdf9079d4be377229526
     [amount] => 1.00
     [cardCategory] => domestic
     [discount] => 0.00
     [net_amount_debit] => 1
-    [addedon] => 2025-05-12 17:17:18
+    [addedon] => 2025-10-16 12:36:47
     [productinfo] => Product Info
     [firstname] => Payu-Admin
-    [lastname] =>
-    [address1] =>
-    [address2] =>
-    [city] =>
-    [state] =>
-    [country] =>
-    [zipcode] =>
+    [lastname] => 
+    [address1] => 
+    [address2] => 
+    [city] => 
+    [state] => 
+    [country] => 
+    [zipcode] => 
     [email] => test@example.com
     [phone] => 1234567890
-    [udf1] =>
-    [udf2] =>
-    [udf3] =>
-    [udf4] =>
-    [udf5] =>
-    [udf6] =>
-    [udf7] =>
-    [udf8] =>
-    [udf9] =>
-    [udf10] =>
-    [hash] => fe86a209fba815567f5972f18592f5b92c4419a3b4ebe4c91a05ae8fba9bfb91e367836e7fee3335cb778c4fdde39201e3eb91b6162ff55d45e278fc48cff57b
-    [field1] =>
-    [field2] => 10VBS0CUP9FLYD
-    [field3] =>
-    [field4] => 23500009465auth
-    [field5] =>
-    [field6] =>
+    [udf1] => 
+    [udf2] => 
+    [udf3] => 
+    [udf4] => 
+    [udf5] => 
+    [udf6] => 
+    [udf7] => 
+    [udf8] => 
+    [udf9] => 
+    [udf10] => 
+    [hash] => 65293bddb2d36339d0466d777ea1d4dca55f73a0e949fd85570a02a176fe6e0a1023bf931942ac436a24b2de60906a02cc079a89de78bf997247adf9300c9f85
+    [field1] => 
+    [field2] => 115MBTL9D38VRC
+    [field3] => 
+    [field4] => 25630224100auth
+    [field5] => 
+    [field6] => 
     [field7] => 3DS_CHALLENGE_POSITIVE
-    [field8] =>
+    [field8] => 
     [field9] => Authorization done using Billdesk-AmexSiHub
     [payment_source] => payu
     [meCode] => {"MID":"8366132637","Key":"2a9a271f513eb63778a4ffc31b52bf91"}
     [PG_TYPE] => CC-PG
-    [bank_ref_num] => 000061868902422
+    [bank_ref_num] => 000072431543429
     [bankcode] => AMEX
     [error] => E000
     [error_Message] => No Error
