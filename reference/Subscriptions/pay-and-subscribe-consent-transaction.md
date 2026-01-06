@@ -43,7 +43,21 @@ The request parameters for the one-time mandate includes **SI=4** and rest of th
 ## Sample Request
 
 ```curl
-curl -X POST "https://test.payu.in/_payment" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=fM3O2HnkpJ8XEC&amount=100.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&si=4&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&si_details={"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}&hash=2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5"
+curl --location 'https://secure.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68ed52caaaf5e' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'txnid=my_order_49428' \
+--data-urlencode 'amount=1' \
+--data-urlencode 'firstname=PayU User' \
+--data-urlencode 'email=test@gmail.com' \
+--data-urlencode 'phone=9876543210' \
+--data-urlencode 'productinfo=my_order_49428' \
+--data-urlencode 'si=4' \
+--data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
+--data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
+--data-urlencode 'si_details={billingAmount: 1.00,billingCurrency: INR,billingCycle: MONTHLY,billingInterval: 1,paymentStartDate: 2025-10-14,paymentEndDate: 2027-12-01}' \
+--data-urlencode 'hash=67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb'
 ```
 
 ## Sample Response
@@ -68,31 +82,31 @@ Array
     [addedon] => 2025-10-16 13:06:55
     [productinfo] => Product Info
     [firstname] => Payu-Admin
-    [lastname] =>
-    [address1] =>
-    [address2] =>
-    [city] =>
-    [state] =>
-    [country] =>
-    [zipcode] =>
+    [lastname] => 
+    [address1] => 
+    [address2] => 
+    [city] => 
+    [state] => 
+    [country] => 
+    [zipcode] => 
     [email] => test@example.com
     [phone] => 1234567890
-    [udf1] =>
-    [udf2] =>
-    [udf3] =>
-    [udf4] =>
-    [udf5] =>
-    [udf6] =>
-    [udf7] =>
-    [udf8] =>
-    [udf9] =>
-    [udf10] =>
+    [udf1] => 
+    [udf2] => 
+    [udf3] => 
+    [udf4] => 
+    [udf5] => 
+    [udf6] => 
+    [udf7] => 
+    [udf8] => 
+    [udf9] => 
+    [udf10] => 
     [hash] => c07e7e3d551445962778d801f9ef414cf75819d3cde63c3911ccacacda8981099e42806c0bf56f9bcd417b7d42873f46ae52a2102d7ca9f850d19d3ecdb7240b
     [field1] => CBC1016073720213F90DXW1
     [field2] => 120330
-    [field3] =>
-    [field4] =>
-    [field5] =>
+    [field3] => 
+    [field4] => 
+    [field5] => 
     [field6] => 05
     [field7] => AUTHPOSITIVE
     [field8] => 0 | Transaction Completed
@@ -108,5 +122,4 @@ Array
     [card_token] => 2be916cfaeddc64a196988
     [cardnum] => XXXXXXXXXXXX4879
 )
-
 ```
