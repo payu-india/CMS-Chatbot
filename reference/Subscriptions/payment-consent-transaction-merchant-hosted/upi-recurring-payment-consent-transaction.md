@@ -309,21 +309,51 @@ The sample code block for UPI Seamless integration (Merchant-Hosted Checkout) is
 ### UPI Consent Transaction
 
 ```curl
-curl -X \
- POST "https://test.payu.in/_payment-H "accept: application/json" -H \
- "Content-Type: application/x-www-form-urlencoded" -d”key=Q*****U&txnid=4eZz2lMbUYQ4c0&amount=10.00&firstname=Payu-Admin&email=test@example.com&phone=1234567890&productinfo=iPhone&api_version=7&si=1&pg=UPI&bankcode=UPI&vpa=anything@payu&surl=https://test.payu.in/admin/test_response
-/&furl=https://test.payu.in/admin/test_response&si_details={“billingAmount”: “10.00”,”billingCurrency”: “INR”,”billingCycle”: “MONTHLY”,”billingInterval”: 1,”paymentStartDate”: “2019-09-01″,”paymentEndDate”: “2019-12-01”}
-&hash=e36568b2dfc460eab0eb3387fb7d90543ed861154f273b9593d6fcc152ed93a91e529c2f4be0965eeb57104e82d58889fa5efb52811ec78cbd1ad646e39c29a0”
+curl --location 'https://secure.payu.in/_payment' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68ed52caaaf5e' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'txnid=my_order_29327' \
+--data-urlencode 'amount=1.00' \
+--data-urlencode 'firstname=Payu-Admin' \
+--data-urlencode 'email=test@example.com' \
+--data-urlencode 'phone=1234567890' \
+--data-urlencode 'productinfo=my_order_29327' \
+--data-urlencode 'api_version=7' \
+--data-urlencode 'si=1' \
+--data-urlencode 'pg=UPI' \
+--data-urlencode 'bankcode=UPI' \
+--data-urlencode 'vpa=anything@payu' \
+--data-urlencode 'surl=https://test.payu.in/admin/test_response/' \
+--data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'si_details={"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2029-12-01"}' \
+--data-urlencode 'hash=67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb'
 ```
 
 ### UPI Intent
 
 ```curl
-curl -X \
- POST "https://test.payu.in/_payment-H "accept: application/json" -H \
- "Content-Type: application/x-www-form-urlencoded" -d”key=Q*****U&txnid=4eZz2lMbUYQ4c0&amount=10.00&firstname=Payu-Admin&email=test@example.com&phone=1234567890&productinfo=iPhone&api_version=7&si=1&pg=UPI&bankcode=INTENT&txn_s2s_flow=4&surl=https://test.payu.in/admin/test_response
-/&furl=https://test.payu.in/admin/test_response&si_details={“billingAmount”: “10.00”,”billingCurrency”: “INR”,”billingCycle”: “MONTHLY”,”billingInterval”: 1,”paymentStartDate”: “2019-09-01″,”paymentEndDate”: “2019-12-01”}
-&hash=e36568b2dfc460eab0eb3387fb7d90543ed861154f273b9593d6fcc152ed93a91e529c2f4be0965eeb57104e82d58889fa5efb52811ec78cbd1ad646e39c29a0”
+curl --location 'https://secure.payu.in/_payment' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'txnid=my_order_95314' \
+--data-urlencode 'amount=1.00' \
+--data-urlencode 'firstname=Payu-Admin' \
+--data-urlencode 'email=test@example.com' \
+--data-urlencode 'phone=1234567890' \
+--data-urlencode 'productinfo=my_order_95314' \
+--data-urlencode 'api_version=7' \
+--data-urlencode 'si=1' \
+--data-urlencode 'pg=UPI' \
+--data-urlencode 'bankcode=INTENT' \
+--data-urlencode 'txn_s2s_flow=4' \
+--data-urlencode 'surl=https://test.payu.in/admin/test_response/' \
+--data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'si_details={"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2019-12-01"}' \
+--data-urlencode 'hash=67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb'
 ```
 
 ## Understanding Response
@@ -340,23 +370,25 @@ The response URL returned from PayU is in the form URL format (application/x-www
 
 ### Sample response
 
+#### UPI Consent Transaction
+
 * The formatted response for UPI Consent Transaction is similar to the following:
 
 ```json
 Array
 (
-    [mihpayid] => 403993715525317379
+    [mihpayid] => 25600438037
     [mode] => UPI
     [status] => success
     [unmappedstatus] => captured
-    [key] => JPM7Fg
-    [txnid] => 4eZz2lMbUYQ4c0
-    [amount] => 10.00
+    [key] => smsplus
+    [txnid] => 1
+    [amount] => 1.00
     [discount] => 0.00
-    [net_amount_debit] => 10
-    [addedon] => 2022-02-02 16:00:53
-    [productinfo] => iPhone
-    [firstname] => PayU User
+    [net_amount_debit] => 1
+    [addedon] => 2025-10-14 11:14:34
+    [productinfo] => Product Info
+    [firstname] => Payu-Admin
     [lastname] => 
     [address1] => 
     [address2] => 
@@ -364,67 +396,54 @@ Array
     [state] => 
     [country] => 
     [zipcode] => 
-    [email] => test@gmail.com
-    [phone] => 9876543210
+    [email] => test@example.com
+    [phone] => 1234567890
     [udf1] => 
     [udf2] => 
     [udf3] => 
-    [udf4] => 
+    [udf4] => Executed Callback
     [udf5] => 
     [udf6] => 
     [udf7] => 
     [udf8] => 
     [udf9] => 
     [udf10] => 
-    [hash] => 1b1df6deb730c4826341e35b9b010497f524c88e3cee05287f0148dd302f81ab45503a27f43d492d127134cf5983eab1042930f10a04f27a094e19c500644104
-    [field1] => anything@payu
-    [field2] => 4eZz2lMbUYQ4c0
-    [field3] => 
-    [field4] => PayU User
-    [field5] => AXIDI0zH6YxpU1eCukPM4fBdnxkf54cEKbt
+    [hash] => 175508d5e19f64280f34d81b90afc010f9ffcd62a12ea286e72135a93220727654f9d87c778c828adfede3aaf2d1b0b71696906d04a589460ecef0a1172e5804
+    [field1] => badshahgv-1@okaxis
+    [field2] => ICIe68d1f01f2d34fc99ba3077af44f1e4c
+    [field3] => badshahgv-1@okaxis
+    [field4] => GAURAV  VERMA
+    [field5] => 701874bccb514b108c3609e002478fbd@okaxis
     [field6] => 
-    [field7] => Transaction completed successfully
+    [field7] => 00|APPROVED OR COMPLETED SUCCESSFULLY
     [field8] => 
-    [field9] => Transaction completed successfully
+    [field9] => APPROVED OR COMPLETED SUCCESSFULLY|Completed Using Callback
     [payment_source] => sist
+    [meCode] => {"pgMid":"9373547","merchantVpa":"bitspingtest.payu@icici"}
     [PG_TYPE] => UPI-PG
-    [bank_ref_num] => 4eZz2lMbUYQ4c0
+    [bank_ref_num] => 528788687631
     [bankcode] => UPI
     [error] => E000
     [error_Message] => No Error
+    [rrn] => 528788687631
 )
 ```
+
+#### UPI Intent
 
 * The formatted response for UPI Intent:
 
 ```json
 {
-   "metaData":{
-      "message":null,
-      "referenceId":"5ae6e6d94b4b5f9dee282b95f6020c98",
-      "statusCode":null,
-      "txnId":"40d553e62525a03e5c54",
-      "txnStatus":"pending",
-      "unmappedStatus":"pending"
-   },
-   "result":{
-      "paymentId":"15257049438",
-      "merchantName":"smsplus",
-      "merchantVpa":"growfitter.payu@hdfcbank",
-      "amount":"1.90",
-      "intentURIData":"upi:\/\/mandate?pa=growfitter.payu@hdfcbank&pn=IBIBO GROUP PRIVATE LIMITED&mn=&tid=40d553e62525a03e5c54&validitystart=30052022&validityend=01092022&am=10.00&amrule=MAX&recur=MONTHLY&recurvalue=30&recurtype=&tr=15257049438&cu=INR&mc=5411&tn=UPI Transaction for 40d553e62525a03e5c54&mode=13&purpose=14&orgid=159240&rev=Y&block=N&txnType=CREATE",
-      "postToBank":{
-         "token":"C6ABAA6A-F0CE-432A-61C1-CFA48EDE847B",
-         "amount":"1.90",
-         "mihpayid":"5ae6e6d94b4b5f9dee282b95f6020c98",
-         "disableIntentSeamlessFailure":"0",
-         "payeeVpa":"growfitter.payu@hdfcbank",
-         "payeeName":"smsplus",
-         "additionalCharges":0,
-         "transactionFee":"1.90"
-      },
-      "issuerUrl":"https:\/\/secure.payu.in\/591d096c5495eff4234e95eb64a1e1b8\/intentSeamlessHandler.php"
-   }
+  "metaData": {
+    "message": "Merchant Integration Exception occurred",
+    "referenceId": "d8a5cc66c66004df34788f651f19999a",
+    "statusCode": "EX158",
+    "txnId": "40d73a7d238e3cd98fef",
+    "txnStatus": "failed",
+    "unmappedStatus": "failure"
+  },
+  "result": {}
 }
 ```
 
