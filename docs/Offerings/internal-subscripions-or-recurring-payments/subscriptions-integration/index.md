@@ -81,7 +81,7 @@ Before proceeding to hit pre-debit/recurring payments, check the mandate status 
 
 After subscription creation and mandate approval, PayU provides comprehensive APIs for recurring payment lifecycle management, covering pre-debit notifications, payment processing, and mandate management across all payment methods.
 
-<Callout icon="👍" theme="okay">
+<Callout icon="📘">
   **Note**: This step is common for both seamless and non-seamless integration.
 </Callout>
 
