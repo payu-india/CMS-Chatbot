@@ -29,184 +29,96 @@ This API (**validateVPA**) will let you validate VPA if it is a valid VPA or not
 After the customer enters VPA on the merchant page, you need to call this API to check for VPA validation. If VPA is valid only then, the second call should be made.
 
 <Accordion title="Sample request" icon="fa-code">
-**Validate VPA**
+  **Validate VPA**
 
-```curl
-curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=validateVPA&var1=9999999999@upi&hash=75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
-```
+  ```curl
+ curl --location 'https://secure.payu.in/merchant/postservice' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
+--data-urlencode 'form=2' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'command=validateVPA' \
+--data-urlencode 'var1=9999999999@upi' \
+--data-urlencode 'hash=d415188799f49f554a24064752bd6ce4d8a18c075b7b88b534e3150f253c09ae28a48554d2d1ba4be66b8441b2cbc364491d26bcead605c5fcecf4eaf622e224'
+  ```
 
-**Validate VPA for Recurring Payment**
+  **Validate VPA for Recurring Payment**
 
-```curl
-curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=validateVPA&var1=9999999999@upi&var2={"validateAutoPayVPA":"1"}&hash=75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
-```
+  ```curl
+  curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=validateVPA&var1=9999999999@upi&var2={"validateAutoPayVPA":"1"}&hash=75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
+  ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
-**Success scenario**
+  **Success scenario**
 
-if successfully validated:
+  if successfully validated:
 
-```plaintext
-{
-   "status":"SUCCESS",
-   "vpa":"9999999999@upi",
-   "isVPAValid":1,
-   "isAutoPayVPAValid":1,
-   "isAutoPayBankValid":"NA",
-   "payerAccountName":"ABC"
-}
-```
+  ```plaintext
+  {
+     "status":"SUCCESS",
+     "vpa":"9999999999@upi",
+     "isVPAValid":1,
+     "isAutoPayVPAValid":1,
+     "isAutoPayBankValid":"NA",
+     "payerAccountName":"ABC"
+  }
+  ```
 
-> 📘 Notes:
->
-> * The **payerAccountName** parameter can be empty or NA or will have a payer name based on the value given by the bank.
-> * If both **isVPAValid** and **isAutoPayVPAValid** is 1, you must initiate payment for Recurring Payments.
-> * Ignore the **isAutoPayBankValid** parameter in the response.
+  > 📘 Notes:
+  >
+  > * The **payerAccountName** parameter can be empty or NA or will have a payer name based on the value given by the bank.
+  > * If both **isVPAValid** and **isAutoPayVPAValid** is 1, you must initiate payment for Recurring Payments.
+  > * Ignore the **isAutoPayBankValid** parameter in the response.
 
-**Failure scenarios**
+  **Failure scenarios**
 
-* If invalid VPA, the response is similar to the following:
+  * If invalid VPA, the response is similar to the following:
 
-```plaintext
-{
- "status":"SUCCESS","vpa":"abc@upi","isVPAValid":0,"payerAccountName":"NA"
-}  
-```
+  ```plaintext
+  {
+   "status":"SUCCESS","vpa":"abc@upi","isVPAValid":0,"payerAccountName":"NA"
+  }  
+  ```
 
-* Invalid VPA but handle supporting SI (Autopay):
+  * Invalid VPA but handle supporting SI (Autopay):
 
-```plaintext
-{
- "status":"SUCCESS","vpa":"abc@upi","isVPAValid":0,"isAutoPayVPAValid":1,"isAutoPayBankValid":"NA","payerAccountName":"NA"
-}
-```
+  ```plaintext
+  {
+   "status":"SUCCESS","vpa":"abc@upi","isVPAValid":0,"isAutoPayVPAValid":1,"isAutoPayBankValid":"NA","payerAccountName":"NA"
+  }
+  ```
 
-* Customer valid but handle not supporting SI (Autopay):
+  * Customer valid but handle not supporting SI (Autopay):
 
-```plaintext
-{
-  "status":"SUCCESS","vpa":"xyz@freecharge","isVPAValid":1,"isAutoPayVPAValid":0,"isAutoPayBankValid":"NA","payerAccountName":"XYZ"
-}
-```
+  ```plaintext
+  {
+    "status":"SUCCESS","vpa":"xyz@freecharge","isVPAValid":1,"isAutoPayVPAValid":0,"isAutoPayBankValid":"NA","payerAccountName":"XYZ"
+  }
+  ```
 
-* Neither customer valid nor handle supporting Autopay:
+  * Neither customer valid nor handle supporting Autopay:
 
-```plaintext
-{
-  "status":"SUCCESS","vpa":"xyz@freecharge","isVPAValid":0,"isAutoPayVPAValid":0,"isAutoPayBankValid":"NA","payerAccountName":"NA"
-}
-```
+  ```plaintext
+  {
+    "status":"SUCCESS","vpa":"xyz@freecharge","isVPAValid":0,"isAutoPayVPAValid":0,"isAutoPayBankValid":"NA","payerAccountName":"NA"
+  }
+  ```
 </Accordion>
 
 <Accordion title="Response parameters" icon="fa-list">
-{/* Properly formatted JSX Table */}
+  {/* Properly formatted JSX Table */}
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        status
-      </td>
-
-      <td>
-        This parameter returns any of the following based on whether the API was successful or failure:
-
-        * Successful
-        * Failure
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        vpa
-      </td>
-
-      <td>
-        This parameter returns the VPA ID.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        isVPAValid
-      </td>
-
-      <td>
-        This parameter returns any of the following to indicate whether the VPA is valid or not:
-
-        * **1**: Indicates that VPA is valid
-        * **0**: Indicates the VPA is invalid
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        isAutoPayVPAValid
-      </td>
-
-      <td>
-        This parameter returns any of the following to indicate whether the VPA has registered for Recurring Payments or Autopay:
-
-        * **1**: Indicates that VPA has registered for Recurring Payments
-        * **0**: Indicates that VPA has not registered for Recurring Payments
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        isAutoPayBankValid
-      </td>
-
-      <td>
-        This parameter returns any of the following to indicate whether the corresponding bank account has registered for Recurring Payments or Autopay:
-
-        * **1**: Indicates that bank account has registered for Recurring Payments
-        * **0**: Indicates that bank account has not registered for Recurring Payments
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        payerAccountName
-      </td>
-
-      <td>
-        This parameter returns the name of the account holder (corresponding VPA).
-      </td>
-    </tr>
-  </tbody>
-</Table>
-</Accordion>
-
-## Request parameters
-
-You can use any valid VPA while trying out the API:
-
-<Accordion title="Additional information for request parameters" icon="fa-flask">
-{/* Properly formatted JSX Table with align attribute */}
-
-  <Table align={["left","left"]}>
+  <Table>
     <thead>
       <tr>
         <th>
-          Parameter
+          **Parameter**
         </th>
 
         <th>
-          Reference
+          **Description**
         </th>
       </tr>
     </thead>
@@ -214,12 +126,108 @@ You can use any valid VPA while trying out the API:
     <tbody>
       <tr>
         <td>
+          status
+        </td>
+
+        <td>
+          This parameter returns any of the following based on whether the API was successful or failure:
+
+          * Successful
+          * Failure
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          vpa
+        </td>
+
+        <td>
+          This parameter returns the VPA ID.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          isVPAValid
+        </td>
+
+        <td>
+          This parameter returns any of the following to indicate whether the VPA is valid or not:
+
+          * **1**: Indicates that VPA is valid
+          * **0**: Indicates the VPA is invalid
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          isAutoPayVPAValid
+        </td>
+
+        <td>
+          This parameter returns any of the following to indicate whether the VPA has registered for Recurring Payments or Autopay:
+
+          * **1**: Indicates that VPA has registered for Recurring Payments
+          * **0**: Indicates that VPA has not registered for Recurring Payments
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          isAutoPayBankValid
+        </td>
+
+        <td>
+          This parameter returns any of the following to indicate whether the corresponding bank account has registered for Recurring Payments or Autopay:
+
+          * **1**: Indicates that bank account has registered for Recurring Payments
+          * **0**: Indicates that bank account has not registered for Recurring Payments
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          payerAccountName
+        </td>
+
+        <td>
+          This parameter returns the name of the account holder (corresponding VPA).
+        </td>
+      </tr>
+    </tbody>
+  </Table>
+</Accordion>
+
+## Request parameters
+
+You can use any valid VPA while trying out the API:
+
+<Accordion title="Additional information for request parameters" icon="fa-flask">
+  {/* Properly formatted JSX Table with align attribute */}
+
+  <Table align={["left","left"]}>
+    <thead>
+      <tr>
+        <th style={{ textAlign: "left" }}>
+          Parameter
+        </th>
+
+        <th style={{ textAlign: "left" }}>
+          Reference
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td style={{ textAlign: "left" }}>
           {/* Properly formatted JSX component */}
 
           <Glossary>key</Glossary>
         </td>
 
-        <td>
+        <td style={{ textAlign: "left" }}>
           For more information on how to generate the Key and Salt, refer to any of the following:
 
           * **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
@@ -228,13 +236,13 @@ You can use any valid VPA while trying out the API:
       </tr>
 
       <tr>
-        <td>
+        <td style={{ textAlign: "left" }}>
           {/* Properly formatted JSX component */}
 
           <Glossary>hash</Glossary>
         </td>
 
-        <td>
+        <td style={{ textAlign: "left" }}>
           Hash logic for this API is:
 
           ```
@@ -244,11 +252,11 @@ You can use any valid VPA while trying out the API:
       </tr>
 
       <tr>
-        <td>
+        <td style={{ textAlign: "left" }}>
           var1
         </td>
 
-        <td>
+        <td style={{ textAlign: "left" }}>
           For JSON fields description, refer to [Additional Info for General APIs](ref:addl-info-general-apis)
         </td>
       </tr>
