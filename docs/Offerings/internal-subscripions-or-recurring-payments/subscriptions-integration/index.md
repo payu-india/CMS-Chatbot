@@ -49,21 +49,19 @@ There are two ways to create a Subscription:
 
 Customers redirect to PayU's hosted payment page for subscription setup with built-in compliance features, requiring minimal frontend development while PayU handles regulatory requirements.
 
-For more information, refer to [Payment Consent Transaction using PayU Hosted Checkout](ref:payment-consent-transaction-payu-hosted).
+For more information, refer to [PayU Hosted Integration](doc:payu-hosted-integration-subscriptions).
 
 #### 1.2 Seamless Integration (Merchant Hosted Checkout)
 
 Seamless integration provides greater control by embedding payment collection directly into merchant applications, supporting multiple payment instruments with specific integration patterns for enhanced customer experience.
 
-For more information, refer to [Payment Consent Transaction with Merchant Hosted Checkout](ref:payment-consent-transaction-merchant-hosted).
-
 **Different modes to integrate:**
 
-* **UPI Integration**: Customers are redirected to their UPI app for mandate approval through intent-based flows, providing a familiar mobile-first experience. For more information, refer to [UPI Recurring Payment Consent Transaction](ref:upi-recurring-payment-consent-transaction).
+* **UPI Integration**: Customers are redirected to their UPI app for mandate approval through intent-based flows, providing a familiar mobile-first experience. For more information, refer to [UPI Subscriptions Integration](doc:upi-subscriptions-integration-merchant-hosted-checkout).
 
-* **Cards Integration**: Card-based subscriptions utilize redirect flows to PayU's secure tokenization interface, ensuring PCI DSS compliance and RBI tokenization requirements. For more information, refer to [Cards Recurring Payment Consent Transaction](ref:credit-card-recurring-payment-consent-transaction).
+* **Cards Integration**: Card-based subscriptions utilize redirect flows to PayU's secure tokenization interface, ensuring PCI DSS compliance and RBI tokenization requirements. For more information, refer to [Cards Subscription Integration](doc:cards-subscription-integration-merchant-hosted-checkout).
 
-* **ENACH Integration**: Direct integration with NPCI's ENACH infrastructure enables automated mandate creation for net banking customers, supporting both physical and digital mandate workflows. For more information, refer to [Net Banking Recurring Payment Consent Transaction](ref:netbanking-recurring-payment-consent-transaction).
+* **ENACH Integration**: Direct integration with NPCI's ENACH infrastructure enables automated mandate creation for net banking customers, supporting both physical and digital mandate workflows. For more information, refer to [Net Banking Integration](doc:net-banking-subscriptions-integration-merchant-hosted).
 
 <Callout icon="📘" theme="info">
   **Note**: Once the authorization transaction is successful, PayU returns the `mihpayid`, `txnid`, and `hash`.
