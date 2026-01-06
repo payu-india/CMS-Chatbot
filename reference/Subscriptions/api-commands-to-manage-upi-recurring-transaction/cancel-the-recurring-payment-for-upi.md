@@ -167,6 +167,22 @@ HTTP Method: **POST**
   </tbody>
 </Table>
 
+## Sample Request
+
+```
+curl --location 'https://info.payu.in/merchant/postservice.php' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Authorization: Bearer gYUn<}[^]4cM[@b{' \
+--header 'Cookie: USERTXNINFO=650c00573d45c7.61571480; PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
+--data-urlencode 'form=2' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'command=upi_mandate_revoke' \
+--data-urlencode 'hash=2c790ebf47d834e277de39bca0ee0c59d1f5e1c4b9fb33f218607a0ff11bcc2665a58bf2a1ffcc3f414b8624cd96c4519efaaef710ea9f9e28d57a91692fdb10' \
+--data-urlencode 'var1={"authPayuId":"10731087875","requestId":"23123abut12123osd14"}'
+```
+
+<br />
+
 ## Response Parameters
 
 | **Parameter Name** | **Description**                                                      |
@@ -183,9 +199,9 @@ Cancelling Recurring Registration - Success Response
 
 ```json
 {
-	"status": 1,
-	"action": "MANDATE_REVOKE",
-	"message": "Mandate Revoke request processed successfully"
+    "status": 1,
+    "action": "MANDATE_REVOKE",
+    "message": "Mandate Revoke request processed successfully"
 }
 ```
 
