@@ -49,243 +49,14 @@ Method: **POST**
 
 The following table describes the parameters for delete the recurring payment details for a card.
 
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th align="left">Parameter</th>
-      <th align="left">Description</th>
-      <th align="left">Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <strong>key</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td><code>varchar</code> This parameter is the unique Merchant Key provided by PayU for your merchant account.</td>
-      <td>Your Test Key</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>txnid</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>varchar</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.<br/>
-        <code>Character limit</code>: 25<br/>
-        <strong>Note</strong>: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
-      </td>
-      <td>fd3e847h2</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>amount</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>float</code> This parameter should contain the payment amount of the particular transaction.<br/><br/>
-        <strong>Note</strong>: Type-cast the amount to float type<br/>
-        Depending upon the merchant use case, this value will vary.<br/><br/>
-        - It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.<br/><br/>
-        - In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
-      </td>
-      <td>1000</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>productinfo</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>varchar</code> This parameter should contain a brief product description. It should be a string describing the product.<br/>
-        <code>Character limit</code>: 100
-      </td>
-      <td>Time Magazine Subscription</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>firstname</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>varchar</code> Must contain the first name of the customer.<br/>
-        <code>Character limit</code>: 60
-      </td>
-      <td>Ashish</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>email</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>varchar</code> Must contain the email of the customer.<br/>
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.<br/>
-        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br/>
-        Character limit: 50
-      </td>
-      <td>Ashish@test.com</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>phone</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        <code>varchar</code> Must contain the phone number of the customer.<br/><br/>
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br/>
-        Character limit: 50
-      </td>
-      <td>9843176540</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>api_version</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>This parameter must always needs to be passed as 7.</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>si</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>This parameter must be passed with the value as 3 to cancel an already existing subscription/consent.</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>pg</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td><code>String</code> This parameter defines the payment category that the merchant wants the customer to see by default on the PayU's payment page. In this example, "CC" must be specified. For more information, refer to Payment Mode Codes.</td>
-      <td>AMEXSI</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>bankcode</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>Each payment option is identified with a String unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to <a href="http://docs.payu.in/reference/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></td>
-      <td>AMEXSI</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>ccnum</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>This parameter must contain the 13 to 19-digit card number for credit or debit cards in general.</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>
-        <strong>ccname</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>This parameter must contain the name on card – as entered by the customer for the transaction.</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>
-        <strong>ccvv</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>This parameter must contain the 3-digit CVV number for credit cards or debit cards. For AMEX cards, 4-digit security code (4DBC) number of the card must be posted. Also, known as CID (Card Identification) number.</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>
-        <strong>ccexpmon</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format.<br/>
-        For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>
-        <strong>ccexpyr</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>
-        <strong>si_details</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br/><br/>
-        <strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0 )<br/><br/>
-        This is a JSON object and it includes a set of parameters are described in the the <a href="https://docs.payu.in/reference/cancel-recurring-payment-for-a-amex-card#si_details-parameter-json-details">si_details Parameter – JSON Details</a> table.
-      </td>
-      <td>Refer the example below the si_details Parameter Description table.</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>Storecard_token</strong><br/>
-        <code>mandatory for SITokenRequestor 2 flow and tokenized flow</code>
-      </td>
-      <td>
-        <code>varchar</code>  This parameter contains the network token value. For more information on SITokenRequestor 2 flow, refer to <a href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction#storecard_token_type">Cards Consent Transaction > Request Parameters</a>
-      </td>
-      <td>{{network token value}}</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>TokenFlowType</strong><br/>
-        <code>mandatory for SITokenRequestor 2 flow and tokenized flow</code>
-      </td>
-      <td>
-        <code>integer</code> This parameter must be set to 1. For more information on SITokenRequestor 2 flow, refer to <a href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction#storecard_token_type">Cards Consent Transaction > Request Parameters</a>
-
-      </td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>Additional info for tokenized flow</strong><br/>
-        <code>mandatory for tokenized flow</code> 
-      </td>
-      <td>
-        <code>json</code> Contains additional information needed for token processing. For more information on tokenized flow, refer to <a href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction#storecard_token_type">Cards Consent Transaction > Request Parameters</a>
-      </td>
-      <td>({"tavv":"1997","last4digits":"1005","par":"A0009WTYMUG6ANFB3F9Z8CNYAKCX9"})</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>token_expiry</strong><br/>
-        <code>mandatory for SITokenRequestor 2 flow and tokenized flow</code>
-      </td>
-      <td>
-        <code>varchar</code> Contains the expiry date of the token. For more information on SITokenRequestor 2 flow, refer to <a href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction#storecard_token_type">Cards Consent Transaction > Request Parameters</a>
-      </td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>
-        <strong>hash</strong><br/>
-        <code>mandatory</code>
-      </td>
-      <td>
-        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions.<br/><br/>
-        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.<br/><br/>
-        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br/>
-        <code>SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT))</code>
-      </td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
-
-<br />
+| Parameter                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Example                    |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| **key**<br/>`mandatory`         | `varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Your Test Key              |
+| **txnid**<br/>`mandatory`       | `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.<br/>`Character limit`: 25<br/>**Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.' | fd3e847h2                  |
+| **amount**<br/>`mandatory`      | `float` This parameter should contain the payment amount of the particular transaction.<br/>**Note**: Type-cast the amount to float type<br/>Depending upon the merchant use case, this value will vary.<br/>- It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.<br/>- In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI                                                                                                       | 1000                       |
+| **productinfo**<br/>`mandatory` | `varchar` This parameter should contain a brief product description. It should be a string describing the product.<br/>`Character limit`: 100                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Time Magazine Subscription |
+| **firstname**<br/>`mandatory`   | `varchar` Must contain the first name of the customer.<br/>`Character limit`: 60                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Ashish                     |
+| **email**<br/>`mandatory`       | `varchar` Must contain the email of the customer.<br/>This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.<br/>Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br/>`Character limit`: 50                                                                                                                                                                                                                                                                      |                            |
 
 ## si_details JSON fields description
 
@@ -344,8 +115,29 @@ The description for the **si_details** parameter (JSON format):
 ## Sample request
 
 ```
-curl 'https://test.payu.in/_payment' \
- --data-raw 'key=JP***g&txnid=d5e7e5e6324a7860fbc6&amount=1&firstname=Payu-Admin&email=test%40example.com&phone=1234567890&productinfo=Product+Info&api_version=1&si=3&pg=CC&bankcode=AMEX&surl=https%3A%2F%2Fpp58admin.payu.in%2Ftest_response&furl=https%3A%2F%2Fpp58admin.payu.in%2Ftest_response&ccnum=&ccname=Test+User&ccexpmon=05&ccexpyr=2025&ccvv=123&si_details={"action":"delete","authPayuId":83674692837}&hash=3b0eec9b39c5866af2d6b1346df434efe800ea3ad7ea1d59ce22bf935178434383aa3316a0151ea9a6248c5785996d19a25f9aa819b8097af612c9ac76d55689'
+curl --location 'https://secure.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'txnid=my_order_96977' \
+--data-urlencode 'amount=1' \
+--data-urlencode 'firstname=Payu-Admin' \
+--data-urlencode 'email=test@example.com' \
+--data-urlencode 'phone=1234567890' \
+--data-urlencode 'productinfo=my_order_96977' \
+--data-urlencode 'api_version=1' \
+--data-urlencode 'si=3' \
+--data-urlencode 'pg=CC' \
+--data-urlencode 'bankcode=AMEX' \
+--data-urlencode 'surl=https://pp58admin.payu.in/test_response' \
+--data-urlencode 'furl=https://pp58admin.payu.in/test_response' \
+--data-urlencode 'ccnum=' \
+--data-urlencode 'ccname=Test User' \
+--data-urlencode 'ccexpmon=05' \
+--data-urlencode 'ccexpyr=2025' \
+--data-urlencode 'ccvv=123' \
+--data-urlencode 'si_details={"action":"delete","authPayuId":25630224100}' \
+--data-urlencode 'hash=65f4d07a452916828aba740ec36f81c7de7f041d7349a0a89b873be9f3ec0caa78cabdfa5654b032b144bc1192ce304ae5f6a96513cbee3747e931c08dd3a09c'
 ```
 
 ## Response parameters
