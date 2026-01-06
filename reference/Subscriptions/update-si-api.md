@@ -78,19 +78,19 @@ The **Update SI** API allows you to perform the following:
       </td>
 
       <td>
-        This parameter is in a JSON format as described in the 
+        This parameter is in a JSON format as described in the
 
         [JSON Fields in var1](https://docs.payu.in/reference/update-si-api#json-fields-in-var1)
 
-         section.
+        section.
       </td>
 
       <td>
-        Refer to the 
+        Refer to the
 
         [JSON Fields in var1](https://docs.payu.in/reference/update-si-api#json-fields-in-var1)
 
-         section.
+        section.
       </td>
     </tr>
 
@@ -196,7 +196,7 @@ The description for the fields in the JSON are:
           tsp: This is the type of scheme/ network and you need to pass the values according to card network:
           * VISA: Pass 001 for this card network
             * Mastercard: Pass 002 for this card network
-        * *Note**: The above fields are mandatory for cards.
+        * _Note_*: The above fields are mandatory for cards.
       </td>
     </tr>
 
@@ -209,8 +209,7 @@ The description for the fields in the JSON are:
       <td>
         This field can include any of the following values:
 
-        - **1**: PayU will tokenize the card and share it in same subscription setup call with issuers for subscription setup.
-
+        * **1**: PayU will tokenize the card and share it in same subscription setup call with issuers for subscription setup.
         * **2**: PayU will do the authorization on plain card. Then, the same response will be shared to merchant. Merchant will now use the update_SI API (link) to update the token.
       </td>
     </tr>
@@ -220,12 +219,14 @@ The description for the fields in the JSON are:
 ## Sample request
 
 ```curl
-curl --location --request POST 'https://test.payu.in/merchant/postservice?form=2' \
+curl --location 'https://secure.payu.in/merchant/postservice' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=JPM7Fg' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
+--data-urlencode 'form=2' \
+--data-urlencode 'key=BmTY3G' \
 --data-urlencode 'command=update_SI' \
---data-urlencode 'var1={"authPayuId":"403993715526578563","requestId":"updateApiTest0123","isExistingMandate":"1","token":{"type":"network","number":"5506900490764569","expiry_month":"05","expiry_year":"2025","tsp":"001"}}' \
---data-urlencode 'hash=20a150189af9c86b3029136a5bd8bf01ba7feb35a65682baca1f6452cd5310d6b261cdfa4e621d7f4e211915b657a99bd7ce7d57ba076888dad683867760d8c5'
+--data-urlencode 'var1={"authPayuId":"10731087875","requestId":"23123abut12123osd14","isExistingMandate":"1","token":{"type":"network","number":"5506900490467221","expiry_month":"10","expiry_year":"2022","tsp":"002"}}' \
+--data-urlencode 'hash=67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb'
 ```
 
 ## Response parameters
@@ -284,11 +285,61 @@ curl --location --request POST 'https://test.payu.in/merchant/postservice?form=2
 ### Success scenario
 
 ```plaintext
-{ 
-"status": 1, 
-"authPayuId": "490490459", 
-"message": "Request Processed Successfully" 
-} 
+Array
+(
+    [mihpayid] => 25599222315
+    [mode] => CC
+    [status] => success
+    [unmappedstatus] => captured
+    [key] => BmTY3G
+    [txnid] => 181bfc5ac3d7ed7f79a3
+    [amount] => 1.00
+    [cardCategory] => signature_premium
+    [discount] => 0.00
+    [net_amount_debit] => 1
+    [addedon] => 2025-10-14 09:33:15
+    [productinfo] => Product Info
+    [firstname] => Payu-Admin
+    [lastname] => 
+    [address1] => 
+    [address2] => 
+    [city] => 
+    [state] => 
+    [country] => 
+    [zipcode] => 
+    [email] => test@example.com
+    [phone] => 1234567890
+    [udf1] => 
+    [udf2] => 
+    [udf3] => 
+    [udf4] => 
+    [udf5] => 
+    [udf6] => 
+    [udf7] => 
+    [udf8] => 
+    [udf9] => 
+    [udf10] => 
+    [hash] => 0c70aea98b41c79bace6a959c8ad674915a98fbb457c0d13ce42a5636ebb5db861e3244761257261dcb4fd336653342a18592993e53f67a00b9509b1c37940ab
+    [field1] => 7604146351426907605915
+    [field2] => 180034
+    [field3] => 1.00
+    [field4] => 
+    [field5] => 00
+    [field6] => 05
+    [field7] => AUTHPOSITIVE
+    [field8] => AUTHORIZED
+    [field9] => Transaction is Successful
+    [payment_source] => sist
+    [meCode] => {"MID":"hdfc_89051842","TKey":"0wMbyodmbgzwIOejqyUOpAkCJdBC01zQGwHS+Pm1rGGxBki5xPR60G948KUmnPR5l7xDpxYOWIOLfE1q0z5ezIA7dG/yVAkp4nZmbddhWyNpdLusIKmiJzXH6ASAMJKZJ0dH3NyQypy9w51PfUKAz80I4y4Udq8zCKB+yiDP3JqkOfz366Y5SjKI/BWNMXCMXOXIvzVNSinDVi4bVW+WtimdJ1BS9WACx8zkYjPjTkuGB6TMYeJGYt0JJ6oSQce4xk4yW3al+fFABVC26S+2wNuHYMMFvhd09AK4nUvFMh9SHjhWWw6T81miW2kqxi0o+rdvCCYEO3Aa3R5kH8kmIw=="}
+    [PG_TYPE] => CC-PG
+    [bank_ref_num] => 7604146351426907605915
+    [bankcode] => CC
+    [error] => E000
+    [error_Message] => No Error
+    [cardToken] => 69e986cc8579946a92262
+    [card_token] => 69e986cc8579946a92262
+    [cardnum] => XXXXXXXXXXXX4879
+)
 ```
 
 ### Failure scenarios
