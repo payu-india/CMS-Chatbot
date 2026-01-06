@@ -115,29 +115,8 @@ The description for the **si_details** parameter (JSON format):
 ## Sample request
 
 ```
-curl --location 'https://secure.payu.in/_payment' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
---data-urlencode 'key=BmTY3G' \
---data-urlencode 'txnid=my_order_96977' \
---data-urlencode 'amount=1' \
---data-urlencode 'firstname=Payu-Admin' \
---data-urlencode 'email=test@example.com' \
---data-urlencode 'phone=1234567890' \
---data-urlencode 'productinfo=my_order_96977' \
---data-urlencode 'api_version=1' \
---data-urlencode 'si=3' \
---data-urlencode 'pg=CC' \
---data-urlencode 'bankcode=AMEX' \
---data-urlencode 'surl=https://pp58admin.payu.in/test_response' \
---data-urlencode 'furl=https://pp58admin.payu.in/test_response' \
---data-urlencode 'ccnum=' \
---data-urlencode 'ccname=Test User' \
---data-urlencode 'ccexpmon=05' \
---data-urlencode 'ccexpyr=2025' \
---data-urlencode 'ccvv=123' \
---data-urlencode 'si_details={"action":"delete","authPayuId":25630224100}' \
---data-urlencode 'hash=65f4d07a452916828aba740ec36f81c7de7f041d7349a0a89b873be9f3ec0caa78cabdfa5654b032b144bc1192ce304ae5f6a96513cbee3747e931c08dd3a09c'
+curl 'https://test.payu.in/_payment' \
+ --data-raw 'key=JP***g&txnid=d5e7e5e6324a7860fbc6&amount=1&firstname=Payu-Admin&email=test%40example.com&phone=1234567890&productinfo=Product+Info&api_version=1&si=3&pg=CC&bankcode=AMEX&surl=https%3A%2F%2Fpp58admin.payu.in%2Ftest_response&furl=https%3A%2F%2Fpp58admin.payu.in%2Ftest_response&ccnum=&ccname=Test+User&ccexpmon=05&ccexpyr=2025&ccvv=123&si_details={"action":"delete","authPayuId":83674692837}&hash=3b0eec9b39c5866af2d6b1346df434efe800ea3ad7ea1d59ce22bf935178434383aa3316a0151ea9a6248c5785996d19a25f9aa819b8097af612c9ac76d55689'
 ```
 
 ## Response parameters
