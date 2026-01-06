@@ -40,38 +40,38 @@ This section describes how to set up a Payment Consent or Registration transacti
   Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                    <style>
-                    .tooltip-btn {
-                        position: relative;
-                        background-color: #4CAF50;
-                        color: white;
-                        padding: 10px 20px;
-                        border: none;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        font-weight: bold; /* Added this line */
-                    }
-                    .tooltip-btn:hover::after {
-                        content: attr(data-tooltip);
-                        position: absolute;
-                        bottom: 125%;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        background-color: #333;
-                        color: white;
-                        padding: 5px 10px;
-                        border-radius: 4px;
-                        white-space: nowrap;
-                        font-size: 12px;
-                        z-index: 1;
-                    }
-                    </style>
+                      <style>
+                      .tooltip-btn {
+                          position: relative;
+                          background-color: #4CAF50;
+                          color: white;
+                          padding: 10px 20px;
+                          border: none;
+                          border-radius: 5px;
+                          cursor: pointer;
+                          font-weight: bold; /* Added this line */
+                      }
+                      .tooltip-btn:hover::after {
+                          content: attr(data-tooltip);
+                          position: absolute;
+                          bottom: 125%;
+                          left: 50%;
+                          transform: translateX(-50%);
+                          background-color: #333;
+                          color: white;
+                          padding: 5px 10px;
+                          border-radius: 4px;
+                          white-space: nowrap;
+                          font-size: 12px;
+                          z-index: 1;
+                      }
+                      </style>
 
-                    <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
-                            class="tooltip-btn" 
-                            data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
-                        Experience the flow and get the code
-                    </button>
+                      <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
+                              class="tooltip-btn" 
+                              data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
+                          Experience the flow and get the code
+                      </button>
   `}</HTMLBlock>
 </Callout>
 
@@ -340,8 +340,22 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 ## Sample request
 
 ```curl
-curl -X \
- POST "https://test.payu.in/_payment" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=fM3O2HnkpJ8XEC&amount=100.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=cc#bankcode=AIRPENCC&si=1&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&si_details={\"billingAmount\": \"100.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2022-09-01\",\"paymentEndDate\": \"2022-12-01\"}&hash=2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5"
+curl --location 'https://secure.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68ed52caaaf5e' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'txnid=my_order_49428' \
+--data-urlencode 'amount=1' \
+--data-urlencode 'firstname=PayU User' \
+--data-urlencode 'email=test@gmail.com' \
+--data-urlencode 'phone=9876543210' \
+--data-urlencode 'productinfo=my_order_49428' \
+--data-urlencode 'pg=cc#bankcode=AIRPENCC' \
+--data-urlencode 'si=1' \
+--data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
+--data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
+--data-urlencode 'si_details={"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01"}' \
+--data-urlencode 'hash=67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb'
 ```
 
 Characters allowed for parameters
@@ -365,18 +379,19 @@ The response URL returned from PayU is in the form URL format (application/x-www
 ```
 Array
 (
-    [mihpayid] => 403993715525331373
-    [mode] => ENACH
+    [mihpayid] => 25599222315
+    [mode] => CC
     [status] => success
     [unmappedstatus] => captured
-    [key] => JPM7Fg
-    [txnid] => oRWSUMU4XSQBZn
-    [amount] => 100.00
+    [key] => BmTY3G
+    [txnid] => 181bfc5ac3d7ed7f79a3
+    [amount] => 1.00
+    [cardCategory] => signature_premium
     [discount] => 0.00
-    [net_amount_debit] => 0
-    [addedon] => 2022-02-03 19:06:55
-    [productinfo] => iPhone
-    [firstname] => Ashish
+    [net_amount_debit] => 1
+    [addedon] => 2025-10-14 09:33:15
+    [productinfo] => Product Info
+    [firstname] => Payu-Admin
     [lastname] => 
     [address1] => 
     [address2] => 
@@ -384,8 +399,8 @@ Array
     [state] => 
     [country] => 
     [zipcode] => 
-    [email] => test@gmail.com
-    [phone] => 9876543210
+    [email] => test@example.com
+    [phone] => 1234567890
     [udf1] => 
     [udf2] => 
     [udf3] => 
@@ -396,21 +411,27 @@ Array
     [udf8] => 
     [udf9] => 
     [udf10] => 
-    [hash] => f3f8e4088231b190930fc4b87d3f39397d1a1d02622ef4683a983244e1cd5158f39adbb67c3d87dcb4da25ae4a941ebbf55918e4575fa1c39677a774d02c0d2d
-    [field1] => ENACH285259747472911093
-    [field2] => 337026657857179355
-    [field3] => 
+    [hash] => 0c70aea98b41c79bace6a959c8ad674915a98fbb457c0d13ce42a5636ebb5db861e3244761257261dcb4fd336653342a18592993e53f67a00b9509b1c37940ab
+    [field1] => 7604146351426907605915
+    [field2] => 180034
+    [field3] => 1.00
     [field4] => 
-    [field5] => 
-    [field6] => 
-    [field7] => 
-    [field8] => 
-    [field9] => Mandate successfully scheduled at bank end: Your payment is scheduled successfully
+    [field5] => 00
+    [field6] => 05
+    [field7] => AUTHPOSITIVE
+    [field8] => AUTHORIZED
+    [field9] => Transaction is Successful
     [payment_source] => sist
-    [PG_TYPE] => ENACH-PG
-    [bank_ref_num] => 450699821592111537
-    [bankcode] => ICICENCC
+    [meCode] => {"MID":"hdfc_89051842","TKey":"0wMbyodmbgzwIOejqyUOpAkCJdBC01zQGwHS+Pm1rGGxBki5xPR60G948KUmnPR5l7xDpxYOWIOLfE1q0z5ezIA7dG/yVAkp4nZmbddhWyNpdLusIKmiJzXH6ASAMJKZJ0dH3NyQypy9w51PfUKAz80I4y4Udq8zCKB+yiDP3JqkOfz366Y5SjKI/BWNMXCMXOXIvzVNSinDVi4bVW+WtimdJ1BS9WACx8zkYjPjTkuGB6TMYeJGYt0JJ6oSQce4xk4yW3al+fFABVC26S+2wNuHYMMFvhd09AK4nUvFMh9SHjhWWw6T81miW2kqxi0o+rdvCCYEO3Aa3R5kH8kmIw=="}
+    [PG_TYPE] => CC-PG
+    [bank_ref_num] => 7604146351426907605915
+    [bankcode] => CC
     [error] => E000
     [error_Message] => No Error
+    [cardToken] => 69e986cc8579946a92262
+    [card_token] => 69e986cc8579946a92262
+    [cardnum] => XXXXXXXXXXXX4879
 )
 ```
+
+<br />
