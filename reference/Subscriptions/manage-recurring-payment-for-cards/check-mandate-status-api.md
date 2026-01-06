@@ -34,7 +34,7 @@ The **Check Mandate Status** API enables you to understand the current state of 
 
 HTTP Method: **POST**
 
-`<GENERALAPIsEnvironment />`
+<GENERALAPIsEnvironment />
 
 ## Request parameters
 
@@ -126,11 +126,13 @@ HTTP Method: **POST**
 ## Sample request
 
 ```curl
-curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
---form 'key="PRiQvJ"' \
+curl --location 'https://info.payu.in/merchant/postservice.php' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
+--form 'form="2"' \
+--form 'key="BmTY3G"' \
 --form 'command="check_mandate_status"' \
---form 'var1="{\"authPayuId\":\"403993715532526870\",\"requestId\":\"403993715532526858_check_3\"}"' \
---form 'hash="8255a64846497ecda42de1c047f1fff01ad5c185b84a2156f7342ba254e4e6cbd49558c898062200b86a3d1a402f16159b9fa5ad5bee843cdc470274caba718a"'
+--form 'var1="{\"authPayuId\":\"25599222315\",\"requestId\":\"403993715532527858_check_3\"}"' \
+--form 'hash="a2ddc3bdc070b0b2a74fbba71765adea1fa4dcebdc0c0d705d3940702b4e1d2332e0176313668a1073787c992c7da8838b19b1bc8fc72070f0ca7249d74af4c5"'
 ```
 
 ## Response parameters
@@ -225,12 +227,12 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 
 ```curl
 {
-  "status": "active",
-  "action": "check_mandate_status",
-  "authpayuid": "20576519965",
-  "amount": 399,
-  "mandateStartDate": "2024-08-04",
-  "mandateEndDate": "2034-08-04"
+    "status": "active",
+    "action": "check_mandate_status",
+    "authpayuid": 25599222315,
+    "amount": "1",
+    "mandateStartDate": "2025-10-14",
+    "mandateEndDate": "2027-12-01"
 }
 ```
 
