@@ -120,12 +120,14 @@ Method: **POST**
 ## Sample request
 
 ```curl
-curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=PRiQvJ' \
---data-urlencode 'command=upi_mandate_revoke' \
---data-urlencode 'var1={"authpayuid":"19504273314","requestId":"test000212"}' \
---data-urlencode 'hash='
+curl --location 'https://info.payu.in/merchant/postservice.php' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
+--form 'form="2"' \
+--form 'key="BmTY3G"' \
+--form 'command="upi_mandate_revoke"' \
+--form 'var1="{\"authpayuid\":\"19504273314\",\"requestId\":\"test000212\"}"' \
+--form 'hash="358fae564df0f392b959af59ec1445ca36d7a6749fc9dc70c4e5722eeb3a0ef8d11f02c124e319ce92cbb06e5611323f60d6020bae953953a2028408656fa573"' \
+--form 'salt="{{salt}}"'
 ```
 
 <br />
@@ -164,13 +166,21 @@ curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
 * Sample response for successful cancellation of Cards mandate:
 
 ```json
-{"status":1,"message":"Mandate Revoked Successfully","action":"MANDATE_REVOKE"}
+{
+    "status": 1,
+    "message": "Mandate Revoked Successfully",
+    "action": "MANDATE_REVOKE"
+}
 ```
 
 * Sample Response for failed cancellation
 
 ```json
-{"status":0,"message":"Mandate not in appropriate state to perform action","action":"MANDATE_REVOKE"}
+{
+  "status": 0,
+  "message": "Mandate not in appropriate state to perform action",
+  "action": "MANDATE_REVOKE"
+}
 ```
 
 export const RequestParameters = ({children}) => (
