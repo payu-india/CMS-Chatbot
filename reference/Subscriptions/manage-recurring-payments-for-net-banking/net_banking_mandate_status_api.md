@@ -33,7 +33,7 @@ next:
       slug: cancel-the-recurring-payment-for-net-banking
       title: Cancel the Recurring Payment for Net Banking
 ---
-The **NB\_mandate\_status** API enables you to understand the current state of the mandate with Enach at any time.
+The **NB_mandate_status** API enables you to understand the current state of the mandate with Enach at any time.
 
 **Environment**
 
@@ -107,12 +107,15 @@ The **NB\_mandate\_status** API enables you to understand the current state of t
 ## Sample request
 
 ```curl
-curl -X \
- \
- POST "https://test.payu.in/merchant/postservice.php?form=2" -H "accept: application/json" -H \
- \
- "Content-Type: application/x-www-form-urlencoded" -d”key=JF*y&command=NB_mandate_status&var1={“authpayuid”: “10731087875”,“requestId”: “1892432156”}
-&hash=e36568b2dfc460eab0eb3387fb7d90543ed861154f273b9593d6fcc152ed93a91e529c2f4be0965eeb57104e82d58889fa5efb52811ec78cbd1ad646e39c29a0”
+curl --location 'https://info.payu.in/merchant/postservice.php' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
+--data-urlencode 'form=2' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'command=NB_mandate_status' \
+--data-urlencode 'var1={"authpayuid":"10731087875","requestId":"1892432156"}' \
+--data-urlencode 'hash=126f2a694a3817a1c331a3a8231fb16c094624e05602eb2bfbd7be1d969df7394391bfa77087a3d8ee758f2f8df0bbd88e5cb81dadf99ff41153cad1ff373ae6'
 ```
 
 ## Response parameters
@@ -162,8 +165,8 @@ curl -X \
 
 ```
 {
-	"status": 0, 
-	"message" : "ENACH Mandate entry not found",
-	"action": "NB_mandate_status"
+    "status": 0,
+    "message": "ENACH Mandate entry not found",
+    "action": "NB_mandate_status"
 }
 ```
