@@ -14,8 +14,8 @@ In UPI Collect, the sequence of APIs is called to follow for redirection less ex
 
 <RegisterMerchantPrerequiste />
 
-<Callout icon="❗️">
-  **Important UPI Integration Changes as per RBI Mandate on UPI Collect Disablement**: 
+<Callout icon="❗️" theme="error">
+  **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**:
 
   For Android and Desktop web, UPI Collect flow has limitations. Consider migrating to UPI Intent S2S for better user experience:
 
