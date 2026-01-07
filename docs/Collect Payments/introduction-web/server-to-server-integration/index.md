@@ -86,6 +86,13 @@ PayU offers the following S2S integrations to collect card payments:
 
 The UPI integration for S2S in general is described in the following sections:
 
+<Callout icon="👍" theme="okay">
+  **Recommended for Mobile Apps**: For Android and iOS apps, consider using PayU SDKs which have Smart Intent implementation built-in for higher success rates:
+
+  * [Android Mobile SDKs](doc:explore-android-sdks)
+  * [iOS Mobile SDKs](doc:explore-ios-sdks)
+</Callout>
+
 * [UPI Collection S2S Integration](doc:upi-collection-s2s)
 * [UPI Intent S2S Integration](doc:upi-intent-server-to-server)
 
