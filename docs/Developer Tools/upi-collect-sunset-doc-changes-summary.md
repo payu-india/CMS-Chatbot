@@ -125,7 +125,7 @@ This document outlines the notes to be added to various PayU documentation pages
 
 **Content to add** (after the introduction):
 
-```markdown
+
 <Callout icon="⚠️" theme="warning">
   **Important**: For Android and Desktop web, UPI Collect flow has limitations. Consider migrating to UPI Intent S2S for better user experience:
   
@@ -137,7 +137,6 @@ This document outlines the notes to be added to various PayU documentation pages
 </Callout>
 ```
 
-***
 
 ## 7. S2S Integration Overview
 
@@ -147,14 +146,14 @@ This document outlines the notes to be added to various PayU documentation pages
 
 **Content to add** (in the UPI Server-to-Server Integration section):
 
-```markdown
+
 <Callout icon="👍" theme="okay">
   **Recommended for Mobile Apps**: For Android and iOS apps, consider using PayU SDKs which have Smart Intent implementation built-in for higher success rates:
   
   - [Android Mobile SDKs](doc:explore-android-sdks)
   - [iOS Mobile SDKs](doc:explore-ios-sdks)
 </Callout>
-```
+
 
 ***
 
@@ -166,7 +165,7 @@ This document outlines the notes to be added to various PayU documentation pages
 
 **Content to add** (at the top of the page):
 
-```markdown
+
 <Callout icon="👍" theme="okay">
   **Recommended**: For easier integration, merchants can use PayU SDKs for Android and iOS, which have the Smart Intent implementation built-in:
   
@@ -175,7 +174,7 @@ This document outlines the notes to be added to various PayU documentation pages
   - [iOS UPI SDK](doc:ios-upi-sdk) - Supports Intent and Collect payments
   - [iOS CheckoutPro SDK](doc:ios-checkoutpro-sdk) - Complete checkout solution for iOS
 </Callout>
-```
+
 
 ***
 
