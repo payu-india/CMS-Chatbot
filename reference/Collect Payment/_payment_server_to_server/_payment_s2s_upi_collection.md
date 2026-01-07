@@ -1,5 +1,5 @@
 ---
-title: UPI Collection - S2S
+title: UPI Collect - S2S
 excerpt: ''
 api:
   file: merchant-hosted-36.json
