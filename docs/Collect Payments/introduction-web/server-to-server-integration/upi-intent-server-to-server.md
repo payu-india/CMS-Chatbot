@@ -12,7 +12,7 @@ next:
 ---
 The following steps allow you to integrate the server-to-server UPI intent:
 
-<Cards columns={3}>
+<Cards columns={2}>
   <Card title="1. Initiate payment" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-1-initiate-payment">
     Initiate the UPI Intent payment request with required parameters
   </Card>
@@ -38,8 +38,8 @@ The following steps allow you to integrate the server-to-server UPI intent:
 
 <RegisterMerchantPrerequiste />
 
-<Callout icon="📘" theme="info">
-  **Platform-Specific Implementation Notes as RBI Mandate**:
+<Callout icon="❗️">
+  **Important UPI Integration Changes as per RBI Mandate on UPI Collect Disablement**:
 
   * **For Android Apps**: Merchants must implement the Smart Intent implementation. Refer to [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) for non-SDK implementation, or use [PayU Android SDKs](doc:explore-android-sdks) which have Smart Intent built-in.
 
