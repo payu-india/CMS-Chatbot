@@ -38,18 +38,16 @@ The following steps allow you to integrate the server-to-server UPI intent:
 
 <RegisterMerchantPrerequiste />
 
-<Callout icon="❗️">
-  **Important UPI Integration Changes as per RBI Mandate on UPI Collect Disablement**:
+<Callout icon="❗️" theme="error">
+  **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**:
 
   * **For Android Apps**: Merchants must implement the Smart Intent implementation. Refer to [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) for non-SDK implementation, or use [PayU Android SDKs](doc:explore-android-sdks) which have Smart Intent built-in.
 
   * **For iOS Apps**: Merchants can implement the specific deeplink handling and continue using the UPI flow as is. Refer to [iOS UPI SDK](doc:ios-upi-sdk) for SDK-based implementation.
 
   * **For Web**: Use the deeplink returned in the API response to generate a QR code that customers can scan with their UPI app.
-</Callout>
 
-<Callout icon="👍" theme="okay">
-  **Recommended**: For easier integration with built-in Smart Intent support, use PayU SDKs:
+  For easier integration with built-in Smart Intent support, use PayU SDKs:
 
   * [Android Mobile SDKs](doc:explore-android-sdks)
   * [iOS Mobile SDKs](doc:explore-ios-sdks)
