@@ -48,6 +48,13 @@ The following steps allow you to integrate the server-to-server UPI intent:
   * **For Web**: Use the deeplink returned in the API response to generate a QR code that customers can scan with their UPI app.
 </Callout>
 
+<Callout icon="👍" theme="okay">
+  **Recommended**: For easier integration with built-in Smart Intent support, use PayU SDKs:
+
+  * [Android Mobile SDKs](doc:explore-android-sdks)
+  * [iOS Mobile SDKs](doc:explore-ios-sdks)
+</Callout>
+
 <Accordion title="Intent Flow Diagram" icon="fa-code">
   The following diagram depicts the UPI intent flow from server to server:
 
