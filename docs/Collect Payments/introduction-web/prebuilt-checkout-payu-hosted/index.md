@@ -36,7 +36,7 @@ Once the payment is processed, the customer will be redirected back to the merch
 
 The following diagram illustrates the overall customer journey:
 
-<Image align="center" border={false} src="https://files.readme.io/b7b3bc19c28693be346591ec8a2c29ee07fcf47cb088bc6c9a6c34950c2af0dc-payu_hosted_checkout-workflow.png" />
+<Image align="center" border={false} src="https://files.readme.io/bc1c758a83c0c601d161a5621e1fe47a6d4c757e847a893b33b05419972e693a-b7b3bc19c28693be346591ec8a2c29ee07fcf47cb088bc6c9a6c34950c2af0dc-payu_hosted_checkout-workflow.png" />
 
 The following sample customer journey is for cards payment mode:
 
