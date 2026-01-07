@@ -342,8 +342,8 @@ Merchant Hosted Checkout supports a wide range of payment methods: 
   **Note**: For each payment method, you may need to pass specific parameters in the **_payment** API request. Refer to the PayU documentation for each payment method for details. For all the supported wallets, refer to Wallet Codes to understand exact value which needs to be passed against bankcode parameter. 
 </Callout>
 
-<Callout icon="⚠️" theme="warning">
-  **Important UPI Integration Changes for UPI**:
+<Callout icon="❗️">
+  **Important UPI Integration Changes as per RBI Mandate on UPI Collect Disablement**:
 
   For Merchant Hosted integrations using `txn_s2s_flow = 2` or `txn_s2s_flow = 4`:
 
