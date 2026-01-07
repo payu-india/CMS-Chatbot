@@ -342,6 +342,20 @@ Merchant Hosted Checkout supports a wide range of payment methods: 
   **Note**: For each payment method, you may need to pass specific parameters in the **_payment** API request. Refer to the PayU documentation for each payment method for details. For all the supported wallets, refer to Wallet Codes to understand exact value which needs to be passed against bankcode parameter. 
 </Callout>
 
+<Callout icon="⚠️" theme="warning">
+  **Important UPI Integration Changes for UPI**:
+
+  For Merchant Hosted integrations using `txn_s2s_flow = 2` or `txn_s2s_flow = 4`:
+
+  * **For Android Apps**: Merchants must implement the Smart Intent implementation in the app. Refer to [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) or use [PayU Android SDKs](doc:explore-android-sdks) which have Smart Intent built-in.
+
+  * **For iOS Apps**: Merchants can implement the specific deeplink and continue using the UPI Collect flow as is.
+
+  * **For Web**: Merchants must use the deeplink created via [UPI Intent S2S Integration](doc:upi-intent-server-to-server) to generate a QR code of the deeplink, instead of the UPI Collect flow.
+
+  * **Seamless Form Post**: Merchants must migrate to `txn_s2s_flow` (UPI Intent S2S), as Intent is not supported in the seamless form post flow for Android and Desktop web.
+</Callout>
+
 ### Supported Payment Methods: Details for API Integration
 
 The following table summarizes the supported payment methods for PayU’s Merchant Hosted Checkout, along with the corresponding bankcode and pg values required in the _payment API request. It also includes other relevant details and considerations for each payment method. 
