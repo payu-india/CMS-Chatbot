@@ -20,8 +20,8 @@ The Non SDK implementation for finding the UPI supported application in the cust
 
 You can use PayU APIs to initiate the transaction and get the Intent payment URI which includes payment details required for the PSP app customer will select for payment. After completion of payment by the customer, you can verify the transaction using the **Verify Payment** API. The following steps are required to enable Smart Intent-based UPI payment in your application.
 
-<Callout icon="👍" theme="okay">
-  **Important UPI Integration Changes as per RBI Mandate on UPI Collect Disablement**
+<Callout icon="❗️">
+  **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**
 
   **Recommended**: For easier integration, merchants can use PayU SDKs for Android and iOS, which have the Smart Intent implementation built-in:
 
