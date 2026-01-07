@@ -143,23 +143,12 @@ The following table provides comparison on various payment mode integration:
 
 ## &#x20;Billing Models Supported
 
-### Fixed Amount Recurring
-
-* **Monthly subscriptions**: ₹299/month for streaming service
-* **Annual plans**: ₹2,999/year with discount pricing
-* **Quarterly billing**: ₹750 every 3 months for software license
-
-### Variable Amount Recurring
-
-* **Usage-based**: Cloud storage based on consumption
-* **Tiered pricing**: Different amounts based on plan upgrades
-* **Utility bills**: Amount varies monthly based on usage
-
-### Hybrid Models
-
-* **Freemium to Premium**: Start free, convert to paid automatically
-* **Trial + Subscriptions**: 7-day trial then ₹199/month
-* **One-time + Recurring**: Setup fee ₹500 + ₹99/month maintenance
+| Billing Model                            | How It Works                                                                                                 | Best Suited For                                                        | Example                                                                    | How to use this feature?                                                                         |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Fixed Frequency, Fixed Amount            | A fixed amount is auto-debited at a regular frequency - monthly, quarterly, or yearly                        | OTT platforms, SaaS tools, gyms, insurance renewals                    | ₹499 debited every month for a streaming plan.                             | In the request, pass ‘billingCycle’ as DAILY/WEEKLY/MONTHLY/YEARLY and amount in ‘billingAmount’ |
+| Fixed Frequency, Variable Amount         | Payments occur at a fixed frequency, but the amount changes based on usage or consumption                    | Usage-based, telecom/data services, flexible EMIs                      | 5th of every month, debit amount varies based on actual usage              | In the request, pass ‘billingCycle’ as DAILY/WEEKLY/MONTHLY/YEARLY and amount in ‘billingAmount’ |
+| Flexible Frequency, Variable Amount      | Payments are triggered as needed - there’s no fixed frequency or amount. The merchant decides when to charge | EdTech installment plans, loans with variable EMIs, donation platforms | ₹15,000 collected in April, ₹10,000 in June, from the same active mandate. | In the request, pass ‘billingCycle’ as ADHOC and amount in ‘billingAmount’                       |
+| One-Time Payment, Fixed/ Variable Amount | Payment occurs only once in the mandate life cycle                                                           | Ecommerce where amount is deducted when the product is delivered       | ₹1,600 to be deducted when your furniture is delivered                     | In the request, pass ‘billingCycle’ as ONCE and amount in ‘billingAmount’                        |
 
 ## Integration Options
 
