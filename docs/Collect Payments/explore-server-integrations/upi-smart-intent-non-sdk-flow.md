@@ -133,7 +133,7 @@ You can use PayU APIs to initiate the transaction and get the Intent payment URI
 </Accordion>
 
 <Accordion title="Step 3: Get Intent URI" icon="fa-code">
-  Use the **\_payment** API to get Intent URI and transaction details for the UPI app selected by the customer. For more information, refer to <Anchor label="Collect Payment API > UPI Collect" target="_blank" href="ref:_payment_s2s_upi_collection">Collect Payment API > UPI Collect</Anchor>.
+  Use the **\_payment** API to get Intent URI and transaction details for the UPI app selected by the customer. For more information, refer to <Anchor label="Collect Payment API > UPI Collect" target="_blank" href="https://docs.payu.in/docs/upi-collection-s2s">Collect Payment API > UPI Collect</Anchor>.
 </Accordion>
 
 <Accordion title="Step 4: Start Activity" icon="fa-code">
