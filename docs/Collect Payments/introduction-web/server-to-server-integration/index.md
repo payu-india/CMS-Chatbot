@@ -78,16 +78,16 @@ PayU offers the following S2S integrations to collect card payments:
 * [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s)
 * [Direct Authorization Integration](doc:integrate-with-direct-authorization-s2s)
 
-> 📘 Note:
->
-> If you are using legacy integration of decoupled flow for S2S, refer to [Legacy Flow for Server-to-Server](doc:legacy-flow-for-server-to-server).
+<Callout icon="📘" theme="info">
+  Note: If you are using legacy integration of decoupled flow for S2S, refer to [Legacy Flow for Server-to-Server](doc:legacy-flow-for-server-to-server).
+</Callout>
 
 ## UPI Server-to-Server Integration
 
 The UPI integration for S2S in general is described in the following sections:
 
-<Callout icon="👍" theme="okay">
-  **Important UPI Integration Changes as per RBI Mandate on UPI Collect Disablement** 
+<Callout icon="❗️">
+  **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**
 
   **Recommendation for Mobile Apps**: For Android and iOS apps, consider using PayU SDKs which have Smart Intent implementation built-in for higher success rates:
 
