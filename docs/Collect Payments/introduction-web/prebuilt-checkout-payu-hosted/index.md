@@ -28,6 +28,10 @@ Once the payment is processed, the customer will be redirected back to the merch
 
 <Image align="center" alt="PayU Hosted Checkout Workflow" border={true} src="https://files.readme.io/932f800-payuhosted_wf.png" className="border" />
 
+<Callout icon="📘" theme="info">
+  **Note for Mobile Apps using WebView**: If you are using PayU Hosted Checkout within a WebView inside your Android or iOS app, you must handle deeplink URL handling in your app. For implementation details, refer to [WebView for Mobile Apps](doc:webview-for-mobile-apps).
+</Callout>
+
 ## Customer journey
 
 The following diagram illustrates the overall customer journey:
