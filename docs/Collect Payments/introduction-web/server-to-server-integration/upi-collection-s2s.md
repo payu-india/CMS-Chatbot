@@ -14,8 +14,10 @@ In UPI Collect, the sequence of APIs is called to follow for redirection less ex
 
 <RegisterMerchantPrerequiste />
 
-<Callout icon="⚠️" theme="warning">
-  **Important**: For Android and Desktop web, UPI Collect flow has limitations. Consider migrating to UPI Intent S2S for better user experience:
+<Callout icon="❗️">
+  **Important UPI Integration Changes as per RBI Mandate on UPI Collect Disablement**: 
+
+  For Android and Desktop web, UPI Collect flow has limitations. Consider migrating to UPI Intent S2S for better user experience:
 
   * **For Android Apps**: Implement Smart Intent using [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) or use [PayU Android SDKs](doc:explore-android-sdks).
 
