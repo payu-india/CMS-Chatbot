@@ -15,26 +15,18 @@ The following steps allow you to integrate the server-to-server UPI intent:
 <Cards columns={3}>
   <Card title="1. Initiate payment" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-1-initiate-payment">
     Initiate the UPI Intent payment request with required parameters
-
-    <br />
   </Card>
 
   <Card title="2. Invoke UPI Intent on customer's device" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-2-invoke-upi-intent-on-customers-device">
     Trigger the UPI Intent on the customer's mobile device to complete payment
-
-    <br />
   </Card>
 
   <Card title="3. Check UPI transaction status" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-3-check-upi-transaction-status">
     Monitor and verify the UPI transaction status after intent invocation
-
-    <br />
   </Card>
 
   <Card title="4. PayU sends Server-to-Server callback response" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-4-payu-sends-server-to-server-callback-response">
     Receive and process the server-to-server callback response from PayU
-
-    <br />
   </Card>
 
   <Card title="5. Verify the payment" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-5-verify-the-payment">
@@ -45,6 +37,16 @@ The following steps allow you to integrate the server-to-server UPI intent:
 </Cards>
 
 <RegisterMerchantPrerequiste />
+
+<Callout icon="📘" theme="info">
+  **Platform-Specific Implementation Notes as RBI Mandate**:
+
+  * **For Android Apps**: Merchants must implement the Smart Intent implementation. Refer to [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) for non-SDK implementation, or use [PayU Android SDKs](doc:explore-android-sdks) which have Smart Intent built-in.
+
+  * **For iOS Apps**: Merchants can implement the specific deeplink handling and continue using the UPI flow as is. Refer to [iOS UPI SDK](doc:ios-upi-sdk) for SDK-based implementation.
+
+  * **For Web**: Use the deeplink returned in the API response to generate a QR code that customers can scan with their UPI app.
+</Callout>
 
 <Accordion title="Intent Flow Diagram" icon="fa-code">
   The following diagram depicts the UPI intent flow from server to server:
