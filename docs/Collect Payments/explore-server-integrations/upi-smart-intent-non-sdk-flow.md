@@ -31,27 +31,7 @@ You can use PayU APIs to initiate the transaction and get the Intent payment URI
 
 <br />
 
-<Cards columns={5}>
-  <Card title="1. Update Manifest" href="#step-1-update-manifest-file">
-    Add package IDs to access UPI apps on Android 11+
-  </Card>
 
-  <Card title="2. Fetch UPI Apps" href="#step-2-fetch-the-list-of-upi-and-smart-intent-supported-apps">
-    Get list of installed UPI apps supporting Smart Intent
-  </Card>
-
-  <Card title="3. Get Intent URI" href="#step-3-get-intent-uri">
-    Use \_payment API to get Intent URI for selected app
-  </Card>
-
-  <Card title="4. Start Activity" href="#step-4-start-activity">
-    Launch UPI app with package ID and Intent URI
-  </Card>
-
-  <Card title="5. Get Callback" href="#step-5-get-callback">
-    Handle callback and verify payment status
-  </Card>
-</Cards>
 
 <Accordion title="Step 1: Update Manifest File" icon="fa-code">
   Add package ids in your apps manifest file to allow your application to access apps installed on the customer's device. This is required for Android 11 and above.
