@@ -1,11 +1,11 @@
 ---
-title: MCP Currency Codes
+title: Supported Currencies for MCC
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-The following table lists the Currency Codes used for MCP
+The following table lists the Currency Codes used for MCC:
 
 | 3-Alpha Currency Code | Currency              |
 | --------------------- | --------------------- |
