@@ -1,7 +1,7 @@
 ---
 title: Supported Currencies for MCC
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
