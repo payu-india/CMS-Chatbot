@@ -389,7 +389,11 @@ Make the transaction request with the payment details provided by the customer t
 
         <td style={{ textAlign: "left" }} />
       </tr>
-
+                <tr>
+                  <td>transactionCurrency <code>optional (mandatory for multi-currency merchants)</code></td>
+                  <td><code>String</code> The payment currency for the transaction. Merchants initiating multi-currency payments must pass a valid 3-alpha currency code (ISO 4217 code) in this field. For more information, refer to <a href="https://docs.payu.in/docs/mcp-currency-codes">MCP Currency Codes</a> </td>
+                  <td>INR, USD, AED, OR GBP</td>
+                </tr>
       <tr>
         <td style={{ textAlign: "left" }}>
           address1
