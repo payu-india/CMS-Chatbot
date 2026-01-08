@@ -59,6 +59,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | Karnataka Gramin Bank                      | KGBNB    |
 | Karur Vysya - Corporate Banking            | KRVBC    |
 | Karur Vysya Bank                           | KRVB     |
+| Kerala Gramin Bank                         | KEGBNB   |
 | Kotak Mahindra Bank                        | 162B     |
 | Kotak Mahindra Bank - Corp Net Banking     | KTKBCORP |
 | KVB NB TPV                                 | KVBNBTPV |
