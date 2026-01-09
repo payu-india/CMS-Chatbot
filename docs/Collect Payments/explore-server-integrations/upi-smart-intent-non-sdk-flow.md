@@ -291,7 +291,7 @@ You can use PayU APIs to initiate the transaction and get the Intent payment URI
 
 <Image align="center" border={false} src="https://files.readme.io/b1767cf25bf9c6ca94e7cbf0de8ef28e2518ade4919b5df5f6d6ad41537ba1fd-UPI_One_time_Intent_-_m-web_or_IOS_App.png" />
 
-<br />
+### Steps to Integrate
 
 <Accordion title="Step 1: Fetch the List of UPI and Smart Intent Supported Apps" icon="fa-code">
   You need to get the list of UPI and smart intent supported applications installed in the device.
@@ -374,47 +374,48 @@ You can use PayU APIs to initiate the transaction and get the Intent payment URI
   </Accordion>
 
   <Accordion title="Sample Request" icon="fa-code">
-```curl
-curl --location 'https://test.payu.in/_payment' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=PRiQvJ' \
---data-urlencode 'txnid=my_order_991' \
---data-urlencode 'amount=1' \
---data-urlencode 'productinfo=my_order_991' \
---data-urlencode 'email=' \
---data-urlencode 'phone=9368252248' \
---data-urlencode 'txn_s2s_flow=4' \
---data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
---data-urlencode 'surl=https://test.payu.in/admin/test_response' \
---data-urlencode 'furl=https://test.payu.in/admin/test_response' \
---data-urlencode 'udf1=buyer'\''s DOB' \
---data-urlencode 'udf2=' \
---data-urlencode 'udf3=buyer'\''s PAN' \
---data-urlencode 'udf4=' \
---data-urlencode 'udf5=invoice number' \
---data-urlencode 's2s_client_ip=10.200.12.12' \
---data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
---data-urlencode 'firstname=' \
---data-urlencode 'lastname=kr' \
---data-urlencode 'address1=308,third floor' \
---data-urlencode 'address2=testing' \
---data-urlencode 'city=Gurugram' \
---data-urlencode 'state=UP' \
---data-urlencode 'country=India' \
---data-urlencode 'zipcode=122018' \
---data-urlencode 'pg=UPI' \
---data-urlencode 'bankcode=INTENT' \
---data-urlencode 'upiAppName=gpay/phonepe/paytm/qr/amazonpay' \
---data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
---data-urlencode 'buyer_type_business=1'
-```
+    ```curl
+    curl --location 'https://test.payu.in/_payment' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'key=PRiQvJ' \
+    --data-urlencode 'txnid=my_order_991' \
+    --data-urlencode 'amount=1' \
+    --data-urlencode 'productinfo=my_order_991' \
+    --data-urlencode 'email=' \
+    --data-urlencode 'phone=9368252248' \
+    --data-urlencode 'txn_s2s_flow=4' \
+    --data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
+    --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'udf1=buyer'\''s DOB' \
+    --data-urlencode 'udf2=' \
+    --data-urlencode 'udf3=buyer'\''s PAN' \
+    --data-urlencode 'udf4=' \
+    --data-urlencode 'udf5=invoice number' \
+    --data-urlencode 's2s_client_ip=10.200.12.12' \
+    --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+    --data-urlencode 'firstname=' \
+    --data-urlencode 'lastname=kr' \
+    --data-urlencode 'address1=308,third floor' \
+    --data-urlencode 'address2=testing' \
+    --data-urlencode 'city=Gurugram' \
+    --data-urlencode 'state=UP' \
+    --data-urlencode 'country=India' \
+    --data-urlencode 'zipcode=122018' \
+    --data-urlencode 'pg=UPI' \
+    --data-urlencode 'bankcode=INTENT' \
+    --data-urlencode 'upiAppName=gpay/phonepe/paytm/qr/amazonpay' \
+    --data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
+    --data-urlencode 'buyer_type_business=1'
+    ```
+  </Accordion>
 </Accordion>
-</Accordion>
+
 <Accordion title="Step 3: Retrieve Deeplink(uriIntentData) from the response," icon="fa-code">
   If metaData.unmappedStatus = pending, then get the result.intentURIData and add the prefix upi://pay?to make it to create a fully qualified deeplink to trigger the UPI App.
 
   ```json
-{
+  {
     "metaData": {
         "message": null,
         "referenceId": "c99a6455b3e0dc5cd7167ab8c8cc10d2fa153cb509e3f64c6cd0ed9c5b64a8c9",
@@ -432,28 +433,32 @@ curl --location 'https://test.payu.in/_payment' \
         "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluL2M5OWE2NDU1YjNlMGRjNWNkNzE2N2FiOGM4Y2MxMGQyYzgzYTk5NmFhNDhiYTk4MmZjMGQ4MTI1MGY1ODgxZjMvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjhERDNFRUFFLUI5NTktQzY1RS03MDczLTYzQTNGQUUxMjZGRiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMS4wMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSJjOTlhNjQ1NWIzZTBkYzVjZDcxNjdhYjhjOGNjMTBkMmZhMTUzY2I1MDllM2Y2NGM2Y2QwZWQ5YzViNjRhOGM5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSJwYXl1dGVzdEBoZGZjYmFuayI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVOYW1lIiB2YWx1ZT0iU3VkaGFuc2h1Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMS4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
         "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
     }
-}
-```
+  }
+  ```
 </Accordion>
-<Accordion title="Step 4: Add the prefix" icon="fa-code">
-Add the prefix as per the Android/IOS to it to create a fully qualified deeplink to trigger the UPI App.
 
-#### Android Specific Intent prefix
-```
-androidPrefix="intent://pay?"
-intentUriData="pa=myntra.payu@axisbank&pn=NIMIT%20BHATIA&tr=26156866365&tid=PPPL2615686636525112512114769254fab&am=10.00&cu=INR&tn=UPIIntent"
-suffix = "#Intent;scheme=upi;package=<package name>;"
-suffixForFallback="S.browser_fallback_url=<base64decoded result.acsTemplate can be used to redirect to Payu for UPI fallback>;end"
-//use androidPrefix+intentUriData+suffix+suffixForFallback to trigger the App in specific deeplink integration
-```
-#### IOS Specific Intent prefix (Limited availability)
-```
-phonepe = phonepe://upi/pay? 
-paytm = paytm://upi/pay? 
-googlepay = gpay://upi/pay? 
-bhim = bhim://upi/pay?
-credpay = credpay://upi/pay?
-```
+<Accordion title="Step 4: Add the prefix" icon="fa-code">
+  Add the prefix as per the Android/IOS to it to create a fully qualified deeplink to trigger the UPI App.
+
+  #### Android Specific Intent prefix
+
+  ```
+  androidPrefix="intent://pay?"
+  intentUriData="pa=myntra.payu@axisbank&pn=NIMIT%20BHATIA&tr=26156866365&tid=PPPL2615686636525112512114769254fab&am=10.00&cu=INR&tn=UPIIntent"
+  suffix = "#Intent;scheme=upi;package=<package name>;"
+  suffixForFallback="S.browser_fallback_url=<base64decoded result.acsTemplate can be used to redirect to Payu for UPI fallback>;end"
+  //use androidPrefix+intentUriData+suffix+suffixForFallback to trigger the App in specific deeplink integration
+  ```
+
+  #### IOS Specific Intent prefix (Limited availability)
+
+  ```
+  phonepe = phonepe://upi/pay? 
+  paytm = paytm://upi/pay? 
+  googlepay = gpay://upi/pay? 
+  bhim = bhim://upi/pay?
+  credpay = credpay://upi/pay?
+  ```
 </Accordion>
 
 <Accordion title="Step 5: Verify the payment" icon="fa-code">
