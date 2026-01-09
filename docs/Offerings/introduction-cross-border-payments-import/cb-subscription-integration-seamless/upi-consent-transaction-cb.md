@@ -476,9 +476,9 @@ Before implementing, familiarize yourself with the required parameters.
   </Accordion>
 </Accordion>
 
-> 📘 **Note**
->
-> Before you make payment request to PayU, it is recommended to validate the UPI handle provided by your customer is eligible for recurring payment using the validateVPA API. For more information, refer to [Validate VPA API](ref:validate_vpa_api).
+<Callout icon="📘" theme="info">
+  **Note**: Before you make payment request to PayU, it is recommended to validate the UPI handle provided by your customer is eligible for recurring payment using the validateVPA API. For more information, refer to [Validate VPA API](ref:validate_vpa_api).
+</Callout>
 
 ***
 
