@@ -3,6 +3,10 @@ name: PACB_Recurring_Payments_Flow
 ---
 ## Recurring Payments Flow
 
+### Workflow
+
+<Image align="center" border={false} src="https://files.readme.io/ffac22445b558dd93d085536bb1065ab818e716c50e6839ce4569427dde92275-UPI_Autopay_-_Recurring_Payment_flow.png" />
+
 ### Step 1: Pre-Debit SI Notification
 
 Use the **Pre-Debit SI** API to send pre-debit notifications for upcoming recurring debits with parallel sequencing support. This notification mandator for Cards and UPI recurring only and not required for ENACH recurring.
@@ -323,12 +327,12 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
 | Test        | `https://test.payu.in/merchant/postservice?form=2` |
 
 <Accordion title="Request Parameters" icon="fa-info-circle">
-  | Parameter                             | Description                                                                                  | Example                           |
-  | :------------------------------------ | :------------------------------------------------------------------------------------------- | :-------------------------------- |
-  | key <br /> <code>mandatory</code>     | <code>String</code> Merchant Key provided by PayU                                            | JPM7Fg                            |
-  | command <br /> <code>mandatory</code> | <code>String</code> API command. Must be `si_transaction`                                    | si\_transaction                   |
-  | var1 <br /> <code>mandatory</code>    | <code>JSON Object</code> Transaction details object containing mandatory and optional fields | Refer to var1 Object Fields below |
-  | hash <br /> <code>mandatory</code>    | <code>String</code> SHA512 hash: `sha512(key\\|command\\|var1\\|salt)`                       | 9f5faabedb...                     |
+  | Parameter                             | Description                                                                                  | Example                           |        |         |               |
+  | :------------------------------------ | :------------------------------------------------------------------------------------------- | :-------------------------------- | ------ | ------- | ------------- |
+  | key <br /> <code>mandatory</code>     | <code>String</code> Merchant Key provided by PayU                                            | JPM7Fg                            |        |         |               |
+  | command <br /> <code>mandatory</code> | <code>String</code> API command. Must be `si_transaction`                                    | si\_transaction                   |        |         |               |
+  | var1 <br /> <code>mandatory</code>    | <code>JSON Object</code> Transaction details object containing mandatory and optional fields | Refer to var1 Object Fields below |        |         |               |
+  | hash <br /> <code>mandatory</code>    | <code>String</code> SHA512 hash: \`sha512(key\\                                              | command\\                         | var1\\ | salt)\` | 9f5faabedb... |
 
   ### var1 Object Fields
 
@@ -710,4 +714,3 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
   }
   ```
 </Accordion>
-
