@@ -18,9 +18,9 @@ The dynamic QR generation API returns a UPI QR which can be used for offline pay
 | :---------- | :----------------------------------------------------------------- |
 | Production  | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
-## Request parameters
+HTTP Method: **POST**
 
-# PayU Dynamic BQR API Parameters
+## Request parameters
 
 <HTMLBlock>{`
 <table>
