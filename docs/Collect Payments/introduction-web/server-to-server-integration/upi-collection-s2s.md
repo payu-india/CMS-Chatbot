@@ -80,6 +80,10 @@ In UPI Collect, the sequence of APIs is called to follow for redirection less ex
   5. Customer accepts the payment to complete the transaction. ​ 
 </Accordion>
 
+## Workflow
+
+<Image align="center" border={false} src="https://files.readme.io/af55c40e9c1fd7a87fc2c70872e63563ec83e940bba99c55d5d66f8e037eeecc-upi-s2s-collection-workflow.png" />
+
 ## Step 1: Validate VPA
 
 This web service will let you validate VPA if it is a valid VPA or not.
@@ -565,41 +569,42 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
 
   <HashingSample />
 </Accordion>
+
 <Accordion title="Sample request" icon="fa-code">
-```curl
-curl --location 'https://test.payu.in/_payment' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=PRiQvJ' \
---data-urlencode 'txnid=my_order_991' \
---data-urlencode 'amount=1' \
---data-urlencode 'productinfo=my_order_991' \
---data-urlencode 'email=' \
---data-urlencode 'phone=9368252248' \
---data-urlencode 'txn_s2s_flow=4' \
---data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
---data-urlencode 'surl=https://test.payu.in/admin/test_response' \
---data-urlencode 'furl=https://test.payu.in/admin/test_response' \
---data-urlencode 'udf1=buyer'\''s DOB' \
---data-urlencode 'udf2=' \
---data-urlencode 'udf3=buyer'\''s PAN' \
---data-urlencode 'udf4=' \
---data-urlencode 'udf5=invoice number' \
---data-urlencode 's2s_client_ip=10.200.12.12' \
---data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
---data-urlencode 'firstname=' \
---data-urlencode 'lastname=kr' \
---data-urlencode 'address1=308,third floor' \
---data-urlencode 'address2=testing' \
---data-urlencode 'city=Gurugram' \
---data-urlencode 'state=UP' \
---data-urlencode 'country=India' \
---data-urlencode 'zipcode=122018' \
---data-urlencode 'pg=UPI' \
---data-urlencode 'bankcode=UPI' \
---data-urlencode 'vpa=9999999999@upi' \
---data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
---data-urlencode 'buyer_type_business=1'
-```
+  ```curl
+  curl --location 'https://test.payu.in/_payment' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'key=PRiQvJ' \
+  --data-urlencode 'txnid=my_order_991' \
+  --data-urlencode 'amount=1' \
+  --data-urlencode 'productinfo=my_order_991' \
+  --data-urlencode 'email=' \
+  --data-urlencode 'phone=9368252248' \
+  --data-urlencode 'txn_s2s_flow=4' \
+  --data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
+  --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'udf1=buyer'\''s DOB' \
+  --data-urlencode 'udf2=' \
+  --data-urlencode 'udf3=buyer'\''s PAN' \
+  --data-urlencode 'udf4=' \
+  --data-urlencode 'udf5=invoice number' \
+  --data-urlencode 's2s_client_ip=10.200.12.12' \
+  --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+  --data-urlencode 'firstname=' \
+  --data-urlencode 'lastname=kr' \
+  --data-urlencode 'address1=308,third floor' \
+  --data-urlencode 'address2=testing' \
+  --data-urlencode 'city=Gurugram' \
+  --data-urlencode 'state=UP' \
+  --data-urlencode 'country=India' \
+  --data-urlencode 'zipcode=122018' \
+  --data-urlencode 'pg=UPI' \
+  --data-urlencode 'bankcode=UPI' \
+  --data-urlencode 'vpa=9999999999@upi' \
+  --data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
+  --data-urlencode 'buyer_type_business=1'
+  ```
 </Accordion>
 
 ## Step 3: Redirect the customer to Timer Page
@@ -607,28 +612,29 @@ curl --location 'https://test.payu.in/_payment' \
 Redirect the customer to PayU Hosted Timer page, or create your own timer page and check the transactions status from PayU using the verify_payment API.
 
 To redirect customer on Payu hosted timer page, use the result.acsTemplate, and base64decode to use that HTML to open the timer page.
-<Accordion title="Sample PayU response for successfully initiated UPI Collect request" icon="fa-code">
-```json
-{
-    "metaData": {
-        "message": null,
-        "referenceId": "04029ff0af37fc9290f6d9b5a3997f9a9ea4a7b22e2b3fc768cae87c1e78c16c",
-        "statusCode": null,
-        "txnId": "my_order_68480",
-        "txnStatus": "pending",
-        "unmappedStatus": "pending"
-    },
-    "result": {
-        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vYXBpdGVzdC5wYXl1LmluL3B1YmxpYy8jLzA0MDI5ZmYwYWYzN2ZjOTI5MGY2ZDliNWEzOTk3ZjlhOWVhNGE3YjIyZTJiM2ZjNzY4Y2FlODdjMWU3OGMxNmMvdXBpTG9hZGVyIiBtZXRob2Q9ImdldCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
-        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
-    }
-}
-```
-</Accordion>
-<Callout icon="📘" theme="info">
-Using a webbook wait for Payu to mark the transaction completed. For more information, refer to [Webhooks](doc:webhooks-consolidated).
-</Callout>
 
+<Accordion title="Sample PayU response for successfully initiated UPI Collect request" icon="fa-code">
+  ```json
+  {
+      "metaData": {
+          "message": null,
+          "referenceId": "04029ff0af37fc9290f6d9b5a3997f9a9ea4a7b22e2b3fc768cae87c1e78c16c",
+          "statusCode": null,
+          "txnId": "my_order_68480",
+          "txnStatus": "pending",
+          "unmappedStatus": "pending"
+      },
+      "result": {
+          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vYXBpdGVzdC5wYXl1LmluL3B1YmxpYy8jLzA0MDI5ZmYwYWYzN2ZjOTI5MGY2ZDliNWEzOTk3ZjlhOWVhNGE3YjIyZTJiM2ZjNzY4Y2FlODdjMWU3OGMxNmMvdXBpTG9hZGVyIiBtZXRob2Q9ImdldCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+      }
+  }
+  ```
+</Accordion>
+
+<Callout icon="📘" theme="info">
+  Using a webbook wait for Payu to mark the transaction completed. For more information, refer to [Webhooks](doc:webhooks-consolidated).
+</Callout>
 
 ## Step 4: Check UPI transaction status
 
