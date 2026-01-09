@@ -473,7 +473,7 @@ This section describes how to integrate UPI Online QR which will help you genera
 
 <Image align="center" border={false} src="https://files.readme.io/22c63eed9b5dec76ebe5a56fe00c5af4a8a8f4e56745584fefc381556b65249d-UPI_One_time_Intent_based_Online_QR_1.svg" />
 
-## Steps to Integrate
+### Steps to Integrate
 
 <Accordion title="Step 1: Initiate Payment" icon="fa-code">
   Use the **\_payment** API to collect payment. For more information, refer to <Anchor label="Collect Payment API > UPI Collection with S2S Integration" target="_blank" href="https://docs.payu.in/docs/upi-intent-server-to-server">UPI Intent with S2S Integration</Anchor>.
@@ -511,70 +511,343 @@ This section describes how to integrate UPI Online QR which will help you genera
   </Accordion>
 
   <Accordion title="Sample Request" icon="fa-code">
-```curl
-curl --location 'https://test.payu.in/_payment' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=PRiQvJ' \
---data-urlencode 'txnid=my_order_991' \
---data-urlencode 'amount=1' \
---data-urlencode 'productinfo=my_order_991' \
---data-urlencode 'email=' \
---data-urlencode 'phone=9368252248' \
---data-urlencode 'txn_s2s_flow=4' \
---data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
---data-urlencode 'surl=https://test.payu.in/admin/test_response' \
---data-urlencode 'furl=https://test.payu.in/admin/test_response' \
---data-urlencode 'udf1=buyer'\''s DOB' \
---data-urlencode 'udf2=' \
---data-urlencode 'udf3=buyer'\''s PAN' \
---data-urlencode 'udf4=' \
---data-urlencode 'udf5=invoice number' \
---data-urlencode 's2s_client_ip=10.200.12.12' \
---data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
---data-urlencode 'firstname=' \
---data-urlencode 'lastname=kr' \
---data-urlencode 'address1=308,third floor' \
---data-urlencode 'address2=testing' \
---data-urlencode 'city=Gurugram' \
---data-urlencode 'state=UP' \
---data-urlencode 'country=India' \
---data-urlencode 'zipcode=122018' \
---data-urlencode 'pg=UPI' \
---data-urlencode 'bankcode=INTENT' \
---data-urlencode 'upiAppName=gpay/phonepe/paytm/qr/amazonpay' \
---data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
---data-urlencode 'buyer_type_business=1'
-```
+    ```curl
+    curl --location 'https://test.payu.in/_payment' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'key=PRiQvJ' \
+    --data-urlencode 'txnid=my_order_991' \
+    --data-urlencode 'amount=1' \
+    --data-urlencode 'productinfo=my_order_991' \
+    --data-urlencode 'email=' \
+    --data-urlencode 'phone=9368252248' \
+    --data-urlencode 'txn_s2s_flow=4' \
+    --data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
+    --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'udf1=buyer'\''s DOB' \
+    --data-urlencode 'udf2=' \
+    --data-urlencode 'udf3=buyer'\''s PAN' \
+    --data-urlencode 'udf4=' \
+    --data-urlencode 'udf5=invoice number' \
+    --data-urlencode 's2s_client_ip=10.200.12.12' \
+    --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+    --data-urlencode 'firstname=' \
+    --data-urlencode 'lastname=kr' \
+    --data-urlencode 'address1=308,third floor' \
+    --data-urlencode 'address2=testing' \
+    --data-urlencode 'city=Gurugram' \
+    --data-urlencode 'state=UP' \
+    --data-urlencode 'country=India' \
+    --data-urlencode 'zipcode=122018' \
+    --data-urlencode 'pg=UPI' \
+    --data-urlencode 'bankcode=INTENT' \
+    --data-urlencode 'upiAppName=gpay/phonepe/paytm/qr/amazonpay' \
+    --data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
+    --data-urlencode 'buyer_type_business=1'
+    ```
   </Accordion>
 </Accordion>
+
 <Accordion title="Step 2: Retrieve Deeplink(uriIntentData) from the response," icon="fa-code">
-if 'metaData.unmappedStatus = pending', then get the 'result.intentURIData' and add the Generic Intent prefix 'upi://pay?' to it to create a fully qualified deeplink to trigger the UPI App.
+  if 'metaData.unmappedStatus = pending', then get the 'result.intentURIData' and add the Generic Intent prefix 'upi://pay?' to it to create a fully qualified deeplink to trigger the UPI App.
+
+  ```json
+  {
+      "metaData": {
+          "message": null,
+          "referenceId": "c99a6455b3e0dc5cd7167ab8c8cc10d2fa153cb509e3f64c6cd0ed9c5b64a8c9",
+          "statusCode": null,
+          "txnId": "my_order_26075",
+          "txnStatus": "pending",
+          "unmappedStatus": "pending"
+      },
+      "result": {
+          "paymentId": "403993715535965242",
+          "merchantName": "Sudhanshu",
+          "merchantVpa": "payutest@hdfcbank",
+          "amount": "1.00",
+          "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent",
+          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluL2M5OWE2NDU1YjNlMGRjNWNkNzE2N2FiOGM4Y2MxMGQyYzgzYTk5NmFhNDhiYTk4MmZjMGQ4MTI1MGY1ODgxZjMvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjhERDNFRUFFLUI5NTktQzY1RS03MDczLTYzQTNGQUUxMjZGRiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMS4wMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSJjOTlhNjQ1NWIzZTBkYzVjZDcxNjdhYjhjOGNjMTBkMmZhMTUzY2I1MDllM2Y2NGM2Y2QwZWQ5YzViNjRhOGM5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSJwYXl1dGVzdEBoZGZjYmFuayI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVOYW1lIiB2YWx1ZT0iU3VkaGFuc2h1Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMS4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+      }
+  }
+  ```
+</Accordion>
+
+<Accordion title="Step 3: Generate the QR from the Retrieved Deeplink" icon="fa-code">
+  Generate the QR from the Deeplink retrieved and show the QR to the customer.
+After receiving the `intentURIData` from Step 2 of the UPI Online QR flow, you need to:
+1. Prepend `upi://pay?` to create the full UPI deeplink
+2. Generate a QR code image from that deeplink
+3. Display the QR code to the customer
+
+### Example Response from Step 2
+
 ```json
 {
-    "metaData": {
-        "message": null,
-        "referenceId": "c99a6455b3e0dc5cd7167ab8c8cc10d2fa153cb509e3f64c6cd0ed9c5b64a8c9",
-        "statusCode": null,
-        "txnId": "my_order_26075",
-        "txnStatus": "pending",
-        "unmappedStatus": "pending"
-    },
     "result": {
-        "paymentId": "403993715535965242",
-        "merchantName": "Sudhanshu",
-        "merchantVpa": "payutest@hdfcbank",
-        "amount": "1.00",
-        "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent",
-        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluL2M5OWE2NDU1YjNlMGRjNWNkNzE2N2FiOGM4Y2MxMGQyYzgzYTk5NmFhNDhiYTk4MmZjMGQ4MTI1MGY1ODgxZjMvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjhERDNFRUFFLUI5NTktQzY1RS03MDczLTYzQTNGQUUxMjZGRiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMS4wMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSJjOTlhNjQ1NWIzZTBkYzVjZDcxNjdhYjhjOGNjMTBkMmZhMTUzY2I1MDllM2Y2NGM2Y2QwZWQ5YzViNjRhOGM5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSJwYXl1dGVzdEBoZGZjYmFuayI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVOYW1lIiB2YWx1ZT0iU3VkaGFuc2h1Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMS4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
-        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+        "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent"
     }
 }
 ```
+
+### Full UPI Deeplink
+
+```
+upi://pay?pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent
+```
+### Sample code
+```python
+import qrcode
+from io import BytesIO
+import base64
+
+def generate_upi_qr(intent_uri_data):
+    """
+    Generate QR code from UPI intent URI data.
+    
+    Args:
+        intent_uri_data: The intentURIData from PayU response
+    
+    Returns:
+        Base64 encoded QR code image (PNG)
+    """
+    # Create the full UPI deeplink
+    upi_deeplink = f"upi://pay?{intent_uri_data}"
+    
+    # Generate QR code
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(upi_deeplink)
+    qr.make(fit=True)
+    
+    # Create image
+    img = qr.make_image(fill_color="black", back_color="white")
+    
+    # Convert to base64 for web display
+    buffer = BytesIO()
+    img.save(buffer, format='PNG')
+    qr_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+    
+    return qr_base64
+
+# Example usage with response from Step 2
+intent_uri_data = "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent"
+
+qr_image_base64 = generate_upi_qr(intent_uri_data)
+
+# Use in HTML: <img src="data:image/png;base64,{qr_image_base64}" />
+print(f"QR Code generated. Use in HTML: <img src=\"data:image/png;base64,{qr_image_base64}\" />")
+
+# Or save to file
+upi_deeplink = f"upi://pay?{intent_uri_data}"
+img = qrcode.make(upi_deeplink)
+img.save("upi_qr_code.png")
+print("QR code saved to upi_qr_code.png")
+```
+```javascript
+const QRCode = require('qrcode');
+
+async function generateUpiQR(intentUriData) {
+    // Create the full UPI deeplink
+    const upiDeeplink = `upi://pay?${intentUriData}`;
+    
+    try {
+        // Generate QR code as base64 data URL
+        const qrDataUrl = await QRCode.toDataURL(upiDeeplink, {
+            width: 300,
+            margin: 2,
+            color: {
+                dark: '#000000',
+                light: '#ffffff'
+            }
+        });
+        
+        return qrDataUrl;
+    } catch (error) {
+        console.error('Error generating QR code:', error);
+        throw error;
+    }
+}
+
+// Example usage with response from Step 2
+const intentUriData = "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent";
+
+generateUpiQR(intentUriData)
+    .then(qrDataUrl => {
+        console.log('QR Code Data URL:', qrDataUrl);
+        // Use directly in HTML: <img src="${qrDataUrl}" />
+    });
+
+// Or save to file
+const fs = require('fs');
+QRCode.toFile('upi_qr_code.png', `upi://pay?${intentUriData}`, {
+    width: 300
+}, (err) => {
+    if (err) throw err;
+    console.log('QR code saved to upi_qr_code.png');
+});
+```
+```java
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.util.Base64;
+
+public class UpiQRGenerator {
+
+    public static String generateUpiQR(String intentUriData) throws WriterException, IOException {
+        // Create the full UPI deeplink
+        String upiDeeplink = "upi://pay?" + intentUriData;
+        
+        // Generate QR code
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(upiDeeplink, BarcodeFormat.QR_CODE, 300, 300);
+        
+        // Convert to base64
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        MatrixToImageWriter.writeToStream(bitMatrix, "PNG", outputStream);
+        
+        return Base64.getEncoder().encodeToString(outputStream.toByteArray());
+    }
+    
+    public static void saveUpiQR(String intentUriData, String filePath) throws WriterException, IOException {
+        String upiDeeplink = "upi://pay?" + intentUriData;
+        
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(upiDeeplink, BarcodeFormat.QR_CODE, 300, 300);
+        
+        Path path = FileSystems.getDefault().getPath(filePath);
+        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+    }
+    
+    public static void main(String[] args) {
+        try {
+            String intentUriData = "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent";
+            
+            // Generate base64 for web display
+            String qrBase64 = generateUpiQR(intentUriData);
+            System.out.println("Use in HTML: <img src=\"data:image/png;base64," + qrBase64 + "\" />");
+            
+            // Save to file
+            saveUpiQR(intentUriData, "upi_qr_code.png");
+            System.out.println("QR code saved to upi_qr_code.png");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
+
+function generateUpiQR($intentUriData) {
+    // Create the full UPI deeplink
+    $upiDeeplink = "upi://pay?" . $intentUriData;
+    
+    // Generate QR code
+    $qrCode = QrCode::create($upiDeeplink)
+        ->setSize(300)
+        ->setMargin(10);
+    
+    $writer = new PngWriter();
+    $result = $writer->write($qrCode);
+    
+    // Return base64 data URI for web display
+    return $result->getDataUri();
+}
+
+// Example usage with response from Step 2
+$intentUriData = "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent";
+
+$qrDataUri = generateUpiQR($intentUriData);
+
+// Display in HTML
+echo '<img src="' . $qrDataUri . '" alt="UPI QR Code" />';
+
+// Or save to file
+$upiDeeplink = "upi://pay?" . $intentUriData;
+$qrCode = QrCode::create($upiDeeplink)->setSize(300)->setMargin(10);
+$writer = new PngWriter();
+$result = $writer->write($qrCode);
+$result->saveToFile('upi_qr_code.png');
+echo "QR code saved to upi_qr_code.png";
+?>
+```
+```csharp
+using QRCoder;
+using System;
+using System.IO;
+
+public class UpiQRGenerator
+{
+    public static string GenerateUpiQR(string intentUriData)
+    {
+        // Create the full UPI deeplink
+        string upiDeeplink = $"upi://pay?{intentUriData}";
+        
+        // Generate QR code
+        using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+        {
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(upiDeeplink, QRCodeGenerator.ECCLevel.Q);
+            
+            using (PngByteQRCode qrCode = new PngByteQRCode(qrCodeData))
+            {
+                byte[] qrCodeImage = qrCode.GetGraphic(10);
+                return Convert.ToBase64String(qrCodeImage);
+            }
+        }
+    }
+    
+    public static void SaveUpiQR(string intentUriData, string filePath)
+    {
+        string upiDeeplink = $"upi://pay?{intentUriData}";
+        
+        using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+        {
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(upiDeeplink, QRCodeGenerator.ECCLevel.Q);
+            
+            using (PngByteQRCode qrCode = new PngByteQRCode(qrCodeData))
+            {
+                byte[] qrCodeImage = qrCode.GetGraphic(10);
+                File.WriteAllBytes(filePath, qrCodeImage);
+            }
+        }
+    }
+    
+    public static void Main(string[] args)
+    {
+        string intentUriData = "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent";
+        
+        // Generate base64 for web display
+        string qrBase64 = GenerateUpiQR(intentUriData);
+        Console.WriteLine($"Use in HTML: <img src=\"data:image/png;base64,{qrBase64}\" />");
+        
+        // Save to file
+        SaveUpiQR(intentUriData, "upi_qr_code.png");
+        Console.WriteLine("QR code saved to upi_qr_code.png");
+    }
+}
+```
+
 </Accordion>
 
-<Accordion title="Step 3: Generate the QR from the Deeplink retrieved" icon="fa-code">
-Generate the QR from the Deeplink retrieved and show the QR to the customer.
-</Accordion>
 <Accordion title="Step 4: Verify the payment" icon="fa-code">
   <Verify_Payment_Tabs />
 </Accordion>
