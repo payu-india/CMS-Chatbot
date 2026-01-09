@@ -69,12 +69,9 @@ Before starting the integration, ensure you have:
 <Accordion title="UPI Autopay Collect - Mandate Consent Registration Flow" icon="fa-list">
   <Image align="center" src="https://files.readme.io/cd32192033c868d054eaf3cf8c9aef816edf6e78e7bd9b06ba5e3955ef3f305b-UPI_Autopay_Collect_-_Mandate_Consent_Registration.png" />
 </Accordion>
-
-<Accordion title="UPI Intent based QR - Mandate Consent Registration" icon="fa-list" />
-
-<br />
-
-<Image border={false} />
+<Accordion title="UPI Intent-based QR - Mandate Consent Registration Flow" icon="fa-list">
+  <Image align="center" src="https://files.readme.io/43cbb4034e0c1d33fd19fdeb9de23b9a4f01d3af980dfe62a54fde35fa5675ea-UPI_Intent_based_QR_for_Autopay_-_Mandate_Consent_Registration.png" />
+</Accordion>
 
 ### Step 1: Post the Request
 
@@ -652,4 +649,3 @@ After successful registration, verify the mandate status:
 * [Validate VPA API](ref:validate_vpa_api)
 * [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments)
 
-<br />
