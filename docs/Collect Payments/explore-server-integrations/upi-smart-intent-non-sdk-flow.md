@@ -278,3 +278,15 @@ You can use PayU APIs to initiate the transaction and get the Intent payment URI
 <Accordion title="Step 6: Verify the payment" icon="fa-code">
   <Verify_Payment_Tabs />
 </Accordion>
+
+## Specific Intent Flow
+
+<Callout icon="📘" theme="info">
+  **Notes**: Specific Intent flow works with m-web, Webview, Android or iOS apps. As per **NPCI** mandate, **Pay by any UPI App** option must be shown by all the merchants in their app on all Android devices (app/m-web/webview), Use the generic deeplink, without specific `packageName` to trigger the Pay by any UPI app.
+</Callout>
+
+### Workflow
+
+<Image align="center" border={false} src="https://files.readme.io/b1767cf25bf9c6ca94e7cbf0de8ef28e2518ade4919b5df5f6d6ad41537ba1fd-UPI_One_time_Intent_-_m-web_or_IOS_App.png" />
+
+<br />
