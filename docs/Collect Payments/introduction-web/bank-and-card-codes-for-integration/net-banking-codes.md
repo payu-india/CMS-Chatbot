@@ -25,9 +25,8 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | Axis Corporate Netbanking                  | AXISCNB  |
 | Bandhan Bank                               | BANDNB   |
 | Bank of Baroda                             | BBRB     |
-| Bank of India                              | BOIB     |
 | Bank of India -  Corporate                 | BOIB     |
-| Bank of India Retail                       | BOINB    |
+| Bank of India  - Retail                    | BOINB    |
 | Bank of Maharashtra                        | BOMB     |
 | Canara Bank                                | CABB     |
 | Canara Bank (Erstwhile - Syndicate Bank)   | SYNDB    |
