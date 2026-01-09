@@ -62,7 +62,10 @@ Before starting the integration, ensure you have:
 
 ### Workflow
 
+<Accordion title="Mandate Registration Flow" icon="fa-list">
 <Image align="center" border={false} src="https://files.readme.io/f07cf9ed28593d2b28daf9d35ec72698f887bf408b8f09ec0d2da7e64ce7788d-UPI_Autopay_Intent_-_Mandate_Consent_Registration.png" />
+</Accordion>
+
 
 ### Step 1: Post the Request
 
