@@ -65,13 +65,16 @@ Before starting the integration, ensure you have:
 <Accordion title="UPI Autopay Intent - Mandate Consent Registration Flow" icon="fa-list">
   <Image align="center" src="https://files.readme.io/f07cf9ed28593d2b28daf9d35ec72698f887bf408b8f09ec0d2da7e64ce7788d-UPI_Autopay_Intent_-_Mandate_Consent_Registration.png" />
 </Accordion>
+
 <Accordion title="UPI Autopay Collect - Mandate Consent Registration Flow" icon="fa-list">
-<Image align="center" border={false} src="https://files.readme.io/cd32192033c868d054eaf3cf8c9aef816edf6e78e7bd9b06ba5e3955ef3f305b-UPI_Autopay_Collect_-_Mandate_Consent_Registration.png" />
+  <Image align="center" src="https://files.readme.io/cd32192033c868d054eaf3cf8c9aef816edf6e78e7bd9b06ba5e3955ef3f305b-UPI_Autopay_Collect_-_Mandate_Consent_Registration.png" />
 </Accordion>
-<Accordion title="UPI Intent based QR - Mandate Consent Registration" icon="fa-list">
-</Accordion>
+
+<Accordion title="UPI Intent based QR - Mandate Consent Registration" icon="fa-list" />
+
 <br />
 
+<Image border={false} />
 
 ### Step 1: Post the Request
 
