@@ -21,12 +21,11 @@ metadata:
   robots: index
 ---
 
-The MCP Lookup V2 API allows merchants to fetch MCP (Multi-Currency Pricing) lookup IDs for seamless and SDK integrations. This API is designed for MCP 2.0 and supports 3DS2 authentication.
+The MCP Lookup V2 API allows merchants to fetch MCP (Multi-Currency Pricing) lookup IDs for seamless and SDK integrations. 
 
 <Callout icon="📘" theme="info">
   **Notes**:
 
-  * This API replaces the older MCP 1.0 lookup API which does not work with MCP 2.0 and 3DS2.
   * The signature must be calculated using the exact order of parameters . For more information, refer to [Signature Calculation](#signature-calculation).
   * For 3DS2 compliance, ensure your integration supports the latest authentication flow.
 </Callout>
@@ -39,7 +38,7 @@ The MCP Lookup V2 API allows merchants to fetch MCP (Multi-Currency Pricing) loo
 
 ## Request Parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -105,7 +104,8 @@ The MCP Lookup V2 API allows merchants to fetch MCP (Multi-Currency Pricing) loo
       </td>
 
       <td>
-        <code>String</code> Unique merchant reference for the order
+        <code>String</code> Unique merchant reference for the order.   
+        **Note**:  Use the same txnId value, that you will be sending to Payu for payment processing.
       </td>
 
       <td>
@@ -119,8 +119,8 @@ The MCP Lookup V2 API allows merchants to fetch MCP (Multi-Currency Pricing) loo
       </td>
 
       <td>
-        <code>String</code> Type of product. Must be set to MCP.  <br/> **Note:** 
-         Ensure the `productType` is always set to `MCP`.
+        <code>String</code> Type of product. Must be set to MCP.  <br /> **Note:**
+        Ensure the `productType` is always set to `MCP`.
       </td>
 
       <td>
