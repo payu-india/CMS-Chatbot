@@ -10,7 +10,7 @@ metadata:
 ---
 PayU provides comprehensive integration options covering all major platforms and use cases. From simple no-code solutions to advanced enterprise integrations, you can choose the most appropriate method based on their technical capabilities, business requirements, and target platforms.
 
-<Image align="center" border={false} src="https://files.readme.io/d5a043ebd964cb9ec67222a7ad97d721bd80644e364d2d7493014ef31b7623c8-install_shopify_step2.png" />
+<Image align="center" border={false} src="https://files.readme.io/1938653e03bf33d07122187dac2d4137bb91f0ca84a2a2f81e4af60f5d78f7ce-install_shopify_step3.png" />
 
 | Integration Method                                                                            | Brief Description                                              | Platform Support            | Key Features                                                             |
 | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------------------------- | ------------------------------------------------------------------------ |
