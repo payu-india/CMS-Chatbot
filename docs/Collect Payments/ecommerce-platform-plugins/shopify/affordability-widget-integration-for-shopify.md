@@ -31,24 +31,24 @@ To duplicate the existing theme:
 >
 > If you are using themes created in 2020 or before, where product.json is not present, step in this section can be skipped and proceed to [Step 2: Add Snippet for PayU](#step-2-add-snippet-for-payu).
 
-1. Log in to Shopify Admin portal. 
+1. Log in to Shopify Admin portal.
 2. Select **Themes** under **Online Stores** on the left navigation pane.
 
-<Image align="center" width="222px" src="https://files.readme.io/af2247c-Screenshot_2023-11-29_at_2.36.02_PM.png" />
+<Image align="center" border={false} width="222px" src="https://files.readme.io/af2247c-Screenshot_2023-11-29_at_2.36.02_PM.png" />
 
 3. Select the hamburger menu for which you wish configure the widget and  select **Duplicate Theme**.
 
-<Image align="center" src="https://files.readme.io/253fdf6-Screenshot_2023-11-28_at_3.22.51_PM.png" />
+<Image align="center" border={false} src="https://files.readme.io/253fdf6-Screenshot_2023-11-28_at_3.22.51_PM.png" />
 
-4. Select the hamburger menu for which you wish to configure the widget and select **Edit Code** to open the *Code*  page for the current theme.
+4. Select the hamburger menu for which you wish to configure the widget and select **Edit Code** to open the _Code_  page for the current theme.
 
-   The following folders are displayed on *Code* page of the current theme.
+   The following folders are displayed on _Code_ page of the current theme.
 
-<Image align="center" className="border" width="222px" border={true} src="https://files.readme.io/f2ec0d7-Screenshot_2023-11-28_at_3.28.37_PM.png" />
+<Image align="center" border={true} width="222px" src="https://files.readme.io/f2ec0d7-Screenshot_2023-11-28_at_3.28.37_PM.png" className="border" />
 
 5. Navigate to **Layout** >  **theme.liquid** file.
 
-<Image align="center" className="border" width="222px" border={true} src="https://files.readme.io/aad2727-Screenshot_2023-11-29_at_2.53.51_PM.png" />
+<Image align="center" border={true} width="222px" src="https://files.readme.io/aad2727-Screenshot_2023-11-29_at_2.53.51_PM.png" className="border" />
 
 6. Add the below script before completing the head tag:
 
@@ -58,8 +58,7 @@ To duplicate the existing theme:
 
 ## Step 2: Add an affordability snippet on your website
 
-### Non SKU-based offer
-
+<Accordion title="Non SKU-based offer" icon="fa-info-circle">
 To add a snippet to your website for a non SKU-based offer:
 
 > 📘 Note:
@@ -68,15 +67,15 @@ To add a snippet to your website for a non SKU-based offer:
 
 1. Select **Add a new Snippet** under the **Snippet** folder on the left pane.
 
-<Image align="center" className="border" width="222px" border={true} src="https://files.readme.io/df73655-Screenshot_2023-11-29_at_2.55.02_PM.png" />
+<Image align="center" border={true} width="222px" src="https://files.readme.io/df73655-Screenshot_2023-11-29_at_2.55.02_PM.png" className="border" />
 
 2. Create and add a new snippet with the name “payu-block” as filename under the **Snippets** folder.
 
-   The \_Add a new snippet \_dialog box is displayed.
+   The _Add a new snippet _dialog box is displayed.
 
 3. Enter the name of the snippet as **payu-block** and then click **Done**.
 
-<Image align="center" width="322px" src="https://files.readme.io/f64623a-Screenshot_2023-11-29_at_2.58.58_PM.png" />
+<Image align="center" border={false} width="322px" src="https://files.readme.io/f64623a-Screenshot_2023-11-29_at_2.58.58_PM.png" />
 
 4. Add the following snippet inside the payu-block file:
 
@@ -93,11 +92,14 @@ To add a snippet to your website for a non SKU-based offer:
 <div id="payuWidget"></div>
 ```
 
-   This is to view UI on the webpage, **key** is the merchant key.
+This is to view UI on the webpage, **key** is the merchant key.
+ 
+</Accordion>
 
-### SKU-based offer
+<br />
 
-To add a snippet to your website for a SKU-based offer:
+<Accordion title="SKU-based offer" icon="fa-info-circle">
+  To add a snippet to your website for a SKU-based offer:
 
 > 📘 Note:
 >
@@ -105,15 +107,15 @@ To add a snippet to your website for a SKU-based offer:
 
 1. Select **Add a new Snippet** under the **Snippet** folder on the left pane.
 
-<Image align="center" className="border" width="222px" border={true} src="https://files.readme.io/df73655-Screenshot_2023-11-29_at_2.55.02_PM.png" />
+<Image align="center" border={true} width="222px" src="https://files.readme.io/df73655-Screenshot_2023-11-29_at_2.55.02_PM.png" className="border" />
 
 2. Create and add a new snippet with the name “payu-block” as filename under the **Snippets** folder.
 
-   The \_Add a new snippet \_dialog box is displayed.
+   The _Add a new snippet _dialog box is displayed.
 
 3. Enter the name of the snippet as **payu-block** and then click **Done**.
 
-<Image align="center" width="322px" src="https://files.readme.io/f64623a-Screenshot_2023-11-29_at_2.58.58_PM.png" />
+<Image align="center" border={false} width="322px" src="https://files.readme.io/f64623a-Screenshot_2023-11-29_at_2.58.58_PM.png" />
 
 4. Add the following snippet inside the payu-block file:
 
@@ -173,7 +175,12 @@ To add a snippet to your website for a SKU-based offer:
 <div id="payuWidget"></div>
 ```
 
-   This is to view UI on the webpage, **key** is the merchant key.
+This is to view UI on the webpage, **key** is the merchant key.
+
+##
+</Accordion>
+
+<br />
 
 ## Step 3: Update the Templates
 
@@ -184,12 +191,12 @@ To update the templates:
 * Product.json
 * Cart.json
 
-<Image align="center" className="border" width="222px" border={true} src="https://files.readme.io/bf396d0-Screenshot_2023-11-29_at_3.04.51_PM.png" />
+<Image align="center" border={true} width="222px" src="https://files.readme.io/bf396d0-Screenshot_2023-11-29_at_3.04.51_PM.png" className="border" />
 
 2. Edit the **Product.json** file.
 3. Search the main section and observe the **type** defined.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/e9a30db-Screenshot_2023-11-29_at_3.08.19_PM.png" />
+<Image align="center" border={true} src="https://files.readme.io/e9a30db-Screenshot_2023-11-29_at_3.08.19_PM.png" className="border" />
 
 4. Open the corresponding liquid file mentioned in step 3, that is, under **Sections** folder, navigate to  the **main-product.liquid** file. This file is used is to render Widget on the webpage.
 5. Search for the following code:
@@ -229,7 +236,7 @@ To update the templates:
 },
 ```
 
-11. Add “payu\_block” in **order** of main section to define order and placeholder of the PayU Widget. Save the changes.
+11. Add “payu_block” in **order** of main section to define order and placeholder of the PayU Widget. Save the changes.
 
 ```
 "payu_block": {
@@ -238,7 +245,7 @@ To update the templates:
     }
 ```
 
-12. Repeat the above step 9 to step 11 for the **Cart.json** file.  
+12. Repeat the above step 9 to step 11 for the **Cart.json** file.
 
 ## Step 4: Update Theme
 
