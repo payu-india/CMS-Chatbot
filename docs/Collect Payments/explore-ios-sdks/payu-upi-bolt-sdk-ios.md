@@ -10,7 +10,39 @@ metadata:
 next:
   description: ''
 ---
-PayU UPI Bolt SDK will provide a simpler and more efficient payment experience to the merchants. It will eliminate any third-party redirection and higher success rate. Profile management including accounts and balances for users. Enhancing the overall customer experience and decreasing customer drop-offs. This section describes the advantages and user journeys. For steps to integrate UPI Bolt UI, refer to [UPI Bolt UI Integration](doc:upi-bolt-ui-integration-ios-bolt-sdk).
+---
+title: iOS UPI Bolt SDK
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+PayU UPI Bolt SDK will provide a simpler and more efficient payment experience to the merchants. It will eliminate any third-party redirection and higher success rate. Profile management including accounts and balances for users. Enhancing the overall customer experience and decreasing customer drop-offs. This section describes the advantages and user journeys. For steps to integrate UPI Bolt UI, refer to [UPI Bolt UI Integration](doc:upi-bolt-ui-integration-ios-bolt-sdk).
+
+<Cards columns={3}>
+  <Card title="1. UPI Bolt UI Overview" href="#upi-bolt-ui-advantages">
+    Explore advantages and user journeys for UPI Bolt UI
+
+    <br />
+  </Card>
+
+  <Card title="2. Steps to Integrate" href="#steps-to-integrate">
+    Initialize SDK, check availability, and configure payment flows
+
+    <br />
+  </Card>
+
+  <Card title="3. Hash & Error Handling" href="#hash-generation-logic">
+    Implement hash generation and handle error codes
+  </Card>
+
+  <br />
+</Cards>
 
 ## UPI Bolt UI advantages
 
@@ -23,44 +55,50 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
 ## UPI Bolt UI user journeys
 
-### Registration and Pay
+<Accordion title="Registration and Pay" icon="fa-info-circle">
 
 1. Merchant Application can do the User registration for customers who are coming first time for PayU UPI Bolt. The Registration can be done during the checkout process or it can be called in a separate user journey. In case of Merchant is using PayU Checkout Pro SDK, PayU will take care of customer registration.
-2. Once the registration process is initiated, the user will be asked to accept the SMS sending permissions required to verify the SIM card.  If the phone has dual SIM, the SIM card selection screen will be shown to customers to select the specific SIM card.
+2. Once the registration process is initiated, the user will be asked to accept the SMS sending permissions required to verify the SIM card.  If the phone has dual SIM, the SIM card selection screen will be shown to customers to select the specific SIM card.
 3. After the device verification, UPI ID creation and the Bank selection will be done. Add bank journey will be completed after adding a bank account connected to the same mobile number used for device verification.
-4. Finally, customers can do a transaction using the added bank account. In case the customer is using the bank account for the first time they will need to set the MPIN as well. 
+4. Finally, customers can do a transaction using the added bank account. In case the customer is using the bank account for the first time they will need to set the MPIN as well. 
 
 <Image align="center" border={false} src="https://files.readme.io/6c8ab77aaa068c2667ab98f46c81e24f881e3255566bdff3d6bb84130587dd4f-bolt_reg_and_pay_flow.jpeg" />
 
-### Pay
+</Accordion>
+
+<Accordion title="Pay" icon="fa-info-circle">
 
 1. Customers who are already registered with PayU UPI Bolt can make a One-click payment.
 2. The customer needs to select the already added bank account and enter the MPIN and the transaction will be completed.
-3. The customer can also check the balance before making a transaction to avoid low-balance transaction failure. 
+3. The customer can also check the balance before making a transaction to avoid low-balance transaction failure. 
 
 <Image align="center" border={false} src="https://files.readme.io/253c320479271a77460a628915a381d0fcfbfc1cab71e93e46704127689b382a-bolt_pay_flow.jpeg" />
 
-### Profile Management Journey
+</Accordion>
 
-1. Customers can add new bank accounts, set MPIN, change MPIN, reset MPIN, delete accounts, and check the balance of already added bank accounts. 
-2. Transaction history can be seen and queries can be raised and resolved within the PayU UI Bolt SDK. 
+<Accordion title="Profile Management Journey" icon="fa-info-circle">
+
+1. Customers can add new bank accounts, set MPIN, change MPIN, reset MPIN, delete accounts, and check the balance of already added bank accounts. 
+2. Transaction history can be seen and queries can be raised and resolved within the PayU UI Bolt SDK. 
 3. Customers can see all the raised disputes from the Dispute history screen.
 4. Customers can also deregister their all accounts with PayU UI Bolt SDK.
 
 <Image align="center" border={false} src="https://files.readme.io/85fc63476b9a08cd16d8d51d5e3f03c1744f82d0ce104186286268ae16ece310-bolt_profile_mgmt_flow.jpeg" />
 
+</Accordion>
+
 <br />
 
 ## Steps to Integrate
 
-### Prerequisites
+<Accordion title="Prerequisites" icon="fa-info-circle">
 
-* SDK Compatibility  
+* SDK Compatibility  
 * Supported iOS deployment target - iOS 17 and above.
 
-Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use **PayU UPI Bolt UI SDK** for customer registration, payment, and profile management. 
+Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use **PayU UPI Bolt UI SDK** for customer registration, payment, and profile management. 
 
-To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your podfile. 
+To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your podfile. 
 
 ```
 pod 'PayUIndia-UPIBoltUIKit', '~> 1.0.0-alpha.0'
@@ -69,7 +107,7 @@ pod 'PayUIndia-UPIBoltUIKit', '~> 1.0.0-alpha.0'
 The following xcframework files will be provided by PayU during onboarding.
 
 * **NPCI** - CommonLibrary.xcframework
-* **AXIS** - OlivePayLibrary.xcframework 
+* **AXIS** - OlivePayLibrary.xcframework 
 
 Add these framework in your project.
 
@@ -79,9 +117,11 @@ The added framework is similar to the following screenshot:
 
 To integrate UPI Bolt UI on iOS SDK platform:
 
-### Step 1: Initialization
+</Accordion>
 
- It is used to initialize the SDK. This method returns a object that will be used to access other methods available in `PayUUPIBoltUI`.
+<Accordion title="Step 1: Initialization" icon="fa-info-circle">
+
+ It is used to initialize the SDK. This method returns a object that will be used to access other methods available in `PayUUPIBoltUI`.
 
 ```swift
 let config = PayUUPIBoltUIConfig(
@@ -249,9 +289,11 @@ The following fields are needed as a request for this API:
   </tbody>
 </Table>
 
-### Step 2: Check if UPI Bolt SDK is available
+</Accordion>
 
-      The **isUPIBoltSDKAvailable** API allows you to manage UPI accounts and transaction history.
+<Accordion title="Step 2: Check if UPI Bolt SDK is available" icon="fa-info-circle">
+
+      The **isUPIBoltSDKAvailable** API allows you to manage UPI accounts and transaction history.
 
 ```swift
 boltUI.isUPIBoltSDKAvailable(callback: PayUUPIBoltUICallBack)
@@ -259,7 +301,7 @@ boltUI.isUPIBoltSDKAvailable(callback: PayUUPIBoltUICallBack)
 
 For callbacks, refer to [Listener or Callback logic](#listener-or-callback-logic).
 
- The following fields are needed as a request for this API: 
+ The following fields are needed as a request for this API: 
 
 <Table>
   <thead>
@@ -288,9 +330,11 @@ For callbacks, refer to [Listener or Callback logic](#listener-or-callback-logic
   </tbody>
 </Table>
 
-### Step 3: Register and pay
+</Accordion>
 
-The **registerAndPay** API allows you to initialize registration and payment flow. It will internally authenticate and register the customer. After successful authentication and registration, the user will follow the payment journey. Once payment is completed, based on the payment status the merchant will get a callback through the listener. 
+<Accordion title="Step 3: Register and pay" icon="fa-info-circle">
+
+The **registerAndPay** API allows you to initialize registration and payment flow. It will internally authenticate and register the customer. After successful authentication and registration, the user will follow the payment journey. Once payment is completed, based on the payment status the merchant will get a callback through the listener. 
 
 ```swift
 boltUI.registerAndPay(paymentParams PayUUPIBoltPaymentParams)
@@ -327,17 +371,19 @@ The following fields are needed as a request for this API:
   </tbody>
 </Table>
 
-### Step 4: Open UPI Management
+</Accordion>
+
+<Accordion title="Step 4: Open UPI Management" icon="fa-info-circle">
 
 The **openUPIManagement** API allows you to manage UPI accounts and transaction history.
 
 ```swift
-boltUI.openUPIManagement(screenType: PayUUPIBoltUIScreenType) // Screen Types enum PayUUPIBoltUIScreenType: Int {    case all    case transactionHistory    case manageUPIAccounts    case dispute    case deregisterUPI }\`
+boltUI.openUPIManagement(screenType: PayUUPIBoltUIScreenType) // Screen Types enum PayUUPIBoltUIScreenType: Int {    case all    case transactionHistory    case manageUPIAccounts    case dispute    case deregisterUPI }\`
 ```
 
 For callbacks, refer to [Listener or Callback logic](#listener-or-callback-logic).
 
- The following fields are needed as a request for this API: 
+ The following fields are needed as a request for this API: 
 
 <Table>
   <thead>
@@ -366,7 +412,9 @@ For callbacks, refer to [Listener or Callback logic](#listener-or-callback-logic
   </tbody>
 </Table>
 
-### Step 5: Generate PayU payment params
+</Accordion>
+
+<Accordion title="Step 5: Generate PayU payment params" icon="fa-info-circle">
 
 The **PayUPaymentParams API** is used to generate PayU payment parameters.
 
@@ -532,7 +580,9 @@ The following fields are needed as a request:
   </tbody>
 </Table>
 
-### Step 6: Check PayU UPI Response
+</Accordion>
+
+<Accordion title="Step 6: Check PayU UPI Response" icon="fa-info-circle">
 
 The **PayUUPIResponse** API is used to check the response.
 
@@ -542,9 +592,11 @@ The **PayUUPIResponse** API is used to check the response.
 | message | `String` Error or success message |
 | result  | `Object` Response data            |
 
-### Hash generation logic
+</Accordion>
 
-The PayU SDKs use hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. 
+<Accordion title="Hash generation logic" icon="fa-info-circle">
+
+The PayU SDKs use hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. 
 
 To generate and pass dynamic hashes, the merchant will receive a call from the `generateHash` method of **PayUUPIBoltUIDelegate**. The SDK calls the `generateHash` method each time it needs an individual hash.
 
@@ -561,7 +613,7 @@ The merchant receives a dictionary containing the type of hash and the correspon
 * **hashString** - The hash string, without the salt. PayUUPIBoltHashGenerationCompletion: This completion handler contains the hashDict parameter.
 * **hashDict**: Provide a dictionary where the hashName is the key, and the generated hash is the value. To generate the hash, you need to combine the hashString with the salt on your server and apply the SHA-512 algorithm and pass it back via the completion handler
 
-#### Listener or Callback logic
+<Accordion title="Listener or Callback logic" icon="fa-info-circle">
 
 The listener/callback contains 4 methods where the merchant app will get the API response and hash-related callbacks.
 
@@ -572,7 +624,11 @@ The listener/callback contains 4 methods where the merchant app will get the API
 | onPayUCancel(isTxnInitiated: Bool)                                                                           | It will tell if payment was cancelled                                          |
 | func generateHash(for param: [String: String], onCompletion: @escaping PayUUPIBoltHashGenerationCompletion): | For hash generation, refer to [Hash generation logic](#hash-generation-logic). |
 
-### Error codes and error message list
+</Accordion>
+
+</Accordion>
+
+<Accordion title="Error codes and error message list" icon="fa-info-circle">
 
 | Codes | Message                                |
 | ----- | -------------------------------------- |
@@ -590,3 +646,5 @@ The listener/callback contains 4 methods where the merchant app will get the API
 | 108   | Device binding failed                  |
 | 500   | Something went wrong                   |
 | 501   | No internet connection                 |
+
+</Accordion>
