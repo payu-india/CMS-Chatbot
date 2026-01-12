@@ -5,16 +5,45 @@ hidden: false
 metadata:
   robots: index
 ---
+---
+title: Flashpay Decoupled Flow Android Integration
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
 FlashPay solution primarily offers advanced biometric-based out-of-band (OOB) authentication. The Wibmo Tridentity SDK enables seamless integration of FlashPay functionality using various API methods and configuration options tailored to business needs.
+
+<Cards columns={3}>
+  <Card title="1. Setup" href="#step-1-gradle-changes">
+    Configure Gradle dependencies and Android Manifest permissions
+
+    <br />
+  </Card>
+
+  <Card title="2. SDK Configuration" href="#step-3-sdk-configuration">
+    Initialize SDK with client-specific details and parameters
+
+    <br />
+  </Card>
+
+  <Card title="3. Enrollment & Transactions" href="#step-4-customer-enrollment">
+    Enroll customers and process biometric-authenticated transactions
+  </Card>
+
+  <br />
+</Cards>
 
 ## Step 1: Gradle Changes
 
-### Minimum Requirements
+<Accordion title="Minimum Requirements" icon="fa-info-circle">
 
 * **Minimum SDK Version:** `v23`
 * **Compile SDK Version:** `v33` or later
 
-### Maven Dependency
+</Accordion>
+
+<Accordion title="Maven Dependency" icon="fa-info-circle">
 
 To include the Tridentity SDK, add the following line to your `app/build.gradle` file:
 
@@ -22,15 +51,19 @@ To include the Tridentity SDK, add the following line to your `app/build.gradle`
 implementation 'in.payu:tridentity-sdk:x.x.x-SNAPSHOT'
 ```
 
+</Accordion>
+
 ## Step 2: Android Manifest Permissions
 
 The SDK requires specific application-level permissions to enable its functionalities. As per business needs and enabled modes, these permissions must be declared in the `AndroidManifest.xml` file.
 
-### Supported Modes in SDK
+<Accordion title="Supported Modes in SDK" icon="fa-info-circle">
 
 * **Biometric Based Authentication**
 
-### Required Permissions
+</Accordion>
+
+<Accordion title="Required Permissions" icon="fa-info-circle">
 
 <HTMLBlock>{`
 <table>
@@ -64,11 +97,13 @@ Include the following permissions in your AndroidManifest.xml file to enable the
 <uses-permission android:name="android.permission.SEND_SMS" />
 ```
 
+</Accordion>
+
 ## Step 3: SDK Configuration
 
 This is a prerequisite step where you invoke the SDK's configuration method to initialize client-specific details. Validation of security checks and required permissions also occurs during this phase.
 
-### Configuration Parameters
+<Accordion title="Configuration Parameters" icon="fa-info-circle">
 
 <HTMLBlock>{`
 <table>
@@ -191,11 +226,13 @@ configObject.put(“registrationTimeout”, 60)
   From the response object in the onSuccess method check for the **message** flag to get Configuration status.
 </Callout>
 
+</Accordion>
+
 ## Step 4: Customer Enrollment
 
 This method facilitates user enrollment for Tridentity-based authentication.
 
-### Enrollment Parameters
+<Accordion title="Enrollment Parameters" icon="fa-info-circle">
 
 <HTMLBlock>{`
 <table>
@@ -237,9 +274,9 @@ TridentitySDK.getInstance().initiateRegistration(activity, regObject, object : R
 The registration object is then passed to the initiateRegistration method to begin the enrollment process, with callback handlers to manage success and error responses during the biometric setup workflow.
 
 ```kotlin
-val regObject = JSONObject()  
+val regObject = JSONObject()  
 
-regObject.put("uid", "<>")  
+regObject.put("uid", "<>")  
 
 ```
 
@@ -247,11 +284,13 @@ regObject.put("uid", "<>")  
   From the response object in the onSuccess method, check for the message flag to get the status
 </Callout>
 
+</Accordion>
+
 ## Step 5: Check Registration Status
 
 This method retrieves the customer's current registration status in the Tridentity system.
 
-### Registration Status Parameters
+<Accordion title="Registration Status Parameters" icon="fa-info-circle">
 
 <HTMLBlock>{`
 <table>
@@ -283,7 +322,7 @@ Use the checkRegistrationStatus method to verify if a customer is already regist
 TridentitySDK.getInstance().checkRegistrationStatus(context, custObject, object : RegistrationStatusCallBack {
     override fun onSuccess(event: JSONObject) {
       // Handle successful status check
-      // Note: customerStatus : registration_comm_success is only considered as successful Registration.  
+      // Note: customerStatus : registration_comm_success is only considered as successful Registration.  
 
     }
     override fun onError(code: Int, error: String) {
@@ -295,16 +334,18 @@ TridentitySDK.getInstance().checkRegistrationStatus(context, custObject, object 
 The customer object is then passed to the checkRegistrationStatus method to perform the verification, with success callbacks specifically looking for a "registration_comm_success" status to confirm successful registration.
 
 ```kotlin
-val custObject = JSONObject()  
+val custObject = JSONObject()  
 
-custObject.put("clientId", "<>")     
+custObject.put("clientId", "<>")     
 ```
+
+</Accordion>
 
 ## Step 6: Process Transaction
 
 This method processes transactions and validates them using biometric OOB authentication.
 
-### Transaction Parameters
+<Accordion title="Transaction Parameters" icon="fa-info-circle">
 
 <HTMLBlock>{`
 <table>
@@ -330,7 +371,9 @@ This method processes transactions and validates them using biometric OOB authen
 </table>
 `}</HTMLBlock>
 
-### Transaction JSON Object Parameters
+</Accordion>
+
+<Accordion title="Transaction JSON Object Parameters" icon="fa-info-circle">
 
 <HTMLBlock>{`
 <table>
@@ -387,20 +430,22 @@ TridentitySDK.getInstance().processTransaction(context, jsonObject, object : Upd
 The populated transaction object is then passed to the processTransaction method to trigger the biometric authentication flow, allowing users to authorize transactions using their enrolled biometric credentials.
 
 ```kotlin
-val custObject = JSONObject()  
+val custObject = JSONObject()  
 
-custObject.put("clientId", "<>")  
+custObject.put("clientId", "<>")  
 
-custObject.put("txnId", "<>")  
+custObject.put("txnId", "<>")  
 
-custObject.put("hashKey", "<>")  
+custObject.put("hashKey", "<>")  
 ```
+
+</Accordion>
 
 ## Step 7:  UI Customization
 
 The SDK allows UI customizations through a configuration object passed in as `themeConfig`.
 
-### UI Customization Parameters
+<Accordion title="UI Customization Parameters" icon="fa-info-circle">
 
 <HTMLBlock>{`
 <table>
@@ -431,7 +476,9 @@ The SDK allows UI customizations through a configuration object passed in as `th
 </table>
 `}</HTMLBlock>
 
-### Text Customization Parameters
+</Accordion>
+
+<Accordion title="Text Customization Parameters" icon="fa-info-circle">
 
 <HTMLBlock>{`
 <table>
@@ -459,6 +506,8 @@ The SDK allows UI customizations through a configuration object passed in as `th
   </tbody>
 </table>
 `}</HTMLBlock>
+
+</Accordion>
 
 ## Deregistration 
 
