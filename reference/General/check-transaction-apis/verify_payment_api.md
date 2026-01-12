@@ -23,65 +23,31 @@ The Verify Payment (**verify_payment**) API gives you the status of the transact
 <GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
-  ```curl
-  curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JP***g' \
-  --data-urlencode 'command=verify_payment' \
-  --data-urlencode 'var1=IhfgcZnXR4o4nB' \
-  --data-urlencode 'hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
-  ```
+ curl --request POST \
+     --url 'https://test.payu.in/merchant/postservice?form=2' \
+     --header 'Content-Type: application/x-www-form-urlencoded' \
+     --data key=JPM7Fg \
+     --data command=verify_payment \
+     --data var1=IhfgcZnXR4o4nB \
+     --data hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
   * If credit card payment is made, the response is similar to the following:
 
   ```plaintext
+ {
+  "status":0,
+  "msg":"0 out of 1 Transactions Fetched Successfully",
+  "transaction_details":
   {
-      "status": 1,
-      "msg": "1 out of 1 Transactions Fetched Successfully",
-      "transaction_details": {
-          "1733900931584": {
-              "mihpayid": "21820644083",
-              "request_id": null,
-              "bank_ref_num": null,
-              "amt": "1.00",
-              "transaction_amount": "1.00",
-              "txnid": "1733900931584",
-              "additional_charges": "0.00",
-              "productinfo": "Macbook Pro",
-              "firstname": "Abc",
-              "bankcode": "MAST",
-              "udf1": "udf1",
-              "udf2": "udf2",
-              "udf3": "udf3",
-              "udf4": "udf4",
-              "udf5": "udf5",
-              "field2": null,
-              "field9": "OTP/ATM page expired due to no user action",
-              "error_code": "E1602",
-              "addedon": "2024-12-11 12:43:03",
-              "payment_source": "payu",
-              "card_type": "MAST",
-              "error_Message": "Bank was unable to authenticate.",
-              "net_amount_debit": "0.00",
-              "disc": "0.00",
-              "mode": "DC",
-              "PG_TYPE": "DC-PG",
-              "card_no": "XXXXXXXXXXXX7596",
-              "status": "failure",
-              "unmappedstatus": "dropped",
-              "Merchant_UTR": null,
-              "Settled_At": null,
-              "cardhash": "095d184331be367bb92aa3eeecb57d0728de96cc598dd563d407982d75021149",
-              "name_on_card": null,
-              "card_token": "4e97156bc2d6320cdfe15",
-              "field4": null,
-              "threeDSVersion": "2.2.0",
-              "offerAvailed": null
-          }
-      }
+    "IhfgcZnXR4o4nB":
+    {
+      "mihpayid":"Not Found",
+      "status":"Not Found"
+    }
   }
+}
   ```
 
   * Offer availed on cart level
