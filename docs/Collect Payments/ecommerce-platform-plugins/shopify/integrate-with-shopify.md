@@ -36,7 +36,7 @@ After you set up your account in Shopify, you can integrate PayU India as the pa
 
     3. Select **Payments** from the menu on the left navigation pane.
 
-    <Image align="center" border={true} src=" https://files.readme.io/1938653e03bf33d07122187dac2d4137bb91f0ca84a2a2f81e4af60f5d78f7ce-install_shopify_step3.png"/>
+    <Image align="center" border={true} src=" https://files.readme.io/1938653e03bf33d07122187dac2d4137bb91f0ca84a2a2f81e4af60f5d78f7ce-install_shopify_step3.png" />
 
     4. Click **Add payment methods** under the **Supported Payment methods** section.
 
@@ -103,21 +103,43 @@ After you set up your account in Shopify, you can integrate PayU India as the pa
 
     ## Integration Steps
 
-    **Step 1:** Navigate to the <a href="https://apps.shopify.com/payu-india">Shopify PayU India App</a>.
+1. Navigate to the following URL to open the Shopify PayU India app:
 
-    **Step 2:** Click **Add App** to install PayU
+[https://apps.shopify.com/payu-india](https://apps.shopify.com/payu-india)
 
-    **Step 3:** Log in with your Shopify credentials when prompted
+The PayU India app page is displayed.
 
-    **Step 4:** Configure Merchant Key and Salt
-    • Enter the Merchant Key and Salt (available on the PayU dashboard)
-    • Reference guide: \[Generate Production Key and Salt] (doc:generate-merchant-key-and-salt-on-payu-dashboard)
+<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/PayU_Shopify_App_page-1024x619.png" />
 
-    **Step 5:** Scroll through and select/unselect payment modes
+2. Click **Add app**.
 
-    **Step 6:** **Enable Test Mode** for testing the integration with test key and salt
+   The Shopify Login page is displayed.
 
-    **Step 7:** Activate PayU India by clicking **Activate PayU India**
+<Image align="center" width="550px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Shopify_Login_Page-796x1024.png" />
+
+3. Enter your Shopify credentials and log in.
+
+   The *PayU India* page is displayed.
+
+<Image align="center" className="border" width="550px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Shopify_PayU_India_Page_Direct_Link-703x1024.png" />
+
+4. Click **Install app**.
+
+   The *Collect payments with PayU* page is displayed.
+
+<Image align="center" className="border" width="550px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Screenshot-2022-08-01-at-6.40.00-PM-1024x688.png" />
+
+5. Enter your merchant key in the **Merchant Key** field.
+
+**Note**: You need to register or create an account on [PayU Dashboard](https://onboarding.payu.in/app/account) to get the merchant key and salt. For viewing or generating your merchant key and salt, refer to [Generate Production Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+
+6. Enter your Salt in the **Merchant Salt** field.
+7. Scroll down and ensure the payment modes or card type you wish to support for your customers are selected. If you do not wish to support a payment mode or card type, clear the corresponding check box selection.
+
+<Image align="center" className="border" width="550px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Shopify_PayU_India_Page_Contd-784x1024.png" />
+
+8. Select the **Enable Test mode** check box on the **Test mode** section to test the integration with the test key and salt provided by PayU.
+9. Click **Activate PayU India**.
 
     ## Additional Notes
 
