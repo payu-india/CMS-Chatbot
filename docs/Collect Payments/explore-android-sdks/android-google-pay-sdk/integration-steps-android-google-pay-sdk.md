@@ -18,6 +18,28 @@ next:
 ---
 Before you start with the integration, enable the payment methods that you want to offer to your customers from Dashboard > Settings > Payment methods. We enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you.
 
+<Cards columns={3}>
+  <Card title="1. SDK Integration" href="#sdk-integration">
+    Set up build.gradle, create callbacks, and make payment using PhonePe
+
+    <br />
+  </Card>
+
+  <Card title="2. Test the Integration" href="#test-the-integration">
+    Test the integration before going live and start collecting payments
+
+    <br />
+  </Card>
+
+  <Card title="3. Go-live Checklist" href="#go-live-checklist">
+    Configure production settings, verify payment method, and webhooks
+  </Card>
+
+  <br />
+</Cards>
+
+## SDK Integration
+
 ### Step 1: Create a PayU account
 
 First, create a PayU account. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
