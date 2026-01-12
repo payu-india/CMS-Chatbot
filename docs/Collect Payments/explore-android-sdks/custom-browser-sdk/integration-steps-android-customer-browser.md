@@ -17,8 +17,6 @@ metadata:
 next:
   description: ''
 ---
-<br />
-
 ---
 title: Integration Steps
 excerpt: ''
@@ -38,7 +36,6 @@ metadata:
 next:
   description: ''
 ---
-
 The Android Customer Browser integration involves the following steps:
 
 <Cards columns={3}>
@@ -151,8 +148,8 @@ Create a basic object of CustomBrowserConfig similar to the following code snipp
 <Callout icon="📘" theme="info">
   **Post URL** can be any of the following:
 
-  Production - [https://secure.payu.in/_payment](https://secure.payu.in/_payment)
-  Staging - [https://test.payu.in/_payment](https://test.payu.in/_payment)
+  Production - [https://secure.payu.in/\_payment](https://secure.payu.in/_payment)
+  Staging - [https://test.payu.in/\_payment](https://test.payu.in/_payment)
 </Callout>
 
 ```java JAVA
@@ -282,147 +279,203 @@ You can make test payments using one of the payment methods configured at the Ch
 <TestCardsCallout />
 
 <Accordion title="Test credentials for supported payment methods" icon="fa-vial">
-  Following are the payment methods supported in PayU Test mode.
 
-  <Accordion title="Test credentials for Net Banking" icon="fa-university">
-    Use the following credentials to test the Net Banking integration:
+Following are the payment methods supported in PayU Test mode.
 
-    * **user name:** payu
-    * **password**: payu
-    * **OTP**: 123456
-  </Accordion>
+<Accordion title="Test credentials for Net Banking" icon="fa-university">
 
-  <Accordion title="Test VPA for UPI" icon="fa-mobile">
-    > ❗️ Callout
-    >
-    > The UPI in-app and UPI intent flow is not available in the Test mode.
+Use the following credentials to test the Net Banking integration:
 
-    You can use either of the following VPAs to test your UPI-related integration:
+* **user name:** payu
+* **password**: payu
+* **OTP**: 123456
+</Accordion>
 
-    * [anything@payu](anything@payu)
-    * [9999999999@payu.in](mailto:9999999999@payu.in)
+<Accordion title="Test VPA for UPI" icon="fa-mobile">
 
-    For Testing the UPI Collect flow, Please follow the below steps:-
+> ❗️ Callout
+>
+> The UPI in-app and UPI intent flow is not available in the Test mode.
 
-    1. Once you enter the VPA click on the verify button and proceed to pay.
-    2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
-    3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
+You can use either of the following VPAs to test your UPI-related integration:
 
-    [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn\_id>
+* [anything@payu](anything@payu)
+* [9999999999@payu.in](mailto:9999999999@payu.in)
 
-    \**For Android*
+For Testing the UPI Collect flow, Please follow the below steps:- 
 
-    You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
+1. Once you enter the VPA click on the verify button and proceed to pay.
+2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
+3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
 
-    > 🚧 Ensure to remove the code from the manifest file before going live.
+[https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn_id>
 
-    ```xml XML
-    <application>
-    <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
-    <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
-    <meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
-    </appliction>
-    ```
-  </Accordion>
+*_For Android_
 
-  <Accordion title="Test cards for EMI" icon="fa-credit-card">
-    You can use the following Debit and Credit cards to test Emi integration.
+You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
 
-    |              |                                                                                                                                                                                              |
-    | :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | Kotak DC EMI | 1. **Card Number**: 4706-1378-0509-9594
-    2. **Expiry**: any future date (mm/yy)
-    3. **CVV**: 123
-    4. **OTP**: 111111
-    5. **Name**: Any name
-    6. **Mobile Number**: 9123412345 (mandatory for EMI) |
-    | AXIS DC EMI  | 1) **Card Number**: 4011-5100-0000-0007
-    2) **Expiry**: any future date (mm/yy)
-    3) **CVV**: 123
-    4) **OTP**: 111111
-    5) **Name**: Any name
-    6) **Mobile Number**: 9123412345 (mandatory for EMI) |
-    | HDFC CC EMI  | 1. **Card Number**: 4453-3410-65876437
-    2. **Expiry**: any future date (mm/yy)
-    3. **CVV**: 123
-    4. **OTP**: 111111
-    5. **Name**: Any name
-    6. **Mobile Number**: 9123412345 (mandatory for EMI)  |
-    | ICICI CC EMI | 1) **Card Number**: 4453-3410-65876437
-    2) **Expiry**: any future date (mm/yy)
-    3) **CVV**: 123
-    4) **OTP**: 111111
-    5) **Name**: Any name
-    6) **Mobile Number**: 9123412345 (mandatory for EMI)  |
-  </Accordion>
+> 🚧 Ensure to remove the code from the manifest file before going live.
 
-  <Accordion title="Test Wallets" icon="fa-wallet">
-    You can use the following wallets and their corresponding credentials to test wallet integration.
+```xml XML
+<application>
+<meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
+<meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
+<meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
+</appliction>
+```
+</Accordion>
 
-    <Table align={["left","left","left"]}>
-      <thead>
-        <tr>
-          <th style={{ textAlign: "left" }}>
-            Wallet
-          </th>
+<Accordion title="Test cards for EMI" icon="fa-credit-card">
 
-          <th style={{ textAlign: "left" }}>
-            Mobile Number
-          </th>
+You can use the following Debit and Credit cards to test Emi integration.
 
-          <th style={{ textAlign: "left" }}>
-            OTP
-          </th>
-        </tr>
-      </thead>
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
 
-      <tbody>
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            PayTM
-          </td>
+      </th>
 
-          <td style={{ textAlign: "left" }}>
-            7777777777
-          </td>
+      <th>
 
-          <td style={{ textAlign: "left" }}>
-            888888
-          </td>
-        </tr>
+      </th>
+    </tr>
+  </thead>
 
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            PhonePe
-          </td>
+  <tbody>
+    <tr>
+      <td>
+        Kotak DC EMI
+      </td>
 
-          <td style={{ textAlign: "left" }}>
-            Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location:
+      <td>
+        1. **Card Number**: 4706-1378-0509-9594
+        2. **Expiry**: any future date (mm/yy)
+        3. **CVV**: 123
+        4. **OTP**: 111111
+        5. **Name**: Any name
+        6. **Mobile Number**: 9123412345 (mandatory for EMI)
+      </td>
+    </tr>
 
-            [https://developer.phonepe.com/v1/docs/setting-up-test-account](https://developer.phonepe.com/v1/docs/setting-up-test-account)
+    <tr>
+      <td>
+        AXIS DC EMI
+      </td>
 
-            Download the app and register your mobile number and follow the instructions as described in the above PhonePe docs.
-          </td>
+      <td>
+        1. **Card Number**: 4011-5100-0000-0007
+        2. **Expiry**: any future date (mm/yy)
+        3. **CVV**: 123
+        4. **OTP**: 111111
+        5. **Name**: Any name
+        6. **Mobile Number**: 9123412345 (mandatory for EMI)
+      </td>
+    </tr>
 
-          <td style={{ textAlign: "left" }}>
-            NA
-          </td>
-        </tr>
+    <tr>
+      <td>
+        HDFC CC EMI
+      </td>
 
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            AmazonPay
-          </td>
+      <td>
+        1. **Card Number**: 4453-3410-65876437
+        2. **Expiry**: any future date (mm/yy)
+        3. **CVV**: 123
+        4. **OTP**: 111111
+        5. **Name**: Any name
+        6. **Mobile Number**: 9123412345 (mandatory for EMI)
+      </td>
+    </tr>
 
-          <td style={{ textAlign: "left" }}>
-            You can test using your original Amazon account details.
-          </td>
+    <tr>
+      <td>
+        ICICI CC EMI
+      </td>
 
-          <td style={{ textAlign: "left" }} />
-        </tr>
-      </tbody>
-    </Table>
-  </Accordion>
+      <td>
+        1. **Card Number**: 4453-3410-65876437
+        2. **Expiry**: any future date (mm/yy)
+        3. **CVV**: 123
+        4. **OTP**: 111111
+        5. **Name**: Any name
+        6. **Mobile Number**: 9123412345 (mandatory for EMI)
+      </td>
+    </tr>
+  </tbody>
+</Table>
+</Accordion>
+
+<Accordion title="Test Wallets" icon="fa-wallet">
+
+You can use the following wallets and their corresponding credentials to test wallet integration.
+
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Wallet
+      </th>
+
+      <th>
+        Mobile Number
+      </th>
+
+      <th>
+        OTP
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        PayTM
+      </td>
+
+      <td>
+        7777777777
+      </td>
+
+      <td>
+        888888
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        PhonePe
+      </td>
+
+      <td>
+        Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location:
+
+        [https://developer.phonepe.com/v1/docs/setting-up-test-account](https://developer.phonepe.com/v1/docs/setting-up-test-account)
+
+        Download the app and register your mobile number and follow the instructions as described in the above PhonePe docs.
+      </td>
+
+      <td>
+        NA
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        AmazonPay
+      </td>
+
+      <td>
+        You can test using your original Amazon account details.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+  </tbody>
+</Table>
+</Accordion>
 </Accordion>
 
 ## Go-live Checklist
@@ -430,27 +483,31 @@ You can make test payments using one of the payment methods configured at the Ch
 Ensure these steps before you deploy the integration in a live environment.
 
 <Accordion title="Collect Live payments" icon="fa-credit-card">
-  After testing the integration end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
-  > 🚧 Watch Out!
-  >
-  > Ensure that you are using the production merchant key and salt generated in the live mode.
+After testing the integration end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
-  <ProductionKeyAndSaltProcedure />
+> 🚧 Watch Out!
+>
+> Ensure that you are using the production merchant key and salt generated in the live mode.
+
+<ProductionKeyAndSaltProcedure />
 </Accordion>
 
 <Accordion title="Checklist 2: Configure setIsProduction()" icon="fa-cog">
-  Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
+
+Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
 </Accordion>
 
 <Accordion title="Checklist 3: Configure verify payment method" icon="fa-check-circle">
-  Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
+
+Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
 </Accordion>
 
 <Accordion title="Checklist 4: Configure Webhook" icon="fa-plug">
-  We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
 
-  <br />
+We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
 
-  During the integration, refer the [Generate Static Hash](doc:generate-static-hash-android-sdk-pro) for hash generation details.
+<br />
+
+During the integration, refer the [Generate Static Hash](doc:generate-static-hash-android-sdk-pro) for hash generation details.
 </Accordion>
