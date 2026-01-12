@@ -21,6 +21,32 @@ The Check Payment (**check_payment**) API functions similar to the [Verify Payme
 
 <GENERALAPIsEnvironment />
 
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  ```curl
+curl --location 'https://secure.payu.in/merchant/postservice' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=6i6633s3gknq1kvph6dtijoabu; USERTXNINFO=68ed4df291d9b7.27710642' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'command=get_TDR' \
+--data-urlencode 'var1="25779819010"' \
+--data-urlencode 'hash=9ba8c5c14b1d8643053b121ce7beb556b1e81fe7f4685048008bcc9f81a35f2b03f879704c10e0999e84923701219fc507c53a57c5ea8ff033ccd4148fb3366c' \
+--data-urlencode 'form=2'
+```
+</Accordion>
+
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  ```
+{
+    "status": 1,
+    "msg": "Transaction Fetched Successfully",
+    "transaction_details": {
+        "mihpayid": "Not Found",
+        "status": "Not Found"
+    }
+}
+  ```
+
+</Accordion>
 
 ## Request parameters
 
