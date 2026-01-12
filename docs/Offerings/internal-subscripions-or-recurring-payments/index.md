@@ -53,12 +53,12 @@ The following video describes PayU’s Recurring Payment Suite offering:
 
 The following table provides comparison on various payment mode integration:
 
-| Payment Mode     | Supported Cards/Banks | Consent Required | Pre-debit Notifications | Instant Setup     |
-| ---------------- | --------------------- | ---------------- | ----------------------- | ----------------- |
-| **Credit Cards** | All major issuers     | ✅ Yes            | ✅ Available             | ✅ Yes             |
-| **Debit Cards**  | Select issuers only   | ✅ Yes            | ✅ Available             | ✅ Yes             |
-| **Net Banking**  | Participating banks   | ✅ Yes            | ❌ Not available         | ⚠️ Varies by bank |
-| **UPI**          | All UPI-enabled apps  | ✅ Yes            | ✅ Available             | ✅ Yes             |
+| Payment Mode     | Consent Required | Pre-debit Notifications | Instant Setup     |
+| ---------------- | ---------------- | ----------------------- | ----------------- |
+| **Credit Cards** | ✅ Yes            | ✅ Available             | ✅ Yes             |
+| **Debit Cards**  | ✅ Yes            | ✅ Available             | ✅ Yes             |
+| **Net Banking**  | ✅ Yes            | ❌ Not available         | ⚠️ Varies by bank |
+| **UPI**          | ✅ Yes            | ✅ Available             | ✅ Yes             |
 
 ## Use Cases
 
