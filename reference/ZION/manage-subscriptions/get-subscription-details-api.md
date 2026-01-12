@@ -128,26 +128,51 @@ curl --location 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions/
 
 ## Response parameters
 
-| Parameter           | Description                                                | Example                                               |
-| ------------------- | ---------------------------------------------------------- | ----------------------------------------------------- |
-| `subscriptionId`    | Unique identifier for the subscription                     | `"5dbffd362fc4f8363c4fd397"`                          |
-| `createdDate`       | ISO 8601 timestamp when the subscription was created       | `"2019-11-04T04:58:06.000012Z"`                       |
-| `modifiedDate`      | ISO 8601 timestamp when the subscription was last modified | `"2023-11-08T13:03:54.000724Z"`                       |
-| `subscriptionPlans` | Array of subscription plan objects                         | `[{...}]`                                             |
-| `status`            | Overall status of the subscription                         | `"Forced_Cancel"`                                     |
-| `authRefId`         | Authorization reference ID                                 | `"403993715520071757"`                                |
-| `subscriberEmail`   | Email address of the subscriber                            | `"aws0055test@mailinator.com"`                        |
-| `subscriberMobile`  | Mobile number of the subscriber                            | `"5412345026"`                                        |
-| `paymentOption`     | Payment method details (object)                            | `{}`                                                  |
-| `freeTrial`         | Boolean indicating if this includes a free trial           | `false`                                               |
-| `setupAmount`       | One-time setup fee object                                  | `{"value": 0.00}`                                     |
-| `customParameter`   | Custom parameters passed during subscription creation      | `{"memUUID": "38050cdb-b145-4d5a-8a77-7605df72f5ee"}` |
-| `possibleActions`   | Array of available actions for this subscription           | `[{...}]`                                             |
-| `requestId`         | Unique identifier for this API request                     | `"403993715520071757"`                                |
+| Parameter           | Description                                                                                                                                                                                                                                                | Example                                                                                                                                                                      |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `subscriptionId`    | Unique identifier for the subscription                                                                                                                                                                                                                     | `"5dbffd362fc4f8363c4fd397"`                                                                                                                                                 |
+| `createdDate`       | ISO 8601 timestamp when the subscription was created                                                                                                                                                                                                       | `"2019-11-04T04:58:06.000012Z"`                                                                                                                                              |
+| `modifiedDate`      | ISO 8601 timestamp when the subscription was last modified                                                                                                                                                                                                 | `"2023-11-08T13:03:54.000724Z"`                                                                                                                                              |
+| `subscriptionPlans` | Array of subscription plan objects. For more information, refer to Refer to [subscriptionPlans JSON object fields](https://docs.payu.in/reference/get-subscription-details-api?isFramePreview=true#subscriptionplans-json-object-fields)  table.           | Refer to [subscriptionPlans JSON object fields](https://docs.payu.in/reference/get-subscription-details-api?isFramePreview=true#subscriptionplans-json-object-fields) table. |
+| `status`            | Overall status of the subscription                                                                                                                                                                                                                         | `"Forced_Cancel"`                                                                                                                                                            |
+| `authRefId`         | Authorization reference ID                                                                                                                                                                                                                                 | `"403993715520071757"`                                                                                                                                                       |
+| `subscriberEmail`   | Email address of the subscriber                                                                                                                                                                                                                            | `"aws0055test@mailinator.com"`                                                                                                                                               |
+| `subscriberMobile`  | Mobile number of the subscriber                                                                                                                                                                                                                            | `"5412345026"`                                                                                                                                                               |
+| `paymentOption`     | Payment method details (object)                                                                                                                                                                                                                            | `{}`                                                                                                                                                                         |
+| `freeTrial`         | Boolean indicating if this includes a free trial. By default, it is` false`.                                                                                                                                                                               | `false`                                                                                                                                                                      |
+| `setupAmount`       | One-time setup fee object                                                                                                                                                                                                                                  | `{"value": 0.00}`                                                                                                                                                            |
+| `customParameter`   | Custom parameters passed during subscription creation                                                                                                                                                                                                      | `{"memUUID": "38050cdb-b145-4d5a-8a77-7605df72f5ee"}`                                                                                                                        |
+| `possibleActions`   | Array of available actions for this subscription. For more information, refer to Refer to [possibleActions JSON object fields](https://docs.payu.in/reference/get-subscription-details-api?isFramePreview=true#possibleactions-json-object-fields)  table. | Refer to [possibleActions JSON object fields](https://docs.payu.in/reference/get-subscription-details-api?isFramePreview=true#possibleactions-json-object-fields) table.     |
+| `requestId`         | Unique identifier for this API request                                                                                                                                                                                                                     | `"403993715520071757"`                                                                                                                                                       |
 
-## subscriptionPlans JSON object fields
+### subscriptionPlans JSON object fields
 
-<Table>
+#### Example JSON object
+
+```json
+        {
+            "planId": "ZION15728632860122",
+            "startDate": "2019-12-03T00:00:00.000Z",
+            "totalCount": 60,
+            "numberOfPaidInvoices": 0,
+            "numberOfInvoiceGenerated": 46,
+            "status": "Forced_Cancel",
+            "deleted": false,
+            "nextBillingDates": "2023-10-03T00:00:00Z",
+            "lastPaymentDates": "2020-09-03T00:00:00Z",
+            "billingInterval": 1,
+            "billingCycle": "MONTHLY",
+            "planName": "ZION15728632860122",
+            "amount": {
+                "value": 69.00,
+                "currency": "INR"
+            }
+        }
+```
+
+#### Field descriptions
+
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -311,7 +336,7 @@ curl --location 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions/
       </td>
 
       <td>
-        Billing cycle type. It can be any of the following:  
+        Billing cycle type. It can be any of the following:
 
         `DAILY`, `WEEKLY`, `MONTHLY`, `QUARTERLY`, `YEARLY`
       </td>
@@ -380,6 +405,23 @@ curl --location 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions/
 </Table>
 
 ### possibleActions JSON object fields
+
+#### Example JSON
+
+```json
+ {
+            "action": "Update Subscription",
+            "href": "{{base-url}}/api/sub/v1/subscription/5dbffd362fc4f8363c4fd397",
+            "httpMethod": "PATCH"
+        },
+        {
+            "action": "Delete Subscription",
+            "href": "{{base-url}}/api/sub/v1/subscription/5dbffd362fc4f8363c4fd397",
+            "httpMethod": "DELETE"
+        }
+```
+
+#### Field descriptions
 
 | Parameter    | Description                         | Example                                                           |
 | ------------ | ----------------------------------- | ----------------------------------------------------------------- |
