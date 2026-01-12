@@ -52,7 +52,7 @@ Signature = SHA512("merchantId:" + merchantId + "|subscriptionId:" + subscriptio
     <tr>
       <td>
         skip`  
-        mandatory`
+                mandatory`
       </td>
 
       <td>
@@ -78,7 +78,12 @@ Signature = SHA512("merchantId:" + merchantId + "|subscriptionId:" + subscriptio
       </td>
 
       <td>
-        Subscription status having possible values as<br /><br />*Defined<br />* Enabled<br />*Completed<br />* Cancelled
+        Subscription status having possible values as<br />  
+
+        * Defined
+        * Enabled
+        * Completed
+        * Cancelled
       </td>
     </tr>
 
@@ -109,115 +114,80 @@ Signature = SHA512("merchantId:" + merchantId + "|subscriptionId:" + subscriptio
 ## Sample request
 
 ```
-https://subscription.citruspay.com/api/sub/v1/merchant/subscriptions?merchantId=YQeV da&status=Enabled&skip=0&limit=15
+curl --location 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions?merchantId=0BVomn&skip=0&limit=10' \
+--header 'Authorization: Bearer 810aa8723c4a626bf2c157e50204aebca72d33e9f2bf350e29eade8ae912c703' \
+--header 'X-PayU-Subscription-Signature: 36c0c4b22d1c616237d518c939107e3b01ed14c32147f2c79232444392e0656b040782af69cef7e0640a3f7868145695be3903eb2692a8ef5b68e4bf0a1803ff' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642'
 ```
 
 ## Sample response
 
 ```
 {
-  "subscriptions": [
-    {
-      "subscriptionId": "5c97c51a652d405ed9834f58",
-      "createdDate": "2019-03-24T17:57:46.875Z",
-      "modifiedDate": "2019-03-24T18:33:46.406Z",
-      "subscriptionPlans": [
+    "subscriptions": [
         {
-          "planId": "ZION155345026687548",
-          "startDate": null,
-          "totalCount": 0,
-          "numberOfPaidInvoices": 0,
-          "numberOfInvoiceGenerated": 0,
-          "status": "Inactive",
-          "deleted": false,
-          "nextBillingDates": null,
-          "lastPaymentDates": null,
-          "billingInterval": 0,
-          "billingCycle": "ADHOC",
-          "planName": "Premium",
-          "amount": {
-            "value": 2,
-            "currency": "INR"
-          }
-        }
-      ],
-      "authRefId": "7375340021",
-      "status": "Defined",
-      "subscriberEmail": "chota.bheem@pogo.com",
-      "subscriberMobile": "9999999999",
-      "customParameter": {
-        "Policynumber": "12743123111",
-        "Policytype": "Life Insurance"
-      }
-    },
-    {
-      "subscriptionId": "5c95d46a2fc4f831c8b4ac1c",
-      "createdDate": "2019-03-23T06:38:34.828Z",
-      "modifiedDate": "2019-03-23T06:38:34.828Z",
-      "subscriptionPlans": [
+            "subscriptionId": "5dc170e72fc4f8363c4fe897",
+            "createdDate": "2019-11-05T07:23:59.000438Z",
+            "modifiedDate": "2023-11-08T13:03:54.000901Z",
+            "subscriptionPlans": [
+                {
+                    "planId": "ZION157295843943825",
+                    "startDate": "2019-12-04T00:00:00.000Z",
+                    "totalCount": 60,
+                    "numberOfPaidInvoices": 0,
+                    "numberOfInvoiceGenerated": 46,
+                    "status": "Forced_Cancel",
+                    "deleted": false,
+                    "nextBillingDates": "2023-10-04T00:00:00Z",
+                    "lastPaymentDates": "2020-09-04T00:00:00Z",
+                    "billingInterval": 1,
+                    "billingCycle": "MONTHLY",
+                    "planName": "ZION157295843943825",
+                    "amount": {
+                        "value": 69.00,
+                        "currency": "INR"
+                    }
+                }
+            ],
+            "status": "403993715520077000",
+            "authRefId": "Forced_Cancel",
+            "subscriberEmail": "43@g.com",
+            "subscriberMobile": "5555544443",
+            "customParameter": "{\"memUUID\":\"68c2b97a-ad70-4652-abc9-51f36dbba924\"}"
+        },
         {
-          "planId": "ZION155332311482827",
-          "startDate": "2019-03-26T11:00:00.000Z",
-          "totalCount": 5,
-          "numberOfPaidInvoices": 0,
-          "numberOfInvoiceGenerated": 0,
-          "status": "Inactive",
-          "deleted": false,
-          "nextBillingDates": null,
-          "lastPaymentDates": null,
-          "billingInterval": 1,
-          "billingCycle": "DAILY",
-          "planName": "Premium",
-          "amount": {
-            "value": 2,
-            "currency": "INR"
-          }
+            "subscriptionId": "5ead42b72fc4f8dfa72efca5",
+            "createdDate": "2020-05-02T04:21:51.000781Z",
+            "modifiedDate": "2025-04-08T12:01:13.000914Z",
+            "subscriptionPlans": [
+                {
+                    "planId": "ZION158841311178122",
+                    "startDate": "2020-06-01T00:00:00.000Z",
+                    "totalCount": 60,
+                    "numberOfPaidInvoices": 16,
+                    "numberOfInvoiceGenerated": 60,
+                    "status": "Active",
+                    "deleted": false,
+                    "nextBillingDates": "",
+                    "lastPaymentDates": "2021-09-24T18:12:08.747Z",
+                    "billingInterval": 30,
+                    "billingCycle": "DAILY",
+                    "planName": "ZION158841311178122",
+                    "amount": {
+                        "value": 99.00,
+                        "currency": "INR"
+                    }
+                }
+            ],
+            "status": "10456115667",
+            "authRefId": "Enabled",
+            "subscriberEmail": "srikanth.nalla@gmail.com",
+            "subscriberMobile": "9948598864",
+            "customParameter": "{\"memUUID\":\"16b090d2-10a5-463e-ba1e-615feaf5ca98\"}"
         }
-      ],
-      "authRefId": null,
-      "status": "Defined",
-      "subscriberEmail": "chota.bheem@pogo.com",
-      "subscriberMobile": "9999999999",
-      "customParameter": {
-        "Policynumber": "12743123133",
-        "Policytype": "Terms Insurance"
-      }
-    },
-    {
-      "subscriptionId": "5c9517f2652d405ed9834f3f",
-      "createdDate": "2019-03-22T17:14:26.428Z",
-      "modifiedDate": "2019-03-22T17:14:26.428Z",
-      "subscriptionPlans": [
-        {
-          "planId": "ZION15532748664281",
-          "startDate": null,
-          "totalCount": null,
-          "numberOfPaidInvoices": 0,
-          "numberOfInvoiceGenerated": 0,
-          "status": "Inactive",
-          "deleted": false,
-          "nextBillingDates": null,
-          "lastPaymentDates": null,
-          "billingInterval": 1,
-          "billingCycle": "MONTHLY",
-          "planName": "Premium",
-          "amount": {
-            "value": 200,
-            "currency": "INR"
-          }
-        }
-      ],
-      "authRefId": null,
-      "status": "Defined",
-      "subscriberEmail": "chota.bheem@pogo.com",
-      "subscriberMobile": "9999999999",
-      "customParameter": {
-        "Policynumber": "12743123133",
-        "Policytype": "Terms Insurance"
-      }
-    }
-  ],
-  "totalCount": 3,
-  "page": 1
+    ],
+    "totalCount": 2,
+    "page": 1
 }
 ```
