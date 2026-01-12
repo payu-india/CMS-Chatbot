@@ -12,7 +12,41 @@ metadata:
     - FlashPay Coupled Flow 3DS 2.0 Integration on Android
   robots: index
 ---
+---
+title: FlashPay Coupled Flow 3DS 2.0 Integration
+deprecated: false
+hidden: false
+metadata:
+  title: FlashPay Coupled Flow 3DS 2.0 Integration - Android SDK
+  description: >-
+    This section describes the step-by-step procedure to integrate FlashPay
+    Coupled Flow 3DS 2.0 on Android SDK
+  keywords:
+    - Android FlashPay Coupled Flow 3DS 2.0 Integration
+    - FlashPay Coupled Flow 3DS 2.0 Integration on Android
+  robots: index
+---
 FlashPay solution primarily offers a single comprehensive SDK which is equipped to operate on 3DS protocols and additionally manages e2e authentication, including advanced biometric-based OOB authentication.
+
+<Cards columns={3}>
+  <Card title="1. Gradle changes" href="#step-1-gradle-changes">
+    Add SDK dependency to your build.gradle file
+
+    <br />
+  </Card>
+
+  <Card title="2. Installation" href="#step-2-installation">
+    Configure PayU3DS2Config, PaymentParams, and callbacks
+
+    <br />
+  </Card>
+
+  <Card title="3. UI Customization" href="#ui-customization">
+    Customize buttons, labels, toolbar, and more
+  </Card>
+
+  <br />
+</Cards>
 
 ## Step 1. Gradle changes
 
@@ -36,7 +70,7 @@ implementation 'in.payu:threeds-sdk:1.1.2-SNAPSHOT'
 
 ## Step 2. Installation
 
-### Payment initialisation method
+<Accordion title="Payment initialisation method" icon="fa-play">
 
 Call the following `initiatePayment` method to initiate payment through us and we will return success or failure callback post transaction completion. This method will internally call Authentication request (/_payment), collect device detail, call binInfo API, present the native OTP screen and do the authorization too.
 
@@ -50,8 +84,9 @@ fun initiatePayment(
     callback: PayU3DS2PaymentCallback
 )
 ```
+</Accordion>
 
-### Parameters for initiatePayment
+<Accordion title="Parameters for initiatePayment" icon="fa-list">
 
 | Parameter       | Description                                                                                                                                      |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -59,8 +94,9 @@ fun initiatePayment(
 | `config`        | Configuration object for customizing the FlashPay SDK                                                                                            |
 | `paymentParams` | Payment-related details object. Merchants have to create the payment param object and pass it which will contain info such as cardDeatails, etc. |
 | `callback`      | Callback for payment success, failure, cancellation, etc.                                                                                        |
+</Accordion>
 
-### 2.1 PayU3DS2Config
+<Accordion title="2.1 PayU3DS2Config" icon="fa-cog">
 
 Define and configure details for the SDK:
 
@@ -121,10 +157,11 @@ config.acsContentConfig = acsContentConfig
 #### Configuration Notes
 
 * **setDefaultProgressLoader**: Customize via `config.setDefaultProgressLoader(true, "HexColor")`. This replaces the full-page loader with a default small loader.
+</Accordion>
 
 ## UI Customization
 
-### Button Customization
+<Accordion title="Button Customization" icon="fa-square">
 
 ```kotlin
 var buttonCustomisation = ButtonCustomisation.Builder()
@@ -136,8 +173,9 @@ var buttonCustomisation = ButtonCustomisation.Builder()
     .setResendTextFontColor("colorCode") // HEX CODE
     .build()
 ```
+</Accordion>
 
-### Label customization
+<Accordion title="Label customization" icon="fa-tag">
 
 ```kotlin
 var labelCustomisation = LabelCustomisation.Builder()
@@ -149,8 +187,9 @@ var labelCustomisation = LabelCustomisation.Builder()
     .setTextFontSize(10) // Integer
     .build()
 ```
+</Accordion>
 
-### Toolbar Customization
+<Accordion title="Toolbar Customization" icon="fa-window-maximize">
 
 ```kotlin
 var toolbarCustomisation = ToolbarCustomisation.Builder()
@@ -162,8 +201,9 @@ var toolbarCustomisation = ToolbarCustomisation.Builder()
     .setTextFontName(FontName.ROBOTO_REGULAR)
     .build()
 ```
+</Accordion>
 
-### TextBox Customization
+<Accordion title="TextBox Customization" icon="fa-edit">
 
 ```kotlin
 var textBoxCustomisation = TextBoxCustomisation.Builder()
@@ -175,8 +215,9 @@ var textBoxCustomisation = TextBoxCustomisation.Builder()
     .setTextFontName(FontName.ROBOTO_REGULAR)
     .build()
 ```
+</Accordion>
 
-### Bottom Sheet Customization
+<Accordion title="Bottom Sheet Customization" icon="fa-window-restore">
 
 ```kotlin
 var bottomSheetCustomisation = BottomSheetCustomisation.Builder()
@@ -190,8 +231,9 @@ var bottomSheetCustomisation = BottomSheetCustomisation.Builder()
     .setResendTextFontColor("colorCode") // HEX CODE
     .build()
 ```
+</Accordion>
 
-### Font Customization
+<Accordion title="Font Customization" icon="fa-font">
 
 ```kotlin
 val fontFamilyCustomisation = FontFamilyCustomisation.Builder()
@@ -199,8 +241,9 @@ val fontFamilyCustomisation = FontFamilyCustomisation.Builder()
     .setSubTextFontFamily("Sub text font family path") // example: assets/fonts/lato-italic.ttf
     .build()
 ```
+</Accordion>
 
-### UI Customization integration
+<Accordion title="UI Customization integration" icon="fa-palette">
 
 ```kotlin
 var uiCustomisation = UICustomisation.Builder()
@@ -212,15 +255,17 @@ var uiCustomisation = UICustomisation.Builder()
     .setBottomSheetCustomisation(bottomSheetCustomisation)
     .build()
 ```
+</Accordion>
 
-### Font customization options
+<Accordion title="Font customization options" icon="fa-text-height">
 
 | Property            | Description                                             | Example                        |
 | ------------------- | ------------------------------------------------------- | ------------------------------ |
 | `HeaderFontFamily`  | Set the header font family from the specified file path | `assets/fonts/lato-italic.ttf` |
 | `SubTextFontFamily` | Set subtext font family from the specified file path    | `assets/fonts/lato-italic.ttf` |
+</Accordion>
 
-## 2.2 PaymentParams
+<Accordion title="2.2 PaymentParams" icon="fa-credit-card">
 
 Create and configure payment details:
 
@@ -598,10 +643,9 @@ To process payments using EMI (Equated Monthly Installments), you need to specif
 mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., EMI03)
 mPaymentParams.setPg("EMI")                         // Set payment gateway to EMI
 ```
+</Accordion>
 
-<br />
-
-## 2.3 PayU3DS2PaymentCallback
+<Accordion title="2.3 PayU3DS2PaymentCallback" icon="fa-exchange-alt">
 
 Callback methods during the transaction:
 
@@ -614,7 +658,7 @@ fun generateHash(map: HashMap<String, String>, hashGenerationListener: PayUHashG
 fun mfaRegistrationstatus(status: Boolean)
 ```
 
-### Callback Method Descriptions
+<Accordion title="Callback Method Descriptions" icon="fa-list">
 
 | Method                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -624,8 +668,9 @@ fun mfaRegistrationstatus(status: Boolean)
 | `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the <Anchor label="[hash-generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk)" target="_blank" href="https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk">[hash-generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk)</Anchor> |
 | `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                                                                                                                                                                                                                                            |
+</Accordion>
 
-### Hash Generation
+<Accordion title="Hash Generation" icon="fa-key">
 
 You will receive a call on the generateHash method of PayU3DS2PaymentCallback.
 
@@ -666,14 +711,17 @@ hashGenerationListener.onHashGenerated(hashMap)
   * If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algorithm on that final string to generate hash.
   * There is no need to know the formula for dynamic hashes because PayU SDK gives you the string containing all the required parameters. Your server has to append salt at the end and generate sha512 hash over it.
 </Callout>
+</Accordion>
 
-### MFA registration status
+<Accordion title="MFA registration status" icon="fa-fingerprint">
 
 It has a boolean parameter to determine the biometric registration status success/failure.
 
 ```kotlin
 fun mfaRegistrationstatus(status: Boolean)
 ```
+</Accordion>
+</Accordion>
 
 ## Error codes
 
