@@ -10,2139 +10,741 @@ metadata:
 next:
   description: ''
 ---
-PayUBolt SDK will provide a way to integrate in-app UPI payment in merchant app with their own UI. They can manage the checkout options on their checkout screen. Features included in this SDK are:
+<br />
 
-* **Registration** - This SDK provides APIs for device binding and registration. Merchant App can consume these APIs and build their own registration journey.
-* **Payment** - This SDK provides payment and verify transaction APIs. Merchant App can consume these APIs to build payment journey as well.
-* **Management** - This SDK provides account management APIs. Merchant App can check balance, set/change pin and add/delete account in their own user journeys.
+The Android UPI SDK integration involves the following steps:
 
-This integration involves the following steps:
+<Cards columns={3}>
+  <Card title="1. SDK Integration" href="#sdk-integration">
+    Set up build.gradle, generate hash, and configure payment options
 
-1. [Add permissions to Manifest file](#step-1-add-permissions-to-manifest-file)
-2. [Include Bolt SDK and AAR Files](#step-2-include-bolt-sdk-and-aar-files)
-3. [Initialize the SDK](#step-3-initialize-the-sdk)
+    <br />
+  </Card>
 
-Later, you can integrate the following flows:
+  <Card title="2. Test the Integration" href="#test-the-integration">
+    Test the integration before going live using test VPAs
 
-* [Integrate Registration Flow](https://docs.payu.in/docs/payubolt-sdk-integration-native#integrate-registration-flow)
-* [Integrate Repeat Flow](#integrate-repeat-flow)
-* [Integrate Payment Flow](#integrate-payment-flow)
-* [Integrate Management flow](#integrate-management-flow)
+    <br />
+  </Card>
 
-For hash generation logic and Listener/Callback integration, the [Hash generation logic ](#hash-generation-logic)and o [Listener or Callback logic](#listener-or-callback-logic) sub-sections.
+  <Card title="3. Go-live Checklist" href="#go-live-checklist">
+    Configure production settings, verify payment method, and webhooks
+  </Card>
 
-## Prerequisites
+  <br />
+</Cards>
 
-* Minimum Android SDK Version - 23 and above.
-* Compile SDK Version - 31 and above.
-* The following .aar (Android archive) files provided by PayU during onboarding:
-  1. NPCI Secure Component
-  2. AXIS Olive
-
-## Step 1: Add permissions to Manifest file
-
-Update the manifest file to include the following so that permissions are provided for SDK:
-
-```
-// To send SMS for device binding
-<uses-permission android:name="android.permission.SEND_SMS"/>
-// To check current network state
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-// To access internet for API calls 
-<uses-permission android:name="android.permission.INTERNET" />
-// To get sim details from devices below or equal to 29
-<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-// Too get sim details from devices above 29
-<uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
-// To provide location details for transaction
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-```
-
-## Step 2: Include Bolt SDK and AAR Files
-
-To include the PayU UPI Bolt SDK in your project, add the following code snippet to your app’s `build.gradle`.
-
-```
-implementation 'in.payu:payu-upi-bolt-axis-wrapper-sdk:1.0.0' // PayU AXIS Wrapper
-implementation 'in.payu:payu-upi-bolt-sdk:1.0.0' // PayU Bolt SDK
-```
-
-Add the **.aar** files provided by PayU during onboarding. in the **libs** directory of your android module and add these in module level **build.gradle**. For the list of files, refer to[ Prerequisites](#prerequisites).
-
-```
-api(files("$projectDir/libs/SecureComponent-release-prod_05062024_9d3904ab.aar")) // NPCI .aar
-api(files("$projectDir/libs/oliveupi-payu-release_PROD_02-12-2024_2.0.2.aar")) // AXIS .aar 
-```
-
-The screenshot of libs directory is similar to the following:
-
-<Image align="center" width="360px" src="https://files.readme.io/1af3684beef4a3b10716b5fc7de478bc9a07ff6f82ae0cec8041bbb94d8c754c-bolt_native_flow_aar_directory_structure.png" />
-
-## Step 3: Initialize the SDK
-
-It is used to initialize the SDK. This method returns a object that will be used to access other methods available in `PayUUPIBoltUI`.
-
-```kotlin
-val bolt = PayUUPIBolt.getInstance(
-    activity: AppCompatActivity,
-    config: PayUUPIBoltConfig,
-    hashGenerationListener: PayUHashGenerationListener
-)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        activity
-        ` mandatory`
-      </td>
-
-      <td>
-        `AppCompatActivity` Calling activity of the merchant App
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        config
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltUIConfig` Config includes the below fields.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        hashGenerationListener
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUHashGenerationListener` Callback listener for hash generation
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-The PayUUPIBoltConfig includes the following fields:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        merchantKey
-        `mandatory`
-      </td>
-
-      <td>
-        `String`PayU Merchant Key
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone
-        `mandatory`
-      </td>
-
-      <td>
-        `String`Phone number for registration
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email
-        `mandatory`
-      </td>
-
-      <td>
-        `String`Customer Email Id
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        pluginType
-        `mandatory`
-      </td>
-
-      <td>
-        `String Array`List of Supported Banks (“AXIS, HDFC”)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        isProd
-        `optional`
-      </td>
-
-      <td>
-        `Boolean`Prod - ture, staging - false
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        excludedBanksIINs
-        `optional`
-      </td>
-
-      <td>
-        `String Array`List of Bank’s IIN to exclude
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        requestId
-        `mandatory`
-      </td>
-
-      <td>
-        `String`Unique reference ID
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-### Response
-
-| Response Params | Definition                               |
-| --------------- | ---------------------------------------- |
-| `PayUUPIBolt`   | PayUUPIBolt object for invoking SDK APIs |
+## SDK Integration
 
 <Callout icon="📘" theme="info">
-  **Callback**: After the SDK is initialised, use the same object to call the sdk methods.
+  **Pre-requisites:** To start transacting through Google Pay, register yourself on Google Pay using the following [Google Onboarding](https://pay.google.com/about/business/) form. In this registration process, add the Merchant VPA Ids created by PayU for you. In case of multiple VPAs, all of them need to be registered. For any queries regarding the same, raise a [ticket with PayU](https://help.payu.in/query).
 </Callout>
 
-## De-initialise PayUBolt SDK
+### Step 1: Create a PayU account
 
-`reset`: This method is used to deinitailise the bolt object. 
+First, create a PayU account. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
-```
-`PayUUPIBolt.reset()`
-```
+### Step 2: Set up build.gradle
 
-## Listener or Callback logic
+Add the PayU UPI SDK (available at Maven Central) to `<<glossary:build.gradle>>`:
 
-Listerner/Callback contains 3 methods where the merchant app will get the API response and hash-related callbacks
-
-| S.No. | Listener                                                                                           | Description                                                                               |
-| ----- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| 1     | fun generateHash(map: HashMap\<String, String>, hashGenerationListener: PayUHashGeneratedListener) | For hash generation, refer to [Hash generation logic ](#hash-generation-logic)sub-section |
-| 2     | fun onPayUSuccess(response: PayUUPIBoltResponse)                                                   | It will contain success response.                                                         |
-| 3     | fun onPayUFailure(response: PayUUPIBoltResponse)                                                   | It will contain failure response.                                                         |
-
-### PayUUPIResponse
-
-| Fields       | Data Type | Definition                                                              |
-| ------------ | --------- | ----------------------------------------------------------------------- |
-| responseType | Integer   | Refer to[ Response type](#response-type).                               |
-| code         | Integer   | Error or success code. Refer to[ Response codes](#response-codes) .     |
-| message      | String    | Error or success message. Refer to[ Response codes](#response-codes)  . |
-| result       | Object    | Response data                                                           |
-
-Note: If result object is null or empty. Kindly use the response from message
-
-### Response type
-
-| Response Type       | Response Code | Definition       |
-| ------------------- | ------------- | ---------------- |
-| REQUEST_UPI_BOLT    | 100           | UPI Bolt Status  |
-| REQUEST_TRANSACTION | 124           | Register And Pay |
-| REQUEST_MANAGE      | 125           | UPI Management   |
-
-### Response codes
-
-| Codes | Message                                |
-| ----- | -------------------------------------- |
-| 0     | Success                                |
-| 1     | Fail/ Invalid Response/ Missing params |
-| 2     | User canceled the transaction          |
-| 100   | Transaction timeout                    |
-| 101   | Hash missing                           |
-| 102   | Something went wrong                   |
-| 103   | Handshake failed                       |
-| 104   | UPI bolt not supported                 |
-| 105   | Device not supported for UPI Bolt      |
-| 106   | Permission missing                     |
-| 107   | Sim info not available                 |
-| 108   | Device binding failed                  |
-| 109   | Initiate pay failed                    |
-| 110   | Dispute already exists                 |
-| 501   | No internet connection                 |
-
-## Hash Generation logic
-
-The PayU SDKs use hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification.
-
-For generating and passing dynamic hashes, the merchant will receive a call from the `generateHash()` method of `PayUUPIBoltUiListener`. The `generateHash() `method is called by the SDK each time it needs an individual hash.
-
-```kotlin
-fun generateHash(map: HashMap<String, String>, hashGenerationListener: PayUHashGeneratedListener): Merchant will get map with type of hash and hash string as value of map.
-  
-  They have to sign that string using salt to create hash value and pass that to hashGenerationListener.onHashGenerated().
-      In the map you have to check for three keys to generate hash.
-      1. hashString
-      2. hashName
-      3. postSalt
-  At the end of that hashString append your salt and use SHA-512 algo on that final string to generate hash.
-  Note: If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algo on that final string to generate hash.
-  Once the hash is generated use hashGenerationListener parameter to pass the hash to SDK. Example code:
-         val hashMap: HashMap<String, String> = HashMap()
-         hashMap[hashName] = hash //hashName is the value you got in map and hash is the hash value.
-         hashGenerationListener.onHashGenerated(hashMap)     
-
+```Text build.gradle
+implementation 'in.payu:upisdk:1.8.8'
 ```
 
-## Integrate Registration Flow
+<Callout icon="🚧" theme="warn">
+  **Expand Manifest view for compilation error**: If you are getting the following compile error, expand the Merged Manifest view.
 
-The following methods are used to integrate registration flow:
+  `Android resource linking failed /Users/sample/AndroidStudioProjects/MyApp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:18: error: unexpected element found in <manifest>  
+      Manifest merger failed with multiple errors, see logs`
+</Callout>
 
-* [Check if UPI Bolt is enabled](#check-if-upi-bolt-is-enabled)
-* [Get registered mobile number](#get-registered-mobile-number)
-* [Get subscriber info](#get-subscriber-info)
-* [Check device status](#check-device-status)
-* [Initiate SDK](#initiate-sdk)
-* [Fetch bank list](#fetch-bank-list)
-* [Fetch accounts of a selected bank](#fetch-accounts-of-a-selected-bank)
-* [Set VPA](#set-vpa)
-* [Set PIN](#set-pin)
+In the Merged Manifest view, the following additional error message is displayed. This indicates that you need to fix your Gradle plugin. For more information on the Gradle plugin, refer to the Google Andriod Documentation.
 
-### Check if UPI Bolt is enabled
+`Error: Missing 'package' key attribute on element package`
 
-Use the `isUpiBoltEnabled` method to check whether the UPI bolt is enabled for the merchant or not enabled.
-
-```text
-bolt.core.isUpiBoltEnabled(callback: PayUUPIBoltCallBack)
-```
-
-The following parameters are needed as a request for this API:
-
-| Paramater             | Definition                                                  |
-| --------------------- | ----------------------------------------------------------- |
-| callback`  mandatory` | `PayUUPIBoltCallback` Ref. Listener/Callback logic section. |
-
-**Response**: Response type : REQUEST_UPI_BOLT. For more information, refer to[ Response type](#response-type).
-
-### Get registered mobile number
-
-Use the `getRegisteredMobile` method to get already registered mobile number.
-
-```text
- bolt.core.getRegisteredMobile(): String
-```
-
-The following parameters are needed as a request for this API:
-
-| Paramater | Definition               |
-| --------- | ------------------------ |
-| Mobile    | Registered Mobile Number |
-
-### Get subscriber info
-
-Use the `getSubscriberInfo` method to get SIM info from device.
-
-```swift ionic
-bolt.core.getSubscriberInfo(mobile: String, callback: PayUUPIBoltCallBack)
-```
-
-> 📘 Callback reference:
->
-> For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic) sub-section.
-
-The following parameters are needed as a request for this API:
-
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        mobile
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Mobile number to be used for registration.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        callback
-        `mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltUICallBack `This parameter contains the callback. For callback logic refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-The response is `PayUSimInfo `array list that contains the following fields:
-
-| Field         | Definition                  |
-| ------------- | --------------------------- |
-| mobileNumber  | `String` Mobile number      |
-| slotIndex     | `String` SIM slot index     |
-| subscriberId  | `String`SIM subscription id |
-| carrierName   | `String`Name of carrier     |
-
-### Check device status
-
-Use the **checkDeviceStatus** method to check the device binding status.
-
-```kotlin
-bolt.core.checkDeviceStatus(mobile: String, subscriptionId: String, callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        mobile
-        `mandatory`
-      </td>
-
-      <td>
-        `String `Mobile number to be used for registration
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        subscriptionId
-        `mandatory`
-      </td>
-
-      <td>
-        `String `SubscriptionId of Mobile Number
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        callback
-        `mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is CHECK_DEVICE_STATUS.
-
-### Initiate SDK
-
-Use the `initiateSDK` method to start device binding and triggering SMS.
+As UPI SDK is compiled on SDK version 29 with Androidx support, your app, and SDK might have common dependencies that lead to compilation errors due to the duplicity of classes. In such cases, you need to define resolutionStrategy on your project or app’s build.gradle. For more information, refer to Gradle Documentation.
 
 ```
-bolt.core.initiateSDK(subscriptionId: String, phone: String, callback: PayUUPIBoltCallBack)
+configurations.all {
+resolutionStrategy {
+force "path of conflicting library 1"
+force "path of conflicting library 2"
+...
+}
+}
 ```
 
-The following fields are needed as a request for this API:
+### Step 3: Generate Hash
 
-| Fields         | Definition                                                                                            |
-| -------------- | ----------------------------------------------------------------------------------------------------- |
-| subscriptionId | `String `SubscriptionId of Mobile Number                                                              |
-| mobile         | `String `Mobile number to be used for registration                                                    |
-| callback       | `PayUUPIBoltCallBack`Refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section. |
+To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
-**Response**: Response type is REQUEST_SDK_HANDSHAKE
+<Callout icon="📘" theme="info">
+  **Tip**: Every transaction (payment or non-payment) needs a hash by you before sending the transaction details to PayU. Hash is required for PayU to validate the authenticity of the transaction. The hashing must be done on your server.
+</Callout>
 
-### Fetch bank list
+### Step 4: Payment Request Post Data
 
-Use the `fetchBankList` method to fetch a list of all banks.
+<Callout icon="📘" theme="info">
+  **Ways to generate postdata:**
 
-```
-bolt.core.fetchBankList(callback: PayUUPIBoltCallBack)
-```
+  * By UPI SDK itself (recommended if you are using UPI SDK alone)
+  * By using the [PG SDK](doc:android-core-sdk) library.
+</Callout>
 
-The following fields are needed as a request for this API:
+<Accordion title="Step 4.1: Build the payment parameters (mandatory step)" icon="fa-code">
+  PostData can be generated by using the following sample code:
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
+  ```java JAVA
+  PaymentParamsUpiSdk mPaymentParamsUpiSdk = new PaymentParamsUpiSdk();
+  mPaymentParamsUpiSdk.setKey(inputData); //Your Merchant Key
+  mPaymentParamsUpiSdk.setProductInfo("product info");
+  mPaymentParamsUpiSdk.setFirstName("first name"); //Customer First name
+  mPaymentParamsUpiSdk.setEmail("email"); //Customer Email
+  mPaymentParamsUpiSdk.setTxnId("txnId"); //Your transaction id
+  mPaymentParamsUpiSdk.setAmount("Transaction Amount"); //Your transaction Amount(In Double as String)
+  mPaymentParamsUpiSdk.setSurl("success url");
+  mPaymentParamsUpiSdk.setFurl("failure url");
+  mPaymentParamsUpiSdk.setUdf1("udf1");
+  mPaymentParamsUpiSdk.setUdf2("udf2");
+  mPaymentParamsUpiSdk.setUdf3("udf3");
+  mPaymentParamsUpiSdk.setUdf4("udf4");
+  mPaymentParamsUpiSdk.setUdf5("udf5");
+  mPaymentParamsUpiSdk.setVpa("vpa"); //In case of UPI Collect set customer vpa here
+  mPaymentParamsUpiSdk.setUserCredentials("user credentials");
+  mPaymentParamsUpiSdk.setOfferKey("offer key");
+  mPaymentParamsUpiSdk.setPhone("phone number");//Customer Phone Number
+  mPaymentParamsUpiSdk.setHash("hash");//Your Payment Hash
 
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
+  String postDataFromUpiSdk = new PostDataGenerate.PostDataBuilder(this).
+       setPaymentMode(UpiConstant.UPI).setPaymentParamUpiSdk(mPaymentParamsUpiSdk).
+       build().toString();
+  ```
+</Accordion>
 
-  <tbody>
-    <tr>
-      <td>
-        callback
-        `mandatory`
-      </td>
+<Accordion title="Step 4.2: For Recurring Payments(SI) (Optional Step)" icon="fa-code">
+  If you are integrating SI, then generate the below payment params additionally
 
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
+  ```java Java
+  SIParams siParams = new SIParams();
+  siParams.setFree_trial(false);
+  SIParamsDetails siParamsDetails = new SIParamsDetails();
+  siParamsDetails.setBillingAmount("100");
+  siParamsDetails.setBillingCurrency("INR");
+  siParamsDetails.setBillingCycle(BillingCycle.YEARLY);
+  siParamsDetails.setPaymentStartDate("08-02-2024");
+  siParamsDetails.setPaymentEndDate("08-02-2025");
+  siParamsDetails.setBillingInterval(1);
+  siParamsDetails.setBillingLimit(BillingLimit.ON);
+  siParamsDetails.setBillingRule(BillingRule.EXACT);
+  siParams.setSi_details(siParamsDetails);       
+  ```
+  ```kotlin Kotlin
+  val siParams = SIParams()
+  siParams.isFree_trial = false
+  val siParamsDetails = SIParamsDetails()
+  siParamsDetails.billingAmount = "100"
+  siParamsDetails.billingCurrency = "INR"
+  siParamsDetails.billingCycle = BillingCycle.YEARLY
+  siParamsDetails.paymentStartDate = "08-02-2024"
+  siParamsDetails.paymentEndDate = "08-02-2025"
+  siParamsDetails.billingInterval = 1
+  siParamsDetails.billingLimit = BillingLimit.ON
+  siParamsDetails.billingRule = BillingRule.EXACT
+  siParams.si_details = siParamsDetails
+  ```
 
-        [Listener or Callback logic](#listener-or-callback-logic)
+  For more information on the PayUSIParams parameters, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters). After creating the above `PayUSIParams` object, configure it in the `PayUPaymentParams` object. For Standing Instruction, complete `PayUPaymentParams` similar to the following code block:
 
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+  ```java Java
+  mPaymentParamsUpiSdk.setSiParams(siParams);
+  ```
+  ```kotlin Kotlin
+  paymentParamsUpiSdk.siParams = siParams
+  ```
 
-**Response**: Response type is REQUEST_LIST_BANKS
+  <Accordion title="Check for Payment availability Callback" icon="fa-code">
+    ```java
+     /**
+         * Callback of payment availability while doing through UPISDK.
+         */
+        PayUUPICallback payUUpiSdkCallback = new PayUUPICallback() {
 
-The response is `PayUBankData `array list that contains the following fields:
+            @Override
+            public void isPaymentOptionAvailable(boolean isAvailable, PaymentOption paymentOption) {
+                super.isPaymentOptionAvailable(isAvailable, paymentOption);
+                switch (paymentOption) {
+                    case PHONEPE:
+                       //check whether you show Phonepe or not using isAvailable.
+                        break;
+                    case SAMSUNGPAY:
+                     //check whether you show Samsung Pay or not using isAvailable
+                        break;
+                }
+            }
+        };
+    ```
+  </Accordion>
 
-| Field    | Definition                                      |
-| -------- | ----------------------------------------------- |
-| name     | `String` Name of bank                           |
-| iin      | `String`Issuer identification number of bank    |
-| ifsc     | `String`IFSC code                               |
-| logo     | `String`Bank logo url                           |
-| bankCode | `String`Unique identification code for the bank |
+  <Accordion title="Check For Payment availability" icon="fa-code">
+    ```java
+     //Checking the payment availability for PHONEPE, SAMSUNGPAY and Google Pay.
+     // It will return the availability on payUUpiSdkCallback isPaymentOptionAvailable() method.
+    Upi upi = Upi.getInstance();
+    upi.checkForPaymentAvailability(this, PaymentOption.PHONEPE, payUUpiSdkCallback, mPayUHashes.getPaymentRelatedDetailsForMobileSdkHash(), mPaymentParamsUpiSdk.getKey(), mPaymentParamsUpiSdk.getUserCredentials());
+    upi.checkForPaymentAvailability(this, PaymentOption.SAMSUNGPAY, payUUpiSdkCallback, mPayUHashes.getPaymentRelatedDetailsForMobileSdkHash(), mPaymentParamsUpiSdk.getKey(), mPaymentParamsUpiSdk.getUserCredentials());
+    upi.checkForPaymentAvailability(this, PaymentOption.TEZ, payUUpiSdkCallback, mPayUHashes.getPaymentRelatedDetailsForMobileSdkHash(), mPaymentParamsUpiSdk.getKey(), mPaymentParamsUpiSdk.getUserCredentials());
+    ```
+  </Accordion>
+</Accordion>
 
-### Fetch accounts of a selected bank
+## Step 5: Set up for Test Merchant
 
-Use the `fetchAccountsWithIin` method to fetch accounts of selected bank.
+If you are using the SDK with a test merchant, provide the following metadata value to the manifest file:
 
-```
-bolt.core.fetchAccountsWithIin(iin: String, bankName: String, bankCode: String?, vpa: String?, requestType: String?, isCCTxnEnabled: Boolean, callback: PayUUPIBoltCallBack)
-```
+<Accordion title="Manifest file" icon="fa-code">
+  ```java
+  <application
+  <meta-data
+  android:name="payu_web_service_url"
+  android:value="https://test.payu.in" />
+  <meta-data
+  android:name="payu_post_url"
+  android:value="https://test.payu.in" />
+  </application>
+  ```
+</Accordion>
 
-The following fields are needed as a request for this API:
+## Step 6: Payment Options
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
+UPI SDK currently supports the following payment options:
 
-      <th>
-        Definition 
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        iin```
-
-        mandatory
-
-        ````
-        </td>
-
-        <td>
-        `String`Issuer identification number of bank
-        </td>
-        </tr>
-
-        <tr>
-        <td>
-        bankname ```
-
-        mandatory
-        ````
-      </td>
-
-      <td>
-        `String` Name of bank
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankCode
-        `optional`
-      </td>
-
-      <td>
-        `String`Unique identification code for the bank
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        vpa```
-
-        optional
-
-        ````
-        </td>
-
-        <td>
-        `String`UPI handle
-        </td>
-        </tr>
-
-        <tr>
-        <td>
-        requestType```
-
-        optional
-        ````
-      </td>
-
-      <td>
-        `String`Only applicable for HDFC and contain any of the following:
-
-        * **A**: Add account
-        * **R** : New registration
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        isCCTxnEnabled```
-
-        mandatory
-
-        ````
-        </td>
-
-        <td>
-        `String`The default value is false. Set it true if bank is CC.
-        </td>
-        </tr>
-
-        <tr>
-        <td>
-        callback ```
-
-        mandatory
-        ````
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-           sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_FETCH_ACCOUNT_V3
-
-The response is `PayUCustomerBankAccounts `array list that contains the following fields:
-
-| Field        | Definition                                                                                                                          |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| bankName     | `String` Name of bank                                                                                                               |
-| bankCode     | `String`Unique identification code for the bank                                                                                     |
-| bankAccounts | Refer to [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters) |
-
-### Set VPA
-
-Use the `setVpa `method to update the vpa of the registered account.
-
-```
-bolt.core.setVpa(accountDetail: PayUAccountDetail, callback: PayUUPIBoltCallBack)
+```java
+PaymentOption.PHONEPE: Payment using PhonePe
+PaymentOption.SAMSUNGPAY: Payment using Samsung pay.
+PaymentOption.TEZ: Payment using Google Pay.
+PaymentOption.UPI_INTENT: Payment using UPI apps installed on device.i,e, Intent flow..
+PaymentOption.UPI_COLLECT: UPI payment through web flow.
 ```
 
-The following fields are needed as a request for this API:
+<Accordion title="Dependency for PhonePe" icon="fa-code">
+  To make a payment through PhonePe, you must have to add PayU PhonePe dependency:
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
+  * Add the following URL to the root project of **build.gradle**:
 
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
+  ```Text build.gradle
+  allprojects {
+      repositories {
+          maven {
+              url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsdk-android"
+          }
+      }
+  }
+  ```
 
-  <tbody>
-    <tr>
-      <td>
-        accountDetail
-        ` mandatory`
-      </td>
+  * Add the following dependency to the root project of build.gradle:
 
-      <td>
-        `PayUAccountDetail` Refer to  
+  ```Text build.gradle
+  implementation 'in.payu:phonepe-intent:1.7.6'
+  ```
+</Accordion>
 
-        [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
+<Accordion title="Dependency for Google Pay" icon="fa-code">
+  To make a payment through Google Pay, you must have to add PayU Google Pay dependency:
 
+  * Add the following dependency to the root project of build.gradle:
 
-      </td>
-    </tr>
+  ```Text build.gradle
+  implementation 'in.payu:payu-gpay:3.0.0'
+  ```
+</Accordion>
 
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
+<Accordion title="Dependency for Samsung Pay" icon="fa-code">
+  To make a payment through Samsung Pay, you must have to add PayU Samsung dependency:
 
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
+  * Add the following dependency to the root project of build.gradle:
 
-        [Listener or Callback logic](#listener-or-callback-logic)
+  ```Text build.gradle
+  implementation 'com.payu.samsungpay:samsungpay:1.0'
+  ```
 
-          sub-section
-      </td>
-    </tr>
-  </tbody>
-</Table>
+  * Use `PaymentPostParams` class to generate Postdata. For more information, refer to TPV Integration.
+    After you check the payment availability of Payment, you can go ahead to make the payment.
+</Accordion>
 
-**Response**: Response type is REQUEST_SAVE_VPA_V3
+### Step 7: Callbacks
 
-### Set PIN
+<Accordion title="Callback Error Codes" icon="fa-table">
+  * `onPaymentFailure`(String payuResult,String merchantResponse): Calls when payment fails.
+  * `onPaymentSuccess`(String payuResult,String merchantResponse): Calls when payment succeeds.
+  * `onUpiErrorReceived`(int errorCode,String errorMessage): Called for error on UPI SDK where the following error messages are displayed for Samsung Pay initialization failure.
 
-Use the `setPin `method  to set PIN for new account..
+  | Error Codes | Error messages                              | Description                                                  |
+  | :---------- | :------------------------------------------ | :----------------------------------------------------------- |
+  | 1           | `VENDOR_NOT_SUPPORTED`                      | The device Vendor is not supported                           |
+  | 2           | `DEVICE_NOT_SUPPORTED`                      | The device is not supported                                  |
+  | 3           | `APP_VERSION_MISMATCH`                      | Samsung Pay version doesn't meet the requirements            |
+  | 4           | `COUNTRY_NOT_SUPPORTED`                     | The country of device origin is not supported by Samsung Pay |
+  | 5           | `MERCHANT_KEY_NOT_REGISTER_FOR_SAMSUNG_PAY` | Merchant is not registered for Samsung Pay with PayU         |
+  | 6           | `CONTEXT_NULL`                              | Context is null                                              |
+  | 7           | `PAYMENT_ID_NOT_PRESENT`                    | Check your postdata                                          |
 
-```
-bolt.core.setPin(accountDetail: PayUAccountDetail, cardNo: String, exp: String, callback: PayUUPIBoltCallBack)
-```
+  If the following error messages are received while processing payment, check your Payment Post Data or Payment hash.
 
-The following fields are needed as a request for this API:
+  | Error Code | Error Message                       | Description                                                     |
+  | :--------- | :---------------------------------- | :-------------------------------------------------------------- |
+  | 1002       | MERCHANT\_INFO\_NOT\_PRESENT        |                                                                 |
+  | 1004       | INVOKING\_APP\_NOT\_INSTALLED\_CODE | The selected app is not installed on the device.                |
+  | 1005       | INVOKING\_APP\_NOT\_ONBOARDED\_CODE | Application uses have not been onboarded on UPI on the selected |
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
+  * `isPaymentOptionAvailable`(boolean isAvailable, PaymentOption paymentOption): The merchant must check for Samsung Pay/PhonePe payment option availability on the customer device before showing Samsung Pay/PhonePe as the payment option on their checkout page.
+  * `onVpaEntered`(String vpa, IValidityCheck iValidityCheck): For Generic Intent, you need to calculate validateVpahash using VPA and provide to verifyVpa method of iValidityCheck. Hash can be calculated using the validateVpa webservice. For more information, refer to Hash Generation.
 
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
+  ```java JAVA
+  PayUUPICallback payUUpiSdkCallbackUpiSdk = new PayUUPICallback() {
+    @Override
+    public void onPaymentFailure(String payuResult, String merchantResponse) {
+    super.onPaymentFailure(payuResult, merchantResponse);
+    //Payment failed
+    }
+    @Override
+    public void onPaymentSuccess(String payuResult, String merchantResponse) {
+    super.onPaymentSuccess(payuResult, merchantResponse);
+    //Payment succeed
+    }
+    @Override
+    public void onVpaEntered(String vpa, IValidityCheck iValidityCheck) {
+    super.onVpaEntered(vpa, iValidityCheck);
+    String input = "payu merchant key" + "|validateVPA|" + vpa + "|" + "payu merchant salt";
+    iValidityCheck.verifyVpa(calculateHash(input));
+    }
+    @Override
+    public void onUpiErrorReceived(int code, String errormsg) {
+    super.onUpiErrorReceived(code, errormsg);
+    //Any error on upisdk
+    }
+  };
+  ```
+</Accordion>
 
-  <tbody>
-    <tr>
-      <td>
-        accountDetail
-        ` mandatory`
-      </td>
+<Accordion title="Make Payment" icon="fa-code">
+  To make the payment, you need to create UpiConfig and provide mandatory parameters, merchant key, and postdata. For more information, refer to Payment Request Post Data.
 
-      <td>
-        `PayUAccountDetail` Refer to PayU Account Detail section
-      </td>
-    </tr>
+  ```java JAVA
+  UpiConfig upiConfig = new UpiConfig();
+  upiConfig.setMerchantKey("merchant key");
+  upiConfig.setPayuPostData("postdata");// that we generate above
+  //In order to set CustomProgress View use below settings
+  upiConfig.setProgressDialogCustomView();
+  upiconfig.setIsproduction() //For Production set as "true" and For test set as "false"
+  ```
+</Accordion>
 
-    <tr>
-      <td>
-        cardNo
-        ` mandatory`
-      </td>
+<Accordion title="Make Intent Payment by Specific App" icon="fa-code">
+  To make Intent Payment by Specific UPI app, kindly set the desired name of the UPI app in the upiConfig object.
 
-      <td>
-        `String `Last 6 digit of user’s card number
-      </td>
-    </tr>
+  ```java JAVA
+  upiConfig.setPackageNameForSpecificApp("<UPI_PACKAGE_ID>");
+  ```
 
-    <tr>
-      <td>
-        exp
-        ` mandatory`
-      </td>
+  Where `UPI_PACKAGE_ID` can be any of UPI apps such as: `com.phonepe.app`(PhonePe), `com.google.android.apps.nbu.paisa.user`(GPay) etc.
+</Accordion>
 
-      <td>
-        `String` Month and Expiry of user’s card number (format:  MM/YYYY)
-      </td>
-    </tr>
+<Accordion title="Disable Manual VPA Fallback Option from Generic Intent Tray" icon="fa-code">
+  You can disable the Manual VPA Fallback option from the Generic Intent tray from the back-end and from the front-end.
 
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
+  In order to disable it from front-end, set 'UpiConfig.TRUE' to setDisableIntentSeamlessFailure flag of 'UpiConfig'.
 
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
+  <p align="center">
+    <img src="https://files.readme.io/6aec066-assets_-Lj-v4fCXINPv0sVDofj_-LtdCEZoMrdiTIODfgKB_-LtdMRKu_890gaU_n0FY_image.webp" alt="Centered image" style={{ maxWidth: '100%' }} />
+  </p>
 
-        [Listener or Callback logic](#listener-or-callback-logic)
+  ```java JAVA
+  upiConfig.setDisableIntentSeamlessFailure(UpiConfig.FALSE/UpiConfig.TRUE);
+  ```
 
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+  Provide the PayUUPICallback instance and Upiconfig object to the UPI makepayment() method.
 
-**Response**: Response type is REQUEST_ACCOUNT_MOBILE_REG
+  ```java JAVA
+  Upi upi = Upi.getInstance();
+  upi.makePayment(payUUpiSdkCallbackUpiSdk, activity, upiConfig);
+  ```
 
-## Integrate Repeat Flow
+  > 📘 Tip
+  >
+  > For Device API Level 19, you must enable GMS provider service and set gmsProviderUpdatedStatus of UpiConfig similar to the following example. For more details, refer to the Andriod Documentation.
 
-### Fetch linked accounts
+  ```Text JAVA
+  upiConfig.setGmsProviderUpdatedStatus(UpiConfig.DISABLE/UpiConfig.ENABLE);
+  ```
+</Accordion>
 
-Use the `fetchLinkedAccounts` method to fetch registered account with the device.
+***
 
-```
-bolt.core.fetchLinkedAccounts(callback: PayUUPIBoltCallBack)
-```
+### Step 8: VPA Validation
 
-The following fields are needed as a request for this API:
+You can validate a VPA of its own using the SDK. You need to create a hash through the below command. Hash can be calculated using the Webservice command **validateVpa**. For more information, refer to [Hash Generation](https://docs.payu.in/docs/hash-generation#payment-hash).
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
+`sha512(key|command|var1|salt)`
 
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
+Where:
 
-  <tbody>
-    <tr>
-      <td>
-        callback
-        `mandatory`
-      </td>
+* key= "YOUR KEY"
+* command= \<"validateVPA">
+* salt= "YOUR SALT"
+* var1=  the VPA, you want to validate
 
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
+<Callout icon="❗️" theme="error">
+  **Works with UPI SDK v1.2.0 only**: This feature is only available from UPI SDK version 1.2.0 or later.
+</Callout>
 
-        [Listener or Callback logic](#listener-or-callback-logic)
+After creating the hash, you need to call the getCommandResponse() method of UPI with postdata.
 
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_ALL_ACCOUNTS_V3
-
-The response is `PayUCustomerBankAccounts `array list that contains the following fields:
-
-| Field        | Definition                                                                                                                                               |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| bankName     | `String` Name of bank                                                                                                                                    |
-| bankCode     | `String`Unique identification code for the bank                                                                                                          |
-| bankAccounts | `PayUAccountDetail` Refer to  [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters) |
-
-## Integrate Payment Flow
-
-The following methods can be used to integrate payment flow:
-
-* [Initiate payment](#initiate-payment)
-* [Check transaction status](#check-transaction-status)
-* [Cancel transaction](#cancel-transaction)
-
-### Initiate payment
-
-Use the `pay` method to  initiate payment..
-
-```
-bolt.core.pay(paymentParams: PayUUPIBoltPaymentParams, callback: PayUUPIBoltCallBack)
+```java JAVA
+Upi upi = Upi.getInstance();
+upi.getCommandResponse(Activity, postdata, PayUUPICallback);
 ```
 
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        paymentParams
-        `mandatory`
-      </td>
-
-      <td>
-        `PayUAccountDetail` Refer to
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        callback
-        `mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-#### paymentParams field description
-
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        amount
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Total transaction amount.
-      </td>
-
-      <td>
-        100.0
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnId
-        `mandatory`
-      </td>
-
-      <td>
-        `String` It should be unique for each transaction.
-        Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "_,$,%,&, etc"
-      </td>
-
-      <td>
-        4567890
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productInfo
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Information about the product.
-      </td>
-
-      <td>
-        "ProductInfo"
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstName
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Customer’s first name.
-      </td>
-
-      <td>
-        "Firstname"
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        accountDetail
-        `mandatory`
-      </td>
-
-      <td>
-        `PayUAccountDetail` Refer to  
-
-        [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
-
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf1
-
-        optional
-      </td>
-
-      <td>
-        `String` User defined field
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf2```
-
-        optional
-
-        ````
-        </td>
-
-        <td>
-        `String` User defined field
-        </td>
-
-        <td>
-
-        </td>
-        </tr>
-
-        <tr>
-        <td>
-        udf3```
-
-        optional
-        ````
-      </td>
-
-      <td>
-        `String` User defined field
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf4```
-
-        optional
-
-        ````
-        </td>
-
-        <td>
-        `String` User defined field
-        </td>
-
-        <td>
-
-        </td>
-        </tr>
-
-        <tr>
-        <td>
-        udf5```
-
-        optional
-        ````
-      </td>
-
-      <td>
-        `Numeric` User defined field
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_PAY
-
-### Check transaction status
-
-Use the `checkTransactionStatus` method to check the transaction status.
-
-```
-bolt.core.checkTransactionStatus(txnId: String, callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        txnId
-        ` mandatory`
-      </td>
-
-      <td>
-        `String` Transaction ID used for payment
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_CHECK_PAYMENT_STATUS
-
-| Field   | Definition                                                  |
-| ------- | ----------------------------------------------------------- |
-| result  | `JSON` JSON key “status” contains transaction status value. |
-
-### Cancel transaction
-
-Use the `cancelTransaction` method to cancel the current transaction.
-
-```
-bolt.core.cancelTransaction(callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_CANCEL_TRANSACTION
-
-## Integrate Management flow
-
-The following methods can be used to integrate management flow:
-
-* [Fetch transaction history](#fetch-transaction-history)
-* [Check balance](#check-balance)
-* [Remove account](#remove-account)
-* [Change mPIN](#change-mpin)
-* [Fetch VPA profile](#fetch-vpa-profile)
-* [Save VPA](#save-vpa)
-* [Delete VPA](#delete-vpa)
-* [Raise query or dispute](#raise-query-or-dispute)
-* [Fetch query list](#fetch-query-list)
-* [Deregister](#deregister)
-* [Check required permissions](#check-required-permissions)
-* [Check clear cache](#check-clear-cache)
-* [Clear data](#clear-data)
-
-### Fetch transaction history
-
-Use the `fetchTransactionHistory` method to fetch the transaction history.
-
-```
-bolt.core.fetchTransactionHistory(fromDate: String, toDate: String, callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        fromDate
-        ` mandatory`
-      </td>
-
-      <td>
-        Transaction start date from which transaction history is required
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        toDate
-        ` mandatory`
-      </td>
-
-      <td>
-        Transaction end date until which transaction history is required
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_GET_TRANSACTION_HISTORY_V3
-
-The response is `PayUTransactionHistory `array list.
-
-### Check balance
-
-Use the `checkBalance` method to check registered account balance.
-
-```
-bolt.core.checkBalance(accountDetail: PayUAccountDetail, callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        accountDetail
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUAccountDetail` Refer to  
-
-        [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
-
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_GET_BALANCE
-
-| Field   | Definition               |
-| ------- | ------------------------ |
-| Balance | `String` Account balance |
-
-### Remove account
-
-Use the `removeAccount` method to remove registered account from your device.
-
-```
-bolt.core.removeAccount(accountDetail: PayUAccountDetail, callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        accountDetail
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUAccountDetail` Refer to  
-
-        [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
-
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_GET_ACCOUNT_REMOVE_V3
-
-### Change mPIN
-
-Use the `changeMpin` method to change the mobile PIN of the registered account.
-
-```
-bolt.core.changeMpin(accountDetail: PayUAccountDetail, callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        accountDetail
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUAccountDetail` Refer to  
-
-        [PayU Account Detail Parameters](https://docs.payu.in/docs/payubolt-sdk-integration-native#payu-account-detail-parameters)
-
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_GET_CHANGE_MPIN
-
-### Fetch VPA profile
-
-Use the `fetchVpaProfile` method to fetch the VPA profile.
-
-```
-bolt.core.fetchVpaProfile(vpa: String, callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        vpa
-        ` mandatory`
-      </td>
-
-      <td>
-        `String` VPA or UPI handle
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_GET_PROFilE_VPA_V3
-
-### Save VPA
-
-Use the `saveVpa` method to save a VPA profile.
-
-```
-bolt.core.saveVpa(vpa: String, name: String, nickName: String, callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        vpa
-        ` mandatory`
-      </td>
-
-      <td>
-        `String` VPA or UPI handle
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        name
-        ` mandatory`
-      </td>
-
-      <td>
-        `String` Name of customer
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        nickName
-        ` mandatory`
-      </td>
-
-      <td>
-        `String` Nickname for saving VPA
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_SAVE_VPA_V3
-
-### Delete VPA
-
-Use the `deleteVpa` method to delete a VPA profile.
-
-```
-bolt.core.deleteVpa(vpa: String, callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        vpa
-        ` mandatory`
-      </td>
-
-      <td>
-        `String` VPA or UPI handle
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_GET_VPA_REMOVE_V3
-
-### Raise query or dispute
-
-Use the `raiseQuery` method to raise query/ dispute for the transaction.
-
-```
-bolt.core.raiseQuery(txnId: String, txnRefId: String, amount: Double, query: String, callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        txnId
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Transaction ID and it should be unique for each transaction.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnRefId
-        `mandatory`
-      </td>
-
-      <td>
-        `String`Transaction Ref Id
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Total transaction amount.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        query```
-
-        mandatory
-
-        ````
-        </td>
-
-        <td>
-        `String` Query or dispute description
-        </td>
-        </tr>
-
-        <tr>
-        <td>
-        callback```
-
-        mandatory
-        ````
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-           sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_GET_RAISE_QUERY_V3
-
-### Fetch query list
-
-Use the `fetchQueryList` method to fetch the query list.
-
-```
-bolt.core.fetchQueryList(callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_LIST_QUERIES_V3
-
-| Response Parameter                 | Definition                                   |
-| ---------------------------------- | -------------------------------------------- |
-| ArrayList\<PayUTransactionHistory> | `ArrayList` List of PayU transaction history |
-
-### Deregister
-
-Use the `deregister` method to deregister your device from UPI.
-
-```
-bolt.core.deregister(callback: PayUUPIBoltCallBack)
-```
-
-The following fields are needed as a request for this API:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        callback
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltCallBack`Refer to 
-
-        [Listener or Callback logic](#listener-or-callback-logic)
-
-          sub-section.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-**Response**: Response type is REQUEST_GET_CUSTOMER_DEREGISTER_V3
-
-### Check required permissions
-
-Use the `hasPermissions `method to check if all required permissions are granted.
-
-### Check clear cache
-
-Use the `clearCache `method to clear all ongoing callbacks.
-
-### Clear data
-
-Use the `clearData` method clears user data saved on device. It also clears the device binding.
-
-## PayU Account Detail Parameters
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Definition 
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        name
-        `optional`
-      </td>
-
-      <td>
-        Account Name
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        accRefNumber
-        `mandatory`
-      </td>
-
-      <td>
-        Account Reference Number
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ifsc
-        `optional`
-      </td>
-
-      <td>
-        IFSC Code
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        maskedAccnumber
-        `optional`
-      </td>
-
-      <td>
-        Masked Account Numner
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        type
-        `optional`
-      </td>
-
-      <td>
-        Account Type
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        vpa
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        iin
-        `optional`
-      </td>
-
-      <td>
-        Account IIN
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        mmid
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        aeba
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        mbeba
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        dLength
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        dType
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        balance
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        balTime
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        status
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankCode
-        `optional`
-      </td>
-
-      <td>
-        Bank Code
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        formatType
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        atmdLength
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankName
-        `optional`
-      </td>
-
-      <td>
-        Bank Name
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        otpdType
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        otpdLength
-        `optional`
-      </td>
-
-      <td>
-        -
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankId
-        `optional`
-      </td>
-
-      <td>
-        Bank ID
-      </td>
-    </tr>
-  </tbody>
-</Table>
+<Accordion title="Create postdata for VPA Validation" icon="fa-code">
+  ```java
+  String postData= "key=" + Your Key + "&var1=" + {VPA for validation} + "&command=validateVPA&" + "hash=" + {Hash you generated above}
+  ```
+
+  You will get the response to onCommandResponse(String payUCommandResponse, String command) of PayUUPICallback.
+</Accordion>
+
+<Accordion title="PayUCommand Response Sample" icon="fa-code">
+  ```json
+  {"status":"SUCCESS",
+  "vpa":"VPA you are validating",
+  "isVPAValid":1, //It will be 0(Invalid) or 1(Valid)
+  "payerAccountName":"Payer Name corresponding to the VPA"}
+  ```
+</Accordion>
+
+<Accordion title="Verify the transaction through Webhooks or polling" icon="fa-code">
+  <Callout icon="📘" theme="info">
+    **Tip**: After you get the response from SDK, make sure to confirm it with the PayU server. It is recommended to implement the PayU Webhook or backend verify call from your backend.
+  </Callout>
+</Accordion>
+
+<Accordion title=" Implementation of PayU WebHook" icon="fa-code">
+  Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended for the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks.
+
+  Also, you can verify payment through polling, the transaction status after the SDK callback from your backend. For more information, refer to Verify the Transaction.
+</Accordion>
+
+<Accordion title=" Sandbox Environment Configurations" icon="fa-code">
+  To test on Sandbox or Test Environment(test.payu.in), use your Sandbox environment merchant key and Salt and add the following configurations in your application manifest:
+
+  ```Text XML
+  <meta-data android:name="payu_debug_mode_enabled" android:value="true" />
+  <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" />
+  <meta-data android:name="payu_post_url" android:value="https://test.payu.in" />
+  ```
+</Accordion>
+
+<Accordion title=" Sample Response" icon="fa-circle">
+  > 🚧 Watch Out
+  >
+  > * In case of `UPI intent/InApp flow`, you will not receive a callback response in surl or furl. In this case, the format of PayU response received will be different from other payment options that you need to handle at your end.
+  > * Consider the **mihpayid** in the PayU response as **PayU ID/ID**
+
+  #### UPI Collect Response
+
+  ```Text Success
+  {
+    "id": 403993715526100438,
+    "mode": "CC",
+    "status": "success",
+    "unmappedstatus": "captured",
+    "key": "gt***",
+    "txnid": "1651831862726",
+    "transaction_fee": "1.00",
+    "amount": "1.00",
+    "cardCategory": "domestic",
+    "discount": "0.00",
+    "addedon": "2022-05-06 15:41:38",
+    "productinfo": "Macbook Pro",
+    "firstname": "John",
+    "email": "xyz@gmail.com",
+    "phone": "7879*******",
+    "udf1": "udf1",
+    "udf2": "udf2",
+    "udf3": "udf3",
+    "udf4": "udf4",
+    "udf5": "udf5",
+    "hash": "62928c2f7490480951d25ae01bd0e748bb0b777ae27ef72eb93b7c1cc29eb2d84c4836faabe5ab1e1205a6f4a3f0876c5aece2ae96464c0cc9f1628693b074b1",
+    "field1": "711633",
+    "field2": "393337",
+    "field3": "20220506",
+    "field4": "0",
+    "field5": "341867702575",
+    "field6": "00",
+    "field7": "AUTHPOSITIVE",
+    "field8": "Approved or completed successfully",
+    "field9": "No Error",
+    "payment_source": "payu",
+    "PG_TYPE": "CC-PG",
+    "bank_ref_no": "711633",
+    "ibibo_code": "MASTCC",
+    "error_code": "E000",
+    "Error_Message": "No Error",
+    "offer_key": "OfferKey@9227",
+    "offer_failure_reason": "Invalid Offer Key.",
+    "name_on_card": "PayuUser",
+    "card_no": "512345XXXXXX2346",
+    "issuing_bank": "HDFC",
+    "card_type": "MAST",
+    "is_seamless": 1,
+    "surl": "https://cbjs.payu.in/sdk/success",
+    "furl": "https://cbjs.payu.in/sdk/failure"
+  }
+  ```
+  ```Text Failure
+  {
+    "id": "15130876153",
+    "mode": "CC",
+    "status": "failure",
+    "unmappedstatus": "failed",
+    "key": "sm*****",
+    "txnid": "1651832033713",
+    "transaction_fee": "1.00",
+    "amount": "1.00",
+    "cardCategory": "domestic",
+    "offer_type": "instant",
+    "addedon": "2022-05-06 15:44:09",
+    "productinfo": "Macbook Pro",
+    "firstname": "John",
+    "email": "xyz@gmail.com",
+    "phone": "7879*******",
+    "udf1": "udf1",
+    "udf2": "udf2",
+    "udf3": "udf3",
+    "udf4": "udf4",
+    "udf5": "udf5",
+    "hash": "c9c2d09d3387e7da70bc4ad6241f4ad3f610b3fcb0f9e481f5954a0d89d57791a5d027c303b239c1e8d6e0cad9c2d0b7ad87ba4911a60318675b15826c265929",
+    "field5": "sl/mvXcXQLCWm49B/EAYjXMUh1o=",
+    "field7": "EVNEGATIVE",
+    "field9": "PROCEED",
+    "payment_source": "payu",
+    "PG_TYPE": "CC-PG",
+    "ibibo_code": "CC",
+    "error_code": "E1302",
+    "Error_Message": "Bank failed to authenticate the customer due to 3D Secure Enrollment decline",
+    "offer_key": "OfferKey@9227",
+    "offer_failure_reason": "Invalid Offer for merchant. ",
+    "name_on_card": "PayuUser",
+    "card_no": "512345XXXXXX2346",
+    "issuing_bank": "HDFC",
+    "card_type": "MAST",
+    "is_seamless": 1,
+    "surl": "https://cbjs.payu.in/sdk/success",
+    "furl": "https://cbjs.payu.in/sdk/failure"
+  }
+  ```
+
+  #### UPI Intent/In-App Response
+
+  ```Text Success
+  {
+    "status": "success",
+    "result": {
+      "mihpayid": 15130530926,
+      "mode": "UPI",
+      "status": "success",
+      "key": "sm*****",
+      "txnid": "1651828235258",
+      "amount": "1.00",
+      "addedon": "2022-05-06 14:40:48",
+      "productinfo": "Macbook Pro",
+      "firstname": "John",
+      "lastname": "",
+      "address1": "",
+      "address2": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "zipcode": "",
+      "email": "xyz@gmail.com",
+      "phone": "7879*******",
+      "udf1": "udf1",
+      "udf2": "udf2",
+      "udf3": "udf3",
+      "udf4": "udf4",
+      "udf5": "udf5",
+      "udf6": "",
+      "udf7": "",
+      "udf8": "",
+      "udf9": "",
+      "udf10": "",
+      "card_token": "",
+      "card_no": "",
+      "field0": "",
+      "field1": "",
+      "field2": "",
+      "field3": "andy**********@okhdfcbank",
+      "field4": "",
+      "field5": "",
+      "field6": "ANAND*************|0000000000",
+      "field7": "APPROVED OR COMPLETED SUCCESSFULLY|00",
+      "field8": "",
+      "field9": "Success|Completed Using Callback",
+      "payment_source": "payuPureS2S",
+      "PG_TYPE": "UPI-PG",
+      "error": "E000",
+      "error_Message": "No Error",
+      "net_amount_debit": 1,
+      "unmappedstatus": "captured",
+      "hash": "8710a26e6f9da96e2de8648b7122b2ee243ba12e92059b69c66c831ec08cc69eaabff07bfea65de781a6a1c7605271164bf6075ab6e459687baa4888f4d97f2e",
+      "bank_ref_no": "212631548690",
+      "bank_ref_num": "212631548690",
+      "bankcode": "INTENT",
+      "surl": "https://cbjs.payu.in/sdk/success",
+      "furl": "https://cbjs.payu.in/sdk/failure"
+    }
+  }
+  ```
+  ```Text Failure
+  {
+    "status": "success",
+    "result": {
+      "mihpayid": "15130540072",
+      "mode": "UPI",
+      "status": "failure",
+      "key": "sm*****",
+      "txnid": "1651828340011",
+      "amount": "1.00",
+      "addedon": "2022-05-06 14:42:25",
+      "productinfo": "Macbook Pro",
+      "firstname": "John",
+      "lastname": "",
+      "address1": "",
+      "address2": "",
+      "city": "",
+      "state": "",
+      "country": "",
+      "zipcode": "",
+      "email": "xyz@gmail.com",
+      "phone": "7879******",
+      "udf1": "udf1",
+      "udf2": "udf2",
+      "udf3": "udf3",
+      "udf4": "udf4",
+      "udf5": "udf5",
+      "udf6": "",
+      "udf7": "",
+      "udf8": "",
+      "udf9": "",
+      "udf10": "",
+      "card_token": "",
+      "card_no": "",
+      "field0": "",
+      "field1": "",
+      "field2": "",
+      "field3": "",
+      "field4": "",
+      "field5": "",
+      "field6": "",
+      "field7": "",
+      "field8": "",
+      "field9": "response_from_psp",
+      "payment_source": "payuPureS2S",
+      "PG_TYPE": "UPI-PG",
+      "error": "E308",
+      "error_Message": "Transaction Failed at bank end.",
+      "net_amount_debit": "0",
+      "unmappedstatus": "failed",
+      "hash": "5c4d80992f88a3cdd1b5b2a1452d69fe27fece37bc33838e2fb31a70e5636e857fc66952a750b638876bceace31fb8435307a9e2b3bda0e4b29f3478e4bb595a",
+      "bank_ref_no": "",
+      "bank_ref_num": "",
+      "bankcode": "INTENT",
+      "surl": "https://cbjs.payu.in/sdk/success",
+      "furl": "https://cbjs.payu.in/sdk/failure"
+    }
+  }
+  ```
+</Accordion>
+
+## Test the Integration
+
+After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
+
+You can make test payments using one of the payment methods configured at the Checkout.
+
+<UPIIntentCallout />
+
+<TestingChecklist />
+
+***
+
+<TestCardsCallout />
+
+<Accordion title="Test credentials for supported payment methods" icon="fa-vial">
+  Following are the payment methods supported in PayU Test mode.
+
+  #### Test VPA for UPI
+
+  You can use either of the following VPAs to test your UPI-related integration:
+
+  * [anything@payu](anything@payu)
+  * [9999999999@payu.in](mailto:9999999999@payu.in)
+
+  For Testing the UPI Collect flow, Please follow the below steps:-
+
+  1. Once you enter the VPA click on the verify button and proceed to pay.
+  2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
+  3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
+
+  [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)\<Txn\_id>
+
+  **For Android**
+
+  You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
+
+  <Callout icon="🚧" theme="warn">
+    **Remove the code from manifest**: Ensure to remove the code from the manifest file before going live.
+  </Callout>
+
+  ```xml xml
+  <application>
+  <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
+  <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
+  <meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
+  </appliction>
+  ```
+</Accordion>
+
+<Accordion title="Test UPI Intent/InApp flow" icon="fa-mobile">
+  <Callout icon="❗️" theme="error">
+    **Not available in Test Mode**: The UPI in-app and UPI intent flow is not available in the Test mode.
+  </Callout>
+</Accordion>
+
+## Go-live Checklist
+
+Ensure these steps before you deploy the integration in a live environment.
+
+<Accordion title="Collect Live Payments" icon="fa-credit-card">
+  After [testing the integration](https://docs.payu.in/docs/android-upisdk-test-integration), once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
+
+  > 🚧 Watch Out!
+  >
+  > Ensure that you are using the production merchant key and salt generated in the live mode.
+
+  <ProductionKeyAndSaltProcedure />
+
+  #### Checklist 2: Configure setIsProduction()
+
+  Set the value of the `setIsProduction()`to `true` in the payment integration code. This enables the integration to accept live payments.
+
+  #### Checklist 3: Configure verify payment method
+
+  Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
+
+  #### Checklist 4: Configure Webhook
+
+  We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
+
+  During the integration, refer the [Generate Static Hash](doc:generate-static-hash-android-sdk-pro) for hash generation details.
+</Accordion>
