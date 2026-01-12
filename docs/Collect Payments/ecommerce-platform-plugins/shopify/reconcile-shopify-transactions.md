@@ -26,35 +26,35 @@ To export orders on Shopify:
 
 1. Navigate to Shopify Home Page and select **Orders** from the navigation pane.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-2.37.54-PM-1024x602.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-2.37.54-PM-1024x602.png" />
 
 2. Navigate to the orders using filters for which you wish get the transaction details.
 3. Click **Export**.
 
-   The *Export orders* page is displayed.
+   The _Export orders_ page is displayed.
 
-<Image align="center" width="422px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-2.31.54-PM-1024x719.png" />
+<Image align="center" border={false} width="422px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-2.31.54-PM-1024x719.png" />
 
-4. Retain the default settings on the *Export orders* page.
+4. Retain the default settings on the _Export orders_ page.
 5. Click **Export orders** to download the transactions listed on the page.
 6. Open the CSV and navigate to the **Payment Reference** column.
 
-<Image align="center" width="522px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-3.19.11-PM-1024x440.png" />
+<Image align="center" border={false} width="522px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-3.19.11-PM-1024x440.png" />
 
 ### Individual Order Details
 
-You can get the PayU ID from the transaction details for an order and further you can use the Verify Payment Status (**verify\_payment**) API to get the transaction ID for the given PayU ID. For more information, refer to [Verify Payment API](ref:verify_payment_api).
+You can get the PayU ID from the transaction details for an order and further you can use the Verify Payment Status (**verify_payment**) API to get the transaction ID for the given PayU ID. For more information, refer to [Verify Payment API](ref:verify_payment_api).
 
 To get the PayU ID from the transaction details for an order:
 
 1. Navigate to Shopify Home Page and select **Orders** from the navigation pane.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-2.37.54-PM-1024x602.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-2.37.54-PM-1024x602.png" />
 
 2. Navigate to the order using filters for which you wish get the transaction details.
 3. Click on the order for which you wish to view the details.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-2.37.47-PM-1-992x1024.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-07-at-2.37.47-PM-1-992x1024.png" />
 
 4. Scroll down to get the transaction ID.
 5. Get the transaction ID for the given PayU ID using the Verify Payment Status API. For more information, refer to [Verify Payment API](ref:verify_payment_api).
@@ -65,8 +65,8 @@ To get the PayU ID from the transaction details for an order:
 
 You can get the transaction details for a given date range using any of the following APIs:
 
-* The Get Transaction Info (**get\_transaction\_info)** API. For more information, refer to [Get Transaction Info API](ref:get_transaction_info_api)
-* The Get Transaction Details (**get\_Transaction\_Details**) API. For more information, refer to [Get Transaction Details API](ref:get_transaction_details_api)
+* The Get Transaction Info (**get_transaction_info)** API. For more information, refer to [Get Transaction Info API](ref:get_transaction_info_api)
+* The Get Transaction Details (**get_Transaction_Details**) API. For more information, refer to [Get Transaction Details API](ref:get_transaction_details_api)
 
 ### In Bulk using Excel Exported from PayU Dashboard
 
@@ -75,20 +75,20 @@ To get the transaction details from PayU dashboard:
 1. Log into PayU dashboard with valid credentials.
 2. Navigate to the **Transactions** page from the left pane of the dashboard home page.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-16-at-1.38.47-PM-1-481x1024.png)
+<Image align="center" border={false} width="250px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-16-at-1.38.47-PM-1-481x1024.png" />
 
 3. In the Transaction Records Tab, select **Transactions**.
 4. Click the **Download** dropdown and select the format (example, csv, xlsx) in which you want to download the report.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-16-at-1.37.48-PM-1024x584.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-16-at-1.37.48-PM-1024x584.png" />
 
 5. Click **Download Report** once the report file is successfully generated.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-16-at-2.13.18-PM.png)
+<Image align="center" border={false} width="250px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-16-at-2.13.18-PM.png" />
 
 6. Open the downloaded report file to check the **txnid** (transaction id) in the second column.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-16-at-2.09.32-PM-1024x90.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/12/Screenshot-2022-12-16-at-2.09.32-PM-1024x90.png" />
 
 ### **Individual Transaction Details from PayU Dashboard**
 
@@ -98,12 +98,12 @@ To get the transaction details from PayU dashboard:
 2. Navigate to the **Transactions** page from the left pane of the dashboard home page.
 3. Search for the transaction by filtering the transaction by date or merchant.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/01/transaction_details_dashboard-1014x1024.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/01/transaction_details_dashboard-1014x1024.png" />
 
 4. Click the transaction ID in the **Transaction Id** column for which you wish to view the transaction details.
 5. Scroll down to bottom of the transaction details page.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/01/transaction_records_dashboard-2-1024x891.png)
+<Image border={false} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/01/transaction_records_dashboard-2-1024x891.png" />
 
 ## Step 3: Reconcile the Shopify Transaction
 
