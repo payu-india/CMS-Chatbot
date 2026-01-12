@@ -49,10 +49,7 @@ The following video describes PayU’s Recurring Payment Suite offering:
 
 ## Available Payment Modes
 
-* **Card-based Recurring**: Visa, Mastercard, AMEX
-* **UPI Recurring**: AutoPay mandates
-* **Net Banking**: Bank-specific recurring setups
-* **Mixed Mode**: Flexibility to switch between modes
+<Image align="center" border={true} src="https://files.readme.io/21e3111ac286ec2702594a9c0764ff5cec67be250de5b2f89c844abcb73dccba-subscriptions_supported_payment_modes.png" className="border" />
 
 The following table provides comparison on various payment mode integration:
 
