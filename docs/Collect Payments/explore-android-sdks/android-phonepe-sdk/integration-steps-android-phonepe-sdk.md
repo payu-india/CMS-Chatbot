@@ -18,6 +18,26 @@ metadata:
 ---
 The Android PhonePe SDK integration involves the following steps:
 
+<Cards columns={3}>
+  <Card title="1. SDK Integration" href="#sdk-integration">
+    Set up build.gradle, create callbacks, and make payment using PhonePe
+
+    <br />
+  </Card>
+
+  <Card title="2. Test the Integration" href="#test-the-integration">
+    Test the integration before going live and start collecting payments
+
+    <br />
+  </Card>
+
+  <Card title="3. Go-live Checklist" href="#go-live-checklist">
+    Configure production settings, verify payment method, and webhooks
+  </Card>
+
+  <br />
+</Cards>
+
 ## SDK Integration
 
 ### Step 1: Create a PayU account
@@ -129,7 +149,7 @@ If you are using the SDK with a test merchant, provide the following metadata va
 </application>
 ```
 
-#### Step 5: Check for PhonePe availability
+### Step 5: Check for PhonePe availability
 
 SDK provides the checkForPaymentAvailability method to check if PhonePe payment is available or not on the device. This method must be executed before showing PhonePe as a checkout option.
 
@@ -196,15 +216,15 @@ After you get the response from SDK, make sure to confirm it with the PayU serve
 
 Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended that the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks,
 
-Also, you can verify payment through polling, the transaction status after the SDK callback from your backend. For more information, refer to Verify the Transaction.
-
-<br />
+Also, you can verify payment through polling, the transaction status after the SDK callback from your backend. For more information, refer to [Verify Payment API](ref:verify_payment_api).
 
 #### Step 7.1: Create a PayU account
 
 First, create a PayU account. See [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard).
 
 #### Step 7.2: Set up build.gradle
+
+<Accordion title="Set up build.gradle" icon="fa-code">
 
 Add the following URL in the root project’s build.gradle:
 
@@ -223,6 +243,8 @@ Add the following dependency in your application’s build.gradle:
 ```Text build.gradle
 implementation 'in.payu:phonepe-intent:1.8.7'
 ```
+
+</Accordion>
 
 #### Step 7.3: Create Callbacks Instance
 
@@ -270,6 +292,8 @@ Following are error messages concerning PhonePe initialization failure.
   </tbody>
 </Table>
 
+<Accordion title="Create PayUPhonePeCallback instance" icon="fa-code">
+
 Create an instance of PayUPhonePeCallback similar to the following code block:
 
 ```java Java
@@ -293,11 +317,12 @@ public void onPaymentOptionInitialisationFailure (int errorCode, String descript
 }
 };
 ```
+</Accordion> 
 
 #### Step 7.4: Set up for Test/Sandbox merchant
 
 If you are using the SDK with a test merchant, provide the following metadata value to the manifest file:
-
+<Accordion title="Manifest file" icon="fa-code">
 ```
 <application
   <meta-data
@@ -308,15 +333,15 @@ If you are using the SDK with a test merchant, provide the following metadata va
     android:value="https://test.payu.in" />
 </application>
 ```
+</Accordion>
 
 #### Step 7.5: Check for PhonePe availability
 
 SDK provides the checkForPaymentAvailability method to check if PhonePe payment is available or not on the device. This method must be executed before showing PhonePe as a checkout option.
-
-```java JAVA
+<Accordion title="checkForPaymentAvailability method" icon="fa-code">
+```java
 PhonePe.getInstance().checkForPaymentAvailability(Activity activity, PayUPhonePeCallback callback, String paymentOptionHash, String merchantKey, String user_credentials)
 ```
-
 Where:
 
 * PayUPhonePeCallback: the class to provide callbacks
@@ -324,7 +349,7 @@ Where:
 * paymentOptionHash: Payment Related Details hash
 * merchantKey: PayU Merchant Key
 * user_credentials: Provide user credentials or use “default”
-
+</Accordion>
 > 📘 Generate PaymentOption Hash
 >
 > To generate `PaymentOption` Hash refer to  [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
@@ -341,11 +366,10 @@ Where:
 #### Step 7.6: Make Payment by PhonePe
 
 After successful initialization of PhonePe by calling checkForPaymentAvailability method, call makePayment method to make payment.
-
-```java Java
+<Accordion title="makePayment method" icon="fa-code">
+```java
 PhonePe.getInstance().makePayment(PayUPhonePeCallback callback, Activity activity, String postData,boolean isUserCacheEnabled, View customDialogView);
 ```
-
 Where:
 
 * **PayUPhonePeCallback**: the class to provide callbacks
@@ -353,7 +377,7 @@ Where:
 * **postData**: PayU postdata
 * **isUserCacheEnabled**: To Enable/Disable User Cache
 * **customDialogView**: Provide your Custom Progress dialog view (Optional)
-
+</Accordion>
 <Callout icon="📘" theme="info">
   **Generate Payment Hash**: To generate a payment hash refer to [Hash Generation](https://docs.payu.in/docs/hash-generation#payment-hash).
 
