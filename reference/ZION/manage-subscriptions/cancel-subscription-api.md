@@ -59,6 +59,25 @@ Signature = SHA512(merchantId:YQeVda|subscriptionId:5acb64a8070c9406b0928207|1v9
 
 Where “YQeVda” is merchant key and “1v9b1” is merchant salt.
 
+## Sample request
+
+```curl
+curl --location --request DELETE 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions/5eecba0b652d402548fcd2da' \
+--header 'Authorization: Bearer 810aa8723c4a626bf2c157e50204aebca72d33e9f2bf350e29eade8ae912c703' \
+--header 'merchantId: 0BVomn' \
+--header 'X-PayU-Subscription-Signature: 36c0c4b22d1c616237d518c939107e3b01ed14c32147f2c79232444392e0656b040782af69cef7e0640a3f7868145695be3903eb2692a8ef5b68e4bf0a1803ff' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642'
+```
+
+## Sample response
+
+```
+Status: 204
+```
+
+<br />
+
 ## HTTP response codes
 
 If subscription is cancelled successfully, then the HTTP method code 204 is returned to merchant as a part of API call.
