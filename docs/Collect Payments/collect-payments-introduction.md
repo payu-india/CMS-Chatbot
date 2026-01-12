@@ -10,6 +10,8 @@ metadata:
 ---
 PayU provides comprehensive integration options covering all major platforms and use cases. From simple no-code solutions to advanced enterprise integrations, you can choose the most appropriate method based on their technical capabilities, business requirements, and target platforms.
 
+<Image align="center" border={false} src="https://files.readme.io/a10ec7c5314424471430e1980f93cf194f143ca98e28117e0fdd75e4bed0bb87-install_shopify_step1.png" />
+
 | Integration Method                                                                            | Brief Description                                              | Platform Support            | Key Features                                                             |
 | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------------------------- | ------------------------------------------------------------------------ |
 | [No-Code Payment Links](https://docs.payu.in/docs/introduction-no-code-payments-integration/) | Create and share payment links via SMS, email, or social media | 📱 Web + Mobile             | Payment Links, Social Media Sharing, CRM Integration, Bulk Operations    |
