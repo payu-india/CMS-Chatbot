@@ -105,7 +105,7 @@ The MCP Lookup V2 API allows merchants to fetch MCP (Multi-Currency Pricing) loo
 
       <td>
         <code>String</code> Unique merchant reference for the order.   
-        **Note**:  Use the same txnId value, that you will be sending to Payu for payment processing.
+        **Note**:  Use the same **txnId** value, that you will be sending to PayU for payment processing.
       </td>
 
       <td>
@@ -407,7 +407,7 @@ echo "Response: " . $response . "\n";
 ### Success Response
 
 <Callout icon="📘" theme="info">
-  **Note**: The `lookupId` returned in the response should be used for subsequent MCP transactions
+  **Note**: `lookupId` should be passed during the **_payment** API, under the UDF to identify the conversion lookup specifically.
 </Callout>
 
 ```json
