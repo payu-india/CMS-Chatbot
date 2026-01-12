@@ -16,9 +16,6 @@ metadata:
 next:
   description: ''
 ---
-The Android Google Pay SDK integration involves the following steps:
-
-## SDK Integration
 Before you start with the integration, enable the payment methods that you want to offer to your customers from Dashboard > Settings > Payment methods. We enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you.
 
 ### Step 1: Create a PayU account
@@ -55,6 +52,8 @@ The following are error messages when the Google Pay Payment fail:
 
 Create an instance of `PayUGPayCallback` similar to the following code block:
 
+<Accordion title="Create an instance of `PayUGPayCallback" icon="fa-info-code">
+
 ```java Java
 PayUGPayCallback payUGPayCallback = new PayUGPayCallback() {
             @Override
@@ -83,11 +82,12 @@ PayUGPayCallback payUGPayCallback = new PayUGPayCallback() {
             }
         };
 ```
+</Accordion>
 
 ## Step 4: Set up for Test/Sandbox Merchant
 
 If you are using the SDK with a test merchant, provide this metadata value to the manifest file:
-
+<Accordion title="Manifest File" icon="fa-info-code">
 ```xml XML
 <application>
   <meta-data
@@ -98,15 +98,14 @@ If you are using the SDK with a test merchant, provide this metadata value to th
     android:value="https://test.payu.in" />
 </application>
 ```
-
+</Accordion>
 ### Step 5: Check Payment Availability
 
 Call the checkForPaymentAvailability method available in Google Pay to check if Google Pay payment is available or not on the device. The checkForPaymentAvailability method is called before showing Google Pay as a checkout option.
-
-```java Java
+<Accordion title="Call checkForPaymentAvailability method" icon="fa-info-code">
+```java
 GPay.getInstance().checkForPaymentAvailability(Activity activity, PayUGPayCallback callback, String paymentOptionHash, String merchantKey, String user_credentials)
 ```
-
 Where
 
 * PayUGPayCallback : the class to provide callbacks
@@ -114,7 +113,7 @@ Where
 * paymentOptionHash : Payment Related Details hash (payment_related_details_for_mobile_sdk)
 * merchantKey : PayU Merchant Key
 * user_credentials : Provide user credentials or use "default"
-
+</Accordion>
 > 📘 Generate PaymentOption Hash
 >
 > To generate PaymentOption Hash, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
@@ -132,7 +131,7 @@ Where
 
 After the successful initialization of Google Pay using the checkForPaymentAvailability method, call the makePayment method to make a payment.
 
-```java Java
+```java
 GPay.getInstance().makePayment(Activity activity, String postData, final PayUGPayCallback payUGPayCallback, String merchantKey, View loadingDialogView);
 ```
 
@@ -168,6 +167,7 @@ Webhook is a server-to-server callback. Once this feature is activated for merch
 Also, you can verify payment through polling, the transaction status after the SDK callback from your backend.
 
 ## Test the Integration
+
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 You can make test payments using one of the payment methods configured at the Checkout.
@@ -185,6 +185,7 @@ You can make test payments using one of the payment methods configured at the Ch
 > The UPI in-app and UPI intent flow is not available in the Test mode.
 
 ## Go-live Checklist
+
 Ensure these steps before you deploy the integration in a live environment.
 
 ### Collect live payments
