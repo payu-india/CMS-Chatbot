@@ -10,6 +10,18 @@ metadata:
 next:
   description: ''
 ---
+---
+title: UPI Bolt UI SDK Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
 UPI Bolt UI SDK allows you to manage the checkout options on their checkout screen. You use **PayU UPI Bolt UI SDK** for customer registration, payment and profile management. This integration involves the following steps:
 
 1. [Add permissions to Manifest file](#step-1-add-permissions-to-manifest-file)
@@ -208,7 +220,7 @@ The following fields are needed as a request for this API:
   </tbody>
 </Table>
 
-### Response
+<Accordion title="Response" icon="fa-reply">
 
 | Response Params | Definition                                 |
 | --------------- | ------------------------------------------ |
@@ -217,6 +229,7 @@ The following fields are needed as a request for this API:
 > 📘 Callback:
 >
 > After the SDK is initialised, use the same object to call the sdk methods.
+</Accordion>
 
 ## De-initialise PayUBolt UI SDK
 
@@ -285,7 +298,7 @@ boltUI.registerAndPay(paymentParams PayUUPIBoltPaymentParams, callback: PayUUPIB
   </tbody>
 </Table>
 
-### paymentParams object
+<Accordion title="paymentParams object" icon="fa-list-alt">
 
 The following fields are part of `paymentParams` object:
 
@@ -354,7 +367,7 @@ The following fields are part of `paymentParams` object:
       </td>
 
       <td>
-        `String`Failure URL 
+        `String`Failure URL 
       </td>
     </tr>
 
@@ -365,7 +378,7 @@ The following fields are part of `paymentParams` object:
       </td>
 
       <td>
-         `String`Success URL
+         `String`Success URL
       </td>
     </tr>
 
@@ -376,7 +389,7 @@ The following fields are part of `paymentParams` object:
       </td>
 
       <td>
-         `String`User defined field
+         `String`User defined field
       </td>
     </tr>
 
@@ -387,7 +400,7 @@ The following fields are part of `paymentParams` object:
       </td>
 
       <td>
-          `String`User defined field
+          `String`User defined field
       </td>
     </tr>
 
@@ -398,7 +411,7 @@ The following fields are part of `paymentParams` object:
       </td>
 
       <td>
-          `String`User defined field
+          `String`User defined field
       </td>
     </tr>
 
@@ -409,7 +422,7 @@ The following fields are part of `paymentParams` object:
       </td>
 
       <td>
-          `String`User defined field
+          `String`User defined field
       </td>
     </tr>
 
@@ -420,11 +433,12 @@ The following fields are part of `paymentParams` object:
       </td>
 
       <td>
-          `String`User defined field
+          `String`User defined field
       </td>
     </tr>
   </tbody>
 </Table>
+</Accordion>
 
 ## Manage UPI accounts
 
@@ -511,7 +525,7 @@ Listerner/Callback contains 3 methods where the merchant app will get the API re
 | 2     | fun onPayUSuccess(response: PayUUPIBoltResponse)                                                   | It will contain success response.                                                         |
 | 3     | fun onPayUFailure(response: PayUUPIBoltResponse)                                                   | It will contain failure response.                                                         |
 
-### PayUUPIResponse
+<Accordion title="PayUUPIResponse" icon="fa-code">
 
 | Fields       | Data Type | Definition               |
 | ------------ | --------- | ------------------------ |
@@ -519,14 +533,16 @@ Listerner/Callback contains 3 methods where the merchant app will get the API re
 | code         | Integer   | Error or success code    |
 | message      | String    | Error or success message |
 | result       | Object    | Response data            |
+</Accordion>
 
-### ResponseType
+<Accordion title="ResponseType" icon="fa-list">
 
 | Response Type        | Response Code | Definition       |
 | -------------------- | ------------- | ---------------- |
 | REQUEST\_UPI\_BOLT   | 100           | UPI Bolt Status  |
 | REQUEST\_TRANSACTION | 124           | Register And Pay |
 | REQUEST\_MANAGE      | 125           | UPI Management   |
+</Accordion>
 
 ## Hash Generation logic
 
