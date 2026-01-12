@@ -21,6 +21,7 @@ The Check Payment (**check_payment**) API functions similar to the [Verify Payme
 
 <GENERALAPIsEnvironment />
 
+
 ## Request parameters
 
 <Accordion title="Reference information for request parameters" icon="fa-book">
