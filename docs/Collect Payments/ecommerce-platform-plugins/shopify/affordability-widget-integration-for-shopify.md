@@ -26,38 +26,37 @@ To configure the Affordability Widget for Shopify:
 ## Step 1: Duplicate the Existing Theme
 
 <Accordion title="Duplicate the Existing Theme" icon="fa-info-circle">
-To duplicate the existing theme:
+  To duplicate the existing theme:
 
-<Callout icon="📘" theme="info">
-  Note: If you are using themes created in 2020 or before, where product.json is not present, step in this section can be skipped and proceed to [Step 2: Add Snippet for PayU](#step-2-add-snippet-for-payu).
-</Callout>
+  <Callout icon="📘" theme="info">
+    Note: If you are using themes created in 2020 or before, where product.json is not present, step in this section can be skipped and proceed to [Step 2: Add Snippet for PayU](#step-2-add-snippet-for-payu).
+  </Callout>
 
-1. Log in to Shopify Admin portal.
-2. Select **Themes** under **Online Stores** on the left navigation pane.
+  1. Log in to Shopify Admin portal.
+  2. Select **Themes** under **Online Stores** on the left navigation pane.
 
-<Image align="center" border={false} width="222px" src="https://files.readme.io/af2247c-Screenshot_2023-11-29_at_2.36.02_PM.png" />
+  <Image align="center" src="https://files.readme.io/af2247c-Screenshot_2023-11-29_at_2.36.02_PM.png" width="222px" />
 
-3. Select the hamburger menu for which you wish configure the widget and  select **Duplicate Theme**.
+  3. Select the hamburger menu for which you wish configure the widget and  select **Duplicate Theme**.
 
-<Image align="center" border={false} src="https://files.readme.io/253fdf6-Screenshot_2023-11-28_at_3.22.51_PM.png" />
+  <Image align="center" src="https://files.readme.io/253fdf6-Screenshot_2023-11-28_at_3.22.51_PM.png" />
 
-4. Select the hamburger menu for which you wish to configure the widget and select **Edit Code** to open the _Code_  page for the current theme.
+  4. Select the hamburger menu for which you wish to configure the widget and select **Edit Code** to open the *Code*  page for the current theme.
 
-   The following folders are displayed on _Code_ page of the current theme.
+     The following folders are displayed on *Code* page of the current theme.
 
-<Image align="center" border={true} width="222px" src="https://files.readme.io/f2ec0d7-Screenshot_2023-11-28_at_3.28.37_PM.png" className="border" />
+  <Image align="center" border={true} src="https://files.readme.io/f2ec0d7-Screenshot_2023-11-28_at_3.28.37_PM.png" width="222px" />
 
-5. Navigate to **Layout** >  **theme.liquid** file.
+  5. Navigate to **Layout** >  **theme.liquid** file.
 
-<Image align="center" border={true} width="222px" src="https://files.readme.io/aad2727-Screenshot_2023-11-29_at_2.53.51_PM.png" className="border" />
+  <Image align="center" border={true} src="https://files.readme.io/aad2727-Screenshot_2023-11-29_at_2.53.51_PM.png" width="222px" />
 
-6. Add the below script before completing the head tag:
+  6. Add the below script before completing the head tag:
 
-```
-<script defer src="https://jssdk.payu.in/widget/affordability-widget.min.js"></script>
-```
+  ```
+  <script defer src="https://jssdk.payu.in/widget/affordability-widget.min.js"></script>
+  ```
 
-##
 </Accordion>
 
 ## Step 2: Add an affordability snippet on your website
@@ -185,6 +184,7 @@ To duplicate the existing theme:
 
 ## Step 3: Update the Templates
 
+<Accordion title="Update the Templates" icon="fa-info-circle">
 To update the templates:
 
 1. Check the following files under the **Templates** folder:
@@ -248,8 +248,11 @@ To update the templates:
 
 12. Repeat the above step 9 to step 11 for the **Cart.json** file.
 
-## Step 4: Update Theme
+</Accordion>
 
+# Step 4: Update Theme
+
+<Accordion title="Update Theme" icon="fa-info-circle">
 To update the theme:
 
 1. Navigate to Shopify theme editor,
@@ -266,3 +269,6 @@ To update the theme:
 
 4. Click **Done**.
 5. Repeat step 2 to step 4 for **cart.json** in case you want to show widget on Add to cart page. Main-cart.footer
+</Accordion>
+
+<br />
