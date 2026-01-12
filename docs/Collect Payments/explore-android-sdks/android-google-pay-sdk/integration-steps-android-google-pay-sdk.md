@@ -52,68 +52,72 @@ The following are error messages when the Google Pay Payment fail:
 
 Create an instance of `PayUGPayCallback` similar to the following code block:
 
-<Accordion title="Create an instance of `PayUGPayCallback" icon="fa-info-code">
+<Accordion title="Create an instance of `PayUGPayCallback" icon="fa-code">
+  ```java Java
+  PayUGPayCallback payUGPayCallback = new PayUGPayCallback() {
+              @Override
+              public void onPaymentSuccess(String payuResponse, String merchantResponse) {
+                  Log.d(TAG, "onPaymentSuccess: " + payuResponse + "-------------------" + merchantResponse);
+              }
 
-```java Java
-PayUGPayCallback payUGPayCallback = new PayUGPayCallback() {
-            @Override
-            public void onPaymentSuccess(String payuResponse, String merchantResponse) {
-                Log.d(TAG, "onPaymentSuccess: " + payuResponse + "-------------------" + merchantResponse);
-            }
+              @Override
+              public void onPaymentFailure(String payuResponse, String merchantResponse) {
+                  Log.d(TAG, "onPaymentFailure: " + payuResponse + "-------------------" + merchantResponse);
+              }
 
-            @Override
-            public void onPaymentFailure(String payuResponse, String merchantResponse) {
-                Log.d(TAG, "onPaymentFailure: " + payuResponse + "-------------------" + merchantResponse);
-            }
+              @Override
+              public void onPaymentInitialisationSuccess() {
+                  Log.d(TAG, "onPaymentInitialisationSuccess: ");
+              }
 
-            @Override
-            public void onPaymentInitialisationSuccess() {
-                Log.d(TAG, "onPaymentInitialisationSuccess: ");
-            }
+              @Override
+              public void onPaymentInitialisationFailure(int errorCode, String description) {
+                  Log.d(TAG, "onPaymentInitialisationFailure: " + errorCode + "---------------------" + description);
+              }
 
-            @Override
-            public void onPaymentInitialisationFailure(int errorCode, String description) {
-                Log.d(TAG, "onPaymentInitialisationFailure: " + errorCode + "---------------------" + description);
-            }
-
-            @Override
-            public void onGpayErrorReceived(int errorCode, String description) {
-                Log.d(TAG, "onGpayErrorReceived: " + errorCode + "---------------------" + description);
-            }
-        };
-```
+              @Override
+              public void onGpayErrorReceived(int errorCode, String description) {
+                  Log.d(TAG, "onGpayErrorReceived: " + errorCode + "---------------------" + description);
+              }
+          };
+  ```
 </Accordion>
 
 ## Step 4: Set up for Test/Sandbox Merchant
 
 If you are using the SDK with a test merchant, provide this metadata value to the manifest file:
-<Accordion title="Manifest File" icon="fa-info-code">
-```xml XML
-<application>
-  <meta-data
-    android:name="payu_web_service_url"
-    android:value="https://test.payu.in" />
-  <meta-data
-    android:name="payu_post_url"
-    android:value="https://test.payu.in" />
-</application>
-```
+
+<Accordion title="Manifest File" icon="fa-code">
+  ```xml XML
+  <application>
+    <meta-data
+      android:name="payu_web_service_url"
+      android:value="https://test.payu.in" />
+    <meta-data
+      android:name="payu_post_url"
+      android:value="https://test.payu.in" />
+  </application>
+  ```
 </Accordion>
+
 ### Step 5: Check Payment Availability
 
 Call the checkForPaymentAvailability method available in Google Pay to check if Google Pay payment is available or not on the device. The checkForPaymentAvailability method is called before showing Google Pay as a checkout option.
-<Accordion title="Call checkForPaymentAvailability method" icon="fa-info-code">
-```java
-GPay.getInstance().checkForPaymentAvailability(Activity activity, PayUGPayCallback callback, String paymentOptionHash, String merchantKey, String user_credentials)
-```
-Where
 
-* PayUGPayCallback : the class to provide callbacks
-* Activity : Activity
-* paymentOptionHash : Payment Related Details hash (payment_related_details_for_mobile_sdk)
-* merchantKey : PayU Merchant Key
-* user_credentials : Provide user credentials or use "default"
+<Accordion title="Call checkForPaymentAvailability method" icon="fa-code">
+  ```java
+  GPay.getInstance().checkForPaymentAvailability(Activity activity, PayUGPayCallback callback, String paymentOptionHash, String merchantKey, String user_credentials)
+  ```
+
+  Where
+
+  * PayUGPayCallback : the class to provide callbacks
+  * Activity : Activity
+  * paymentOptionHash : Payment Related Details hash (payment\_related\_details\_for\_mobile\_sdk)
+  * merchantKey : PayU Merchant Key
+  * user\_credentials : Provide user credentials or use "default"
 </Accordion>
+
 > 📘 Generate PaymentOption Hash
 >
 > To generate PaymentOption Hash, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
