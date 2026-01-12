@@ -24,71 +24,71 @@ After you set up your account in Shopify, you can integrate PayU India as the pa
 
     ## Integration Steps
 
-1. Log in to your Shopify account if not already logged in.
+    1. Log in to your Shopify account if not already logged in.
 
-   Your Shopify account home page is displayed.
+       Your Shopify account home page is displayed.
 
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Shopify_Home_Page-1-1024x464.png" />
+    <Image align="center" border={true} src="https://files.readme.io/a10ec7c5314424471430e1980f93cf194f143ca98e28117e0fdd75e4bed0bb87-install_shopify_step1.png" />
 
-2. Select **Settings** from the menu (at the bottom of the left navigation pane).
+    2. Select **Settings** from the menu (at the bottom of the left navigation pane).
 
-<Image align="center" className="border" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Settings_button_selection-1024x594.png" />
+    <Image align="center" border={true} src="https://files.readme.io/d5a043ebd964cb9ec67222a7ad97d721bd80644e364d2d7493014ef31b7623c8-install_shopify_step2.png" />
 
-3. Select **Payments** from the menu on the left navigation pane.
+    3. Select **Payments** from the menu on the left navigation pane.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Payments_Settings_Shopify-1024x615.png)
+    <Image align="center" border={true} src=" https://files.readme.io/1938653e03bf33d07122187dac2d4137bb91f0ca84a2a2f81e4af60f5d78f7ce-install_shopify_step3.png"/>
 
-4. Click **Add payment methods** under the **Supported Payment methods** section.
+    4. Click **Add payment methods** under the **Supported Payment methods** section.
 
-   The *Add payment methods* page is displayed.
+       The *Add payment methods* page is displayed.
 
-5. Select the **Search by provider** tab and enter **PayU**.
+    5. Select the **Search by provider** tab and enter **PayU**.
 
-<Image align="center" className="border" width="550px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Screenshot-2022-08-01-at-5.59.01-PM-1024x431.png" />
+    <Image align="center" border={true} src="https://files.readme.io/f50e8deebf8a9f018a2776d3e3f2b2fe5eb96c3245708016720ce8b14cdd7a11-install_shopify_step5.png" width="550px" />
 
-6. Select **PayU India** from the result.
+    6. Select **PayU India** from the result.
 
-A page similar to the following screenshot is displayed.
+    A page similar to the following screenshot is displayed.
 
-<Image align="center" className="border" width="550px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Screenshot-2022-08-01-at-6.02.49-PM-1024x688.png" />
+    <Image align="center" border={true} src="https://files.readme.io/3a1fbf5c25ccb134cf1462ce08f90daa730f9ce07833a32e1bd6ed780bd7dd4c-install_shopify_step6.png" width="550px" />
 
-7. Install the PayU plugin:
-   * Click **Activate**.
-   * Click **Connect** (scroll down if required).
+    7. Install the PayU plugin:
+       * Click **Activate**.
+       * Click **Connect** (scroll down if required).
 
-<Image align="center" className="border" width="550px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Shopify_PayU_Connect-1024x537.png" />
+    <Image align="center" border={true} src="https://files.readme.io/afa1fb57c9ad88d7921c94e2f1d91b5f9c20a133e2762069c24f32858ac5c591-install_shopify_step7a.png" width="550px" />
 
-The *Install* page for the PayU India plugin is displayed.
+    The *Install* page for the PayU India plugin is displayed.
 
-<Image align="center" className="border" width="550px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Install_Shopify_Plugin-1024x760.png" />
+    <Image align="center" border={true} src="https://files.readme.io/91633eea9c151f8f8ae89233bb13f99260fc71dea7baea0cecddd2948cc9daa5-install_shopify_step7b.png" width="550px" />
 
-* Click **Install app**.
+    * Click **Install app**.
 
-    The *Configure collect payments with PayU* pop-up page is displayed.
+      The *Configure collect payments with PayU* pop-up page is displayed.
 
-<Image align="center" width="550px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/MicrosoftTeams-image-11-1024x651.png" />
+    <Image align="center" src="https://files.readme.io/ad7ccb4b8d11ea564e2f030013133fdb1af40206e0195bf89480e9c8523643e8-install_shopify_step7c.png" width="550px" />
 
-8. Configure the merchant key and salt:
-   * Enter your merchant key in the **Merchant Key** field.
+    8. Configure the merchant key and salt:
+       * Enter your merchant key in the **Merchant Key** field.
 
-> **Reference**: For more information on how to generate the Key and Salt, refer to any of the following:
+    > **Reference**: For more information on how to generate the Key and Salt, refer to any of the following:
 
-* **Production**:  [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-* **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
-* Enter your Salt in the **Merchant Salt** field.
-* Click **Submit**.
+    * **Production**:  [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+    * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+    * Enter your Salt in the **Merchant Salt** field.
+    * Click **Submit**.
 
-    The \_Pay\_U page is displayed.
+      The \_Pay\_U page is displayed.
 
-<Image align="center" className="border" width="550px" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/08/Activate_Payu_plugin_for_shopify-626x1024.png" />
+    <Image align="center" border={true} src="https://files.readme.io/ddbc6dd2bed950f62a88c441f3620906c303ac9a8578a70db0e34c6449f892a0-install_shopify_step8.png" width="550px" />
 
-* Click **Activate PayU**.
+    * Click **Activate PayU**.
 
-> 📘 Test Mode for PayU Plugin:
->
-> You need to test your Shopify integration with your Test key and Salt, so you need  to select the**Enable test mode** check box in this last step before clicking the **Activate PayU** button:
->
-> <Image align="center" className="border" width="550px" border={true} src="https://files.readme.io/21dbe4109310b44250c121370a106e6abf71d69150c091227cab92de7c6bf856-shopify_payu_activate_test_mode.png" />
+    > 📘 Test Mode for PayU Plugin:
+    >
+    > You need to test your Shopify integration with your Test key and Salt, so you need  to select the**Enable test mode** check box in this last step before clicking the **Activate PayU** button:
+    >
+    >     <Image align="center" border={true} src="https://files.readme.io/e7cb91c0ed41d2cf90e518fd8769ac9b6d5363485c1c0ed3fc4ff9fa722a64fd-install_shopify_step8_note.png" width="450px" />
   </Tab>
 
   <Tab title="Integrate with Shopify using Hyperlink">
