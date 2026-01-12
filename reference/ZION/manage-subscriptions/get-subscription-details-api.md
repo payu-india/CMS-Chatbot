@@ -36,7 +36,7 @@ Get subscription interface returns all details about defined subscription throug
   <tbody>
     <tr>
       <td>
-        X-PayU-\_<br /><br />\_Subscription- Signature
+        X-PayU-_<br /><br />_Subscription- Signature
         `mandatory`
       </td>
 
@@ -63,5 +63,328 @@ Get subscription interface returns all details about defined subscription throug
 ## Sample request
 
 ```
-https://subscription.citruspay.com/api/sub/v1/merchant/subscriptions/5c972a35652d405&gt;ed9834f52
+curl --location 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions/5dbffd362fc4f8363c4fd397' \
+--header 'Authorization: Bearer 810aa8723c4a626bf2c157e50204aebca72d33e9f2bf350e29eade8ae912c703' \
+--header 'merchantId: 0BVomn' \
+--header 'X-PayU-Subscription-Signature: 36c0c4b22d1c616237d518c939107e3b01ed14c32147f2c79232444392e0656b040782af69cef7e0640a3f7868145695be3903eb2692a8ef5b68e4bf0a1803ff' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642'
 ```
+
+## Sample response
+
+```
+{
+    "subscriptionId": "5dbffd362fc4f8363c4fd397",
+    "createdDate": "2019-11-04T04:58:06.000012Z",
+    "modifiedDate": "2023-11-08T13:03:54.000724Z",
+    "subscriptionPlans": [
+        {
+            "planId": "ZION15728632860122",
+            "startDate": "2019-12-03T00:00:00.000Z",
+            "totalCount": 60,
+            "numberOfPaidInvoices": 0,
+            "numberOfInvoiceGenerated": 46,
+            "status": "Forced_Cancel",
+            "deleted": false,
+            "nextBillingDates": "2023-10-03T00:00:00Z",
+            "lastPaymentDates": "2020-09-03T00:00:00Z",
+            "billingInterval": 1,
+            "billingCycle": "MONTHLY",
+            "planName": "ZION15728632860122",
+            "amount": {
+                "value": 69.00,
+                "currency": "INR"
+            }
+        }
+    ],
+    "status": "Forced_Cancel",
+    "authRefId": "403993715520071757",
+    "subscriberEmail": "aws0055test@mailinator.com",
+    "subscriberMobile": "5412345026",
+    "paymentOption": {},
+    "freeTrial": false,
+    "setupAmount": {
+        "value": 0.00
+    },
+    "customParameter": {
+        "memUUID": "38050cdb-b145-4d5a-8a77-7605df72f5ee"
+    },
+    "possibleActions": [
+        {
+            "action": "Update Subscription",
+            "href": "{{base-url}}/api/sub/v1/subscription/5dbffd362fc4f8363c4fd397",
+            "httpMethod": "PATCH"
+        },
+        {
+            "action": "Delete Subscription",
+            "href": "{{base-url}}/api/sub/v1/subscription/5dbffd362fc4f8363c4fd397",
+            "httpMethod": "DELETE"
+        }
+    ],
+    "requestId": "403993715520071757"
+}
+```
+
+## Response parameters
+
+| Parameter           | Description                                                | Example                                               |
+| ------------------- | ---------------------------------------------------------- | ----------------------------------------------------- |
+| `subscriptionId`    | Unique identifier for the subscription                     | `"5dbffd362fc4f8363c4fd397"`                          |
+| `createdDate`       | ISO 8601 timestamp when the subscription was created       | `"2019-11-04T04:58:06.000012Z"`                       |
+| `modifiedDate`      | ISO 8601 timestamp when the subscription was last modified | `"2023-11-08T13:03:54.000724Z"`                       |
+| `subscriptionPlans` | Array of subscription plan objects                         | `[{...}]`                                             |
+| `status`            | Overall status of the subscription                         | `"Forced_Cancel"`                                     |
+| `authRefId`         | Authorization reference ID                                 | `"403993715520071757"`                                |
+| `subscriberEmail`   | Email address of the subscriber                            | `"aws0055test@mailinator.com"`                        |
+| `subscriberMobile`  | Mobile number of the subscriber                            | `"5412345026"`                                        |
+| `paymentOption`     | Payment method details (object)                            | `{}`                                                  |
+| `freeTrial`         | Boolean indicating if this includes a free trial           | `false`                                               |
+| `setupAmount`       | One-time setup fee object                                  | `{"value": 0.00}`                                     |
+| `customParameter`   | Custom parameters passed during subscription creation      | `{"memUUID": "38050cdb-b145-4d5a-8a77-7605df72f5ee"}` |
+| `possibleActions`   | Array of available actions for this subscription           | `[{...}]`                                             |
+| `requestId`         | Unique identifier for this API request                     | `"403993715520071757"`                                |
+
+## subscriptionPlans JSON object fields
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `planId`
+      </td>
+
+      <td>
+        Unique identifier for the subscription plan
+      </td>
+
+      <td>
+        `"ZION15728632860122"`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `startDate`
+      </td>
+
+      <td>
+        ISO 8601 timestamp when the plan started
+      </td>
+
+      <td>
+        `"2019-12-03T00:00:00.000Z"`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `totalCount`
+      </td>
+
+      <td>
+        Total number of billing cycles planned
+      </td>
+
+      <td>
+        `60`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `numberOfPaidInvoices`
+      </td>
+
+      <td>
+        Number of successfully paid invoices
+      </td>
+
+      <td>
+        `0`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `numberOfInvoiceGenerated`
+      </td>
+
+      <td>
+        Total number of invoices generated
+      </td>
+
+      <td>
+        `46`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `status`
+      </td>
+
+      <td>
+        Current status of the subscription plan
+      </td>
+
+      <td>
+        `"Forced_Cancel"`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `deleted`
+      </td>
+
+      <td>
+        Boolean indicating if the plan is deleted
+      </td>
+
+      <td>
+        `false`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `nextBillingDates`
+      </td>
+
+      <td>
+        ISO 8601 timestamp for the next billing date
+      </td>
+
+      <td>
+        `"2023-10-03T00:00:00Z"`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `lastPaymentDates`
+      </td>
+
+      <td>
+        ISO 8601 timestamp of the last successful payment
+      </td>
+
+      <td>
+        `"2020-09-03T00:00:00Z"`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `billingInterval`
+      </td>
+
+      <td>
+        Frequency of billing (number of cycles)
+      </td>
+
+      <td>
+        `1`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `billingCycle`
+      </td>
+
+      <td>
+        Billing cycle type. It can be any of the following:  
+
+        `DAILY`, `WEEKLY`, `MONTHLY`, `QUARTERLY`, `YEARLY`
+      </td>
+
+      <td>
+        `"MONTHLY"`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `planName`
+      </td>
+
+      <td>
+        Name of the subscription plan
+      </td>
+
+      <td>
+        `"ZION15728632860122"`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `amount`
+      </td>
+
+      <td>
+        Billing amount object with value and currency
+      </td>
+
+      <td>
+        `{"value": 69.00, "currency": "INR"}`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `amount.value`
+      </td>
+
+      <td>
+        Amount to be charged per billing cycle
+      </td>
+
+      <td>
+        `69.00`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `amount.currency`
+      </td>
+
+      <td>
+        Currency code for the amount
+      </td>
+
+      <td>
+        `"INR"`
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### possibleActions JSON object fields
+
+| Parameter    | Description                         | Example                                                           |
+| ------------ | ----------------------------------- | ----------------------------------------------------------------- |
+| `action`     | Name of the available action        | `"Update Subscription"`                                           |
+| `href`       | API endpoint URL for the action     | `"{{base-url}}/api/sub/v1/subscription/5dbffd362fc4f8363c4fd397"` |
+| `httpMethod` | HTTP method required for the action | `"PATCH"`                                                         |
+
+<br />
