@@ -25,11 +25,12 @@ To configure the Affordability Widget for Shopify:
 
 ## Step 1: Duplicate the Existing Theme
 
+<Accordion title="Duplicate the Existing Theme" icon="fa-info-circle">
 To duplicate the existing theme:
 
-> 📘 Note:
->
-> If you are using themes created in 2020 or before, where product.json is not present, step in this section can be skipped and proceed to [Step 2: Add Snippet for PayU](#step-2-add-snippet-for-payu).
+<Callout icon="📘" theme="info">
+  Note: If you are using themes created in 2020 or before, where product.json is not present, step in this section can be skipped and proceed to [Step 2: Add Snippet for PayU](#step-2-add-snippet-for-payu).
+</Callout>
 
 1. Log in to Shopify Admin portal.
 2. Select **Themes** under **Online Stores** on the left navigation pane.
@@ -56,128 +57,128 @@ To duplicate the existing theme:
 <script defer src="https://jssdk.payu.in/widget/affordability-widget.min.js"></script>
 ```
 
+##
+</Accordion>
+
 ## Step 2: Add an affordability snippet on your website
 
 <Accordion title="Non SKU-based offer" icon="fa-info-circle">
-To add a snippet to your website for a non SKU-based offer:
+  To add a snippet to your website for a non SKU-based offer:
 
-> 📘 Note:
->
-> Add a non-SKU based offer on PayU Dashboard before performing this procedure. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
+  > 📘 Note:
+  >
+  > Add a non-SKU based offer on PayU Dashboard before performing this procedure. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
 
-1. Select **Add a new Snippet** under the **Snippet** folder on the left pane.
+  1. Select **Add a new Snippet** under the **Snippet** folder on the left pane.
 
-<Image align="center" border={true} width="222px" src="https://files.readme.io/df73655-Screenshot_2023-11-29_at_2.55.02_PM.png" className="border" />
+  <Image align="center" border={true} src="https://files.readme.io/df73655-Screenshot_2023-11-29_at_2.55.02_PM.png" width="222px" />
 
-2. Create and add a new snippet with the name “payu-block” as filename under the **Snippets** folder.
+  2. Create and add a new snippet with the name “payu-block” as filename under the **Snippets** folder.
 
-   The _Add a new snippet _dialog box is displayed.
+     The \_Add a new snippet \_dialog box is displayed.
 
-3. Enter the name of the snippet as **payu-block** and then click **Done**.
+  3. Enter the name of the snippet as **payu-block** and then click **Done**.
 
-<Image align="center" border={false} width="322px" src="https://files.readme.io/f64623a-Screenshot_2023-11-29_at_2.58.58_PM.png" />
+  <Image align="center" src="https://files.readme.io/f64623a-Screenshot_2023-11-29_at_2.58.58_PM.png" width="322px" />
 
-4. Add the following snippet inside the payu-block file:
+  4. Add the following snippet inside the payu-block file:
 
-```
-<script>
-    window.addEventListener("load", (event) => {
-        var widgetConfig = {
-            "key": "MERCHANT_KEY",
-            "amount": {{ payu_amount | divided_by: 100.00 }},
-        };
-        payuAffordability.init(widgetConfig);
-    });
-</script>
-<div id="payuWidget"></div>
-```
+  ```
+  <script>
+      window.addEventListener("load", (event) => {
+          var widgetConfig = {
+              "key": "MERCHANT_KEY",
+              "amount": {{ payu_amount | divided_by: 100.00 }},
+          };
+          payuAffordability.init(widgetConfig);
+      });
+  </script>
+  <div id="payuWidget"></div>
+  ```
 
-This is to view UI on the webpage, **key** is the merchant key.
- 
+  This is to view UI on the webpage, **key** is the merchant key.
 </Accordion>
-
-<br />
 
 <Accordion title="SKU-based offer" icon="fa-info-circle">
   To add a snippet to your website for a SKU-based offer:
 
-> 📘 Note:
->
-> Add a SKU based offer on PayU Dashboard before performing this procedure. For more information, refer to [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
+  > 📘 Note:
+  >
+  > Add a SKU based offer on PayU Dashboard before performing this procedure. For more information, refer to [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
 
-1. Select **Add a new Snippet** under the **Snippet** folder on the left pane.
+  1. Select **Add a new Snippet** under the **Snippet** folder on the left pane.
 
-<Image align="center" border={true} width="222px" src="https://files.readme.io/df73655-Screenshot_2023-11-29_at_2.55.02_PM.png" className="border" />
+  <Image align="center" border={true} src="https://files.readme.io/df73655-Screenshot_2023-11-29_at_2.55.02_PM.png" width="222px" />
 
-2. Create and add a new snippet with the name “payu-block” as filename under the **Snippets** folder.
+  2. Create and add a new snippet with the name “payu-block” as filename under the **Snippets** folder.
 
-   The _Add a new snippet _dialog box is displayed.
+     The \_Add a new snippet \_dialog box is displayed.
 
-3. Enter the name of the snippet as **payu-block** and then click **Done**.
+  3. Enter the name of the snippet as **payu-block** and then click **Done**.
 
-<Image align="center" border={false} width="322px" src="https://files.readme.io/f64623a-Screenshot_2023-11-29_at_2.58.58_PM.png" />
+  <Image align="center" src="https://files.readme.io/f64623a-Screenshot_2023-11-29_at_2.58.58_PM.png" width="322px" />
 
-4. Add the following snippet inside the payu-block file:
+  4. Add the following snippet inside the payu-block file:
 
-```
-<script>
-     window.onload = function() {
-        // Initialize an empty array for SKU details
-        var skusDetail = [];
-        var payuAmount;
-        
-        // Check if the product object exists
-        {% if product %}
-          // Set payu_amount to the product price in rupees
-          payuAmount = {{ product.selected_or_first_available_variant.price | divided_by: 100.00 }};
+  ```
+  <script>
+       window.onload = function() {
+          // Initialize an empty array for SKU details
+          var skusDetail = [];
+          var payuAmount;
           
-        
-          {% if product.selected_or_first_available_variant.sku != blank %}  // Check if the variant SKU exists
-            skusDetail.push({
-              skuId: "{{ product.selected_or_first_available_variant.sku }}",              // Get the variant SKU ID
-              skuAmount: {{ product.selected_or_first_available_variant.price | divided_by: 100.00 }},  // Convert price to rupees
-              quantity: 1
-            });
-          {% endif %}
-        
-          console.log("SKU Details from Product Variants:", skusDetail);
-        {% else %}
-          // If product does not exist, set payu_amount to the cart amount
-          payuAmount = {{ cart.total_price | divided_by: 100.00 }};
-
+          // Check if the product object exists
+          {% if product %}
+            // Set payu_amount to the product price in rupees
+            payuAmount = {{ product.selected_or_first_available_variant.price | divided_by: 100.00 }};
+            
           
-          // If product does not exist, create skusDetail from line items of the cart
-          {% for line_item in cart.items %}
-            {% if line_item.sku != blank %}  // Check if the line item SKU exists
+            {% if product.selected_or_first_available_variant.sku != blank %}  // Check if the variant SKU exists
               skusDetail.push({
-                skuId: "{{ line_item.sku }}",              // Get the line item SKU ID
-                skuAmount: {{ line_item.price | divided_by: 100.00 }},  // Convert line item price to rupees
-                quantity: {{ line_item.quantity }}  // Get the line item quantity
+                skuId: "{{ product.selected_or_first_available_variant.sku }}",              // Get the variant SKU ID
+                skuAmount: {{ product.selected_or_first_available_variant.price | divided_by: 100.00 }},  // Convert price to rupees
+                quantity: 1
               });
-            {% else %}
-              console.log('One or more items does not have SKU info')
-              skusDetail = []
-              {% break %} 
             {% endif %}
-          {% endfor %}
-        
-          console.log("SKU Details from Cart Line Items:", skusDetail);
-        {% endif %}
-       
-       const widgetConfig = {
-          "key": "smsplus",
-          "amount": payuAmount,
-          "skusDetail": skusDetail
-        };
-     payuAffordability.init(widgetConfig);
-   }
-</script>
-<div id="payuWidget"></div>
-```
+          
+            console.log("SKU Details from Product Variants:", skusDetail);
+          {% else %}
+            // If product does not exist, set payu_amount to the cart amount
+            payuAmount = {{ cart.total_price | divided_by: 100.00 }};
 
-This is to view UI on the webpage, **key** is the merchant key.
+            
+            // If product does not exist, create skusDetail from line items of the cart
+            {% for line_item in cart.items %}
+              {% if line_item.sku != blank %}  // Check if the line item SKU exists
+                skusDetail.push({
+                  skuId: "{{ line_item.sku }}",              // Get the line item SKU ID
+                  skuAmount: {{ line_item.price | divided_by: 100.00 }},  // Convert line item price to rupees
+                  quantity: {{ line_item.quantity }}  // Get the line item quantity
+                });
+              {% else %}
+                console.log('One or more items does not have SKU info')
+                skusDetail = []
+                {% break %} 
+              {% endif %}
+            {% endfor %}
+          
+            console.log("SKU Details from Cart Line Items:", skusDetail);
+          {% endif %}
+         
+         const widgetConfig = {
+            "key": "smsplus",
+            "amount": payuAmount,
+            "skusDetail": skusDetail
+          };
+       payuAffordability.init(widgetConfig);
+     }
+  </script>
+  <div id="payuWidget"></div>
+  ```
 
-##
+  This is to view UI on the webpage, **key** is the merchant key.
+
+  ##
 </Accordion>
 
 <br />
