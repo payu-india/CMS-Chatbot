@@ -1,7 +1,7 @@
 ---
 title: MCP FAQs
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
