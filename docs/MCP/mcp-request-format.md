@@ -19,20 +19,18 @@ metadata:
   robots: index
 ---
 
-This page provides technical details for developers building custom MCP clients or integrating with PayU Remote MCP programmatically.
-
-## Overview
+This section provides technical details for developers building custom MCP clients or integrating with PayU Remote MCP programmatically.
 
 PayU Remote MCP uses the JSON-RPC 2.0 protocol over HTTP. All requests are sent to a single endpoint with OAuth 2.1 bearer token authentication.
 
 ## Service Endpoint
 
-| Property | Value |
-|----------|-------|
-| **URL** | `https://api.payu.in/mcp` |
-| **Method** | `POST` |
-| **Protocol** | JSON-RPC 2.0 |
-| **Transport** | HTTP |
+| Property      | Value                     |
+| ------------- | ------------------------- |
+| **URL**       | `https://api.payu.in/mcp` |
+| **Method**    | `POST`                    |
+| **Protocol**  | JSON-RPC 2.0              |
+| **Transport** | HTTP                      |
 
 ## Authentication Header
 
@@ -53,7 +51,7 @@ Access tokens are obtained through the OAuth 2.1 flow:
 5. Use token in Authorization header
 
 > 📘 Note
-> 
+>
 > Most MCP clients handle token management automatically. You only need to implement this if building a custom client.
 
 ## Tool Call Format
@@ -81,14 +79,14 @@ Content-Type: application/json
 
 ### Request Fields
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `jsonrpc` | string | Yes | Must be "2.0" |
-| `method` | string | Yes | The MCP method to call (e.g., "tools/call") |
-| `params` | object | Yes | Parameters for the method |
-| `params.name` | string | Yes | Name of the tool to invoke |
-| `params.arguments` | object | No | Arguments for the tool |
-| `id` | number/string | Yes | Request identifier for correlation |
+| Field              | Type          | Required | Description                                 |
+| ------------------ | ------------- | -------- | ------------------------------------------- |
+| `jsonrpc`          | string        | Yes      | Must be "2.0"                               |
+| `method`           | string        | Yes      | The MCP method to call (e.g., "tools/call") |
+| `params`           | object        | Yes      | Parameters for the method                   |
+| `params.name`      | string        | Yes      | Name of the tool to invoke                  |
+| `params.arguments` | object        | No       | Arguments for the tool                      |
+| `id`               | number/string | Yes      | Request identifier for correlation          |
 
 ## Response Format
 
@@ -111,14 +109,14 @@ Content-Type: application/json
 
 ### Response Fields
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `jsonrpc` | string | Always "2.0" |
-| `id` | number/string | Matches the request ID |
-| `result` | object | Contains the tool execution result |
-| `result.content` | array | Array of content items |
-| `result.content[].type` | string | Content type (usually "text") |
-| `result.content[].text` | string | The actual result text |
+| Field                   | Type          | Description                        |
+| ----------------------- | ------------- | ---------------------------------- |
+| `jsonrpc`               | string        | Always "2.0"                       |
+| `id`                    | number/string | Matches the request ID             |
+| `result`                | object        | Contains the tool execution result |
+| `result.content`        | array         | Array of content items             |
+| `result.content[].type` | string        | Content type (usually "text")      |
+| `result.content[].text` | string        | The actual result text             |
 
 ### Error Response
 
@@ -138,13 +136,13 @@ Content-Type: application/json
 
 ### Error Codes
 
-| Code | Message | Description |
-|------|---------|-------------|
-| `-32700` | Parse error | Invalid JSON |
-| `-32600` | Invalid Request | Request structure is invalid |
-| `-32601` | Method not found | Tool doesn't exist |
-| `-32602` | Invalid params | Invalid tool arguments |
-| `-32603` | Internal error | Server-side error |
+| Code     | Message          | Description                  |
+| -------- | ---------------- | ---------------------------- |
+| `-32700` | Parse error      | Invalid JSON                 |
+| `-32600` | Invalid Request  | Request structure is invalid |
+| `-32601` | Method not found | Tool doesn't exist           |
+| `-32602` | Invalid params   | Invalid tool arguments       |
+| `-32603` | Internal error   | Server-side error            |
 
 ## Example Requests
 
@@ -197,25 +195,25 @@ Content-Type: application/json
 
 ### Required Headers
 
-| Header | Value | Description |
-|--------|-------|-------------|
-| `Authorization` | `Bearer {token}` | OAuth 2.1 access token |
-| `Content-Type` | `application/json` | Request body format |
+| Header          | Value              | Description            |
+| --------------- | ------------------ | ---------------------- |
+| `Authorization` | `Bearer {token}`   | OAuth 2.1 access token |
+| `Content-Type`  | `application/json` | Request body format    |
 
 ### Optional Headers
 
-| Header | Value | Description |
-|--------|-------|-------------|
-| `X-Request-ID` | UUID | For request tracing |
-| `Accept` | `application/json` | Response format |
+| Header         | Value              | Description         |
+| -------------- | ------------------ | ------------------- |
+| `X-Request-ID` | UUID               | For request tracing |
+| `Accept`       | `application/json` | Response format     |
 
 ## Rate Limiting
 
 The service implements rate limiting to ensure fair usage:
 
-- Rate limits are applied per merchant account
-- Exceeding limits returns HTTP 429 (Too Many Requests)
-- Include `Retry-After` header indicates wait time
+* Rate limits are applied per merchant account
+* Exceeding limits returns HTTP 429 (Too Many Requests)
+* Include `Retry-After` header indicates wait time
 
 ## Best Practices
 
@@ -227,6 +225,5 @@ The service implements rate limiting to ensure fair usage:
 
 ## Next Steps
 
-- [Available Tools](doc:remote-mcp-available-tools) - See all available tools and their parameters
-- [Troubleshooting](doc:remote-mcp-troubleshooting) - Debug common issues
-
+* [Available Tools](doc:remote-mcp-available-tools) - See all available tools and their parameters
+* [Troubleshooting](doc:remote-mcp-troubleshooting) - Debug common issues
