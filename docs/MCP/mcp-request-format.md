@@ -1,7 +1,7 @@
 ---
 title: MCP Request Format
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
