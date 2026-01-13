@@ -101,6 +101,6 @@ To verify your setup is working correctly:
 
 ## Next Steps
 
-* [Authentication](doc:remote-mcp-authentication) - Learn more about OAuth 2.1 security
-* [Example Tool Usage](doc:remote-mcp-example-tool-usage) - See more examples of what you can do
-* [Troubleshooting](doc:remote-mcp-troubleshooting) - Get help if something isn't working
+* [Authentication](ref:authentication) - Learn more about OAuth 2.1 security
+* [MCP Tools](doc:mcp-tools) - Read more examples of what you can do
+* [MCP FAQs](doc:mcp-faqs) - Get help if something isn't working
