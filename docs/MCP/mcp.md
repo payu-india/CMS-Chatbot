@@ -5,7 +5,7 @@ hidden: true
 The PayU Developer Documentation Portal Model Context Protocol (MCP) server enables AI-powered code editors like Cursor and Windsurf, plus general-purpose tools like Claude Desktop, to interact directly with your PayU Developer Documentation Portal API and documentation.
 
 <Callout icon="📘" theme="info">
-  **Enable PayU MCP**: To enable PayU MCP, contact your PayU Key Account Manager or contact <Anchor label="PayU Support" target="_blank" href="https://help.payu.in">PayU Support</Anchor>.
+  **Enable PayU Remote MCP**: To enable PayU MCP, contact your PayU Key Account Manager or contact <Anchor label="PayU Support" target="_blank" href="https://help.payu.in">PayU Support</Anchor>.
 </Callout>
 
 ## What is MCP?
