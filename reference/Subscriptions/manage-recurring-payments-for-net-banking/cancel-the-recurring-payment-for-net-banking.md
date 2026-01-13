@@ -40,6 +40,8 @@ The **Cancel Recurring Payments** API allows the merchants to cancel their Cards
 >
 > Your customers cannot use Recurring Payments without the **Cancel Recurring Payments** API being implemented.
 
+<GENERALAPIsEnvironment />
+
 HTTP Method: **POST**
 
 ## Request parameters
@@ -169,22 +171,12 @@ HTTP Method: **POST**
 ## Sample request
 
 ```
-curl --location 'https://secure.payu.in/_payment' \
+curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68ed52caaaf5e' \
---data-urlencode 'key=BmTY3G' \
---data-urlencode 'txnid=my_order_49428' \
---data-urlencode 'amount=1' \
---data-urlencode 'firstname=PayU User' \
---data-urlencode 'email=test@gmail.com' \
---data-urlencode 'phone=9876543210' \
---data-urlencode 'productinfo=my_order_49428' \
---data-urlencode 'pg=cc#bankcode=AIRPENCC' \
---data-urlencode 'si=1' \
---data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
---data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
---data-urlencode 'si_details={"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01"}' \
---data-urlencode 'hash=67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb'
+--data-urlencode 'key=z8a7yT' \
+--data-urlencode 'command=mandate_revoke' \
+--data-urlencode 'var1={"authPayuId": "403993715531574955","requestId": "202405201452"}' \
+--data-urlencode 'hash=f365dfa8dc2934247778d8078ec9225fe5c8512e8765ca8a78ccb8c5c3e1bfeedbd5439071a629508e129bf386825c0cd27f9d8582c02e5a0dd7620a12e27d87'
 ```
 
 ## Response parameters
@@ -403,12 +395,16 @@ After cancellation is initiated for the Net Banking mandate, a file is uploaded 
 
 ```
 {
-"statusCode": 1,
-"notificationType": "MANDATE_CANCELLATION", 
-"status": "CANCEL_SUCCESS",
-"authPayuId": "1234567"
+  "action": "MANDATE_REVOKE",
+  "status": 1,
+  "Message": "Mandate Cancel Initiated",
+  "authpayuid": 26734617195
 }
 ```
+
+<Callout icon="📘">
+  **Set up Webhook:** Webhook with success will be triggered using webhook. Refer to [Set up WebHook to Receive Cancellation or Modification Update from the Issuer Bank](ref:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank) > [Cancellation Mandate](doc:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank#cancellation-mandate).
+</Callout>
 
 * A failure response is similar to the following is shared on Webhook after the bank sends the final response of cancellation.
 
