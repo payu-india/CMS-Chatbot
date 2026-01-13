@@ -79,14 +79,14 @@ Content-Type: application/json
 
 ### Request Fields
 
-| Field              | Type          | Required | Description                                 |
-| ------------------ | ------------- | -------- | ------------------------------------------- |
-| `jsonrpc`          | string        | Yes      | Must be "2.0"                               |
-| `method`           | string        | Yes      | The MCP method to call (e.g., "tools/call") |
-| `params`           | object        | Yes      | Parameters for the method                   |
-| `params.name`      | string        | Yes      | Name of the tool to invoke                  |
-| `params.arguments` | object        | No       | Arguments for the tool                      |
-| `id`               | number/string | Yes      | Request identifier for correlation          |
+| Parameter                        | Description                                               | Example                        |
+| :------------------------------- | :-------------------------------------------------------- | :----------------------------- |
+| jsonrpc<br />`mandatory`         | `String` - JSON-RPC version. Must be "2.0"                | 2.0                            |
+| method<br />`mandatory`          | `String` - The MCP method to call                         | tools/call                     |
+| params<br />`mandatory`          | `Object` - Parameters for the method                      | See below                      |
+| params.name<br />`mandatory`     | `String` - Name of the tool to invoke                     | get-transaction-details        |
+| params.arguments<br />`optional` | `Object` - Arguments for the tool                         | \{"transactionId": "TX-12345"} |
+| id<br />`mandatory`              | `String` or `Number` - Request identifier for correlation | 1                              |
 
 ## Response Format
 
@@ -109,14 +109,14 @@ Content-Type: application/json
 
 ### Response Fields
 
-| Field                   | Type          | Description                        |
-| ----------------------- | ------------- | ---------------------------------- |
-| `jsonrpc`               | string        | Always "2.0"                       |
-| `id`                    | number/string | Matches the request ID             |
-| `result`                | object        | Contains the tool execution result |
-| `result.content`        | array         | Array of content items             |
-| `result.content[].type` | string        | Content type (usually "text")      |
-| `result.content[].text` | string        | The actual result text             |
+| Field                   | Description                        |
+| ----------------------- | ---------------------------------- |
+| `jsonrpc`               | Always "2.0"                       |
+| `id`                    | Matches the request ID             |
+| `result`                | Contains the tool execution result |
+| `result.content`        | Array of content items             |
+| `result.content[].type` | Content type (usually "text")      |
+| `result.content[].text` | The actual result text             |
 
 ### Error Response
 
@@ -226,4 +226,4 @@ The service implements rate limiting to ensure fair usage:
 ## Next Steps
 
 * [Available Tools](doc:remote-mcp-available-tools) - See all available tools and their parameters
-* [Troubleshooting](doc:remote-mcp-troubleshooting) - Debug common issues
+* [MCP Troubleshooting](doc:mcp-troubleshooting)
