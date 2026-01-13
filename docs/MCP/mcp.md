@@ -1,5 +1,5 @@
 ---
-title: MCP - OLD
+title: MCP - Dev Guide
 hidden: true
 ---
 The PayU Remote Model Context Protocol (MCP) server enables AI-powered code editors like Cursor and Windsurf, plus general-purpose tools like Claude Desktop.
