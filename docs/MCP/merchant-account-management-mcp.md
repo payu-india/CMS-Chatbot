@@ -137,5 +137,5 @@ Please select which account to use.
 
 ## Next Steps
 
-* [Example Tool Usage](doc:remote-mcp-example-tool-usage) - See examples of operations across accounts
-* [Troubleshooting](doc:remote-mcp-troubleshooting) - Get help with account-related issues
+* [Usage Examples - MCP](doc:mcp-usage-examples-1) - Check examples of operations across accounts
+*  [MCP FAQs](doc:mcp-faqs) - Get help with account-related issues
