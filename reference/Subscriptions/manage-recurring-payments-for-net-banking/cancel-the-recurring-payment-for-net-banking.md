@@ -346,14 +346,14 @@ After cancellation is initiated for the Net Banking mandate, a file is uploaded 
   <tbody>
     <tr>
       <td>
-        statusCode
+        status
       </td>
 
       <td>
         Status defines acknowledgment from PayU. Possible values are:
 
-        * **1** - This value indicates that NetBanking mandate is successfully canceled
-        * **0** – This value indicates that NetBanking mandate failed to get canceled
+        * **1** - This Indicates the API request executed successfully
+        * **0** – This indicates the API got validation failures.
       </td>
     </tr>
 
@@ -402,17 +402,6 @@ After cancellation is initiated for the Net Banking mandate, a file is uploaded 
 }
 ```
 
-<Callout icon="📘">
+<Callout icon="📘" theme="info">
   **Set up Webhook:** Webhook with success will be triggered using webhook. Refer to [Set up WebHook to Receive Cancellation or Modification Update from the Issuer Bank](ref:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank) > [Cancellation Mandate](doc:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank#cancellation-mandate).
 </Callout>
-
-* A failure response is similar to the following is shared on Webhook after the bank sends the final response of cancellation.
-
-```
-{
-"status": 1,
-"notificationType": "MANDATE_CANCELLATION", 
-"status": "CANCEL_FAILURE",
-"authPayuId": "1234567"
-}
-```
