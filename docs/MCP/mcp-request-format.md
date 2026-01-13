@@ -225,5 +225,5 @@ The service implements rate limiting to ensure fair usage:
 
 ## Next Steps
 
-* [Available Tools](doc:remote-mcp-available-tools) - See all available tools and their parameters
-* [MCP Troubleshooting](doc:mcp-troubleshooting)
+* [MCP Tools](doc:mcp-tools): Check all available tools and their parameters
+* [MCP FAQs](doc:mcp-faqs): Refer the Frequently Asked Questions if you are facing issues with MCP.
