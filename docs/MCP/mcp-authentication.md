@@ -108,7 +108,6 @@ If your token expires or you've revoked access, simply:
 3. Complete the login process in your browser
 4. Continue using the service
 
-## Next Steps
+<br />
 
-* [Merchant Account Management](doc:remote-mcp-merchant-account-management) - Manage multiple merchant accounts
-* [Security & Privacy](doc:remote-mcp-security-privacy) - Learn more about data protection
+<br />
