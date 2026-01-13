@@ -1,5 +1,5 @@
 ---
-title: MCP Introduction - New
+title: PayU Remote MCP - Introduction
 deprecated: false
 hidden: true
 metadata:
@@ -20,6 +20,10 @@ metadata:
 ---
 
 PayU Remote MCP for Merchants is a secure service that provides access to PayU's merchant services through a single OAuth-protected endpoint. This guide covers everything you need to integrate and start using the service with your MCP-compatible client.
+
+<Callout icon="📘" theme="info">
+  **Enable PayU Remote MCP**: To enable PayU MCP, contact your PayU Key Account Manager or contact <Anchor label="PayU Support" target="_blank" href="https://help.payu.in">PayU Support</Anchor>.
+</Callout>
 
 ## What Is Remote MCP?
 
