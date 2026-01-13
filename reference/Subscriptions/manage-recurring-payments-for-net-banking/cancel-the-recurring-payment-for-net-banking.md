@@ -272,13 +272,21 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 * When the mandate revoke request is rejected
 
 ```
-{"status":0,"action":"MANDATE_REVOKE","message":"Mandate Revoke Request Rejected"}
+{
+ "status":0,
+ "action":"MANDATE_REVOKE",
+ "message":"Mandate Revoke Request Rejected"
+}
 ```
 
 * When the mandate is already revoked or cancelled
 
 ```
-{"status":0,"action":"MANDATE_REVOKE","message":"Mandate already revoked"}
+{
+ "status":0,"action":
+ "MANDATE_REVOKE",
+ "message":"Mandate already revoked"
+}
 ```
 
 > 📘 Set up webhook:
