@@ -55,8 +55,6 @@ Remote MCP for Merchants enables AI assistants to interact with PayU's payment s
 
 ## Next Steps
 
-* [Quick Setup](doc:remote-mcp-quick-setup) - Get started in 3 simple steps
-* [Authentication](doc:remote-mcp-authentication) - Understand the OAuth 2.1 flow
-* [Available Tools](doc:remote-mcp-available-tools) - Explore available capabilities
-
-For support, contact your PayU service administrator.
+* [MCP Quick Setup](doc:mcp-quick-setup) - Get started in 3 simple steps
+* [MCP Authentication](doc:mcp-authentication) - Understand the OAuth 2.1 flow
+* [MCP Tools](doc:mcp-tools) - Explore available capabilities
