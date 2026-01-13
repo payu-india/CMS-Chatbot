@@ -207,7 +207,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 
     <tr>
       <td>
-        statusCode
+        status
       </td>
 
       <td>
