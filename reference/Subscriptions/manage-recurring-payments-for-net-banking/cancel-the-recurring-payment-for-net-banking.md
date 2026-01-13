@@ -359,27 +359,27 @@ After cancellation is initiated for the Net Banking mandate, a file is uploaded 
 
     <tr>
       <td>
-        notificationType
+        action
       </td>
 
       <td>
-        Always returned as “MANDATE_CANCELLATION” to highlight the type of action.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        status
-      </td>
-
-      <td>
-        The status of the Recurring Payment cancellation for the eNACH.
+        Always returned as “MANDATE_REVOKE” to highlight the type of action.
       </td>
     </tr>
 
     <tr>
       <td>
-        authPayuId
+        Message
+      </td>
+
+      <td>
+        Brief description. Mandate Cancel  
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        authpayuid
       </td>
 
       <td>
