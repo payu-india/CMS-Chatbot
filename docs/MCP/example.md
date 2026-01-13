@@ -1,5 +1,5 @@
 ---
-title: 'Example '
+title: Usage Examples - MCP
 deprecated: false
 hidden: true
 metadata:
