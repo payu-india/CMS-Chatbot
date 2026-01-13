@@ -213,8 +213,8 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
       <td>
         Status defines acknowledgment from PayU. Possible values are:
 
-        * **1** - This value indicates that NetBanking mandate is successfully canceled
-        * **0** – This value indicates that NetBanking mandate failed to get canceled
+        * **1** - This value indicates that API executed successfully. 
+        * **0** – This value indicates that API got validation failures
       </td>
     </tr>
 
