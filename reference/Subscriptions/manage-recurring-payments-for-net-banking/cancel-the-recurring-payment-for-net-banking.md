@@ -281,7 +281,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 {"status":0,"action":"MANDATE_REVOKE","message":"Mandate already revoked"}
 ```
 
-> 📘 Set up webook:
+> 📘 Set up webhook:
 >
 > For NetBanking (Enach), the cancellation process is offline. After cancellation is initiated, an immediate response of acknowledgment will be similar to the following response. A file is uploaded on the bank server and within T+1 or T+2 days, the final status of cancellation is received and the merchant is updated via a webhook. Refer to [Set up WebHook to Receive Cancellation or Modification Update from the Issuer Bank](ref:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank) > [Cancellation Mandate](doc:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank#cancellation-mandate).
 
