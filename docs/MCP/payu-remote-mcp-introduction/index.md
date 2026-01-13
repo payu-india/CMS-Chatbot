@@ -48,15 +48,6 @@ Remote MCP for Merchants enables AI assistants to interact with PayU's payment s
 | **Authentication** | OAuth 2.1 via browser  | API credentials in config        |
 | **Updates**        | Automatic              | Manual updates required          |
 
-## Service Information
-
-| Property         | Value                     |
-| ---------------- | ------------------------- |
-| **Service URL**  | `https://api.payu.in/mcp` |
-| **Status**       | ✅ Production Ready        |
-| **Version**      | 1.1.0                     |
-| **Last Updated** | January 2026              |
-
 ## Next Steps
 
 * [MCP Quick Setup](doc:mcp-quick-setup) - Get started in 3 simple steps
