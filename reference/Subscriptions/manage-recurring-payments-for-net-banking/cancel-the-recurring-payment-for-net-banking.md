@@ -373,7 +373,7 @@ After cancellation is initiated for the Net Banking mandate, a file is uploaded 
       </td>
 
       <td>
-        Brief description. Mandate Cancel  
+        Brief description. For example, "Mandate Cancel Initiated"
       </td>
     </tr>
 
