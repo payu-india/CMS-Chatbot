@@ -1,7 +1,7 @@
 ---
 title: MCP Quick Setup
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
