@@ -4,6 +4,10 @@ hidden: true
 ---
 The PayU Developer Documentation Portal Model Context Protocol (MCP) server enables AI-powered code editors like Cursor and Windsurf, plus general-purpose tools like Claude Desktop, to interact directly with your PayU Developer Documentation Portal API and documentation.
 
+<Callout icon="📘" theme="info">
+  **Enable PayU MCP**: To enable PayU MCP, contact your PayU Key Account Manager or contact <Anchor label="PayU Support" target="_blank" href="https://help.payu.in">PayU Support</Anchor>.
+</Callout>
+
 ## What is MCP?
 
 Model Context Protocol (MCP) is an open standard that allows AI applications to securely access external data sources and tools. The PayU Developer Documentation Portal MCP server provides AI agents with:
@@ -19,7 +23,7 @@ PayU Developer Documentation Portal hosts a remote MCP server at `https://docs.p
 
 <Tabs>
   <Tab title="Cursor">
-    **Add to `~/.cursor/mcp.json`:**
+    **Add to`~/.cursor/mcp.json`:**
 
     ```json
     {
@@ -30,24 +34,10 @@ PayU Developer Documentation Portal hosts a remote MCP server at `https://docs.p
       }
     }
     ```
-
-    </Tab>
-  <Tab title="Windsurf">
-    **Add to `~/.codeium/windsurf/mcp_config.json`:**
-
-    ```json
-    {
-      "mcpServers": {
-        "payu-hosted-checkout": {
-          "url": "https://docs.payu.in/mcp"
-        }
-      }
-    }
-    ```
-
   </Tab>
-  <Tab title="Claude Desktop">
-    **Add to `claude_desktop_config.json`:**
+
+  <Tab title="Windsurf">
+    **Add to`~/.codeium/windsurf/mcp_config.json`:**
 
     ```json
     {
@@ -58,7 +48,20 @@ PayU Developer Documentation Portal hosts a remote MCP server at `https://docs.p
       }
     }
     ```
+  </Tab>
 
+  <Tab title="Claude Desktop">
+    **Add to`claude_desktop_config.json`:**
+
+    ```json
+    {
+      "mcpServers": {
+        "payu-hosted-checkout": {
+          "url": "https://docs.payu.in/mcp"
+        }
+      }
+    }
+    ```
   </Tab>
 </Tabs>
 
