@@ -40,22 +40,16 @@ The Server-to-Server integration is performed at the server level, that is, your
 **Steps to integrate**
 
 <Cards columns={2}>
-  <Card title="1. Post the parameters to PayU" href="https://docs.payu.in/docs/integrate-with-s2s#step-1-post-the-parameters-to-payu" >
+  <Card title="1. Post the parameters to PayU" href="https://docs.payu.in/docs/integrate-with-s2s#step-1-post-the-parameters-to-payu">
     Post the transaction parameters to PayU server to initiate the payment process
-
-    <br />
   </Card>
 
-  <Card title="2. Check response from PayU" href="https://docs.payu.in/docs/integrate-with-s2s#step-2-check-response-from-payu" >
+  <Card title="2. Check response from PayU" href="https://docs.payu.in/docs/integrate-with-s2s#step-2-check-response-from-payu">
     Check and process the response received from PayU after payment processing
-
-    <br />
   </Card>
 
   <Card title="3. Verify the payment" href="https://docs.payu.in/docs/integrate-with-s2s#step-3-verify-the-payment">
     Verify the payment using verify\_payment and monitor using webhooks
-
-    <br />
   </Card>
 </Cards>
 
@@ -490,6 +484,197 @@ The first request from you to PayU with the required transaction mandatory/ opti
 
   "key=JP***g&txnid=tJA4IWme0jIsDw&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=cc&bankcode=cc&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=5123456789012346&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=&txn_s2s_flow=4&hash=36b4ab309154a9cbc0a0b9829c086a196cb2edd758b1e918cf7f20fbc1f596f17cc4ba5682eee32317365c99e8b461692595328eea7bb9c6e689bc4b923abe81"
   ```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+data = {
+    "key": "JP***g",
+    "txnid": "tJA4IWme0jIsDw",
+    "amount": "10.00",
+    "firstname": "PayU User",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "productinfo": "iPhone",
+    "pg": "cc",
+    "bankcode": "cc",
+    "surl": "https://apiplayground-response.herokuapp.com/",
+    "furl": "https://apiplayground-response.herokuapp.com/",
+    "ccnum": "5123456789012346",
+    "ccexpmon": "05",
+    "ccexpyr": "2022",
+    "ccvv": "123",
+    "ccname": "",
+    "txn_s2s_flow": "4",
+    "hash": "36b4ab309154a9cbc0a0b9829c086a196cb2edd758b1e918cf7f20fbc1f596f17cc4ba5682eee32317365c99e8b461692595328eea7bb9c6e689bc4b923abe81"
+}
+
+response = requests.post(url, headers=headers, data=data)
+
+print("Status Code:", response.status_code)
+print("Response:", response.text)
+```
+```java
+import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class PayUCreditCardS2SPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        String url = "https://test.payu.in/_payment";
+        
+        Map<String, String> formData = new LinkedHashMap<>();
+        formData.put("key", "JP***g");
+        formData.put("txnid", "tJA4IWme0jIsDw");
+        formData.put("amount", "10.00");
+        formData.put("firstname", "PayU User");
+        formData.put("email", "test@gmail.com");
+        formData.put("phone", "9876543210");
+        formData.put("productinfo", "iPhone");
+        formData.put("pg", "cc");
+        formData.put("bankcode", "cc");
+        formData.put("surl", "https://apiplayground-response.herokuapp.com/");
+        formData.put("furl", "https://apiplayground-response.herokuapp.com/");
+        formData.put("ccnum", "5123456789012346");
+        formData.put("ccexpmon", "05");
+        formData.put("ccexpyr", "2022");
+        formData.put("ccvv", "123");
+        formData.put("ccname", "");
+        formData.put("txn_s2s_flow", "4");
+        formData.put("hash", "36b4ab309154a9cbc0a0b9829c086a196cb2edd758b1e918cf7f20fbc1f596f17cc4ba5682eee32317365c99e8b461692595328eea7bb9c6e689bc4b923abe81");
+        
+        String formBody = formData.entrySet()
+            .stream()
+            .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" + 
+                          URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
+            .collect(Collectors.joining("&"));
+        
+        HttpClient client = HttpClient.newHttpClient();
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formBody))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println("Status Code: " + response.statusCode());
+        System.out.println("Response: " + response.body());
+    }
+}
+```
+```php
+<?php
+
+$url = "https://test.payu.in/_payment";
+
+$data = array(
+    'key' => 'JP***g',
+    'txnid' => 'tJA4IWme0jIsDw',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'pg' => 'cc',
+    'bankcode' => 'cc',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'ccnum' => '5123456789012346',
+    'ccexpmon' => '05',
+    'ccexpyr' => '2022',
+    'ccvv' => '123',
+    'ccname' => '',
+    'txn_s2s_flow' => '4',
+    'hash' => '36b4ab309154a9cbc0a0b9829c086a196cb2edd758b1e918cf7f20fbc1f596f17cc4ba5682eee32317365c99e8b461692595328eea7bb9c6e689bc4b923abe81'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+));
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$error = curl_error($ch);
+curl_close($ch);
+
+if ($error) {
+    echo "cURL Error: " . $error . "\n";
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+?>
+```
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common qw(POST);
+
+my $url = "https://test.payu.in/_payment";
+
+my $ua = LWP::UserAgent->new;
+$ua->timeout(30);
+
+my %data = (
+    'key'          => 'JP***g',
+    'txnid'        => 'tJA4IWme0jIsDw',
+    'amount'       => '10.00',
+    'firstname'    => 'PayU User',
+    'email'        => 'test@gmail.com',
+    'phone'        => '9876543210',
+    'productinfo'  => 'iPhone',
+    'pg'           => 'cc',
+    'bankcode'     => 'cc',
+    'surl'         => 'https://apiplayground-response.herokuapp.com/',
+    'furl'         => 'https://apiplayground-response.herokuapp.com/',
+    'ccnum'        => '5123456789012346',
+    'ccexpmon'     => '05',
+    'ccexpyr'      => '2022',
+    'ccvv'         => '123',
+    'ccname'       => '',
+    'txn_s2s_flow' => '4',
+    'hash'         => '36b4ab309154a9cbc0a0b9829c086a196cb2edd758b1e918cf7f20fbc1f596f17cc4ba5682eee32317365c99e8b461692595328eea7bb9c6e689bc4b923abe81'
+);
+
+my $response = $ua->request(POST $url,
+    Content_Type => 'application/x-www-form-urlencoded',
+    Accept       => 'application/json',
+    Content      => [%data]
+);
+
+if ($response->is_success) {
+    print "Status Code: " . $response->code . "\n";
+    print "Response: " . $response->decoded_content . "\n";
+} else {
+    print "Error: " . $response->status_line . "\n";
+    print "Response: " . $response->decoded_content . "\n";
+}
+```
 </Accordion>
 
 ## Step 2: Check response from PayU
