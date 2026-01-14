@@ -59,7 +59,7 @@ Initiate an authorization request with the payment details provided post a succe
   <tbody>
     <tr>
       <td>
-        key<br/>
+        key<br />
         `mandatory`
       </td>
 
@@ -74,7 +74,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        txnid<br/>
+        txnid<br />
         `mandatory`
       </td>
 
@@ -89,7 +89,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        amount<br/>
+        amount<br />
         `mandatory`
       </td>
 
@@ -104,7 +104,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        productinfo <br/>`mandatory`
+        productinfo <br />`mandatory`
       </td>
 
       <td>
@@ -118,7 +118,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        firstname <br/>`mandatory`
+        firstname <br />`mandatory`
       </td>
 
       <td>
@@ -132,7 +132,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        email<br/>
+        email<br />
         `mandatory`
       </td>
 
@@ -147,7 +147,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        phone<br/>
+        phone<br />
         `mandatory`
       </td>
 
@@ -162,7 +162,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        pg<br/>
+        pg<br />
         `mandatory`
       </td>
 
@@ -177,7 +177,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        bankcode <br/>`mandatory`
+        bankcode <br />`mandatory`
       </td>
 
       <td>
@@ -191,7 +191,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccnum<br/>
+        ccnum<br />
         `mandatory`
       </td>
 
@@ -206,7 +206,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccname <br/>`mandatory`
+        ccname <br />`mandatory`
       </td>
 
       <td>
@@ -220,7 +220,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccvv<br/>
+        ccvv<br />
         `mandatory`
       </td>
 
@@ -235,7 +235,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccexpmon <br/>`mandatory`
+        ccexpmon <br />`mandatory`
       </td>
 
       <td>
@@ -249,7 +249,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccexpyr <br/>`mandatory`
+        ccexpyr <br />`mandatory`
       </td>
 
       <td>
@@ -263,7 +263,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        furl<br/>
+        furl<br />
         `mandatory`
       </td>
 
@@ -278,7 +278,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        surl<br/>
+        surl<br />
         `mandatory`
       </td>
 
@@ -293,7 +293,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        hash<br/>
+        hash<br />
         `mandatory`
       </td>
 
@@ -308,7 +308,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        txn_s2s_flow <br/>`mandatory`
+        txn_s2s_flow <br />`mandatory`
       </td>
 
       <td>
@@ -322,7 +322,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        authentication_info <br/>`mandatory`
+        authentication_info <br />`mandatory`
       </td>
 
       <td>
@@ -336,7 +336,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        threeDS2RequestData <br/>`mandatory`
+        threeDS2RequestData <br />`mandatory`
       </td>
 
       <td>
@@ -352,7 +352,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        address1<br/>
+        address1<br />
         `optional`
       </td>
 
@@ -367,7 +367,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        address2 <br/>`optional`
+        address2 <br />`optional`
       </td>
 
       <td>
@@ -381,7 +381,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        city<br/>
+        city<br />
         `optional`
       </td>
 
@@ -396,7 +396,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        state<br/> `    optional`
+        state<br /> `    optional`
       </td>
 
       <td>
@@ -410,7 +410,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        country<br/>
+        country<br />
         `optional`
       </td>
 
@@ -425,7 +425,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        zipcode<br/>
+        zipcode<br />
         `optional`
       </td>
 
@@ -441,7 +441,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf1<br/>
+        udf1<br />
         `optional`
       </td>
 
@@ -456,7 +456,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf2<br/>
+        udf2<br />
         `optional`
       </td>
 
@@ -471,7 +471,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf3<br/>
+        udf3<br />
         `optional`
       </td>
 
@@ -486,7 +486,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf4<br/>
+        udf4<br />
         `optional`
       </td>
 
@@ -501,7 +501,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf5<br/>
+        udf5<br />
         `optional`
       </td>
 
@@ -541,6 +541,285 @@ curl -X POST "https://test.payu.in/_payment" \
 -H "accept: application/json" \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "key=JP***g&txnid=ATGNMtNsHKgBQ4&amount=199.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=cc&bankcode=cc&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=5123456789012346&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=&txn_s2s_flow=3&threeDS2RequestData={\"threeDSVersion\":\"2.2.0\",\"deviceChannel\":\"APP/BRW\"}&authentication_info={\"eci\":\"05\",\"cavv\":\"AAABAWFlmQAAAABjRWWZEEFgFz+=\",\"flowType\":\"Frictionless\",\"threeDSTransID\":\"67b4c71f-19bf-4d97-bd09-4e3687dc9e42\",\"threeDSServerTransID\":\"eea30d14-71cf-41af-b961-f95b7d67dc93\",\"threeDSTransStatus\":\"Y\",\"threeDSTransStatusReason\":\"01-99\",\"additionalinfo\":{\"authudf2\":\"1_1665637507_954_104_l73c004m_IAMRB\"},\"acquirer_bin\":\"401200\"}&s2s_client_ip=83.191.88.168&s2s_device_info=221.6.48.86&hash=1447162a8519a8cbaf8726fdff99487cbac7743595cf355a27fac4a2b42a576e5f23d21ebf59b50004714f7b6b4775e34355ce6acad86f60e2c7369b5df4c55b"
+```
+```python
+import requests
+import json
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+# 3DS2 Request Data
+three_ds2_request_data = {
+    "threeDSVersion": "2.2.0",
+    "deviceChannel": "APP/BRW"
+}
+
+# Authentication Info
+authentication_info = {
+    "eci": "05",
+    "cavv": "AAABAWFlmQAAAABjRWWZEEFgFz+=",
+    "flowType": "Frictionless",
+    "threeDSTransID": "67b4c71f-19bf-4d97-bd09-4e3687dc9e42",
+    "threeDSServerTransID": "eea30d14-71cf-41af-b961-f95b7d67dc93",
+    "threeDSTransStatus": "Y",
+    "threeDSTransStatusReason": "01-99",
+    "additionalinfo": {
+        "authudf2": "1_1665637507_954_104_l73c004m_IAMRB"
+    },
+    "acquirer_bin": "401200"
+}
+
+data = {
+    "key": "JP***g",
+    "txnid": "ATGNMtNsHKgBQ4",
+    "amount": "199.00",
+    "firstname": "PayU User",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "productinfo": "iPhone",
+    "pg": "cc",
+    "bankcode": "cc",
+    "surl": "https://apiplayground-response.herokuapp.com/",
+    "furl": "https://apiplayground-response.herokuapp.com/",
+    "ccnum": "5123456789012346",
+    "ccexpmon": "05",
+    "ccexpyr": "2022",
+    "ccvv": "123",
+    "ccname": "",
+    "txn_s2s_flow": "3",
+    "threeDS2RequestData": json.dumps(three_ds2_request_data),
+    "authentication_info": json.dumps(authentication_info),
+    "s2s_client_ip": "83.191.88.168",
+    "s2s_device_info": "221.6.48.86",
+    "hash": "1447162a8519a8cbaf8726fdff99487cbac7743595cf355a27fac4a2b42a576e5f23d21ebf59b50004714f7b6b4775e34355ce6acad86f60e2c7369b5df4c55b"
+}
+
+response = requests.post(url, headers=headers, data=data)
+
+print("Status Code:", response.status_code)
+print("Response:", response.text)
+```
+```java
+import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class PayU3DS2Payment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        String url = "https://test.payu.in/_payment";
+        
+        // 3DS2 Request Data JSON
+        String threeDS2RequestData = "{\"threeDSVersion\":\"2.2.0\",\"deviceChannel\":\"APP/BRW\"}";
+        
+        // Authentication Info JSON
+        String authenticationInfo = "{\"eci\":\"05\",\"cavv\":\"AAABAWFlmQAAAABjRWWZEEFgFz+=\",\"flowType\":\"Frictionless\",\"threeDSTransID\":\"67b4c71f-19bf-4d97-bd09-4e3687dc9e42\",\"threeDSServerTransID\":\"eea30d14-71cf-41af-b961-f95b7d67dc93\",\"threeDSTransStatus\":\"Y\",\"threeDSTransStatusReason\":\"01-99\",\"additionalinfo\":{\"authudf2\":\"1_1665637507_954_104_l73c004m_IAMRB\"},\"acquirer_bin\":\"401200\"}";
+        
+        Map<String, String> formData = new LinkedHashMap<>();
+        formData.put("key", "JP***g");
+        formData.put("txnid", "ATGNMtNsHKgBQ4");
+        formData.put("amount", "199.00");
+        formData.put("firstname", "PayU User");
+        formData.put("email", "test@gmail.com");
+        formData.put("phone", "9876543210");
+        formData.put("productinfo", "iPhone");
+        formData.put("pg", "cc");
+        formData.put("bankcode", "cc");
+        formData.put("surl", "https://apiplayground-response.herokuapp.com/");
+        formData.put("furl", "https://apiplayground-response.herokuapp.com/");
+        formData.put("ccnum", "5123456789012346");
+        formData.put("ccexpmon", "05");
+        formData.put("ccexpyr", "2022");
+        formData.put("ccvv", "123");
+        formData.put("ccname", "");
+        formData.put("txn_s2s_flow", "3");
+        formData.put("threeDS2RequestData", threeDS2RequestData);
+        formData.put("authentication_info", authenticationInfo);
+        formData.put("s2s_client_ip", "83.191.88.168");
+        formData.put("s2s_device_info", "221.6.48.86");
+        formData.put("hash", "1447162a8519a8cbaf8726fdff99487cbac7743595cf355a27fac4a2b42a576e5f23d21ebf59b50004714f7b6b4775e34355ce6acad86f60e2c7369b5df4c55b");
+        
+        String formBody = formData.entrySet()
+            .stream()
+            .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" + 
+                          URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
+            .collect(Collectors.joining("&"));
+        
+        HttpClient client = HttpClient.newHttpClient();
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formBody))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println("Status Code: " + response.statusCode());
+        System.out.println("Response: " + response.body());
+    }
+}
+```
+
+```php
+<?php
+
+$url = "https://test.payu.in/_payment";
+
+// 3DS2 Request Data
+$threeDS2RequestData = json_encode([
+    "threeDSVersion" => "2.2.0",
+    "deviceChannel" => "APP/BRW"
+]);
+
+// Authentication Info
+$authenticationInfo = json_encode([
+    "eci" => "05",
+    "cavv" => "AAABAWFlmQAAAABjRWWZEEFgFz+=",
+    "flowType" => "Frictionless",
+    "threeDSTransID" => "67b4c71f-19bf-4d97-bd09-4e3687dc9e42",
+    "threeDSServerTransID" => "eea30d14-71cf-41af-b961-f95b7d67dc93",
+    "threeDSTransStatus" => "Y",
+    "threeDSTransStatusReason" => "01-99",
+    "additionalinfo" => [
+        "authudf2" => "1_1665637507_954_104_l73c004m_IAMRB"
+    ],
+    "acquirer_bin" => "401200"
+]);
+
+$data = array(
+    'key' => 'JP***g',
+    'txnid' => 'ATGNMtNsHKgBQ4',
+    'amount' => '199.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'pg' => 'cc',
+    'bankcode' => 'cc',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'ccnum' => '5123456789012346',
+    'ccexpmon' => '05',
+    'ccexpyr' => '2022',
+    'ccvv' => '123',
+    'ccname' => '',
+    'txn_s2s_flow' => '3',
+    'threeDS2RequestData' => $threeDS2RequestData,
+    'authentication_info' => $authenticationInfo,
+    's2s_client_ip' => '83.191.88.168',
+    's2s_device_info' => '221.6.48.86',
+    'hash' => '1447162a8519a8cbaf8726fdff99487cbac7743595cf355a27fac4a2b42a576e5f23d21ebf59b50004714f7b6b4775e34355ce6acad86f60e2c7369b5df4c55b'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+));
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$error = curl_error($ch);
+curl_close($ch);
+
+if ($error) {
+    echo "cURL Error: " . $error . "\n";
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+?>
+```
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common qw(POST);
+use JSON;
+
+my $url = "https://test.payu.in/_payment";
+
+my $ua = LWP::UserAgent->new;
+$ua->timeout(30);
+
+# 3DS2 Request Data
+my $threeDS2RequestData = encode_json({
+    threeDSVersion => "2.2.0",
+    deviceChannel  => "APP/BRW"
+});
+
+# Authentication Info
+my $authenticationInfo = encode_json({
+    eci                    => "05",
+    cavv                   => "AAABAWFlmQAAAABjRWWZEEFgFz+=",
+    flowType               => "Frictionless",
+    threeDSTransID         => "67b4c71f-19bf-4d97-bd09-4e3687dc9e42",
+    threeDSServerTransID   => "eea30d14-71cf-41af-b961-f95b7d67dc93",
+    threeDSTransStatus     => "Y",
+    threeDSTransStatusReason => "01-99",
+    additionalinfo         => {
+        authudf2 => "1_1665637507_954_104_l73c004m_IAMRB"
+    },
+    acquirer_bin           => "401200"
+});
+
+my %data = (
+    'key'                 => 'JP***g',
+    'txnid'               => 'ATGNMtNsHKgBQ4',
+    'amount'              => '199.00',
+    'firstname'           => 'PayU User',
+    'email'               => 'test@gmail.com',
+    'phone'               => '9876543210',
+    'productinfo'         => 'iPhone',
+    'pg'                  => 'cc',
+    'bankcode'            => 'cc',
+    'surl'                => 'https://apiplayground-response.herokuapp.com/',
+    'furl'                => 'https://apiplayground-response.herokuapp.com/',
+    'ccnum'               => '5123456789012346',
+    'ccexpmon'            => '05',
+    'ccexpyr'             => '2022',
+    'ccvv'                => '123',
+    'ccname'              => '',
+    'txn_s2s_flow'        => '3',
+    'threeDS2RequestData' => $threeDS2RequestData,
+    'authentication_info' => $authenticationInfo,
+    's2s_client_ip'       => '83.191.88.168',
+    's2s_device_info'     => '221.6.48.86',
+    'hash'                => '1447162a8519a8cbaf8726fdff99487cbac7743595cf355a27fac4a2b42a576e5f23d21ebf59b50004714f7b6b4775e34355ce6acad86f60e2c7369b5df4c55b'
+);
+
+my $response = $ua->request(POST $url,
+    Content_Type => 'application/x-www-form-urlencoded',
+    Accept       => 'application/json',
+    Content      => [%data]
+);
+
+if ($response->is_success) {
+    print "Status Code: " . $response->code . "\n";
+    print "Response: " . $response->decoded_content . "\n";
+} else {
+    print "Error: " . $response->status_line . "\n";
+    print "Response: " . $response->decoded_content . "\n";
+}
 ```
 
 Collect the response in the [Cards Direct Authorization Flow](ref:_payment_s2s_direct_authorization_flow) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters and authentication_info JSON Fields Description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
