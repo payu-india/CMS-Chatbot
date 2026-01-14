@@ -20,6 +20,28 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Native OTP Flow for BNPL
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  keywords:
+    - Native OTP Flow BNPL Integration
+    - BNPL Native OTP Flow Integration with PayU
+    - PayU Seamless BNPL integration Native OTP Flow
+    - >-
+      Buy Now Pay Later Integration with Merchant Hosted Checkout Native OTP
+      Flow
+    - BNPL API Integration Pay Later Services with PayU
+    - Merchant Hosted BNPL Merchant Integration
+    - Flexible Payment Options Merchant Hosted Checkout Integration
+  robots: index
+next:
+  description: ''
+---
 This section describes what is Native OTP flow with benefits and how to implement Native OTP flow when collecting payments using <Glossary>BNPL</Glossary>.
 
 **Steps to integrate**
@@ -87,18 +109,188 @@ Before you can initiate payment with PayU, you can check the eligibility using t
 <Accordion title="Sample request" icon="fa-code">
   ```curl
   curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' \
-  --header 'x-credential-username: smsplus' \
-  --header 'Content-Type: application/json' \
-  --header 'authorization: hmac username="x0i6r2", algorithm="sha512", headers="date", signature="0e0ebc518c085d8ff49058b7c232bfe2e8779e9e9cafd34a4cdf1c11114035eea75b0e404a9b9e152757dbcc4926f78b6f18ba7f6643e2bf687a65942d3bde38"' \
-  --header 'date: Mon, 28 Oct 2024 10:34:49 GMT' \
-  --data '{
+    --header 'x-credential-username: smsplus' \
+    --header 'Content-Type: application/json' \
+    --header 'authorization: hmac username="x0i6r2", algorithm="sha512", headers="date", signature="0e0ebc518c085d8ff49058b7c232bfe2e8779e9e9cafd34a4cdf1c11114035eea75b0e404a9b9e152757dbcc4926f78b6f18ba7f6643e2bf687a65942d3bde38"' \
+    --header 'date: Mon, 28 Oct 2024 10:34:49 GMT' \
+    --data '{
+        "amount": 2000000,
+        "userCredentials": "aaa:bbb",
+        "phone": "9560012582",
+        "bankCode": null,
+        "payuToken": null
+    }'
+  ```
+  ```python
+  import requests
+  import json
+  from datetime import datetime
+
+  url = "https://test.payu.in/info/linkAndPay/get_emi_checkout_details"
+
+  # Generate date header in RFC 1123 format
+  date_header = datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
+
+  # HMAC authorization header (replace with your actual signature)
+  authorization = 'hmac username="x0i6r2", algorithm="sha512", headers="date", signature="0e0ebc518c085d8ff49058b7c232bfe2e8779e9e9cafd34a4cdf1c11114035eea75b0e404a9b9e152757dbcc4926f78b6f18ba7f6643e2bf687a65942d3bde38"'
+
+  headers = {
+      "x-credential-username": "smsplus",
+      "Content-Type": "application/json",
+      "authorization": authorization,
+      "date": date_header
+  }
+
+  payload = {
       "amount": 2000000,
       "userCredentials": "aaa:bbb",
       "phone": "9560012582",
-      "bankCode": null,
-      "payuToken": null
-  }'
+      "bankCode": None,
+      "payuToken": None
+  }
 
+  response = requests.post(url, headers=headers, json=payload)
+
+  print("Status Code:", response.status_code)
+  print("Response:", response.json())
+  ```
+  ```java
+  import java.io.IOException;
+  import java.net.URI;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.time.ZonedDateTime;
+  import java.time.format.DateTimeFormatter;
+  import java.util.Locale;
+
+  public class BNPLEligibilityCheck {
+      public static void main(String[] args) throws IOException, InterruptedException {
+          String url = "https://test.payu.in/info/linkAndPay/get_emi_checkout_details";
+          
+          // Generate date header in RFC 1123 format
+          String dateHeader = DateTimeFormatter
+              .ofPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'", Locale.ENGLISH)
+              .format(ZonedDateTime.now());
+          
+          // HMAC authorization header (replace with your actual signature)
+          String authorization = "hmac username=\"x0i6r2\", algorithm=\"sha512\", headers=\"date\", signature=\"0e0ebc518c085d8ff49058b7c232bfe2e8779e9e9cafd34a4cdf1c11114035eea75b0e404a9b9e152757dbcc4926f78b6f18ba7f6643e2bf687a65942d3bde38\"";
+          
+          String jsonPayload = """
+              {
+                  "amount": 2000000,
+                  "userCredentials": "aaa:bbb",
+                  "phone": "9560012582",
+                  "bankCode": null,
+                  "payuToken": null
+              }
+              """;
+          
+          HttpClient client = HttpClient.newHttpClient();
+          
+          HttpRequest request = HttpRequest.newBuilder()
+              .uri(URI.create(url))
+              .header("x-credential-username", "smsplus")
+              .header("Content-Type", "application/json")
+              .header("authorization", authorization)
+              .header("date", dateHeader)
+              .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
+              .build();
+          
+          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+          
+          System.out.println("Status Code: " + response.statusCode());
+          System.out.println("Response: " + response.body());
+      }
+  }
+  ```
+  ```php
+  <?php
+
+  $url = "https://test.payu.in/info/linkAndPay/get_emi_checkout_details";
+
+  // Generate date header in RFC 1123 format
+  $dateHeader = gmdate('D, d M Y H:i:s') . ' GMT';
+
+  // HMAC authorization header (replace with your actual signature)
+  $authorization = 'hmac username="x0i6r2", algorithm="sha512", headers="date", signature="0e0ebc518c085d8ff49058b7c232bfe2e8779e9e9cafd34a4cdf1c11114035eea75b0e404a9b9e152757dbcc4926f78b6f18ba7f6643e2bf687a65942d3bde38"';
+
+  $payload = array(
+      'amount' => 2000000,
+      'userCredentials' => 'aaa:bbb',
+      'phone' => '9560012582',
+      'bankCode' => null,
+      'payuToken' => null
+  );
+
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'x-credential-username: smsplus',
+      'Content-Type: application/json',
+      'authorization: ' . $authorization,
+      'date: ' . $dateHeader
+  ));
+
+  $response = curl_exec($ch);
+  $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  curl_close($ch);
+
+  echo "Status Code: " . $httpCode . "\n";
+  echo "Response: " . $response . "\n";
+
+  $jsonResponse = json_decode($response, true);
+  print_r($jsonResponse);
+  ?>
+  ```
+  ```perl
+  #!/usr/bin/perl
+  use strict;
+  use warnings;
+  use LWP::UserAgent;
+  use HTTP::Request;
+  use JSON;
+  use POSIX qw(strftime);
+
+  my $url = "https://test.payu.in/info/linkAndPay/get_emi_checkout_details";
+
+  # Generate date header in RFC 1123 format
+  my $date_header = strftime("%a, %d %b %Y %H:%M:%S GMT", gmtime());
+
+  # HMAC authorization header (replace with your actual signature)
+  my $authorization = 'hmac username="x0i6r2", algorithm="sha512", headers="date", signature="0e0ebc518c085d8ff49058b7c232bfe2e8779e9e9cafd34a4cdf1c11114035eea75b0e404a9b9e152757dbcc4926f78b6f18ba7f6643e2bf687a65942d3bde38"';
+
+  my $payload = {
+      amount          => 2000000,
+      userCredentials => "aaa:bbb",
+      phone           => "9560012582",
+      bankCode        => undef,
+      payuToken       => undef
+  };
+
+  my $json_payload = encode_json($payload);
+
+  my $ua = LWP::UserAgent->new;
+  $ua->timeout(30);
+
+  my $req = HTTP::Request->new('POST', $url);
+  $req->header('x-credential-username' => 'smsplus');
+  $req->header('Content-Type'          => 'application/json');
+  $req->header('authorization'         => $authorization);
+  $req->header('date'                  => $date_header);
+  $req->content($json_payload);
+
+  my $response = $ua->request($req);
+
+  if ($response->is_success) {
+      print "Status Code: " . $response->code . "\n";
+      print "Response: " . $response->decoded_content . "\n";
+  } else {
+      print "Error: " . $response->status_line . "\n";
+  }
   ```
 </Accordion>
 
@@ -478,6 +670,193 @@ Before you can initiate payment with PayU, you can check the eligibility using t
   <HashingRequestParameters />
 </Accordion>
 
+<Accordion title="Sample request" icon="fa-code">
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=JP***g" \
+    -d "txnid=BNPL123456789" \
+    -d "amount=10.00" \
+    -d "firstname=Ashish" \
+    -d "email=ashish@example.com" \
+    -d "phone=9876543210" \
+    -d "productinfo=iPhone" \
+    -d "pg=BNPL" \
+    -d "bankcode=LAZYPAY" \
+    -d "surl=https://apiplayground-response.herokuapp.com/" \
+    -d "furl=https://apiplayground-response.herokuapp.com/" \
+    -d "txn_s2s_flow=4" \
+    -d "hash=<<calculated_hash_here>>"
+  ```
+  ```python
+  import requests
+
+  url = "https://test.payu.in/_payment"
+
+  headers = {
+      "accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+  }
+
+  data = {
+      "key": "JP***g",
+      "txnid": "BNPL123456789",
+      "amount": "10.00",
+      "firstname": "Ashish",
+      "email": "ashish@example.com",
+      "phone": "9876543210",
+      "productinfo": "iPhone",
+      "pg": "BNPL",
+      "bankcode": "LAZYPAY",
+      "surl": "https://apiplayground-response.herokuapp.com/",
+      "furl": "https://apiplayground-response.herokuapp.com/",
+      "txn_s2s_flow": "4",
+      "hash": "<<calculated_hash_here>>"
+  }
+
+  response = requests.post(url, headers=headers, data=data)
+
+  print("Status Code:", response.status_code)
+  print("Response:", response.text)
+  ```
+  ```java
+  import java.io.IOException;
+  import java.net.URI;
+  import java.net.URLEncoder;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.nio.charset.StandardCharsets;
+  import java.util.HashMap;
+  import java.util.Map;
+  import java.util.stream.Collectors;
+
+  public class BNPLPaymentInitiate {
+      public static void main(String[] args) throws IOException, InterruptedException {
+          String url = "https://test.payu.in/_payment";
+          
+          Map<String, String> params = new HashMap<>();
+          params.put("key", "JP***g");
+          params.put("txnid", "BNPL123456789");
+          params.put("amount", "10.00");
+          params.put("firstname", "Ashish");
+          params.put("email", "ashish@example.com");
+          params.put("phone", "9876543210");
+          params.put("productinfo", "iPhone");
+          params.put("pg", "BNPL");
+          params.put("bankcode", "LAZYPAY");
+          params.put("surl", "https://apiplayground-response.herokuapp.com/");
+          params.put("furl", "https://apiplayground-response.herokuapp.com/");
+          params.put("txn_s2s_flow", "4");
+          params.put("hash", "<<calculated_hash_here>>");
+          
+          String formData = params.entrySet().stream()
+              .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" 
+                      + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+              .collect(Collectors.joining("&"));
+          
+          HttpClient client = HttpClient.newHttpClient();
+          
+          HttpRequest request = HttpRequest.newBuilder()
+              .uri(URI.create(url))
+              .header("accept", "application/json")
+              .header("Content-Type", "application/x-www-form-urlencoded")
+              .POST(HttpRequest.BodyPublishers.ofString(formData))
+              .build();
+          
+          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+          
+          System.out.println("Status Code: " + response.statusCode());
+          System.out.println("Response: " + response.body());
+      }
+  }
+  ```
+  ```php
+  <?php
+
+  $url = "https://test.payu.in/_payment";
+
+  $data = array(
+      'key' => 'JP***g',
+      'txnid' => 'BNPL123456789',
+      'amount' => '10.00',
+      'firstname' => 'Ashish',
+      'email' => 'ashish@example.com',
+      'phone' => '9876543210',
+      'productinfo' => 'iPhone',
+      'pg' => 'BNPL',
+      'bankcode' => 'LAZYPAY',
+      'surl' => 'https://apiplayground-response.herokuapp.com/',
+      'furl' => 'https://apiplayground-response.herokuapp.com/',
+      'txn_s2s_flow' => '4',
+      'hash' => '<<calculated_hash_here>>'
+  );
+
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'accept: application/json',
+      'Content-Type: application/x-www-form-urlencoded'
+  ));
+
+  $response = curl_exec($ch);
+  $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  curl_close($ch);
+
+  echo "Status Code: " . $httpCode . "\n";
+  echo "Response: " . $response . "\n";
+
+  $jsonResponse = json_decode($response, true);
+  print_r($jsonResponse);
+  ?>
+  ```
+  ```perl
+  #!/usr/bin/perl
+  use strict;
+  use warnings;
+  use LWP::UserAgent;
+  use HTTP::Request::Common;
+
+  my $url = "https://test.payu.in/_payment";
+
+  my %data = (
+      key         => 'JP***g',
+      txnid       => 'BNPL123456789',
+      amount      => '10.00',
+      firstname   => 'Ashish',
+      email       => 'ashish@example.com',
+      phone       => '9876543210',
+      productinfo => 'iPhone',
+      pg          => 'BNPL',
+      bankcode    => 'LAZYPAY',
+      surl        => 'https://apiplayground-response.herokuapp.com/',
+      furl        => 'https://apiplayground-response.herokuapp.com/',
+      txn_s2s_flow => '4',
+      hash        => '<<calculated_hash_here>>'
+  );
+
+  my $ua = LWP::UserAgent->new;
+  $ua->timeout(30);
+
+  my $response = $ua->post($url, 
+      Content_Type => 'application/x-www-form-urlencoded',
+      Content => \%data
+  );
+
+  if ($response->is_success) {
+      print "Status Code: " . $response->code . "\n";
+      print "Response: " . $response->decoded_content . "\n";
+  } else {
+      print "Error: " . $response->status_line . "\n";
+      print "Response: " . $response->decoded_content . "\n";
+  }
+  ```
+</Accordion>
+
 ## Step 3: Check the response from PayU
 
 <Accordion title="Sample payment response" icon="fa-code">
@@ -792,207 +1171,8 @@ After you have collected the OTP from the customer, the reference ID can be foun
 <p>Upon receiving the response, we recommend performing a reconciliation step to validate all transaction details.\
 You can verify your payments using either of the following methods:</p>
 
-<Accordion title="Verify the payment" icon="fa-magnifying-glass">
-  <Tabs>
-    <Tab title="1. Verify using Webhooks">
-      Configure the webhooks to monitor the status of payments.\
-      Webhooks enable a server to communicate with another server by sending an HTTP callback or message.\
-      These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.
+<Verify_Payment_Tabs />
 
-      👉 For more details, refer to [Webhooks for Payments](https://docs.payu.in/reference/webhooks). <br />
-    </Tab>
+<br />
 
-    <Tab title="2. Verify using Verify Payments API">
-      **Environment**
-
-      |                        |                                                                                                              |
-      | :--------------------- | :----------------------------------------------------------------------------------------------------------- |
-      | Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
-      | Production Environment | [https://info.payu.in/merchant/postservice.php?form=2](https://info.payu.in/merchant/postservice.php?form=2) |
-
-      > Note: The hash logic for Verify Payment API is:
-      > `sha512(key|command|var1|salt)
-      > sha512`
-
-      <Accordion title="Sample request" icon="fa-code">
-        ```curl
-        curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
-        --header 'Content-Type: application/x-www-form-urlencoded' \
-        --data-urlencode 'key=JP***g' \
-        --data-urlencode 'command=verify_payment' \
-        --data-urlencode 'var1=IhfgcZnXR4o4nB' \
-        --data-urlencode 'hash=<<calculated_hash_here>>'
-        ```
-      </Accordion>
-
-      <Accordion title="Sample response" icon="fa-reply">
-        <br />
-
-        ```json Success Response
-        If credit card payment is made, the response is similar to the following:
-        {
-        "status": 1,
-        "msg": "1 out of 1 Transactions Fetched Successfully",
-        "transaction_details": {
-           "1733900931584": {
-               "mihpayid": "21820644083",
-               "request_id": null,
-               "bank_ref_num": null,
-               "amt": "1.00",
-               "transaction_amount": "1.00",
-               "txnid": "1733900931584",
-               "additional_charges": "0.00",
-               "productinfo": "Macbook Pro",
-               "firstname": "Abc",
-               "bankcode": "MAST",
-               "udf1": "udf1",
-               "udf2": "udf2",
-               "udf3": "udf3",
-               "udf4": "udf4",
-               "udf5": "udf5",
-               "field2": null,
-               "field9": "OTP/ATM page expired due to no user action",
-               "error_code": "E1602",
-               "addedon": "2024-12-11 12:43:03",
-               "payment_source": "payu",
-               "card_type": "MAST",
-               "error_Message": "Bank was unable to authenticate.",
-               "net_amount_debit": "0.00",
-               "disc": "0.00",
-               "mode": "DC",
-               "PG_TYPE": "DC-PG",
-               "card_no": "XXXXXXXXXXXX7596",
-               "status": "failure",
-               "unmappedstatus": "dropped",
-               "Merchant_UTR": null,
-               "Settled_At": null,
-               "cardhash": "095d184331be367bb92aa3eeecb57d0728de96cc598dd563d407982d75021149",
-               "name_on_card": null,
-               "card_token": "4e97156bc2d6320cdfe15",
-               "field4": null,
-               "threeDSVersion": "2.2.0",
-               "offerAvailed": null
-           }
-        }
-        }
-        ```
-        ```json Failure Response
-
-        If txnID is not found, the response is similar to the following
-        {
-            "status":0,
-            "msg":"0 out of 1 Transactions Fetched Successfully",
-              "transaction_details":
-              {	
-        						"IhfgcZnXR4o4nB":
-                {
-        								"mihpayid":"Not Found",
-                    "status":"Not Found"
-                  }
-        						}
-        }
-        ```
-      </Accordion>
-
-      <Accordion title="Response parameters" icon="fa-list">
-        <Table align={["left","left","left"]}>
-          <thead>
-            <tr>
-              <th style={{ textAlign: "left" }}>
-                **Parameter**
-              </th>
-
-              <th style={{ textAlign: "left" }}>
-                **Description**
-              </th>
-
-              <th style={{ textAlign: "left" }}>
-                **Example**
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td style={{ textAlign: "left" }}>
-                status
-              </td>
-
-              <td style={{ textAlign: "left" }}>
-                This parameter returns the status of web service call. The status can be any of the following:
-
-                * 0 - If web service call failed.
-                * 1 - If web service call succeeded
-              </td>
-
-              <td style={{ textAlign: "left" }}>
-                0
-              </td>
-            </tr>
-
-            <tr>
-              <td style={{ textAlign: "left" }}>
-                msg
-              </td>
-
-              <td style={{ textAlign: "left" }}>
-                This parameter returns the reason string.
-              </td>
-
-              <td style={{ textAlign: "left" }}>
-                For example, any of the following messages are displayed:
-
-                * Parameter missing
-                * Token is empty
-                * Amount is empty
-                * Transaction not exists
-              </td>
-            </tr>
-
-            <tr>
-              <td style={{ textAlign: "left" }}>
-                transaction\_details
-              </td>
-
-              <td style={{ textAlign: "left" }}>
-                This parameter contains the response in a JSON format. For more information refer to [JSON fields description for transaction\_details parameter ](#json-field-description-for-transaction_details-parameter).
-              </td>
-
-              <td style={{ textAlign: "left" }} />
-            </tr>
-
-            <tr>
-              <td style={{ textAlign: "left" }}>
-                request\_id
-              </td>
-
-              <td style={{ textAlign: "left" }}>
-                PayU Request ID for a request in a Transaction. For example, a transaction can have a refund request.
-              </td>
-
-              <td style={{ textAlign: "left" }}>
-                7800456
-              </td>
-            </tr>
-
-            <tr>
-              <td style={{ textAlign: "left" }}>
-                bank\_ref\_num
-              </td>
-
-              <td style={{ textAlign: "left" }}>
-                This parameter returns the bank reference number. If the bank provides after a successful action.
-              </td>
-
-              <td style={{ textAlign: "left" }}>
-                204519474956
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-
-        To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
-      </Accordion>
-    </Tab>
-  </Tabs>
-</Accordion>
+<br />
