@@ -1,5 +1,5 @@
 ---
-title: Using 1FA with Network Tokens
+title: Using Travel Quick Pay with Network Tokens
 deprecated: false
 hidden: true
 metadata:
