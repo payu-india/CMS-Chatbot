@@ -15,26 +15,18 @@ This is server-to-server integration over the Redirect experience for cards invo
 <Cards columns={2}>
   <Card title="1. Initiate payment request with PayU" href="https://docs.payu.in/docs/integrate-with-s2s-for-cards-classic-integration#step-1-initiate-payment-request-with-payu">
     Create and send a payment request to PayU with all required parameters including merchant details and transaction information
-
-    <br />
   </Card>
 
   <Card title="2. Redirect the customer" href="https://docs.payu.in/docs/integrate-with-s2s-for-cards-classic-integration#step-2-redirect-the-customer">
     Redirect the customer to PayU's payment page to complete the transaction securely
-
-    <br />
   </Card>
 
   <Card title="3. Check response from PayU" href="https://docs.payu.in/docs/integrate-with-s2s-for-cards-classic-integration#step-3-check-response-from-payu">
     Handle the response from PayU after the customer completes or cancels the payment
-
-    <br />
   </Card>
 
   <Card title="4. Verify the payment" href="https://docs.payu.in/docs/integrate-with-s2s-for-cards-classic-integration#step-4-verify-the-payment">
     Verify the payment status using PayU's verification API and implement webhook monitoring
-
-    <br />
   </Card>
 </Cards>
 
@@ -89,265 +81,265 @@ The merchant initiates PayU with the required transaction mandatory or optional 
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
-```curl
-curl --location --request POST 'https://secure.payu.in/_payment' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'hash=d89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42' \
-  --data-urlencode 'key=s*****s' \
-  --data-urlencode 'txnid=payuTestTransaction3818940' \
-  --data-urlencode 'amount=1.0' \
-  --data-urlencode 'firstname=Ashish' \
-  --data-urlencode 'email=test@payu.in' \
-  --data-urlencode 'phone=9988776655' \
-  --data-urlencode 'productinfo=Product Info' \
-  --data-urlencode 'surl=https://admin.payu.in/test_response' \
-  --data-urlencode 'furl=https://admin.payu.in/test_response' \
-  --data-urlencode 'notifyurl=https://admin.payu.in/test_response' \
-  --data-urlencode 'codurl=https://admin.payu.in/test_response' \
-  --data-urlencode 'ipurl=https://admin.payu.in/test_response' \
-  --data-urlencode 'lastname=' \
-  --data-urlencode 'udf1=' \
-  --data-urlencode 'udf2=' \
-  --data-urlencode 'udf3=' \
-  --data-urlencode 'udf4=' \
-  --data-urlencode 'udf5=' \
-  --data-urlencode 'pg=CC' \
-  --data-urlencode 'bankcode=DC' \
-  --data-urlencode 'ccnum=XXXXXXXXXXX8811' \
-  --data-urlencode 'ccname=Ashish' \
-  --data-urlencode 'ccvv=XXX' \
-  --data-urlencode 'ccexpmon=12' \
-  --data-urlencode 'ccexpyr=2023' \
-  --data-urlencode 'txn_s2s_flow=4' \
-  --data-urlencode 'authentication_flow=REDIRECT'
-```
-```python
-import requests
+  ```curl
+  curl --location --request POST 'https://secure.payu.in/_payment' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'hash=d89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42' \
+    --data-urlencode 'key=s*****s' \
+    --data-urlencode 'txnid=payuTestTransaction3818940' \
+    --data-urlencode 'amount=1.0' \
+    --data-urlencode 'firstname=Ashish' \
+    --data-urlencode 'email=test@payu.in' \
+    --data-urlencode 'phone=9988776655' \
+    --data-urlencode 'productinfo=Product Info' \
+    --data-urlencode 'surl=https://admin.payu.in/test_response' \
+    --data-urlencode 'furl=https://admin.payu.in/test_response' \
+    --data-urlencode 'notifyurl=https://admin.payu.in/test_response' \
+    --data-urlencode 'codurl=https://admin.payu.in/test_response' \
+    --data-urlencode 'ipurl=https://admin.payu.in/test_response' \
+    --data-urlencode 'lastname=' \
+    --data-urlencode 'udf1=' \
+    --data-urlencode 'udf2=' \
+    --data-urlencode 'udf3=' \
+    --data-urlencode 'udf4=' \
+    --data-urlencode 'udf5=' \
+    --data-urlencode 'pg=CC' \
+    --data-urlencode 'bankcode=DC' \
+    --data-urlencode 'ccnum=XXXXXXXXXXX8811' \
+    --data-urlencode 'ccname=Ashish' \
+    --data-urlencode 'ccvv=XXX' \
+    --data-urlencode 'ccexpmon=12' \
+    --data-urlencode 'ccexpyr=2023' \
+    --data-urlencode 'txn_s2s_flow=4' \
+    --data-urlencode 'authentication_flow=REDIRECT'
+  ```
+  ```python
+  import requests
 
-url = "https://secure.payu.in/_payment"
+  url = "https://secure.payu.in/_payment"
 
-headers = {
-    "Content-Type": "application/x-www-form-urlencoded"
-}
+  headers = {
+      "Content-Type": "application/x-www-form-urlencoded"
+  }
 
-data = {
-    "hash": "d89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42",
-    "key": "s*****s",
-    "txnid": "payuTestTransaction3818940",
-    "amount": "1.0",
-    "firstname": "Ashish",
-    "email": "test@payu.in",
-    "phone": "9988776655",
-    "productinfo": "Product Info",
-    "surl": "https://admin.payu.in/test_response",
-    "furl": "https://admin.payu.in/test_response",
-    "notifyurl": "https://admin.payu.in/test_response",
-    "codurl": "https://admin.payu.in/test_response",
-    "ipurl": "https://admin.payu.in/test_response",
-    "lastname": "",
-    "udf1": "",
-    "udf2": "",
-    "udf3": "",
-    "udf4": "",
-    "udf5": "",
-    "pg": "CC",
-    "bankcode": "DC",
-    "ccnum": "XXXXXXXXXXX8811",
-    "ccname": "Ashish",
-    "ccvv": "XXX",
-    "ccexpmon": "12",
-    "ccexpyr": "2023",
-    "txn_s2s_flow": "4",
-    "authentication_flow": "REDIRECT"
-}
+  data = {
+      "hash": "d89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42",
+      "key": "s*****s",
+      "txnid": "payuTestTransaction3818940",
+      "amount": "1.0",
+      "firstname": "Ashish",
+      "email": "test@payu.in",
+      "phone": "9988776655",
+      "productinfo": "Product Info",
+      "surl": "https://admin.payu.in/test_response",
+      "furl": "https://admin.payu.in/test_response",
+      "notifyurl": "https://admin.payu.in/test_response",
+      "codurl": "https://admin.payu.in/test_response",
+      "ipurl": "https://admin.payu.in/test_response",
+      "lastname": "",
+      "udf1": "",
+      "udf2": "",
+      "udf3": "",
+      "udf4": "",
+      "udf5": "",
+      "pg": "CC",
+      "bankcode": "DC",
+      "ccnum": "XXXXXXXXXXX8811",
+      "ccname": "Ashish",
+      "ccvv": "XXX",
+      "ccexpmon": "12",
+      "ccexpyr": "2023",
+      "txn_s2s_flow": "4",
+      "authentication_flow": "REDIRECT"
+  }
 
-response = requests.post(url, headers=headers, data=data)
+  response = requests.post(url, headers=headers, data=data)
 
-print("Status Code:", response.status_code)
-print("Response:", response.text)
-```
-```java
-import java.io.IOException;
-import java.net.URI;
-import java.net.URLEncoder;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+  print("Status Code:", response.status_code)
+  print("Response:", response.text)
+  ```
+  ```java
+  import java.io.IOException;
+  import java.net.URI;
+  import java.net.URLEncoder;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.nio.charset.StandardCharsets;
+  import java.util.LinkedHashMap;
+  import java.util.Map;
+  import java.util.stream.Collectors;
 
-public class PayUDebitCardS2SPayment {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        String url = "https://secure.payu.in/_payment";
-        
-        Map<String, String> formData = new LinkedHashMap<>();
-        formData.put("hash", "d89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42");
-        formData.put("key", "s*****s");
-        formData.put("txnid", "payuTestTransaction3818940");
-        formData.put("amount", "1.0");
-        formData.put("firstname", "Ashish");
-        formData.put("email", "test@payu.in");
-        formData.put("phone", "9988776655");
-        formData.put("productinfo", "Product Info");
-        formData.put("surl", "https://admin.payu.in/test_response");
-        formData.put("furl", "https://admin.payu.in/test_response");
-        formData.put("notifyurl", "https://admin.payu.in/test_response");
-        formData.put("codurl", "https://admin.payu.in/test_response");
-        formData.put("ipurl", "https://admin.payu.in/test_response");
-        formData.put("lastname", "");
-        formData.put("udf1", "");
-        formData.put("udf2", "");
-        formData.put("udf3", "");
-        formData.put("udf4", "");
-        formData.put("udf5", "");
-        formData.put("pg", "CC");
-        formData.put("bankcode", "DC");
-        formData.put("ccnum", "XXXXXXXXXXX8811");
-        formData.put("ccname", "Ashish");
-        formData.put("ccvv", "XXX");
-        formData.put("ccexpmon", "12");
-        formData.put("ccexpyr", "2023");
-        formData.put("txn_s2s_flow", "4");
-        formData.put("authentication_flow", "REDIRECT");
-        
-        String formBody = formData.entrySet()
-            .stream()
-            .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" + 
-                          URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
-            .collect(Collectors.joining("&"));
-        
-        HttpClient client = HttpClient.newHttpClient();
-        
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .header("Content-Type", "application/x-www-form-urlencoded")
-            .POST(HttpRequest.BodyPublishers.ofString(formBody))
-            .build();
-        
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Response: " + response.body());
-    }
-}
-```
-```php
-<?php
+  public class PayUDebitCardS2SPayment {
+      public static void main(String[] args) throws IOException, InterruptedException {
+          String url = "https://secure.payu.in/_payment";
+          
+          Map<String, String> formData = new LinkedHashMap<>();
+          formData.put("hash", "d89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42");
+          formData.put("key", "s*****s");
+          formData.put("txnid", "payuTestTransaction3818940");
+          formData.put("amount", "1.0");
+          formData.put("firstname", "Ashish");
+          formData.put("email", "test@payu.in");
+          formData.put("phone", "9988776655");
+          formData.put("productinfo", "Product Info");
+          formData.put("surl", "https://admin.payu.in/test_response");
+          formData.put("furl", "https://admin.payu.in/test_response");
+          formData.put("notifyurl", "https://admin.payu.in/test_response");
+          formData.put("codurl", "https://admin.payu.in/test_response");
+          formData.put("ipurl", "https://admin.payu.in/test_response");
+          formData.put("lastname", "");
+          formData.put("udf1", "");
+          formData.put("udf2", "");
+          formData.put("udf3", "");
+          formData.put("udf4", "");
+          formData.put("udf5", "");
+          formData.put("pg", "CC");
+          formData.put("bankcode", "DC");
+          formData.put("ccnum", "XXXXXXXXXXX8811");
+          formData.put("ccname", "Ashish");
+          formData.put("ccvv", "XXX");
+          formData.put("ccexpmon", "12");
+          formData.put("ccexpyr", "2023");
+          formData.put("txn_s2s_flow", "4");
+          formData.put("authentication_flow", "REDIRECT");
+          
+          String formBody = formData.entrySet()
+              .stream()
+              .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" + 
+                            URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
+              .collect(Collectors.joining("&"));
+          
+          HttpClient client = HttpClient.newHttpClient();
+          
+          HttpRequest request = HttpRequest.newBuilder()
+              .uri(URI.create(url))
+              .header("Content-Type", "application/x-www-form-urlencoded")
+              .POST(HttpRequest.BodyPublishers.ofString(formBody))
+              .build();
+          
+          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+          
+          System.out.println("Status Code: " + response.statusCode());
+          System.out.println("Response: " + response.body());
+      }
+  }
+  ```
+  ```php
+  <?php
 
-$url = "https://secure.payu.in/_payment";
+  $url = "https://secure.payu.in/_payment";
 
-$data = array(
-    'hash' => 'd89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42',
-    'key' => 's*****s',
-    'txnid' => 'payuTestTransaction3818940',
-    'amount' => '1.0',
-    'firstname' => 'Ashish',
-    'email' => 'test@payu.in',
-    'phone' => '9988776655',
-    'productinfo' => 'Product Info',
-    'surl' => 'https://admin.payu.in/test_response',
-    'furl' => 'https://admin.payu.in/test_response',
-    'notifyurl' => 'https://admin.payu.in/test_response',
-    'codurl' => 'https://admin.payu.in/test_response',
-    'ipurl' => 'https://admin.payu.in/test_response',
-    'lastname' => '',
-    'udf1' => '',
-    'udf2' => '',
-    'udf3' => '',
-    'udf4' => '',
-    'udf5' => '',
-    'pg' => 'CC',
-    'bankcode' => 'DC',
-    'ccnum' => 'XXXXXXXXXXX8811',
-    'ccname' => 'Ashish',
-    'ccvv' => 'XXX',
-    'ccexpmon' => '12',
-    'ccexpyr' => '2023',
-    'txn_s2s_flow' => '4',
-    'authentication_flow' => 'REDIRECT'
-);
+  $data = array(
+      'hash' => 'd89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42',
+      'key' => 's*****s',
+      'txnid' => 'payuTestTransaction3818940',
+      'amount' => '1.0',
+      'firstname' => 'Ashish',
+      'email' => 'test@payu.in',
+      'phone' => '9988776655',
+      'productinfo' => 'Product Info',
+      'surl' => 'https://admin.payu.in/test_response',
+      'furl' => 'https://admin.payu.in/test_response',
+      'notifyurl' => 'https://admin.payu.in/test_response',
+      'codurl' => 'https://admin.payu.in/test_response',
+      'ipurl' => 'https://admin.payu.in/test_response',
+      'lastname' => '',
+      'udf1' => '',
+      'udf2' => '',
+      'udf3' => '',
+      'udf4' => '',
+      'udf5' => '',
+      'pg' => 'CC',
+      'bankcode' => 'DC',
+      'ccnum' => 'XXXXXXXXXXX8811',
+      'ccname' => 'Ashish',
+      'ccvv' => 'XXX',
+      'ccexpmon' => '12',
+      'ccexpyr' => '2023',
+      'txn_s2s_flow' => '4',
+      'authentication_flow' => 'REDIRECT'
+  );
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'Content-Type: application/x-www-form-urlencoded'
-));
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: application/x-www-form-urlencoded'
+  ));
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-$error = curl_error($ch);
-curl_close($ch);
+  $response = curl_exec($ch);
+  $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  $error = curl_error($ch);
+  curl_close($ch);
 
-if ($error) {
-    echo "cURL Error: " . $error . "\n";
-} else {
-    echo "Status Code: " . $httpCode . "\n";
-    echo "Response: " . $response . "\n";
-}
-?>
-```
-```perl
-#!/usr/bin/perl
-use strict;
-use warnings;
-use LWP::UserAgent;
-use HTTP::Request::Common qw(POST);
+  if ($error) {
+      echo "cURL Error: " . $error . "\n";
+  } else {
+      echo "Status Code: " . $httpCode . "\n";
+      echo "Response: " . $response . "\n";
+  }
+  ?>
+  ```
+  ```perl
+  #!/usr/bin/perl
+  use strict;
+  use warnings;
+  use LWP::UserAgent;
+  use HTTP::Request::Common qw(POST);
 
-my $url = "https://secure.payu.in/_payment";
+  my $url = "https://secure.payu.in/_payment";
 
-my $ua = LWP::UserAgent->new;
-$ua->timeout(30);
+  my $ua = LWP::UserAgent->new;
+  $ua->timeout(30);
 
-my %data = (
-    'hash'                => 'd89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42',
-    'key'                 => 's*****s',
-    'txnid'               => 'payuTestTransaction3818940',
-    'amount'              => '1.0',
-    'firstname'           => 'Ashish',
-    'email'               => 'test@payu.in',
-    'phone'               => '9988776655',
-    'productinfo'         => 'Product Info',
-    'surl'                => 'https://admin.payu.in/test_response',
-    'furl'                => 'https://admin.payu.in/test_response',
-    'notifyurl'           => 'https://admin.payu.in/test_response',
-    'codurl'              => 'https://admin.payu.in/test_response',
-    'ipurl'               => 'https://admin.payu.in/test_response',
-    'lastname'            => '',
-    'udf1'                => '',
-    'udf2'                => '',
-    'udf3'                => '',
-    'udf4'                => '',
-    'udf5'                => '',
-    'pg'                  => 'CC',
-    'bankcode'            => 'DC',
-    'ccnum'               => 'XXXXXXXXXXX8811',
-    'ccname'              => 'Ashish',
-    'ccvv'                => 'XXX',
-    'ccexpmon'            => '12',
-    'ccexpyr'             => '2023',
-    'txn_s2s_flow'        => '4',
-    'authentication_flow' => 'REDIRECT'
-);
+  my %data = (
+      'hash'                => 'd89e7d88863617baf01e504c50aa58e94d6ff3371c2ed409ca1f139cfee75d67e85ce7e91c4224790b6cc1b59bb149fc98b0272e27b335225a9d288a34290e42',
+      'key'                 => 's*****s',
+      'txnid'               => 'payuTestTransaction3818940',
+      'amount'              => '1.0',
+      'firstname'           => 'Ashish',
+      'email'               => 'test@payu.in',
+      'phone'               => '9988776655',
+      'productinfo'         => 'Product Info',
+      'surl'                => 'https://admin.payu.in/test_response',
+      'furl'                => 'https://admin.payu.in/test_response',
+      'notifyurl'           => 'https://admin.payu.in/test_response',
+      'codurl'              => 'https://admin.payu.in/test_response',
+      'ipurl'               => 'https://admin.payu.in/test_response',
+      'lastname'            => '',
+      'udf1'                => '',
+      'udf2'                => '',
+      'udf3'                => '',
+      'udf4'                => '',
+      'udf5'                => '',
+      'pg'                  => 'CC',
+      'bankcode'            => 'DC',
+      'ccnum'               => 'XXXXXXXXXXX8811',
+      'ccname'              => 'Ashish',
+      'ccvv'                => 'XXX',
+      'ccexpmon'            => '12',
+      'ccexpyr'             => '2023',
+      'txn_s2s_flow'        => '4',
+      'authentication_flow' => 'REDIRECT'
+  );
 
-my $response = $ua->request(POST $url,
-    Content_Type => 'application/x-www-form-urlencoded',
-    Content      => [%data]
-);
+  my $response = $ua->request(POST $url,
+      Content_Type => 'application/x-www-form-urlencoded',
+      Content      => [%data]
+  );
 
-if ($response->is_success) {
-    print "Status Code: " . $response->code . "\n";
-    print "Response: " . $response->decoded_content . "\n";
-} else {
-    print "Error: " . $response->status_line . "\n";
-    print "Response: " . $response->decoded_content . "\n";
-}
-```
+  if ($response->is_success) {
+      print "Status Code: " . $response->code . "\n";
+      print "Response: " . $response->decoded_content . "\n";
+  } else {
+      print "Error: " . $response->status_line . "\n";
+      print "Response: " . $response->decoded_content . "\n";
+  }
+  ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-code">
