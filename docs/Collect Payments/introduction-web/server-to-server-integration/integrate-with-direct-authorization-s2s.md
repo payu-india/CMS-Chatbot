@@ -18,21 +18,15 @@ This part of the document also includes how to integrate using 3DS Secure 2.0 Tr
 <Cards columns={3}>
   <Card title="1. Post the Parameters to PayU" href="https://docs.payu.in/docs/integrate-with-direct-authorization-s2s#step-1-post-the-parameters-to-payu">
     Post the required parameters to PayU for direct authorization S2S integration
-
-    <br />
   </Card>
 
   <Card title="2. Check Response from PayU" href="https://docs.payu.in/docs/integrate-with-direct-authorization-s2s##step-2-check-response-from-payu">
     Check and handle the response received from PayU after posting parameters
-
-    <br />
   </Card>
 
   <Card title="3. Verify the payment" href="https://docs.payu.in/docs/integrate-with-direct-authorization-s2s##step-3-verify-the-payment">
     Verify the payment status and ensure transaction completion
   </Card>
-
-  <br />
 </Cards>
 
 <RegisterMerchantPrerequiste />
@@ -65,7 +59,7 @@ Initiate an authorization request with the payment details provided post a succe
   <tbody>
     <tr>
       <td>
-        key
+        key<br/>
         `mandatory`
       </td>
 
@@ -80,7 +74,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        txnid
+        txnid<br/>
         `mandatory`
       </td>
 
@@ -95,7 +89,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        amount
+        amount<br/>
         `mandatory`
       </td>
 
@@ -110,7 +104,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        productinfo `mandatory`
+        productinfo <br/>`mandatory`
       </td>
 
       <td>
@@ -124,7 +118,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        firstname `mandatory`
+        firstname <br/>`mandatory`
       </td>
 
       <td>
@@ -138,7 +132,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        email
+        email<br/>
         `mandatory`
       </td>
 
@@ -153,7 +147,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        phone
+        phone<br/>
         `mandatory`
       </td>
 
@@ -168,7 +162,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        pg
+        pg<br/>
         `mandatory`
       </td>
 
@@ -183,7 +177,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        bankcode `mandatory`
+        bankcode <br/>`mandatory`
       </td>
 
       <td>
@@ -197,7 +191,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccnum
+        ccnum<br/>
         `mandatory`
       </td>
 
@@ -212,7 +206,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccname `mandatory`
+        ccname <br/>`mandatory`
       </td>
 
       <td>
@@ -226,7 +220,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccvv
+        ccvv<br/>
         `mandatory`
       </td>
 
@@ -241,7 +235,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccexpmon `mandatory`
+        ccexpmon <br/>`mandatory`
       </td>
 
       <td>
@@ -255,7 +249,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        ccexpyr `mandatory`
+        ccexpyr <br/>`mandatory`
       </td>
 
       <td>
@@ -269,7 +263,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        furl
+        furl<br/>
         `mandatory`
       </td>
 
@@ -284,7 +278,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        surl
+        surl<br/>
         `mandatory`
       </td>
 
@@ -299,7 +293,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        hash
+        hash<br/>
         `mandatory`
       </td>
 
@@ -314,7 +308,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        txn_s2s_flow `mandatory`
+        txn_s2s_flow <br/>`mandatory`
       </td>
 
       <td>
@@ -328,7 +322,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        authentication_info `mandatory`
+        authentication_info <br/>`mandatory`
       </td>
 
       <td>
@@ -342,7 +336,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        threeDS2RequestData `mandatory`
+        threeDS2RequestData <br/>`mandatory`
       </td>
 
       <td>
@@ -358,7 +352,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        address1
+        address1<br/>
         `optional`
       </td>
 
@@ -373,7 +367,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        address2 `optional`
+        address2 <br/>`optional`
       </td>
 
       <td>
@@ -387,7 +381,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        city
+        city<br/>
         `optional`
       </td>
 
@@ -402,7 +396,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        state `    optional`
+        state<br/> `    optional`
       </td>
 
       <td>
@@ -416,7 +410,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        country
+        country<br/>
         `optional`
       </td>
 
@@ -431,7 +425,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        zipcode
+        zipcode<br/>
         `optional`
       </td>
 
@@ -447,7 +441,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf1
+        udf1<br/>
         `optional`
       </td>
 
@@ -462,7 +456,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf2
+        udf2<br/>
         `optional`
       </td>
 
@@ -477,7 +471,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf3
+        udf3<br/>
         `optional`
       </td>
 
@@ -492,7 +486,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf4
+        udf4<br/>
         `optional`
       </td>
 
@@ -507,7 +501,7 @@ Initiate an authorization request with the payment details provided post a succe
 
     <tr>
       <td>
-        udf5
+        udf5<br/>
         `optional`
       </td>
 
