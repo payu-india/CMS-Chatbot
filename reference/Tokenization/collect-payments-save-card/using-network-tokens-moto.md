@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This scenario is applicable if you want to collect payments using 1FA or MOTO (Mail Order Telephone Order) transactions with network tokens.
+This scenario is applicable if you want to collect payments using Travel Quick Pay transactions with network tokens.
 
 HTTP Method: **POST**
 
@@ -13,14 +13,14 @@ HTTP Method: **POST**
 
 ## Applicable scenarios
 
-* Processing 1FA payments for tokenized corporate cards only in the Hotel and Travel Industry
+* Processing Travel Quick Pay payments for tokenized corporate cards only in the Hotel and Travel Industry
 * Merchant has the card token, TAVV (Cryptogram), and the last four digits of the card
 * The token could be created by the merchant or through another partner
-* Transactions that are exempt from 2FA as per RBI guidelines for 1FA payments
+* Transactions that are exempt from 2FA as per RBI guidelines for Travel Quick Pay payments
 * For now, PayU is only supporting direct token cards in the request from the merchant
 
 <Callout icon="📘" theme="info">
-  **Note**: This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sending the card transaction request in the form of authentication. 1FA transactions must comply with RBI and PCI DSS guidelines and are restricted to corporate cards in specific industries.
+  **Note**: This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sending the card transaction request in the form of authentication. Travel Quick Pay transactions must comply with RBI and PCI DSS guidelines and are restricted to corporate cards in specific industries.
 </Callout>
 
 ## Request Parameters
@@ -513,12 +513,12 @@ HTTP Method: **POST**
 
 > 📘 Notes for additional_info
 >
-> * **last4Digits**: The last 4 digits of the card. This parameter is mandatory for 1FA with network tokens transactions to ensure proper card identification.
-> * **<Glossary>TAVV</Glossary>**: Token Authentication Verification Value (also known as cryptogram). This is mandatory for 1FA transactions to ensure the authenticity of the tokenized card.
+> * **last4Digits**: The last 4 digits of the card. This parameter is mandatory for Travel Quick Pay with network tokens transactions to ensure proper card identification.
+> * **<Glossary>TAVV</Glossary>**: Token Authentication Verification Value (also known as cryptogram). This is mandatory for Travel Quick Pay transactions to ensure the authenticity of the tokenized card.
 
 ## Sample Request
 
-```bash
+```curl
 {
   "hash": "135e38baa5218605f1128342f9057e6c1585a4af7e8c85a2856fa27e8a42bace77c8c5e62aa586594329202dc5dfe762ae5ebdfd66253f2462b42a42995f7063",
   "key": "L43t1c",
@@ -604,9 +604,9 @@ HTTP Method: **POST**
 
 > 📘 Important Notes for MOTO Transactions
 >
-> * 1FA transactions are restricted to tokenized corporate cards only in the Hotel and Travel Industry as per RBI guidelines
+> * Travel Quick Pay transactions are restricted to tokenized corporate cards only in the Hotel and Travel Industry as per RBI guidelines
 > * All 1FA transactions must be tokenized and comply with PCI DSS standards
 > * The merchant must be pre-approved and KYC compliant to process 1FA transactions
 > * RMS (Risk Management Service) will validate 1FA eligibility during transaction processing
-> * 1FA transactions are exempt from 2FA but maintain other security measures like cryptogram validation
-> * A separate Payment Gateway ID is used for 1FA transactions for reconciliation purposes
+> * Travel Quick Pay transactions are exempt from 2FA but maintain other security measures like cryptogram validation
+> * A separate Payment Gateway ID is used for Travel Quick Pay transactions for reconciliation purposes
