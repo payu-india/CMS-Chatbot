@@ -672,7 +672,6 @@ public class PayU3DS2Payment {
     }
 }
 ```
-
 ```php
 <?php
 
