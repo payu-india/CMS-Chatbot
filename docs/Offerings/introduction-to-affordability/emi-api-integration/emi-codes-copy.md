@@ -22,11 +22,11 @@ next:
 <tr><td>AU Small Finance Bank</td><td>AUSF12</td><td>12 Months</td><td>14</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>AU Small Finance Bank</td><td>AUSF18</td><td>18 Months</td><td>14</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>AU Small Finance Bank</td><td>AUSF24</td><td>24 Months</td><td>14</td><td>2000</td><td>100000000</td><td>Rs. 199</td><td>N/A</td></tr>
-<tr><td>Axis Bank</td><td>EMIA3</td><td>3 Months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 299</td><td>Rs. 100</td></tr>
+<tr><td>Axis Bank</td><td>EMIA3</td><td>3 months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 299</td><td>Rs. 100</td></tr>
 <tr><td>Axis Bank</td><td>EMIA6</td><td>6 months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 299</td><td>Rs. 100</td></tr>
 <tr><td>Axis Bank</td><td>EMIA9</td><td>9 months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 299</td><td>Rs. 100</td></tr>
 <tr><td>Axis Bank</td><td>EMIA12</td><td>12 months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 299</td><td>Rs. 100</td></tr>
-<tr><td>Axis Bank</td><td>EMIA18</td><td>18 months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 299</td><td>Rs. 100</td></tr>
+<tr><td>Axis Bank</td><td>EMIA18</td><td>18 Months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 299</td><td>Rs. 100</td></tr>
 <tr><td>Axis Bank</td><td>EMIA24</td><td>24 months</td><td>16</td><td>2500</td><td>1000000</td><td>Rs. 299</td><td>Rs. 100</td></tr>
 <tr><td>BOBCARD</td><td>BOBCC02</td><td>2 Months</td><td>16</td><td>2500</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>BOBCARD</td><td>BOBCC03</td><td>3 Months</td><td>16</td><td>2500</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
@@ -40,11 +40,11 @@ next:
 <tr><td>BOBCARD</td><td>BOBCC18</td><td>18 Months</td><td>16</td><td>2500</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>BOBCARD</td><td>BOBCC24</td><td>24 Months</td><td>16</td><td>2500</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>BOBCARD</td><td>BOBCC36</td><td>36 Months</td><td>16</td><td>2500</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
-<tr><td>CANARA Bank</td><td>CANARA03</td><td>3 Months</td><td>13</td><td>5000</td><td>2500000</td><td>2%</td><td>Rs. 100</td></tr>
+<tr><td>CANARA Bank</td><td>CANARA03</td><td>3 months</td><td>13</td><td>5000</td><td>2500000</td><td>2%</td><td>Rs. 100</td></tr>
 <tr><td>CANARA Bank</td><td>CANARA06</td><td>6 months</td><td>13</td><td>5000</td><td>2500000</td><td>2%</td><td>Rs. 100</td></tr>
 <tr><td>CANARA Bank</td><td>CANARA09</td><td>9 months</td><td>13</td><td>5000</td><td>2500000</td><td>2%</td><td>Rs. 100</td></tr>
 <tr><td>CANARA Bank</td><td>CANARA12</td><td>12 months</td><td>14</td><td>5000</td><td>2500000</td><td>2%</td><td>Rs. 100</td></tr>
-<tr><td>CANARA Bank</td><td>CANARA18</td><td>18 months</td><td>14</td><td>5000</td><td>2500000</td><td>2%</td><td>Rs. 100</td></tr>
+<tr><td>CANARA Bank</td><td>CANARA18</td><td>18 Months</td><td>14</td><td>5000</td><td>2500000</td><td>2%</td><td>Rs. 100</td></tr>
 <tr><td>CANARA Bank</td><td>CANARA24</td><td>24 months</td><td>14</td><td>5000</td><td>2500000</td><td>2%</td><td>Rs. 100</td></tr>
 <tr><td>Citi-Branded Credit Card</td><td>EMI03</td><td>3 Months</td><td>18</td><td>2500</td><td>N/A</td><td>1%</td><td>Rs. 100</td></tr>
 <tr><td>Citi-Branded Credit Card</td><td>EMI06</td><td>6 Months</td><td>16</td><td>2500</td><td>N/A</td><td>1%</td><td>Rs. 100</td></tr>
@@ -144,11 +144,11 @@ next:
 <tr><td>Standard Chartered Bank</td><td>EMISCB12</td><td>12 Months</td><td>15</td><td>2500</td><td>N/A</td><td>1 percent</td><td>N/A</td></tr>
 <tr><td>Standard Chartered Bank</td><td>EMISCB18</td><td>18 Months</td><td>15</td><td>2500</td><td>N/A</td><td>1 percent</td><td>N/A</td></tr>
 <tr><td>Standard Chartered Bank</td><td>EMISCB24</td><td>24 Months</td><td>15</td><td>2500</td><td>N/A</td><td>1 percent</td><td>N/A</td></tr>
-<tr><td>State Bank of India</td><td>SBI03</td><td>3 Months</td><td>16.75</td><td>2500</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+<tr><td>State Bank of India</td><td>SBI03</td><td>3 months</td><td>16.75</td><td>2500</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
 <tr><td>State Bank of India</td><td>SBI06</td><td>6 months</td><td>16</td><td>2500</td><td>N/A</td><td>Rs. 40</td><td>N/A</td></tr>
 <tr><td>State Bank of India</td><td>SBI09</td><td>9 months</td><td>16</td><td>2500</td><td>N/A</td><td>Rs. 79</td><td>N/A</td></tr>
 <tr><td>State Bank of India</td><td>SBI12</td><td>12 months</td><td>15.50</td><td>2500</td><td>N/A</td><td>Rs. 159</td><td>N/A</td></tr>
-<tr><td>State Bank of India</td><td>SBI18</td><td>18 months</td><td>15.50</td><td>10000</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
+<tr><td>State Bank of India</td><td>SBI18</td><td>18 Months</td><td>15.50</td><td>10000</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>State Bank of India</td><td>SBI24</td><td>24 months</td><td>15.50</td><td>10000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
 <tr><td>Yes Bank</td><td>EMIY03</td><td>3 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 249</td><td>N/A</td></tr>
 <tr><td>Yes Bank</td><td>EMIY06</td><td>6 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 249</td><td>N/A</td></tr>
