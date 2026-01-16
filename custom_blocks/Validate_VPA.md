@@ -2,12 +2,19 @@
 name: Validate_VPA
 ---
 ```curl
-curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=validateVPA&var1=9999999999@upi&hash=75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
+curl --location 'https://secure.payu.in/merchant/postservice' \
+  --header 'accept: application/json' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'form=2' \
+  --data-urlencode 'key=BmTY3G' \
+  --data-urlencode 'command=validateVPA' \
+  --data-urlencode 'var1=9999999999@upi' \
+  --data-urlencode 'hash=d415188799f49f554a24064752bd6ce4d8a18c075b7b88b534e3150f253c09ae28a48554d2d1ba4be66b8441b2cbc364491d26bcead605c5fcecf4eaf622e224'
 ```
 ```python
 import requests
 
-url = "https://test.payu.in/merchant/postservice"
+url = "https://secure.payu.in/merchant/postservice"
 
 headers = {
     "accept": "application/json",
@@ -15,13 +22,14 @@ headers = {
 }
 
 data = {
-    "key": "JP***g",
+    "form": "2",
+    "key": "BmTY3G",
     "command": "validateVPA",
     "var1": "9999999999@upi",
-    "hash": "75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
+    "hash": "d415188799f49f554a24064752bd6ce4d8a18c075b7b88b534e3150f253c09ae28a48554d2d1ba4be66b8441b2cbc364491d26bcead605c5fcecf4eaf622e224"
 }
 
-response = requests.post(url, headers=headers, data=data, params={"form": "2"})
+response = requests.post(url, headers=headers, data=data)
 
 print("Status Code:", response.status_code)
 print("Response:", response.json())
@@ -40,13 +48,14 @@ import java.util.stream.Collectors;
 
 public class ValidateVPA {
     public static void main(String[] args) throws IOException, InterruptedException {
-        String url = "https://test.payu.in/merchant/postservice?form=2";
+        String url = "https://secure.payu.in/merchant/postservice";
         
         Map<String, String> params = new HashMap<>();
-        params.put("key", "JP***g");
+        params.put("form", "2");
+        params.put("key", "BmTY3G");
         params.put("command", "validateVPA");
         params.put("var1", "9999999999@upi");
-        params.put("hash", "75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e");
+        params.put("hash", "d415188799f49f554a24064752bd6ce4d8a18c075b7b88b534e3150f253c09ae28a48554d2d1ba4be66b8441b2cbc364491d26bcead605c5fcecf4eaf622e224");
         
         String formData = params.entrySet().stream()
             .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" 
@@ -73,13 +82,14 @@ public class ValidateVPA {
 const axios = require('axios');
 const qs = require('qs');
 
-const url = 'https://test.payu.in/merchant/postservice?form=2';
+const url = 'https://secure.payu.in/merchant/postservice';
 
 const data = {
-    key: 'JP***g',
+    form: '2',
+    key: 'BmTY3G',
     command: 'validateVPA',
     var1: '9999999999@upi',
-    hash: '75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+    hash: 'd415188799f49f554a24064752bd6ce4d8a18c075b7b88b534e3150f253c09ae28a48554d2d1ba4be66b8441b2cbc364491d26bcead605c5fcecf4eaf622e224'
 };
 
 const config = {
@@ -101,13 +111,14 @@ axios.post(url, qs.stringify(data), config)
 ```php
 <?php
 
-$url = "https://test.payu.in/merchant/postservice?form=2";
+$url = "https://secure.payu.in/merchant/postservice";
 
 $data = array(
-    'key' => 'JP***g',
+    'form' => '2',
+    'key' => 'BmTY3G',
     'command' => 'validateVPA',
     'var1' => '9999999999@upi',
-    'hash' => '75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+    'hash' => 'd415188799f49f554a24064752bd6ce4d8a18c075b7b88b534e3150f253c09ae28a48554d2d1ba4be66b8441b2cbc364491d26bcead605c5fcecf4eaf622e224'
 );
 
 $ch = curl_init();
@@ -138,13 +149,14 @@ use warnings;
 use LWP::UserAgent;
 use HTTP::Request::Common;
 
-my $url = "https://test.payu.in/merchant/postservice?form=2";
+my $url = "https://secure.payu.in/merchant/postservice";
 
 my %data = (
-    key     => 'JP***g',
+    form    => '2',
+    key     => 'BmTY3G',
     command => 'validateVPA',
     var1    => '9999999999@upi',
-    hash    => '75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+    hash    => 'd415188799f49f554a24064752bd6ce4d8a18c075b7b88b534e3150f253c09ae28a48554d2d1ba4be66b8441b2cbc364491d26bcead605c5fcecf4eaf622e224'
 );
 
 my $ua = LWP::UserAgent->new;
