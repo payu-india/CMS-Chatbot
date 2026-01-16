@@ -30,18 +30,7 @@ After the customer enters VPA on the merchant page, you need to call this API to
 
 <Accordion title="Sample request" icon="fa-code">
   **Validate VPA**
-
-  ```curl
- curl --location 'https://secure.payu.in/merchant/postservice' \
---header 'accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
---data-urlencode 'form=2' \
---data-urlencode 'key=BmTY3G' \
---data-urlencode 'command=validateVPA' \
---data-urlencode 'var1=9999999999@upi' \
---data-urlencode 'hash=d415188799f49f554a24064752bd6ce4d8a18c075b7b88b534e3150f253c09ae28a48554d2d1ba4be66b8441b2cbc364491d26bcead605c5fcecf4eaf622e224'
-  ```
+<Validate_VPA />
 
   **Validate VPA for Recurring Payment**
 
