@@ -10,50 +10,62 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Third-Party Payment Support
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
 If you want to make payments by any third-party payment application, such as GooglePay, PhonePe, Samsung Pay, etc, you have to include the changes as described in this section.
 
 ## Google Pay
 
-### Integration
+<Accordion title="Integration" icon="fa-code">
+  Configure the following in the payment post data:
 
-Configure the following in the payment post data:
+  * Bank code parameter with the value as TEZ
+  * PG parameter with the value of as UPI
+</Accordion>
 
-* Bank code parameter with the value as TEZ
-* PG parameter with the value of as UPI
+<Accordion title="Gradle Dependency" icon="fa-cog">
+  Add the following dependency in the application's build.gradle.
 
-### Gradle dependency
-
-Add the following dependency in the application’s build.gradle.
-
-```
-implementation 'in.payu:payu-gpay:4.0.0'
-```
+  ```gradle
+  implementation 'in.payu:payu-gpay:4.0.0'
+  ```
+</Accordion>
 
 ## PhonePe
 
-## Integration
+<Accordion title="Integration" icon="fa-code">
+  Configure the following in the payment post data:
 
-Configure the following in the payment post data:
+  * Bankcode parameter with the value as PPINTENT.
+  * PG parameter with the value as CASH.
+</Accordion>
 
-* Bankcode parameter with the value as PPINTENT.
-* PG parameter with the value as CASH.
+<Accordion title="Gradle Dependency" icon="fa-cog">
+  Add the PhonePeIntent SDK URL in the root project's build.gradle similar to the following:
 
-### Gradle dependency
-
-Add the PhonePeIntent SDK URL in the root project’s build.gradle similar to the following:
-
-```
-allprojects {
-  repositories {
-    maven {
-    url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsdk-android"
+  ```gradle
+  allprojects {
+    repositories {
+      maven {
+        url "https://phonepe.mycloudrepo.io/public/repositories/phonepe-intentsdk-android"
+      }
     }
   }
-}
-```
+  ```
 
-Add the following dependency in your application’s build.gradle:
+  Add the following dependency in your application's build.gradle:
 
-```
-implementation 'in.payu:phonepe-intent:1.8.7'
-```
+  ```gradle
+  implementation 'in.payu:phonepe-intent:1.8.7'
+  ```
+</Accordion>
