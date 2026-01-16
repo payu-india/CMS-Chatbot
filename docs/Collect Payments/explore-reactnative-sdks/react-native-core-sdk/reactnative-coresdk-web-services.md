@@ -36,7 +36,7 @@ React Native Core SDK consists of the following APIs:
 
 ## Get Bin Info
 
-Use this API to get the details of the `cardBin` passed in the request. When you call this API, you get the card\_type, category, issuing\_bank, `is_atmpin_card` as the response.
+Use this API to get the details of the `cardBin` passed in the request. When you call this API, you get the card_type, category, issuing_bank, `is_atmpin_card` as the response.
 
 To integrate this API, call the getBinInfo  command and pass the payment `requestdata` and the payment hash as parameters as shown in the code snippet below:
 
@@ -47,7 +47,7 @@ const response  =  await PayUSdk.getBinInfo({ 
 });
 ```
 
-### Step 1:  Build Request Data Object
+### Build Request Data Object
 
 Build the `requestdata` object as shown in the code snippet below:
 
@@ -76,7 +76,7 @@ export const getBinInfoHash = (payUData) => {
 
 ## Get Card Information (Check isDomestic)
 
-Use this API to check if the card (passed in cardBin info API) is domestic or international. This API returns the following parameters: card\_type, category, issuing\_bank, is\_atmpin\_card, etc.
+Use this API to check if the card (passed in cardBin info API) is domestic or international. This API returns the following parameters: card_type, category, issuing_bank, is_atmpin_card, etc.
 
 To integrate this API call the method getBinInfo and pass the`requestData` and Hash as parameters  as shown in the code snippet below:
 
@@ -267,7 +267,7 @@ requestData = { 
 
 ## Get Tokenised Card
 
-Use this API to fetch the tokenized card based on the user\_credential for the merchant.
+Use this API to fetch the tokenized card based on the user_credential for the merchant.
 
 To integrate this API call the method getTokenisedCard and pass the `requestData` and Hash as parameters as shown in the code snippet below:
 
