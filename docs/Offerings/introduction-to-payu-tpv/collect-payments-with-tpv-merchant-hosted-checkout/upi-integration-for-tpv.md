@@ -36,6 +36,165 @@ When your customer makes payment through UPI, you can validate the customer’s 
   ```curl
   curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=validateVPA&var1=9999999999@upi&hash=75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
   ```
+```python
+import requests
+
+url = "https://test.payu.in/merchant/postservice"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+data = {
+    "key": "JP***g",
+    "command": "validateVPA",
+    "var1": "9999999999@upi",
+    "hash": "75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
+}
+
+response = requests.post(url, headers=headers, data=data, params={"form": "2"})
+
+print("Status Code:", response.status_code)
+print("Response:", response.json())
+```
+```java
+import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class ValidateVPA {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        String url = "https://test.payu.in/merchant/postservice?form=2";
+        
+        Map<String, String> params = new HashMap<>();
+        params.put("key", "JP***g");
+        params.put("command", "validateVPA");
+        params.put("var1", "9999999999@upi");
+        params.put("hash", "75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e");
+        
+        String formData = params.entrySet().stream()
+            .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" 
+                    + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+            .collect(Collectors.joining("&"));
+        
+        HttpClient client = HttpClient.newHttpClient();
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println("Status Code: " + response.statusCode());
+        System.out.println("Response: " + response.body());
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('qs');
+
+const url = 'https://test.payu.in/merchant/postservice?form=2';
+
+const data = {
+    key: 'JP***g',
+    command: 'validateVPA',
+    var1: '9999999999@upi',
+    hash: '75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+};
+
+const config = {
+    headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+};
+
+axios.post(url, qs.stringify(data), config)
+    .then(response => {
+        console.log('Status Code:', response.status);
+        console.log('Response:', response.data);
+    })
+    .catch(error => {
+        console.error('Error:', error.response ? error.response.data : error.message);
+    });
+```
+```php
+<?php
+
+$url = "https://test.payu.in/merchant/postservice?form=2";
+
+$data = array(
+    'key' => 'JP***g',
+    'command' => 'validateVPA',
+    'var1' => '9999999999@upi',
+    'hash' => '75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+));
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+echo "Status Code: " . $httpCode . "\n";
+echo "Response: " . $response . "\n";
+
+$jsonResponse = json_decode($response, true);
+print_r($jsonResponse);
+?>
+```
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = "https://test.payu.in/merchant/postservice?form=2";
+
+my %data = (
+    key     => 'JP***g',
+    command => 'validateVPA',
+    var1    => '9999999999@upi',
+    hash    => '75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+);
+
+my $ua = LWP::UserAgent->new;
+$ua->timeout(30);
+
+my $response = $ua->post($url, 
+    Content_Type => 'application/x-www-form-urlencoded',
+    Content => \%data
+);
+
+if ($response->is_success) {
+    print "Status Code: " . $response->code . "\n";
+    print "Response: " . $response->decoded_content . "\n";
+} else {
+    print "Error: " . $response->status_line . "\n";
+}
+```
+
 
   **Validate VPA for Recurring Payment**
 
@@ -114,420 +273,420 @@ With the following parameters, make the transaction request with the customer’
 
 <Accordion title="Request parameters" icon="fa-table">
   <HTMLBlock>{`
-          <Table align={["left","left","left"]}>
-            <thead>
-              <tr>
-                <th>
-                  Parameter
-                </th>
-
-                <th>
-                  Description
-                </th>
-
-                <th>
-                  Example
-                </th>
-            </thead>
-
-            <tbody>
-                <td>
-                  key<br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                  <code>String</code> Merchant key provided by PayU during onboarding.
-                </td>
-
-                <td>
-                  JPg***r
-                </td>
-              </tr>
-              
-              <tr>
-                <td>
-                  txnid<br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                  <code>String</code> The transaction ID is a reference number for a specific order that is generated by the merchant.
-                </td>
-
-                <td>
-                  ypl938459435
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  amount<br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                  <code>String</code> The payment amount for the transaction.
-                </td>
-
-                <td>
-                  10.00
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  productinfo<br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                  <code>String</code> A brief description of the product.
-                </td>
-
-                <td>
-                  iPhone
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  firstname<br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                  <code>String</code> The first name of the customer.
-                </td>
-
-                <td>
-                  Ashish
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  email<br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                  <code>String</code> The email address of the customer.
-                </td>
-
-                <td>
-                  [abc@payu.in](mailto:abc@payu.in)
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  phone<br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                  <code>String</code> The phone number of the customer.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <Glossary>pg</Glossary><br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                  <code>String</code> It defines the payment category for which you wish to perform TPV. For Net Banking, pg= 'UPI'.
-                </td>
-
-                <td>
-                  UPI
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <Glossary>bankcode</Glossary><br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                 <code>String</code> It defines the bank with which you wish to perform TPV using the bank code. The values can be any one of the following values:
-            <ul>
-              <li><strong>UPITPV</strong>: Used for UPI Collect</li>
-              <li><strong>INTTPV</strong>: Used for UPI Intent</li>
-              <li><strong>TEJTPV</strong>: Used for Google Pay in app transactions only</li>
-                  </ul>
-                </td>
-
-                <td>
-                  UPI
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  vpa<br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                  <code>String</code> The VPA or UPI handle of the customer.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  beneficiarydetail<br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-          <code>JSON</code> This is a JSON format text and there should be key named **beneficiaryAccountNumber** with the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter.
-                </td>
-
-                <td>
-                  Refer to beneficiarydetail JSON object fields section below the table</a>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  api_version
-                </td>
-
-                <td>
-                  <code>String</code> The api_version "6" must be passed fro this parameter.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  furl<br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                  <code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  surl<br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                  <code>String</code> The Failure URL, which is the page PayU will redirect to if the transaction is failed.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  hash<br/>
-                  <code>mandatory</code>
-                </td>
-
-                <td>
-                  <code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br/>
-                  <code>sha512(key|txnid|amount|productinfo|<br/>firstname|email|udf1|udf2|udf3|udf4|<br/>udf5|||||SALT)</code>
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  address1<br/>
-                  <code>optional</code>
-                </td>
-
-                <td>
-                  <code>String</code> The first line of the billing address.
-
-                  * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  address2<br/>
-                  <code>optional</code>
-                </td>
-
-                <td>
-                  <code>String</code> The second line of the billing address.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  city<br/>
-                  <code>optional</code>
-                </td>
-
-                <td>
-                  <code>String</code> The city where your customer resides as part of the billing address.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  state<br/>
-                  <code>optional</code>
-                </td>
-
-                <td>
-                  <code>String</code> The state where your customer resides as part of the billing address,
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  country<br/>
-                  <code>optional</code>
-                </td>
+            <Table align={["left","left","left"]}>
+              <thead>
+                <tr>
+                  <th>
+                    Parameter
+                  </th>
+
+                  <th>
+                    Description
+                  </th>
+
+                  <th>
+                    Example
+                  </th>
+              </thead>
+
+              <tbody>
+                  <td>
+                    key<br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> Merchant key provided by PayU during onboarding.
+                  </td>
+
+                  <td>
+                    JPg***r
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td>
+                    txnid<br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> The transaction ID is a reference number for a specific order that is generated by the merchant.
+                  </td>
+
+                  <td>
+                    ypl938459435
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    amount<br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> The payment amount for the transaction.
+                  </td>
+
+                  <td>
+                    10.00
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    productinfo<br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> A brief description of the product.
+                  </td>
+
+                  <td>
+                    iPhone
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    firstname<br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> The first name of the customer.
+                  </td>
+
+                  <td>
+                    Ashish
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    email<br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> The email address of the customer.
+                  </td>
+
+                  <td>
+                    [abc@payu.in](mailto:abc@payu.in)
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    phone<br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> The phone number of the customer.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <Glossary>pg</Glossary><br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> It defines the payment category for which you wish to perform TPV. For Net Banking, pg= 'UPI'.
+                  </td>
+
+                  <td>
+                    UPI
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <Glossary>bankcode</Glossary><br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                   <code>String</code> It defines the bank with which you wish to perform TPV using the bank code. The values can be any one of the following values:
+              <ul>
+                <li><strong>UPITPV</strong>: Used for UPI Collect</li>
+                <li><strong>INTTPV</strong>: Used for UPI Intent</li>
+                <li><strong>TEJTPV</strong>: Used for Google Pay in app transactions only</li>
+                    </ul>
+                  </td>
+
+                  <td>
+                    UPI
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    vpa<br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> The VPA or UPI handle of the customer.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    beneficiarydetail<br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+            <code>JSON</code> This is a JSON format text and there should be key named **beneficiaryAccountNumber** with the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter.
+                  </td>
+
+                  <td>
+                    Refer to beneficiarydetail JSON object fields section below the table</a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    api_version
+                  </td>
+
+                  <td>
+                    <code>String</code> The api_version "6" must be passed fro this parameter.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    furl<br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    surl<br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> The Failure URL, which is the page PayU will redirect to if the transaction is failed.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    hash<br/>
+                    <code>mandatory</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br/>
+                    <code>sha512(key|txnid|amount|productinfo|<br/>firstname|email|udf1|udf2|udf3|udf4|<br/>udf5|||||SALT)</code>
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    address1<br/>
+                    <code>optional</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> The first line of the billing address.
+
+                    * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    address2<br/>
+                    <code>optional</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> The second line of the billing address.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    city<br/>
+                    <code>optional</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> The city where your customer resides as part of the billing address.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    state<br/>
+                    <code>optional</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> The state where your customer resides as part of the billing address,
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    country<br/>
+                    <code>optional</code>
+                  </td>
 
-                <td>
-                  <code>String</code> The country where your customer resides.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  zipcode<br/>
-                  <code>optional</code>
-                </td>
-
-                <td>
-                  <code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br/>
-                  <code>Character Limit</code>-20
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  udf1<br/>
-                  <code>optional</code>
-                </td>
-
-                <td>
-                  <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  udf2<br/>
-                  <code>optional</code>
-                </td>
-
-                <td>
-                  <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  udf3<br/>
-                  <code>optional</code>
-                </td>
-
-                <td>
-                  <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  udf4<br/>
-                  <code>optional</code>
-                </td>
-
-                <td>
-                  <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  udf5<br/>
-                  <code>optional</code>
-                </td>
-
-                <td>
-                  <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
-                </td>
-
-                <td>
-
-                </td>
-              </tr>
-            </tbody>
-          </Table>
+                  <td>
+                    <code>String</code> The country where your customer resides.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    zipcode<br/>
+                    <code>optional</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br/>
+                    <code>Character Limit</code>-20
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    udf1<br/>
+                    <code>optional</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    udf2<br/>
+                    <code>optional</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    udf3<br/>
+                    <code>optional</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    udf4<br/>
+                    <code>optional</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    udf5<br/>
+                    <code>optional</code>
+                  </td>
+
+                  <td>
+                    <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.
+                  </td>
+
+                  <td>
+
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
   `}</HTMLBlock>
 
   <Accordion title="beneficiarydetail JSON object fields" icon="fa-code">
