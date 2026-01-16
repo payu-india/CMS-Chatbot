@@ -10,6 +10,18 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Web Services
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
 React Native Core SDK consists of the following APIs:
 
 * [Get Bin Info](https://docs.payu.in/docs/reactnative-coresdk-web-services#get-bin-info)
@@ -36,22 +48,21 @@ React Native Core SDK consists of the following APIs:
 
 ## Get Bin Info
 
-Use this API to get the details of the `cardBin` passed in the request. When you call this API, you get the card_type, category, issuing_bank, `is_atmpin_card` as the response.
+Use this API to get the details of the `cardBin` passed in the request. When you call this API, you get the card\_type, category, issuing\_bank, `is_atmpin_card` as the response.
 
-To integrate this API, call the getBinInfo  command and pass the payment `requestdata` and the payment hash as parameters as shown in the code snippet below:
+To integrate this API, call the getBinInfo  command and pass the payment `requestdata` and the payment hash as parameters as shown in the code snippet below:
 
-```Text Node
-const response  =  await PayUSdk.getBinInfo({  
-  ...requestData,    
-  hash: getBinInfoHash(requestData)  
+```javascript
+const response  =  await PayUSdk.getBinInfo({  
+  ...requestData,    
+  hash: getBinInfoHash(requestData)  
 });
 ```
 
-### Build Request Data Object
-
+<Accordion title="Build Request Data Object" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text Node
+```javascript
 requestData = {
   ...requestData,
   isBinInfo: '1',
@@ -59,57 +70,58 @@ requestData = {
   command: 'getBinInfo'
 }
 ```
+</Accordion>
 
-### Generate the Hash
-
+<Accordion title="Generate the Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text Node
+```javascript
 export const getBinInfoHash = (payUData) => {
   payUData.var1 = (payUData.isBinInfo)? payUData.isBinInfo : DEFAULT
   var hashString = `${payUData.key}|${payUData.command}|${payUData.var1}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
 ## Get Card Information (Check isDomestic)
 
-Use this API to check if the card (passed in cardBin info API) is domestic or international. This API returns the following parameters: card_type, category, issuing_bank, is_atmpin_card, etc.
+Use this API to check if the card (passed in cardBin info API) is domestic or international. This API returns the following parameters: card\_type, category, issuing\_bank, is\_atmpin\_card, etc.
 
-To integrate this API call the method getBinInfo and pass the`requestData` and Hash as parameters  as shown in the code snippet below:
+To integrate this API call the method getBinInfo and pass the`requestData` and Hash as parameters  as shown in the code snippet below:
 
-```
-const response  =  await PayUSdk.checkIsDomestic({  
-  ...requestData,  
-  hash: getCheckIsDomesticHash(requestData)  
+```javascript
+const response  =  await PayUSdk.checkIsDomestic({  
+  ...requestData,  
+  hash: getCheckIsDomesticHash(requestData)  
 });
 ```
 
-### Build Payment Request Data
-
+<Accordion title="Build Payment Request Data" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text Node
+```javascript
 requestData = {
   ...requestData,
   cardNumber: <first 6 of card numbe>, //6 digit bin 
   command: 'check_isDomestic'
 }
 ```
+</Accordion>
 
-### Generate the Hash
-
+<Accordion title="Generate the Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text Node
+```javascript
 export const getCheckIsDomesticHash = (payUData) => {
   payUData.var1 = (payUData.cardNumber)? payUData.cardNumber : DEFAULT
   var hashString = `${payUData.key}|${payUData.command}|${payUData.var1}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
@@ -117,20 +129,19 @@ export const getCheckIsDomesticHash = (payUData) => {
 
 Use this API to get the checkout details for the merchant. The merchant can pass specific parameters such as axSpecification, DownStatus, and AdditionalCharges and build the payment parameters accordingly.
 
-To integrate this API call the method getCheckoutDetails and pass the `requestData` and Hash as parameters as shown in the code snippet below:
+To integrate this API call the method getCheckoutDetails and pass the `requestData` and Hash as parameters as shown in the code snippet below:
 
-```Text Node
-  const response = await PayUSdk.getCheckoutDetails({
-      ...requestData,
-      hash: getCheckoutDetailsHash(requestData)
-  });
+```javascript
+const response = await PayUSdk.getCheckoutDetails({
+    ...requestData,
+    hash: getCheckoutDetailsHash(requestData)
+});
 ```
 
-### Build Payment Request Data
-
+<Accordion title="Build Payment Request Data" icon="fa-code">
 Build the `requestdata `object as shown in the code snippet below:
 
-```Text Node
+```javascript
 requestData = {
           ...requestData,
           var1: JSON.stringify({"useCase":
@@ -151,18 +162,19 @@ requestData = {
  command: GET_CHECKOUT_DETAILS
 }
 ```
+</Accordion>
 
-### Generate the Hash
-
+<Accordion title="Generate the Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text Node
+```javascript
 export const getCheckoutDetailsHash = (payUData) => {
   payUData.var1 = (payUData.var1)? payUData.var1 : DEFAULT
   var hashString = `${payUData.key}|${payUData.command}|${payUData.var1}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
@@ -170,38 +182,38 @@ export const getCheckoutDetailsHash = (payUData) => {
 
 Use this API to get information to get details related to EMI such as EMI amount, tenure in month, interest rate, etc.
 
-To integrate this API call the method getEMIDetails and pass the`requestData` and Hash as a parameter as shown in the code snippet below:
+To integrate this API call the method getEMIDetails and pass the`requestData` and Hash as a parameter as shown in the code snippet below:
 
-```Text Node
-const response  =  await PayUSdk.getEMIDetails({  
-  ...requestData,  
-  hash: getEMIDetailHash(requestData)  
+```javascript
+const response  =  await PayUSdk.getEMIDetails({  
+  ...requestData,  
+  hash: getEMIDetailHash(requestData)  
 });
 ```
 
-### Build Payment Request Data
-
+<Accordion title="Build Payment Request Data" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text Node
-requestData  =  {  
-  ...requestData,  
-  amount: '2000',  
-  command: 'getEmiAmountAccordingToInterest’ 
+```javascript
+requestData  =  {  
+  ...requestData,  
+  amount: '2000',  
+  command: 'getEmiAmountAccordingToInterest' 
 }
 ```
+</Accordion>
 
-### Generate the Hash
-
+<Accordion title="Generate the Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text Node
+```javascript
 export const getEMIDetailHash = (payUData) => {
   payUData.var1 = (payUData.amount)? payUData.amount : DEFAULT
   var hashString = `${payUData.key}|${payUData.command}|${payUData.var1}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
@@ -209,26 +221,26 @@ export const getEMIDetailHash = (payUData) => {
 
 Use this API to validate the offer for the merchants.
 
-To integrate this API call the method validateOfferDetails and pass the `requestData` as parameters as shown in the code snippet below:
+To integrate this API call the method validateOfferDetails and pass the `requestData` as parameters as shown in the code snippet below:
 
-```Text Node
-const response  =  await PayUSdk.getEMIDetails({  
-  ...requestData,  
-  hash: getEMIDetailHash(requestData)  
+```javascript
+const response  =  await PayUSdk.getEMIDetails({  
+  ...requestData,  
+  hash: getEMIDetailHash(requestData)  
 });
 ```
 
-### Build Payment Request Data
-
+<Accordion title="Build Payment Request Data" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text Node
-requestData  =  {  
-  ...requestData,  
-  amount: '2000',  
-  command: 'getEmiAmountAccordingToInterest’ 
+```javascript
+requestData  =  {  
+  ...requestData,  
+  amount: '2000',  
+  command: 'getEmiAmountAccordingToInterest' 
 }
 ```
+</Accordion>
 
 ***
 
@@ -236,22 +248,21 @@ requestData  =  { 
 
 Use this API to fetch the offer list available for the merchant.
 
-To integrate this API call the method fetchOfferDetails and pass the `requestData `as parameters as shown in the code snippet below:
+To integrate this API call the method fetchOfferDetails and pass the `requestData `as parameters as shown in the code snippet below:
 
-```Text Node
-const response = await PayUSdk.fetchOfferDetails({  
+```javascript
+const response = await PayUSdk.fetchOfferDetails({  
 
-  ...requestData,  
+  ...requestData,  
 
 });
 ```
 
-### Build Payment Request Data
-
+<Accordion title="Build Payment Request Data" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text Node
-requestData = {  
+```javascript
+requestData = {  
 
  ...requestData,
  
@@ -262,29 +273,29 @@ requestData = { 
   command : "get_all_offer_details"
 }
 ```
+</Accordion>
 
 ***
 
 ## Get Tokenised Card
 
-Use this API to fetch the tokenized card based on the user_credential for the merchant.
+Use this API to fetch the tokenized card based on the user\_credential for the merchant.
 
-To integrate this API call the method getTokenisedCard and pass the `requestData` and Hash as parameters as shown in the code snippet below:
+To integrate this API call the method getTokenisedCard and pass the `requestData` and Hash as parameters as shown in the code snippet below:
 
-```Text React
-const response = await PayUSdk.fetchOfferDetails({  
+```javascript
+const response = await PayUSdk.fetchOfferDetails({  
 
-  ...requestData,  
+  ...requestData,  
 
 });
 ```
 
-### Build Payment Parameters
-
+<Accordion title="Build Payment Parameters" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text React
-requestData = {  
+```javascript
+requestData = {  
 
  ...requestData,
  
@@ -295,17 +306,18 @@ requestData = { 
   command : "get_all_offer_details"
 }
 ```
+</Accordion>
 
-### Generate Payment Hash
-
+<Accordion title="Generate Payment Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text React
+```javascript
 export const getTokenisedCardDetailsHash = (payUData) => {
   var hashString = `${payUData.key}|${payUData.command}|${payUData.var1}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
@@ -313,26 +325,25 @@ export const getTokenisedCardDetailsHash = (payUData) => {
 
 Use this API to fetch `one_click_status`, `card_name`, `card_token`, `token_reference_id`, `network_token`, `card_type`, `card_no`, etc.
 
-To integrate this API call the method getTokenisedCardDetails and pass the `requestData` and Hash as parameters as shown in the code snippet below:
+To integrate this API call the method getTokenisedCardDetails and pass the `requestData` and Hash as parameters as shown in the code snippet below:
 
-```Text React
-const response = await PayUSdk.getTokenisedCardDetails({  
+```javascript
+const response = await PayUSdk.getTokenisedCardDetails({  
 
-  ...requestData,  
+  ...requestData,  
   
-  hash:getTokenisedCardDetailsHash(requestData)  
+  hash:getTokenisedCardDetailsHash(requestData)  
 
 });
 ```
 
-### Build Payment Parameters
-
+<Accordion title="Build Payment Parameters" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text React
-requestData = {  
+```javascript
+requestData = {  
 
-  ...requestData,  
+  ...requestData,  
   
   var1:"rahul:hooda", //User Credential 
   
@@ -342,21 +353,22 @@ requestData = { 
   
   var4:"INR", //INR 
   
-  command: 'get_payment_details’  
+  command: 'get_payment_details'  
 
 }
 ```
+</Accordion>
 
-### Generate Payment Hash
-
+<Accordion title="Generate Payment Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text React
+```javascript
 export const getTokenisedCardDetailsHash = (payUData) => {
   var hashString = `${payUData.key}|${payUData.command}|${payUData.var1}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
@@ -364,23 +376,22 @@ export const getTokenisedCardDetailsHash = (payUData) => {
 
 Use this API to delete tokenized cards from the saved card list for the merchant.
 
-To integrate this API call the method deleteTokenisedCard and pass the `requestData` and Hash as parameters as shown in the code snippet below:
+To integrate this API call the method deleteTokenisedCard and pass the `requestData` and Hash as parameters as shown in the code snippet below:
 
-```Text React
-const response = await PayUSdk.getTokenisedCardDetails({  
-  ...requestData,  
-  hash:getTokenisedCardDetailsHash(requestData)  
+```javascript
+const response = await PayUSdk.getTokenisedCardDetails({  
+  ...requestData,  
+  hash:getTokenisedCardDetailsHash(requestData)  
 });
 ```
 
-### Build Payment Parameters
-
+<Accordion title="Build Payment Parameters" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text React
-requestData = {  
+```javascript
+requestData = {  
 
-  ...requestData,  
+  ...requestData,  
   
   var1:"rahul:hooda", //User Credential 
   
@@ -390,21 +401,22 @@ requestData = { 
   
   var4:"INR", //INR 
   
-  command: 'get_payment_details’  
+  command: 'get_payment_details'  
 
 }
 ```
+</Accordion>
 
-### Generate Payment Hash
-
+<Accordion title="Generate Payment Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text React
+```javascript
 export const getTokenisedCardDetailsHash = (payUData) => {
   var hashString = `${payUData.key}|${payUData.command}|${payUData.var1}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
@@ -412,44 +424,44 @@ export const getTokenisedCardDetailsHash = (payUData) => {
 
 Use this API to fetch the list of Ibibo codes for the merchant along with information such as `pg_id`, `bank_id`, `priority`, `title`, etc.
 
-To integrate this API call the method getIbiboCodes and pass the `requestData` and Hash as parameters as shown in the code snippet below:
+To integrate this API call the method getIbiboCodes and pass the `requestData` and Hash as parameters as shown in the code snippet below:
 
-```Text React
-const response = await PayUSdk.getIbiboCodes({  
+```javascript
+const response = await PayUSdk.getIbiboCodes({  
 
-  ...requestData,  
+  ...requestData,  
   
-  hash:getIbiboCodesHash(requestData)  
+  hash:getIbiboCodesHash(requestData)  
 
 });
 ```
 
-### Build Payment Request Data
-
+<Accordion title="Build Payment Request Data" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text React
-requestData = {  
+```javascript
+requestData = {  
 
-  ...requestData,  
+  ...requestData,  
   
   var1:"default" ,
   
-  command: 'get_merchant_ibibo_codes’  
+  command: 'get_merchant_ibibo_codes'  
 
 }
 ```
+</Accordion>
 
-### Generate Payment Hash
-
+<Accordion title="Generate Payment Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text React
+```javascript
 export const getIbiboCodesHash = (payUData) => {
   var hashString = `${payUData.key}|${payUData.command}|${payUData.var1}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
@@ -457,44 +469,44 @@ export const getIbiboCodesHash = (payUData) => {
 
 Use this API to fetch the config for the merchant.
 
-To integrate this API call the method getConfig and pass the `requestData` and Hash as parameters as shown in the code snippet below:
+To integrate this API call the method getConfig and pass the `requestData` and Hash as parameters as shown in the code snippet below:
 
-```Text React
-const response = await PayUSdk.getIbiboCodes({  
+```javascript
+const response = await PayUSdk.getIbiboCodes({  
 
-  ...requestData,  
+  ...requestData,  
   
-  hash:getIbiboCodesHash(requestData)  
+  hash:getIbiboCodesHash(requestData)  
 
 });
 ```
 
-### Build Payment Request Data
-
+<Accordion title="Build Payment Request Data" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text React
-requestData = {  
+```javascript
+requestData = {  
 
-  ...requestData,  
+  ...requestData,  
   
   var1:"default" ,
   
-  command: 'get_merchant_ibibo_codes’  
+  command: 'get_merchant_ibibo_codes'  
 
 }
 ```
+</Accordion>
 
-### Generate Payment Hash
-
+<Accordion title="Generate Payment Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text React
+```javascript
 export const getIbiboCodesHash = (payUData) => {
   var hashString = `${payUData.key}|${payUData.command}|${payUData.var1}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
@@ -502,28 +514,28 @@ export const getIbiboCodesHash = (payUData) => {
 
 Use this API to fetch the IFSC details of the IFSC code from the merchant.
 
-To integrate this API call the method fetchIFSCDetails and pass the `requestData` as parameters as shown in the code snippet below:
+To integrate this API call the method fetchIFSCDetails and pass the `requestData` as parameters as shown in the code snippet below:
 
-```Text Node
-const response = await PayUSdk.fetchIFSCDetails({  
+```javascript
+const response = await PayUSdk.fetchIFSCDetails({  
   
   ...requestData
   
 });
 ```
 
-### Build Payment Parameters
-
+<Accordion title="Build Payment Parameters" icon="fa-code">
 Build the` requestdata` object as shown in the code snippet below:
 
-```Text React
-requestData = {  
+```javascript
+requestData = {  
 
-  ...requestData,  
+  ...requestData,  
   
   var1:"PUNB0387200"  //IFSC code
 }
 ```
+</Accordion>
 
 ***
 
@@ -535,44 +547,44 @@ Use the API to check Sodexo card details, such as:
 * Name on the card
 * Card number
 
-To integrate this API call the method `checkBalance()` and pass the `requestData` and Hash as parameters as shown in the code snippet below:
+To integrate this API call the method `checkBalance()` and pass the `requestData` and Hash as parameters as shown in the code snippet below:
 
-```Text React
-const response = await PayUSdk.checkBalance({  
+```javascript
+const response = await PayUSdk.checkBalance({  
 
-  ...requestData,  
+  ...requestData,  
   
-  hash: getCheckBalanceHash(requestData)  
+  hash: getCheckBalanceHash(requestData)  
 
 });
 ```
 
-### Build Payment Parameters
-
+<Accordion title="Build Payment Parameters" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text React
-requestData = {  
+```javascript
+requestData = {  
 
-  ...requestData,  
+  ...requestData,  
   
   var1:"{\"sodexoSourceId\":\"src_dcda7c39-47b2-45c4-8656-38d2d67d1715\"}" ,
   
-  command: 'check_balance’  
+  command: 'check_balance'  
 
 }
 ```
+</Accordion>
 
-### Generate the Hash
-
+<Accordion title="Generate the Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text React
+```javascript
 export const getCheckBalanceHash = (payUData) => {
   var hashString = `${payUData.key}|${payUData.command}|${payUData.var1}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
@@ -580,44 +592,44 @@ export const getCheckBalanceHash = (payUData) => {
 
 Use this API to fetch the transaction status of the transactionId passed in the request.
 
-To integrate this API call the method `verifyPayment` and pass the `requestData` and Hash as parameters as shown in the code snippet below:
+To integrate this API call the method `verifyPayment` and pass the `requestData` and Hash as parameters as shown in the code snippet below:
 
-```Text React
-const response = await PayUSdk.verifyPayment({  
+```javascript
+const response = await PayUSdk.verifyPayment({  
   
-  ...requestData,  
+  ...requestData,  
   
-  hash: getVerifyHash(requestData)  
+  hash: getVerifyHash(requestData)  
 
 });
 ```
 
-### Build Payment Parameters
-
+<Accordion title="Build Payment Parameters" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text React
-requestData = {  
+```javascript
+requestData = {  
 
-  ...requestData,  
+  ...requestData,  
   
   txnId: '1628684808250payusdk',
   
-  command: 'verify_payment’  
+  command: 'verify_payment'  
 
 }
 ```
+</Accordion>
 
-### Generate Payment Hash
-
+<Accordion title="Generate Payment Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text React
+```javascript
 export const getVerifyHash = (payUData) => {
   var hashString = `${payUData.key}|${payUData.command}|${payUData.txnId}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
@@ -625,44 +637,44 @@ export const getVerifyHash = (payUData) => {
 
 Use this API to fetch upStatus/downStatus for different payment modes.
 
-To integrate this API call the method vas and pass the `requestData` and Hash as parameters as shown in the code snippet below:
+To integrate this API call the method vas and pass the `requestData` and Hash as parameters as shown in the code snippet below:
 
-```Text Node
-const response = await PayUSdk.verifyPayment({  
+```javascript
+const response = await PayUSdk.verifyPayment({  
   
-  ...requestData,  
+  ...requestData,  
   
-  hash: getVerifyHash(requestData)  
+  hash: getVerifyHash(requestData)  
 
 });
 ```
 
-### Build Payment Parameters
-
+<Accordion title="Build Payment Parameters" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text Node
-requestData = {  
+```javascript
+requestData = {  
 
-  ...requestData,  
+  ...requestData,  
   
   txnId: '1628684808250payusdk',
   
-  command: 'verify_payment’  
+  command: 'verify_payment'  
 
 }
 ```
+</Accordion>
 
-### Generate Payment Hash
-
+<Accordion title="Generate Payment Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text Node
+```javascript
 export const getVerifyHash = (payUData) => {
   var hashString = `${payUData.key}|${payUData.command}|${payUData.txnId}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
@@ -670,10 +682,10 @@ export const getVerifyHash = (payUData) => {
 
 Use this API to fetch lookUp information for the merchant.
 
-To integrate this API call the method lookupAPI and pass requestData and Hash as parameter as shown in the code snippet below:
+To integrate this API call the method lookupAPI and pass requestData and Hash as parameter as shown in the code snippet below:
 
-```Text Node
-const response = await PayUSdk.lookupAPI({  
+```javascript
+const response = await PayUSdk.lookupAPI({  
   ...requestData,
   var1: JSON.stringify({
     ...lookupRequestData,
@@ -684,12 +696,11 @@ const response = await PayUSdk.lookupAPI({ 
 });
 ```
 
-## Build Payment Request Data
-
+<Accordion title="Build Payment Request Data" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text Node
-lookupRequestData= {  
+```javascript
+lookupRequestData= {  
 
   "merchantAccessKey": "E5ABOXOWAAZNXB6JEF5Z",
   "baseAmount": {
@@ -699,14 +710,11 @@ lookupRequestData= { 
   // "cardBin":"513382", // Need cardbin for DCC product
   "merchantOrderId": "OBE-JU89-13151-11009002,
   "productType": "MCP" // Use product DCC or MCP
-  command: 'check_balance’  
+  command: 'check_balance'  
 
 }
 ```
-
-### Generate the Hash
-
-Generate the hash with the code snippet shown below:
+</Accordion>
 
 ***
 
@@ -714,10 +722,10 @@ Generate the hash with the code snippet shown below:
 
 Use this API to fetch transaction information for the merchant according to the request passed in the parameters.
 
-To integrate this API call the method getTransactionInfo and pass the`requestData` and Hash as `parameter` as shown in the code snippet below:
+To integrate this API call the method getTransactionInfo and pass the`requestData` and Hash as `parameter` as shown in the code snippet below:
 
-```Text Node
-const response = await PayUSdk.lookupAPI({  
+```javascript
+const response = await PayUSdk.lookupAPI({  
   ...requestData,
   var1: JSON.stringify({
     ...lookupRequestData,
@@ -728,12 +736,11 @@ const response = await PayUSdk.lookupAPI({ 
 });
 ```
 
-### Build Payment Request Data
-
+<Accordion title="Build Payment Request Data" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text Node
-lookupRequestData= {  
+```javascript
+lookupRequestData= {  
 
   "merchantAccessKey": "E5ABOXOWAAZNXB6JEF5Z",
   "baseAmount": {
@@ -743,22 +750,23 @@ lookupRequestData= { 
   // "cardBin":"513382", // Need cardbin for DCC product
   "merchantOrderId": "OBE-JU89-13151-11009002,
   "productType": "MCP" // Use product DCC or MCP
-  command: 'check_balance’  
+  command: 'check_balance'  
 
 }
 ```
+</Accordion>
 
-### Generate the Hash
-
+<Accordion title="Generate the Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text Node
+```javascript
 export const getGetTransactionInfoHash = (payUData) => {
   payUData.var1 = (payUData.startTime)? payUData.startTime : DEFAULT
   var hashString = `${payUData.key}|${payUData.command}|${payUData.var1}|${payUData.salt}`;
   return sha512(hashString);
 }
 ```
+</Accordion>
 
 ***
 
@@ -766,42 +774,42 @@ export const getGetTransactionInfoHash = (payUData) => {
 
 Use this API to fetch the available payment options for a customer based on the `userCredential`. In response, this API fetches `savedCard` options, ibiboCodes, and different payment modes for available transactions.
 
-To integrate this API call the method fetchPaymentOptions and pass the`requestData` and Hash as a parameter as shown in the code snippet below:
+To integrate this API call the method fetchPaymentOptions and pass the`requestData` and Hash as a parameter as shown in the code snippet below:
 
-```Text Node
-const response  =  await PayUSdk.fetchPaymentOptions({  
+```javascript
+const response  =  await PayUSdk.fetchPaymentOptions({  
 
-  ...requestData,  
+  ...requestData,  
   
-  hash: getWebHash(requestData)  
+  hash: getWebHash(requestData)  
 
 });
 ```
 
-### Build Payment Request Data
-
+<Accordion title="Build Payment Request Data" icon="fa-code">
 Build the `requestdata` object as shown in the code snippet below:
 
-```Text Node
-requestData  =  {  
+```javascript
+requestData  =  {  
 
-  ...requestData,  
+  ...requestData,  
   
-  userCredentials: "rahul:hooda",  
+  userCredentials: "rahul:hooda",  
   
-  command: 'payment_related_details_for_mobile_sdk’  
+  command: 'payment_related_details_for_mobile_sdk'  
 
 }
 ```
+</Accordion>
 
-### Generate the Hash
-
+<Accordion title="Generate the Hash" icon="fa-key">
 Generate the hash with the code snippet shown below:
 
-```Text Node
+```javascript
 export const getWebHash = (payUData) => {
     payUData.var1 = (payUData.userCredentials)? payUData.userCredentials : DEFAULT
     var hashString = `${payUData.key}|${payUData.command}|${payUData.var1}|${payUData.salt}`;
     return sha512(hashString);
 }
 ```
+</Accordion>
