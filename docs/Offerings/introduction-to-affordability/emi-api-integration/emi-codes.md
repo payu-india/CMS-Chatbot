@@ -69,15 +69,15 @@ next:
 | Federal Bank               | FDRL12    | 12 Months |        15.99% |  Rs. 1,500 |   Rs. 2,000,000 |                     1% |              Rs. 99 |
 | Federal Bank               | FDRL18    | 18 Months |        15.99% |  Rs. 1,500 |   Rs. 2,000,000 |                     1% |              Rs. 99 |
 | Federal Bank               | FDRL24    | 24 Months |        15.99% |  Rs. 1,500 |   Rs. 2,000,000 |                     1% |              Rs. 99 |
-| HDFC Bank                  | EMI       | 3 Months  |           16% |  Rs. 1,000 |             N/A |                Rs. 299 |                 N/A |
-| HDFC Bank                  | EMI12     | 12 Months |           16% |  Rs. 1,000 |             N/A |                Rs. 299 |                 N/A |
-| HDFC Bank                  | EMI18     | 18 Months |           16% |  Rs. 3,000 |             N/A |                Rs. 299 |                 N/A |
-| HDFC Bank                  | EMI24     | 24 Months |           16% |  Rs. 3,000 |             N/A |                Rs. 299 |                 N/A |
-| HDFC Bank                  | EMI30     | 30 Months |           16% |      Rs. 0 |             N/A |                Rs. 299 |                 N/A |
-| HDFC Bank                  | EMI36     | 36 Months |           16% | Rs. 30,000 |             N/A |                Rs. 299 |                 N/A |
-| HDFC Bank                  | EMI48     | 48 Months |           16% | Rs. 40,000 |             N/A |                Rs. 299 |                 N/A |
-| HDFC Bank                  | EMI6      | 6 Months  |           16% |  Rs. 1,000 |             N/A |                Rs. 299 |                 N/A |
-| HDFC Bank                  | EMI9      | 9 Months  |           16% |  Rs. 1,000 |             N/A |                Rs. 299 |                 N/A |
+| HDFC Bank                  | EMI       | 3 Months  |           18% |  Rs. 1,000 |             N/A |                Rs. 299 |                 N/A |
+| HDFC Bank                  | EMI6      | 6 Months  |           17% |  Rs. 1,000 |             N/A |                Rs. 299 |                 N/A |
+| HDFC Bank                  | EMI9      | 9 Months  |           17% |  Rs. 1,000 |             N/A |                Rs. 299 |                 N/A |
+| HDFC Bank                  | EMI12     | 12 Months |           17% |  Rs. 1,000 |             N/A |                Rs. 299 |                 N/A |
+| HDFC Bank                  | EMI18     | 18 Months |           17% |  Rs. 3,000 |             N/A |                Rs. 299 |                 N/A |
+| HDFC Bank                  | EMI24     | 24 Months |           17% |  Rs. 3,000 |             N/A |                Rs. 299 |                 N/A |
+| HDFC Bank                  | EMI30     | 30 Months |           17% |      Rs. 0 |             N/A |                Rs. 299 |                 N/A |
+| HDFC Bank                  | EMI36     | 36 Months |           17% | Rs. 30,000 |             N/A |                Rs. 299 |                 N/A |
+| HDFC Bank                  | EMI48     | 48 Months |           17% | Rs. 40,000 |             N/A |                Rs. 299 |                 N/A |
 | HSBC Bank                  | EMIHS03   | 3 Months  |           15% |  Rs. 2,000 |             N/A |                 Rs. 99 |                 N/A |
 | HSBC Bank                  | EMIHS06   | 6 Months  |           15% |  Rs. 2,000 |             N/A |                 Rs. 99 |                 N/A |
 | HSBC Bank                  | EMIHS09   | 9 Months  |           15% |  Rs. 2,000 |             N/A |                 Rs. 99 |                 N/A |
