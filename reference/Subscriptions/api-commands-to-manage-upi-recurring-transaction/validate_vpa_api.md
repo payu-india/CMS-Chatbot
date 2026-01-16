@@ -1,11 +1,12 @@
 ---
 title: Validate VPA API
-excerpt: ''
 api:
   file: paritalgeneral-apis-15.json
   operationId: validateVPA
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Validate VPA or UPI Handle API
   description: >-
@@ -21,8 +22,6 @@ metadata:
     - ' Check UPI Handle'
     - ' Check UPI VPA'
   robots: index
-next:
-  description: ''
 ---
 This API (**validateVPA**) will let you validate VPA if it is a valid VPA or not.
 
