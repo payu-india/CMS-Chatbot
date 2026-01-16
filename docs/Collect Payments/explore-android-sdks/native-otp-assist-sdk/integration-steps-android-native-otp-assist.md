@@ -18,7 +18,7 @@ next:
 ---
 The Android Native OTP Assist SDK integration involves the following steps:
 
-## Step 1. SDK Integration
+## SDK Integration
 
 Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard** > **Settings** > **Payment methods**. Cards, UPI, and other payment methods are enabled by default, and PayU recommends you to enable other payment methods that are relevant to you.
 
@@ -158,7 +158,7 @@ Webhook is a server-to-server callback. Once this feature is activated for merch
 
 Also, you can verify payment through polling, the transaction status after the SDK callback from your backend. For more information, refer to [Verify Payment API](https://docs.payu.in/docs/web-services-for-android-core-sdk#verify-payment-api).
 
-## Step 2. Test the Integration and Go-Live
+## Test the Integration and Go-Live
 
 ### Test the Integration
 
