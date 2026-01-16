@@ -84,10 +84,7 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
 
     <Accordion title="Sample request" icon="fa-code">
       **Validate VPA**
-
-      ```curl
-      curl -X POST "https://test.payu.in/merchant/postservice?form=2" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=validateVPA&var1=9999999999@upi&hash=75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
-      ```
+<Validate_VPA />
     </Accordion>
 
     <Accordion title="Sample response" icon="fa-reply">
