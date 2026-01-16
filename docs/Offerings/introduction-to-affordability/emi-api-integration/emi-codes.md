@@ -155,13 +155,13 @@ next:
 
 | Bank Name  | bank_code | Tenure    | Interest Rate |  Min. Amt. |   Max. Amt. | Default Processing Fee |
 | ---------- | --------- | --------- | ------------: | ---------: | ----------: | ---------------------: |
-| HDFC Bank  | HDFCD03   | 3 Months  |           16% |  Rs. 3,000 | Rs. 500,000 |                Rs. 299 |
-| HDFC Bank  | HDFCD06   | 6 Months  |           16% |  Rs. 5,000 | Rs. 500,000 |                Rs. 299 |
-| HDFC Bank  | HDFCD09   | 9 Months  |           16% |  Rs. 5,000 | Rs. 500,000 |                Rs. 299 |
-| HDFC Bank  | HDFCD12   | 12 Months |           16% |  Rs. 5,000 | Rs. 500,000 |                Rs. 299 |
-| HDFC Bank  | HDFCD18   | 18 Months |           16% |  Rs. 5,000 | Rs. 500,000 |                Rs. 299 |
-| HDFC Bank  | HDFCD24   | 24 Months |           16% |  Rs. 5,000 | Rs. 500,000 |                Rs. 299 |
-| HDFC Bank  | HDFCD36   | 36 Months |           16% | Rs. 30,000 | Rs. 500,000 |                Rs. 299 |
+| HDFC Bank  | HDFCD03   | 3 Months  |           18% |  Rs. 3,000 | Rs. 500,000 |                Rs. 299 |
+| HDFC Bank  | HDFCD06   | 6 Months  |           17% |  Rs. 5,000 | Rs. 500,000 |                Rs. 299 |
+| HDFC Bank  | HDFCD09   | 9 Months  |           17% |  Rs. 5,000 | Rs. 500,000 |                Rs. 299 |
+| HDFC Bank  | HDFCD12   | 12 Months |           17% |  Rs. 5,000 | Rs. 500,000 |                Rs. 299 |
+| HDFC Bank  | HDFCD18   | 18 Months |           17% |  Rs. 5,000 | Rs. 500,000 |                Rs. 299 |
+| HDFC Bank  | HDFCD24   | 24 Months |           17% |  Rs. 5,000 | Rs. 500,000 |                Rs. 299 |
+| HDFC Bank  | HDFCD36   | 36 Months |           17% | Rs. 30,000 | Rs. 500,000 |                Rs. 299 |
 | HDFC Bank  | HDFCD48   | 48 Months |           16% | Rs. 40,000 | Rs. 500,000 |                Rs. 299 |
 | ICICI Bank | ICICID03  | 3 Months  |           16% |  Rs. 5,000 | Rs. 500,000 |                Rs. 199 |
 | ICICI Bank | ICICID06  | 6 Months  |           16% |  Rs. 5,000 | Rs. 500,000 |                Rs. 199 |
@@ -193,7 +193,6 @@ next:
 | LazyPay EMI                 | LPEMI06   | 6 Months    |       25%-30% |   Rs. 6000 |     Rs. 100000 |                    N/A |
 | LazyPay EMI                 | LPEMI09   | 9 Months    |       25%-30% |  Rs. 15000 |     Rs. 100000 |                    N/A |
 | LazyPay EMI                 | LPEMI12   | 12 Months   |       25%-30% |  Rs. 20000 |     Rs. 100000 |                    N/A |
-| Liquiloans                  | LIQUIL06  | 6 Months    |           N/A |  Rs. 10000 |     Rs.1000000 |                    N/A |
 
 ## UPI CC EMI Codes
 
