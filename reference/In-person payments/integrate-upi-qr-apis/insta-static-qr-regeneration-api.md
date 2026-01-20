@@ -16,8 +16,6 @@ The **Insta Static QR Re-Generation** API is used to regenerate a previously gen
   **Note**: This API only allows you to regenerate, not edit the previously generated QR.
 </Callout>
 
-#### Environment
-
 | Environments | URL                                                                                            |
 | :----------- | :--------------------------------------------------------------------------------------------- |
 | Production   | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
@@ -98,6 +96,23 @@ The **Insta Static QR Re-Generation** API is used to regenerate a previously gen
 >
 > * **var1** is a json. All the parameters in var1 are to be sent as a json. Remember that the whole json string should be used for hash generation.
 > * To Re-Generate a static QR you may pass either the example **var1** parameters mentioned in this document or pass all the **var1** parameters that you have passed while generating the static QR for the first time. Remember that passing the parameter 'getAccount=1' indicates that the request is for re-generating a previously generated QR.
+
+## Sample request
+
+```
+curl --location --request POST 'https://info.payu.in/merchant/postservice.php' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=YOUR_MERCHANT_KEY' \
+--data-urlencode 'command=generate_insta_account' \
+--data-urlencode 'hash=YOUR_CALCULATED_HASH' \
+--data-urlencode 'var1={
+  "merchantVpa": "qr.6879729.prod12@indus",
+  "instaProduct": "qr",
+  "getAccount": "1"
+}'
+```
+
+<br />
 
 ### Sample var1
 
