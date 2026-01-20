@@ -18,6 +18,12 @@ Settlement Details APIs are build on top of settlement data that provides transa
 > * API will perform better if request is coming for single or non parent MID.
 > * As timeout is 60 Seconds, try to keep page size not more that 500 and date range a single date (Try to avoid giving end date)
 
+#### Environment
+
+|            |                                        |
+| :--------- | :------------------------------------- |
+| Production | https://info.payu.in/settlement/range/ |
+
 ## Request parameters
 
 ### Authorization header
@@ -94,7 +100,7 @@ function getAuthHeader(date) {
       <td>
         This parameter must contain date for the settlement range is required is in YYYY-MM-DD format. 
 
-        * *Note*\*: Date range is cannot be more tha. 3 days, so**dateTo** value must be posted accordingly.
+        * _Note_*: Date range is cannot be more tha. 3 days, so**dateTo** value must be posted accordingly.
       </td>
 
       <td>
@@ -104,7 +110,7 @@ function getAuthHeader(date) {
 
     <tr>
       <td>
-        pageSize\
+        pageSize  
         `optional`
       </td>
 
@@ -119,7 +125,7 @@ function getAuthHeader(date) {
 
     <tr>
       <td>
-        page\
+        page  
         `optional`
       </td>
 
