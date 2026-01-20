@@ -73,292 +73,34 @@ Post the payment parameters to PayU's `_payment` API endpoint to initiate a plai
   | udf\_params<br />`optional`                                                                | `String JSON`<br /><br />UDF7 value to capture "Import or Export Code" of the buyer<br /><br />UDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports)                                                                                                                                                                                                                                       | \{"udf7":"0100000029",<br />"udf8":"99953729071"}             |
   | hash<br />`mandatory`                                                                      | `String` Crucial security parameter using SHA512 hash encryption. Formula incorporates key, txnid, amount, productinfo, firstname, email, udf fields, si\_details, and merchant salt.                                                                                                                                                                                                                                         | \<Generated Hash>                                             |
 
-  <Accordion title="Hash Generation" icon="fa-lock">
-   
-  </Accordion>
+  <Accordion title="Hash Generation" icon="fa-lock" />
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
-  ```bash
-  curl --location --request POST 'https://test.payu.in/_payment' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JPM7Fg' \
-  --data-urlencode 'txnid=payuTestTransaction12345' \
-  --data-urlencode 'amount=100.00' \
-  --data-urlencode 'firstname=Ashish' \
-  --data-urlencode 'email=test@payu.in' \
-  --data-urlencode 'phone=9988776655' \
-  --data-urlencode 'productinfo=Product Info' \
-  --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
-  --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
-  --data-urlencode 'pg=CC' \
-  --data-urlencode 'bankcode=CC' \
-  --data-urlencode 'ccnum=5506900480000008' \
-  --data-urlencode 'ccname=Test User' \
-  --data-urlencode 'ccvv=123' \
-  --data-urlencode 'ccexpmon=09' \
-  --data-urlencode 'ccexpyr=2026' \
-  --data-urlencode 'udf1=AELPR****E' \
-  --data-urlencode 'udf2=' \
-  --data-urlencode 'udf3=01-12-1980' \
-  --data-urlencode 'udf4=XYZ Pvt. Ltd' \
-  --data-urlencode 'udf5=098450845' \
-  --data-urlencode 'txn_s2s_flow=4' \
-  --data-urlencode 's2s_client_ip=10.200.12.12' \
-  --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
-  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
-  ```
-  ```python
-  import requests
-
-  url = "https://test.payu.in/_payment"
-
-  headers = {
-      "Content-Type": "application/x-www-form-urlencoded"
-  }
-
-  data = {
-      "key": "JPM7Fg",
-      "txnid": "payuTestTransaction12345",
-      "amount": "100.00",
-      "firstname": "Ashish",
-      "email": "test@payu.in",
-      "phone": "9988776655",
-      "productinfo": "Product Info",
-      "surl": "https://test.payu.in/admin/test_response",
-      "furl": "https://test.payu.in/admin/test_response",
-      "pg": "CC",
-      "bankcode": "CC",
-      "ccnum": "5506900480000008",
-      "ccname": "Test User",
-      "ccvv": "123",
-      "ccexpmon": "09",
-      "ccexpyr": "2026",
-      "udf1": "AELPR****E",
-      "udf2": "",
-      "udf3": "01-12-1980",
-      "udf4": "XYZ Pvt. Ltd",
-      "udf5": "098450845",
-      "txn_s2s_flow": "4",
-      "s2s_client_ip": "10.200.12.12",
-      "s2s_device_info": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0",
-      "hash": "YOUR_CALCULATED_HASH"
-  }
-
-  response = requests.post(url, headers=headers, data=data)
-  print(response.json())
-  ```
-  ```csharp
-  using System;
-  using System.Net.Http;
-  using System.Threading.Tasks;
-  using System.Collections.Generic;
-
-  class Program
-  {
-      static async Task Main()
-      {
-          using (HttpClient client = new HttpClient())
-          {
-              var formData = new FormUrlEncodedContent(new[]
-              {
-                  new KeyValuePair<string, string>("key", "JPM7Fg"),
-                  new KeyValuePair<string, string>("txnid", "payuTestTransaction12345"),
-                  new KeyValuePair<string, string>("amount", "100.00"),
-                  new KeyValuePair<string, string>("firstname", "Ashish"),
-                  new KeyValuePair<string, string>("email", "test@payu.in"),
-                  new KeyValuePair<string, string>("phone", "9988776655"),
-                  new KeyValuePair<string, string>("productinfo", "Product Info"),
-                  new KeyValuePair<string, string>("surl", "https://test.payu.in/admin/test_response"),
-                  new KeyValuePair<string, string>("furl", "https://test.payu.in/admin/test_response"),
-                  new KeyValuePair<string, string>("pg", "CC"),
-                  new KeyValuePair<string, string>("bankcode", "CC"),
-                  new KeyValuePair<string, string>("ccnum", "5506900480000008"),
-                  new KeyValuePair<string, string>("ccname", "Test User"),
-                  new KeyValuePair<string, string>("ccvv", "123"),
-                  new KeyValuePair<string, string>("ccexpmon", "09"),
-                  new KeyValuePair<string, string>("ccexpyr", "2026"),
-                  new KeyValuePair<string, string>("udf1", "AELPR****E"),
-                  new KeyValuePair<string, string>("udf2", ""),
-                  new KeyValuePair<string, string>("udf3", "01-12-1980"),
-                  new KeyValuePair<string, string>("udf4", "XYZ Pvt. Ltd"),
-                  new KeyValuePair<string, string>("udf5", "098450845"),
-                  new KeyValuePair<string, string>("txn_s2s_flow", "4"),
-                  new KeyValuePair<string, string>("s2s_client_ip", "10.200.12.12"),
-                  new KeyValuePair<string, string>("s2s_device_info", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0"),
-                  new KeyValuePair<string, string>("hash", "YOUR_CALCULATED_HASH")
-              });
-
-              string url = "https://test.payu.in/_payment";
-              HttpResponseMessage response = await client.PostAsync(url, formData);
-              string responseBody = await response.Content.ReadAsStringAsync();
-              Console.WriteLine(responseBody);
-          }
-      }
-  }
-  ```
-  ```javascript
-  const makePayment = async () => {
-      const url = 'https://test.payu.in/_payment';
-
-      const formData = new URLSearchParams();
-      formData.append('key', 'JPM7Fg');
-      formData.append('txnid', 'payuTestTransaction12345');
-      formData.append('amount', '100.00');
-      formData.append('firstname', 'Ashish');
-      formData.append('email', 'test@payu.in');
-      formData.append('phone', '9988776655');
-      formData.append('productinfo', 'Product Info');
-      formData.append('surl', 'https://test.payu.in/admin/test_response');
-      formData.append('furl', 'https://test.payu.in/admin/test_response');
-      formData.append('pg', 'CC');
-      formData.append('bankcode', 'CC');
-      formData.append('ccnum', '5506900480000008');
-      formData.append('ccname', 'Test User');
-      formData.append('ccvv', '123');
-      formData.append('ccexpmon', '09');
-      formData.append('ccexpyr', '2026');
-      formData.append('udf1', 'AELPR****E');
-      formData.append('udf2', '');
-      formData.append('udf3', '01-12-1980');
-      formData.append('udf4', 'XYZ Pvt. Ltd');
-      formData.append('udf5', '098450845');
-      formData.append('txn_s2s_flow', '4');
-      formData.append('s2s_client_ip', '10.200.12.12');
-      formData.append('s2s_device_info', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0');
-      formData.append('hash', 'YOUR_CALCULATED_HASH');
-
-      const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: formData
-      });
-
-      const data = await response.json();
-      console.log(data);
-  };
-
-  makePayment();
-  ```
-  ```java
-  import java.io.BufferedReader;
-  import java.io.DataOutputStream;
-  import java.io.InputStreamReader;
-  import java.net.HttpURLConnection;
-  import java.net.URL;
-  import java.net.URLEncoder;
-  import java.util.HashMap;
-  import java.util.Map;
-  import java.util.StringJoiner;
-
-  public class PlainCardPayment {
-      public static void main(String[] args) throws Exception {
-          String url = "https://test.payu.in/_payment";
-
-          URL obj = new URL(url);
-          HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-          con.setRequestMethod("POST");
-          con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-
-          Map<String, String> params = new HashMap<>();
-          params.put("key", "JPM7Fg");
-          params.put("txnid", "payuTestTransaction12345");
-          params.put("amount", "100.00");
-          params.put("firstname", "Ashish");
-          params.put("email", "test@payu.in");
-          params.put("phone", "9988776655");
-          params.put("productinfo", "Product Info");
-          params.put("surl", "https://test.payu.in/admin/test_response");
-          params.put("furl", "https://test.payu.in/admin/test_response");
-          params.put("pg", "CC");
-          params.put("bankcode", "CC");
-          params.put("ccnum", "5506900480000008");
-          params.put("ccname", "Test User");
-          params.put("ccvv", "123");
-          params.put("ccexpmon", "09");
-          params.put("ccexpyr", "2026");
-          params.put("udf1", "AELPR****E");
-          params.put("udf2", "");
-          params.put("udf3", "01-12-1980");
-          params.put("udf4", "XYZ Pvt. Ltd");
-          params.put("udf5", "098450845");
-          params.put("txn_s2s_flow", "4");
-          params.put("s2s_client_ip", "10.200.12.12");
-          params.put("s2s_device_info", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0");
-          params.put("hash", "YOUR_CALCULATED_HASH");
-
-          StringJoiner sj = new StringJoiner("&");
-          for (Map.Entry<String, String> entry : params.entrySet()) {
-              sj.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + URLEncoder.encode(entry.getValue(), "UTF-8"));
-          }
-
-          con.setDoOutput(true);
-          try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
-              wr.writeBytes(sj.toString());
-          }
-
-          BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-          String inputLine;
-          StringBuilder response = new StringBuilder();
-
-          while ((inputLine = in.readLine()) != null) {
-              response.append(inputLine);
-          }
-          in.close();
-
-          System.out.println(response.toString());
-      }
-  }
-  ```
-  ```php
-  <?php
-  $curl = curl_init();
-
-  $postFields = [
-      'key' => 'JPM7Fg',
-      'txnid' => 'payuTestTransaction12345',
-      'amount' => '100.00',
-      'firstname' => 'Ashish',
-      'email' => 'test@payu.in',
-      'phone' => '9988776655',
-      'productinfo' => 'Product Info',
-      'surl' => 'https://test.payu.in/admin/test_response',
-      'furl' => 'https://test.payu.in/admin/test_response',
-      'pg' => 'CC',
-      'bankcode' => 'CC',
-      'ccnum' => '5506900480000008',
-      'ccname' => 'Test User',
-      'ccvv' => '123',
-      'ccexpmon' => '09',
-      'ccexpyr' => '2026',
-      'udf1' => 'AELPR****E',
-      'udf2' => '',
-      'udf3' => '01-12-1980',
-      'udf4' => 'XYZ Pvt. Ltd',
-      'udf5' => '098450845',
-      'txn_s2s_flow' => '4',
-      's2s_client_ip' => '10.200.12.12',
-      's2s_device_info' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0',
-      'hash' => 'YOUR_CALCULATED_HASH'
-  ];
-
-  curl_setopt_array($curl, [
-      CURLOPT_URL => 'https://test.payu.in/_payment',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_POST => true,
-      CURLOPT_POSTFIELDS => http_build_query($postFields),
-      CURLOPT_HTTPHEADER => [
-          'Content-Type: application/x-www-form-urlencoded'
-      ],
-  ]);
-
-  $response = curl_exec($curl);
-  curl_close($curl);
-
-  echo $response;
-  ?>
+  ```curl
+ curl --location --request POST 'https://test.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=JPM7Fg' \
+--data-urlencode 'txnid=payuTestTransaction12345' \
+--data-urlencode 'amount=100.00' \
+--data-urlencode 'firstname=Ashish' \
+--data-urlencode 'email=test@payu.in' \
+--data-urlencode 'phone=9988776655' \
+--data-urlencode 'productinfo=Product Info' \
+--data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'pg=NB' \
+--data-urlencode 'bankcode=TESTPGNB' \
+--data-urlencode 'txn_s2s_flow=4' \
+--data-urlencode 's2s_client_ip=10.200.12.12' \
+--data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+--data-urlencode 'udf1=AELPR1234E' \
+--data-urlencode 'udf3=02-02-1980' \
+--data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+--data-urlencode 'udf5=INV123456' \
+--data-urlencode 'buyer_type_business=1' \
+--data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
+--data-urlencode 'hash=YOUR_CALCULATED_HASH'
   ```
 </Accordion>
 
