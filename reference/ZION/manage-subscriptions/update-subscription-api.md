@@ -19,16 +19,11 @@ Update subscription interface allows to update merchants to update below paramet
 
 These details can be passed together or separately in update subscription call as per merchant’s convenience. Please note that they will overwrite existing values present in the current subscription
 
-**Environment**
+#### Environment
 
-|                |                                                                                   |
-| -------------- | --------------------------------------------------------------------------------- |
-| **Sandbox**    | [https://subscriptiontest.citruspay.com](https://subscriptiontest.citruspay.com/) |
-| **Production** | [https://subscription.citruspay.com](https://subscription.citruspay.com/)         |
+**Path**: `{base_url}/api/sub/v1/merchant/subscriptions?`
 
 **Post Method**: PATCH
-
-## Request parameters
 
 ### Header
 
