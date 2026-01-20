@@ -1,1 +1,30 @@
-{"openapi":"3.1.0","info":{"title":"Health Check","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://test.payu.in/merchant","variables":{}}],"paths":{"/postservice.php":{"post":{"tags":["Misc"],"summary":"Net Banking Status","operationId":"NetBankingStatus","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"const":2,"type":"integer","contentEncoding":"int32","examples":[2]}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/x-www-form-urlencoded","type":"string","examples":["application/x-www-form-urlencoded"]}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","var1","hash"],"type":"object","properties":{"key":{"const":"JPM7Fg","type":"string","description":"This parameter must contain the merchant key that was provided by PayU.","examples":["JPM7Fg"]},"command":{"const":"getNetbankingStatus","type":"string","description":"This parameter must contain the getNetBankingStatus as the command name.","examples":["getNetbankingStatus"]},"var1":{"type":"string","description":"This parameter must contain the bank identification number\n(first 6 digits of a card).","examples":["default"]},"hash":{"type":"string","description":"This parameter must contain the hash value to be calculated at your end."}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{}}},"deprecated":false},"parameters":[]}},"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Health Check",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/merchant",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/postservice.php": {
+      "parameters": []
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
