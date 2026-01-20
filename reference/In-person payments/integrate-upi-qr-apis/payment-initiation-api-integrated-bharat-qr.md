@@ -333,6 +333,8 @@ puts response.read_body
 
 ## Sample response
 
+The formatted success response is similar to the following:
+
 ```json
 {
   "mihpayid": "403993715521937565",
