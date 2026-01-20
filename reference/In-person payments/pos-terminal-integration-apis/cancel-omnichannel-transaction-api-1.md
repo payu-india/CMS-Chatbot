@@ -19,7 +19,7 @@ The **Cancel Omnichannel Transaction** API is used to cancel the auth transactio
 > * Pre Auth transactions cannot be canceled.
 > * The same merchant key should be used to cancel the payment which was used to initiate the payment.
 
-## Environment
+#### Environment
 
 | Environment | URL                                                                                            |
 | :---------- | :--------------------------------------------------------------------------------------------- |
@@ -53,11 +53,11 @@ The **Cancel Omnichannel Transaction** API is used to cancel the auth transactio
       </td>
 
       <td>
-        `string` The merchant key that was provided by PayU.\
-        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
+        `string` The merchant key that was provided by PayU.  
+        Reference: For more information on how to generate the Key and Salt, refer to any of the following:
 
-        * \*Production\*\*: Generate Production Merchant Key and Sat.  
-        * \*Test\*\*: Generate Test Merchant Key and Salt.
+        * *Production**: Generate Production Merchant Key and Sat.
+        * *Test**: Generate Test Merchant Key and Salt.
       </td>
 
       <td>
@@ -67,27 +67,27 @@ The **Cancel Omnichannel Transaction** API is used to cancel the auth transactio
 
     <tr>
       <td>
-        command\
+        command  
         `mandatory`
       </td>
 
       <td>
-        `string` The parameter must contain the name of the web service. For this API, the value must be cancel\_omni\_payment.
+        `string` The parameter must contain the name of the web service. For this API, the value must be cancel_omni_payment.
       </td>
 
       <td>
-        string The parameter must contain the name of the web service. For this API, the value must be cancel\_omni\_payment.
+        string The parameter must contain the name of the web service. For this API, the value must be cancel_omni_payment.
       </td>
     </tr>
 
     <tr>
       <td>
-        hash\
+        hash  
         `mandatory`
       </td>
 
       <td>
-        string This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below: `sha512(key\|command\|var1\|salt)`
+        string This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below: `sha512(key|command|var1|salt)`
       </td>
 
       <td>
@@ -97,7 +97,7 @@ The **Cancel Omnichannel Transaction** API is used to cancel the auth transactio
 
     <tr>
       <td>
-        var1\
+        var1  
         `mandatory`
       </td>
 
@@ -149,7 +149,7 @@ The **Cancel Omnichannel Transaction** API is used to cancel the auth transactio
 
     <tr>
       <td>
-        product\_type \
+        product_type   
         optional
       </td>
 
