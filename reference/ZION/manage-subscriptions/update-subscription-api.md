@@ -19,9 +19,16 @@ Update subscription interface allows to update merchants to update below paramet
 
 These details can be passed together or separately in update subscription call as per merchant’s convenience. Please note that they will overwrite existing values present in the current subscription
 
+**Environment**
+
+|                |                                                                                   |
+| -------------- | --------------------------------------------------------------------------------- |
+| **Sandbox**    | [https://subscriptiontest.citruspay.com](https://subscriptiontest.citruspay.com/) |
+| **Production** | [https://subscription.citruspay.com](https://subscription.citruspay.com/)         |
+
 **Post Method**: PATCH
 
-**Path**: \{base\_url}/api/sub/v1/merchant/subscriptions/\{subscriptionId}
+## Request parameters
 
 ### Header
 
@@ -110,9 +117,9 @@ The response body returned as a part of Update Subscription is same as that of D
 
 | HTTP Status Code | Description                           |
 | ---------------- | ------------------------------------- |
-| 200              | *Subscription updated successfully*   |
-| 403              | *Forbidden request invalid Signature* |
-| 400              | *Request is malformed*                |
-| 404              | *Merchant or Plan Id not found*       |
-| 422              | *Request has invalid values*          |
-| 500              | *Interval Server Error*               |
+| 200              | _Subscription updated successfully_   |
+| 403              | _Forbidden request invalid Signature_ |
+| 400              | _Request is malformed_                |
+| 404              | _Merchant or Plan Id not found_       |
+| 422              | _Request has invalid values_          |
+| 500              | _Interval Server Error_               |
