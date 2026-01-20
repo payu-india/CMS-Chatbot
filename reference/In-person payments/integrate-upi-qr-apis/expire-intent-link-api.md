@@ -12,6 +12,8 @@ next:
 ---
 The **Expire Intent Link** API is used to expire UPI Intent link.
 
+#### Environment
+
 | Environment | URI                                                                                            |
 | :---------- | :--------------------------------------------------------------------------------------------- |
 | Production  | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
@@ -53,7 +55,7 @@ The **Expire Intent Link** API is used to expire UPI Intent link.
 
     <tr>
       <td>
-        command\
+        command  
         `mandatory`
       </td>
 
@@ -62,19 +64,19 @@ The **Expire Intent Link** API is used to expire UPI Intent link.
       </td>
 
       <td>
-        expire\_intent\_link
+        expire_intent_link
       </td>
     </tr>
 
     <tr>
       <td>
-        hash\
+        hash  
         `mandatory`
       </td>
 
       <td>
-        `string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:\
-        sha512(key|command|var1|salt)\
+        `string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:  
+        sha512(key|command|var1|salt)  
         sha512 is the encryption method used here.
       </td>
 
@@ -85,14 +87,14 @@ The **Expire Intent Link** API is used to expire UPI Intent link.
 
     <tr>
       <td>
-        var1\
+        var1  
         `mandatory`
       </td>
 
       <td>
-        `JSON` This parameter will include the transactionIds in an array format (comma separated).  
+        `JSON` This parameter will include the transactionIds in an array format (comma separated).
 
-        * \*Note\*\*: Only 100 transactions can be processed for a request,
+        * *Note**: Only 100 transactions can be processed for a request,
       </td>
 
       <td>
@@ -193,9 +195,9 @@ Response response = client.newCall(request).execute();
       </td>
 
       <td>
-        This parameter returns the status of web service call. The status can be any of the following:  
+        This parameter returns the status of web service call. The status can be any of the following:
 
-        0 - If web service call failed\
+        0 - If web service call failed  
         1 - If web service call succeeded
       </td>
     </tr>
@@ -206,7 +208,7 @@ Response response = client.newCall(request).execute();
       </td>
 
       <td>
-        This parameter returns the following message if the offline intent link was generated successfully:\
+        This parameter returns the following message if the offline intent link was generated successfully:  
         `Intent link generated`
       </td>
     </tr>
@@ -217,14 +219,14 @@ Response response = client.newCall(request).execute();
       </td>
 
       <td>
-        This parameter returns the message in following JSON format if the request was successful:  
+        This parameter returns the message in following JSON format if the request was successful:
 
-        txnId: The transaction ID of the offline intent link.\
-        status: The status can be any of the following based on whether intent link was expired:\
-        1: Successfully link got expired\
-        0: Link had got already expired or not active intent link.\
-        msg: Any of the following message is displayed based on the link was expired by this API or no active link.\
-        Intent link has expired\
+        txnId: The transaction ID of the offline intent link.  
+        status: The status can be any of the following based on whether intent link was expired:  
+        1: Successfully link got expired  
+        0: Link had got already expired or not active intent link.  
+        msg: Any of the following message is displayed based on the link was expired by this API or no active link.  
+        Intent link has expired  
         No active intent link against this transaction ID
       </td>
     </tr>
