@@ -1,5 +1,4 @@
 - get_bin_info_api
-- old_check_is_domestic_api
 - check_is_domestic_api
 - save_card_bin_info_api
 - s2s-get-eligible-bins-api
