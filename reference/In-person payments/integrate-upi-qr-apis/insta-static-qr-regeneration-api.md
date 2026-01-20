@@ -16,6 +16,8 @@ The **Insta Static QR Re-Generation** API is used to regenerate a previously gen
   **Note**: This API only allows you to regenerate, not edit the previously generated QR.
 </Callout>
 
+#### Environment
+
 | Environments | URL                                                                                            |
 | :----------- | :--------------------------------------------------------------------------------------------- |
 | Production   | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
