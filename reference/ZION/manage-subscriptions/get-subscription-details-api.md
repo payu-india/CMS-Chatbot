@@ -12,9 +12,11 @@ next:
 ---
 Get subscription interface returns all details about defined subscription through HTTP Get method. The response body is same as that of defined subscription interface.
 
-**HTTP Method**: GET
+#### Environment
 
 **Path**: `{base_url}`/api/sub/v1/merchant/subscriptions/`{subscriptionId}`
+
+**HTTP Method**: GET
 
 ## Request parameters
 
