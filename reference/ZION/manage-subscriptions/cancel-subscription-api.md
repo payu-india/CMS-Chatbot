@@ -12,9 +12,11 @@ next:
 ---
 Cancel subscription interface stops subscription and further processing of the associated immediately. Merchant needs to be mindful before executing this because once Cancelled, same subscription cannot be resumed.
 
-**HTTP method**: DELETE
+#### Environment
 
 **Path**: `{base_url}/api/sub/v1/merchant/subscriptions/`{`subscriptionId`}
+
+**HTTP method**: DELETE
 
 ## Request parameters
 
