@@ -12,6 +12,8 @@ next:
 ---
 The **Send Invoice QR to SMS** API is used to send SMS to provided phoneNumber post transaction. Whenever payment is success/fail via SDK, merchant will call this API to send the payment confirmation SMS to merchant’s executive phone number.
 
+#### Environment
+
 | Environments | URI                                                                                            |
 | :----------- | :--------------------------------------------------------------------------------------------- |
 | Production   | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
@@ -43,10 +45,10 @@ The **Send Invoice QR to SMS** API is used to send SMS to provided phoneNumber p
       </td>
 
       <td>
-        `string` This parameter must include the merchant key that was provided by PayU.\
-        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
+        `string` This parameter must include the merchant key that was provided by PayU.  
+        Reference: For more information on how to generate the Key and Salt, refer to any of the following:
 
-        Production: Generate Production Merchant Key and Sat.\
+        Production: Generate Production Merchant Key and Sat.  
         Test: Generate Test Merchant Key and Salt.
       </td>
 
@@ -57,29 +59,29 @@ The **Send Invoice QR to SMS** API is used to send SMS to provided phoneNumber p
 
     <tr>
       <td>
-        command\
+        command  
         `mandatory`
       </td>
 
       <td>
-        `string` The parameter must contain the name of the web service. For this API, send\_sdk\_message must be posted.
+        `string` The parameter must contain the name of the web service. For this API, send_sdk_message must be posted.
       </td>
 
       <td>
-        send\_sdk\_message
+        send_sdk_message
       </td>
     </tr>
 
     <tr>
       <td>
-        hash\
+        hash  
         `mandatory`
       </td>
 
       <td>
-        string This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:  
+        string This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:
 
-        sha512(key|command|var1|salt)\
+        sha512(key|command|var1|salt)  
         sha512 is the encryption method used here.
       </td>
 
@@ -90,7 +92,7 @@ The **Send Invoice QR to SMS** API is used to send SMS to provided phoneNumber p
 
     <tr>
       <td>
-        var1\
+        var1  
         `mandatory`
       </td>
 
@@ -105,7 +107,7 @@ The **Send Invoice QR to SMS** API is used to send SMS to provided phoneNumber p
 
     <tr>
       <td>
-        var2\
+        var2  
         `mandatory`
       </td>
 
@@ -154,9 +156,9 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
       </td>
 
       <td>
-        This parameter returns the status of web service call. The status can be any of the following:  
+        This parameter returns the status of web service call. The status can be any of the following:
 
-        0 - If web service call failed.\
+        0 - If web service call failed.  
         1 - If web service call succeeded
       </td>
     </tr>
@@ -167,7 +169,7 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
       </td>
 
       <td>
-        This parameter returns the following message if the SMS was sent successfully:\
+        This parameter returns the following message if the SMS was sent successfully:  
         sms request successful
       </td>
     </tr>
