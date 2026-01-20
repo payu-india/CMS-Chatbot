@@ -1,1 +1,1212 @@
-{"openapi":"3.1.0","info":{"title":"BBPS APIs Agent Share","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://bbps-sb.payu.in/","variables":{}}],"paths":{"/oauth/token":{"post":{"tags":["Misc"],"summary":"Auth Token","operationId":"AuthToken","parameters":[{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/x-www-form-urlencoded","type":"string","examples":["application/x-www-form-urlencoded"]}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["client_id","client_secret","grant_type","scope"],"type":"object","properties":{"client_id":{"type":"string","description":"This parameter contains the public identifier of the client to access the platform."},"client_secret":{"type":"string","description":"This parameter contains a unique secret of client for authorization."},"grant_type":{"const":"client_credentials","type":"string","description":"Pass the string Client_Credential in this parameter.","examples":["client_credentials"]},"scope":{"type":"string","description":"This parameter contains the purpose of the access token and can be any of the following: read_bills, create_transactions, read_billers,read_biller_categories, or read_transactions","examples":["read_bills"]}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{}}},"deprecated":false},"parameters":[]},"/payu-nbc/v1/nbc/billfetchrequest":{"post":{"tags":["Misc"],"summary":"Bill Fetch API","operationId":"BillFetchAPI","parameters":[{"name":"clientCode","in":"header","description":"","required":true,"style":"simple","schema":{"type":"string","examples":["w3eSjTdvLYzLxD8EijyU"]}}],"requestBody":{"description":"","content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/BillFetchBody"},{}],"contentMediaType":"application/json"}}},"required":true},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v2/nbc/paymentValidation":{"post":{"tags":["Misc"],"summary":"Bill Validation API","operationId":"BillValidationAPI","parameters":[],"requestBody":{"description":"","content":{"text/plain":{"schema":{"type":"string","examples":["{\n    \"agentId\": \"\",\n    \"billerId\": \"{{billerId}}\",\n    \"customerName\" : \"\",\n    \"customerPhoneNumber\" : \"\",\n    \"paidAmount\": {{paidAmount}},\n    \"timeStamp\": \"{{timeStamp}}\",\n    \"refId\": \"{{refId}}\",\n    \"customerParams\": {{customerParams}},\n    \"deviceDetails\": {{deviceDetails}}\n}"],"contentMediaType":"text/plain"},"example":"{\n    \"agentId\": \"\",\n    \"billerId\": \"{{billerId}}\",\n    \"customerName\" : \"\",\n    \"customerPhoneNumber\" : \"\",\n    \"paidAmount\": {{paidAmount}},\n    \"timeStamp\": \"{{timeStamp}}\",\n    \"refId\": \"{{refId}}\",\n    \"customerParams\": {{customerParams}},\n    \"deviceDetails\": {{deviceDetails}}\n}"}},"required":true},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc-int/v1/nbc/billpaymentrequest":{"post":{"tags":["Misc"],"summary":"BILL PAYMENT WITHOUT FETCH & VALIDATE","operationId":"BILLPAYMENTWITHOUTFETCH&VALIDATE","parameters":[],"requestBody":{"description":"","content":{"text/plain":{"schema":{"type":"string","examples":["{\n    \"agentId\": \"\",\n    \"billerId\": \"{{billerId}}\",\n    \"paidAmount\": {{paidAmount}},\n    \"paymentName\": \"TOTAL\",\n    \"isQuickPay\": true,\n    \"timeStamp\": \"{{timeStamp}}\",\n    \"refId\": \"{{refId}}\",\n    \"customerParams\": {{customerParams}},\n    \"deviceDetails\": {{deviceDetails}},\n    \"paymentDetails\": {{paymentDetails}},\n    \"userDetails\": {\n        \"firstName\": \"\",\n        \"phone\": \"\",\n        \"email\": \"\"\n    },\n    \"additionalParams\": {\n        \"agentTxnID\": \"{{txnId}}\"\n    }\n    \n}"],"contentMediaType":"text/plain"},"example":"{\n    \"agentId\": \"\",\n    \"billerId\": \"{{billerId}}\",\n    \"paidAmount\": {{paidAmount}},\n    \"paymentName\": \"TOTAL\",\n    \"isQuickPay\": true,\n    \"timeStamp\": \"{{timeStamp}}\",\n    \"refId\": \"{{refId}}\",\n    \"customerParams\": {{customerParams}},\n    \"deviceDetails\": {{deviceDetails}},\n    \"paymentDetails\": {{paymentDetails}},\n    \"userDetails\": {\n        \"firstName\": \"\",\n        \"phone\": \"\",\n        \"email\": \"\"\n    },\n    \"additionalParams\": {\n        \"agentTxnID\": \"{{txnId}}\"\n    }\n    \n}"}},"required":true},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v2/nbc/status/billpayment":{"get":{"tags":["Misc"],"summary":"Get Payment Status (V2)","operationId":"GetPaymentStatus(V2)","parameters":[{"name":"refId","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"type":"string","examples":["{{refId}}"]}}],"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v1/nbc/getAllBillerCategory":{"get":{"tags":["Misc"],"summary":"Get Biller Categories","operationId":"GetBillerCategories","parameters":[],"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v1/nbc/getBillerByBillerCategory":{"get":{"tags":["Misc"],"summary":"Get All Billers By Category","operationId":"GetAllBillersByCategory","parameters":[{"name":"billerCategoryName","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"type":"string","examples":["DONATION"]}}],"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v1/nbc/getRegions":{"get":{"tags":["Misc"],"summary":"Get All Region","operationId":"GetAllRegion","parameters":[{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/json","type":"string","examples":["application/json"]}}],"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v1/nbc/getBillerByRegion":{"get":{"tags":["Misc"],"summary":"Get All Billers By Region","operationId":"GetAllBillersByRegion","parameters":[{"name":"region","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"type":"string","examples":["{{region}}"]}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/json","type":"string","examples":["application/json"]}}],"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v1/nbc/billerPlans":{"post":{"tags":["Misc"],"summary":"Biller Plans API","operationId":"BillerPlansAPI","parameters":[],"requestBody":{"description":"","content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/BillerPlansAPIRequest"},{"examples":[{"agentId":"","billerId":"{{billerId}}","refId":"{{refId}}","offset":0,"flowType":"BBPS","limit":100}]}],"contentMediaType":"application/json"},"example":{"agentId":"","billerId":"{{billerId}}","refId":"{{refId}}","offset":0,"flowType":"BBPS","limit":100}}},"required":true},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v2/nbc/getCircleList":{"get":{"tags":["Misc"],"summary":"Get Circle List","operationId":"GetCircleList","parameters":[],"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v2/nbc/getOperatorList":{"get":{"tags":["Misc"],"summary":"Get Operators List","operationId":"GetOperatorsList","parameters":[{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/json","type":"string","examples":["application/json"]}}],"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v3/nbc/getRechargePlans":{"post":{"tags":["Misc"],"summary":"Get Prepaid Recharge Plans","operationId":"GetPrepaidRechargePlans","parameters":[],"requestBody":{"description":"","content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/GetPrepaidRechargePlansRequest"},{"examples":[{"agentId":"","operatorId":"JR","circleId":18}]}],"contentMediaType":"application/json"},"example":{"agentId":"","operatorId":"JR","circleId":18}}},"required":true},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v2/nbc/getOperatorAndCircleInfo":{"post":{"tags":["Misc"],"summary":"Get Operator and Circle By Mobile Number (MNP)","operationId":"GetOperatorandCircleByMobileNumber(MNP)","parameters":[],"requestBody":{"description":"","content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/GetOperatorandCircleByMobileNumberMNPRequest"},{"examples":[{"agentId":"","customerPhoneNumber":""}]}],"contentMediaType":"application/json"},"example":{"agentId":"","customerPhoneNumber":""}}},"required":true},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v3/nbc/getCustomizedRechargePlans":{"post":{"tags":["Misc"],"summary":"Get Custom Recharge Plans","operationId":"GetCustomRechargePlans","parameters":[],"requestBody":{"description":"","content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/GetCustomRechargePlansRequest"},{"examples":[{"agentId":"","refId":"{{refId}}","mobileNumber":"","operatorId":"AT"}]}],"contentMediaType":"application/json"},"example":{"agentId":"","refId":"{{refId}}","mobileNumber":"","operatorId":"AT"}}},"required":true},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v1/nbc/raiseComplaint":{"post":{"tags":["Misc"],"summary":"Raise BBPS Complaint","operationId":"RaiseBBPSComplaint","parameters":[],"requestBody":{"description":"","content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/RaiseBBPSComplaintRequest"},{"examples":[{"fetchParameters":{"complaintType":"Transaction","description":"Service nhi mili","disposition":"Erroneously paid in wrong account","txnReferenceId":""},"xchangeId":"501"}]}],"contentMediaType":"application/json"},"example":{"fetchParameters":{"complaintType":"Transaction","description":"Service nhi mili","disposition":"Erroneously paid in wrong account","txnReferenceId":""},"xchangeId":"501"}}},"required":true},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v1/nbc/checkComplaintStatus":{"post":{"tags":["Misc"],"summary":"Check Complaint Status","operationId":"CheckComplaintStatus","parameters":[],"requestBody":{"description":"","content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/CheckComplaintStatusRequest"},{"examples":[{"fetchParameters":{"complaintId":"","complaintType":"Transaction"},"xchangeId":"506"}]}],"contentMediaType":"application/json"},"example":{"fetchParameters":{"complaintId":"","complaintType":"Transaction"},"xchangeId":"506"}}},"required":true},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]},"/payu-nbc/v1/nbc/heartBeat":{"post":{"tags":["Misc"],"summary":"heartBeat API","operationId":"heartBeatAPI","parameters":[],"requestBody":{"description":"","content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/heartBeatAPIRequest"},{"examples":[{"agentId":"string","refId":"string"}]}],"contentMediaType":"application/json"},"example":{"agentId":"string","refId":"string"}}},"required":true},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"security":[{"bearer":[]}]},"parameters":[]}},"components":{"schemas":{"BillerPlansAPIRequest":{"title":"BillerPlansAPIRequest","required":["agentId","billerId","refId","offset","flowType","limit"],"type":"object","properties":{"agentId":{"type":"string"},"billerId":{"type":"string"},"refId":{"type":"string"},"offset":{"type":"integer","contentEncoding":"int32"},"flowType":{"type":"string"},"limit":{"type":"integer","contentEncoding":"int32"}},"examples":[{"agentId":"","billerId":"{{billerId}}","refId":"{{refId}}","offset":0,"flowType":"BBPS","limit":100}]},"GetPrepaidRechargePlansRequest":{"title":"GetPrepaidRechargePlansRequest","required":["agentId","operatorId","circleId"],"type":"object","properties":{"agentId":{"type":"string"},"operatorId":{"type":"string"},"circleId":{"type":"integer","contentEncoding":"int32"}},"examples":[{"agentId":"","operatorId":"JR","circleId":18}]},"GetOperatorandCircleByMobileNumberMNPRequest":{"title":"GetOperatorandCircleByMobileNumberMNPRequest","required":["agentId","customerPhoneNumber"],"type":"object","properties":{"agentId":{"type":"string"},"customerPhoneNumber":{"type":"string"}},"examples":[{"agentId":"","customerPhoneNumber":""}]},"GetCustomRechargePlansRequest":{"title":"GetCustomRechargePlansRequest","required":["agentId","refId","mobileNumber","operatorId"],"type":"object","properties":{"agentId":{"type":"string"},"refId":{"type":"string"},"mobileNumber":{"type":"string"},"operatorId":{"type":"string"}},"examples":[{"agentId":"","refId":"{{refId}}","mobileNumber":"","operatorId":"AT"}]},"RaiseBBPSComplaintRequest":{"title":"RaiseBBPSComplaintRequest","required":["fetchParameters","xchangeId"],"type":"object","properties":{"fetchParameters":{"allOf":[{"$ref":"#/components/schemas/FetchParameters"},{}]},"xchangeId":{"type":"string"}},"examples":[{"fetchParameters":{"complaintType":"Transaction","description":"Service nhi mili","disposition":"Erroneously paid in wrong account","txnReferenceId":""},"xchangeId":"501"}]},"FetchParameters":{"title":"FetchParameters","required":["complaintType","description","disposition","txnReferenceId"],"type":"object","properties":{"complaintType":{"type":"string"},"description":{"type":"string"},"disposition":{"type":"string"},"txnReferenceId":{"type":"string"}},"examples":[{"complaintType":"Transaction","description":"Service nhi mili","disposition":"Erroneously paid in wrong account","txnReferenceId":""}]},"CheckComplaintStatusRequest":{"title":"CheckComplaintStatusRequest","required":["fetchParameters","xchangeId"],"type":"object","properties":{"fetchParameters":{"allOf":[{"$ref":"#/components/schemas/FetchParameters1"},{}]},"xchangeId":{"type":"string"}},"examples":[{"fetchParameters":{"complaintId":"","complaintType":"Transaction"},"xchangeId":"506"}]},"FetchParameters1":{"title":"FetchParameters1","required":["complaintId","complaintType"],"type":"object","properties":{"complaintId":{"type":"string"},"complaintType":{"type":"string"}},"examples":[{"complaintId":"","complaintType":"Transaction"}]},"heartBeatAPIRequest":{"title":"heartBeatAPIRequest","required":["agentId","refId"],"type":"object","properties":{"agentId":{"type":"string"},"refId":{"type":"string"}},"examples":[{"agentId":"string","refId":"string"}]},"BillFetchBody":{"title":"BillFetchBody","required":["agentId","billerId","customerParams","deviceDetails","customerName","customerPhoneNumber","timeStamp","refId"],"type":"object","properties":{"agentId":{"type":"string","description":"This parameter must contain the Agent ID that is shared by PayU."},"billerId":{"type":"string","description":"This parameter must contain the Biller Identification Number."},"customerParams":{"type":"string","description":"This parameter must contain the customer parameters."},"deviceDetails":{"type":"string","description":"This parameter must contain the device details."},"customerName":{"type":"string","description":"This parameter must contain the customer name.","examples":["Ashish"]},"customerPhoneNumber":{"type":"string","description":"This parameter must contain the customer phone number."},"timeStamp":{"type":"string","description":"This parameter will contain the time so that the agent can fetch updated plans after this timestamp. Agent can use this parameter for delta response. The format for time: yyyy-MM-dd HH:mm:ss"},"refId":{"type":"string","description":"This parameter must contain the Unique Identification Number."}},"description":"","examples":[{"agentId":"","billerId":"","customerParams":"","deviceDetails":"","customerName":"Test Wc","customerPhoneNumber":"7898986081","timeStamp":"","refId":""}]},"BillValidationBody":{"title":"BillValidationBody","required":["agentId","billerId","customerName","customerPhoneNumber","paidAmount","timeStamp","refId","customerParams","deviceDetails"],"type":"object","properties":{"agentId":{"type":"string","description":"This parameter must contain the Agent ID that is shared by PayU."},"billerId":{"type":"string","description":"This parameter must contain the Biller Identification Number."},"customerName":{"type":"string","description":"This parameter must contain the customer name.","examples":["Ashish"]},"customerPhoneNumber":{"type":"string","description":"This parameter must contain the customer phone number."},"paidAmount":{"type":"integer","description":"This parameter contains amount paid by the customer.","contentEncoding":"int64","examples":[1000]},"timeStamp":{"type":"string","description":"This parameter will contain the time so that the agent can fetch updated plans after this timestamp. Agent can use this parameter for delta response. The format for time: yyyy-MM-dd HH:mm:ss"},"refId":{"type":"string","description":"This parameter must contain the Unique Identification Number."},"customerParams":{"type":"string","description":"This parameter must contain the customer parameters."},"deviceDetails":{"type":"string","description":"This parameter must contain the device details."}},"description":"","examples":[{"agentId":"","billerId":"","customerName":"","customerPhoneNumber":"","paidAmount":10000,"timeStamp":"","refId":"","customerParams":"","deviceDetails":""}]}},"securitySchemes":{"bearer":{"type":"http","scheme":"bearer"}}},"security":[],"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "BBPS APIs Agent Share",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://bbps-sb.payu.in/",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/oauth/token": {
+      "parameters": []
+    },
+    "/payu-nbc/v1/nbc/billfetchrequest": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Bill Fetch API",
+        "operationId": "BillFetchAPI",
+        "parameters": [
+          {
+            "name": "clientCode",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "w3eSjTdvLYzLxD8EijyU"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BillFetchBody"
+                  },
+                  {}
+                ],
+                "contentMediaType": "application/json"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v2/nbc/paymentValidation": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Bill Validation API",
+        "operationId": "BillValidationAPI",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string",
+                "examples": [
+                  "{\n    \"agentId\": \"\",\n    \"billerId\": \"{{billerId}}\",\n    \"customerName\" : \"\",\n    \"customerPhoneNumber\" : \"\",\n    \"paidAmount\": {{paidAmount}},\n    \"timeStamp\": \"{{timeStamp}}\",\n    \"refId\": \"{{refId}}\",\n    \"customerParams\": {{customerParams}},\n    \"deviceDetails\": {{deviceDetails}}\n}"
+                ],
+                "contentMediaType": "text/plain"
+              },
+              "example": "{\n    \"agentId\": \"\",\n    \"billerId\": \"{{billerId}}\",\n    \"customerName\" : \"\",\n    \"customerPhoneNumber\" : \"\",\n    \"paidAmount\": {{paidAmount}},\n    \"timeStamp\": \"{{timeStamp}}\",\n    \"refId\": \"{{refId}}\",\n    \"customerParams\": {{customerParams}},\n    \"deviceDetails\": {{deviceDetails}}\n}"
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc-int/v1/nbc/billpaymentrequest": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "BILL PAYMENT WITHOUT FETCH & VALIDATE",
+        "operationId": "BILLPAYMENTWITHOUTFETCH&VALIDATE",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string",
+                "examples": [
+                  "{\n    \"agentId\": \"\",\n    \"billerId\": \"{{billerId}}\",\n    \"paidAmount\": {{paidAmount}},\n    \"paymentName\": \"TOTAL\",\n    \"isQuickPay\": true,\n    \"timeStamp\": \"{{timeStamp}}\",\n    \"refId\": \"{{refId}}\",\n    \"customerParams\": {{customerParams}},\n    \"deviceDetails\": {{deviceDetails}},\n    \"paymentDetails\": {{paymentDetails}},\n    \"userDetails\": {\n        \"firstName\": \"\",\n        \"phone\": \"\",\n        \"email\": \"\"\n    },\n    \"additionalParams\": {\n        \"agentTxnID\": \"{{txnId}}\"\n    }\n    \n}"
+                ],
+                "contentMediaType": "text/plain"
+              },
+              "example": "{\n    \"agentId\": \"\",\n    \"billerId\": \"{{billerId}}\",\n    \"paidAmount\": {{paidAmount}},\n    \"paymentName\": \"TOTAL\",\n    \"isQuickPay\": true,\n    \"timeStamp\": \"{{timeStamp}}\",\n    \"refId\": \"{{refId}}\",\n    \"customerParams\": {{customerParams}},\n    \"deviceDetails\": {{deviceDetails}},\n    \"paymentDetails\": {{paymentDetails}},\n    \"userDetails\": {\n        \"firstName\": \"\",\n        \"phone\": \"\",\n        \"email\": \"\"\n    },\n    \"additionalParams\": {\n        \"agentTxnID\": \"{{txnId}}\"\n    }\n    \n}"
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v2/nbc/status/billpayment": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Get Payment Status (V2)",
+        "operationId": "GetPaymentStatus(V2)",
+        "parameters": [
+          {
+            "name": "refId",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "{{refId}}"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v1/nbc/getAllBillerCategory": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Get Biller Categories",
+        "operationId": "GetBillerCategories",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v1/nbc/getBillerByBillerCategory": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Get All Billers By Category",
+        "operationId": "GetAllBillersByCategory",
+        "parameters": [
+          {
+            "name": "billerCategoryName",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "DONATION"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v1/nbc/getRegions": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Get All Region",
+        "operationId": "GetAllRegion",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/json",
+              "type": "string",
+              "examples": [
+                "application/json"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v1/nbc/getBillerByRegion": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Get All Billers By Region",
+        "operationId": "GetAllBillersByRegion",
+        "parameters": [
+          {
+            "name": "region",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "{{region}}"
+              ]
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/json",
+              "type": "string",
+              "examples": [
+                "application/json"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v1/nbc/billerPlans": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Biller Plans API",
+        "operationId": "BillerPlansAPI",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/BillerPlansAPIRequest"
+                  },
+                  {
+                    "examples": [
+                      {
+                        "agentId": "",
+                        "billerId": "{{billerId}}",
+                        "refId": "{{refId}}",
+                        "offset": 0,
+                        "flowType": "BBPS",
+                        "limit": 100
+                      }
+                    ]
+                  }
+                ],
+                "contentMediaType": "application/json"
+              },
+              "example": {
+                "agentId": "",
+                "billerId": "{{billerId}}",
+                "refId": "{{refId}}",
+                "offset": 0,
+                "flowType": "BBPS",
+                "limit": 100
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v2/nbc/getCircleList": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Get Circle List",
+        "operationId": "GetCircleList",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v2/nbc/getOperatorList": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Get Operators List",
+        "operationId": "GetOperatorsList",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/json",
+              "type": "string",
+              "examples": [
+                "application/json"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v3/nbc/getRechargePlans": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Get Prepaid Recharge Plans",
+        "operationId": "GetPrepaidRechargePlans",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GetPrepaidRechargePlansRequest"
+                  },
+                  {
+                    "examples": [
+                      {
+                        "agentId": "",
+                        "operatorId": "JR",
+                        "circleId": 18
+                      }
+                    ]
+                  }
+                ],
+                "contentMediaType": "application/json"
+              },
+              "example": {
+                "agentId": "",
+                "operatorId": "JR",
+                "circleId": 18
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v2/nbc/getOperatorAndCircleInfo": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Get Operator and Circle By Mobile Number (MNP)",
+        "operationId": "GetOperatorandCircleByMobileNumber(MNP)",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GetOperatorandCircleByMobileNumberMNPRequest"
+                  },
+                  {
+                    "examples": [
+                      {
+                        "agentId": "",
+                        "customerPhoneNumber": ""
+                      }
+                    ]
+                  }
+                ],
+                "contentMediaType": "application/json"
+              },
+              "example": {
+                "agentId": "",
+                "customerPhoneNumber": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v3/nbc/getCustomizedRechargePlans": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Get Custom Recharge Plans",
+        "operationId": "GetCustomRechargePlans",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/GetCustomRechargePlansRequest"
+                  },
+                  {
+                    "examples": [
+                      {
+                        "agentId": "",
+                        "refId": "{{refId}}",
+                        "mobileNumber": "",
+                        "operatorId": "AT"
+                      }
+                    ]
+                  }
+                ],
+                "contentMediaType": "application/json"
+              },
+              "example": {
+                "agentId": "",
+                "refId": "{{refId}}",
+                "mobileNumber": "",
+                "operatorId": "AT"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v1/nbc/raiseComplaint": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Raise BBPS Complaint",
+        "operationId": "RaiseBBPSComplaint",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RaiseBBPSComplaintRequest"
+                  },
+                  {
+                    "examples": [
+                      {
+                        "fetchParameters": {
+                          "complaintType": "Transaction",
+                          "description": "Service nhi mili",
+                          "disposition": "Erroneously paid in wrong account",
+                          "txnReferenceId": ""
+                        },
+                        "xchangeId": "501"
+                      }
+                    ]
+                  }
+                ],
+                "contentMediaType": "application/json"
+              },
+              "example": {
+                "fetchParameters": {
+                  "complaintType": "Transaction",
+                  "description": "Service nhi mili",
+                  "disposition": "Erroneously paid in wrong account",
+                  "txnReferenceId": ""
+                },
+                "xchangeId": "501"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v1/nbc/checkComplaintStatus": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Check Complaint Status",
+        "operationId": "CheckComplaintStatus",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CheckComplaintStatusRequest"
+                  },
+                  {
+                    "examples": [
+                      {
+                        "fetchParameters": {
+                          "complaintId": "",
+                          "complaintType": "Transaction"
+                        },
+                        "xchangeId": "506"
+                      }
+                    ]
+                  }
+                ],
+                "contentMediaType": "application/json"
+              },
+              "example": {
+                "fetchParameters": {
+                  "complaintId": "",
+                  "complaintType": "Transaction"
+                },
+                "xchangeId": "506"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payu-nbc/v1/nbc/heartBeat": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "heartBeat API",
+        "operationId": "heartBeatAPI",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/heartBeatAPIRequest"
+                  },
+                  {
+                    "examples": [
+                      {
+                        "agentId": "string",
+                        "refId": "string"
+                      }
+                    ]
+                  }
+                ],
+                "contentMediaType": "application/json"
+              },
+              "example": {
+                "agentId": "string",
+                "refId": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "BillerPlansAPIRequest": {
+        "title": "BillerPlansAPIRequest",
+        "required": [
+          "agentId",
+          "billerId",
+          "refId",
+          "offset",
+          "flowType",
+          "limit"
+        ],
+        "type": "object",
+        "properties": {
+          "agentId": {
+            "type": "string"
+          },
+          "billerId": {
+            "type": "string"
+          },
+          "refId": {
+            "type": "string"
+          },
+          "offset": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "flowType": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          }
+        },
+        "examples": [
+          {
+            "agentId": "",
+            "billerId": "{{billerId}}",
+            "refId": "{{refId}}",
+            "offset": 0,
+            "flowType": "BBPS",
+            "limit": 100
+          }
+        ]
+      },
+      "GetPrepaidRechargePlansRequest": {
+        "title": "GetPrepaidRechargePlansRequest",
+        "required": [
+          "agentId",
+          "operatorId",
+          "circleId"
+        ],
+        "type": "object",
+        "properties": {
+          "agentId": {
+            "type": "string"
+          },
+          "operatorId": {
+            "type": "string"
+          },
+          "circleId": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          }
+        },
+        "examples": [
+          {
+            "agentId": "",
+            "operatorId": "JR",
+            "circleId": 18
+          }
+        ]
+      },
+      "GetOperatorandCircleByMobileNumberMNPRequest": {
+        "title": "GetOperatorandCircleByMobileNumberMNPRequest",
+        "required": [
+          "agentId",
+          "customerPhoneNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "agentId": {
+            "type": "string"
+          },
+          "customerPhoneNumber": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "agentId": "",
+            "customerPhoneNumber": ""
+          }
+        ]
+      },
+      "GetCustomRechargePlansRequest": {
+        "title": "GetCustomRechargePlansRequest",
+        "required": [
+          "agentId",
+          "refId",
+          "mobileNumber",
+          "operatorId"
+        ],
+        "type": "object",
+        "properties": {
+          "agentId": {
+            "type": "string"
+          },
+          "refId": {
+            "type": "string"
+          },
+          "mobileNumber": {
+            "type": "string"
+          },
+          "operatorId": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "agentId": "",
+            "refId": "{{refId}}",
+            "mobileNumber": "",
+            "operatorId": "AT"
+          }
+        ]
+      },
+      "RaiseBBPSComplaintRequest": {
+        "title": "RaiseBBPSComplaintRequest",
+        "required": [
+          "fetchParameters",
+          "xchangeId"
+        ],
+        "type": "object",
+        "properties": {
+          "fetchParameters": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FetchParameters"
+              },
+              {}
+            ]
+          },
+          "xchangeId": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "fetchParameters": {
+              "complaintType": "Transaction",
+              "description": "Service nhi mili",
+              "disposition": "Erroneously paid in wrong account",
+              "txnReferenceId": ""
+            },
+            "xchangeId": "501"
+          }
+        ]
+      },
+      "FetchParameters": {
+        "title": "FetchParameters",
+        "required": [
+          "complaintType",
+          "description",
+          "disposition",
+          "txnReferenceId"
+        ],
+        "type": "object",
+        "properties": {
+          "complaintType": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "disposition": {
+            "type": "string"
+          },
+          "txnReferenceId": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "complaintType": "Transaction",
+            "description": "Service nhi mili",
+            "disposition": "Erroneously paid in wrong account",
+            "txnReferenceId": ""
+          }
+        ]
+      },
+      "CheckComplaintStatusRequest": {
+        "title": "CheckComplaintStatusRequest",
+        "required": [
+          "fetchParameters",
+          "xchangeId"
+        ],
+        "type": "object",
+        "properties": {
+          "fetchParameters": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FetchParameters1"
+              },
+              {}
+            ]
+          },
+          "xchangeId": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "fetchParameters": {
+              "complaintId": "",
+              "complaintType": "Transaction"
+            },
+            "xchangeId": "506"
+          }
+        ]
+      },
+      "FetchParameters1": {
+        "title": "FetchParameters1",
+        "required": [
+          "complaintId",
+          "complaintType"
+        ],
+        "type": "object",
+        "properties": {
+          "complaintId": {
+            "type": "string"
+          },
+          "complaintType": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "complaintId": "",
+            "complaintType": "Transaction"
+          }
+        ]
+      },
+      "heartBeatAPIRequest": {
+        "title": "heartBeatAPIRequest",
+        "required": [
+          "agentId",
+          "refId"
+        ],
+        "type": "object",
+        "properties": {
+          "agentId": {
+            "type": "string"
+          },
+          "refId": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "agentId": "string",
+            "refId": "string"
+          }
+        ]
+      },
+      "BillFetchBody": {
+        "title": "BillFetchBody",
+        "required": [
+          "agentId",
+          "billerId",
+          "customerParams",
+          "deviceDetails",
+          "customerName",
+          "customerPhoneNumber",
+          "timeStamp",
+          "refId"
+        ],
+        "type": "object",
+        "properties": {
+          "agentId": {
+            "type": "string",
+            "description": "This parameter must contain the Agent ID that is shared by PayU."
+          },
+          "billerId": {
+            "type": "string",
+            "description": "This parameter must contain the Biller Identification Number."
+          },
+          "customerParams": {
+            "type": "string",
+            "description": "This parameter must contain the customer parameters."
+          },
+          "deviceDetails": {
+            "type": "string",
+            "description": "This parameter must contain the device details."
+          },
+          "customerName": {
+            "type": "string",
+            "description": "This parameter must contain the customer name.",
+            "examples": [
+              "Ashish"
+            ]
+          },
+          "customerPhoneNumber": {
+            "type": "string",
+            "description": "This parameter must contain the customer phone number."
+          },
+          "timeStamp": {
+            "type": "string",
+            "description": "This parameter will contain the time so that the agent can fetch updated plans after this timestamp. Agent can use this parameter for delta response. The format for time: yyyy-MM-dd HH:mm:ss"
+          },
+          "refId": {
+            "type": "string",
+            "description": "This parameter must contain the Unique Identification Number."
+          }
+        },
+        "description": "",
+        "examples": [
+          {
+            "agentId": "",
+            "billerId": "",
+            "customerParams": "",
+            "deviceDetails": "",
+            "customerName": "Test Wc",
+            "customerPhoneNumber": "7898986081",
+            "timeStamp": "",
+            "refId": ""
+          }
+        ]
+      },
+      "BillValidationBody": {
+        "title": "BillValidationBody",
+        "required": [
+          "agentId",
+          "billerId",
+          "customerName",
+          "customerPhoneNumber",
+          "paidAmount",
+          "timeStamp",
+          "refId",
+          "customerParams",
+          "deviceDetails"
+        ],
+        "type": "object",
+        "properties": {
+          "agentId": {
+            "type": "string",
+            "description": "This parameter must contain the Agent ID that is shared by PayU."
+          },
+          "billerId": {
+            "type": "string",
+            "description": "This parameter must contain the Biller Identification Number."
+          },
+          "customerName": {
+            "type": "string",
+            "description": "This parameter must contain the customer name.",
+            "examples": [
+              "Ashish"
+            ]
+          },
+          "customerPhoneNumber": {
+            "type": "string",
+            "description": "This parameter must contain the customer phone number."
+          },
+          "paidAmount": {
+            "type": "integer",
+            "description": "This parameter contains amount paid by the customer.",
+            "contentEncoding": "int64",
+            "examples": [
+              1000
+            ]
+          },
+          "timeStamp": {
+            "type": "string",
+            "description": "This parameter will contain the time so that the agent can fetch updated plans after this timestamp. Agent can use this parameter for delta response. The format for time: yyyy-MM-dd HH:mm:ss"
+          },
+          "refId": {
+            "type": "string",
+            "description": "This parameter must contain the Unique Identification Number."
+          },
+          "customerParams": {
+            "type": "string",
+            "description": "This parameter must contain the customer parameters."
+          },
+          "deviceDetails": {
+            "type": "string",
+            "description": "This parameter must contain the device details."
+          }
+        },
+        "description": "",
+        "examples": [
+          {
+            "agentId": "",
+            "billerId": "",
+            "customerName": "",
+            "customerPhoneNumber": "",
+            "paidAmount": 10000,
+            "timeStamp": "",
+            "refId": "",
+            "customerParams": "",
+            "deviceDetails": ""
+          }
+        ]
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
