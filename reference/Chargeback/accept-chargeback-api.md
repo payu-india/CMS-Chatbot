@@ -9,7 +9,7 @@ The **Accept Chargeback** API allows the merchant user to accept the chargeback 
 
 HTTP Method: **PATCH**
 
-### Environment
+#### Environment
 
 |            |                                                                                                |
 | :--------- | :--------------------------------------------------------------------------------------------- |
