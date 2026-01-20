@@ -178,13 +178,13 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
 
 ## Sample response
 
-#### Success scenario
+### Success scenario
 
 ```Text JSON
 a:2:{s:6:"status";i:1;s:3:"msg";s:18:"sms request successful";}
 ```
 
-#### Failure scenario
+### Failure scenario
 
 * **SMS request failed**
 
