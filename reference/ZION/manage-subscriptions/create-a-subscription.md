@@ -222,6 +222,11 @@ Here for the merchant key is **smsplus**, plan IDs **5acb64a8070c9406b0928207** 
 
 ## Sample request
 
+```plaintext
+```
+
+## Sample response
+
 ```
 curl --location 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions' \
 --header 'Authorization: Bearer 810aa8723c4a626bf2c157e50204aebca72d33e9f2bf350e29eade8ae912c703' \
@@ -432,15 +437,15 @@ curl --location 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions'
 
 ### HTTP response codes
 
-|                        |                                       |
-| ---------------------- | ------------------------------------- |
-| _**HTTP Status Code**_ | _**Description**_                     |
-| 201                    | _Subscription defined successfully_   |
-| 403                    | _Forbidden request invalid Signature_ |
-| 400                    | _Request is malformed_                |
-| 404                    | _Merchant or Plan Id not found_       |
-| 422                    | _Request has invalid values_          |
-| 500                    | _Interval Server Error_               |
+|                  |                                     |
+| ---------------- | ----------------------------------- |
+| HTTP Status Code | Description                         |
+| 201              | Subscription defined successfully   |
+| 403              | Forbidden request invalid Signature |
+| 400              | Request is malformed                |
+| 404              | Merchant or Plan Id not found       |
+| 422              | Request has invalid values          |
+| 500              | Interval Server Error               |
 
 ## Sample response
 
@@ -448,7 +453,7 @@ curl --location 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions'
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Request body</th>
+  <th style="border: 1px solid #ddd; padding: 8px;">Response</th>
   <th style="border: 1px solid #ddd; padding: 8px;">Subscription Status</th>
   <th style="border: 1px solid #ddd; padding: 8px;">Plan Status</th>
 </tr>
