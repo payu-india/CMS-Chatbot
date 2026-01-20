@@ -12,6 +12,12 @@ next:
 ---
 This API is used to generate Static UPI or Bharat QR. The QR generated through this API is interoperable, can be used by any UPI applications like Google Pay, PhonePe, etc.. These QR codes can be used for accepting multiple transactions where customer can select the desired amount by themselves before making the payment. Bharat QR can also be scanned using mobile banking and credit card applications like (iMobile, SBI cards, etc.) to make transactions using debit cards and credit cards.
 
+**Environment**
+
+|                        |                                                          |
+| :--------------------- | :------------------------------------------------------- |
+| Production Environment | `<https://info.payu.in/merchant/postservice.php?form=2>` |
+
 ## Request parameters
 
 <HTMLBlock>{`
