@@ -16,7 +16,9 @@ The **Print Invoice QR** API is used to generate Dynamic UPI QR which can be pri
 
 The Print Invoice QR API can be used by large distributors who accept payments from their buyers by raising periodic Invoice and payment is made by the buyers post receipt of the Invoice. Here these distributors can generate Print Invoice QR and print it in the Invoice which basically gives the buyers an option to scan and make UPI based payments against the invoice. Since the QR will have invoice details embedded during generation transactions are automatically reconciled.
 
-This API generate UPI or BQR QR. This API returns either Base64, string or image format of the QR based on the request type.
+The **Print Invoice QR** API generate UPI or BQR QR. This API returns either Base64, string or image format of the QR based on the request type.
+
+#### Environment
 
 | Environment | URI                                                                                            |
 | :---------- | :--------------------------------------------------------------------------------------------- |
@@ -49,11 +51,11 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
       </td>
 
       <td>
-        string This parameter must include the merchant key that was provided by PayU.\
-        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
+        string This parameter must include the merchant key that was provided by PayU.  
+        Reference: For more information on how to generate the Key and Salt, refer to any of the following:
 
-        * \*Production\*\*: Generate Production Merchant Key and Sat.  
-        * \*Test\*\*: Generate Test Merchant Key and Salt.
+        * *Production**: Generate Production Merchant Key and Sat.
+        * *Test**: Generate Test Merchant Key and Salt.
       </td>
 
       <td>
@@ -63,29 +65,29 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        command\
+        command  
         `mandatory`
       </td>
 
       <td>
-        `string` The parameter must contain the name of the web service. For this API, generate\_invoice\_qr must be posted.
+        `string` The parameter must contain the name of the web service. For this API, generate_invoice_qr must be posted.
       </td>
 
       <td>
-        generate\_invoice\_qr
+        generate_invoice_qr
       </td>
     </tr>
 
     <tr>
       <td>
-        hash\
+        hash  
         `mandatory`
       </td>
 
       <td>
-        `string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:  
+        `string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:
 
-        sha512(key|command|var1|salt)  
+        sha512(key|command|var1|salt)
 
         sha512 is the encryption method used here.
       </td>
@@ -97,16 +99,16 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        var1\
+        var1  
         `mandatory`
       </td>
 
       <td>
-        `json` This parameter will include a JSON format of the transaction details. For more information, refer to the >.
+        `json` This parameter will include a JSON format of the transaction details. For more information, refer to the [Fields in var1 Parameter Description](#fields-in-var1-parameter-description)  section .
       </td>
 
       <td>
-        Refer the {user["var Sample"]} section.
+        Refer the [Fields in var1 Parameter Description](#fields-in-var1-parameter-description) section.
       </td>
     </tr>
   </tbody>
@@ -143,13 +145,13 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
       </td>
 
       <td>
-        1234\_abcdedf
+        1234_abcdedf
       </td>
     </tr>
 
     <tr>
       <td>
-        transactionAmount\
+        transactionAmount  
         `mandatory`
       </td>
 
@@ -164,7 +166,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        merchantVpa\
+        merchantVpa  
         `optional`
       </td>
 
@@ -173,13 +175,13 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
       </td>
 
       <td>
-        yellowqr. payu\@hdfc
+        yellowqr. payu@hdfc
       </td>
     </tr>
 
     <tr>
       <td>
-        expiryTime\
+        expiryTime  
         `optional`
       </td>
 
@@ -194,8 +196,8 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        qrName\
-        merchantVpa\
+        qrName  
+        merchantVpa  
         `optional`
       </td>
 
@@ -210,8 +212,8 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        qrCity\
-        merchantVpa\
+        qrCity  
+        merchantVpa  
         `optional`
       </td>
 
@@ -226,7 +228,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        qrPinCode\
+        qrPinCode  
         `optional`
       </td>
 
@@ -241,7 +243,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        customerName\
+        customerName  
         `optional`
       </td>
 
@@ -256,7 +258,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        customerCity\
+        customerCity  
         `optional`
       </td>
 
@@ -271,7 +273,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        customerPhone\
+        customerPhone  
         `optional`
       </td>
 
@@ -286,7 +288,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        customerEmail\
+        customerEmail  
         `optional`
       </td>
 
@@ -301,7 +303,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        customerAddress\
+        customerAddress  
         `optional`
       </td>
 
@@ -316,7 +318,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        udf3 - udf5\
+        udf3 - udf5  
         `optional`
       </td>
 
@@ -325,20 +327,20 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
       </td>
 
       <td>
-        *
+        * <br />
       </td>
     </tr>
 
     <tr>
       <td>
-        qrType\
+        qrType  
         `optional`
       </td>
 
       <td>
-        `string` This field is used to indicate whether BQR or UPI QR need to be generated and can contain any of the following values:  
+        `string` This field is used to indicate whether BQR or UPI QR need to be generated and can contain any of the following values:
 
-        bqr\
+        bqr  
         upi
       </td>
 
@@ -349,15 +351,15 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        outputType\
+        outputType  
         `optional`
       </td>
 
       <td>
-        `string` This field is used to indicate the QR output format and contain any of the following:  
+        `string` This field is used to indicate the QR output format and contain any of the following:
 
-        base64\
-        string\
+        base64  
+        string  
         image format
       </td>
 
@@ -368,7 +370,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        gst\
+        gst  
         `optional`
       </td>
 
@@ -383,7 +385,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        cgst\
+        cgst  
         `optional`
       </td>
 
@@ -398,7 +400,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        sgst\
+        sgst  
         `optional`
       </td>
 
@@ -413,7 +415,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        igst\
+        igst  
         `optional`
       </td>
 
@@ -428,7 +430,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        cess\
+        cess  
         `optional`
       </td>
 
@@ -443,7 +445,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        gstIncentive\
+        gstIncentive  
         `optional`
       </td>
 
@@ -458,7 +460,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        gstPercentage\
+        gstPercentage  
         `optional`
       </td>
 
@@ -473,7 +475,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        gstIn\
+        gstIn  
         `optional`
       </td>
 
@@ -488,7 +490,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        invoiceName\
+        invoiceName  
         `optional`
       </td>
 
@@ -503,7 +505,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        invoiceNo\
+        invoiceNo  
         `optional`
       </td>
 
@@ -518,7 +520,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        invoiceDate\
+        invoiceDate  
         `optional`
       </td>
 
@@ -533,7 +535,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        purpose\
+        purpose  
         `optional`
       </td>
 
@@ -548,7 +550,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        refUrl\
+        refUrl  
         `optional`
       </td>
 
@@ -563,14 +565,14 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        category\
+        category  
         `optional`
       </td>
 
       <td>
-        string This field is mandatory when refUrl is passed. Use any of the following based on the purpose:  
+        string This field is mandatory when refUrl is passed. Use any of the following based on the purpose:
 
-        01 for advertisement\
+        01 for advertisement  
         02 for invoice.
       </td>
 
@@ -581,7 +583,7 @@ This API generate UPI or BQR QR. This API returns either Base64, string or image
 
     <tr>
       <td>
-        txnNote\
+        txnNote  
         `optional`
       </td>
 
@@ -666,7 +668,7 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php?fo
       </td>
 
       <td>
-        Image of the QR code will be returned, either BQR or UPI QR\
+        Image of the QR code will be returned, either BQR or UPI QR  
         string
       </td>
     </tr>
