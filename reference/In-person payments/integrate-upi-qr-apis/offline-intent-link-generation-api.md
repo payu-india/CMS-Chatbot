@@ -12,49 +12,51 @@ next:
 ---
 The **Offline Intent Link Generation** API is used to generate UPI Intent link. The link can be shared with the customers for payment acceptance through UPI.
 
+#### Environment
+
 | Environment | URI                                                                                            |
 | :---------- | :--------------------------------------------------------------------------------------------- |
 | Production  | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
 
 ## Request parameters
 
-| Parameter | Description | Sample Value |
-| --------- | ----------- | ------------ |
-| key `mandatory` | string This parameter must include the merchant key that was provided by PayU. Reference: For more information on how to generate the Key and Salt, refer to any of the following: Production: Generate Production Merchant Key and Sat. Test: Generate Test Merchant Key and Salt. | Your Test Key |
-| command `mandatory` | `string` The parameter must contain the name of the web service. For this API, `generate_upi_intent` must be posted. | generate_upi_intent |
-| hash `mandatory` | string This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below: `sha512(key\|command\|var1\|salt)` sha512 is the encryption method used here. | ajh84babvav |
-| var1 `mandatory` | json This parameter will include a JSON format of the transaction details. For more information, refer to the >. | Refer the var Sample section. |
+| Parameter           | Description                                                                                                                                                                                                                                                                         | Sample Value                  |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| key `mandatory`     | string This parameter must include the merchant key that was provided by PayU. Reference: For more information on how to generate the Key and Salt, refer to any of the following: Production: Generate Production Merchant Key and Sat. Test: Generate Test Merchant Key and Salt. | Your Test Key                 |
+| command `mandatory` | `string` The parameter must contain the name of the web service. For this API, `generate_upi_intent` must be posted.                                                                                                                                                                | generate_upi_intent           |
+| hash `mandatory`    | string This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below: `sha512(key\|command\|var1\|salt)` sha512 is the encryption method used here.                                                          | ajh84babvav                   |
+| var1 `mandatory`    | json This parameter will include a JSON format of the transaction details. For more information, refer to the >.                                                                                                                                                                    | Refer the var Sample section. |
 
 ### Description of var1 Parameter Fields
 
-| Field | Description | Example |
-| ----- | ----------- | ------- |
-| transactionId `mandatory` | `string`  This must contain the merchant transaction Identifier. This must be unique (after a successful transaction) & alphanumeric special (less than 40 characters & excluding >,\<, &, ') | 1234_abcdedf |
-| transactionAmount `mandatory` | `float`  This must contain the amount for which QR needs to be generated. This must be greater than or equal to 1.00. | 1005, 1042.23, 95494.4, 10000.00 |
-| merchantVpa `optional` | `string`  This must contain the merchant's VPA in which payment will be collected. If not sent, VPA registered against given merchant Key is used. | yellowqr.payu@hdfc |
-| txnNote `optional` | `string` This must contain the transaction note to be embedded in the link. This will be visible to customer at the time of payment. | collect |
-| expiryTime `optional` | `numeric` This must contain the  time in seconds for which the QR is active. If empty, merchant level expiry is used. If there is no merchant level value, the global value is used. | 3600 |
-| name `optional` | `string` This field must contain the customer name. | Ravi |
-| city `optional` | `string` This field must contain the customer's city. | 122001 |
-| phone `optional` | `string` This field must contain the customer phone number. | 9833207164 |
-| email `optional` | `string` This field must contain the customer email address. | [hello@payu.in](mailto:hello@payu.in) |
-| pincode | `string` This field must contain the PIN code in customer's address. | 560032 |
-| address `optional` | `string`  This field must contain the customer's address. It can be up to 100 characters. Anything after the first 100 characters will be ignored | Payu, Bestech Business Tower, Gurgaon |
-| udf3 - udf5 `optional` | `string` This field must contain the user-defined fields such as udf3, udf4 and udf5 can be sent in request to include any transactional information. | |
-| gst `optional` | `string`  This must contain the applicable GST amount for that transaction. Only applicable in case you want to embed gst specific details in the QR. | 100.25 |
-| cgst `optional` | `string`  This must contain the applicable CFST amount for that transaction. Only applicable in case you want to embed GST specific details. | 25.45 |
-| sgst `optional` | `string` This must contain the SGST amount for that transaction. Only applicable in case you want to embed GST specific details in the QR. | 25.45 |
-| igst `optional` | `string`  This must contain the IGST amount for that transaction. Only applicable in case you want to embed GST specific details in the QR. | 50.9 |
-| cess `optional` | `string` This must contain the cess amount for that transaction. Only applicable in case you want to embed gst specific details in the QR. | 10.2 |
-| gstIncentive `optional` | `string` This must contain the GST Incentive amount for that transaction. Only applicable in case you want to embed GST specific details in the QR. | 10.2 |
-| gstPercentage `optional` | `string` This must contain the GST percentage for that transaction. Only applicable in case you want to embed GST specific details in the QR. | 18 |
-| gstIn `optional` | `string`  This is the GSTIN of the legal entity of the merchant. Only applicable in case you want to embed GST specific details in the QR. | 24AAACC1206D1ZM |
-| invoiceName `optional` | `string` This must contain the name of the invoice for which QR will be used. Only applicable in case you want to embed GST specific details in the QR. | Bill |
-| invoiceNo `optional` | `string` This is the invoice number for which QR will be used. Only applicable in case you want to embed GST specific details in the QR. | 78457637 |
-| invoiceDate `optional` | `string`  This is the invoice date for which QR will be used. It should always be in GMT format. Only applicable in case you want to embed GST specific details in the QR. | 2021-05-21T13:21:50+05:30 |
-| purpose `optional` | `string` This is the purpose for which QR will be used. This param will have fixed values basis your business type. Please take the value from our integration team. | 3 |
-| refUrl `optional` | `string` This field can be used to share invoice copy or any other transaction related information/documents to customer for their reference. | [https://payu.in/](https://payu.in/) |
-| category `optional` | `string`  This field is mandatory when refUrl is passed. Use 01 for advertisement & 02 for invoice. | 01 or 02 |
+| Field                         | Description                                                                                                                                                                                   | Example                               |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| transactionId `mandatory`     | `string`  This must contain the merchant transaction Identifier. This must be unique (after a successful transaction) & alphanumeric special (less than 40 characters & excluding >,\<, &, ') | 1234_abcdedf                          |
+| transactionAmount `mandatory` | `float`  This must contain the amount for which QR needs to be generated. This must be greater than or equal to 1.00.                                                                         | 1005, 1042.23, 95494.4, 10000.00      |
+| merchantVpa `optional`        | `string`  This must contain the merchant's VPA in which payment will be collected. If not sent, VPA registered against given merchant Key is used.                                            | yellowqr.payu@hdfc                    |
+| txnNote `optional`            | `string` This must contain the transaction note to be embedded in the link. This will be visible to customer at the time of payment.                                                          | collect                               |
+| expiryTime `optional`         | `numeric` This must contain the  time in seconds for which the QR is active. If empty, merchant level expiry is used. If there is no merchant level value, the global value is used.          | 3600                                  |
+| name `optional`               | `string` This field must contain the customer name.                                                                                                                                           | Ravi                                  |
+| city `optional`               | `string` This field must contain the customer's city.                                                                                                                                         | 122001                                |
+| phone `optional`              | `string` This field must contain the customer phone number.                                                                                                                                   | 9833207164                            |
+| email `optional`              | `string` This field must contain the customer email address.                                                                                                                                  | [hello@payu.in](mailto:hello@payu.in) |
+| pincode                       | `string` This field must contain the PIN code in customer's address.                                                                                                                          | 560032                                |
+| address `optional`            | `string`  This field must contain the customer's address. It can be up to 100 characters. Anything after the first 100 characters will be ignored                                             | Payu, Bestech Business Tower, Gurgaon |
+| udf3 - udf5 `optional`        | `string` This field must contain the user-defined fields such as udf3, udf4 and udf5 can be sent in request to include any transactional information.                                         |                                       |
+| gst `optional`                | `string`  This must contain the applicable GST amount for that transaction. Only applicable in case you want to embed gst specific details in the QR.                                         | 100.25                                |
+| cgst `optional`               | `string`  This must contain the applicable CFST amount for that transaction. Only applicable in case you want to embed GST specific details.                                                  | 25.45                                 |
+| sgst `optional`               | `string` This must contain the SGST amount for that transaction. Only applicable in case you want to embed GST specific details in the QR.                                                    | 25.45                                 |
+| igst `optional`               | `string`  This must contain the IGST amount for that transaction. Only applicable in case you want to embed GST specific details in the QR.                                                   | 50.9                                  |
+| cess `optional`               | `string` This must contain the cess amount for that transaction. Only applicable in case you want to embed gst specific details in the QR.                                                    | 10.2                                  |
+| gstIncentive `optional`       | `string` This must contain the GST Incentive amount for that transaction. Only applicable in case you want to embed GST specific details in the QR.                                           | 10.2                                  |
+| gstPercentage `optional`      | `string` This must contain the GST percentage for that transaction. Only applicable in case you want to embed GST specific details in the QR.                                                 | 18                                    |
+| gstIn `optional`              | `string`  This is the GSTIN of the legal entity of the merchant. Only applicable in case you want to embed GST specific details in the QR.                                                    | 24AAACC1206D1ZM                       |
+| invoiceName `optional`        | `string` This must contain the name of the invoice for which QR will be used. Only applicable in case you want to embed GST specific details in the QR.                                       | Bill                                  |
+| invoiceNo `optional`          | `string` This is the invoice number for which QR will be used. Only applicable in case you want to embed GST specific details in the QR.                                                      | 78457637                              |
+| invoiceDate `optional`        | `string`  This is the invoice date for which QR will be used. It should always be in GMT format. Only applicable in case you want to embed GST specific details in the QR.                    | 2021-05-21T13:21:50+05:30             |
+| purpose `optional`            | `string` This is the purpose for which QR will be used. This param will have fixed values basis your business type. Please take the value from our integration team.                          | 3                                     |
+| refUrl `optional`             | `string` This field can be used to share invoice copy or any other transaction related information/documents to customer for their reference.                                                 | [https://payu.in/](https://payu.in/)  |
+| category `optional`           | `string`  This field is mandatory when refUrl is passed. Use 01 for advertisement & 02 for invoice.                                                                                           | 01 or 02                              |
 
 ### var1 sample
 
@@ -95,7 +97,6 @@ curl --location --request POST 'https://info.payu.in/merchant/postservice.php' \
 --data-urlencode 'hash=c8aa5dc5f2139936227bc1daf21dd2cad79fc32a623b66098667e6ebfc0f7aec0005f4e19e4296c79cf1f92077db60a20635a572342f5377972c469137db6bf1' \
 --data-urlencode 'var1={"transactionId":"0fd9829f68", "transactionAmount":"190","expiryTime":"10000","refUrl":"http://www.payu.in"}'
 ```
-
 ```python
 import http.client
 conn = http.client.HTTPSConnection("info.payu.in")
@@ -106,7 +107,6 @@ res = conn.getresponse()
 data = res.read()
 print(data.decode("utf-8"))
 ```
-
 ```php
 <?php
 
@@ -129,7 +129,6 @@ $response = curl_exec($curl);
 curl_close($curl);
 echo $response;
 ```
-
 ```java
 OkHttpClient client = new OkHttpClient().newBuilder()
   .build();
@@ -142,7 +141,6 @@ Request request = new Request.Builder()
   .build();
 Response response = client.newCall(request).execute();
 ```
-
 ```ruby
 require "uri"
 require "net/http"
@@ -161,11 +159,11 @@ puts response.read_body
 
 ## Response parameters
 
-| Parameter | Description |
-| --------- | ----------- |
-| status | This parameter returns the status of web service call. The status can be any of the following:  0 - If web service call failed. 1 - If web service call succeeded |
-| msg | This parameter returns the following message if the offline intent link was generated successfully: `Intent link generated` |
-| link | This parameter returns the link if the offline intent link is generated successfully. |
+| Parameter | Description                                                                                                                                                       |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| status    | This parameter returns the status of web service call. The status can be any of the following:  0 - If web service call failed. 1 - If web service call succeeded |
+| msg       | This parameter returns the following message if the offline intent link was generated successfully: `Intent link generated`                                       |
+| link      | This parameter returns the link if the offline intent link is generated successfully.                                                                             |
 
 ## Sample response
 
