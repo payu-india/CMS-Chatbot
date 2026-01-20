@@ -12,8 +12,6 @@ next:
 ---
 The **Payment Initiation** API is used to initiate payment towards an Integrated Static QR.
 
-#### Environment
-
 | Environment | URI                                                                  |
 | :---------- | :------------------------------------------------------------------- |
 | Production  | [https://secure.payu.in/QrPayment](https://secure.payu.in/QrPayment) |
@@ -332,3 +330,60 @@ request.body = "key=J****g&txnid=txn1234&amount=100&qrId=qr123&productinfo=Integ
 response = https.request(request)
 puts response.read_body
 ```
+
+## Sample response
+
+```json
+{
+  "mihpayid": "403993715521937565",
+  "mode": "UPI",
+  "status": "success",
+  "unmappedstatus": "captured",
+  "key": "J****g",
+  "txnid": "txn1234",
+  "amount": "100.00",
+  "cardCategory": "",
+  "discount": "0.00",
+  "net_amount_debit": "100",
+  "addedon": "2026-01-20 10:30:45",
+  "productinfo": "Integrated Static QR",
+  "firstname": "Payu",
+  "lastname": "user",
+  "address1": "",
+  "address2": "",
+  "city": "",
+  "state": "",
+  "country": "",
+  "zipcode": "",
+  "email": "test@payu.in",
+  "phone": "1234567890",
+  "udf1": "",
+  "udf2": "",
+  "udf3": "Gurgaon",
+  "udf4": "120001",
+  "udf5": "India",
+  "udf6": "",
+  "udf7": "",
+  "udf8": "",
+  "udf9": "",
+  "udf10": "",
+  "hash": "84bbbf0fa3ba2a39942f6c3deab234c4d00bc5b6aceee5cda3c8200d6e1714e19c224d47e24d0c4a9a0cce40eddbae1dc46455c69e5e7d5dd62f6636bfab337c",
+  "field1": "",
+  "field2": "",
+  "field3": "",
+  "field4": "",
+  "field5": "",
+  "field6": "",
+  "field7": "",
+  "field8": "",
+  "field9": "Transaction Completed Successfully",
+  "payment_source": "payu",
+  "PG_TYPE": "UPI-QR",
+  "bank_ref_num": "123456789012",
+  "bankcode": "UPI",
+  "error": "E000",
+  "error_Message": "No Error"
+}
+```
+
+<br />
