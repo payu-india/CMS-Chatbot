@@ -1,1 +1,351 @@
-{"openapi":"3.1.0","info":{"title":"payu biz Aggregator","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://info.payu.in/merchant","variables":{}},{"url":"https://test.payu.in/merchant","variables":{}}],"paths":{"/postservice":{"post":{"tags":["Misc"],"summary":"payment split","operationId":"paymentsplit","parameters":[{"name":"form","in":"query","description":"","style":"form","explode":true,"schema":{"type":"integer","contentEncoding":"int32","default":2,"examples":[2]}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","hash","var1"],"type":"object","properties":{"key":{"type":"string","description":"Merchant key that was provided by PayU.","examples":["0d5aDh"]},"command":{"type":"string","examples":["payment_split"]},"hash":{"type":"string"},"var1":{"allOf":[{"$ref":"#/components/schemas/var1"},{"description":"This parameter is in a JSON format as explained in Additional Info table.","examples":[{"type":"absolute","payuId":"17913647434","splitInfo":{"3HqMVg":{"aggregatorSubTxnId":"Testchsaltild23","aggregatorSubAmt":"1.00"},"b0efoe":{"aggregatorSubTxnId":"Testsaltchild98","aggregatorSubAmt":"1"}}}]}]}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"servers":[{"url":"https://info.payu.in/merchant","variables":{}}]},"parameters":[]},"/postservice.php":{"post":{"tags":["Misc"],"summary":"release settlement","operationId":"releasesettlement","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"const":2,"type":"integer","contentEncoding":"int32","examples":[2]}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","hash","var1","var2"],"type":"object","properties":{"key":{"type":"string","description":"Merchant key provided by PayU during onboarding.","examples":["A6lB8r"]},"command":{"type":"string","description":"The release_settlement must be included in this parameter","examples":["release_settlement"]},"hash":{"type":"string","description":"The hash string encryption is specified in this parameter."},"var1":{"type":"string","description":"The mihpayuId is specified in this parameter","examples":["403993715525128466"]},"var2":{"type":"string","description":"The childMid is specified in this parameter.","examples":["5008042"]}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"servers":[{"url":"https://test.payu.in/merchant","variables":{}}]},"parameters":[]}},"components":{"schemas":{"var1":{"title":"var1","required":["type","payuId","splitInfo"],"type":"object","properties":{"type":{"type":"string","description":"The type of split is specified in this field. PayU currently supports absolute or  percentage split."},"payuId":{"type":"string","description":"The payment identifier provided by PayU for the transaction."},"splitInfo":{"type":"object","description":"This parameter must include the list of aggregator sub transaction IDs and sub amounts.","examples":[{"type":"absolute","payuId":"403993715525003544","splitInfo":{"imAJ7I":{"aggregatorSubTxnId":"CHild101","aggregatorSubAmt":"50"},"qOoYIv":{"aggregatorSubTxnId":"Child202","aggregatorSubAmt":"50"}}}]}},"examples":[{"type":"absolute","payuId":"17913647434","splitInfo":{"3HqMVg":{"aggregatorSubTxnId":"Testchsaltild23","aggregatorSubAmt":"1.00"},"b0efoe":{"aggregatorSubTxnId":"Testsaltchild98","aggregatorSubAmt":"1"}}}]},"SplitInfo":{"title":"SplitInfo","required":["3HqMVg","b0efoe"],"type":"object","properties":{"3HqMVg":{"allOf":[{"$ref":"#/components/schemas/3HqMVg"},{}]},"b0efoe":{"allOf":[{"$ref":"#/components/schemas/B0efoe"},{}]}},"examples":[{"3HqMVg":{"aggregatorSubTxnId":"Testchsaltild23","aggregatorSubAmt":"1.00"},"b0efoe":{"aggregatorSubTxnId":"Testsaltchild98","aggregatorSubAmt":"1"}}]},"3HqMVg":{"title":"3HqMVg","required":["aggregatorSubTxnId","aggregatorSubAmt"],"type":"object","properties":{"aggregatorSubTxnId":{"type":"string"},"aggregatorSubAmt":{"type":"string"}},"examples":[{"aggregatorSubTxnId":"Testchsaltild23","aggregatorSubAmt":"1.00"}]},"B0efoe":{"title":"B0efoe","required":["aggregatorSubTxnId","aggregatorSubAmt"],"type":"object","properties":{"aggregatorSubTxnId":{"type":"string"},"aggregatorSubAmt":{"type":"string"}},"examples":[{"aggregatorSubTxnId":"Testsaltchild98","aggregatorSubAmt":"1"}]},"var4":{"title":"var4","required":["imAJ7I","qOoYIv"],"type":"object","properties":{"imAJ7I":{"allOf":[{"$ref":"#/components/schemas/ImAJ7I"},{}]},"qOoYIv":{"allOf":[{"$ref":"#/components/schemas/QOoYIv"},{}]}},"examples":[{"imAJ7I":{"subventionAmount":"5","originalRefundAmount":"1"},"qOoYIv":{"subventionAmount":"5","originalRefundAmount":"3"}}]},"ImAJ7I":{"title":"ImAJ7I","required":["subventionAmount","originalRefundAmount"],"type":"object","properties":{"subventionAmount":{"type":"string"},"originalRefundAmount":{"type":"string"}},"examples":[{"subventionAmount":"5","originalRefundAmount":"1"}]},"QOoYIv":{"title":"QOoYIv","required":["subventionAmount","originalRefundAmount"],"type":"object","properties":{"subventionAmount":{"type":"string"},"originalRefundAmount":{"type":"string"}},"examples":[{"subventionAmount":"5","originalRefundAmount":"3"}]}}},"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "payu biz Aggregator",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://info.payu.in/merchant",
+      "variables": {}
+    },
+    {
+      "url": "https://test.payu.in/merchant",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/postservice": {
+      "parameters": []
+    },
+    "/postservice.php": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "release settlement",
+        "operationId": "releasesettlement",
+        "parameters": [
+          {
+            "name": "form",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "const": 2,
+              "type": "integer",
+              "contentEncoding": "int32",
+              "examples": [
+                2
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "key",
+                  "command",
+                  "hash",
+                  "var1",
+                  "var2"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Merchant key provided by PayU during onboarding.",
+                    "examples": [
+                      "A6lB8r"
+                    ]
+                  },
+                  "command": {
+                    "type": "string",
+                    "description": "The release_settlement must be included in this parameter",
+                    "examples": [
+                      "release_settlement"
+                    ]
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "The hash string encryption is specified in this parameter."
+                  },
+                  "var1": {
+                    "type": "string",
+                    "description": "The mihpayuId is specified in this parameter",
+                    "examples": [
+                      "403993715525128466"
+                    ]
+                  },
+                  "var2": {
+                    "type": "string",
+                    "description": "The childMid is specified in this parameter.",
+                    "examples": [
+                      "5008042"
+                    ]
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://test.payu.in/merchant",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "var1": {
+        "title": "var1",
+        "required": [
+          "type",
+          "payuId",
+          "splitInfo"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of split is specified in this field. PayU currently supports absolute or  percentage split."
+          },
+          "payuId": {
+            "type": "string",
+            "description": "The payment identifier provided by PayU for the transaction."
+          },
+          "splitInfo": {
+            "type": "object",
+            "description": "This parameter must include the list of aggregator sub transaction IDs and sub amounts.",
+            "examples": [
+              {
+                "type": "absolute",
+                "payuId": "403993715525003544",
+                "splitInfo": {
+                  "imAJ7I": {
+                    "aggregatorSubTxnId": "CHild101",
+                    "aggregatorSubAmt": "50"
+                  },
+                  "qOoYIv": {
+                    "aggregatorSubTxnId": "Child202",
+                    "aggregatorSubAmt": "50"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "examples": [
+          {
+            "type": "absolute",
+            "payuId": "17913647434",
+            "splitInfo": {
+              "3HqMVg": {
+                "aggregatorSubTxnId": "Testchsaltild23",
+                "aggregatorSubAmt": "1.00"
+              },
+              "b0efoe": {
+                "aggregatorSubTxnId": "Testsaltchild98",
+                "aggregatorSubAmt": "1"
+              }
+            }
+          }
+        ]
+      },
+      "SplitInfo": {
+        "title": "SplitInfo",
+        "required": [
+          "3HqMVg",
+          "b0efoe"
+        ],
+        "type": "object",
+        "properties": {
+          "3HqMVg": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/3HqMVg"
+              },
+              {}
+            ]
+          },
+          "b0efoe": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/B0efoe"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "3HqMVg": {
+              "aggregatorSubTxnId": "Testchsaltild23",
+              "aggregatorSubAmt": "1.00"
+            },
+            "b0efoe": {
+              "aggregatorSubTxnId": "Testsaltchild98",
+              "aggregatorSubAmt": "1"
+            }
+          }
+        ]
+      },
+      "3HqMVg": {
+        "title": "3HqMVg",
+        "required": [
+          "aggregatorSubTxnId",
+          "aggregatorSubAmt"
+        ],
+        "type": "object",
+        "properties": {
+          "aggregatorSubTxnId": {
+            "type": "string"
+          },
+          "aggregatorSubAmt": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "aggregatorSubTxnId": "Testchsaltild23",
+            "aggregatorSubAmt": "1.00"
+          }
+        ]
+      },
+      "B0efoe": {
+        "title": "B0efoe",
+        "required": [
+          "aggregatorSubTxnId",
+          "aggregatorSubAmt"
+        ],
+        "type": "object",
+        "properties": {
+          "aggregatorSubTxnId": {
+            "type": "string"
+          },
+          "aggregatorSubAmt": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "aggregatorSubTxnId": "Testsaltchild98",
+            "aggregatorSubAmt": "1"
+          }
+        ]
+      },
+      "var4": {
+        "title": "var4",
+        "required": [
+          "imAJ7I",
+          "qOoYIv"
+        ],
+        "type": "object",
+        "properties": {
+          "imAJ7I": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ImAJ7I"
+              },
+              {}
+            ]
+          },
+          "qOoYIv": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QOoYIv"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "imAJ7I": {
+              "subventionAmount": "5",
+              "originalRefundAmount": "1"
+            },
+            "qOoYIv": {
+              "subventionAmount": "5",
+              "originalRefundAmount": "3"
+            }
+          }
+        ]
+      },
+      "ImAJ7I": {
+        "title": "ImAJ7I",
+        "required": [
+          "subventionAmount",
+          "originalRefundAmount"
+        ],
+        "type": "object",
+        "properties": {
+          "subventionAmount": {
+            "type": "string"
+          },
+          "originalRefundAmount": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "subventionAmount": "5",
+            "originalRefundAmount": "1"
+          }
+        ]
+      },
+      "QOoYIv": {
+        "title": "QOoYIv",
+        "required": [
+          "subventionAmount",
+          "originalRefundAmount"
+        ],
+        "type": "object",
+        "properties": {
+          "subventionAmount": {
+            "type": "string"
+          },
+          "originalRefundAmount": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "subventionAmount": "5",
+            "originalRefundAmount": "3"
+          }
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
