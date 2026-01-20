@@ -222,11 +222,6 @@ Here for the merchant key is **smsplus**, plan IDs **5acb64a8070c9406b0928207** 
 
 ## Sample request
 
-```plaintext
-```
-
-## Sample response
-
 ```
 curl --location 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions' \
 --header 'Authorization: Bearer 810aa8723c4a626bf2c157e50204aebca72d33e9f2bf350e29eade8ae912c703' \
