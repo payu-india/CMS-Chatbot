@@ -12,6 +12,8 @@ next:
 ---
 The **Transaction Status Check** API is used to check the status of the transaction based on the status of the transaction in PayU system further course of action is determined. If the transaction status is pending in PayU then we hit bank API to get the transaction’s status. Based on the bank response, we mark transaction success, fail, or pending in our system and provide a response.
 
+#### Environment
+
 | Environment | URI                                                                                            |
 | :---------- | :--------------------------------------------------------------------------------------------- |
 | Production  | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
@@ -43,9 +45,9 @@ The **Transaction Status Check** API is used to check the status of the transact
       </td>
 
       <td>
-        `string` This parameter must include the Merchant key that was provided by PayU.\
-        Reference: For more information on how to generate the Key and Salt, refer to any of the following:\
-        Production: Generate Production Merchant Key and Sat.\
+        `string` This parameter must include the Merchant key that was provided by PayU.  
+        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
+        Production: Generate Production Merchant Key and Sat.  
         Test: Generate Test Merchant Key and Salt.
       </td>
 
@@ -56,7 +58,7 @@ The **Transaction Status Check** API is used to check the status of the transact
 
     <tr>
       <td>
-        command\
+        command  
         `mandatory`
       </td>
 
@@ -65,20 +67,20 @@ The **Transaction Status Check** API is used to check the status of the transact
       </td>
 
       <td>
-        check\_bqr\_txn\_status
+        check_bqr_txn_status
       </td>
     </tr>
 
     <tr>
       <td>
-        hash\
+        hash  
         `mandatory`
       </td>
 
       <td>
-        `string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:  
+        `string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:
 
-        sha512(key|command|var1|salt)\
+        sha512(key|command|var1|salt)  
         sha512 is the encryption method used here.
       </td>
 
@@ -89,7 +91,7 @@ The **Transaction Status Check** API is used to check the status of the transact
 
     <tr>
       <td>
-        var1: transactionId\
+        var1: transactionId  
         `mandatory`
       </td>
 
@@ -104,14 +106,14 @@ The **Transaction Status Check** API is used to check the status of the transact
 
     <tr>
       <td>
-        var2: paymentmode\
+        var2: paymentmode  
         `optional`
       </td>
 
       <td>
-        `string` This parameter will include any of the following values to specify the mode of transaction:  
+        `string` This parameter will include any of the following values to specify the mode of transaction:
 
-        CARD: Debit/Credit Card  
+        CARD: Debit/Credit Card
 
         UPI: UPI
       </td>
@@ -123,15 +125,15 @@ The **Transaction Status Check** API is used to check the status of the transact
 
     <tr>
       <td>
-        var3: productype\
+        var3: productype  
         `optional`
       </td>
 
       <td>
-        `string` This parameter will include any of the following values to specify the product type:\
-        ‘’ or ‘’.  
+        `string` This parameter will include any of the following values to specify the product type:  
+        ‘’ or ‘’.
 
-        DBQR: DBQR\
+        DBQR: DBQR  
         ISBQR: ISBQR
       </td>
 
@@ -145,6 +147,14 @@ The **Transaction Status Check** API is used to check the status of the transact
 ## Sample request
 
 ```Text cURL
+curl --location --request POST 'https://info.payu.in/merchant/postservice.php' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=vDy3i7' \
+--data-urlencode 'command=check_bqr_txn_status' \
+--data-urlencode 'hash=8bb33d0ed43485019eab261cc5f73838149e3bbc1d253e63ca829ff05975c173ec9f308bafe022605aa7fce31821ea3b18df3752accd8a7f50658a96552a0860' \
+--data-urlencode 'var1=980' \
+--data-urlencode 'var2=UPI' \
+--data-urlencode 'var3=Optional'
 ```
 ```Text Python
 import http.client
@@ -204,9 +214,9 @@ Response response = client.newCall(request).execute();
       </td>
 
       <td>
-        This parameter returns the status of web service call. The status can be any of the following:  
+        This parameter returns the status of web service call. The status can be any of the following:
 
-        0 - If web service call failed.\
+        0 - If web service call failed.  
         1 - If web service call succeeded
       </td>
     </tr>
@@ -217,8 +227,8 @@ Response response = client.newCall(request).execute();
       </td>
 
       <td>
-        This parameter returns the following message if the SMS was sent successfully:\
-        sms request successful\
+        This parameter returns the following message if the SMS was sent successfully:  
+        sms request successful  
         result
       </td>
     </tr>
@@ -247,7 +257,7 @@ Response response = client.newCall(request).execute();
 }
 ```
 
-* **Pending** 
+* **Pending**
 
 ```Text JSON
 {
