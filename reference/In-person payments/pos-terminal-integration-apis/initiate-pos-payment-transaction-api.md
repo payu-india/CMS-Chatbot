@@ -12,27 +12,12 @@ next:
 ---
 The **Initiate POS Payment Transaction** API is used to initiate a transaction on the POS terminal. This API is rate limited for each merchant and needs to be a server-to-server curl call request
 
-## Environments
+#### Environments
 
-| Environment | URL                                                                 |
-| :---------- | :------------------------------------------------------------------ |
-| Test        | [https://test.payu.in//\_payment](https://test.payu.in//_payment)   |
-| Production  | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
-
-## Generate hash
-
-The hash string can be generated using the SHA512 algorithm on the below logic. All fields are separated using the pipe (|) operator.
-
-```
-<valueOf(key)>|<valueOf(txnid)>|<valueOf(amount)>|<valueOf(productinfo)>|<valueOf(firstname)>|<valueOf(email)>|<valueOf(udf1)>|<valueOf(udf2)>|<valueOf(udf3)>|<valueOf(udf4)>|<valueOf(udf5)>||||||<valueOf(salt)>
-
-```
-
-> 👍 Callouts
->
-> * Empty pipe values are deprecated values.
-> * Here, SALT (to be provided by PayU), key, txnid, amount, productinfo, firstname, and email are mandatory parameters and hence cannot be empty in the hash calculation above.
-> * udf1-udf5 are optional. For example, if you are not posting any/all of the udf parameters in the API request, then in the hash calculation, the respective udf field should be left empty.
+| Environment | URL                                                                |
+| :---------- | :----------------------------------------------------------------- |
+| Test        | [https://test.payu.in//_payment](https://test.payu.in//_payment)   |
+| Production  | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
 ## Request parameters
 
@@ -61,11 +46,11 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
       </td>
 
       <td>
-        `String` The merchant key is provided by PayU and acts as a unique identifier for a specific merchant account in PayU’s database.\
-        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
+        `String` The merchant key is provided by PayU and acts as a unique identifier for a specific merchant account in PayU’s database.  
+        Reference: For more information on how to generate the Key and Salt, refer to any of the following:
 
-        * \*Production\*\*: Generate Production Merchant Key and Sat.  
-        * \*Test\*\*: Generate Test Merchant Key and Salt.
+        * *Production**: Generate Production Merchant Key and Sat.
+        * *Test**: Generate Test Merchant Key and Salt.
       </td>
 
       <td>
@@ -75,7 +60,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        api\_version\
+        api_version  
         `optional`
       </td>
 
@@ -90,7 +75,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        txnid\
+        txnid  
         `mandatory`
       </td>
 
@@ -105,7 +90,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        amount\
+        amount  
         `mandatory`
       </td>
 
@@ -120,7 +105,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        productinfo\
+        productinfo  
         `mandatory`
       </td>
 
@@ -135,7 +120,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        email\
+        email  
         `mandatory`
       </td>
 
@@ -150,7 +135,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        phone\
+        phone  
         `mandatory`
       </td>
 
@@ -165,12 +150,12 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        surl\
+        surl  
         `mandatory`
       </td>
 
       <td>
-        * \*String\*\* Success URL(surl) – It must contain the URL on which PayU will redirect the final response if the transaction is successful.
+        * *String** Success URL(surl) – It must contain the URL on which PayU will redirect the final response if the transaction is successful.
       </td>
 
       <td>
@@ -180,7 +165,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        furl\
+        furl  
         `mandatory`
       </td>
 
@@ -195,7 +180,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        pg\
+        pg  
         `mandatory`
       </td>
 
@@ -210,7 +195,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        bankcode\
+        bankcode  
         `mandatory`
       </td>
 
@@ -225,7 +210,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        txn\_s2s\_flow
+        txn_s2s_flow
       </td>
 
       <td>
@@ -239,7 +224,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        firstname\
+        firstname  
         `mandatory`
       </td>
 
@@ -254,7 +239,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        lastname\
+        lastname  
         `mandatory`
       </td>
 
@@ -269,7 +254,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        address1\
+        address1  
         `optional`
       </td>
 
@@ -284,7 +269,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        address2\
+        address2  
         `optional`
       </td>
 
@@ -299,7 +284,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        city\
+        city  
         optional
       </td>
 
@@ -314,7 +299,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        state\
+        state  
         `optional`
       </td>
 
@@ -329,7 +314,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        country\
+        country  
         `optional`
       </td>
 
@@ -344,12 +329,12 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        zipcode\
+        zipcode  
         `optional`
       </td>
 
       <td>
-        `String` Billing address zip code is mandatory for the cardless EMI option.\
+        `String` Billing address zip code is mandatory for the cardless EMI option.  
         `Character Limit-20`
       </td>
 
@@ -360,7 +345,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        hash\
+        hash  
         `mandatory`
       </td>
 
@@ -375,7 +360,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        udf1\
+        udf1  
         `optional`
       </td>
 
@@ -390,7 +375,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        udf2\
+        udf2  
         `optional`
       </td>
 
@@ -405,7 +390,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        udf3\
+        udf3  
         `optional`
       </td>
 
@@ -420,7 +405,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        udf4\
+        udf4  
         `optional`
       </td>
 
@@ -435,7 +420,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        udf5\
+        udf5  
         `optional`
       </td>
 
@@ -450,7 +435,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        posdeviceid\
+        posdeviceid  
         `mandatory`
       </td>
 
@@ -465,7 +450,7 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        posexpirytime\
+        posexpirytime  
         `optional`
       </td>
 
@@ -480,20 +465,20 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
     <tr>
       <td>
-        pospaymentmethod\
+        pospaymentmethod  
         `optional`
       </td>
 
       <td>
-        String\
-        This parameter must include the payment option to be enforced in the device. All possible values are:  
+        String  
+        This parameter must include the payment option to be enforced in the device. All possible values are:
 
-        * \*sale\*\*: It represents card transactions.  
-        * \*qr\*\*: It represent QR transactions.  
-        * \*wallet\*\*: : It represent wallet transactions.  
-        * \*emi\*\*: : It represent EMI transactions.  
-        * \*preauth\*\*: : It represent pre-authorisation transactions.  
-        * \*Note\*\*: If any value apart from the above-listed values is sent, all possible payment methods on the device will be visible.
+        * *sale**: It represents card transactions.
+        * *qr**: It represent QR transactions.
+        * *wallet**: : It represent wallet transactions.
+        * *emi**: : It represent EMI transactions.
+        * *preauth**: : It represent pre-authorisation transactions.
+        * *Note**: If any value apart from the above-listed values is sent, all possible payment methods on the device will be visible.
       </td>
 
       <td>
@@ -502,6 +487,23 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
     </tr>
   </tbody>
 </Table>
+
+### Generate hash
+
+The hash string can be generated using the SHA512 algorithm on the below logic. All fields are separated using the pipe (|) operator.
+
+```
+<valueOf(key)>|<valueOf(txnid)>|<valueOf(amount)>|<valueOf(productinfo)>|<valueOf(firstname)>|<valueOf(email)>|<valueOf(udf1)>|<valueOf(udf2)>|<valueOf(udf3)>|<valueOf(udf4)>|<valueOf(udf5)>||||||<valueOf(salt)>
+
+```
+
+> 👍 Callouts
+>
+> * Empty pipe values are deprecated values.
+> * Here, SALT (to be provided by PayU), key, txnid, amount, productinfo, firstname, and email are mandatory parameters and hence cannot be empty in the hash calculation above.
+> * udf1-udf5 are optional. For example, if you are not posting any/all of the udf parameters in the API request, then in the hash calculation, the respective udf field should be left empty.
+
+##
 
 ## Sample request
 
