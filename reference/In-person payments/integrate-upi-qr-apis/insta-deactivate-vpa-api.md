@@ -12,13 +12,14 @@ next:
 ---
 The **Insta Deactivate VPA** API is used to deactivate the VPA embedded in the insta static QR permanently. After the VPA is deactivated using this API, the QR cannot be scanned from any UPI application like Google Pay, PhonePe etc and transactions cannot be done through UPI in future.
 
-## Environment
+#### Environment
 
 | Environment | URL                                                                                            |
 | :---------- | :--------------------------------------------------------------------------------------------- |
 | Production  | [https://info.payu.in/merchant/postservice.php](https://info.payu.in/merchant/postservice.php) |
 
 ## Request parameter
+
 <HTMLBlock>{`
 <Table align={["left","left","left"]}>
   <thead>
@@ -98,6 +99,7 @@ The **Insta Deactivate VPA** API is used to deactivate the VPA embedded in the i
   </tbody>
 </Table>
 `}</HTMLBlock>
+
 ### var1 JSON fields description
 
 <Table align={["left","left","left"]}>
