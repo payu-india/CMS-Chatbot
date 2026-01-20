@@ -12,9 +12,11 @@ next:
 ---
 Sometimes it is required to get list of subscriptions with certain criteria. Zion today supports getting list through four parameters individually or together through simple HTTP GET method and query string. Merchant Id mandatory to fetch the list but other three can be used together as well to form desired query.
 
-**Post Method**: GET
+#### Environment
 
 **Path**: `{base_url}/api/sub/v1/merchant/subscriptions?`
+
+**Post Method**: GET
 
 X-PayU-Subscription-Signature is SHA 512 signature used to provide security layer over existing APIs. Every API will have its own logic to generate X-PayU-Subscription- Signature logic. The following logic must be used:
 
@@ -52,7 +54,7 @@ Signature = SHA512("merchantId:" + merchantId + "|subscriptionId:" + subscriptio
     <tr>
       <td>
         skip`  
-                mandatory`
+                        mandatory`
       </td>
 
       <td>
@@ -78,7 +80,7 @@ Signature = SHA512("merchantId:" + merchantId + "|subscriptionId:" + subscriptio
       </td>
 
       <td>
-        Subscription status having possible values as<br />  
+        Subscription status having possible values as<br />
 
         * Defined
         * Enabled
