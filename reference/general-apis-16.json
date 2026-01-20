@@ -1,1 +1,369 @@
-{"openapi":"3.1.0","info":{"title":"General APIs","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://info.payu.in/merchant","variables":{}},{"url":"https://test.payu.in/merchant","variables":{}},{"url":"https://test.payu.in/","variables":{}}],"paths":{"/postservice":{"post":{"tags":["Done"],"summary":"getIssuingBankStatus","operationId":"getIssuingBankStatus","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"const":2,"type":"integer","contentEncoding":"int32","examples":[2]}},{"name":"accept","in":"header","description":"","required":true,"style":"simple","schema":{"type":"string","examples":["application/json"]}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/x-www-form-urlencoded","type":"string","examples":["application/x-www-form-urlencoded"]}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","var1","hash"],"type":"object","properties":{"key":{"type":"string","description":"This parameter must contain the merchant key that was provided by PayU."},"command":{"type":"string","description":"This parameter must contain the getIssuingBankStatus as the command name.","examples":["getIssuingBankStatus"]},"var1":{"type":"integer","description":"This parameter must contain the bank identification number\n(first 6 digits of a card).","contentEncoding":"int32","examples":[512345]},"hash":{"type":"string","description":"This parameter must contain the hash value to be calculated at your end.","examples":["190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d"]}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"servers":[{"url":"https://test.payu.in/merchant","variables":{}}]},"parameters":[]},"/issuing-bank/v1/bin":{"post":{"tags":["Done"],"summary":"Save Card BIN Info","operationId":"SaveCardBINInfo","parameters":[{"name":"Date","in":"header","description":"","required":true,"style":"simple","schema":{"type":"string"}},{"name":"Digest","in":"header","description":"","required":true,"style":"simple","schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"","required":true,"style":"simple","schema":{"type":"string"}},{"name":"Cookie","in":"header","description":"","required":true,"style":"simple","schema":{"type":"string"}},{"name":"mid","in":"header","description":"","required":true,"style":"simple","schema":{"type":"integer","contentEncoding":"int32"}}],"requestBody":{"description":"","content":{"application/x-www-form-urlencoded":{"schema":{"allOf":[{"$ref":"#/components/schemas/SaveCardBINInfoRequest"},{}],"contentMediaType":"application/x-www-form-urlencoded"}}},"required":true},"responses":{"200":{"description":"","headers":{},"content":{"text/plain":{"schema":{"type":"object","contentMediaType":"text/plain"}}}}},"deprecated":false},"parameters":[]}},"components":{"schemas":{"var1":{"title":"var1","required":["requestId","transactionDetails","customerDetails","filters","useCase"],"type":"object","properties":{"requestId":{"type":"string"},"transactionDetails":{"allOf":[{"$ref":"#/components/schemas/TransactionDetails"},{}]},"customerDetails":{"allOf":[{"$ref":"#/components/schemas/CustomerDetails"},{}]},"filters":{"allOf":[{"$ref":"#/components/schemas/Filters"},{}]},"useCase":{"allOf":[{"$ref":"#/components/schemas/UseCase"},{}]}},"examples":[{"requestId":"1234567890","transactionDetails":{"amount":"28900"},"customerDetails":{"mobile":"7715987327"},"filters":{"paymentOptions":{"emi":{"dc":"ICIC"}}},"useCase":{"checkCustomerEligibility":true}}]},"TransactionDetails":{"title":"TransactionDetails","required":["amount"],"type":"object","properties":{"amount":{"type":"string"}},"examples":[{"amount":"28900"}]},"CustomerDetails":{"title":"CustomerDetails","required":["mobile"],"type":"object","properties":{"mobile":{"type":"string"}},"examples":[{"mobile":"7715987327"}]},"Filters":{"title":"Filters","required":["paymentOptions"],"type":"object","properties":{"paymentOptions":{"allOf":[{"$ref":"#/components/schemas/PaymentOptions"},{}]}},"examples":[{"paymentOptions":{"emi":{"dc":"ICIC"}}}]},"PaymentOptions":{"title":"PaymentOptions","required":["emi"],"type":"object","properties":{"emi":{"allOf":[{"$ref":"#/components/schemas/Emi"},{}]}},"examples":[{"emi":{"dc":"ICIC"}}]},"Emi":{"title":"Emi","required":["dc"],"type":"object","properties":{"dc":{"type":"string"}},"examples":[{"dc":"ICIC"}]},"UseCase":{"title":"UseCase","required":["checkCustomerEligibility"],"type":"object","properties":{"checkCustomerEligibility":{"type":"boolean"}},"examples":[{"checkCustomerEligibility":true}]},"SaveCardBINInfoRequest":{"title":"SaveCardBINInfoRequest","required":["bin","checkCVVRequired"],"type":"object","properties":{"bin":{"type":"string","examples":["512345789"]},"checkCVVRequired":{"type":"boolean","examples":[true]}}}}},"tags":[{"name":"Misc","description":""},{"name":"Done","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "General APIs",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://info.payu.in/merchant",
+      "variables": {}
+    },
+    {
+      "url": "https://test.payu.in/merchant",
+      "variables": {}
+    },
+    {
+      "url": "https://test.payu.in/",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/postservice": {
+      "post": {
+        "tags": [
+          "Done"
+        ],
+        "summary": "getIssuingBankStatus",
+        "operationId": "getIssuingBankStatus",
+        "parameters": [
+          {
+            "name": "form",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "const": 2,
+              "type": "integer",
+              "contentEncoding": "int32",
+              "examples": [
+                2
+              ]
+            }
+          },
+          {
+            "name": "accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "application/json"
+              ]
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/x-www-form-urlencoded",
+              "type": "string",
+              "examples": [
+                "application/x-www-form-urlencoded"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "key",
+                  "command",
+                  "var1",
+                  "hash"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "This parameter must contain the merchant key that was provided by PayU."
+                  },
+                  "command": {
+                    "type": "string",
+                    "description": "This parameter must contain the getIssuingBankStatus as the command name.",
+                    "examples": [
+                      "getIssuingBankStatus"
+                    ]
+                  },
+                  "var1": {
+                    "type": "integer",
+                    "description": "This parameter must contain the bank identification number\n(first 6 digits of a card).",
+                    "contentEncoding": "int32",
+                    "examples": [
+                      512345
+                    ]
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "This parameter must contain the hash value to be calculated at your end.",
+                    "examples": [
+                      "190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d"
+                    ]
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://test.payu.in/merchant",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/issuing-bank/v1/bin": {
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "var1": {
+        "title": "var1",
+        "required": [
+          "requestId",
+          "transactionDetails",
+          "customerDetails",
+          "filters",
+          "useCase"
+        ],
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string"
+          },
+          "transactionDetails": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionDetails"
+              },
+              {}
+            ]
+          },
+          "customerDetails": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomerDetails"
+              },
+              {}
+            ]
+          },
+          "filters": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Filters"
+              },
+              {}
+            ]
+          },
+          "useCase": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UseCase"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "requestId": "1234567890",
+            "transactionDetails": {
+              "amount": "28900"
+            },
+            "customerDetails": {
+              "mobile": "7715987327"
+            },
+            "filters": {
+              "paymentOptions": {
+                "emi": {
+                  "dc": "ICIC"
+                }
+              }
+            },
+            "useCase": {
+              "checkCustomerEligibility": true
+            }
+          }
+        ]
+      },
+      "TransactionDetails": {
+        "title": "TransactionDetails",
+        "required": [
+          "amount"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "amount": "28900"
+          }
+        ]
+      },
+      "CustomerDetails": {
+        "title": "CustomerDetails",
+        "required": [
+          "mobile"
+        ],
+        "type": "object",
+        "properties": {
+          "mobile": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "mobile": "7715987327"
+          }
+        ]
+      },
+      "Filters": {
+        "title": "Filters",
+        "required": [
+          "paymentOptions"
+        ],
+        "type": "object",
+        "properties": {
+          "paymentOptions": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentOptions"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "paymentOptions": {
+              "emi": {
+                "dc": "ICIC"
+              }
+            }
+          }
+        ]
+      },
+      "PaymentOptions": {
+        "title": "PaymentOptions",
+        "required": [
+          "emi"
+        ],
+        "type": "object",
+        "properties": {
+          "emi": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Emi"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "emi": {
+              "dc": "ICIC"
+            }
+          }
+        ]
+      },
+      "Emi": {
+        "title": "Emi",
+        "required": [
+          "dc"
+        ],
+        "type": "object",
+        "properties": {
+          "dc": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "dc": "ICIC"
+          }
+        ]
+      },
+      "UseCase": {
+        "title": "UseCase",
+        "required": [
+          "checkCustomerEligibility"
+        ],
+        "type": "object",
+        "properties": {
+          "checkCustomerEligibility": {
+            "type": "boolean"
+          }
+        },
+        "examples": [
+          {
+            "checkCustomerEligibility": true
+          }
+        ]
+      },
+      "SaveCardBINInfoRequest": {
+        "title": "SaveCardBINInfoRequest",
+        "required": [
+          "bin",
+          "checkCVVRequired"
+        ],
+        "type": "object",
+        "properties": {
+          "bin": {
+            "type": "string",
+            "examples": [
+              "512345789"
+            ]
+          },
+          "checkCVVRequired": {
+            "type": "boolean",
+            "examples": [
+              true
+            ]
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    },
+    {
+      "name": "Done",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
