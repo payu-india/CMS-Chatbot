@@ -5,6 +5,7 @@
 - integrate-with-direct-authorization-s2s
 - upi-collection-s2s
 - upi-intent-server-to-server
+- copy-of-upi-intent-with-s2s-integration
 - upi-omnichannel-integration
 - upi-integrations-s2s
 - phonepe-deep-offers-integration
@@ -12,4 +13,3 @@
 - hashing-request-and-response
 - legacy-flow-for-server-to-server
 - decoupled-flow-authentication-only-integration
-- copy-of-upi-intent-with-s2s-integration
