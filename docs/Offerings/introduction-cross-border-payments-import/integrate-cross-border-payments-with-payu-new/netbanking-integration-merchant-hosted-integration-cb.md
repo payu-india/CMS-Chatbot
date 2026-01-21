@@ -1,6 +1,5 @@
 ---
 title: '[S2S] NetBanking Integration'
-excerpt: Process a one-time card transactions via PayU (without tokenization)
 deprecated: false
 hidden: true
 metadata:
