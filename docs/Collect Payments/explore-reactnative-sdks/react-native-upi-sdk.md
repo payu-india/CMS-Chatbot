@@ -183,6 +183,7 @@ The React Native UPI SDK integration involves the following steps:
           android_surl: <String>,
           android_furl: <String>,
           environment: <String>, // "1" for Stage,"0" for production
+          "isProduction": <Boolean>, //Set environment for android
           payment_mode: <String>, // for Intent flow use "INTENT", for collect flow use "upi"
           user_credentials: <String>, // unique user identifier
           package_name: <String>, //package name for the specific UPI intent (i.e. 'net.one97.paytm') // package_name parameter used for Android only
