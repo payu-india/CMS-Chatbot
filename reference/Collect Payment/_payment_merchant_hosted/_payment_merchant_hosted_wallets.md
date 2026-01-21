@@ -29,12 +29,7 @@ metadata:
 ---
 You can collect payments from customers with leading wallets using the Merchant Hosted integration. You need to ensure that **CASH** for the **pg** parameter and wallet code based on the desired wallet for the **bankcode** parameter is posted.
 
-**Environment**
-
-|                        |                                                                        |
-| ---------------------- | ---------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/_payment>](https://test.payu.in/_payment%3E)     |
-| Production Environment | [https://secure.payu.in/_payment>](https://secure.payu.in/_payment%3E) |
+<PaymentAPIEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
