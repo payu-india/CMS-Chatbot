@@ -22,7 +22,7 @@ Settlement Details Range API provides transaction level data for a given date or
 |                        |                                                                                      |
 | :--------------------- | :----------------------------------------------------------------------------------- |
 | Test Environment       | [https://apitest.payu.in/settlement/range](https://apitest.payu.in/settlement/range) |
-| Production Environment | [https://info.payu.in/settlement/range/](https://info.payu.in/settlement/range/)     |
+| Production Environment | [https://info.payu.in/settlement/range](https://info.payu.in/settlement/range)       |
 
 ## Request parameters
 
