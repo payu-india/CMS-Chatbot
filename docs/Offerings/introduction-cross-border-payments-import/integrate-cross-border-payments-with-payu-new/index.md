@@ -125,21 +125,6 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
       "udf5": "INV000000005"
   }
   ```
-
-  * If successfully updated for UPI autopay:
-
-  ```JSON
-  {
-      "status": "UDF values updated",
-      "transaction_id": "my_order_64240",
-      "udf1": "AAAPZ1234C",
-      "udf2": "",
-      "udf3": "22/08/1972",
-      "udf4": "SellerName",
-      "udf5": "INV000000005"
-  }
-  ```
-
   ### Failure Scenarios
 
   * If the transaction ID is empty
