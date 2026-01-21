@@ -164,6 +164,8 @@ curl --location --request POST 'https://apitest.payu.in/calculateEmi/v2' \
 
 ## Sample response
 
+### General
+
 ```json
 {
     "message": "Success",
@@ -262,3 +264,249 @@ curl --location --request POST 'https://apitest.payu.in/calculateEmi/v2' \
     }
 }
 ```
+
+### With Instant Discount + NCE Discount (Single SKU)
+
+```json
+{
+    "message": "Success",
+    "status": 1,
+    "result": {
+        "IDBI": {
+            "IDBI30": {
+                "transactionAmount": 40000.0,
+                "payBackAmount": 0.0,
+                "emiAmount": 1333.33,
+                "additionalCost": "0.0",
+                "emiMdrNote": 0.0,
+                "emiBankInterest": 13.0,
+                "bankRate": 0.0,
+                "bankCharge": 0.0,
+                "amount": 1333.33,
+                "cardType": "credit card",
+                "tenure": "30 months",
+                "loanAmount": 40000.0,
+                "offerDiscount": {
+                    "total": 0.0,
+                    "instant": 0.0,
+                    "cashback": 0.0
+                },
+                "nceDiscount": {
+                    "total": 0.0,
+                    "instant": 0.0,
+                    "cashback": 0.0
+                },
+                "sku": [
+                    {
+                        "skuId": "111",
+                        "amountPerSku": 40000.0,
+                        "amount": 40000.0,
+                        "quantity": 1,
+                        "offerKeys": [
+                            "NceBaseSku@zzy2kJgYsEkE",
+                            "InstantEmi@DcLwZ5zV8og0"
+                        ],
+                        "emiAmount": 1300.0,
+                        "emiBankInterest": 13.0,
+                        "emiValue": 1300.0,
+                        "emiInterestPaid": 5854.96,
+                        "offerDiscount": {
+                            "total": 1000.0,
+                            "instant": 1000.0,
+                            "cashback": 0.0
+                        },
+                        "nceDiscount": {
+                            "total": 5854.96,
+                            "instant": 5854.96,
+                            "cashback": 0.0
+                        },
+                        "totalPayableAmount": 39000.0,
+                        "nceDiscountAmount": 5854.96,
+                        "subventionAmount": 39000.0,
+                        "revisedPrincipal": 39000.0,
+                        "additionalCharge": 0.0,
+                        "lceDiscount": {
+                            "total": 0.0,
+                            "instant": 0.0,
+                            "cashback": 0.0
+                        }
+                    }
+                ],
+                "totalPayableAmount": 39000.0,
+                "nceDiscountAmount": 5854.96,
+                "revisedPrincipal": 39000.0,
+                "subventionAmount": 39000.0,
+                "gstSubvention": false,
+                "bankCode": "IDBI",
+                "lceDiscount": {
+                    "total": 0.0,
+                    "instant": 0.0,
+                    "cashback": 0.0
+                },
+                "notification": {
+                    "tncLink": null,
+                    "tncText": null
+                },
+                "emi_value": 1300.0,
+                "emi_interest_paid": 5854.96
+            },
+            "IDBI09": {
+                "transactionAmount": 40000.0,
+                "payBackAmount": 0.0,
+                "emiAmount": 4444.44,
+                "additionalCost": "0.0",
+                "emiMdrNote": 0.0,
+                "emiBankInterest": 13.0,
+                "bankRate": 0.0,
+                "bankCharge": 0.0,
+                "amount": 4444.44,
+                "cardType": "credit card",
+                "tenure": "09 months",
+                "loanAmount": 40000.0,
+                "offerDiscount": {
+                    "total": 0.0,
+                    "instant": 0.0,
+                    "cashback": 0.0
+                },
+                "nceDiscount": {
+                    "total": 0.0,
+                    "instant": 0.0,
+                    "cashback": 0.0
+                },
+                "sku": [
+                    {
+                        "skuId": "111",
+                        "amountPerSku": 40000.0,
+                        "amount": 40000.0,
+                        "quantity": 1,
+                        "offerKeys": [
+                            "NceBaseSku@zzy2kJgYsEkE",
+                            "InstantEmi@DcLwZ5zV8og0"
+                        ],
+                        "emiAmount": 4333.33,
+                        "emiBankInterest": 13.0,
+                        "emiValue": 4333.33,
+                        "emiInterestPaid": 2031.24,
+                        "offerDiscount": {
+                            "total": 1000.0,
+                            "instant": 1000.0,
+                            "cashback": 0.0
+                        },
+                        "nceDiscount": {
+                            "total": 2031.24,
+                            "instant": 2031.24,
+                            "cashback": 0.0
+                        },
+                        "totalPayableAmount": 38999.97,
+                        "nceDiscountAmount": 2031.24,
+                        "subventionAmount": 39000.0,
+                        "revisedPrincipal": 39000.0,
+                        "additionalCharge": 0.0,
+                        "lceDiscount": {
+                            "total": 0.0,
+                            "instant": 0.0,
+                            "cashback": 0.0
+                        }
+                    }
+                ],
+                "totalPayableAmount": 39000.0,
+                "nceDiscountAmount": 2031.24,
+                "revisedPrincipal": 39000.0,
+                "subventionAmount": 39000.0,
+                "gstSubvention": false,
+                "bankCode": "IDBI",
+                "lceDiscount": {
+                    "total": 0.0,
+                    "instant": 0.0,
+                    "cashback": 0.0
+                },
+                "notification": {
+                    "tncLink": null,
+                    "tncText": null
+                },
+                "emi_value": 4333.33,
+                "emi_interest_paid": 2031.24
+            },
+            "IDBI18": {
+                "transactionAmount": 40000.0,
+                "payBackAmount": 0.0,
+                "emiAmount": 2222.22,
+                "additionalCost": "0.0",
+                "emiMdrNote": 0.0,
+                "emiBankInterest": 13.0,
+                "bankRate": 0.0,
+                "bankCharge": 0.0,
+                "amount": 2222.22,
+                "cardType": "credit card",
+                "tenure": "18 months",
+                "loanAmount": 40000.0,
+                "offerDiscount": {
+                    "total": 0.0,
+                    "instant": 0.0,
+                    "cashback": 0.0
+                },
+                "nceDiscount": {
+                    "total": 0.0,
+                    "instant": 0.0,
+                    "cashback": 0.0
+                },
+                "sku": [
+                    {
+                        "skuId": "111",
+                        "amountPerSku": 40000.0,
+                        "amount": 40000.0,
+                        "quantity": 1,
+                        "offerKeys": [
+                            "NceBaseSku@zzy2kJgYsEkE",
+                            "InstantEmi@DcLwZ5zV8og0"
+                        ],
+                        "emiAmount": 2166.67,
+                        "emiBankInterest": 13.0,
+                        "emiValue": 2166.67,
+                        "emiInterestPaid": 3739.6,
+                        "offerDiscount": {
+                            "total": 1000.0,
+                            "instant": 1000.0,
+                            "cashback": 0.0
+                        },
+                        "nceDiscount": {
+                            "total": 3739.6,
+                            "instant": 3739.6,
+                            "cashback": 0.0
+                        },
+                        "totalPayableAmount": 39000.06,
+                        "nceDiscountAmount": 3739.6,
+                        "subventionAmount": 39000.0,
+                        "revisedPrincipal": 39000.0,
+                        "additionalCharge": 0.0,
+                        "lceDiscount": {
+                            "total": 0.0,
+                            "instant": 0.0,
+                            "cashback": 0.0
+                        }
+                    }
+                ],
+                "totalPayableAmount": 39000.0,
+                "nceDiscountAmount": 3739.6,
+                "revisedPrincipal": 39000.0,
+                "subventionAmount": 39000.0,
+                "gstSubvention": false,
+                "bankCode": "IDBI",
+                "lceDiscount": {
+                    "total": 0.0,
+                    "instant": 0.0,
+                    "cashback": 0.0
+                },
+                "notification": {
+                    "tncLink": null,
+                    "tncText": null
+                },
+                "emi_value": 2166.67,
+                "emi_interest_paid": 3739.6
+            }
+        }
+    }
+}
+```
+
+<br />
