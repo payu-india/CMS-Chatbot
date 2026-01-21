@@ -77,29 +77,29 @@ Post the payment parameters to PayU's `_payment` API endpoint to initiate a plai
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
- curl --location --request POST 'https://test.payu.in/_payment' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=JPM7Fg' \
---data-urlencode 'txnid=payuTestTransaction12345' \
---data-urlencode 'amount=100.00' \
---data-urlencode 'firstname=Ashish' \
---data-urlencode 'email=test@payu.in' \
---data-urlencode 'phone=9988776655' \
---data-urlencode 'productinfo=Product Info' \
---data-urlencode 'surl=https://test.payu.in/admin/test_response' \
---data-urlencode 'furl=https://test.payu.in/admin/test_response' \
---data-urlencode 'pg=NB' \
---data-urlencode 'bankcode=TESTPGNB' \
---data-urlencode 'txn_s2s_flow=4' \
---data-urlencode 's2s_client_ip=10.200.12.12' \
---data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
---data-urlencode 'udf1=AELPR1234E' \
---data-urlencode 'udf3=02-02-1980' \
---data-urlencode 'udf4=XYZ Pvt. Ltd.' \
---data-urlencode 'udf5=INV123456' \
---data-urlencode 'buyer_type_business=1' \
---data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
---data-urlencode 'hash=YOUR_CALCULATED_HASH'
+  curl --location --request POST 'https://test.payu.in/_payment' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'key=JPM7Fg' \
+  --data-urlencode 'txnid=payuTestTransaction12345' \
+  --data-urlencode 'amount=100.00' \
+  --data-urlencode 'firstname=Ashish' \
+  --data-urlencode 'email=test@payu.in' \
+  --data-urlencode 'phone=9988776655' \
+  --data-urlencode 'productinfo=Product Info' \
+  --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'pg=NB' \
+  --data-urlencode 'bankcode=TESTPGNB' \
+  --data-urlencode 'txn_s2s_flow=4' \
+  --data-urlencode 's2s_client_ip=10.200.12.12' \
+  --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+  --data-urlencode 'udf1=AELPR1234E' \
+  --data-urlencode 'udf3=02-02-1980' \
+  --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+  --data-urlencode 'udf5=INV123456' \
+  --data-urlencode 'buyer_type_business=1' \
+  --data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
+  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
   ```
 </Accordion>
 
@@ -173,7 +173,145 @@ After posting the payment request, PayU returns a response containing transactio
 
 ***
 
-## Step 3: Verify the Payment
+## Step 3: Authorize (charge) the payment
+
+The authorization request is the final step of transaction processing. This again needs to be an S2S call from the merchant's server to PayU server.
+
+<Accordion title="Request parameters" icon="fa-code">
+  **Post URL**: The data to be posted has to be exactly the same as the JSON response received in the authentication response in [Step 2](#step-2-redirect-the-customer). The data must include the following parameters.
+
+  #### Environment
+
+  |            |                                                                                                    |
+  | ---------- | -------------------------------------------------------------------------------------------------- |
+  | Test       | [https://test.payu.in/AuthorizeTransaction.php](https://test.payu.in/AuthorizeTransaction.php)     |
+  | Production | [https://secure.payu.in/AuthorizeTransaction.php](https://secure.payu.in/AuthorizeTransaction.php) |
+
+  <HTMLBlock>{`
+                           <style>
+                           /* Target only the second column in the table */
+                           .markdown-body table td:nth-child(2) {
+                             word-break: break-word !important;
+                           }
+                           
+                           /* Keep the first column from breaking unnecessarily */
+                           .markdown-body table td:nth-child(1) {
+                             word-break: normal;
+                             white-space: nowrap;
+                           }
+                           </style>
+                           <table style="width: 100%; border-collapse: collapse;">
+                           <thead>
+                           <tr>
+                             <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+                             <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                           </tr>
+                           </thead>
+                           <tbody>
+                           <tr>
+                             <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p>
+                           </td>
+                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key is provided by PayU and acts as a unique identifier for a specific merchant account in PayU's database.</p>
+                           </td>
+                           </tr>
+                           <tr>
+                             <td style="border: 1px solid #ddd; padding: 8px;"><p>txnid<br><code>mandatory</code></p>
+                           </td>
+                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The transaction ID is the order reference number generated by the merchant to track a particular order. It can be used only once and PayU's system does not accept a duplicate Transaction ID.</p>
+                           </td>
+                           </tr>
+                           <tr>
+                             <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br><code>mandatory</code></p>
+                           </td>
+                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It should contain the payment amount of the particular transaction. The amount must be greater than Rs. 8000 for the cardless EMI option.</p>
+                           </td>
+                           </tr>
+                           <tr>
+                             <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
+                           </td>
+                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. The hash must in the following structure:<br> <code>valueOf(key)\| valueOf(txnid) \| valueOf(amount) \|valueOf(authentication_info) \| valueOf(salt)</code></p>
+                           </td>
+                           </tr>
+                           <tr>
+                             <td style="border: 1px solid #ddd; padding: 8px;"><p>authentication_info<br><code>mandatory</code></p>
+                           </td>
+                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code> The JSON value received in the bankData on the Term URL or pass the fields as in the <a href="#example-for-authentication_info-json">JSON example</a>.</p>
+                           </td>
+                           </tr>
+                           </tbody>
+                           </table>
+  `}</HTMLBlock>
+
+  #### Example for authentication\_info JSON
+
+  ```plaintext
+  {
+     "referenceId": "00c44a4c8306f9cbe5ecf6133afe08a7",
+     "cres": "eyJhY3NUcmFuc0lEIjoiODc3OTFjZWUtMjUxNC00MzZjLWJlZDgtYTYzYTg3YmJkZjAxIiwiY2hhbGxlbmdlQ29tcGxldGlvbkluZCI6IlkiLCJtZXNzYWdlVHlwZSI6IkNSZXMiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMS4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiJkNDFmNjIwMC0wNDM1LTQ5ZWUtYWExMS1mMzY2ZjA2NjFjNmYiLCJ0cmFuc1N0YXR1cyI6IlkifQ==",
+     "messageDigest": "",
+     "pares": "",
+     "additionalInfo": {
+        "authUdf1": "",
+        "authUdf2": "",
+        "authUdf3": "",
+        "authUdf4": "",
+        "authUdf5": "",
+        "authUdf6": "",
+        "authUdf7": "",
+        "authUdf8": "",
+        "authUdf9": "",
+        "authUdf10": ""
+     }
+  }
+  ```
+
+  #### authentication\_info JSON Fields Description
+
+  | **Field**      | **Description**                                                                                        | **Applicable to EMV 3DS** |
+  | -------------- | ------------------------------------------------------------------------------------------------------ | ------------------------- |
+  | cres           | This field contains the Base 64 encoded value received from ACS as part of the authentication response | Yes                       |
+  | referenceId    | This field contains the same referenceId which sent in response of the first call                      |                           |
+  | additionalInfo | This field can be used in the case of schemes where different parameters may need from merchant side.  |                           |
+  | messageDigest  | This field includes the Base 64 encoding of (sha56 hash of the JSON data (post to server).             |                           |
+  | pares          | This parameter contains the pares being returned by the bank.                                          |                           |
+</Accordion>
+
+<br />
+
+After the payment is complete, verify the transaction status using PayU's verification APIs.
+
+<Accordion title="Verification Methods" icon="fa-check-circle">
+  Use one of the following methods to verify the payment:
+
+  1. **Webhook/Callback**: PayU sends a POST request to your `surl` or `furl` with transaction details
+  2. **Verify Payment API**: Call the `verify_payment` API with the transaction ID
+</Accordion>
+
+<Accordion title="Verify Payment API" icon="fa-code">
+  ```bash
+  curl --location --request POST 'https://info.payu.in/merchant/postservice.php?form=2' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'key=JPM7Fg' \
+  --data-urlencode 'command=verify_payment' \
+  --data-urlencode 'var1=payuTestTransaction12345' \
+  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
+  ```
+</Accordion>
+
+<Accordion title="Callback Response Parameters" icon="fa-table">
+  | Parameter   | Description                                |
+  | ----------- | ------------------------------------------ |
+  | status      | Transaction status: `success` or `failure` |
+  | txnid       | Your transaction ID                        |
+  | mihpayid    | PayU transaction ID                        |
+  | amount      | Transaction amount                         |
+  | productinfo | Product information                        |
+  | hash        | Response hash for verification             |
+</Accordion>
+
+***
+
+## Step 4: Verify the Payment
 
 After the payment is complete, verify the transaction status using PayU's verification APIs.
 
