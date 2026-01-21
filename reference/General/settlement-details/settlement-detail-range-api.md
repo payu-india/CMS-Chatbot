@@ -19,10 +19,10 @@ Settlement Details Range API provides transaction level data for a given date or
 
 **Environment**
 
-|                        |                                           |
-| :--------------------- | :---------------------------------------- |
-| Test Environment       | https://apitest.payu.in/settlement/range/ |
-| Production Environment | https://info.payu.in/settlement/range/    |
+|                        |                                                                                      |
+| :--------------------- | :----------------------------------------------------------------------------------- |
+| Test Environment       | [https://apitest.payu.in/settlement/range](https://apitest.payu.in/settlement/range) |
+| Production Environment | [https://info.payu.in/settlement/range/](https://info.payu.in/settlement/range/)     |
 
 ## Request parameters
 
@@ -70,7 +70,7 @@ function getAuthHeader(date) {
 ## Sample request
 
 ```bash
-curl --location 'https://apitest.payu.in/settlement/range/?pageSize=200&page=1&dateFrom=2025-02-04' \
+curl --location 'https://apitest.payu.in/settlement/range?pageSize=200&page=1&dateFrom=2025-02-04' \
 --header 'Authorization: hmac username="NpXRwp", algorithm="sha512", headers="date", signature="df282e193cc74618e8f7e13097acab38c321fc17ceed770f71ba5f4cb5e672a2b74a9b86ac8ba8baa3074cf740d1d91075bd3122acfa10833361d5f797a123a9"' \
 --header 'date: Tue, 04 Feb 2025 12:09:59 GMT' \
 --header 'mid: 114757' 
