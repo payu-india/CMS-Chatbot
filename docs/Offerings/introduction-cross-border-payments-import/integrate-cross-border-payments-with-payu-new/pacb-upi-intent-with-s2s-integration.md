@@ -1,5 +1,5 @@
 ---
-title: UPI Intent with S2S Integration - PACB
+title: '[S2S]UPI Intent with S2S Integration - PACB'
 deprecated: false
 hidden: true
 metadata:
@@ -521,10 +521,34 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
       </tr>
     </tbody>
   </Table>
-
-  > 📘 Support queries:
-  >
-  > For any issues or queries related to UPI integration, send an email to [integration@payu.in](mailto:integration@payu.in).
+<Accordion title="Sample Request" icon="fa-code">
+```curl
+curl --location --request POST 'https://test.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=JPM7Fg' \
+--data-urlencode 'txnid=payuTestTransaction12345' \
+--data-urlencode 'amount=100.00' \
+--data-urlencode 'firstname=Ashish' \
+--data-urlencode 'email=test@payu.in' \
+--data-urlencode 'phone=9988776655' \
+--data-urlencode 'productinfo=Product Info' \
+--data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'pg=UPI' \
+--data-urlencode 'bankcode=INTENT' \
+--data-urlencode 'vpa=test@payu' \
+--data-urlencode 'txn_s2s_flow=4' \
+--data-urlencode 's2s_client_ip=10.200.12.12' \
+--data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+--data-urlencode 'udf1=AELPR1234E' \
+--data-urlencode 'udf3=02-02-1980' \
+--data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+--data-urlencode 'udf5=INV123456' \
+--data-urlencode 'buyer_type_business=1' \
+--data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
+--data-urlencode 'hash=YOUR_CALCULATED_HASH'
+```
+</Accordion>
 </Accordion>
 
 <Accordion title="Response for S2S request" icon="fa-code">
