@@ -1,7 +1,7 @@
 ---
-title: Copy of UPI Intent with S2S Integration
+title: UPI Intent with S2S Integration - PACB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
