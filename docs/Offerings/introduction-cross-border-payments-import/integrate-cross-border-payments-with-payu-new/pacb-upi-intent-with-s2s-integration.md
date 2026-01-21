@@ -62,7 +62,7 @@ The following steps allow you to integrate the server-to-server UPI intent:
 
 <PaymentAPIEnvironment />
 
-The **_payment** API needs to be called with all the required parameter.
+The **_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
 
 This needs to be a server-to-server cURL request. This API is used for both Cards and UPI for generating a new transaction.
 
@@ -79,7 +79,7 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
 <Accordion title="Request parameters" icon="fa-database">
   For the complete list of parameters, refer to <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
 
-    <Table align={["left","left","left"]}>
+  <Table align={["left","left","left"]}>
     <thead>
       <tr>
         <th style={{ textAlign: "left" }}>
@@ -368,15 +368,15 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
       <tr>
         <td style={{ textAlign: "left" }}>
           udf1
-          `conditional`
+          `optional`
         </td>
 
         <td style={{ textAlign: "left" }}>
-          `String` User-defined field 1. For cross-border payments: Buyer's PAN number (up to 255 characters).
+          `String` This parameter can include any custom information in request (up to 255 characters).
         </td>
 
         <td style={{ textAlign: "left" }}>
-          AELPR1234E
+          Website order
         </td>
       </tr>
 
@@ -387,7 +387,7 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
         </td>
 
         <td style={{ textAlign: "left" }}>
-          `String` User-defined field 2 (up to 255 characters).
+          `String` This parameter can include any custom information in request (up to 255 characters.).
         </td>
 
         <td style={{ textAlign: "left" }} />
@@ -396,81 +396,43 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
       <tr>
         <td style={{ textAlign: "left" }}>
           udf3
-          `optional but recommended for higher approval rate`
+          `optional`
         </td>
 
         <td style={{ textAlign: "left" }}>
-          `String` Date of Birth (DOB) of buyer in DD-MM-YYYY format (up to 255 characters).
+          `String` This parameter can include any custom information in request.
+          (up to 255 characters.)
         </td>
 
-        <td style={{ textAlign: "left" }}>
-          02-02-1980
-        </td>
+        <td style={{ textAlign: "left" }} />
       </tr>
 
       <tr>
         <td style={{ textAlign: "left" }}>
           udf4
-          `mandatory for payment aggregators`
+          optional
         </td>
 
         <td style={{ textAlign: "left" }}>
-          `String` End merchant legal entity name. For UPI, this field should not be passed (up to 255 characters).
+          `String` This parameter can include any custom information in request.
+          (up to 255 characters.)
         </td>
 
-        <td style={{ textAlign: "left" }}>
-          XYZ Pvt. Ltd.
-        </td>
+        <td style={{ textAlign: "left" }} />
       </tr>
 
       <tr>
         <td style={{ textAlign: "left" }}>
           udf5
-          `mandatory for cross-border payments`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` Contains invoice ID for the merchant (up to 255 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          INV123456
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          buyer\_type\_business
-          `optional in case of B2B transaction for cross-border payments`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `Binary` To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0".
-
-          **Note**: This will be included in hash if posted.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          1
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          udf\_params
           `optional`
         </td>
 
         <td style={{ textAlign: "left" }}>
-          `String JSON` Additional UDF parameters for cross-border payments:
-
-          * **udf7**: Import or Export Code of the buyer
-          * **udf8**: Airway Bill Number / Consignment Number (in case of goods imports)
+          `String` This parameter can include any custom information in request.
+          (up to 255 characters.)
         </td>
 
-        <td style={{ textAlign: "left" }}>
-          \{"udf7":"0100000029","udf8":"99953729071"}
-        </td>
+        <td style={{ textAlign: "left" }} />
       </tr>
 
       <tr>
@@ -560,8 +522,6 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
     </tbody>
   </Table>
 
-
-
   <Accordion title="Sample Request" icon="fa-code">
     ```curl
     curl --location --request POST 'https://test.payu.in/_payment' \
@@ -577,7 +537,6 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
     --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
     --data-urlencode 'pg=UPI' \
     --data-urlencode 'bankcode=INTENT' \
-    --data-urlencode 'vpa=test@payu' \
     --data-urlencode 'txn_s2s_flow=4' \
     --data-urlencode 's2s_client_ip=10.200.12.12' \
     --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
