@@ -16,13 +16,13 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
 
 ## Step 1: Post the Payment Request with PayU
 
-For detailed information about the Payment Consent Transaction using PayU Hosted Checkout, refer to [PayU Hosted Checkout - CB](ref:_payment_cross-border_payu_hosted_checkout)
+<br />
 
 <Callout icon="📘" theme="info">
   **Note**: For Cross-Border Payments, the UDF parameters (udf1, udf2, udf3, udf4, and udf5) have specific requirements as described in the Request parameters table below.
 </Callout>
 
-## Request parameters
+### Request parameters
 
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
@@ -374,7 +374,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
   </tbody>
 </Table>
 
-### Hashing
+#### Hashing
 
 <PACB_Hashing />
 
@@ -396,7 +396,7 @@ For more information, refer to  <a href="generate-hash-merchant-hosted" target="
   <HashingSample />
 </Accordion>
 
-## Sample request
+### Sample request
 
 ```curl
 curl -X POST "https://test.payu.in/_payment" \
@@ -404,7 +404,11 @@ curl -X POST "https://test.payu.in/_payment" \
   -d "key=JPM7Fg&txnid=payuTestTxn12345&amount=100.00&productinfo=iPhone&firstname=Ashish&lastname=Kumar&email=test@gmail.com&phone=9876543210&zipcode=110075&surl=https://example.com/success&furl=https://example.com/failure&udf1=AELPR1234E&udf3=02-02-1980&udf4=XYZ Pvt. Ltd.&udf5=INV123456&buyer_type_business=1&udf_params={\"udf7\":\"<IE_CODE>\",\"udf8\":\"<AWB Num>\"}&hash=<generated_hash>"
 ```
 
-## Step 2: Check Response from PayU
+## Step 2: Redirect to Bank
+
+\<Awaiting infomation>
+
+## Step 3: Check Response from PayU
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
 
@@ -452,7 +456,7 @@ Array
 )
 ```
 
-## Step 2: Verify the Payment
+## Step 4: Verify the Payment
 
 Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
 
