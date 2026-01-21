@@ -223,7 +223,7 @@ To integrate the Flutter UPI SDK, perform the following steps:
     android_surl: <SURL>,
     android_furl: <FURL>,
     environment: <String>, //0 => Production 1 => Test 
-    "isProduction": <Boolean>, //Set environment for android
+    isProduction: <Boolean>, //Set environment for android
     user_credentials: <unique user identifier>
     transaction_id:<Transaction ID>,
     additional_param: additionalParam,
