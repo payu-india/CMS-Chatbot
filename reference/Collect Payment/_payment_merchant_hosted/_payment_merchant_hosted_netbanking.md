@@ -41,12 +41,7 @@ You can check whether the Net Banking server is up and running using the **getNe
 * **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
 * **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer) and [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
 
-**Environment**
-
-|                            |                                                                        |
-| -------------------------- | ---------------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/_payment>](https://test.payu.in/_payment%3E)     |
-| **Production Environment** | [https://secure.payu.in/_payment>](https://secure.payu.in/_payment%3E) |
+<PaymentAPIEnvironment />
 
 ## Request parameters
 
