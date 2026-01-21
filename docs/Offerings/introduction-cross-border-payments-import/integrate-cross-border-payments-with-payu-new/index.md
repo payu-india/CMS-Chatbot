@@ -40,10 +40,11 @@ The cross-border payment integration for PayU involves the following steps:
 
 ## Step 1: Make Payment using Web Checkout Integration
 
-The following parameters (mandatory) must be posted using any of the following Web Checkout integration and refer to the corresponding section of [Web Checkout Integration](doc:introduction-web) documentation for the complete list of parameters to be posted:
+The following parameters (mandatory) must be posted using any of the following Web Checkout integration:
 
-* PayU Hosted Integration
-* Merchant Hosted Checkout > Cards
+* [PayU Hosted Payment](https://docs.payu.in/docs/cb-integration-non-seamless)
+* Merchant Hosted Checkout
+  * [NetBanking Integration](https://docs.payu.in/docs/netbanking-integration-merchant-hosted-integration-cb)
   * [Plain Cards](https://docs.payu.in/docs/plain-cards-integration-one-time-pacb)
   * [Plain Cards with Tokenization](https://docs.payu.in/docs/plain-cards-with-tokenization-integration-one-time-pacb)
   * [Cards with PayU Tokenization](https://docs.payu.in/docs/cards-with-payu-tokenization-one-time-pacb)
@@ -53,38 +54,38 @@ The following parameters (mandatory) must be posted using any of the following W
   Experience the end-to-end **PayU Hosted > Cross-Border Payments** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                          <style>
-                          .tooltip-btn {
-                              position: relative;
-                              background-color: #4CAF50;
-                              color: white;
-                              padding: 10px 20px;
-                              border: none;
-                              border-radius: 5px;
-                              cursor: pointer;
-                              font-weight: bold; /* Added this line */
-                          }
-                          .tooltip-btn:hover::after {
-                              content: attr(data-tooltip);
-                              position: absolute;
-                              bottom: 125%;
-                              left: 50%;
-                              transform: translateX(-50%);
-                              background-color: #333;
-                              color: white;
-                              padding: 5px 10px;
-                              border-radius: 4px;
-                              white-space: nowrap;
-                              font-size: 12px;
-                              z-index: 1;
-                          }
-                          </style>
+                            <style>
+                            .tooltip-btn {
+                                position: relative;
+                                background-color: #4CAF50;
+                                color: white;
+                                padding: 10px 20px;
+                                border: none;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                font-weight: bold; /* Added this line */
+                            }
+                            .tooltip-btn:hover::after {
+                                content: attr(data-tooltip);
+                                position: absolute;
+                                bottom: 125%;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                background-color: #333;
+                                color: white;
+                                padding: 5px 10px;
+                                border-radius: 4px;
+                                white-space: nowrap;
+                                font-size: 12px;
+                                z-index: 1;
+                            }
+                            </style>
 
-                          <button onclick="window.open('https://payu.in/integrationlab/crossborder', '_blank')" 
-                                  class="tooltip-btn" 
-                                  data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
-                               Experience the flow and get the code
-                          </button>
+                            <button onclick="window.open('https://payu.in/integrationlab/crossborder', '_blank')" 
+                                    class="tooltip-btn" 
+                                    data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
+                                 Experience the flow and get the code
+                            </button>
   `}</HTMLBlock>
 </Callout>
 
