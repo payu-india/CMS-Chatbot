@@ -61,7 +61,7 @@ Apple Pay offers a fast, secure, and seamless payment experience across iOS and 
 
 ### High-Level Flow
 
-<Image align="center" border={true} src="https://files.readme.io/1af03612136e19009efdeaf84427ffa904fbda8eb0a9b5db0bb55460f5967a5e-apple_three_lane_diagram.png" className="border" />
+<Image align="center" border={true} src="https://files.readme.io/33c344fb8ffe7e074dfc5c42fb677e87a7ec484bfa94e2e4f130b8359a26d4b7-swimlanes-1161932f5e7fee435e1ca091cd7f3732.png" className="border" />
 
 ### Technical Summary
 
@@ -80,7 +80,7 @@ Apple Pay offers a fast, secure, and seamless payment experience across iOS and 
 
 7. Apple generates encrypted payment token with card data.
 
-8.  Merchant sends token to PayU for payment processing.
+8. Merchant sends token to PayU for payment processing.
 
 9. PayU returns transaction status to merchant.
 
