@@ -101,48 +101,7 @@ You can use PayU APIs to initiate the transaction and get the Intent payment URI
 </Accordion>
 
 <Accordion title="Step 1: Fetch the List of UPI and Smart Intent Supported Apps" icon="fa-code">
-  You need to get the list of UPI and smart intent supported applications installed in the device.
-
-  ```java
-  private fun getSmartIntentUPIApps(context: Context?):ArrayList<HashMap<String,String>>?{
-        val upiApps = ArrayList<HashMap<String, String>>()
-        if (context == null)
-            return null
-
-        val intent = Intent()
-        intent.data = Uri.parse("upi://pay")
-        val activityList = context.packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-        for (resolveInfo in activityList){
-            var packageInfo: PackageInfo? = null
-            try {
-                packageInfo = context.packageManager
-                    .getPackageInfo(resolveInfo.activityInfo.packageName, 0)
-                val name =
-                    context.packageManager.getApplicationLabel(packageInfo.applicationInfo) as String
-              val appInfo = HashMap<String, String?>()
-                appInfo["bankName"] = name ?: "NA"
-                appInfo["packageName"] = packageInfo.packageName
-                upiApps.add(appInfo)
-            } catch (e: PackageManager.NameNotFoundException) {
-                e.printStackTrace()
-                return upiApps
-            }
-        }
-        return UPI apps
-    }
-    /* to get icon of psp app*/
-    fun getUpiAppBitmap(context: Context?, packageName: String): Bitmap? {
-
-        var upiAppBitmap: Bitmap? = null
-        if (context == null)
-            return upiAppBitmap
-        upiAppBitmap = context.packageManager.getApplicationIcon(packageName).toBitmap()
-        return upiAppBitmap
-    }
-
-  ```
-
-  <br />
+ List the specific apps for app/webview/m-web, (In IOS, UPI collect can still be used).
 </Accordion>
 
 <Accordion title="Step 2: Get Intent URI" icon="fa-code">
@@ -591,7 +550,6 @@ This section describes how to integrate UPI Online QR which will help you genera
       }
   }
   ```
-
 </Accordion>
 
 <Accordion title="Step 4: Verify the payment" icon="fa-code">
