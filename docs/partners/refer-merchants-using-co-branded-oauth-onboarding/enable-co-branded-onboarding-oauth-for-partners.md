@@ -43,4 +43,4 @@ Scope name: credentials_using_oauth
 
 The partner can pass the email of the merchant in the URL and the user will be taken to the Sign-in or Signup page. For example:
 
-\<[https://onboarding.payu.in/app/account/signup?reseller_id=11ea-c29b-c691cce0-8256-02aa98a2d2b0&email=ishikanarang27@gmail.com>](https://onboarding.payu.in/app/account/signup?reseller_id=11ea-c29b-c691cce0-8256-02aa98a2d2b0&email=ishikanarang27@gmail.com>)
+\<https://onboarding.payu.in/app/account?reseller_id=11ea-c29b-c691cce0-8256-02aa98a2d2b0&email=ishikanarang27@gmail.com>
