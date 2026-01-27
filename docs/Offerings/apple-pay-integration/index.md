@@ -2,7 +2,7 @@
 title: Apple Pay Integration
 excerpt: Apple Pay Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
