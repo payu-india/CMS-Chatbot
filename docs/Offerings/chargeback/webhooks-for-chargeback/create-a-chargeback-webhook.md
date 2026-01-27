@@ -28,12 +28,16 @@ Before configuring a chargeback webhook, ensure that:
 2.    Click **Configure Webhooks** at the top-right corner.
 3. Click the **Configure Webhooks** button.
 
+<Image align="center" border={false} src="https://files.readme.io/78e3f0f2d0569ee9301008d89f41953d16e6c72b65da19fb9b6b780c425002cf-chargeback_webhooks_page.png" />
+
+4. Click **Edit**.
+
 The _Configure Webhook_ page is displayed.
 
 <Image align="center" border={false} src="https://files.readme.io/703624965764d8eac5bc1b230db29779f55b97f8d28f11073e7c60779027ab20-cb_confgure_webhook.png" />
 
-4. In the configuration form, fill in the following details:
+5. In the configuration form, fill in the following details:
    * **Webhook URL**: Enter the URL where you want to receive webhook payloads
    * **Fields Selection**: Select the fields you want to include in the webhook payload
    * **Activation Status**: Set the webhook as active or inactive using the toggle switch
-5. Click on the **Save** button to finalize your webhook configuration
+6. Click on the **Save** button to finalize your webhook configuration
