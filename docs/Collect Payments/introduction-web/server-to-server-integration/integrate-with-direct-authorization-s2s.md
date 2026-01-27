@@ -934,9 +934,10 @@ The formatted response is similar to the following:
 
 ## 3DS Secure 2.0 Transaction
 
-### Request Parameter for 3DS Secure 2.0 Transaction
+###
 
-Along with the parameters mentioned in [Step 1](#step-1-post-the-parameters-to-payu), you must include the `threeDS2RequestData` parameter in the following JSON format for 3DS Secure 2.0 support for cards:
+<Accordion title="Request Parameter for 3DS Secure 2.0 Transaction" icon="fa-info-circle">
+  Along with the parameters mentioned in [Step 1](#step-1-post-the-parameters-to-payu), you must include the `threeDS2RequestData` parameter in the following JSON format for 3DS Secure 2.0 support for cards:
 
 ```json
 {
@@ -953,10 +954,10 @@ Along with the parameters mentioned in [Step 1](#step-1-post-the-parameters-to-p
   }
 }
 ```
+</Accordion>
 
-### 3DS Secure 2.0 browserDetails JSON Fields Description
-
-| **Field**    | **Description**                                                                             | **Example**      |
+<Accordion title=" 3DS Secure 2.0 browserDetails JSON Fields Description" icon="fa-info-circle">
+  | **Field**    | **Description**                                                                             | **Example**      |
 | ------------ | ------------------------------------------------------------------------------------------- | ---------------- |
 | userAgent    | This field must include user agent of the device browser.                                   |                  |
 | acceptHeader | This field contains the format of the header.                                               | application/json |
@@ -967,9 +968,12 @@ Along with the parameters mentioned in [Step 1](#step-1-post-the-parameters-to-p
 | javaEnabled  | This field contains whether Java is enabled for the device. It can be any of the following: | true             |
 | timeZone     | This field contains the time zone code where the payment is accepted.                       | 273              |
 | ip           | This should include the IP address of the device from which the browser is accessed.        | 10.248.2.71      |
+</Accordion>
 
-### Sample cURL Request with 3DS Secure 2.0
+|   |
+| - |
 
+<Accordion title="My Accordion Title" icon="fa-info-circle">
 The sample cURL request with 3DS Secure 2.0:
 
 ```curl
@@ -1009,5 +1013,8 @@ curl --location 'https://test.payu.in/_payment' \
     }
 }'
 ```
+
+  
+</Accordion>
 
 <br />
