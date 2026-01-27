@@ -40,4 +40,4 @@ The _Configure Webhook_ page is displayed.
    * **Webhook URL**: Enter the URL where you want to receive webhook payloads
    * **Fields Selection**: Select the fields you want to include in the webhook payload
    * **Activation Status**: Set the webhook as active or inactive using the toggle switch
-6. Click **Save** to finalize your webhook configuration
+6. Click **Save Configuration** to finalize your webhook configuration
