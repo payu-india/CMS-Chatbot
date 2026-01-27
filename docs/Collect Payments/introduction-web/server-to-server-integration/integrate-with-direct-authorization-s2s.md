@@ -970,9 +970,6 @@ The formatted response is similar to the following:
 | ip           | This should include the IP address of the device from which the browser is accessed.        | 10.248.2.71      |
 </Accordion>
 
-|   |
-| - |
-
 <Accordion title="My Accordion Title" icon="fa-info-circle">
 The sample cURL request with 3DS Secure 2.0:
 
