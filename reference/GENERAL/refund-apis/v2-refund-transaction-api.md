@@ -9,10 +9,10 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 **Endpoint**
 
-|                        |                                                                                                        |
-| :--------------------- | :----------------------------------------------------------------------------------------------------- |
-| Production Environment | [http://info.payu.in/refund/v1/refundInitiation](http://info.payu.in/refund/v1/refundInitiation)       |
-| Test Environment       | [http://apitest.payu.in/refund/v1/refundInitiation](http://apitest.payu.in/refund/v1/refundInitiation) |
+|                        |                                                                                                          |
+| :--------------------- | :------------------------------------------------------------------------------------------------------- |
+| Production Environment | [https://info.payu.in/refund/v1/refundInitiation](https://info.payu.in/refund/v1/refundInitiation)       |
+| Test Environment       | [https://apitest.payu.in/refund/v1/refundInitiation](https://apitest.payu.in/refund/v1/refundInitiation) |
 
 ## Request header
 
@@ -209,7 +209,7 @@ Any of the following response is displayed when the refund request is rejected:
 | 10 | 109         | Refund FAILURE - Request is already logged                                                                   |
 | 11 | 110         | Refund FAILURE - More than one partial refund of Maestro transactions are not allowed                        |
 | 12 | 111         | Refund FAILURE - Invalid transaction status                                                                  |
-| 13 | 112         | RISK\_QUEUED                                                                                                 |
+| 13 | 112         | RISK_QUEUED                                                                                                  |
 | 14 | 113         | Refund FAILURE - Invalid Amount - Chargeback of amount present                                               |
 | 15 | 115         | Refund FAILURE - Invalid status to be updated                                                                |
 | 16 | 116         | Refund FAILURE - Transaction Not Found                                                                       |
@@ -221,7 +221,7 @@ Any of the following response is displayed when the refund request is rejected:
 | 22 | 123         | Refund FAILURE - Request set as pending - requires manual follow-up                                          |
 | 23 | 124         | Refund FAILURE - Input Data missing                                                                          |
 | 24 | 125         | Refund FAILURE - Merchant Failed the pending refund                                                          |
-| 25 | 126         | IN\_PROGRESS                                                                                                 |
+| 25 | 126         | IN_PROGRESS                                                                                                  |
 | 26 | 127         | REQUESTED                                                                                                    |
 | 27 | 128         | Refund FAILURE - Partial refunds not allowed                                                                 |
 | 28 | 129         | Refund FAILURE - Remark is mandatory for retry 0                                                             |
@@ -237,8 +237,8 @@ Any of the following response is displayed when the refund request is rejected:
 | 38 | 234         | BLOCKED - Refund/Cancel Blocked From Merchant Panel And API. Contact KM.                                     |
 | 39 | 235         | BLOCKED - Refund/Cancel Blocked. Contact KM.                                                                 |
 | 40 | 236         | Refund FAILURE - Refund not possible on this transaction                                                     |
-| 41 | 237         | Validation Failure for \{key\_name}. Special Characters Not Allowed                                          |
-| 42 | 238         | Validation Failure for \{key\_name}. Mandatory Field.                                                        |
+| 41 | 237         | Validation Failure for \{key_name}. Special Characters Not Allowed                                           |
+| 42 | 238         | Validation Failure for \{key_name}. Mandatory Field.                                                         |
 | 43 | 239         | API based alternate instant refunds not activated.                                                           |
 | 44 | 240         | Refund FAILURE - Store card failed                                                                           |
 | 45 | 241         | Refund is not supported by the bank because the payment is more than days.                                   |
@@ -248,7 +248,7 @@ Any of the following response is displayed when the refund request is rejected:
 | 49 | 245         | BBPS transaction is not successful                                                                           |
 | 50 | 246         | value is Invalid for the Merchant SKU.                                                                       |
 | 51 | 247         | not allowed as no offers found for the SKU.                                                                  |
-| 52 | 248         | BAL\_CHECK\_INIT                                                                                             |
+| 52 | 248         | BAL_CHECK_INIT                                                                                               |
 | 53 | 249         | RETRY                                                                                                        |
 | 54 | 250         | Refund FAILURE - Refund Failed On Uploading Successful Chargeback                                            |
 | 55 | 251         | Refund Blocked for this PGMID by Bank                                                                        |
@@ -258,7 +258,7 @@ Any of the following response is displayed when the refund request is rejected:
 | 59 | 255         | Refund FAILURE - Token Length Exceeded for Refund                                                            |
 | 60 | 256         | Refund FAILURE - Refund not supported on split transactions. Please initiate refund on the order transaction |
 | 61 | 258         | initiated                                                                                                    |
-| 62 | 259         | REQUESTED\_RETRY                                                                                             |
+| 62 | 259         | REQUESTED_RETRY                                                                                              |
 | 63 | 261         | Refund FAILURE - Error while processing request                                                              |
 | 64 | 262         | Refund FAILURE - Error while processing request                                                              |
 | 65 | 263         | Refund FAILURE - Invalid requested amount                                                                    |
