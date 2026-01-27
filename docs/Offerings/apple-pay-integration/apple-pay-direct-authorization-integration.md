@@ -166,3 +166,5 @@ The Direct Authorization API returns a **base64-encoded** response that needs to
 ```
 
 ## Step 3: Verify the Payment
+
+<Verify_Payment_Tabs />
