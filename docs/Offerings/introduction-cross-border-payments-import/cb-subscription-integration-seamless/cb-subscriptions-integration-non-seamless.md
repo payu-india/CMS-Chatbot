@@ -44,7 +44,7 @@ For detailed information about the Payment Consent Transaction using PayU Hosted
   **Note**: For Cross-Border Payments, the UDF parameters (udf1, udf2, udf3, udf4, and udf5) have specific requirements as described in the Request parameters table below.
 </Callout>
 
-#### Request parameters
+<Accordion title="Request parameters" icon="fa-info-circle">
 
 In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
@@ -77,7 +77,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 | buyer_type_business<br />`optional in case of B2B transaction for cross-border payments` | `Binary` To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0".<br />**Note**: This will be included in hash if posted (covered in next section).                                                                                                                                                                                                                                                                                                                                                                         | 1                                                                                                                                                                         |
 | udf_params<br />`optional`                                                               | `String JSON`<br /><br />UDF7 value to capture "Import or Export Code" of the buyer<br /><br />UDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports)                                                                                                                                                                                                                                                                                                                                                                                                | \{"udf7":"0100000029",<br />"udf8":"99953729071"}                                                                                                                         |
 | hash<br />`mandatory`                                                                    | `String` Crucial security parameter using SHA512 hash encryption. Formula incorporates key, txnid, amount, productinfo, firstname, email, udf fields, si_details, and merchant salt.                                                                                                                                                                                                                                                                                                                                                                                                   | \<Generated Hash>                                                                                                                                                         |
-
+</Accordion>
 <Accordion title="Hash Logic" icon="fa-info-circle">
   <PACB_Hashing />
 </Accordion>
@@ -403,37 +403,36 @@ processPayment();
 <Accordion title="Verify Netbanking Mandate" icon="fa-info-circle">
   The API returns response structure for Net Banking flow.
 
-<Accordion title="Net Banking Response" icon="fa-check">
-  For Net Banking, the response is returned in URL-encoded format (application/x-www-form-urlencoded):
+  <Accordion title="Net Banking Response" icon="fa-check">
+    For Net Banking, the response is returned in URL-encoded format (application/x-www-form-urlencoded):
 
-  ```json
-  {
-      "metaData": {
-          "message": null,
-          "referenceId": "cf0f49bb21893055c5ad7182642fc4cf3e1135385b9e55d0b6b0f5e45a19ee74",
-          "statusCode": null,
-          "txnId": "my_order_2542",
-          "txnStatus": "pending",
-          "unmappedStatus": "pending"
-      },
-      "result": {
-          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vcGdzaW0wMS5wYXl1LmluL2luaXRpYXRlIiBtZXRob2Q9InBvc3QiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lcmNoYW50TmFtZSIgdmFsdWU9IlBBWVUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lcmNoYW50Q29kZSIgdmFsdWU9IlNsRXNjdUpBOTgiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lck5hbWUiIHZhbHVlPSJTdWRoYW5zaHUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InR4bkFtb3VudCIgdmFsdWU9IjIuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InR4bkRhdGUiIHZhbHVlPSIyMDI1LTEyLTI2Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5DdXJyZW5jeSIgdmFsdWU9IklOUiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iY3VzdE5hbWUiIHZhbHVlPSJzdWRoYW5zaHUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImN1c3RFbWFpbCIgdmFsdWU9InRlc3RAdGVzdC5jb20iPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImN1c3RNb2JpbGUiIHZhbHVlPSI5OTk5OTk5OTk5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5SZWZJZCIgdmFsdWU9Im15X29yZGVyXzI1NDIiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImxpdmVtb2RlIiB2YWx1ZT0iZmFsc2UiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InNvdXJjZSIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iUlUiIHZhbHVlPSJodHRwczovL3Rlc3QucGF5dS5pbi9jZjBmNDliYjIxODkzMDU1YzVhZDcxODI2NDJmYzRjZjMyYTNkNjQ3YWUwODA5ZDJhMDM0MzJmOTIxOTg4NzIxL1Rlc3RQZ19yZXNwb25zZS5waHAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1vZGUiIHZhbHVlPSJUa0k9Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5EZXNjcmlwdGlvbiIgdmFsdWU9IlRlc3QgTmV0IEJhbmtpbmcgUGF5bWVudCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iaWJpYm9fY29kZSIgdmFsdWU9IkFYSUIiPjwvZm9ybT48c2NyaXB0IHR5cGU9J3RleHQvamF2YXNjcmlwdCc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB3aW5kb3cub25sb2FkPWZ1bmN0aW9uKCl7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZm9ybXNbJ3BheW1lbnRfcG9zdCddLnN1Ym1pdCgpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA8L3NjcmlwdD48L2JvZHk+PC9odG1sPg==",
-          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
-      }
-  }
-  ```
-</Accordion>
+    ```json
+    {
+        "metaData": {
+            "message": null,
+            "referenceId": "cf0f49bb21893055c5ad7182642fc4cf3e1135385b9e55d0b6b0f5e45a19ee74",
+            "statusCode": null,
+            "txnId": "my_order_2542",
+            "txnStatus": "pending",
+            "unmappedStatus": "pending"
+        },
+        "result": {
+            "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vcGdzaW0wMS5wYXl1LmluL2luaXRpYXRlIiBtZXRob2Q9InBvc3QiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lcmNoYW50TmFtZSIgdmFsdWU9IlBBWVUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lcmNoYW50Q29kZSIgdmFsdWU9IlNsRXNjdUpBOTgiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lck5hbWUiIHZhbHVlPSJTdWRoYW5zaHUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InR4bkFtb3VudCIgdmFsdWU9IjIuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InR4bkRhdGUiIHZhbHVlPSIyMDI1LTEyLTI2Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5DdXJyZW5jeSIgdmFsdWU9IklOUiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iY3VzdE5hbWUiIHZhbHVlPSJzdWRoYW5zaHUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImN1c3RFbWFpbCIgdmFsdWU9InRlc3RAdGVzdC5jb20iPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImN1c3RNb2JpbGUiIHZhbHVlPSI5OTk5OTk5OTk5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5SZWZJZCIgdmFsdWU9Im15X29yZGVyXzI1NDIiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImxpdmVtb2RlIiB2YWx1ZT0iZmFsc2UiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InNvdXJjZSIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iUlUiIHZhbHVlPSJodHRwczovL3Rlc3QucGF5dS5pbi9jZjBmNDliYjIxODkzMDU1YzVhZDcxODI2NDJmYzRjZjMyYTNkNjQ3YWUwODA5ZDJhMDM0MzJmOTIxOTg4NzIxL1Rlc3RQZ19yZXNwb25zZS5waHAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1vZGUiIHZhbHVlPSJUa0k9Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5EZXNjcmlwdGlvbiIgdmFsdWU9IlRlc3QgTmV0IEJhbmtpbmcgUGF5bWVudCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iaWJpYm9fY29kZSIgdmFsdWU9IkFYSUIiPjwvZm9ybT48c2NyaXB0IHR5cGU9J3RleHQvamF2YXNjcmlwdCc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB3aW5kb3cub25sb2FkPWZ1bmN0aW9uKCl7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZm9ybXNbJ3BheW1lbnRfcG9zdCddLnN1Ym1pdCgpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA8L3NjcmlwdD48L2JvZHk+PC9odG1sPg==",
+            "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+        }
+    }
+    ```
+  </Accordion>
 
-<Accordion title="Response Handling Logic" icon="fa-info-circle">
-  ### Expected Values for Successful Registration
+  <Accordion title="Response Handling Logic" icon="fa-info-circle">
+    ### Expected Values for Successful Registration
 
-  | Response Parameter | Expected Value | Description                                                                       |
-  | ------------------ | -------------- | --------------------------------------------------------------------------------- |
-  | status             | `success`      | Indicates that the transaction is successful with the Net Banking provider        |
-  | payment\_source    | `sist`         | Indicates Net Banking details have been marked correctly for Standing Instruction |
-  | mihpayid           | `<mihpayid>`   | PayU's transaction acknowledgment for a Consent transaction                       |
-</Accordion>
-
+    | Response Parameter | Expected Value | Description                                                                       |
+    | ------------------ | -------------- | --------------------------------------------------------------------------------- |
+    | status             | `success`      | Indicates that the transaction is successful with the Net Banking provider        |
+    | payment\_source    | `sist`         | Indicates Net Banking details have been marked correctly for Standing Instruction |
+    | mihpayid           | `<mihpayid>`   | PayU's transaction acknowledgment for a Consent transaction                       |
+  </Accordion>
 </Accordion>
 
 <br />
@@ -458,8 +457,7 @@ processPayment();
   3. **Test Recurring Payment**:
      * Use the stored `mihpayid` to initiate a recurring payment
      * Verify the payment processes successfully
-  </Accordion>
-
+</Accordion>
 
 <Accordion title="Verify UPI Mandate" icon="fa-check-circle">
   1. **Check Response Parameters**:
