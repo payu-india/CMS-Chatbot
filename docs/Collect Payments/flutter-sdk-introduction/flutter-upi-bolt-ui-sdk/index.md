@@ -44,32 +44,4 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 
   <Image align="center" src="https://files.readme.io/f6649179d1e3193799da08174d44e0d4a021da5b3bcfbf62b6c7863d13fd26ed-2.jpg" alt="Flutter UPI Bolt UI SDK Integration Registration and Profile Management Flow" />
 
-  ## Steps to Integrate PayU Bolt SDK
-</Accordion>
-
-<Accordion title="Prerequisites" icon="fa-folder">
-  SDK Compatibility: Ensure that the application's minimum development target is set to version 13 or higher.
-</Accordion>
-
-<Accordion title="UI Bolt Integration" icon="fa-folder">
-  Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
-
-  <Accordion title="iOS Integration" icon="fa-folder">
-    To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your podfile.
-
-    **Supported iOS deployment target - iOS 17 and above.**
-
-    The following xcframework files will be provided by PayU during onboarding:
-
-    1. NPCI - CommonLibrary.xcframework
-    2. AXIS - OlivePayLibrary.xcframework
-
-    Add these framework in your project. The added framework is similar to the following screeshot:
-
-    <Image align="center" src="https://files.readme.io/ab49c1c2aad9cb456436a7bf17437ea1797620f6bb650deb37f4a798c1328419-3.png" alt="NPCI - CommonLibrary.xcframework and AXIS - OlivePayLibrary.xcframework added to project" />
-
-    In Build Settings > Framework Search Path, add `$(PROJECT_DIR)/Frameworks` if it is not added automatically by Xcode.
-
-    <Image align="center" src="https://files.readme.io/dfbfe5bb1b9bd93ea6c30e191556643e8a0e870550a40f46225ea071e4eaab0c-4.png" alt="Flutter UPI Bolt UI SDK Integration PROJECT_DIR config" />
-  </Accordion>
 </Accordion>
