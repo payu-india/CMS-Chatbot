@@ -34,6 +34,7 @@ metadata:
 next:
   description: ''
 ---
+
 The Android Native OTP Assist SDK integration involves the following steps:
 
 **Integration Steps**
@@ -78,7 +79,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   Include the SDK in your application's build.gradle:
 
   ```gradle
-  implementation 'in.payu:native-otp-assist:1.6.2'
+  implementation 'in.payu:native-otp-assist:1.6.3'
   ```
 </Accordion>
 
@@ -123,7 +124,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     **Remember**: This SDK will work only if the customer or the user provides consent for the app to read the SMS on their device.
   </Callout>
 
-  PayU fetches the OTP through RECEIVE_SMS if the RECEIVE_SMS permission is granted. Otherwise, fetch the OTP using the Google Consent API. To understand the flow, refer to PayU OTP Parser.
+  PayU fetches the OTP through RECEIVE\_SMS if the RECEIVE\_SMS permission is granted. Otherwise, fetch the OTP using the Google Consent API. To understand the flow, refer to PayU OTP Parser.
 </Accordion>
 
 <Accordion title="Callbacks" icon="fa-exchange">
@@ -174,11 +175,11 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
   You will get PayUAcsRequest on `shouldHandleFallback()` callback. Whether you will get `issuerUrl` and `issuerPostData` or acsTemplate on `PayUAcsRequest.acsTemplate` is the HTML string that you need to load to the Web view.
 
-  | PayUAcsRequest field | Description                                                                                                                                   |
-  | :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-  | `issuerUrl`          | It's the Bank/ACS page Url.                                                                                                                   |
-  | `issuerPostData`     | You need to load issuerUrl to the Webview along with this issuerPostdata string. Ex: webView.postUrl(issuerUrl, issuerPostData.toByteArray()) |
-  | `acsTemplate`        | If the `issuerUrl` is empty, you need to load acsTemplate to the Webview. Ex: webView.loadData(acsTemplate, "text/html", "UTF-8");            |
+  | PayUAcsRequest field | Description                                                                                                                                    |
+  | :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `issuerUrl`          | It's the Bank/ACS page Url.                                                                                                                    |
+  | `issuerPostData`     | You need to load issuerUrl to the Webview along with this issuerPostdata string. Ex: webView\.postUrl(issuerUrl, issuerPostData.toByteArray()) |
+  | `acsTemplate`        | If the `issuerUrl` is empty, you need to load acsTemplate to the Webview. Ex: webView\.loadData(acsTemplate, "text/html", "UTF-8");            |
 </Accordion>
 
 <Accordion title="Error Codes" icon="fa-exclamation-triangle">
@@ -248,81 +249,32 @@ You can make test payments using one of the payment methods configured at the Ch
 <Accordion title="Test Cards for EMI" icon="fa-credit-card">
   You can use the following Debit and Credit cards to test Emi integration.
 
-  <Table align={["left","left"]}>
-    <thead>
-      <tr>
-        <th>
-
-        </th>
-
-        <th>
-
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>
-          Kotak DC EMI
-        </td>
-
-        <td>
-          1. **Card Number**: 4706-1378-0509-9594
-          2. **Expiry**: any future date (mm/yy)
-          3. **CVV**: 123
-          4. **OTP**: 111111
-          5. **Name**: Any name
-          6. **Mobile Number**: 9123412345 (mandatory for EMI)
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          AXIS DC EMI
-        </td>
-
-        <td>
-          1. **Card Number**: 4011-5100-0000-0007
-          2. **Expiry**: any future date (mm/yy)
-          3. **CVV**: 123
-          4. **OTP**: 111111
-          5. **Name**: Any name
-          6. **Mobile Number**: 9123412345 (mandatory for EMI)
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          HDFC CC EMI
-        </td>
-
-        <td>
-          1. **Card Number**: 4453-3410-65876437
-          2. **Expiry**: any future date (mm/yy)
-          3. **CVV**: 123
-          4. **OTP**: 111111
-          5. **Name**: Any name
-          6. **Mobile Number**: 9123412345 (mandatory for EMI)
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          ICICI CC EMI
-        </td>
-
-        <td>
-          1. **Card Number**: 4453-3410-65876437
-          2. **Expiry**: any future date (mm/yy)
-          3. **CVV**: 123
-          4. **OTP**: 111111
-          5. **Name**: Any name
-          6. **Mobile Number**: 9123412345 (mandatory for EMI)
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+  |              |                                                                                                                                                                                              |
+  | :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Kotak DC EMI | 1. **Card Number**: 4706-1378-0509-9594
+  2. **Expiry**: any future date (mm/yy)
+  3. **CVV**: 123
+  4. **OTP**: 111111
+  5. **Name**: Any name
+  6. **Mobile Number**: 9123412345 (mandatory for EMI) |
+  | AXIS DC EMI  | 1) **Card Number**: 4011-5100-0000-0007
+  2) **Expiry**: any future date (mm/yy)
+  3) **CVV**: 123
+  4) **OTP**: 111111
+  5) **Name**: Any name
+  6) **Mobile Number**: 9123412345 (mandatory for EMI) |
+  | HDFC CC EMI  | 1. **Card Number**: 4453-3410-65876437
+  2. **Expiry**: any future date (mm/yy)
+  3. **CVV**: 123
+  4. **OTP**: 111111
+  5. **Name**: Any name
+  6. **Mobile Number**: 9123412345 (mandatory for EMI)  |
+  | ICICI CC EMI | 1) **Card Number**: 4453-3410-65876437
+  2) **Expiry**: any future date (mm/yy)
+  3) **CVV**: 123
+  4) **OTP**: 111111
+  5) **Name**: Any name
+  6) **Mobile Number**: 9123412345 (mandatory for EMI)  |
 </Accordion>
 
 <Accordion title="Test Wallets" icon="fa-wallet">
@@ -331,15 +283,15 @@ You can make test payments using one of the payment methods configured at the Ch
   <Table align={["left","left","left"]}>
     <thead>
       <tr>
-        <th>
+        <th style={{ textAlign: "left" }}>
           Wallet
         </th>
 
-        <th>
+        <th style={{ textAlign: "left" }}>
           Mobile Number
         </th>
 
-        <th>
+        <th style={{ textAlign: "left" }}>
           OTP
         </th>
       </tr>
@@ -347,46 +299,44 @@ You can make test payments using one of the payment methods configured at the Ch
 
     <tbody>
       <tr>
-        <td>
+        <td style={{ textAlign: "left" }}>
           PayTM
         </td>
 
-        <td>
+        <td style={{ textAlign: "left" }}>
           7777777777
         </td>
 
-        <td>
+        <td style={{ textAlign: "left" }}>
           888888
         </td>
       </tr>
 
       <tr>
-        <td>
+        <td style={{ textAlign: "left" }}>
           PhonePe
         </td>
 
-        <td>
+        <td style={{ textAlign: "left" }}>
           Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: [https://developer.phonepe.com/v1/docs/setting-up-test-account](https://developer.phonepe.com/v1/docs/setting-up-test-account)
           Download the app and register your mobile number and follow the instructions as described in the above PhonePe docs.
         </td>
 
-        <td>
+        <td style={{ textAlign: "left" }}>
           NA
         </td>
       </tr>
 
       <tr>
-        <td>
+        <td style={{ textAlign: "left" }}>
           AmazonPay
         </td>
 
-        <td>
+        <td style={{ textAlign: "left" }}>
           You can test using your original Amazon account details.
         </td>
 
-        <td>
-
-        </td>
+        <td style={{ textAlign: "left" }} />
       </tr>
     </tbody>
   </Table>
