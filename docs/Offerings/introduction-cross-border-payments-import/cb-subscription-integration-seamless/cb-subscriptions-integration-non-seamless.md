@@ -398,61 +398,92 @@ processPayment();
 ?>
 ```
 
-#### Sample Response
+### Step 2: Verify the Mandate
 
-The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
+<Accordion title="Verify Netbanking Mandate" icon="fa-info-circle">
+  The API returns response structure for Net Banking flow.
 
-**Parsed response**
+<Accordion title="Net Banking Response" icon="fa-check">
+  For Net Banking, the response is returned in URL-encoded format (application/x-www-form-urlencoded):
 
-```
-Array
-(
-    [mihpayid] => 403993715525331373
-    [mode] => ENACH
-    [status] => success
-    [unmappedstatus] => captured
-    [key] => JPM7Fg
-    [txnid] => oRWSUMU4XSQBZn
-    [amount] => 100.00
-    [discount] => 0.00
-    [net_amount_debit] => 0
-    [addedon] => 2022-02-03 19:06:55
-    [productinfo] => iPhone Subscription
-    [firstname] => PayU User
-    [lastname] => 
-    [address1] => 
-    [address2] => 
-    [city] => 
-    [state] => 
-    [country] => 
-    [zipcode] => 
-    [email] => test@gmail.com
-    [phone] => 9876543210
-    [udf1] => AELPR1234E
-    [udf2] => 
-    [udf3] => 02-02-1980
-    [udf4] => XYZ Pvt. Ltd.
-    [udf5] => INV123456
-    [hash] => f3f8e4088231b190930fc4b87d3f39397d1a1d02622ef4683a983244e1cd5158f39adbb67c3d87dcb4da25ae4a941ebbf55918e4575fa1c39677a774d02c0d2d
-    [field1] => ENACH285259747472911093
-    [field2] => 337026657857179355
-    [field9] => Mandate successfully scheduled at bank end: Your payment is scheduled successfully
-    [payment_source] => sist
-    [PG_TYPE] => ENACH-PG
-    [bank_ref_num] => 450699821592111537
-    [bankcode] => ICICENCC
-    [error] => E000
-    [error_Message] => No Error
-)
-```
+  ```json
+  {
+      "metaData": {
+          "message": null,
+          "referenceId": "cf0f49bb21893055c5ad7182642fc4cf3e1135385b9e55d0b6b0f5e45a19ee74",
+          "statusCode": null,
+          "txnId": "my_order_2542",
+          "txnStatus": "pending",
+          "unmappedStatus": "pending"
+      },
+      "result": {
+          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vcGdzaW0wMS5wYXl1LmluL2luaXRpYXRlIiBtZXRob2Q9InBvc3QiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lcmNoYW50TmFtZSIgdmFsdWU9IlBBWVUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lcmNoYW50Q29kZSIgdmFsdWU9IlNsRXNjdUpBOTgiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lck5hbWUiIHZhbHVlPSJTdWRoYW5zaHUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InR4bkFtb3VudCIgdmFsdWU9IjIuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InR4bkRhdGUiIHZhbHVlPSIyMDI1LTEyLTI2Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5DdXJyZW5jeSIgdmFsdWU9IklOUiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iY3VzdE5hbWUiIHZhbHVlPSJzdWRoYW5zaHUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImN1c3RFbWFpbCIgdmFsdWU9InRlc3RAdGVzdC5jb20iPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImN1c3RNb2JpbGUiIHZhbHVlPSI5OTk5OTk5OTk5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5SZWZJZCIgdmFsdWU9Im15X29yZGVyXzI1NDIiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImxpdmVtb2RlIiB2YWx1ZT0iZmFsc2UiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InNvdXJjZSIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iUlUiIHZhbHVlPSJodHRwczovL3Rlc3QucGF5dS5pbi9jZjBmNDliYjIxODkzMDU1YzVhZDcxODI2NDJmYzRjZjMyYTNkNjQ3YWUwODA5ZDJhMDM0MzJmOTIxOTg4NzIxL1Rlc3RQZ19yZXNwb25zZS5waHAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1vZGUiIHZhbHVlPSJUa0k9Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5EZXNjcmlwdGlvbiIgdmFsdWU9IlRlc3QgTmV0IEJhbmtpbmcgUGF5bWVudCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iaWJpYm9fY29kZSIgdmFsdWU9IkFYSUIiPjwvZm9ybT48c2NyaXB0IHR5cGU9J3RleHQvamF2YXNjcmlwdCc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB3aW5kb3cub25sb2FkPWZ1bmN0aW9uKCl7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZm9ybXNbJ3BheW1lbnRfcG9zdCddLnN1Ym1pdCgpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA8L3NjcmlwdD48L2JvZHk+PC9odG1sPg==",
+          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+      }
+  }
+  ```
+</Accordion>
 
-### Step 2: Verify the Payment
+<Accordion title="Response Handling Logic" icon="fa-info-circle">
+  ### Expected Values for Successful Registration
+
+  | Response Parameter | Expected Value | Description                                                                       |
+  | ------------------ | -------------- | --------------------------------------------------------------------------------- |
+  | status             | `success`      | Indicates that the transaction is successful with the Net Banking provider        |
+  | payment\_source    | `sist`         | Indicates Net Banking details have been marked correctly for Standing Instruction |
+  | mihpayid           | `<mihpayid>`   | PayU's transaction acknowledgment for a Consent transaction                       |
+</Accordion>
+
+</Accordion>
+
+<br />
+
+<Accordion title="Verify Mandate for Cards" icon="fa-info-circle">
+  After successful registration, verify the mandate status:
+
+  1. **Check Response Parameters**:
+
+  | **Response Parameter** | **Expected Value**              | **Description**                                                                         |
+  | ---------------------- | ------------------------------- | --------------------------------------------------------------------------------------- |
+  | status                 | success                         | Indicates that the transaction is successful with the UPI provider                      |
+  | payment\_source        | SIST                            | Indicates that UPI details have been marked correctly for Standing Instruction          |
+  | mihpayid               | \<mihpayid number> sent by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction                   |
+  | cardToken              | Alphanumeric string             | Mandatory to be validated if mode is CC or DC returned in response. Should not be empty |
+
+  2. **Store Mandate Details**:
+     * Save `mihpayid` for future recurring payments
+     * Store `cardToken` if tokenization is enabled
+     * Save mandate expiry dates from `si_details`
+
+  3. **Test Recurring Payment**:
+     * Use the stored `mihpayid` to initiate a recurring payment
+     * Verify the payment processes successfully
+  </Accordion>
+
+
+<Accordion title="Verify UPI Mandate" icon="fa-check-circle">
+  1. **Check Response Parameters**:
+     * `status` should be `success`
+     * `payment_source` should be `sist`
+     * `mihpayid` should not be null
+
+  2. **Store Mandate Details**:
+     * Save `mihpayid` for future recurring payments
+     * Save mandate expiry dates from `si_details`
+     * Store customer's VPA for reference
+
+  3. **Test Subsequent Payment**:
+     * Use the stored mandate details to initiate a subsequent recurring payment
+     * Verify the payment processes successfully
+</Accordion>
+
+### Step 3: Verify the Payment
 
 Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
 
 <Verify_Payment_Tabs />
 
-### Step 3: Update Invoice ID [Optional]
+### Step 4: Update Invoice ID [Optional]
 
 If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter.
 
