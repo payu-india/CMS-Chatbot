@@ -1,5 +1,5 @@
 ---
-title: Flutter UPI Bolt UI SDK Integration
+title: Flutter UPI Bolt UI SDK
 deprecated: false
 hidden: true
 link:
