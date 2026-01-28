@@ -78,7 +78,7 @@ To integrate this, please enable the`txn_s2s_flow` flag on your merchant key fro
 To see the Native OTP Assist experience, refer to [Android Native OTP SDK](doc:native-otp-assist-sdk).
 
 ```Text Text
-implementation 'in.payu:native-otp-assist:1.6.2'
+implementation 'in.payu:native-otp-assist:1.6.3'
 ```
 
 > ❗️ Callout
