@@ -29,781 +29,660 @@ next:
 Power native experience on the new 3DS 2.0 protocol for card transactions. Less latent, highly customisable, highest uptime with option to fallback in case of failures. Going forward from October 2023, only through a certified 3DS SDK can a merchant power native experience on app.
 
 <Accordion title="Benefits & features​" icon="fa-code">
+  * Power native experiences on cards through our native SDK​
+  * Offers bin eligibility api to route transactions through 3DS1 or 3DS2​
+  * Loosely coupled. Offers two flows​
+  * Everything through payu – (Device Collection + Authentication + Complete Challenge + Authorization​
+  * Only Device Collection + Challenge and use any other aggregator for authentication/ authorization​
+  * Device Collection  + Authentication + Complete Challenge​
+  * Fallback to 3DS 1 available in case of failures in device collection.​
+  * Highest uptime through multiple 3DS Server in future.​
+  * Compliant EMVCO certified 3DS SDK with more control across the whole customer journey.​
 
-* Power native experiences on cards through our native SDK​
-* Offers bin eligibility api to route transactions through 3DS1 or 3DS2​
-* Loosely coupled. Offers two flows​
-* Everything through payu – (Device Collection + Authentication + Complete Challenge + Authorization​
-* Only Device Collection + Challenge and use any other aggregator for authentication/ authorization​
-* Device Collection  + Authentication + Complete Challenge​
-* Fallback to 3DS 1 available in case of failures in device collection.​
-* Highest uptime through multiple 3DS Server in future.​
-* Compliant EMVCO certified 3DS SDK with more control across the whole customer journey.​
-
-<Image align="center" border={true} src="https://files.readme.io/5013bc0-Screenshot_2023-10-16_at_11.45.39_AM.png" className="border" />
-
+  <Image align="center" border={true} src="https://files.readme.io/5013bc0-Screenshot_2023-10-16_at_11.45.39_AM.png" />
 </Accordion>
+
 <Accordion title="Integration" icon="fa-code">
+  PayU SDK offers the following methods to integrate with 3DS 2.0:
 
-PayU SDK offers the following methods to integrate with 3DS 2.0:
+  * **SDK Integration**:
+    Min SDK Version is v21
+    Compile SDK Version is v31 or later
+  * **Maven Dependency URL**
+    Use the following code snippet in your app’s build.gradle file:
 
-* **SDK Integration**:
-  Min SDK Version is v21
-  Compile SDK Version is v31 or later
-* **Maven Dependency URL**
-  Use the following code snippet in your app’s build.gradle file:
+  ```
+  implementation 'in.payu:threeds-sdk:2.0.0'
+  ```
 
-```
-implementation 'in.payu:threeds-sdk:1.1.2'
-```
-
-* Use our SDK for a complete transaction:
-  * Collecting device details
-  * Invoking an authentication request through our 3DS Server
-  * Invoking challenge
-  * Completing authorization through PayU
-* Use our SDK for collecting device details and to render challenge screens.
-
+  * Use our SDK for a complete transaction:
+    * Collecting device details
+    * Invoking an authentication request through our 3DS Server
+    * Invoking challenge
+    * Completing authorization through PayU
+  * Use our SDK for collecting device details and to render challenge screens.
 </Accordion>
+
 <Accordion title="Using PayU implementation" icon="fa-code">
+  Call the method to initiate payment through us and we will return a success or failure callback post-transaction completion.
 
-Call the method to initiate payment through us and we will return a success or failure callback post-transaction completion.
+  ```kotlin Kotlin
+  fun initiatePayment(
+          activity: AppCompatActivity,
+          config: PayU3DS2Config,
+          paymentParams: PaymentParams,
+          callback: PayU3DS2PaymentCallback
+      )
+  ```
 
-```kotlin Kotlin
-fun initiatePayment(
-        activity: AppCompatActivity,
-        config: PayU3DS2Config,
-        paymentParams: PaymentParams,
-        callback: PayU3DS2PaymentCallback
-    )
-```
+  You have to pass the following parameters:
 
-You have to pass the following parameters:
+  <Table>
+    <thead>
+      <tr>
+        <th>
+          Parameter
+        </th>
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
+    <tbody>
+      <tr>
+        <td>
+          activity
+        </td>
 
-  <tbody>
-    <tr>
-      <td>
-        activity
-      </td>
+        <td>
+          This parameter contains the `AppCompatActivity` reference.
+        </td>
+      </tr>
 
-      <td>
-        This parameter contains the `AppCompatActivity` reference.
-      </td>
-    </tr>
+      <tr>
+        <td>
+          config
+        </td>
 
-    <tr>
-      <td>
-        config
-      </td>
+        <td>
+          This parameter contains the following properties:
 
-      <td>
-        This parameter contains the following properties:
+          * **config.uiCustomisation** = Set UI customization object. For more information, refer to [GUI Customisation](#gui-customization)
+          * **config.isProduction** = Set environment where you want to test:
+            *true*\* for the Production environment
+          * **false** for the Test environment
+          * **config.fallback3DS1** = Set the value as true to complete payment on the bank page in case of any failure. By default, the value is false
+          * **config.autoRead** = Set the values as true to allow auto-read OTP and fill in the OTP field. By default, the value is false.
+          * **config.autoSubmit** = Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
+          * **config.authenticateOnly** = Pass this as true if you want to authenticate only using PayU. By default we will authorize.
+          * **config.setDefaultProgressLoader(true, "HexColor")**: Set to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode.
+          * **config.enableCustomizedOtpUIFlow** = //To customise UI with your content please pass as true
+          * **config.enableTxnTimeoutTimer** = //pass as true to show timer for page timeout
+            *config.merchantName*\* = "merchant name"// pass merchant name with customised OTP Flow
+          * **config.amount** = "txn amount"// pass transaction amount with customised OTP Flow
+          * **val acsContentConfig** = ACSContentConfig()
+          * **acsContentConfig.otpContent** = "OTP has been sent to your registered mobile number". //you can set this value to as per your need
+          * **acsContentConfig.resendButtonTitle** = //you can set this value to as per your need
+          * **acsContentConfig.submitButtonTitle** = //you can set this value to as per your need
+          * **acsContentConfig.resendInfoContent** = //you can set this value to as per your need
+          * **acsContentConfig.maxResendInfoContent** = //you can set this value to as per your need
+          * **config.acsContentConfig** = acsContentConfig
+        </td>
+      </tr>
 
-        * **config.uiCustomisation** = Set UI customization object. For more information, refer to [GUI Customisation](#gui-customization)
-        * **config.isProduction** = Set environment where you want to test:
-          _true_* for the Production environment
-        * **false** for the Test environment
-        * **config.fallback3DS1** = Set the value as true to complete payment on the bank page in case of any failure. By default, the value is false
-        * **config.autoRead** = Set the values as true to allow auto-read OTP and fill in the OTP field. By default, the value is false.
-        * **config.autoSubmit** = Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
-        * **config.authenticateOnly** = Pass this as true if you want to authenticate only using PayU. By default we will authorize.
-        * **config.setDefaultProgressLoader(true, "HexColor")**: Set to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode.
-        * **config.enableCustomizedOtpUIFlow** = //To customise UI with your content please pass as true
-        * **config.enableTxnTimeoutTimer** = //pass as true to show timer for page timeout
-          _config.merchantName_* = "merchant name"// pass merchant name with customised OTP Flow
-        * **config.amount** = "txn amount"// pass transaction amount with customised OTP Flow
-        * **val acsContentConfig** = ACSContentConfig()
-        * **acsContentConfig.otpContent** = "OTP has been sent to your registered mobile number". //you can set this value to as per your need
-        * **acsContentConfig.resendButtonTitle** = //you can set this value to as per your need
-        * **acsContentConfig.submitButtonTitle** = //you can set this value to as per your need
-        * **acsContentConfig.resendInfoContent** = //you can set this value to as per your need
-        * **acsContentConfig.maxResendInfoContent** = //you can set this value to as per your need
-        * **config.acsContentConfig** = acsContentConfig
-      </td>
-    </tr>
+      <tr>
+        <td>
+          paymentParams
+        </td>
 
-    <tr>
-      <td>
-        paymentParams
-      </td>
+        <td>
+          Merchants have to create the payment param object and pass it which will contain info such as `cardDeatails`, SI details, etc. For more information, refer to
 
-      <td>
-        Merchants have to create the payment param object and pass it which will contain info such as `cardDeatails`, SI details, etc. For more information, refer to
+          [SDK Integration > Build the payment parameters](doc:android-checkoutpro-integration-steps#step-3-build-the-payment-parameters-mandatory-step)
 
-        [SDK Integration > Build the payment parameters](doc:android-checkoutpro-integration-steps#step-3-build-the-payment-parameters-mandatory-step)
+          .
+        </td>
+      </tr>
 
-        .
-      </td>
-    </tr>
+      <tr>
+        <td>
+          callback
+        </td>
 
-    <tr>
-      <td>
-        callback
-      </td>
+        <td>
+          This parameter contains the following methods:
+          **fun onPaymentSuccess(successResponse: Any)**: It will contain a success response. This will be a JSON Object, parse response as per your need.
+          **fun onPaymentFailure(failureResponse: Any)**: It will contain a failure response. This will be a JSON Object, parse response as per your need
+          **fun onPaymentCancel(isTxnInitiated: Boolean)**: It will tell if payment was canceled.
+          **fun onError(errorCode: Int, errorMessage: String)**: It will contain failure reason code and reason.
+          **fun generateHash(map: HashMap\<String, String>, hashGenerationListener**: PayUHashGeneratedListener): Merchant will get a map with the type of hash and hash string as the value of the map. Refer to the
 
-      <td>
-        This parameter contains the following methods:
-        **fun onPaymentSuccess(successResponse: Any)**: It will contain a success response. This will be a JSON Object, parse response as per your need.
-        **fun onPaymentFailure(failureResponse: Any)**: It will contain a failure response. This will be a JSON Object, parse response as per your need
-        **fun onPaymentCancel(isTxnInitiated: Boolean)**: It will tell if payment was canceled.
-        **fun onError(errorCode: Int, errorMessage: String)**: It will contain failure reason code and reason.
-        **fun generateHash(map: HashMap\<String, String>, hashGenerationListener**: PayUHashGeneratedListener): Merchant will get a map with the type of hash and hash string as the value of the map. Refer to the
+          [ Sample code for callback - generateHash](#sample-code-for-callback-generateHash)
 
-        [ Sample code for callback - generateHash](#sample-code-for-callback-generateHash)
+          .
+        </td>
+      </tr>
+    </tbody>
+  </Table>
 
-        .
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-<Accordion title="Sample code for callback - generateHash" icon="fa-code">
-
-```kotlin
-if (map.containsKey("hashString") && map.containsKey("hashName")) {
-    val hashData = map["hashString"]
-    val hashName = map["hashName"]
-    val postSalt = map["postSalt"]
-    var newsalt = salt
-    
-    if (!postSalt.isNullOrEmpty()) {
-        newsalt += postSalt
+  <Accordion title="Sample code for callback - generateHash" icon="fa-code">
+    ```kotlin
+    if (map.containsKey("hashString") && map.containsKey("hashName")) {
+        val hashData = map["hashString"]
+        val hashName = map["hashName"]
+        val postSalt = map["postSalt"]
+        var newsalt = salt
+        
+        if (!postSalt.isNullOrEmpty()) {
+            newsalt += postSalt
+        }
+        
+        Log.d("TAG", "generateHash: " + hashData)
+        Log.d("TAG", "generateHash: " + hashName)
+        Log.d("TAG", "generateHash: " + newsalt)
+        
+        var hash: String? 
+        // Do not generate hash from local, it needs to be calculated from server side only.
+        // Here, hashString contains hash created from your server side.
+        
+        if (!TextUtils.isEmpty(hash)) {
+            val dataMap = HashMap<String, String>()
+            dataMap[hashName!!] = hash!!
+            hashGenerationListener.onHashGenerated(dataMap)
+        }
     }
-    
-    Log.d("TAG", "generateHash: " + hashData)
-    Log.d("TAG", "generateHash: " + hashName)
-    Log.d("TAG", "generateHash: " + newsalt)
-    
-    var hash: String? 
-    // Do not generate hash from local, it needs to be calculated from server side only.
-    // Here, hashString contains hash created from your server side.
-    
-    if (!TextUtils.isEmpty(hash)) {
-        val dataMap = HashMap<String, String>()
-        dataMap[hashName!!] = hash!!
-        hashGenerationListener.onHashGenerated(dataMap)
-    }
-}
 
-```
-
-
-
+    ```
+  </Accordion>
 </Accordion>
-</Accordion>
+
 <Accordion title="Decoupled Flow" icon="fa-code">
+  <Accordion title="Step 1:Initialise SDK" icon="fa-code">
+    Initialization of SDK is required if the merchant is utilizing PayU 3DS 2.0 for Decoupled functionality. For more information on properties, refer to \<\<Description of Properties in Initialization>>.
 
-<Accordion title="Step 1:Initialise SDK" icon="fa-code">
+    ```Text Kotlin
+    PayU3DS2.initialise(
+     key: String,
+     requestId: String,
+     activity: AppCompatActivity,
+     config: PayU3DS2Config): PayU3DSResponse
+    ```
 
-Initialization of SDK is required if the merchant is utilizing PayU 3DS 2.0 for Decoupled functionality. For more information on properties, refer to \<\<Description of Properties in Initialization>>.
+    > 🚧 Callout
+    >
+    > If auto-read is false, auto-submit will not work whereas auto-read will work in case of auto-submit is false.
 
-```Text Kotlin
-PayU3DS2.initialise(
- key: String,
- requestId: String,
- activity: AppCompatActivity,
- config: PayU3DS2Config): PayU3DSResponse
-```
+    | Parameter         | Description                            |
+    | :---------------- | :------------------------------------- |
+    | Key               | The key provided to merchant by PayU.  |
+    | RequestId         | Unique request ID for the transaction. |
+    | AppCompatActivity | Required to initialise SDK.            |
 
-> 🚧 Callout
->
-> If auto-read is false, auto-submit will not work whereas auto-read will work in case of auto-submit is false.
+    <Accordion title="GUI customisation" icon="fa-code">
+      The following components can be customized:
 
-| Parameter         | Description                            |
-| :---------------- | :------------------------------------- |
-| Key               | The key provided to merchant by PayU.  |
-| RequestId         | Unique request ID for the transaction. |
-| AppCompatActivity | Required to initialise SDK.            |
+      * Button
+      * Label
+      * Toolbar
+      * Text box
+      * Font
+      * GUI
+      * The sample code blocks for the above:
 
-<Accordion title="GUI customisation" icon="fa-code">
+      ```kotlin Kotlin
+      var buttonCustomisation = ButtonCustomisation.Builder()
+                                .setBackgroundColor("colorCode") //HEX CODE
+                                .setCornerRadius(5).build() //Integer
+      var labelCustomisation = LabelCustomisation.Builder()
+                              .setHeadingTextColor("colorCode") //HEX CODE
+                              .setHeadingTextFontName(FontName.ROBOTO_REGULAR) 
+                              .setHeadingTextFontSize(10) //Integer
+                              .setTextColor("colorCode") //HEX CODE
+      .setTextFontName(FontName.ROBOTO_REGULAR) 
+                              .setTextFontSize(10) //Integer
+                              .build()
+      var toolbarCustomisation = ToolbarCustomisation.Builder()
+                                .setBackgroundColor("colorCode") //HEXCODE
+                                .setButtonText("ButtonText") //String
+                                .setHeaderText("HeaderText) //String
+                                .setTextColor("colorCode") //HEXCODE
+                                .setTextFontSize(18) //Integer
+      .setTextFontName(FontName.ROBOTO_REGULAR)
+                                .build()
+      var textBoxCustomisation = TextBoxCustomisation.Builder()
+                                .setTextColor("colorCode") //HEXCODE
+                                .setBorderColor("colorCode) //HEXCODE
+                                .setCornerRadius(5) //Integer
+                                .setTextFontSize(5) //Integer
+                                .setBorderWidth(5) //Integer
+      .setTextFontName(FontName.ROBOTO_REGULAR) 
+                                .build()
+      val fontFamilyCustomisation = FontFamilyCustomisation.Builder()
+                                     .setHeaderFontFamily("Header Font family path") 
+                                     .setSubTextFontFamily("Sub text font family path") 
+                                     .build()
+      var uiCustomisation = UICustomisation.Builder()
+                            .setButtonCustomisation(buttonCustomisation)
+                            .setToolbarCustomisation(toolbarCustomisation)
+                            .setTextBoxCustomisation(textBoxCustomisation)
+      .setLabelCustomisation(labelCustomisation)
+      .setFontFamilyCustomisation(fontFamilyCustomisation)
+                            .build()
+      ```
+    </Accordion>
 
-The following components can be customized:
+    <Accordion title="Supported Font Type Details" icon="fa-code">
+      ```kotlin Kotlin
+      enum class FontName { 
+          ROBOTO_REGULAR, 
+          ROBOTO_MEDIUM
+      }
+      ```
+    </Accordion>
 
-* Button
-* Label
-* Toolbar
-* Text box
-* Font
-* GUI
-* The sample code blocks for the above:
+    <Accordion title="PayU3DS2Response:" icon="fa-code">
+      The response includes the following parameters:
 
-```kotlin Kotlin
-var buttonCustomisation = ButtonCustomisation.Builder()
-                          .setBackgroundColor("colorCode") //HEX CODE
-                          .setCornerRadius(5).build() //Integer
-var labelCustomisation = LabelCustomisation.Builder()
-                        .setHeadingTextColor("colorCode") //HEX CODE
-                        .setHeadingTextFontName(FontName.ROBOTO_REGULAR) 
-                        .setHeadingTextFontSize(10) //Integer
-                        .setTextColor("colorCode") //HEX CODE
-.setTextFontName(FontName.ROBOTO_REGULAR) 
-                        .setTextFontSize(10) //Integer
-                        .build()
-var toolbarCustomisation = ToolbarCustomisation.Builder()
-                          .setBackgroundColor("colorCode") //HEXCODE
-                          .setButtonText("ButtonText") //String
-                          .setHeaderText("HeaderText) //String
-                          .setTextColor("colorCode") //HEXCODE
-                          .setTextFontSize(18) //Integer
-.setTextFontName(FontName.ROBOTO_REGULAR)
-                          .build()
-var textBoxCustomisation = TextBoxCustomisation.Builder()
-                          .setTextColor("colorCode") //HEXCODE
-                          .setBorderColor("colorCode) //HEXCODE
-                          .setCornerRadius(5) //Integer
-                          .setTextFontSize(5) //Integer
-                          .setBorderWidth(5) //Integer
-.setTextFontName(FontName.ROBOTO_REGULAR) 
-                          .build()
-val fontFamilyCustomisation = FontFamilyCustomisation.Builder()
-                               .setHeaderFontFamily("Header Font family path") 
-                               .setSubTextFontFamily("Sub text font family path") 
-                               .build()
-var uiCustomisation = UICustomisation.Builder()
-                      .setButtonCustomisation(buttonCustomisation)
-                      .setToolbarCustomisation(toolbarCustomisation)
-                      .setTextBoxCustomisation(textBoxCustomisation)
-.setLabelCustomisation(labelCustomisation)
-.setFontFamilyCustomisation(fontFamilyCustomisation)
-                      .build()
-```
+      <HTMLBlock>{`
+      <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+      <tr>
+        <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+        <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+      </td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:  </p>
+      <p>0 - If the web service call succeeded  </p>
+      <p>1 - If the web service call failed.</p>
+      </td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p>
+      </td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p>
+      </td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
+      </td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p>
+      </td>
+      </tr>
+      </tbody>
+      </table>
+      `}</HTMLBlock>
 
+      The following items are in the response:
+
+      ```kotlin Kotlin
+      data class PayU3DS2DeviceWarning(
+          val id: String? = null,
+          val message: String? = null,
+          val severity: DeviceSeverity? = null
+      )
+
+      enum class DeviceSeverity {
+          LOW,
+          MEDIUM,
+          HIGH
+      }
+      ```
+    </Accordion>
+  </Accordion>
+
+  <Accordion title="Step 2: Device details(PArq)" icon="fa-code">
+    To obtain device information to initiate an authentication request:
+
+    ```kotlin Kotlin
+    PayU3DS2.extractDeviceDetails(cardScheme: CardScheme): PayU3DS2Response
+    ```
+
+    cardScheme expected values:
+
+    * VISA
+    * MASTERCARD
+
+    **PayU3DS2Response**: Three items are in the response:
+
+    <HTMLBlock>{`
+    <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+    </td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:  </p>
+    <p>0 - If the web service call succeeded  </p>
+    <p>1 - If the web service call failed.</p>
+    </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p>
+    </td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p>
+    </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
+    </td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    `}</HTMLBlock>
+
+    ```kotlin Kotlin
+    data class PArqResponse(
+        val sdkAppID: String,
+        val sdkEncData: String,
+        val crv: String,
+        val kty: String,
+        val x: String,
+        val y: String,
+        val sdkTransID: String,
+        val sdkReferenceNumber: String
+    )
+    ```
+
+    Now, these device details can be used to initiate an authentication request with us or any other aggregator.
+
+    After the authentication request has been initiated and a response has been received, the same is used to initiate a challenge which basically means opening a UI screen to do user authentication.
+  </Accordion>
+
+  <Accordion title="Step 3: 3DS 2.0 Challenge Initiation" icon="fa-code">
+    Call the following function to start the challenge:
+
+    ```kotlin Kotlin
+    PayU3DS2.initiateChallenge(activity: Activity, challengeParameter: ChallengeParameter, listener: PayU3DS2BaseCallback)
+    ```
+
+    <HTMLBlock>{`
+    <table style="width: 100%; border-collapse: collapse;">
+    <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>activity</p>
+    </td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the <code>AppCompatActivity</code> reference.</p>
+    </td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>challengeParameter</p>
+    </td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Create an object of ChallengeParameter class with the following parameters :  </p>
+    <p>ChallengeParameter(&quot;acsSignedContent&quot;, &quot;acsRefNumber&quot;, &quot;acsTransactionID&quot;, &quot;threeDSServerTransactionID&quot;)  </p>
+    <p><strong>acsSignedContent</strong>= Send ACS Signed Content received in ARes  </p>
+    <p><strong>acsRefNumber</strong>= Send ACS Ref Number Content received in ARes  </p>
+    <p><strong>acsTransactionID</strong>= Send ACS Transaction ID received in ARes  </p>
+    <p><strong>threeDSServerTransactionID</strong>= Send ThreeDS Server Transaction ID received in ARes</p>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    `}</HTMLBlock>
+
+    Before invoking this method, generate the authentication request through any aggregator and pass the above-defined challenge parameters to initiate challenges.
+
+    **PayU3DS2BaseCallback**: Callback consists of two methods:
+
+    ```kotlin Kotlin
+    fun onSuccess(response: Any) //It will contain success response.
+    fun onError(errorCode: Int, errorMessage: String) //It will contain failure reason code and reason.
+
+    //Cast response to String. If value is "Y" that means challenge is successfully executed else it is failed.
+    ```
+  </Accordion>
 </Accordion>
-<Accordion title="Supported Font Type Details" icon="fa-code">
 
-```kotlin Kotlin
-enum class FontName { 
-    ROBOTO_REGULAR, 
-    ROBOTO_MEDIUM
-}
-```
-
-</Accordion>
-<Accordion title="PayU3DS2Response:" icon="fa-code">
-
-The response includes the following parameters:
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:  </p>
-<p>0 - If the web service call succeeded  </p>
-<p>1 - If the web service call failed.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-The following items are in the response:
-
-```kotlin Kotlin
-data class PayU3DS2DeviceWarning(
-    val id: String? = null,
-    val message: String? = null,
-    val severity: DeviceSeverity? = null
-)
-
-enum class DeviceSeverity {
-    LOW,
-    MEDIUM,
-    HIGH
-}
-```
-
-</Accordion>
-</Accordion>
-<Accordion title="Step 2: Device details(PArq)" icon="fa-code">
-
-To obtain device information to initiate an authentication request:
-
-```kotlin Kotlin
-PayU3DS2.extractDeviceDetails(cardScheme: CardScheme): PayU3DS2Response
-```
-
-cardScheme expected values:
-
-* VISA
-* MASTERCARD
-
-**PayU3DS2Response**: Three items are in the response:
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:  </p>
-<p>0 - If the web service call succeeded  </p>
-<p>1 - If the web service call failed.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-```kotlin Kotlin
-data class PArqResponse(
-    val sdkAppID: String,
-    val sdkEncData: String,
-    val crv: String,
-    val kty: String,
-    val x: String,
-    val y: String,
-    val sdkTransID: String,
-    val sdkReferenceNumber: String
-)
-```
-
-Now, these device details can be used to initiate an authentication request with us or any other aggregator.
-
-After the authentication request has been initiated and a response has been received, the same is used to initiate a challenge which basically means opening a UI screen to do user authentication.
-
-</Accordion>
-<Accordion title="Step 3: 3DS 2.0 Challenge Initiation" icon="fa-code">
-
-Call the following function to start the challenge:
-
-```kotlin Kotlin
-PayU3DS2.initiateChallenge(activity: Activity, challengeParameter: ChallengeParameter, listener: PayU3DS2BaseCallback)
-```
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>activity</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the <code>AppCompatActivity</code> reference.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>challengeParameter</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Create an object of ChallengeParameter class with the following parameters :  </p>
-<p>ChallengeParameter(&quot;acsSignedContent&quot;, &quot;acsRefNumber&quot;, &quot;acsTransactionID&quot;, &quot;threeDSServerTransactionID&quot;)  </p>
-<p><strong>acsSignedContent</strong>= Send ACS Signed Content received in ARes  </p>
-<p><strong>acsRefNumber</strong>= Send ACS Ref Number Content received in ARes  </p>
-<p><strong>acsTransactionID</strong>= Send ACS Transaction ID received in ARes  </p>
-<p><strong>threeDSServerTransactionID</strong>= Send ThreeDS Server Transaction ID received in ARes</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-Before invoking this method, generate the authentication request through any aggregator and pass the above-defined challenge parameters to initiate challenges.
-
-**PayU3DS2BaseCallback**: Callback consists of two methods:
-
-```kotlin Kotlin
-fun onSuccess(response: Any) //It will contain success response.
-fun onError(errorCode: Int, errorMessage: String) //It will contain failure reason code and reason.
-
-//Cast response to String. If value is "Y" that means challenge is successfully executed else it is failed.
-```
-
-</Accordion>
-</Accordion>
 <Accordion title="PaymentParams Parameter Example" icon="fa-code">
+  <Accordion title="Basic Payment Parameters" icon="fa-code">
+    The PaymentParams object contains key fields required for initiating a payment request with PayU. These parameters are critical for identifying the transaction, the customer, and the product.
 
-<Accordion title="Basic Payment Parameters" icon="fa-code">
+    ```kotlin
+    var mPaymentParams = PaymentParams()
+    mPaymentParams.key = "<Your Key issued by PayU>"  // Merchant key provided by PayU
+    mPaymentParams.amount = "<Transaction Amount>"     // The total amount of the transaction
+    mPaymentParams.productInfo = "<Product Description>"  // Description of the product being purchased
+    mPaymentParams.firstName = "<Customer First Name>"    // Customer's first name
+    mPaymentParams.email = "<Customer Email>"             // Customer's email address
+    mPaymentParams.txnId = "<Transaction Id>"             // Unique transaction ID for this payment
+    mPaymentParams.surl = "<Success URL>"                 // URL to redirect on successful payment
+    mPaymentParams.furl = "<Failure URL>"                 // URL to redirect on failed payment
+    mPaymentParams.udf1 = "<User Defined Fields>"         // User-defined field 1
+    mPaymentParams.udf2 = "<User Defined Fields>"         // User-defined field 2
+    mPaymentParams.udf3 = "<User Defined Fields>"         // User-defined field 3
+    mPaymentParams.udf4 = "<User Defined Fields>"         // User-defined field 4
+    mPaymentParams.udf5 = "<User Defined Fields>"         // User-defined field 5
+    ```
 
-The PaymentParams object contains key fields required for initiating a payment request with PayU. These parameters are critical for identifying the transaction, the customer, and the product.
+    <Accordion title="Credit/Debit Card Payment" icon="fa-code">
+      To process payments using a credit or debit card, the following parameters need to be included in the PaymentParams object..
 
-```kotlin
-var mPaymentParams = PaymentParams()
-mPaymentParams.key = "<Your Key issued by PayU>"  // Merchant key provided by PayU
-mPaymentParams.amount = "<Transaction Amount>"     // The total amount of the transaction
-mPaymentParams.productInfo = "<Product Description>"  // Description of the product being purchased
-mPaymentParams.firstName = "<Customer First Name>"    // Customer's first name
-mPaymentParams.email = "<Customer Email>"             // Customer's email address
-mPaymentParams.txnId = "<Transaction Id>"             // Unique transaction ID for this payment
-mPaymentParams.surl = "<Success URL>"                 // URL to redirect on successful payment
-mPaymentParams.furl = "<Failure URL>"                 // URL to redirect on failed payment
-mPaymentParams.udf1 = "<User Defined Fields>"         // User-defined field 1
-mPaymentParams.udf2 = "<User Defined Fields>"         // User-defined field 2
-mPaymentParams.udf3 = "<User Defined Fields>"         // User-defined field 3
-mPaymentParams.udf4 = "<User Defined Fields>"         // User-defined field 4
-mPaymentParams.udf5 = "<User Defined Fields>"         // User-defined field 5
-```
+      ```kotlin Kotlin
+      mPaymentParams.cardNumber = "<cardNumber>"          // Credit/Debit card number
+      mPaymentParams.cardName = "<cardName>"              // Card type (e.g., Visa, MasterCard)
+      mPaymentParams.nameOnCard = "<cardholderName>"      // Name of the cardholder
+      mPaymentParams.expiryMonth = "<expiryMonth>"        // Card expiry month (MM)
+      mPaymentParams.expiryYear = "<expiryYear>"          // Card expiry year (YYYY)
+      mPaymentParams.cvv = "<cvv>"                        // CVV code on the back of the card
+      ```
+    </Accordion>
 
-<Accordion title="Credit/Debit Card Payment" icon="fa-code">
+    <Accordion title="Store Credit/Debit Card" icon="fa-code">
+      To store the card for future transactions (such as recurring payments), the StoreCard option should be enabled. This allows the card to be saved securely for later use..
 
-To process payments using a credit or debit card, the following parameters need to be included in the PaymentParams object..
+      ```kotlin
+      mPaymentParams.setCardNumber(cardNumber);
+      mPaymentParams.setCardName(cardName);
+      mPaymentParams.setNameOnCard(cardholderName);
+      mPaymentParams.setExpiryMonth(expiryMonth);// MM
+      mPaymentParams.setExpiryYear(expiryYear);// YYYY
+      mPaymentParams.setCvv(cvv);
+       
+      mPaymentParam.setUserCredentials(userCredentials);
+      mPaymentParam.setStoreCard(1);
+      ```
+    </Accordion>
 
-```kotlin Kotlin
-mPaymentParams.cardNumber = "<cardNumber>"          // Credit/Debit card number
-mPaymentParams.cardName = "<cardName>"              // Card type (e.g., Visa, MasterCard)
-mPaymentParams.nameOnCard = "<cardholderName>"      // Name of the cardholder
-mPaymentParams.expiryMonth = "<expiryMonth>"        // Card expiry month (MM)
-mPaymentParams.expiryYear = "<expiryYear>"          // Card expiry year (YYYY)
-mPaymentParams.cvv = "<cvv>"                        // CVV code on the back of the card
-```
+    <Accordion title="Recurring Payments via Card" icon="fa-code">
+      For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
 
+      ```kotlin
+      fun getSIDetails(): SIParams {
+          var siParams = SIParams()
+          siParams.api_version = "7"                       // API version
+          siParams.si = "1"                                // Indicates recurring payment
+          siParams.isFree_trial = false                    // Free trial flag (if applicable)
+
+          var siParamDetails = SIParamsDetails()
+          siParamDetails.billingAmount = "1.0"             // Recurring billing amount
+          siParamDetails.billingCurrency = "INR"           // Currency (INR in this example)
+          siParamDetails.billingInterval = 1               // Interval between payments (e.g., monthly)
+          siParamDetails.billingCycle = BillingCycle.ADHOC // Recurring cycle type
+          siParamDetails.paymentStartDate = "2025-09-26"   // Start date of the recurring payments
+          siParamDetails.paymentEndDate = "2025-10-26"     // End date of the recurring payments
+          
+          siParams.si_details = siParamDetails
+          return siParams
+      }
+
+      mPaymentParams.siParams = getSIDetails() // Add subscription details to the payment parameters
+      ```
+    </Accordion>
+  </Accordion>
+
+  <Accordion title="Card Tokenization" icon="fa-code">
+    Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
+
+    <Accordion title="Card Tokenization with PayU" icon="fa-code">
+      To make payments using a previously saved card, you need to pass both the network token and the card token..
+
+      ```kotlin
+       cardDetails.networkToken = "<networkToken>"
+       cardDetails.cardToken = "<cardToken>"
+      ```
+    </Accordion>
+
+    <Accordion title="Third-Party Card Tokenization" icon="fa-code">
+      If the card has been tokenized outside of PayU’s platform (via a third-party service), you need to provide additional tokenization information.
+
+      ```kotlin
+       private fun getTokenizedDetails(): TokenizedCardAdditionalParam? {
+          var token = TokenizedCardAdditionalParam()
+          token.last4Digits = "XXXX"                // Last 4 digits of the card
+          token.tavv = "XXXXXXXXXXXXXX"             // Transaction authorization verification value
+          token.tokenRefNo = "XXXXXXXXXXXXXX"       // Reference number for tokenized card
+          token.trid = "XXXXXXXXXXXXXX"             // Transaction ID for this payment
+          return token
+      }
+
+      mPaymentParams.expiryMonth = "XX"              // Card expiry month (MM)
+      mPaymentParams.expiryYear = "XXXX"             // Card expiry year (YYYY)
+      mPaymentParams.cardToken = "XXXXXXXXXXXXXXXXX" // The token representing the saved card
+      mPaymentParams.cardTokenType = 1               // Type of tokenization (e.g., 1 = PayU token, 2 = third-party token)
+
+      mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token details
+      ```
+    </Accordion>
+
+    <Accordion title="EMI" icon="fa-code">
+      To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
+
+      ```kotlin
+      mPaymentParams.setCardNumber("5123456789012346")   // Card number used for EMI payment
+      mPaymentParams.setNameOnCard("test")               // Name on the card
+      mPaymentParams.setExpiryMonth("06")                // Expiry month (MM)
+      mPaymentParams.setExpiryYear("2023")               // Expiry year (YYYY)
+      mPaymentParams.setCvv("123")                        // CVV of the card
+      mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., EMI03)
+      mPaymentParams.setPg("EMI")                         // Set payment gateway to EMI
+      ```
+    </Accordion>
+  </Accordion>
 </Accordion>
-<Accordion title="Store Credit/Debit Card" icon="fa-code">
 
-To store the card for future transactions (such as recurring payments), the StoreCard option should be enabled. This allows the card to be saved securely for later use..
-
-```kotlin
-mPaymentParams.setCardNumber(cardNumber);
-mPaymentParams.setCardName(cardName);
-mPaymentParams.setNameOnCard(cardholderName);
-mPaymentParams.setExpiryMonth(expiryMonth);// MM
-mPaymentParams.setExpiryYear(expiryYear);// YYYY
-mPaymentParams.setCvv(cvv);
- 
-mPaymentParam.setUserCredentials(userCredentials);
-mPaymentParam.setStoreCard(1);
-```
-
-</Accordion>
-<Accordion title="Recurring Payments via Card" icon="fa-code">
-
-For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
-
-```kotlin
-fun getSIDetails(): SIParams {
-    var siParams = SIParams()
-    siParams.api_version = "7"                       // API version
-    siParams.si = "1"                                // Indicates recurring payment
-    siParams.isFree_trial = false                    // Free trial flag (if applicable)
-
-    var siParamDetails = SIParamsDetails()
-    siParamDetails.billingAmount = "1.0"             // Recurring billing amount
-    siParamDetails.billingCurrency = "INR"           // Currency (INR in this example)
-    siParamDetails.billingInterval = 1               // Interval between payments (e.g., monthly)
-    siParamDetails.billingCycle = BillingCycle.ADHOC // Recurring cycle type
-    siParamDetails.paymentStartDate = "2025-09-26"   // Start date of the recurring payments
-    siParamDetails.paymentEndDate = "2025-10-26"     // End date of the recurring payments
-    
-    siParams.si_details = siParamDetails
-    return siParams
-}
-
-mPaymentParams.siParams = getSIDetails() // Add subscription details to the payment parameters
-```
-
-</Accordion>
-</Accordion>
-<Accordion title="Card Tokenization" icon="fa-code">
-
-Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
-
-<Accordion title="Card Tokenization with PayU" icon="fa-code">
-
-To make payments using a previously saved card, you need to pass both the network token and the card token..
-
-```kotlin
- cardDetails.networkToken = "<networkToken>"
- cardDetails.cardToken = "<cardToken>"
-```
-
-</Accordion>
-<Accordion title="Third-Party Card Tokenization" icon="fa-code">
-
-If the card has been tokenized outside of PayU’s platform (via a third-party service), you need to provide additional tokenization information.
-
-```kotlin
- private fun getTokenizedDetails(): TokenizedCardAdditionalParam? {
-    var token = TokenizedCardAdditionalParam()
-    token.last4Digits = "XXXX"                // Last 4 digits of the card
-    token.tavv = "XXXXXXXXXXXXXX"             // Transaction authorization verification value
-    token.tokenRefNo = "XXXXXXXXXXXXXX"       // Reference number for tokenized card
-    token.trid = "XXXXXXXXXXXXXX"             // Transaction ID for this payment
-    return token
-}
-
-mPaymentParams.expiryMonth = "XX"              // Card expiry month (MM)
-mPaymentParams.expiryYear = "XXXX"             // Card expiry year (YYYY)
-mPaymentParams.cardToken = "XXXXXXXXXXXXXXXXX" // The token representing the saved card
-mPaymentParams.cardTokenType = 1               // Type of tokenization (e.g., 1 = PayU token, 2 = third-party token)
-
-mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token details
-```
-
-</Accordion>
-<Accordion title="EMI" icon="fa-code">
-
-To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI"..
-
-```kotlin
-mPaymentParams.setCardNumber("5123456789012346")   // Card number used for EMI payment
-mPaymentParams.setNameOnCard("test")               // Name on the card
-mPaymentParams.setExpiryMonth("06")                // Expiry month (MM)
-mPaymentParams.setExpiryYear("2023")               // Expiry year (YYYY)
-mPaymentParams.setCvv("123")                        // CVV of the card
-mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., EMI03)
-mPaymentParams.setPg("EMI")                         // Set payment gateway to EMI
-```
-
-</Accordion>
-</Accordion>
-</Accordion>
 <Accordion title="Start Redirection Flow" icon="fa-code">
+  To authenticate the transaction using PayU’s 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
 
-To authenticate the transaction using PayU’s 3DS2 redirection flow, use the startRedirectionFlow function. This method handles the authentication process via the ACS (Access Control Server) template or post data and provides callbacks for success, failure, or errors..
+  ```kotlin
+  fun startRedirectionFlow(
+      activity: Activity,
+      params: Map<String, Any>,
+      uiCustomisation: UICustomisation,
+      callback: PayU3DS2PaymentBaseCallback
+  )
+  ```
 
-```kotlin
-fun startRedirectionFlow(
-    activity: Activity,
-    params: Map<String, Any>,
-    uiCustomisation: UICustomisation,
-    callback: PayU3DS2PaymentBaseCallback
-)
-```
+  <Accordion title="Parameters" icon="fa-code">
+    | Parameter           | Description                                                                               |
+    | ------------------- | ----------------------------------------------------------------------------------------- |
+    | **activity**        | Pass the current `Activity` instance where the WebView will be launched.                  |
+    | **params**          | A map containing key-value pairs for configuration. Valid keys include:                   |
+    |                     | * `APIConstants.ACS_TEMPLATE` — Contains the ACS template.                                |
+    |                     | - `APIConstants.AUTO_READ` — Pass `true` to enable auto-reading of the data.              |
+    |                     | * `APIConstants.AUTO_SUBMIT` — Pass `true` to enable auto-submission of the form.         |
+    |                     | - `APIConstants.SURL` — Success URL to redirect after successful payment.                 |
+    |                     | * `APIConstants.FURL` — Failure URL to redirect after failed payment.                     |
+    | **uiCustomisation** | Customize the bottom sheet UI for the redirection flow. Use the `UICustomisation` object. |
+    | **callback**        | Callback interface to receive the payment status: success, failure, or error.             |
+  </Accordion>
 
-<Accordion title="Parameters" icon="fa-code">
+  <Accordion title="Sample Code" icon="fa-code">
+    ```kotlin
+    val params = mapOf(
+        APIConstants.ACS_TEMPLATE to "<pass acs_templete>",
+        APIConstants.AUTO_READ to true,
+        APIConstants.AUTO_SUBMIT to true,
+        APIConstants.SURL to "<success_url>",
+        APIConstants.FURL to "<failure_url>"
+    )
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+    val uiCustomization = UICustomisation()
+    // Customize uiCustomization as needed
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
+    startRedirectionFlow(
+        activity = this,
+        params = params,
+        uiCustomisation = uiCustomization,
+        callback = object : PayU3DS2PaymentCallback {
+            override fun onPaymentSuccess() {
+                // Handle success
+            }
 
-  <tbody>
-    <tr>
-      <td>
-        **activity**
-      </td>
+            override fun onPaymentFailure() {
+                // Handle failure
+            }
 
-      <td>
-        Pass the current `Activity` instance where the WebView will be launched.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **params**
-      </td>
-
-      <td>
-        A map containing key-value pairs for configuration. Valid keys include:
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-
-      <td>
-        * `APIConstants.ACS_TEMPLATE` — Contains the ACS template.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-
-      <td>
-        * `APIConstants.AUTO_READ` — Pass `true` to enable auto-reading of the data.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-
-      <td>
-        * `APIConstants.AUTO_SUBMIT` — Pass `true` to enable auto-submission of the form.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-
-      <td>
-        * `APIConstants.SURL` — Success URL to redirect after successful payment.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-
-      <td>
-        * `APIConstants.FURL` — Failure URL to redirect after failed payment.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **uiCustomisation**
-      </td>
-
-      <td>
-        Customize the bottom sheet UI for the redirection flow. Use the `UICustomisation` object.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **callback**
-      </td>
-
-      <td>
-        Callback interface to receive the payment status: success, failure, or error.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
+            override fun onError(errorCode: Int, errorMessage: String) {
+                // Handle error
+            }
+    				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
+              // Handle erro
+            }
+    				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
+              // Handle erro
+            }
+    				override fun generateHash(map: HashMap<String, String>,hashGenerationListener: 			 PayUHashGeneratedListener) {
+              //// Handle Hash
+    				}	
+        }
+    )
+    ```
+  </Accordion>
 </Accordion>
-<Accordion title="Sample Code" icon="fa-code">
 
-```kotlin
-val params = mapOf(
-    APIConstants.ACS_TEMPLATE to "<pass acs_templete>",
-    APIConstants.AUTO_READ to true,
-    APIConstants.AUTO_SUBMIT to true,
-    APIConstants.SURL to "<success_url>",
-    APIConstants.FURL to "<failure_url>"
-)
-
-val uiCustomization = UICustomisation()
-// Customize uiCustomization as needed
-
-startRedirectionFlow(
-    activity = this,
-    params = params,
-    uiCustomisation = uiCustomization,
-    callback = object : PayU3DS2PaymentCallback {
-        override fun onPaymentSuccess() {
-            // Handle success
-        }
-
-        override fun onPaymentFailure() {
-            // Handle failure
-        }
-
-        override fun onError(errorCode: Int, errorMessage: String) {
-            // Handle error
-        }
-				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
-          // Handle erro
-        }
-				override fun onPaymentCancel(isTxnInitiated: Boolean) {	
-          // Handle erro
-        }
-				override fun generateHash(map: HashMap<String, String>,hashGenerationListener: 			 PayUHashGeneratedListener) {
-          //// Handle Hash
-				}	
-    }
-)
-```
-
-</Accordion>
-</Accordion>
 <Accordion title="Hash Generation" icon="fa-code">
+  You will receive a call on the generateHash method of PayU3DS2PaymentCallback.
 
-You will receive a call on the generateHash method of PayU3DS2PaymentCallback.
+  In the method parameter, you will receive a dictionary or hashMap, and extract the value of hashString from that. Pass that value to the server, and now the server will append salt at the end and generate sha512 hash over it. The server will give that hash back to your app, and the app will provide that hash to PayU through a callback mechanism.
 
-In the method parameter, you will receive a dictionary or hashMap, and extract the value of hashString from that. Pass that value to the server, and now the server will append salt at the end and generate sha512 hash over it. The server will give that hash back to your app, and the app will provide that hash to PayU through a callback mechanism.
+  In the map, you have to check for the following keys to generate a hash:
 
-In the map, you have to check for the following keys to generate a hash:
+  * hashString
+  * hashName
+  * postSalt
 
-* hashString
-* hashName
-* postSalt
+  At the end of that hashString, append your salt and use the SHA-512 algorithm on that final string to generate a hash.
 
-At the end of that hashString, append your salt and use the SHA-512 algorithm on that final string to generate a hash.
-
-> 🚧 Callout
->
-> * If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algorithm on that final string to generate hash.
-> * There is no need to know the formula for dynamic hashes because PayU SDK gives you the string containing all the required parameters. Your server has to append salt at the end and generate sha512 hash over it.
-
+  > 🚧 Callout
+  >
+  > * If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algorithm on that final string to generate hash.
+  > * There is no need to know the formula for dynamic hashes because PayU SDK gives you the string containing all the required parameters. Your server has to append salt at the end and generate sha512 hash over it.
 </Accordion>
-<Accordion title="Error codes" icon="fa-code">
 
-| Code | Description                      |
-| :--- | :------------------------------- |
-| 0    | Success                          |
-| 1    | Fail                             |
-| 3    | Challenge timeout                |
-| 4    | Challenge protocol error         |
-| 5    | Challenge cancelled              |
-| 101  | Card bin or card token was empty |
-| 102  | Merchant key null                |
-| 103  | Amount not in correct format     |
-| 104  | Transaction ID null              |
-| 105  | Hash null                        |
-| 106  | Card not supported on 3DS 2.0    |
-| 107  | Card scheme not supported        |
-| 108  | Hash incorrect                   |
-| 500  | Something went wrong             |
-| 504  | Gateway timeout                  |
+<Accordion title="Error codes" icon="fa-code">
+  | Code | Description                      |
+  | :--- | :------------------------------- |
+  | 0    | Success                          |
+  | 1    | Fail                             |
+  | 3    | Challenge timeout                |
+  | 4    | Challenge protocol error         |
+  | 5    | Challenge cancelled              |
+  | 101  | Card bin or card token was empty |
+  | 102  | Merchant key null                |
+  | 103  | Amount not in correct format     |
+  | 104  | Transaction ID null              |
+  | 105  | Hash null                        |
+  | 106  | Card not supported on 3DS 2.0    |
+  | 107  | Card scheme not supported        |
+  | 108  | Hash incorrect                   |
+  | 500  | Something went wrong             |
+  | 504  | Gateway timeout                  |
 </Accordion>
