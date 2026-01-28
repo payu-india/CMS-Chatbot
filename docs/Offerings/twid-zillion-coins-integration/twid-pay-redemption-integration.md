@@ -18,7 +18,47 @@ metadata:
 
 Integrate TWID pay to enable customers to redeem their TWID loyalty points during checkout. Follow these sequential steps to implement a complete TWID pay solution.
 
-This section describes the complete integration workflow for TWID Rewards Seamless Transactions. The workflow involves fetching balances from multiple loyalty providers, holding the points for a card transaction, and then redeeming them.
+This section describes the complete integration workflow for TWID Rewards Seamless Transactions. This integration involves the following steps:
+Based on the content of your TWID seamless integration guide, I'll create organized cards for the 6-step integration process:
+
+<Cards columns={3}>
+  <Card title="1. Fetch All Balance" href="#step-1-fetch-all-balance">
+    Call loyalty-service to get usable reward balances for the customer before initiating payment
+
+    <br />
+  </Card>
+
+  <Card title="2. Initiate Payment with PayU" href="#step-2-initiate-payment-with-payu">
+    Prepare PayU payment POST with SPLITPAY, TWIDX, splitInfo parameters and generate the required hash
+
+    <br />
+  </Card>
+
+  <Card title="3. Redirect the Customer" href="#step-3-redirect-the-customer">
+    Use acsTemplate to post authentication response to merchant termUrl with bankData fields
+
+    <br />
+  </Card>
+
+  <Card title="4. Authorize (charge) the payment" href="#step-4-authorize-charge-the-payment">
+    Make merchant S2S POST of authentication_info to PayU AuthorizeTransaction endpoint
+
+    <br />
+  </Card>
+
+  <Card title="5. Check Response from PayU" href="#step-5-check-response-from-payu">
+    Parse postback response and validate reverse hash from PayU
+
+    <br />
+  </Card>
+
+  <Card title="6. Verify the Payment" href="#step-6-verify-the-payment">
+    Perform final verification step to confirm transaction completion
+
+    <br />
+  </Card>
+</Cards>
+
 
 ## Step 1: Fetch All Balance
 
