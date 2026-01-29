@@ -47,10 +47,6 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 
 ## Steps to Integrate
 
-To include the PayU UPI Bolt UI SDK in your project, add the following dependency to your pubspec.yaml file:
-
-> flutter pub add payu_upi_bolt_ui_flutter: ^1.0.0
-
 <Accordion title="Prerequisites" icon="folder" id="prerequisites">
   <Callout icon="🚧" theme="warn">
     Supported iOS deployment target - iOS 17 and above.
@@ -59,6 +55,11 @@ To include the PayU UPI Bolt UI SDK in your project, add the following dependenc
   Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
 
   <br />
+
+  To include the PayU UPI Bolt UI SDK in your project, add the following dependency to your pubspec.yaml file:
+
+> flutter pub add payu_upi_bolt_ui_flutter: ^1.0.0
+
 
   <Accordion title="iOS Integration" icon="folder" id="ios-integration">
     To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your podfile.
