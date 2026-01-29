@@ -21,43 +21,43 @@ This section provides comprehensive documentation for integrating Apple Pay with
 
 ## Step 1: Post the Payment Request
 
-|            |                                                 |
-| :--------- | :---------------------------------------------- |
-| Production | https://secure.payu.in/AuthorizeTransaction.php |
+|            |                                                                                                    |
+| :--------- | :------------------------------------------------------------------------------------------------- |
+| Production | [https://secure.payu.in/AuthorizeTransaction.php](https://secure.payu.in/AuthorizeTransaction.php) |
 
 ### Request Parameters
 
-| Parameter                        | Description                               | Example                                                      |
-| -------------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
-| key<br />`mandatory`             | `string` PayU merchant key                | "gtKFFx"                                                     |
-| txnid<br />`mandatory`           | `string` Unique transaction ID            | "APPLEPAY_DECOUP_1703845200"                                 |
-| amount<br />`mandatory`          | `string` Transaction amount               | "100.00"                                                     |
-| productinfo<br />`mandatory`     | `string` Product description              | "Apple Pay Decoupled Payment"                                |
-| firstname<br />`mandatory`       | `string` Customer first name              | "John"                                                       |
-| email<br />`mandatory`           | `string` Customer email address           | "[john@example.com](mailto:john@example.com)"                |
-| mobile<br />`mandatory`          | `string` Customer mobile number           | "9876543210"                                                 |
-| txn_s2s_flow<br />`mandatory`    | `string` Set to "4" for decoupled flow    | "4"                                                          |
-| pg<br />`mandatory`              | `string` Payment gateway identifier       | "APPLEPAY"                                                   |
-| bankcode<br />`mandatory`        | `string` Bank/payment method code         | "CCAP"                                                       |
-| apple_pay_token<br />`mandatory` | `string` JSON stringified Apple Pay token | '\{"paymentData":\{...}}'                                    |
-| s2s_client_ip<br />`mandatory`   | `string` Client IP address                | "192.168.1.1"                                                |
-| s2s_device_info<br />`mandatory` | `string` Device information JSON          | '\{"device_type":"web"}'                                     |
-| hash<br />`mandatory`            | `string` SHA-512 request hash             | "calculated_hash"                                            |
-| surl<br />`mandatory`            | `string` Success URL                      | "[https://yourapp.com/success](https://yourapp.com/success)" |
-| furl<br />`mandatory`            | `string` Failure URL                      | "[https://yourapp.com/failure](https://yourapp.com/failure)" |
-| lastname<br />`optional`         | `string` Customer last name               | "Doe"                                                        |
-| address1<br />`optional`         | `string` Customer address line 1          | "123 Main St"                                                |
-| address2<br />`optional`         | `string` Customer address line 2          | "Apt 4B"                                                     |
-| city<br />`optional`             | `string` Customer city                    | "Mumbai"                                                     |
-| state<br />`optional`            | `string` Customer state                   | "Maharashtra"                                                |
-| country<br />`optional`          | `string` Customer country                 | "India"                                                      |
-| zipcode<br />`optional`          | `string` Customer postal code             | "400001"                                                     |
-| udf1<br />`optional`             | `string` User defined field 1             | "custom_value_1"                                             |
-| udf2<br />`optional`             | `string` User defined field 2             | "custom_value_2"                                             |
-| udf3<br />`optional`             | `string` User defined field 3             | "custom_value_3"                                             |
-| udf4<br />`optional`             | `string` User defined field 4             | "custom_value_4"                                             |
-| udf5<br />`optional`             | `string` User defined field 5             | "custom_value_5"                                             |
-| phone<br />`optional`            | `string` Alternative phone number         | "9876543211"                                                 |
+| Parameter                        | Description                                       | Example                                                      |
+| -------------------------------- | ------------------------------------------------- | ------------------------------------------------------------ |
+| key<br />`mandatory`             | `string` PayU merchant key                        | "gtKFFx"                                                     |
+| txnid<br />`mandatory`           | `string` Unique transaction ID                    | "APPLEPAY_DECOUP_1703845200"                                 |
+| amount<br />`mandatory`          | `string` Transaction amount                       | "100.00"                                                     |
+| productinfo<br />`mandatory`     | `string` Product description                      | "Apple Pay Decoupled Payment"                                |
+| firstname<br />`mandatory`       | `string` Customer first name                      | "John"                                                       |
+| email<br />`mandatory`           | `string` Customer email address                   | "[john@example.com](mailto:john@example.com)"                |
+| mobile<br />`mandatory`          | `string` Customer mobile number                   | "9876543210"                                                 |
+| txn_s2s_flow<br />`mandatory`    | `string` Set to "3" for Direct Authorization flow | "3"                                                          |
+| pg<br />`mandatory`              | `string` Payment gateway identifier               | "APPLEPAY"                                                   |
+| bankcode<br />`mandatory`        | `string` Bank/payment method code                 | "CCAP"                                                       |
+| apple_pay_token<br />`mandatory` | `string` JSON stringified Apple Pay token         | '\{"paymentData":\{...}}'                                    |
+| s2s_client_ip<br />`mandatory`   | `string` Client IP address                        | "192.168.1.1"                                                |
+| s2s_device_info<br />`mandatory` | `string` Device information JSON                  | '\{"device_type":"web"}'                                     |
+| hash<br />`mandatory`            | `string` SHA-512 request hash                     | "calculated_hash"                                            |
+| surl<br />`mandatory`            | `string` Success URL                              | "[https://yourapp.com/success](https://yourapp.com/success)" |
+| furl<br />`mandatory`            | `string` Failure URL                              | "[https://yourapp.com/failure](https://yourapp.com/failure)" |
+| lastname<br />`optional`         | `string` Customer last name                       | "Doe"                                                        |
+| address1<br />`optional`         | `string` Customer address line 1                  | "123 Main St"                                                |
+| address2<br />`optional`         | `string` Customer address line 2                  | "Apt 4B"                                                     |
+| city<br />`optional`             | `string` Customer city                            | "Mumbai"                                                     |
+| state<br />`optional`            | `string` Customer state                           | "Maharashtra"                                                |
+| country<br />`optional`          | `string` Customer country                         | "India"                                                      |
+| zipcode<br />`optional`          | `string` Customer postal code                     | "400001"                                                     |
+| udf1<br />`optional`             | `string` User defined field 1                     | "custom_value_1"                                             |
+| udf2<br />`optional`             | `string` User defined field 2                     | "custom_value_2"                                             |
+| udf3<br />`optional`             | `string` User defined field 3                     | "custom_value_3"                                             |
+| udf4<br />`optional`             | `string` User defined field 4                     | "custom_value_4"                                             |
+| udf5<br />`optional`             | `string` User defined field 5                     | "custom_value_5"                                             |
+| phone<br />`optional`            | `string` Alternative phone number                 | "9876543211"                                                 |
 
 ### Sample Request
 
