@@ -427,7 +427,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
         </td>
 
         <td>
-          `Map` [Refer to Payment Params section](#payment-params)
+          `Map` [Refer to Payment Params section](#step-5-payment-params)
         </td>
       </tr>
     </tbody>
@@ -492,8 +492,6 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 
   **Response:** [SDK Response JSON Format:](<SDK Response JSON Format:>)
 </Accordion>
-
-<a id="payment-params"></a>
 
 <Accordion title="Step 5. PayUPaymentParams" icon="folder" id="step-5-payment-params">
   The following fields are needed as a request:
