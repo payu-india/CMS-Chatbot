@@ -72,7 +72,9 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
   To include the PayU UPI Bolt UI SDK in your project, add the following dependency to your package.json file:
 
-
+  
+npm install payu-upi-bolt-ui-rn@1.0.0 --save
+react-native link payu-upi-bolt-ui-rn
   
 
   Ensure that the application's minimum development target is set to version 13 or higher.
