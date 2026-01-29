@@ -125,10 +125,42 @@ Also, add the following dependency to the podfile of your Xcode app if not exist
   <br />
 
   <Accordion title="Android Integration" icon="folder" id="android-integration">
+ Add the following permissions in your AndroidManifest file.
+
+    ```manifest.xml
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    ```
+**UAT:**
+
+
+
+> implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.6-SNAPSHOT'
+    
+**Project-level build.gradle :**
+
+
+```
+allprojects {
+ repositories {
+        maven {url "https://central.sonatype.com/repository/maven-snapshots/"}
+   }
+    }
+```
+
+**PRODUCTION:**
+
+> implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.5’
+ 
+
     Add the following dependency in the build.gradle file of your android app module:
 
     ```gradle
-    implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.1-dev4'
     implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
     ```
 
@@ -138,11 +170,6 @@ Also, add the following dependency to the podfile of your Xcode app if not exist
     <your_project>/android/app/libs/SecureComponent-release-prod_05062024_9d3904ab.aar
     ```
 
-    Install the Flutter package:
-
-    ```bash
-    flutter pub add payu_upi_bolt_ui_flutter:^1.0.0-alpha.1
-    ```
   </Accordion>
 
   <br />
