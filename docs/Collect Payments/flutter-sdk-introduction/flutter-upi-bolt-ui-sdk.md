@@ -131,6 +131,9 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   payUUpiFlutter.reset();
   ```
 
-The following fields are needed as a request for this API:
+ The following fields are needed as a request for this API:
+
 
 </Accordion>
+
+<br />
