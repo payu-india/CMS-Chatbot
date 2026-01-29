@@ -136,4 +136,18 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 
 </Accordion>
 
+| Fields            | Description |
+| :---------------- | :---------- |
+| config            |             |
+| merchantName      |             |
+| merchantKey       |             |
+| phone             |             |
+| email             |             |
+| pluginTypes       |             |
+| isProduction      |             |
+| excludedBanksIINs |             |
+| clientId          |             |
+| refId             |             |
+| issuingBanks      |             |
+
 <br />
