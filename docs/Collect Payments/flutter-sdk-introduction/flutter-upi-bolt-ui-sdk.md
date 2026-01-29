@@ -427,7 +427,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
         </td>
 
         <td>
-          `Map` Refer to Payment Params section
+          `Map` [Refer to Payment Params section](#payment-params)
         </td>
       </tr>
     </tbody>
@@ -494,6 +494,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 </Accordion>
 
 <Accordion title="Step 5. PayUPaymentParams" icon="folder">
+  <a id="payment-params"></a>
   The following fields are needed as a request:
   <HTMLBlock>{`
                                                   <table style="width: 100%; border-collapse: collapse;">
