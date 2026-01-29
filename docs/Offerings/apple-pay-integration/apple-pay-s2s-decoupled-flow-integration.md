@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This section provides comprehensive documentation for integrating Apple Pay with PayU's Server-to-Server (S2S) Direct Authorization Flow using `txn_s2s_flow=3`. 
+This section provides comprehensive documentation for integrating Apple Pay with PayU's Server-to-Server (S2S) Decoupled Flow using `txn_s2s_flow=4`.
 
 ## Implementation Flow
 
@@ -36,7 +36,7 @@ This section provides comprehensive documentation for integrating Apple Pay with
 | firstname<br />`mandatory`       | `string` Customer first name                      | "John"                                                       |
 | email<br />`mandatory`           | `string` Customer email address                   | "[john@example.com](mailto:john@example.com)"                |
 | mobile<br />`mandatory`          | `string` Customer mobile number                   | "9876543210"                                                 |
-| txn_s2s_flow<br />`mandatory`    | `string` Set to "3" for Direct Authorization flow | "3"                                                          |
+| txn_s2s_flow<br />`mandatory`    | `string` Set to "4" for Direct Authorization flow | "4"                                                          |
 | pg<br />`mandatory`              | `string` Payment gateway identifier               | "APPLEPAY"                                                   |
 | bankcode<br />`mandatory`        | `string` Bank/payment method code                 | "CCAP"                                                       |
 | apple_pay_token<br />`mandatory` | `string` JSON stringified Apple Pay token         | '\{"paymentData":\{...}}'                                    |
