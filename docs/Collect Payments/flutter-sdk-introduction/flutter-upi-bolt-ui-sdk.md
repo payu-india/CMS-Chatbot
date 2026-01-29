@@ -715,7 +715,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   <br />
 </Accordion>
 
-<Accordion title="Error Codes and Error Message List" icon="folder" id="error-codes">
+##Error Codes and Error Message List
   | Response Code | Message                                |
   | ------------- | -------------------------------------- |
   | 0             | Success                                |
@@ -729,7 +729,21 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   | 501           | No internet connection                 |
   | 502           | SDK not found                          |
 
-  <br />
+    
 
-  <br />
-</Accordion>
+
+
+## Error Codes and Error Message List
+
+| Response Code | Message                                |
+| :------------ | :------------------------------------- |
+| 0             | Success                                |
+| 1             | Fail/ Invalid Response/ Missing params |
+| 2             | User cancelled the transaction         |
+| 100           | Transaction timeout                    |
+| 103           | Handshake failed                       |
+| 104           | UPI bolt not supported                 |
+| 105           | Device not supported for UPI Bolt      |
+| 500           | Something went wrong                   |
+| 501           | No internet connection                 |
+| 502           | SDK not found                          |
