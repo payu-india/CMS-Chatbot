@@ -73,6 +73,8 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
     <Image align="center" src="https://files.readme.io/dfbfe5bb1b9bd93ea6c30e191556643e8a0e870550a40f46225ea071e4eaab0c-4.png" alt="Flutter UPI Bolt UI SDK Integration PROJECT_DIR config" />
   </Accordion>
 
+<br />
+
   <Accordion title="Android Integration" icon="fa-folder">
     Add the following dependency in the build.gradle file of your android app module:
 
@@ -92,7 +94,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
     ```bash
     flutter pub add payu_upi_bolt_ui_flutter:^1.0.0-alpha.1
     ```
+      </Accordion>
 
-    
-  </Accordion>
+
 </Accordion>
