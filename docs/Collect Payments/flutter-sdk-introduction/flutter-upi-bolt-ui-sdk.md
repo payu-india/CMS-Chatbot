@@ -92,13 +92,5 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
     ```bash
     flutter pub add payu_upi_bolt_ui_flutter:^1.0.0-alpha.1
     ```
-      </Accordion>
-
-
-<br />
-
+  </Accordion>
 </Accordion>
-
-<br />
-
-<br />
