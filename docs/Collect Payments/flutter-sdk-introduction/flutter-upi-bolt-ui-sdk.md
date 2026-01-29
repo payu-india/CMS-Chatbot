@@ -414,7 +414,17 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   | result | Payment Response |
 
   <br />
-</Accordion>
+  </Accordion>
+  
+<Accordion title="Step 4. UPI Management" icon="fa-folder">
+  This API allows you to manage UPI accounts and transaction history.
+  
+  </Accordion>
+
+
+
+
+
 
 [SDK Response JSON Format:](<SDK Response JSON Format:>)
 
