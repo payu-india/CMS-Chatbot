@@ -630,47 +630,70 @@ cordova.plugins.PayUUpiBoltUiCordova.openUPIManagement(responseCallBack, screenT
 <Accordion title="Step 5. Listener/Callback logic" icon="folder" id="step-6-listener-callback">
   The listener/callback contains following methods where the merchant app will get the API response and hash-related callbacks.
 
-  ```React-Native
-  // Register event emitters
-  useEffect(() => {
-  const eventEmitter = new NativeEventEmitter(PayUBizSdk);
+  ```Cordova
+  var responseCallBack = function (response) {
+  console.log('responseCallBack:', JSON.stringify(response));
 
-  onPayUSuccessListener = eventEmitter.addListener('onPayUSuccess', onPayUSuccess);
-  onPayUFailureListener = eventEmitter.addListener('onPayUFailure', onPayUFailure);
-  onPayUCancelListener = eventEmitter.addListener('onPayUCancel', onPayUCancel);
-  payUGenerateHashListener = eventEmitter.addListener('generateHash', generateHash);
-  permissionListener = eventEmitter.addListener('permissionCallback', permissionCallback);
+  // 1. onPayUSuccess(Map response): Triggered when the payment is successful.
+  if ('onPayUSuccess' in response) {
+    showAlert(JSON.stringify(response));
+    return;
+  }
 
-  // Clean up listeners on unmount or merchantSalt change
-  return () => {
-    console.log("Unsubscribed!");
-    onPayUSuccessListener.remove();
-    onPayUFailureListener.remove();
-    onPayUCancelListener.remove();
-    payUGenerateHashListener.remove();
-    permissionListener.remove();
-  };
-  }, [merchantSalt]);
+  // 2. onPayUFailure(Map response): Triggered when the payment fails.
+  if ('onPayUFailure' in response) {
+    showAlert(JSON.stringify(response));
+    return;
+  }
 
-  // Handler: PayU success
-  onPayUSuccess = (response) => {
-  displayAlert('onPayUSuccess', JSON.stringify(response));
-  };
+  // 3. onPayUCancel(Map response): Triggered when the user cancels the payment.
+  if ('onPayUCancel' in response) {
+    showAlert(JSON.stringify(response));
+    return;
+  }
 
-  // Handler: PayU failure
-  onPayUFailure = (response) => {
-  displayAlert('onPayUFailure', JSON.stringify(response));
-  };
+  // 4. onError(Map response): Triggered when an error occurs in the SDK.
+  if ('onError' in response) {
+    showAlert(JSON.stringify(response));
+    return;
+  }
 
-  // Handler: PayU cancel
-  onPayUCancel = (response) => {
-  displayAlert('onPayUCancel', JSON.stringify(response));
-  };
+  // 5. isUPIBoltEnabled(Map response): Indicates whether the UPI Bolt SDK is enabled.
+  if ('isUPIBoltEnabled' in response) {
+    showAlert(JSON.stringify(response));
+    return;
+  }
 
-  // Handler: Generate hash event
-  generateHash = (e) => {
-  handleHashGeneration(e.hashName, e.hashString + merchantSalt);
-  };         
+  // 6. onReset(Map response): Confirms that the SDK instance has been reset successfully.
+  if ('onReset' in response) {
+    showAlert(JSON.stringify(response));
+    return;
+  }
+
+  // 7. onClearCache(Map response): Confirms that the SDK cache has been cleared.
+  if ('onClearCache' in response) {
+    showAlert(JSON.stringify(response));
+    return;
+  }
+
+  // 8. onIsRegistered(Map response): Indicates the user's registration status with the plugin.
+  if ('onIsRegistered' in response) {
+    showAlert(JSON.stringify(response));
+    return;
+  }
+
+  // 9. onInitSDK(Map response): Triggered after SDK initialization, including any initialization errors.
+  if ('onInitSDK' in response) {
+    showAlert(JSON.stringify(response));
+    return;
+  }
+
+  // 10. generateHash(Map response): Triggered when the SDK requests hash generation.
+  if ('generateHash' in response) {
+    handleHashGeneration(response);
+    return;
+  }
+};  
   ```
 </Accordion>
 
