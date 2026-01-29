@@ -664,7 +664,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 
 ## SDK Response JSON Format
 
-[Refer to SDK Response JSON Format](#flutter-upi-#sdk-response-json-format) 
+[Refer to SDK Response JSON Format](#sdk-response-json-format) 
 
 | Field   | Definition                                           |
 | :------ | :--------------------------------------------------- |
