@@ -253,5 +253,3 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 **Response**: [Ref: SDK Response JSON Format](https://payuindia.atlassian.net/wiki/spaces/TD/pages/3036086405/PayUBoltUI+Integration+document+-+Flutter#Response%3A-Ref%3A-SDK-Response-JSON-Format)
 
 </Accordion>
-
-[
