@@ -48,7 +48,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 ## Steps to Integrate
 
 <Accordion title="Prerequisites" icon="fa-folder">
-  <h3> SDK Compatibility: Ensure that the application's minimum development target is set to version 13 or higher. </h3>>
+  <h5> SDK Compatibility: Ensure that the application's minimum development target is set to version 13 or higher. </h5>>
 
   Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
 
