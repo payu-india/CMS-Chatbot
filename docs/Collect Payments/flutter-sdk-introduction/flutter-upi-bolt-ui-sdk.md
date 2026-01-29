@@ -136,72 +136,72 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   <br />
 
   <HTMLBlock>{`
-                                                                                        <table style="width: 100%; border-collapse: collapse;">
-                                                                                            <thead>
-                                                                                                <tr>
-                                                                                                    <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                                                                                                    <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                                                                                                    <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-                                                                                                </tr>
-                                                                                            </thead>
-                                                                                            <tbody>
-                                                                                                <tr>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">config<br><code>mandatory</code></td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> PayUUPIBoltBaseConfig includes the below fields.</td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">{...}</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">merchantName<br><code>mandatory</code></td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Merchant Name</td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">"MyStore Inc"</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">merchantKey<br><code>mandatory</code></td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> PayU Merchant Key</td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">"gtKFFx"</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">phone<br><code>mandatory</code></td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Phone number for registration</td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">"+919876543210"</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">email<br><code>mandatory</code></td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Customer Email Id</td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">"customer@example.com"</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">pluginTypes<br><code>mandatory</code></td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Supported Plugin (Values - AXIS or HDFC or BHIM)</td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC", "BHIM"]</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">isProduction<br><code>mandatory</code></td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>Boolean</code> Prod - true, staging - false</td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">excludedBanksIINs<br><code>optional</code></td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Bank's IIN to exclude</td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">["123456", "789012"]</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">clientId<br><code>optional</code></td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique client ID</td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">"CLIENT_001"</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">refId<br><code>mandatory</code></td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique reference ID</td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">"REF_12345678"</td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">issuingBanks<br><code>optional</code></td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Issuing Bank's (Values - AXIS or HDFC)</td>
-                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC"]</td>
-                                                                                                </tr>
-                                                                                            </tbody>
-                                                                                        </table>
+                                                                                          <table style="width: 100%; border-collapse: collapse;">
+                                                                                              <thead>
+                                                                                                  <tr>
+                                                                                                      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                                                                                                      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                                                                                                      <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+                                                                                                  </tr>
+                                                                                              </thead>
+                                                                                              <tbody>
+                                                                                                  <tr>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">config<br><code>mandatory</code></td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> PayUUPIBoltBaseConfig includes the below fields.</td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">{...}</td>
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">merchantName<br><code>mandatory</code></td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Merchant Name</td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">"MyStore Inc"</td>
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">merchantKey<br><code>mandatory</code></td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> PayU Merchant Key</td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">"gtKFFx"</td>
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">phone<br><code>mandatory</code></td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Phone number for registration</td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">"+919876543210"</td>
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">email<br><code>mandatory</code></td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Customer Email Id</td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">"customer@example.com"</td>
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">pluginTypes<br><code>mandatory</code></td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Supported Plugin (Values - AXIS or HDFC or BHIM)</td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC", "BHIM"]</td>
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">isProduction<br><code>mandatory</code></td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Boolean</code> Prod - true, staging - false</td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">excludedBanksIINs<br><code>optional</code></td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Bank's IIN to exclude</td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">["123456", "789012"]</td>
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">clientId<br><code>optional</code></td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique client ID</td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">"CLIENT_001"</td>
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">refId<br><code>mandatory</code></td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique reference ID</td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">"REF_12345678"</td>
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">issuingBanks<br><code>optional</code></td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Issuing Bank's (Values - AXIS or HDFC)</td>
+                                                                                                      <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC"]</td>
+                                                                                                  </tr>
+                                                                                              </tbody>
+                                                                                          </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -347,23 +347,23 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 <Accordion title="Step 2. Check if UPI Bolt is Enabled" icon="folder">
   This method is used to check whether the upi bolt is enabled for the merchant or not.
 
-  <Accordion title="Request" icon="fa-cog">
+<br />
     ```dart
     payUUpiFlutter.isUPIBoltEnabled();
     ```
-  </Accordion>
-
-  <Accordion title="Response" icon="fa-cog">
+<br />
+  
     | Field   | Definition                                       |
     | ------- | ------------------------------------------------ |
     | code    | `Integer` Status code (Success = 0, Failure = 1) |
     | message | `String` Message                                 |
+  <br />
 
-    Refer to SDK Response JSON Format.
-  </Accordion>
+   **Response:** [SDK Response JSON Format:](<SDK Response JSON Format:>)
+  <br />
 </Accordion>
 
-<Accordion title="Step 3. Register and Pay" icon="fa-folder">
+<Accordion title="Step 3. Register and Pay" icon="folder">
   This API allows you to initialize registration and payment flow. It will internally authenticate and register the customer. After successful authentication and registration, the user will follow the payment journey. Once payment is completed, based on the payment status the merchant will get a callback through the listener.
 </Accordion>
 
