@@ -702,28 +702,45 @@ cordova.plugins.PayUUpiBoltUiCordova.openUPIManagement(responseCallBack, screenT
 
   For generating and passing dynamic hashes, the merchant will receive a call from the generateHash method of PayUUPIBoltUiListener.  The generateHash() method is called by the SDK each time it needs an individual hash.
 
-  ```React-Native
-  function handleHashGeneration(hashName, hashString) {  // Merchant will get Map/ JSON with type of hash and hash string as value of dictionary.
-    /*
-     They have to sign that string using salt to create hash value and pass that to onCompletion
-     In the map you have to check for three keys to generate hash.
-     1. hashString
-     2. hashName
-     3. postSalt
-     At the end of that hashString append your salt and use SHA-512 algo on that final string to generate hash.
-     Note: If you got postSalt also in the map, first use hash string append salt and then append postSalt value to that string and use SHA-512 algo on that final string to generate hash.
-     Once the hash is generated use hashGenerationListener parameter to pass the hash to SDK. Example code:
-     */
+  ```Cordova
+ /**
+ * Handles hash generation requested by the PayU UPI Bolt SDK.
+ *
+ * The merchant receives a JSON object containing details required to generate the hash.
+ * The following keys must be checked in the response:
+ * 1. hashString – The string that needs to be hashed
+ * 2. hashName   – The name of the hash
+ * 3. postSalt   – (Optional) Additional salt value
+ *
+ * Hash Generation Steps:
+ * - Append your merchant salt to the hashString
+ * - If postSalt is present, append it after the merchant salt
+ * - Generate the hash using the SHA-512 algorithm
+ * - Pass the generated hash back to the SDK using hashGenerated()
+ */
+function handleHashGeneration(response) {
+  const resultValue = response.generateHash;
 
-    // get hash for "hashName" from server
-    // get hash for "hashString" from server
-    
-    var hashValue = <fetch_hash_from_server>;
+  const hashString = resultValue.hashString;
+  const hashName = resultValue.hashName;
+  const postSalt = resultValue.postSalt;
 
-    // After fetching hash set its value in below variable "hashMap"
-    
-    const result = { "hashName": <hashName>, <hashName>: <hashValue> };
-    PayUBizSdk.hashGenerated(result);
-  }
+  /*
+   * NOTE:
+   * For security reasons, hash generation should be done on the server.
+   * Fetch the generated hash from your backend using hashString.
+   */
+  
+  // Fetch the hash value from your server
+  const hash = <fetch_hash_from_server>;
+
+  // Prepare hash map to send back to SDK
+  const hashMap = {};
+  hashMap["hashName"] = hashName;
+  hashMap[hashName] = hash;
+
+  // Pass the generated hash to the PayU UPI Bolt SDK
+  cordova.plugins.PayUUpiBoltUiCordova.hashGenerated(hashMap);
+}
   ```
 </Accordion>
