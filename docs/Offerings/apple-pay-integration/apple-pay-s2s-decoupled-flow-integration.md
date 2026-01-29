@@ -1,7 +1,7 @@
 ---
 title: 'Apple Pay - S2S Decoupled Flow Integration '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -215,4 +215,3 @@ The S2S Decoupled Flow returns an initial response indicating the payment has be
   "decoupled_flow_id": "DCF_123456789"
 }
 ```
-
