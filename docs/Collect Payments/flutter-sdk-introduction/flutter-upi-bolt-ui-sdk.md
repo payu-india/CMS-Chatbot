@@ -132,10 +132,6 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   ```
 
  The following fields are needed as a request for this API:
-
-
-</Accordion>
-
 | Fields            | Description |
 | :---------------- | :---------- |
 | config            |             |
@@ -150,4 +146,5 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 | refId             |             |
 | issuingBanks      |             |
 
-<br />
+
+</Accordion>
