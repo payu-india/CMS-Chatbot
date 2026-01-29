@@ -98,7 +98,40 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 </Accordion>
 
 <Accordion tittle="Step 1: Initialization" icon="fa-folder" >
-  
+It is used to initialize the SDK. This method returns an object that will be used to access other methods available in PayUUPIBoltUI.
+
+     
+        Add the following imports:
+
+        ```dart
+        import 'package:payu_upi_bolt_ui_flutter/PayUUPIConstantKeys.dart';
+        import 'package:payu_upi_bolt_ui_flutter/payu_upi_bolt_ui_flutter.dart';
+        ```
+
+        Initialize the SDK with configuration:
+
+        ```dart
+        var config = {
+          "merchantName": "<merchantName>", // String
+          "merchantKey": "<merchantKey>", // String
+          "phone": "<phone>", // String
+          "email": "<email>", // String
+          "refId": "<refId>", // String
+          "pluginTypes": ["<pluginType>"], // Array \<String>
+          "clientId": "<clientId>", // String
+          "issuingBanks": ["<issuingBanks>"], // Array \<String>
+          "excludedBanksIINs": ["<excludedBanksIIN>"], // Array \<String>
+          "isProduction": <isProduction> // Boolean
+        };
+
+        // To initialize the SDK
+        var payUUpiFlutter = PayUUPIBoltUIFlutter(this);
+        payUUpiFlutter.initSDK(params: config);
+
+        // To clear the SDK Instance
+        payUUpiFlutter.reset();
+        ```
+      
   
 </Accordion>
 
