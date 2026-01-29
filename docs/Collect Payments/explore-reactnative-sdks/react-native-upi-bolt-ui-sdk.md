@@ -31,13 +31,19 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
 </Accordion>
 
-### Pay
+<Accordion title="Pay" icon="fa-folder">
+
+<br />
 
 <Image align="center" alt="UPI Bolt React Native Custome Journey for Pay" border={false} src="https://files.readme.io/fad794f25f0f6b108bc694ee13f79f7a3b5de220f6f90990409f7267e86446bb-upi_bolt_reactnative_customer_journey_pay.jpeg" />
 
 1. Customers who are already registered with PayU UPI Bolt can make a One-click payment.
 2. The customer needs to select the already added bank account and enter the MPIN and the transaction will be completed.
 3. The customer can also check the balance before making a transaction to avoid low-balance transaction failure.
+
+<br />
+
+</Accordion>
 
 ### Profile Management Journey
 
