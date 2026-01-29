@@ -416,7 +416,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   <br />
   </Accordion>
   
-<Accordion title="Step 4. UPI Management" icon="fa-folder">
+<Accordion title="Step 4. Open UPI Management" icon="folder">
   This API allows you to manage UPI accounts and transaction history.
   
   </Accordion>
