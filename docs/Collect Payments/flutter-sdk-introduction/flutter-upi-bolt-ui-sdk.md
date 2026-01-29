@@ -205,8 +205,6 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   `}</HTMLBlock>
 </Accordion>
 
-<br />
-
 <Accordion title="Clear SDK Cache of PayUBolt SDK" icon="folder">
   The `clearCache` method is used to clear the cache corresponding to the passed PG value.
 
@@ -641,8 +639,6 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   }
   ```
 </Accordion>
-
-<br />
 
 <Accordion title="SDK Response JSON Format:" icon="folder">
   | Field   | Definition                                           |
