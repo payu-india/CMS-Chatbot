@@ -225,8 +225,4 @@ To see which tools are available for your account:
 | Generate Reports        | Reporting permission       |
 | View Settlements        | Settlement access          |
 
-## Next Steps
-
-* [Example Tool Usage](doc:remote-mcp-example-tool-usage) - See detailed examples
-* [Request Format](doc:remote-mcp-request-format) - Technical API details
-* [FAQ](doc:remote-mcp-faq) - Common questions about tools
+<br />
