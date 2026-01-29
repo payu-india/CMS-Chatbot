@@ -28,6 +28,8 @@ This section provides a comprehensive guide for integrating Apple Pay Seamless F
 
 ## Step 1: S2S Direct Authorization Request
 
+<PaymentAPIEnvironment />
+
 ### Request Parameters
 
 | Parameter                            | Description                                     | Example                                                        |
