@@ -62,7 +62,20 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 ## Steps to Integrate PayU Bolt SDK
 
 <Accordion title="Prerequisites" icon="folder" id="prerequisites">
+  <Callout icon="🚧" theme="warn">
+    Supported iOS deployment target - iOS 17 and above.
+  </Callout>
+
+  Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
+
+  <br />
+
+  To include the PayU UPI Bolt UI SDK in your project, add the following dependency to your package.json file:
+
+
   
+
+  Ensure that the application's minimum development target is set to version 13 or higher.
   </Accordion>
 
 
