@@ -256,7 +256,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   <br />
 </Accordion>
 
-<Accordion title="Clear SDK Cache of PayUBolt SDK" icon="fa-folder">
+<Accordion title="Clear SDK Cache of PayUBolt SDK" icon="folder">
   The `clearCache` method is used to clear the cache corresponding to the passed PG value.
 
   <br />
@@ -344,7 +344,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   <br />
 </Accordion>
 
-<Accordion title="Step 2. Check if UPI Bolt is Enabled" icon="fa-folder">
+<Accordion title="Step 2. Check if UPI Bolt is Enabled" icon="folder">
   This method is used to check whether the upi bolt is enabled for the merchant or not.
 
   <Accordion title="Request" icon="fa-cog">
