@@ -22,6 +22,7 @@ metadata:
 next:
   description: ''
 ---
+
 UPI Bolt UI SDK allows you to manage the checkout options on their checkout screen. You use **PayU UPI Bolt UI SDK** for customer registration, payment and profile management. This integration involves the following steps:
 
 1. [Add permissions to Manifest file](#step-1-add-permissions-to-manifest-file)
@@ -78,7 +79,7 @@ api(files("$projectDir/libs/oliveupi-payu-release_PROD_02-12-2024_2.0.2.aar")) /
 
 The screenshot of libs directory is similar to the following:
 
-<Image align="center" width="360px" src="https://files.readme.io/1af3684beef4a3b10716b5fc7de478bc9a07ff6f82ae0cec8041bbb94d8c754c-bolt_native_flow_aar_directory_structure.png" />
+<Image align="center" border={false} width="360px" src="https://files.readme.io/1af3684beef4a3b10716b5fc7de478bc9a07ff6f82ae0cec8041bbb94d8c754c-bolt_native_flow_aar_directory_structure.png" />
 
 ## Step 3: Initialize the SDK
 
@@ -221,14 +222,13 @@ The following fields are needed as a request for this API:
 </Table>
 
 <Accordion title="Response" icon="fa-reply">
+  | Response Params | Definition                                 |
+  | --------------- | ------------------------------------------ |
+  | `PayUUPIBoltUI` | PayUUPIBoltUI object for invoking SDK APIs |
 
-| Response Params | Definition                                 |
-| --------------- | ------------------------------------------ |
-| `PayUUPIBoltUI` | PayUUPIBoltUI object for invoking SDK APIs |
-
-> 📘 Callback:
->
-> After the SDK is initialised, use the same object to call the sdk methods.
+  > 📘 Callback:
+  >
+  > After the SDK is initialised, use the same object to call the sdk methods.
 </Accordion>
 
 ## De-initialise PayUBolt UI SDK
@@ -281,164 +281,22 @@ boltUI.registerAndPay(paymentParams PayUUPIBoltPaymentParams, callback: PayUUPIB
       </td>
 
       <td>
-        * *Object*\* This parameter includes the fields listed in [paymentParams object](#paymentarams-object).
+        * _Object_* This parameter includes the fields listed in [paymentParams object](#paymentarams-object).
       </td>
     </tr>
 
     <tr>
       <td>
-        callback\
+        callback  
         `mandatory`
       </td>
 
       <td>
-        * *PayUUPIBoltUICallBack*\* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        * _PayUUPIBoltUICallBack_* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
-
-<Accordion title="paymentParams object" icon="fa-list-alt">
-
-The following fields are part of `paymentParams` object:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        amount
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Amount to be paid
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnId
-        `mandatory`
-      </td>
-
-      <td>
-        `String`Unique transaction ID
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productInfo
-        `mandatory`
-      </td>
-
-      <td>
-        `String`Product description
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstName
-        `mandatory`
-      </td>
-
-      <td>
-        `String`First name of the user
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        furl
-        `optional`
-      </td>
-
-      <td>
-        `String`Failure URL 
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        surl
-        `optional`
-      </td>
-
-      <td>
-         `String`Success URL
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf1
-        `optional`
-      </td>
-
-      <td>
-         `String`User defined field
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf2
-        `optional`
-      </td>
-
-      <td>
-          `String`User defined field
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf3
-        `optional`
-      </td>
-
-      <td>
-          `String`User defined field
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf4
-        `optional`
-      </td>
-
-      <td>
-          `String`User defined field
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf5
-        `optional`
-      </td>
-
-      <td>
-          `String`User defined field
-      </td>
-    </tr>
-  </tbody>
-</Table>
-</Accordion>
 
 ## Manage UPI accounts
 
@@ -509,11 +367,32 @@ The following fields are needed as a request for this API:
       </td>
 
       <td>
-        * *PayUUPIBoltUICallBack*\* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)   sub-section.
+        * _PayUUPIBoltUICallBack_* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)   sub-section.
       </td>
     </tr>
   </tbody>
 </Table>
+
+## Generate Payment Params
+
+```
+val paymentParams = PayUUPIBoltPaymentParams.Builder()
+    .amount(<amount>)
+    .productInfo(<productInfo>)
+    .firstName(<firstName>)
+    .surl(<surl>)
+    .furl(<furl>)
+    .udf1(<udf1>)
+    .udf2(<udf2>)
+    .udf3(<udf3>)
+    .udf4(<udf4>)
+    .udf5(<udf5>)
+    .txnId(<uniqueTxnId>)
+    .isCCTxnEnabled(<Bool>)
+    .build()
+```
+
+<br />
 
 ## Listener or Callback logic
 
@@ -526,22 +405,20 @@ Listerner/Callback contains 3 methods where the merchant app will get the API re
 | 3     | fun onPayUFailure(response: PayUUPIBoltResponse)                                                   | It will contain failure response.                                                         |
 
 <Accordion title="PayUUPIResponse" icon="fa-code">
-
-| Fields       | Data Type | Definition               |
-| ------------ | --------- | ------------------------ |
-| responseType | Integer   | f. ResponseType section  |
-| code         | Integer   | Error or success code    |
-| message      | String    | Error or success message |
-| result       | Object    | Response data            |
+  | Fields       | Data Type | Definition               |
+  | ------------ | --------- | ------------------------ |
+  | responseType | Integer   | f. ResponseType section  |
+  | code         | Integer   | Error or success code    |
+  | message      | String    | Error or success message |
+  | result       | Object    | Response data            |
 </Accordion>
 
 <Accordion title="ResponseType" icon="fa-list">
-
-| Response Type        | Response Code | Definition       |
-| -------------------- | ------------- | ---------------- |
-| REQUEST\_UPI\_BOLT   | 100           | UPI Bolt Status  |
-| REQUEST\_TRANSACTION | 124           | Register And Pay |
-| REQUEST\_MANAGE      | 125           | UPI Management   |
+  | Response Type        | Response Code | Definition       |
+  | -------------------- | ------------- | ---------------- |
+  | REQUEST\_UPI\_BOLT   | 100           | UPI Bolt Status  |
+  | REQUEST\_TRANSACTION | 124           | Register And Pay |
+  | REQUEST\_MANAGE      | 125           | UPI Management   |
 </Accordion>
 
 ## Hash Generation logic
