@@ -493,9 +493,8 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   **Response:** [SDK Response JSON Format:](<SDK Response JSON Format:>)
 </Accordion>
 
-<a id="payment-params"></a>
-
 <Accordion title="Step 5. PayUPaymentParams" icon="folder">
+  <a id="payment-params"></a>
   The following fields are needed as a request:
 
   <HTMLBlock>{`
