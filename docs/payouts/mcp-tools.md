@@ -202,9 +202,9 @@ Access business analytics and insights.
 
 ## Tool Availability
 
-> 📘 Note
->
-> Actual available tools depend on your account permissions and service configuration. Some tools may require additional permissions or may not be available for all merchant accounts.
+<Callout icon="📘" theme="info">
+  **Note**: Actual available tools depend on your account permissions and service configuration. Some tools may require additional permissions or may not be available for all merchant accounts.
+</Callout>
 
 ### Checking Available Tools
 
