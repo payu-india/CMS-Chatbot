@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This section provides comprehensive documentation for integrating Apple Pay with PayU's Server-to-Server (S2S) Decoupled Flow using `txn_s2s_flow=4`. The Decoupled Flow enables asynchronous payment processing where the payment authorization and completion happen in separate stages, providing enhanced control and flexibility for complex payment scenarios.
+This section provides comprehensive documentation for integrating Apple Pay with PayU's Server-to-Server (S2S) Direct Authorization Flow using `txn_s2s_flow=3`. 
 
 ## Implementation Flow
 
