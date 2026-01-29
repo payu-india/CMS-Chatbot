@@ -355,7 +355,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 
   <br />
   
-**Response:** 
+  **Response:** [SDK Response JSON Format:](<SDK Response JSON Format:>)
 
   | Field   | Definition                                       |
   | ------- | ------------------------------------------------ |
@@ -364,7 +364,6 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 
   <br />
 
-  **Response:** [SDK Response JSON Format:](<SDK Response JSON Format:>)
 
   <br />
 </Accordion>
