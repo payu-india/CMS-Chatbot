@@ -465,9 +465,88 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   **Response:** [SDK Response JSON Format:](<SDK Response JSON Format:>)
 </Accordion>
 
-      <Accordion title="Step 5. PayUPaymentParams" icon="folder" >
-      
-      </Accordion>
+<Accordion title="Step 5. PayUPaymentParams" icon="folder">
+                The following fields are needed as a request:
+<HTMLBlock>{`
+                                                  <table style="width: 100%; border-collapse: collapse;">
+                                                      <thead>
+                                                          <tr>
+                                                              <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                                                              <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                                                              <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">amount<br><code>mandatory</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Txn Amount</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">"100.00"</td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">txnId<br><code>mandatory</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Txn Id</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">"TXN_123456789"</td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">productInfo<br><code>mandatory</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Product Info</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">"Product Purchase"</td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">firstName<br><code>mandatory</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> First Name</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">"John"</td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">surl<br><code>optional</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Success URL</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">"https://example.com/success"</td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">furl<br><code>optional</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Failure URL</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">"https://example.com/failure"</td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">additionalParam<br><code>optional</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> Additional params if any</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">{"param1": "value1"}</td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">udf1<br><code>optional</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields1</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 1"</td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">udf2<br><code>optional</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields2</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 2"</td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">udf3<br><code>optional</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields3</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 3"</td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">udf4<br><code>optional</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields4</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 4"</td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">udf5<br><code>optional</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields5</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 5"</td>
+                                                          </tr>
+                                                          <tr>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">udf6<br><code>optional</code></td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;"><code>Any</code> User Defined Fields6</td>
+                                                              <td style="border: 1px solid #ddd; padding: 8px;">"Custom Value 6"</td>
+                                                          </tr>
+                                                      </tbody>
+                                                  </table>
+        `}</HTMLBlock>
+        </Accordion>
+   
 
 
 
