@@ -7,7 +7,6 @@ metadata:
 ---
 This section provides comprehensive documentation for integrating Apple Pay with PayU's Server-to-Server (S2S) Decoupled Flow using `txn_s2s_flow=4`. The Decoupled Flow enables asynchronous payment processing where the payment authorization and completion happen in separate stages, providing enhanced control and flexibility for complex payment scenarios.
 
-
 ## Implementation Flow
 
 ### High-Level Flow Steps
@@ -20,98 +19,79 @@ This section provides comprehensive documentation for integrating Apple Pay with
 6. **Verify Status**: Confirm payment status via verification APIs
 7. **Complete Transaction**: Finalize payment based on business logic
 
+## Step 1: Post the Payment Request
 
-## Request Parameters
+|            |                                                 |
+| :--------- | :---------------------------------------------- |
+| Production | https://secure.payu.in/AuthorizeTransaction.php |
 
-### Mandatory Parameters
+### Request Parameters
 
-| Parameter | Description | Example |
-|---|---|---|
-| key<br/>`mandatory` | `string` PayU merchant key | "gtKFFx" |
-| txnid<br/>`mandatory` | `string` Unique transaction ID | "APPLEPAY_DECOUP_1703845200" |
-| amount<br/>`mandatory` | `string` Transaction amount | "100.00" |
-| productinfo<br/>`mandatory` | `string` Product description | "Apple Pay Decoupled Payment" |
-| firstname<br/>`mandatory` | `string` Customer first name | "John" |
-| email<br/>`mandatory` | `string` Customer email address | "john@example.com" |
-| mobile<br/>`mandatory` | `string` Customer mobile number | "9876543210" |
-| txn_s2s_flow<br/>`mandatory` | `string` Set to "4" for decoupled flow | "4" |
-| pg<br/>`mandatory` | `string` Payment gateway identifier | "APPLEPAY" |
-| bankcode<br/>`mandatory` | `string` Bank/payment method code | "CCAP" |
-| apple_pay_token<br/>`mandatory` | `string` JSON stringified Apple Pay token | '\{"paymentData":\{...}}' |
-| s2s_client_ip<br/>`mandatory` | `string` Client IP address | "192.168.1.1" |
-| s2s_device_info<br/>`mandatory` | `string` Device information JSON | '\{"device_type":"web"}' |
-| hash<br/>`mandatory` | `string` SHA-512 request hash | "calculated_hash" |
-| surl<br/>`mandatory` | `string` Success URL | "https://yourapp.com/success" |
-| furl<br/>`mandatory` | `string` Failure URL | "https://yourapp.com/failure" |
-| lastname<br/>`optional` | `string` Customer last name | "Doe" |
-| address1<br/>`optional` | `string` Customer address line 1 | "123 Main St" |
-| address2<br/>`optional` | `string` Customer address line 2 | "Apt 4B" |
-| city<br/>`optional` | `string` Customer city | "Mumbai" |
-| state<br/>`optional` | `string` Customer state | "Maharashtra" |
-| country<br/>`optional` | `string` Customer country | "India" |
-| zipcode<br/>`optional` | `string` Customer postal code | "400001" |
-| udf1<br/>`optional` | `string` User defined field 1 | "custom_value_1" |
-| udf2<br/>`optional` | `string` User defined field 2 | "custom_value_2" |
-| udf3<br/>`optional` | `string` User defined field 3 | "custom_value_3" |
-| udf4<br/>`optional` | `string` User defined field 4 | "custom_value_4" |
-| udf5<br/>`optional` | `string` User defined field 5 | "custom_value_5" |
-| phone<br/>`optional` | `string` Alternative phone number | "9876543211" |
+| Parameter                        | Description                               | Example                                                      |
+| -------------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
+| key<br />`mandatory`             | `string` PayU merchant key                | "gtKFFx"                                                     |
+| txnid<br />`mandatory`           | `string` Unique transaction ID            | "APPLEPAY_DECOUP_1703845200"                                 |
+| amount<br />`mandatory`          | `string` Transaction amount               | "100.00"                                                     |
+| productinfo<br />`mandatory`     | `string` Product description              | "Apple Pay Decoupled Payment"                                |
+| firstname<br />`mandatory`       | `string` Customer first name              | "John"                                                       |
+| email<br />`mandatory`           | `string` Customer email address           | "[john@example.com](mailto:john@example.com)"                |
+| mobile<br />`mandatory`          | `string` Customer mobile number           | "9876543210"                                                 |
+| txn_s2s_flow<br />`mandatory`    | `string` Set to "4" for decoupled flow    | "4"                                                          |
+| pg<br />`mandatory`              | `string` Payment gateway identifier       | "APPLEPAY"                                                   |
+| bankcode<br />`mandatory`        | `string` Bank/payment method code         | "CCAP"                                                       |
+| apple_pay_token<br />`mandatory` | `string` JSON stringified Apple Pay token | '\{"paymentData":\{...}}'                                    |
+| s2s_client_ip<br />`mandatory`   | `string` Client IP address                | "192.168.1.1"                                                |
+| s2s_device_info<br />`mandatory` | `string` Device information JSON          | '\{"device_type":"web"}'                                     |
+| hash<br />`mandatory`            | `string` SHA-512 request hash             | "calculated_hash"                                            |
+| surl<br />`mandatory`            | `string` Success URL                      | "[https://yourapp.com/success](https://yourapp.com/success)" |
+| furl<br />`mandatory`            | `string` Failure URL                      | "[https://yourapp.com/failure](https://yourapp.com/failure)" |
+| lastname<br />`optional`         | `string` Customer last name               | "Doe"                                                        |
+| address1<br />`optional`         | `string` Customer address line 1          | "123 Main St"                                                |
+| address2<br />`optional`         | `string` Customer address line 2          | "Apt 4B"                                                     |
+| city<br />`optional`             | `string` Customer city                    | "Mumbai"                                                     |
+| state<br />`optional`            | `string` Customer state                   | "Maharashtra"                                                |
+| country<br />`optional`          | `string` Customer country                 | "India"                                                      |
+| zipcode<br />`optional`          | `string` Customer postal code             | "400001"                                                     |
+| udf1<br />`optional`             | `string` User defined field 1             | "custom_value_1"                                             |
+| udf2<br />`optional`             | `string` User defined field 2             | "custom_value_2"                                             |
+| udf3<br />`optional`             | `string` User defined field 3             | "custom_value_3"                                             |
+| udf4<br />`optional`             | `string` User defined field 4             | "custom_value_4"                                             |
+| udf5<br />`optional`             | `string` User defined field 5             | "custom_value_5"                                             |
+| phone<br />`optional`            | `string` Alternative phone number         | "9876543211"                                                 |
 
-### Apple Pay Token Structure
+### Sample Request
 
-```json
-{
-  "paymentData": {
-    "version": "EC_v1",
-    "data": "encrypted_payment_data_base64",
-    "signature": "payment_signature",
-    "header": {
-      "ephemeralPublicKey": "ephemeral_public_key",
-      "publicKeyHash": "public_key_hash", 
-      "transactionId": "apple_transaction_id"
-    }
-  },
-  "paymentMethod": {
-    "displayName": "Visa •••• 1234",
-    "network": "Visa",
-    "type": "debit"
-  },
-  "transactionIdentifier": "transaction_identifier"
-}
+```curl
+curl --location 'https://secure.payu.in/AuthorizeTransaction.php' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key={{key}}' \
+--data-urlencode 'txnid={{txnid}}' \
+--data-urlencode 'authentication_info={{info}}' \
+--data-urlencode 'hash={{hash1}}' \
+--data-urlencode 'pg=ApplePay' \
+--data-urlencode 'bankcode=CCAP' \
+--data-urlencode 'firstname=John' \
+--data-urlencode 'country=IN' \
+--data-urlencode 'city=Banglore' \
+--data-urlencode 'state=KA' \
+--data-urlencode 'email=abc@gmail.com' \
+--data-urlencode 'address1=street1 area' \
+--data-urlencode 'udf1=appleTransactionIdentifier' \
+--data-urlencode 'udf2=MAST:credit' \
+--data-urlencode 'lastname=Bing' \
+--data-urlencode 'zipcode=45678' \
+--data-urlencode 'phone=9876543210' \
+--data-urlencode 'productinfo=ABC info' \
+--data-urlencode 'amount={{amt}}'
 ```
 
-### Device Info JSON Structure
+<br />
 
-```json
-{
-  "device_type": "web",
-  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) WebKit/537.36",
-  "accept_header": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-  "language": "en-US",
-  "color_depth": 24,
-  "screen_height": 1080,
-  "screen_width": 1920,
-  "time_zone": 330,
-  "java_enabled": false,
-  "ip_address": "192.168.1.1",
-  "platform": "MacIntel"
-}
-```
+<br />
 
-## Hash Generation
+### Sample Response
 
-### Request Hash Pattern
-
-For S2S Decoupled Flow (txn_s2s_flow=4), the hash pattern is:
-
-```
-key|txnid|amount|productinfo|firstname|mobile|email|udf1|udf2|udf3|udf4|udf5||salt
-```
-
-
-## Sample Response
-
-### Initial S2S Response
+#### Initial S2S Response
 
 The S2S Decoupled Flow returns an initial response indicating the payment has been queued for processing:
 
@@ -138,7 +118,7 @@ The S2S Decoupled Flow returns an initial response indicating the payment has be
 }
 ```
 
-### Success Response (After Processing)
+#### Success Response (After Processing)
 
 ```json
 {
@@ -190,7 +170,7 @@ The S2S Decoupled Flow returns an initial response indicating the payment has be
 }
 ```
 
-### Failure Response
+#### Failure Response
 
 ```json
 {
