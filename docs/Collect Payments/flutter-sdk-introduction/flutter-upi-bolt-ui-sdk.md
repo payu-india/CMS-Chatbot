@@ -47,12 +47,12 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 
 ## Steps to Integrate
 
-<Accordion title="Prerequisites" icon="fa-folder">
+<Accordion title="Prerequisites" icon="folder">
   <h5> SDK Compatibility: Ensure that the application's minimum development target is set to version 13 or higher. </h5>
 
   Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
 
-  <Accordion title="iOS Integration" icon="fa-folder">
+  <Accordion title="iOS Integration" icon="folder">
     To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your podfile.
 
     **Supported iOS deployment target - iOS 17 and above.**
@@ -73,7 +73,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 
   <br />
 
-  <Accordion title="Android Integration" icon="fa-folder">
+  <Accordion title="Android Integration" icon="folder">
     Add the following dependency in the build.gradle file of your android app module:
 
     ```gradle
@@ -97,7 +97,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   <br />
 </Accordion>
 
-<Accordion title="Step 1: Initialization" icon="fa-folder">
+<Accordion title="Step 1: Initialization" icon="folder">
   It is used to initialize the SDK. This method returns an object that will be used to access other methods available in PayUUPIBoltUI.
 
   Add the following imports:
