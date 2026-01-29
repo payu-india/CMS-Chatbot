@@ -108,6 +108,18 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
     <Image align="center" src="https://files.readme.io/dfbfe5bb1b9bd93ea6c30e191556643e8a0e870550a40f46225ea071e4eaab0c-4.png" alt="Flutter UPI Bolt UI SDK Integration PROJECT_DIR config" />
 
     <br />
+    
+Also, add the following dependency to the podfile of your Xcode app if not exists.
+
+    **UAT:**
+
+    > pod 'PayUIndia-UPIBoltCoreKit', '3.0.0-alpha.1'
+
+**PRODUCTION:**
+
+> pod 'PayUIndia-UPIBoltCoreKit', '1.1.0'
+ 
+
   </Accordion>
 
   <br />
