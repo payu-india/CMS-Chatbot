@@ -418,8 +418,57 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
   
 <Accordion title="Step 4. Open UPI Management" icon="folder">
   This API allows you to manage UPI accounts and transaction history.
-  
+    ```dart
+  // Screen Types
+var params = {
+  screenType: <String> 
+}
+
+// Values
+"ALL" or "TRANSACTIONHISTORY" or "MANAGEUPIACCOUNTS" or "DISPUTE" or "DEREGISTERUPI"
+
+payUUpiFlutter.openUPIManagement(params: Map);
+      ```
+      
+ The following fields are needed as a request for this API: 
+      
+<Table>
+          <thead>
+            <tr>
+              <th>
+                Field
+              </th>
+
+              <th>
+                Definition
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                screenType
+                `mandatory`
+              </td>
+
+              <td>
+                `String` To enforce the management screen
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+
+
+  **Response:** [SDK Response JSON Format:](<SDK Response JSON Format:>)
+
+
   </Accordion>
+
+      <Accordion title="Step 5. PayUPaymentParams" icon="folder">
+        
+        </Accordion>
+
 
 
 
