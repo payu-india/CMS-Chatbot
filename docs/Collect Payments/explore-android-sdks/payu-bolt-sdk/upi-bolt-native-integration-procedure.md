@@ -375,7 +375,7 @@ The following fields are needed as a request for this API:
 
 ## Generate Payment Params
 
-```
+```Text Kotlin
 val paymentParams = PayUUPIBoltPaymentParams.Builder()
     .amount(<amount>)
     .productInfo(<productInfo>)
@@ -392,6 +392,137 @@ val paymentParams = PayUUPIBoltPaymentParams.Builder()
     .build()
 ```
 
+The following fields are needed as a request:
+<table>
+                                                                    <thead>
+                                                                      <tr>
+                                                                        <th>Parameter</th>
+                                                                        <th>Description</th>
+                                                                      </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <tr>
+                                                                        <td>
+                                                                          amount<br/>
+                                                                          <code>mandatory</code>
+                                                                        </td>
+                                                                        <td>
+                                                                          <code>String</code><br/>
+                                                                          Transaction amount.
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td>
+                                                                          productInfo<br/>
+                                                                          <code>mandatory</code>
+                                                                        </td>
+                                                                        <td>
+                                                                          <code>String</code><br/>
+                                                                          Information about the product or service.
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td>
+                                                                          firstName<br/>
+                                                                          <code>mandatory</code>
+                                                                        </td>
+                                                                        <td>
+                                                                          <code>String</code><br/>
+                                                                          Customer's first name.
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td>
+                                                                          surl<br/>
+                                                                          <code>mandatory</code>
+                                                                        </td>
+                                                                        <td>
+                                                                          <code>String</code><br/>
+                                                                          Android success URL.
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td>
+                                                                          furl<br/>
+                                                                          <code>mandatory</code>
+                                                                        </td>
+                                                                        <td>
+                                                                          <code>String</code><br/>
+                                                                          Android failure URL.
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td>
+                                                                          ios_surl<br/>
+                                                                          <code>mandatory</code>
+                                                                        </td>
+                                                                        <td>
+                                                                          <code>String</code><br/>
+                                                                          iOS success URL.
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td>
+                                                                          ios_furl<br/>
+                                                                          <code>mandatory</code>
+                                                                        </td>
+                                                                        <td>
+                                                                          <code>String</code><br/>
+                                                                          iOS failure URL.
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td>
+                                                                          initiationMode<br/>
+                                                                          <code>mandatory</code>
+                                                                        </td>
+                                                                        <td>
+                                                                          <code>String</code><br/>
+                                                                          Mode of initiation (e.g., "10").
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td>
+                                                                          purpose<br/>
+                                                                          <code>mandatory</code>
+                                                                        </td>
+                                                                        <td>
+                                                                          <code>String</code><br/>
+                                                                          Purpose code (e.g., "00").
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td>
+                                                                          txnId<br/>
+                                                                          <code>mandatory</code>
+                                                                        </td>
+                                                                        <td>
+                                                                          <code>String</code><br/>
+                                                                          Unique transaction ID.
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td>
+                                                                          udf1 - udf6<br/>
+                                                                          <code>optional</code>
+                                                                        </td>
+                                                                        <td>
+                                                                          <code>Any</code><br/>
+                                                                          User-defined fields for additional transaction metadata.
+                                                                        </td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td>
+                                                                          isCCTxnEnabled<br/>
+                                                                          <code>optional</code>
+                                                                        </td>
+                                                                        <td>
+                                                                          <code>Boolean</code><br/>
+                                                                          Enables card fallback if supported – true or false.
+                                                                        </td>
+                                                                      </tr>
+                                                                    </tbody>
+                                                                  </table>
 <br />
 
 ## Listener or Callback logic
