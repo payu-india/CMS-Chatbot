@@ -45,7 +45,7 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
 </Accordion>
 
-### Profile Management Journey
+<Accordion title="Profile Management Journey" icon="fa-folder">
 
 <Image align="center" alt="UPI Bolt React Native Custome Journey for Profile Management" border={false} src="https://files.readme.io/556315528c71a4e06f9cb9c4edb40fd651eef3c10b20a9418d569231877d98a7-upi_bolt_reactnative_customer_journey_profile_mgmt.jpeg" />
 
@@ -53,5 +53,7 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 2. Transaction history can be seen and queries can be raised and resolved within the PayU UI Bolt SDK.
 3. Customers can see all the raised disputes from the Dispute history screen.
 4. Customers can also deregister their all accounts with PayU UI Bolt SDK.
+
+</Accordion>
 
 ## Steps to Integrate PayU Bolt SDK
