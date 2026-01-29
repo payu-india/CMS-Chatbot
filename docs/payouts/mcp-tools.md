@@ -1,7 +1,7 @@
 ---
 title: MCP Tools
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
