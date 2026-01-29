@@ -11,7 +11,7 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 |                        |                                                                                                          |
 | :--------------------- | :------------------------------------------------------------------------------------------------------- |
-| Production Environment | [https://info.payu.in/refund/v1/refundInitiation](https://info.payu.in/refund/v1/refundInitiation)       |
+| Production Environment | https://secure.payu.in/v2/refund/                                                                        |
 | Test Environment       | [https://apitest.payu.in/refund/v1/refundInitiation](https://apitest.payu.in/refund/v1/refundInitiation) |
 
 ## Request header
