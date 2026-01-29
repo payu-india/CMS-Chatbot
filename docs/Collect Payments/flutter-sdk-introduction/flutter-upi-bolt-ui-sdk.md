@@ -50,51 +50,52 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
 <Accordion title="Prerequisites" icon="fa-folder">
   SDK Compatibility: Ensure that the application's minimum development target is set to version 13 or higher.
 
-Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
+  Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
 
-<Accordion title="iOS Integration" icon="fa-folder">
-  To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your podfile.
+  <Accordion title="iOS Integration" icon="fa-folder">
+    To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your podfile.
 
-  **Supported iOS deployment target - iOS 17 and above.**
+    **Supported iOS deployment target - iOS 17 and above.**
 
-  The following xcframework files will be provided by PayU during onboarding:
+    The following xcframework files will be provided by PayU during onboarding:
 
-  1. NPCI - CommonLibrary.xcframework
-  2. AXIS - OlivePayLibrary.xcframework
+    1. NPCI - CommonLibrary.xcframework
+    2. AXIS - OlivePayLibrary.xcframework
 
-  Add these framework in your project. The added framework is similar to the following screeshot:
+    Add these framework in your project. The added framework is similar to the following screeshot:
 
-  <Image align="center" src="https://files.readme.io/ab49c1c2aad9cb456436a7bf17437ea1797620f6bb650deb37f4a798c1328419-3.png" alt="NPCI - CommonLibrary.xcframework and AXIS - OlivePayLibrary.xcframework added to project" />
+    <Image align="center" src="https://files.readme.io/ab49c1c2aad9cb456436a7bf17437ea1797620f6bb650deb37f4a798c1328419-3.png" alt="NPCI - CommonLibrary.xcframework and AXIS - OlivePayLibrary.xcframework added to project" />
 
-  In Build Settings > Framework Search Path, add `$(PROJECT_DIR)/Frameworks` if it is not added automatically by Xcode.
+    In Build Settings > Framework Search Path, add `$(PROJECT_DIR)/Frameworks` if it is not added automatically by Xcode.
 
-  <Image align="center" src="https://files.readme.io/dfbfe5bb1b9bd93ea6c30e191556643e8a0e870550a40f46225ea071e4eaab0c-4.png" alt="Flutter UPI Bolt UI SDK Integration PROJECT_DIR config" />
-</Accordion>
+    <Image align="center" src="https://files.readme.io/dfbfe5bb1b9bd93ea6c30e191556643e8a0e870550a40f46225ea071e4eaab0c-4.png" alt="Flutter UPI Bolt UI SDK Integration PROJECT_DIR config" />
+  </Accordion>
 
-<br />
+  <br />
 
-<Accordion title="Android Integration" icon="fa-folder">
-  Add the following dependency in the build.gradle file of your android app module:
+  <Accordion title="Android Integration" icon="fa-folder">
+    Add the following dependency in the build.gradle file of your android app module:
 
-  ```gradle
-  implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.1-dev4'
-  implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
-  ```
-
-  Add the given aar file in the libs folder of your android app module:
-
-  ```
-  <your_project>/android/app/libs/SecureComponent-release-prod_05062024_9d3904ab.aar
-  ```
-
-  Install the Flutter package:
-
-  ```bash
-  flutter pub add payu_upi_bolt_ui_flutter:^1.0.0-alpha.1
+    ```gradle
+    implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.1-dev4'
+    implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
     ```
 
+    Add the given aar file in the libs folder of your android app module:
 
-</Accordion>
+    ```
+    <your_project>/android/app/libs/SecureComponent-release-prod_05062024_9d3904ab.aar
+    ```
+
+    Install the Flutter package:
+
+    ```bash
+    flutter pub add payu_upi_bolt_ui_flutter:^1.0.0-alpha.1
+    ```
+      </Accordion>
+
+
+<br />
 
 </Accordion>
 
