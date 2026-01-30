@@ -583,38 +583,69 @@ PayUUpiBoltUiCordova.openUPIManagement(this.responseCallBack, screenType);
   The listener/callback contains following methods where the merchant app will get the API response and hash-related callbacks.
 
   ```Cordova
-  useEffect(() => {
-  // List of listener registrations
-  const listeners: { remove: () => void }[] = [];
+  responseCallBack = (response: any) => {
+  console.log('responseCallBack : ', JSON.stringify(response));
 
-  // Helper to register and store listeners
-  const addListener = (eventName: string, handler: (data: any) => void) => {
-    const listener = Plugins.PayUUPIBoltUICapacitorPlugin.addListener(eventName, handler);
-    listeners.push(listener);
-  };
+  // 1. onPayUSuccess(Map response): It will contain success response.
+  if ('onPayUSuccess' in response) {
+    this.showAlert(JSON.stringify(response));
+    return;
+  }
 
-  // Event: generateHash - handled separately
-  addListener('generateHash', handleHashGeneration);
+  // 2. onPayUFailure(Map response): It will contain failure response.
+  if ('onPayUFailure' in response) {
+    this.showAlert(JSON.stringify(response));
+    return;
+  }
 
-  // Common handler for other events - just alert JSON response
-  const alertHandler = (data: any) => {
-    presentAlert(JSON.stringify(data));
-  };
+  // 3. onPayUCancel(Map response): It will tell if payment was cancelled.
+  if ('onPayUCancel' in response) {
+    this.showAlert(JSON.stringify(response));
+    return;
+  }
 
-  // Register all event listeners using the shared alert handler
-  addListener('onPayUSuccess', alertHandler);
-  addListener('onPayUCancel', alertHandler);
-  addListener('onPayUFailure', alertHandler);
-  addListener('reset', alertHandler);
-  addListener('clearCache', alertHandler);
-  addListener('isRegistered', alertHandler);
-  addListener('isUPIBoltEnabled', alertHandler);
+  // 4. onError(Map response): It will tell if any error occurred.
+  if ('onError' in response) {
+    this.showAlert(JSON.stringify(response));
+    return;
+  }
 
-  // Cleanup all listeners on component unmount
-  return () => {
-    listeners.forEach(listener => listener.remove());
-  };
-  }, []);
+  // 5. isUPIBoltEnabled(Map response): It will tell if UPI Bolt SDK is enabled.
+  if ('isUPIBoltEnabled' in response) {
+    this.showAlert(JSON.stringify(response));
+    return;
+  }
+
+  // 6. onReset(Map response): It will tell the SDK instance reset successfully.
+  if ('onReset' in response) {
+    this.showAlert(JSON.stringify(response));
+    return;
+  }
+
+  // 7. onClearCache(Map response): It will confirm cache was cleared.
+  if ('onClearCache' in response) {
+    this.showAlert(JSON.stringify(response));
+    return;
+  }
+
+  // 8. onIsRegistered(Map response): It will tell the registration status with plugin.
+  if ('onIsRegistered' in response) {
+    this.showAlert(JSON.stringify(response));
+    return;
+  }
+  
+  // 9. onInitSDK(Map response): It will tell if any error occurred during SDK initialization.
+  if ('onInitSDK' in response) {
+    this.showAlert(JSON.stringify(response));
+    return;
+  }
+  
+  // 10. generateHash(Map response): Ref: Hash generation section
+  if ('generateHash' in response) {
+    this.handleHashGeneration(JSON.stringify(response));
+    return;
+  }
+};
   ```
 </Accordion>
 
