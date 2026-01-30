@@ -14,7 +14,7 @@ PayU UPI Bolt SDK aims to streamline and enhance the merchants' payment process 
 
 This part of the document includes the following SDK integrations:
 
-* [Cordova UPI Bolt UI SDK](docs:cordova-upi-bolt-ui-sdk)
+* [Cordova UPI Bolt UI SDK](doc:cordova-upi-bolt-ui-sdk)
 * [Cordova-Ionic PayU UPI Bolt UI SDK](#cordova-ionic-payu-upi-bolt-ui-sdk)
 
 ## Advantages
