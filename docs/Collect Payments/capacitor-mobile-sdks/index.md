@@ -1,5 +1,5 @@
 ---
-title: Capacitor Mobile SDKs
+title: Cordova UPI Bolt Mobile SDKs
 deprecated: false
 hidden: true
 metadata:
