@@ -1,5 +1,5 @@
 ---
-title: UPI Bolt UI SDK - Ionic
+title: Capacitor UPI Bolt Mobile SDKs
 excerpt: ''
 deprecated: false
 hidden: false
