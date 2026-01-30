@@ -131,12 +131,6 @@ Merchants who want to integrate only PayU UPI Bolt with their app. They can mana
 <Accordion title="Step 1: Initialization" icon="folder" id="step-1-initialization">
   It is used to initialize the SDK. This method returns an object that will be used to access other methods available in PayUUPIBoltUI.
 
-  <h5> Add the following imports:</h5>
-
-  ```Cordova
-  import { PayUUPIBoltUICapacitorPlugin } from 'payu-upi-bolt-ui-capacitor';
-  ```
-
   Initialize the SDK with configuration:
 
   ```Cordova
@@ -240,7 +234,7 @@ PayUUpiBoltUiCordova.reset(this.responseCallBack);
   <br />
 
   ```Cordova
-  PayUUPIBoltUICapacitorPlugin.clearCache({ pg: <String> });
+  PayUUpiBoltUiCordova.clearCache(this.responseCallBack, pg);
   ```
 
   **The following fields are needed as a request for this API:**
@@ -289,7 +283,7 @@ PayUUpiBoltUiCordova.reset(this.responseCallBack);
   <br />
 
   ```Cordova
-  PayUUPIBoltUICapacitorPlugin.isRegistered({ pg: <String> });
+  PayUUpiBoltUiCordova.isRegistered(this.responseCallBack, pg);
   ```
 
   <Table>
@@ -334,7 +328,7 @@ PayUUpiBoltUiCordova.reset(this.responseCallBack);
   <br />
 
   ```Cordova
-  PayUUPIBoltUICapacitorPlugin.isUPIBoltEnabled();
+  PayUUpiBoltUiCordova.isUPIBoltEnabled(this.responseCallBack);
   ```
 
   <br />
@@ -498,9 +492,9 @@ PayUUpiBoltUiCordova.reset(this.responseCallBack);
   <br />
 
   ```Cordova
-  const currentTimeMillis = new Date().getTime();
+const currentTimeMillis = new Date().getTime();
 
-  const paymentParams = {
+const paymentParams = {
   amount: "<amount>", // String
   productInfo: "<productInfo>", // String
   firstName: "<firstName>", // String
@@ -516,10 +510,17 @@ PayUUpiBoltUiCordova.reset(this.responseCallBack);
   udf4: "<udf4>", // String (Optional)
   udf5: "<udf5>", // String (Optional)
   txnId: "<txnId>", // String (Unique transaction ID)
-  isCCTxnEnabled: <trueOrFalse> // Boolean (Enable card fallback if supported)
-  };
+  isCCTxnEnabled: <trueOrFalse>, // Boolean (Enable card fallback if supported),
+  beneficiaryDetails: [ // (Optional) For TPV txn only
+    {
+      accountNumber: <account_number>, // String
+      ifscCode: <ifsc_code> // String
+    },
+    // Add more beneficiaries as needed
+  ]
+};
 
-  PayUUPIBoltUICapacitorPlugin.registerAndPay({ paymentParams: JSON.stringify(paymentParams) });
+PayUUpiBoltUiCordova.registerAndPay(this.responseCallBack, paymentParams);
   ```
 
   <br />
@@ -540,9 +541,9 @@ PayUUpiBoltUiCordova.reset(this.responseCallBack);
 
   ```Cordova
   // Screen Types
-  const screenType = <screenType> // String
+const screenType = <screenType> // String
 
-  PayUUPIBoltUICapacitorPlugin.openUPIManagement({ screenType: screenType });
+PayUUpiBoltUiCordova.openUPIManagement(this.responseCallBack, screenType);
   ```
 
   **Request Parameters**
