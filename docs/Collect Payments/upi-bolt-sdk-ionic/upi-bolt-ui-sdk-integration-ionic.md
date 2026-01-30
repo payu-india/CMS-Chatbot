@@ -1,5 +1,5 @@
 ---
-title: UPI Bolt UI SDK Integration - Ionic
+title: UPI Bolt UI SDK Integration -Capacitor-Ionic
 excerpt: ''
 deprecated: false
 hidden: false
