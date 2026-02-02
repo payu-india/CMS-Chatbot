@@ -46,7 +46,7 @@ The advantages for the overseas merchant include: 
 * International merchants are looking at simplified market entry into India. They want partners who can eliminate operational complexities by operating through local merchants of record with knowledge of the Indian market. 
 * Merchants are looking to tap the Indian eCommerce market by offering them the majority of the local payment methods like Net Banking, Rupay cards, and local card processing with higher transaction success rates. 
 
-Merchants cannot sell products / services for more than Rs. 850,000 (8.5 Lacs) per transaction.
+Merchants cannot sell products / services for more than Rs. 25,00,000 (approx ~USD 27,000) per transaction.
 
 * Every transaction must be accompanied with buyer's details - First Name, Last Name & Billing Zipcode
 * Every transaction must be accompanied by an "invoice ID"
