@@ -26,13 +26,13 @@ Merchants who want to integrate only PayU UPI Bolt with their app. They can mana
   **UAT:**
 
   ```
-  cordova plugin add payu-upi-bolt-ui-cordova@0.0.1-alpha.14
+npm add payu-upi-bolt-ui-capacitor@0.0.1-alpha.4
   ```
 
   **PRODUCTION:**
 
   ```
-  cordova plugin add payu-upi-bolt-ui-cordova@0.0.3
+npm add payu-upi-bolt-ui-capacitor@0.0.1
   ```
 
   Ensure that the application's minimum development target is set to version 13 or higher.
