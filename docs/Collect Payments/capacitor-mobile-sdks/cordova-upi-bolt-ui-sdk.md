@@ -5,59 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-PayU UPI Bolt SDK will provide a simpler and more efficient payment experience to the merchants. It will eliminate any third-party redirection and higher success rate. Profile management including accounts and balances for users. Enhancing the overall customer experience and decreasing customer drop-offs.
-
-## Advantages
-
-1. One-click payment journey and no hassle of redirection to a third-party UPI application.
-2. Quick completion of transactions because of direct integration with the bank.
-3. Seamless user experience to the customers with in-app payment.
-4. Easy to integrate and get the advantage of existing customer profiles created with banks.
-5. 5-6% higher success rate and better transaction conversion.
-6. Merchants can take advantage of a complete user funnel to understand user behavior.
-
-## User Journeys in PayU UPI Bolt
-
-<Accordion title="Registration and Pay" icon="fa-folder">
-  <br />
-
-  1. Merchant Application can do the User registration for customers who are coming first time for PayU UPI Bolt. The Registration can be done during the checkout process or it can be called in a separate user journey. In case of Merchant is using PayU Checkout Pro SDK, PayU will take care of customer registration.
-  2. Once the registration process is initiated, the user will be asked to accept the SMS sending permissions required to verify the SIM card. If the phone has dual SIM, the SIM card selection screen will be shown to customers to select the specific SIM card.
-  3. After the device verification, UPI ID creation and the Bank selection will be done. Add bank journey will be completed after adding a bank account connected to the same mobile number used for device verification.
-  4. Finally, customers can do a transaction using the added bank account. In case the customer is using the bank account for the first time they will need to set the MPIN as well.
-  5. Finally, customers can make a transaction using the added bank account. If the customer is using the bank account for the first time, he will also need to set the MPIN.
-
-  <br />
-
-  <Image align="center" src="https://files.readme.io/a2d41854641a44082dcb2bc0e38a3bea213ef7c25ca0ce9429d8c8221581ab75-upi_bolt_reactnative_customer_journey_register_pay.jpeg" alt="UPI Bolt React Native Custome Journey for Registration and Pay" />
-</Accordion>
-
-<Accordion title="Pay" icon="fa-folder">
-  <br />
-
-  1. Customers who are already registered with PayU UPI Bolt can make a One-click payment.
-  2. The customer needs to select the already added bank account and enter the MPIN and the transaction will be completed.
-  3. The customer can also check the balance before making a transaction to avoid low-balance transaction failure.
-
-  <br />
-
-  <Image align="center" src="https://files.readme.io/fad794f25f0f6b108bc694ee13f79f7a3b5de220f6f90990409f7267e86446bb-upi_bolt_reactnative_customer_journey_pay.jpeg" alt="UPI Bolt React Native Custome Journey for Pay" />
-
-  <br />
-</Accordion>
-
-<Accordion title="Profile Management Journey" icon="fa-folder">
-  <br />
-
-  1. Customers can add new bank accounts, set MPIN, change MPIN, reset MPIN, delete accounts, and check the balance of already added bank accounts.
-  2. Transaction history can be seen and queries can be raised and resolved within the PayU UI Bolt SDK.
-  3. Customers can see all the raised disputes from the Dispute history screen.
-  4. Customers can also deregister their all accounts with PayU UI Bolt SDK.
-
-  <br />
-
-  <Image align="center" src="https://files.readme.io/556315528c71a4e06f9cb9c4edb40fd651eef3c10b20a9418d569231877d98a7-upi_bolt_reactnative_customer_journey_profile_mgmt.jpeg" alt="UPI Bolt React Native Custome Journey for Profile Management" />
-</Accordion>
+Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
 
 ## Steps to Integrate PayU Bolt SDK
 
@@ -65,8 +13,6 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
   <Callout icon="🚧" theme="warn">
     Supported iOS deployment target - iOS 17 and above.
   </Callout>
-
-  Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
 
   <br />
 
@@ -214,72 +160,72 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
   <br />
 
   <HTMLBlock>{`
-                                                                                                                                                                                                                      <table style="width: 100%; border-collapse: collapse;">
-                                                                                                                                                                                                                          <thead>
-                                                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                                                  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                                                                                                                                                                                                                                  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                                                                                                                                                                                                                                  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-                                                                                                                                                                                                                              </tr>
-                                                                                                                                                                                                                          </thead>
-                                                                                                                                                                                                                          <tbody>
-                                                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">config<br><code>mandatory</code></td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> PayUUPIBoltBaseConfig includes the below fields.</td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">{...}</td>
-                                                                                                                                                                                                                              </tr>
-                                                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">merchantName<br><code>mandatory</code></td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Merchant Name</td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">"MyStore Inc"</td>
-                                                                                                                                                                                                                              </tr>
-                                                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">merchantKey<br><code>mandatory</code></td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> PayU Merchant Key</td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">"gtKFFx"</td>
-                                                                                                                                                                                                                              </tr>
-                                                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">phone<br><code>mandatory</code></td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Phone number for registration</td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">"+919876543210"</td>
-                                                                                                                                                                                                                              </tr>
-                                                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">email<br><code>mandatory</code></td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Customer Email Id</td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">"customer@example.com"</td>
-                                                                                                                                                                                                                              </tr>
-                                                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">pluginTypes<br><code>mandatory</code></td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Supported Plugin (Values - AXIS or HDFC or BHIM)</td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC", "BHIM"]</td>
-                                                                                                                                                                                                                              </tr>
-                                                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">isProduction<br><code>mandatory</code></td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><code>Boolean</code> Prod - true, staging - false</td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-                                                                                                                                                                                                                              </tr>
-                                                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">excludedBanksIINs<br><code>optional</code></td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Bank's IIN to exclude</td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">["123456", "789012"]</td>
-                                                                                                                                                                                                                              </tr>
-                                                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">clientId<br><code>optional</code></td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique client ID</td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">"CLIENT_001"</td>
-                                                                                                                                                                                                                              </tr>
-                                                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">refId<br><code>mandatory</code></td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique reference ID</td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">"REF_12345678"</td>
-                                                                                                                                                                                                                              </tr>
-                                                                                                                                                                                                                              <tr>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">issuingBanks<br><code>optional</code></td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Issuing Bank's (Values - AXIS or HDFC)</td>
-                                                                                                                                                                                                                                  <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC"]</td>
-                                                                                                                                                                                                                              </tr>
-                                                                                                                                                                                                                          </tbody>
-                                                                                                                                                                                                                      </table>
+                                                                                                                                                                                                                        <table style="width: 100%; border-collapse: collapse;">
+                                                                                                                                                                                                                            <thead>
+                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                    <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                                                                                                                                                                                                                                    <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                                                                                                                                                                                                                                    <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
+                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                            </thead>
+                                                                                                                                                                                                                            <tbody>
+                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">config<br><code>mandatory</code></td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>Map</code> PayUUPIBoltBaseConfig includes the below fields.</td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">{...}</td>
+                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">merchantName<br><code>mandatory</code></td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Merchant Name</td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">"MyStore Inc"</td>
+                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">merchantKey<br><code>mandatory</code></td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> PayU Merchant Key</td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">"gtKFFx"</td>
+                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">phone<br><code>mandatory</code></td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Phone number for registration</td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">"+919876543210"</td>
+                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">email<br><code>mandatory</code></td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Customer Email Id</td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">"customer@example.com"</td>
+                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">pluginTypes<br><code>mandatory</code></td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Supported Plugin (Values - AXIS or HDFC or BHIM)</td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC", "BHIM"]</td>
+                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">isProduction<br><code>mandatory</code></td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>Boolean</code> Prod - true, staging - false</td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">excludedBanksIINs<br><code>optional</code></td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Bank's IIN to exclude</td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">["123456", "789012"]</td>
+                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">clientId<br><code>optional</code></td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique client ID</td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">"CLIENT_001"</td>
+                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">refId<br><code>mandatory</code></td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>String</code> Unique reference ID</td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">"REF_12345678"</td>
+                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">issuingBanks<br><code>optional</code></td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;"><code>Array&lt;String&gt;</code> List of Issuing Bank's (Values - AXIS or HDFC)</td>
+                                                                                                                                                                                                                                    <td style="border: 1px solid #ddd; padding: 8px;">["AXIS", "HDFC"]</td>
+                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                            </tbody>
+                                                                                                                                                                                                                        </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -408,136 +354,136 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
   **Payment Parameters**
 
   <HTMLBlock>{`
-                                                                                <table>
-                                                                                  <thead>
-                                                                                    <tr>
-                                                                                      <th>Parameter</th>
-                                                                                      <th>Description</th>
-                                                                                    </tr>
-                                                                                  </thead>
-                                                                                  <tbody>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        amount<br/>
-                                                                                        <code>mandatory</code>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <code>String</code><br/>
-                                                                                        Transaction amount.
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        productInfo<br/>
-                                                                                        <code>mandatory</code>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <code>String</code><br/>
-                                                                                        Information about the product or service.
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        firstName<br/>
-                                                                                        <code>mandatory</code>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <code>String</code><br/>
-                                                                                        Customer's first name.
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        surl<br/>
-                                                                                        <code>mandatory</code>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <code>String</code><br/>
-                                                                                        Android success URL.
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        furl<br/>
-                                                                                        <code>mandatory</code>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <code>String</code><br/>
-                                                                                        Android failure URL.
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        ios_surl<br/>
-                                                                                        <code>mandatory</code>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <code>String</code><br/>
-                                                                                        iOS success URL.
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        ios_furl<br/>
-                                                                                        <code>mandatory</code>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <code>String</code><br/>
-                                                                                        iOS failure URL.
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        initiationMode<br/>
-                                                                                        <code>mandatory</code>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <code>String</code><br/>
-                                                                                        Mode of initiation (e.g., "10").
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        purpose<br/>
-                                                                                        <code>mandatory</code>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <code>String</code><br/>
-                                                                                        Purpose code (e.g., "00").
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        txnId<br/>
-                                                                                        <code>mandatory</code>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <code>String</code><br/>
-                                                                                        Unique transaction ID.
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        udf1 - udf6<br/>
-                                                                                        <code>optional</code>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <code>Any</code><br/>
-                                                                                        User-defined fields for additional transaction metadata.
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        isCCTxnEnabled<br/>
-                                                                                        <code>optional</code>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <code>Boolean</code><br/>
-                                                                                        Enables card fallback if supported – true or false.
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                  </tbody>
-                                                                                </table>
+                                                                                  <table>
+                                                                                    <thead>
+                                                                                      <tr>
+                                                                                        <th>Parameter</th>
+                                                                                        <th>Description</th>
+                                                                                      </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                      <tr>
+                                                                                        <td>
+                                                                                          amount<br/>
+                                                                                          <code>mandatory</code>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <code>String</code><br/>
+                                                                                          Transaction amount.
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                      <tr>
+                                                                                        <td>
+                                                                                          productInfo<br/>
+                                                                                          <code>mandatory</code>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <code>String</code><br/>
+                                                                                          Information about the product or service.
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                      <tr>
+                                                                                        <td>
+                                                                                          firstName<br/>
+                                                                                          <code>mandatory</code>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <code>String</code><br/>
+                                                                                          Customer's first name.
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                      <tr>
+                                                                                        <td>
+                                                                                          surl<br/>
+                                                                                          <code>mandatory</code>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <code>String</code><br/>
+                                                                                          Android success URL.
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                      <tr>
+                                                                                        <td>
+                                                                                          furl<br/>
+                                                                                          <code>mandatory</code>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <code>String</code><br/>
+                                                                                          Android failure URL.
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                      <tr>
+                                                                                        <td>
+                                                                                          ios_surl<br/>
+                                                                                          <code>mandatory</code>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <code>String</code><br/>
+                                                                                          iOS success URL.
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                      <tr>
+                                                                                        <td>
+                                                                                          ios_furl<br/>
+                                                                                          <code>mandatory</code>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <code>String</code><br/>
+                                                                                          iOS failure URL.
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                      <tr>
+                                                                                        <td>
+                                                                                          initiationMode<br/>
+                                                                                          <code>mandatory</code>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <code>String</code><br/>
+                                                                                          Mode of initiation (e.g., "10").
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                      <tr>
+                                                                                        <td>
+                                                                                          purpose<br/>
+                                                                                          <code>mandatory</code>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <code>String</code><br/>
+                                                                                          Purpose code (e.g., "00").
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                      <tr>
+                                                                                        <td>
+                                                                                          txnId<br/>
+                                                                                          <code>mandatory</code>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <code>String</code><br/>
+                                                                                          Unique transaction ID.
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                      <tr>
+                                                                                        <td>
+                                                                                          udf1 - udf6<br/>
+                                                                                          <code>optional</code>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <code>Any</code><br/>
+                                                                                          User-defined fields for additional transaction metadata.
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                      <tr>
+                                                                                        <td>
+                                                                                          isCCTxnEnabled<br/>
+                                                                                          <code>optional</code>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                          <code>Boolean</code><br/>
+                                                                                          Enables card fallback if supported – true or false.
+                                                                                        </td>
+                                                                                      </tr>
+                                                                                    </tbody>
+                                                                                  </table>
   `}</HTMLBlock>
 
   <br />
@@ -597,31 +543,31 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
   **Request Parameters**
 
   <HTMLBlock>{`
-                                                                              <table>
-                                                                                <thead>
-                                                                                  <tr>
-                                                                                    <th>Parameter</th>
-                                                                                    <th>Description</th>
-                                                                                  </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                  <tr>
-                                                                                    <td>
-                                                                                      screenType<br/>
-                                                                                      <code>mandatory</code>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                      <code>String</code><br/>
-                                                                                      Specifies the type of management screen. Valid values:<br/>
-                                                                                      • ALL<br/>
-                                                                                      • TRANSACTIONHISTORY<br/>
-                                                                                      • MANAGEUPIACCOUNTS<br/>
-                                                                                      • DISPUTE<br/>
-                                                                                      • DEREGISTERUPI
-                                                                                    </td>
-                                                                                  </tr>
-                                                                                </tbody>
-                                                                              </table>
+                                                                                <table>
+                                                                                  <thead>
+                                                                                    <tr>
+                                                                                      <th>Parameter</th>
+                                                                                      <th>Description</th>
+                                                                                    </tr>
+                                                                                  </thead>
+                                                                                  <tbody>
+                                                                                    <tr>
+                                                                                      <td>
+                                                                                        screenType<br/>
+                                                                                        <code>mandatory</code>
+                                                                                      </td>
+                                                                                      <td>
+                                                                                        <code>String</code><br/>
+                                                                                        Specifies the type of management screen. Valid values:<br/>
+                                                                                        • ALL<br/>
+                                                                                        • TRANSACTIONHISTORY<br/>
+                                                                                        • MANAGEUPIACCOUNTS<br/>
+                                                                                        • DISPUTE<br/>
+                                                                                        • DEREGISTERUPI
+                                                                                      </td>
+                                                                                    </tr>
+                                                                                  </tbody>
+                                                                                </table>
   `}</HTMLBlock>
 
   **Response:** `Map` [Refer to SDK Response JSON Format](#sdk-response-json-format)
@@ -752,7 +698,7 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 | result       | Any?      | Contains response model if received success callback                            |
 | code         | Int       | [Ref. Response Codes and Messages section](#error-codes-and-error-message-list) |
 | message      | String?   | [Ref. Response Codes and Messages section](#error-codes-and-error-message-list) |
-| responseType | Int       | Ref. [ResponseType](#response-type) :                                           |
+| responseType | Int       | Ref. [ResponseType](#response-type)                                             |
 
 ## Error Codes and Error Message List
 
