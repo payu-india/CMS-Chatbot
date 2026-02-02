@@ -1,7 +1,7 @@
 ---
 title: Cordova UPI Bolt Mobile SDKs
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
