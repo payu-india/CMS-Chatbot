@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-PayU UPI Bolt SDK offers a simpler and more efficient payment experience for merchants. It eliminates any third-party redirection, enhances the success rate, and improves the overall customer experience by reducing drop-offs.
+Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
 
 ## Prerequisites
 
@@ -20,28 +20,26 @@ PayU UPI Bolt SDK offers a simpler and more efficient payment experience for mer
 ## iOS Integration
 
 <Accordion title="Sample code" icon="fa-code">
+  **Step 1**: Add the following to your project:
 
-**Step 1**: Add the following to your project:
+  ```bash
+  npm add payu-upi-bolt-ui-capacitor@0.0.1-alpha.4
+  ```
 
-```bash
-npm add payu-upi-bolt-ui-capacitor@0.0.1-alpha.4
-```
+  **Step 2**: Set the minimum development target to **iOS 13 or higher**.
 
-**Step 2**: Set the minimum development target to **iOS 13 or higher**.
+  **Step 3**: Include the following `xcframework` files provided by PayU during onboarding:
+  • `NPCI - CommonLibrary.xcframework`
+  • `AXIS - OlivePayLibrary.xcframework`
 
-**Step 3**: Include the following `xcframework` files provided by PayU during onboarding:
-• `NPCI - CommonLibrary.xcframework`
-• `AXIS - OlivePayLibrary.xcframework`
+  **Step 4**: Modify Build Settings:
+  Add `$(PROJECT_DIR)/Frameworks` under **Framework Search Path** (if Xcode doesn't add it automatically).
 
-**Step 4**: Modify Build Settings:
-Add `$(PROJECT_DIR)/Frameworks` under **Framework Search Path** (if Xcode doesn't add it automatically).
+  **Step 5**: Include additional dependencies in the `podfile`:
 
-**Step 5**: Include additional dependencies in the `podfile`:
-
-```bash
-pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
-```
-
+  ```bash
+  pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
+  ```
 </Accordion>
 
 <Accordion title="Android Integration" icon="fa-code">
@@ -80,116 +78,116 @@ pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
   **Configuration Parameters**
 
   <HTMLBlock>{`
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            merchantName<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Merchant's name.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            merchantKey<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Merchant key provided by PayU.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            phone<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Customer's phone number for registration.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            email<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Customer email address.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            refId<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Unique reference ID for tracking the transaction.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            pluginTypes<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>Array&lt;String&gt;</code><br/>
-            Supported plugin types (e.g., AXIS, HDFC, BHIM).
-          </td>
-        </tr>
-        <tr>
-          <td>
-            clientId<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Unique client ID.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            issuingBanks<br/>
-            <code>optional</code>
-          </td>
-          <td>
-            <code>Array&lt;String&gt;</code><br/>
-            List of issuing banks supported (e.g., AXIS or HDFC).
-          </td>
-        </tr>
-        <tr>
-          <td>
-            excludedBanksIINs<br/>
-            <code>optional</code>
-          </td>
-          <td>
-            <code>Array&lt;String&gt;</code><br/>
-            List of banks to exclude using IIN values.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            isProduction<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>Boolean</code><br/>
-            Environment configuration: true for production, false for staging.
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              merchantName<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Merchant's name.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              merchantKey<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Merchant key provided by PayU.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              phone<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Customer's phone number for registration.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              email<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Customer email address.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              refId<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Unique reference ID for tracking the transaction.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              pluginTypes<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>Array&lt;String&gt;</code><br/>
+              Supported plugin types (e.g., AXIS, HDFC, BHIM).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              clientId<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Unique client ID.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              issuingBanks<br/>
+              <code>optional</code>
+            </td>
+            <td>
+              <code>Array&lt;String&gt;</code><br/>
+              List of issuing banks supported (e.g., AXIS or HDFC).
+            </td>
+          </tr>
+          <tr>
+            <td>
+              excludedBanksIINs<br/>
+              <code>optional</code>
+            </td>
+            <td>
+              <code>Array&lt;String&gt;</code><br/>
+              List of banks to exclude using IIN values.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              isProduction<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>Boolean</code><br/>
+              Environment configuration: true for production, false for staging.
+            </td>
+          </tr>
+        </tbody>
+      </table>
   `}</HTMLBlock>
 
   **Sample Code**
@@ -224,26 +222,26 @@ pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
   **Request Parameters**
 
   <HTMLBlock>{`
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            pg<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Payment Gateway.
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              pg<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Payment Gateway.
+            </td>
+          </tr>
+        </tbody>
+      </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -261,31 +259,31 @@ pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
   **Request Parameters**
 
   <HTMLBlock>{`
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            screenType<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Specifies the type of management screen. Valid values:<br/>
-            • ALL<br/>
-            • TRANSACTIONHISTORY<br/>
-            • MANAGEUPIACCOUNTS<br/>
-            • DISPUTE<br/>
-            • DEREGISTERUPI
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              screenType<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Specifies the type of management screen. Valid values:<br/>
+              • ALL<br/>
+              • TRANSACTIONHISTORY<br/>
+              • MANAGEUPIACCOUNTS<br/>
+              • DISPUTE<br/>
+              • DEREGISTERUPI
+            </td>
+          </tr>
+        </tbody>
+      </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -293,136 +291,136 @@ pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
   **Payment Parameters**
 
   <HTMLBlock>{`
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            amount<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Transaction amount.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            productInfo<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Information about the product or service.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            firstName<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Customer's first name.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            surl<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Android success URL.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            furl<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Android failure URL.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            ios_surl<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            iOS success URL.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            ios_furl<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            iOS failure URL.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            initiationMode<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Mode of initiation (e.g., "10").
-          </td>
-        </tr>
-        <tr>
-          <td>
-            purpose<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Purpose code (e.g., "00").
-          </td>
-        </tr>
-        <tr>
-          <td>
-            txnId<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Unique transaction ID.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            udf1 - udf6<br/>
-            <code>optional</code>
-          </td>
-          <td>
-            <code>Any</code><br/>
-            User-defined fields for additional transaction metadata.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            isCCTxnEnabled<br/>
-            <code>optional</code>
-          </td>
-          <td>
-            <code>Boolean</code><br/>
-            Enables card fallback if supported – true or false.
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              amount<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Transaction amount.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              productInfo<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Information about the product or service.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              firstName<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Customer's first name.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              surl<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Android success URL.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              furl<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Android failure URL.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              ios_surl<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              iOS success URL.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              ios_furl<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              iOS failure URL.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              initiationMode<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Mode of initiation (e.g., "10").
+            </td>
+          </tr>
+          <tr>
+            <td>
+              purpose<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Purpose code (e.g., "00").
+            </td>
+          </tr>
+          <tr>
+            <td>
+              txnId<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Unique transaction ID.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              udf1 - udf6<br/>
+              <code>optional</code>
+            </td>
+            <td>
+              <code>Any</code><br/>
+              User-defined fields for additional transaction metadata.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              isCCTxnEnabled<br/>
+              <code>optional</code>
+            </td>
+            <td>
+              <code>Boolean</code><br/>
+              Enables card fallback if supported – true or false.
+            </td>
+          </tr>
+        </tbody>
+      </table>
   `}</HTMLBlock>
 
   **Sample Code**
@@ -450,46 +448,46 @@ pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
   **Hash Parameters**
 
   <HTMLBlock>{`
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            hashString<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            String to be signed dynamically.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            hashName<br/>
-            <code>mandatory</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Indicates the type of hash.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            postSalt<br/>
-            <code>optional</code>
-          </td>
-          <td>
-            <code>String</code><br/>
-            Additional salt that can be appended to the hash if provided.
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              hashString<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              String to be signed dynamically.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              hashName<br/>
+              <code>mandatory</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Indicates the type of hash.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              postSalt<br/>
+              <code>optional</code>
+            </td>
+            <td>
+              <code>String</code><br/>
+              Additional salt that can be appended to the hash if provided.
+            </td>
+          </tr>
+        </tbody>
+      </table>
   `}</HTMLBlock>
 
   **Sample Code**
@@ -630,97 +628,95 @@ pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
 To enable OTP auto-read functionality on Android, you need to generate an SMS hash for your application. Copy the following `AppSignatureHelper` class to your Android project:
 
 <Accordion title="Sample Code to Enable OTP auto-read functionality on Android" icon="fa-code">
+  ```java
+  package com.payu.upipluginsampleapp;
 
-```java
-package com.payu.upipluginsampleapp;
+  import android.content.Context;
+  import android.content.ContextWrapper;
+  import android.content.pm.PackageManager;
+  import android.content.pm.Signature;
+  import android.util.Base64;
+  import android.util.Log;
 
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.util.Base64;
-import android.util.Log;
+  import java.nio.charset.StandardCharsets;
+  import java.security.MessageDigest;
+  import java.security.NoSuchAlgorithmException;
+  import java.util.ArrayList;
+  import java.util.Arrays;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Arrays;
+  public class AppSignatureHelper extends ContextWrapper {
+      public static final String TAG = AppSignatureHelper.class.getSimpleName();
+      
+      private static final String HASH_TYPE = "SHA-256";
+      public static final int NUM_HASHED_BYTES = 9;
+      public static final int NUM_BASE64_CHAR = 11;
 
-public class AppSignatureHelper extends ContextWrapper {
-    public static final String TAG = AppSignatureHelper.class.getSimpleName();
-    
-    private static final String HASH_TYPE = "SHA-256";
-    public static final int NUM_HASHED_BYTES = 9;
-    public static final int NUM_BASE64_CHAR = 11;
+      public AppSignatureHelper(Context context) {
+          super(context);
+      }
 
-    public AppSignatureHelper(Context context) {
-        super(context);
-    }
+      /**
+       * Get all the app signatures for the current package
+       * @return ArrayList of app signatures
+       */
+      public ArrayList<String> getAppSignatures() {
+          ArrayList<String> appCodes = new ArrayList<>();
+          
+          try {
+              String packageName = getPackageName();
+              PackageManager packageManager = getPackageManager();
+              Signature[] signatures = packageManager.getPackageInfo(packageName, 
+                      PackageManager.GET_SIGNATURES).signatures;
+              
+              for (Signature signature : signatures) {
+                  String hash = hash(packageName, signature.toCharsString());
+                  if (hash != null) {
+                      appCodes.add(String.format("%s", hash));
+                  }
+              }
+          } catch (PackageManager.NameNotFoundException e) {
+              Log.e(TAG, "Unable to find package to obtain hash.", e);
+          }
+          return appCodes;
+      }
 
-    /**
-     * Get all the app signatures for the current package
-     * @return ArrayList of app signatures
-     */
-    public ArrayList<String> getAppSignatures() {
-        ArrayList<String> appCodes = new ArrayList<>();
-        
-        try {
-            String packageName = getPackageName();
-            PackageManager packageManager = getPackageManager();
-            Signature[] signatures = packageManager.getPackageInfo(packageName, 
-                    PackageManager.GET_SIGNATURES).signatures;
-            
-            for (Signature signature : signatures) {
-                String hash = hash(packageName, signature.toCharsString());
-                if (hash != null) {
-                    appCodes.add(String.format("%s", hash));
-                }
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "Unable to find package to obtain hash.", e);
-        }
-        return appCodes;
-    }
+      private static String hash(String packageName, String signature) {
+          String appInfo = packageName + " " + signature;
+          try {
+              MessageDigest messageDigest = MessageDigest.getInstance(HASH_TYPE);
+              messageDigest.update(appInfo.getBytes(StandardCharsets.UTF_8));
+              byte[] hashSignature = messageDigest.digest();
 
-    private static String hash(String packageName, String signature) {
-        String appInfo = packageName + " " + signature;
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance(HASH_TYPE);
-            messageDigest.update(appInfo.getBytes(StandardCharsets.UTF_8));
-            byte[] hashSignature = messageDigest.digest();
+              // truncated into NUM_HASHED_BYTES
+              hashSignature = Arrays.copyOfRange(hashSignature, 0, NUM_HASHED_BYTES);
+              // encode into Base64
+              String base64Hash = Base64.encodeToString(hashSignature, Base64.NO_PADDING | Base64.NO_WRAP);
+              base64Hash = base64Hash.substring(0, NUM_BASE64_CHAR);
 
-            // truncated into NUM_HASHED_BYTES
-            hashSignature = Arrays.copyOfRange(hashSignature, 0, NUM_HASHED_BYTES);
-            // encode into Base64
-            String base64Hash = Base64.encodeToString(hashSignature, Base64.NO_PADDING | Base64.NO_WRAP);
-            base64Hash = base64Hash.substring(0, NUM_BASE64_CHAR);
+              Log.d(TAG, String.format("pkg: %s -- hash: %s", packageName, base64Hash));
+              return base64Hash;
+          } catch (NoSuchAlgorithmException e) {
+              Log.e(TAG, "hash:NoSuchAlgorithm", e);
+          }
+          return null;
+      }
+  }
+  ```
 
-            Log.d(TAG, String.format("pkg: %s -- hash: %s", packageName, base64Hash));
-            return base64Hash;
-        } catch (NoSuchAlgorithmException e) {
-            Log.e(TAG, "hash:NoSuchAlgorithm", e);
-        }
-        return null;
-    }
-}
-```
+  **Usage Example**
 
-**Usage Example**
+  ```java
+  // In your Android activity or application class
+  AppSignatureHelper appSignatureHelper = new AppSignatureHelper(this);
+  ArrayList<String> appSignatures = appSignatureHelper.getAppSignatures();
 
-```java
-// In your Android activity or application class
-AppSignatureHelper appSignatureHelper = new AppSignatureHelper(this);
-ArrayList<String> appSignatures = appSignatureHelper.getAppSignatures();
+  // Share the generated hash with PayU for configuration
+  for (String signature : appSignatures) {
+      Log.d("SMS_HASH", "App Signature: " + signature);
+  }
+  ```
 
-// Share the generated hash with PayU for configuration
-for (String signature : appSignatures) {
-    Log.d("SMS_HASH", "App Signature: " + signature);
-}
-```
-
-<Callout icon="📘" theme="info">
-  **Note**: Share the generated SMS hash with PayU team for configuration to enable OTP auto-read functionality.
-</Callout>
-
+  <Callout icon="📘" theme="info">
+    **Note**: Share the generated SMS hash with PayU team for configuration to enable OTP auto-read functionality.
+  </Callout>
 </Accordion>
