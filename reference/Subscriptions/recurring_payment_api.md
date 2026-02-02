@@ -55,14 +55,14 @@ All successful registration transactions are charged over the recurring interfac
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
-curl --location 'https://info.payu.in/merchant/postservice.php' \
---header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
---form 'form="2"' \
---form 'key="BmTY3G"' \
---form 'command="si_transaction"' \
---form 'var1="{\"authpayuid\":\"6611192557\",\"invoiceDisplayNumber\":\"12345678910\",\"amount\":\"3.00\",\"txnid\":\"REC15113506209\",\"phone\":\"9999999999\",\"email\":\"chota.bheem@gmail.com\",\"udf2\":\"\",\"udf3\":\"\",\"udf4\":\"\",\"udf5\":\"\"}"' \
---form 'hash="91638529376889a527dde277f973ab1e3402713e14c4522f9ef7436eeae7122a886a9f46bbc633659f581ef4622c862678bcc59612b8196e6f3329d625784220"' \
---form 'salt="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCm/k3tcvyLiHH0075vrXkhkjfaC+MOPnjaJRul9JXCdsXqWuYw12OZZlVWjJpi+oNpX0Dn8bq2y7wGXa5sL80XTx25PKTXY0mVOmXIrfydWS0e/p1TsrPS7gwdoN73Zz2rUfIQTAdyhnyFI29NftaEB69Lnve3FN82Skn821HUeGrc3ItPHTSnPAksCHvgNIL9EWfY6vYULO8EtPSnQ4pGgkWuQqU/e4Lty7VlLqp+7v/m6djxedBzo7DQsoTdxf6FjXj2z/5UCIieoovP+8RQwL5z/zk7LjKxlDnzyhEDCHvudYx70lzGAp3m3LoLAjZCwrKZNY+fU6gzjixUm4XjAgMBAAECggEAGH/w0Ohw0svW5DN4mgvaXKmGFjBuRHW351FQaB2lJx2j1ck2Qm4nR6cy1/rS37ifNQNrk1vsp8rmMAzofSjaLxRFaRrTmGIRtpoVusaD7FXb/9MdI91w8n5IOsSSUbvM2WixWeC9qvi+Jg5X0wfL0x0Jg8+zyiF+yglGJ5nJvKEdWCyohM8z7qE2K/zuoMyqXIW316BbmAAmD8jNRiTSTgXn7sjiZl63wc2orkQYGOx46TeK6ez90wweGGDGf3+YxAQuoFWdakSW9bYV//kfgNdIHUdZBoDbdOnYPeJHiD7u7lmAFCn+U8inLS27s6gFe4IWekE4ziN0q7N/ebyiIQKBgQDYqPW8DS18CvQdk1gA78x8QpR0tTMPPkLsq1JXdfyZuStqY1fkTms7bpYLFRlh188vVo4ffqyHaxlYRvkxfFlWEJOgZy1eLsR75Rubq1DBAvSxuL/V51ddou81WsN5+IT8Qr6RxjKUlVBSXjPDXBtbKH3lrn8ySk7h6ShIjny+cQKBgQDFUK7ntqsJDJu29BBXNyQua+OGxC6rldWc2y+gH2i91eMQvMVJjE+rkRBglwuAsre3ELt29AQPSFXq1FuAlSeIRwySqBIVssclPQbutDNSD9HUHJOYULooesmfkBesFmcVxnzzsHvMZyUu6pbjbERAvjXxrUvc20gq7d8VE8hbkwKBgQDWgSmR/mX6+olIQtoNS11j5TM//SpJPDZcRR5n8yudMqRWV3bsVet60vkAjeosYdMBpitd6Td9dz6HlPUg1mFIgW73j09ugNUNaP6Vd96iyX9j+WsMp1drIGa+p1cDilZ3vskYYGcxjkcQ1a1gDPAUp5lF7iaGruU8a2/zrga5MQKBgGc9zzaYoqdqfHNfAsnPpVPQyc0zC0Rmcs3O9f1vUcu6hUO1sfjIvMsFbS9M+QzO9keILr6P8SvZ6nKjyHjgEj5BBrgZztShpYe7hcwSZ6PxeRXmGeghnTYfAS5HI8u8MRX4tFqBplUORytkPa0jchb6L5mT1lTqO7mSmx4ZKsWXAoGAGZuTuOd4lXKrQ4nM3NuG4qEfWc4sJgg1y+9C88Za2b6kKvQ8nBj97rFX1kfFKckkp5qGmdKsqCTDKbj/t6in7Cd/zsW8Zdf/lqWtbAA6j5S8hhUswYwIpt8ruJBtTDpTaRokIaw6wivTSLUMYfr1lWqfE9KBmvUOxS35kVA5rIM="'
+  curl --location 'https://info.payu.in/merchant/postservice.php' \
+  --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
+  --form 'form="2"' \
+  --form 'key="BmTY3G"' \
+  --form 'command="si_transaction"' \
+  --form 'var1="{\"authpayuid\":\"6611192557\",\"invoiceDisplayNumber\":\"12345678910\",\"amount\":\"3.00\",\"txnid\":\"REC15113506209\",\"phone\":\"9999999999\",\"email\":\"chota.bheem@gmail.com\",\"udf2\":\"\",\"udf3\":\"\",\"udf4\":\"\",\"udf5\":\"\"}"' \
+  --form 'hash="91638529376889a527dde277f973ab1e3402713e14c4522f9ef7436eeae7122a886a9f46bbc633659f581ef4622c862678bcc59612b8196e6f3329d625784220"' \
+  --form 'salt="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCm/k3tcvyLiHH0075vrXkhkjfaC+MOPnjaJRul9JXCdsXqWuYw12OZZlVWjJpi+oNpX0Dn8bq2y7wGXa5sL80XTx25PKTXY0mVOmXIrfydWS0e/p1TsrPS7gwdoN73Zz2rUfIQTAdyhnyFI29NftaEB69Lnve3FN82Skn821HUeGrc3ItPHTSnPAksCHvgNIL9EWfY6vYULO8EtPSnQ4pGgkWuQqU/e4Lty7VlLqp+7v/m6djxedBzo7DQsoTdxf6FjXj2z/5UCIieoovP+8RQwL5z/zk7LjKxlDnzyhEDCHvudYx70lzGAp3m3LoLAjZCwrKZNY+fU6gzjixUm4XjAgMBAAECggEAGH/w0Ohw0svW5DN4mgvaXKmGFjBuRHW351FQaB2lJx2j1ck2Qm4nR6cy1/rS37ifNQNrk1vsp8rmMAzofSjaLxRFaRrTmGIRtpoVusaD7FXb/9MdI91w8n5IOsSSUbvM2WixWeC9qvi+Jg5X0wfL0x0Jg8+zyiF+yglGJ5nJvKEdWCyohM8z7qE2K/zuoMyqXIW316BbmAAmD8jNRiTSTgXn7sjiZl63wc2orkQYGOx46TeK6ez90wweGGDGf3+YxAQuoFWdakSW9bYV//kfgNdIHUdZBoDbdOnYPeJHiD7u7lmAFCn+U8inLS27s6gFe4IWekE4ziN0q7N/ebyiIQKBgQDYqPW8DS18CvQdk1gA78x8QpR0tTMPPkLsq1JXdfyZuStqY1fkTms7bpYLFRlh188vVo4ffqyHaxlYRvkxfFlWEJOgZy1eLsR75Rubq1DBAvSxuL/V51ddou81WsN5+IT8Qr6RxjKUlVBSXjPDXBtbKH3lrn8ySk7h6ShIjny+cQKBgQDFUK7ntqsJDJu29BBXNyQua+OGxC6rldWc2y+gH2i91eMQvMVJjE+rkRBglwuAsre3ELt29AQPSFXq1FuAlSeIRwySqBIVssclPQbutDNSD9HUHJOYULooesmfkBesFmcVxnzzsHvMZyUu6pbjbERAvjXxrUvc20gq7d8VE8hbkwKBgQDWgSmR/mX6+olIQtoNS11j5TM//SpJPDZcRR5n8yudMqRWV3bsVet60vkAjeosYdMBpitd6Td9dz6HlPUg1mFIgW73j09ugNUNaP6Vd96iyX9j+WsMp1drIGa+p1cDilZ3vskYYGcxjkcQ1a1gDPAUp5lF7iaGruU8a2/zrga5MQKBgGc9zzaYoqdqfHNfAsnPpVPQyc0zC0Rmcs3O9f1vUcu6hUO1sfjIvMsFbS9M+QzO9keILr6P8SvZ6nKjyHjgEj5BBrgZztShpYe7hcwSZ6PxeRXmGeghnTYfAS5HI8u8MRX4tFqBplUORytkPa0jchb6L5mT1lTqO7mSmx4ZKsWXAoGAGZuTuOd4lXKrQ4nM3NuG4qEfWc4sJgg1y+9C88Za2b6kKvQ8nBj97rFX1kfFKckkp5qGmdKsqCTDKbj/t6in7Cd/zsW8Zdf/lqWtbAA6j5S8hhUswYwIpt8ruJBtTDpTaRokIaw6wivTSLUMYfr1lWqfE9KBmvUOxS35kVA5rIM="'
   ```
 </Accordion>
 
@@ -94,7 +94,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
             "email": "chota.bheem@gmail.com"
         }
     }
-}
+  }
   ```
 
   **Failure scenarios**
@@ -171,42 +171,77 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
   >
   > For UPI, call the **verify\_settlement** API after 10 mins from time of initiation whereas for Net Banking it can be called up to T+2 once in a day.
 </Accordion>
+## UPI Sequencing
+
+You may attempt multiple pre-debits and executions simultaneously in certain scenarios. To address such scenarios, **mandateSeqNo** field in var1 parameter in the **Pre Debit Notification** API. This is applicable only for UPI autopay transactions.
+A sequence is posted based on Mandate creation. When consent is taken, the first execution is carried out in real-time, and the execution sequence is set to 1. The subsequent pre-debit will start from 2.
+
+<Accordion title="Sample request" icon="fa-flask">
+```curl
+curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data 'form=2&key=smsplus&command=si_transaction&var1={"authpayuid": "25600438037", "invoiceDisplayNumber": "INV-12345", "amount": "100.00", "txnid": "TXN-2024-001-SEQ2", "phone": "9999999999", "email": "customer@example.com", "mandateSeqNo": 2}&hash=23a6d57370cc2b2c36a7a8ff3b0894a4309a153586544399155d29fe7dc2599cbcf74519d7bc3c8da1e407a874f2c953e05704279e770332db187d1c7b0cbb4d'
+```
+</Accordion>
+
+<Accordion title="Response in various scenarios" icon="fa-flask">
+# Table 3: Complete Error Scenarios and Response Codes
+
+| Scenario | Error Code | API | Response Payload |
+|----------|------------|-----|------------------|
+| **Success Cases** |
+| Successful Pre-debit | 1 | pre_debit_SI | `{"status":1,"action":"MANDATE_PRE_DEBIT","message":"Request Processed Successfully"}` |
+| Transaction In Progress | 1 | si_transaction | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"in progress","field9":"92\|Transaction Initiated"}}` |
+| Transaction Captured | 1 | si_transaction | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"captured","field9":"Transaction Completed Successfully"}}` |
+| **Pre-debit Errors** |
+| Invalid mandateSeqNo | 0 | pre_debit_SI | `{"status":0,"message":"Invalid value for mandateSeqNo","action":"MANDATE_PRE_DEBIT"}` |
+| Duplicate Pre-debit | E9254 | pre_debit_SI | `{"status":"E9254","action":"MANDATE_PRE_DEBIT","message":"Predebit notification already sent for the mandate sequence no.:2"}` |
+| Execution Already Exists | E9256 | pre_debit_SI | `{"status":"E9256","action":"MANDATE_PRE_DEBIT","message":"Execution already sent for the mandate sequence no.:2"}` |
+| Too Far in Advance | E9260 | pre_debit_SI | `{"status":"E9260","action":"MANDATE_PRE_DEBIT","message":"Predebit notification can only be sent for a maximum 30 days in advance."}` |
+| Incorrect Time Period | E9263 | pre_debit_SI | `{"status":"E9263","action":"MANDATE_PRE_DEBIT","message":"Predebit for calculated sequence sent during incorrect period"}` |
+| Mandate Revoked | QC | pre_debit_SI | `{"status":"QC","action":"MANDATE_PRE_DEBIT","message":"MANDATE HAS BEEN REVOKED"}` |
+| Mandate Not Active | 0 | pre_debit_SI | `{"status":0,"action":"MANDATE_PRE_DEBIT","message":"Mandate is not active"}` |
+| **Transaction Errors** |
+| Authentication Failed | 1 | si_transaction | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"failed","field9":"Basic authentication check failed"}}` |
+| Invalid Hash | 0 | si_transaction | `{"status":0,"msg":"Invalid Hash."}` |
+
+</Accordion>
 
 ## Request parameters
 
 <Accordion title="Reference information" icon="fa-flask">
   <HTMLBlock>{`
-                    <table style="width: 100%; border-collapse: collapse;">
-                    <thead>
-                    <tr>
-                      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                      <th style="border: 1px solid #ddd; padding: 8px;">Reference</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:key&gt;&gt;</p>
-                    </td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><p>For more information on how to generate the Key and Salt, refer to any of the following:  </p>
-                    <ul>
-                    <li><strong>Production</strong>: <a href="http://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
-                    <li><strong>Test</strong>: <a href="http://docs.payu.in/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
-                    </ul>
-                    </td>
-                    </tr>
-                    <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:hash&gt;&gt;</p>
-                    </td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><p>Hash logic for this API is:<br>sha512(key|command|var1|salt)sha512</p>
-                    </td>
-                    </tr>
-                    <tr>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
-                    </td>
-                      <td style="border: 1px solid #ddd; padding: 8px;"><p>For JSON fields description, refer to <a href="http://docs.payu.in/reference/addl_info-payment-apis#/">Additional Info. Payment APIs</a></p>
-                    </td>
-                    </tr>
-                    </tbody>
-                    </table>
+                      <table style="width: 100%; border-collapse: collapse;">
+                      <thead>
+                      <tr>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                        <th style="border: 1px solid #ddd; padding: 8px;">Reference</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:key&gt;&gt;</p>
+                      </td>
+                        <td style="border: 1px solid #ddd; padding: 8px;"><p>For more information on how to generate the Key and Salt, refer to any of the following:  </p>
+                      <ul>
+                      <li><strong>Production</strong>: <a href="http://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
+                      <li><strong>Test</strong>: <a href="http://docs.payu.in/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
+                      </ul>
+                      </td>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:hash&gt;&gt;</p>
+                      </td>
+                        <td style="border: 1px solid #ddd; padding: 8px;"><p>Hash logic for this API is:<br>sha512(key|command|var1|salt)sha512</p>
+                      </td>
+                      </tr>
+                      <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
+                      </td>
+                        <td style="border: 1px solid #ddd; padding: 8px;"><p>For JSON fields description, refer to <a href="http://docs.payu.in/reference/addl_info-payment-apis#/">Additional Info. Payment APIs</a></p>
+                      </td>
+                      </tr>
+                      </tbody>
+                      </table>
   `}</HTMLBlock>
 </Accordion>
