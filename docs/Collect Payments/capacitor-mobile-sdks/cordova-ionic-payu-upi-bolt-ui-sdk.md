@@ -1,7 +1,7 @@
 ---
 title: Cordova-Ionic PayU UPI Bolt UI SDK
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
