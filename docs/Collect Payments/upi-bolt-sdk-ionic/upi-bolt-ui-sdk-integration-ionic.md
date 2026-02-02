@@ -12,61 +12,126 @@ next:
 ---
 Merchants who want to integrate only PayU UPI Bolt with their app. They can manage the checkout options on their checkout screen. Although they can use PayU UPI Bolt UI SDK for customer registration, payment, and profile management.
 
-## Prerequisites
+## Steps to Integrate PayU Bolt SDK
 
-• **iOS Deployment Target**: iOS 17 and above
-• **Android**: Minimum supported configurations
+<Accordion title="Prerequisites" icon="folder" id="prerequisites">
+  <Callout icon="🚧" theme="warn">
+    Supported iOS deployment target - iOS 17 and above.
+  </Callout>
 
-## iOS Integration
+  <br />
 
-<Accordion title="Sample code" icon="fa-code">
-  **Step 1**: Add the following to your project:
+  To include the PayU UPI Bolt UI SDK in your project, add the following dependency to your package.json file:
 
-  ```bash
-  npm add payu-upi-bolt-ui-capacitor@0.0.1-alpha.4
+  **UAT:**
+
+  ```
+  cordova plugin add payu-upi-bolt-ui-cordova@0.0.1-alpha.14
   ```
 
-  **Step 2**: Set the minimum development target to **iOS 13 or higher**.
+  **PRODUCTION:**
 
-  **Step 3**: Include the following `xcframework` files provided by PayU during onboarding:
-  • `NPCI - CommonLibrary.xcframework`
-  • `AXIS - OlivePayLibrary.xcframework`
-
-  **Step 4**: Modify Build Settings:
-  Add `$(PROJECT_DIR)/Frameworks` under **Framework Search Path** (if Xcode doesn't add it automatically).
-
-  **Step 5**: Include additional dependencies in the `podfile`:
-
-  ```bash
-  pod 'PayUIndia-UPIBoltCoreKit', '1.0.0-alpha.7'
   ```
+  cordova plugin add payu-upi-bolt-ui-cordova@0.0.3
+  ```
+
+  Ensure that the application's minimum development target is set to version 13 or higher.
+
+  <Accordion title="iOS Integration" icon="folder" id="ios-integration">
+    To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your podfile.
+
+    **Supported iOS deployment target - iOS 17 and above.**
+
+    <br />
+
+    The following xcframework files will be provided by PayU during onboarding:
+
+    1. **NPCI** - CommonLibrary.xcframework
+    2. **AXIS** - OlivePayLibrary.xcframework
+
+    Add these framework in your project. The added framework is similar to the following screeshot:
+
+    <br />
+
+    <Image align="center" src="https://files.readme.io/ab49c1c2aad9cb456436a7bf17437ea1797620f6bb650deb37f4a798c1328419-3.png" alt="NPCI - CommonLibrary.xcframework and AXIS - OlivePayLibrary.xcframework added to project" />
+
+    <br />
+
+    In Build Settings > Framework Search Path, add `$(PROJECT_DIR)/Frameworks` if it is not added automatically by Xcode.
+
+    <br />
+
+    <Image align="center" src="https://files.readme.io/dfbfe5bb1b9bd93ea6c30e191556643e8a0e870550a40f46225ea071e4eaab0c-4.png" alt="Flutter UPI Bolt UI SDK Integration PROJECT_DIR config" />
+
+    <br />
+
+    Also, add the following dependency to the podfile of your Xcode app if not exists.
+
+    **UAT:**
+
+    ```
+    pod 'PayUIndia-UPIBoltCoreKit', '3.0.0-alpha.1'
+    ```
+
+    **PRODUCTION:**
+
+    ```
+    pod 'PayUIndia-UPIBoltCoreKit', '1.1.0'
+    ```
+  </Accordion>
+
+  <br />
+
+  <Accordion title="Android Integration" icon="folder" id="android-integration">
+    Add the following permissions in your AndroidManifest file.
+
+    ```manifest.xml
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    ```
+
+    **UAT:**
+
+    ```
+    implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.6-SNAPSHOT'
+    ```
+
+    **Project-level build.gradle :**
+
+    ```
+    allprojects {
+     repositories {
+            maven {url "https://central.sonatype.com/repository/maven-snapshots/"}
+       }
+    }
+    ```
+
+    **PRODUCTION:**
+
+    ```
+    implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.5’
+    ```
+
+    Add the following dependency in the build.gradle file of your android app module:
+
+    ```gradle
+    implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
+    ```
+
+    Add the given aar file in the libs folder of your android app module:
+
+    ```
+    <your_project>/android/app/libs/SecureComponent-release-prod_05062024_9d3904ab.aar
+    ```
+  </Accordion>
+
+  <br />
 </Accordion>
-
-<Accordion title="Android Integration" icon="fa-code">
-  **Step 1**: Add the following permissions in the `AndroidManifest.xml`:
-
-  ```xml
-  <uses-permission android:name="android.permission.SEND_SMS"/>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-  <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-  ```
-
-  **Step 2**: Include the library dependencies in `build.gradle`:
-
-  ```gradle
-  implementation 'in.payu:payu-upi-bolt-core-sdk:0.0.1-dev4'
-  implementation(files('libs/SecureComponent-release-prod_05062024_9d3904ab.aar'))
-  ```
-
-  **Step 3**: Add AAR file:
-  Place `SecureComponent-release-prod_05062024_9d3904ab.aar` under `<your_project>/android/app/libs`.
-</Accordion>
-
-## SDK Methods and Configurations
 
 <Accordion title="Initialize SDK" icon="fa-code">
   **Import the Plugin**
@@ -78,116 +143,116 @@ Merchants who want to integrate only PayU UPI Bolt with their app. They can mana
   **Configuration Parameters**
 
   <HTMLBlock>{`
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              merchantName<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Merchant's name.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              merchantKey<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Merchant key provided by PayU.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              phone<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Customer's phone number for registration.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              email<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Customer email address.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              refId<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Unique reference ID for tracking the transaction.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              pluginTypes<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>Array&lt;String&gt;</code><br/>
-              Supported plugin types (e.g., AXIS, HDFC, BHIM).
-            </td>
-          </tr>
-          <tr>
-            <td>
-              clientId<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Unique client ID.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              issuingBanks<br/>
-              <code>optional</code>
-            </td>
-            <td>
-              <code>Array&lt;String&gt;</code><br/>
-              List of issuing banks supported (e.g., AXIS or HDFC).
-            </td>
-          </tr>
-          <tr>
-            <td>
-              excludedBanksIINs<br/>
-              <code>optional</code>
-            </td>
-            <td>
-              <code>Array&lt;String&gt;</code><br/>
-              List of banks to exclude using IIN values.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              isProduction<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>Boolean</code><br/>
-              Environment configuration: true for production, false for staging.
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                merchantName<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Merchant's name.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                merchantKey<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Merchant key provided by PayU.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                phone<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Customer's phone number for registration.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                email<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Customer email address.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                refId<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Unique reference ID for tracking the transaction.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                pluginTypes<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>Array&lt;String&gt;</code><br/>
+                Supported plugin types (e.g., AXIS, HDFC, BHIM).
+              </td>
+            </tr>
+            <tr>
+              <td>
+                clientId<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Unique client ID.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                issuingBanks<br/>
+                <code>optional</code>
+              </td>
+              <td>
+                <code>Array&lt;String&gt;</code><br/>
+                List of issuing banks supported (e.g., AXIS or HDFC).
+              </td>
+            </tr>
+            <tr>
+              <td>
+                excludedBanksIINs<br/>
+                <code>optional</code>
+              </td>
+              <td>
+                <code>Array&lt;String&gt;</code><br/>
+                List of banks to exclude using IIN values.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                isProduction<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>Boolean</code><br/>
+                Environment configuration: true for production, false for staging.
+              </td>
+            </tr>
+          </tbody>
+        </table>
   `}</HTMLBlock>
 
   **Sample Code**
@@ -222,26 +287,26 @@ Merchants who want to integrate only PayU UPI Bolt with their app. They can mana
   **Request Parameters**
 
   <HTMLBlock>{`
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              pg<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Payment Gateway.
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                pg<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Payment Gateway.
+              </td>
+            </tr>
+          </tbody>
+        </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -259,31 +324,31 @@ Merchants who want to integrate only PayU UPI Bolt with their app. They can mana
   **Request Parameters**
 
   <HTMLBlock>{`
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              screenType<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Specifies the type of management screen. Valid values:<br/>
-              • ALL<br/>
-              • TRANSACTIONHISTORY<br/>
-              • MANAGEUPIACCOUNTS<br/>
-              • DISPUTE<br/>
-              • DEREGISTERUPI
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                screenType<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Specifies the type of management screen. Valid values:<br/>
+                • ALL<br/>
+                • TRANSACTIONHISTORY<br/>
+                • MANAGEUPIACCOUNTS<br/>
+                • DISPUTE<br/>
+                • DEREGISTERUPI
+              </td>
+            </tr>
+          </tbody>
+        </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -291,136 +356,136 @@ Merchants who want to integrate only PayU UPI Bolt with their app. They can mana
   **Payment Parameters**
 
   <HTMLBlock>{`
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              amount<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Transaction amount.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              productInfo<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Information about the product or service.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              firstName<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Customer's first name.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              surl<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Android success URL.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              furl<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Android failure URL.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              ios_surl<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              iOS success URL.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              ios_furl<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              iOS failure URL.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              initiationMode<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Mode of initiation (e.g., "10").
-            </td>
-          </tr>
-          <tr>
-            <td>
-              purpose<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Purpose code (e.g., "00").
-            </td>
-          </tr>
-          <tr>
-            <td>
-              txnId<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Unique transaction ID.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              udf1 - udf6<br/>
-              <code>optional</code>
-            </td>
-            <td>
-              <code>Any</code><br/>
-              User-defined fields for additional transaction metadata.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              isCCTxnEnabled<br/>
-              <code>optional</code>
-            </td>
-            <td>
-              <code>Boolean</code><br/>
-              Enables card fallback if supported – true or false.
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                amount<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Transaction amount.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                productInfo<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Information about the product or service.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                firstName<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Customer's first name.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                surl<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Android success URL.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                furl<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Android failure URL.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                ios_surl<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                iOS success URL.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                ios_furl<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                iOS failure URL.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                initiationMode<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Mode of initiation (e.g., "10").
+              </td>
+            </tr>
+            <tr>
+              <td>
+                purpose<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Purpose code (e.g., "00").
+              </td>
+            </tr>
+            <tr>
+              <td>
+                txnId<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Unique transaction ID.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                udf1 - udf6<br/>
+                <code>optional</code>
+              </td>
+              <td>
+                <code>Any</code><br/>
+                User-defined fields for additional transaction metadata.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                isCCTxnEnabled<br/>
+                <code>optional</code>
+              </td>
+              <td>
+                <code>Boolean</code><br/>
+                Enables card fallback if supported – true or false.
+              </td>
+            </tr>
+          </tbody>
+        </table>
   `}</HTMLBlock>
 
   **Sample Code**
@@ -448,46 +513,46 @@ Merchants who want to integrate only PayU UPI Bolt with their app. They can mana
   **Hash Parameters**
 
   <HTMLBlock>{`
-      <table>
-        <thead>
-          <tr>
-            <th>Parameter</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              hashString<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              String to be signed dynamically.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              hashName<br/>
-              <code>mandatory</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Indicates the type of hash.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              postSalt<br/>
-              <code>optional</code>
-            </td>
-            <td>
-              <code>String</code><br/>
-              Additional salt that can be appended to the hash if provided.
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                hashString<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                String to be signed dynamically.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                hashName<br/>
+                <code>mandatory</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Indicates the type of hash.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                postSalt<br/>
+                <code>optional</code>
+              </td>
+              <td>
+                <code>String</code><br/>
+                Additional salt that can be appended to the hash if provided.
+              </td>
+            </tr>
+          </tbody>
+        </table>
   `}</HTMLBlock>
 
   **Sample Code**
