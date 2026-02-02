@@ -1,7 +1,7 @@
 ---
 title: Cordova UPI Bolt UI SDK
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
