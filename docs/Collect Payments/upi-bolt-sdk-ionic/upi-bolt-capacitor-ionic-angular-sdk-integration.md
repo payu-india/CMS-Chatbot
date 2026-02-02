@@ -51,7 +51,7 @@ npm add payu-upi-bolt-ui-capacitor@0.0.1-alpha.4
    * `CommonLibrary.xcframework` (NPCI)
    * `OlivePayLibrary.xcframework` (AXIS)
 
-<Image align="center" src="https://files.readme.io/faccd901e8819e5ea87d9cc523c1ae4316dde6c1f5fdc940eeed1b6c182decb3-ionic_react_sdk_integration_uibolt_screen1.png" />
+<Image align="center" border={false} src="https://files.readme.io/faccd901e8819e5ea87d9cc523c1ae4316dde6c1f5fdc940eeed1b6c182decb3-ionic_react_sdk_integration_uibolt_screen1.png" />
 
 3. **Update Framework Search Path**
 
@@ -63,7 +63,7 @@ npm add payu-upi-bolt-ui-capacitor@0.0.1-alpha.4
 
    <br />
 
-<Image align="center" src="https://files.readme.io/0aa44949d3de2f3949cf7b59e353efea8f7997da6ff98b2c0cbfd4a7ab257494-ionic_react_sdk_integration_screen2.png" />
+<Image align="center" border={false} src="https://files.readme.io/0aa44949d3de2f3949cf7b59e353efea8f7997da6ff98b2c0cbfd4a7ab257494-ionic_react_sdk_integration_screen2.png" />
 
 ### Android Setup
 
@@ -446,47 +446,41 @@ Implement the required callback methods:
 ```typescript
 import { Plugins } from '@capacitor/core';
 
-export class PaymentService {
-  private listener = Plugins['PayUUPIBoltUICapacitorPlugin'];
+  private listeners: { remove: () => void }[] = [];
 
   ngOnInit() {
-    this.listener.addListener('onPayUSuccess', (data) => {
-      console.log("Transaction Successful:", data);
-      this.handlePaymentSuccess(data);
-    });
+    // Helper to register listeners and push them to the array for easy cleanup
+    const addListener = (eventName: string, handler: (data: any) => void) => {
+      const listener = Plugins['PayUUPIBoltUICapacitorPlugin']['addListener'](eventName, handler);
+      this.listeners.push(listener);
+    };
 
-    this.listener.addListener('onPayUFailure', (data) => {
-      console.log("Transaction Failed:", data);
-      this.handlePaymentFailure(data);
-    });
+    // Specific handler for generateHash
+    addListener('generateHash', (data: any) => this.handleHashGeneration(data));
 
-    this.listener.addListener('onPayUCancel', (data) => {
-      console.log("Transaction Cancelled:", data);
-      this.handlePaymentCancel(data);
-    });
+    // Common handler for all other events
+    const alertHandler = (data: any) => this.showAlert(data);
 
-    this.listener.addListener('onErrorReceived', (data) => {
-      console.log("Error Received:", data);
-      this.handleError(data);
-    });
+    // Attach other PayU event listeners using the shared alert handler
+    const eventNames = [
+      'onPayUSuccess',
+      'onPayUCancel',
+      'onPayUFailure',
+      'reset',
+      'clearCache',
+      'isRegistered',
+      'isUPIBoltEnabled'
+    ];
 
-    this.listener.addListener('generateHash', (data) => {
-      this.handleHashGeneration(data);
-    });
-
-    this.listener.addListener('onUPIBoltEnabled', (data) => {
-      console.log("UPI Bolt Status:", data);
-    });
-
-    this.listener.addListener('onReset', (data) => {
-      console.log("SDK Reset:", data);
-    });
+    eventNames.forEach(event => addListener(event, alertHandler));
   }
 
   ngOnDestroy() {
-    this.listener.removeAllListeners(); // Cleanup listeners
+    // Clean up all event listeners
+    this.listeners.forEach(listener => listener.remove());
   }
-}
+
+
 ```
 
 **Callback Methods:**
@@ -582,7 +576,7 @@ private async generateSecureHash(input: string): Promise<string> {
 }
 ```
 
-<Callout icon="📘">
+<Callout icon="📘" theme="info">
   **Note**: Always generate hashes on your secure server. Never expose your salt values in client-side code.
 </Callout>
 
@@ -726,7 +720,7 @@ handleError(data: any) {
    isProduction: false
    ```
 
-2. **Test Phone Numbers**\
+2. **Test Phone Numbers**  
    Use sandbox phone numbers provided by PayU for testing
 
 3. **Test Scenarios**
