@@ -314,6 +314,31 @@ Merchants who want to integrate only PayU UPI Bolt with their app. They can mana
   ```javascript
   PayUUPIBoltUICapacitorPlugin.isRegistered({ pg: "<pg>" });
   ```
+**Request Parameters**
+
+  <HTMLBlock>{`
+            <table>
+              <thead>
+                <tr>
+                  <th>Parameter</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    pg<br/>
+                    <code>mandatory</code>
+                  </td>
+                  <td>
+                    <code>String</code><br/>
+                    Payment Gateway.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            `}</HTMLBlock>
+
     </Accordion>
     
 <Accordion title="Step 3:isUPIBoltEnabled" icon="fa-code">
