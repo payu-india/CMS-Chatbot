@@ -143,116 +143,116 @@ Merchants who want to integrate only PayU UPI Bolt with their app. They can mana
   **Configuration Parameters**
 
   <HTMLBlock>{`
-            <table>
-              <thead>
-                <tr>
-                  <th>Parameter</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    merchantName<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Merchant's name.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    merchantKey<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Merchant key provided by PayU.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    phone<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Customer's phone number for registration.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    email<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Customer email address.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    refId<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Unique reference ID for tracking the transaction.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    pluginTypes<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>Array&lt;String&gt;</code><br/>
-                    Supported plugin types (e.g., AXIS, HDFC, BHIM).
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    clientId<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Unique client ID.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    issuingBanks<br/>
-                    <code>optional</code>
-                  </td>
-                  <td>
-                    <code>Array&lt;String&gt;</code><br/>
-                    List of issuing banks supported (e.g., AXIS or HDFC).
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    excludedBanksIINs<br/>
-                    <code>optional</code>
-                  </td>
-                  <td>
-                    <code>Array&lt;String&gt;</code><br/>
-                    List of banks to exclude using IIN values.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    isProduction<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>Boolean</code><br/>
-                    Environment configuration: true for production, false for staging.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      merchantName<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Merchant's name.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      merchantKey<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Merchant key provided by PayU.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      phone<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Customer's phone number for registration.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      email<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Customer email address.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      refId<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Unique reference ID for tracking the transaction.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      pluginTypes<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>Array&lt;String&gt;</code><br/>
+                      Supported plugin types (e.g., AXIS, HDFC, BHIM).
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      clientId<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Unique client ID.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      issuingBanks<br/>
+                      <code>optional</code>
+                    </td>
+                    <td>
+                      <code>Array&lt;String&gt;</code><br/>
+                      List of issuing banks supported (e.g., AXIS or HDFC).
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      excludedBanksIINs<br/>
+                      <code>optional</code>
+                    </td>
+                    <td>
+                      <code>Array&lt;String&gt;</code><br/>
+                      List of banks to exclude using IIN values.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      isProduction<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>Boolean</code><br/>
+                      Environment configuration: true for production, false for staging.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
   `}</HTMLBlock>
 
   **Sample Code**
@@ -287,26 +287,26 @@ Merchants who want to integrate only PayU UPI Bolt with their app. They can mana
   **Request Parameters**
 
   <HTMLBlock>{`
-            <table>
-              <thead>
-                <tr>
-                  <th>Parameter</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    pg<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Payment Gateway.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      pg<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      PG value to check pg specific registration status
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -314,38 +314,38 @@ Merchants who want to integrate only PayU UPI Bolt with their app. They can mana
   ```javascript
   PayUUPIBoltUICapacitorPlugin.isRegistered({ pg: "<pg>" });
   ```
-**Request Parameters**
+
+  **Request Parameters**
 
   <HTMLBlock>{`
-            <table>
-              <thead>
-                <tr>
-                  <th>Parameter</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    pg<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Payment Gateway.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            `}</HTMLBlock>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      pg<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      PG value to check pg specific registration status
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+  `}</HTMLBlock>
+</Accordion>
 
-    </Accordion>
-    
 <Accordion title="Step 3:isUPIBoltEnabled" icon="fa-code">
-This method is used to check whether the upi bolt is enabled for the merchant or not. 
+  This method is used to check whether the upi bolt is enabled for the merchant or not.
 
   ```javascript
-PayUUPIBoltUICapacitorPlugin.isUPIBoltEnabled();
+  PayUUPIBoltUICapacitorPlugin.isUPIBoltEnabled();
   ```
 </Accordion>
 
@@ -353,136 +353,136 @@ PayUUPIBoltUICapacitorPlugin.isUPIBoltEnabled();
   **Payment Parameters**
 
   <HTMLBlock>{`
-            <table>
-              <thead>
-                <tr>
-                  <th>Parameter</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    amount<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Transaction amount.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    productInfo<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Information about the product or service.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    firstName<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Customer's first name.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    surl<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Android success URL.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    furl<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Android failure URL.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    ios_surl<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    iOS success URL.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    ios_furl<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    iOS failure URL.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    initiationMode<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Mode of initiation (e.g., "10").
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    purpose<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Purpose code (e.g., "00").
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    txnId<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Unique transaction ID.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    udf1 - udf6<br/>
-                    <code>optional</code>
-                  </td>
-                  <td>
-                    <code>Any</code><br/>
-                    User-defined fields for additional transaction metadata.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    isCCTxnEnabled<br/>
-                    <code>optional</code>
-                  </td>
-                  <td>
-                    <code>Boolean</code><br/>
-                    Enables card fallback if supported – true or false.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      amount<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Transaction amount.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      productInfo<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Information about the product or service.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      firstName<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Customer's first name.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      surl<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Android success URL.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      furl<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Android failure URL.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      ios_surl<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      iOS success URL.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      ios_furl<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      iOS failure URL.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      initiationMode<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Mode of initiation (e.g., "10").
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      purpose<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Purpose code (e.g., "00").
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      txnId<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Unique transaction ID.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      udf1 - udf6<br/>
+                      <code>optional</code>
+                    </td>
+                    <td>
+                      <code>Any</code><br/>
+                      User-defined fields for additional transaction metadata.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      isCCTxnEnabled<br/>
+                      <code>optional</code>
+                    </td>
+                    <td>
+                      <code>Boolean</code><br/>
+                      Enables card fallback if supported – true or false.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
   `}</HTMLBlock>
 
   **Sample Code**
@@ -514,31 +514,31 @@ PayUUPIBoltUICapacitorPlugin.isUPIBoltEnabled();
   **Request Parameters**
 
   <HTMLBlock>{`
-            <table>
-              <thead>
-                <tr>
-                  <th>Parameter</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    screenType<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Specifies the type of management screen. Valid values:<br/>
-                    • ALL<br/>
-                    • TRANSACTIONHISTORY<br/>
-                    • MANAGEUPIACCOUNTS<br/>
-                    • DISPUTE<br/>
-                    • DEREGISTERUPI
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      screenType<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Specifies the type of management screen. Valid values:<br/>
+                      • ALL<br/>
+                      • TRANSACTIONHISTORY<br/>
+                      • MANAGEUPIACCOUNTS<br/>
+                      • DISPUTE<br/>
+                      • DEREGISTERUPI
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -591,46 +591,46 @@ PayUUPIBoltUICapacitorPlugin.isUPIBoltEnabled();
   **Hash Parameters**
 
   <HTMLBlock>{`
-            <table>
-              <thead>
-                <tr>
-                  <th>Parameter</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    hashString<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    String to be signed dynamically.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    hashName<br/>
-                    <code>mandatory</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Indicates the type of hash.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    postSalt<br/>
-                    <code>optional</code>
-                  </td>
-                  <td>
-                    <code>String</code><br/>
-                    Additional salt that can be appended to the hash if provided.
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      hashString<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      String to be signed dynamically.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      hashName<br/>
+                      <code>mandatory</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Indicates the type of hash.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      postSalt<br/>
+                      <code>optional</code>
+                    </td>
+                    <td>
+                      <code>String</code><br/>
+                      Additional salt that can be appended to the hash if provided.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
   `}</HTMLBlock>
 
   **Sample Code**
