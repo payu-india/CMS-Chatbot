@@ -138,60 +138,60 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
   The **var1** variable is in JSON format and comprises of the following parameters:
 
   <HTMLBlock>{`
-                                      <table style="width: 100%; border-collapse: collapse;">
-                                      <thead>
-                                      <tr>
-                                        <th style="border: 1px solid #ddd; padding: 8px;">JSON Field</th>
-                                        <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                                      </tr>
-                                      </thead>
-                                      <tbody>
-                                      <tr>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>authpayuid<br/><strong>mandatory</strong></p>
-                                      </td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>The value of mihpayid returned in the payment response of Registration transaction when transaction is successfully completed. As explained earlier in the document, you need to map this value against customer profile at his end so that correct authPayuid will be passed in the request.</p>
-                                      </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>requestId<br/><strong>mandatory</strong></p>
-                                      </td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>Unique request value generated at merchant’s end to distinguish independent request call.</p>
-                                      </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>debitDate<br/><strong>mandatory for cards and UPI</strong></p>
-                                      </td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the date of debit when the recurring would be charged by merchant.<br/>*In UPI:**  </p>
-                                      <ul>
-                                      <li>For all frequencies (other than Daily and Adhoc), the merchant must send the notification 48 hours before the debit.</li>
-                                      <li>For Daily and Adhoc frequency, the merchant must send the notification 24 hours before the debit. If the notification is sent after these durations, then the debit will fail.</li>
-                                      </ul>
-                                      </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>invoiceDisplayNumber<br/><strong>mandatory only for cards</strong></p>
-                                      </td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>A unique display number by merchant for every subsequent invoice/recurring charge. This can be displayed on the merchant’s panel to the customer. This same value needs to be sent in the recurring api also.</p>
-                                      </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br/><strong>mandatory for cards and UPI</strong></p>
-                                      </td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>The transaction amount which will be deducted from the customer’s payment instrument.<br/><strong>For Cards:</strong>  </p>
-                                      <ul>
-                                      <li>In case of Fixed billing plan, this amount should be same as<br/>billingAmount sent during Registration transaction.</li>
-                                      <li>In case of Adhoc billing plan, this amount should be equal to or lesser than billingAmount sent during the Registration transaction.<br/><strong>*Note</strong>: The amount mentioned in the Pre-Debit notification API for UPI should be same as the next execution amount. Else, the next recurring execution request will fail.</li>
-                                      </ul>
-                                      </td>
-                                      </tr>
-                                      <tr>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>action<br/><strong>optional</strong></p>
-                                      </td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;"><p>Any of the following actions can be performed:<br/>* <strong>Retrieve</strong>: Query the status of the pre-debit notification. Only authpayuid and invoice display numbers are mandatory for this action.<br/>* <strong>Delete</strong>: Delete the already generated pre debit. Only authpayuid and invoice display numbers are mandatory for this action.</p>
-                                      </td>
-                                      </tr>
-                                      </tbody>
-                                      </table>
+                                        <table style="width: 100%; border-collapse: collapse;">
+                                        <thead>
+                                        <tr>
+                                          <th style="border: 1px solid #ddd; padding: 8px;">JSON Field</th>
+                                          <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>authpayuid<br/><strong>mandatory</strong></p>
+                                        </td>
+                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>The value of mihpayid returned in the payment response of Registration transaction when transaction is successfully completed. As explained earlier in the document, you need to map this value against customer profile at his end so that correct authPayuid will be passed in the request.</p>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>requestId<br/><strong>mandatory</strong></p>
+                                        </td>
+                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>Unique request value generated at merchant’s end to distinguish independent request call.</p>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>debitDate<br/><strong>mandatory for cards and UPI</strong></p>
+                                        </td>
+                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the date of debit when the recurring would be charged by merchant.<br/>*In UPI:**  </p>
+                                        <ul>
+                                        <li>For all frequencies (other than Daily and Adhoc), the merchant must send the notification 48 hours before the debit.</li>
+                                        <li>For Daily and Adhoc frequency, the merchant must send the notification 24 hours before the debit. If the notification is sent after these durations, then the debit will fail.</li>
+                                        </ul>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>invoiceDisplayNumber<br/><strong>mandatory only for cards</strong></p>
+                                        </td>
+                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>A unique display number by merchant for every subsequent invoice/recurring charge. This can be displayed on the merchant’s panel to the customer. This same value needs to be sent in the recurring api also.</p>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br/><strong>mandatory for cards and UPI</strong></p>
+                                        </td>
+                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>The transaction amount which will be deducted from the customer’s payment instrument.<br/><strong>For Cards:</strong>  </p>
+                                        <ul>
+                                        <li>In case of Fixed billing plan, this amount should be same as<br/>billingAmount sent during Registration transaction.</li>
+                                        <li>In case of Adhoc billing plan, this amount should be equal to or lesser than billingAmount sent during the Registration transaction.<br/><strong>*Note</strong>: The amount mentioned in the Pre-Debit notification API for UPI should be same as the next execution amount. Else, the next recurring execution request will fail.</li>
+                                        </ul>
+                                        </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>action<br/><strong>optional</strong></p>
+                                        </td>
+                                          <td style="border: 1px solid #ddd; padding: 8px;"><p>Any of the following actions can be performed:<br/>* <strong>Retrieve</strong>: Query the status of the pre-debit notification. Only authpayuid and invoice display numbers are mandatory for this action.<br/>* <strong>Delete</strong>: Delete the already generated pre debit. Only authpayuid and invoice display numbers are mandatory for this action.</p>
+                                        </td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -206,6 +206,21 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
   --header 'Content-Type: application/x-www-form-urlencoded' \
   --data 'form=2&key=smsplus&command=pre_debit_si&var1={"authpayuid": "25600438037", "requestId": "REQ-2024-001-SEQ2", "debitDate": "2024-12-20", "amount": "100.00", "invoiceDisplayNumber": "INV-12345", "mandateSeqNo": 2}&hash=d9e184476637002a3c2db99a7324673647a313de96e574b7a9812e99153dc1a47f0f9da9b32e3a7382bb46dce09a5eb8d4471c85e1bfc1b0dac380a67ff07b43'
   ```
+</Accordion>
+
+<Accordion title="Response in various scenarios" icon="fa-code">
+| Scenario | Response Payload |
+|----------|------------------|
+| **Success Cases** |
+| Successful Pre-debit | `{"status":1,"action":"MANDATE_PRE_DEBIT","message":"Request Processed Successfully"}` |
+| *Failure Scenarios** |
+| Invalid mandateSeqNo | `{"status":0,"message":"Invalid value for mandateSeqNo","action":"MANDATE_PRE_DEBIT"}` |
+| Duplicate Pre-debit | `{"status":"E9254","action":"MANDATE_PRE_DEBIT","message":"Predebit notification already sent for the mandate sequence no.:2"}` |
+| Execution Already Exists | `{"status":"E9256","action":"MANDATE_PRE_DEBIT","message":"Execution already sent for the mandate sequence no.:2"}` |
+| Too Far in Advance | `{"status":"E9260","action":"MANDATE_PRE_DEBIT","message":"Predebit notification can only be sent for a maximum 30 days in advance."}` |
+| Incorrect Time Period | `{"status":"E9263","action":"MANDATE_PRE_DEBIT","message":"Predebit for calculated sequence sent during incorrect period"}` |
+| Mandate Revoked | `{"status":"QC","action":"MANDATE_PRE_DEBIT","message":"MANDATE HAS BEEN REVOKED"}` |
+| Mandate Not Active | `{"status":0,"action":"MANDATE_PRE_DEBIT","message":"Mandate is not active"}` |
 </Accordion>
 
 ## Request parameters
