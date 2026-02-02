@@ -193,7 +193,6 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
 | Scenario | Response Payload |
 |----------|------------------|
 | **Success Cases** |
-| Successful Pre-debit | `{"status":1,"action":"MANDATE_PRE_DEBIT","message":"Request Processed Successfully"}` |
 | Transaction In Progress | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"in progress","field9":"92\|Transaction Initiated"}}` |
 | Transaction Captured | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"captured","field9":"Transaction Completed Successfully"}}` |
 | **Transaction Errors** |
