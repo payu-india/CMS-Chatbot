@@ -171,39 +171,34 @@ All successful registration transactions are charged over the recurring interfac
   >
   > For UPI, call the **verify\_settlement** API after 10 mins from time of initiation whereas for Net Banking it can be called up to T+2 once in a day.
 </Accordion>
+
 ## UPI Sequencing
 
 You may attempt multiple pre-debits and executions simultaneously in certain scenarios. To address such scenarios, **mandateSeqNo** field in var1 parameter in the **Pre Debit Notification** API. This is applicable only for UPI autopay transactions.
 A sequence is posted based on Mandate creation. When consent is taken, the first execution is carried out in real-time, and the execution sequence is set to 1. The subsequent pre-debit will start from 2.
 
 <Accordion title="Sample request" icon="fa-flask">
-```curl
-curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data 'form=2&key=smsplus&command=si_transaction&var1={"authpayuid": "25600438037", "invoiceDisplayNumber": "INV-12345", "amount": "100.00", "txnid": "TXN-2024-001-SEQ2", "phone": "9999999999", "email": "customer@example.com", "mandateSeqNo": 2}&hash=23a6d57370cc2b2c36a7a8ff3b0894a4309a153586544399155d29fe7dc2599cbcf74519d7bc3c8da1e407a874f2c953e05704279e770332db187d1c7b0cbb4d'
-```
+  ```curl
+  curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data 'form=2&key=smsplus&command=si_transaction&var1={"authpayuid": "25600438037", "invoiceDisplayNumber": "INV-12345", "amount": "100.00", "txnid": "TXN-2024-001-SEQ2", "phone": "9999999999", "email": "customer@example.com", "mandateSeqNo": 2}&hash=23a6d57370cc2b2c36a7a8ff3b0894a4309a153586544399155d29fe7dc2599cbcf74519d7bc3c8da1e407a874f2c953e05704279e770332db187d1c7b0cbb4d'
+  ```
 </Accordion>
 
 <Accordion title="Response in various scenarios" icon="fa-flask">
-# Table 3: Complete Error Scenarios and Response Codes
+  # Table 3: Complete Error Scenarios and Response Codes
 
-| Scenario | Error Code | API | Response Payload |
-|----------|------------|-----|------------------|
+  # Table 3: Scenarios and Response Payloads
+
+| Scenario | Response Payload |
+|----------|------------------|
 | **Success Cases** |
-| Successful Pre-debit | 1 | pre_debit_SI | `{"status":1,"action":"MANDATE_PRE_DEBIT","message":"Request Processed Successfully"}` |
-| Transaction In Progress | 1 | si_transaction | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"in progress","field9":"92\|Transaction Initiated"}}` |
-| Transaction Captured | 1 | si_transaction | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"captured","field9":"Transaction Completed Successfully"}}` |
-| **Pre-debit Errors** |
-| Invalid mandateSeqNo | 0 | pre_debit_SI | `{"status":0,"message":"Invalid value for mandateSeqNo","action":"MANDATE_PRE_DEBIT"}` |
-| Duplicate Pre-debit | E9254 | pre_debit_SI | `{"status":"E9254","action":"MANDATE_PRE_DEBIT","message":"Predebit notification already sent for the mandate sequence no.:2"}` |
-| Execution Already Exists | E9256 | pre_debit_SI | `{"status":"E9256","action":"MANDATE_PRE_DEBIT","message":"Execution already sent for the mandate sequence no.:2"}` |
-| Too Far in Advance | E9260 | pre_debit_SI | `{"status":"E9260","action":"MANDATE_PRE_DEBIT","message":"Predebit notification can only be sent for a maximum 30 days in advance."}` |
-| Incorrect Time Period | E9263 | pre_debit_SI | `{"status":"E9263","action":"MANDATE_PRE_DEBIT","message":"Predebit for calculated sequence sent during incorrect period"}` |
-| Mandate Revoked | QC | pre_debit_SI | `{"status":"QC","action":"MANDATE_PRE_DEBIT","message":"MANDATE HAS BEEN REVOKED"}` |
-| Mandate Not Active | 0 | pre_debit_SI | `{"status":0,"action":"MANDATE_PRE_DEBIT","message":"Mandate is not active"}` |
+| Successful Pre-debit | `{"status":1,"action":"MANDATE_PRE_DEBIT","message":"Request Processed Successfully"}` |
+| Transaction In Progress | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"in progress","field9":"92\|Transaction Initiated"}}` |
+| Transaction Captured | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"captured","field9":"Transaction Completed Successfully"}}` |
 | **Transaction Errors** |
-| Authentication Failed | 1 | si_transaction | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"failed","field9":"Basic authentication check failed"}}` |
-| Invalid Hash | 0 | si_transaction | `{"status":0,"msg":"Invalid Hash."}` |
+| Authentication Failed | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"failed","field9":"Basic authentication check failed"}}` |
+| Invalid Hash | `{"status":0,"msg":"Invalid Hash."}` |
 
 </Accordion>
 
@@ -211,37 +206,37 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 
 <Accordion title="Reference information" icon="fa-flask">
   <HTMLBlock>{`
-                      <table style="width: 100%; border-collapse: collapse;">
-                      <thead>
-                      <tr>
-                        <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                        <th style="border: 1px solid #ddd; padding: 8px;">Reference</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:key&gt;&gt;</p>
-                      </td>
-                        <td style="border: 1px solid #ddd; padding: 8px;"><p>For more information on how to generate the Key and Salt, refer to any of the following:  </p>
-                      <ul>
-                      <li><strong>Production</strong>: <a href="http://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
-                      <li><strong>Test</strong>: <a href="http://docs.payu.in/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
-                      </ul>
-                      </td>
-                      </tr>
-                      <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:hash&gt;&gt;</p>
-                      </td>
-                        <td style="border: 1px solid #ddd; padding: 8px;"><p>Hash logic for this API is:<br>sha512(key|command|var1|salt)sha512</p>
-                      </td>
-                      </tr>
-                      <tr>
-                        <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
-                      </td>
-                        <td style="border: 1px solid #ddd; padding: 8px;"><p>For JSON fields description, refer to <a href="http://docs.payu.in/reference/addl_info-payment-apis#/">Additional Info. Payment APIs</a></p>
-                      </td>
-                      </tr>
-                      </tbody>
-                      </table>
+                        <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                        <tr>
+                          <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                          <th style="border: 1px solid #ddd; padding: 8px;">Reference</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:key&gt;&gt;</p>
+                        </td>
+                          <td style="border: 1px solid #ddd; padding: 8px;"><p>For more information on how to generate the Key and Salt, refer to any of the following:  </p>
+                        <ul>
+                        <li><strong>Production</strong>: <a href="http://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
+                        <li><strong>Test</strong>: <a href="http://docs.payu.in/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
+                        </ul>
+                        </td>
+                        </tr>
+                        <tr>
+                          <td style="border: 1px solid #ddd; padding: 8px;"><p>&lt;&lt;glossary:hash&gt;&gt;</p>
+                        </td>
+                          <td style="border: 1px solid #ddd; padding: 8px;"><p>Hash logic for this API is:<br>sha512(key|command|var1|salt)sha512</p>
+                        </td>
+                        </tr>
+                        <tr>
+                          <td style="border: 1px solid #ddd; padding: 8px;"><p>var1</p>
+                        </td>
+                          <td style="border: 1px solid #ddd; padding: 8px;"><p>For JSON fields description, refer to <a href="http://docs.payu.in/reference/addl_info-payment-apis#/">Additional Info. Payment APIs</a></p>
+                        </td>
+                        </tr>
+                        </tbody>
+                        </table>
   `}</HTMLBlock>
 </Accordion>
