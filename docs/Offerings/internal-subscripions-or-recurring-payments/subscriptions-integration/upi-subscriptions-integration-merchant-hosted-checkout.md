@@ -729,7 +729,6 @@ You may attempt multiple pre-debits and executions simultaneously in certain sce
   **Note**: The UPI Sequencing is only applicable for UPI autopay transactions.
 </Callout>
 
-
 A sequence is posted based on Mandate creation. When consent is taken, the first execution is carried out in real-time, and the execution sequence is set to 1. The subsequent pre-debit will start from 2.
 
 ### Sample Request/Response for Pre-Debit Notification API
