@@ -9,11 +9,35 @@ metadata:
   description: ''
   robots: index
 ---
+---
+title: Cards - Native OTP Flow
+deprecated: false
+hidden: false
+link:
+  new_tab: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
 The steps involved in cards with Native OTP:
 
 1. [Initiate the payment request](#step-1-initiate-the-payment-to-payu)
 2. [Submit the OTP](#step-2-submit-the-OTP)
 3. [Verify the Payment](#step-3-verify-the-payment)
+
+<Cards columns={3}>
+  <Card title="1. Initiate payment request" href="#step-1-initiate-the-payment-request">
+    Build the server-to-server request with all mandatory parameters.
+  </Card>
+
+  <Card title="2. Submit OTP" href="#step-2-submit-the-otp">
+    Send the OTP received by the customer to complete authentication.
+  </Card>
+
+  <Card title="3. Verify payment" href="#step-3-verify-the-payment">
+    Use verification APIs to confirm final payment status.
+  </Card>
+</Cards>
 
 ## Step 1: Initiate the payment request
 
