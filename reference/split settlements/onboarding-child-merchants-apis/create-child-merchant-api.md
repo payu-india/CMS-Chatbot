@@ -189,9 +189,9 @@ This section describes how to create and onboard child merchants using the **Cre
   `}</HTMLBlock>
 </Accordion>
 
-### Business Entity Mapping
+#### Business Entity Mapping
 
-<Accordion title="Business Entity Mapping List" icon="fa-list">
+<Accordion title="Business Entity Mapping List" icon="fa-upload">
   The business entity ID (**business\_entity\_id**) and corresponding business entity mapping are:
 
   | Entity Code | Business Entity Types                               |
@@ -206,8 +206,6 @@ This section describes how to create and onboard child merchants using the **Cre
   | L           | Local Authority                                     |
   | J           | Artificial Juridical Person                         |
 </Accordion>
-
-### Sample request
 
 <Accordion title="Sample request" icon="fa-upload">
   * Success Scenario
@@ -267,9 +265,9 @@ This section describes how to create and onboard child merchants using the **Cre
   ```
 </Accordion>
 
-### Sample Response
+<br />
 
-<Accordion title="Sample response" icon="fa-reply">
+<Accordion title="Sample response" icon="fa-download">
   * Success Scenario
 
   Create Child Merchant Success Scenario
@@ -527,7 +525,7 @@ After adding the child merchant in[ Step 1: Add a child merchant](##step-1-add-c
 > Generate token using the [Get Client Token API](ref:get-client-token-api) and pass it in header along with the following request parameters.
 
 ### Request Parameters
-<Accordion title="Request Parameters" icon="fa-table">
+
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -552,7 +550,7 @@ After adding the child merchant in[ Step 1: Add a child merchant](##step-1-add-c
 > 📘 Authorization:
 >
 > This request is using Bearer Token from the collection. For more information, refer to [Postman Collection](https://documenter.getpostman.com/view/7484238/TVCcZAJC#auth-info-60abdedd-6640-49c8-9497-fe181220c2fd). Merchant access token or client token with scope ‘refer_child_merchant’ from Hub.
-</Accordion>
+
 The **bank_detail** parameter is in a JSON parameter, and the fields in this parameter are described in the following table:
 
 | **Field**           | **Description**                                                                  | **Example**   |
@@ -561,7 +559,8 @@ The **bank_detail** parameter is in a JSON parameter, and the fields in this par
 | holder_name         | The name of the child merchant who holds the account is specified in this field. | Harsh Agarwal |
 | ifsc_code           | The IFSC code of the bank branch where the child merchant has the account.       | ICIC0000031   |
 
-<Accordion title="Sample request" icon="fa-code">
+### Sample request
+
 ```
 curl --location -g --request PUT '{{host}}/api/v3/product_accounts/{{product_account_uuid}}' \
 --header 'Authorization: Bearer adf9092d141031a6ec1be0e297e91aff313f1c427c384cc18d747b9848a67cbf' \
@@ -576,9 +575,10 @@ curl --location -g --request PUT '{{host}}/api/v3/product_accounts/{{product_acc
     }
 }'
 ```
-</Accordion>
-<Accordion title="Sample request" icon="fa-reply">
-```json
+
+### Sample response
+
+```
 {
     "product_account": {
         "mid": 20000012,
@@ -797,7 +797,8 @@ www.youtube.com"
     }
 }
 ```
-</Accordion>
+
+<br />
 
 ## Step 3: Upload Schedule C document
 
