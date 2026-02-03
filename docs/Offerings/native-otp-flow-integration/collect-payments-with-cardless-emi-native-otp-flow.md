@@ -9,10 +9,23 @@ metadata:
 ---
 The steps involved in cardless EMI with Native OTP:
 
-1. [Check pre-EMI eligibility](#step-1-check-pre-emi-eligibility)
-2. [Initiate the payment request](#step-2-initiate-the-payment-to-payu)
-3. [Submit the OTP](#step-3-submit-the-OTP)
-4. [Verify the Payment](#step-4-verify-the-payment)
+<Cards columns={4}>
+  <Card title="1. Check pre-EMI eligibility" href="#step-1-check-pre-emi-eligibility">
+    Validate the customer’s eligibility using the checkout details API.
+  </Card>
+
+  <Card title="2. Initiate payment" href="#step-2-initiate-the-payment-request">
+    Build and send the S2S request with all Cardless EMI parameters.
+  </Card>
+
+  <Card title="3. Submit OTP" href="#step-3-submit-the-otp">
+    Submit the OTP entered by the customer to confirm the transaction.
+  </Card>
+
+  <Card title="4. Verify payment" href="#step-4-verify-the-payment">
+    Verify the transaction status to finalize the order.
+  </Card>
+</Cards>
 
 ### Step 1: Check pre-EMI eligibility
 
