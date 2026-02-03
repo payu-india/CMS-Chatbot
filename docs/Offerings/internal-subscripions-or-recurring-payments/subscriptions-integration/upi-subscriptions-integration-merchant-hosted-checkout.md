@@ -723,7 +723,7 @@ After successful registration, verify the mandate status:
 
 ## UPI Sequencing
 
-You may attempt multiple pre-debits and executions simultaneously in certain scenarios. To address such scenarios, **mandateSeqNo** field in var1 parameter in the **Pre Debit Notification** API and **Recurring Payment **API. This is applicable only for UPI autopay transactions.
+You may attempt multiple pre-debits and executions simultaneously in certain scenarios. To address such scenarios, **mandateSeqNo** field in var1 parameter in the **Pre Debit Notification** API and **Recurring Payment** API. This is applicable only for UPI autopay transactions.
 A sequence is posted based on Mandate creation. When consent is taken, the first execution is carried out in real-time, and the execution sequence is set to 1. The subsequent pre-debit will start from 2.
 
 ### Sample Request/Response for Pre-Debit Notification API
@@ -762,18 +762,16 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
 </Accordion>
 
 <Accordion title="Response in various scenarios" icon="fa-flask">
-
   # Table 3: Scenarios and Response Payloads
 
-| Scenario                | Response Payload                                                                                                                                |                           |
-| :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------ |
-| **Success Cases**       |                                                                                                                                                 |                           |
-| Transaction In Progress | `\{"status":1,"message":"Transaction Processed successfully","details":\{...,"status":"in progress","field9":"92\\                              | Transaction Initiated"}}` |
-| Transaction Captured    | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"captured","field9":"Transaction Completed Successfully"}}` |                           |
-| **Transaction Errors**  |                                                                                                                                                 |                           |
-| Authentication Failed   | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"failed","field9":"Basic authentication check failed"}}`    |                           |
-| Invalid Hash            | `{"status":0,"msg":"Invalid Hash."}`                                                                                                            |                           |
-
+  | Scenario                | Response Payload                                                                                                                                |                            |
+  | :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------- |
+  | **Success Cases**       |                                                                                                                                                 |                            |
+  | Transaction In Progress | \`\{"status":1,"message":"Transaction Processed successfully","details":\{...,"status":"in progress","field9":"92\\                             | Transaction Initiated"}}\` |
+  | Transaction Captured    | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"captured","field9":"Transaction Completed Successfully"}}` |                            |
+  | **Transaction Errors**  |                                                                                                                                                 |                            |
+  | Authentication Failed   | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"failed","field9":"Basic authentication check failed"}}`    |                            |
+  | Invalid Hash            | `{"status":0,"msg":"Invalid Hash."}`                                                                                                            |                            |
 </Accordion>
 
 ## Related Documentation
