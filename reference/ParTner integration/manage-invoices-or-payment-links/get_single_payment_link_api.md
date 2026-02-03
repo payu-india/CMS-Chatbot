@@ -1,17 +1,16 @@
 ---
 title: Get Single Payment Link API
-excerpt: ''
 api:
   file: partner-apis-6.json
   operationId: ReadInvoiceAPI
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 This API is used to get a single payment link using the payment link invoice number.
 
