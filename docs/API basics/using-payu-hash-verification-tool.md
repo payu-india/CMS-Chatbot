@@ -11,7 +11,7 @@ Navigate to the following URL on your browser:
 
 <Anchor label="https://payu-hashverificationtool.onrender.com/" target="_blank" href="https://payu-hashverificationtool.onrender.com/">https://payu-hashverificationtool.onrender.com/</Anchor>
 
-<Image align="center" border={false} src="https://files.readme.io/75fb157bf54d764aaf1692a9b6744de07bec1ddcdffad59c95d14c03f68255d6-Screenshot_2026-02-04_at_2.34.04_PM.png" />
+<Image align="center" border={true} src="https://files.readme.io/75fb157bf54d764aaf1692a9b6744de07bec1ddcdffad59c95d14c03f68255d6-Screenshot_2026-02-04_at_2.34.04_PM.png" className="border" />
 
 ## Step 2: Parse the required fields
 
@@ -37,7 +37,7 @@ You must enter your merchant salt (provided by PayU) in the **SALT** field. This
   **Important:** Never share your salt publicly. It is a secret key used for security.
 </Callout>
 
-<Image align="center" border={false} src="https://files.readme.io/32f0a267baecea562d04e80f662f42d0c4567f73fd70f679a43323642156255e-payu_response_validator_page2.png" />
+<Image align="center" border={true} src="https://files.readme.io/0ddb50a1e38351c32cce9f97b3ae57b6e8fa3c9d7b7abb835dfd2b3d178a4b1b-image_8.png" className="border" />
 
 ## Step 4: Compute the hash
 
@@ -45,7 +45,7 @@ Click **"Verify Hash"** on the tool.
 
 The tool will recompute the hash using the provided data and your salt.
 
-<Image align="center" border={false} src="https://files.readme.io/494174d76f593ba6e36ebf2bc086540f04b8bfd4ed909d43d3c77a9cfb855950-payu_response_validator_page3.png" />
+<Image align="center" border={false} src="https://files.readme.io/580113baaf45b7d989c3fd3b12dddc7436383069c3e7512131efb310f811b7ed-image_9.png" />
 
 ## Step 5: Compare the Hashes
 
