@@ -45,7 +45,7 @@ Click **"Verify Hash"** on the tool.
 
 The tool will recompute the hash using the provided data and your salt.
 
-<Image align="center" border={true} src="https://files.readme.io/580113baaf45b7d989c3fd3b12dddc7436383069c3e7512131efb310f811b7ed-image_9.png" className="border" />
+<Image align="center" border={true} src="https://files.readme.io/24a0be047e99105ceaefcd9bb818c76fb15d4f6ca00833cfafc948f00f26e594-image_9.png" className="border" />
 
 ## Step 5: Compare the Hashes
 
