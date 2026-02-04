@@ -9,21 +9,20 @@ metadata:
   description: ''
   robots: index
 ---
----
+***
+
 title: Cards - Native OTP Flow
 deprecated: false
 hidden: false
 link:
-  new_tab: false
+new_tab: false
 metadata:
-  title: ''
-  description: ''
-  robots: index
+title: ''
+description: ''
+robots: index
 The steps involved in cards with Native OTP:
 
-1. [Initiate the payment request](#step-1-initiate-the-payment-to-payu)
-2. [Submit the OTP](#step-2-submit-the-OTP)
-3. [Verify the Payment](#step-3-verify-the-payment)
+<br />
 
 <Cards columns={3}>
   <Card title="1. Initiate payment request" href="#step-1-initiate-the-payment-request">
@@ -41,7 +40,7 @@ The steps involved in cards with Native OTP:
 
 ## Step 1: Initiate the payment request
 
-### Request parameters
+<Accordion title="Request parameters" icon="table">
 
 Send the following additional parameters to PayU through a server-to-server curl request to initiate the payment. As a result of this API call, the customer will receive the OTP. For sample request and response, refer to [Collect Payment API - Server-to-Server](ref:_payment_server_to_server).
 
@@ -529,9 +528,8 @@ Send the following additional parameters to PayU through a server-to-server curl
     </tr>
   </tbody>
 </Table>
-
-### Sample request
-
+</Accordion>
+<Accordion title="Sample request" icon="fa-code">
 ```curl
 curl -X POST "https://test.payu.in/_payment" \
 -H "accept: application/json" \
@@ -1175,12 +1173,12 @@ namespace PayUCardlessEmiNativeOtpIntegration
 }
 
 ```
-
+</Accordion>
 ## Step 2: Submit the OTP
 
 Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pass the OTP using the **Submit OTP** API. For more information, refer to [Submit OTP API](ref:submit-otp-to-payu).
 
-### Sample Response
+<Accordion title="Sample response" icon="fa-reply">
 
 * Success scenario
 
@@ -1241,7 +1239,7 @@ Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pas
   "result": {}
 }
 ```
-
+</Accordion>
 ### Resend OTP
 
 If the customer enters the incorrect OTP or an expired OTP, use [Resend OTP API](ref:resend-otp-api) to handle the **Resend OTP** request made by a customer.
