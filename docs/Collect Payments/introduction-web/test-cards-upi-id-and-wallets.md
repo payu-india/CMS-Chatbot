@@ -48,7 +48,7 @@ The following table provides details of some of the test cards that you can use 
 | PayU/Merchant Hosted Checkout | 4012001037141112 | VISA        | 05/30      | 123     | 123456  |
 | Server-to-Server              | 5497774415170603 | Mastercard  | 05/30      | 412     | 123456  |
 | PayU/Merchant Hosted Checkout | 6082015309577308 | RUPAY       | 05/30      | 123     | 123456  |
-| PayU/Merchant Hosted Checkout | 370295061673669  | AMEX        | 03/30      | 1234    | 123456  |
+| PayU/Merchant Hosted Checkout | 370295061673669  | AMEX        | 03/30      | 1234    | 725356  |
 
 ### Debit Card
 
