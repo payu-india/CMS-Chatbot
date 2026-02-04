@@ -9,9 +9,9 @@ metadata:
 
 Navigate to the following URL on your browser:
 
-<Anchor label="[https://payu-hashverificationtool.onrender.com/](https://payu-hashverificationtool.onrender.com/)" target="_blank" href="https://payu-hashverificationtool.onrender.com/">[https://payu-hashverificationtool.onrender.com/](https://payu-hashverificationtool.onrender.com/)</Anchor>
+<Anchor label="https://payu-hashverificationtool.onrender.com/" target="_blank" href="https://payu-hashverificationtool.onrender.com/">https://payu-hashverificationtool.onrender.com/</Anchor>
 
-<Image align="center" border={false} src="https://files.readme.io/0e04fd9f9bc081db879aa2532f4aa72ac3f51c09de513cd21e127fe8f033e10f-payu_response_validator_page1.png" />
+<Image align="center" border={false} src="https://files.readme.io/75fb157bf54d764aaf1692a9b6744de07bec1ddcdffad59c95d14c03f68255d6-Screenshot_2026-02-04_at_2.34.04_PM.png" />
 
 ## Step 2: Parse the required fields
 
