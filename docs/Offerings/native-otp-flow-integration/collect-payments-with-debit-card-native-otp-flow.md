@@ -22,7 +22,7 @@ Before initiating a payment request for a customer, it is necessary to check the
 
 ## Step 2: Initiate the payment request
 
-### Request parameters
+<Accordion title="Request parameters" icon="table">
 
 Send the transaction information to PayU through a server-to-server curl request to initiate the transaction. As a result of this API call, the customer will receive the OTP. For more information, refer to [Collect Payment API - Server-to-Server](ref:_payment_server_to_server).
 
@@ -573,9 +573,9 @@ Send the transaction information to PayU through a server-to-server curl request
   </tbody>
 </Table>
 `}</HTMLBlock>
+</Accordion>
 
-### Sample request
-
+<Accordion title="Sample request" icon="fa-code">
 ```curl
 curl -X POST "https://test.payu.in/_payment" \
 -H "accept: application/json" \
@@ -1235,12 +1235,12 @@ namespace PayUEmiNativeOtpIntegration
    }
 }
 ```
-
+</Accordion>
 ## Step 3: Submit the OTP
 
 Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pass the OTP using the **Submit OTP** API. For more information, refer to [Submit OTP API](ref:submit-otp-to-payu).
 
-### Sample Response
+<Accordion title="Sample response" icon="fa-reply">
 
 * Success scenario
 
@@ -1301,6 +1301,7 @@ Once your customer enters the OTP on the payment page (postUrl/acsTemplate), pas
   "result": {}
 }
 ```
+</Accordion>
 
 ### Resend OTP
 
