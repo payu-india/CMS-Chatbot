@@ -150,13 +150,13 @@ next:
 <tr><td>State Bank of India</td><td>SBI12</td><td>12 months</td><td>15.50</td><td>2500</td><td>N/A</td><td>Rs. 159</td><td>N/A</td></tr>
 <tr><td>State Bank of India</td><td>SBI18</td><td>18 Months</td><td>15.50</td><td>10000</td><td>N/A</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>State Bank of India</td><td>SBI24</td><td>24 months</td><td>15.50</td><td>10000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
-<tr><td>Yes Bank</td><td>EMIY03</td><td>3 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 249</td><td>N/A</td></tr>
-<tr><td>Yes Bank</td><td>EMIY06</td><td>6 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 249</td><td>N/A</td></tr>
-<tr><td>Yes Bank</td><td>EMIY09</td><td>9 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 249</td><td>N/A</td></tr>
-<tr><td>Yes Bank</td><td>EMIY12</td><td>12 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 249</td><td>N/A</td></tr>
-<tr><td>Yes Bank</td><td>EMIY18</td><td>18 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 249</td><td>N/A</td></tr>
-<tr><td>Yes Bank</td><td>EMIY24</td><td>24 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 249</td><td>N/A</td></tr>
-<tr><td>Yes Bank</td><td>EMIY36</td><td>36 Months</td><td>16</td><td>1500</td><td>1000000</td><td>Rs. 0</td><td>N/A</td></tr> </tbody> </table> </div> </div>< ><h2 class="heading heading-2 header-scroll" align=""> <div class="heading-anchor anchor waypoint" id="debit-card-emi-codes"></div> <div class="heading-text"> <div id="section-debit-card-emi-codes" class="heading-anchor_backwardsCompatibility"></div>Debit Card EMI Codes </div> <a aria-label="Skip link to Debit Card EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#debit-card-emi-codes"></a> </h2> <div class="rdmd-table"> <div class="rdmd-table-inner"> <table> <thead> <tr> <th>Bank Name</th> <th>bank_code</th> <th>Tenure</th> <th>Interest Rate</th> <th>Min. Amt.</th> <th>Max. Amt.</th> <th>Default Processing Fee</th> </tr> </thead> <tbody> <tr><td>Bank of Baroda</td><td>BOBD09</td><td>9 Months</td><td>16</td><td>5000</td><td>50000</td><td>N/A</td></tr>
+<tr><td>Yes Bank</td><td>EMIY03</td><td>3 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
+<tr><td>Yes Bank</td><td>EMIY06</td><td>6 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
+<tr><td>Yes Bank</td><td>EMIY09</td><td>9 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
+<tr><td>Yes Bank</td><td>EMIY12</td><td>12 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
+<tr><td>Yes Bank</td><td>EMIY18</td><td>18 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
+<tr><td>Yes Bank</td><td>EMIY24</td><td>24 Months</td><td>16</td><td>1500</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
+<tr><td>Yes Bank</td><td>EMIY36</td><td>36 Months</td><td>16</td><td>1500</td><td>1000000</td><td>Rs. 299</td><td>N/A</td></tr> </tbody> </table> </div> </div>< ><h2 class="heading heading-2 header-scroll" align=""> <div class="heading-anchor anchor waypoint" id="debit-card-emi-codes"></div> <div class="heading-text"> <div id="section-debit-card-emi-codes" class="heading-anchor_backwardsCompatibility"></div>Debit Card EMI Codes </div> <a aria-label="Skip link to Debit Card EMI Codes" class="heading-anchor-icon fa fa-anchor" href="#debit-card-emi-codes"></a> </h2> <div class="rdmd-table"> <div class="rdmd-table-inner"> <table> <thead> <tr> <th>Bank Name</th> <th>bank_code</th> <th>Tenure</th> <th>Interest Rate</th> <th>Min. Amt.</th> <th>Max. Amt.</th> <th>Default Processing Fee</th> </tr> </thead> <tbody> <tr><td>Bank of Baroda</td><td>BOBD09</td><td>9 Months</td><td>16</td><td>5000</td><td>50000</td><td>N/A</td></tr>
 <tr><td>Bank of Baroda</td><td>BOBD12</td><td>12 Months</td><td>16</td><td>5000</td><td>50000</td><td>N/A</td></tr>
 <tr><td>Bank of Baroda</td><td>BOBD18</td><td>18 Months</td><td>16</td><td>5000</td><td>50000</td><td>N/A</td></tr>
 <tr><td>Federal Bank</td><td>FEDED03</td><td>3 Months</td><td>15</td><td>5000</td><td>150000</td><td>N/A</td></tr>
