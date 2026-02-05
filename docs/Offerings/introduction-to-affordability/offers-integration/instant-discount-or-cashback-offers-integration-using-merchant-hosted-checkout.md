@@ -91,7 +91,7 @@ Use the **Validate Offer** API to validate if the offer will be applied on this 
 
 Make the payment request using the **_payment** API using the following additional parameters for Offers. For more information on the complete list of parameters to be posted, refer to  <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="ref:_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
+<Accordion title="Request Parameters" icon="fa-table">
  <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -367,6 +367,7 @@ Make the payment request using the **_payment** API using the following addition
 > * If any of the keys is null/not configured, "|" character must be concatenated.
 > * The above hash logic is for _payment API version 10 or later
 
+<Accordion title="Request Parameters" icon="fa-code">
 **Sample Request with cart_details JSON object**
 
 ```curl
@@ -687,11 +688,11 @@ class Program
     }
 }
 ```
-
+</Accordion>
 ### Step 5: Check the response from PayU
 
 Check the following response parameters (for Offers) from PayU to handle the payment response, as the net amount debit may be different from the amount sent by you in the request.
-
+<Accordion title="Request Parameters" icon="fa-reply">
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -772,7 +773,7 @@ Check the following response parameters (for Offers) from PayU to handle the pay
 </Table>
 
 For a sample response, refer to the [Additional Info for Payment APIs](ref:addl_info-payment-apis).
-
+</Accordion>
 ### Step 6: Verify the payment
 
 Similar to the payment response, same params can be handled as part of the **Verify Payment** API or webhooks. For more information, For more information, refer to following tabs.
