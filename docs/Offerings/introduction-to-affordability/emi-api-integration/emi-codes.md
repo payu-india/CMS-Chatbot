@@ -193,6 +193,7 @@ next:
 | LazyPay EMI                 | LPEMI06   | 6 Months    |       25%-30% |   Rs. 6000 |     Rs. 100000 |                    N/A |
 | LazyPay EMI                 | LPEMI09   | 9 Months    |       25%-30% |  Rs. 15000 |     Rs. 100000 |                    N/A |
 | LazyPay EMI                 | LPEMI12   | 12 Months   |       25%-30% |  Rs. 20000 |     Rs. 100000 |                    N/A |
+| Zestmoney                   | ZESTMON   | -           |             - |          - |              - |                      - |
 
 ## UPI CC EMI Codes
 
