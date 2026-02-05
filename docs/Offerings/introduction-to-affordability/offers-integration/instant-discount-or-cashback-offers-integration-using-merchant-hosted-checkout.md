@@ -56,7 +56,7 @@ The steps involved in the customer journey are:
 * **Step 6**: Two-Factor Authentication
   The customer completes their bank's 2FA process on the adjusted amount (reduced amount for instant discount, original amount for cashback).
 
-* **Step 7**: Return to your Site.   
+* **Step 7**: Return to your Site.  
   After successful payment, the customer is redirected back to your app or website.
 
 <Callout icon="👍" theme="okay">
