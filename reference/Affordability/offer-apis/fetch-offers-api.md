@@ -354,14 +354,18 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
 
 **Sample request**
 
-```
-{
-    "amount": 300,
-    "offerKeys": [],
-    "paymentId": 12332345,
+```curl
+curl --location 'https://sandbox.payu.in/offers/transactions' \
+--header 'Content-Type: application/json' \
+--header 'Date: {{generated_date}}' \
+--header 'Digest: {{generated_digest}}' \
+--header 'Authorization: {{generated_authorization}}' \
+--header 'platformId: 1' \
+--data '{
+    "amount": 500,
     "autoApply": true,
-    "userToken": "token"
-}
+    "userToken": "merchant_key:unique_user_id"
+}'
 ```
 
 **Sample response**
@@ -4086,14 +4090,18 @@ Response;
 
 **Sample request **
 
-```
-{
-    "amount": 300,
+```curl
+curl --location 'https://sandbox.payu.in/offers/transactions' \
+--header 'Content-Type: application/json' \
+--header 'Date: {{generated_date}}' \
+--header 'Digest: {{generated_digest}}' \
+--header 'Authorization: {{generated_authorization}}' \
+--header 'platformId: 1' \
+--data '{
+    "amount": 500,
     "autoApply": false,
-    "offerKeys": [
-        "TestOffer@fY6HdoP7da8L"
-    ]
-}
+    "offerKeys": ["flat150Off@03q62aqtF34n", "TestOffer@fY6HdoP7da8L"]
+}'
 ```
 
 **Sample response**
@@ -4232,12 +4240,17 @@ Merchant ID does not exists
 
 Sample request
 
-```curl
-{
-    "amount": 300,
+```json
+curl --location 'https://sandbox.payu.in/offers/transactions' \
+--header 'Content-Type: application/json' \
+--header 'Date: {{generated_date}}' \
+--header 'Digest: {{generated_digest}}' \
+--header 'Authorization: {{generated_authorization}}' \
+--header 'platformId: 1' \
+--data '{
+    "amount": 500,
     "autoApply": true,
-    "paymentId": 12332345,
-    "userToken": "token"
+    "userToken": "merchant_key:unique_user_id",
     "skusDetail": [
         {
             "skuAmount": 300,
@@ -4246,7 +4259,7 @@ Sample request
             "offerKeys": []
         }
     ]
-}
+}'
 ```
 
 #### Sample response
