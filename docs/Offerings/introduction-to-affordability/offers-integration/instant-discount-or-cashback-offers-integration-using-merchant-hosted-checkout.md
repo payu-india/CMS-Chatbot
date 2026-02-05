@@ -1,6 +1,6 @@
 ---
 title: >-
-  Integrate Offers (Instant Discount, Cashback, No Cost, Low Cost EMI) for
+  Integrate Offers (Instant Discount, Cashback, No Cost, Low-Cost EMI) for
   Merchant Hosted
 deprecated: false
 hidden: false
