@@ -38,23 +38,28 @@ The steps involved in the customer journey are:
 
 * **Step 1**: Login
   Your customer logs into your app or website. At this point, they're just browsing.
+
 * **Step 2**: Product Selection
-  The customer adds products or services to their cart. This is your first opportunity to show relevant offers using the Fetch Offers API, potentially influencing their purchase decision before they even reach checkout.
+  The customer adds products or services to their cart. This is your first opportunity to show relevant offers using the **Fetch Offers** API, potentially influencing their purchase decision before they even reach checkout.
+
 * **Step 3**: Checkout and Offer Discovery
   When the customer lands on your checkout page, you'll call the Fetch Offers API to retrieve all applicable offers for their specific transaction. PayU returns everything you need to display the offer attractively, including the title, description, terms and conditions, applicable payment methods, and the actual discount or cashback value. Think of this API as your offer catalog for this particular transaction.
-* **Step 4**: Payment Method Selection and Validation
-  After the customer chooses their preferred payment method and enters the required details, you'll use the Validate Offer API to confirm whether the selected offer will actually apply to this transaction. This validation step is crucial because it prevents customer disappointment at the final stage.
 
-     For EMI-specific flows, there's an additional step. When a customer selects EMI (whether credit card, debit card, or cardless EMI), you'll first call the **Calculate EMI** API. This API returns all available EMI plans along with applicable offers, letting you display complete pricing information upfront. You can call this API not just at checkout but anywhere you want to show EMI options, such as product detail pages. After the customer selects an EMI plan and completes their payment details, you'll then call the **Validate Offer** API to ensure the EMI offer will be honored.
+* **Step 4**: Payment Method Selection and Validation
+  After the customer chooses their preferred payment method and enters the required details, you must use the **Validate Offer** API to confirm whether the selected offer will actually apply to this transaction. This validation step is crucial because it prevents customer disappointment at the final stage.
+
+  For EMI-specific flows, there's an additional step. When a customer selects EMI (whether credit card, debit card, or cardless EMI), you'll first call the **Calculate EMI** API. This API returns all available EMI plans along with applicable offers, letting you display complete pricing information upfront. You can call this API not just at checkout but anywhere you want to show EMI options, such as product detail pages. After the customer selects an EMI plan and completes their payment details, you'll then call the **Validate Offer** API to ensure the EMI offer will be honored.
 
 * **Step 5**: Payment Initiation
   You initiate the actual payment using the payment API, passing along the validated offer. The behavior differs based on offer type. For instant discounts, the transaction amount is reduced immediately. For cashback, the full amount is charged but the customer receives credit later.
+
 * **Step 6**: Two-Factor Authentication
   The customer completes their bank's 2FA process on the adjusted amount (reduced amount for instant discount, original amount for cashback).
-* **Step 7**: Return to Your Site
+
+* **Step 7**: Return to your Site.   
   After successful payment, the customer is redirected back to your app or website.
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Tip**: You're not limited to showing offers only at checkout. Consider using the **Fetch Offers** API on product pages to highlight "Buy now and get 10% instant discount" messaging, on cart pages to encourage completion, or in a dedicated offers section to drive engagement.
 </Callout>
 
@@ -62,7 +67,7 @@ The steps involved in the customer journey are:
 
 To integrate offers using Merchant Hosted Checkout integration:
 
-<Callout icon="❗️">
+<Callout icon="❗️" theme="error">
   **Prerequisites**: Before starting, ensure you're familiar with the standard Merchant Hosted Checkout workflow. If you haven't implemented basic checkout yet, refer to the Merchant Hosted Checkout documentation first. For the Merchant Hosted Checkout workflow, refer [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted)
 </Callout>
 
