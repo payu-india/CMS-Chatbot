@@ -33,30 +33,57 @@ The following video walks through the customer journey:
 
 <br />
 
-The steps involves in the customer journey are:
+## Customer Journey
 
-1. User logs in to the merchant’s app/website.
-2. User chooses the product(s)/service(s) he/she wishes to purchase.
-3. User reaches the checkout page. The merchant can use the Fetch offers API to display all the live applicable offers for this transaction. As part of this API the merchant would get all the necessary information to display to the user regarding the offer include Offer Title, description, terms and conditions, applicable payment modes & the offer value.
-4. User would make his/her decision and pay through a specific payment option. After the customer has entered all the required details, the merchant can use the Validate Offer API to check whether the offer would be applied to the transaction or not.
-5. The merchant would initiate the payment along with the offer using the **_payment** API
-6. In case of Instant discount, the amount would be reduced on application of offer, in case of cashback the amount would not be charged.
-7. User would complete the 2FA (2 Form Authentication) payment on the adjusted amount.
-8. User would be redirected back to the merchant app/website.
+The steps involved in the customer journey are:
 
-The merchant can use the Fetch offers API to display the offers on **Product Display Page** & **Cart** screens or in case merchant wishes to have a separate **Offers section** on their website/app
+* **Step 1**: Login
+  Your customer logs into your app or website. At this point, they're just browsing.
+* **Step 2**: Product Selection
+  The customer adds products or services to their cart. This is your first opportunity to show relevant offers using the Fetch Offers API, potentially influencing their purchase decision before they even reach checkout.
+* **Step 3**: Checkout and Offer Discovery
+  When the customer lands on your checkout page, you'll call the Fetch Offers API to retrieve all applicable offers for their specific transaction. PayU returns everything you need to display the offer attractively, including the title, description, terms and conditions, applicable payment methods, and the actual discount or cashback value. Think of this API as your offer catalog for this particular transaction.
+* **Step 4**: Payment Method Selection and Validation
+  After the customer chooses their preferred payment method and enters the required details, you'll use the Validate Offer API to confirm whether the selected offer will actually apply to this transaction. This validation step is crucial because it prevents customer disappointment at the final stage.
+  For EMI-specific flows, there's an additional step. When a customer selects EMI (whether credit card, debit card, or cardless EMI), you'll first call the Calculate EMI API. This API returns all available EMI plans along with applicable offers, letting you display complete pricing information upfront. You can call this API not just at checkout but anywhere you want to show EMI options, such as product detail pages. After the customer selects an EMI plan and completes their payment details, you'll then call the Validate Offer API to ensure the EMI offer will be honored.
+* **Step 5**: Payment Initiation
+  You initiate the actual payment using the payment API, passing along the validated offer. The behavior differs based on offer type. For instant discounts, the transaction amount is reduced immediately. For cashback, the full amount is charged but the customer receives credit later.
+* **Step 6**: Two-Factor Authentication
+  The customer completes their bank's 2FA process on the adjusted amount (reduced amount for instant discount, original amount for cashback).
+* **Step 7**: Return to Your Site
+  After successful payment, the customer is redirected back to your app or website.
+
+<Callout icon="👍">
+  **Tip**: You're not limited to showing offers only at checkout. Consider using the **Fetch Offers** API on product pages to highlight "Buy now and get 10% instant discount" messaging, on cart pages to encourage completion, or in a dedicated offers section to drive engagement.
+</Callout>
 
 ## Integration steps
 
 To integrate offers using Merchant Hosted Checkout integration:
 
-<Callout icon="📘" theme="info">
-  **Reference**: For the Merchant Hosted Checkout workflow, refer [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted)
+<Callout icon="❗️">
+  **Prerequisites**: Before starting, ensure you're familiar with the standard Merchant Hosted Checkout workflow. If you haven't implemented basic checkout yet, refer to the Merchant Hosted Checkout documentation first. For the Merchant Hosted Checkout workflow, refer [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted)
 </Callout>
 
-1. On the checkout page (or earlier on PDP, Cart, Offers) use the **Fetch Offers** API to get the offers and display all the offers. For more information, refer to [Fetch Offers API](ref:fetch-offers-api).
-2. Use the **Validate Offer** API to validate if the offer will be applied on this transaction or not. For more information, refer to [Validate Offer API](ref:validate-offer-api).
-3. Make the payment request using the **_payment** API using the following additional parameters for Offers. For more information on the complete list of parameters to be posted, refer to <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="ref:_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>
+### Step 1: Fetch Offers
+
+The first step is to retrieve offers using the **Fetch Offers** API, which you can call at multiple points in your user journey. This API returns a comprehensive list of offers applicable to the transaction context you provide.
+
+**Where to implement this**: checkout page (essential), product detail pages (recommended for conversion), cart page (recommended), or a dedicated offers page (optional but valuable for discovery). For complete API specifications and request parameters, refer to [Fetch Offers API](ref:fetch-offers-api).
+
+### Step 2: Calculate EMI plans with offers
+
+If your checkout supports EMI as a payment option, there is a specialized API you need to integrate before the validation step. The Calculate EMI API is specifically designed for EMI transactions and serves a different purpose than the Fetch Offers API you used in [Step 1](#step-1-fetch-offers).
+
+When a customer selects EMI as their payment method, whether through credit card, debit card, or cardless EMI, they need to see the available EMI plans along with any applicable offers before making their final decision. The **Calculate EMI** API returns the complete EMI breakdown including tenure options, monthly installment amounts, interest rates, and any EMI-specific offers that can be applied. For complete API specification and request parameters, refer to [EMI Calculator API](https://docs.payu.in/reference/emi-calculator-api).
+
+### Step 3: Validate Offer
+
+Use the **Validate Offer** API to validate if the offer will be applied on this transaction or not. For more information, refer to [Validate Offer API](ref:validate-offer-api).
+
+### Step 4: Make Payment
+
+Make the payment request using the **_payment** API using the following additional parameters for Offers. For more information on the complete list of parameters to be posted, refer to  <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="ref:_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -824,9 +851,9 @@ namespace PayUCardIntegration
 
 ```
 
-<br />
+### Step 5: Check the response from PayU
 
-4. Check the following response parameters (for Offers) from PayU to handle the payment response, as the net amount debit may be different from the amount sent by you in the request.
+Check the following response parameters (for Offers) from PayU to handle the payment response, as the net amount debit may be different from the amount sent by you in the request.
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -909,7 +936,7 @@ namespace PayUCardIntegration
 
 For a sample response, refer to the [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
-5. Verify the payment.
+### Step 6: Verify the payment
 
 Similar to the payment response, same params can be handled as part of the **Verify Payment** API or webhooks. For more information, For more information, refer to following tabs.
 
