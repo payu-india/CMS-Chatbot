@@ -23,7 +23,8 @@ metadata:
 next:
   description: ''
 ---
-With the Merchant Hosted Checkout integration, the entire payment experience can be controlled by merchants and PayU provides APIs to power this checkout experience. This section describes how PayU will help you to discover Offer (not only on Checkout page but anywhere on the merchant app/website), validate Offer & apply Offer (along with payment).
+With the Merchant Hosted Checkout integration, the entire payment experience can be controlled by merchants and PayU provides APIs to power this checkout experience. This section provides the step-by-step procedure to integrate PayU's Offer Engine with Merchant Hosted Checkout integration, which enables you to display, validate, and apply various offers including instant discounts, cashback, and EMI options throughout your customer's journey.
+With this integration, you are not limited to showing offers only at checkout—you can surface them anywhere in your app or website where they make sense, whether that's on product pages, cart screens, or a dedicated offers section.
 
 ## Customer journey on Merchant Hosted Checkout
 
@@ -32,8 +33,6 @@ The following video walks through the customer journey:
 <Embed typeOfEmbed="youtube" url="https://www.youtube.com/watch?v=tRRbSzk9Egg" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FtRRbSzk9Egg%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DtRRbSzk9Egg%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FtRRbSzk9Egg%252Fhqdefault.jpg%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" href="https://www.youtube.com/watch?v=tRRbSzk9Egg" providerUrl="https://www.youtube.com/" providerName="YouTube" />
 
 <br />
-
-## Customer Journey
 
 The steps involved in the customer journey are:
 
