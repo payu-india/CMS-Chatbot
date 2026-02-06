@@ -47,7 +47,7 @@ The merchant needs to pass Google Pay as described in [Additional payment option
 >
 > The Gpay InApp flow is not available in the Test mode.
 
-For GPay SDK integration, refer to [GPay SDK](doc:google-pay-sdk) for more details
+For GPay SDK integration, refer to [Android Google Pay SDK](doc:android-google-pay-sdk).
 
 # PhonePe InApp
 
