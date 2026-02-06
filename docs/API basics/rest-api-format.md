@@ -23,15 +23,15 @@ REST API can be accessed by making a server-to-server call on the following PayU
     href="https://payu-hosted-checkout.readme.io/v1/recipes/curl-walkthrough"
     id="65084edbb1c590100cf1243e"
     style={{
-        display: "block",
-        backgroundColor: "#018FF4",
-        color: "white",
-        padding: "1rem",
-        borderRadius: "0.5rem",
-        textDecoration: "none",
-        maxWidth: "400px",
-        marginBottom: "1rem",
-      }}
+          display: "block",
+          backgroundColor: "#018FF4",
+          color: "white",
+          padding: "1rem",
+          borderRadius: "0.5rem",
+          textDecoration: "none",
+          maxWidth: "400px",
+          marginBottom: "1rem",
+        }}
   >
     <div style={{ fontSize: "2rem" }}>🦉</div>
     <h3 style={{ margin: "0.5rem 0 0" }}>CURL Walkthrough</h3>
@@ -91,7 +91,7 @@ REST API can be accessed by making a server-to-server call on the following PayU
       </td>
 
       <td>
-        Merchant key provided by PayU. For more information on checking your key and Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](https://devguide.payu.in/api/integration-apis/generate-api-key-and-salt/).
+        Merchant key provided by PayU. For more information on checking your key and Salt, refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy).
       </td>
 
       <td>
