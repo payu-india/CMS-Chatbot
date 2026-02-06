@@ -428,7 +428,7 @@ Ensure these steps before you deploy the integration in a live environment.
 
 ### Collect Live Payments
 
-After [testing the integration](doc:android-phonepesdk-test-integration), once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
+After testing the integration, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
 > 🚧 Watch Out!
 >
