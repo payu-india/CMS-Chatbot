@@ -16,7 +16,7 @@ metadata:
 next:
   description: ''
 ---
-Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard > Settings > Payment methods**.  For more information, refer. to [Checkout Payment Modes](doc:checkout-payment-modes). By default, Cards, UPI, and other payment methods are enabled, and PayU recommends that you to enable other payment methods that are relevant to you.
+Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard > Settings > Payment methods**.  For more information, refer. to [Checkout Payment Modes](doc:payu-payment-page-customization#configure-checkout-payment-methods-and-settings). By default, Cards, UPI, and other payment methods are enabled, and PayU recommends that you to enable other payment methods that are relevant to you.
 
 ## SDK Integration
 
@@ -1322,8 +1322,6 @@ This section describes how to integrate custom notes in PayUCheckoutPro SDK.
   ### Additional SDK Offerings
 
   If you want to add features like **Native OTP**, **Gpay InApp**, **PhonePe Inapp**, and **Ola Money** in our PayUCheckoutPro SDK, then please refer to the below [Add-on SDKs](doc:android-checkoutpro-addonsdks)
-
-  <br />
 
   After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
