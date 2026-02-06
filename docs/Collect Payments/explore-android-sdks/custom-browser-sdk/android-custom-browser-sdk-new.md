@@ -782,29 +782,23 @@ firstname=John
 
 ### Parameter Descriptions
 
-| Parameter                    | Mandatory   | Description               | Example                                |
-| ---------------------------- | ----------- | ------------------------- | -------------------------------------- |
-| `key`                        | Yes         | Your PayU merchant key    | `gt****`                               |
-| `txnid`                      | Yes         | Unique transaction ID     | `TXN1705055037779`                     |
-| `amount`                     | Yes         | Transaction amount        | `1.0`                                  |
-| `productinfo`                | Yes         | Product description       | `Macbook Pro`                          |
-| `firstname`                  | Yes         | Customer first name       | `John`                                 |
-| `email`                      | Yes         | Customer email            | `user@example.com`                     |
-| `phone`                      | Yes         | Customer phone number     | `9999999999`                           |
-| `surl`                       | Yes         | Success callback URL      | `https://yourdomain.com/success`       |
-| `furl`                       | Yes         | Failure callback URL      | `https://yourdomain.com/failure`       |
-| `hash`                       | Yes         | SHA-512 hash for security | Generated hash string                  |
-| `pg`                         | Yes         | Payment gateway type      | `CC` (Card), `NB` (Net Banking), `UPI` |
-| `bankcode`                   | Yes         | Bank/payment method code  | `CC`, `SBIB`, etc.                     |
-| `device_type`                | No          | Device type indicator     | `1` (Mobile)                           |
-| `udf1-udf5`                  | No          | User-defined fields       | Custom data                            |
-| `sdk_platform`               | No          | SDK platform information  | JSON array                             |
-| **Card-specific parameters** |             |                           |                                        |
-| `ccnum`                      | Yes (Cards) | Card number               | `5123456789012346`                     |
-| `ccvv`                       | Yes (Cards) | CVV                       | `123`                                  |
-| `ccexpyr`                    | Yes (Cards) | Expiry year               | `2025`                                 |
-| `ccexpmon`                   | Yes (Cards) | Expiry month              | `05`                                   |
-| `ccname`                     | Yes (Cards) | Cardholder name           | `PayuUser`                             |
+| Parameter      | Mandatory | Description               | Example                                |
+| -------------- | --------- | ------------------------- | -------------------------------------- |
+| `key`          | Yes       | Your PayU merchant key    | `gt****`                               |
+| `txnid`        | Yes       | Unique transaction ID     | `TXN1705055037779`                     |
+| `amount`       | Yes       | Transaction amount        | `1.0`                                  |
+| `productinfo`  | Yes       | Product description       | `Macbook Pro`                          |
+| `firstname`    | Yes       | Customer first name       | `John`                                 |
+| `email`        | Yes       | Customer email            | `user@example.com`                     |
+| `phone`        | Yes       | Customer phone number     | `9999999999`                           |
+| `surl`         | Yes       | Success callback URL      | `https://yourdomain.com/success`       |
+| `furl`         | Yes       | Failure callback URL      | `https://yourdomain.com/failure`       |
+| `hash`         | Yes       | SHA-512 hash for security | Generated hash string                  |
+| `pg`           | Yes       | Payment gateway type      | `CC` (Card), `NB` (Net Banking), `UPI` |
+| `bankcode`     | Yes       | Bank/payment method code  | `CC`, `SBIB`, etc.                     |
+| `device_type`  | No        | Device type indicator     | `1` (Mobile)                           |
+| `udf1-udf5`    | No        | User-defined fields       | Custom data                            |
+| `sdk_platform` | No        | SDK platform information  | JSON array                             |
 
 ### Payment Gateway (pg) Codes
 
