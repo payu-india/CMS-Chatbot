@@ -41,6 +41,7 @@ FlashPay solution primarily offers a single comprehensive SDK which is equipped 
 
     <br />
   </Card>
+
   <br />
 </Cards>
 
@@ -54,7 +55,7 @@ PayU SDK offers the following methods to integrate with 3DS 2.0:
 Add the following dependency in your app-level gradle file:
 
 ```groovy
-implementation 'in.payu:threeds-sdk:1.1.2-SNAPSHOT'
+implementation 'in.payu:threeds-sdk:2.0.0'
 ```
 
 * Use our SDK for a complete transaction:
@@ -153,103 +154,103 @@ implementation 'in.payu:threeds-sdk:1.1.2-SNAPSHOT'
 </Accordion>
 
 <Accordion title="UI Customations" icon="fa-cog">
+  <Accordion title="Button Customization" icon="fa-square">
+    ```kotlin
+    var buttonCustomisation = ButtonCustomisation.Builder()
+        .setBackgroundColor("colorCode") // HEX CODE
+        .setCornerRadius(5) // Integer
+        .setTextFontColor("colorCode") // HEX CODE
+        .setTextFontSize(5) // Integer
+        .setTextCaseType(ButtonTextCaseType.LOWER_CASE) // LOWER_CASE, UPPER_CASE
+        .setResendTextFontColor("colorCode") // HEX CODE
+        .build()
+    ```
+  </Accordion>
 
-<Accordion title="Button Customization" icon="fa-square">
-  ```kotlin
-  var buttonCustomisation = ButtonCustomisation.Builder()
-      .setBackgroundColor("colorCode") // HEX CODE
-      .setCornerRadius(5) // Integer
-      .setTextFontColor("colorCode") // HEX CODE
-      .setTextFontSize(5) // Integer
-      .setTextCaseType(ButtonTextCaseType.LOWER_CASE) // LOWER_CASE, UPPER_CASE
-      .setResendTextFontColor("colorCode") // HEX CODE
-      .build()
-  ```
+  <Accordion title="Label customization" icon="fa-tag">
+    ```kotlin
+    var labelCustomisation = LabelCustomisation.Builder()
+        .setHeadingTextColor("colorCode") // HEX CODE
+        .setHeadingTextFontName(FontName.ROBOTO_REGULAR)
+        .setHeadingTextFontSize(10) // Integer
+        .setTextColor("colorCode") // HEX CODE
+        .setTextFontName(FontName.ROBOTO_REGULAR)
+        .setTextFontSize(10) // Integer
+        .build()
+    ```
+  </Accordion>
+
+  <Accordion title="Toolbar Customization" icon="fa-window-maximize">
+    ```kotlin
+    var toolbarCustomisation = ToolbarCustomisation.Builder()
+        .setBackgroundColor("colorCode") // HEX CODE
+        .setButtonText("ButtonText") // String
+        .setHeaderText("HeaderText") // String
+        .setTextColor("colorCode") // HEX CODE
+        .setTextFontSize(18) // Integer
+        .setTextFontName(FontName.ROBOTO_REGULAR)
+        .build()
+    ```
+  </Accordion>
+
+  <Accordion title="TextBox Customization" icon="fa-edit">
+    ```kotlin
+    var textBoxCustomisation = TextBoxCustomisation.Builder()
+        .setTextColor("colorCode") // HEX CODE
+        .setBorderColor("colorCode") // HEX CODE
+        .setCornerRadius(5) // Integer
+        .setTextFontSize(5) // Integer
+        .setBorderWidth(5) // Integer
+        .setTextFontName(FontName.ROBOTO_REGULAR)
+        .build()
+    ```
+  </Accordion>
+
+  <Accordion title="Bottom Sheet Customization" icon="fa-window-restore">
+    ```kotlin
+    var bottomSheetCustomisation = BottomSheetCustomisation.Builder()
+        .setButtonBackgroundColor("colorCode") // HEX CODE
+        .setTextFontColor("colorCode") // HEX CODE
+        .setCornerRadius(5) // Integer
+        .setTextFontSize(5) // Integer
+        .setLabelTextFontSize(5) // Integer
+        .setHeadingTextFontSize(5) // Integer
+        .setTextCaseType(ButtonTextCaseType.LOWER_CASE) // LOWER_CASE, UPPER_CASE
+        .setResendTextFontColor("colorCode") // HEX CODE
+        .build()
+    ```
+  </Accordion>
+
+  <Accordion title="Font Customization" icon="fa-font">
+    ```kotlin
+    val fontFamilyCustomisation = FontFamilyCustomisation.Builder()
+        .setHeaderFontFamily("Header Font family path") // example: assets/fonts/lato-italic.ttf
+        .setSubTextFontFamily("Sub text font family path") // example: assets/fonts/lato-italic.ttf
+        .build()
+    ```
+  </Accordion>
+
+  <Accordion title="UI Customization integration" icon="fa-palette">
+    ```kotlin
+    var uiCustomisation = UICustomisation.Builder()
+        .setButtonCustomisation(buttonCustomisation)
+        .setToolbarCustomisation(toolbarCustomisation)
+        .setTextBoxCustomisation(textBoxCustomisation)
+        .setLabelCustomisation(labelCustomisation)
+        .setFontFamilyCustomisation(fontFamilyCustomisation)
+        .setBottomSheetCustomisation(bottomSheetCustomisation)
+        .build()
+    ```
+  </Accordion>
+
+  <Accordion title="Font customization options" icon="fa-text-height">
+    | Property            | Description                                             | Example                        |
+    | ------------------- | ------------------------------------------------------- | ------------------------------ |
+    | `HeaderFontFamily`  | Set the header font family from the specified file path | `assets/fonts/lato-italic.ttf` |
+    | `SubTextFontFamily` | Set subtext font family from the specified file path    | `assets/fonts/lato-italic.ttf` |
+  </Accordion>
 </Accordion>
 
-<Accordion title="Label customization" icon="fa-tag">
-  ```kotlin
-  var labelCustomisation = LabelCustomisation.Builder()
-      .setHeadingTextColor("colorCode") // HEX CODE
-      .setHeadingTextFontName(FontName.ROBOTO_REGULAR)
-      .setHeadingTextFontSize(10) // Integer
-      .setTextColor("colorCode") // HEX CODE
-      .setTextFontName(FontName.ROBOTO_REGULAR)
-      .setTextFontSize(10) // Integer
-      .build()
-  ```
-</Accordion>
-
-<Accordion title="Toolbar Customization" icon="fa-window-maximize">
-  ```kotlin
-  var toolbarCustomisation = ToolbarCustomisation.Builder()
-      .setBackgroundColor("colorCode") // HEX CODE
-      .setButtonText("ButtonText") // String
-      .setHeaderText("HeaderText") // String
-      .setTextColor("colorCode") // HEX CODE
-      .setTextFontSize(18) // Integer
-      .setTextFontName(FontName.ROBOTO_REGULAR)
-      .build()
-  ```
-</Accordion>
-
-<Accordion title="TextBox Customization" icon="fa-edit">
-  ```kotlin
-  var textBoxCustomisation = TextBoxCustomisation.Builder()
-      .setTextColor("colorCode") // HEX CODE
-      .setBorderColor("colorCode") // HEX CODE
-      .setCornerRadius(5) // Integer
-      .setTextFontSize(5) // Integer
-      .setBorderWidth(5) // Integer
-      .setTextFontName(FontName.ROBOTO_REGULAR)
-      .build()
-  ```
-</Accordion>
-
-<Accordion title="Bottom Sheet Customization" icon="fa-window-restore">
-  ```kotlin
-  var bottomSheetCustomisation = BottomSheetCustomisation.Builder()
-      .setButtonBackgroundColor("colorCode") // HEX CODE
-      .setTextFontColor("colorCode") // HEX CODE
-      .setCornerRadius(5) // Integer
-      .setTextFontSize(5) // Integer
-      .setLabelTextFontSize(5) // Integer
-      .setHeadingTextFontSize(5) // Integer
-      .setTextCaseType(ButtonTextCaseType.LOWER_CASE) // LOWER_CASE, UPPER_CASE
-      .setResendTextFontColor("colorCode") // HEX CODE
-      .build()
-  ```
-</Accordion>
-
-<Accordion title="Font Customization" icon="fa-font">
-  ```kotlin
-  val fontFamilyCustomisation = FontFamilyCustomisation.Builder()
-      .setHeaderFontFamily("Header Font family path") // example: assets/fonts/lato-italic.ttf
-      .setSubTextFontFamily("Sub text font family path") // example: assets/fonts/lato-italic.ttf
-      .build()
-  ```
-</Accordion>
-
-<Accordion title="UI Customization integration" icon="fa-palette">
-  ```kotlin
-  var uiCustomisation = UICustomisation.Builder()
-      .setButtonCustomisation(buttonCustomisation)
-      .setToolbarCustomisation(toolbarCustomisation)
-      .setTextBoxCustomisation(textBoxCustomisation)
-      .setLabelCustomisation(labelCustomisation)
-      .setFontFamilyCustomisation(fontFamilyCustomisation)
-      .setBottomSheetCustomisation(bottomSheetCustomisation)
-      .build()
-  ```
-</Accordion>
-
-<Accordion title="Font customization options" icon="fa-text-height">
-  | Property            | Description                                             | Example                        |
-  | ------------------- | ------------------------------------------------------- | ------------------------------ |
-  | `HeaderFontFamily`  | Set the header font family from the specified file path | `assets/fonts/lato-italic.ttf` |
-  | `SubTextFontFamily` | Set subtext font family from the specified file path    | `assets/fonts/lato-italic.ttf` |
-</Accordion>
-</Accordion>
 <Accordion title="2.2 PaymentParams" icon="fa-credit-card">
   Create and configure payment details:
 
@@ -642,14 +643,14 @@ implementation 'in.payu:threeds-sdk:1.1.2-SNAPSHOT'
   ```
 
   <Accordion title="Callback Method Descriptions" icon="fa-list">
-    | Method                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-    | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                                                                                                                                                                                                                                                                                                                 |
-    | `onPaymentFailure`      | Called when payment fails. t will contain a failure response. This will be a JSON Object, parse response as per your need                                                                                                                                                                                                                                                                                                                                                           |
-    | `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-    | `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                                                                                                                                                                                                                                        |
-    | `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the <Anchor label="[hash-generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk)" target="_blank" href="https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk">[hash-generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk)</Anchor> |
-    | `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                                                                                                                                                                                                                                            |
+    | Method                  | Description                                                                                                                                                                                                                                                                                                                                                                                                        |
+    | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | `onPaymentSuccess`      | Called when payment is successful. It will contain a success response. This will be a JSON Object, parse response as per your need.                                                                                                                                                                                                                                                                                |
+    | `onPaymentFailure`      | Called when payment fails. t will contain a failure response. This will be a JSON Object, parse response as per your need                                                                                                                                                                                                                                                                                          |
+    | `onPaymentCancel`       | Called when payment is cancelled                                                                                                                                                                                                                                                                                                                                                                                   |
+    | `onError`               | Called when an error occurs. It will contain failure reason code and reason.                                                                                                                                                                                                                                                                                                                                       |
+    | `generateHash`          | Called to generate payment hash. Merchant will get a map with the type of hash and hash string as the value of the map.                                                                Refer to the <Anchor label="[hash-generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk)" target="_blank" href="https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk">hash-generation</Anchor> |
+    | `mfaRegistrationstatus` | Called for biometric registration status (Registration/ De-registration)                                                                                                                                                                                                                                                                                                                                           |
   </Accordion>
 
   <Accordion title="Hash Generation" icon="fa-key">
