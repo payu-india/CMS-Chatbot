@@ -343,15 +343,11 @@ You can make test payments using one of the payment methods configured at the Ch
 >
 > The Native-OTP flow is not available in the Test mode.
 
-### Go-live Checklist
+### Go-live Checklists
 
+Ensure these steps before you deploy the integration in a live environment.
 
-<Accordion title="Go-live Checklist" icon="fa-list">
-  ### Go-Live Checkist
-
-  Ensure these steps before you deploy the integration in a live environment.
-
-  <Accordion title="Collect Live Payments" icon="fa-code">
+ <Accordion title="Collect Live Payments" icon="fa-code">
     After testing the integration end-to-end, after you are sure that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
     > 🚧 Watch Out!
@@ -386,6 +382,5 @@ You can make test payments using one of the payment methods configured at the Ch
       We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
     </Accordion>
   </Accordion>
-</Accordion>
 
 <br />
