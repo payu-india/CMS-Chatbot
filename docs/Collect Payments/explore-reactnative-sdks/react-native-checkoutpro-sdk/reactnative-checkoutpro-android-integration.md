@@ -90,7 +90,6 @@ next:
   **Why This Change?**
 
   * Required for compatibility with React Native 0.82.0+
-  * Provides better error handling and reliability
   * Ensures network requests work correctly in newer React Native versions
 </Callout>
 
