@@ -217,7 +217,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 </Accordion>
 
 <Accordion title="5.2: shouldHandleFallback - Handle Bank Page Redirection (Optional)" icon="fa-code">
-This is an optional callback to handle scenarios where the payment needs to be redirected to the bank's authentication page (3D Secure).
+  This is an optional callback to handle scenarios where the payment needs to be redirected to the bank's authentication page (3D Secure).
 
   **When to Use:** Override this method when you want to handle the bank page redirection flow yourself using Custom Browser.
 
@@ -228,7 +228,6 @@ This is an optional callback to handle scenarios where the payment needs to be r
     implementation 'in.payu:payu-custom-browser:7.16.0'
     ```
   </Callout>
-
 
   ```java Java
   @Override
@@ -325,11 +324,14 @@ This is an optional callback to handle scenarios where the payment needs to be r
 <Accordion title="Webhook Verification" icon="fa-check">
   After you get the response from SDK, make sure to confirm it with the PayU server.
 
-  Note: It is recommended to implement the PayU Webhook or backend verifies calls from your backend.
+  <Callout icon="🚧" theme="warn">
+    **Remember**: It is recommended to implement the PayU Webhook or backend verify call from your backend.
+  </Callout>
 
-  Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended for the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks,
+  Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended for the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks.
 
   Also, you can verify payment through polling, the transaction status after the SDK callback from your backend. For more information, refer to [Verify Payment API](https://docs.payu.in/docs/web-services-for-android-core-sdk#verify-payment-api).
+
 </Accordion>
 
 ## Step 2. Test the Integration and Go-Live
