@@ -402,19 +402,24 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   }
   ```
 
-  **Parameters:**
-
+**Parameters:**
   * `errorCode` (String?): Error code identifier
   * `errorMessage` (String?): Human-readable error description
 
-  **Common Error Codes:**
+  **Error Codes:**
 
-  | Error Code | Description        | Solution                  |
-  | ---------- | ------------------ | ------------------------- |
-  | `E001`     | Invalid parameters | Verify payment parameters |
-  | `E002`     | Network error      | Check internet connection |
-  | `E003`     | Hash mismatch      | Verify hash generation    |
-  | `E004`     | Permission denied  | Request SMS permission    |
+  | Error Code | Description |
+  |------------|-------------|
+  | `1001` | Error occurred during payment processing |
+  | `1002` | Network timeout, please verify with your server |
+  | `1003` | Gateway timeout, please verify with your server |
+  | `1004` | User canceled it, please verify with your server |
+  | `1005` | Something went wrong, please verify with your server |
+  | `1006` | The bank page timed out, please verify with your server |
+
+  <Callout icon="📘" theme="info">
+    **Handling Errors**: When any of these errors occur, always verify the transaction status with your server using the Verify Payment API before marking the transaction as failed.
+  </Callout>
 </Accordion>
 
 <Accordion title="5.5: shouldHandleFallback - Handle Bank Page Redirection (Optional)" icon="fa-code">
