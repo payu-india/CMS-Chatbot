@@ -84,6 +84,10 @@ From version 7.4.0 onwards, it is mandatory to import UPI SDK dependency if you 
 
 ### Step 3: Add UPI SDK Dependency (Version 7.4.0+)
 
+```Text build.gradle
+implementation 'in.payu:upisdk:1.8.8'
+```
+
 ## Payment Option Availability Check (Optional)
 
 ### Overview
