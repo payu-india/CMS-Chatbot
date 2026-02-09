@@ -22,15 +22,13 @@ metadata:
 next:
   description: ''
 ---
---
-
 ## 🔴 IMPORTANT NOTICE - React Native 0.82.0+ Users
 
 <Callout icon="❗️" theme="error">
   **Breaking Change for React Native 0.82.0 and Above**
-  
+
   If you are using **React Native version 0.82.0 or above**, or planning to upgrade your SDK, you **MUST** use the new `makeHttpRequest` method for hash generation.
-  
+
   The traditional `fetch` or other HTTP methods will **NOT work** with React Native 0.82.0+.
 </Callout>
 
@@ -90,12 +88,13 @@ next:
 
 <Callout icon="👍" theme="okay">
   **Why This Change?**
-  - Required for compatibility with React Native 0.82.0+
-  - Provides better error handling and reliability
-  - Ensures network requests work correctly in newer React Native versions
+
+  * Required for compatibility with React Native 0.82.0+
+  * Provides better error handling and reliability
+  * Ensures network requests work correctly in newer React Native versions
 </Callout>
 
----
+***
 
 To integrate with the CheckoutPro mobile SDK for Android:
 
@@ -567,10 +566,11 @@ To integrate with the CheckoutPro mobile SDK for Android:
 </Accordion>
 
 ## Test the Integration and Go-Live
+
 <Accordion title="Test the Integration" icon="fa-gear">
-<ReactNative_Test_the_Integration />
+  <ReactNative_Test_the_Integration />
 </Accordion>
 
 <Accordion title="Go-live Checklist" icon="fa-gear">
-<ReactNative_Go_Live />
+  <ReactNative_Go_Live />
 </Accordion>
