@@ -324,14 +324,11 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 <Accordion title="Webhook Verification" icon="fa-check">
   After you get the response from SDK, make sure to confirm it with the PayU server.
 
-  <Callout icon="🚧" theme="warn">
-    **Remember**: It is recommended to implement the PayU Webhook or backend verify call from your backend.
-  </Callout>
+  Note: It is recommended to implement the PayU Webhook or backend verifies calls from your backend.
 
-  Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended for the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks.
+  Webhook is a server-to-server callback. Once this feature is activated for merchants, PayU would send an S2S response, in addition to an SDK callback, to the merchant. It is recommended for the merchant process the transaction order status – based on the S2S response and not via the Browser Redirection/SDK callback response to ensure optimum translation outcomes. For more information on the Webhook implementation, refer to Web Checkout Integration Documentation > Webhooks,
 
   Also, you can verify payment through polling, the transaction status after the SDK callback from your backend. For more information, refer to [Verify Payment API](https://docs.payu.in/docs/web-services-for-android-core-sdk#verify-payment-api).
-
 </Accordion>
 
 ## Step 2. Test the Integration and Go-Live
@@ -343,6 +340,12 @@ After the integration is complete, you must test the integration before you go l
 You can make test payments using one of the payment methods configured at the Checkout.
 
 <UPIIntentCallout />
+
+<TestingChecklist />
+
+***
+
+<TestCardsCallout />
 
 <Go_Live_Checklist />
 
