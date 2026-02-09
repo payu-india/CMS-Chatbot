@@ -31,14 +31,14 @@ metadata:
 >
 > See [Payment Mode-Specific Configuration](#️-critical-payment-mode-specific-configuration)  section for detailed guidance.
 
-<br />
-
-## Prerequisites
+<Accordion title="Prerequisites" icon="fa-cog">
 
 ### 1. Create PayU Account
 
 * Register for a PayU Merchant Account at [PayU Dashboard](https://dashboard.payu.in)
 * For detailed instructions, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account)
+
+</Accordion>
 
 ***
 
@@ -56,14 +56,15 @@ implementation 'in.payu:payu-custom-browser:7.16.0'
   **Watch Out**: If you are getting the following error: `Default interface methods are only supported starting with Android N (--min-api 24): Landroidx/lifecycle/DefaultLifecycleObserver;onCreate(Landroidx/lifecycle/LifecycleOwner;)V`
 
   Add the following compileOptions on your app's build.gradle:
-</Callout>
 
-```
-<uses-permission android:name="android.permission.RECEIVE_SMS" />
-```
-
-<Callout icon="👍" theme="okay">
-  **Tip**: Merchants are advised to add this permission in the application’s `AndroidManifest.xml` to support OTP assist. In case your application supports a minimum SDK of less than 20, do these changes in your surl/furl.
+  ```Text build.gradle
+  android {
+   compileOptions {
+          sourceCompatibility 1.8
+          targetCompatibility 1.8
+      }
+  }
+  ```
 </Callout>
 
 From version 7.4.0 onwards, it is mandatory to import UPI SDK dependency if you want to make payments through any of the following UPI options along with the changes mentioned in the Third-Party Payments Support section.
@@ -73,22 +74,21 @@ From version 7.4.0 onwards, it is mandatory to import UPI SDK dependency if you 
 * Google Pay
 * PhonePe
 
-### Step 3: Add UPI SDK Dependency (Version 7.4.0+) (Only For UPI)
-
-**Mandatory for UPI Payments**: From version 7.4.0 onwards, if you want to accept payments through any of the following UPI options, you must import the UPI SDK dependency:
-
-* UPI Intent
-* Collect
-* Google Pay
-* PhonePe
-
-Add the following dependency in your application’s build.gradle
-
 ```
+<uses-permission android:name="android.permission.RECEIVE_SMS" />
+```
+
+<Callout icon="👍" theme="okay">
+  **Tip**: Merchants are advised to add this permission in the application’s `AndroidManifest.xml` to support OTP assist. In case your application supports a minimum SDK of less than 20, do these changes in your surl/furl.
+</Callout>
+
+### Step 3: Add UPI SDK Dependency (Version 7.4.0+)
+
+```Text build.gradle
 implementation 'in.payu:upisdk:1.8.8'
 ```
 
-## Payment Option Availability Check
+## Payment Option Availability Check (Optional)
 
 ### Overview
 
