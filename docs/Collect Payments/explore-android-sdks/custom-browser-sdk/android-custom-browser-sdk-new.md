@@ -339,71 +339,188 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
 Use the Core SDK library to generate payment post data
 
-<Accordion title="5.1: Sample Payload" icon="fa-code">
+### Step 5: Prepare Post Data Parameters
+
+<Callout icon="🚧" theme="warn">
+  **Payment Mode-Specific Parameters Required**: You **MUST** configure the `pg` (Payment Gateway) and `bankcode` parameters in your post data based on the payment method selected by the user. Each payment mode requires specific parameters.
+</Callout>
+
+<Accordion title="5.1: Understanding Post Data Structure" icon="fa-info">
+  Post data contains all payment parameters that will be sent to PayU payment gateway. The required parameters vary based on the selected payment mode (Card, Net Banking, UPI, Wallet, etc.).
+
+  <Callout icon="📘" theme="info">
+    **Recommended Approach**: Use the **Core SDK library** to generate payment post data. This ensures correct parameter formatting and reduces the risk of errors.
+  </Callout>
+
+  **Basic Structure:**
   ```
-  firstname=John
-  &ccnum=5123456789012346
-  &device_type=1
-  &ccvv=123
-  &ccexpyr=2025
-  &ccexpmon=05
-  &ccname=PayuUser
-  &key=YOUR_MERCHANT_KEY
+  key=YOUR_KEY
+  &txnid=UNIQUE_TXN_ID
+  &amount=100.0
+  &productinfo=Product Name
+  &firstname=John
   &email=user@example.com
-  &bankcode=CC
-  &txnid=1705055037779
-  &amount=1.0
   &phone=9999999999
-  &pg=CC
-  &productinfo=Product+Name
-  &udf1=udf1
-  &udf2=udf2
-  &udf3=udf3
-  &udf4=udf4
-  &udf5=udf5
   &surl=https://yourdomain.com/success
   &furl=https://yourdomain.com/failure
   &hash=GENERATED_HASH
+  &pg=PAYMENT_GATEWAY_CODE
+  &bankcode=BANK_OR_METHOD_CODE
+  &[additional payment-specific parameters]
   ```
+
+  <Callout icon="❗️" theme="error">
+    **Important**: The `pg` and `bankcode` values must match the selected payment method. Incorrect values will cause payment failures.
+  </Callout>
 </Accordion>
 
+<Accordion title="5.2: Common Mandatory Parameters" icon="fa-list">
+  These parameters are required for **all payment modes**:
 
-<Accordion title="5.2: Parameter Definitions" icon="fa-code">
-  | Parameter     | Mandatory | Description               | Example                          |
-  | ------------- | --------- | ------------------------- | -------------------------------- |
-  | `key`         | Yes       | Your PayU merchant key    | `gt****`                         |
-  | `txnid`       | Yes       | Unique transaction ID     | `TXN1705055037779`               |
-  | `amount`      | Yes       | Transaction amount        | `1.0`                            |
-  | `productinfo` | Yes       | Product description       | `Macbook Pro`                    |
-  | `firstname`   | Yes       | Customer first name       | `John`                           |
-  | `email`       | Yes       | Customer email            | `user@example.com`               |
-  | `phone`       | Yes       | Customer phone number     | `9999999999`                     |
-  | `surl`        | Yes       | Success callback URL      | `https://yourdomain.com/success` |
-  | `furl`        | Yes       | Failure callback URL      | `https://yourdomain.com/failure` |
-  | `hash`        | Yes       | SHA-512 hash for security | Generated hash string            |
-  | `pg`          | Yes       | Payment gateway type      | `CC`, `NB`, `UPI`                |
-  | `bankcode`    | Yes       | Bank/payment method code  | `CC`, `SBIB`, etc.               |
-  | `device_type` | No        | Device type indicator     | `1` (Mobile)                     |
-  | `udf1-udf5`   | No        | User-defined fields       | Custom data                      |
+  | Parameter | Description | Example |
+  |-----------|-------------|---------|
+  | `key` | Your PayU merchant key | `gtKFFx` |
+  | `txnid` | Unique transaction ID | `TXN1234567890` |
+  | `amount` | Transaction amount | `100.0` |
+  | `productinfo` | Product description | `Macbook Pro` |
+  | `firstname` | Customer first name | `John` |
+  | `email` | Customer email | `user@example.com` |
+  | `phone` | Customer phone number | `9999999999` |
+  | `surl` | Success callback URL | `https://yourdomain.com/success` |
+  | `furl` | Failure callback URL | `https://yourdomain.com/failure` |
+  | `hash` | SHA-512 hash for security | Generated hash string |
+
+  <Callout icon="📘" theme="info">
+    **Optional Parameters**: `udf1` to `udf5` (User Defined Fields), `device_type`, and other custom fields can be added based on your requirements.
+  </Callout>
 </Accordion>
 
-<Accordion title="5.3: Payment Gateway (pg) Codes" icon="fa-code">
-  | Code     | Payment Method |
-  | -------- | -------------- |
-  | `CC`     | Credit Card    |
-  | `DC`     | Debit Card     |
-  | `NB`     | Net Banking    |
-  | `UPI`    | UPI            |
-  | `CASH`   | Cash Card      |
-  | `EMI`    | EMI            |
-  | `WALLET` | Wallet         |
+<Accordion title="5.3: Payment Mode-Specific Parameters (CRITICAL)" icon="fa-exclamation-triangle">
+  Each payment mode requires specific parameters in addition to the common mandatory parameters. You must add the correct `pg`, `bankcode`, and mode-specific fields based on the user's selection.
+
+  **📚 Complete Parameter Reference:**
+
+  For detailed information on required parameters for each payment mode, refer to:
+
+  **[Generate Request for Payment - Android Core SDK](https://docs.payu.in/docs/integration-steps-android-core-sdk#step-5-generate-request-for-payment)**
+
+  This documentation provides:
+  * ✅ Required parameters for each payment mode (Card, Net Banking, UPI, Wallet, EMI, etc.)
+  * ✅ Payment Gateway (`pg`) codes for each mode
+  * ✅ Bank codes (`bankcode`) for each payment method
+  * ✅ Additional mode-specific parameters (e.g., card details for CC/DC, VPA for UPI)
+  * ✅ Complete sample payloads for all payment modes
+
+  <Callout icon="🚧" theme="warn">
+    **Example Payment Modes:**
+    
+    * **Credit/Debit Card**: Requires `ccnum`, `ccname`, `ccvv`, `ccexpmon`, `ccexpyr`, `pg=CC/DC`, `bankcode=CC/DC`
+    * **Net Banking**: Requires `pg=NB`, `bankcode=<BANK_CODE>` (e.g., SBIB, AXIB, HDFCB)
+    * **UPI Intent**: Requires `pg=UPI`, specific UPI parameters
+    * **UPI Collect**: Requires `pg=UPI`, `vpa=user@upi`, `bankcode=UPI`
+    * **Wallets**: Requires `pg=WALLET`, `bankcode=<WALLET_CODE>` (e.g., PAYTM, PHONEPE)
+    
+    **Always refer to the official documentation for the complete and up-to-date parameter list.**
+  </Callout>
 </Accordion>
 
-<Accordion title="5.4: Refer the Bank Codes" icon="fa-code">
-  For complete list, refer to:
+<Accordion title="5.4: Payment Gateway (pg) and Bank Codes Reference" icon="fa-book">
+  **Payment Gateway (pg) Codes:**
 
-  * [Bank Codes](https://docs.payu.in/docs/bank-and-card-codes-for-integration)
-  * [Supported Payment Methods](https://docs.payu.in/docs/supported-payment-methods)
+  | Code | Payment Method |
+  |------|----------------|
+  | `CC` | Credit Card |
+  | `DC` | Debit Card |
+  | `NB` | Net Banking |
+  | `UPI` | UPI (Intent/Collect) |
+  | `CASH` | Cash Card |
+  | `EMI` | EMI |
+  | `WALLET` | Wallets (Paytm, PhonePe, etc.) |
+
+  **Bank Code References:**
+
+  For complete list of bank codes and payment method codes, refer to:
+
+  * **[Bank and Card Codes for Integration](https://docs.payu.in/docs/bank-and-card-codes-for-integration)** - Complete reference for all bank codes, card codes, and wallet codes
+  * **[Net Banking Codes](https://docs.payu.in/docs/net-banking-codes)** - Specific codes for net banking banks
+  * **[Supported Payment Methods](https://docs.payu.in/docs/supported-payment-methods)** - All available payment methods and their codes
+
+  <Callout icon="👍" theme="okay">
+    **Quick Examples:**
+    - State Bank of India: `bankcode=SBIB`, `pg=NB`
+    - Credit Card: `bankcode=CC`, `pg=CC`
+    - Paytm Wallet: `bankcode=PAYTM`, `pg=CASH`
+  </Callout>
+</Accordion>
+
+<Accordion title="5.5: Using Core SDK to Generate Post Data (Recommended)" icon="fa-code">
+  **Recommended Approach**: Use the PayU Core SDK library to generate payment post data. This ensures proper formatting and parameter handling.
+
+  ```java Java
+  // Using Core SDK to generate post data
+  PayuConfig payuConfig = new PayuConfig();
+  payuConfig.setData(paymentParams.getParams());
+  
+  // Get the formatted post data string
+  String postData = payuConfig.getData();
+  
+  // Use this post data with CustomBrowser
+  customBrowserConfig.setPayuPostData(postData);
+  ```
+  ```kotlin Kotlin
+  // Using Core SDK to generate post data
+  val payuConfig = PayuConfig()
+  payuConfig.data = paymentParams.params
+  
+  // Get the formatted post data string
+  val postData = payuConfig.data
+  
+  // Use this post data with CustomBrowser
+  customBrowserConfig.payuPostData = postData
+  ```
+
+  <Callout icon="👍" theme="okay">
+    **Benefits of using Core SDK:**
+    - Automatic parameter formatting
+    - URL encoding handled automatically
+    - Reduces manual errors
+    - Ensures compliance with PayU standards
+  </Callout>
+</Accordion>
+
+<Accordion title="5.6: Sample Post Data Example (Card Payment)" icon="fa-code">
+  Here's a sample for credit card payment to understand the structure:
+
+  ```
+  key=gtKFFx
+  &txnid=TXN1705055037779
+  &amount=100.0
+  &productinfo=Macbook+Pro
+  &firstname=John
+  &email=user@example.com
+  &phone=9999999999
+  &surl=https://yourdomain.com/success
+  &furl=https://yourdomain.com/failure
+  &hash=a9c33e...
+  &pg=CC
+  &bankcode=CC
+  &ccnum=5123456789012346
+  &ccname=John+Doe
+  &ccvv=123
+  &ccexpmon=12
+  &ccexpyr=2025
+  &device_type=1
+  ```
+
+  <Callout icon="🚧" theme="warn">
+    **Important**: This is a manual example for reference. It's recommended to use the Core SDK library (as shown in section 5.5) to generate post data instead of manually creating the string.
+  </Callout>
+
+  <Callout icon="📘" theme="info">
+    **For other payment modes** (Net Banking, UPI, Wallets, etc.), refer to the complete documentation:
+    
+    **[Generate Request for Payment](https://docs.payu.in/docs/integration-steps-android-core-sdk#step-5-generate-request-for-payment)**
+  </Callout>
 </Accordion>
 
 ***
