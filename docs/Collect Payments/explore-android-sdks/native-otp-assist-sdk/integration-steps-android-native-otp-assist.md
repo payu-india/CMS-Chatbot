@@ -347,14 +347,17 @@ You can make test payments using one of the payment methods configured at the Ch
 
 Ensure these steps before you deploy the integration in a live environment.
 
-<Accordion  title="Checklist 1: Collect Live Payments" icon="fa-code">
+<Accordion title="Collect Live Payments" icon="fa-code">
   After testing the integration end-to-end, after you are sure that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
   > 🚧 Watch Out!
   >
   > Ensure that you are using the production merchant key and salt generated in the live mode.
 
-  <ProductionKeyAndSaltProcedure />
+  <Accordion title="Checklist 1: ProductionKeyAndSaltProcedure" icon="fa-code"> 
+  <ProductionKeyAndSaltProcedure/>
+</Accordion>
+
 
   <Accordion title="Checklist 2: Configure environment() parameter" icon="fa-code">
     Set the value of the `environment()`to `0` in the payment integration code. This enables the integration to accept live payments.
