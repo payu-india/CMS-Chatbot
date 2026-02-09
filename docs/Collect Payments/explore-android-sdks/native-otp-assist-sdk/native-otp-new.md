@@ -822,68 +822,10 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
 ## Test the Integration
 
-<Accordion title="Test Environment Setup" icon="fa-code">
-  Use the following configuration for testing:
+> 🚧 Callout
+>
+> The Native-OTP flow is not available in the Test mode.
 
-  * **Test Merchant Key**: Provided by PayU
-  * **Test Salt**: Provided by PayU
-  * **Environment**: Test/Staging
-
-  <Callout icon="🚧" theme="warn">
-    **Important**: Always test your integration thoroughly before going live. Test all payment scenarios including success, failure, and error cases.
-  </Callout>
-</Accordion>
-
-<Accordion title="Test Credentials for Card Payments" icon="fa-code">
-  Use the following test card details:
-
-  | Parameter            | Value            |
-  | -------------------- | ---------------- |
-  | **Card Number**      | 5123456789012346 |
-  | **Expiry Month**     | 05               |
-  | **Expiry Year**      | 2025             |
-  | **CVV**              | 123              |
-  | **OTP**              | 123456           |
-  | **Card Holder Name** | Test User        |
-
-  <Callout icon="📘" theme="info">
-    **Test Card**: This test card will work in PayU test environment. For production, use real card details.
-  </Callout>
-</Accordion>
-
-<Accordion title="Testing OTP Auto-Read Feature" icon="fa-code">
-  **To test OTP auto-read functionality:**
-
-  1. Ensure `RECEIVE_SMS` permission is granted
-  2. Use test card details provided above
-  3. Initiate payment
-  4. OTP will be auto-filled when SMS is received
-  5. Payment will proceed automatically
-
-  <Callout icon="👍" theme="okay">
-    **Tip**: If OTP is not auto-read, check:
-
-    * SMS permission is granted
-    * Device has SMS capability
-    * OTP SMS format is supported
-  </Callout>
-</Accordion>
-
-<Accordion title="Testing 3D Secure Flow" icon="fa-code">
-  **To test 3D Secure authentication:**
-
-  1. Use cards that require 3D Secure
-  2. `shouldHandleFallback()` will be called
-  3. Verify bank authentication page loads correctly
-  4. Complete authentication on bank page
-  5. Verify payment completes successfully
-
-  **Test Credentials for Bank Page:**
-
-  * **User name**: payu
-  * **Password**: payu
-  * **OTP**: 123456
-</Accordion>
 
 ***
 
@@ -976,9 +918,9 @@ Ensure these steps before you deploy the integration in a live environment.
 
 ### Checklist 5: Test in Production Environment
 
-> 🚧 Callout
-
-> The Native-OTP flow is not available in the Test mode.
+<Callout icon="👍" theme="okay">
+  **Best Practice**: Test with small amounts first (₹1-10) before processing larger transactions.
+</Callout>
 
 ***
 
