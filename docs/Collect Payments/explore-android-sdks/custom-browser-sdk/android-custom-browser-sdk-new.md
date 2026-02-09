@@ -88,7 +88,7 @@ Add the following dependency in your application’s build.gradle
 implementation 'in.payu:upisdk:1.8.8'
 ```
 
-## Payment Option Availability Check (Optional)
+## Payment Option Availability Check
 
 ### Overview
 
