@@ -344,14 +344,6 @@ You can make test payments using one of the payment methods configured at the Ch
 
 <UPIIntentCallout />
 
-<TestingChecklist />
-
-***
-
-<TestCardsCallout />
-
-<br />
-
 <Go_Live_Checklist />
 
 <br />
