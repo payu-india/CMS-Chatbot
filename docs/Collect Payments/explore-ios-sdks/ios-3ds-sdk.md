@@ -734,6 +734,6 @@ The iOS 3DS SDK integration involves the following steps:
 
 ## Sample App
 
-The sample application for integration with 3DS SDK :
+The sample application for integration with 3DS 2.0 SDK sample app :
 
-https://github.com/payu-intrepos/PayU3DS2SDK-iOS/
+[https://github.com/payu-intrepos/PayU3DS2SDK-iOS/](https://github.com/payu-intrepos/PayU3DS2SDK-iOS/)
