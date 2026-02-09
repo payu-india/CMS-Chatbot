@@ -354,10 +354,9 @@ Ensure these steps before you deploy the integration in a live environment.
   >
   > Ensure that you are using the production merchant key and salt generated in the live mode.
 
-  <Accordion title="Checklist 1: ProductionKeyAndSaltProcedure" icon="fa-code"> 
-  <ProductionKeyAndSaltProcedure/>
-</Accordion>
-
+  <Accordion title="Checklist 1: Update Production Key and Salt" icon="fa-code">
+    <ProductionKeyAndSaltProcedure />
+  </Accordion>
 
   <Accordion title="Checklist 2: Configure environment() parameter" icon="fa-code">
     Set the value of the `environment()`to `0` in the payment integration code. This enables the integration to accept live payments.
