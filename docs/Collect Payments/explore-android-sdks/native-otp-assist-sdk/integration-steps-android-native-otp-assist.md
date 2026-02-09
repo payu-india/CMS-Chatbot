@@ -331,7 +331,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   Also, you can verify payment through polling, the transaction status after the SDK callback from your backend. For more information, refer to [Verify Payment API](https://docs.payu.in/docs/web-services-for-android-core-sdk#verify-payment-api).
 </Accordion>
 
-## Step 2. Test the Integration and Go-Live
+## Test the Integration and Go-Live
 
 ### Test the Integration
 
@@ -342,6 +342,9 @@ You can make test payments using one of the payment methods configured at the Ch
 > 🚧 Callout
 >
 > The Native-OTP flow is not available in the Test mode.
+
+### Go-live Checklist
+
 
 <Accordion title="Go-live Checklist" icon="fa-list">
   ### Go-Live Checkist
