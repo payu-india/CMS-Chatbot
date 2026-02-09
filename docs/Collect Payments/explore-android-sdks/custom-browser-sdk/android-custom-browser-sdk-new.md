@@ -337,7 +337,9 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
 ### Step 5: Prepare Post Data Parameters
 
-<Accordion title="5.1: Card Payment Post Data" icon="fa-code">
+Use the Core SDK library to generate payment post data
+
+<Accordion title="5.1: Sample Payload" icon="fa-code">
   ```
   firstname=John
   &ccnum=5123456789012346
@@ -365,28 +367,6 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 </Accordion>
 
-<Accordion title="5.2: Net Banking Payment Post Data" icon="fa-code">
-  ```
-  firstname=John
-  &device_type=1
-  &key=YOUR_MERCHANT_KEY
-  &email=user@example.com
-  &bankcode=SBIB
-  &txnid=1705055218155
-  &amount=1.0
-  &phone=9999999999
-  &pg=NB
-  &productinfo=Product+Name
-  &udf1=udf1
-  &udf2=udf2
-  &udf3=udf3
-  &udf4=udf4
-  &udf5=udf5
-  &surl=https://yourdomain.com/success
-  &furl=https://yourdomain.com/failure
-  &hash=GENERATED_HASH
-  ```
-</Accordion>
 
 <Accordion title="5.3: Parameter Definitions" icon="fa-code">
   | Parameter     | Mandatory | Description               | Example                          |
@@ -419,17 +399,10 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   | `WALLET` | Wallet         |
 </Accordion>
 
-<Accordion title="5.5: Common Bank Codes" icon="fa-code">
-  **Common Bank Codes:**
-
-  * `SBIB` - State Bank of India
-  * `AXIB` - Axis Bank
-  * `ICICIB` - ICICI Bank
-  * `HDFCB` - HDFC Bank
-
+<Accordion title="5.5: Refer the Bank / GB Codes" icon="fa-code">
   For complete list, refer to:
 
-  * [Net Banking Codes](https://docs.payu.in/docs/net-banking-codes)
+  * [Bank Codes](https://docs.payu.in/docs/bank-and-card-codes-for-integration)
   * [Supported Payment Methods](https://docs.payu.in/docs/supported-payment-methods)
 </Accordion>
 
