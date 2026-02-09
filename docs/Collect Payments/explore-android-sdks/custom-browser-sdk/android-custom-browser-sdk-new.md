@@ -368,7 +368,7 @@ Use the Core SDK library to generate payment post data
 </Accordion>
 
 
-<Accordion title="5.3: Parameter Definitions" icon="fa-code">
+<Accordion title="5.2: Parameter Definitions" icon="fa-code">
   | Parameter     | Mandatory | Description               | Example                          |
   | ------------- | --------- | ------------------------- | -------------------------------- |
   | `key`         | Yes       | Your PayU merchant key    | `gt****`                         |
@@ -387,7 +387,7 @@ Use the Core SDK library to generate payment post data
   | `udf1-udf5`   | No        | User-defined fields       | Custom data                      |
 </Accordion>
 
-<Accordion title="5.4: Payment Gateway (pg) Codes" icon="fa-code">
+<Accordion title="5.3: Payment Gateway (pg) Codes" icon="fa-code">
   | Code     | Payment Method |
   | -------- | -------------- |
   | `CC`     | Credit Card    |
@@ -399,7 +399,7 @@ Use the Core SDK library to generate payment post data
   | `WALLET` | Wallet         |
 </Accordion>
 
-<Accordion title="5.5: Refer the Bank / GB Codes" icon="fa-code">
+<Accordion title="5.4: Refer the Bank Codes" icon="fa-code">
   For complete list, refer to:
 
   * [Bank Codes](https://docs.payu.in/docs/bank-and-card-codes-for-integration)
