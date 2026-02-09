@@ -95,7 +95,8 @@ The React Native UPI SDK integration involves the following steps:
           ios_furl: <String>,
           android_surl: <String>,
           android_furl: <String>,
-    			isProduction: <Boolean>, //Set environment for android
+          environment: <String>, // "1" for Stage,"0" for production
+          isProduction: <Boolean>, //Set environment for android
           disable_intent_seamless_failure: <String>, // -1 | 0 
           merchant_response_timeout: <String>, //numeric time millis
           phone_pe_user_cache_enabled: <String>, // true | false
@@ -219,8 +220,8 @@ The React Native UPI SDK integration involves the following steps:
           ios_furl: <String>,
           android_surl: <String>,
           android_furl: <String>,
-          environment: <String>, // "1" for Stage, "0" for production
-  				isProduction: <Boolean>, //Set environment for android
+          environment: <String>, // "1" for Stage,"0" for production
+          isProduction: <Boolean>, //Set environment for android
           payment_mode: <String>, // for Intent flow use "INTENT", for collect flow use "upi"
           post_url: <String>, // "https://secure.payu.in/_payment" for production, "https://test.payu.in/_payment" for Stage
           user_credentials: <String>, // unique user identifier
@@ -251,8 +252,8 @@ The React Native UPI SDK integration involves the following steps:
           android_surl: <String>,
           android_furl: <String>,
           vpa: <String>, //virtual payment address for UPI (i.e. 1234567890@payu)
-        	environment: <String>, // "1" for Stage, "0" for production
-  				isProduction: <Boolean>, //Set environment for android
+          environment: <String>, // "1" for Stage,"0" for production
+          isProduction: <Boolean>, //Set environment for android
           payment_mode: <String>, // for Intent flow use "INTENT", for collect flow use "upi"
           post_url: <String>, // "https://secure.payu.in/_payment" for production, "https://test.payu.in/_payment" for Stage
           user_credentials: <String>, // unique user identifier
