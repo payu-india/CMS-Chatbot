@@ -725,8 +725,15 @@ The iOS 3DS SDK integration involves the following steps:
   | 500  | Something went wrong                                                          |
   | 503  | Error while creating transaction to generate device details, please try again |
 </Accordion>
-  ## Test the Integration and Go-Live
+
+## Test the Integration and Go-Live
 
 <IOS_Test_the_Integration />
 
 <IOS_Go_Live />
+
+## Sample App
+
+The sample application for integration with 3DS SDK :
+
+https://github.com/payu-intrepos/PayU3DS2SDK-iOS
