@@ -180,6 +180,28 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   | `issuerUrl`          | It's the Bank/ACS page Url.                                                                                                                    |
   | `issuerPostData`     | You need to load issuerUrl to the Webview along with this issuerPostdata string. Ex: webView\.postUrl(issuerUrl, issuerPostData.toByteArray()) |
   | `acsTemplate`        | If the `issuerUrl` is empty, you need to load acsTemplate to the Webview. Ex: webView\.loadData(acsTemplate, "text/html", "UTF-8");            |
+  
+  ```callback
+  PayUOtpAssistCallback payUOtpAssistCallback = new PayUOtpAssistCallback() {
+            @Override
+            public void onPaymentSuccess(@Nullable String s, @Nullable String s1) {
+
+            }
+
+            @Override
+            public void onPaymentFailure(@Nullable String s, @Nullable String s1) {
+
+            }
+
+            @Override
+            public void onError(@Nullable String s, @Nullable String s1) {
+
+            }
+
+            
+  };
+```
+
 </Accordion>
 
 <Accordion title="Error Codes" icon="fa-exclamation-triangle">
@@ -249,27 +271,31 @@ You can make test payments using one of the payment methods configured at the Ch
 <Accordion title="Test Cards for EMI" icon="fa-credit-card">
   You can use the following Debit and Credit cards to test Emi integration.
 
-  |              |                                                                                                                                                                                              |
-  | :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | Kotak DC EMI | 1. **Card Number**: 4706-1378-0509-9594
+  |              |                                         |
+  | :----------- | :-------------------------------------- |
+  | Kotak DC EMI | 1. **Card Number**: 4706-1378-0509-9594 |
+
   2. **Expiry**: any future date (mm/yy)
   3. **CVV**: 123
   4. **OTP**: 111111
   5. **Name**: Any name
   6. **Mobile Number**: 9123412345 (mandatory for EMI) |
-  | AXIS DC EMI  | 1) **Card Number**: 4011-5100-0000-0007
+     \| AXIS DC EMI  | 1) **Card Number**: 4011-5100-0000-0007
+
   2) **Expiry**: any future date (mm/yy)
   3) **CVV**: 123
   4) **OTP**: 111111
   5) **Name**: Any name
   6) **Mobile Number**: 9123412345 (mandatory for EMI) |
-  | HDFC CC EMI  | 1. **Card Number**: 4453-3410-65876437
+     \| HDFC CC EMI  | 1. **Card Number**: 4453-3410-65876437
+
   2. **Expiry**: any future date (mm/yy)
   3. **CVV**: 123
   4. **OTP**: 111111
   5. **Name**: Any name
   6. **Mobile Number**: 9123412345 (mandatory for EMI)  |
-  | ICICI CC EMI | 1) **Card Number**: 4453-3410-65876437
+     \| ICICI CC EMI | 1) **Card Number**: 4453-3410-65876437
+
   2) **Expiry**: any future date (mm/yy)
   3) **CVV**: 123
   4) **OTP**: 111111
