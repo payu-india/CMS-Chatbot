@@ -22,6 +22,81 @@ metadata:
 next:
   description: ''
 ---
+--
+
+## 🔴 IMPORTANT NOTICE - React Native 0.82.0+ Users
+
+<Callout icon="❗️" theme="error">
+  **Breaking Change for React Native 0.82.0 and Above**
+  
+  If you are using **React Native version 0.82.0 or above**, or planning to upgrade your SDK, you **MUST** use the new `makeHttpRequest` method for hash generation.
+  
+  The traditional `fetch` or other HTTP methods will **NOT work** with React Native 0.82.0+.
+</Callout>
+
+<Accordion title="New Hash Generation Method (React Native >= 0.82.0)" icon="fa-exclamation-triangle">
+  For React Native version **0.82.0 and above**, you must use the `PayUBizSdk.makeHttpRequest` method inside the `generateHash` callback:
+
+  ```javascript React Native
+  generateHash = async (e) => {
+      var hashStringWithoutSalt = e.hashString;
+      var hashName = e.hashName;
+      var postSalt = e.postSalt;  // Compulsory for Additional Charges and Split Payment
+      
+      try {
+          // Prepare request body
+          const rawBody = JSON.stringify({
+              hashString: hashStringWithoutSalt,
+              postSalt: postSalt
+          });
+          
+          // Prepare headers
+          const headers = {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer YOUR_API_TOKEN'  // If required
+          };
+          
+          // NEW METHOD - Use PayUBizSdk.makeHttpRequest
+          var response = await PayUBizSdk.makeHttpRequest(
+              "https://yourserver.com/generate-hash",  // API URL
+              "POST",                                    // Method Type
+              rawBody,                                   // Body
+              headers                                    // Headers
+          );
+          
+          console.log('Raw Response:', response);
+          
+          // Parse the JSON response
+          const parsedResponse = typeof response === 'string' 
+              ? JSON.parse(response) 
+              : response;
+          
+          var hashValue = parsedResponse.hash;
+          var result = { [hashName]: hashValue };
+          
+          // Return hash to SDK
+          PayUBizSdk.hashGenerated(result);
+          
+      } catch (error) {
+          console.error('Hash generation error:', error);
+      }
+  };
+  ```
+
+  <Callout icon="📘" theme="info">
+    **For React Native versions below 0.82.0**, you can continue using the standard `fetch` approach. See detailed implementation in Step 5 below.
+  </Callout>
+</Accordion>
+
+<Callout icon="👍" theme="okay">
+  **Why This Change?**
+  - Required for compatibility with React Native 0.82.0+
+  - Provides better error handling and reliability
+  - Ensures network requests work correctly in newer React Native versions
+</Callout>
+
+---
+
 To integrate with the CheckoutPro mobile SDK for Android:
 
 <Accordion title="SDK Integration Steps" icon="fa-gear">
