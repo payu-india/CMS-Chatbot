@@ -89,7 +89,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     **Generate hash on your server**: Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
   </Callout>
 
-  **Hash Formula**: `sha512(key|command|var1|salt)`
+  **Hash Formula**: `sha512(<key>|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||<Add Salt Value>)`
 
   Every transaction (payment or non-payment) needs a hash set up by you before sending the transaction details to PayU. Hash is required for PayU to validate the authenticity of the transaction. This hashing should be done on your server.
 </Accordion>
