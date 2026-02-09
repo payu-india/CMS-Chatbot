@@ -13,7 +13,7 @@ The Native OTP Assist SDK provides automatic OTP reading and submission function
 
 Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard > Settings > Payment methods**. For more information, refer to [Checkout Payment Modes](https://docs.payu.in/docs/payu-payment-page-customization#configure-checkout-payment-methods-and-settings).
 
----
+***
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ Before you start with the integration, enable the payment methods that you want 
 
 First, create a PayU account. For more information, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard).
 
----
+***
 
 ## SDK Integration
 
@@ -56,7 +56,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
   <Callout icon="📘" theme="info">
     **Compatibility Requirements:**
-    
+
     1. **Android SDK** — Version 21 and above
     2. **Compile SDK** — Version 31 and above
   </Callout>
@@ -78,7 +78,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   </Callout>
 </Accordion>
 
----
+***
 
 ### Step 3: Set up payment hash and post data
 
@@ -89,7 +89,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     **Generate hash on your server**: Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
   </Callout>
 
-  **Hash Formula**: `sha512(key|command|var1|var2|...|salt)`
+  **Hash Formula**: `sha512(key|command|var1|salt)`
 
   Every transaction (payment or non-payment) needs a hash set up by you before sending the transaction details to PayU. Hash is required for PayU to validate the authenticity of the transaction. This hashing should be done on your server.
 </Accordion>
@@ -124,7 +124,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   </Callout>
 </Accordion>
 
----
+***
 
 ### Step 4: Initiate payment
 
@@ -142,9 +142,9 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
   **Configuration Parameters:**
 
-  | Parameter | Type | Description | Mandatory |
-  |-----------|------|-------------|-----------|
-  | `postData` | String | Complete payment post data with card details | Yes |
+  | Parameter  | Type   | Description                                  | Mandatory |
+  | ---------- | ------ | -------------------------------------------- | --------- |
+  | `postData` | String | Complete payment post data with card details | Yes       |
 </Accordion>
 
 <Accordion title="4.2: Initialize Native OTP SDK" icon="fa-play">
@@ -167,18 +167,18 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
   **Parameters:**
 
-  | Parameter | Type | Description |
-  |-----------|------|-------------|
-  | `context` | Context | Current activity or application context |
+  | Parameter               | Type                  | Description                               |
+  | ----------------------- | --------------------- | ----------------------------------------- |
+  | `context`               | Context               | Current activity or application context   |
   | `payUOtpAssistCallback` | PayUOtpAssistCallback | Callback interface for handling responses |
-  | `payUOtpAssistConfig` | PayUOtpAssistConfig | Configuration object with payment details |
+  | `payUOtpAssistConfig`   | PayUOtpAssistConfig   | Configuration object with payment details |
 
   <Callout icon="📘" theme="info">
-    **OTP Reading Method**: PayU fetches the OTP through RECEIVE_SMS if the permission is granted. Otherwise, it fetches the OTP using the Google Consent API.
+    **OTP Reading Method**: PayU fetches the OTP through RECEIVE\_SMS if the permission is granted. Otherwise, it fetches the OTP using the Google Consent API.
   </Callout>
 </Accordion>
 
----
+***
 
 ### Step 5: Implement Payment Callbacks
 
@@ -286,6 +286,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 
   **Parameters:**
+
   * `merchantResponse` (String?): Response from your success URL (surl)
   * `payUResponse` (String?): Complete response from PayU gateway
 </Accordion>
@@ -352,6 +353,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 
   **Parameters:**
+
   * `merchantResponse` (String?): Response from your failure URL (furl)
   * `payUResponse` (String?): Complete response from PayU gateway
 </Accordion>
@@ -401,17 +403,18 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 
   **Parameters:**
+
   * `errorCode` (String?): Error code identifier
   * `errorMessage` (String?): Human-readable error description
 
   **Common Error Codes:**
 
-  | Error Code | Description | Solution |
-  |------------|-------------|----------|
-  | `E001` | Invalid parameters | Verify payment parameters |
-  | `E002` | Network error | Check internet connection |
-  | `E003` | Hash mismatch | Verify hash generation |
-  | `E004` | Permission denied | Request SMS permission |
+  | Error Code | Description        | Solution                  |
+  | ---------- | ------------------ | ------------------------- |
+  | `E001`     | Invalid parameters | Verify payment parameters |
+  | `E002`     | Network error      | Check internet connection |
+  | `E003`     | Hash mismatch      | Verify hash generation    |
+  | `E004`     | Permission denied  | Request SMS permission    |
 </Accordion>
 
 <Accordion title="5.5: shouldHandleFallback - Handle Bank Page Redirection (Optional)" icon="fa-code">
@@ -486,26 +489,28 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 
   **Return Values:**
+
   * `true` - SDK will handle the bank page redirection (default)
   * `false` - You will handle the bank page redirection using CustomBrowser
 
   **PayUAcsRequest Fields:**
 
-  | Field | Description |
-  |-------|-------------|
-  | `issuerUrl` | Bank/ACS page URL for 3D Secure authentication |
-  | `issuerPostData` | POST data to be sent to the issuer URL. Use: `webView.postUrl(issuerUrl, issuerPostData.toByteArray())` |
-  | `acsTemplate` | HTML template to load if `issuerUrl` is empty. Use: `webView.loadData(acsTemplate, "text/html", "UTF-8")` |
+  | Field            | Description                                                                                               |
+  | ---------------- | --------------------------------------------------------------------------------------------------------- |
+  | `issuerUrl`      | Bank/ACS page URL for 3D Secure authentication                                                            |
+  | `issuerPostData` | POST data to be sent to the issuer URL. Use: `webView.postUrl(issuerUrl, issuerPostData.toByteArray())`   |
+  | `acsTemplate`    | HTML template to load if `issuerUrl` is empty. Use: `webView.loadData(acsTemplate, "text/html", "UTF-8")` |
 
   <Callout icon="📘" theme="info">
     **When is this called?** This callback is invoked when:
-    - Card requires 3D Secure authentication
-    - Bank needs additional verification
-    - ACS (Access Control Server) page needs to be shown
+
+    * Card requires 3D Secure authentication
+    * Bank needs additional verification
+    * ACS (Access Control Server) page needs to be shown
   </Callout>
 </Accordion>
 
----
+***
 
 ### Step 6: Handle Payment Flow
 
@@ -794,25 +799,26 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
   **PayUAcsRequest Fields:**
 
-  | Field | Type | Description |
-  |-------|------|-------------|
-  | `issuerUrl` | String? | Bank/ACS page URL for 3D Secure authentication |
-  | `issuerPostData` | String? | POST data to send to issuer URL. Load as: `webView.postUrl(issuerUrl, issuerPostData.toByteArray())` |
-  | `acsTemplate` | String? | HTML template to load if `issuerUrl` is empty. Load as: `webView.loadData(acsTemplate, "text/html", "UTF-8")` |
+  | Field            | Type    | Description                                                                                                   |
+  | ---------------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+  | `issuerUrl`      | String? | Bank/ACS page URL for 3D Secure authentication                                                                |
+  | `issuerPostData` | String? | POST data to send to issuer URL. Load as: `webView.postUrl(issuerUrl, issuerPostData.toByteArray())`          |
+  | `acsTemplate`    | String? | HTML template to load if `issuerUrl` is empty. Load as: `webView.loadData(acsTemplate, "text/html", "UTF-8")` |
 
   <Callout icon="📘" theme="info">
     **Understanding Fallback:**
-    
+
     Fallback occurs when:
-    - Card requires 3D Secure authentication
-    - Bank needs additional verification
-    - ACS (Access Control Server) page needs to be displayed
-    
+
+    * Card requires 3D Secure authentication
+    * Bank needs additional verification
+    * ACS (Access Control Server) page needs to be displayed
+
     By default, the SDK handles this automatically. Override only if you need custom handling.
   </Callout>
 </Accordion>
 
----
+***
 
 ## Test the Integration
 
@@ -831,14 +837,14 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 <Accordion title="Test Credentials for Card Payments" icon="fa-code">
   Use the following test card details:
 
-  | Parameter | Value |
-  |-----------|-------|
-  | **Card Number** | 5123456789012346 |
-  | **Expiry Month** | 05 |
-  | **Expiry Year** | 2025 |
-  | **CVV** | 123 |
-  | **OTP** | 123456 |
-  | **Card Holder Name** | Test User |
+  | Parameter            | Value            |
+  | -------------------- | ---------------- |
+  | **Card Number**      | 5123456789012346 |
+  | **Expiry Month**     | 05               |
+  | **Expiry Year**      | 2025             |
+  | **CVV**              | 123              |
+  | **OTP**              | 123456           |
+  | **Card Holder Name** | Test User        |
 
   <Callout icon="📘" theme="info">
     **Test Card**: This test card will work in PayU test environment. For production, use real card details.
@@ -856,9 +862,10 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
   <Callout icon="👍" theme="okay">
     **Tip**: If OTP is not auto-read, check:
-    - SMS permission is granted
-    - Device has SMS capability
-    - OTP SMS format is supported
+
+    * SMS permission is granted
+    * Device has SMS capability
+    * OTP SMS format is supported
   </Callout>
 </Accordion>
 
@@ -872,12 +879,13 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   5. Verify payment completes successfully
 
   **Test Credentials for Bank Page:**
+
   * **User name**: payu
   * **Password**: payu
   * **OTP**: 123456
 </Accordion>
 
----
+***
 
 ## Go-Live Checklist
 
@@ -901,7 +909,7 @@ Ensure these steps before you deploy the integration in a live environment.
   5. Replace test credentials in your code with production credentials
 </Accordion>
 
----
+***
 
 ### Checklist 2: Configure SURL/FURL
 
@@ -922,7 +930,7 @@ Ensure these steps before you deploy the integration in a live environment.
   Refer to [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk) for detailed guidance.
 </Accordion>
 
----
+***
 
 ### Checklist 3: Verify Payment Implementation
 
@@ -949,7 +957,7 @@ Ensure these steps before you deploy the integration in a live environment.
   For more information, refer to [Verify Payment API](https://docs.payu.in/docs/verify-payment-api).
 </Accordion>
 
----
+***
 
 ### Checklist 4: Configure Webhook
 
@@ -957,13 +965,14 @@ Ensure these steps before you deploy the integration in a live environment.
   We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
 
   **Benefits of Webhooks:**
+
   * Reliable payment notification
   * Server-to-server communication
   * Handles network failures
   * Real-time payment status updates
 </Accordion>
 
----
+***
 
 ### Checklist 5: Test in Production Environment
 
@@ -984,7 +993,7 @@ Ensure these steps before you deploy the integration in a live environment.
   </Callout>
 </Accordion>
 
----
+***
 
 ### Checklist 6: Update Security Configuration
 
@@ -1012,7 +1021,7 @@ Ensure these steps before you deploy the integration in a live environment.
   ```
 </Accordion>
 
----
+***
 
 ## Troubleshooting
 
@@ -1020,11 +1029,13 @@ Ensure these steps before you deploy the integration in a live environment.
   **Problem**: OTP is not automatically filled in the payment screen.
 
   **Possible Causes:**
+
   * SMS permission not granted
   * SMS format not recognized
   * Google Play Services not available
 
   **Solutions:**
+
   1. Check SMS permission is granted:
      ```java
      if (ContextCompat.checkSelfPermission(this, 
@@ -1044,6 +1055,7 @@ Ensure these steps before you deploy the integration in a live environment.
   **Problem**: Payment fails with "Hash mismatch" or "Invalid hash" error.
 
   **Solution:**
+
   1. Verify hash generation formula is correct:
      ```
      sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
@@ -1058,10 +1070,11 @@ Ensure these steps before you deploy the integration in a live environment.
   **Problem**: Bank page is not loading when 3D Secure is required.
 
   **Solution:**
+
   1. Verify CustomBrowser SDK is included in dependencies
   2. Check `shouldHandleFallback()` return value:
-     - `true`: SDK handles (default)
-     - `false`: You handle with CustomBrowser
+     * `true`: SDK handles (default)
+     * `false`: You handle with CustomBrowser
   3. Implement CustomBrowser callback properly
   4. Verify `issuerUrl` and `issuerPostData` are not null
   5. Check WebView settings allow JavaScript and DOM storage
@@ -1071,6 +1084,7 @@ Ensure these steps before you deploy the integration in a live environment.
   **Problem**: SMS permission dialog not appearing.
 
   **Solution:**
+
   1. Add permission in `AndroidManifest.xml`:
      ```xml
      <uses-permission android:name="android.permission.RECEIVE_SMS" />
@@ -1103,11 +1117,13 @@ Ensure these steps before you deploy the integration in a live environment.
   **Problem**: Payment screen shows loading indefinitely.
 
   **Possible Causes:**
+
   * Network timeout
   * Invalid post data
   * Server not responding
 
   **Solutions:**
+
   1. Check network connection
   2. Verify post data format is correct
   3. Check logs for error messages
@@ -1145,19 +1161,21 @@ Ensure these steps before you deploy the integration in a live environment.
   **Explanation**: The SDK uses pattern matching to extract OTP from SMS. If the SMS format is non-standard, it may not be detected.
 
   **Solution:**
+
   1. Check SMS contains numeric OTP (4-6 digits)
   2. Verify SMS sender is recognized
   3. Manual fallback is available if auto-read fails
   4. Contact PayU support for SMS format whitelist
 
   **Supported OTP Patterns:**
+
   * `OTP: 123456`
   * `Your OTP is 123456`
   * `123456 is your OTP`
   * `One time password: 123456`
 </Accordion>
 
----
+***
 
 ## Sample Response Format
 
@@ -1207,4 +1225,4 @@ Ensure these steps before you deploy the integration in a live environment.
   ```
 </Accordion>
 
----
+***
