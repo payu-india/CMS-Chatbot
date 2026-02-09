@@ -381,29 +381,31 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
 
 <Accordion title="Sample JSON for Spend Points along with Card (Partly)" icon="fa-code">
   ```JSON
-  "splitInfo": { 
-          "childPaymentInstruments": [ 
-              { 
-                  "name": "CC", 
-                  "bankCode": "CC", 
-                  "cardNumber": "5123456789012346", 
-                  "cvv": "345", 
-                  "validThrough": "07/25", 
-                  "ownerName": "Payu", 
-                  "transactionAmount": "512" 
-              } 
-          ], 
-          "earnPaymentInstruments": [ 
-              { 
-                  "name": "RD", 
-                  "bankCode": "TWIDLS", 
-                  "transactionAmount": "0", 
-                  "rewardId": 269431, 
-                  "cardBin": "480855", 
-                  "cardLastFour": "0000" 
-              } 
-          ] 
-      } 
+"splitInfo": {
+  "childPaymentInstruments": [
+    {
+      "name": "CC",
+      "bankCode": "CC",
+      "cardNumber": "4808550000000000",
+      "cvv": "855",
+      "validThrough": "05/26",
+      "ownerName": "Payu",
+      "transactionAmount": "992"
+    },
+    {
+      "name": "RD",
+      "bankCode": "TWIDLS",
+      "transactionAmount": "8",
+      "rewardId": 271508,
+      "rewardName": "Zillion",
+      "cardBin": "000000",
+      "cardLastFour": "0000"
+    }
+  ],
+  "earnPaymentInstruments": [],
+  "totalAmount": "1000.00",
+  "consent": false
+}
   ```
 </Accordion>
 
