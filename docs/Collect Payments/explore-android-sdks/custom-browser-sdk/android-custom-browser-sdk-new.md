@@ -14,15 +14,15 @@ metadata:
 > * **Implementation Guide**: [Android Core SDK - Generate Request for Payment](https://docs.payu.in/docs/integration-steps-android-core-sdk#step-5-generate-request-for-payment)
 > * **Codes Reference**: [Bank and Card Codes for Integration](https://docs.payu.in/docs/bank-and-card-codes-for-integration)
 
----
+***
 
-## SDK Integration
+## Steps to Integrate CustomBrowser SDK
 
 ### Step 1: Create a PayU account
 
 First, create a PayU account. For more information, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard).
 
----
+***
 
 ### Step 2: Include the SDK in your app build.gradle
 
@@ -90,7 +90,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 </Accordion>
 
----
+***
 
 ### Step 3: Check Payment Option Availability (Optional)
 
@@ -112,20 +112,21 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
   **Parameters:**
 
-  | Parameter | Type | Description |
-  |-----------|------|-------------|
-  | `activity` | Activity | Current activity instance |
-  | `paymentOption` | PaymentOption | Payment option type (e.g., `PaymentOption.SAMSUNGPAY`, `PaymentOption.PHONEPE`) |
-  | `payUCustomBrowserCallback` | PayUCustomBrowserCallback | Callback interface for handling responses |
-  | `paymentOptionHash` | String | SHA-512 hash for payment option verification |
-  | `merchantKey` | String | Your PayU merchant key |
-  | `user_credentials` | String | User credentials or use "default" |
+  | Parameter                   | Type                      | Description                                                                     |
+  | --------------------------- | ------------------------- | ------------------------------------------------------------------------------- |
+  | `activity`                  | Activity                  | Current activity instance                                                       |
+  | `paymentOption`             | PaymentOption             | Payment option type (e.g., `PaymentOption.SAMSUNGPAY`, `PaymentOption.PHONEPE`) |
+  | `payUCustomBrowserCallback` | PayUCustomBrowserCallback | Callback interface for handling responses                                       |
+  | `paymentOptionHash`         | String                    | SHA-512 hash for payment option verification                                    |
+  | `merchantKey`               | String                    | Your PayU merchant key                                                          |
+  | `user_credentials`          | String                    | User credentials or use "default"                                               |
 </Accordion>
 
 <Accordion title="3.3: Generate PaymentOption Hash" icon="fa-code">
   **Hash Formula**: `sha512(key|command|var1|salt)`
 
   Where:
+
   * `key` = Your merchant key
   * `command` = `"payment_related_details_for_mobile_sdk"`
   * `var1` = User credentials or "default"
@@ -147,7 +148,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 </Accordion>
 
----
+***
 
 ### Step 4: Build Payment Configuration
 
@@ -162,10 +163,10 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
   **Post URLs:**
 
-  | Environment | URL |
-  |-------------|-----|
+  | Environment    | URL                               |
+  | -------------- | --------------------------------- |
   | **Production** | `https://secure.payu.in/_payment` |
-  | **Staging** | `https://test.payu.in/_payment` |
+  | **Staging**    | `https://test.payu.in/_payment`   |
 </Accordion>
 
 <Accordion title="4.2: Mandatory Configuration Parameters" icon="fa-code">
@@ -184,6 +185,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 
   **Values**:
+
   * Production: `https://secure.payu.in/_payment`
   * Staging: `https://test.payu.in/_payment`
 </Accordion>
@@ -205,9 +207,9 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   customBrowserConfig.setViewPortWideEnable(boolean viewPortWide);
   ```
 
-  | Value | Description |
-  |-------|-------------|
-  | `true` | Enable wide viewport |
+  | Value   | Description                     |
+  | ------- | ------------------------------- |
+  | `true`  | Enable wide viewport            |
   | `false` | Disable wide viewport (default) |
 
   #### Progress Dialog Custom View
@@ -228,9 +230,9 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   customBrowserConfig.setAutoApprove(boolean isAutoApprove);
   ```
 
-  | Value | Description |
-  |-------|-------------|
-  | `true` | OTP will be fetched and approved automatically |
+  | Value   | Description                                                |
+  | ------- | ---------------------------------------------------------- |
+  | `true`  | OTP will be fetched and approved automatically             |
   | `false` | OTP will be fetched but requires manual approval (default) |
 
   **Requirements**: Requires `RECEIVE_SMS` permission.
@@ -243,7 +245,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   customBrowserConfig.setMerchantResponseTimeout(int merchantResponseTimeout);
   ```
 
-  **Parameter**: Timeout in milliseconds  
+  **Parameter**: Timeout in milliseconds\
   **Default**: System default timeout
 
   #### Auto Select OTP
@@ -254,9 +256,9 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   customBrowserConfig.setAutoSelectOTP(boolean isAutoSelect);
   ```
 
-  | Value | Description |
-  |-------|-------------|
-  | `true` | OTP option will be selected automatically |
+  | Value   | Description                                        |
+  | ------- | -------------------------------------------------- |
+  | `true`  | OTP option will be selected automatically          |
   | `false` | User will choose between password or OTP (default) |
 
   #### Merchant SMS Permission
@@ -267,9 +269,9 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   customBrowserConfig.setMerchantSMSPermission(boolean showPermission);
   ```
 
-  | Value | Description |
-  |-------|-------------|
-  | `true` | Shows permission dialog |
+  | Value   | Description               |
+  | ------- | ------------------------- |
+  | `true`  | Shows permission dialog   |
   | `false` | No dialog shown (default) |
 
   #### Package Name for Specific App
@@ -281,6 +283,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 
   **Common Package Names**:
+
   * PhonePe: `com.phonepe.app`
   * Google Pay: `com.google.android.apps.nbu.paisa.user`
   * Paytm: `net.one97.paytm`
@@ -296,6 +299,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 
   **Values**:
+
   * `CustomBrowserConfig.DISABLE` - Disable manual VPA fallback
   * `CustomBrowserConfig.ENABLE` - Enable manual VPA fallback (default)
 
@@ -321,15 +325,15 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   customBrowserConfig.setEnableSslDialog(boolean enable);
   ```
 
-  | Value | Description |
-  |-------|-------------|
-  | `true` | Show SSL error dialog to user |
+  | Value   | Description                          |
+  | ------- | ------------------------------------ |
+  | `true`  | Show SSL error dialog to user        |
   | `false` | Handle SSL errors silently (default) |
 
   **Note**: PayU automatically redirects users to bank pages even with SSL errors.
 </Accordion>
 
----
+***
 
 ### Step 5: Prepare Post Data Parameters
 
@@ -385,34 +389,34 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 </Accordion>
 
 <Accordion title="5.3: Parameter Definitions" icon="fa-code">
-  | Parameter | Mandatory | Description | Example |
-  |-----------|-----------|-------------|---------|
-  | `key` | Yes | Your PayU merchant key | `gt****` |
-  | `txnid` | Yes | Unique transaction ID | `TXN1705055037779` |
-  | `amount` | Yes | Transaction amount | `1.0` |
-  | `productinfo` | Yes | Product description | `Macbook Pro` |
-  | `firstname` | Yes | Customer first name | `John` |
-  | `email` | Yes | Customer email | `user@example.com` |
-  | `phone` | Yes | Customer phone number | `9999999999` |
-  | `surl` | Yes | Success callback URL | `https://yourdomain.com/success` |
-  | `furl` | Yes | Failure callback URL | `https://yourdomain.com/failure` |
-  | `hash` | Yes | SHA-512 hash for security | Generated hash string |
-  | `pg` | Yes | Payment gateway type | `CC`, `NB`, `UPI` |
-  | `bankcode` | Yes | Bank/payment method code | `CC`, `SBIB`, etc. |
-  | `device_type` | No | Device type indicator | `1` (Mobile) |
-  | `udf1-udf5` | No | User-defined fields | Custom data |
+  | Parameter     | Mandatory | Description               | Example                          |
+  | ------------- | --------- | ------------------------- | -------------------------------- |
+  | `key`         | Yes       | Your PayU merchant key    | `gt****`                         |
+  | `txnid`       | Yes       | Unique transaction ID     | `TXN1705055037779`               |
+  | `amount`      | Yes       | Transaction amount        | `1.0`                            |
+  | `productinfo` | Yes       | Product description       | `Macbook Pro`                    |
+  | `firstname`   | Yes       | Customer first name       | `John`                           |
+  | `email`       | Yes       | Customer email            | `user@example.com`               |
+  | `phone`       | Yes       | Customer phone number     | `9999999999`                     |
+  | `surl`        | Yes       | Success callback URL      | `https://yourdomain.com/success` |
+  | `furl`        | Yes       | Failure callback URL      | `https://yourdomain.com/failure` |
+  | `hash`        | Yes       | SHA-512 hash for security | Generated hash string            |
+  | `pg`          | Yes       | Payment gateway type      | `CC`, `NB`, `UPI`                |
+  | `bankcode`    | Yes       | Bank/payment method code  | `CC`, `SBIB`, etc.               |
+  | `device_type` | No        | Device type indicator     | `1` (Mobile)                     |
+  | `udf1-udf5`   | No        | User-defined fields       | Custom data                      |
 </Accordion>
 
 <Accordion title="5.4: Payment Gateway (pg) Codes" icon="fa-code">
-  | Code | Payment Method |
-  |------|----------------|
-  | `CC` | Credit Card |
-  | `DC` | Debit Card |
-  | `NB` | Net Banking |
-  | `UPI` | UPI |
-  | `CASH` | Cash Card |
-  | `EMI` | EMI |
-  | `WALLET` | Wallet |
+  | Code     | Payment Method |
+  | -------- | -------------- |
+  | `CC`     | Credit Card    |
+  | `DC`     | Debit Card     |
+  | `NB`     | Net Banking    |
+  | `UPI`    | UPI            |
+  | `CASH`   | Cash Card      |
+  | `EMI`    | EMI            |
+  | `WALLET` | Wallet         |
 </Accordion>
 
 <Accordion title="5.5: Common Bank Codes" icon="fa-code">
@@ -424,11 +428,12 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   * `HDFCB` - HDFC Bank
 
   For complete list, refer to:
+
   * [Net Banking Codes](https://docs.payu.in/docs/net-banking-codes)
   * [Supported Payment Methods](https://docs.payu.in/docs/supported-payment-methods)
 </Accordion>
 
----
+***
 
 ### Step 6: Implement Payment Callbacks
 
@@ -455,6 +460,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 
   **Parameters**:
+
   * `payuResponse` (String): Complete response from PayU gateway
   * `merchantResponse` (String): Response from your success URL (surl)
 </Accordion>
@@ -476,6 +482,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 
   **Parameters**:
+
   * `payuResponse` (String): Complete response from PayU gateway
   * `merchantResponse` (String): Response from your failure URL (furl)
 </Accordion>
@@ -493,17 +500,17 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
   **Error Codes Reference:**
 
-  | Code | Error Message | Description |
-  |------|---------------|-------------|
-  | 1 | VENDOR_NOT_SUPPORTED | Device vendor is not supported |
-  | 2 | DEVICE_NOT_SUPPORTED | Device is not supported |
-  | 3 | APP_VERSION_MISMATCH | Samsung Pay version doesn't meet requirements |
-  | 4 | COUNTRY_NOT_SUPPORTED | Device country not supported by Samsung Pay |
-  | 5 | MERCHANT_KEY_NOT_REGISTER_FOR_SAMSUNG_PAY | Merchant not registered for Samsung Pay |
-  | 6 | CONTEXT_NULL | Context is null |
-  | 7 | PAYMENT_ID_NOT_PRESENT | Check your post data |
-  | 1001 | DEVICE_NOT_SUPPORTED | Tez app not present and enablewebflow is false |
-  | 1002 | MERCHANT_INFO_NOT_PRESENT | Check your post data and hash |
+  | Code | Error Message                                   | Description                                    |
+  | ---- | ----------------------------------------------- | ---------------------------------------------- |
+  | 1    | VENDOR\_NOT\_SUPPORTED                          | Device vendor is not supported                 |
+  | 2    | DEVICE\_NOT\_SUPPORTED                          | Device is not supported                        |
+  | 3    | APP\_VERSION\_MISMATCH                          | Samsung Pay version doesn't meet requirements  |
+  | 4    | COUNTRY\_NOT\_SUPPORTED                         | Device country not supported by Samsung Pay    |
+  | 5    | MERCHANT\_KEY\_NOT\_REGISTER\_FOR\_SAMSUNG\_PAY | Merchant not registered for Samsung Pay        |
+  | 6    | CONTEXT\_NULL                                   | Context is null                                |
+  | 7    | PAYMENT\_ID\_NOT\_PRESENT                       | Check your post data                           |
+  | 1001 | DEVICE\_NOT\_SUPPORTED                          | Tez app not present and enablewebflow is false |
+  | 1002 | MERCHANT\_INFO\_NOT\_PRESENT                    | Check your post data and hash                  |
 </Accordion>
 
 <Accordion title="6.5: setCBProperties - Customize WebView Settings" icon="fa-code">
@@ -519,6 +526,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 
   **Parameters**:
+
   * `webview` (WebView): The WebView instance used for payment
   * `payUCustomBrowser` (Bank): PayU CustomBrowser instance
 </Accordion>
@@ -594,6 +602,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 
   **CustomBrowserResultData Methods**:
+
   * `getPaymentOption()`: Returns PaymentOption type
   * `isPaymentOptionAvailable()`: Returns boolean indicating availability
   * `getSamsungPayVpa()`: Returns Samsung Pay VPA (if applicable)
@@ -622,11 +631,12 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 
   **Parameters**:
+
   * `vpa` (String): Virtual Payment Address entered by user
   * `packageListDialogFragment` (PackageListDialogFragment): Fragment to handle verification
 </Accordion>
 
----
+***
 
 ### Step 7: Initiate Payment
 
@@ -643,10 +653,10 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
   **Parameters:**
 
-  | Parameter | Type | Description |
-  |-----------|------|-------------|
-  | `activity` | Activity | Current activity instance |
-  | `customBrowserConfig` | CustomBrowserConfig | Configuration object with payment details |
+  | Parameter                   | Type                      | Description                               |
+  | --------------------------- | ------------------------- | ----------------------------------------- |
+  | `activity`                  | Activity                  | Current activity instance                 |
+  | `customBrowserConfig`       | CustomBrowserConfig       | Configuration object with payment details |
   | `payUCustomBrowserCallback` | PayUCustomBrowserCallback | Callback interface for handling responses |
 </Accordion>
 
@@ -722,7 +732,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```
 </Accordion>
 
----
+***
 
 ## Test the Integration
 
@@ -739,9 +749,9 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 </Accordion>
 
 <Accordion title="Test Credentials for Card" icon="fa-code">
-  | Card Number | Expiry | CVV | OTP |
-  |-------------|--------|-----|-----|
-  | 5123456789012346 | 05/25 | 123 | 123456 |
+  | Card Number      | Expiry | CVV | OTP    |
+  | ---------------- | ------ | --- | ------ |
+  | 5123456789012346 | 05/25  | 123 | 123456 |
 </Accordion>
 
 <Accordion title="Test Credentials for Net Banking" icon="fa-code">
@@ -787,7 +797,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   Refer to [Test Wallets](https://docs.payu.in/docs/test-wallets) documentation for wallet testing credentials.
 </Accordion>
 
----
+***
 
 ## Go-Live Checklist
 
@@ -810,7 +820,7 @@ Ensure these steps before you deploy the integration in a live environment.
   4. Replace test credentials in your code with production credentials
 </Accordion>
 
----
+***
 
 ### Checklist 2: Update Post URL
 
@@ -822,7 +832,7 @@ Ensure these steps before you deploy the integration in a live environment.
   ```
 </Accordion>
 
----
+***
 
 ### Checklist 3: Configure SURL/FURL
 
@@ -843,7 +853,7 @@ Ensure these steps before you deploy the integration in a live environment.
   Refer the link to [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk) doc details.
 </Accordion>
 
----
+***
 
 ### Checklist 4: Remove Test Metadata
 
@@ -864,7 +874,7 @@ Ensure these steps before you deploy the integration in a live environment.
   ```
 </Accordion>
 
----
+***
 
 ### Checklist 5: Implement Verify Payment
 
@@ -879,7 +889,7 @@ Ensure these steps before you deploy the integration in a live environment.
   We strongly recommend using this method to handle scenarios where payment callbacks fail due to technical errors.
 </Accordion>
 
----
+***
 
 ### Checklist 6: Configure Webhook
 
@@ -887,7 +897,7 @@ Ensure these steps before you deploy the integration in a live environment.
   We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
 </Accordion>
 
----
+***
 
 ## Troubleshooting
 
@@ -910,6 +920,7 @@ Ensure these steps before you deploy the integration in a live environment.
   **Issue**: UPI options like PhonePe, Google Pay not appearing
 
   **Solution**:
+
   * Add UPI SDK dependency (mandatory from v7.4.0+)
   * Implement `checkForPaymentAvailability()` before showing options
   * Verify UPI apps are installed on device
@@ -919,6 +930,7 @@ Ensure these steps before you deploy the integration in a live environment.
   **Issue**: Payment fails with hash validation error
 
   **Solution**:
+
   * Verify hash generation formula matches PayU documentation
   * Ensure all parameters are in correct order
   * Check for extra spaces or special characters
@@ -930,6 +942,7 @@ Ensure these steps before you deploy the integration in a live environment.
   **Issue**: OTP assist not working
 
   **Solution**:
+
   * Add `RECEIVE_SMS` permission in AndroidManifest.xml
   * Set `setAutoApprove(true)` or `setAutoSelectOTP(true)` in config
   * Check permission is granted at runtime (Android M+)
@@ -940,6 +953,7 @@ Ensure these steps before you deploy the integration in a live environment.
   **Issue**: `isPaymentOptionAvailable()` returns false
 
   **Solution**:
+
   * Check if payment app is installed on device
   * Verify merchant is registered for that payment option
   * Ensure device and country are supported
@@ -950,6 +964,7 @@ Ensure these steps before you deploy the integration in a live environment.
   **Issue**: Bank pages not loading due to SSL errors
 
   **Solution**:
+
   * Set `setEnableSslDialog(true)` to show user-friendly message
   * PayU will auto-redirect even with SSL errors
   * Contact bank if issue persists
@@ -959,11 +974,12 @@ Ensure these steps before you deploy the integration in a live environment.
   **Issue**: Payment page doesn't load in CustomBrowser
 
   **Solution**:
+
   * Verify post URL is correct (production vs staging)
   * Check post data format and encoding
   * Implement `setCBProperties()` callback correctly
   * Enable WebView debugging for troubleshooting:
-  
+
   ```java
   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       WebView.setWebContentsDebuggingEnabled(true);
@@ -971,4 +987,4 @@ Ensure these steps before you deploy the integration in a live environment.
   ```
 </Accordion>
 
----
+***
