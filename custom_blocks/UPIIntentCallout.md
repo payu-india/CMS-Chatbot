@@ -3,4 +3,4 @@ name: UPI intent callout
 ---
 > 🚧 Callout
 >
-> The Native-OTP flow is not available in the Test mode.
+> The UPI in-app and UPI intent flow is not available in the Test mode.
