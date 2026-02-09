@@ -976,50 +976,9 @@ Ensure these steps before you deploy the integration in a live environment.
 
 ### Checklist 5: Test in Production Environment
 
-<Accordion title="Pre-Launch Testing" icon="fa-code">
-  Before going live, test the following scenarios:
+> 🚧 Callout
 
-  * ✅ Successful payment with OTP auto-read
-  * ✅ Successful payment with manual OTP entry
-  * ✅ Failed payment (insufficient funds)
-  * ✅ 3D Secure authentication flow
-  * ✅ Network error handling
-  * ✅ User cancellation flow
-  * ✅ SMS permission denied scenario
-  * ✅ Verify payment API integration
-
-  <Callout icon="👍" theme="okay">
-    **Best Practice**: Test with small amounts first (₹1-10) before processing larger transactions.
-  </Callout>
-</Accordion>
-
-***
-
-### Checklist 6: Update Security Configuration
-
-<Accordion title="Security Best Practices" icon="fa-code">
-  <Callout icon="🚧" theme="warn">
-    **Critical Security Steps:**
-  </Callout>
-
-  1. **Hash Generation**: Always generate hashes on your server, never on client
-  2. **SSL Pinning**: Implement SSL certificate pinning for API calls
-  3. **Sensitive Data**: Never log sensitive data (card numbers, CVV, OTP)
-  4. **Obfuscation**: Enable ProGuard/R8 code obfuscation
-  5. **Permissions**: Request only necessary permissions
-
-  ```gradle
-  android {
-      buildTypes {
-          release {
-              minifyEnabled true
-              proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 
-                            'proguard-rules.pro'
-          }
-      }
-  }
-  ```
-</Accordion>
+> The Native-OTP flow is not available in the Test mode.
 
 ***
 
