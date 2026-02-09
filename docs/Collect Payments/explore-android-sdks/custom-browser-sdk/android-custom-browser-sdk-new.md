@@ -16,7 +16,7 @@ metadata:
 
 ***
 
-## Steps to Integrate CustomBrowser SDK
+## SDK Integration
 
 ### Step 1: Create a PayU account
 
