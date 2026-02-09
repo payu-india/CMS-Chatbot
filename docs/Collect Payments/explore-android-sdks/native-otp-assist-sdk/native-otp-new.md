@@ -826,7 +826,6 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 >
 > The Native-OTP flow is not available in the Test mode.
 
-
 ***
 
 ## Go-Live Checklist
@@ -917,6 +916,8 @@ Ensure these steps before you deploy the integration in a live environment.
 ***
 
 ### Checklist 5: Test in Production Environment
+
+Before going live, test the following scenarios:
 
 <Callout icon="👍" theme="okay">
   **Best Practice**: Test with small amounts first (₹1-10) before processing larger transactions.
