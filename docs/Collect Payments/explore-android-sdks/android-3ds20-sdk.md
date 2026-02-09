@@ -689,6 +689,6 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 
 ### Sample App 
 
-The sample application for integration with Flutter PayUCheckoutPro SDK :
+The sample application for integration with 3DS SDK :
 
 https://github.com/payu-intrepos/PayU3DS2SDK-iOS/
