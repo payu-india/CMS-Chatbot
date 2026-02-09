@@ -1,5 +1,5 @@
 ---
-title: Android Custom Browser SDK (New)
+title: Integration Steps (New)
 deprecated: false
 hidden: true
 metadata:
