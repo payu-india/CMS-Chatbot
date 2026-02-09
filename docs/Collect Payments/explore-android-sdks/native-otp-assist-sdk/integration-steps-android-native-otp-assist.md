@@ -100,7 +100,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 <Accordion title="Payment Post Data" icon="fa-code">
   Use the Core SDK library to generate payment post data.
 
-**Example Post Data Format:**
+  **Example Post Data Format:**
 
   ```
   key=YOUR_MERCHANT_KEY
@@ -217,9 +217,18 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 </Accordion>
 
 <Accordion title="5.2: shouldHandleFallback - Handle Bank Page Redirection (Optional)" icon="fa-code">
-  This is an optional callback to handle scenarios where the payment needs to be redirected to the bank's authentication page (3D Secure).
+This is an optional callback to handle scenarios where the payment needs to be redirected to the bank's authentication page (3D Secure).
 
   **When to Use:** Override this method when you want to handle the bank page redirection flow yourself using Custom Browser.
+
+  <Callout icon="🚧" theme="warn">
+    **CustomBrowser Dependency Required**: If you want to use CustomBrowser in the fallback scenario, you must add the CustomBrowser SDK dependency to your `build.gradle`:
+
+    ```gradle
+    implementation 'in.payu:payu-custom-browser:7.16.0'
+    ```
+  </Callout>
+
 
   ```java Java
   @Override
