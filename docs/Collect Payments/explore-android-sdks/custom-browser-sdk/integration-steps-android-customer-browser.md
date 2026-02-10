@@ -2,7 +2,7 @@
 title: Integration Steps old
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Integration Steps - Android Customer Browser
   description: ''
