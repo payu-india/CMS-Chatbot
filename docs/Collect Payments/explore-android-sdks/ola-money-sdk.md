@@ -42,6 +42,8 @@ implementation 'in.payu:olamoney:1.3.9'
 
 PayU OlaMoney provides the following callback functions:
 
+<br />
+
 * `onPaymentInitialisationSuccess()`: Callback invoked if the customer is eligible for OlaMoney(Postpaid/Wallet).
 * `onPaymentInitialisationFailure(int errorCode, String description)`: Callback invoked when there is some error in Customer eligibility.
 * The following error messages are displayed when using onPaymentInitialisationFailure.
@@ -53,6 +55,24 @@ PayU OlaMoney provides the following callback functions:
 > `100: Mandatory params are missing. Please check again!`
 >
 > `101 Something Went Wrong!`
+
+Create an instance of OlaMoneyCallback similar to the following code block:
+
+<Accordion title="Create an instance of `OlaMoneyCallback" icon="fa-code">
+  ```java Java
+      OlaMoneyCallback olaMoneyCallback = new OlaMoneyCallback() {
+            @Override
+            public void onPaymentInitialisationSuccess() {
+
+            }
+
+            @Override
+            public void onPaymentInitialisationFailure(int i, String s) {
+
+            }
+        };
+  ```
+</Accordion>
 
 ## Checking OlaMoney Eligibility
 
@@ -91,7 +111,7 @@ To generate the OlaMoney eligibility hash, use the method similar to the followi
 **Where**:
 
 * Key – Merchant Key
-* Command – get\_eligible\_payment\_options\
+* Command – get_eligible_payment_options  
   var1 – `{\\”amount\\”:\\””,\\”txnid\\”:\\”\\”,\\”mobile_number\\”:\\””,\\”first_name\\”:\\”\\”,\\”bankCode\\”:\\”OLAM\\”,\\”email\\”:\\”\\”,\\”last_name\\”:\\”\\”}`
 * Salt – Merchant’s Salt
 
