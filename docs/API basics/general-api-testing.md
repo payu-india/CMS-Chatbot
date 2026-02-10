@@ -1,7 +1,7 @@
 ---
 title: General API Testing
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -464,4 +464,3 @@ If you encounter issues while testing PayU APIs:
 * [PayU India API Environment](/docs/payu-india-api-environment)
 * [Generate Test Merchant Key and Salt](/docs/generate-test-merchant-key-and-salt)
 * [REST API Format](/docs/rest-api-format)
-
