@@ -385,7 +385,7 @@ metadata:
 
 ***
 
-## International Cards (Additional FAQs)
+## SI with International Cards
 
 * **What is the workflow for International Cards recurring payments?**
 
