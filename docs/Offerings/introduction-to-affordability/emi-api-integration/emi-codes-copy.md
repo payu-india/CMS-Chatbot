@@ -82,7 +82,7 @@ next:
 <tr><td>HDFC Bank</td><td>EMI18</td><td>18 Months</td><td>17</td><td>3000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
 <tr><td>HDFC Bank</td><td>EMI24</td><td>24 Months</td><td>17</td><td>3000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
 <tr><td>HDFC Bank</td><td>EMI30</td><td>30 Months</td><td>16</td><td>N/A</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
-<tr><td>HDFC Bank</td><td>EMI36</td><td>36 Months</td><td>17</td><td>30000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
+<tr><td>HDFC Bank</td><td>EMI36</td><td>36 months</td><td>17</td><td>30000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
 <tr><td>HDFC Bank</td><td>EMI48</td><td>48 Months</td><td>16</td><td>40000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
 <tr><td>HSBC Bank</td><td>EMIHS03</td><td>3 Months</td><td>15</td><td>2000</td><td>N/A</td><td>Rs. 99</td><td>N/A</td></tr>
 <tr><td>HSBC Bank</td><td>EMIHS06</td><td>6 Months</td><td>15</td><td>2000</td><td>N/A</td><td>Rs. 99</td><td>N/A</td></tr>
