@@ -51,52 +51,52 @@ This API is used to share the payment link in the given list of email IDs.
 
 <Accordion title="Request headers" icon="fa-flask">
   <HTMLBlock>{`
-        <table style="width: 100%; border-collapse: collapse;">
-        <thead>
-        <tr>
-          <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-          <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p>mid<br><strong>mandatory</strong></p>
-        </td>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This contains the merchant identifier.</p>
-        </td>
-        </tr>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br><strong>mandatory</strong></p>
-        </td>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer <code>String</code> This contains the client_token. For getting a token, refer to <a href="http://docs.payu.in/reference/get_token_api">Get Token API</a></p>
-        </td>
-        </tr>
-        </tbody>
-        </table>
+          <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+          <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantid<br><strong>mandatory</strong></p>
+          </td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This contains the merchant identifier.</p>
+          </td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br><strong>mandatory</strong></p>
+          </td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer <code>String</code> This contains the client_token. For getting a token, refer to <a href="http://docs.payu.in/reference/get_token_api">Get Token API</a></p>
+          </td>
+          </tr>
+          </tbody>
+          </table>
   `}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Path parameters" icon="fa-flask">
   <HTMLBlock>{`
-        <table style="width: 100%; border-collapse: collapse;">
-        <thead>
-        <tr>
-          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
-          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p>Id<br><strong>mandatory</strong></p>
-        </td>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the payment link invoice number.</p>
-        </td>
-          <td style="border: 1px solid #ddd; padding: 8px;"><p>INV8446471886220</p>
-        </td>
-        </tr>
-        </tbody>
-        </table>
+          <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+          <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
+            <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+            <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;"><p>Id<br><strong>mandatory</strong></p>
+          </td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the payment link invoice number.</p>
+          </td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><p>INV8446471886220</p>
+          </td>
+          </tr>
+          </tbody>
+          </table>
   `}</HTMLBlock>
 </Accordion>
 
