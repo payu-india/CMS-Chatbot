@@ -1,5 +1,5 @@
 ---
-title: Integration Steps
+title: Integration Steps (New)
 deprecated: false
 hidden: true
 metadata:
