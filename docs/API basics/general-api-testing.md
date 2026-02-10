@@ -81,6 +81,7 @@ To use these environments, you'll need to:
 
 We recommend the following tools for testing PayU APIs:
 
+* **Try IT** experience: Use the **Try IT** experience on [PayU India API Reference](ref:introduction-api-reference) after log on to your Merchant Dashboard and perform mock API calls with your test key and Salt.
 * **Postman**: Create and share API collections for manual and automated testing
 * **cURL**: Command-line tool for quick API interaction
 * **PayU Hash Verification Tool**: Use the [PayU Hash Verification Tool](/docs/using-payu-hash-verification-tool) to validate your hash calculations
