@@ -41,14 +41,14 @@ This section guides you through setting up your environment for testing PayU API
 **Authentication:** PayU APIs use two primary authentication methods:
 
 1. **Hash-based Authentication (SHA512)**: Used for Payment APIs and General APIs
-   - Requires `merchant_key` and `salt`
-   - Hash must be calculated using specific formulas based on API type
-   - Refer to our [API Authentication and Security](/docs/api-authentication-and-security) guide for detailed instructions
+   * Requires `merchant_key` and `salt`
+   * Hash must be calculated using specific formulas based on API type
+   * Refer to our [API Authentication and Security](/docs/api-authentication-and-security) guide for detailed instructions
 
 2. **OAuth 2.0 Authentication**: Used for Payment Links API and newer REST APIs
-   - Requires `client_id` and `client_secret`
-   - Uses OAuth 2.0 Client Credentials flow
-   - Access tokens are valid for a limited time (typically 3600 seconds)
+   * Requires `client_id` and `client_secret`
+   * Uses OAuth 2.0 Client Credentials flow
+   * Access tokens are valid for a limited time (typically 3600 seconds)
 
 **Test Data:** Some API calls may require existing resources (a merchant key, transaction ID, or payment link ID). You may need to create these resources first through the PayU Dashboard or via the API. Refer to the specific API's documentation for guidance on what data is needed for your test cases.
 
@@ -57,9 +57,9 @@ This section guides you through setting up your environment for testing PayU API
 **Common Inputs:** Before you start testing, gather the following common inputs:
 
 * **API Endpoint URL:** The base URL for the service you are testing (e.g., `https://test.payu.in/_payment` for Payment APIs).
-* **Authentication Credentials:** 
-  - For Hash-based APIs: `merchant_key` and `salt`
-  - For OAuth APIs: `client_id` and `client_secret`
+* **Authentication Credentials:**
+  * For Hash-based APIs: `merchant_key` and `salt`
+  * For OAuth APIs: `client_id` and `client_secret`
 * **Resource Identifiers:** Transaction IDs, payment link IDs, or merchant IDs for any existing resources you will be interacting with.
 * **Request Body Payloads:** JSON or form-encoded payloads for POST or PUT requests, structured according to the API specification.
 
@@ -67,10 +67,10 @@ This section guides you through setting up your environment for testing PayU API
 
 PayU provides separate test and production environments for your API integration:
 
-| Environment | Purpose          | Base URLs                                                                                                                                    |
-| ----------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Test**    | Development and testing | Payment APIs: `https://test.payu.in/_payment`<br/>General APIs: `https://test.payu.in/merchant/postservice.php?form=2`<br/>Payment Links: `https://uatoneapi.payu.in`<br/>Payouts: `https://uat-payouts.payu.in` |
-| **Production** | Live transactions | Payment APIs: `https://secure.payu.in/_payment`<br/>General APIs: `https://info.payu.in/merchant/postservice.php?form=2`<br/>Payment Links: `https://oneapi.payu.in`<br/>Payouts: `https://payouts.payu.in` |
+| Environment    | Purpose                 | Base URLs                                                                                                                                                                                                           |
+| -------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Test**       | Development and testing | Payment APIs: `https://test.payu.in/_payment`<br />General APIs: `https://test.payu.in/merchant/postservice.php?form=2`<br />Payment Links: `https://uatoneapi.payu.in`<br />Payouts: `https://uat-payouts.payu.in` |
+| **Production** | Live transactions       | Payment APIs: `https://secure.payu.in/_payment`<br />General APIs: `https://info.payu.in/merchant/postservice.php?form=2`<br />Payment Links: `https://oneapi.payu.in`<br />Payouts: `https://payouts.payu.in`      |
 
 To use these environments, you'll need to:
 
@@ -360,28 +360,28 @@ Use this checklist to ensure comprehensive API testing:
 ### Additional Testing Considerations
 
 1. **Hash Validation:**
-   - Verify hash calculation matches PayU's expected format
-   - Test with empty UDF fields (should use empty pipes)
-   - Validate hash length (SHA512 should be 128 characters)
-   - Use the [PayU Hash Verification Tool](/docs/using-payu-hash-verification-tool) to validate
+   * Verify hash calculation matches PayU's expected format
+   * Test with empty UDF fields (should use empty pipes)
+   * Validate hash length (SHA512 should be 128 characters)
+   * Use the [PayU Hash Verification Tool](/docs/using-payu-hash-verification-tool) to validate
 
 2. **Environment Consistency:**
-   - Ensure test credentials are used with test endpoints
-   - Verify production credentials are used with production endpoints
-   - Check that salt values match the environment
+   * Ensure test credentials are used with test endpoints
+   * Verify production credentials are used with production endpoints
+   * Check that salt values match the environment
 
 3. **Webhook Testing:**
-   - Set up webhook endpoints to receive callbacks
-   - Test success and failure callbacks
-   - Verify webhook signature validation
-   - Test webhook retry mechanisms
+   * Set up webhook endpoints to receive callbacks
+   * Test success and failure callbacks
+   * Verify webhook signature validation
+   * Test webhook retry mechanisms
 
 4. **Edge Cases:**
-   - Test with minimum and maximum values
-   - Test with special characters in input fields
-   - Test with very long strings
-   - Test with missing optional parameters
-   - Test with invalid data types
+   * Test with minimum and maximum values
+   * Test with special characters in input fields
+   * Test with very long strings
+   * Test with missing optional parameters
+   * Test with invalid data types
 
 ## API Product Testing
 
@@ -431,13 +431,13 @@ Each API type may have specific testing requirements. Refer to the individual AP
 
 ### Common Issues and Solutions
 
-| Issue | Likely Cause | Solution |
-|-------|--------------|----------|
-| "Invalid merchant key" | Credential mismatch | Verify key matches endpoint environment |
-| "Hash mismatch" | Incorrect hash calculation | Check hash formula and salt value |
-| "Authentication failed" | Wrong endpoint/credential | Check environment consistency |
-| "Invalid request parameters" | Missing required fields | Review API documentation for required parameters |
-| "Token expired" | OAuth token expired | Refresh token using client credentials |
+| Issue                        | Likely Cause               | Solution                                         |
+| ---------------------------- | -------------------------- | ------------------------------------------------ |
+| "Invalid merchant key"       | Credential mismatch        | Verify key matches endpoint environment          |
+| "Hash mismatch"              | Incorrect hash calculation | Check hash formula and salt value                |
+| "Authentication failed"      | Wrong endpoint/credential  | Check environment consistency                    |
+| "Invalid request parameters" | Missing required fields    | Review API documentation for required parameters |
+| "Token expired"              | OAuth token expired        | Refresh token using client credentials           |
 
 ### Debugging Tips
 
@@ -447,20 +447,12 @@ Each API type may have specific testing requirements. Refer to the individual AP
 4. **Verify environment URLs** match your credentials
 5. **Review API documentation** for exact parameter requirements
 
-## Need Help?
+## Reference
 
 If you encounter issues while testing PayU APIs:
 
-* Review our [API FAQ](/docs/api-faq)
-* Check the [API Release Notes](/docs/api-release-notes) for known issues
+* To generate key/Salt, refer the [Generate Test Merchant Key and Salt](/docs/generate-test-merchant-key-and-salt) section.
 * Use the [PayU Hash Verification Tool](/docs/using-payu-hash-verification-tool) to validate hash calculations
 * Contact [PayU Support](/docs/contact-payu) for assistance
-* Visit the [PayU Developer Community](https://community.payu.in) for discussions
 
----
-
-**Related Documentation:**
-* [API Authentication and Security](/docs/api-authentication-and-security)
-* [PayU India API Environment](/docs/payu-india-api-environment)
-* [Generate Test Merchant Key and Salt](/docs/generate-test-merchant-key-and-salt)
-* [REST API Format](/docs/rest-api-format)
+<br />
