@@ -10,154 +10,308 @@ metadata:
 next:
   description: ''
 ---
-* **I encountered a currency missing error while testing PayU with HDFC net banking. Is this a new HDFC implementation, or is there an issue with PayU?**
+<br />
 
-The currency error might be due to misconfiguration. Ensure you've set the correct currency in your PayU integration and check HDFC's requirements.
+## Checkout Plus
 
-* **While entering the key and salt on my Shopify website, I get a "key and salt do not match" error. What could be causing this, given that I copy/pasted them from my PayU account dashboard?**
+* **What is PayU Checkout Plus and how is it different from PayU Hosted Checkout?**
 
-Double-check the copied keys for accuracy. If the issue persists, ensure you are using the correct version of the key and salt or contact PayU support for assistance.
+  PayU Checkout Plus is a redirectionless payment experience that opens as a pop-up (modal) on your website, keeping customers in the context of your website throughout the payment process. Unlike PayU Hosted Checkout which redirects customers to PayU's payment page, Checkout Plus displays the payment form as an inline modal on your website. The modal is served from PayU servers, ensuring you don't need PCI-DSS compliance while providing a seamless payment experience. For more information, refer to [Checkout Plus](doc:checkout-plus-integration).
 
-* **How can I enable international payments, especially from the USA to India, through PayU? My client wishes to pay with an American Express card via the payment link.**
+* **Can I use Checkout Plus for mobile app integrations?**
 
-PayU supports international transactions. Ensure your PayU account is configured for international payments, and your client's American Express card is supported. Contact PayU support for specific assistance.
+  Checkout Plus is not recommended for app browsers such as WebView, Chrome Custom Tab, etc. For mobile apps, PayU recommends using PayU Hosted Checkout (redirection-based) or PayU Mobile SDKs. For more information, refer to [Webview configurations](doc:integrate-webview-for-mobile-apps-checkout-plus) or [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
 
-* **PayU integration on my website stopped working after submitting a new KYC. Is there paid developer help available for resolving this issue?**
+* **What payment methods are supported in Checkout Plus?**
 
-PayU provides paid developer support. Reach out to PayU's developer support team for assistance in resolving integration issues post-KYC.
+  Checkout Plus supports the following payment methods:
 
-* **My payment integration is not working. How can I troubleshoot and resolve this issue?**
+  * Credit Card
+  * Debit Card
+  * Net Banking
+  * UPI
+  * Wallet
+  * EMI
+  * BNPL
 
-Check the plugin version, ensure correct configuration, and review the provided testing link. If issues persist, provide specific error details for PayU support to assist you better.
+  For more information, refer to [Checkout Plus](doc:checkout-plus-integration).
 
-* **I can't find Merchant Key Salt One for my integration. Is this a critical issue, and how can it be resolved?**
+* **How does the retry feature work in Checkout Plus?**
 
-If Merchant Key or Salt is missing, contact PayU support immediately for a resolution, as it could impact the functionality of your integration.
+  Checkout Plus includes a retry feature that helps reduce transaction failures. If a transaction fails at the bank or 3D Secure page (which accounts for approximately 15% of failures), customers can retry seamlessly without restarting the entire checkout process. The customer remains in the payment context and can retry from the inline payment form without compromising the current order. For more information, refer to [Checkout Plus](doc:checkout-plus-integration).
 
-* **I'm having difficulty integrating PayU with my Shopify store. Is there a specific process for using different versions of merchant keys and salts?**
+* **Can I customize the Checkout Plus payment modal to match my brand?**
 
-Ensure you're using the correct version of the merchant key and salt. For Shopify integration, follow PayU's guidelines on key and salt versions. If issues persist, contact PayU support.
+  Yes, you can customize the payment page UI, colors, and logo to suit your brand identity. Checkout Plus allows you to create a branded payment experience while leveraging PayU's secure payment infrastructure. For more information, refer to [Checkout Plus](doc:checkout-plus-integration).
 
-* **After clicking Place Order, the website goes directly to the card details page, skipping other payment methods. How can I fix this?**
+* **What happens if a customer closes the Checkout Plus modal without completing the payment?**
 
-Check your website's payment settings and ensure that multiple payment methods, such as Net Banking and UPI, are enabled. Adjust the settings accordingly.
+  If a customer closes the Checkout Plus modal without completing the payment, the transaction is not processed. The customer can initiate a new payment by clicking the payment button again. You can implement your own logic to handle abandoned checkouts, such as showing a reminder or offering alternative payment options.
 
-1. **UAT Test Card Details**:
-   * **Question**: Can the UAT test card details mentioned in the S2S Integration Docs be used?
-   * **Answer**: Yes, you can use the following UAT test card details for testing:
-     * **Mastercard**: 5497-7744-1517-0603
-     * **Expiry**: Any future date
-     * **Name**: Any name
-     * **CVV**: 123
-     * **OTP**: 123456
+***
 
-2. **Test User Credentials**:
-   * **Question**: What are the test user credentials required to verify the merchant’s website?
-   * **Answer**: Unfortunately, the provided information does not include test user credentials. Please check with the relevant team to obtain the necessary credentials for testing.
+## CommercePro Checkout (Checkout Express)
 
-3. **Integration with BillEasy**:
-   * **Question**: Is PayU integrated with BillEasy?
-   * **Answer**: Yes, PayU is already integrated with BillEasy and is the preferred partner. Payment methods supported include Wallets, UPI, and Cards (with Cards being the most important). Separate integration is not required.
+* **What is CommercePro Checkout and how is it different from other PayU checkout options?**
 
-4. **KYC Documents**:
-   * **Question**: What documents are needed for the Finance process?
-   * **Answer**: To start the Finance process, please share the KYC documents with us.
+  CommercePro Checkout (also known as Checkout Express) is a comprehensive checkout solution that helps minimize COD RTO by analyzing customer shopping history and address quality. It allows customers to securely save their payment details and addresses and use them across PayU network businesses. CommercePro optimizes the checkout experience end-to-end by configuring the PayU offer engine and recommendation engine. Key features include no form filling, pre-filled addresses, payment reminders, and offer engine integration. For more information, refer to [CommercePro Checkout](doc:checkout-express).
 
-5. **Public IP Addresses for Endpoints**:
-   * **Question**: What are the Public IP addresses for UAT and Prod endpoints?
-   * **Answer**:
-     * **Test Endpoint**:
-       * test.payu.in
-       * 99.83.199.213
-       * 75.2.40.57
-     * **Prod Endpoints**:
-       * secure.payu.in
-       * 15.197.187.164
-       * 3.33.169.243
-       * info.payu.in
-       * 52.223.46.185
-       * 35.71.158.222
+* **How do I enable CommercePro Checkout for my account?**
 
-6. **QR Code Transaction Status Fetch API**:
-   * **Question**: How do we segregate the “Result” parameter from the QR Code Transaction Status Fetch API output?
-   * **Answer**: The output is not in JSON format; it is encrypted. To extract the “Result” parameter, you’ll need to decode the encrypted data. If the status is “success,” the sample output will contain relevant information.
+  CommercePro Checkout needs to be enabled by PayU. If it's not enabled, contact your PayU Key Account Manager (KAM) or click **Help** at the top-right corner of PayU Dashboard to raise a ticket with PayU Support. For more information, refer to [CommercePro Checkout](doc:checkout-express).
 
-7. **Can we provide test key/salt along with Test Card Details for UAT environment?**
-   * In the UAT environment, you can refer to the provided test credentials, including test key/salt and sample card details, for testing purposes. Always use these credentials in the designated testing environment.
+* **What platforms support CommercePro Checkout?**
 
-8. **Is it possible to change the email ID on a UAT account?**
-   * No, it's not possible to change the email ID on a UAT account. If needed, create a new account with the desired email ID for testing purposes.
+  PayU supports CommercePro on the following platforms:
 
-9. **Why does the payment page directly show card payment mode without displaying other options?**
-   * This behavior is expected; however, if you encounter issues, try clicking the back option to reveal additional payment options such as UPI.
+  * WooCommerce
+  * Magento
+  * Custom websites (using Response Handler or Callback URL)
 
-10. **Encountering an error with production payouts credentials - "Invalid client, can't find oauth client with client ID."**
-    * Ensure that the provided production payouts credentials (Client ID, Client Secret, Payout Id, and Merchant ID) are correct. Double-check the endpoint and parameters used for authentication.
+  For more information, refer to [CommercePro Checkout](doc:checkout-express).
 
-11. **How to enable S2S Flag for GPay integration?**
-    * Contact PayU support or Key Account Manager (KAM) to enable S2S Flag for GPay integration.
+* **How does the pre-fill address feature work in CommercePro Checkout?**
 
-12. **Mandatory steps for CheckoutPro SDK integration and hash generation.**
-    * Follow the guidelines for integrating CheckoutPro SDK, including the generation of static and dynamic hashes. Refer to the provided link for detailed information.
+  CommercePro Checkout pre-fills addresses for first-time users from a database of 15.5 million+ addresses, making the journey similar to that of repeat customers. This feature helps reduce form filling time and improves the checkout experience. For more information, refer to [CommercePro Checkout](doc:checkout-express).
 
-13. **Where can I find updated plugins and documentation for SDK integration?**
-    * For the latest plugins, refer to the official PayU documentation or contact support for updated links.
+* **What is the difference between CommercePro Checkout using Response Handler and Callback URL?**
 
-14. **How to handle recurring subscriptions and create subscription plans?**
-    * Currently, WooCommerce does not support SI (Standing Instruction) for recurring subscriptions. Refer to the available documentation for alternative solutions.
+  * **Response Handler**: The payment response is handled directly in your JavaScript code using a response handler function. This is suitable for single-page applications or when you want to handle the response immediately without server-side processing.
 
-15. **Issues with the PayU hosted checkout showing only Credit/Debit card option.**
+  * **Callback URL**: The payment response is sent to a server-side URL that you configure. This is suitable when you need to process the response on your server, update your database, or perform server-side validations.
 
-* Ensure that the merchant is using the latest version of the PayU plugin to avoid any compatibility issues.
+  For more information, refer to [Integrate CommercePro Checkout using Response Handler](doc:integration-checkout-express-response-handler) or [Integrate CommercePro Checkout using Callback URL](doc:integrate-commercepro-checkout-using-callback-url).
 
-11. **Error: "isAggregator parameter not configured for the merchant."**
+* **How does the payment reminder feature work in CommercePro Checkout?**
 
-* This error suggests a configuration issue; discuss with the PayU integration team to understand and resolve the problem.
+  CommercePro Checkout can automatically send payment links via WhatsApp whenever a customer drops off during checkout or if payment fails. This feature helps recover abandoned transactions and improve conversion rates. The feature needs to be configured in your PayU Dashboard. For more information, refer to [CommercePro Checkout](doc:checkout-express).
 
-12. **URL not called after successful payment in webhook configuration.**
+* **Can I use CommercePro Checkout for COD (Cash on Delivery) transactions?**
 
-* Verify the webhook configuration and URL provided. Contact PayU support for assistance if the issue persists.
+  Yes, CommercePro Checkout allows you to offer COD as a payment option for customers unwilling to use or without access to digital payment methods. This feature helps minimize COD RTO by analyzing customer shopping history and address quality. For more information, refer to [CommercePro Checkout](doc:checkout-express).
 
-13. **Card number validation and format for expiry date during payment.**
+***
 
-* The card number can have 13-19 digits, depending on the card type. Expiry date format in separate selection tabs is not supported in PayU hosted checkout.
+## Merchant Hosted Checkout (Additional FAQs)
 
-14. **Hash generation error in Python.**
+* **What are the PCI-DSS compliance requirements for Merchant Hosted Checkout?**
 
-* Follow the provided Python SDK logic for hash generation based on different scenarios. Ensure that the payload matches the expected format.
+  If you are using Merchant Hosted Checkout, you will collect card details on your own website and therefore you must be PCI-DSS compliant. You need to fill out the "[Self-Assessment Questionnaire A-EP and Attestation of Compliance](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf)" form. For more information, refer to [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted).
 
-15. **Redirection issue to card details instead of "Choose payment mode."**
+* **Can I use Merchant Hosted Checkout if I only want to accept UPI and Wallets?**
 
-* If encountering redirection issues, ensure that the correct PayU plugin is installed. Follow instructions provided by PayU support to resolve the issue.
+  Yes, if you are using only UPI and Wallet payment modes with Merchant Hosted checkout, you need to ensure that your website is secure (HTTPS), but you may not need full PCI-DSS compliance. However, PayU still recommends following security best practices. For more information, refer to [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted).
 
-16. **Unable to access key/salt due to incomplete KYC.**
+* **What is the difference between Merchant Hosted Checkout and Server-to-Server (S2S) Integration?**
 
-* Completion of KYC is mandatory for accessing key/salt. Contact PayU support for assistance with KYC completion.
+  * **Merchant Hosted Checkout**: The customer is redirected to the bank's website for OTP authentication. The payment flow involves browser redirections between your website, PayU, and the bank.
 
-* *Q: SI is not working in the sandbox environment. What steps should be taken to resolve this issue?*
+  * **Server-to-Server (S2S) Integration**: The transaction is processed entirely at the server level without browser redirections. The customer enters OTP on your website, and your server communicates directly with PayU's servers. S2S requires PCI-DSS compliance and eliminates intermediate browser hops.
 
-* A: Ensure that the Bearer token in the 'Single Transfer API' is refreshed after expiry. Check the validity period for refresh tokens and review the 'Get account details' requirement for every single transfer.
+  For more information, refer to [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted) and [Server-to-Server Integration](doc:server-to-server-integration).
 
-* *Q: What is the purpose of 'Get account details' before each single transfer, and can retries be safely disabled on 'Single Transfer'?*
+* **How do I handle 3D Secure authentication in Merchant Hosted Checkout?**
 
-* A: 'Get account details' fetches essential information, and disabling retries may improve TAT. However, weigh the impact on SR and evaluate whether 'request processing failed' webhook events are relevant to single transfers.
+  PayU supports 3D Secure 2.0 transactions with Merchant Hosted Checkout integration. When a customer uses a card that requires 3D Secure authentication, they will be redirected to the bank's ACS (Access Control Server) page to complete the authentication. After authentication, the customer is redirected back to your website. For more information, refer to [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted).
 
-* *Q: How is the 'BatchID' in the 'initiate payment' API useful? What response can be expected from the webhook?*
+* **Can I save card details for future transactions in Merchant Hosted Checkout?**
 
-* A: 'BatchID' serves a specific purpose in grouping transactions. The expected response body from the webhook depends on the nature of the transaction initiated.
+  Yes, you can save card details for future transactions using PayU's Save Cards feature. However, you must ensure PCI-DSS compliance if you're storing card details. PayU recommends using tokenization to replace sensitive card details with non-sensitive tokens. For more information, refer to [Save Cards Integration](doc:introduction-save-cards).
 
-* *Q: Can you provide test credentials and the Pay by Link API documentation for payment link generation?*
+* **What should I do if I receive a hash mismatch error in Merchant Hosted Checkout?**
 
-* A: Access the PayU devguide link provided for comprehensive documentation on payment link generation using the PayU Payment Links API.
+  If you receive a hash mismatch error, verify the following:
 
-* *Q: I installed a new PayU plugin and need configuration instructions. What details should be filled, especially regarding currency, merchant key, and salt?*
+  * Check that the hash is calculated using the correct formula and parameter order
+  * Ensure that empty UDF parameters are represented with empty pipes (||) in the hash string
+  * Verify that you're using the correct salt value for your environment (test or production)
+  * Check for any extra spaces or special characters in parameter values
 
-* A: Follow the provided instructions for configuring the PayU plugin. Ensure correct entries for currency, merchant key, and salt. If issues persist, refer to the plugin documentation or contact PayU support.
+  For more information, refer to [Generate Hash - Merchant Hosted](doc:generate-hash-merchant-hosted).
 
-* *Q: Seeking clarification and documentation on QR generation for UPI payments and payment link generation for online payments. Where can I find this information?*
+***
 
-* A: Documentation for payment link generation is available. For QR code generation, PayU is actively working on providing comprehensive documentation. Stay tuned for updates.
+## Webhooks 
 
-* *Q: How can I modify the color scheme and theme of the PayUCheckoutPro SDK?*
+* **What is the difference between webhooks and redirect URLs (surl/furl)?**
 
-* A: Refer to the provided XML configuration settings for color theme modification in the PayUCheckoutPro SDK. Ensure the correct structure in the colors.xml file.
+  * **Redirect URLs (surl/furl)**: These are browser-based redirects that occur after payment completion. They depend on the customer's browser and may fail if the customer closes the browser or experiences network issues.
+
+  * **Webhooks**: These are server-to-server callbacks that PayU sends directly to your server. Webhooks are more reliable as they don't depend on browser redirection and ensure you receive transaction updates even if the browser redirect fails.
+
+  PayU recommends using webhooks (S2S callbacks) to ensure optimum transaction outcomes. For more information, refer to [Webhooks for Payments](doc:webhooks).
+
+* **How many times will PayU retry sending a webhook if my server doesn't respond?**
+
+  PayU will retry sending webhooks 3 times to get a 200 OK response from your server before flagging it as a timeout. Ensure your webhook endpoint is properly configured to accept key-value pairs or hashmap formats and returns a 200 OK status code. For more information, refer to [Webhooks for Payments](doc:webhooks).
+
+* **What content types should my webhook endpoint support?**
+
+  Your webhook endpoint should be capable of handling the following content types:
+
+  * FormData
+  * application/x-www-form-urlencoded
+
+  Ensure your server URL can accept data in these formats. For more information, refer to [Webhooks for Payments](doc:webhooks).
+
+* **What IP addresses should I whitelist for receiving webhooks?**
+
+  You need to whitelist the following IP addresses in your firewall to receive webhooks:
+
+  | IP Addresses    |
+  | --------------- |
+  | 52.140.8.88     |
+  | 52.140.8.89     |
+  | 180.179.174.2   |
+  | 180.179.165.250 |
+  | 52.140.8.64     |
+  | 52.140.8.65     |
+  | 3.6.73.183      |
+  | 3.6.83.44       |
+  | 3.7.89.1        |
+  | 3.7.89.2        |
+  | 3.7.89.3        |
+  | 3.7.89.8        |
+  | 3.7.89.9        |
+  | 3.7.89.10       |
+
+  For more information, refer to [Webhooks for Payments](doc:webhooks).
+
+* **What webhook events are available for payments?**
+
+  PayU supports the following webhook events for payments:
+
+  * **Successful Payment**: Triggered when a payment is successful
+  * **Failed Payment**: Triggered when a payment fails
+  * **Refund**: Triggered when a payment is refunded
+  * **Dispute**: Triggered when a dispute is raised for a payment
+
+  Additionally, you can enable `callback_on_failure` flag to receive webhooks for pending payment statuses in real-time. For more information, refer to [Webhooks for Payments](doc:webhooks).
+
+* **How do I verify that a webhook is coming from PayU and not from a malicious source?**
+
+  You should verify the webhook hash to ensure it's coming from PayU. When PayU sends a webhook, it includes a hash parameter. You should recalculate the hash using the response parameters and your salt, then compare it with the hash received from PayU. If they match, the webhook is authentic. For more information on reverse hashing, refer to [Generate Hash - Merchant Hosted](doc:generate-hash-merchant-hosted).
+
+* **Can I test webhooks without making actual payments?**
+
+  Yes, you can test your webhooks using the Test Webhook feature available in your PayU Dashboard. Navigate to **Settings > Webhooks** and use the test webhook functionality to verify that your endpoint is receiving and processing webhooks correctly. For more information, refer to [Webhooks for Payments](doc:webhooks).
+
+***
+
+### Bank and Card Codes
+
+* **Where can I find the bankcode for a specific bank for Net Banking integration?**
+
+  You can find the bankcode for Net Banking in the [Net Banking Codes](doc:net-banking-codes) documentation. Each bank has a unique code that needs to be passed in the `bankcode` parameter when initiating a Net Banking transaction. For more information, refer to [Net Banking Codes](doc:net-banking-codes).
+
+* **How do I find the correct bankcode for wallet payments?**
+
+  You can find wallet codes in the [Wallet Codes](doc:wallet-codes) documentation. The `bankcode` value should correspond to the specific wallet the customer chooses (e.g., Paytm, PhonePe, etc.). For more information, refer to [Wallet Codes](doc:wallet-codes).
+
+* **What is the difference between pg and bankcode parameters?**
+
+  * **pg (Payment Gateway)**: Specifies the payment method category (e.g., `CC` for cards, `NB` for Net Banking, `UPI` for UPI, `CASH` for wallets).
+
+  * **bankcode**: Specifies the specific bank or payment provider within a payment method category (e.g., `SBIB` for SBI Net Banking, `PAYTM` for Paytm wallet, `AMEX` for American Express card).
+
+  For more information, refer to [Payment Mode Codes](doc:payment-mode-codes).
+
+* **How do I validate card numbers before processing payments?**
+
+  You can refer to the [Card Number Formats](doc:card-number-formats) documentation to understand how to validate card numbers. Card numbers can have 13-19 digits depending on the card type. For more information, refer to [Card Number Formats](doc:card-number-formats).
+
+* **What UPI handles are supported by PayU?**
+
+  You can find the list of supported UPI handles in the [UPI Handles](doc:upi-handles) documentation. PayU supports various UPI payment apps and handles. For more information, refer to [UPI Handles](doc:upi-handles).
+
+***
+
+### Error Handling
+
+* **How do I handle payment failures in my integration?**
+
+  When a payment fails, PayU returns error codes and error messages in the response. You should:
+
+  1. Check the `status` parameter in the response (should be "failure" or "pending")
+  2. Check the `error` parameter for error codes
+  3. Check the `error_Message` parameter for detailed error descriptions
+  4. Implement appropriate error handling logic based on the error code
+  5. Display user-friendly error messages to customers
+  6. Provide options to retry the payment
+
+  For more information, refer to [Error Handling](doc:error-handling) and [Error Codes](ref:error-codes).
+
+* **What should I do if I receive an "Invalid merchant key" error?**
+
+  If you receive an "Invalid merchant key" error, verify the following:
+
+  * Ensure you're using the correct merchant key for your environment (test or production)
+  * Check that the key matches the endpoint you're using
+  * Verify that there are no extra spaces or special characters in the key
+  * Ensure your merchant account is active and properly configured
+
+  For more information, refer to [Error Handling](doc:error-handling).
+
+* **How do I handle pending payment statuses?**
+
+  Pending payment statuses occur when a transaction is initiated but the final status is not yet determined (e.g., waiting for bank confirmation, UPI authorization, etc.). You should:
+
+  1. Implement a polling mechanism to check transaction status using the Verify Payment API
+  2. Set up webhooks to receive real-time updates on payment status changes
+  3. Enable `callback_on_failure` flag to receive webhooks for pending cases in real-time
+  4. Display appropriate messages to customers about pending transactions
+
+  For more information, refer to [Error Handling](doc:error-handling) and [Verify Payment API](ref:verify_payment_api).
+
+* **What should I do if the hash verification fails in the payment response?**
+
+  If hash verification fails, do not process the transaction as it may have been tampered with. You should:
+
+  1. Verify that you're using the correct salt value
+  2. Check that you're using the correct reverse hash formula
+  3. Ensure parameter order matches the hash formula exactly
+  4. Check for any encoding issues (UTF-8, URL encoding, etc.)
+  5. Contact PayU support if the issue persists
+
+  For more information, refer to [Generate Hash - Merchant Hosted](doc:generate-hash-merchant-hosted) and [Error Handling](doc:error-handling).
+
+***
+
+### Server-to-Server Integration (Additional FAQs)
+
+* **What are the prerequisites for Server-to-Server (S2S) Integration?**
+
+  The prerequisites for S2S integration are:
+
+  * You must have Payment Card Industry Data Security Standard (PCI-DSS) certification
+  * Sufficient technical bandwidth dedicated to managing end-to-end web checkout processes in-house consistently
+  * Understanding of workflows, payment processes, website designing fundamentals, and UX management principles
+
+  For more information, refer to [Server-to-Server Integration](doc:server-to-server-integration).
+
+* **What is the difference between Classic Integration, Decoupled Flow, and Direct Authorization for S2S?**
+
+  * **Classic Integration**: You have complete control over card details collection, including CVV and OTP. Highest level of control.
+
+  * **Decoupled Flow**: You collect card details, but PayU manages the OTP step. Provides a balance between control and simplicity.
+
+  * **Direct Authorization**: Used for pre-authorizing funds for later capture. Simple card authentication without capture.
+
+  For more information, refer to [Server-to-Server Integration](doc:server-to-server-integration).
+
+* **Can I use S2S integration for UPI payments?**
+
+  Yes, PayU offers UPI S2S integration options:
+
+  * UPI Collection S2S Integration
+  * UPI Intent S2S Integration
+  * UPI Omnichannel S2S Integration
+  * PhonePe Deep Offers S2S Integration
+
+  For more information, refer to [Server-to-Server Integration](doc:server-to-server-integration).
+
+* **What should I do if I'm using legacy S2S integration for decoupled flow?**
+
+  If you're using legacy integration of decoupled flow for S2S, refer to [Legacy Flow for Server-to-Server](doc:legacy-flow-for-server-to-server) documentation. PayU recommends migrating to the latest S2S integration methods for better features and support.
+
+<br />
