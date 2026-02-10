@@ -19,7 +19,7 @@ next:
 To integrate with Ola money SDK, the merchant can add the below gradle dependency in their app’s build.gradle file
 
 ```Text Text
-implementation 'in.payu:olamoney:1.3.9'
+implementation 'in.payu:olamoney:1.3.11'
 ```
 
 On integrating, the merchant will see the native screen for entering a mobile number, verify if it is enabled for Olamoney, and do the transaction.
