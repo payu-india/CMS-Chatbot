@@ -75,7 +75,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   Add the following dependency in your application's `build.gradle`:
 
   ```gradle
-  implementation 'in.payu:payu-custom-browser:7.16.0'
+  implementation 'in.payu:payu-custom-browser:7.16.1'
   ```
 
   <Callout icon="❗️" theme="error">
@@ -577,63 +577,62 @@ Use the Core SDK library to generate payment post data
 <Accordion title="6.1: PayUCustomBrowserCallback Interface Overview" icon="fa-info">
   Implement this interface to handle payment responses and events. All callback methods must be implemented for proper payment flow handling.
 
-#### Sample Code for PayUCustomBrowserCallback
+  #### Sample Code for PayUCustomBrowserCallback
 
-Below is the complete implementation of `PayUCustomBrowserCallback` interface. This callback handles all payment events including success, failure, errors, and WebView customization.
+  Below is the complete implementation of `PayUCustomBrowserCallback` interface. This callback handles all payment events including success, failure, errors, and WebView customization.
 
-```java Java
-PayUCustomBrowserCallback payUCustomBrowserCallback = new PayUCustomBrowserCallback() {
-    
-    @Override
-    public void onPaymentFailure(String payuResponse, String merchantResponse) {
-        // Called when payment fails
-        Intent intent = new Intent();
-        intent.putExtra(getString(R.string.cb_result), merchantResponse);
-        intent.putExtra(getString(R.string.cb_payu_response), payuResponse);
-        setResult(Activity.RESULT_CANCELED, intent);
-        finish();
-    }
-    
-    @Override
-    public void onPaymentTerminate() {
-        // Called when payment is terminated by user or system
-        // Handle cleanup or show appropriate message to user
-    }
-    
-    @Override
-    public void onPaymentSuccess(String payuResponse, String merchantResponse) {
-        // Called when payment completes successfully
-        Intent intent = new Intent();
-        intent.putExtra(getString(R.string.cb_result), merchantResponse);
-        intent.putExtra(getString(R.string.cb_payu_response), payuResponse);
-        setResult(Activity.RESULT_OK, intent);
-        finish();
-    }
-    
-    @Override
-    public void onCBErrorReceived(int code, String errormsg) {
-        // Called when CustomBrowser encounters an error
-        // Handle errors based on error code
-        // Refer to error codes table in section 6.4 for details
-    }
-    
-    @Override
-    public void setCBProperties(WebView webview, Bank payUCustomBrowser) {
-        // Customize WebView settings and behavior
-        webview.setWebChromeClient(new PayUWebChromeClient(payUCustomBrowser));
-        webview.setWebViewClient(new PayUWebViewClient(payUCustomBrowser, merchantKey));
-        webview.postUrl(url, payuConfig.getData().getBytes());
-        // Comment above line if you are using CustomBrowser v6.1 or above
-    }
-    
-    @Override
-    public void onBackApprove() {
-        // Called when user confirms exit from payment screen
-        PaymentsActivity.this.finish();
-    }
-};
-```
-
+  ```java Java
+  PayUCustomBrowserCallback payUCustomBrowserCallback = new PayUCustomBrowserCallback() {
+      
+      @Override
+      public void onPaymentFailure(String payuResponse, String merchantResponse) {
+          // Called when payment fails
+          Intent intent = new Intent();
+          intent.putExtra(getString(R.string.cb_result), merchantResponse);
+          intent.putExtra(getString(R.string.cb_payu_response), payuResponse);
+          setResult(Activity.RESULT_CANCELED, intent);
+          finish();
+      }
+      
+      @Override
+      public void onPaymentTerminate() {
+          // Called when payment is terminated by user or system
+          // Handle cleanup or show appropriate message to user
+      }
+      
+      @Override
+      public void onPaymentSuccess(String payuResponse, String merchantResponse) {
+          // Called when payment completes successfully
+          Intent intent = new Intent();
+          intent.putExtra(getString(R.string.cb_result), merchantResponse);
+          intent.putExtra(getString(R.string.cb_payu_response), payuResponse);
+          setResult(Activity.RESULT_OK, intent);
+          finish();
+      }
+      
+      @Override
+      public void onCBErrorReceived(int code, String errormsg) {
+          // Called when CustomBrowser encounters an error
+          // Handle errors based on error code
+          // Refer to error codes table in section 6.4 for details
+      }
+      
+      @Override
+      public void setCBProperties(WebView webview, Bank payUCustomBrowser) {
+          // Customize WebView settings and behavior
+          webview.setWebChromeClient(new PayUWebChromeClient(payUCustomBrowser));
+          webview.setWebViewClient(new PayUWebViewClient(payUCustomBrowser, merchantKey));
+          webview.postUrl(url, payuConfig.getData().getBytes());
+          // Comment above line if you are using CustomBrowser v6.1 or above
+      }
+      
+      @Override
+      public void onBackApprove() {
+          // Called when user confirms exit from payment screen
+          PaymentsActivity.this.finish();
+      }
+  };
+  ```
 </Accordion>
 
 **Callback Methods Explanation:**
@@ -849,7 +848,6 @@ PayUCustomBrowserCallback payUCustomBrowserCallback = new PayUCustomBrowserCallb
   * `vpa` (String): Virtual Payment Address entered by user
   * `packageListDialogFragment` (PackageListDialogFragment): Fragment to handle verification
 </Accordion>
-
 
 ### Step 7: Initiate Payment
 
