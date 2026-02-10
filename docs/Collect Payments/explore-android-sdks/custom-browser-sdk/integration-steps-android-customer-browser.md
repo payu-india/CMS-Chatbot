@@ -576,7 +576,7 @@ Use the Core SDK library to generate payment post data
 
 <Accordion title="6.1: PayUCustomBrowserCallback Interface Overview" icon="fa-info">
   Implement this interface to handle payment responses and events. All callback methods must be implemented for proper payment flow handling.
-</Accordion>
+
 
 #### Sample Code for PayUCustomBrowserCallback
 
@@ -848,8 +848,7 @@ PayUCustomBrowserCallback payUCustomBrowserCallback = new PayUCustomBrowserCallb
   * `vpa` (String): Virtual Payment Address entered by user
   * `packageListDialogFragment` (PackageListDialogFragment): Fragment to handle verification
 </Accordion>
-
-***
+</Accordion>
 
 ### Step 7: Initiate Payment
 
