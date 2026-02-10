@@ -339,8 +339,6 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
 Use the Core SDK library to generate payment post data
 
-### Step 5: Prepare Post Data Parameters
-
 <Callout icon="🚧" theme="warn">
   **Payment Mode-Specific Parameters Required**: You **MUST** configure the `pg` (Payment Gateway) and `bankcode` parameters in your post data based on the payment method selected by the user. Each payment mode requires specific parameters.
 </Callout>
@@ -353,6 +351,7 @@ Use the Core SDK library to generate payment post data
   </Callout>
 
   **Basic Structure:**
+
   ```
   key=YOUR_KEY
   &txnid=UNIQUE_TXN_ID
@@ -377,18 +376,18 @@ Use the Core SDK library to generate payment post data
 <Accordion title="5.2: Common Mandatory Parameters" icon="fa-list">
   These parameters are required for **all payment modes**:
 
-  | Parameter | Description | Example |
-  |-----------|-------------|---------|
-  | `key` | Your PayU merchant key | `gtKFFx` |
-  | `txnid` | Unique transaction ID | `TXN1234567890` |
-  | `amount` | Transaction amount | `100.0` |
-  | `productinfo` | Product description | `Macbook Pro` |
-  | `firstname` | Customer first name | `John` |
-  | `email` | Customer email | `user@example.com` |
-  | `phone` | Customer phone number | `9999999999` |
-  | `surl` | Success callback URL | `https://yourdomain.com/success` |
-  | `furl` | Failure callback URL | `https://yourdomain.com/failure` |
-  | `hash` | SHA-512 hash for security | Generated hash string |
+  | Parameter     | Description               | Example                          |
+  | ------------- | ------------------------- | -------------------------------- |
+  | `key`         | Your PayU merchant key    | `gtKFFx`                         |
+  | `txnid`       | Unique transaction ID     | `TXN1234567890`                  |
+  | `amount`      | Transaction amount        | `100.0`                          |
+  | `productinfo` | Product description       | `Macbook Pro`                    |
+  | `firstname`   | Customer first name       | `John`                           |
+  | `email`       | Customer email            | `user@example.com`               |
+  | `phone`       | Customer phone number     | `9999999999`                     |
+  | `surl`        | Success callback URL      | `https://yourdomain.com/success` |
+  | `furl`        | Failure callback URL      | `https://yourdomain.com/failure` |
+  | `hash`        | SHA-512 hash for security | Generated hash string            |
 
   <Callout icon="📘" theme="info">
     **Optional Parameters**: `udf1` to `udf5` (User Defined Fields), `device_type`, and other custom fields can be added based on your requirements.
@@ -405,6 +404,7 @@ Use the Core SDK library to generate payment post data
   **[Generate Request for Payment - Android Core SDK](https://docs.payu.in/docs/integration-steps-android-core-sdk#step-5-generate-request-for-payment)**
 
   This documentation provides:
+
   * ✅ Required parameters for each payment mode (Card, Net Banking, UPI, Wallet, EMI, etc.)
   * ✅ Payment Gateway (`pg`) codes for each mode
   * ✅ Bank codes (`bankcode`) for each payment method
@@ -413,13 +413,13 @@ Use the Core SDK library to generate payment post data
 
   <Callout icon="🚧" theme="warn">
     **Example Payment Modes:**
-    
+
     * **Credit/Debit Card**: Requires `ccnum`, `ccname`, `ccvv`, `ccexpmon`, `ccexpyr`, `pg=CC/DC`, `bankcode=CC/DC`
     * **Net Banking**: Requires `pg=NB`, `bankcode=<BANK_CODE>` (e.g., SBIB, AXIB, HDFCB)
     * **UPI Intent**: Requires `pg=UPI`, specific UPI parameters
     * **UPI Collect**: Requires `pg=UPI`, `vpa=user@upi`, `bankcode=UPI`
     * **Wallets**: Requires `pg=WALLET`, `bankcode=<WALLET_CODE>` (e.g., PAYTM, PHONEPE)
-    
+
     **Always refer to the official documentation for the complete and up-to-date parameter list.**
   </Callout>
 </Accordion>
@@ -427,14 +427,14 @@ Use the Core SDK library to generate payment post data
 <Accordion title="5.4: Payment Gateway (pg) and Bank Codes Reference" icon="fa-book">
   **Payment Gateway (pg) Codes:**
 
-  | Code | Payment Method |
-  |------|----------------|
-  | `CC` | Credit Card |
-  | `DC` | Debit Card |
-  | `NB` | Net Banking |
-  | `UPI` | UPI (Intent/Collect) |
-  | `CASH` | Cash Card |
-  | `EMI` | EMI |
+  | Code     | Payment Method                 |
+  | -------- | ------------------------------ |
+  | `CC`     | Credit Card                    |
+  | `DC`     | Debit Card                     |
+  | `NB`     | Net Banking                    |
+  | `UPI`    | UPI (Intent/Collect)           |
+  | `CASH`   | Cash Card                      |
+  | `EMI`    | EMI                            |
   | `WALLET` | Wallets (Paytm, PhonePe, etc.) |
 
   **Bank Code References:**
@@ -447,9 +447,10 @@ Use the Core SDK library to generate payment post data
 
   <Callout icon="👍" theme="okay">
     **Quick Examples:**
-    - State Bank of India: `bankcode=SBIB`, `pg=NB`
-    - Credit Card: `bankcode=CC`, `pg=CC`
-    - Paytm Wallet: `bankcode=PAYTM`, `pg=CASH`
+
+    * State Bank of India: `bankcode=SBIB`, `pg=NB`
+    * Credit Card: `bankcode=CC`, `pg=CC`
+    * Paytm Wallet: `bankcode=PAYTM`, `pg=CASH`
   </Callout>
 </Accordion>
 
@@ -460,10 +461,10 @@ Use the Core SDK library to generate payment post data
   // Using Core SDK to generate post data
   PayuConfig payuConfig = new PayuConfig();
   payuConfig.setData(paymentParams.getParams());
-  
+
   // Get the formatted post data string
   String postData = payuConfig.getData();
-  
+
   // Use this post data with CustomBrowser
   customBrowserConfig.setPayuPostData(postData);
   ```
@@ -471,20 +472,21 @@ Use the Core SDK library to generate payment post data
   // Using Core SDK to generate post data
   val payuConfig = PayuConfig()
   payuConfig.data = paymentParams.params
-  
+
   // Get the formatted post data string
   val postData = payuConfig.data
-  
+
   // Use this post data with CustomBrowser
   customBrowserConfig.payuPostData = postData
   ```
 
   <Callout icon="👍" theme="okay">
     **Benefits of using Core SDK:**
-    - Automatic parameter formatting
-    - URL encoding handled automatically
-    - Reduces manual errors
-    - Ensures compliance with PayU standards
+
+    * Automatic parameter formatting
+    * URL encoding handled automatically
+    * Reduces manual errors
+    * Ensures compliance with PayU standards
   </Callout>
 </Accordion>
 
@@ -518,7 +520,7 @@ Use the Core SDK library to generate payment post data
 
   <Callout icon="📘" theme="info">
     **For other payment modes** (Net Banking, UPI, Wallets, etc.), refer to the complete documentation:
-    
+
     **[Generate Request for Payment](https://docs.payu.in/docs/integration-steps-android-core-sdk#step-5-generate-request-for-payment)**
   </Callout>
 </Accordion>
