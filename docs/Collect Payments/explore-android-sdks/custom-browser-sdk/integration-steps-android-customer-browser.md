@@ -1016,8 +1016,6 @@ PayUCustomBrowserCallback payUCustomBrowserCallback = new PayUCustomBrowserCallb
 
 Ensure these steps before you deploy the integration in a live environment.
 
-<br />
-
 <Accordion title="Generate Production Key and Salt" icon="fa-code">
   <Callout icon="🚧" theme="warn">
     **Generate Production Key and Salt**: Ensure that you are using the production merchant key and salt generated in the live mode.
@@ -1033,8 +1031,6 @@ Ensure these steps before you deploy the integration in a live environment.
   4. Replace test credentials in your code with production credentials
 </Accordion>
 
-<br />
-
 <Accordion title="Configure Production Post URL" icon="fa-code">
   Update the post URL to production:
 
@@ -1042,8 +1038,6 @@ Ensure these steps before you deploy the integration in a live environment.
   customBrowserConfig.setPostUrl("https://secure.payu.in/_payment");
   ```
 </Accordion>
-
-<br />
 
 <Accordion title="Set Your Own Success and Failure URLs" icon="fa-code">
   <Callout icon="🚧" theme="warn">
@@ -1062,8 +1056,6 @@ Ensure these steps before you deploy the integration in a live environment.
   Refer the link to [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk) doc details.
 </Accordion>
 
-<br />
-
 <Accordion title="Remove Debug Configuration from Manifest" icon="fa-code">
   You must be comment/remove the below metadata code from the manifest file to use the UPI Collect flow on Production env:
 
@@ -1081,8 +1073,6 @@ Ensure these steps before you deploy the integration in a live environment.
   ```
 </Accordion>
 
-<br />
-
 <Accordion title="Configure Verify Payment Method" icon="fa-code">
   Configure the Verify payment method to fetch the payment status. We strongly recommend that you use this as a back up method to handle scenarios where the payment callback is failed due to technical error.
 
@@ -1093,8 +1083,6 @@ Ensure these steps before you deploy the integration in a live environment.
 
   We strongly recommend using this method to handle scenarios where payment callbacks fail due to technical errors.
 </Accordion>
-
-<br />
 
 <Accordion title="Setup Webhook for Payment Notifications" icon="fa-code">
   We recommend that you configure Webhook to receive payment responses on your server. For more information, refer to [Webhooks](https://docs.payu.in/docs/webhooks).
