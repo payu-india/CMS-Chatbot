@@ -48,7 +48,7 @@ Effective API testing is a critical component of any successful integration with
 
 **Test Data:** Some API calls may require existing resources (a merchant key, transaction ID, or payment link ID). You may need to create these resources first through the PayU Dashboard or via the API. Refer to the specific API's documentation for guidance on what data is needed for your test cases.
 
-**Test Credentials:** For testing purposes, you can use test merchant keys and salts. For Integration APIs, use "JPTXg" as the Test merchant key. Refer to [Generate Test Merchant Key and Salt](/docs/generate-test-merchant-key-and-salt) for detailed instructions.
+**Test Credentials:** For testing purposes, you can use test merchant keys and salts. For Integration APIs, use the Test merchant key and Salt, For more information, refer to [Generate Test Merchant Key and Salt](/docs/generate-test-merchant-key-and-salt).
 
 **Common Inputs:** Before you start testing, gather the following common inputs:
 
