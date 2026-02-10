@@ -1,7 +1,7 @@
 ---
 title: Copy of Integration Steps
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Integration Steps - Android Customer Browser
   keywords:
