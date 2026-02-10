@@ -1,7 +1,7 @@
 ---
 title: Integration Steps
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
