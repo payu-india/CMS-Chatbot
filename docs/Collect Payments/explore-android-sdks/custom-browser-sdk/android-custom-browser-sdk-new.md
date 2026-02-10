@@ -5,19 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
-## 🔴 CRITICAL NOTICE
-
-> **Payment Mode-Specific Parameters Required**: When implementing PayU Custom Browser SDK, you **MUST** configure the `pg` (Payment Gateway) and `bankcode` parameters in your post data based on the payment method selected by the user. Incorrect values will cause payment failures.
->
-> **📚 Essential References**:
->
-> * **Implementation Guide**: [Android Core SDK - Generate Request for Payment](https://docs.payu.in/docs/integration-steps-android-core-sdk#step-5-generate-request-for-payment)
-> * **Codes Reference**: [Bank and Card Codes for Integration](https://docs.payu.in/docs/bank-and-card-codes-for-integration)
-
-***
-
-## SDK Integration
-
 ### Step 1: Create a PayU account
 
 First, create a PayU account. For more information, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard).
