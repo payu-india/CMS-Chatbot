@@ -578,6 +578,82 @@ Use the Core SDK library to generate payment post data
   Implement this interface to handle payment responses and events. All callback methods must be implemented for proper payment flow handling.
 </Accordion>
 
+#### Sample Code for PayUCustomBrowserCallback
+
+Below is the complete implementation of `PayUCustomBrowserCallback` interface. This callback handles all payment events including success, failure, errors, and WebView customization.
+
+```java Java
+PayUCustomBrowserCallback payUCustomBrowserCallback = new PayUCustomBrowserCallback() {
+    
+    @Override
+    public void onPaymentFailure(String payuResponse, String merchantResponse) {
+        // Called when payment fails
+        Intent intent = new Intent();
+        intent.putExtra(getString(R.string.cb_result), merchantResponse);
+        intent.putExtra(getString(R.string.cb_payu_response), payuResponse);
+        setResult(Activity.RESULT_CANCELED, intent);
+        finish();
+    }
+    
+    @Override
+    public void onPaymentTerminate() {
+        // Called when payment is terminated by user or system
+        // Handle cleanup or show appropriate message to user
+    }
+    
+    @Override
+    public void onPaymentSuccess(String payuResponse, String merchantResponse) {
+        // Called when payment completes successfully
+        Intent intent = new Intent();
+        intent.putExtra(getString(R.string.cb_result), merchantResponse);
+        intent.putExtra(getString(R.string.cb_payu_response), payuResponse);
+        setResult(Activity.RESULT_OK, intent);
+        finish();
+    }
+    
+    @Override
+    public void onCBErrorReceived(int code, String errormsg) {
+        // Called when CustomBrowser encounters an error
+        // Handle errors based on error code
+        // Refer to error codes table in section 6.4 for details
+    }
+    
+    @Override
+    public void setCBProperties(WebView webview, Bank payUCustomBrowser) {
+        // Customize WebView settings and behavior
+        webview.setWebChromeClient(new PayUWebChromeClient(payUCustomBrowser));
+        webview.setWebViewClient(new PayUWebViewClient(payUCustomBrowser, merchantKey));
+        webview.postUrl(url, payuConfig.getData().getBytes());
+        // Comment above line if you are using CustomBrowser v6.1 or above
+    }
+    
+    @Override
+    public void onBackApprove() {
+        // Called when user confirms exit from payment screen
+        PaymentsActivity.this.finish();
+    }
+};
+```
+
+**Callback Methods Explanation:**
+
+* **onPaymentSuccess**: Called when payment completes successfully. Receives PayU response and merchant response from success URL (surl).
+* **onPaymentFailure**: Called when payment fails. Receives PayU response and merchant response from failure URL (furl).
+* **onPaymentTerminate**: Called when payment is terminated by user or system.
+* **onCBErrorReceived**: Called when CustomBrowser encounters an error. Use error code to handle specific errors.
+* **setCBProperties**: Customize WebView settings and behavior. Set WebChromeClient and WebViewClient for handling page navigation.
+* **onBackApprove**: Called when user confirms exit from payment screen via back button.
+* **onBackDismiss**: Called when user dismisses the exit confirmation dialog.
+* **onBackButton**: Customize the back button alert dialog appearance and behavior.
+* **isPaymentOptionAvailable** (v7.1.3+): Response callback for payment option availability check (e.g., Samsung Pay VPA).
+* **onVpaEntered** (v7.3.0+): Called when user enters VPA for Generic Intent flow. Calculate and verify VPA hash using this callback.
+
+<Callout icon="👍" theme="okay">
+  **Best Practice**: Always verify payment status on your server using the Verify Payment API, regardless of the callback received. This ensures accurate transaction status even in cases of network issues or callback failures.
+</Callout>
+
+***
+
 <Accordion title="6.2: onPaymentSuccess - Handle Successful Payment" icon="fa-code">
   Called when payment completes successfully.
 
@@ -622,158 +698,9 @@ Use the Core SDK library to generate payment post data
 
   * `payuResponse` (String): Complete response from PayU gateway
   * `merchantResponse` (String): Response from your failure URL (furl)
-</Accordion>
-
-<Accordion title="6.4: onCBErrorReceived - Handle CustomBrowser Errors" icon="fa-code">
-  Called when CustomBrowser encounters an error.
-
-  ```java
-  @Override
-  public void onCBErrorReceived(int errorCode, String errorMsg) {
-      // Handle CustomBrowser errors
-      Toast.makeText(this, "Error: " + errorMsg, Toast.LENGTH_LONG).show();
-  }
-  ```
-
-  **Error Codes Reference:**
-
-  | Code | Error Message                                   | Description                                    |
-  | ---- | ----------------------------------------------- | ---------------------------------------------- |
-  | 1    | VENDOR\_NOT\_SUPPORTED                          | Device vendor is not supported                 |
-  | 2    | DEVICE\_NOT\_SUPPORTED                          | Device is not supported                        |
-  | 3    | APP\_VERSION\_MISMATCH                          | Samsung Pay version doesn't meet requirements  |
-  | 4    | COUNTRY\_NOT\_SUPPORTED                         | Device country not supported by Samsung Pay    |
-  | 5    | MERCHANT\_KEY\_NOT\_REGISTER\_FOR\_SAMSUNG\_PAY | Merchant not registered for Samsung Pay        |
-  | 6    | CONTEXT\_NULL                                   | Context is null                                |
-  | 7    | PAYMENT\_ID\_NOT\_PRESENT                       | Check your post data                           |
-  | 1001 | DEVICE\_NOT\_SUPPORTED                          | Tez app not present and enablewebflow is false |
-  | 1002 | MERCHANT\_INFO\_NOT\_PRESENT                    | Check your post data and hash                  |
-</Accordion>
-
-<Accordion title="6.5: setCBProperties - Customize WebView Settings" icon="fa-code">
-  Customize WebView settings and behavior.
-
-  ```java
-  @Override
-  public void setCBProperties(WebView webview, Bank payUCustomBrowser) {
-      webview.setWebChromeClient(new PayUWebChromeClient(payUCustomBrowser));
-      webview.setWebViewClient(new PayUWebViewClient(payUCustomBrowser, merchantKey));
-      // Note: For CustomBrowser v6.1+, comment the postUrl line if using setHtmlData
-  }
-  ```
-
-  **Parameters**:
-
-  * `webview` (WebView): The WebView instance used for payment
-  * `payUCustomBrowser` (Bank): PayU CustomBrowser instance
-</Accordion>
-
-<Accordion title="6.6: onPaymentTerminate - Handle Payment Termination" icon="fa-code">
-  Called when payment is terminated by user or system.
-
-  ```java
-  @Override
-  public void onPaymentTerminate() {
-      // Handle payment termination
-      Toast.makeText(this, "Payment terminated", Toast.LENGTH_SHORT).show();
-  }
-  ```
-</Accordion>
-
-<Accordion title="6.7: onBackButton - Customize Exit Dialog (Optional)" icon="fa-code">
-  Customize the back button alert dialog.
-
-  ```java
-  @Override
-  public void onBackButton(AlertDialog.Builder alertDialogBuilder) {
-      // Customize alert dialog
-      alertDialogBuilder.setTitle("Exit Payment?");
-      alertDialogBuilder.setMessage("Are you sure you want to cancel this payment?");
-  }
-  ```
-</Accordion>
-
-<Accordion title="6.8: onBackApprove - Handle Exit Confirmation (Optional)" icon="fa-code">
-  Called when user confirms exit from alert dialog.
-
-  ```java
-  @Override
-  public void onBackApprove() {
-      // Handle user confirming exit
-      finish();
-  }
-  ```
-</Accordion>
-
-<Accordion title="6.9: onBackDismiss - Handle Exit Cancellation (Optional)" icon="fa-code">
-  Called when user cancels exit from alert dialog.
-
-  ```java
-  @Override
-  public void onBackDismiss() {
-      // Handle user canceling exit
-      super.onBackDismiss();
-  }
-  ```
-</Accordion>
-
-<Accordion title="6.10: isPaymentOptionAvailable - Check Option Availability (v7.1.3+)" icon="fa-code">
-  Response callback for payment option availability check.
-
-  ```java
-  @Override
-  public void isPaymentOptionAvailable(CustomBrowserResultData resultData) {
-      PaymentOption option = resultData.getPaymentOption();
-      boolean isAvailable = resultData.isPaymentOptionAvailable();
-      String samsungPayVpa = resultData.getSamsungPayVpa();
-      String errorMessage = resultData.getErrorMessage();
-      
-      if (isAvailable) {
-          // Show payment option to user
-          Toast.makeText(this, option + " is available", Toast.LENGTH_SHORT).show();
-      } else {
-          // Hide or disable payment option
-          Log.e("PayU", "Payment option unavailable: " + errorMessage);
-      }
-  }
-  ```
-
-  **CustomBrowserResultData Methods**:
-
-  * `getPaymentOption()`: Returns PaymentOption type
-  * `isPaymentOptionAvailable()`: Returns boolean indicating availability
-  * `getSamsungPayVpa()`: Returns Samsung Pay VPA (if applicable)
-  * `getErrorMessage()`: Returns error message if unavailable
-</Accordion>
-
-<Accordion title="6.11: onVpaEntered - Handle VPA Verification (v7.3.0+)" icon="fa-code">
-  Handle UPI Collect flow VPA verification.
-
-  ```java
-  @Override
-  public void onVpaEntered(String vpa, PackageListDialogFragment packageListDialogFragment) {
-      // Generate VPA verification hash
-      String verifyVpaHash = generateVerifyVpaHash(vpa);
-      
-      // Provide hash to verify VPA
-      packageListDialogFragment.verifyVpa(verifyVpaHash);
-  }
-
-  private String generateVerifyVpaHash(String vpa) {
-      // Hash format: sha512(key|command|var1|salt)
-      // command = "validateVPA"
-      // var1 = vpa
-      return hash;
-  }
-  ```
-
-  **Parameters**:
-
-  * `vpa` (String): Virtual Payment Address entered by user
-  * `packageListDialogFragment` (PackageListDialogFragment): Fragment to handle verification
-</Accordion>
 
 ***
+</Accordion>
 
 ### Step 7: Initiate Payment
 
