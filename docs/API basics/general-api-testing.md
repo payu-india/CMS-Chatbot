@@ -30,11 +30,7 @@ next:
   description: ''
 ---
 
-Effective API testing is a critical component of any successful integration with PayU services. This guide provides best practices, tools, and methodologies to ensure your API implementations are robust and reliable.
-
-## Getting Started with API Testing
-
-This section guides you through setting up your environment for testing PayU APIs.
+Effective API testing is a critical component of any successful integration with PayU services. This guide provides best practices, tools, and methodologies to ensure your API implementations are robust and reliable. This section helps you through setting up your environment for testing PayU APIs.
 
 ## Setting up the Test Environment
 
