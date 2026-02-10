@@ -1,7 +1,7 @@
 ---
 title: '[Review] FAQs for Recurring Payments'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
