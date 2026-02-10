@@ -70,8 +70,8 @@ PayU provides separate test and production environments for your API integration
 
 To use these environments, you'll need to:
 
-* **Test Environment:** Generate test credentials via the PayU Dashboard or use default test keys
-* **Production Environment:** Complete KYC verification and obtain production credentials from the PayU Dashboard
+* **Test Environment:** Generate test credentials via the PayU Dashboard or use default test keys. For more information, refer to [Generate Test Merchant Key and Salt](/docs/generate-test-merchant-key-and-salt).
+* **Production Environment:** Complete KYC verification and obtain production credentials from the PayU Dashboard. For more information, refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy)
 
 <Callout icon="📘" theme="info">
   **Important:** Always use matching credentials and endpoints for your target environment. Using test credentials with production endpoints (or vice versa) will result in authentication failures.
@@ -83,8 +83,6 @@ We recommend the following tools for testing PayU APIs:
 
 * **Postman**: Create and share API collections for manual and automated testing
 * **cURL**: Command-line tool for quick API interaction
-* **Jest/Mocha**: JavaScript testing frameworks for automated tests
-* **Python Requests**: Simple HTTP library for Python-based testing
 * **PayU Hash Verification Tool**: Use the [PayU Hash Verification Tool](/docs/using-payu-hash-verification-tool) to validate your hash calculations
 
 ## Testing Workflow
@@ -164,12 +162,6 @@ Create comprehensive test scenarios that cover complete user journeys:
   * Query payment link status
   * Update payment link configuration
   * Expire or delete payment link
-
-* **Transaction Management:**
-  * Verify transaction details
-  * Check transaction status
-  * Retrieve transaction history
-  * Process refunds
 
 #### Example: Complete Payment API Test
 
