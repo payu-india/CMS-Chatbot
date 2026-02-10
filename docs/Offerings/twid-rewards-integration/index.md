@@ -1,5 +1,5 @@
 ---
-title: TWID Rewards Integration
+title: TWID Pay Integration
 deprecated: false
 hidden: true
 metadata:
