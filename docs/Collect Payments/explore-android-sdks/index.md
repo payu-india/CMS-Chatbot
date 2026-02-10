@@ -192,12 +192,14 @@ Here is a comparison table that summarizes the key features of the different SDK
 
 | SDK Name                                                             | Latest SDK Version | SDK Size |
 | :------------------------------------------------------------------- | :----------------- | :------- |
-| [CheckoutPro SDK](https://docs.payu.in/docs/android-checkoutpro-sdk) | 3.2.2              | 293KB    |
-| [Core PG SDK](https://docs.payu.in/docs/android-core-sdk)            | 7.11.2             | 163KB    |
-| [CustomBrowser SDK](https://docs.payu.in/docs/custom-browser-sdk)    | 7.16.0             | 386KB    |
-| [UPI SDK](doc:android-upi-sdk)                                       | 1.8.8              | 163KB    |
+| [CheckoutPro SDK](https://docs.payu.in/docs/android-checkoutpro-sdk) | 3.3.1              | 293KB    |
+| [Core PG SDK](https://docs.payu.in/docs/android-core-sdk)            | 7.12.1             | 163KB    |
+| [CustomBrowser SDK](https://docs.payu.in/docs/custom-browser-sdk)    | 7.16.1             | 386KB    |
+| [UPI SDK](doc:android-upi-sdk)                                       | 1.8.10             | 163KB    |
 | [PhonePe SDK](https://docs.payu.in/docs/android-phonepe-sdk)         | 1.8.7              | 68KB     |
 | [Google Pay SDK](doc:android-google-pay-sdk)                         | 4.0.0              | 94KB     |
-| [OlaMoney SDK](https://docs.payu.in/docs/ola-money-sdk)              | 1.3.9              | 47KB     |
+| [OlaMoney SDK](https://docs.payu.in/docs/ola-money-sdk)              | 1.3.11             | 47KB     |
 | [Native OTP SDK](https://docs.payu.in/docs/native-otp-assist-sdk)    | 1.6.3              | 194Kb    |
 | [3DS 2.0 SDK](https://docs.payu.in/docs/android-3ds20-sdk)           | 2.0.0              | 80KB     |
+
+<br />
