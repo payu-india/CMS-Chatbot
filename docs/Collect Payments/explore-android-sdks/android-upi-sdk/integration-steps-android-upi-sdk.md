@@ -53,14 +53,14 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 Add the PayU UPI SDK (available at Maven Central) to `<<glossary:build.gradle>>`:
 
 ```Text build.gradle
-implementation 'in.payu:upisdk:1.8.8'
+implementation 'in.payu:upisdk:1.8.10'
 ```
 
 <Callout icon="🚧" theme="warn">
   **Expand Manifest view for compilation error**: If you are getting the following compile error, expand the Merged Manifest view.
 
   `Android resource linking failed /Users/sample/AndroidStudioProjects/MyApp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:18: error: unexpected element found in <manifest>  
-      Manifest merger failed with multiple errors, see logs`
+        Manifest merger failed with multiple errors, see logs`
 </Callout>
 
 In the Merged Manifest view, the following additional error message is displayed. This indicates that you need to fix your Gradle plugin. For more information on the Gradle plugin, refer to the Google Andriod Documentation.
