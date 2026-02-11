@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-This section describes step-by-step procedure to integrate Apple Pay as a payment method using Merchant Hosted Checkout integration.
+This section describes step-by-step procedure to integrate Apple Pay as a payment method using PayU Hosted Checkout integration.
 
 <Callout icon="📘" theme="info">
   **Before you begin**:   Ensure that you have completed the prerequisites before you start the integration. For more information, refer to [Prerequisites and Set up for Apple Pay Integration](doc:prerequisites-and-set-up-for-apple-pay-integration).
