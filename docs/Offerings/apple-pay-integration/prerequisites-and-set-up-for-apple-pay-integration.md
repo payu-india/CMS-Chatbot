@@ -17,7 +17,11 @@ To enable Apple Pay on your website:
 
 ## Domain Verification Process
 
-1. Download the verification file from the following location:
+1. Download the verification file.
+
+<Callout icon="📘" theme="info">
+  **Note**: Contact your PayU Key Account Manager or <Anchor label="PayU Support" target="_blank" href="help.payu.in">PayU Support</Anchor>.
+</Callout>
 
 <br />
 
