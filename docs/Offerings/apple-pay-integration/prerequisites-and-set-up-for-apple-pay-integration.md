@@ -12,7 +12,6 @@ To enable Apple Pay on your website:
 
   * The file path must be exactly as specified (case-sensitive).
   * File hosting is required on websites where PayU Checkout loads as an overlay/iframe. This includes WooCommerce, Magento, and other ecommerce platforms where PayU appears as an overlay, or any website where PayU Checkout iframe is embedded.
-  * No file hosting required on Shopify, Mobile SDKs (Flutter, Native iOS, React Native), and PayU no-code solutions such as Payment Links, Payment Pages, and Invoices.
   * File hosting is required if you use both hosted checkouts and overlay iframe integration on your merchant account. Do not activate Apple Pay if you have both these kinds of checkouts unless you have hosted the file at the exact path.
 </Callout>
 
