@@ -1,5 +1,5 @@
 ---
-title: Recurring Payments Bank Codes
+title: Recurring Payments Bank Codes - Enach Registration
 excerpt: ''
 deprecated: false
 hidden: false
