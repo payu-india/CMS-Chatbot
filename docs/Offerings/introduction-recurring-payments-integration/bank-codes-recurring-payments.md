@@ -10,6 +10,9 @@ metadata:
     Debit Card recurring payment registrations. Stay updated with the latest
     supported banks and their specific codes for seamless transaction processing
   keywords:
+    - ENACH Registration Bank Code
+    - ENACH Registration BankCode
+    - Consent Registration bankcode
     - Recurring Payments Bank Code
     - Subscription Bank Code
     - Recurring Payments bankcode
