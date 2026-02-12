@@ -39,12 +39,8 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | AIRTEL PAYMENTS BANK LTD                           | Yes                  | Yes                  | Yes               |
 | AKHAND ANAND CO OP BANK LTD                        | Yes                  | No                   | Yes               |
 | AMRELI JILLA MADHYASTHA SAHAKARI BANK LTD          | No                   | Yes                  | No                |
-| Andhra Bank                                        | No                   | No                   | No                |
 | ANDHRA PRADESH GRAMEENA BANK                       | No                   | No                   | Yes               |
-| ANDHRA PRADESH GRAMEENA VIKAS BANK                 | No                   | No                   | No                |
-| ANDHRA PRAGATHI GRAMEENA BANK                      | No                   | No                   | No                |
 | ARUNACHAL PRADESH STATE CO OP APEX BANK LTD        | No                   | Yes                  | Yes               |
-| ASSAM GRAMIN VIKASH BANK                           | No                   | No                   | No                |
 | AU SMALL FINANCE BANK                              | Yes                  | Yes                  | Yes               |
 | AXIS BANK                                          | Yes                  | Yes                  | Yes               |
 | BALASINOR NAGARIK SAHAKARI BANK LTD                | No                   | Yes                  | No                |
@@ -60,7 +56,6 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | CENTRAL BANK OF INDIA                              | Yes                  | Yes                  | Yes               |
 | CG RAJYA SAHAKARI BANK LTD                         | No                   | Yes                  | Yes               |
 | CHHATTISGARH GRAMIN BANK                           | No                   | Yes                  | Yes               |
-| CITI Bank                                          | No                   | No                   | No                |
 | CITY UNION BANK LTD                                | Yes                  | Yes                  | Yes               |
 | COASTAL LOCAL AREA BANK LTD                        | No                   | Yes                  | No                |
 | CSB BANK LIMITED                                   | Yes                  | Yes                  | Yes               |
@@ -72,14 +67,11 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | DHANALAXMI BANK                                    | Yes                  | No                   | Yes               |
 | DINDIGUL CENTRAL CO OP BANK LTD                    | No                   | No                   | Yes               |
 | DMK JAOLI BANK                                     | No                   | Yes                  | No                |
-| ELLAQUAI DEHATI BANK                               | No                   | No                   | No                |
 | EQUITAS SMALL FINANCE BANK LTD                     | Yes                  | Yes                  | Yes               |
 | ESAF SMALL FINANCE BANK LTD                        | Yes                  | Yes                  | Yes               |
 | FEDERAL BANK                                       | Yes                  | Yes                  | Yes               |
-| FINCARE SMALL FINANCE BANK LTD                     | No                   | No                   | No                |
 | FINGROWTH CO OP BANK LTD                           | No                   | Yes                  | No                |
 | FINO PAYMENTS BANK LTD                             | No                   | Yes                  | Yes               |
-| GOODS AND SERVICES TAX NETWORK                     | No                   | No                   | No                |
 | GUARDIAN SOUHARDA SAHAKARI BANK NIYAMITA           | No                   | Yes                  | No                |
 | HDFC BANK LTD                                      | Yes                  | Yes                  | Yes               |
 | HUTATMA SAHAKARI BANK LTD                          | No                   | No                   | Yes               |
@@ -101,7 +93,6 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | JANATA SAHAKARI BANK LTD SATARA                    | No                   | No                   | Yes               |
 | JHARKHAND RAJYA GRAMIN BANK                        | No                   | Yes                  | Yes               |
 | JILA SAHAKARI BANK MYDT GWALIOR                    | No                   | Yes                  | Yes               |
-| JILA SAHAKARI KENDARIYA BANK MYDT KHANDWA          | No                   | No                   | No                |
 | JILA SAHAKARI KENDRIYA BANK MARYADIT ,BALAGHAT     | No                   | Yes                  | No                |
 | JILA SAHAKARI KENDRIYA BANK MARYADIT ,GUNA         | No                   | No                   | Yes               |
 | JILA SAHAKARI KENDRIYA BANK MARYADIT ,KHARGONE     | No                   | Yes                  | Yes               |
@@ -112,15 +103,12 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | JILA SAHAKARI KENDRIYA BANK MARYADIT HOSHANGABAD   | No                   | No                   | Yes               |
 | JILA SAHAKARI KENDRIYA BANK MARYADIT JAGDALPUR     | No                   | Yes                  | Yes               |
 | JILA SAHAKARI KENDRIYA BANK MARYADIT MANDLA        | No                   | Yes                  | No                |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT MORENA        | No                   | No                   | No                |
 | JILA SAHAKARI KENDRIYA BANK MARYADIT RAIPUR        | No                   | Yes                  | Yes               |
 | JILA SAHAKARI KENDRIYA BANK MARYADIT RAJNANDGAON   | No                   | Yes                  | Yes               |
 | JILA SAHAKARI KENDRIYA BANK MARYADIT RATLAM        | No                   | Yes                  | No                |
 | JILA SAHAKARI KENDRIYA BANK MARYADIT SAGAR         | No                   | Yes                  | Yes               |
 | JILA SAHAKARI KENDRIYA BANK MARYADIT SHAHDOL       | No                   | Yes                  | Yes               |
 | JILA SAHAKARI KENDRIYA BANK MARYADIT,DHAR          | No                   | Yes                  | Yes               |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT,JHABUA        | No                   | No                   | No                |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT,NARSINGHPUR   | No                   | No                   | No                |
 | JILA SAHAKARI KENDRIYA BANK MYDT DURG              | No                   | Yes                  | Yes               |
 | JILA SAHAKARI KENDRIYA BANK MYDT JABALPUR          | No                   | Yes                  | Yes               |
 | JILA SAHAKARI KENDRIYA BANK MYDT MANDSAUR          | No                   | Yes                  | Yes               |
@@ -132,7 +120,6 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | JILA SAHAKRI KENDRIYA BANK MARYADIT BHIND          | No                   | Yes                  | Yes               |
 | JILA SAHKARI KENDRIYA BANK MARYADIT BILASPUR       | No                   | Yes                  | Yes               |
 | JILA SAHKARI KENDRIYA BANK MYDT DAMOH              | No                   | No                   | Yes               |
-| JILA SAHKARI KENDRIYA BANK MYDT DATIA              | No                   | No                   | No                |
 | JILLA SAHAKARI KENDRIYA BANK MYDT RAISEN           | No                   | Yes                  | Yes               |
 | JIO PAYMENTS BANK LTD                              | Yes                  | No                   | No                |
 | JODHPUR NAGRIK SAHAKARI BANK LTD                   | No                   | Yes                  | No                |
@@ -140,7 +127,6 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | KANKARIA MAINAGAR NAGRIK SAHAKARI BANK LTD         | No                   | Yes                  | No                |
 | KARNATAKA BANK LTD                                 | Yes                  | Yes                  | Yes               |
 | KARNATAKA GRAMIN BANK                              | No                   | No                   | Yes               |
-| KARNATAKA VIKAS GRAMEENA BANK                      | No                   | No                   | No                |
 | KARUR VYSA BANK                                    | Yes                  | Yes                  | Yes               |
 | KERALA GRAMIN BANK                                 | No                   | No                   | Yes               |
 | KOKAN MERCANTILE CO OP BANK LTD                    | No                   | Yes                  | Yes               |
@@ -150,32 +136,26 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | KRISHNA MERCANTILE CO OP BANK LTD                  | No                   | Yes                  | No                |
 | KURLA NAGARIK SAHAKARI BANK LTD                    | No                   | Yes                  | No                |
 | MADHYA PRADESH RAJYA SAHAKARI BANK MARYADIT        | No                   | Yes                  | Yes               |
-| MADHYANCHAL GRAMIN BANK                            | No                   | No                   | No                |
 | MAHARASHTRA GRAMIN BANK                            | No                   | Yes                  | Yes               |
 | MAHESH SAHAKARI BANK LTD PUNE                      | No                   | Yes                  | No                |
 | MAHILA CO OP NAGARIK BANK LTD BHARUCH              | No                   | No                   | Yes               |
 | MANN DESHI MAHILA SAHKARI BANK LTD                 | No                   | No                   | Yes               |
-| mayank bank                                        | No                   | No                   | No                |
 | MEGHALAYA RURAL BANK                               | No                   | Yes                  | Yes               |
 | MIZORAM RURAL BANK                                 | No                   | Yes                  | No                |
 | MOTIRAM AGRAWAL JALNA MERCHANTS CO-OPERATIVE BANK  | No                   | Yes                  | No                |
-| NAGNATH URBAN CO OP BANK LTD HINGOLI               | NO                   | NO                   | No                |
 | NAGPUR NAGARIK SAHAKARI BANK LTD                   | No                   | No                   | Yes               |
 | NAGRIK SAHAKARI BANK MARYADIT GWALIOR              | No                   | Yes                  | Yes               |
 | NAVI MUMBAI CO OP BANK LTD                         | No                   | Yes                  | No                |
 | NSDL PAYMENTS BANKS LTD                            | Yes                  | Yes                  | No                |
 | NUTAN NAGARIK SAHAKARI BANK LTD                    | No                   | No                   | Yes               |
-| Oriental Bank of Commerce                          | No                   | No                   | No                |
 | PAYTM PAYMENTS BANK LTD                            | Yes                  | Yes                  | No                |
 | PRIME CO OP BANK LTD                               | No                   | No                   | Yes               |
 | PRIYADARSHANI NAGARI SAHAKARI BANK LTD JALNA       | No                   | Yes                  | No                |
 | PUDUKOTTAI DISTRICT CENTRAL CO OP BANK LTD         | No                   | No                   | Yes               |
 | PUDUVAI BHARATHIAR GRAMA BANK                      | No                   | No                   | Yes               |
-| PUNE DISTRICT CENTRAL CO OP BANK LTD               | NO                   | NO                   | No                |
 | PUNE PEOPLES CO OP BANK LTD                        | No                   | No                   | Yes               |
 | PUNJAB AND SIND BANK                               | Yes                  | Yes                  | Yes               |
 | PUNJAB NATIONAL BANK                               | Yes                  | Yes                  | Yes               |
-| RAIGAD DISTRICT CENTRAL CO OP BANK LTD             | No                   | No                   | No                |
 | RAJARSHI SHAHU SAHAKARI BANK LTD                   | No                   | Yes                  | No                |
 | RAJASTHAN GRAMIN BANK                              | No                   | Yes                  | Yes               |
 | RAJKOT COMMERCIAL CO OP BANK LTD                   | No                   | No                   | Yes               |
@@ -183,11 +163,9 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | RBL BANK LIMITED                                   | Yes                  | Yes                  | Yes               |
 | SAMPADA SAHAKARI BANK LTD PUNE                     | No                   | Yes                  | No                |
 | SAMRUDDHI CO OP BANK LTD NAGPUR                    | No                   | Yes                  | Yes               |
-| SAPTAGIRI GRAMEENA BANK                            | No                   | No                   | No                |
 | SARASWAT BANK                                      | Yes                  | Yes                  | Yes               |
 | SARDAR VALLABHBHAI SAHAKARI BANK LTD               | No                   | Yes                  | No                |
 | SARVODAYA COMMERICAL CO OP BANK LTD                | No                   | No                   | Yes               |
-| SAURASHTRA GRAMIN BANK                             | No                   | No                   | No                |
 | SBM BANK INDIA LTD                                 | Yes                  | Yes                  | Yes               |
 | SHIVALIK SMALL FINANCE BANK LTD                    | No                   | Yes                  | Yes               |
 | SHREE KADI NAGARIK SAHAKARI BANK LTD               | No                   | No                   | Yes               |
@@ -202,7 +180,6 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | SURAT NATIONAL CO OP BANK LTD                      | No                   | No                   | Yes               |
 | SURYODAY SMALL FINANCE BANK LTD                    | Yes                  | Yes                  | Yes               |
 | SVC CO OP BANK LTD                                 | Yes                  | Yes                  | No                |
-| SYNDICATE BANK                                     | No                   | No                   | No                |
 | TAMIL NADU GRAMA BANK                              | No                   | No                   | Yes               |
 | TAMILNAD MERCANTILE BANK LTD                       | Yes                  | Yes                  | Yes               |
 | TAMLUK GHATAL CENTRAL CO OP BANK LTD               | No                   | Yes                  | Yes               |
@@ -301,7 +278,6 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | THE SURAT DISTRICT CO OP BANK                      | No                   | No                   | Yes               |
 | THE SURAT PEOPLES CO OP BANK LTD                   | No                   | Yes                  | No                |
 | THE THIRUVANNAMALAI DISTRICT CENTRAL CO OP BANK LT | No                   | No                   | Yes               |
-| THE UDAIPUR MAHILA URBAN CO OP BANK LTD            | No                   | No                   | No                |
 | THE UMRETH URBAN CO OP BANK LTD                    | No                   | Yes                  | No                |
 | THE VALLABH VIDYANAGAR COMMERCIAL BANK LTD         | No                   | No                   | Yes               |
 | THE VARACHHA CO OP BANK LTD                        | Yes                  | Yes                  | Yes               |
@@ -312,17 +288,13 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | THE VISAKHAPATNAM CO OP BANK LTD                   | No                   | Yes                  | Yes               |
 | THE VISHWESHWAR SAHAKARI BANK LTD                  | No                   | No                   | Yes               |
 | THE ZOROASTRIAN CO OP BANK LTD                     | No                   | Yes                  | No                |
-| TRIPURA GRAMIN BANK                                | No                   | No                   | No                |
-| TRIPURA STATE GOVT DEPARTMENT                      | No                   | No                   | No                |
 | TTC CO-OPERATIVE BANK LIMITED                      | No                   | Yes                  | No                |
 | UCO BANK                                           | Yes                  | No                   | No                |
 | UJJIVAN SMALL FINANCE BANK LTD                     | Yes                  | Yes                  | Yes               |
 | UNION BANK OF INDIA                                | Yes                  | Yes                  | Yes               |
-| United Bank of India                               | No                   | No                   | No                |
 | UNITY SMALL FINANCE BANK LIMITED                   | Yes                  | No                   | No                |
 | UNIVERSAL CO OP URBAN BANK LTD                     | No                   | No                   | Yes               |
 | UNJHA NAGARIK SAHAKARI BANK LTD                    | No                   | Yes                  | No                |
-| UTKAL GRAMEEN BANK                                 | No                   | No                   | No                |
 | UTKARSH SMALL FINANCE BANK LTD                     | No                   | Yes                  | Yes               |
 | UTTARAKHAND GRAMIN BANK                            | No                   | Yes                  | Yes               |
 | VIDYASAGAR CENTRAL CO OP BANK LTD                  | No                   | No                   | Yes               |
