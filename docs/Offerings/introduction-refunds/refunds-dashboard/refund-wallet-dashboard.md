@@ -1,7 +1,7 @@
 ---
 title: Refund Wallet Dashboard
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
