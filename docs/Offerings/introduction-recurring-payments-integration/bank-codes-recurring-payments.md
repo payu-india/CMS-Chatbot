@@ -26,7 +26,7 @@ This section lists the bank codes (used in the bankcode parameter) that must be 
   **Note**: This list is subject to regular updates based on NPCI support.
 </Callout>
 
-For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transactions, use the TPV ENACH bank codes. 
+For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transactions, use the TPV ENACH bank codes. For more information, refer to the [Bank codes ](#bank-codes)table.
 
 ## Supported banks and their verification modes
 
@@ -325,7 +325,7 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | VIDYASAGAR CENTRAL CO OP BANK LTD                  | No                   | No                   | Yes               |
 | YES BANK                                           | Yes                  | Yes                  | Yes               |
 
-## Consent transaction bank codes
+## Bank codes
 
 | Bank Name                                         | Normal ENACH Bank Code | TPV ENACH Bank Code |
 | ------------------------------------------------- | ---------------------- | ------------------- |
