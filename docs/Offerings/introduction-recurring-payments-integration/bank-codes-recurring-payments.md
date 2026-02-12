@@ -20,7 +20,13 @@ metadata:
 next:
   description: ''
 ---
-The following bank codes (used in  <Glossary>bankcode</Glossary> parameter) must be used for the recurring payment [registration](#consent-transaction-bank-codes) and [recurring](#recurring-transaction-bankcodes) transactions. For Net Banking, you have to use the regular Net Banking bankcodes as listed in [Net Banking Codes](doc:net-banking-codes).
+This section lists the bank codes (used in the bankcode parameter) that must be provided when initiating registration transactions (such as eNACH consent or mandate registration) with PayU. It also indicates which verification modes are supported for each bank, as per NPCI.
+
+<Callout icon="📘" theme="info">
+  **Note**: This list is subject to regular updates based on NPCI support.
+</Callout>
+
+For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transactions, use the TPV ENACH bank codes. 
 
 ## Supported banks and their verification modes
 
@@ -321,594 +327,64 @@ The following bank codes (used in  <Glossary>bankcode</Glossary> parameter) must
 
 ## Consent transaction bank codes
 
-| Bank Name                                          | Consent Transaction Bank Code | TPV Bank Code |
-| -------------------------------------------------- | ----------------------------- | ------------- |
-| AHMEDABAD MERCANTILE CO-OPBANK LTD                 | AMCBENCC                      | AMCBENTC      |
-| AIRTEL PAYMENTS BANK LTD                           | AIRPENCC                      | AIRPENTC      |
-| AKHAND ANAND CO OP BANK LTD                        | AACXENCC                      | AACXENTC      |
-| AMRELI JILLA MADHYASTHA SAHAKARI BANK LTD          | AMRXENCC                      | AMRXENTC      |
-| Andhra Bank                                        | ANDBENCC                      | ANDBENTC      |
-| ANDHRA PRADESH GRAMEENA BANK                       | CGGXENCC                      | CGGXENTC      |
-| ANDHRA PRADESH GRAMEENA VIKAS BANK                 | APGXENCC                      | APGXENTC      |
-| ANDHRA PRAGATHI GRAMEENA BANK                      | APGBENCC                      | APGBENTC      |
-| ARUNACHAL PRADESH STATE CO OP APEX BANK LTD        | ARCXENCC                      | ARCXENTC      |
-| ASSAM GRAMIN VIKASH BANK                           | AGVXENCC                      | AGVXENTC      |
-| AU SMALL FINANCE BANK                              | AUBLENCC                      | AUBLENTC      |
-| AXIS BANK                                          | UTIBENCC                      | UTIBENTC      |
-| BALASINOR NAGARIK SAHAKARI BANK LTD                | BALXENCC                      | BALXENTC      |
-| BANDHAN BANK LTD                                   | BDBLENCC                      | BDBLENTC      |
-| BANK OF BARODA                                     | BARBENCC                      | BARBENTC      |
-| BANK OF INDIA                                      | BKIDENCC                      | BKIDENTC      |
-| BANK OF MAHARASHTRA                                | MAHBENCC                      | MAHBENTC      |
-| BHAGINI NIVEDITA SAHAKARI BANK LTD                 | BNSXENCC                      | BNSXENTC      |
-| BHOPAL CO-OP CENTRAL BANK                          | BHOXENCC                      | BHOXENTC      |
-| BRAMHAPURI URBAN CO OP BANK LTD                    | BRMXENCC                      | BRMXENTC      |
-| CANARA BANK                                        | CNRBENCC                      | CNRBENTC      |
-| CAPITAL SMALL FINANCE BANK LTD                     | CLBLENCC                      | CLBLENTC      |
-| CENTRAL BANK OF INDIA                              | CBINENCC                      | CBINENTC      |
-| CG RAJYA SAHAKARI BANK LTD                         | CRSXENCC                      | CRSXENTC      |
-| CHHATTISGARH GRAMIN BANK                           | CGBXENCC                      | CGBXENTC      |
-| CITI Bank                                          | CITIENCC                      | CITIENTC      |
-| CITY UNION BANK LTD                                | CIUBENCC                      | CIUBENTC      |
-| COASTAL LOCAL AREA BANK LTD                        | COLXENCC                      | COLXENTC      |
-| CSB BANK LIMITED                                   | CSBKENCC                      | CSBKENTC      |
-| DARJEELING DISTRICT CENTRAL CO OP BANK LTD         | DDCXENCC                      | DDCXENTC      |
-| DAUSA URBAN CO OP BANK LTD                         | DAUXENCC                      | DAUXENTC      |
-| DBS BANK INDIA LTD                                 | DBSSENCC                      | DBSSENTC      |
-| DCB BANK LTD                                       | DCBLENCC                      | DCBLENTC      |
-| DEUTSCHE BANK AG                                   | DEUTENCC                      | DEUTENTC      |
-| DHANALAXMI BANK                                    | DLXBENCC                      | DLXBENTC      |
-| DINDIGUL CENTRAL CO OP BANK LTD                    | DCBXENCC                      | DCBXENTC      |
-| DMK JAOLI BANK                                     | DMKBENCC                      | DMKBENTC      |
-| ELLAQUAI DEHATI BANK                               | EDBXENCC                      | EDBXENTC      |
-| EQUITAS SMALL FINANCE BANK LTD                     | ESFBENCC                      | ESFBENTC      |
-| ESAF SMALL FINANCE BANK LTD                        | ESAFENCC                      | ESAFENTC      |
-| FEDERAL BANK                                       | FDRLENCC                      | FDRLENTC      |
-| FINCARE SMALL FINANCE BANK LTD                     | FINFENCC                      | FINFENTC      |
-| FINGROWTH CO OP BANK LTD                           | FGCBENCC                      | FGCBENTC      |
-| FINO PAYMENTS BANK LTD                             | FINOENCC                      | FINOENTC      |
-| GOODS AND SERVICES TAX NETWORK                     | GSTNENCC                      | GSTNENTC      |
-| GUARDIAN SOUHARDA SAHAKARI BANK NIYAMITA           | GSSXENCC                      | GSSXENTC      |
-| HDFC BANK LTD                                      | HDFCENCC                      | HDFCENTC      |
-| HUTATMA SAHAKARI BANK LTD                          | HUTXENCC                      | HUTXENTC      |
-| ICICI BANK LTD                                     | ICICENCC                      | ICICENTC      |
-| IDBI BANK                                          | IBKLENCC                      | IBKLENTC      |
-| IDFC FIRST BANK LTD                                | IDFBENCC                      | IDFBENTC      |
-| INDIA POST PAYMENTS BANK LTD                       | IPPBENCC                      | IPPBENTC      |
-| INDIAN BANK                                        | IDIBENCC                      | IDIBENTC      |
-| INDIAN OVERSEAS BANK                               | IOBAENCC                      | IOBAENTC      |
-| INDORE PARASPAR SAHAKARI BANK LTD                  | IPSXENCC                      | IPSXENTC      |
-| INDORE PREMIER CO OP BANK LTD INDORE               | IPCXENCC                      | IPCXENTC      |
-| INDUSIND BANK                                      | INDBENCC                      | INDBENTC      |
-| INTEGRAL URBAN CO OP BANK LTD                      | IUCBENCC                      | IUCBENTC      |
-| JALGAON JANATA SAHKARI BANK LTD                    | JJSBENCC                      | JJSBENTC      |
-| JANA SMALL FINANCE BANK LTD                        | JSFBENCC                      | JSFBENTC      |
-| JANAKALYAN SAHAKARI BANK                           | JSBLENCC                      | JSBLENTC      |
-| JANASEVA SAHAKARI BANK LTD PUNE                    | JANAENCC                      | JANAENTC      |
-| JANATA SAHAKARI BANK LTD                           | JSBPENCC                      | JSBPENTC      |
-| JANATA SAHAKARI BANK LTD SATARA                    | JSSXENCC                      | JSSXENTC      |
-| JHARKHAND RAJYA GRAMIN BANK                        | VGBXENCC                      | VGBXENTC      |
-| JILA SAHAKARI BANK MYDT GWALIOR                    | JGWXENCC                      | JGWXENTC      |
-| JILA SAHAKARI KENDARIYA BANK MYDT KHANDWA          | JIKXENCC                      | JIKXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT ,BALAGHAT     | JIBXENCC                      | JIBXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT ,GUNA         | JIGXENCC                      | JIGXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT ,KHARGONE     | JKHXENCC                      | JKHXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT ,SEHORE       | JSEXENCC                      | JSEXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT BETUL         | JMBXENCC                      | JMBXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT CHHATARPUR    | JCHXENCC                      | JCHXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT CHHINDWARA    | JICXENCC                      | JICXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT HOSHANGABAD   | JHSXENCC                      | JHSXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT JAGDALPUR     | JKMXENCC                      | JKMXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT MANDLA        | JIMXENCC                      | JIMXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT MORENA        | JMOXENCC                      | JMOXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT RAIPUR        | JSKXENCC                      | JSKXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT RAJNANDGAON   | JRNXENCC                      | JRNXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT RATLAM        | JRAXENCC                      | JRAXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT SAGAR         | JBMXENCC                      | JBMXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT SHAHDOL       | JIOXENCC                      | JIOXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT,DHAR          | JSDXENCC                      | JSDXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT,JHABUA        | JJHXENCC                      | JJHXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT,NARSINGHPUR   | JNAXENCC                      | JNAXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MYDT DURG              | JMYXENCC                      | JMYXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MYDT JABALPUR          | JKDXENCC                      | JKDXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MYDT MANDSAUR          | JMAXENCC                      | JMAXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MYDT PANNA             | JPAXENCC                      | JPAXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MYDT SATNA             | JSTXENCC                      | JSTXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MYDT SHAJAPUR          | JSHXENCC                      | JSHXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MYDT UJJAIN            | JRKXENCC                      | JRKXENTC      |
-| JILA SAHAKARI KENDRIYA BANK MYDT VIDISHA           | JLSXENCC                      | JLSXENTC      |
-| JILA SAHAKRI KENDRIYA BANK MARYADIT BHIND          | JBHXENCC                      | JBHXENTC      |
-| JILA SAHKARI KENDRIYA BANK MARYADIT BILASPUR       | JBIXENCC                      | JBIXENTC      |
-| JILA SAHKARI KENDRIYA BANK MYDT DAMOH              | JIDXENCC                      | JIDXENTC      |
-| JILA SAHKARI KENDRIYA BANK MYDT DATIA              | JMDXENCC                      | JMDXENTC      |
-| JILLA SAHAKARI KENDRIYA BANK MYDT RAISEN           | JKRXENCC                      | JKRXENTC      |
-| JIO PAYMENTS BANK LTD                              | JIOPENCC                      | JIOPENTC      |
-| JODHPUR NAGRIK SAHAKARI BANK LTD                   | JONXENCC                      | JONXENTC      |
-| KADAPA DIST CO-OP CENTRAL BANK                     | KAAXENCC                      | KAAXENTC      |
-| KANKARIA MAINAGAR NAGRIK SAHAKARI BANK LTD         | KKMXENCC                      | KKMXENTC      |
-| KARNATAKA BANK LTD                                 | KARBENCC                      | KARBENTC      |
-| KARNATAKA GRAMIN BANK                              | PGBXENCC                      | PGBXENTC      |
-| KARNATAKA VIKAS GRAMEENA BANK                      | KVGBENCC                      | KVGBENTC      |
-| KARUR VYSA BANK                                    | KVBLENCC                      | KVBLENTC      |
-| KERALA GRAMIN BANK                                 | KLGBENCC                      | KLGBENTC      |
-| KOKAN MERCANTILE CO OP BANK LTD                    | KMCBENCC                      | KMCBENTC      |
-| KOTA NAGRIK SAHKARI BANK LTD KOTA                  | KOSXENCC                      | KOSXENTC      |
-| KOTAK MAHINDRA BANK LTD                            | KKBKENCC                      | KKBKENTC      |
-| KRISHNA BHIMA SAMRUDDHI LOCAL AREA BANK            | KBSXENCC                      | KBSXENTC      |
-| KRISHNA MERCANTILE CO OP BANK LTD                  | KMCXENCC                      | KMCXENTC      |
-| KURLA NAGARIK SAHAKARI BANK LTD                    | KNSBENCC                      | KNSBENTC      |
-| MADHYA PRADESH RAJYA SAHAKARI BANK MARYADIT        | MPRXENCC                      | MPRXENTC      |
-| MADHYANCHAL GRAMIN BANK                            | MADXENCC                      | MADXENTC      |
-| MAHARASHTRA GRAMIN BANK                            | MGBXENCC                      | MGBXENTC      |
-| MAHESH SAHAKARI BANK LTD PUNE                      | MHSXENCC                      | MHSXENTC      |
-| MAHILA CO OP NAGARIK BANK LTD BHARUCH              | MNBXENCC                      | MNBXENTC      |
-| MANN DESHI MAHILA SAHKARI BANK LTD                 | MDMXENCC                      | MDMXENTC      |
-| mayank bank                                        | MYNKENCC                      | MYNKENTC      |
-| MEGHALAYA RURAL BANK                               | MERXENCC                      | MERXENTC      |
-| MIZORAM RURAL BANK                                 | MZRXENCC                      | MZRXENTC      |
-| MOTIRAM AGRAWAL JALNA MERCHANTS CO-OPERATIVE BANK  | JMCXENCC                      | JMCXENTC      |
-| NAGNATH URBAN CO OP BANK LTD HINGOLI               | NCOXENCC                      | NCOXENTC      |
-| NAGPUR NAGARIK SAHAKARI BANK LTD                   | NGSBENCC                      | NGSBENTC      |
-| NAGRIK SAHAKARI BANK MARYADIT GWALIOR              | NGKXENCC                      | NGKXENTC      |
-| NAVI MUMBAI CO OP BANK LTD                         | NMCXENCC                      | NMCXENTC      |
-| NSDL PAYMENTS BANKS LTD                            | NSPBENCC                      | NSPBENTC      |
-| NUTAN NAGARIK SAHAKARI BANK LTD                    | NNSBENCC                      | NNSBENTC      |
-| Oriental Bank of Commerce                          | ORBCENCC                      | ORBCENTC      |
-| PAYTM PAYMENTS BANK LTD                            | PYTMENCC                      | PYTMENTC      |
-| PRIME CO OP BANK LTD                               | PMECENCC                      | PMECENTC      |
-| PRIYADARSHANI NAGARI SAHAKARI BANK LTD JALNA       | PDSXENCC                      | PDSXENTC      |
-| PUDUKOTTAI DISTRICT CENTRAL CO OP BANK LTD         | PUDXENCC                      | PUDXENTC      |
-| PUDUVAI BHARATHIAR GRAMA BANK                      | PBGXENCC                      | PBGXENTC      |
-| PUNE DISTRICT CENTRAL CO OP BANK LTD               | PDCXENCC                      | PDCXENTC      |
-| PUNE PEOPLES CO OP BANK LTD                        | PPBXENCC                      | PPBXENTC      |
-| PUNJAB AND SIND BANK                               | PSIBENCC                      | PSIBENTC      |
-| PUNJAB NATIONAL BANK                               | PUNBENCC                      | PUNBENTC      |
-| RAIGAD DISTRICT CENTRAL CO OP BANK LTD             | RDCXENCC                      | RDCXENTC      |
-| RAJARSHI SHAHU SAHAKARI BANK LTD                   | RSSXENCC                      | RSSXENTC      |
-| RAJASTHAN GRAMIN BANK                              | MDGXENCC                      | MDGXENTC      |
-| RAJKOT COMMERCIAL CO OP BANK LTD                   | RACXENCC                      | RACXENTC      |
-| RAJKOT NAGARIK SAHAKARI BANK LTD                   | RNSBENCC                      | RNSBENTC      |
-| RBL BANK LIMITED                                   | RATNENCC                      | RATNENTC      |
-| SAMPADA SAHAKARI BANK LTD PUNE                     | SMBXENCC                      | SMBXENTC      |
-| SAMRUDDHI CO OP BANK LTD NAGPUR                    | SCOBENCC                      | SCOBENTC      |
-| SAPTAGIRI GRAMEENA BANK                            | SPBXENCC                      | SPBXENTC      |
-| SARASWAT BANK                                      | SRCBENCC                      | SRCBENTC      |
-| SARDAR VALLABHBHAI SAHAKARI BANK LTD               | SAVXENCC                      | SAVXENTC      |
-| SARVODAYA COMMERICAL CO OP BANK LTD                | SVCXENCC                      | SVCXENTC      |
-| SAURASHTRA GRAMIN BANK                             | SAGXENCC                      | SAGXENTC      |
-| SBM BANK INDIA LTD                                 | STCBENCC                      | STCBENTC      |
-| SHIVALIK SMALL FINANCE BANK LTD                    | SHIXENCC                      | SHIXENTC      |
-| SHREE KADI NAGARIK SAHAKARI BANK LTD               | KDIXENCC                      | KDIXENTC      |
-| SHREE WARANA SAHAKARI BANK LTD                     | SWSXENCC                      | SWSXENTC      |
-| SHRI MAHILA SEWA SAHAKARI BANK LTD                 | SEWXENCC                      | SEWXENTC      |
-| SHRI RAJKOT DISTRICT CO OP BANK LTD                | RJTXENCC                      | RJTXENTC      |
-| SMRITI NAGRIK SAHAKARI BANK                        | SNSXENCC                      | SNSXENTC      |
-| SRI POTTI SRIRAMULU NELLORE DCCB                   | PSRXENCC                      | PSRXENTC      |
-| SRI VASAVAMBA CO OP BANK LTD                       | SVAXENCC                      | SVAXENTC      |
-| STANDARD CHARTERED BANK                            | SCBLENCC                      | SCBLENTC      |
-| STATE BANK OF INDIA                                | SBINENCC                      | SBINENTC      |
-| SURAT NATIONAL CO OP BANK LTD                      | SUNBENCC                      | SUNBENTC      |
-| SURYODAY SMALL FINANCE BANK LTD                    | SURYENCC                      | SURYENTC      |
-| SVC CO OP BANK LTD                                 | SVCBENCC                      | SVCBENTC      |
-| SYNDICATE BANK                                     | SYNBENCC                      | SYNBENTC      |
-| TAMIL NADU GRAMA BANK                              | PABXENCC                      | PABXENTC      |
-| TAMILNAD MERCANTILE BANK LTD                       | TMBLENCC                      | TMBLENTC      |
-| TAMLUK GHATAL CENTRAL CO OP BANK LTD               | TGCXENCC                      | TGCXENTC      |
-| TELANGANA GRAMEENA BANK                            | DGBXENCC                      | DGBXENTC      |
-| THANE BHARAT SAHAKARI BANK LTD                     | TBSBENCC                      | TBSBENTC      |
-| THANJAVUR CENTRAL CO OP BANK LTD                   | TJCXENCC                      | TJCXENTC      |
-| THE ADARSH CO OP URBAN BANK LTD                    | ACUXENCC                      | ACUXENTC      |
-| THE AHMEDABAD DISTRICT CO OP BANK LTD              | ADBXENCC                      | ADBXENTC      |
-| THE AKOLA URBAN CO OP BANK LTD                     | AKOXENCC                      | AKOXENTC      |
-| THE ANANTAPUR DISTRICT CO OPERATIVE CENTRAL BANK L | TADXENCC                      | TADXENTC      |
-| THE ANDHRA PRADESH STATE CO OP BANK LTD            | APBLENCC                      | APBLENTC      |
-| THE ANNASAHEB SAVANT CO OP URBAN BANK MAHAD LTD    | TASXENCC                      | TASXENTC      |
-| THE ARYAPURAM CO OP URBAN BANK LTD                 | ACUBENCC                      | ACUBENTC      |
-| THE ASSOCIATE CO OP BANK LTD                       | ASOXENCC                      | ASOXENTC      |
-| THE BABASAHEB DESHMUKH SAHAKARI BANK LTD ATPADI    | BDSXENCC                      | BDSXENTC      |
-| THE BANASKANTHA DIST CENTRAL CO OP BANK LTD        | BKDXENCC                      | BKDXENTC      |
-| THE BANASKANTHA MERCANTILE CO OP BANK LTD          | BMPXENCC                      | BMPXENTC      |
-| THE BANGALORE BANGALORE RURAL AND RAMANAGARA DCCB  | BBRXENCC                      | BBRXENTC      |
-| THE BARAMATI SAHAKARI BANK LTD                     | BSBXENCC                      | BSBXENTC      |
-| THE BAVLA NAGRIK SAHAKARI BANK LTD                 | BAVXENCC                      | BAVXENTC      |
-| THE BHAGYALAKSHMI MAHILA SAHAKARI BANK LTD         | BMSXENCC                      | BMSXENTC      |
-| THE BHARUCH DISTRICT CENTRAL CO OP BANK LTD BHARUC | BRUXENCC                      | BRUXENTC      |
-| THE BHUJ COMMERCIAL CO OP BANK LTD                 | BHCXENCC                      | BHCXENTC      |
-| THE BIJAPUR DISTRICT CENTRAL CO OP BANK            | BDCXENCC                      | BDCXENTC      |
-| THE BURDWAN CENTRAL CO OP BANK LTD                 | BURXENCC                      | BURXENTC      |
-| THE CHARADA NAGARIK SAHAKARI BANK LTD              | CHNXENCC                      | CHNXENTC      |
-| THE CHEMBUR NAGARIK SAHAKARI BANK                  | CNSXENCC                      | CNSXENTC      |
-| THE CHIKMAGALUR DISTRICT CENTRAL CO OP BANK LTD    | CIDXENCC                      | CIDXENTC      |
-| THE CHITTOOR DISTRICT CO OP CENTRAL BANK LTD       | CHDXENCC                      | CHDXENTC      |
-| THE CO OP BANK OF RAJKOT LTD                       | TCBXENCC                      | TCBXENTC      |
-| THE COOP BANK OF MEHSANA LTD                       | COMXENCC                      | COMXENTC      |
-| THE COSMOS CO-OPERATIVE BANK LTD                   | COSBENCC                      | COSBENTC      |
-| THE DAHOD URBAN CO OP BANK LTD                     | DHUXENCC                      | DHUXENTC      |
-| THE DARUSSALAM CO OP URBAN BANK LTD                | DCUXENCC                      | DCUXENTC      |
-| THE DISTRICT CENTRAL CO OP BANK LTD ELLURU         | DCDXENCC                      | DCDXENTC      |
-| THE DISTRICT CO OP CENTRAL BANK LTD KAKINADA       | TDIXENCC                      | TDIXENTC      |
-| THE DISTRICT CO OP CENTRAL BANK LTD KURNOOL        | DCKXENCC                      | DCKXENTC      |
-| THE DISTRICT CO OP CENTRAL BANK LTD SRIKAKUL       | TSDXENCC                      | TSDXENTC      |
-| THE DISTRICT CO OP CENTRAL BANK LTD VISAKHAPATNAM  | DICXENCC                      | DICXENTC      |
-| THE DISTRICT CO OP CENTRAL BANK LTD VIZIANAGARAM   | TVDXENCC                      | TVDXENTC      |
-| THE ERODE DISTRICT CENTRAL CO OP BANK LTD          | EDCXENCC                      | EDCXENTC      |
-| THE GANDHINAGAR NAGRIK CO OP BANK LTD              | TGNXENCC                      | TGNXENTC      |
-| THE GAYATRI CO OP URBAN BANK LTD                   | GCUXENCC                      | GCUXENTC      |
-| THE GODHRA CITY CO OP BANK LTD GODHRA              | GDOXENCC                      | GDOXENTC      |
-| THE GODHRA URBAN CO OP BANK LTD                    | GDUXENCC                      | GDUXENTC      |
-| THE GUJARAT STATE CO OP BANK LTD                   | GSCBENCC                      | GSCBENTC      |
-| THE GUNTUR DISTRICT CO OP CENTRAL BANK LTD         | GDCXENCC                      | GDCXENTC      |
-| THE HIMACHAL PRADESH STATE CO OP BANK LTD          | HPSXENCC                      | HPSXENTC      |
-| THE HONGKONG AND SHANGHAI BANKING CORPORATION LTD  | HSBCENCC                      | HSBCENTC      |
-| THE JAMMU AND KASHMIR BANK LTD                     | JAKAENCC                      | JAKAENTC      |
-| THE JUNAGADH COMMERCIAL CO OP BANK LTD             | JUCXENCC                      | JUCXENTC      |
-| THE JUNAGADH JILLA SAHAKARI BANK LTD               | JNDXENCC                      | JNDXENTC      |
-| THE KAIRA DISTRICT CENTRAL CO OP BANK LTD          | KARXENCC                      | KARXENTC      |
-| THE KALOL NAGARIK SAHAKARI BANK LTD                | KNBXENCC                      | KNBXENTC      |
-| THE KALUPUR COMMERCIAL CO OP BANK                  | KCCBENCC                      | KCCBENTC      |
-| THE KALYAN JANATA SAHAKARI BANK LTD                | KJSBENCC                      | KJSBENTC      |
-| THE KANAKAMAHALAKSHMI CO OP BANK LTD               | KBCXENCC                      | KBCXENTC      |
-| THE KANARA DISTRICT CENTRAL CO OP BANK LTD         | KANXENCC                      | KANXENTC      |
-| THE KANGRA CENTRAL CO OP BANK LTD                  | KACEENCC                      | KACEENTC      |
-| THE KANYAKUMARI DISTRICT CENTRAL CO OP BANK        | KAYXENCC                      | KAYXENTC      |
-| THE KARAD URBAN CO OP BANK LTD                     | KUCBENCC                      | KUCBENTC      |
-| THE KARNAVATI CO OP  BANK LTD                      | KRNXENCC                      | KRNXENTC      |
-| THE KODAGU DISTRICT CO OP CENTRAL BANK LTD         | KDUXENCC                      | KDUXENTC      |
-| THE KODINAR TALUKA CO OP BANKING UNION LTD K       | KOTXENCC                      | KOTXENTC      |
-| THE KOLAR AND CHICKBALLAPUR DT CO OP CENTRAL BANK  | KRCXENCC                      | KRCXENTC      |
-| THE KRISHNA DISTRICT CO OP BANK                    | KRDXENCC                      | KRDXENTC      |
-| THE KUKARWADA NAGARIK SAHAKARI BANK LTD            | KUKXENCC                      | KUKXENTC      |
-| THE KUMBAKONAM CENTRAL CO OP BANK LTD              | KUMXENCC                      | KUMXENTC      |
-| THE MEGHALAYA CO OP APEX BANK LTD                  | MYAXENCC                      | MYAXENTC      |
-| THE MEHSANA DISTRICT CENTRAL CO OP BANK LTD        | MSNXENCC                      | MSNXENTC      |
-| THE MEHSANA URBAN CO OP BANK                       | MSNUENCC                      | MSNUENTC      |
-| THE MIZORAM CO OP APEX BANK LTD                    | MIZXENCC                      | MIZXENTC      |
-| THE MUNICIPAL CO OP BANK LTD                       | MUBLENCC                      | MUBLENTC      |
-| THE MUSLIM CO OP BANK LTD                          | MUSXENCC                      | MUSXENTC      |
-| THE MUVATTUPUZHA URBAN CO OPERATIVE BANK LTD       | MVTXENCC                      | MVTXENTC      |
-| THE MYSORE CHAMARAJANAGAR DIST CO OP CEN BANK LTD  | MYSXENCC                      | MYSXENTC      |
-| THE NARODA NAGRIK CO OP BANK LTD                   | NNCXENCC                      | NNCXENTC      |
-| THE NATIONAL CO OP BANK LTD                        | NCBLENCC                      | NCBLENTC      |
-| THE NAV JEEVAN CO OP BANK LTD                      | NJCXENCC                      | NJCXENTC      |
-| THE NAWANAGAR CO OP BANK LTD                       | NAWXENCC                      | NAWXENTC      |
-| THE NEW URBAN CO OP BANK LTD RAMPUR                | NUBXENCC                      | NUBXENTC      |
-| THE PANCHMAHAL DISTRICT CO OP BANK LTD             | PANXENCC                      | PANXENTC      |
-| THE PANIPAT URBAN CO OP BANK LTD                   | PNCXENCC                      | PNCXENTC      |
-| THE PAVANA SAHAKARI BANK LTD                       | PVAXENCC                      | PVAXENTC      |
-| THE QUILON CO OP URBAN BANK LTD                    | QUCXENCC                      | QUCXENTC      |
-| THE SABARKANTHA DISTRICT CENTRAL CO OP BANK LTD    | SADXENCC                      | SADXENTC      |
-| THE SANKHEDA NAGARIK SAHAKARI BANK LTD             | SKNXENCC                      | SKNXENTC      |
-| THE SANTRAMPUR URBAN CO OP BANK LIMITED            | STNXENCC                      | STNXENTC      |
-| THE SAURASHTRA CO OP BANK LTD                      | TSUXENCC                      | TSUXENTC      |
-| THE SHAHADA PEOPLES COOP BANK LTD                  | TSHXENCC                      | TSHXENTC      |
-| THE SHILLONG CO OP URBAN BANK LTD                  | TSIXENCC                      | TSIXENTC      |
-| THE SHIRPUR PEOPLES CO OP BANK LTD                 | SPCXENCC                      | SPCXENTC      |
-| THE SOUTH INDIAN BANK LIMITED                      | SIBLENCC                      | SIBLENTC      |
-| THE SOUTH INDIAN BANK LIMITED                      | SIBLENCC                      | SIBLENTC      |
-| THE SULTANS BATTERY CO OP URBAN BANK LTD           | SBCXENCC                      | SBCXENTC      |
-| THE SURAT DISTRICT CO OP BANK                      | SDCBENCC                      | SDCBENTC      |
-| THE SURAT PEOPLES CO OP BANK LTD                   | SPCBENCC                      | SPCBENTC      |
-| THE THIRUVANNAMALAI DISTRICT CENTRAL CO OP BANK LT | TIDXENCC                      | TIDXENTC      |
-| THE UDAIPUR MAHILA URBAN CO OP BANK LTD            | TUMXENCC                      | TUMXENTC      |
-| THE UMRETH URBAN CO OP BANK LTD                    | UMCXENCC                      | UMCXENTC      |
-| THE VALLABH VIDYANAGAR COMMERCIAL BANK LTD         | VVCXENCC                      | VVCXENTC      |
-| THE VARACHHA CO OP BANK LTD                        | VARAENCC                      | VARAENTC      |
-| THE VELLORE DISTRICT CENTRAL CO OP BANK LTD        | VEDXENCC                      | VEDXENTC      |
-| THE VERAVAL MERCANTILE CO OP BANK LTD              | VERXENCC                      | VERXENTC      |
-| THE VERAVAL PEOPLES CO OP BANK LTD                 | TVPXENCC                      | TVPXENTC      |
-| THE VIJAY CO OP BANK LTD                           | VIJXENCC                      | VIJXENTC      |
-| THE VISAKHAPATNAM CO OP BANK LTD                   | VISXENCC                      | VISXENTC      |
-| THE VISHWESHWAR SAHAKARI BANK LTD                  | VSBLENCC                      | VSBLENTC      |
-| THE ZOROASTRIAN CO OP BANK LTD                     | ZCBLENCC                      | ZCBLENTC      |
-| TRIPURA GRAMIN BANK                                | TGBXENCC                      | TGBXENTC      |
-| TRIPURA STATE GOVT DEPARTMENT                      | TSGDENCC                      | TSGDENTC      |
-| TTC CO-OPERATIVE BANK LIMITED                      | TETXENCC                      | TETXENTC      |
-| UCO BANK                                           | UCBAENCC                      | UCBAENTC      |
-| UJJIVAN SMALL FINANCE BANK LTD                     | USFBENCC                      | USFBENTC      |
-| UNION BANK OF INDIA                                | UBINENCC                      | UBINENTC      |
-| United Bank of India                               | UTBIENCC                      | UTBIENTC      |
-| UNITY SMALL FINANCE BANK LIMITED                   | UNBAENCC                      | UNBAENTC      |
-| UNIVERSAL CO OP URBAN BANK LTD                     | UCUXENCC                      | UCUXENTC      |
-| UNJHA NAGARIK SAHAKARI BANK LTD                    | UJSXENCC                      | UJSXENTC      |
-| UTKAL GRAMEEN BANK                                 | UGBXENCC                      | UGBXENTC      |
-| UTKARSH SMALL FINANCE BANK LTD                     | UTKSENCC                      | UTKSENTC      |
-| UTTARAKHAND GRAMIN BANK                            | UTGXENCC                      | UTGXENTC      |
-| VIDYASAGAR CENTRAL CO OP BANK LTD                  | VIDXENCC                      | VIDXENTC      |
-| YES BANK                                           | YESBENCC                      | YESBENTC      |
-
-## Recurring transaction bankcodes
-
-| Bank Name                                          | Recurring Transaction Bank Code |
-| -------------------------------------------------- | ------------------------------- |
-| AHMEDABAD MERCANTILE CO-OPBANK LTD                 | AMCBENCR                        |
-| AIRTEL PAYMENTS BANK LTD                           | AIRPENCR                        |
-| AKHAND ANAND CO OP BANK LTD                        | AACXENCR                        |
-| AMRELI JILLA MADHYASTHA SAHAKARI BANK LTD          | AMRXENCR                        |
-| Andhra Bank                                        | ANDBENCR                        |
-| ANDHRA PRADESH GRAMEENA BANK                       | CGGXENCR                        |
-| ANDHRA PRADESH GRAMEENA VIKAS BANK                 | APGXENCR                        |
-| ANDHRA PRAGATHI GRAMEENA BANK                      | APGBENCR                        |
-| ARUNACHAL PRADESH STATE CO OP APEX BANK LTD        | ARCXENCR                        |
-| ASSAM GRAMIN VIKASH BANK                           | AGVXENCR                        |
-| AU SMALL FINANCE BANK                              | AUBLENCR                        |
-| AXIS BANK                                          | UTIBENCR                        |
-| BALASINOR NAGARIK SAHAKARI BANK LTD                | BALXENCR                        |
-| BANDHAN BANK LTD                                   | BDBLENCR                        |
-| BANK OF BARODA                                     | BARBENCR                        |
-| BANK OF INDIA                                      | BKIDENCR                        |
-| BANK OF MAHARASHTRA                                | MAHBENCR                        |
-| BHAGINI NIVEDITA SAHAKARI BANK LTD                 | BNSXENCR                        |
-| BHOPAL CO-OP CENTRAL BANK                          | BHOXENCR                        |
-| BRAMHAPURI URBAN CO OP BANK LTD                    | BRMXENCR                        |
-| CANARA BANK                                        | CNRBENCR                        |
-| CAPITAL SMALL FINANCE BANK LTD                     | CLBLENCR                        |
-| CENTRAL BANK OF INDIA                              | CBINENCR                        |
-| CG RAJYA SAHAKARI BANK LTD                         | CRSXENCR                        |
-| CHHATTISGARH GRAMIN BANK                           | CGBXENCR                        |
-| CITI Bank                                          | CITIENCR                        |
-| CITY UNION BANK LTD                                | CIUBENCR                        |
-| COASTAL LOCAL AREA BANK LTD                        | COLXENCR                        |
-| CSB BANK LIMITED                                   | CSBKENCR                        |
-| DARJEELING DISTRICT CENTRAL CO OP BANK LTD         | DDCXENCR                        |
-| DAUSA URBAN CO OP BANK LTD                         | DAUXENCR                        |
-| DBS BANK INDIA LTD                                 | DBSSENCR                        |
-| DCB BANK LTD                                       | DCBLENCR                        |
-| DEUTSCHE BANK AG                                   | DEUTENCR                        |
-| DHANALAXMI BANK                                    | DLXBENCR                        |
-| DINDIGUL CENTRAL CO OP BANK LTD                    | DCBXENCR                        |
-| DMK JAOLI BANK                                     | DMKBENCR                        |
-| ELLAQUAI DEHATI BANK                               | EDBXENCR                        |
-| EQUITAS SMALL FINANCE BANK LTD                     | ESFBENCR                        |
-| ESAF SMALL FINANCE BANK LTD                        | ESAFENCR                        |
-| FEDERAL BANK                                       | FDRLENCR                        |
-| FINCARE SMALL FINANCE BANK LTD                     | FINFENCR                        |
-| FINGROWTH CO OP BANK LTD                           | FGCBENCR                        |
-| FINO PAYMENTS BANK LTD                             | FINOENCR                        |
-| GOODS AND SERVICES TAX NETWORK                     | GSTNENCR                        |
-| GUARDIAN SOUHARDA SAHAKARI BANK NIYAMITA           | GSSXENCR                        |
-| HDFC BANK LTD                                      | HDFCENCR                        |
-| HUTATMA SAHAKARI BANK LTD                          | HUTXENCR                        |
-| ICICI BANK LTD                                     | ICICENCR                        |
-| IDBI BANK                                          | IBKLENCR                        |
-| IDFC FIRST BANK LTD                                | IDFBENCR                        |
-| INDIA POST PAYMENTS BANK LTD                       | IPPBENCR                        |
-| INDIAN BANK                                        | IDIBENCR                        |
-| INDIAN OVERSEAS BANK                               | IOBAENCR                        |
-| INDORE PARASPAR SAHAKARI BANK LTD                  | IPSXENCR                        |
-| INDORE PREMIER CO OP BANK LTD INDORE               | IPCXENCR                        |
-| INDUSIND BANK                                      | INDBENCR                        |
-| INTEGRAL URBAN CO OP BANK LTD                      | IUCBENCR                        |
-| JALGAON JANATA SAHKARI BANK LTD                    | JJSBENCR                        |
-| JANA SMALL FINANCE BANK LTD                        | JSFBENCR                        |
-| JANAKALYAN SAHAKARI BANK                           | JSBLENCR                        |
-| JANASEVA SAHAKARI BANK LTD PUNE                    | JANAENCR                        |
-| JANATA SAHAKARI BANK LTD                           | JSBPENCR                        |
-| JANATA SAHAKARI BANK LTD SATARA                    | JSSXENCR                        |
-| JHARKHAND RAJYA GRAMIN BANK                        | VGBXENCR                        |
-| JILA SAHAKARI BANK MYDT GWALIOR                    | JGWXENCR                        |
-| JILA SAHAKARI KENDARIYA BANK MYDT KHANDWA          | JIKXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT ,BALAGHAT     | JIBXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT ,GUNA         | JIGXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT ,KHARGONE     | JKHXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT ,SEHORE       | JSEXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT BETUL         | JMBXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT CHHATARPUR    | JCHXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT CHHINDWARA    | JICXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT HOSHANGABAD   | JHSXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT JAGDALPUR     | JKMXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT MANDLA        | JIMXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT MORENA        | JMOXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT RAIPUR        | JSKXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT RAJNANDGAON   | JRNXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT RATLAM        | JRAXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT SAGAR         | JBMXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT SHAHDOL       | JIOXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT,DHAR          | JSDXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT,JHABUA        | JJHXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MARYADIT,NARSINGHPUR   | JNAXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MYDT DURG              | JMYXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MYDT JABALPUR          | JKDXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MYDT MANDSAUR          | JMAXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MYDT PANNA             | JPAXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MYDT SATNA             | JSTXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MYDT SHAJAPUR          | JSHXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MYDT UJJAIN            | JRKXENCR                        |
-| JILA SAHAKARI KENDRIYA BANK MYDT VIDISHA           | JLSXENCR                        |
-| JILA SAHAKRI KENDRIYA BANK MARYADIT BHIND          | JBHXENCR                        |
-| JILA SAHKARI KENDRIYA BANK MARYADIT BILASPUR       | JBIXENCR                        |
-| JILA SAHKARI KENDRIYA BANK MYDT DAMOH              | JIDXENCR                        |
-| JILA SAHKARI KENDRIYA BANK MYDT DATIA              | JMDXENCR                        |
-| JILLA SAHAKARI KENDRIYA BANK MYDT RAISEN           | JKRXENCR                        |
-| JIO PAYMENTS BANK LTD                              | JIOPENCR                        |
-| JODHPUR NAGRIK SAHAKARI BANK LTD                   | JONXENCR                        |
-| KADAPA DIST CO-OP CENTRAL BANK                     | KAAXENCR                        |
-| KANKARIA MAINAGAR NAGRIK SAHAKARI BANK LTD         | KKMXENCR                        |
-| KARNATAKA BANK LTD                                 | KARBENCR                        |
-| KARNATAKA GRAMIN BANK                              | PGBXENCR                        |
-| KARNATAKA VIKAS GRAMEENA BANK                      | KVGBENCR                        |
-| KARUR VYSA BANK                                    | KVBLENCR                        |
-| KERALA GRAMIN BANK                                 | KLGBENCR                        |
-| KOKAN MERCANTILE CO OP BANK LTD                    | KMCBENCR                        |
-| KOTA NAGRIK SAHKARI BANK LTD KOTA                  | KOSXENCR                        |
-| KOTAK MAHINDRA BANK LTD                            | KKBKENCR                        |
-| KRISHNA BHIMA SAMRUDDHI LOCAL AREA BANK            | KBSXENCR                        |
-| KRISHNA MERCANTILE CO OP BANK LTD                  | KMCXENCR                        |
-| KURLA NAGARIK SAHAKARI BANK LTD                    | KNSBENCR                        |
-| MADHYA PRADESH RAJYA SAHAKARI BANK MARYADIT        | MPRXENCR                        |
-| MADHYANCHAL GRAMIN BANK                            | MADXENCR                        |
-| MAHARASHTRA GRAMIN BANK                            | MGBXENCR                        |
-| MAHESH SAHAKARI BANK LTD PUNE                      | MHSXENCR                        |
-| MAHILA CO OP NAGARIK BANK LTD BHARUCH              | MNBXENCR                        |
-| MANN DESHI MAHILA SAHKARI BANK LTD                 | MDMXENCR                        |
-| mayank bank                                        | MYNKENCR                        |
-| MEGHALAYA RURAL BANK                               | MERXENCR                        |
-| MIZORAM RURAL BANK                                 | MZRXENCR                        |
-| MOTIRAM AGRAWAL JALNA MERCHANTS CO-OPERATIVE BANK  | JMCXENCR                        |
-| NAGNATH URBAN CO OP BANK LTD HINGOLI               | NCOXENCR                        |
-| NAGPUR NAGARIK SAHAKARI BANK LTD                   | NGSBENCR                        |
-| NAGRIK SAHAKARI BANK MARYADIT GWALIOR              | NGKXENCR                        |
-| NAVI MUMBAI CO OP BANK LTD                         | NMCXENCR                        |
-| NSDL PAYMENTS BANKS LTD                            | NSPBENCR                        |
-| NUTAN NAGARIK SAHAKARI BANK LTD                    | NNSBENCR                        |
-| Oriental Bank of Commerce                          | ORBCENCR                        |
-| PAYTM PAYMENTS BANK LTD                            | PYTMENCR                        |
-| PRIME CO OP BANK LTD                               | PMECENCR                        |
-| PRIYADARSHANI NAGARI SAHAKARI BANK LTD JALNA       | PDSXENCR                        |
-| PUDUKOTTAI DISTRICT CENTRAL CO OP BANK LTD         | PUDXENCR                        |
-| PUDUVAI BHARATHIAR GRAMA BANK                      | PBGXENCR                        |
-| PUNE DISTRICT CENTRAL CO OP BANK LTD               | PDCXENCR                        |
-| PUNE PEOPLES CO OP BANK LTD                        | PPBXENCR                        |
-| PUNJAB AND SIND BANK                               | PSIBENCR                        |
-| PUNJAB NATIONAL BANK                               | PUNBENCR                        |
-| RAIGAD DISTRICT CENTRAL CO OP BANK LTD             | RDCXENCR                        |
-| RAJARSHI SHAHU SAHAKARI BANK LTD                   | RSSXENCR                        |
-| RAJASTHAN GRAMIN BANK                              | MDGXENCR                        |
-| RAJKOT COMMERCIAL CO OP BANK LTD                   | RACXENCR                        |
-| RAJKOT NAGARIK SAHAKARI BANK LTD                   | RNSBENCR                        |
-| RBL BANK LIMITED                                   | RATNENCR                        |
-| SAMPADA SAHAKARI BANK LTD PUNE                     | SMBXENCR                        |
-| SAMRUDDHI CO OP BANK LTD NAGPUR                    | SCOBENCR                        |
-| SAPTAGIRI GRAMEENA BANK                            | SPBXENCR                        |
-| SARASWAT BANK                                      | SRCBENCR                        |
-| SARDAR VALLABHBHAI SAHAKARI BANK LTD               | SAVXENCR                        |
-| SARVODAYA COMMERICAL CO OP BANK LTD                | SVCXENCR                        |
-| SAURASHTRA GRAMIN BANK                             | SAGXENCR                        |
-| SBM BANK INDIA LTD                                 | STCBENCR                        |
-| SHIVALIK SMALL FINANCE BANK LTD                    | SHIXENCR                        |
-| SHREE KADI NAGARIK SAHAKARI BANK LTD               | KDIXENCR                        |
-| SHREE WARANA SAHAKARI BANK LTD                     | SWSXENCR                        |
-| SHRI MAHILA SEWA SAHAKARI BANK LTD                 | SEWXENCR                        |
-| SHRI RAJKOT DISTRICT CO OP BANK LTD                | RJTXENCR                        |
-| SMRITI NAGRIK SAHAKARI BANK                        | SNSXENCR                        |
-| SRI POTTI SRIRAMULU NELLORE DCCB                   | PSRXENCR                        |
-| SRI VASAVAMBA CO OP BANK LTD                       | SVAXENCR                        |
-| STANDARD CHARTERED BANK                            | SCBLENCR                        |
-| STATE BANK OF INDIA                                | SBINENCR                        |
-| SURAT NATIONAL CO OP BANK LTD                      | SUNBENCR                        |
-| SURYODAY SMALL FINANCE BANK LTD                    | SURYENCR                        |
-| SVC CO OP BANK LTD                                 | SVCBENCR                        |
-| SYNDICATE BANK                                     | SYNBENCR                        |
-| TAMIL NADU GRAMA BANK                              | PABXENCR                        |
-| TAMILNAD MERCANTILE BANK LTD                       | TMBLENCR                        |
-| TAMLUK GHATAL CENTRAL CO OP BANK LTD               | TGCXENCR                        |
-| TELANGANA GRAMEENA BANK                            | DGBXENCR                        |
-| THANE BHARAT SAHAKARI BANK LTD                     | TBSBENCR                        |
-| THANJAVUR CENTRAL CO OP BANK LTD                   | TJCXENCR                        |
-| THE ADARSH CO OP URBAN BANK LTD                    | ACUXENCR                        |
-| THE AHMEDABAD DISTRICT CO OP BANK LTD              | ADBXENCR                        |
-| THE AKOLA URBAN CO OP BANK LTD                     | AKOXENCR                        |
-| THE ANANTAPUR DISTRICT CO OPERATIVE CENTRAL BANK L | TADXENCR                        |
-| THE ANDHRA PRADESH STATE CO OP BANK LTD            | APBLENCR                        |
-| THE ANNASAHEB SAVANT CO OP URBAN BANK MAHAD LTD    | TASXENCR                        |
-| THE ARYAPURAM CO OP URBAN BANK LTD                 | ACUBENCR                        |
-| THE ASSOCIATE CO OP BANK LTD                       | ASOXENCR                        |
-| THE BABASAHEB DESHMUKH SAHAKARI BANK LTD ATPADI    | BDSXENCR                        |
-| THE BANASKANTHA DIST CENTRAL CO OP BANK LTD        | BKDXENCR                        |
-| THE BANASKANTHA MERCANTILE CO OP BANK LTD          | BMPXENCR                        |
-| THE BANGALORE BANGALORE RURAL AND RAMANAGARA DCCB  | BBRXENCR                        |
-| THE BARAMATI SAHAKARI BANK LTD                     | BSBXENCR                        |
-| THE BAVLA NAGRIK SAHAKARI BANK LTD                 | BAVXENCR                        |
-| THE BHAGYALAKSHMI MAHILA SAHAKARI BANK LTD         | BMSXENCR                        |
-| THE BHARUCH DISTRICT CENTRAL CO OP BANK LTD BHARUC | BRUXENCR                        |
-| THE BHUJ COMMERCIAL CO OP BANK LTD                 | BHCXENCR                        |
-| THE BIJAPUR DISTRICT CENTRAL CO OP BANK            | BDCXENCR                        |
-| THE BURDWAN CENTRAL CO OP BANK LTD                 | BURXENCR                        |
-| THE CHARADA NAGARIK SAHAKARI BANK LTD              | CHNXENCR                        |
-| THE CHEMBUR NAGARIK SAHAKARI BANK                  | CNSXENCR                        |
-| THE CHIKMAGALUR DISTRICT CENTRAL CO OP BANK LTD    | CIDXENCR                        |
-| THE CHITTOOR DISTRICT CO OP CENTRAL BANK LTD       | CHDXENCR                        |
-| THE CO OP BANK OF RAJKOT LTD                       | TCBXENCR                        |
-| THE COOP BANK OF MEHSANA LTD                       | COMXENCR                        |
-| THE COSMOS CO-OPERATIVE BANK LTD                   | COSBENCR                        |
-| THE DAHOD URBAN CO OP BANK LTD                     | DHUXENCR                        |
-| THE DARUSSALAM CO OP URBAN BANK LTD                | DCUXENCR                        |
-| THE DISTRICT CENTRAL CO OP BANK LTD ELLURU         | DCDXENCR                        |
-| THE DISTRICT CO OP CENTRAL BANK LTD KAKINADA       | TDIXENCR                        |
-| THE DISTRICT CO OP CENTRAL BANK LTD KURNOOL        | DCKXENCR                        |
-| THE DISTRICT CO OP CENTRAL BANK LTD SRIKAKUL       | TSDXENCR                        |
-| THE DISTRICT CO OP CENTRAL BANK LTD VISAKHAPATNAM  | DICXENCR                        |
-| THE DISTRICT CO OP CENTRAL BANK LTD VIZIANAGARAM   | TVDXENCR                        |
-| THE ERODE DISTRICT CENTRAL CO OP BANK LTD          | EDCXENCR                        |
-| THE GANDHINAGAR NAGRIK CO OP BANK LTD              | TGNXENCR                        |
-| THE GAYATRI CO OP URBAN BANK LTD                   | GCUXENCR                        |
-| THE GODHRA CITY CO OP BANK LTD GODHRA              | GDOXENCR                        |
-| THE GODHRA URBAN CO OP BANK LTD                    | GDUXENCR                        |
-| THE GUJARAT STATE CO OP BANK LTD                   | GSCBENCR                        |
-| THE GUNTUR DISTRICT CO OP CENTRAL BANK LTD         | GDCXENCR                        |
-| THE HIMACHAL PRADESH STATE CO OP BANK LTD          | HPSXENCR                        |
-| THE HONGKONG AND SHANGHAI BANKING CORPORATION LTD  | HSBCENCR                        |
-| THE JAMMU AND KASHMIR BANK LTD                     | JAKAENCR                        |
-| THE JUNAGADH COMMERCIAL CO OP BANK LTD             | JUCXENCR                        |
-| THE JUNAGADH JILLA SAHAKARI BANK LTD               | JNDXENCR                        |
-| THE KAIRA DISTRICT CENTRAL CO OP BANK LTD          | KARXENCR                        |
-| THE KALOL NAGARIK SAHAKARI BANK LTD                | KNBXENCR                        |
-| THE KALUPUR COMMERCIAL CO OP BANK                  | KCCBENCR                        |
-| THE KALYAN JANATA SAHAKARI BANK LTD                | KJSBENCR                        |
-| THE KANAKAMAHALAKSHMI CO OP BANK LTD               | KBCXENCR                        |
-| THE KANARA DISTRICT CENTRAL CO OP BANK LTD         | KANXENCR                        |
-| THE KANGRA CENTRAL CO OP BANK LTD                  | KACEENCR                        |
-| THE KANYAKUMARI DISTRICT CENTRAL CO OP BANK        | KAYXENCR                        |
-| THE KARAD URBAN CO OP BANK LTD                     | KUCBENCR                        |
-| THE KARNAVATI CO OP  BANK LTD                      | KRNXENCR                        |
-| THE KODAGU DISTRICT CO OP CENTRAL BANK LTD         | KDUXENCR                        |
-| THE KODINAR TALUKA CO OP BANKING UNION LTD K       | KOTXENCR                        |
-| THE KOLAR AND CHICKBALLAPUR DT CO OP CENTRAL BANK  | KRCXENCR                        |
-| THE KRISHNA DISTRICT CO OP BANK                    | KRDXENCR                        |
-| THE KUKARWADA NAGARIK SAHAKARI BANK LTD            | KUKXENCR                        |
-| THE KUMBAKONAM CENTRAL CO OP BANK LTD              | KUMXENCR                        |
-| THE MEGHALAYA CO OP APEX BANK LTD                  | MYAXENCR                        |
-| THE MEHSANA DISTRICT CENTRAL CO OP BANK LTD        | MSNXENCR                        |
-| THE MEHSANA URBAN CO OP BANK                       | MSNUENCR                        |
-| THE MIZORAM CO OP APEX BANK LTD                    | MIZXENCR                        |
-| THE MUNICIPAL CO OP BANK LTD                       | MUBLENCR                        |
-| THE MUSLIM CO OP BANK LTD                          | MUSXENCR                        |
-| THE MUVATTUPUZHA URBAN CO OPERATIVE BANK LTD       | MVTXENCR                        |
-| THE MYSORE CHAMARAJANAGAR DIST CO OP CEN BANK LTD  | MYSXENCR                        |
-| THE NARODA NAGRIK CO OP BANK LTD                   | NNCXENCR                        |
-| THE NATIONAL CO OP BANK LTD                        | NCBLENCR                        |
-| THE NAV JEEVAN CO OP BANK LTD                      | NJCXENCR                        |
-| THE NAWANAGAR CO OP BANK LTD                       | NAWXENCR                        |
-| THE NEW URBAN CO OP BANK LTD RAMPUR                | NUBXENCR                        |
-| THE PANCHMAHAL DISTRICT CO OP BANK LTD             | PANXENCR                        |
-| THE PANIPAT URBAN CO OP BANK LTD                   | PNCXENCR                        |
-| THE PAVANA SAHAKARI BANK LTD                       | PVAXENCR                        |
-| THE QUILON CO OP URBAN BANK LTD                    | QUCXENCR                        |
-| THE SABARKANTHA DISTRICT CENTRAL CO OP BANK LTD    | SADXENCR                        |
-| THE SANKHEDA NAGARIK SAHAKARI BANK LTD             | SKNXENCR                        |
-| THE SANTRAMPUR URBAN CO OP BANK LIMITED            | STNXENCR                        |
-| THE SAURASHTRA CO OP BANK LTD                      | TSUXENCR                        |
-| THE SHAHADA PEOPLES COOP BANK LTD                  | TSHXENCR                        |
-| THE SHILLONG CO OP URBAN BANK LTD                  | TSIXENCR                        |
-| THE SHIRPUR PEOPLES CO OP BANK LTD                 | SPCXENCR                        |
-| THE SOUTH INDIAN BANK LIMITED                      | SIBLENCR                        |
-| THE SOUTH INDIAN BANK LIMITED                      | SIBLENCR                        |
-| THE SULTANS BATTERY CO OP URBAN BANK LTD           | SBCXENCR                        |
-| THE SURAT DISTRICT CO OP BANK                      | SDCBENCR                        |
-| THE SURAT PEOPLES CO OP BANK LTD                   | SPCBENCR                        |
-| THE THIRUVANNAMALAI DISTRICT CENTRAL CO OP BANK LT | TIDXENCR                        |
-| THE UDAIPUR MAHILA URBAN CO OP BANK LTD            | TUMXENCR                        |
-| THE UMRETH URBAN CO OP BANK LTD                    | UMCXENCR                        |
-| THE VALLABH VIDYANAGAR COMMERCIAL BANK LTD         | VVCXENCR                        |
-| THE VARACHHA CO OP BANK LTD                        | VARAENCR                        |
-| THE VELLORE DISTRICT CENTRAL CO OP BANK LTD        | VEDXENCR                        |
-| THE VERAVAL MERCANTILE CO OP BANK LTD              | VERXENCR                        |
-| THE VERAVAL PEOPLES CO OP BANK LTD                 | TVPXENCR                        |
-| THE VIJAY CO OP BANK LTD                           | VIJXENCR                        |
-| THE VISAKHAPATNAM CO OP BANK LTD                   | VISXENCR                        |
-| THE VISHWESHWAR SAHAKARI BANK LTD                  | VSBLENCR                        |
-| THE ZOROASTRIAN CO OP BANK LTD                     | ZCBLENCR                        |
-| TRIPURA GRAMIN BANK                                | TGBXENCR                        |
-| TRIPURA STATE GOVT DEPARTMENT                      | TSGDENCR                        |
-| TTC CO-OPERATIVE BANK LIMITED                      | TETXENCR                        |
-| UCO BANK                                           | UCBAENCR                        |
-| UJJIVAN SMALL FINANCE BANK LTD                     | USFBENCR                        |
-| UNION BANK OF INDIA                                | UBINENCR                        |
-| United Bank of India                               | UTBIENCR                        |
-| UNITY SMALL FINANCE BANK LIMITED                   | UNBAENCR                        |
-| UNIVERSAL CO OP URBAN BANK LTD                     | UCUXENCR                        |
-| UNJHA NAGARIK SAHAKARI BANK LTD                    | UJSXENCR                        |
-| UTKAL GRAMEEN BANK                                 | UGBXENCR                        |
-| UTKARSH SMALL FINANCE BANK LTD                     | UTKSENCR                        |
-| UTTARAKHAND GRAMIN BANK                            | UTGXENCR                        |
-| VIDYASAGAR CENTRAL CO OP BANK LTD                  | VIDXENCR                        |
-| YES BANK                                           | YESBENCR                        |
+| Bank Name                                         | Normal ENACH Bank Code | TPV ENACH Bank Code |
+| ------------------------------------------------- | ---------------------- | ------------------- |
+| AHMEDABAD MERCANTILE CO-OPBANK LTD                | AMCBENCC               | AMCBENTC            |
+| AIRTEL PAYMENTS BANK LTD                          | AIRPENCC               | AIRPENTC            |
+| AKHAND ANAND CO OP BANK LTD                       | AACXENCC               | AACXENTC            |
+| AU SMALL FINANCE BANK                             | AUBLENCC               | AUBLENTC            |
+| AXIS BANK                                         | UTIBENCC               | UTIBENTC            |
+| BANDHAN BANK LTD                                  | BDBLENCC               | BDBLENTC            |
+| BANK OF BARODA                                    | BARBENCC               | BARBENTC            |
+| BANK OF MAHARASHTRA                               | MAHBENCC               | MAHBENTC            |
+| CANARA BANK                                       | CNRBENCC               | CNRBENTC            |
+| CENTRAL BANK OF INDIA                             | CBINENCC               | CBINENTC            |
+| CITY UNION BANK LTD                               | CIUBENCC               | CIUBENTC            |
+| CSB BANK LIMITED                                  | CSBKENCC               | CSBKENTC            |
+| DBS BANK INDIA LTD                                | DBSSENCC               | DBSSENTC            |
+| DCB BANK LTD                                      | DCBLENCC               | DCBLENTC            |
+| DEUTSCHE BANK AG                                  | DEUTENCC               | DEUTENTC            |
+| DHANALAXMI BANK                                   | DLXBENCC               | DLXBENTC            |
+| EQUITAS SMALL FINANCE BANK LTD                    | ESFBENCC               | ESFBENTC            |
+| ESAF SMALL FINANCE BANK LTD                       | ESAFENCC               | ESAFENTC            |
+| FEDERAL BANK                                      | FDRLENCC               | FDRLENTC            |
+| HDFC BANK LTD                                     | HDFCENCC               | HDFCENTC            |
+| ICICI BANK LTD                                    | ICICENCC               | ICICENTC            |
+| IDBI BANK                                         | IBKLENCC               | IBKLENTC            |
+| IDFC FIRST BANK LTD                               | IDFBENCC               | IDFBENTC            |
+| INDIAN BANK                                       | IDIBENCC               | IDIBENTC            |
+| INDIAN OVERSEAS BANK                              | IOBAENCC               | IOBAENTC            |
+| INDUSIND BANK                                     | INDBENCC               | INDBENTC            |
+| JANA SMALL FINANCE BANK LTD                       | JSFBENCC               | JSFBENTC            |
+| JIO PAYMENTS BANK LTD                             | JIOPENCC               | JIOPENTC            |
+| KARNATAKA BANK LTD                                | KARBENCC               | KARBENTC            |
+| KARUR VYSA BANK                                   | KVBLENCC               | KVBLENTC            |
+| KOTAK MAHINDRA BANK LTD                           | KKBKENCC               | KKBKENTC            |
+| NSDL PAYMENTS BANKS LTD                           | NSPBENCC               | NSPBENTC            |
+| PAYTM PAYMENTS BANK LTD                           | PYTMENCC               | PYTMENTC            |
+| PUNJAB AND SIND BANK                              | PSIBENCC               | PSIBENTC            |
+| PUNJAB NATIONAL BANK                              | PUNBENCC               | PUNBENTC            |
+| RBL BANK LIMITED                                  | RATNENCC               | RATNENTC            |
+| SARASWAT BANK                                     | SRCBENCC               | SRCBENTC            |
+| SBM BANK INDIA LTD                                | STCBENCC               | STCBENTC            |
+| STANDARD CHARTERED BANK                           | SCBLENCC               | SCBLENTC            |
+| STATE BANK OF INDIA                               | SBINENCC               | SBINENTC            |
+| SURYODAY SMALL FINANCE BANK LTD                   | SURYENCC               | SURYENTC            |
+| SVC CO OP BANK LTD                                | SVCBENCC               | SVCBENTC            |
+| TAMILNAD MERCANTILE BANK LTD                      | TMBLENCC               | TMBLENTC            |
+| THE AKOLA URBAN CO OP BANK LTD                    | AKOXENCC               | AKOXENTC            |
+| THE COSMOS CO-OPERATIVE BANK LTD                  | COSBENCC               | COSBENTC            |
+| THE HONGKONG AND SHANGHAI BANKING CORPORATION LTD | HSBCENCC               | HSBCENTC            |
+| THE JAMMU AND KASHMIR BANK LTD                    | JAKAENCC               | JAKAENTC            |
+| THE KALUPUR COMMERCIAL CO OP BANK                 | KCCBENCC               | KCCBENTC            |
+| THE KANGRA CENTRAL CO OP BANK LTD                 | KACEENCC               | KACEENTC            |
+| THE KARAD URBAN CO OP BANK LTD                    | KUCBENCC               | KUCBENTC            |
+| THE MEHSANA URBAN CO OP BANK                      | MSNUENCC               | MSNUENTC            |
+| THE SOUTH INDIAN BANK LIMITED                     | SIBLENCC               | SIBLENTC            |
+| THE SOUTH INDIAN BANK LIMITED                     | SIBLENCC               | SIBLENTC            |
+| THE VARACHHA CO OP BANK LTD                       | VARAENCC               | VARAENTC            |
+| UCO BANK                                          | UCBAENCC               | UCBAENTC            |
+| UJJIVAN SMALL FINANCE BANK LTD                    | USFBENCC               | USFBENTC            |
+| UNION BANK OF INDIA                               | UBINENCC               | UBINENTC            |
+| UNITY SMALL FINANCE BANK LIMITED                  | UNBAENCC               | UNBAENTC            |
+| YES BANK                                          | YESBENCC               | YESBENTC            |
