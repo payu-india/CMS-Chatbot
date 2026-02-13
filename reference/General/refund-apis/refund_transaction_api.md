@@ -31,6 +31,12 @@ In this API:
 * **var2** should contain the Token ID (unique token from the merchant)
 * **var3** parameter should contain the amount that needs to be refunded
 
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Access the **Refund Transaction API Postman Collection** from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/w4v94j2/refund-transaction-api
+</Callout>
+
 <GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
