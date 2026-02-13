@@ -52,9 +52,9 @@ This section describes the **_payment** API contract for getting split info of t
 </Callout>
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Merchant Hosted Checkout > BNPL Postman Collection** from the following location:
+  **Postman Collection**: Download the **Split Settlements Postman Collection** from the following location:
 
-  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/lt115hb/bnpl-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/lt115hb/bnpl-integration)
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/phkf7uf/split-settlments
 </Callout>
 
 <PaymentAPIEnvironment />
