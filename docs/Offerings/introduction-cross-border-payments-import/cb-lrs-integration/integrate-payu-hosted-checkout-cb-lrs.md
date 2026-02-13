@@ -200,7 +200,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         address2
-        `optional`
+        `mandatory`
       </td>
 
       <td>
@@ -215,7 +215,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         city
-        `optional`
+        `mandatory`
       </td>
 
       <td>
@@ -230,7 +230,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         state
-        `optional`
+        `mandatory`
       </td>
 
       <td>
@@ -245,7 +245,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         country
-        `optional`
+        `mandatory`
       </td>
 
       <td>
@@ -406,7 +406,7 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        `String`Amount of TCS (Tax Collected at Source) to be charged. For travel payments, 2% of "amount" is expected.
+        `String`Amount of TCS to be charged. For travel payments, a 2% TCS needs to be charged from payers
       </td>
 
       <td>
@@ -605,7 +605,7 @@ Array
     [unmappedstatus] => failed
     [key] => L43t1c
     [txnid] => 26ba7cd6a67b0a010542
-    [amount] => 1.00
+    [amount] => 10.00
     [cardCategory] => domestic
     [discount] => 0.00
     [net_amount_debit] => 0.00
@@ -650,6 +650,7 @@ Array
     [error_Message] => Authorization failed at Bank
     [cardnum] => XXXXXXXXXXXX2003
     [cardhash] => This field is no longer supported in postback params.
+		[tcs_amount] => 2
 )
 ```
 
