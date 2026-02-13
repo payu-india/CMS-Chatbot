@@ -16,38 +16,38 @@ The recommended workflow for using Split Settlements using API Integration:
   Experience the end-to-end **PayU Hosted > Split Settlements** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                      <style>
-                      .tooltip-btn {
-                          position: relative;
-                          background-color: #4CAF50;
-                          color: white;
-                          padding: 10px 20px;
-                          border: none;
-                          border-radius: 5px;
-                          cursor: pointer;
-                          font-weight: bold; /* Added this line */
-                      }
-                      .tooltip-btn:hover::after {
-                          content: attr(data-tooltip);
-                          position: absolute;
-                          bottom: 125%;
-                          left: 50%;
-                          transform: translateX(-50%);
-                          background-color: #333;
-                          color: white;
-                          padding: 5px 10px;
-                          border-radius: 4px;
-                          white-space: nowrap;
-                          font-size: 12px;
-                          z-index: 1;
-                      }
-                      </style>
+                        <style>
+                        .tooltip-btn {
+                            position: relative;
+                            background-color: #4CAF50;
+                            color: white;
+                            padding: 10px 20px;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-weight: bold; /* Added this line */
+                        }
+                        .tooltip-btn:hover::after {
+                            content: attr(data-tooltip);
+                            position: absolute;
+                            bottom: 125%;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            background-color: #333;
+                            color: white;
+                            padding: 5px 10px;
+                            border-radius: 4px;
+                            white-space: nowrap;
+                            font-size: 12px;
+                            z-index: 1;
+                        }
+                        </style>
 
-                      <button onclick="window.open('https://payu.in/integrationlab/split', '_blank')" 
-                              class="tooltip-btn" 
-                              data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
-                           Experience the flow and get the code
-                      </button>
+                        <button onclick="window.open('https://payu.in/integrationlab/split', '_blank')" 
+                                class="tooltip-btn" 
+                                data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
+                             Experience the flow and get the code
+                        </button>
   `}</HTMLBlock>
 </Callout>
 
@@ -103,3 +103,9 @@ Use the following APIs for refunds or other purposes:
   * [Refund Status API for Split Payments](ref:refund-status-api-for-split-payments)
 
   * [Get All Refunds from Transaction IDs](ref:get_all_refunds_from_transaction_ids_api) (same API used in general and split settlements)
+
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Split Settlements Postman Collection** from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/phkf7uf/split-settlments
+</Callout>
