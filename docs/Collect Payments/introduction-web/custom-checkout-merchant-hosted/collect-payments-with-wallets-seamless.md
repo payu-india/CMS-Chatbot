@@ -42,6 +42,12 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 ## Step 1: Initiate the payment to PayU
 
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Merchant Hosted Checkout > Wallets Postman Collection** from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/iu0g7es/wallets-integration
+</Callout>
+
 <Accordion title="Post Request Syntax & Composition" icon="fa-code">
   ```html
   <body>
@@ -99,13 +105,12 @@ You can collect payments from customers with leading wallets using the Merchant 
   | hash `mandatory`        | String - It is the hash calculated by the merchant. The hash calculation logic is: sha512(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|SALT)                                                                   | calculated\_hash\_value                                    |
 
   <Accordion title="Understanding Hashing and sample code" icon="fa-code">
-  <HashingRequestParameters />
+    <HashingRequestParameters />
 
-  #### Hashing Sample Code
+    #### Hashing Sample Code
 
-  <HashingSample />
-</Accordion>
-
+    <HashingSample />
+  </Accordion>
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-table">
