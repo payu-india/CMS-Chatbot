@@ -10,13 +10,11 @@ link:
 ---
 You can collect card payments using Server-to-Server integration. This section provides the request and response parameters used in Step 1 of  [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration). You can get the sample request and response when use the "Try It" experience. For the complete integration steps, refer to [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration).
 
-> 📘 Reference
->
-> For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+<Callout icon="📘" theme="info">
+  **Reference:** For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+</Callout>
 
 <Accordion_Collect_Fraud_Detection />
-
-<br />
 
 **Environment**
 
