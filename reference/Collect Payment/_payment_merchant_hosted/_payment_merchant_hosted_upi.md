@@ -23,6 +23,12 @@ metadata:
 ---
 PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to [UPI Handles](doc:upi-handles).
 
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Merchant Hosted Checkout > UPI Postman Collection** from the following location:
+
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/394lrbp/upi-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/394lrbp/upi-integration)
+</Callout>
+
 ### Recommended prerequisite before initiating payment
 
 When your customer makes payment through UPI, you can validate the customer's Virtual Payment Address (VPA) and then initiate payment. The validateVpa API is used to validate the UPI handle.
