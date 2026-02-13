@@ -21,6 +21,12 @@ metadata:
 ---
 The Get Transaction Details **(get_Transaction_Details)** API works based on input as two dates (initial and final), between which the transaction details are needed. The output consists of the status of the API (success or failure) and all the transaction details in an array format.
 
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Access the **Get Transaction Details API Postman Collection** from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/g3nukpg/get-transaction-details-api
+</Callout>
+
 <GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
