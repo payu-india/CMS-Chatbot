@@ -32,6 +32,12 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
 * eligibility details
 * **Downtime details**: The downtime status of the payment options.
 
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Access the Get Checkout Details API Postman Collection from the following location:
+
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/f1fv12l/getcheckoutdetails-paymodes](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/f1fv12l/getcheckoutdetails-paymodes)
+</Callout>
+
 **Environment**
 
 |                        |                                                                                                      |
@@ -1852,7 +1858,7 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
   | Parameter | Reference                                                                                                                                                                                                                                                                                        |
   | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
   | **key**   | For more information on how to generate the Key and Salt, refer to any of the following:      - **Production**: [Generate Merchant Key and Salt](#generate-merchant-key-and-salt-on-payu-dashboard)      - **Test**: [Generate Test Merchant Key and Salt](#generate-test-merchant-key-and-salt) |
-  | **hash**  | Hash logic for this API is:   `sha512(key\|command\|var1\|salt) sha512 `                                                                                                                                                                                                                         |
+  | **hash**  | Hash logic for this API is:   `sha512(key\\|command\\|var1\\|salt) sha512 `                                                                                                                                                                                                                      |
   | var1      | For JSON fields description, refer to [var1 JSON fields description](#var1-JSON-fields-description).                                                                                                                                                                                             |
 
   ### var1 JSON fields description
@@ -1866,8 +1872,8 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
 
   ### useCase JSON field descriptions
 
-  | **useCase Field**                   | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-  | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **useCase Field**                   | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                |
+  | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | getExtendedPaymentDetails`optional` | `Boolean` This flag is posted as **true** to check EMI eligibility based on mobile number and-or card number depending on the payment method used. Also, checks the eligibility for “Buy Now Pay Later” payment modes. **Example**: Title, EMI amount breakup, etc details are displayed in the response. For a sample request or response using this field, refer to the [Get Extended Payment Details](#getExtendedPaymentDetails)  section. |
   | getAdditionalCharges`optional`      | `Boolean` This flag is posted as **true** to return the additional charges configured for all payment options. For a sample request or response using this field, refer to the [Get Additional Charges](#getAdditionalCharges) section. **Note**: You need to use the **getTaxSpecification** field if you want to calculate the tax split of additional charges on their end.                                                                 |
   | getTaxSpecification`optional`       | `Boolean` This flag is posted as **true** to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option. For a sample request or response using this field, refer to the [Get Tax Specification](#getTaxSpecification) section.                                                                                                                       |
