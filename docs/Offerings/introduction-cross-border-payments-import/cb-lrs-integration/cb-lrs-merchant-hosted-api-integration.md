@@ -14,7 +14,7 @@ PayU’s **_payment** API supports LRS implementation using the following parame
 * lrs_service_type
 * lrs_mandatory_limit_declaration
 * lrs_tnc
-* lrs_tcs_declaration_under_limit
+* tcs_amount
 * buyer_type_business (optional)
 
 The steps to integrate involves:
@@ -200,11 +200,11 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"79c0d918a  
-                                                                                                                                        4f4661cb9cb  
-                                                                                                                                        17d96d24ac1  
-                                                                                                                                        cf04b6013d50  
-                                                                                                                                        4cc766ac5235  
-                                                                                                                                        380bfc0d5"`
+                                                                                                                                                4f4661cb9cb  
+                                                                                                                                                17d96d24ac1  
+                                                                                                                                                cf04b6013d50  
+                                                                                                                                                4cc766ac5235  
+                                                                                                                                                380bfc0d5"`
       </td>
     </tr>
 
@@ -261,12 +261,12 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"195ab95fa  
-                                                                                                                                        4700eeaaf38  
-                                                                                                                                        b7f5b538d29  
-                                                                                                                                        79f0f281e0  
-                                                                                                                                        a4eaedca1a  
-                                                                                                                                        a675b79b3  
-                                                                                                                                        31a2"`
+                                                                                                                                                4700eeaaf38  
+                                                                                                                                                b7f5b538d29  
+                                                                                                                                                79f0f281e0  
+                                                                                                                                                a4eaedca1a  
+                                                                                                                                                a675b79b3  
+                                                                                                                                                31a2"`
       </td>
     </tr>
 
@@ -484,7 +484,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         address1
-        `mandatory`
+        `optional`
       </td>
 
       <td>
@@ -502,7 +502,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         address2
-        `mandatory`
+        `optional`
       </td>
 
       <td>
@@ -517,7 +517,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         city
-        `mandatory`
+        `optional`
       </td>
 
       <td>
@@ -532,7 +532,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         state
-        `mandatory`
+        `optional`
       </td>
 
       <td>
@@ -547,7 +547,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         country
-        `mandatory`
+        `optional`
       </td>
 
       <td>
@@ -775,7 +775,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         buyer_type_business
-        `mandatory for cross-border transactions`
+        `conditional for cross-border transactions`
       </td>
 
       <td>
@@ -793,7 +793,7 @@ The following parameters (mandatory) must be posted using any of the following s
       <td>
         lrs_mandatory_limit_declaration
 
-        `mandatory for LRS transactions`
+        `mandatory for LRS S3S transactions`
       </td>
 
       <td>
@@ -814,7 +814,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         lrs_tnc
-        `mandatory for LRS transactions`
+        `mandatory for LRS S2S transactions`
       </td>
 
       <td>
@@ -833,7 +833,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         lrs_service_type
-        `mandatory for LRS transactions`
+        `mandatory for LRS S2S transactions`
       </td>
 
       <td>
@@ -847,15 +847,16 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-
+        tcs_amount
+        `mandatory for LRS S2S transactions`
       </td>
 
       <td>
-
+        `String` Amount of TCS (Tax Collected at Source) to be charged. For travel payments, 2% of value sent in "amount" is expected.
       </td>
 
       <td>
-
+        2.00
       </td>
     </tr>
   </tbody>
@@ -981,7 +982,6 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'buyer_type_business=0' \
 --data-urlencode 'lrs_mandatory_limit_declaration=1' \
 --data-urlencode 'lrs_tnc=1' \
---data-urlencode 'lrs_tcs_declaration_under_limit=1' \
 --data-urlencode 'lrs_service_type=travel'
 ```
 
