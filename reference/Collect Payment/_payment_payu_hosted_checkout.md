@@ -24,8 +24,6 @@ The Collect Payment API (**_payment** API) is used to collect payments for all t
 
 <PayU_Labs />
 
-<br />
-
 <Callout icon="📘" theme="info">
   **Reference**: For an example of how to submit a payment request on your[website, refer to [Submitting Payment Request on your Website](doc:submitting-payment-request-on-your-website). To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](doc:handling-the-redirect-urls) .
 </Callout>
@@ -39,7 +37,11 @@ The Collect Payment API (**_payment** API) is used to collect payments for all t
 
 <Recipe slug="payu-hosted-checkout-curl-request-walkthrough" title="PayU Hosted Checkout cURL Request Walkthrough" />
 
-<br />
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **PayU Hosted Checkout Postman Collection** from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration
+</Callout>
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
