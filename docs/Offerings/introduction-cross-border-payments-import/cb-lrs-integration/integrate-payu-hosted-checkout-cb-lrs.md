@@ -396,6 +396,23 @@ The following parameters (mandatory) must be posted using any of the following s
         travel
       </td>
     </tr>
+
+    <tr>
+      <td>
+        tcs_amount
+        `optional, to be sent for lower drop-offs`
+
+        <br />
+      </td>
+
+      <td>
+        `String`Amount of TCS to be charged. For travel payments, a 2% TCS needs to be charged from payers
+      </td>
+
+      <td>
+        2.00
+      </td>
+    </tr>
   </tbody>
 </Table>
 
