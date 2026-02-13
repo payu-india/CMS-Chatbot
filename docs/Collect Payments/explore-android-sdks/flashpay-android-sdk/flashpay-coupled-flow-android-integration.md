@@ -705,7 +705,7 @@ implementation 'in.payu:threeds-sdk:2.0.0'
 
     Sample Code:
 
-override fun mfaRegistrationStatus(response: Any?) {
+   override fun mfaRegistrationStatus(response: Any?) {
     val json = try { JSONObject(response?.toString().orEmpty()) } catch (_: Exception) { return }
 
     val type = json.optString("type")
@@ -715,14 +715,14 @@ override fun mfaRegistrationStatus(response: Any?) {
 
     when (type) {
         "REGISTRATION" -> when (status) {
-            "INITIATED" -> { /* show progress; optionally use timeout */ }
-            "SUCCESS"   -> { /* persist 'MFA registered' and continue flow */ }
-            "FAILED"    -> { /* display message; allow retry */ }
+            "INITIATED" -> { /* Registration initiated; Persist state and expect SUCCESS or FAILED */ }
+            "SUCCESS"   -> { /* MFA registration succeeded; persist state and proceed */ }
+            "FAILED"    -> { /* MFA registration failed; display message and allow retry */ }
         }
         "DEREGISTRATION" -> when (status) {
-            "INITIATED" -> { /* show progress; optionally use timeout */ }
-            "SUCCESS"   -> { /* clear stored MFA state */ }
-            "FAILED"    -> { /* display message; allow retry */ }
+            "INITIATED" -> { /* Deregistration initiated; Persist state and expect SUCCESS or FAILED; optionally use timeout */ }
+            "SUCCESS"   -> { /* MFA deregistration succeeded; persist state and proceed */ }
+            "FAILED"    -> { /* MFA deregistration failed; persist state and proceed */ }
         }
     }
 }
