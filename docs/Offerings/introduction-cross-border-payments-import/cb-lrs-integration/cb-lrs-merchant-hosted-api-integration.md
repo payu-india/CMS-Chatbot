@@ -200,11 +200,11 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"79c0d918a  
-                                                                                                                                4f4661cb9cb  
-                                                                                                                                17d96d24ac1  
-                                                                                                                                cf04b6013d50  
-                                                                                                                                4cc766ac5235  
-                                                                                                                                380bfc0d5"`
+                                                                                                                                        4f4661cb9cb  
+                                                                                                                                        17d96d24ac1  
+                                                                                                                                        cf04b6013d50  
+                                                                                                                                        4cc766ac5235  
+                                                                                                                                        380bfc0d5"`
       </td>
     </tr>
 
@@ -261,12 +261,12 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"195ab95fa  
-                                                                                                                                4700eeaaf38  
-                                                                                                                                b7f5b538d29  
-                                                                                                                                79f0f281e0  
-                                                                                                                                a4eaedca1a  
-                                                                                                                                a675b79b3  
-                                                                                                                                31a2"`
+                                                                                                                                        4700eeaaf38  
+                                                                                                                                        b7f5b538d29  
+                                                                                                                                        79f0f281e0  
+                                                                                                                                        a4eaedca1a  
+                                                                                                                                        a675b79b3  
+                                                                                                                                        31a2"`
       </td>
     </tr>
 
@@ -334,10 +334,10 @@ The following parameters (mandatory) must be posted using any of the following s
 
 **Environment**
 
-|                            |                                                                         |
-| :------------------------- | :---------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
+|                            |                                                                        |
+| :------------------------- | :--------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -732,7 +732,7 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        `String` The date of birth of the buyer must be collected using this field in the DD-MM-YYYY format as on their Permanent Account Number (PAN). 
+        `String` The date of birth of the buyer must be collected using this field in the DD-MM-YYYY format as on their Permanent Account Number (PAN).
 
         _Note: This should be validated by PAN Status Check API_
       </td>
@@ -832,33 +832,30 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        lrs_tcs_declaration_under_limit
-        `conditinal for LRS transactions `
-      </td>
-
-      <td>
-        `String`Declaration from buyer that they have remitted less than INR 10 lacs / 1 million in current financial year.
-
-        **Note**: Declaration to be taken on the checkout page. If this declaration is not taken, "0" can be sent, however PayU will automatically add applicable TCS amount.
-      </td>
-
-      <td>
-        1  or 0
-      </td>
-    </tr>
-
-    <tr>
-      <td>
         lrs_service_type
         `mandatory for LRS transactions`
       </td>
 
       <td>
-        `String` The LRS service type describes the nature of service & decides the tax amount based on it. For more information, refer to the [lrs\_service\_type parameter values](#lrs_service_type-parameter-values)  table
+        `String` The LRS service type describes the nature of service & decides the tax amount based on it. For more information, refer to the [lrs_service_type parameter values](#lrs_service_type-parameter-values)  table
       </td>
 
       <td>
         travel
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+
+      </td>
+
+      <td>
+
+      </td>
+
+      <td>
+
       </td>
     </tr>
   </tbody>
