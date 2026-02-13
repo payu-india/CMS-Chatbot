@@ -17,9 +17,9 @@ You can split after a transaction is complete using the  payment_split API by 
 </Callout>
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Split by Percentage After Transaction** APIs Postman Collection from the following location:
+  **Postman Collection**: Access the **Split by Percentage After Transaction** APIs Postman Collection from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/pdbs8bb/split-by-percentage-after-transaction
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/pdbs8bb/split-by-percentage-after-transaction](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/pdbs8bb/split-by-percentage-after-transaction)
 </Callout>
 
 HTTP Method: **POST**
