@@ -17,9 +17,9 @@ You must specify two decimal places for each split, but ensure the sum split amo
 </Callout>
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Absolute Split After Transaction** APIs Postman Collection from the following location:
+  **Postman Collection**: Access the **Absolute Split After Transaction** APIs Postman Collection from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/6cgb732/absolute-split-after-transaction
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/6cgb732/absolute-split-after-transaction](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/6cgb732/absolute-split-after-transaction)
 </Callout>
 
 **Environment**
