@@ -701,25 +701,32 @@ implementation 'in.payu:threeds-sdk:2.0.0'
     ```kotlin
     fun mfaRegistrationStatus(response: Any?)
 
-    
 
-    data class PayU3DS2MFAResponse(
-    val type: PayU3DS2MFARequestType,
-    val status: PayU3DS2MFAStatus,
-    val message: String? = null,
-    val timeout: Int? = 0
-    )
 
-    enum class PayU3DS2MFARequestType {
-        REGISTRATION,
-        DEREGISTRATION
+    Sample Code:
+
+override fun mfaRegistrationStatus(response: Any?) {
+    val json = try { JSONObject(response?.toString().orEmpty()) } catch (_: Exception) { return }
+
+    val type = json.optString("type")
+    val status = json.optString("status")
+    val message = json.optString("message")
+    val timeout = json.optInt("timeout", 0)
+
+    when (type) {
+        "REGISTRATION" -> when (status) {
+            "INITIATED" -> { /* show progress; optionally use timeout */ }
+            "SUCCESS"   -> { /* persist 'MFA registered' and continue flow */ }
+            "FAILED"    -> { /* display message; allow retry */ }
+        }
+        "DEREGISTRATION" -> when (status) {
+            "INITIATED" -> { /* show progress; optionally use timeout */ }
+            "SUCCESS"   -> { /* clear stored MFA state */ }
+            "FAILED"    -> { /* display message; allow retry */ }
+        }
     }
+}
 
-    enum class PayU3DS2MFAStatus {
-        INITIATED,
-        SUCCESS,
-        FAILED
-    }
     ```
   </Accordion>
 </Accordion>
