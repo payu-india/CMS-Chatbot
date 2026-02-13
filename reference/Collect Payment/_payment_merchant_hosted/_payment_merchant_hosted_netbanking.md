@@ -32,6 +32,12 @@ next:
 ---
 Collect payments using Net Banking with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
 
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Merchant Hosted Checkout >. Net Banking Postman Collection** from the following location:
+
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/6uqfq01/net-banking-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/6uqfq01/net-banking-integration)
+</Callout>
+
 ## Check Net Banking health
 
 You can check whether the Net Banking server is up and running using the **getNetBankingStatus** API. If the Net Banking server is down for a bank, you can inform your customers that the Net Banking server is down. For more information on the **getNetBankingStatus** API, refer to [Get Net Banking Status API](ref:get_net_banking_status_api).
