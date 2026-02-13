@@ -12,9 +12,15 @@ next:
 ---
 You can split after a transaction is complete using the  payment_split API by percentage, where you must ensure that the sum of the percentage of all splits is equal to 100.
 
-> 📘 Note:
->
-> You must specify two decimal places for each split, but ensure the sum of the percentage of all splits is equal to 100.
+<Callout icon="📘" theme="info">
+  **Note**: You must specify two decimal places for each split, but ensure the sum of the percentage of all splits is equal to 100.
+</Callout>
+
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Split by Percentage After Transaction** APIs Postman Collection from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/pdbs8bb/split-by-percentage-after-transaction
+</Callout>
 
 HTTP Method: **POST**
 
