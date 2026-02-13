@@ -23,9 +23,9 @@ PayU EMI API Integration includes the following:
 * [Using Native OTP flow](doc:native-otp-flow-integration)
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Merchant Hosted Checkout > EMI** Postman Collection from the following location:
+  **Postman Collection**: Access the **Merchant Hosted Checkout > EMI APIs Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/twysw5i/emi-integration
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/twysw5i/emi-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/twysw5i/emi-integration)
 </Callout>
 
 <br />
