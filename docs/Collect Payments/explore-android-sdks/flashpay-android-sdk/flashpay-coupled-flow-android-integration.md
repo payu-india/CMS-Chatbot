@@ -639,7 +639,7 @@ implementation 'in.payu:threeds-sdk:2.0.0'
   fun onPaymentCancel(isTxnInitiated: Boolean)
   fun onError(errorCode: Int, errorMessage: String)
   fun generateHash(map: HashMap<String, String>, hashGenerationListener: PayUHashGeneratedListener)
-  fun mfaRegistrationstatus(status: Boolean)
+  fun mfaRegistrationStatus(response: Any?)
   ```
 
   <Accordion title="Callback Method Descriptions" icon="fa-list">
