@@ -702,9 +702,9 @@ implementation 'in.payu:threeds-sdk:2.0.0'
     fun mfaRegistrationStatus(response: Any?)
 
 
-   Sample Code:
+    Sample Code:
 
-   override fun mfaRegistrationStatus(response: Any?) {
+    override fun mfaRegistrationStatus(response: Any?) {
     val json = try { JSONObject(response?.toString().orEmpty()) } catch (_: Exception) { return }
 
     val type = json.optString("type")
@@ -714,17 +714,17 @@ implementation 'in.payu:threeds-sdk:2.0.0'
 
     when (type) {
         "REGISTRATION" -> when (status) {
-            "INITIATED" -> { /* Registration initiated; Persist state and expect SUCCESS or FAILED */ }
-            "SUCCESS"   -> { /* MFA registration succeeded; persist state and proceed */ }
-            "FAILED"    -> { /* MFA registration failed; display message and allow retry */ }
+            "INITIATED" -> { /* Registration initiated; Persist state and expect SUCCESS/FAILED */ }
+            "SUCCESS"   -> { /* Registration succeeded; persist state and proceed */ }
+            "FAILED"    -> { /* Registration failed; display message and allow retry */ }
         }
         "DEREGISTRATION" -> when (status) {
-            "INITIATED" -> { /* Deregistration initiated; Persist state and expect SUCCESS or FAILED */ }
-            "SUCCESS"   -> { /* MFA deregistration succeeded; persist state and proceed */ }
-            "FAILED"    -> { /* MFA deregistration failed; persist state and proceed */ }
+            "INITIATED" -> { /* Deregistration initiated; Persist state and expect SUCCESS/FAILED */ }
+            "SUCCESS"   -> { /* Deregistration succeeded; persist state and proceed */ }
+            "FAILED"    -> { /* Deregistration failed; persist state and proceed */ }
         }
+      }
     }
-}
 
     ```
   </Accordion>
