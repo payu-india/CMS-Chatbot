@@ -39,7 +39,7 @@ You can collect payments from customers with leading cards using the Merchant Ho
 </Callout>
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Merchant Hosted Checkout  > Cards** Postman Collection from the following location:
+  **Postman Collection**: Access the **Merchant Hosted Checkout  > Cards** Postman Collection from the following location:
 
   [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/pknzpx9/cards-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/pknzpx9/cards-integration)
 </Callout>
