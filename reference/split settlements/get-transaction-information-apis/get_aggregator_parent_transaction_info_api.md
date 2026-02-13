@@ -21,7 +21,7 @@ next:
 The **Get Aggregator Transactions** API is for getting the transaction info of parent merchants in the Aggregator flow.
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Get Aggregator/Parent Transaction Info API  Postman Collection** from the following location:
+  **Postman Collection**: Access the **Get Aggregator/Parent Transaction Info API  Postman Collection** from the following location:
 
   https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/s2ppj9w/get-aggregator-parent-transaction-info-api
 </Callout>
