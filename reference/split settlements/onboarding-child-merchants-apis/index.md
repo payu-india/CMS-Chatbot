@@ -24,7 +24,7 @@ The steps involved in creating a child merchant are:
 <Callout icon="📮" theme="default">
   **Postman Collection**: Download the **Split Settlements > Onboarding Child Merchants Postman Collection** from the following location:
 
-  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/x39xtf7/absolute-split-during-transaction](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/x39xtf7/absolute-split-during-transaction)
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/ghidoum/onboarding-child-merchants-api-s
 </Callout>
 
 ## Domains
