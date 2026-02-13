@@ -54,12 +54,6 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
   <br />
 </Cards>
 
-<Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Merchant Hosted Checkout  > Cards** Postman Collection from the following location:
-
-  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/pknzpx9/cards-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/pknzpx9/cards-integration)
-</Callout>
-
 **Handling Transacations**
 
 <Cards columns={2}>
@@ -75,6 +69,12 @@ If you are storing or transmitting cardholder data, you must fill the “[Self-A
     <br />
   </Card>
 </Cards>
+
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Access the **Merchant Hosted Checkout  > Cards** Postman Collection from the following location:
+
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/pknzpx9/cards-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/pknzpx9/cards-integration)
+</Callout>
 
 ## Step 1: Validate the card type
 
