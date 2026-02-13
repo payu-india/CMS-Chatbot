@@ -30,17 +30,17 @@ This is server-to-server integration over the Redirect experience for cards invo
   </Card>
 </Cards>
 
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Access the **S2S > Classic Integration APIs Postman Collection** from the following location:
+
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/k8uk375/classic-cards-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/k8uk375/classic-cards-integration)
+</Callout>
+
 ## Step 1: Initiate payment request with PayU
 
 The merchant initiates PayU with the required transaction mandatory or optional parameters. This needs to be a server-to-server cURL call request. URL, parameters, and descriptions. For more information, refer to [Cards Classic Integration](ref:_payment_s2s_classic_integration). Collect the response in the [Cards Classic Integration](ref:_payment_s2s_classic_integration) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
 
 <PaymentAPIEnvironment />
-
-<Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **S2S > Classic Integration Postman Collection** from the following location:
-
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/k8uk375/classic-cards-integration
-</Callout>
 
 <Accordion title="Request parameters" icon="fa-code">
   | Parameter                         | Description                                                                                                                                                                        | Example          |
