@@ -95,7 +95,7 @@ Follow the below steps to complete the integration:
 <PaymentAPIEnvironment />
 
 <Callout icon="📮">
-  **Postman Collection**: Download the PayU Hosted Checkout Postman Collection from the following location:
+  **Postman Collection**: Download the **PayU Hosted Checkout Postman Collection** from the following location:
 
   https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration
 </Callout>
