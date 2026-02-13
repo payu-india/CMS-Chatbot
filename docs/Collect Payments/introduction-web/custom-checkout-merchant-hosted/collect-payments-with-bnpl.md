@@ -19,9 +19,9 @@ Buy Now Pay Later (<Glossary>BNPL</Glossary>) allows your customers to spread th
   * [Collect Payments with BNPL Link and Pay](https://docs.payu.in/docs/collect-payments-with-bnpl-using-link-and-pay)
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Download the PayU Hosted Checkout Postman Collection from the following location:
+  **Postman Collection**: Download the **Merchant Hosted Checkout > BNPL Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/lt115hb/bnpl-integration
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/lt115hb/bnpl-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/lt115hb/bnpl-integration)
 </Callout>
 
 <br />
