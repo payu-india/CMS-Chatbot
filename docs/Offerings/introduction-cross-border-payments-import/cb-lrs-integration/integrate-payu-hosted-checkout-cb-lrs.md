@@ -590,6 +590,7 @@ Array
     [error_Message] => No Error
     [name_on_card] => payu
     [cardnum] => 512345XXXXXX2346
+		[tcs_amount] => 2
 )
 ```
 
