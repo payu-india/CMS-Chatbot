@@ -38,6 +38,12 @@ You can collect payments from customers with leading cards using the Merchant Ho
   **Note**: PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team ([integration@pay.in](mailto:integration@pay.in)).
 </Callout>
 
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Merchant Hosted Checkout  > Cards** Postman Collection from the following location:
+
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/pknzpx9/cards-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/pknzpx9/cards-integration)
+</Callout>
+
 <PaymentAPIEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
