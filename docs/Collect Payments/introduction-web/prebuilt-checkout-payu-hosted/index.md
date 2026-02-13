@@ -32,7 +32,7 @@ Once the payment is processed, the customer will be redirected back to the merch
 
 The following diagram illustrates the overall customer journey:
 
-<Image align="center" border={false} src="https://files.readme.io/bc1c758a83c0c601d161a5621e1fe47a6d4c757e847a893b33b05419972e693a-b7b3bc19c28693be346591ec8a2c29ee07fcf47cb088bc6c9a6c34950c2af0dc-payu_hosted_checkout-workflow.png" />
+<Image align="center" src="https://files.readme.io/bc1c758a83c0c601d161a5621e1fe47a6d4c757e847a893b33b05419972e693a-b7b3bc19c28693be346591ec8a2c29ee07fcf47cb088bc6c9a6c34950c2af0dc-payu_hosted_checkout-workflow.png" />
 
 The following sample customer journey is for cards payment mode:
 
@@ -48,12 +48,12 @@ The following sample customer journey is for cards payment mode:
 
 A consent message is displayed whether the card the details can be stored.
 
-<Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Save Card Confirmation" border={false} width="622px" src="https://files.readme.io/caa8481-Screenshot_2023-10-05_at_10.37.33_AM.png" />
+<Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Save Card Confirmation" width="622px" src="https://files.readme.io/caa8481-Screenshot_2023-10-05_at_10.37.33_AM.png" />
 
 5. Customer clicks **Save and Continue**.
 6. The OTP page is displayed where the customer enters OTP sent to the them.
 
-<Image align="center" border={false} width="422px" src="https://files.readme.io/289fa82-Screenshot_2023-10-05_at_10.37.42_AM.png" />
+<Image align="center" width="422px" src="https://files.readme.io/289fa82-Screenshot_2023-10-05_at_10.37.42_AM.png" />
 
 6. PayU redirects back to the merchant website based on the success URL (surl) or failure URL (furl) specified.
 
@@ -88,5 +88,13 @@ To integrate PayU Hosted Integration on your website or mobile, refer to:
 * [Web Integration - PayU Hosted](https://docs.payu.in/docs/prebuilt-checkout-page-integration) using the **Collect Payment **API (**_payment** API),
 
 * [Integrate WebView for Mobile Apps](https://docs.payu.in/docs/webview-for-mobile-apps) by embedding PayU's Hosted Checkout experience inside a WebView container within your mobile app.
+
+<br />
+
+<Callout icon="📮">
+  **Postman Collection**: Download the PayU Hosted Checkout Postman Collection from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration
+</Callout>
 
 <br />
