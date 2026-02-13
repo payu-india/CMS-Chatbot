@@ -166,3 +166,8 @@ Communicate with the PayU Payments APIs using **Model Context Protocol** to coll
 
 * **Merchant Key & Salt** → [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy)
 * **Test Credentials** (Card, UPI, Wallet, BNPL) → [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets)
+* **Postman Collection**: Download the PayU Postman Collection from the following location:
+
+https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/overview
+
+<br />
