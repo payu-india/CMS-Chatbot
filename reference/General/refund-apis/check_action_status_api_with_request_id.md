@@ -1,5 +1,5 @@
 ---
-title: Check Refund Status with Request ID
+title: Check Refund Status with Request ID API
 excerpt: >-
   Check the status of a specific refund request using the Request ID.
 
@@ -40,7 +40,11 @@ Whenever the **cancel_refund_transaction** API is executed successfully to cance
 
 In **check_action_status** API, you need to input this Request ID to get the current status of the request. The return parameters are MIHPayID, Amount, Discount, Mode, and Status of transaction. The following are different payment states:
 
-<br />
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Check Refund Status with Request ID API Postman Collection** from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/gfduuit/check-action-status-request-id
+</Callout>
 
 <Accordion title="Refund states" icon="fa-hourglass">
   <RefundStates />
