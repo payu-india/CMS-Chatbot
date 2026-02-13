@@ -713,7 +713,8 @@ implementation 'in.payu:threeds-sdk:2.0.0'
     enum class PayU3DS2MFARequestType {
         REGISTRATION,
         DEREGISTRATION
-        }
+    }
+
     enum class PayU3DS2MFAStatus {
         INITIATED,
         SUCCESS,
