@@ -33,7 +33,7 @@ next:
 Collect payments using Net Banking with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Merchant Hosted Checkout >. Net Banking Postman Collection** from the following location:
+  **Postman Collection**: Access the **Merchant Hosted Checkout >. Net Banking Postman Collection** from the following location:
 
   [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/6uqfq01/net-banking-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/6uqfq01/net-banking-integration)
 </Callout>
