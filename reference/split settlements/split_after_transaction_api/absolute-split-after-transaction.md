@@ -12,11 +12,15 @@ next:
 ---
 You must specify two decimal places for each split, but ensure the sum split amounts are equal to the transaction amount.
 
-> 📘 Note:
->
-> You must specify two decimal places for each split, but ensure the sum of the percentage of all splits is equal to 100.
+<Callout icon="📘" theme="info">
+  **Note**: You must specify two decimal places for each split, but ensure the sum of the percentage of all splits is equal to 100.
+</Callout>
 
-HTTP Method: **POST**
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Absolute Split After Transaction** APIs Postman Collection from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/6cgb732/absolute-split-after-transaction
+</Callout>
 
 **Environment**
 
@@ -24,6 +28,8 @@ HTTP Method: **POST**
 | :------------------------- | :--------------------------------------------------------------------------------------------------------------- |
 | **Test Environment**       | \<[https://test.payu.in/merchant/postservice.php?form=2>](https://test.payu.in/merchant/postservice.php?form=2>) |
 | **Production Environment** | \<[https://info.payu.in/merchant/postservice.php?form=2>](https://info.payu.in/merchant/postservice.php?form=2>) |
+
+HTTP Method: **POST**
 
 ## Request parameters
 
