@@ -41,7 +41,7 @@ You can collect payments from customers with leading wallets using the Merchant 
 <RegisterMerchantPrerequiste />
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Merchant Hosted Checkout > Wallets Postman Collection** from the following location:
+  **Postman Collection**: Download the **Merchant Hosted Checkout > Wallets API Postman Collection** from the following location:
 
   [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/iu0g7es/wallets-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/iu0g7es/wallets-integration)
 </Callout>
