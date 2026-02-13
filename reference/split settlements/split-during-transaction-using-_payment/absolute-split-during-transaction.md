@@ -17,9 +17,9 @@ You can split during the transaction by amount, where you must ensure that the s
 </Callout>
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Absolute Split Postman Collection** from the following location:
+  **Postman Collection**: Access the **Absolute Split Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/x39xtf7/absolute-split-during-transaction
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/x39xtf7/absolute-split-during-transaction](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/x39xtf7/absolute-split-during-transaction)
 </Callout>
 
 **Environment**
