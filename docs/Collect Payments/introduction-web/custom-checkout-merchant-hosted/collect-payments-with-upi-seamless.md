@@ -39,7 +39,7 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
 <RegisterMerchantPrerequiste />
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Merchant Hosted Checkout > UPI Postman Collection** from the following location:
+  **Postman Collection**: Access the **Merchant Hosted Checkout > UPI APIs Postman Collection** from the following location:
 
   [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/394lrbp/upi-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/394lrbp/upi-integration)
 </Callout>
