@@ -82,7 +82,7 @@ In UPI Collect, the sequence of APIs is called to follow for redirection less ex
 
 ## Workflow
 
-<Image align="center" border={false} src="https://files.readme.io/af55c40e9c1fd7a87fc2c70872e63563ec83e940bba99c55d5d66f8e037eeecc-upi-s2s-collection-workflow.png" />
+<Image align="center" src="https://files.readme.io/af55c40e9c1fd7a87fc2c70872e63563ec83e940bba99c55d5d66f8e037eeecc-upi-s2s-collection-workflow.png" />
 
 ## Step 1: Validate VPA
 
@@ -101,6 +101,12 @@ For the "Try It" experience, refer to <a href="https://docs.payu.in/reference/_p
 **PayU URL Endpoint:**
 
 <PaymentAPIEnvironment />
+
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **S2S > UPI Integration Postman Collection** from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/5t0c6pe/upi-s2s-integration
+</Callout>
 
 Some of the parameters are mandatory for S2S integration, and a few are optional. You need to include the following parameters.
 
