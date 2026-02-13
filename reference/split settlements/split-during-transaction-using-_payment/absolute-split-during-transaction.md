@@ -16,7 +16,11 @@ You can split during the transaction by amount, where you must ensure that the s
   **Note**: You must specify two decimal places for each split, but ensure that the sum of split amounts equals the transaction amount.
 </Callout>
 
-HTTP Method: **POST**
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Absolute Split Postman Collection** from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/x39xtf7/absolute-split-during-transaction
+</Callout>
 
 **Environment**
 
@@ -24,6 +28,8 @@ HTTP Method: **POST**
 | :------------------------- | :--------------------------------------------------------------------- |
 | **Test Environment**       | \<[https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
+
+HTTP Method: **POST**
 
 ## Request parameters
 
