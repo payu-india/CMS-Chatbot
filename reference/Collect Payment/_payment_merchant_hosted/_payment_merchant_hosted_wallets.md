@@ -29,6 +29,12 @@ metadata:
 ---
 You can collect payments from customers with leading wallets using the Merchant Hosted integration. You need to ensure that **CASH** for the **pg** parameter and wallet code based on the desired wallet for the **bankcode** parameter is posted.
 
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Merchant Hosted Checkout > Wallets Postman Collection** from the following location:
+
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/iu0g7es/wallets-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/iu0g7es/wallets-integration)
+</Callout>
+
 <PaymentAPIEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
