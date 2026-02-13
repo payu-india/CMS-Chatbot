@@ -16,7 +16,11 @@ You can split during a transaction made using **_payment** API by percentage, wh
   **Note**: You must specify two decimal places for each split, but ensure the sum of percentage of all splits is equal to 100.
 </Callout>
 
-HTTP Method: **POST**
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Split by Percentage Postman Collection** from the following location:
+
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/x39xtf7/absolute-split-during-transaction](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/x39xtf7/absolute-split-during-transaction)
+</Callout>
 
 **Environment**
 
@@ -24,6 +28,8 @@ HTTP Method: **POST**
 | :------------------------- | :--------------------------------------------------------------------- |
 | **Test Environment**       | \<[https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
+
+HTTP Method: **POST**
 
 ## Request parameters
 
