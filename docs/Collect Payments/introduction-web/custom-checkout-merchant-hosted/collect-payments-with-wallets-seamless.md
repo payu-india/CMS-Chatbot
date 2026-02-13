@@ -40,13 +40,13 @@ You can collect payments from customers with leading wallets using the Merchant 
 
 <RegisterMerchantPrerequiste />
 
-## Step 1: Initiate the payment to PayU
-
 <Callout icon="📮" theme="default">
   **Postman Collection**: Download the **Merchant Hosted Checkout > Wallets Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/iu0g7es/wallets-integration
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/iu0g7es/wallets-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/iu0g7es/wallets-integration)
 </Callout>
+
+## Step 1: Initiate the payment to PayU
 
 <Accordion title="Post Request Syntax & Composition" icon="fa-code">
   ```html
