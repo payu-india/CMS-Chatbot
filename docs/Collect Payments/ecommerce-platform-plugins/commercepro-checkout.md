@@ -17,7 +17,7 @@ PayU’s CommercePro Checkout provides a comprehensive checkout solution for mer
 PayU supports CommercePro on the following platforms:
 
 * **WooCommerce**: Refer to [CommercePro Checkout for WooCommerce](doc:commercepro-platform-for-woocommerce) for installation and configuration.
-* **Magento**: Refer to [CommercePro Checkout for Magento](doc:commercepro-platform-for-magento)for installation and configuration.
+* **Magento**: Refer to [CommercePro Checkout for Magento](doc:commercepro-platform-for-magento) for installation and configuration.
 
 ## Benefits
 
@@ -37,20 +37,20 @@ PayU supports CommercePro on the following platforms:
 
 1. After the products are added to the cart on the store, **PayU Checkout Express** option will be available to the customer during check-out.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/90da7d7-image.png" />
+<Image align="center" border={true} src="https://files.readme.io/90da7d7-image.png" className="border" />
 
-2. After the checkout button is clicked, PayU in-context checkout flow will open with pre-filled emails (if logged in on the store). Customers will be asked to provide a phone number with OTP verification. 
+2. After the checkout button is clicked, PayU in-context checkout flow will open with pre-filled emails (if logged in on the store). Customers will be asked to provide a phone number with OTP verification.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/a9c9a01-image.png" />
+<Image align="center" border={true} src="https://files.readme.io/a9c9a01-image.png" className="border" />
 
 3. After logging in through OTP, pre-filled address details will be shown to buyers automatically:
    1. Buyers can change the address or add a new address. Any updates or new addresses added will be saved in PayU’s address vault to be used later.
    2. Buyers will also be shown if any shipping fee is being charged on the order. After confirming all the details, click **Proceed to Pay**.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/16602d4-image.png" />
+<Image align="center" border={true} src="https://files.readme.io/16602d4-image.png" className="border" />
 
-4. Buyers will be redirected to the *PayU Checkout* page for completing the payment:
+4. Buyers will be redirected to the _PayU Checkout_ page for completing the payment:
    1. Applicable offers on the merchant's MID will be shown automatically.
    2. Payment modes ordering will be dynamic based on recommendation engine for higher conversions.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/2a96c60-image.png" />
+<Image align="center" border={true} src="https://files.readme.io/2a96c60-image.png" className="border" />
