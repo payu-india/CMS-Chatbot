@@ -41,6 +41,12 @@ metadata:
 ---
 The **Get All Refunds for a Transaction ID** API (getAllRefundsFromTxnIds) command is used to retrieve the status of all the refund requests fired for a particular Transaction ID. The output of this API provides the request ID, and the PG used the status of a refund request and the creation of refund date information. It returns any of the following the states:
 
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Get All Refunds from Transaction ID API Postman Collection** from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/h40i4so/get-all-refunds-from-transaction-ids-api
+</Callout>
+
 <RefundStates />
 
 <GENERALAPIsEnvironment />
