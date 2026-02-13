@@ -22,9 +22,9 @@ metadata:
 The **check_action_status** API has another usage too. For a particular PayUID, it returns any of the following the states:
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Check Refund Status with PayU ID API Postman Collection** from the following location:
+  **Postman Collection**: Access the **Check Refund Status with PayU ID API Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/cq5vwr8/check-action-status-payu-id
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/cq5vwr8/check-action-status-payu-id](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/cq5vwr8/check-action-status-payu-id)
 </Callout>
 
 <Accordion title="Refund states" icon="fa-hourglass">
