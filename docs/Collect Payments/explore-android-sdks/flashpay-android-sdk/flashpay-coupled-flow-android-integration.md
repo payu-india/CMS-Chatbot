@@ -699,8 +699,28 @@ implementation 'in.payu:threeds-sdk:2.0.0'
     It has a boolean parameter to determine the biometric registration status success/failure.
 
     ```kotlin
-    fun mfaRegistrationstatus(status: Boolean)
+    fun mfaRegistrationStatus(response: Any?)
     ```
+    
+    data class PayU3DS2MFAResponse(
+    val type: PayU3DS2MFARequestType,
+    val status: PayU3DS2MFAStatus,
+    val message: String? = null,
+    val timeout: Int? = 0
+    ) 
+
+    enum class PayU3DS2MFARequestType {
+    'REGISTRATION',
+    'DEREGISTRATION'
+    }
+   enum class PayU3DS2MFAStatus {
+    'INITIATED',
+    'SUCCESS',
+    'FAILED'
+}
+
+
+
   </Accordion>
 </Accordion>
 
