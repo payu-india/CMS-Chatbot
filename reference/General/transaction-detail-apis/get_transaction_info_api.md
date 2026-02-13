@@ -22,7 +22,15 @@ metadata:
     - ' Get Transaction Information API'
   robots: index
 ---
-The **Get Transaction Info** API (get_transaction_info) can take input as the exact time in terms of minutes and seconds the output would be in the same format as [get\_Transaction\_Details](ref:get_transaction_details_api) API output.
+The **Get Transaction Info** API (get_transaction_info) can take input as the exact time in terms of minutes and seconds the output would be in the same format as [get_Transaction_Details](ref:get_transaction_details_api) API output.
+
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Access the **Get Transaction Info API Postman Collection** from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/l9pox0u/get-transaction-info-api
+</Callout>
+
+<br />
 
 <GENERALAPIsEnvironment />
 
