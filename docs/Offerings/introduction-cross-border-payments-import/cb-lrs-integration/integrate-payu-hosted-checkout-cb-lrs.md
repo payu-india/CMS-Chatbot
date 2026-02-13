@@ -200,7 +200,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         address2
-        `mandatory`
+        `optional`
       </td>
 
       <td>
@@ -215,7 +215,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         city
-        `mandatory`
+        `optional`
       </td>
 
       <td>
@@ -230,7 +230,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         state
-        `mandatory`
+        `optional`
       </td>
 
       <td>
@@ -245,7 +245,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         country
-        `mandatory`
+        `optional`
       </td>
 
       <td>
