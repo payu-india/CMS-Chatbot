@@ -1005,7 +1005,7 @@ Array
     [amount] => 10.00
     [cardCategory] => domestic
     [discount] => 0.00
-    [net_amount_debit] => 10
+    [net_amount_debit] => 12
     [addedon] => 2021-09-08 19:37:19
     [productinfo] => iPhone
     [firstname] => Ashish
@@ -1046,6 +1046,7 @@ Array
     [error_Message] => No Error
     [name_on_card] => payu
     [cardnum] => 512345XXXXXX2346
+		[tcs_amount] => 2
 )
 ```
 
@@ -1060,7 +1061,7 @@ Array
     [unmappedstatus] => failed
     [key] => L43t1c
     [txnid] => 26ba7cd6a67b0a010542
-    [amount] => 1.00
+    [amount] => 10.00
     [cardCategory] => domestic
     [discount] => 0.00
     [net_amount_debit] => 0.00
@@ -1105,6 +1106,7 @@ Array
     [error_Message] => Authorization failed at Bank
     [cardnum] => XXXXXXXXXXXX2003
     [cardhash] => This field is no longer supported in postback params.
+		[tcs_amount] => 2
 )
 ```
 
