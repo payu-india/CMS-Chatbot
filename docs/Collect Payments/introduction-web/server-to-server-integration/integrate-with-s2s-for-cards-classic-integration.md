@@ -36,6 +36,12 @@ The merchant initiates PayU with the required transaction mandatory or optional 
 
 <PaymentAPIEnvironment />
 
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **S2S > Classic Integration Postman Collection** from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/k8uk375/classic-cards-integration
+</Callout>
+
 <Accordion title="Request parameters" icon="fa-code">
   | Parameter                         | Description                                                                                                                                                                        | Example          |
   | :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------- |
