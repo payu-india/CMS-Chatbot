@@ -21,3 +21,11 @@ PayU EMI API Integration includes the following:
   * [Integrate with Credit Card](doc:collect-payments-with-emi-using-credit-card)
   * [Integrate with Cardless EMI](doc:collect-payments-with-cardless-emi-using-merchant-hosted-checkout)
 * [Using Native OTP flow](doc:native-otp-flow-integration)
+
+<Callout icon="📮" theme="default">
+  **Postman Collection**: Download the **Merchant Hosted Checkout > EMI** Postman Collection from the following location:
+
+  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/twysw5i/emi-integration
+</Callout>
+
+<br />
