@@ -1,5 +1,5 @@
 ---
-title: Integrate Payment Link TPV - New
+title: Integrate Payment Link TPV
 deprecated: false
 hidden: true
 metadata:
