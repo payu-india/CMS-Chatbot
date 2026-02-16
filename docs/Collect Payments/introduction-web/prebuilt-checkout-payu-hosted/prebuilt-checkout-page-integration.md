@@ -437,7 +437,7 @@ Follow the below steps to complete the integration:
     ```
 
     <Callout icon="📘" theme="info">
-      Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed. <br />
+      **Note**: Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed. <br />
     </Callout>
 
     <Callout icon="📘" theme="info">
