@@ -17,7 +17,7 @@ This section describes the steps to integrate Payment Link TPV (Third Party Veri
 
 ## Prerequisites
 
-To use the TPV flow for Payment Links, ensure the **enableTpvFlow** configuration is enabled for your merchant account: Contact your PayU account manager to enable this configuration.
+To use the TPV flow for Payment Links, ensure the **enableTpvFlow** configuration is enabled for your merchant account: Contact your PayU Key Account Manager (KAM) or <Anchor label="PayU Support" target="_blank" href="https://help.payu.in">PayU Support</Anchor> to enable this configuration.
 
 <Cards columns={3}>
   <Card title="1. Create Payment Link" href="#step-1-create-payment-link">
@@ -92,6 +92,8 @@ Create a payment link with beneficiary account details using the Create Payment 
     | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
     | beneficiaryAccountNumber<br />`mandatory` | `List<String>`<br />Array of beneficiary account numbers. Maximum 4 accounts. Alphanumeric, max 50 characters each.              | `["917732227242", "72522762"]`   |
     | ifscCode<br />`mandatory`                 | `List<String>`<br />Array of IFSC codes corresponding to each account number. Exactly 11 characters each: `[A-Z]{4}0[A-Z0-9]{6}` | `["SBIN0007001", "HDFC0001234"]` |
+    | beneficiaryName <br />`mandatory`                 | `List<String>`<br /> Array of the beneficiary name.  | `"Ashish","Harish"` |
+    | beneficiaryAccountType <br />`mandatory`                 | `List<String>` <br/> Array of the beneficiary account type. It can be "SAVINGS" or "CURRENT"  | `"SAVINGS","CURRENT"` |
   </Accordion>
 
   <Accordion title="customer Object Parameters" icon="fa-user">
@@ -119,10 +121,15 @@ Create a payment link with beneficiary account details using the Create Payment 
           "phone": "9876543210",
           "name": "John Doe"
       },
-      "beneficiarydetail": {
-          "beneficiaryAccountNumber": ["917732227242", "72522762"],
-          "ifscCode": ["SBIN0007001", "HDFC0001234"]
-      },
+      {
+  "beneficiarydetail": {
+    "beneficiaryAccountNumber": ["account1", "account2"],
+    "ifscCode": ["IFSC1234567", "IFSC7654321"],
+    "beneficiaryName": ["Beneficiary One", "Beneficiary Two"],
+    "beneficiaryAccountType": ["SAVINGS", "CURRENT"]
+  }
+}
+,
       "source": "API"
   }'
   ```
