@@ -15,9 +15,11 @@ metadata:
 
 This section describes the steps to integrate Payment Link TPV (Third Party Verification) - from payment link creation to payment processing.
 
-## Prerequisites
+### Prerequisites
 
 To use the TPV flow for Payment Links, ensure the **enableTpvFlow** configuration is enabled for your merchant account: Contact your PayU Key Account Manager (KAM) or <Anchor label="PayU Support" target="_blank" href="https://help.payu.in">PayU Support</Anchor> to enable this configuration.
+
+### Steps to integrate
 
 <Cards columns={3}>
   <Card title="1. Create Payment Link" href="#step-1-create-payment-link">
@@ -382,17 +384,15 @@ Create a payment link with beneficiary account details using the Create Payment 
 </Accordion>
 
 <Accordion title="Validation Rules" icon="fa-check-circle">
-  | Validation           | Rule                                          |
-  | -------------------- | --------------------------------------------- |
-  | Max Payments         | `maxPaymentsAllowed = 1`                      |
-  | Max Beneficiaries    | ≤ 4 beneficiaries                             |
-  | Equal Count          | Account numbers count = IFSC codes count      |
-  | Account Format       | Alphanumeric, max 50 characters               |
-  | IFSC Format          | Exactly 11 characters: `[A-Z]{4}0[A-Z0-9]{6}` |
- | Beneficiary Name       | Alphabetic characters and spaces, max 100 chars  |
-  | Beneficiary Account Type          | Enum values only: SAVINGS, CURRENT  | 
-
-
+  | Validation               | Rule                                            |
+  | ------------------------ | ----------------------------------------------- |
+  | Max Payments             | `maxPaymentsAllowed = 1`                        |
+  | Max Beneficiaries        | ≤ 4 beneficiaries                               |
+  | Equal Count              | Account numbers count = IFSC codes count        |
+  | Account Format           | Alphanumeric, max 50 characters                 |
+  | IFSC Format              | Exactly 11 characters: `[A-Z]{4}0[A-Z0-9]{6}`   |
+  | Beneficiary Name         | Alphabetic characters and spaces, max 100 chars |
+  | Beneficiary Account Type | Enum values only: SAVINGS, CURRENT              |
 </Accordion>
 
 ***
