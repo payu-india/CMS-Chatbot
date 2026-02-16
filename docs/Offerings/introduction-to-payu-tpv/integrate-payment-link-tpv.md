@@ -410,7 +410,7 @@ When the payment link is created, the API returns a short URL (e.g., `https://v.
 
 ***
 
-## Step 3: Post Parameters to PayU
+<br />
 
 When the customer initiates payment, the backend converts beneficiary details to pipe-separated format and posts to the `_payment` API.
 
@@ -662,7 +662,7 @@ When the customer initiates payment, the backend converts beneficiary details to
 
 ***
 
-## Step 4: Check Response from PayU
+## Step 3: Check Response from PayU
 
 After the payment is processed, PayU sends a response to your success or failure URL. You must validate the hash and handle the response accordingly.
 
@@ -764,7 +764,7 @@ After the payment is processed, PayU sends a response to your success or failure
 
 ***
 
-## Step 5: Verify the Payment
+## Step 4: Verify the Payment
 
 Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
 
