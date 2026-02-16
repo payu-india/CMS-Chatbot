@@ -34,19 +34,13 @@ To use the TPV flow for Payment Links, ensure the **enableTpvFlow** configuratio
     <br />
   </Card>
 
-  <Card title="3. Post Parameters to PayU" href="#step-3-post-parameters-to-payu">
-    Backend converts data and posts to \_payment API with api\_version 20.
-
-    <br />
-  </Card>
-
-  <Card title="4. Check Response from PayU" href="#step-4-check-response-from-payu">
+  <Card title="3. Check Response from PayU" href="#step-4-check-response-from-payu">
     Check and handle the response received from PayU after payment processing.
 
     <br />
   </Card>
 
-  <Card title="5. Verify the Payment" href="#step-5-verify-the-payment">
+  <Card title="4. Verify the Payment" href="#step-5-verify-the-payment">
     Verify the payment status using webhooks or Verify Payments API.
 
     <br />
