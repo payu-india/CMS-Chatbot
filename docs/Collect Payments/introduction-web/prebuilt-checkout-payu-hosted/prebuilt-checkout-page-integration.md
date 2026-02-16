@@ -435,9 +435,10 @@ Follow the below steps to complete the integration:
   </html>
   ```
  <Callout icon="📘" theme="info">
-    **Reference**:  For how to submit the above parameters to PayU from the form, refer to [Integrating on your Website](doc:submitting-payment-request-on-your-website)
+      **Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.** 
+For how to submit the above parameters to PayU from the form, refer to [Integrating on your Website](doc:submitting-payment-request-on-your-website)
   </Callout>
-  **Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.**
+
 
   <Callout icon="📘" theme="info">
     **Important**
