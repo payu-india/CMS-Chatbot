@@ -248,9 +248,6 @@ You can collect payments from customers with leading wallets using the Merchant 
   // Call the function
   makePaymentRequest();
   ```
-
-  ### **☕ Java (using HttpURLConnection)**
-
   ```java
   import java.io.*;
   import java.net.HttpURLConnection;
