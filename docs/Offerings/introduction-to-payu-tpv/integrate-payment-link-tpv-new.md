@@ -92,8 +92,8 @@ Create a payment link with beneficiary account details using the Create Payment 
     | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
     | beneficiaryAccountNumber<br />`mandatory` | `List<String>`<br />Array of beneficiary account numbers. Maximum 4 accounts. Alphanumeric, max 50 characters each.              | `["917732227242", "72522762"]`   |
     | ifscCode<br />`mandatory`                 | `List<String>`<br />Array of IFSC codes corresponding to each account number. Exactly 11 characters each: `[A-Z]{4}0[A-Z0-9]{6}` | `["SBIN0007001", "HDFC0001234"]` |
-    | beneficiaryName <br />`mandatory`                 | `List<String>`<br /> Array of the beneficiary name.  | `"Ashish","Harish"` |
-    | beneficiaryAccountType <br />`mandatory`                 | `List<String>` <br/> Array of the beneficiary account type. It can be "SAVINGS" or "CURRENT"  | `"SAVINGS","CURRENT"` |
+    | beneficiaryName <br />`mandatory`         | `List<String>`<br /> Array of the beneficiary name.                                                                              | `"Ashish","Harish"`              |
+    | beneficiaryAccountType <br />`mandatory`  | `List<String>` <br /> Array of the beneficiary account type. It can be "SAVINGS" or "CURRENT"                                    | `"SAVINGS","CURRENT"`            |
   </Accordion>
 
   <Accordion title="customer Object Parameters" icon="fa-user">
@@ -128,262 +128,258 @@ Create a payment link with beneficiary account details using the Create Payment 
     "beneficiaryName": ["Beneficiary One", "Beneficiary Two"],
     "beneficiaryAccountType": ["SAVINGS", "CURRENT"]
   }
-}
-,
+  }
+  ,
       "source": "API"
   }'
   ```
+```python
+import requests
+import json
 
-  ```python
-  import requests
-  import json
+url = "https://uatoneapi.payu.in/payment-links"
 
-  url = "https://uatoneapi.payu.in/payment-links"
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer 03ddf1ee8d6daf811016c1cc9ce6a3de1771092b1eaeeb936764743888b9eb75",
+    "mid": "8237350"
+}
 
-  payload = {
-      "subAmount": 10,
-      "maxPaymentsAllowed": 1,
-      "invoiceNumber": "INV123456789012",
-      "description": "Payment for services",
-      "customer": {
-          "email": "john.doe@example.com",
-          "phone": "9876543210",
-          "name": "John Doe"
-      },
-      "beneficiarydetail": {
-          "beneficiaryAccountNumber": ["917732227242", "72522762"],
-          "ifscCode": ["SBIN0007001", "HDFC0001234"]
-      },
-      "source": "API"
-  }
+payload = {
+    "subAmount": 10,
+    "maxPaymentsAllowed": 1,
+    "invoiceNumber": "INV123456789012",
+    "description": "Payment for services",
+    "customer": {
+        "email": "john.doe@example.com",
+        "phone": "9876543210",
+        "name": "John Doe"
+    },
+    "beneficiarydetail": {
+        "beneficiaryAccountNumber": ["account1", "account2"],
+        "ifscCode": ["IFSC1234567", "IFSC7654321"],
+        "beneficiaryName": ["Beneficiary One", "Beneficiary Two"],
+        "beneficiaryAccountType": ["SAVINGS", "CURRENT"]
+    },
+    "source": "API"
+}
 
-  headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer 03ddf1ee8d6daf811016c1cc9ce6a3de1771092b1eaeeb936764743888b9eb75",
-      "mid": "8237350"
-  }
+try:
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
-  response = requests.post(url, json=payload, headers=headers)
-  print(response.json())
-  ```
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
 
-  ```csharp
-  using System;
-  using System.Net.Http;
-  using System.Text;
-  using System.Threading.Tasks;
+    static async Task Main(string[] args)
+    {
+        try
+        {
+            string url = "https://uatoneapi.payu.in/payment-links";
+            
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer 03ddf1ee8d6daf811016c1cc9ce6a3de1771092b1eaeeb936764743888b9eb75");
+            client.DefaultRequestHeaders.Add("mid", "8237350");
 
-  class Program
-  {
-      static async Task Main()
-      {
-          using var client = new HttpClient();
-          
-          var payload = @"{
-              ""subAmount"": 10,
-              ""maxPaymentsAllowed"": 1,
-              ""invoiceNumber"": ""INV123456789012"",
-              ""description"": ""Payment for services"",
-              ""customer"": {
-                  ""email"": ""john.doe@example.com"",
-                  ""phone"": ""9876543210"",
-                  ""name"": ""John Doe""
-              },
-              ""beneficiarydetail"": {
-                  ""beneficiaryAccountNumber"": [""917732227242"", ""72522762""],
-                  ""ifscCode"": [""SBIN0007001"", ""HDFC0001234""]
-              },
-              ""source"": ""API""
-          }";
-          
-          var content = new StringContent(payload, Encoding.UTF8, "application/json");
-          client.DefaultRequestHeaders.Add("Authorization", "Bearer 03ddf1ee8d6daf811016c1cc9ce6a3de1771092b1eaeeb936764743888b9eb75");
-          client.DefaultRequestHeaders.Add("mid", "8237350");
-          
-          var response = await client.PostAsync("https://uatoneapi.payu.in/payment-links", content);
-          var result = await response.Content.ReadAsStringAsync();
-          Console.WriteLine(result);
-      }
-  }
-  ```
+            string jsonPayload = @"{
+                ""subAmount"": 10,
+                ""maxPaymentsAllowed"": 1,
+                ""invoiceNumber"": ""INV123456789012"",
+                ""description"": ""Payment for services"",
+                ""customer"": {
+                    ""email"": ""john.doe@example.com"",
+                    ""phone"": ""9876543210"",
+                    ""name"": ""John Doe""
+                },
+                ""beneficiarydetail"": {
+                    ""beneficiaryAccountNumber"": [""account1"", ""account2""],
+                    ""ifscCode"": [""IFSC1234567"", ""IFSC7654321""],
+                    ""beneficiaryName"": [""Beneficiary One"", ""Beneficiary Two""],
+                    ""beneficiaryAccountType"": [""SAVINGS"", ""CURRENT""]
+                },
+                ""source"": ""API""
+            }";
 
-  ```javascript
-  const createPaymentLinkTPV = async () => {
-      const url = "https://uatoneapi.payu.in/payment-links";
-      
-      const payload = {
-          subAmount: 10,
-          maxPaymentsAllowed: 1,
-          invoiceNumber: "INV123456789012",
-          description: "Payment for services",
-          customer: {
-              email: "john.doe@example.com",
-              phone: "9876543210",
-              name: "John Doe"
-          },
-          beneficiarydetail: {
-              beneficiaryAccountNumber: ["917732227242", "72522762"],
-              ifscCode: ["SBIN0007001", "HDFC0001234"]
-          },
-          source: "API"
-      };
-      
-      const response = await fetch(url, {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-              "Authorization": "Bearer 03ddf1ee8d6daf811016c1cc9ce6a3de1771092b1eaeeb936764743888b9eb75",
-              "mid": "8237350"
-          },
-          body: JSON.stringify(payload)
-      });
-      
-      const data = await response.json();
-      console.log(data);
-  };
+            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+            
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            string responseContent = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseContent}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
+        }
+    }
+}
+```
+```javascript
+async function makePaymentLinkRequest() {
+    const url = "https://uatoneapi.payu.in/payment-links";
+    
+    const headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer 03ddf1ee8d6daf811016c1cc9ce6a3de1771092b1eaeeb936764743888b9eb75",
+        "mid": "8237350"
+    };
+    
+    const payload = {
+        subAmount: 10,
+        maxPaymentsAllowed: 1,
+        invoiceNumber: "INV123456789012",
+        description: "Payment for services",
+        customer: {
+            email: "john.doe@example.com",
+            phone: "9876543210",
+            name: "John Doe"
+        },
+        beneficiarydetail: {
+            beneficiaryAccountNumber: ["account1", "account2"],
+            ifscCode: ["IFSC1234567", "IFSC7654321"],
+            beneficiaryName: ["Beneficiary One", "Beneficiary Two"],
+            beneficiaryAccountType: ["SAVINGS", "CURRENT"]
+        },
+        source: "API"
+    };
+    
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(payload)
+        });
+        
+        const responseText = await response.text();
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+        
+        return response;
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
 
-  createPaymentLinkTPV();
-  ```
+// Call the function
+makePaymentLinkRequest();
+```
+```java
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
-  ```java
-  import java.io.*;
-  import java.net.*;
-  import java.nio.charset.StandardCharsets;
+public class PaymentLinkRequest {
+    public static void main(String[] args) {
+        try {
+            URL url = new URL("https://uatoneapi.payu.in/payment-links");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            
+            // Set request method and headers
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Authorization", "Bearer 03ddf1ee8d6daf811016c1cc9ce6a3de1771092b1eaeeb936764743888b9eb75");
+            connection.setRequestProperty("mid", "8237350");
+            connection.setDoOutput(true);
+            
+            // JSON payload
+            String jsonPayload = "{\"subAmount\": 10,\"maxPaymentsAllowed\": 1,\"invoiceNumber\": \"INV123456789012\",\"description\": \"Payment for services\",\"customer\": {\"email\": \"john.doe@example.com\",\"phone\": \"9876543210\",\"name\": \"John Doe\"},\"beneficiarydetail\": {\"beneficiaryAccountNumber\": [\"account1\", \"account2\"],\"ifscCode\": [\"IFSC1234567\", \"IFSC7654321\"],\"beneficiaryName\": [\"Beneficiary One\", \"Beneficiary Two\"],\"beneficiaryAccountType\": [\"SAVINGS\", \"CURRENT\"]},\"source\": \"API\"}";
+            
+            // Write payload to request body
+            try (OutputStream outputStream = connection.getOutputStream()) {
+                byte[] input = jsonPayload.getBytes(StandardCharsets.UTF_8);
+                outputStream.write(input, 0, input.length);
+            }
+            
+            // Get response
+            int statusCode = connection.getResponseCode();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                statusCode >= 200 && statusCode < 300 ? connection.getInputStream() : connection.getErrorStream()
+            ));
+            
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+            
+            System.out.println("Status Code: " + statusCode);
+            System.out.println("Response: " + response.toString());
+            
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://uatoneapi.payu.in/payment-links";
 
-  public class CreatePaymentLinkTPV {
-      public static void main(String[] args) throws Exception {
-          String url = "https://uatoneapi.payu.in/payment-links";
-          
-          String payload = "{"
-              + "\"subAmount\": 10,"
-              + "\"maxPaymentsAllowed\": 1,"
-              + "\"invoiceNumber\": \"INV123456789012\","
-              + "\"description\": \"Payment for services\","
-              + "\"customer\": {"
-              + "\"email\": \"john.doe@example.com\","
-              + "\"phone\": \"9876543210\","
-              + "\"name\": \"John Doe\""
-              + "},"
-              + "\"beneficiarydetail\": {"
-              + "\"beneficiaryAccountNumber\": [\"917732227242\", \"72522762\"],"
-              + "\"ifscCode\": [\"SBIN0007001\", \"HDFC0001234\"]"
-              + "},"
-              + "\"source\": \"API\""
-              + "}";
-          
-          HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-          conn.setRequestMethod("POST");
-          conn.setRequestProperty("Content-Type", "application/json");
-          conn.setRequestProperty("Authorization", "Bearer 03ddf1ee8d6daf811016c1cc9ce6a3de1771092b1eaeeb936764743888b9eb75");
-          conn.setRequestProperty("mid", "8237350");
-          conn.setDoOutput(true);
-          
-          try (OutputStream os = conn.getOutputStream()) {
-              os.write(payload.getBytes(StandardCharsets.UTF_8));
-          }
-          
-          try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-              String line;
-              while ((line = br.readLine()) != null) {
-                  System.out.println(line);
-              }
-          }
-      }
-  }
-  ```
+$headers = [
+    "Content-Type: application/json",
+    "Authorization: Bearer 03ddf1ee8d6daf811016c1cc9ce6a3de1771092b1eaeeb936764743888b9eb75",
+    "mid: 8237350"
+];
 
-  ```php
-  <?php
-  $url = "https://uatoneapi.payu.in/payment-links";
+$payload = [
+    "subAmount" => 10,
+    "maxPaymentsAllowed" => 1,
+    "invoiceNumber" => "INV123456789012",
+    "description" => "Payment for services",
+    "customer" => [
+        "email" => "john.doe@example.com",
+        "phone" => "9876543210",
+        "name" => "John Doe"
+    ],
+    "beneficiarydetail" => [
+        "beneficiaryAccountNumber" => ["account1", "account2"],
+        "ifscCode" => ["IFSC1234567", "IFSC7654321"],
+        "beneficiaryName" => ["Beneficiary One", "Beneficiary Two"],
+        "beneficiaryAccountType" => ["SAVINGS", "CURRENT"]
+    ],
+    "source" => "API"
+];
 
-  $payload = array(
-      "subAmount" => 10,
-      "maxPaymentsAllowed" => 1,
-      "invoiceNumber" => "INV123456789012",
-      "description" => "Payment for services",
-      "customer" => array(
-          "email" => "john.doe@example.com",
-          "phone" => "9876543210",
-          "name" => "John Doe"
-      ),
-      "beneficiarydetail" => array(
-          "beneficiaryAccountNumber" => array("917732227242", "72522762"),
-          "ifscCode" => array("SBIN0007001", "HDFC0001234")
-      ),
-      "source" => "API"
-  );
+$ch = curl_init();
 
-  $ch = curl_init($url);
-  curl_setopt($ch, CURLOPT_POST, true);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      "Content-Type: application/json",
-      "Authorization: Bearer 03ddf1ee8d6daf811016c1cc9ce6a3de1771092b1eaeeb936764743888b9eb75",
-      "mid: 8237350"
-  ));
+curl_setopt_array($ch, [
+    CURLOPT_URL => $url,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POST => true,
+    CURLOPT_HTTPHEADER => $headers,
+    CURLOPT_POSTFIELDS => json_encode($payload),
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_SSL_VERIFYPEER => false
+]);
 
-  $response = curl_exec($ch);
-  curl_close($ch);
+$response = curl_exec($ch);
+$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$error = curl_error($ch);
 
-  echo $response;
-  ?>
-  ```
-</Accordion>
+curl_close($ch);
 
-<Accordion title="Sample Response" icon="fa-check">
-  ```json
-  {
-      "status": 0,
-      "message": "PaymentLink generated",
-      "result": {
-          "subAmount": 10.0,
-          "tax": 0.0,
-          "shippingCharge": 0.0,
-          "totalAmount": 10.0,
-          "invoiceNumber": "INV123456789012",
-          "paymentLink": "https://v.payu.in/PAYUMN/flashvrkWhFD",
-          "description": "Payment for services",
-          "active": true,
-          "isPartialPaymentAllowed": false,
-          "expiryDate": "2026-12-16 13:30:19",
-          "udf": {
-              "udf1": null,
-              "udf2": null,
-              "udf3": null,
-              "udf4": null,
-              "udf5": null
-          },
-          "address": {
-              "line1": null,
-              "line2": null,
-              "city": null,
-              "state": null,
-              "country": null,
-              "zipCode": null
-          },
-          "emailStatus": "not opted",
-          "smsStatus": "not opted",
-          "currency": "INR",
-          "addedOn": "2025-12-16 13:30:19",
-          "status": "active",
-          "maxPaymentsAllowed": 1,
-          "customerName": "John Doe",
-          "customerPhone": "9876543210",
-          "customerEmail": "john.doe@example.com",
-          "notes": null,
-          "amountCollected": 0.0,
-          "dueAmount": 10.0,
-          "minAmountForCustomer": 1.0,
-          "adjustment": 0.0,
-          "discount": 0.0,
-          "customParams": null,
-          "transactionId": null
-      },
-      "errorCode": null,
-      "guid": "4546173a-7432-48e5-9e62-4782a1e48371"
-  }
-  ```
+if ($error) {
+    echo "Error: " . $error . "\n";
+} else {
+    echo "Status Code: " . $statusCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+?>
+```
+  
 </Accordion>
 
 <Accordion title="Validation Rules" icon="fa-check-circle">
