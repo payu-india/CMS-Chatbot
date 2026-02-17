@@ -1,11 +1,22 @@
 ---
-title: Copy of v2 UPI DBQR API
+title: Generate a UPI QR
+excerpt: Know how to generate a UPI QR using the payment API.
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-The **_payment** API can be used to generate an UPI QR which can be used for offline payment collections. The **omniChannelDetails** JSON object is included in the request for posting the Omnichannel details.
+Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnichannel details in the **omniChannelDetails** object.
+
+<Cards>
+  <Card title="Method">
+    POST
+  </Card>
+
+  <Card title="Endpoint">
+    /v2/payments
+  </Card>
+</Cards>
 
 ### Environment
 
