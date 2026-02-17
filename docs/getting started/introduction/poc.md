@@ -71,7 +71,7 @@ Accelerate your integration workflow with our net banking Postman collection for
 |    |    |    |
 
 <Accordion title="My Accordion Title">
-  ``` cURL
+  ```javascript
   var merchant_key = 'smsplus';
   var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
   // date
