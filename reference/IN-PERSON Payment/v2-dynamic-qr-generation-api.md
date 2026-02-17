@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-The dynamic QR generation API returns a UPI QR which can be used for offline payment collections.
+The **_payment** API can be used to generate a UPI QR which can be used for offline payment collections. The **omniChannelDetails** JSON object is included in the request for posting the Omnichannel details.
 
 ### Environment
 
