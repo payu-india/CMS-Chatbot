@@ -64,3 +64,10 @@ Accelerate your integration workflow with our net banking Postman collection for
     /v2/payments
   </Card>
 </Cards>
+
+|    |    |    |
+| :- | :- | :- |
+|    |    |    |
+|    |    |    |
+
+<br />
