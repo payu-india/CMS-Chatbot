@@ -10,639 +10,521 @@ metadata:
 next:
   description: ''
 ---
-The following steps allow you to integrate the server-to-server UPI intent:
 
-<Cards columns={2}>
-  <Card title="1. Initiate payment" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-1-initiate-payment">
-    Initiate the UPI Intent payment request with required parameters
-  </Card>
+This section includes the workflow and steps to integrate UPI Intent with Server-to-Server integration.
 
-  <Card title="2. Invoke UPI Intent on customer's device" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-2-invoke-upi-intent-on-customers-device">
-    Trigger the UPI Intent on the customer's mobile device to complete payment
-  </Card>
+### Workflow
 
-  <Card title="3. Check UPI transaction status" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-3-check-upi-transaction-status">
-    Monitor and verify the UPI transaction status after intent invocation
-  </Card>
+<Image align="center" src="https://files.readme.io/991937481c8ab71eeb4f5f1477eb18e5bac248eb65d8ea924ed51705b520bb6f-UPI_One_time_Intent_-_Android_App_Non_SDK_Solution.png" />
 
-  <Card title="4. PayU sends Server-to-Server callback response" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-4-payu-sends-server-to-server-callback-response">
-    Receive and process the server-to-server callback response from PayU
-  </Card>
+### Steps to integrate
 
-  <Card title="5. Verify the payment" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-5-verify-the-payment">
-    Verify the payment status and ensure successful transaction completion
-  </Card>
+<Accordion title="Update Manifest File [One-Time]" icon="fa-code">
+  Add package ids in your apps manifest file to allow your application to access apps installed on the customer's device. This is required for Android 11 and above.
+
+  ```
+   <queries>
+          <package android:name="in.amazon.mShop.android.shopping"/>
+          <package android:name="com.upi.axispay"/>
+          <package android:name="com.axis.mobile"/>
+          <package android:name="com.fisglobal.bandhanupi.app"/>
+          <package android:name="com.bankofbaroda.upi"/>
+          <package android:name="in.org.npci.upiapp"/>
+          <package android:name="com.canarabank.mobility"/>
+          <package android:name="com.citiuat"/>
+          <package android:name="com.dbs.in.digitalbank"/>
+          <package android:name="com.olive.dcb.upi"/>
+          <package android:name="com.finopaytech.bpayfino"/>
+          <package android:name="com.freecharge.android"/>
+          <package android:name="com.google.android.apps.nbu.paisa.user"/>
+          <package android:name="com.snapwork.hdfc"/>
+          <package android:name="com.mgs.hsbcupi"/>
+          <package android:name="com.csam.icici.bank.imobile"/>
+          <package android:name="com.icicibank.pockets"/>
+          <package android:name="com.euronet.iobupi"/>
+          <package android:name="com.mgs.induspsp"/>
+          <package android:name="com.fss.jnkpsp"/>
+          <package android:name="com.jio.myjio"/>
+          <package android:name="com.mycompany.kvb"/>
+          <package android:name="com.kvb.mobilebanking"/>
+          <package android:name="com.lcode.smartz"/>
+          <package android:name="com.msf.kbank.mobile"/>
+          <package android:name="com.upi.federalbank.org.lotza"/>
+          <package android:name="com.infrasofttech.mahaupi"/>
+          <package android:name="com.mipay.in.wallet"/>
+          <package android:name="com.myairtelapp"/>
+          <package android:name="com.mobikwik_new"/>
+          <package android:name="com.onymy.paybee.prod"/>
+          <package android:name="net.one97.paytm"/>
+          <package android:name="com.phonepe.app"/>
+          <package android:name="com.Version1"/>
+          <package android:name="com.samsung.android.spay"/>
+          <package android:name="com.sbi.upi"/>
+          <package android:name="com.SIBMobile"/>
+          <package android:name="com.truecaller"/>
+          <package android:name="com.infrasoft.uboi"/>
+          <package android:name="com.lcode.ucoupi"/>
+          <package android:name="com.YesBank"/>
+          <package android:name="com.dreamplug.androidapp"/>
+          <package android:name="money.bullet"/>
+      </queries>
+  ```
 
   <br />
-</Cards>
-
-<RegisterMerchantPrerequiste />
-
-<Callout icon="❗️" theme="error">
-  **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**:
-
-  * **For Android Apps**: Merchants must implement the Smart Intent implementation. Refer to [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) for non-SDK implementation, or use [PayU Android SDKs](doc:explore-android-sdks) which have Smart Intent built-in.
-
-  * **For iOS Apps**: Merchants can implement the specific deeplink handling and continue using the UPI flow as is. Refer to [iOS UPI SDK](doc:ios-upi-sdk) for SDK-based implementation.
-
-  * **For Web**: Use the deeplink returned in the API response to generate a QR code that customers can scan with their UPI app.
-
-  For easier integration with built-in Smart Intent support, use PayU SDKs:
-
-  * [Android Mobile SDKs](doc:explore-android-sdks)
-  * [iOS Mobile SDKs](doc:explore-ios-sdks)
-</Callout>
-
-<Accordion title="Intent Flow Diagram" icon="fa-code">
-  The following diagram depicts the UPI intent flow from server to server:
-
-  ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/07/UPI-Intent-Process-Flow-1024x511.png)
 </Accordion>
 
-***
-
-## Step 1: Initiate payment
-
-### Environment
-
-<PaymentAPIEnvironment />
-
-The **_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
-
-This needs to be a server-to-server cURL request. This API is used for both Cards and UPI for generating a new transaction.
-
-If specific intent has to be opened instead of Generic Intent, then the **bankcode** values will change accordingly:
-
-* For Generic Intent, **bankcode** = INTENT
-
-> 📘 Notes:
->
-> * If you are using this for their application, then the Generic Intent, and Specific Intent, can be invoked.
-> * If you are using this for your Mobile Web, then only Generic Intent can be invoked. To invoke App specific intents on the mobile web, the libraries have to be added separately. PayU offers the same for GPay Intent through the Mobile web. Refer to the GPay Seamless Integration Document for the same.
-> * User VPA is not required for this flow.
-
-<Accordion title="Request parameters" icon="fa-database">
-  For the complete list of parameters, refer to <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
-
-  <Table align={["left","left","left"]}>
-    <thead>
-      <tr>
-        <th style={{ textAlign: "left" }}>
-          Parameter
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          Description
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          Example
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          key
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` The merchant key provided by PayU must be included.
-
-          * *Reference*\*: For more information on how to generate the Key and Salt, refer to any of the following:
-          * **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-          * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          txnid
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,&, ').
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          1234\_abcdedf
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          amount
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` (rounded to two decimal places) This parameter must contain the amount for which QR needs to be generated. The amount should be greater than or equal to Rs.1.00.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          1000
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          phone
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the customer phone number (10 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          9876786756
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          productinfo
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` (alphanumeric) This field must contain the product name. By default, the value is 'storefront' (max. 100 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          iPhone 12
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          firstname
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the customer's first name (max. 60 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Sundar
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          email
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the customer email ID.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          [hello@payu.in](mailto:hello@payu.in)
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          lastname
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the customer last name (maximum 20 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Teja
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          <p>pg<br /><code>mandatory</code></p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p><strong>String</strong> The payment method is specified in this field. For UPI INTENT, specify the parameter value as <strong>UPI</strong>.</p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p>UPI</p>
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          <p>bankcode<br /><code>mandatory</code></p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p><strong>String</strong> Each payment option is identified with a unique bank code at PayU. For UPI Intent, specify the value as <strong>INTENT</strong>.</p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p>INTENT</p>
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          <p>surl<br /><code>mandatory</code></p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p><strong>String</strong> Success URL(surl) – It must contain the URL on which PayU will redirect the final response if the transaction is successful.</p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p><a href="https://apiplayground-response.herokuapp.com/">[https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)</a></p>
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          <p>furl<br /><code>mandatory</code></p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p><code>String</code> Failure URL (furl) – It must contain the URL on which PayU will redirect the final response in case of failure.</p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p><a href="https://apiplayground-response.herokuapp.com/">[https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)</a></p>
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          address1
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the first line of customer address (up to 100 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          PayU, Bestech Business Tower, Gurgaon
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          address2
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the second line of the customer address (up to 100 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Sohna Road
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          city
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the customer city (max. 50 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Gurgaon
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          country
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the customer's country that is part of the address (max. 50 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          India
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          state
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          String This parameter must contain the customer state that is part of the address (max 50 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Haryana
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          zipcode
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `Numeric` This parameter must contain the customer's PIN code (6 digits).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          122018
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          udf1
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request (up to 255 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Website order
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          udf2
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request (up to 255 characters.).
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          udf3
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request.
-          (up to 255 characters.)
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          udf4
-          optional
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request.
-          (up to 255 characters.)
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          udf5
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request.
-          (up to 255 characters.)
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          txn\_s2s\_flow
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `Numeric` This parameter must be passed with the value as 4
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          4
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          s2s\_client\_ip
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `varchar` This parameter must have the source IP of the user's device.
-
-          * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          s2s\_device\_info
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `varchar` This parameter must have the user agent of device.
-
-          * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          upiAppName
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum's expected for major apps:
-
-          * phonepe
-          * googlepay
-          * paytm
-          * bhim
-          * cred
-          * amazonpay
-          * whatsapp
-          * genericintent – For any other app apart from
-            above
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          phonepe
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          hash
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to
-
-          [Generate Hash](doc:hashing-request-and-response)
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-    </tbody>
-  </Table>
-
-  > 📘 Support queries:
-  >
-  > For any issues or queries related to UPI integration, send an email to [integration@payu.in](mailto:integration@payu.in).
+<Accordion title="Step 1: Fetch the List of UPI and Smart Intent Supported Apps" icon="fa-code">
+  List the specific apps for app/webview/m-web, (In IOS, UPI collect can still be used).
 </Accordion>
 
-<Accordion title="Response for S2S request" icon="fa-code">
-  The response for the S2S payment request is not as in Merchant Hosted or PayU Hosted Checkout. 
+<Accordion title="Step 2: Get Intent URI" icon="fa-code">
+  Use the **\_payment** API to get Intent URI and transaction details for the UPI app selected by the customer. For more information, refer to <Anchor label="Collect Payment API > UPI Collection with S2S Integration" target="_blank" href="https://docs.payu.in/docs/upi-intent-server-to-server">UPI Intent with S2S Integration</Anchor>.
 
-```json
-{
-   "metaData": {
-      "message": null,
-      "referenceId": "5ae6e6d94b4b5f9dee282b95f6020c98",
-      "statusCode": null,
-      "txnId": "upiIntentTxn12345",
-      "txnStatus": "pending",
-      "unmappedStatus": "pending"
-   },
-   "result": {
-      "paymentId": "15257049438",
-      "merchantName": "Your Merchant Name",
-      "merchantVpa": "merchant@hdfcbank",
-      "amount": "10.00",
-      "intentURIData": "upi://mandate?pa=merchant@hdfcbank&pn=MERCHANT NAME&mn=&tid=upiIntentTxn12345&validitystart=05062025&validityend=01122025&am=10.00&amrule=MAX&recur=MONTHLY&recurvalue=30&recurtype=&tr=15257049438&cu=INR&mc=5411&tn=UPI Transaction for upiIntentTxn12345&mode=13&purpose=14&orgid=159240&rev=Y&block=N&txnType=CREATE",
-      "postToBank": {
-         "token": "C6ABAA6A-F0CE-432A-61C1-CFA48EDE847B",
-         "amount": "10.00",
-         "mihpayid": "5ae6e6d94b4b5f9dee282b95f6020c98",
-         "disableIntentSeamlessFailure": "0",
-         "payeeVpa": "merchant@hdfcbank",
-         "payeeName": "Your Merchant Name",
-         "additionalCharges": 0,
-         "transactionFee": "10.00"
-      },
-      "issuerUrl": "https://secure.payu.in/intentSeamlessHandler.php"
-   }
-}
-```
+  <Accordion title="Request Parameters" icon="fa-table">
+    | Parameter                                                                             | Description                                                                                                                                                                                                                                                             | Example                                     |
+    | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+    | `key`<br />`mandatory`                                                                | `String` Merchant key provided by PayU during onboarding.                                                                                                                                                                                                               | JPg\*\*\*\*f                                |
+    | `txnid`<br />`mandatory`                                                              | `String` The transaction ID is a reference number for a specific order that is generated by the merchant.                                                                                                                                                               | ypl938459435                                |
+    | `amount`<br />`mandatory`                                                             | `String` The payment amount for the transaction.                                                                                                                                                                                                                        | 10.00                                       |
+    | `productinfo`<br />`mandatory`                                                        | `String` A brief description of the product.                                                                                                                                                                                                                            | iPhone                                      |
+    | `firstname`<br />`mandatory`                                                          | `String` The first name of the customer.                                                                                                                                                                                                                                | Ashish                                      |
+    | `lastname`<br />`mandatory`                                                           | `String` The last name of the customer.                                                                                                                                                                                                                                 | Kumar                                       |
+    | `email`<br />`mandatory`                                                              | `String` The email address of the customer.                                                                                                                                                                                                                             | [abc@payu.in](mailto:abc@payu.in)           |
+    | `phone`<br />`mandatory`                                                              | `String` The phone number of the customer.                                                                                                                                                                                                                              |                                             |
+    | `address1`<br />`optional but recommended for higher approval rate`                   | `String` The first line of the billing address. H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai **Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar             |
+    | `address2`<br />`optional but recommended for higher approval rate`                   | `String` The second line of the billing address.                                                                                                                                                                                                                        |                                             |
+    | `city`<br />`optional but recommended for higher approval rate`                       | `String` The city where your customer resides as part of the billing address.                                                                                                                                                                                           | Mumbai                                      |
+    | `state`<br />`optional but recommended for higher approval rate`                      | `String` The state where your customer resides as part of the billing address.                                                                                                                                                                                          | Maharashtra                                 |
+    | `country`<br />`optional but recommended for higher approval rate`                    | `String` The country where your customer resides.                                                                                                                                                                                                                       | India                                       |
+    | `zipcode`<br />`mandatory`                                                            | `String` Billing address zip code is mandatory for the cardless EMI option. Character Limit-20                                                                                                                                                                          | 400004                                      |
+    | `pg`<br />`mandatory for seamless/s2s flow`                                           | `String` It defines the payment category and post **UPI**.                                                                                                                                                                                                              | UPI                                         |
+    | `bankcode`<br />`mandatory for seamless/s2s flow`                                     | `String` Each payment option is identified with a unique bank code at PayU. For UPI Autopay, post **UPI**.                                                                                                                                                              | UPI                                         |
+    | `surl`<br />`mandatory`                                                               | `String` The success URL, which is the page PayU will redirect to if the transaction is successful.                                                                                                                                                                     |                                             |
+    | `furl`<br />`mandatory`                                                               | `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                                                         |                                             |
+    | vpa `conditional`                                                                     | `String` Customer's VPA handle. Mandatory for UPI Collect flow.                                                                                                                                                                                                         | `customer@upi`                              |
+    | si `mandatory`                                                                        | `String` Signifies successful consent taken from the user. Must be `1` for subscription setup.                                                                                                                                                                          | `1`                                         |
+    | si\_details `mandatory`                                                               | `JSON String` JSON object containing mandate details (billingAmount, billingCurrency, billingCycle, etc.). Refer to si\_details JSON Object below.                                                                                                                      | See si\_details accordion                   |
+    | txn\_s2s\_flow `conditional`                                                          | `Integer` Parameter to enable S2S flow. Must be `4` for Legacy Decoupled flow (UPI Intent).                                                                                                                                                                             | `4`                                         |
+    | s2s\_client\_ip `conditional`                                                         | `String` Source IP of the customer. Required for UPI Intent flow.                                                                                                                                                                                                       | `10.200.12.12`                              |
+    | s2s\_device\_info `conditional`                                                       | `String` Customer agent's device information. Required for UPI Intent flow.                                                                                                                                                                                             | `Mozilla/5.0 (Windows NT 10.0; Win64; x64)` |
+    | `udf1`<br />`mandatory if AD bank request this detail`                                | `String` This parameter must contain the Buyer's PAN and date of birth in the following format (separated by two pipe characters): Buyer's PAN\\\|\\\|Buyer'sDOB                                                                                                        | AAAPZ1234C\\\|\\\|22/08/1972                |
+    | `udf3`<br />`mandatory if AD bank request this detail`                                | `String` This parameter must contain the invoice ID of the transaction (generated by the merchant) and merchant name in the following format (separated by two pipe characters): Invoice ID\\\|\\\|MerchantName                                                         | INV-123\_1231\\\|\\\|MerchantName           |
+    | buyer\_type\_business `optional in case of B2B transaction for cross-border payments` | `Binary` To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0". **Note**: This will be included in hash if posted (covered in next section                                                                 | 1                                           |
+  </Accordion>
 
-<Accordion title="Response parameters description" icon="fa-code">
-
-| **Parameter**    | **Description**                                                                                                                                                                                                                                                            |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| result           | This parameter contains a JSON Object that includes **post_uri** and **post_data** fields.                                                                                                                                                                                 |
-| result.post_uri  | This field contains the redirect URL.                                                                                                                                                                                                                                      |
-| result.post_data | post_data is a base64 encoded string. The merchant needs to decode post_data, which is an HTML format with auto submit, which then needs to be shown on the customer’s browser. The HTML being auto submit, it will take the customer to the bank page for authentication. |
-| status           | This field contains the status for the transaction.                                                                                                                                                                                                                        |
-| error            | For the failed transactions, this parameter provides the reason for  failure.                                                                                                                                                                                              |
-| message          | This field contains any additional message about the transaction.                                                                                                                                                                                                          |
-</Accordion>
-  <Accordion title="Using the IntentURIData value in response" icon="fa-code">
-    The **IntentURIData** parameter returns the URI in the response. For example, it contains the first debit amount .
-
-    > 📘 Notes:
-    >
-    > * Every time there is a change, you need to incorporate the changes to avoid breaking the transactions.
-    > * The **tid** value which is passed in the intent URI acts as a validation check at NPCI's end which do not allow duplicate transaction.
-    > * The tr value not necessary and it is a payU\_id. It can be any reference id for PayU's internal reconciliation.
+  <Accordion title="Sample Request" icon="fa-code">
+    ```curl
+    curl --location 'https://test.payu.in/_payment' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'key=PRiQvJ' \
+    --data-urlencode 'txnid=my_order_991' \
+    --data-urlencode 'amount=1' \
+    --data-urlencode 'productinfo=my_order_991' \
+    --data-urlencode 'email=' \
+    --data-urlencode 'phone=9368252248' \
+    --data-urlencode 'txn_s2s_flow=4' \
+    --data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
+    --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'udf1=buyer'\''s DOB' \
+    --data-urlencode 'udf2=' \
+    --data-urlencode 'udf3=buyer'\''s PAN' \
+    --data-urlencode 'udf4=' \
+    --data-urlencode 'udf5=invoice number' \
+    --data-urlencode 's2s_client_ip=10.200.12.12' \
+    --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+    --data-urlencode 'firstname=' \
+    --data-urlencode 'lastname=kr' \
+    --data-urlencode 'address1=308,third floor' \
+    --data-urlencode 'address2=testing' \
+    --data-urlencode 'city=Gurugram' \
+    --data-urlencode 'state=UP' \
+    --data-urlencode 'country=India' \
+    --data-urlencode 'zipcode=122018' \
+    --data-urlencode 'pg=UPI' \
+    --data-urlencode 'bankcode=INTENT' \
+    --data-urlencode 'upiAppName=gpay/phonepe/paytm/qr/amazonpay' \
+    --data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
+    --data-urlencode 'buyer_type_business=1'
+    ```
   </Accordion>
 </Accordion>
 
-## Step 2: Invoke UPI Intent on customer's device
+<Accordion title="Step 3: Retrieve Deeplink(uriIntentData) from the response," icon="fa-code">
+  If metaData.unmappedStatus = pending, then get the result.intentURIData and add the prefix upi://pay?to make it to create a fully qualified deeplink to trigger the UPI App.
 
-<Accordion title="Request parameters" icon="fa-monitor">
-  You need to invoke intent in the customer's mobile device using the merchant VPA URL. Make sure that only this merchant VPA is embedded in the intent call since this helps to track the status of the transaction.
-
-  Open the UPI Intent as per the NPCI Guidelines. Merchants can also open any specific app instead of making the Generic Intent call. For example, Google Pay, PhonePe, etc. This URL can then be fired using an Intent or a hyperlink which would open an Intent tray with a list of available supporting apps on the user's mobile device. The following sample UPI Deep Link URL and the format used for creating the URL:
-
-  **Sample URL** (with values from the above sample JSON):
-
-  ```plaintext
-  upi://pay?pa=payu@axisbank&pn=SMSPLUS&tr=8312916361&am=10.17
-  ```
-
-  **Format for UPI Deep Linking URL** (as per NPCI guidelines):
-
-  ```plaintext
-  "upi://pay?pa=" + merchantVpa + "&pn=" + merchantName + "&tr=" + referenceId + "&am=" + amount 
-  ```
-
-  Where the description of the parameters used in the URL is as described in the following table:
-
-  | **Parameter** | **Description**                                                                                   |
-  | ------------- | ------------------------------------------------------------------------------------------------- |
-  | merchantVpa   | As received in JSON response in key merchantVPA'                                                  |
-  | merchantName  | As received in JSON response in key merchantName.                                                 |
-  | referenceId   | As received in JSON response in key referenceId.                                                  |
-  | amount        | Amount of transaction. This must be the same as the amount passed to the **initiatePayment** API. |
-</Accordion>
-
-***
-
-## Step 3: Check UPI transaction status
-
-Check the UPI transaction status using the **Verify Payment API** (verify_payment) API. For more information, refer to  <a href="verify_payment_api" target="_blank"> Verify Payment API</a>.
-
-***
-
-## Step 4: PayU sends Server-to-Server callback response
-
-PayU can also send a server-to-server callback response whenever the transaction status gets updated.
-
-<Accordion title="Implementation" icon="fa-code">
-  The server-to-server response would be sent by PayU on a pre-set URL, which has to be provided by you. PayU will configure it at your back end. This response would be sent in key/value pair separated by the ampersand (&) character. In case any parameter is not used, we would send it back to you with an empty string. The sample response is similar to the following:
-
-  ```plaintext
-  unmappedstatus=success&phone=9999999999&txnid=FCDA1R100870163781&hash=84e3 35094bbcb2ddaa0f9a488eb338e143b273765d89c9dfa502402562d0b6f3c7935e28194ca92f7 380be7c84c3695415b106dcf52cb016a15fcf6adc98d724&status=success&curl=https://www. abc.in/payment/handlepayuresposne&firstname=NA&card_no=519619XXXXXX5049&furl= https://www.abc.in/payment/handlepayuresposne&productinfo=2&mode=DC&amount=800. 00&field4=6807112311042810&field3=6807112311042810&field2=838264&field9=SUCC ESS&email=NA&mihpayid=175477248&surl=https://www.ABC.in/payment/handlepayuresp osne&card_hash=9e88cb0573d4a826b61d808c0a870ed4a990682459b0ec9e95ea421e8e47b e8c&field1=42812
-  ```
-
-  The parameter list format is similar to the following:
-
-  ```plaintext
-  mihpayid,mode,status,key,txnid,amount,productinfo,firstname,lastname,address1,address2,city,state,country,zipcode,email,phone,udf1,udf2,udf3,udf4,udf5,udf6,udf7,udf8,udf9,udf10,card_token,card_no,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9,offer,discou nt,offer_availed,unmappedstatus,hash,bank_ref_no,surl,curl,furl,card_hash
+  ```json
+  {
+      "metaData": {
+          "message": null,
+          "referenceId": "c99a6455b3e0dc5cd7167ab8c8cc10d2fa153cb509e3f64c6cd0ed9c5b64a8c9",
+          "statusCode": null,
+          "txnId": "my_order_26075",
+          "txnStatus": "pending",
+          "unmappedStatus": "pending"
+      },
+      "result": {
+          "paymentId": "403993715535965242",
+          "merchantName": "Sudhanshu",
+          "merchantVpa": "payutest@hdfcbank",
+          "amount": "1.00",
+          "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent",
+          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluL2M5OWE2NDU1YjNlMGRjNWNkNzE2N2FiOGM4Y2MxMGQyYzgzYTk5NmFhNDhiYTk4MmZjMGQ4MTI1MGY1ODgxZjMvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjhERDNFRUFFLUI5NTktQzY1RS03MDczLTYzQTNGQUUxMjZGRiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMS4wMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSJjOTlhNjQ1NWIzZTBkYzVjZDcxNjdhYjhjOGNjMTBkMmZhMTUzY2I1MDllM2Y2NGM2Y2QwZWQ5YzViNjRhOGM5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSJwYXl1dGVzdEBoZGZjYmFuayI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVOYW1lIiB2YWx1ZT0iU3VkaGFuc2h1Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMS4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+      }
+  }
   ```
 </Accordion>
 
-## Step 5. Verify the payment
+<Accordion title="Step 4: Set the Package Name" icon="fa-code">
+  Set the packageName as per the app selected by the customer on your checkout page. and start the activity.
 
-<Verify_Payment_Tabs />
+  ```java
+  fun makePayment(packageName: String,mActivity: Activity,intentUri:String) {
+        val i = Intent()
+        i.setPackage(packageName)
+        i.action = Intent.ACTION_VIEW
+        i.data = Uri.parse("upi://pay" + intentUri)
+        if (null != mActivity && !mActivity.isFinishing() && !mActivity.isDestroyed()) {
+            mActivity.startActivityForResult(i, 101)
+        }
+    }
+  ```
+</Accordion>
+
+<Accordion title="Step 5: Handle the response" icon="fa-code">
+  Once the user completes the payment the UPI app will be closed, and then handle the response onActivityResult.
+
+  ```java
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 101) {
+            data?.getStringExtra("Status")?.let { Log.d("result", it) }
+            data?.getStringExtra("response")?.let { Log.d("response", it) }
+            //get Status
+            //if Status == Success
+            // Call Verify Payemnt//
+        }
+  }
+  ```
+</Accordion>
+
+<Accordion title="Step 6: Verify the payment" icon="fa-code">
+  <Verify_Payment_Tabs />
+</Accordion>
+
+## Specific Intent Flow
+
+<Callout icon="📘" theme="info">
+  **Notes**: Specific Intent flow works with m-web, Webview, Android or iOS apps. As per **NPCI** mandate, **Pay by any UPI App** option must be shown by all the merchants in their app on all Android devices (app/m-web/webview), Use the generic deeplink, without specific `packageName` to trigger the Pay by any UPI app.
+</Callout>
+
+### Workflow
+
+<Image align="center" src="https://files.readme.io/b1767cf25bf9c6ca94e7cbf0de8ef28e2518ade4919b5df5f6d6ad41537ba1fd-UPI_One_time_Intent_-_m-web_or_IOS_App.png" />
+
+### Steps to Integrate
+
+<Accordion title="Step 1: Fetch the List of UPI and Smart Intent Supported Apps" icon="fa-code">
+  You need to get the list of UPI and smart intent supported applications installed in the device.
+
+  ```java
+  private fun getSmartIntentUPIApps(context: Context?):ArrayList<HashMap<String,String>>?{
+        val upiApps = ArrayList<HashMap<String, String>>()
+        if (context == null)
+            return null
+
+        val intent = Intent()
+        intent.data = Uri.parse("upi://pay")
+        val activityList = context.packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+        for (resolveInfo in activityList){
+            var packageInfo: PackageInfo? = null
+            try {
+                packageInfo = context.packageManager
+                    .getPackageInfo(resolveInfo.activityInfo.packageName, 0)
+                val name =
+                    context.packageManager.getApplicationLabel(packageInfo.applicationInfo) as String
+              val appInfo = HashMap<String, String?>()
+                appInfo["bankName"] = name ?: "NA"
+                appInfo["packageName"] = packageInfo.packageName
+                upiApps.add(appInfo)
+            } catch (e: PackageManager.NameNotFoundException) {
+                e.printStackTrace()
+                return upiApps
+            }
+        }
+        return UPI apps
+    }
+    /* to get icon of psp app*/
+    fun getUpiAppBitmap(context: Context?, packageName: String): Bitmap? {
+
+        var upiAppBitmap: Bitmap? = null
+        if (context == null)
+            return upiAppBitmap
+        upiAppBitmap = context.packageManager.getApplicationIcon(packageName).toBitmap()
+        return upiAppBitmap
+    }
+
+  ```
+
+  <br />
+</Accordion>
+
+<Accordion title="Step 2: Get Intent URI" icon="fa-code">
+  Use the **\_payment** API to get Intent URI and transaction details for the UPI app selected by the customer. For more information, refer to <Anchor label="Collect Payment API > UPI Collection with S2S Integration" target="_blank" href="https://docs.payu.in/docs/upi-intent-server-to-server">UPI Intent with S2S Integration</Anchor>.
+
+  <Accordion title="Request Parameters" icon="fa-table">
+    | Parameter                                                                             | Description                                                                                                                                                                                                                                                             | Example                                     |
+    | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+    | `key`<br />`mandatory`                                                                | `String` Merchant key provided by PayU during onboarding.                                                                                                                                                                                                               | JPg\*\*\*\*f                                |
+    | `txnid`<br />`mandatory`                                                              | `String` The transaction ID is a reference number for a specific order that is generated by the merchant.                                                                                                                                                               | ypl938459435                                |
+    | `amount`<br />`mandatory`                                                             | `String` The payment amount for the transaction.                                                                                                                                                                                                                        | 10.00                                       |
+    | `productinfo`<br />`mandatory`                                                        | `String` A brief description of the product.                                                                                                                                                                                                                            | iPhone                                      |
+    | `firstname`<br />`mandatory`                                                          | `String` The first name of the customer.                                                                                                                                                                                                                                | Ashish                                      |
+    | `lastname`<br />`mandatory`                                                           | `String` The last name of the customer.                                                                                                                                                                                                                                 | Kumar                                       |
+    | `email`<br />`mandatory`                                                              | `String` The email address of the customer.                                                                                                                                                                                                                             | [abc@payu.in](mailto:abc@payu.in)           |
+    | `phone`<br />`mandatory`                                                              | `String` The phone number of the customer.                                                                                                                                                                                                                              |                                             |
+    | `address1`<br />`optional but recommended for higher approval rate`                   | `String` The first line of the billing address. H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai **Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar             |
+    | `address2`<br />`optional but recommended for higher approval rate`                   | `String` The second line of the billing address.                                                                                                                                                                                                                        |                                             |
+    | `city`<br />`optional but recommended for higher approval rate`                       | `String` The city where your customer resides as part of the billing address.                                                                                                                                                                                           | Mumbai                                      |
+    | `state`<br />`optional but recommended for higher approval rate`                      | `String` The state where your customer resides as part of the billing address.                                                                                                                                                                                          | Maharashtra                                 |
+    | `country`<br />`optional but recommended for higher approval rate`                    | `String` The country where your customer resides.                                                                                                                                                                                                                       | India                                       |
+    | `zipcode`<br />`mandatory`                                                            | `String` Billing address zip code is mandatory for the cardless EMI option. Character Limit-20                                                                                                                                                                          | 400004                                      |
+    | `pg`<br />`mandatory for seamless/s2s flow`                                           | `String` It defines the payment category and post **UPI**.                                                                                                                                                                                                              | UPI                                         |
+    | `bankcode`<br />`mandatory for seamless/s2s flow`                                     | `String` Each payment option is identified with a unique bank code at PayU. For UPI Autopay, post **UPI**.                                                                                                                                                              | UPI                                         |
+    | `surl`<br />`mandatory`                                                               | `String` The success URL, which is the page PayU will redirect to if the transaction is successful.                                                                                                                                                                     |                                             |
+    | `furl`<br />`mandatory`                                                               | `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                                                         |                                             |
+    | vpa `conditional`                                                                     | `String` Customer's VPA handle. Mandatory for UPI Collect flow.                                                                                                                                                                                                         | `customer@upi`                              |
+    | si `mandatory`                                                                        | `String` Signifies successful consent taken from the user. Must be `1` for subscription setup.                                                                                                                                                                          | `1`                                         |
+    | si\_details `mandatory`                                                               | `JSON String` JSON object containing mandate details (billingAmount, billingCurrency, billingCycle, etc.). Refer to si\_details JSON Object below.                                                                                                                      | See si\_details accordion                   |
+    | txn\_s2s\_flow `conditional`                                                          | `Integer` Parameter to enable S2S flow. Must be `4` for Legacy Decoupled flow (UPI Intent).                                                                                                                                                                             | `4`                                         |
+    | s2s\_client\_ip `conditional`                                                         | `String` Source IP of the customer. Required for UPI Intent flow.                                                                                                                                                                                                       | `10.200.12.12`                              |
+    | s2s\_device\_info `conditional`                                                       | `String` Customer agent's device information. Required for UPI Intent flow.                                                                                                                                                                                             | `Mozilla/5.0 (Windows NT 10.0; Win64; x64)` |
+    | `udf1`<br />`mandatory if AD bank request this detail`                                | `String` This parameter must contain the Buyer's PAN and date of birth in the following format (separated by two pipe characters): Buyer's PAN\\\|\\\|Buyer'sDOB                                                                                                        | AAAPZ1234C\\\|\\\|22/08/1972                |
+    | `udf3`<br />`mandatory if AD bank request this detail`                                | `String` This parameter must contain the invoice ID of the transaction (generated by the merchant) and merchant name in the following format (separated by two pipe characters): Invoice ID\\\|\\\|MerchantName                                                         | INV-123\_1231\\\|\\\|MerchantName           |
+    | buyer\_type\_business `optional in case of B2B transaction for cross-border payments` | `Binary` To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0". **Note**: This will be included in hash if posted (covered in next section                                                                 | 1                                           |
+  </Accordion>
+
+  <Accordion title="Sample Request" icon="fa-code">
+    ```curl
+    curl --location 'https://test.payu.in/_payment' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'key=PRiQvJ' \
+    --data-urlencode 'txnid=my_order_991' \
+    --data-urlencode 'amount=1' \
+    --data-urlencode 'productinfo=my_order_991' \
+    --data-urlencode 'email=' \
+    --data-urlencode 'phone=9368252248' \
+    --data-urlencode 'txn_s2s_flow=4' \
+    --data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
+    --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'udf1=buyer'\''s DOB' \
+    --data-urlencode 'udf2=' \
+    --data-urlencode 'udf3=buyer'\''s PAN' \
+    --data-urlencode 'udf4=' \
+    --data-urlencode 'udf5=invoice number' \
+    --data-urlencode 's2s_client_ip=10.200.12.12' \
+    --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+    --data-urlencode 'firstname=' \
+    --data-urlencode 'lastname=kr' \
+    --data-urlencode 'address1=308,third floor' \
+    --data-urlencode 'address2=testing' \
+    --data-urlencode 'city=Gurugram' \
+    --data-urlencode 'state=UP' \
+    --data-urlencode 'country=India' \
+    --data-urlencode 'zipcode=122018' \
+    --data-urlencode 'pg=UPI' \
+    --data-urlencode 'bankcode=INTENT' \
+    --data-urlencode 'upiAppName=gpay/phonepe/paytm/qr/amazonpay' \
+    --data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
+    --data-urlencode 'buyer_type_business=1'
+    ```
+  </Accordion>
+</Accordion>
+
+<Accordion title="Step 3: Retrieve Deeplink(uriIntentData) from the response," icon="fa-code">
+  If metaData.unmappedStatus = pending, then get the result.intentURIData and add the prefix upi://pay?to make it to create a fully qualified deeplink to trigger the UPI App.
+
+  ```json
+  {
+    "metaData": {
+        "message": null,
+        "referenceId": "c99a6455b3e0dc5cd7167ab8c8cc10d2fa153cb509e3f64c6cd0ed9c5b64a8c9",
+        "statusCode": null,
+        "txnId": "my_order_26075",
+        "txnStatus": "pending",
+        "unmappedStatus": "pending"
+    },
+    "result": {
+        "paymentId": "403993715535965242",
+        "merchantName": "Sudhanshu",
+        "merchantVpa": "payutest@hdfcbank",
+        "amount": "1.00",
+        "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent",
+        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluL2M5OWE2NDU1YjNlMGRjNWNkNzE2N2FiOGM4Y2MxMGQyYzgzYTk5NmFhNDhiYTk4MmZjMGQ4MTI1MGY1ODgxZjMvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjhERDNFRUFFLUI5NTktQzY1RS03MDczLTYzQTNGQUUxMjZGRiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMS4wMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSJjOTlhNjQ1NWIzZTBkYzVjZDcxNjdhYjhjOGNjMTBkMmZhMTUzY2I1MDllM2Y2NGM2Y2QwZWQ5YzViNjRhOGM5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSJwYXl1dGVzdEBoZGZjYmFuayI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVOYW1lIiB2YWx1ZT0iU3VkaGFuc2h1Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMS4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+    }
+  }
+  ```
+</Accordion>
+
+<Accordion title="Step 4: Add the prefix" icon="fa-code">
+  Add the prefix as per the Android/IOS to it to create a fully qualified deeplink to trigger the UPI App.
+
+  #### Android Specific Intent prefix
+
+  ```
+  androidPrefix="intent://pay?"
+  intentUriData="pa=myntra.payu@axisbank&pn=NIMIT%20BHATIA&tr=26156866365&tid=PPPL2615686636525112512114769254fab&am=10.00&cu=INR&tn=UPIIntent"
+  suffix = "#Intent;scheme=upi;package=<package name>;"
+  suffixForFallback="S.browser_fallback_url=<base64decoded result.acsTemplate can be used to redirect to Payu for UPI fallback>;end"
+  //use androidPrefix+intentUriData+suffix+suffixForFallback to trigger the App in specific deeplink integration
+  ```
+
+  #### IOS Specific Intent prefix (Limited availability)
+
+  ```
+  phonepe = phonepe://upi/pay? 
+  paytm = paytm://upi/pay? 
+  googlepay = gpay://upi/pay? 
+  bhim = bhim://upi/pay?
+  credpay = credpay://upi/pay?
+  ```
+</Accordion>
+
+<Accordion title="Step 5: Verify the payment" icon="fa-code">
+  <Verify_Payment_Tabs />
+</Accordion>
+
+## UPI Online QR
+
+This section describes how to integrate UPI Online QR which will help you generate QR on your eCommerce website so that your customers can make payment from any UPI app.
+
+### Workflow
+
+<Image align="center" src="https://files.readme.io/22c63eed9b5dec76ebe5a56fe00c5af4a8a8f4e56745584fefc381556b65249d-UPI_One_time_Intent_based_Online_QR_1.svg" />
+
+### Steps to Integrate
+
+<Accordion title="Step 1: Initiate Payment" icon="fa-code">
+  Use the **\_payment** API to collect payment. For more information, refer to <Anchor label="Collect Payment API > UPI Collection with S2S Integration" target="_blank" href="https://docs.payu.in/docs/upi-intent-server-to-server">UPI Intent with S2S Integration</Anchor>.
+
+  <Accordion title="Request Parameters" icon="fa-table">
+    | Parameter                                                                             | Description                                                                                                                                                                                                                                                             | Example                                     |
+    | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+    | `key`<br />`mandatory`                                                                | `String` Merchant key provided by PayU during onboarding.                                                                                                                                                                                                               | JPg\*\*\*\*f                                |
+    | `txnid`<br />`mandatory`                                                              | `String` The transaction ID is a reference number for a specific order that is generated by the merchant.                                                                                                                                                               | ypl938459435                                |
+    | `amount`<br />`mandatory`                                                             | `String` The payment amount for the transaction.                                                                                                                                                                                                                        | 10.00                                       |
+    | `productinfo`<br />`mandatory`                                                        | `String` A brief description of the product.                                                                                                                                                                                                                            | iPhone                                      |
+    | `firstname`<br />`mandatory`                                                          | `String` The first name of the customer.                                                                                                                                                                                                                                | Ashish                                      |
+    | `lastname`<br />`mandatory`                                                           | `String` The last name of the customer.                                                                                                                                                                                                                                 | Kumar                                       |
+    | `email`<br />`mandatory`                                                              | `String` The email address of the customer.                                                                                                                                                                                                                             | [abc@payu.in](mailto:abc@payu.in)           |
+    | `phone`<br />`mandatory`                                                              | `String` The phone number of the customer.                                                                                                                                                                                                                              |                                             |
+    | `address1`<br />`optional but recommended for higher approval rate`                   | `String` The first line of the billing address. H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai **Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar             |
+    | `address2`<br />`optional but recommended for higher approval rate`                   | `String` The second line of the billing address.                                                                                                                                                                                                                        |                                             |
+    | `city`<br />`optional but recommended for higher approval rate`                       | `String` The city where your customer resides as part of the billing address.                                                                                                                                                                                           | Mumbai                                      |
+    | `state`<br />`optional but recommended for higher approval rate`                      | `String` The state where your customer resides as part of the billing address.                                                                                                                                                                                          | Maharashtra                                 |
+    | `country`<br />`optional but recommended for higher approval rate`                    | `String` The country where your customer resides.                                                                                                                                                                                                                       | India                                       |
+    | `zipcode`<br />`mandatory`                                                            | `String` Billing address zip code is mandatory for the cardless EMI option. Character Limit-20                                                                                                                                                                          | 400004                                      |
+    | `pg`<br />`mandatory for seamless/s2s flow`                                           | `String` It defines the payment category and post **UPI**.                                                                                                                                                                                                              | UPI                                         |
+    | `bankcode`<br />`mandatory for seamless/s2s flow`                                     | `String` Each payment option is identified with a unique bank code at PayU. For UPI Autopay, post **UPI**.                                                                                                                                                              | UPI                                         |
+    | `surl`<br />`mandatory`                                                               | `String` The success URL, which is the page PayU will redirect to if the transaction is successful.                                                                                                                                                                     |                                             |
+    | `furl`<br />`mandatory`                                                               | `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                                                         |                                             |
+    | vpa `conditional`                                                                     | `String` Customer's VPA handle. Mandatory for UPI Collect flow.                                                                                                                                                                                                         | `customer@upi`                              |
+    | si `mandatory`                                                                        | `String` Signifies successful consent taken from the user. Must be `1` for subscription setup.                                                                                                                                                                          | `1`                                         |
+    | si\_details `mandatory`                                                               | `JSON String` JSON object containing mandate details (billingAmount, billingCurrency, billingCycle, etc.). Refer to si\_details JSON Object below.                                                                                                                      | See si\_details accordion                   |
+    | txn\_s2s\_flow `conditional`                                                          | `Integer` Parameter to enable S2S flow. Must be `4` for Legacy Decoupled flow (UPI Intent).                                                                                                                                                                             | `4`                                         |
+    | s2s\_client\_ip `conditional`                                                         | `String` Source IP of the customer. Required for UPI Intent flow.                                                                                                                                                                                                       | `10.200.12.12`                              |
+    | s2s\_device\_info `conditional`                                                       | `String` Customer agent's device information. Required for UPI Intent flow.                                                                                                                                                                                             | `Mozilla/5.0 (Windows NT 10.0; Win64; x64)` |
+    | `udf1`<br />`mandatory if AD bank request this detail`                                | `String` This parameter must contain the Buyer's PAN and date of birth in the following format (separated by two pipe characters): Buyer's PAN\\\|\\\|Buyer'sDOB                                                                                                        | AAAPZ1234C\\\|\\\|22/08/1972                |
+    | `udf3`<br />`mandatory if AD bank request this detail`                                | `String` This parameter must contain the invoice ID of the transaction (generated by the merchant) and merchant name in the following format (separated by two pipe characters): Invoice ID\\\|\\\|MerchantName                                                         | INV-123\_1231\\\|\\\|MerchantName           |
+    | buyer\_type\_business `optional in case of B2B transaction for cross-border payments` | `Binary` To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0". **Note**: This will be included in hash if posted (covered in next section                                                                 | 1                                           |
+  </Accordion>
+
+  <Accordion title="Sample Request" icon="fa-code">
+    ```curl
+    curl --location 'https://test.payu.in/_payment' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'key=PRiQvJ' \
+    --data-urlencode 'txnid=my_order_991' \
+    --data-urlencode 'amount=1' \
+    --data-urlencode 'productinfo=my_order_991' \
+    --data-urlencode 'email=' \
+    --data-urlencode 'phone=9368252248' \
+    --data-urlencode 'txn_s2s_flow=4' \
+    --data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
+    --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'udf1=buyer'\''s DOB' \
+    --data-urlencode 'udf2=' \
+    --data-urlencode 'udf3=buyer'\''s PAN' \
+    --data-urlencode 'udf4=' \
+    --data-urlencode 'udf5=invoice number' \
+    --data-urlencode 's2s_client_ip=10.200.12.12' \
+    --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+    --data-urlencode 'firstname=' \
+    --data-urlencode 'lastname=kr' \
+    --data-urlencode 'address1=308,third floor' \
+    --data-urlencode 'address2=testing' \
+    --data-urlencode 'city=Gurugram' \
+    --data-urlencode 'state=UP' \
+    --data-urlencode 'country=India' \
+    --data-urlencode 'zipcode=122018' \
+    --data-urlencode 'pg=UPI' \
+    --data-urlencode 'bankcode=INTENT' \
+    --data-urlencode 'upiAppName=gpay/phonepe/paytm/qr/amazonpay' \
+    --data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
+    --data-urlencode 'buyer_type_business=1'
+    ```
+  </Accordion>
+</Accordion>
+
+<Accordion title="Step 2: Retrieve Deeplink(uriIntentData) from the response," icon="fa-code">
+  if 'metaData.unmappedStatus = pending', then get the 'result.intentURIData' and add the Generic Intent prefix 'upi://pay?' to it to create a fully qualified deeplink to trigger the UPI App.
+
+  ```json
+  {
+      "metaData": {
+          "message": null,
+          "referenceId": "c99a6455b3e0dc5cd7167ab8c8cc10d2fa153cb509e3f64c6cd0ed9c5b64a8c9",
+          "statusCode": null,
+          "txnId": "my_order_26075",
+          "txnStatus": "pending",
+          "unmappedStatus": "pending"
+      },
+      "result": {
+          "paymentId": "403993715535965242",
+          "merchantName": "Sudhanshu",
+          "merchantVpa": "payutest@hdfcbank",
+          "amount": "1.00",
+          "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent",
+          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluL2M5OWE2NDU1YjNlMGRjNWNkNzE2N2FiOGM4Y2MxMGQyYzgzYTk5NmFhNDhiYTk4MmZjMGQ4MTI1MGY1ODgxZjMvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjhERDNFRUFFLUI5NTktQzY1RS03MDczLTYzQTNGQUUxMjZGRiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMS4wMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSJjOTlhNjQ1NWIzZTBkYzVjZDcxNjdhYjhjOGNjMTBkMmZhMTUzY2I1MDllM2Y2NGM2Y2QwZWQ5YzViNjRhOGM5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSJwYXl1dGVzdEBoZGZjYmFuayI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVOYW1lIiB2YWx1ZT0iU3VkaGFuc2h1Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMS4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+      }
+  }
+  ```
+</Accordion>
+
+<Accordion title="Step 3: Generate the QR from the Retrieved Deeplink" icon="fa-code">
+  Generate the QR from the Deeplink retrieved and show the QR to the customer.
+  After receiving the `intentURIData` from Step 2 of the UPI Online QR flow, you need to:
+
+  1. Prepend `upi://pay?` to create the full UPI deeplink
+  2. Generate a QR code image from that deeplink
+  3. Display the QR code to the customer
+
+  ### Example Response from Step 2
+
+  ```json
+  {
+      "result": {
+          "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent"
+      }
+  }
+  ```
+</Accordion>
+
+<Accordion title="Step 4: Verify the payment" icon="fa-code">
+  <Verify_Payment_Tabs />
+</Accordion>
