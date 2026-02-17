@@ -24,16 +24,6 @@ The Collect Payment API (**_payment** API) is used to collect payments for all t
 
 <PayU_Labs />
 
-<Callout icon="📘" theme="info">
-  **Reference**: For an example of how to submit a payment request on your[website, refer to [Submitting Payment Request on your Website](doc:submitting-payment-request-on-your-website). To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](doc:handling-the-redirect-urls) .
-</Callout>
-
-<Callout icon="📮" theme="default">
-  **Postman Collection**: Access the **Merchant Hosted Checkout >. Net Banking Postman Collection** from the following location:
-
-  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration)
-</Callout>
-
 ## Postman Collection
 
 Accelerate your integration workflow with our net banking Postman collection for PayU Hosted Checkout. Click the Download Postman Collection button below to download and get started.
