@@ -533,8 +533,50 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
 </Accordion>
 
 <Accordion title="Response for S2S request" icon="fa-code">
-  Collect the response in the  [UPI Collection - S2S](ref:_payment_s2s_upi_collection). under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs.](ref:addl_info-payment-apis#response-for-initial-server-to-server-request)
+  The response for the S2S payment request is not as in Merchant Hosted or PayU Hosted Checkout. 
 
+```json
+{
+   "metaData": {
+      "message": null,
+      "referenceId": "5ae6e6d94b4b5f9dee282b95f6020c98",
+      "statusCode": null,
+      "txnId": "upiIntentTxn12345",
+      "txnStatus": "pending",
+      "unmappedStatus": "pending"
+   },
+   "result": {
+      "paymentId": "15257049438",
+      "merchantName": "Your Merchant Name",
+      "merchantVpa": "merchant@hdfcbank",
+      "amount": "10.00",
+      "intentURIData": "upi://mandate?pa=merchant@hdfcbank&pn=MERCHANT NAME&mn=&tid=upiIntentTxn12345&validitystart=05062025&validityend=01122025&am=10.00&amrule=MAX&recur=MONTHLY&recurvalue=30&recurtype=&tr=15257049438&cu=INR&mc=5411&tn=UPI Transaction for upiIntentTxn12345&mode=13&purpose=14&orgid=159240&rev=Y&block=N&txnType=CREATE",
+      "postToBank": {
+         "token": "C6ABAA6A-F0CE-432A-61C1-CFA48EDE847B",
+         "amount": "10.00",
+         "mihpayid": "5ae6e6d94b4b5f9dee282b95f6020c98",
+         "disableIntentSeamlessFailure": "0",
+         "payeeVpa": "merchant@hdfcbank",
+         "payeeName": "Your Merchant Name",
+         "additionalCharges": 0,
+         "transactionFee": "10.00"
+      },
+      "issuerUrl": "https://secure.payu.in/intentSeamlessHandler.php"
+   }
+}
+```
+
+<Accordion title="Response parameters description" icon="fa-code">
+
+| **Parameter**    | **Description**                                                                                                                                                                                                                                                            |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| result           | This parameter contains a JSON Object that includes **post_uri** and **post_data** fields.                                                                                                                                                                                 |
+| result.post_uri  | This field contains the redirect URL.                                                                                                                                                                                                                                      |
+| result.post_data | post_data is a base64 encoded string. The merchant needs to decode post_data, which is an HTML format with auto submit, which then needs to be shown on the customer’s browser. The HTML being auto submit, it will take the customer to the bank page for authentication. |
+| status           | This field contains the status for the transaction.                                                                                                                                                                                                                        |
+| error            | For the failed transactions, this parameter provides the reason for  failure.                                                                                                                                                                                              |
+| message          | This field contains any additional message about the transaction.                                                                                                                                                                                                          |
+</Accordion>
   <Accordion title="Using the IntentURIData value in response" icon="fa-code">
     The **IntentURIData** parameter returns the URI in the response. For example, it contains the first debit amount .
 
