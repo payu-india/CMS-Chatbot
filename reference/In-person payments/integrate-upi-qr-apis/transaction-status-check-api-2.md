@@ -195,6 +195,10 @@ curl -X POST "https://info.payu.in/merchant/postservice.php" \
 
 ### DBQR
 
+<Callout icon="📘" theme="info">
+  The **form** query parameter in the header must include the values as **2** to submit data via a multipart/form-data POST request.
+</Callout>
+
 ```Text cURL
 curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
