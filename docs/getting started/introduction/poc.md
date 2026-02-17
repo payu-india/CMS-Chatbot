@@ -71,24 +71,22 @@ Accelerate your integration workflow with our net banking Postman collection for
 |    |    |    |
 
 <Accordion title="My Accordion Title">
+  ``` cURL
+  var merchant_key = 'smsplus';
+  var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
+  // date
+  var date = new Date();
+  date = date.toUTCString();
 
-```
-var merchant_key = 'smsplus';
-var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
-// date
-var date = new Date();
-date = date.toUTCString();
+  // authorization
+  var authorization = getAuthHeader(date);
 
-// authorization
-var authorization = getAuthHeader(date);
-
-function getAuthHeader(date) {
-    var AUTH_TYPE = 'sha512';
-    var data = isEmpty(request['data']) ? "" : request['data'];
-    var hash_string = data + '|' + date + '|' + merchant_secret;
-    var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-    return `hmac username="${merchant_key}", algorithm="${AUTH_TYPE}", headers="date", signature="${hash}"`;
-}
-```
-
+  function getAuthHeader(date) {
+      var AUTH_TYPE = 'sha512';
+      var data = isEmpty(request['data']) ? "" : request['data'];
+      var hash_string = data + '|' + date + '|' + merchant_secret;
+      var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
+      return `hmac username="${merchant_key}", algorithm="${AUTH_TYPE}", headers="date", signature="${hash}"`;
+  }
+  ```
 </Accordion>
