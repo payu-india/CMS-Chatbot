@@ -10,8 +10,9 @@ metadata:
 next:
   description: ''
 ---
-
 This section includes the workflow and steps to integrate UPI Intent with Server-to-Server integration.
+
+## Smart Intent Flow
 
 ### Workflow
 
