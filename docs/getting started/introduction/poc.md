@@ -14,7 +14,7 @@ Accelerate your integration workflow with our net banking Postman collection for
                 <style>
                 .tooltip-btn {
                     position: relative;
-                    background-color: #28a745;
+                    background-color: #d85947;
                     color: white;
                     padding: 10px 20px;
                     border: none;
