@@ -8,14 +8,13 @@ metadata:
 ---
 <br />
 
-<Callout icon="👍" theme="okay">
-  Experience the end-to-end PayU Hosted Checkout flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+Accelerate your integration workflow with our net banking Postman collection for PayU Hosted Checkout. Click the Download Postman Collection button below to download and get started.
 
-  <HTMLBlock>{`
+<HTMLBlock>{`
                 <style>
                 .tooltip-btn {
                     position: relative;
-                    background-color: #4CAF50;
+                    background-color: #28a745;
                     color: white;
                     padding: 10px 20px;
                     border: none;
@@ -39,10 +38,9 @@ metadata:
                 }
                 </style>
 
-                <button onclick="window.open('https://payu.in/integrationlab/payu-hosted', '_blank')" 
+                <button onclick="window.open('https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration', '_blank')" 
                         class="tooltip-btn" 
-                        data-tooltip="Click here to see the PayU Hosted Checkout end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
-                    Experience the flow and get the code
+                        data-tooltip="Click to download the Postman collection and explore APIs.">
+                    Download Postman Collection
                 </button>
-  `}</HTMLBlock>
-</Callout>
+`}</HTMLBlock>
