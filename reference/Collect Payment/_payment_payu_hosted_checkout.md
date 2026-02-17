@@ -59,7 +59,7 @@ Accelerate your integration workflow with our net banking Postman collection for
                 <button onclick="window.open('https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration', '_blank')" 
                         class="tooltip-btn" 
                         data-tooltip="Click to download the Postman collection and explore APIs.">
-                    Download Postman Collection
+                    Access Postman Collection
                 </button>
 `}</HTMLBlock>
 
