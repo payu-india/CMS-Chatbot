@@ -3,6 +3,8 @@ name: Postman_collection
 ---
 Accelerate your integration workflow with our net banking Postman collection for PayU Hosted Checkout. Click the Download Postman Collection button below to download and get started.
 
+<br />
+
 <HTMLBlock>{`
                 <style>
                 .tooltip-btn {
