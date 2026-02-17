@@ -208,7 +208,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
 --data-urlencode 'var1=b5f297999988988959'
 ```
 
-## Response parmeters
+## Response parameters
 
 <Table align={["left","left"]}>
   <thead>
