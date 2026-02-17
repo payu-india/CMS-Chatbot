@@ -56,11 +56,11 @@ Accelerate your integration workflow with our net banking Postman collection for
 </Tabs>
 
 <Cards>
-  <Card title="Method" href="#" icon="fa-rocket">
+  <Card title="Method">
     POST
   </Card>
 
-  <Card title="Endpoint" href="#" icon="fa-code">
+  <Card title="Endpoint">
     /v2/payments
   </Card>
 </Cards>
