@@ -1,11 +1,11 @@
 ---
-title: v2 Dynamic QR Generation API
+title: v2 UPI DBQR API
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-The **_payment** API can be used to generate a UPI QR which can be used for offline payment collections. The **omniChannelDetails** JSON object is included in the request for posting the Omnichannel details.
+The **_payment** API can be used to generate an UPI QR which can be used for offline payment collections. The **omniChannelDetails** JSON object is included in the request for posting the Omnichannel details.
 
 ### Environment
 
