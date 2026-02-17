@@ -44,3 +44,13 @@ Accelerate your integration workflow with our net banking Postman collection for
                     Access Postman Collection
                 </button>
 `}</HTMLBlock>
+
+<Tabs>
+  <Tab title="Method">
+    POST
+  </Tab>
+
+  <Tab title="Endpoint">
+    /v2/payments
+  </Tab>
+</Tabs>
