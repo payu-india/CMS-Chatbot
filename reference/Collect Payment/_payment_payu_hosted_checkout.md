@@ -24,6 +24,8 @@ The Collect Payment API (**_payment** API) is used to collect payments for all t
 
 <PayU_Labs />
 
+<br />
+
 ## Postman Collection
 
 <Postman_collection />
