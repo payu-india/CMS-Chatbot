@@ -185,15 +185,11 @@ The **Transaction Status Check** API is used to check the status of the transact
 
 ## Sample request
 
-<br />
-
 ```Text cURL
 curl -X POST "https://info.payu.in/merchant/postservice.php?form=2" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d 'key=vDy3i7&command=check_bqr_txn_status&hash=8bb33d0ed43485019eab261cc5f73838149e3bbc1d253e63ca829ff05975c173ec9f308bafe022605aa7fce31821ea3b18df3752accd8a7f50658a96552a0860&var1=980&var2=UPI&var3=Optional'
 ```
-
-<br />
 
 ## Response parameters
 
