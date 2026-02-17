@@ -185,28 +185,15 @@ The **Transaction Status Check** API is used to check the status of the transact
 
 ## Sample request
 
-### General
+<br />
 
 ```Text cURL
-curl -X POST "https://info.payu.in/merchant/postservice.php" \
+curl -X POST "https://info.payu.in/merchant/postservice.php?form=2" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d 'key=vDy3i7&command=check_bqr_txn_status&hash=8bb33d0ed43485019eab261cc5f73838149e3bbc1d253e63ca829ff05975c173ec9f308bafe022605aa7fce31821ea3b18df3752accd8a7f50658a96552a0860&var1=980&var2=UPI&var3=Optional'
 ```
 
-### DBQR
-
-<Callout icon="📘" theme="info">
-  The **form** query parameter in the header must include the values as **2** to submit data via a multipart/form-data POST request.
-</Callout>
-
-```Text cURL
-curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=smsplus' \
---data-urlencode 'command=check_bqr_txn_status' \
---data-urlencode 'hash={{hash}}' \
---data-urlencode 'var1=b5f297999988988959'
-```
+<br />
 
 ## Response parameters
 
@@ -263,25 +250,13 @@ curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
 
 ## Sample response
 
-### Success
-
-* **General**
+* **Success**
 
 ```Text JSON
 {
   "status": 1,
   "msg": "Transaction has been already\nCompleted.",
   "result": "eyJtaWhwYXlpZCI6NDAzOTkzNzE1NTExODQxNjcwLCJtb2RlIjoiREJRUiIsInN0YXR1cyI6InN1Y2Nlc3MiLCJrZXkiOiJ2RHkzaTciLCJ0eG5pZCI6Ijk4MCIsImFtb3VudCI6IjEuMDAiLCJhZGRlZG9uIjoiMjAxOS0wNS0yMyAxODoyMzozMiIsInByb2R1Y3RpbmZvIjoiT2ZmbGluZSBEeW5hbWljIFFSIiwiZmlyc3RuYW1lIjoicm9uYWxkbyIsImxhc3RuYW1lIjoiIiwiYWRkcmVzczEiOiJiZXN0ZWNoIGJ1c2luZXNzIHRvd2VyICBzb2huYSByb2FkICBzZWN0b3IgNDggIGd1cmdhb24gMTIyMDAxIiwiYWRkcmVzczIiOiIiLCJjaXR5IjoiaHlkZXJhYmFkIiwic3RhdGUiOiIiLCJjb3VudHJ5IjoiIiwiemlwY29kZSI6IjUwMDA3MiIsImVtYWlsIjoibW52c2s5N0BnbWFpbC5jb20iLCJwaG9uZSI6IjcwNjAzMzQ1MDEiLCJ1ZGYxIjoiMTgwIiwidWRmMiI6IiIsInVkZjMiOiIiLCJ1ZGY0IjoiIiwidWRmNSI6IiIsInVkZjYiOiIiLCJ1ZGY3IjoiIiwidWRmOCI6IiIsInVkZjkiOiIiLCJ1ZGYxMCI6IiIsImNhcmRfdG9rZW4iOiIiLCJjYXJkX25vIjoiIiwiZmllbGQwIjoiRFlROTgwMTM2MjI3NiIsImZpZWxkMSI6IiIsImZpZWxkMiI6IjUyOTgzNzQ2NDAiLCJmaWVsZDMiOiI3ODI3MDU3NjA0QHlibCIsImZpZWxkNCI6IiIsImZpZWxkNSI6InllbGxvd3FyLnBheXV0ZXN0ZHluYW1pY3FyQGhkZmNiYW5rIXBheXV0ZXN0ZHluYW1pY3FyIU5BIiwiZmllbGQ2IjoiS290YWsgTWFoaW5kcmEgQmFuayE5MTEyMTI0MTg1IUtLQkswMDAwMjU1ITkxNzgyNzA1NzYwNCIsImZpZWxkNyI6IlRyYW5zYWN0aW9uIHN1Y2Nlc3MiLCJmaWVsZDgiOiIiLCJmaWVsZDkiOiJTVUNDRVNTfENvbXBsZXRlZCBVc2luZyBDYWxsYmFjayIsInBheW1lbnRfc291cmNlIjoicGF5dSIsIlBHX1RZUEUiOiJCUVIiLCJlcnJvciI6IkUwMDAiLCJlcnJvcl9NZXNzYWdlIjoiTm8gRXJyb3IiLCJuZXRfYW1vdW50X2RlYml0IjoxLCJ1bm1hcHBlZHN0YXR1cyI6ImNhcHR1cmVkIiwiaGFzaCI6ImQzMGQ0MzY2MWFkYjQ0NGMxNDgyYzkzODMwZTA5OGJmZTY1ZTVjZjgzOWEwMWRiMTlhZDU2MzYxZjM5M2FkZDdhODUyNTZlNDM4M2E2MDZjY2M4MTM0OTZkZTAwN2M1N2QyZGNkYTlkMjI5ZTBlNTk4MjE1MDkwNDdmZTJhNjM2IiwiYmFua19yZWZfbm8iOiI5MTM3Mzk5NTMyMTYiLCJiYW5rX3JlZl9udW0iOiI5MTM3Mzk5NTMyMTYiLCJiYW5rY29kZSI6IlVQSUJRUiIsInN1cmwiOiJodHRwOlwvXC8xMC41MC4yMy4zNSIsImN1cmwiOiJodHRwOlwvXC8xMC41MC4yMy4zNSIsImZ1cmwiOiJodHRwOlwvXC8xMC41MC4yMy4zNSJ9"
-}
-```
-
-* **For DBQR**
-
-```Text JSON
-{
-    "status": 1,
-    "msg": "Transaction has been already Completed.",
-    "result": "eyJtaWhwYXlpZCI6MjczMjE4NzgyNTIsImJhbmtfcmVmX251bSI6bnVsbCwiYmFua19yZWZfbm8iOm51bGwsImhhc2giOiI5M2JmMWRlYThhOWVlMDg4N2E4Y2Q5NTgwNTMxMWVhZDZiYmMzMjBlNWI2ZDA4ZDg3MGE3NTA3M2FmNTBkYWEyZDNhZjdjNjY1ODU1ZjRkMGU4OGIwMmZmYTdmNzQ1NjQ5MDI0NzhhMDliYjE5NTIyYzY0YzczZGIxMzNiZjQzNyIsImJhbmtjb2RlIjoiVVBJREJRUiIsIm9mZmVyX2F2YWlsZWQiOm51bGwsIm9mZmVyX2tleSI6bnVsbCwidW5tYXBwZWRzdGF0dXMiOiJkcm9wcGVkIiwiZXJyb3JfTWVzc2FnZSI6Ik1hcmtlZCBkcm9wcGVkIGFzIHRyYW5zYWN0aW9uIGhhcyB0aW1lZCBvdXQiLCJlcnJvciI6IkUyMzEiLCJjdXJsIjoiaHR0cHM6Ly95b3Vyc2l0ZS5jb20vY2FuY2VsIiwic3VybCI6Imh0dHBzOi8veW91cnNpdGUuY29tL3N1Y2Nlc3MiLCJmdXJsIjoiaHR0cHM6Ly95b3Vyc2l0ZS5jb20vZmFpbHVyZSIsInR4bmlkIjoiYjVmMjk3OTk5OTg4OTg4OTU5Iiwia2V5Ijoic21zcGx1cyIsImFkZGVkb24iOiIyMDI2LTAyLTE2IDEzOjUyOjE0IiwiYW1vdW50IjoiMTAuMDAiLCJwYXltZW50X3NvdXJjZSI6InBheXVQdXJlUzJTIiwiUEdfVFlQRSI6IkRCUVItUEciLCJtb2RlIjoiREJRUiIsImNhcmRfbm8iOiIiLCJwcm9kdWN0aW5mbyI6IlVQSSBQYXltZW50IGZvciBPcmRlciIsInN0YXR1cyI6ImZhaWx1cmUiLCJmaWVsZDAiOiIyNzMyMTg3ODI1MiIsImZpZWxkMSI6Ik5BIiwiZmllbGQyIjoiIiwiZmllbGQzIjoiIiwiZmllbGQ0IjoiIiwiZmllbGQ1IjoiIiwiZmllbGQ2IjoiTkF8fCIsImZpZWxkNyI6IiIsImZpZWxkOCI6IiIsImZpZWxkOSI6Ik1hcmtlZCBkcm9wcGVkIGFzIHRyYW5zYWN0aW9uIGhhcyB0aW1lZCBvdXQiLCJ1ZGYxIjoiIiwidWRmMiI6IiIsInVkZjMiOiIiLCJ1ZGY0IjoiIiwidWRmNSI6IiIsInVkZjYiOiIiLCJ1ZGY3IjoiIiwidWRmOCI6IiIsInVkZjkiOiIiLCJ1ZGYxMCI6IiIsImZpcnN0bmFtZSI6IkpvaG4iLCJsYXN0bmFtZSI6IkRvZSIsImVtYWlsIjoiam9obi5kb2VAZXhhbXBsZS5jb20iLCJwaG9uZSI6Ijk4NzY1NDMyMTAiLCJhZGRyZXNzMSI6IiIsImFkZHJlc3MyIjoiIiwic3RhdGUiOiIiLCJjaXR5IjoiTXVtYmFpIiwiY291bnRyeSI6IkluZGlhIiwiemlwY29kZSI6IjQwMDAwMSIsIm1lQ29kZSI6IntcInBnTWVyY2hhbnRJZFwiOlwiSU5EQjAwMDAwODM3MDcwNlwifSIsImRpc2NvdW50IjoiMC4wMCIsIm5ldF9hbW91bnRfZGViaXQiOjAuMCwiY2FyZF90b2tlbiI6IiJ9"
 }
 ```
 
