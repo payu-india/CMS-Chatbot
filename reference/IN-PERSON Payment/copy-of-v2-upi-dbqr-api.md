@@ -1,7 +1,7 @@
 ---
 title: Copy of v2 UPI DBQR API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
