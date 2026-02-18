@@ -560,7 +560,7 @@ sha512(SALT|status|splitInfo||||||udf5|udf4|udf3|udf2|udf1|email|firstname|produ
 
 The formatted response for the above sample request is similar to the following:
 
-```plaintext
+```json
 Array
 (
     [mihpayid] => 4123**678**2383977
@@ -626,7 +626,7 @@ Array
 
 The formatted response for the above sample request is similar to the following:
 
-```plaintext
+```json
 Array
 (
     [mihpayid] => 412**567**12383977
