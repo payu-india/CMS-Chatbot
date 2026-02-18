@@ -12,7 +12,7 @@ metadata:
 
 ### Video list (summary)
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -50,7 +50,7 @@ metadata:
       </td>
 
       <td>
-        2. Dynamic Payment Links
+        2. Dynamic Payment Links (Integration procedure not in devguide)
       </td>
 
       <td>
