@@ -228,9 +228,9 @@ curl --location 'https://test.payu.in/v3/transaction' \
   <V2_payment_response_params />
 </Accordion>
 
-#### result JSON Object fields description
-
+<Accordion title="result JSON Object fields description" icon="fa-code">
 <V2_payment_result_JSON_Object />
+</Accordion>
 
 ### Sample success response
 
