@@ -16,12 +16,12 @@ name: V2_payment_response_params
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;">status</td>
   <td style="border: 1px solid #ddd; padding: 8px;">This parameter returns the status of web service call. The status can be any of the following:<br/>
-**0** - If web service call failed.<br/>
-**1** - If web service call succeeded.</td>
+\`0\` - If web service call failed.<br/>
+\`1\` - If web service call succeeded.</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;">result</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">This parameter contains the payment status details in a JSON format including payment ID of the transaction.</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">This parameter contains the payment status details in a JSON format including payment ID of the transaction. For more detailes, refer to the result JSON Object fields description table (next accordion)</td>
 </tr>
 </tbody>
 </table>
