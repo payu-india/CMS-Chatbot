@@ -58,13 +58,6 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
   occaecat cupidatat non proident!
 </Accordion>
 
-<OpenAccordion
-  title="Details"
-  icon="fa-solid fa-circle-info"
-  data="This is rendered via the 'data' prop.">
-  <div>And this is from children.</div>
-</OpenAccordion>
-
 ### order object fields description
 
 <V2_order_object />
