@@ -113,9 +113,7 @@ curl -X POST 'https://api.payu.in/v2/payments' \
 }
 ```
 
-<br />
-
-## Request header
+## Request Headers
 
 <V2_payment_header_params />
 
