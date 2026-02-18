@@ -127,8 +127,8 @@ curl -X POST 'https://api.payu.in/v2/payments' \
 | **order**<sup style={{color:'red'}}>*</sup>              | `object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. Parameters are described in the [order Object](https://docs.payu.in/v2/reference/generate-upi-qr#order-object) section. |
 | **additionalInfo**<sup style={{color:'red'}}>*</sup>     | `object` Additional information including UPI-specific parameters like VPA. Parameters are described in the [additionalInfo Object](https://docs.payu.in/v2/reference/generate-upi-qr#additionalinfo-object) section.                                                      |
 | **callBackActions**<sup style={{color:'red'}}>*</sup>    | `object` Actions to perform on the payment server in different scenarios. Parameters are described in the [callBackActions Object](https://docs.payu.in/v2/reference/generate-upi-qr#callbackactions-object) section.                                                      |
-| **billingDetails**<sup style={{color:'red'}}>*</sup>     | `object` Billing details of the customer including name, address, phone number, email, and so on. Parameters are described in the [billingDetails Object](https://docs.payu.in/v2/reference/generate-upi-qr#billingdetails-object) section.                                |
 | **omniChannelDetails**<sup style={{color:'red'}}>*</sup> | `object` The omnichannel details. Parameters are described in the [omniChannelDetails Object](https://docs.payu.in/v2/reference/generate-upi-qr#omnichanneldetails-object) section.                                                                                        |
+| **billingDetails**<sup style={{color:'red'}}>*</sup>     | `object` Billing details of the customer including name, address, phone number, email, and so on. Parameters are described in the [billingDetails Object](https://docs.payu.in/v2/reference/generate-upi-qr#billingdetails-object) section.                                |
 
 ### paymentMethod Object
 
@@ -181,6 +181,19 @@ curl -X POST 'https://api.payu.in/v2/payments' \
   | **codAction**                                        | `string` The URL for Cash on Delivery (COD) action. For example `https://example.com/cod`.         |
 </Accordion>
 
+### omniChannelDetails Object
+
+<Accordion title="Parameters and Description" icon="fa-info-circle">
+  | **Parameter**          | **Description**                                                                                                                                                                |
+  | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | **soundBoxTerminalId** | `string` The identifier of the POS or sound box terminal device used for the transaction. Used for in-person or omnichannel payments. For example `1`                          |
+  | **outletName**         | `string` The name of the merchant outlet or store where the transaction takes place. For example `puma pimpri`.                                                                |
+  | **vendorId**\`         | `string` The vendor or terminal provider identifier associated with the device or outlet. For example `vendorId`.                                                              |
+  | **tips**               | `string` Tips amount or related information for the transaction, if applicable.                                                                                                |
+  | **childMerchId**       | `string` The child merchant ID when using split settlements or multiple outlets under a parent merchant. For example `123456`                                                  |
+  | **expiryTime**         | `string` or `numeric` The validity of the QR or transaction in **seconds**. If you do not pass this value, merchant-level or global expiry will be applied. For example `100`. |
+</Accordion>
+
 ### billingDetails Object
 
 <Accordion title="Parameters and Description" icon="fa-info-circle">
@@ -196,19 +209,6 @@ curl -X POST 'https://api.payu.in/v2/payments' \
   | **state**                                        | `string` The state of the billing address. For example `Rajasthan`.                 |
   | **country**                                      | `string` The country of the billing address. For example `India`                    |
   | **zipCode**                                      | `string` The postal code. For example `321028`.                                     |
-</Accordion>
-
-### omniChannelDetails Object
-
-<Accordion title="Parameters and Description" icon="fa-info-circle">
-  | **Parameter**          | **Description**                                                                                                                                                                |
-  | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | **soundBoxTerminalId** | `string` The identifier of the POS or sound box terminal device used for the transaction. Used for in-person or omnichannel payments. For example `1`                          |
-  | **outletName**         | `string` The name of the merchant outlet or store where the transaction takes place. For example `puma pimpri`.                                                                |
-  | **vendorId**\`         | `string` The vendor or terminal provider identifier associated with the device or outlet. For example `vendorId`.                                                              |
-  | **tips**               | `string` Tips amount or related information for the transaction, if applicable.                                                                                                |
-  | **childMerchId**       | `string` The child merchant ID when using split settlements or multiple outlets under a parent merchant. For example `123456`                                                  |
-  | **expiryTime**         | `string` or `numeric` The validity of the QR or transaction in **seconds**. If you do not pass this value, merchant-level or global expiry will be applied. For example `100`. |
 </Accordion>
 
 ## Response Parameters
