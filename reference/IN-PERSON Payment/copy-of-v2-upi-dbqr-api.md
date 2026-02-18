@@ -45,11 +45,6 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
 
 ### paymentMethod Object Parameters
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
-</Accordion>
 
 <Accordion title="paymentMethod Object Parameters" icon="fa-info-circle">
   | **Parameter**                                   | **Description**                                                |
