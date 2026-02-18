@@ -43,9 +43,15 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
 | billingDetails<sup style={{color:'red'}}>*</sup>  | `object` Billing details of the customer including name, address, phone number, email, and so on. Parameters are described in the billingDetails Object Parameters section.                                         |
 |                                                   |                                                                                                                                                                                                                     |
 
-### `paymentMethod `Object Parameters
+### paymentMethod Object Parameters
 
-<Accordion>
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
+
+<Accordion title="paymentMethod Object Parameters" icon="fa-info-circle">
   | **Parameter**                                   | **Description**                                                |
   | :---------------------------------------------- | :------------------------------------------------------------- |
   | **name**<sup style={{color:'red'}}>\*</sup>     | `string` Represents the payment method used. For UPI, use UPI. |
