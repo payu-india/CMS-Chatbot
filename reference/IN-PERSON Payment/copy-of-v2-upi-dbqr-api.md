@@ -32,7 +32,10 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
 
 ## Request Parameters
 
-<br />
+| **Parameter**                                    | Description |    |
+| :----------------------------------------------- | :---------- | :- |
+| `accountId`<span style={{color: 'red'}}>*</span> |             |    |
+|                                                  |             |    |
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
