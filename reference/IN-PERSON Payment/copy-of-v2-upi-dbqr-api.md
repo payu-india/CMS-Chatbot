@@ -24,13 +24,105 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
 
 ## Sample Request
 
-<br />
+```curl cURL - Sample Request
+curl -X POST 'https://api.payu.in/v2/payments' \
+  -H 'Content-Type: application/json' \
+  -H "date: {{date}}" \
+  -H "authorization: {{authorization}}" \
+  -d '{
+    "accountId": "smsplus",
+    "txnId": "b5f29799999987988995",
+    "amount": 10,
+    "currency": "INR",
+    "paymentSource": "WEB",
+    "paymentMethod": {
+      "name": "DBQR",
+      "bankCode": "UPIDBQR"
+    },
+    "order": {
+      "productInfo": "UPI Payment for Order",
+      "userDefinedFields": {
+        "udf1": "",
+        "udf2": "",
+        "udf3": "",
+        "udf4": "",
+        "udf5": "",
+        "udf6": "",
+        "udf7": "",
+        "udf8": "",
+        "udf9": "",
+        "udf10": ""
+      },
+      "paymentChargeSpecification": {
+        "price": "10.00"
+      }
+    },
+    "additionalInfo": {
+      "txnFlow": "seamless",
+      "createOrder": true,
+      "txnS2sFlow": "4",
+      "vpa": "anything@payu"
+    },
+    "callBackActions": {
+      "successAction": "https://yoursite.com/success",
+      "failureAction": "https://yoursite.com/failure",
+      "cancelAction": "https://yoursite.com/cancel"
+    },
+    "omniChannelDetails": {
+      "soundBoxTerminalId": "1",
+      "outletName": "puma pimpri",
+      "vendorId": "vendorId",
+      "tips": "tips",
+      "childMerchId": "childMerchId",
+      "expiryTime": "100"
+    },
+    "billingDetails": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "phone": "9876543210",
+      "email": "john.doe@example.com",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "zipCode": "400001"
+    }
+  }'
+```
 
-## Request header
+## Sample Response
+
+```json Success Response
+{
+   "result":{
+      "authAction":"https://api.payu.in/payments/999993715527842445/otps",
+      "amount":"10.00",
+      "merchantVpa":"anything@payu",
+      "postToBank":{
+         "token":"D60703B2-AC69-CA71-F987-3A1C404954D8",
+         "amount":"10.00",
+         "mihpayid":"a55a7c603186536fad0d6f9fe9e1a1c9828b7069599cb2623538f0ce18175cfc",
+         "payeeVpa":"gauravdua4.payu@indus",
+         "payeeName":"TestMerchant180012",
+         "transactionFee":"10.00"
+      },
+      "merchantName":"TestMerchant180012",
+      "paymentId":"999993715527842445",
+      "qrString":"upi://pay?pa=gauravdua4.payu@indus&pn=Test Company&tr=999993715527842445&tid=PPPL9999937155278424452312250048356&am=10.00&cu=INR&tn=UPI Transaction"
+   },
+   "status":"PENDING"
+}
+```
+
+## Header Parameters
 
 <V2_payment_header_params />
 
-## Request body
+## Request Parameters
+
+| **Parameter**                                      | **Description**                                                                         |
+| :------------------------------------------------- | :-------------------------------------------------------------------------------------- |
+| `accountId`<span style={{ color: 'red' }}>*</span> | `string` The merchant key provided by PayU during onboarding. For example `MERCHANT123` |
+|                                                    |                                                                                         |
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
