@@ -228,6 +228,10 @@ curl --location 'https://test.payu.in/v3/transaction' \
   <V2_payment_response_params />
 </Accordion>
 
+#### result JSON Object fields description
+
+<V2_payment_result_JSON_Object />
+
 ### Sample success response
 
 ```json
