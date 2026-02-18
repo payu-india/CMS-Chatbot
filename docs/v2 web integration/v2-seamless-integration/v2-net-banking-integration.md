@@ -246,7 +246,7 @@ After the payment is processed, you must verify the payment status using the ver
 | Test        | `https://test.payu.in/v3/transaction` |
 | Production  | `https://api.payu.in/v3/transaction`  |
 
-### Response parameter
+### Response parameters
 <Accordion title="Response Parameters" icon="fa-code">
   <V2_payment_response_params />
 </Accordion>
