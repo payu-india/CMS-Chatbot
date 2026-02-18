@@ -32,13 +32,6 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
 
 ## Request Parameters
 
-<Accordion title="My Accordion Title">
-  |    |    |    |
-  | :- | :- | :- |
-  |    |    |    |
-  |    |    |    |
-</Accordion>
-
 | **Parameter**                                     | **Description**                                                                                                                                                                                                     |
 | :------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | accountId<sup style={{color: 'red'}}>*</sup>      | `string` The merchant key provided by PayU during onboarding. For example `MERCHANT123`.                                                                                                                            |
@@ -50,12 +43,15 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
 | billingDetails<sup style={{color:'red'}}>*</sup>  | `object` Billing details of the customer including name, address, phone number, email, and so on. Parameters are described in the billingDetails Object Parameters section.                                         |
 |                                                   |                                                                                                                                                                                                                     |
 
-### paymentMethod Object Parameters
+### `paymentMethod `Object Parameters
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+<Accordion title="paymentMethod Object Parameters">
+
+| **Parameter** | **Description** |
+| :------------ | :-------------- |
+|               |                 |
+|               |                 |
+
 </Accordion>
 
 ### order object fields description
