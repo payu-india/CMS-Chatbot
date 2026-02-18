@@ -39,86 +39,26 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
   |    |    |    |
 </Accordion>
 
-| **Parameter**                                      | **Description**                                                                                                          |
-| :------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------- |
-| `accountId`*                                       | `string` The merchant key provided by PayU during onboarding. For example `MERCHANT123`.                                 |
-| txnId<sup style={{color: 'red'}}>*</sup>           | `string` Transaction ID for transaction tracking and this must be unique for every transaction. For example `REF123456`. |
-| `paymentMethod`<sup style={{color:'red'}}>*</sup> | `Object` Details about the payment method used. Parameters are described in the paymentMethod Object Fields.             |
+| **Parameter**                                     | **Description**                                                                                                                                                                                                     |
+| :------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| accountId<sup style={{color: 'red'}}>*</sup>      | `string` The merchant key provided by PayU during onboarding. For example `MERCHANT123`.                                                                                                                            |
+| txnId<sup style={{color: 'red'}}>*</sup>          | `string` Transaction ID for transaction tracking and this must be unique for every transaction. For example `REF123456`.                                                                                            |
+| paymentMethod<sup style={{color:'red'}}>*</sup>   | `object` Details about the payment method used. Parameters are described in the paymentMethod Object Parameters section.                                                                                            |
+| order<sup style={{color:'red'}}>*</sup>           | `object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. Parameters are described in the order Object Parameters section. |
+| additionalInfo<sup style={{color:'red'}}>*</sup>  | `object` Additional information including UPI-specific parameters like VPA. Parameters are described in the additionalInfo Object Parameters section.                                                               |
+| callBackActions<sup style={{color:'red'}}>*</sup> | `object` Actions to perform on the payment server in different scenarios. Parameters are described in the callBackActions Object Parameters section.                                                                |
+| billingDetails<sup style={{color:'red'}}>*</sup>  | `object` Billing details of the customer including name, address, phone number, email, and so on. Parameters are described in the billingDetails Object Parameters section.                                         |
+|                                                   |                                                                                                                                                                                                                     |
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction ID for transaction tracking and this must be unique for every transaction.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For UPI payments:<br>• name: Must be "UPI"<br>• bankCode: Must be "UPI"</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>{"name": "UPI", "bankCode": "UPI"}</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a>.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including UPI-specific parameters like VPA. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo object fields description</a>.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For more information, refer to <a href="#callbackactions-object-fields-description">callBackActions object fields description</a>.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="#billingdetails-object-fields-description">billingDetails object fields description</a>.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+### paymentMethod Object Parameters
 
-### paymentMethod object
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>name</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Represents the payment method used. For UPI, use UPI</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">UPI</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><strong>bankCode</strong><br/><code>mandatory</code></td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Contains the bank code.For UPI, use UPI</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">UPI</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+<br />
 
 ### order object fields description
 
