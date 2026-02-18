@@ -22,6 +22,10 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
 
 <V2_payment_envrionment />
 
+## Sample Request
+
+<br />
+
 ## Request header
 
 <V2_payment_header_params />
