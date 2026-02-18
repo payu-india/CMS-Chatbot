@@ -127,8 +127,6 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
 {
   "accountId": "smsplus",
   "referenceId": "b5f2d8785768087678fm9",
-  "currency": "INR",
-  "paymentSource": "WEB",
   "order": {
     "productInfo": "Test Product",
     "orderedItem": [
@@ -170,10 +168,14 @@ authorization: hmac username="smsplus", algorithm="sha512", headers="date", sign
 
 ```json
 {
+  "message": "Success",
+  "status": 1,
+ {
   "result": {
-    "checkoutUrl": "https://pp78secure.payu.in/_payment_options?mihpayid=<mihpayuid>&userToken="
-  },
-  "status": "PENDING"
+     "checkoutUrl": "https://pp78secure.payu.in/_payment_options?mihpayid=<mihpayuid>&userToken="
+     },
+     "status": "PENDING"
+ }
 }
 ```
 
