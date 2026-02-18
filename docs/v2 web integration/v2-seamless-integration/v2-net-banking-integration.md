@@ -125,32 +125,32 @@ The v2/payments API request for Net Banking seamless integration contains the fo
 
 <Accordion title="Additional Info Object" icon="fa-code">
   <HTMLBlock>{`
-                  <table style="width: 100%; border-collapse: collapse;">
-                  <thead>
-                  <tr>
-                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
-                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
-                    <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
-                    <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
-                    <td style="border: 1px solid #ddd; padding: 8px;">60</td>
-                  </tr>
-                  <tr>
-                    <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
-                    <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
-                    <td style="border: 1px solid #ddd; padding: 8px;">true</td>
-                  </tr>
-                  <tr>
-                    <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
-                    <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
-                    <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
-                  </tr>
-                  </tbody>
-                  </table>
+                    <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                    <tr>
+                      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Parameter</th>
+                      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+                      <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td style="border: 1px solid #ddd; padding: 8px;"><strong>partnerHoldTime</strong><br/><code>optional</code></td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">Time held by the partner for the transaction.</td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">60</td>
+                    </tr>
+                    <tr>
+                      <td style="border: 1px solid #ddd; padding: 8px;"><strong>createOrder</strong><br/><code>optional</code></td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">A flag to store the order details (true/false).</td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">true</td>
+                    </tr>
+                    <tr>
+                      <td style="border: 1px solid #ddd; padding: 8px;"><strong>txnS2sFlow</strong><br/><code>optional</code></td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">For defining seamless/non-seamless flows in handling payments.</td>
+                      <td style="border: 1px solid #ddd; padding: 8px;">seamless</td>
+                    </tr>
+                    </tbody>
+                    </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -245,6 +245,15 @@ After the payment is processed, you must verify the payment status using the ver
 | ----------- | ------------------------------------- |
 | Test        | `https://test.payu.in/v3/transaction` |
 | Production  | `https://api.payu.in/v3/transaction`  |
+
+### Response parameter
+<Accordion title="Response Parameters" icon="fa-code">
+  <V2_payment_response_params />
+</Accordion>
+<Accordion title="result JSON Object fields description" icon="fa-code">
+<V2_payment_result_JSON_Object />
+</Accordion>
+
 
 ### Sample request
 
