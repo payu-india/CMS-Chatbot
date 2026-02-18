@@ -24,6 +24,71 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
 
 ## Sample Request
 
+```curl cURL
+curl -X POST 'https://api.payu.in/v2/payments' \
+  -H 'Content-Type: application/json' \
+  -H "date: {{date}}" \
+  -H "authorization: {{authorization}}" \
+  -d '{
+    "accountId": "smsplus",
+    "txnId": "b5f29799999987988995",
+    "amount": 10,
+    "currency": "INR",
+    "paymentSource": "WEB",
+    "paymentMethod": {
+      "name": "DBQR",
+      "bankCode": "UPIDBQR"
+    },
+    "order": {
+      "productInfo": "UPI Payment for Order",
+      "userDefinedFields": {
+        "udf1": "",
+        "udf2": "",
+        "udf3": "",
+        "udf4": "",
+        "udf5": "",
+        "udf6": "",
+        "udf7": "",
+        "udf8": "",
+        "udf9": "",
+        "udf10": ""
+      },
+      "paymentChargeSpecification": {
+        "price": "10.00"
+      }
+    },
+    "additionalInfo": {
+      "txnFlow": "seamless",
+      "createOrder": true,
+      "txnS2sFlow": "4",
+      "vpa": "anything@payu"
+    },
+    "callBackActions": {
+      "successAction": "https://yoursite.com/success",
+      "failureAction": "https://yoursite.com/failure",
+      "cancelAction": "https://yoursite.com/cancel"
+    },
+    "omniChannelDetails": {
+      "soundBoxTerminalId": "1",
+      "outletName": "puma pimpri",
+      "vendorId": "vendorId",
+      "tips": "tips",
+      "childMerchId": "childMerchId",
+      "expiryTime": "100"
+    },
+    "billingDetails": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "phone": "9876543210",
+      "email": "john.doe@example.com",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "zipCode": "400001"
+    }
+  }'
+```
+
 <br />
 
 ## Request header
@@ -60,16 +125,16 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
   | **orderedItem**                                                   | `array` Details about the items ordered.                                                                                                                                                                                                                             |
   | **userDefinedFields**                                             | `object` These are user defined fields to collect custom data. You pass the following fields in this object: <ul><li>`udf1`</li> <li>udf2</li> <li>udf3</li> <li>udf4</li> <li>udf5</li> <li>udf6</li> <li>udf7</li> <li>udf8</li> <li>udf9</li> <li>udf10</li></ul> |
   | **paymentChargeSpecification**<sup style={{color:'red'}}>\*</sup> | `object` The payment charge details such as amount and charges.                                                                                                                                                                                                      |
+
   #### paymentChargeSpecification Object Parameters
 
-| **Parameters**                               | **Description**                                             |
-| :------------------------------------------- | :---------------------------------------------------------- |
-| **price**<sup style={{color:'red'}}>\*</sup> | `decimal` The transaction amount. For example `1000`        |
-| **netAmountDebit**                           | `decimal` The net amount to be debited. For example `1000`. |
-| **taxSpecification**                         | `object` Tax details of the product or order.               |
-| **convenienceFee**                           | `string` The fess format. For example `CC:12`               |
-| **offers**                                   | `object` Offers applied or available for the payment.       |
-
+  | **Parameters**                               | **Description**                                             |
+  | :------------------------------------------- | :---------------------------------------------------------- |
+  | **price**<sup style={{color:'red'}}>\*</sup> | `decimal` The transaction amount. For example `1000`        |
+  | **netAmountDebit**                           | `decimal` The net amount to be debited. For example `1000`. |
+  | **taxSpecification**                         | `object` Tax details of the product or order.               |
+  | **convenienceFee**                           | `string` The fess format. For example `CC:12`               |
+  | **offers**                                   | `object` Offers applied or available for the payment.       |
 </Accordion>
 
 <br />
