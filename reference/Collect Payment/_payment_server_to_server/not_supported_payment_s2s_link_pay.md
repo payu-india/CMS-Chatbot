@@ -1,5 +1,5 @@
 ---
-title: Collect Payment API - S2S Link and Pay
+title: '[Not Supported]Collect Payment API - S2S Link and Pay'
 excerpt: ''
 api:
   file: payu-api-23.json
