@@ -171,6 +171,19 @@ curl -X POST 'https://api.payu.in/v2/payments' \
 
 </Accordion>
 
+### callBackActions Object
+
+<Accordion title="Parameters and Description" icon="fa-info-circle">
+
+| **Parameter**                                        | **Description**                                                                                    |
+| :--------------------------------------------------- | :------------------------------------------------------------------------------------------------- |
+| **successAction**<sup style={{color:'red'}}>\*</sup> | `string` The URL to be called on payment success. For example `https://example.com/success`.       |
+| **failureAction**<sup style={{color:'red'}}>\*</sup> | `string` The URL to be called on payment failure. For example `https://example.com/failure`.       |
+| **cancelAction**<sup style={{color:'red'}}>\*</sup>  | `string` URL to be called if a user cancels the payment. For example `https://example.com/cancel`. |
+| **codAction**                                        | `string` The URL for Cash on Delivery (COD) action. For example `https://example.com/cod`.         |
+
+</Accordion>
+
 <V2_order_object />
 
 ### additionalInfo object fields description
