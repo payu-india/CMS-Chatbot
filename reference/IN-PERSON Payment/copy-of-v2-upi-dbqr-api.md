@@ -32,15 +32,15 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
 
 ## Request Parameters
 
-| **Parameter**                                     | **Description**                                                                                                                                                                                                     |
-| :------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| accountId<sup style={{color: 'red'}}>*</sup>      | `string` The merchant key provided by PayU during onboarding. For example `MERCHANT123`.                                                                                                                            |
-| txnId<sup style={{color: 'red'}}>*</sup>          | `string` Transaction ID for transaction tracking and this must be unique for every transaction. For example `REF123456`.                                                                                            |
-| paymentMethod<sup style={{color:'red'}}>*</sup>   | `object` Details about the payment method used. Parameters are described in the paymentMethod Object Parameters section.                                                                                            |
-| order<sup style={{color:'red'}}>*</sup>           | `object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. Parameters are described in the order Object Parameters section. |
-| additionalInfo<sup style={{color:'red'}}>*</sup>  | `object` Additional information including UPI-specific parameters like VPA. Parameters are described in the additionalInfo Object Parameters section.                                                               |
-| callBackActions<sup style={{color:'red'}}>*</sup> | `object` Actions to perform on the payment server in different scenarios. Parameters are described in the callBackActions Object Parameters section.                                                                |
-| billingDetails<sup style={{color:'red'}}>*</sup>  | `object` Billing details of the customer including name, address, phone number, email, and so on. Parameters are described in the billingDetails Object Parameters section.                                         |
+| **Parameter**                                         | **Description**                                                                                                                                                                                                     |
+| :---------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **accountId**<sup style={{color: 'red'}}>*</sup>      | `string` The merchant key provided by PayU during onboarding. For example `MERCHANT123`.                                                                                                                            |
+| **txnId**<sup style={{color: 'red'}}>*</sup>          | `string` Transaction ID for transaction tracking and this must be unique for every transaction. For example `REF123456`.                                                                                            |
+| **paymentMethod**<sup style={{color:'red'}}>*</sup>   | `object` Details about the payment method used. Parameters are described in the paymentMethod Object Parameters section.                                                                                            |
+| **order**<sup style={{color:'red'}}>*</sup>           | `object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. Parameters are described in the order Object Parameters section. |
+| **additionalInfo**<sup style={{color:'red'}}>*</sup>  | `object` Additional information including UPI-specific parameters like VPA. Parameters are described in the additionalInfo Object Parameters section.                                                               |
+| **callBackActions**<sup style={{color:'red'}}>*</sup> | `object` Actions to perform on the payment server in different scenarios. Parameters are described in the callBackActions Object Parameters section.                                                                |
+| **billingDetails**<sup style={{color:'red'}}>*</sup>  | `object` Billing details of the customer including name, address, phone number, email, and so on. Parameters are described in the billingDetails Object Parameters section.                                         |
 
 ### paymentMethod Object
 
@@ -51,7 +51,20 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
   | **bankCode**<sup style={{color:'red'}}>\*</sup> | `string` Contains the bank code.For UPI, use UPI.              |
 </Accordion>
 
-### order object fields description
+### order Object
+
+<Accordion title="Parameters and Description" icon="fa-info-circle">
+
+| **Parameters**                                                    | **Description**                                                                                                                                                                                                                                                      |
+| :---------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **productInfo**<sup style={{color:'red'}}>\*</sup>                | `string` The product details.                                                                                                                                                                                                                                        |
+| **orderedItem**                                                   | `array` Details about the items ordered.                                                                                                                                                                                                                             |
+| **userDefinedFields**                                             | `object` These are user defined fields to collect custom data. You pass the following fields in this object: <ul><li>`udf1`</li> <li>udf2</li> <li>udf3</li> <li>udf4</li> <li>udf5</li> <li>udf6</li> <li>udf7</li> <li>udf8</li> <li>udf9</li> <li>udf10</li></ul> |
+| **paymentChargeSpecification**<sup style={{color:'red'}}>\*</sup> | `object` The payment charge details such as amount and charges.                                                                                                                                                                                                      |
+
+</Accordion>
+
+<br />
 
 <V2_order_object />
 
