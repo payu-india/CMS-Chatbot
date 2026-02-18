@@ -10,6 +10,244 @@ metadata:
 **Source:** All_Integration_Closed_Monthly_Cases-Nov_and_Dec25.csv (Nov–Dec 2025)  
 **Purpose:** Reduce support tickets by covering the most-requested and most-failing topics in short, clear videos.
 
+### Video list (summary)
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Priority
+      </th>
+
+      <th>
+        Video
+      </th>
+
+      <th>
+        Main points covered in the doc
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **P1**
+      </td>
+
+      <td>
+        1. Web Integration Quick Start
+      </td>
+
+      <td>
+        Test key/salt, redirect params, hash build, surl/furl, response verification, test vs live, “callbacks not working”
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P1**
+      </td>
+
+      <td>
+        2. Dynamic Payment Links
+      </td>
+
+      <td>
+        Unique link per order, txnid/udf1, server-side generation
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P1**
+      </td>
+
+      <td>
+        3. Callback & Response Handling
+      </td>
+
+      <td>
+        POST to surl/furl, response fields, verification, idempotency, troubleshooting
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P1**
+      </td>
+
+      <td>
+        4. Test Setup: Key, Salt, Hash
+      </td>
+
+      <td>
+        Where to get credentials, hash order/encoding, UAT vs prod, key rotation
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P1**
+      </td>
+
+      <td>
+        5. API Integration Basics
+      </td>
+
+      <td>
+        Salt vs salt-less, verify API, PG fees/tax, VPA validation, error handling
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P2**
+      </td>
+
+      <td>
+        6. Webhooks
+      </td>
+
+      <td>
+        Events, sample payloads, local testing (ngrok), “payload not received”
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P2**
+      </td>
+
+      <td>
+        7. Plugin (Shopify, WooCommerce, OpenCart)
+      </td>
+
+      <td>
+        Where to get plugin, version, key/salt, surl/furl, webhook, testing
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P3**
+      </td>
+
+      <td>
+        8. Subscription (UPI & Card Mandates)
+      </td>
+
+      <td>
+        Mandate then charge, UPI/eNACH/Card SI, webhooks
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P3**
+      </td>
+
+      <td>
+        9. Refund API
+      </td>
+
+      <td>
+        Enablement, request/status, UAT
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P3**
+      </td>
+
+      <td>
+        10. Payouts & Penny Drop
+      </td>
+
+      <td>
+        Overview, send money API, penny drop, testing
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P3**
+      </td>
+
+      <td>
+        11. Split Settlement
+      </td>
+
+      <td>
+        Flow, sub-merchant onboarding/APIs
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P4**
+      </td>
+
+      <td>
+        12. Mobile SDK (Android & iOS)
+      </td>
+
+      <td>
+        Where to get SDK, basic flow, test mode, save card, upgrades
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P4**
+      </td>
+
+      <td>
+        13. S2S & UPI Collect
+      </td>
+
+      <td>
+        When to use, request/response, Diners/TAVV
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P4**
+      </td>
+
+      <td>
+        14. Payment Method Restriction
+      </td>
+
+      <td>
+        AMEX-only, pg/bankcode/enforce_paymethod
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **P4**
+      </td>
+
+      <td>
+        15. Order ID & Reconciliation
+      </td>
+
+      <td>
+        txnid/udf1, where it appears, matching with reports
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+ 
+
+### Suggested publishing order (in the doc)
+
+Start with **Test Setup** and **Web Quick Start**, then **Callback Handling** and **Dynamic Payment Links**, then **Webhooks** and **API Basics**, so the videos that address the most tickets (callbacks, credentials, web integration) go out first.
+
 ***
 
 ## Priority 1 – Highest impact (Web & API)
