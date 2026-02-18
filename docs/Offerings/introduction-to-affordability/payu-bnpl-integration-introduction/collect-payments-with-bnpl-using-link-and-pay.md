@@ -1,8 +1,8 @@
 ---
-title: Collect Payments with BNPL Link and Pay
+title: '[Not Supported]Collect Payments with BNPL Link and Pay'
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
