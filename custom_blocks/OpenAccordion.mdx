@@ -6,20 +6,21 @@ export default function OpenAccordion({ title, icon, children, data }) {
     <div className="border border-gray-200 rounded-md overflow-hidden mb-4">
       {/* Header */}
       <div className="flex items-center px-4 py-3 bg-gray-50">
-        <i className={`fa ${icon || 'fa-info-circle'} text-green-500 mr-2`}></i>
-        <span className="font-medium text-gray-900">{title || 'My Accordion Title'}</span>
-        <span className="ml-auto text-gray-400">
+        <i className={`fa ${icon || 'fa-info-circle'} text-green-500 mr-2`} />
+        <span className="font-medium text-gray-900">
+          {title || 'My Accordion Title'}
         </span>
+        <span className="ml-auto text-gray-400" />
       </div>
-      
+
       {/* Content - try multiple ways to render content */}
       <div className="px-4 py-4 text-gray-800">
         {/* Option 1: Render data prop if provided */}
         {data && <p>{data}</p>}
-        
+
         {/* Option 2: Render children if available */}
         {children}
-        
+
         {/* If neither data nor children render, show a fallback */}
         {!data && !children && <p>No content provided</p>}
       </div>
