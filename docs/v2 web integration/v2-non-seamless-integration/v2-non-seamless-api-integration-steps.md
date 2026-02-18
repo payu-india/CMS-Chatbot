@@ -269,7 +269,6 @@ curl --location 'https://test.payu.in/v3/transaction' \
       "merchantUTR": null,
       "rupayAuthRefNo": null,
       "authRefNo": "123456789",
-      "originalCurrency": "INR",
       "threeDSVersion": "2.2.0",
       "message": "Found TxnId",
       "txnId": "b5f2d8785768087678fm9"
