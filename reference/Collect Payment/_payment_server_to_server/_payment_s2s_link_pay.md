@@ -5,7 +5,7 @@ api:
   file: payu-api-23.json
   operationId: CollectPaymentAPI-S2SLinkandPay
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
