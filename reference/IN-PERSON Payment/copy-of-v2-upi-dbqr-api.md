@@ -32,10 +32,10 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
 
 ## Request Parameters
 
-| **Parameter**                                    | Description |    |
-| :----------------------------------------------- | :---------- | :- |
-| `accountId`<span style={{color: 'red'}}>*</span> |             |    |
-|                                                  |             |    |
+| **Parameter**                                    | **Description**                                                                         |
+| :----------------------------------------------- | :-------------------------------------------------------------------------------------- |
+| `accountId`<span style={{color: 'red'}}>*</span> | `string` The merchant key provided by PayU during onboarding. For example `MERCHANT123` |
+|                                                  |                                                                                         |
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
