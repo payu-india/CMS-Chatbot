@@ -16,38 +16,38 @@ This section describes the **_payment** API contract for getting split info of t
   Experience the end-to-end **PayU Hosted > Split Settlements** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                              <style>
-                              .tooltip-btn {
-                                  position: relative;
-                                  background-color: #4CAF50;
-                                  color: white;
-                                  padding: 10px 20px;
-                                  border: none;
-                                  border-radius: 5px;
-                                  cursor: pointer;
-                                  font-weight: bold; /* Added this line */
-                              }
-                              .tooltip-btn:hover::after {
-                                  content: attr(data-tooltip);
-                                  position: absolute;
-                                  bottom: 125%;
-                                  left: 50%;
-                                  transform: translateX(-50%);
-                                  background-color: #333;
-                                  color: white;
-                                  padding: 5px 10px;
-                                  border-radius: 4px;
-                                  white-space: nowrap;
-                                  font-size: 12px;
-                                  z-index: 1;
-                              }
-                              </style>
+                                <style>
+                                .tooltip-btn {
+                                    position: relative;
+                                    background-color: #4CAF50;
+                                    color: white;
+                                    padding: 10px 20px;
+                                    border: none;
+                                    border-radius: 5px;
+                                    cursor: pointer;
+                                    font-weight: bold; /* Added this line */
+                                }
+                                .tooltip-btn:hover::after {
+                                    content: attr(data-tooltip);
+                                    position: absolute;
+                                    bottom: 125%;
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                    background-color: #333;
+                                    color: white;
+                                    padding: 5px 10px;
+                                    border-radius: 4px;
+                                    white-space: nowrap;
+                                    font-size: 12px;
+                                    z-index: 1;
+                                }
+                                </style>
 
-                              <button onclick="window.open('https://payu.in/integrationlab/split', '_blank')" 
-                                      class="tooltip-btn" 
-                                      data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
-                                   Experience the flow and get the code
-                              </button>
+                                <button onclick="window.open('https://payu.in/integrationlab/split', '_blank')" 
+                                        class="tooltip-btn" 
+                                        data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
+                                     Experience the flow and get the code
+                                </button>
   `}</HTMLBlock>
 </Callout>
 
@@ -276,7 +276,7 @@ The sample JSON structure for the **splitRequest** field:
 > * For the **absolute** type split, you must ensure that the sum of the amount of all splits is equal to the parent transaction amount.
 > * For the percentage type split, you must ensure that the sum of the percentage of all splits is equal to 100. You can use any number of decimal places for each split, but ensure the sum of the percentage of all splits is equal to 100.
 
-```plaintext
+```json
 {
    "type":"<Type of split, absolute or split>",
    "splitInfo":{
@@ -335,7 +335,7 @@ The following fields are included in the **splitRequest** parameter in a JSON fo
 
 ## Hashing request
 
-Added as extra parameter in the calculation of hash in case of providing Split Request at time of payment. This parameter will be at the end of the hash pattern. and required while sending Split Request at time of payment.
+`splitRequest `is Added as extra parameter in the calculation of hash in case of providing Split Request at time of payment. This parameter will be at the end of the hash pattern. and required while sending Split Request at time of payment.
 
 You need to generate a string using certain parameters and apply the SHA-512 algorithm to this string. For more information on hashing, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
 
@@ -365,6 +365,49 @@ Use the following algorithm for reverse hashing the response from PayU:
 sha512(SALT|status|splitInfo||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
 ```
 
+## Sample request
+
+```curl
+curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=r1o130kpms7je6ah9cnk9qdd4m' \
+--data-urlencode 'key=R19XUWys' \
+--data-urlencode 'command=payment_split' \
+--data-urlencode 'var1={"type":"absolute","payuId":"27098052115","splitInfo":{"0980rOb8":{"aggregatorSubTxnId":"txn2mnmkj45","aggregatorSubAmt": "8.00","aggregatorCharges":"2.00"}}}' \
+--data-urlencode 'hash=9c4cb70537ae7469d395a39439c61000774643d736cc2e02f0066dc922fcd0b7e434a05f95d701fed8e2fa026689d2bee6015f86fd09a842b6f03ac46cdf4ef6'
+```
+
+## Sample response
+
+```json
+{
+    "splitStatus": "success",
+    "splitSegments": [
+        {
+            "merchantKey": "0980rOb8",
+            "amount": 8.0,
+            "subvention_amount": 0,
+            "txnId": "txn2mnmkj45",
+            "additional_charges": 0,
+            "transaction_fee": 8
+        },
+        {
+            "merchantKey": "R19XUWys",
+            "amount": 2.12,
+            "subvention_amount": 0,
+            "txnId": "AKR000002220260201171731",
+            "additional_charges": 0.12,
+            "transaction_fee": 2
+        }
+    ],
+    "message": "Splits creation successful.",
+    "status": 1
+}
+```
+
+<br />
+
 ## Example scenarios
 
 If a Parent Merchant has two child merchants: Merchant A (Key: `P****Y`) and Merchant B (Key: `P***K`). If a customer buys two products from each of the merchants and involves the following:
@@ -381,7 +424,7 @@ So In the final, Merchant wants to settle Amount: 45 to Merchant A and Amount: 3
 
 The split JSON Structure for the above scenarios is similar to the following:
 
-```plaintext
+```json
 {
    "type":"absolute",
    "splitInfo":{
@@ -405,7 +448,7 @@ So, the merchant wants to settle an amount: 45 to Merchant A and amount: 40 to M
 
 The split JSON Structure for the above scenario is similar to the following:
 
-```plaintext
+```json
 {
    "type":"absolute",
    "splitInfo":{
@@ -428,7 +471,7 @@ So In the final, Merchant wants to settle Amount: 60 to child merchant **A** and
 
 The split JSON Structure for the above scenario is similar to the following:
 
-```plaintext
+```json
 {
    "type":"absolute",
    "splitInfo":{
@@ -451,7 +494,7 @@ You may choose to settle 100% for a single child. In such cases, you can pass ze
 * The amount is Rs.10 for **aggregatorSubAmt**.
 * The amount of Rs.0 (or no amount settlement) for **aggregatorCharges**
 
-```plaintext
+```json
 {
 "childKey1":{
     "aggregatorSubTxnId":"txnIdForChild",
@@ -469,7 +512,7 @@ You can pass the parent merchant key along and the child merchant key with the c
 
 A sample value in JSON format for the **splitInfo** parameter:
 
-```plaintext
+```json
 {
    "P41sCY":{
       "aggregatorSubTxnId":"0e7411799c9f0e96620c1",
@@ -486,7 +529,7 @@ A sample value in JSON format for the **splitInfo** parameter:
 <Callout icon="📘" theme="info">
   **Refunds for Split Transactions**: You must include the var8 parameter similar to the following JSON array format with the refund details of split where **child_merchant_key_x** must be substituted with the child merchant key. For more information, refer to  [Refund Transaction API > Other request parameters](ref:refund_transaction_api#other-request-parameters)
 
-  ```plaintext
+  ```json
   {
      "child_merchant_key_1":{
         "amount":100,
