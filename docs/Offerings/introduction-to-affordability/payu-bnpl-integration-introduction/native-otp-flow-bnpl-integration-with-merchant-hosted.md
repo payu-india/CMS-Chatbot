@@ -2,7 +2,7 @@
 title: Native OTP Flow for BNPL
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
