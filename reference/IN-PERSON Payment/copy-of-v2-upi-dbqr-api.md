@@ -159,7 +159,17 @@ curl -X POST 'https://api.payu.in/v2/payments' \
   | **offers**                                   | `object` Offers applied or available for the payment.       |
 </Accordion>
 
-<br />
+### additionalInfo Object
+
+<Accordion title="Parameters and Description" icon="fa-info-circle">
+
+| **Parameter**                              | **Description**                                                                                                                                                                     |
+| :----------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **createOrder**                            | `boolean` Determines whether to store the order details. Possible values: <ul><li>`true`: The order details are stored</li> <li>`false`: The order details are not stored</li></ul> |
+| **txnS2sFlow**                             | `string` Determines the transaction flow type. For example `seamless`.                                                                                                              |
+| **vpa**<sup style={{color:'red'}}>\*</sup> | `string` The UPI handle of the customer. For example `test@payu`.                                                                                                                   |
+
+</Accordion>
 
 <V2_order_object />
 
