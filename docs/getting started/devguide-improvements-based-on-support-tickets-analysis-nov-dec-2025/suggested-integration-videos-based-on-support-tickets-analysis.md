@@ -1,7 +1,7 @@
 ---
 title: Suggested Integration Videos Based on Support Tickets Analysis
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
