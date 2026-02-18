@@ -89,6 +89,30 @@ curl -X POST 'https://api.payu.in/v2/payments' \
   }'
 ```
 
+## Sample Response
+
+```json Success Response
+{
+   "result":{
+      "authAction":"https://api.payu.in/payments/999993715527842445/otps",
+      "amount":"10.00",
+      "merchantVpa":"anything@payu",
+      "postToBank":{
+         "token":"D60703B2-AC69-CA71-F987-3A1C404954D8",
+         "amount":"10.00",
+         "mihpayid":"a55a7c603186536fad0d6f9fe9e1a1c9828b7069599cb2623538f0ce18175cfc",
+         "payeeVpa":"gauravdua4.payu@indus",
+         "payeeName":"TestMerchant180012",
+         "transactionFee":"10.00"
+      },
+      "merchantName":"TestMerchant180012",
+      "paymentId":"999993715527842445",
+      "qrString":"upi://pay?pa=gauravdua4.payu@indus&pn=Test Company&tr=999993715527842445&tid=PPPL9999937155278424452312250048356&am=10.00&cu=INR&tn=UPI Transaction"
+   },
+   "status":"PENDING"
+}
+```
+
 <br />
 
 ## Request header
