@@ -39,11 +39,11 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
   |    |    |    |
 </Accordion>
 
-| **Parameter**                                  | **Description**                                                                                                          |
-| :--------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------- |
-| <sup style={{color: 'red'}}>*</sup>`accountId` | `string` The merchant key provided by PayU during onboarding. For example `MERCHANT123`.                                 |
-| `txnId`<sup style={{color: 'red'}}>*</sup>     | `string` Transaction ID for transaction tracking and this must be unique for every transaction. For example `REF123456`. |
-|                                                |                                                                                                                          |
+| **Parameter**                                    | **Description**                                                                                                          |
+| :----------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------- |
+| accountId<sup style={{color: 'red'}}>*</sup>     | `string` The merchant key provided by PayU during onboarding. For example `MERCHANT123`.                                 |
+| txnId<sup style={{color: 'red'}}>*</sup>         | `string` Transaction ID for transaction tracking and this must be unique for every transaction. For example `REF123456`. |
+| paymentMethod<sup style={{color: 'red'}}>*</sup> | `Object` Details about the payment method used. Parameters are described in the paymentMethod Object Fields.             |
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
