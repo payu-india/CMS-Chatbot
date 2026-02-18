@@ -60,8 +60,15 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
   | **orderedItem**                                                   | `array` Details about the items ordered.                                                                                                                                                                                                                             |
   | **userDefinedFields**                                             | `object` These are user defined fields to collect custom data. You pass the following fields in this object: <ul><li>`udf1`</li> <li>udf2</li> <li>udf3</li> <li>udf4</li> <li>udf5</li> <li>udf6</li> <li>udf7</li> <li>udf8</li> <li>udf9</li> <li>udf10</li></ul> |
   | **paymentChargeSpecification**<sup style={{color:'red'}}>\*</sup> | `object` The payment charge details such as amount and charges.                                                                                                                                                                                                      |
+  #### paymentChargeSpecification Object Parameters
 
-#### paymentChargeSpecification Object
+| **Parameters**                               | **Description**                                             |
+| :------------------------------------------- | :---------------------------------------------------------- |
+| **price**<sup style={{color:'red'}}>\*</sup> | `decimal` The transaction amount. For example `1000`        |
+| **netAmountDebit**                           | `decimal` The net amount to be debited. For example `1000`. |
+| **taxSpecification**                         | `object` Tax details of the product or order.               |
+| **convenienceFee**                           | `string` The fess format. For example `CC:12`               |
+| **offers**                                   | `object` Offers applied or available for the payment.       |
 
 </Accordion>
 
