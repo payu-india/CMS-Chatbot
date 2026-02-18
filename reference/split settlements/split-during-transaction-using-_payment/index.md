@@ -16,45 +16,45 @@ This section describes the **_payment** API contract for getting split info of t
   Experience the end-to-end **PayU Hosted > Split Settlements** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                            <style>
-                            .tooltip-btn {
-                                position: relative;
-                                background-color: #4CAF50;
-                                color: white;
-                                padding: 10px 20px;
-                                border: none;
-                                border-radius: 5px;
-                                cursor: pointer;
-                                font-weight: bold; /* Added this line */
-                            }
-                            .tooltip-btn:hover::after {
-                                content: attr(data-tooltip);
-                                position: absolute;
-                                bottom: 125%;
-                                left: 50%;
-                                transform: translateX(-50%);
-                                background-color: #333;
-                                color: white;
-                                padding: 5px 10px;
-                                border-radius: 4px;
-                                white-space: nowrap;
-                                font-size: 12px;
-                                z-index: 1;
-                            }
-                            </style>
+                              <style>
+                              .tooltip-btn {
+                                  position: relative;
+                                  background-color: #4CAF50;
+                                  color: white;
+                                  padding: 10px 20px;
+                                  border: none;
+                                  border-radius: 5px;
+                                  cursor: pointer;
+                                  font-weight: bold; /* Added this line */
+                              }
+                              .tooltip-btn:hover::after {
+                                  content: attr(data-tooltip);
+                                  position: absolute;
+                                  bottom: 125%;
+                                  left: 50%;
+                                  transform: translateX(-50%);
+                                  background-color: #333;
+                                  color: white;
+                                  padding: 5px 10px;
+                                  border-radius: 4px;
+                                  white-space: nowrap;
+                                  font-size: 12px;
+                                  z-index: 1;
+                              }
+                              </style>
 
-                            <button onclick="window.open('https://payu.in/integrationlab/split', '_blank')" 
-                                    class="tooltip-btn" 
-                                    data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
-                                 Experience the flow and get the code
-                            </button>
+                              <button onclick="window.open('https://payu.in/integrationlab/split', '_blank')" 
+                                      class="tooltip-btn" 
+                                      data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
+                                   Experience the flow and get the code
+                              </button>
   `}</HTMLBlock>
 </Callout>
 
 <Callout icon="📮" theme="default">
   **Postman Collection**: Download the **Split Settlements Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/phkf7uf/split-settlments
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/phkf7uf/split-settlments](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/phkf7uf/split-settlments)
 </Callout>
 
 <PaymentAPIEnvironment />
@@ -176,13 +176,13 @@ The **splitRequest** parameter  must be included in the **_payment** API along w
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>furl<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The success URL, which is the page PayU will redirect to if the transaction is successful.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The success URL, which is the page PayU will redirect to if the transaction has failed.</p>
 </td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>surl<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The Failure URL, which is the page PayU will redirect to if the transaction is failed.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The Failure URL, which is the page PayU will redirect to if the transaction is successful.</p>
 </td>
 </tr>
 <tr>
