@@ -123,7 +123,7 @@ curl -X POST 'https://api.payu.in/v2/payments' \
 | :---------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **accountId**<sup style={{color: 'red'}}>*</sup>      | `string` The merchant key provided by PayU during onboarding. For example `MERCHANT123`.                                                                                                                            |
 | **txnId**<sup style={{color: 'red'}}>*</sup>          | `string` Transaction ID for transaction tracking and this must be unique for every transaction. For example `REF123456`.                                                                                            |
-| **paymentMethod**<sup style={{color:'red'}}>*</sup>   | `object` Details about the payment method used. Parameters are described in the paymentMethod Object Parameters section.                                                                                            |
+| **paymentMethod**<sup style={{color:'red'}}>*</sup>   | `object` Details about the payment method used. Parameters are described in the paymentMethod Object section.                                                                                                       |
 | **order**<sup style={{color:'red'}}>*</sup>           | `object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. Parameters are described in the order Object Parameters section. |
 | **additionalInfo**<sup style={{color:'red'}}>*</sup>  | `object` Additional information including UPI-specific parameters like VPA. Parameters are described in the additionalInfo Object Parameters section.                                                               |
 | **callBackActions**<sup style={{color:'red'}}>*</sup> | `object` Actions to perform on the payment server in different scenarios. Parameters are described in the callBackActions Object Parameters section.                                                                |
@@ -183,35 +183,31 @@ curl -X POST 'https://api.payu.in/v2/payments' \
 ### billingDetails Object
 
 <Accordion title="Parameters and Description" icon="fa-info-circle">
-
-| **Parameter**                                    | **Description**                                                                     |
-| :----------------------------------------------- | :---------------------------------------------------------------------------------- |
-| **firstName**<sup style={{color:'red'}}>\*</sup> | `string` The first name of the billing contact. For example `Ashish`.               |
-| **lastName**                                     | `string` The last name of the billing contact. For example `Kumar`.                 |
-| **address1**<sup style={{color:'red'}}>\*</sup>  | `string` The primary billing address. For example `123 Main Street`.                |
-| **address2**                                     | `string` The secondary billing address. For example `Apt 4B`.                       |
-| **phone**                                        | The phone number of the billing contact. For example `9123456789`.                  |
-| **email**<sup style={{color:'red'}}>\*</sup>     | `string` The email address of the billing contact. For example `testv2@example.in`. |
-| **city**                                         | `string` The city of the billing address. For example `Bharatpur`.                  |
-| **state**                                        | `string` The state of the billing address. For example `Rajasthan`.                 |
-| **country**                                      | `string` The country of the billing address. For example `India`                    |
-| **zipCode**                                      | `string` The postal code. For example `321028`.                                     |
-
+  | **Parameter**                                    | **Description**                                                                     |
+  | :----------------------------------------------- | :---------------------------------------------------------------------------------- |
+  | **firstName**<sup style={{color:'red'}}>\*</sup> | `string` The first name of the billing contact. For example `Ashish`.               |
+  | **lastName**                                     | `string` The last name of the billing contact. For example `Kumar`.                 |
+  | **address1**<sup style={{color:'red'}}>\*</sup>  | `string` The primary billing address. For example `123 Main Street`.                |
+  | **address2**                                     | `string` The secondary billing address. For example `Apt 4B`.                       |
+  | **phone**                                        | The phone number of the billing contact. For example `9123456789`.                  |
+  | **email**<sup style={{color:'red'}}>\*</sup>     | `string` The email address of the billing contact. For example `testv2@example.in`. |
+  | **city**                                         | `string` The city of the billing address. For example `Bharatpur`.                  |
+  | **state**                                        | `string` The state of the billing address. For example `Rajasthan`.                 |
+  | **country**                                      | `string` The country of the billing address. For example `India`                    |
+  | **zipCode**                                      | `string` The postal code. For example `321028`.                                     |
 </Accordion>
 
 ### omniChannelDetails Object
 
 <Accordion title="Parameters and Description" icon="fa-info-circle">
-
-| **Parameter**          | **Description**                                                                                                                                                                |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **soundBoxTerminalId** | `string` The identifier of the POS or sound box terminal device used for the transaction. Used for in-person or omnichannel payments. For example `1`                          |
-| **outletName**         | `string` The name of the merchant outlet or store where the transaction takes place. For example `puma pimpri`.                                                                |
-| **vendorId**`          | `string` The vendor or terminal provider identifier associated with the device or outlet. For example `vendorId`.                                                              |
-| **tips**               | `string` Tips amount or related information for the transaction, if applicable.                                                                                                |
-| **childMerchId**       | `string` The child merchant ID when using split settlements or multiple outlets under a parent merchant. For example `123456`                                                  |
-| **expiryTime**         | `string` or `numeric` The validity of the QR or transaction in **seconds**. If you do not pass this value, merchant-level or global expiry will be applied. For example `100`. |
-
+  | **Parameter**          | **Description**                                                                                                                                                                |
+  | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | **soundBoxTerminalId** | `string` The identifier of the POS or sound box terminal device used for the transaction. Used for in-person or omnichannel payments. For example `1`                          |
+  | **outletName**         | `string` The name of the merchant outlet or store where the transaction takes place. For example `puma pimpri`.                                                                |
+  | **vendorId**\`         | `string` The vendor or terminal provider identifier associated with the device or outlet. For example `vendorId`.                                                              |
+  | **tips**               | `string` Tips amount or related information for the transaction, if applicable.                                                                                                |
+  | **childMerchId**       | `string` The child merchant ID when using split settlements or multiple outlets under a parent merchant. For example `123456`                                                  |
+  | **expiryTime**         | `string` or `numeric` The validity of the QR or transaction in **seconds**. If you do not pass this value, merchant-level or global expiry will be applied. For example `100`. |
 </Accordion>
 
 ## Response Parameters
