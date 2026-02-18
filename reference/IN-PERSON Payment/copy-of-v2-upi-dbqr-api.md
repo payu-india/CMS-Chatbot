@@ -45,13 +45,11 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
 
 ### `paymentMethod `Object Parameters
 
-<Accordion title="paymentMethod Object Parameters">
-
-| **Parameter**                                  | **Description**                                                 |
-| :--------------------------------------------- | :-------------------------------------------------------------- |
-| **name**<sup style={{color:'red'}}>*</sup>     | `string` Represents the payment method used. For UPI, use UPI.  |
-| **bankCode**<sup style={{color:'red'}}>*</sup> | `string` Contains the bank code.For UPI, use UPI.               |
-
+<Accordion>
+  | **Parameter**                                   | **Description**                                                |
+  | :---------------------------------------------- | :------------------------------------------------------------- |
+  | **name**<sup style={{color:'red'}}>\*</sup>     | `string` Represents the payment method used. For UPI, use UPI. |
+  | **bankCode**<sup style={{color:'red'}}>\*</sup> | `string` Contains the bank code.For UPI, use UPI.              |
 </Accordion>
 
 ### order object fields description
