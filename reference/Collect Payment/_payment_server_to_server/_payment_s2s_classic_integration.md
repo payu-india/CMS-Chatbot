@@ -10,11 +10,9 @@ link:
 ---
 You can collect card payments using Server-to-Server integration. This section provides the request and response parameters used in Step 1 of  [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration). You can get the sample request and response when use the "Try It" experience. For the complete integration steps, refer to [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration).
 
-<Callout icon="📮" theme="default">
-  **Postman Collection**: Access the **S2S > Classic Integration** APIs Postman Collection from the following location:
+## Postman Collection
 
-  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/k8uk375/classic-cards-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/k8uk375/classic-cards-integration)
-</Callout>
+<Postman_collection />
 
 <Callout icon="📘" theme="info">
   **Reference:** For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
