@@ -16,14 +16,9 @@ You can collect card payments without redirection to bank page for entering OTP 
 
 <Accordion_Collect_Fraud_Detection />
 
+<Payment_Environment />
+
 <br />
-
-**Environment**
-
-|                            |                                                                    |
-| :------------------------- | :----------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
-| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
 ## Response parameters
 
