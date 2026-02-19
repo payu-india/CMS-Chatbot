@@ -24,12 +24,11 @@ You can collect payments from customers in EMI using the Merchant Hosted integra
 
 <Postman_collection />
 
-## Environment
+<br />
 
-|                            |                                                                        |
-| -------------------------- | ---------------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/_payment>](https://test.payu.in/_payment%3E)     |
-| **Production Environment** | [https://secure.payu.in/_payment>](https://secure.payu.in/_payment%3E) |
+<Payment_Environment />
+
+<br />
 
 <Accordion title="Sample request" icon="fa-calendar">
   ```curl
