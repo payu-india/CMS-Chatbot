@@ -29,11 +29,11 @@ EMI as a payment option gives your customers the freedom and affordability to pu
 
 You can collect payments from customers in EMI using the Merchant Hosted integration. You need to ensure that **EMI** for the **pg** parameter and EMI code based on the card issuer and tenure for the **bankcode** parameter is posted.
 
-<Callout icon="📮" theme="default">
-  **Postman Collection**: Access the **Merchant Hosted Checkout > EMI** Postman Collection from the following location:
+## Postman Collection
 
-  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/twysw5i/emi-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/twysw5i/emi-integration)
-</Callout>
+<Postman_collection />
+
+<br />
 
 <PaymentAPIEnvironment />
 
