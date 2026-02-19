@@ -20,13 +20,11 @@ Buy Now Pay Later (<Glossary>BNPL</Glossary>) allows your customers to spread th
 
 You can collect payments from customers in EMI using the Merchant Hosted integration. You need to ensure that **BNPL** for the **pg** parameter and BNPL code based on the provider and tenure for the **bankcode** parameter is posted.
 
-<Callout icon="📮" theme="default">
-  **Postman Collection**: Download the **Merchant Hosted Checkout > BNPL Postman Collection** from the following location:
+## Postman Collection
 
-  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/lt115hb/bnpl-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/lt115hb/bnpl-integration)
-</Callout>
+<Postman_collection />
 
-**Environment**
+## Environment
 
 |                            |                                                                        |
 | -------------------------- | ---------------------------------------------------------------------- |
