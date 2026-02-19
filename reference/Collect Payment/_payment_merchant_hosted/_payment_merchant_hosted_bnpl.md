@@ -68,7 +68,7 @@ You can collect payments from customers in EMI using the Merchant Hosted integra
       [firstname] => PayU User
       [lastname] => 
   		[address1] =>
-	)
+    )
 
   ```
 </Accordion>
