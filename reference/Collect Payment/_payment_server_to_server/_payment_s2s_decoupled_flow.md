@@ -18,8 +18,6 @@ You can collect card payments without redirection to bank page for entering OTP 
 
 <Payment_Environment />
 
-<br />
-
 ## Response parameters
 
 For the response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
