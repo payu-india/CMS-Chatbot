@@ -18,7 +18,7 @@ Use this endpoint to generate a UPI QR to collect offline payments. Pass Omnicha
   </Card>
 </Cards>
 
-### Environment
+## Environment
 
 <V2_payment_envrionment />
 
