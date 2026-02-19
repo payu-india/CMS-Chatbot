@@ -26,8 +26,6 @@ You can collect payments from customers in EMI using the Merchant Hosted integra
 
 <Payment_Environment />
 
-<br />
-
 <Accordion title="Sample Request" icon="fa-calendar">
   ```curl
   curl -X POST "https://test.payu.in/_payment" \
