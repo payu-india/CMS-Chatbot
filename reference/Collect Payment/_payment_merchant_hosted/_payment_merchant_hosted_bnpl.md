@@ -24,15 +24,29 @@ You can collect payments from customers in EMI using the Merchant Hosted integra
 
 <Postman_collection />
 
-<br />
-
 <Payment_Environment />
 
 <br />
 
-<Accordion title="Sample request" icon="fa-calendar">
+<Accordion title="Sample Request" icon="fa-calendar">
   ```curl
-  curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=J****g&txnid=5jJ9xYceXX1ydT&amount=1000.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=BNPL&bankcode=LAZYPAY&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
+  curl -X POST "https://test.payu.in/_payment" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d '{
+    "key": "J****g",
+    "txnid": "5jJ9xYceXX1ydT",
+    "amount": "1000.00",
+    "firstname": "Ashish",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "productinfo": "iPhone",
+    "pg": "BNPL",
+    "bankcode": "LAZYPAY",
+    "surl": "https://apiplayground-response.herokuapp.com/",
+    "furl": "https://apiplayground-response.herokuapp.com/",
+    "hash": "6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
+  }'
   ```
 </Accordion>
 
