@@ -1,7 +1,7 @@
 ---
 title: Get Checkout Details – NTB Seamless Journey
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
