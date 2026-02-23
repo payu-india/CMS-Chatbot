@@ -22,31 +22,30 @@ This API is authorised through a client token generated using the client ID and 
 
 ## Request Parameters
 
- Parameter | Description | Example |
-| --------- | ----------- | ------- |
-| merchant[display_name]<br/><code>mandatory</code> | <code>string</code> The display name of the merchant shown on PayU dashboard and reports. | DIVY HARESHKUMAR SHAH |
-| merchant[email]<br/><code>mandatory</code> | <code>string</code> Primary email address of the merchant for communication and notifications. | merchant@example.com |
-| merchant[mobile]<br/><code>mandatory</code> | <code>string</code> Primary mobile number of the merchant for communication and notifications. | 9911100364 |
-| merchant[business_details][pan]<br/><code>mandatory</code> | <code>string</code> Permanent Account Number (PAN) of the merchant business. | FANPS6362D |
-| merchant[business_details][business_entity_type]<br/><code>mandatory</code> | <code>string</code> Type of business entity (e.g. Sole Proprietorship, Partnership, Private Limited). | Sole Proprietorship |
-| merchant[business_details][pancard_name]<br/><code>optional</code> | <code>string</code> Name as it appears on the PAN card. Required if PAN number is posted. | DIVY HARESHKUMAR SHAH |
-| merchant[business_details][registered_name]<br/><code>optional</code> | <code>string</code> The registered legal name of the merchant business. | DIVY HARESHKUMAR SHAH |
-| merchant[business_details][business_category]<br/><code>optional</code> | <code>string</code> The primary business category of the merchant. | Arts, Gifts & Stationery |
-| merchant[business_details][business_sub_category]<br/><code>optional</code> | <code>string</code> A more specific subcategory related to the business. | Art Dealers and Galleries |
-| merchant[product]<br/><code>optional</code> | <code>string</code> The PayU product the merchant wants to use (e.g. PayUbiz, PayUmoney). | PayUbiz |
-| merchant[bank_details][account_no]<br/><code>optional</code> | <code>string</code> Bank account number of the merchant for settlements. All bank fields must be sent together if any is sent. | 919010067278549 |
-| merchant[bank_details][account_holder_name]<br/><code>optional</code> | <code>string</code> Name of the account holder as per bank records. | DIVY HARESHKUMAR SHAH |
-| merchant[bank_details][ifsc_code]<br/><code>optional</code> | <code>string</code> IFSC code of the bank branch for settlements. | UTIB0003557 |
-| merchant[website_details][website_url]<br/><code>optional</code> | <code>string</code> The merchant's website URL. | https://www.example.com |
-| merchant[monthly_expected_volume]<br/><code>optional</code> | <code>integer</code> The monthly expected transaction volume in monetary terms. | 12000 |
-| merchant[signing_authority_details][name]<br/><code>optional</code> | <code>string</code> Name of the authorized representative or signing authority. | DIVY HARESHKUMAR SHAH |
-| merchant[signing_authority_details][pancard_number]<br/><code>optional</code> | <code>string</code> PAN card number of the signing authority. If posted, pancard_name is required. | FANPS6362D |
-| merchant[signing_authority_details][email]<br/><code>optional</code> | <code>string</code> Email of the authorized representative or signing authority. | auth_email@example.com |
-| merchant[integration_type]<br/><code>optional</code> | <code>string</code> Type of integration for the merchant's account. | ThirdParty |
-| merchant[gst_number]<br/><code>optional</code> | <code>string</code> The GST number of the merchant business. | 24FANPS6362D1ZE |
-| merchant[udyam_number]<br/><code>optional</code> | <code>string</code> Udyam Registration Number for MSMEs. | UDYAM-UP-19-0002053 |
-| merchant[gst_consent]<br/><code>optional</code> | <code>string</code> Consent for GST verification and processing (e.g. true/false). | false |
-
+| Parameter                                                                      | Description                                                                                                                                        | Example                                                 |
+| ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| merchant[display_name]<br /><code>mandatory</code>                             | <code>string</code> The display name of the merchant shown on PayU dashboard and reports. This is the "brand name" under which they are operating. | Merchant.com                                            |
+| merchant[email]<br /><code>mandatory</code>                                    | <code>string</code> Primary email address of the merchant for communication and notifications.                                                     | [merchant@example.com](mailto:merchant@example.com)     |
+| merchant[mobile]<br /><code>optional</code>                                    | <code>string</code> Primary mobile number of the merchant for communication and notifications. A valid 10-digit Indian phone number is expected.   | 9911100364                                              |
+| merchant[business_details][pan]<br /><code>optional</code>                     | <code>string</code> Permanent Account Number (PAN) of the merchant business.                                                                       | FANPS6362D                                              |
+| merchant[business_details][business_entity_type]<br /><code>mandatory</code>   | <code>string</code> Type of business entity (e.g. Sole Proprietorship, Partnership, Private Limited).                                              | Sole Proprietorship                                     |
+| merchant[business_details][pancard_name]<br /><code>optional</code>            | <code>string</code> Name as it appears on the PAN card. Required if PAN number is posted.                                                          | DIVY HARESHKUMAR SHAH                                   |
+| merchant[business_details][registered_name]<br /><code>optional</code>         | <code>string</code> The registered legal name of the merchant business.                                                                            | DIVY HARESHKUMAR SHAH                                   |
+| merchant[business_details][business_category]<br /><code>optional</code>       | <code>string</code> The primary business category of the merchant.                                                                                 | Arts, Gifts & Stationery                                |
+| merchant[business_details][business_sub_category]<br /><code>optional</code>   | <code>string</code> A more specific subcategory related to the business.                                                                           | Art Dealers and Galleries                               |
+| merchant[product]<br /><code>optional</code>                                   | <code>string</code> The PayU product the merchant wants to use (e.g. PayUbiz, PayUmoney).                                                          | PayUbiz                                                 |
+| merchant[bank_details][account_no]<br /><code>optional</code>                  | <code>string</code> Bank account number of the merchant for settlements. All bank fields must be sent together if any is sent.                     | 919010067278549                                         |
+| merchant[bank_details][account_holder_name]<br /><code>optional</code>         | <code>string</code> Name of the account holder as per bank records.                                                                                | DIVY HARESHKUMAR SHAH                                   |
+| merchant[bank_details][ifsc_code]<br /><code>optional</code>                   | <code>string</code> IFSC code of the bank branch for settlements.                                                                                  | UTIB0003557                                             |
+| merchant[website_details][website_url]<br /><code>optional</code>              | <code>string</code> The merchant's website URL.                                                                                                    | [https://www.example.com](https://www.example.com)      |
+| merchant[monthly_expected_volume]<br /><code>optional</code>                   | <code>integer</code> The monthly expected transaction volume in monetary terms.                                                                    | 12000                                                   |
+| merchant[signing_authority_details][name]<br /><code>optional</code>           | <code>string</code> Name of the authorized representative or signing authority.                                                                    | DIVY HARESHKUMAR SHAH                                   |
+| merchant[signing_authority_details][pancard_number]<br /><code>optional</code> | <code>string</code> PAN card number of the signing authority. If posted, pancard_name is required.                                                 | FANPS6362D                                              |
+| merchant[signing_authority_details][email]<br /><code>optional</code>          | <code>string</code> Email of the authorized representative or signing authority.                                                                   | [auth_email@example.com](mailto:auth_email@example.com) |
+| merchant[integration_type]<br /><code>optional</code>                          | <code>string</code> Type of integration for the merchant's account.                                                                                | ThirdParty                                              |
+| merchant[gst_number]<br /><code>optional</code>                                | <code>string</code> The GST number of the merchant business.                                                                                       | 24FANPS6362D1ZE                                         |
+| merchant[udyam_number]<br /><code>optional</code>                              | <code>string</code> Udyam Registration Number for MSMEs.                                                                                           | UDYAM-UP-19-0002053                                     |
+| merchant[gst_consent]<br /><code>optional</code>                               | <code>string</code> Consent for GST verification and processing (e.g. true/false).                                                                 | false                                                   |
 
 Use the following references to get additional information:
 
