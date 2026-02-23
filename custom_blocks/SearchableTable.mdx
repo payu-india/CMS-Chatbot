@@ -48,28 +48,10 @@ export const SearchableTable = (props) => {
   const hasSearchQuery = normalize(searchQuery).length > 0;
   const showEmptyState = hasSearchQuery && filteredRows.length === 0;
 
+  const colCount = headers.length;
+
   return (
     <div className={`w-full ${className}`}>
-      <div className="mb-3">
-        <input
-          type="search"
-          placeholder={placeholder}
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full max-w-md px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          aria-label="Search table"
-        />
-      </div>
-
-      {showEmptyState && (
-        <div
-          className="mb-3 p-4 bg-red-50 border border-red-200 rounded-md text-red-700"
-          role="alert"
-        >
-          {emptyMessage}
-        </div>
-      )}
-
       <div
         className="border border-gray-200 rounded-md overflow-hidden"
         style={{ maxHeight: showEmptyState ? 'none' : maxHeight }}
@@ -80,6 +62,21 @@ export const SearchableTable = (props) => {
         >
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50 sticky top-0 z-10">
+              <tr>
+                <th
+                  colSpan={colCount}
+                  className="px-4 py-3 bg-gray-50 border-b border-gray-200"
+                >
+                  <input
+                    type="search"
+                    placeholder={placeholder}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full max-w-md px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    aria-label="Search table"
+                  />
+                </th>
+              </tr>
               <tr>
                 {headers.map((header, i) => (
                   <th
@@ -93,18 +90,30 @@ export const SearchableTable = (props) => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {filteredRows.map((row, rowIndex) => (
-                <tr key={rowIndex} className="hover:bg-gray-50">
-                  {row.map((cell, cellIndex) => (
-                    <td
-                      key={cellIndex}
-                      className="px-4 py-2 text-sm text-gray-900"
-                    >
-                      {cell}
-                    </td>
-                  ))}
+              {showEmptyState ? (
+                <tr>
+                  <td
+                    colSpan={colCount}
+                    className="px-4 py-4 bg-red-50 text-red-700 border-b border-red-200"
+                    role="alert"
+                  >
+                    {emptyMessage}
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                filteredRows.map((row, rowIndex) => (
+                  <tr key={rowIndex} className="hover:bg-gray-50">
+                    {row.map((cell, cellIndex) => (
+                      <td
+                        key={cellIndex}
+                        className="px-4 py-2 text-sm text-gray-900"
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -120,7 +129,6 @@ export const SearchableTable = (props) => {
   );
 };
 
-// Default preview for Readme CMS (component must appear after exports)
 <SearchableTable
   headers={['Bank', 'Type', 'Status']}
   rows={[
