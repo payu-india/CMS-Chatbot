@@ -1,5 +1,5 @@
 ---
-title: Create Merchant API
+title: Create Merchant API - PACB
 deprecated: false
 hidden: true
 metadata:
