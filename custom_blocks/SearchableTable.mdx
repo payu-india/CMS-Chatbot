@@ -1,0 +1,133 @@
+---
+name: SearchableTable
+---
+/**
+ * SearchableTable - Readme CMS Custom Component
+ * 
+ * A table with:
+ * - Search input that filters rows by any column (case-insensitive, multi-word)
+ * - "No results found" error state when search has no matches
+ * - Scrollable table body (fixed max height with overflow)
+ * 
+ * Usage in Readme: Add this code in Settings > Custom Components, then use
+ * <SearchableTable headers={["Column A","Column B"]} rows={[["a1","b1"],["a2","b2"]]} />
+ * 
+ * Reference: Razorpay-style supported banks/cards table
+ */
+
+import { useState, useMemo } from 'react';
+
+export const SearchableTable = (props) => {
+  const {
+    headers = [],
+    rows = [],
+    placeholder = 'Search in table...',
+    maxHeight = '400px',
+    emptyMessage = 'No results found. Try a different search.',
+    className = '',
+  } = props;
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const normalize = (str) =>
+    str == null ? '' : String(str).toLowerCase().trim().replace(/\s+/g, ' ');
+
+  const rowMatchesQuery = (row, query) => {
+    const q = normalize(query);
+    if (!q) return true;
+    const words = q.split(/\s+/).filter(Boolean);
+    const rowText = row.map((cell) => normalize(cell)).join(' ');
+    return words.every((word) => rowText.includes(word));
+  };
+
+  const filteredRows = useMemo(
+    () => rows.filter((row) => rowMatchesQuery(row, searchQuery)),
+    [rows, searchQuery]
+  );
+
+  const hasSearchQuery = normalize(searchQuery).length > 0;
+  const showEmptyState = hasSearchQuery && filteredRows.length === 0;
+
+  return (
+    <div className={`w-full ${className}`}>
+      <div className="mb-3">
+        <input
+          type="search"
+          placeholder={placeholder}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full max-w-md px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          aria-label="Search table"
+        />
+      </div>
+
+      {showEmptyState && (
+        <div
+          className="mb-3 p-4 bg-red-50 border border-red-200 rounded-md text-red-700"
+          role="alert"
+        >
+          {emptyMessage}
+        </div>
+      )}
+
+      <div
+        className="border border-gray-200 rounded-md overflow-hidden"
+        style={{ maxHeight: showEmptyState ? 'none' : maxHeight }}
+      >
+        <div
+          className="overflow-auto"
+          style={showEmptyState ? {} : { maxHeight }}
+        >
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50 sticky top-0 z-10">
+              <tr>
+                {headers.map((header, i) => (
+                  <th
+                    key={i}
+                    scope="col"
+                    className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider"
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {filteredRows.map((row, rowIndex) => (
+                <tr key={rowIndex} className="hover:bg-gray-50">
+                  {row.map((cell, cellIndex) => (
+                    <td
+                      key={cellIndex}
+                      className="px-4 py-2 text-sm text-gray-900"
+                    >
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {filteredRows.length > 0 && (
+        <p className="mt-2 text-xs text-gray-500">
+          Showing {filteredRows.length} of {rows.length} row{rows.length !== 1 ? 's' : ''}
+          {hasSearchQuery && ' (filtered by search)'}.
+        </p>
+      )}
+    </div>
+  );
+};
+
+// Default preview for Readme CMS (component must appear after exports)
+<SearchableTable
+  headers={['Bank', 'Type', 'Status']}
+  rows={[
+    ['HDFC Bank', 'Netbanking / Cards', 'Active'],
+    ['ICICI Bank', 'Netbanking / Cards', 'Active'],
+    ['State Bank of India', 'Netbanking', 'Active'],
+    ['Axis Bank', 'Cards', 'Active'],
+  ]}
+  placeholder="Search banks..."
+/>
