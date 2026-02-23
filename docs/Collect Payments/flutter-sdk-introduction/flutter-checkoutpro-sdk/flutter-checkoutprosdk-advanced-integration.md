@@ -96,9 +96,9 @@ This section describes how to integrate the following advanced features with Flu
   Merchants want to show the logo on the PayU Hosted Page. By default, the logo is invisible.
 
   ```Text Dart
- var payUCheckoutProConfig = {
+  var payUCheckoutProConfig = {
     PayUCheckoutProConfigKeys.showMerchantLogo: false, //true/false
-}
+  }
   ```
 </Accordion>
 
@@ -106,9 +106,9 @@ This section describes how to integrate the following advanced features with Flu
   Merchants want to hide Saved Card features. By default, the Saved Card feature is enabled.
 
   ```Text Dart
-var payUCheckoutProConfig = {
+  var payUCheckoutProConfig = {
     PayUCheckoutProConfigKeys.enableSavedCard: false, //true/false
-}
+  }
   ```
 </Accordion>
 
@@ -231,6 +231,26 @@ var payUCheckoutProConfig = {
   ```
 </Accordion>
 
+<Accordion title="Enable Screen Protection" icon="fa-shield">
+    You can enable screen protection to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
+
+    ```Text Dart
+    var payUCheckoutProConfig = {
+    PayUCheckoutProConfigKeys.isProtectedScreen: true/false
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Customize UPI Apps Order" icon="fa-list">
+    You can customize the display order of UPI payment apps. Define the sequence using a pipe-separated format to rearrange how UPI apps appear to users.
+
+    ```Text Dart
+    var payUCheckoutProConfig = {
+    PayUCheckoutProConfigKeys.upiAppsOrder: "phonepe|paytm|gpay"
+    }
+    ```
+  </Accordion>
+
 <Accordion title="Custom Note integration" icon="fa-code">
   This subsection describes how to integrate custom notes in PayUCheckoutPro SDK. To integrate custom notes in PayUCheckoutPro SDK:
 
@@ -310,25 +330,5 @@ var payUCheckoutProConfig = {
     }
     ```
   </Accordion>
-
-  <Accordion title="Enable Screen Protection" icon="fa-shield">
-    You can enable screen protection to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
-
-    ```Text Dart
-    var payUCheckoutProConfig = {
-    PayUCheckoutProConfigKeys.isProtectedScreen: true/false
-    }
-    ```
-</Accordion>
-
-<Accordion title="Customize UPI Apps Order" icon="fa-list">
-    You can customize the display order of UPI payment apps. Define the sequence using a pipe-separated format to rearrange how UPI apps appear to users.
-
-    ```Text Dart
-    var payUCheckoutProConfig = {
-    PayUCheckoutProConfigKeys.upiAppsOrder: "phonepe|paytm|gpay"
-    }
-    ```
-</Accordion>
 
 </Accordion>
