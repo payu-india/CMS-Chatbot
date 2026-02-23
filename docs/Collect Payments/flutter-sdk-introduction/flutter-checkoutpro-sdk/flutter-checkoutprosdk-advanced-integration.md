@@ -330,5 +330,20 @@ This section describes how to integrate the following advanced features with Flu
     }
     ```
   </Accordion>
+  
+  <Accordion title="Show SSL Dialog Alert" icon="fa-code">
+    you are trying to show the dialog from a place that isn't permitted.
+
+    ```Text Dart
+     var payUCheckoutProConfig = {
+      payUCheckoutProConfig.enableSslDialog = true //true/false
+}
+    ```
+
+    . The error message is shown as received from the SSL error description
+
+    <Image align="center" src="https://files.readme.io/c19a750-MicrosoftTeams-image_8.png" width="200px" />
+  </Accordion>
+
 
 </Accordion>
