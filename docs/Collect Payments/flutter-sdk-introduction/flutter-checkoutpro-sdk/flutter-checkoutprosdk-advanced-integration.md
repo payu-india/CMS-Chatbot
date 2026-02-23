@@ -66,6 +66,16 @@ This section describes how to integrate the following advanced features with Flu
   > See[ Add a font as an XML resource](https://developer.android.com/develop/ui/views/text-and-emoji/fonts-in-xml)  in the Android developer documentation to learn more.
 </Accordion>
 
+<Accordion title="Set merchant name" icon="fa-code">
+  You can customize the name to personalize the checkout screen.
+
+  ```Text Dart
+  var payUCheckoutProConfig = {
+   	PayUCheckoutProConfigKeys.merchantName: "<Merchant Name>",
+  }
+  ```
+</Accordion>
+
 <Accordion title="Set merchant logo" icon="fa-code">
   You can customize the logo to personalize the checkout screen for iOS or Android platforms.
 
@@ -82,30 +92,22 @@ This section describes how to integrate the following advanced features with Flu
   </Accordion>
 </Accordion>
 
-<Accordion title="Set merchant name" icon="fa-code">
-  You can customize the name to personalize the checkout screen.
+<Accordion title="Show/Hide Merchant Logo" icon="fa-code">
+  Merchants want to show the logo on the PayU Hosted Page. By default, the logo is invisible.
 
-  ```Text Dart
-  var payUCheckoutProConfig = {
-   	PayUCheckoutProConfigKeys.merchantName: "<Merchant Name>",
-  }
+  ```dart
+  PayUCheckoutProConfigKeys.showMerchantLogo: false, //true/false
   ```
 </Accordion>
-<Accordion title="Show/Hide Merchant Logo" icon="fa-code">
-    Merchants want to show the logo on the PayU Hosted Page. By default, the logo is invisible.
 
-    ```dart
-    PayUCheckoutProConfigKeys.showMerchantLogo: false, //true/false
-    ```
-  </Accordion>
+<Accordion title="Show/Hide Saved Card Features" icon="fa-code">
+  Merchants want to hide Saved Card features. By default, the Saved Card feature is enabled.
 
-  <Accordion title="Show/Hide Saved Card Features" icon="fa-code">
-    Merchants want to hide Saved Card features. By default, the Saved Card feature is enabled.
+  ```kotlin Kotlin
+  PayUCheckoutProConfigKeys.enableSavedCard: false, //true/false
+  ```
+</Accordion>
 
-    ```kotlin Kotlin
-    PayUCheckoutProConfigKeys.enableSavedCard: false, //true/false
-    ```
-  </Accordion>
 <Accordion title="Hide Checkout screen Back button dialog box" icon="fa-code">
   You can choose to hide the dialog box that is displayed when the Back button is clicked from the L1 screen. The default value is true.
 
