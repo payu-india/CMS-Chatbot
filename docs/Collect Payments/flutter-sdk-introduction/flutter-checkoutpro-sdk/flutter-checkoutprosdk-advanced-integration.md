@@ -96,15 +96,19 @@ This section describes how to integrate the following advanced features with Flu
   Merchants want to show the logo on the PayU Hosted Page. By default, the logo is invisible.
 
   ```dart
-  PayUCheckoutProConfigKeys.showMerchantLogo: false, //true/false
+ var payUCheckoutProConfig = {
+    PayUCheckoutProConfigKeys.showMerchantLogo: false, //true/false
+}
   ```
 </Accordion>
 
 <Accordion title="Show/Hide Saved Card Features" icon="fa-code">
   Merchants want to hide Saved Card features. By default, the Saved Card feature is enabled.
 
-  ```kotlin Kotlin
-  PayUCheckoutProConfigKeys.enableSavedCard: false, //true/false
+  ```dart
+var payUCheckoutProConfig = {
+    PayUCheckoutProConfigKeys.enableSavedCard: false, //true/false
+}
   ```
 </Accordion>
 
@@ -306,4 +310,25 @@ This section describes how to integrate the following advanced features with Flu
     }
     ```
   </Accordion>
+
+  <Accordion title="Enable Screen Protection" icon="fa-shield">
+    You can enable screen protection to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
+
+    ```Text Dart
+    var payUCheckoutProConfig = {
+    PayUCheckoutProConfigKeys.isProtectedScreen: true/false
+    }
+    ```
+</Accordion>
+
+<Accordion title="Customize UPI Apps Order" icon="fa-list">
+    You can customize the display order of UPI payment apps. Define the sequence using a pipe-separated format to rearrange how UPI apps appear to users.
+
+    ```Text Dart
+    var payUCheckoutProConfig = {
+    PayUCheckoutProConfigKeys.upiAppsOrder: "phonepe|paytm|gpay"
+    }
+    ```
+</Accordion>
+
 </Accordion>
