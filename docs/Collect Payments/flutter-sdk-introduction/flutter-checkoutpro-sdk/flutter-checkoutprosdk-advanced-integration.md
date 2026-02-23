@@ -13,18 +13,16 @@ next:
 This section describes how to integrate the following advanced features with Flutter SDK:
 
 <Callout icon="📘" theme="info">
-**Prerequisites**:
-Before you start with the advanced integration with PayUCheckoutPro, the payUCheckoutProConfig object needs to be passed with payUPaymentParams in the openCheckoutScreen method of the PayU SDK. The sample code snippet is similar to the following:
+  **Prerequisites**:
+  Before you start with the advanced integration with PayUCheckoutPro, the payUCheckoutProConfig object needs to be passed with payUPaymentParams in the openCheckoutScreen method of the PayU SDK. The sample code snippet is similar to the following:
 
-```Text Dart
-_checkoutPro.openCheckoutScreen(
-payUPaymentParams: payUPaymentParams,
-payUCheckoutProConfig: payUCheckoutProConfig,
-);
-```
+  ```Text Dart
+  _checkoutPro.openCheckoutScreen(
+  payUPaymentParams: payUPaymentParams,
+  payUCheckoutProConfig: payUCheckoutProConfig,
+  );
+  ```
 </Callout>
-
-
 
 <Accordion title="Change theme" icon="fa-code">
   <Accordion title="For iOS" icon="fa-code">
@@ -93,7 +91,21 @@ payUCheckoutProConfig: payUCheckoutProConfig,
   }
   ```
 </Accordion>
+<Accordion title="Show/Hide Merchant Logo" icon="fa-code">
+    Merchants want to show the logo on the PayU Hosted Page. By default, the logo is invisible.
 
+    ```dart
+    PayUCheckoutProConfigKeys.showMerchantLogo: false, //true/false
+    ```
+  </Accordion>
+
+  <Accordion title="Show/Hide Saved Card Features" icon="fa-code">
+    Merchants want to hide Saved Card features. By default, the Saved Card feature is enabled.
+
+    ```kotlin Kotlin
+    PayUCheckoutProConfigKeys.enableSavedCard: false, //true/false
+    ```
+  </Accordion>
 <Accordion title="Hide Checkout screen Back button dialog box" icon="fa-code">
   You can choose to hide the dialog box that is displayed when the Back button is clicked from the L1 screen. The default value is true.
 
