@@ -23,16 +23,9 @@ You must hash the request parameters using the following hash logic:
 
 Where `<Body data>` contains the request body posted with the request.
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
-</Accordion>
+<Accordion title="Sample header code" icon="fa-info-code">
 
-<details>
-  <summary>Sample header code</summary>
-
-  ```javascript
+```javascript
   var merchant_key = 'smsplus';
   var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
   // date
@@ -49,7 +42,8 @@ Where `<Body data>` contains the request body posted with the request.
       var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
       return `hmac username="${merchant_key}", algorithm="${AUTH_TYPE}", headers="date", signature="${hash}"`;
   }
-  ```
-</details>
+```
 
-##
+</Accordion>
+
+<br />
