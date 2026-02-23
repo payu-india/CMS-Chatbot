@@ -100,4 +100,17 @@ Accelerate your integration workflow with our net banking Postman collection for
     ['Axis Bank', 'Cards', 'Active'],
   ]}
   placeholder="Search"
+  />
+
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+<SearchableTable
+  headers={['Bank', 'Type', 'Status']}
+  rows={[
+    ['HDFC Bank', 'Netbanking / Cards', 'Active'],
+    ['ICICI Bank', 'Netbanking / Cards', 'Active'],
+    ['State Bank of India', 'Netbanking', 'Active'],
+    ['Axis Bank', 'Cards', 'Active'],
+  ]}
+  placeholder="Search"
 />
+</Accordion>
