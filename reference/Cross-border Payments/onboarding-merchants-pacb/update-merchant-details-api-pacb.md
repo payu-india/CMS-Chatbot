@@ -1,7 +1,7 @@
 ---
 title: Update Merchant Details API - PACB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -143,6 +143,3 @@ Only the path parameter is required; all body fields are optional. Include only 
   }
   }
   ```
-
-
-
