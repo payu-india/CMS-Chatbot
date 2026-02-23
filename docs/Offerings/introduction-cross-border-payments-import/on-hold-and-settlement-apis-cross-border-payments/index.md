@@ -18,5 +18,7 @@ The following APIs are used for On-hold Settlement and Settlements:
 
 ## Settlement APIs
 
-* [Settlement Detail Range APII](ref:settlement-detail-range-api-for-cross-border): Provides transaction level data for a given date or date range or UTR. These APIs returns paginated response for the given input page and page size.
+* [Settlement Detail Range API](ref:settlement-detail-range-api-for-cross-border): Provides transaction level data for a given date or date range or UTR. These APIs returns paginated response for the given input page and page size.
 * [Get Settlement Detail API](ref:get-settlement-detail-api-cross-border-payments): Provides the settlement details.
+
+<br />
