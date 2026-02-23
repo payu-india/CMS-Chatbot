@@ -23,6 +23,8 @@ You must hash the request parameters using the following hash logic:
 
 Where `<Body data>` contains the request body posted with the request.
 
+<br />
+
 <Accordion title="Sample header code" icon="fa-code">
   ```javascript
     var merchant_key = 'smsplus';
