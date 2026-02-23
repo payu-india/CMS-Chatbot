@@ -200,7 +200,7 @@ To initiate a payment, your app must send transactional information to the Check
   ```
 </Accordion>
 
-<Accordion title="Step 3.4: For Additional Charges" icon="fa-code">
+<Accordion title="Step 3.4: For Additional Charges (Optional)" icon="fa-code">
   If you are integrating additional charges or percentage additional charges, then generate the below payment params additionally
 
   ```Text Java
@@ -347,7 +347,7 @@ To initiate a payment, your app must send transactional information to the Check
   > if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities \* skuAmount of each item.
 </Accordion>
 
-<Accordion title="Step 3:6 : Third Party Verification (TPV) Flow" icon="fa-code">
+<Accordion title="Step 3:6 : Third Party Verification (TPV) Flow (Optional)" icon="fa-code">
   CheckoutPro SDK supports TPV flow for both UPI and Net Banking payment methods. TPV validates that payments are made from authorized beneficiary accounts by verifying account details during the transaction.
 
   <Accordion title="TPV for UPI Payments" icon="fa-mobile">
