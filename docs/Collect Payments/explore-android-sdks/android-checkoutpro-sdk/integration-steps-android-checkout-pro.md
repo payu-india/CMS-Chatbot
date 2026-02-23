@@ -536,7 +536,7 @@ To initiate a payment, your app must send transactional information to the Check
   ```
 </Accordion>
 
-<Accordion title="Step 3.7: Payment Param Definitions" icon="fa-code">
+<Accordion title="Step 3.8: Payment Param Definitions" icon="fa-code">
   <Table align={["left","left","left"]}>
     <thead>
       <tr>
