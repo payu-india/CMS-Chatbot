@@ -488,25 +488,25 @@ To initiate a payment, your app must send transactional information to the Check
   // to show ClooseLoop Wallet 
    additionalParamsMap[PayUCheckoutProConstants.WALLET_URN] = "<Wallet URN>"
    
-  PayUPaymentParams.Builder builder = new PayUPaymentParams.Builder(); 
-  builder.setAmount("1.0") 
-          .setIsProduction(true) 
-          .setProductInfo("Macbook Pro") 
-          .setKey(key) 
-          .setPhone(phone) 
-          .setTransactionId(String.valueOf(System.currentTimeMillis())) 
-          .setFirstName("John") 
-          .setEmail("john@yopmail.com") 
-          .setSurl("https://cbjs.payu.in/sdk/success") // This URL is used for Test Only. Don't go live
-          .setFurl("https://cbjs.payu.in/sdk/failure") // This URL is used for Test Only. Don't go live
-          .setUserCredential(key+":john@yopmail.com") 
-          .setUserToken("")  //Optional, Only use for Offers
-          .setSkuDetails(<SkuDetails>) //optional, create SKU Details as mention above
-  				.setAdditionalParams(<HashMap>); //Optional, can contain any additional PG params
-					.setPayUSIParams(siDetails) //Only for SI parameter
-  				.setBeneficiaryDetailsList(payUBeneficiaryDetailArrayList) // Only for TPV parameter
-          .setSplitPaymentDetails(splitPaymentDetails); //Only for Split parameter
-  PayUPaymentParams payUPaymentParams = builder.build();  
+PayUPaymentParams.Builder builder = new PayUPaymentParams.Builder(); 
+builder.setAmount("1.0") 
+       .setIsProduction(true) 
+       .setProductInfo("Macbook Pro") 
+       .setKey(key) 
+       .setPhone(phone) 
+       .setTransactionId(String.valueOf(System.currentTimeMillis())) 
+       .setFirstName("John") 
+       .setEmail("john@yopmail.com") 
+       .setSurl("https://cbjs.payu.in/sdk/success") // This URL is used for Test Only. Don't go live
+       .setFurl("https://cbjs.payu.in/sdk/failure") // This URL is used for Test Only. Don't go live
+       .setUserCredential(key+":john@yopmail.com") 
+       .setUserToken("")  //Optional, Only use for Offers
+       .setSkuDetails(<SkuDetails>) //Optional, create SKU Details as mention above
+       .setAdditionalParams(<HashMap>) //Optional, can contain any additional PG params
+       .setPayUSIParams(siDetails) //Only for SI parameter
+       .setBeneficiaryDetailsList(payUBeneficiaryDetailArrayList) // Only for TPV parameter
+       .setSplitPaymentDetails(splitPaymentDetails); //Only for Split parameter
+PayUPaymentParams payUPaymentParams = builder.build();
   ```
   ```kotlin Kotlin
   val additionalParamsMap: HashMap = HashMap() 
