@@ -19,9 +19,15 @@ name: V2_payment_header_params
 
 You must hash the request parameters using the following hash logic:
 
-**Hash logic**: sha512(`<Body data>` + '|' + date + '|' + merchant\_secret)
+**Hash logic**: sha512(`<Body data>` + '|' + date + '|' + merchant_secret)
 
 Where `<Body data>` contains the request body posted with the request.
+
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
 
 <details>
   <summary>Sample header code</summary>
