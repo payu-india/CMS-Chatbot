@@ -90,3 +90,17 @@ Accelerate your integration workflow with our net banking Postman collection for
   }
   ```
 </Accordion>
+
+<br />
+
+// Default preview for Readme CMS (component must appear after exports)
+<SearchableTable
+  headers={['Bank', 'Type', 'Status']}
+  rows={[
+    ['HDFC Bank', 'Netbanking / Cards', 'Active'],
+    ['ICICI Bank', 'Netbanking / Cards', 'Active'],
+    ['State Bank of India', 'Netbanking', 'Active'],
+    ['Axis Bank', 'Cards', 'Active'],
+  ]}
+  placeholder="Search banks..."
+/>
