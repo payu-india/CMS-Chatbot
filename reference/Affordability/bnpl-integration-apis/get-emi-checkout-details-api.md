@@ -12,10 +12,10 @@ next:
 ---
 ### Environment
 
-|                        |                                                                                                                                       |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| Test Environment       | \<[https://test.payu.in/info/linkAndPay/get\_emi\_checkout\_details>](https://test.payu.in/info/linkAndPay/get_emi_checkout_details>) |
-| Production Environment | \<[https://info.payu.in/linkAndPay/get\_emi\_checkout\_details>](https://info.payu.in/linkAndPay/get_emi_checkout_details>)           |
+|                        |                                                                                                                                    |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Test Environment       | \<[https://test.payu.in/info/linkAndPay/get_emi_checkout_details>](https://test.payu.in/info/linkAndPay/get_emi_checkout_details>) |
+| Production Environment | \<[https://info.payu.in/linkAndPay/get_emi_checkout_details>](https://info.payu.in/linkAndPay/get_emi_checkout_details>)           |
 
 ## Request Parameters
 
@@ -120,87 +120,24 @@ function isEmpty(obj) {
 
 ### Body parameters
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Key <br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU. <br><strong>Reference</strong>: For more information on how to generate the Key and Salt, refer to any of the following:  </p>
-<ul>
-<li><strong>Production</strong>: <a href="https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Production Merchant Key and Sat</a>. </li>
-<li><strong>Test</strong>: <a href="https://docs.payu.in/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a>.</li>
-</ul>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Your Test Key</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>requestId <br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String </code>This parameter must contain the unique ID for making an eligibility request.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Test1234</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount <br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The transaction amount for which the eligibility is checked is to be passed here</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>{&quot;amount&quot;:&quot;10000&quot;}</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>pg <code> mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>It defines the payment category using the Merchant Hosted Checkout integration. For a BNPL payment, &quot;BNPL&quot; must be specified in the <strong>pg</strong> parameter.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>BNPL</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bankcode <br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bankcodes for BNPL, refer to <a href="https://docs.payu.in/docs/bnpl-codes">BNPL Codes</a>. <br><br>In future, wallet options will also be added.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>LAZYPAY</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain the customer’s phone number for which the eligibility is to be checked needs to be passed</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>“9999999999”</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>payuToken<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain is the PayU instrument token for saved card.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Token12345  <br><br>Note: One or multiple payu tokens can be passed and max 10 tokens supported in a request.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>userCredentials<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain an unique user credential mapped against each user, to be passed by the merchant for saved card.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>abc:xyz</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+| Parameter                                                       | Description                                                                                 | Example           |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------- |
+| bankCode<br /><code>mandatory</code>                            | <code>String</code> Bank/lender code (e.g. LPEMI for cardless EMI).                         | `LPEMI`           |
+| phone<br /><code>mandatory</code>                               | <code>String</code> Customer mobile number for eligibility check.                           | `8178959206`      |
+| amount<br /><code>mandatory</code>                              | <code>String</code> Transaction amount for which eligibility is checked.                    | `10000.00`        |
+| pg<br /><code>mandatory</code>                                  | <code>String</code> Payment category; use `EMI` for EMI/Link and Pay NTB flow.              | `EMI`             |
+| checkCustomerEligibilityWithDetails<br /><code>mandatory</code> | <code>Boolean</code> When true, eligibility is checked using the provided customer details. | `true`            |
+| customerDetails<br /><code>mandatory</code>                     | <code>Object</code> Customer onboarding details for NTB eligibility.                        | See example below |
+| customerDetails.panNumber<br /><code>mandatory</code>           | <code>String</code> Customer PAN number.                                                    | `EIJPS1234R`      |
+| customerDetails.dob<br /><code>mandatory</code>                 | <code>String</code> Date of birth (DD-MM-YYYY).                                             | `14-12-1996`      |
+| customerDetails.zipcode<br /><code>mandatory</code>             | <code>String</code> Postal zip code.                                                        | `411014`          |
+| customerDetails.firstName<br /><code>mandatory</code>           | <code>String</code> Customer first name.                                                    | `Shray`           |
+| customerDetails.lastName<br /><code>mandatory</code>            | <code>String</code> Customer last name.                                                     | `Suri`            |
+| customerDetails.bureauPullConsent<br /><code>optional</code>    | <code>String</code> Consent for bureau pull (e.g. "true" or "false").                       | `false`           |
+| customerDetails.gender<br /><code>optional</code>               | <code>String</code> Customer gender.                                                        | `Male`            |
+| customerDetails.income<br /><code>optional</code>               | <code>String</code> Customer income.                                                        | `65000`           |
+| customerDetails.employeeType<br /><code>optional</code>         | <code>String</code> Employment type (e.g. Salaried).                                        | `Salaried`        |
+| customerDetails.abs<br /><code>optional</code>                  | <code>String</code> Additional business-specific field if required.                         | `Asnw`            |
 
 ## Sample request
 
@@ -211,11 +148,23 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 --header 'authorization: hmac username="x0i6r2", algorithm="sha512", headers="date", signature="0e0ebc518c085d8ff49058b7c232bfe2e8779e9e9cafd34a4cdf1c11114035eea75b0e404a9b9e152757dbcc4926f78b6f18ba7f6643e2bf687a65942d3bde38"' \
 --header 'date: Mon, 28 Oct 2024 10:34:49 GMT' \
 --data '{
-    "amount": 2000000,
-    "userCredentials": "aaa:bbb",
-    "phone": "9560012582",
-    "bankCode": null,
-    "payuToken": null
+  "bankCode": "LPEMI",
+  "phone": "8178959206",
+  "amount": "10000.00",
+  "pg": "EMI",
+  "checkCustomerEligibilityWithDetails": true,
+  "customerDetails": {
+    "panNumber": "EIJPS1234R",
+    "dob": "14-12-1996",
+    "zipcode": "411014",
+    "firstName": "Shray",
+    "lastName": "Suri",
+    "bureauPullConsent": "false",
+    "gender": "Male",
+    "income": "65000",
+    "employeeType": "Salaried",
+    "abs": "Asnw"
+  }
 }'
 ```
 
@@ -257,15 +206,64 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 
 * Customer eligible but not linked
 
-```
+```json
 {
-  "bnpl": {
-    "all": {
-      "Lazypay": {
-        "status": 1,
-        "kfsLink": "https://www.somekfsLink.com",
-        "eligible": true,
-        "customerLinked": false
+  "httpCode": "200",
+  "message": "",
+  "status": 1,
+  "data": {
+    "emi": {
+      "ntb": {
+        "cardless": {
+          "all": {
+            "LPEMI": {
+              "tenureOptions": {
+                "LPEMI12": {
+                  "tenure": 12,
+                  "maximumAmount": 100000.0,
+                  "eligibility": {
+                    "status": false,
+                    "reason": "Tenure not available"
+                  }
+                },
+                "LPEMI03": {
+                  "tenure": 3,
+                  "maximumAmount": 60000.0,
+                  "eligibility": {
+                    "status": true
+                  }
+                },
+                "LPEMI09": {
+                  "tenure": 9,
+                  "maximumAmount": 100000.0,
+                  "eligibility": {
+                    "status": false,
+                    "reason": "Tenure not available"
+                  }
+                },
+                "LPEMI06": {
+                  "tenure": 6,
+                  "maximumAmount": 100000.0,
+                  "eligibility": {
+                    "status": true
+                  }
+                },
+                "LPEMI": {
+                  "tenure": 0,
+                  "maximumAmount": 100000.0,
+                  "eligibility": {
+                    "status": false,
+                    "reason": "Tenure not available"
+                  }
+                }
+              },
+              "eligibility": {
+                "status": true
+              }
+            }
+          },
+          "hasEligible": true
+        }
       }
     }
   }
@@ -274,14 +272,71 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 
 * Customer not eligible
 
-```
+```json
 {
-  "Lazypay": {
-    "status": 1,
-    "eligible": false, // based on amount and not to return available balance if eligible is false
-    "customerLinked": false,
-    "failure_code": "E2408",
-    "failure_reason": "The transaction or loan amount is greater than the available credit line with the customer"
+  "httpCode": "200",
+  "message": "",
+  "status": 1,
+  "data": {
+    "emi": {
+      "ntb": {
+        "cardless": {
+          "all": {
+            "LPEMI": {
+              "tenureOptions": {
+                "LPEMI12": {
+                  "tenure": 12,
+                  "maximumAmount": 100000.0,
+                  "eligibility": {
+                    "status": false,
+                    "reason": "Tenure not available"
+                  }
+                },
+                "LPEMI03": {
+                  "tenure": 3,
+                  "maximumAmount": 60000.0,
+                  "eligibility": {
+                    "status": false,
+                    "reason": "Tenure not available"
+                  }
+                },
+                "LPEMI09": {
+                  "tenure": 9,
+                  "maximumAmount": 100000.0,
+                  "eligibility": {
+                    "status": false,
+                    "reason": "Tenure not available"
+                  }
+                },
+                "LPEMI06": {
+                  "tenure": 6,
+                  "maximumAmount": 100000.0,
+                  "eligibility": {
+                    "status": false,
+                    "reason": "Tenure not available"
+                  }
+                },
+                "LPEMI": {
+                  "tenure": 0,
+                  "maximumAmount": 100000.0,
+                  "eligibility": {
+                    "status": false,
+                    "reason": "Tenure not available"
+                  }
+                }
+              },
+              "eligibility": {
+                "status": false,
+                "reason": "Use is not eligible for cof product"
+              }
+            }
+          },
+          "hasEligible": false
+        }
+      }
+    }
   }
 }
 ```
+
+<br />
