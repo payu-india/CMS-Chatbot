@@ -106,7 +106,7 @@ When customers use debit cards or credit cards on your website, you can validate
   "var3":"",
   "var4":"",
   "var5":"1", "hash":"df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
-  }'
+}'
   ```
   ### Hashing Logic
 
