@@ -95,7 +95,7 @@ This section describes how to integrate the following advanced features with Flu
 <Accordion title="Show/Hide Merchant Logo" icon="fa-code">
   Merchants want to show the logo on the PayU Hosted Page. By default, the logo is invisible.
 
-  ```dart
+  ```Text Dart
  var payUCheckoutProConfig = {
     PayUCheckoutProConfigKeys.showMerchantLogo: false, //true/false
 }
@@ -105,7 +105,7 @@ This section describes how to integrate the following advanced features with Flu
 <Accordion title="Show/Hide Saved Card Features" icon="fa-code">
   Merchants want to hide Saved Card features. By default, the Saved Card feature is enabled.
 
-  ```dart
+  ```Text Dart
 var payUCheckoutProConfig = {
     PayUCheckoutProConfigKeys.enableSavedCard: false, //true/false
 }
