@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This is used in the **NTB Seamless Journey** flow.
+The Get Checkout Details (get_checkout_details) API is a generic API using which they can get information when you create the custom checkout pages, that will contain the payment options, offers, recommendations, and downtime details This section is for the **NTB Seamless Journey** flow.
 
 **Environment**
 
