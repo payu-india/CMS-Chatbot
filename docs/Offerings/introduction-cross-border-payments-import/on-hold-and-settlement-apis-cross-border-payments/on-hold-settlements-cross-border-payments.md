@@ -26,14 +26,125 @@ Also, this section describes the step-by-step procedure to process on-hold trans
 
 If the transaction status is **Needs Response**, additional information is required. Below are common scenarios and resolution steps:
 
-| **Scenario**                                   | **Description**                                                         | **Required Information & Resolution Steps**                                                                                                                                                                                |
-| ---------------------------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Provide valid invoice number**               | Invoice number is mandatory for compliance on imports to India.         | You can provide the invoice number via:<br />1. **PayU Dashboard** → **On-hold Settlements** tab<br />2. Update `udf-5` (one-time payment) or `udf-3` parameters using the UDF Update API. <br />3. Use Invoice Upload API |
-| **Provide complete name of buyer**             | Missing First Name or Last Name of the buyer.                           | Update buyer details in your system and resubmit.                                                                                                                                                                          |
-| **Provide complete name and address of buyer** | Missing buyer's full name or address.                                   | Ensure full name and buyer's "zip-code" are captured and updated.                                                                                                                                                          |
-| **Provide PAN and DOB of buyer**               | There is a potential AML / sanction screening match on the buyer        | Provide PAN (Permanent Account Number) and Date of Birth of the buyer                                                                                                                                                      |
-| **Non-Individual cases cannot be processed**   | Transactions involving entities other than individuals are not allowed. | B2B transactions are not enabled for the MID. Contact your Account Manager to enable the same & get the settlements completed.                                                                                             |
-| **AMLOCK match found and cannot be processed** | Buyer is a potential sanction entity, transaction cannot be processed.  | Issue a refund for these transactions via dashboard or API.                                                                                                                                                                |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Scenario**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+
+      <th>
+        **Required Information & Resolution Steps**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **Provide valid invoice number**
+      </td>
+
+      <td>
+        Invoice number is mandatory for compliance on imports to India.
+      </td>
+
+      <td>
+        You can provide the invoice number via:<br />1. **PayU Dashboard** → **On-hold Settlements** tab<br />2. Update `udf-5` (one-time payment) or `udf-3` parameters using the UDF Update API. <br />3. Use Invoice Upload API
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Provide complete name of buyer**
+      </td>
+
+      <td>
+        Missing First Name or Last Name of the buyer.
+      </td>
+
+      <td>
+        Update buyer details in your system and resubmit.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Provide complete name and address of buyer**
+      </td>
+
+      <td>
+        Missing buyer's full name or address.
+      </td>
+
+      <td>
+        Ensure full name and buyer's "zip-code" are captured and updated.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Provide PAN and DOB of buyer**
+      </td>
+
+      <td>
+        There is a potential AML / sanction screening match on the buyer
+      </td>
+
+      <td>
+        Provide PAN (Permanent Account Number) and Date of Birth of the buyer
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Non-Individual cases cannot be processed**
+      </td>
+
+      <td>
+        Transactions involving entities other than individuals are not allowed.
+      </td>
+
+      <td>
+        B2B transactions are not enabled for the MID. Contact your Account Manager to enable the same & get the settlements completed.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **AMLOCK match found and cannot be processed**
+      </td>
+
+      <td>
+        Buyer is a potential sanction entity, transaction cannot be processed.
+      </td>
+
+      <td>
+        Issue a refund for these transactions via dashboard or API.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **LRS limit breached, cannot be processed**
+      </td>
+
+      <td>
+        Applicable only for Travel transactions under Liberalised Remittance Scheme (LRS)  
+
+        Buyer has breached the annual ~$250K limit against the PAN shared, transaction cannot be processed.
+      </td>
+
+      <td>
+        Issue a refund for these transactions via dashboard or API
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Key Tips for Merchants
 
