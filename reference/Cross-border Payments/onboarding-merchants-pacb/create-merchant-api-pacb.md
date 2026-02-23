@@ -22,10 +22,43 @@ This API is authorised through a client token generated using the client ID and 
 
 ## Request Parameters
 
-<br />
+## Body parameters
 
-<details>
-  <summary>Sample Request</summary>
+    | Parameter | Type | Required | Description | Example |
+    | --------- | ---- | -------- | ----------- | ------- |
+    | merchant[display_name] | string | Yes | The display name of the merchant shown on PayU dashboard and reports. | DIVY HARESHKUMAR SHAH |
+    | merchant[email] | string | Yes | Primary email address of the merchant for communication and notifications. | merchant@example.com |
+    | merchant[mobile] | string | Yes | Primary mobile number of the merchant for communication and notifications. | 9911100364 |
+    | merchant[business_details][pan] | string | Yes | Permanent Account Number (PAN) of the merchant business. | FANPS6362D |
+    | merchant[business_details][business_entity_type] | string | Yes | Type of business entity (e.g. Sole Proprietorship, Partnership, Private Limited). | Sole Proprietorship |
+    | merchant[business_details][pancard_name] | string | Conditional | Name as it appears on the PAN card. Required if PAN number is posted. | DIVY HARESHKUMAR SHAH |
+    | merchant[business_details][registered_name] | string | No | The registered legal name of the merchant business. | DIVY HARESHKUMAR SHAH |
+    | merchant[business_details][business_category] | string | No | The primary business category of the merchant. | Arts, Gifts & Stationery |
+    | merchant[business_details][business_sub_category] | string | No | A more specific subcategory related to the business. | Art Dealers and Galleries |
+    | merchant[product] | string | No | The PayU product the merchant wants to use (e.g. PayUbiz, PayUmoney). | PayUbiz |
+    | merchant[bank_details][account_no] | string | No* | Bank account number of the merchant for settlements. *All bank fields must be sent together if any is sent. | 919010067278549 |
+    | merchant[bank_details][account_holder_name] | string | No* | Name of the account holder as per bank records. | DIVY HARESHKUMAR SHAH |
+    | merchant[bank_details][ifsc_code] | string | No* | IFSC code of the bank branch for settlements. | UTIB0003557 |
+    | merchant[website_details][website_url] | string | No | The merchant's website URL. | https://www.example.com |
+    | merchant[monthly_expected_volume] | integer | No | The monthly expected transaction volume in monetary terms. | 12000 |
+    | merchant[signing_authority_details][name] | string | No | Name of the authorized representative or signing authority. | DIVY HARESHKUMAR SHAH |
+    | merchant[signing_authority_details][pancard_number] | string | No | PAN card number of the signing authority. If posted, pancard_name is required. | FANPS6362D |
+    | merchant[signing_authority_details][email] | string | No | Email of the authorized representative or signing authority. | auth_email@example.com |
+    | merchant[integration_type] | string | No | Type of integration for the merchant's account. | ThirdParty |
+    | merchant[gst_number] | string | No | The GST number of the merchant business. | 24FANPS6362D1ZE |
+    | merchant[udyam_number] | string | No | Udyam Registration Number for MSMEs. | UDYAM-UP-19-0002053 |
+    | merchant[gst_consent] | string | No | Consent for GST verification and processing (e.g. true/false). | false |
+
+  Use the following references to get additional information:
+
+  * [Business Entity Types](ref:partner-category-list#business-entity-type)
+  * [Business Categories](ref:partner-category-list)
+  * [Business Sub-Category List](ref:partner-category-list#business-sub-category)
+  * [Get Token API](ref:get_token_api)
+  * [Update Merchant Details API](ref:update_merchant_details_api)
+
+
+## Sample Request
 
   ```curl
   curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
@@ -55,10 +88,7 @@ This API is authorised through a client token generated using the client ID and 
   --data-urlencode 'merchant[udyam_number]=UDYAM-UP-19-0002053' \
   --data-urlencode 'merchant[gst_consent]=false'
   ```
-</details>
-
-<details>
-  <summary>Sample Response</summary>
+## Sample Response
 
   ### Success Scenario
 
@@ -171,10 +201,7 @@ This API is authorised through a client token generated using the client ID and 
   ```
 
   **Action**: Include the missing parameter in your request.
-</details>
-
-<details>
-  <summary>Response Parameters</summary>
+## Response Parameters
 
   ### merchant JSON object descriptions
 
@@ -237,10 +264,9 @@ This API is authorised through a client token generated using the client ID and 
   | holder\_name          | Name of the account holder          |
   | nodal\_code           | Nodal code (if applicable)          |
   | nodal\_status         | Status of nodal account             |
-</details>
 
-<details>
-  <summary>KYC and Document Status</summary>
+
+### KYC and Document Status
 
   The following statuses can be returned for KYC and document verification:
 
@@ -256,31 +282,16 @@ This API is authorised through a client token generated using the client ID and 
 
   > 📘 Note:\
   > All timestamps are provided in ISO 8601 format (YYYY-MM-DDThh:mm:ss.sssZ).
-</details>
 
-## Request parameter
+
+<br />
 
 > 📘 Mandatory and interdependent parameters:
 >
 > * The merchant display name, email, mobile, and business entity type parameters are mandatory. For the list of sample errors, refer to the [Failure scenario](#failure-scenario) table.
 > * If the PAN number is posted, PAN name must also be posted along with it. When posting bank account details, all the bank account details should be sent, i.e., account no, IFSC, account holder name.
 
-<details>
-  <summary>Parameters Reference</summary>
 
-  | Parameter                                              | Reference                                                                                                                       |
-  | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-  | merchant\[business\_category]                          | For the list of business categories, refer to [Business Category List](ref:partner-category-list)                               |
-  | merchant\[business\_entity\_type]                      | For the list of business entity types, refer to [Business Entity Type](ref:partner-category-list#business-entity-type)          |
-  | merchant\[business\_details]\[business\_sub\_category] | For the list of business sub-categories, refer to [Business Sub-Category List](ref:partner-category-list#business-sub-category) |
 
-  Use the following references to get additional information:
-
-  * [Business Entity Types](ref:partner-category-list#business-entity-type)
-  * [Business Categories](ref:partner-category-list)
-  * [Business Sub-Category List](ref:partner-category-list#business-sub-category)
-  * [Get Token API](ref:get_token_api)
-  * [Update Merchant Details API](ref:update_merchant_details_api)
-</details>
 
 <br />
