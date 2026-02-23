@@ -503,7 +503,8 @@ To initiate a payment, your app must send transactional information to the Check
           .setUserToken("")  //Optional, Only use for Offers
           .setSkuDetails(<SkuDetails>) //optional, create SKU Details as mention above
           .setAdditionalParams(<HashMap>); //Optional, can contain any additional PG params  
-          .setPayUSIParams(siDetails) //Only for SI parameter
+  				.setPayUSIParams(siDetails) //Only for SI parameter
+					.setBeneficiaryDetailsList(payUBeneficiaryDetailArrayList) // Only for TPV parameter
           .setSplitPaymentDetails(splitPaymentDetails); //Only for Split parameter
   PayUPaymentParams payUPaymentParams = builder.build();  
   ```
