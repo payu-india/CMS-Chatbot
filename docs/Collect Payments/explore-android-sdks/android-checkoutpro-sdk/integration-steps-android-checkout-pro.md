@@ -346,127 +346,109 @@ To initiate a payment, your app must send transactional information to the Check
   >
   > if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities \* skuAmount of each item.
 </Accordion>
-  
-<Accordion title="Third Party Verification (TPV) Flow" icon="fa-shield-check">
+
+<Accordion title="Step 3:6 : Third Party Verification (TPV) Flow" icon="fa-shield-check">
     CheckoutPro SDK supports TPV flow for both UPI and Net Banking payment methods. TPV validates that payments are made from authorized beneficiary accounts by verifying account details during the transaction.
 
     <Accordion title="TPV for UPI Payments" icon="fa-mobile">
         To enable TPV for UPI payments, you need to pass beneficiary account details with IFSC code and account number.
 
-        <Tabs>
-            <Tab title="Java">
-                ```java
-                PayUBeneficiaryDetail payUBeneficiaryDetail = new PayUBeneficiaryDetail.Builder()
-                    .setBeneficiaryIfsc("BANK0001234")
-                    .setBeneficiaryAccountNumber("1234567890")
-                    .build();
-                
-                // Add to payment params
-                paymentParams.setBeneficiaryDetails(payUBeneficiaryDetail);
-                ```
-            </Tab>
-            <Tab title="Kotlin">
-                ```kotlin
-                val payUBeneficiaryDetail = PayUBeneficiaryDetail.Builder()
-                    .setBeneficiaryIfsc("BANK0001234")
-                    .setBeneficiaryAccountNumber("1234567890")
-                    .build()
-                
-                // Add to payment params
-                paymentParams.beneficiaryDetails = payUBeneficiaryDetail
-                ```
-            </Tab>
-        </Tabs>
+        ```Text Java
+        PayUBeneficiaryDetail payUBeneficiaryDetail = new PayUBeneficiaryDetail.Builder()
+            .setBeneficiaryIfsc("BANK0001234")
+            .setBeneficiaryAccountNumber("1234567890")
+            .build();
+        
+        // Add to payment params
+        paymentParams.setBeneficiaryDetails(payUBeneficiaryDetail);
+        ```
+        ```Text Kotlin
+        val payUBeneficiaryDetail = PayUBeneficiaryDetail.Builder()
+            .setBeneficiaryIfsc("BANK0001234")
+            .setBeneficiaryAccountNumber("1234567890")
+            .build()
+        
+        // Add to payment params
+        paymentParams.beneficiaryDetails = payUBeneficiaryDetail
+        ```
     </Accordion>
 
     <Accordion title="TPV for Net Banking Payments" icon="fa-university">
         To enable TPV for Net Banking, you need to pass additional parameters including account type and beneficiary name along with IFSC and account number.
 
-        <Tabs>
-            <Tab title="Java">
-                ```java
-                PayUBeneficiaryDetail payUBeneficiaryDetail = new PayUBeneficiaryDetail.Builder()
-                    .setBeneficiaryIfsc("BANK0005678")
-                    .setBeneficiaryAccountNumber("9876543210")
-                    .setBeneficiaryAccountType(PayUBeneficiaryAccountType.SAVINGS)
-                    .setBeneficiaryName("John Doe")
-                    .build();
-                
-                // Add to payment params
-                paymentParams.setBeneficiaryDetails(payUBeneficiaryDetail);
-                ```
-            </Tab>
-            <Tab title="Kotlin">
-                ```kotlin
-                val payUBeneficiaryDetail = PayUBeneficiaryDetail.Builder()
-                    .setBeneficiaryIfsc("BANK0005678")
-                    .setBeneficiaryAccountNumber("9876543210")
-                    .setBeneficiaryAccountType(PayUBeneficiaryAccountType.SAVINGS)
-                    .setBeneficiaryName("John Doe")
-                    .build()
-                
-                // Add to payment params
-                paymentParams.beneficiaryDetails = payUBeneficiaryDetail
-                ```
-            </Tab>
-        </Tabs>
+        ```Text Java
+        PayUBeneficiaryDetail payUBeneficiaryDetail = new PayUBeneficiaryDetail.Builder()
+            .setBeneficiaryIfsc("BANK0005678")
+            .setBeneficiaryAccountNumber("9876543210")
+            .setBeneficiaryAccountType(PayUBeneficiaryAccountType.SAVINGS)
+            .setBeneficiaryName("John Doe")
+            .build();
+        
+        // Add to payment params
+        paymentParams.setBeneficiaryDetails(payUBeneficiaryDetail);
+        ```
+        ```Text Kotlin
+        val payUBeneficiaryDetail = PayUBeneficiaryDetail.Builder()
+            .setBeneficiaryIfsc("BANK0005678")
+            .setBeneficiaryAccountNumber("9876543210")
+            .setBeneficiaryAccountType(PayUBeneficiaryAccountType.SAVINGS)
+            .setBeneficiaryName("John Doe")
+            .build()
+        
+        // Add to payment params
+        paymentParams.beneficiaryDetails = payUBeneficiaryDetail
+        ```
     </Accordion>
 
-    <Accordion title="Step 3.6: TPV for Multiple Payment Methods" icon="fa-layer-group">
+    <Accordion title="TPV for Multiple Payment Methods" icon="fa-layer-group">
         To support TPV for both UPI and Net Banking in the same transaction, create separate beneficiary detail objects and add them to an ArrayList.
 
-        <Tabs>
-            <Tab title="Java">
-                ```java
-                // Beneficiary details for UPI
-                PayUBeneficiaryDetail upiBeneficiary = new PayUBeneficiaryDetail.Builder()
-                    .setBeneficiaryIfsc("BANK0001234")
-                    .setBeneficiaryAccountNumber("1234567890")
-                    .build();
-                
-                // Beneficiary details for Net Banking
-                PayUBeneficiaryDetail netBankingBeneficiary = new PayUBeneficiaryDetail.Builder()
-                    .setBeneficiaryIfsc("BANK0005678")
-                    .setBeneficiaryAccountNumber("9876543210")
-                    .setBeneficiaryAccountType(PayUBeneficiaryAccountType.SAVINGS)
-                    .setBeneficiaryName("John Doe")
-                    .build();
-                
-                // Add both beneficiary details to ArrayList
-                ArrayList<PayUBeneficiaryDetail> payUBeneficiaryDetailArrayList = new ArrayList<>();
-                payUBeneficiaryDetailArrayList.add(upiBeneficiary);
-                payUBeneficiaryDetailArrayList.add(netBankingBeneficiary);
-                
-                // Add to payment params
-                paymentParams.setBeneficiaryDetailsList(payUBeneficiaryDetailArrayList);
-                ```
-            </Tab>
-            <Tab title="Kotlin">
-                ```kotlin
-                // Beneficiary details for UPI
-                val upiBeneficiary = PayUBeneficiaryDetail.Builder()
-                    .setBeneficiaryIfsc("BANK0001234")
-                    .setBeneficiaryAccountNumber("1234567890")
-                    .build()
-                
-                // Beneficiary details for Net Banking
-                val netBankingBeneficiary = PayUBeneficiaryDetail.Builder()
-                    .setBeneficiaryIfsc("BANK0005678")
-                    .setBeneficiaryAccountNumber("9876543210")
-                    .setBeneficiaryAccountType(PayUBeneficiaryAccountType.SAVINGS)
-                    .setBeneficiaryName("John Doe")
-                    .build()
-                
-                // Add both beneficiary details to ArrayList
-                val payUBeneficiaryDetailArrayList = arrayListOf<PayUBeneficiaryDetail>()
-                payUBeneficiaryDetailArrayList.add(upiBeneficiary)
-                payUBeneficiaryDetailArrayList.add(netBankingBeneficiary)
-                
-                // Add to payment params
-                paymentParams.beneficiaryDetailsList = payUBeneficiaryDetailArrayList
-                ```
-            </Tab>
-        </Tabs>
+        ```Text Java
+        // Beneficiary details for UPI
+        PayUBeneficiaryDetail upiBeneficiary = new PayUBeneficiaryDetail.Builder()
+            .setBeneficiaryIfsc("BANK0001234")
+            .setBeneficiaryAccountNumber("1234567890")
+            .build();
+        
+        // Beneficiary details for Net Banking
+        PayUBeneficiaryDetail netBankingBeneficiary = new PayUBeneficiaryDetail.Builder()
+            .setBeneficiaryIfsc("BANK0005678")
+            .setBeneficiaryAccountNumber("9876543210")
+            .setBeneficiaryAccountType(PayUBeneficiaryAccountType.SAVINGS)
+            .setBeneficiaryName("John Doe")
+            .build();
+        
+        // Add both beneficiary details to ArrayList
+        ArrayList<PayUBeneficiaryDetail> payUBeneficiaryDetailArrayList = new ArrayList<>();
+        payUBeneficiaryDetailArrayList.add(upiBeneficiary);
+        payUBeneficiaryDetailArrayList.add(netBankingBeneficiary);
+        
+        // Add to payment params
+        paymentParams.setBeneficiaryDetailsList(payUBeneficiaryDetailArrayList);
+        ```
+        ```Text Kotlin
+        // Beneficiary details for UPI
+        val upiBeneficiary = PayUBeneficiaryDetail.Builder()
+            .setBeneficiaryIfsc("BANK0001234")
+            .setBeneficiaryAccountNumber("1234567890")
+            .build()
+        
+        // Beneficiary details for Net Banking
+        val netBankingBeneficiary = PayUBeneficiaryDetail.Builder()
+            .setBeneficiaryIfsc("BANK0005678")
+            .setBeneficiaryAccountNumber("9876543210")
+            .setBeneficiaryAccountType(PayUBeneficiaryAccountType.SAVINGS)
+            .setBeneficiaryName("John Doe")
+            .build()
+        
+        // Add both beneficiary details to ArrayList
+        val payUBeneficiaryDetailArrayList = arrayListOf<PayUBeneficiaryDetail>()
+        payUBeneficiaryDetailArrayList.add(upiBeneficiary)
+        payUBeneficiaryDetailArrayList.add(netBankingBeneficiary)
+        
+        // Add to payment params
+        paymentParams.beneficiaryDetailsList = payUBeneficiaryDetailArrayList
+        ```
     </Accordion>
 
     ### Required Parameters
@@ -478,7 +460,6 @@ To initiate a payment, your app must send transactional information to the Check
     | BeneficiaryAccountType | ✗ Optional | ✓ Required | Account type (SAVINGS/CURRENT) |
     | BeneficiaryName | ✗ Optional | ✓ Required | Account holder's name |
 </Accordion>
-
 
 <Accordion title="Step 3.7: Additional parameters (Optional)" icon="fa-code">
   Additional parameters are optional parameters such as UDF (User Defined Fields), static hashes, etc. More details on static hash generation and passing are mentioned in the hash generation section. The following is a list of other parameters that can be passed in additional parameters.
