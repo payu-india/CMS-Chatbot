@@ -7,9 +7,14 @@ metadata:
 ---
 This is used in the **NTB Seamless Journey** flow.
 
-<br />
+**Environment**
 
-### Body parameters
+|                        |                                                                                                      |
+| :--------------------- | :--------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in-merchant/postservice?form=2](https://test.payu.in-merchant/postservice?form=2) |
+| Production Environment | [https://info.payu.in-merchant/postservice?form=2](https://info.payu.in-merchant/postservice?form=2) |
+
+## Request parameters
 
 | Parameter | Description                                                                                                                                                | Example              |
 | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
@@ -19,7 +24,7 @@ This is used in the **NTB Seamless Journey** flow.
 
 <br />
 
-### var1 JSON fields (inside var1)
+### var1 JSON Object fields description (inside var1)
 
 | Parameter          | Description                                                                                                                                                                                                                                                                                                                                                                                       | Example                                        |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
@@ -29,7 +34,7 @@ This is used in the **NTB Seamless Journey** flow.
 | customerDetails    | <code>Object</code> Optional. Customer info (e.g. <code>mobile</code>) for eligibility checks.                                                                                                                                                                                                                                                                                                    | \{"mobile": "9098765432"}                      |
 | filters            | <code>Object</code> Optional. Filter response by <code>paymentOptions</code> (emi.dc, cc, cardless; bnpl). Include "all" for all banks in a category.                                                                                                                                                                                                                                             | \{"paymentOptions": \{"emi": \{"dc": "ICIC"}}} |
 
-### useCase flags (inside useCase)
+### useCase JSON Object Fields Description
 
 | Field                     | Description                                                                                                                                       |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -38,6 +43,8 @@ This is used in the **NTB Seamless Journey** flow.
 | getTaxSpecification       | <code>Boolean</code> Set <code>true</code> to return tax specification from backend for splitting additional charges.                             |
 | checkDownStatus           | <code>Boolean</code> Set <code>true</code> to return downtime of payment options.                                                                 |
 | checkCustomerEligibility  | <code>Boolean</code> Set <code>true</code> to return customer eligibility.                                                                        |
+
+<br />
 
 ## Sample request
 
