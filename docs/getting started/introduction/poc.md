@@ -91,7 +91,6 @@ Accelerate your integration workflow with our net banking Postman collection for
   ```
 </Accordion>
 
-// Default preview for Readme CMS (component must appear after exports)
 <SearchableTable
   headers={['Bank', 'Type', 'Status']}
   rows={[
@@ -102,5 +101,3 @@ Accelerate your integration workflow with our net banking Postman collection for
   ]}
   placeholder="Search"
 />
-
-<br />
