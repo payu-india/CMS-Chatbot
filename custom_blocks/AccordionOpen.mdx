@@ -1,0 +1,72 @@
+---
+name: AccordionOpen
+---
+// AccordionOpen - Readme CMS Custom Component
+// Same as Readme's default Accordion but opens by default; title is rendered as a heading.
+// Usage: <AccordionOpen title="Section title" icon="fa-info-circle">content</AccordionOpen>
+// Props: title, icon (optional), defaultOpen (default true), headingLevel (2-6, default 3).
+
+import { useState } from 'react';
+
+export const AccordionOpen = (props) => {
+  const {
+    title = 'Section',
+    icon = '',
+    defaultOpen = true,
+    headingLevel = 3,
+    children,
+  } = props;
+
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [contentId] = useState(() => `accordion-open-${Math.random().toString(36).slice(2, 11)}`);
+
+  const HeadingTag = `h${Math.min(6, Math.max(2, headingLevel))}`;
+
+  return (
+    <div className="border border-gray-200 rounded-md overflow-hidden my-4 bg-white">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center gap-3 px-4 py-3 text-left bg-gray-50 hover:bg-gray-100 border-b border-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+        aria-expanded={isOpen}
+        aria-controls={contentId}
+      >
+        {icon && (
+          <span
+            className="flex-shrink-0 text-gray-500"
+            aria-hidden="true"
+          >
+            <i className={`fa ${icon}`} style={{ width: '1.25em' }} />
+          </span>
+        )}
+        <span className="flex-1 min-w-0">
+          <HeadingTag className="!my-0 !text-base font-semibold text-gray-900">
+            {title}
+          </HeadingTag>
+        </span>
+        <span
+          className={`flex-shrink-0 text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          aria-hidden="true"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </span>
+      </button>
+      <div
+        id={contentId}
+        className={isOpen ? '' : 'hidden'}
+        role="region"
+        aria-label={title}
+      >
+        <div className="px-4 py-3 border-t border-gray-100 bg-white prose prose-sm max-w-none">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+<AccordionOpen title="Request Parameters" icon="fa-info-circle">
+  <p>This accordion is open by default. The title is rendered as a heading. You can put any content here: tables, code blocks, or more MDX. Users can collapse or expand by clicking the header.</p>
+</AccordionOpen>
