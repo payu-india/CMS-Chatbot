@@ -459,9 +459,79 @@ To initiate a payment, your app must send transactional information to the Check
   | BeneficiaryAccountNumber | ✓ Required | ✓ Required  | Beneficiary account number     |
   | BeneficiaryAccountType   | ✗ Optional | ✓ Required  | Account type (SAVINGS/CURRENT) |
   | BeneficiaryName          | ✗ Optional | ✓ Required  | Account holder's name          |
+    </Accordion>
+
+<Accordion title="Step 3.7 : Cross Broder Flow (OPGSP)" icon="fa-code">
+    OPGSP (Online Payment Gateway Service Provider) flow requires complete address details to be passed along with payment parameters. All address fields are mandatory for OPGSP transactions.
+
+    ```Text Java
+    PayUAddressDetails addressDetails = new PayUAddressDetails.Builder()
+        .setLastName("Doe")
+        .setAddress1("34 Saikripa-Estate, Tilak Nagar")
+        .setAddress2("Near Metro Station")
+        .setCity("Mumbai")
+        .setState("Maharashtra")
+        .setCountry("India")
+        .setZipcode("400004")
+        .build();
+    
+    // Add to payment params
+    paymentParams.setAddressDetails(addressDetails);
+    ```
+    ```Text Kotlin
+    val addressDetails = PayUAddressDetails.Builder()
+        .setLastName("Doe")
+        .setAddress1("34 Saikripa-Estate, Tilak Nagar")
+        .setAddress2("Near Metro Station")
+        .setCity("Mumbai")
+        .setState("Maharashtra")
+        .setCountry("India")
+        .setZipcode("400004")
+        .build()
+    
+    // Add to payment params
+    paymentParams.setAddressDetails(addressDetails)
+    ```
+
+    ### Address Parameters
+
+    | Parameter | Required | Description | Example |
+    |-----------|----------|-------------|---------|
+    | LastName | ✓ Required | Customer's last name | Doe |
+    | Address1 | ✓ Required | The first line of the billing address. **Note:** This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar |
+    | Address2 | ✓ Required | The second line of the billing address | Near Metro Station |
+    | City | ✓ Required | The city where your customer resides as part of the billing address | Mumbai |
+    | State | ✓ Required | The state where your customer resides as part of the billing address | Maharashtra |
+    | Country | ✓ Required | The country where your customer resides | India |
+    | Zipcode | ✓ Required | Billing address zip code is mandatory for the cardless EMI option. Character Limit: 20 | 400004 |
+
+    ---
+
+    ### **UDF5 Parameter (Invoice Number) - MANDATORY**
+
+    When using OPGSP flow, you **must** pass the Invoice Number in the **UDF5** parameter.
+
+    ```Text Java
+    // Set UDF5 with Invoice Number
+    HashMap<String, Object> additionalParams = new HashMap<>();
+    additionalParams.put("udf5", "098450845");
+    paymentParams.setAdditionalParams(additionalParams);
+    ```
+    ```Text Kotlin
+    // Set UDF5 with Invoice Number
+    val additionalParams = hashMapOf<String, Any?>()
+    additionalParams["udf5"] = "098450845"
+    paymentParams.setAdditionalParams(additionalParams)
+    ```
+
+    | Parameter | Required | Description | Example |
+    |-----------|----------|-------------|---------|
+    | udf5 | ✓ Required | The invoice ID or invoice number must be collected using this field | 098450845 |
+
 </Accordion>
 
-<Accordion title="Step 3.7: Additional parameters (Optional)" icon="fa-code">
+
+<Accordion title="Step 3.8: Additional parameters (Optional)" icon="fa-code">
   Additional parameters are optional parameters such as UDF (User Defined Fields), static hashes, etc. More details on static hash generation and passing are mentioned in the hash generation section. The following is a list of other parameters that can be passed in additional parameters.
 
   | Parameter                                               | Description                                                                                            | Example      |
@@ -488,8 +558,8 @@ To initiate a payment, your app must send transactional information to the Check
   // to show ClooseLoop Wallet 
    additionalParamsMap[PayUCheckoutProConstants.WALLET_URN] = "<Wallet URN>"
    
-PayUPaymentParams.Builder builder = new PayUPaymentParams.Builder(); 
-builder.setAmount("1.0") 
+  PayUPaymentParams.Builder builder = new PayUPaymentParams.Builder(); 
+  builder.setAmount("1.0") 
        .setIsProduction(true) 
        .setProductInfo("Macbook Pro") 
        .setKey(key) 
@@ -506,7 +576,7 @@ builder.setAmount("1.0")
        .setPayUSIParams(siDetails) //Only for SI parameter
        .setBeneficiaryDetailsList(payUBeneficiaryDetailArrayList) // Only for TPV parameter
        .setSplitPaymentDetails(splitPaymentDetails); //Only for Split parameter
-PayUPaymentParams payUPaymentParams = builder.build();
+  PayUPaymentParams payUPaymentParams = builder.build();
   ```
   ```kotlin Kotlin
   val additionalParamsMap: HashMap = HashMap() 
@@ -537,7 +607,7 @@ PayUPaymentParams payUPaymentParams = builder.build();
   ```
 </Accordion>
 
-<Accordion title="Step 3.8: Payment Param Definitions" icon="fa-code">
+<Accordion title="Step 3.9: Payment Param Definitions" icon="fa-code">
   <Table align={["left","left","left"]}>
     <thead>
       <tr>
