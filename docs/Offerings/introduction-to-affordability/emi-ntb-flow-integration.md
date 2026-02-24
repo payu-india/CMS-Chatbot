@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This section descries how to integrate New to Bank (NTB) flow as described in the following steps. Use these in order when building custom checkout pages that need payment options, EMI details, and customer eligibility.
+This section describes how to integrate New to Bank (NTB) flow as described in the following steps. These steps will help you check the customer eligibility for NTB.
 
 <Cards>
   <Card title=" Step 1: Get Checkout Details" href="#step-1-check-eligibility" icon="fa-rocket">
