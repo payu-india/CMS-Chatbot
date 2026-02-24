@@ -111,26 +111,25 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
   </Table>
 
   <Accordion title="var1 JSON Object fields description" icon="fa-table">
-
-  | Parameter          | Description                                                                                                                                                                                                                                                                                                                                                                                       | Example                                        |
-  | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-  | requestId          | <code>String</code> Request ID.                                                                                                                                                                                                                                                                                                                                                                   | 12345678                                       |
-  | transactionDetails | <code>Object</code> Must contain <code>amount</code> (transaction amount) and optionally <code>txnid</code> (transaction ID).                                                                                                                                                                                                                                                                     | \{"amount": "100.00", "txnid": "TXN123"}       |
-  | useCase            | <code>Object</code> Flags for which information to return: <code>getExtendedPaymentDetails</code>, <code>getAdditionalCharges</code>, <code>getTaxSpecification</code>, <code>checkDownStatus</code>, <code>checkCustomerEligibility</code>. Optionally <code>filters</code> (e.g. <code>paymentOptions.emi.dc</code>, <code>cc</code>, <code>cardless</code>; <code>paymentOptions.bnpl</code>). | \{"getExtendedPaymentDetails": true}           |
-  | customerDetails    | <code>Object</code> Optional. Customer info (e.g. <code>mobile</code>) for eligibility checks.                                                                                                                                                                                                                                                                                                    | \{"mobile": "9098765432"}                      |
-  | filters            | <code>Object</code> Optional. Filter response by <code>paymentOptions</code> (emi.dc, cc, cardless; bnpl). Include "all" for all banks in a category.                                                                                                                                                                                                                                             | \{"paymentOptions": \{"emi": \{"dc": "ICIC"}}} |
+    | Parameter          | Description                                                                                                                                                                                                                                                                                                                                                                                       | Example                                        |
+    | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+    | requestId          | <code>String</code> Request ID.                                                                                                                                                                                                                                                                                                                                                                   | 12345678                                       |
+    | transactionDetails | <code>Object</code> Must contain <code>amount</code> (transaction amount) and optionally <code>txnid</code> (transaction ID).                                                                                                                                                                                                                                                                     | \{"amount": "100.00", "txnid": "TXN123"}       |
+    | useCase            | <code>Object</code> Flags for which information to return: <code>getExtendedPaymentDetails</code>, <code>getAdditionalCharges</code>, <code>getTaxSpecification</code>, <code>checkDownStatus</code>, <code>checkCustomerEligibility</code>. Optionally <code>filters</code> (e.g. <code>paymentOptions.emi.dc</code>, <code>cc</code>, <code>cardless</code>; <code>paymentOptions.bnpl</code>). | \{"getExtendedPaymentDetails": true}           |
+    | customerDetails    | <code>Object</code> Optional. Customer info (e.g. <code>mobile</code>) for eligibility checks.                                                                                                                                                                                                                                                                                                    | \{"mobile": "9098765432"}                      |
+    | filters            | <code>Object</code> Optional. Filter response by <code>paymentOptions</code> (emi.dc, cc, cardless; bnpl). Include "all" for all banks in a category.                                                                                                                                                                                                                                             | \{"paymentOptions": \{"emi": \{"dc": "ICIC"}}} |
   </Accordion>
-  <Accordion title="useCase JSON Object Fields Description" icon="fa-table">
 
-  | Field                     | Description                                                                                                                                       |
-  | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | getExtendedPaymentDetails | <code>Boolean</code> Set <code>true</code> to check EMI eligibility (mobile/card) and “Buy Now Pay Later” modes; returns title, EMI breakup, etc. |
-  | getAdditionalCharges      | <code>Boolean</code> Set <code>true</code> to return additional charges for all payment options.                                                  |
-  | getTaxSpecification       | <code>Boolean</code> Set <code>true</code> to return tax specification from backend for splitting additional charges.                             |
-  | checkDownStatus           | <code>Boolean</code> Set <code>true</code> to return downtime of payment options.                                                                 |
-  | checkCustomerEligibility  | <code>Boolean</code> Set <code>true</code> to return customer eligibility.   
-                                                                     |
-</Accordion> 
+  <Accordion title="useCase JSON Object Fields Description" icon="fa-table">
+    | Field                     | Description                                                                                                                                       |
+    | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | getExtendedPaymentDetails | <code>Boolean</code> Set <code>true</code> to check EMI eligibility (mobile/card) and “Buy Now Pay Later” modes; returns title, EMI breakup, etc. |
+    | getAdditionalCharges      | <code>Boolean</code> Set <code>true</code> to return additional charges for all payment options.                                                  |
+    | getTaxSpecification       | <code>Boolean</code> Set <code>true</code> to return tax specification from backend for splitting additional charges.                             |
+    | checkDownStatus           | <code>Boolean</code> Set <code>true</code> to return downtime of payment options.                                                                 |
+    | checkCustomerEligibility  | <code>Boolean</code> Set <code>true</code> to return customer eligibility.                                                                        |
+    |                           |                                                                                                                                                   |
+  </Accordion>
 </Accordion>
 
 <Accordion title="Sample request (cURL)" icon="fa-code">
@@ -166,60 +165,9 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
     ```
   </Callout>
 
-<Accordion title="Sample response for NTB Customer" icon="fa-reply">
-
-  ```json
-  {
-    "httpCode": "200",
-    "message": "",
-    "status": 1,
-    "data": {
-        "details": {
-            "paymentOption": {
-                "emi": {
-                    "all": {
-                        "cardless": {
-                            "all": {
-                                "BIMAPAY": {
-                                    "tenureOptions": {
-                                        "BIMAP03": {
-                                            "tenure": 3,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        },
-                  ....
-                    "ntb": {
-                        "cardless": {
-                            "all": {
-                                "LPEMI": {
-                                    "maximumAmount": null,
-                                    "eligibility": {
-                                        "status": true
-                                    }
-                                }
-                            },
-                            "hasEligible": true
-                        }
-                    }
-                },
-       ...
-       ...
-       ...
-                        }
-                    }
-                }
-            }
-        }
-    }
-  }
-  ```
-</Accordion>
-
-<Accordion title="Existing-to-Bank (ETB) Customer" icon="fa-reply">
-  ```json
-  {
+  <Accordion title="Sample response for NTB Customer" icon="fa-reply">
+    ```json
+    {
       "httpCode": "200",
       "message": "",
       "status": 1,
@@ -239,172 +187,11 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
                                                   "status": true
                                               }
                                           },
-                                          "BIMAP06": {
-                                              "tenure": 6,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "BIMAPAY": {
-                                              "tenure": 0,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "BIMAP09": {
-                                              "tenure": 9,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "BIMAP12": {
-                                              "tenure": 12,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          }
-                                      },
-                                      "maximumAmount": null,
-                                      "eligibility": {
-                                          "status": true
-                                      }
-                                  },
-                                  "SMPI3": {
-                                      "tenureOptions": {
-                                          "SMPI03": {
-                                              "tenure": 3,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          }
-                                      },
-                                      "maximumAmount": null,
-                                      "eligibility": {
-                                          "status": true
-                                      }
-                                  },
-                                  "ICICI_CL": {
-                                      "tenureOptions": {
-                                          "ICICIC12": {
-                                              "tenure": 12,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "ICICIC03": {
-                                              "tenure": 3,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "ICICIC09": {
-                                              "tenure": 9,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "ICICIC06": {
-                                              "tenure": 6,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          }
-                                      },
-                                      "maximumAmount": null,
-                                      "eligibility": {
-                                          "status": true
-                                      }
-                                  },
+                    ....
+                      "ntb": {
+                          "cardless": {
+                              "all": {
                                   "LPEMI": {
-                                      "tenureOptions": {
-                                          "LPEMI12": {
-                                              "tenure": 12,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "LPEMI": {
-                                              "tenure": 0,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "LPEMI09": {
-                                              "tenure": 9,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "LPEMI03": {
-                                              "tenure": 3,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "LPEMI06": {
-                                              "tenure": 6,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          }
-                                      },
-                                      "maximumAmount": null,
-                                      "eligibility": {
-                                          "status": true
-                                      }
-                                  },
-                                  "HDFC_CL": {
-                                      "tenureOptions": {
-                                          "HDFCCL09": {
-                                              "tenure": 9,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "HDFCCL18": {
-                                              "tenure": 18,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "HDFCCL06": {
-                                              "tenure": 6,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "HDFCCL03": {
-                                              "tenure": 3,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          },
-                                          "HDFCCL12": {
-                                              "tenure": 12,
-                                              "maximumAmount": null,
-                                              "eligibility": {
-                                                  "status": true
-                                              }
-                                          }
-                                      },
                                       "maximumAmount": null,
                                       "eligibility": {
                                           "status": true
@@ -415,26 +202,237 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
                           }
                       }
                   },
-                  "bnpl": {
-                      "all": {
-                          "LAZYPAY": {
-                              "imageURL": null,
-                              "imageUpdatedOn": null,
-                              "maximumAmount": null,
-                              "eligibility": {
-                                  "status": false,
-                                  "reason": "This mobile number is not eligible. Please change the mobile number."
-                              }
+         ...
+         ...
+         ...
                           }
                       }
                   }
               }
           }
       }
-  }
+    }
+    ```
+  </Accordion>
 
-  ```
-</Accordion>
+  <Accordion title="Sample response for Existing-to-Bank (ETB) Customer" icon="fa-reply">
+    ```json
+    {
+        "httpCode": "200",
+        "message": "",
+        "status": 1,
+        "data": {
+            "details": {
+                "paymentOption": {
+                    "emi": {
+                        "all": {
+                            "cardless": {
+                                "all": {
+                                    "BIMAPAY": {
+                                        "tenureOptions": {
+                                            "BIMAP03": {
+                                                "tenure": 3,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "BIMAP06": {
+                                                "tenure": 6,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "BIMAPAY": {
+                                                "tenure": 0,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "BIMAP09": {
+                                                "tenure": 9,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "BIMAP12": {
+                                                "tenure": 12,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            }
+                                        },
+                                        "maximumAmount": null,
+                                        "eligibility": {
+                                            "status": true
+                                        }
+                                    },
+                                    "SMPI3": {
+                                        "tenureOptions": {
+                                            "SMPI03": {
+                                                "tenure": 3,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            }
+                                        },
+                                        "maximumAmount": null,
+                                        "eligibility": {
+                                            "status": true
+                                        }
+                                    },
+                                    "ICICI_CL": {
+                                        "tenureOptions": {
+                                            "ICICIC12": {
+                                                "tenure": 12,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "ICICIC03": {
+                                                "tenure": 3,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "ICICIC09": {
+                                                "tenure": 9,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "ICICIC06": {
+                                                "tenure": 6,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            }
+                                        },
+                                        "maximumAmount": null,
+                                        "eligibility": {
+                                            "status": true
+                                        }
+                                    },
+                                    "LPEMI": {
+                                        "tenureOptions": {
+                                            "LPEMI12": {
+                                                "tenure": 12,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "LPEMI": {
+                                                "tenure": 0,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "LPEMI09": {
+                                                "tenure": 9,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "LPEMI03": {
+                                                "tenure": 3,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "LPEMI06": {
+                                                "tenure": 6,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            }
+                                        },
+                                        "maximumAmount": null,
+                                        "eligibility": {
+                                            "status": true
+                                        }
+                                    },
+                                    "HDFC_CL": {
+                                        "tenureOptions": {
+                                            "HDFCCL09": {
+                                                "tenure": 9,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "HDFCCL18": {
+                                                "tenure": 18,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "HDFCCL06": {
+                                                "tenure": 6,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "HDFCCL03": {
+                                                "tenure": 3,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            },
+                                            "HDFCCL12": {
+                                                "tenure": 12,
+                                                "maximumAmount": null,
+                                                "eligibility": {
+                                                    "status": true
+                                                }
+                                            }
+                                        },
+                                        "maximumAmount": null,
+                                        "eligibility": {
+                                            "status": true
+                                        }
+                                    }
+                                },
+                                "hasEligible": true
+                            }
+                        }
+                    },
+                    "bnpl": {
+                        "all": {
+                            "LAZYPAY": {
+                                "imageURL": null,
+                                "imageUpdatedOn": null,
+                                "maximumAmount": null,
+                                "eligibility": {
+                                    "status": false,
+                                    "reason": "This mobile number is not eligible. Please change the mobile number."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ```
+  </Accordion>
 </Accordion>
 
 ***
