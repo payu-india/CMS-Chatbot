@@ -43,8 +43,8 @@ Scope name: credentials_using_oauth
 
 The partner can pass the email of the merchant in the URL and the user will be taken to the Sign-in or Signup page. For example:
 
-\<[https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89&state=Uqnr5ge22U](https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U)
+[https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89&state=Uqnr5ge22U](https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U)
 
-Here, the state parameter is the unique identifier of the session. Once the merchant is redirected beck to your platform, PayU will post the merchant id, auth code & the same state parameter to your configured redirect URL. 
+Here, the state parameter is the unique identifier of the session. Once the merchant is redirected beck to your platform, PayU will post the merchant id, auth code & the same state parameter to your configured redirect URL.
 
 <br />
