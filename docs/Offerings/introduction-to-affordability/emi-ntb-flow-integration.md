@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This section how to integrate New to Bank (NTB) flow using PayU’s as described in the following steps. Use these in order when building custom checkout pages that need payment options, EMI details, and customer eligibility.
+This section descries how to integrate New to Bank (NTB) flow as described in the following steps. Use these in order when building custom checkout pages that need payment options, EMI details, and customer eligibility.
 
 <Cards>
   <Card title=" Step 1: Get Checkout Details" href="#step-1-check-eligibility" icon="fa-rocket">
