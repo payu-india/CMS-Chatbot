@@ -215,7 +215,7 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
 
 ## Step 2: Get EMI Checkout Details
 
-Use the **Get EMI Checkout Details** API to check detailed EMI eligibility for a specific bank/lender and customer (e.g. cardless EMI / Link and Pay NTB). It returns tenure options, maximum amounts, and eligibility status per tenure.
+Use the **Get EMI Checkout Details** API to check detailed EMI eligibility for a specific bank/lender and customer (e.g. cardless EMI). In the Step 1 above, if **ntb** JSON object> **eligibility** > **status=true**, you need to follow this step and pass additional details. It returns tenure options, maximum amounts, and eligibility status per tenure.
 
 | Environment | URL                                                             |
 | :---------- | :-------------------------------------------------------------- |
