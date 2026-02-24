@@ -990,7 +990,8 @@ To initiate a payment, your app must send transactional information to the Check
           should be string with PG:Amount or IBIBOCode:Amount
           Sample : CC:100,NB:50,SBIB:25
         </td>
-          </tr>
+      </tr>
+
       <tr>
         <td style={{ textAlign: "left" }}>
           payUSIParams
@@ -1001,7 +1002,7 @@ To initiate a payment, your app must send transactional information to the Check
           `Object` Contains SI/mandate details for recurring payments.
 
           **Mandatory for Recurring (Subscription / Standing Instruction) transactions.**
-          
+
           For more details: [Recurring Payments Integration](https://docs.payu.in/docs/introduction-recurring-payments-integration)
         </td>
 
@@ -1019,7 +1020,6 @@ To initiate a payment, your app must send transactional information to the Check
         <td style={{ textAlign: "left" }}>
           `Boolean` Enable native OTP flow for card transactions. When set to true, OTP will be handled natively within the SDK.
 
-          * *Note*: Optional parameter for enhanced OTP handling experience.
         </td>
 
         <td style={{ textAlign: "left" }}>
@@ -1037,7 +1037,7 @@ To initiate a payment, your app must send transactional information to the Check
           `String (JSON encoded)` Contains details for split payment/settlement between multiple parties.
 
           **Mandatory only for Aggregator transactions.**
-          
+
           For more details: [Split Settlements](https://docs.payu.in/docs/split-settlments)
         </td>
 
@@ -1059,7 +1059,7 @@ To initiate a payment, your app must send transactional information to the Check
         </td>
 
         <td style={{ textAlign: "left" }}>
-          "HoliSale@JbBdLOBritj5,Instantoffer@Kp78nFDENX5S"
+          "HoliSale\@JbBdLOBritj5,Instantoffer\@Kp78nFDENX5S"
         </td>
       </tr>
 
@@ -1090,7 +1090,7 @@ To initiate a payment, your app must send transactional information to the Check
           `Object` Contains customer's complete billing address including address lines, city, state, country, and zipcode.
 
           **Mandatory only for OPGSP Merchant.**
-          
+
           For more details: [Cross-Border Payments (Import)](https://docs.payu.in/docs/introduction-cross-border-payments-import)
         </td>
 
@@ -1109,7 +1109,6 @@ To initiate a payment, your app must send transactional information to the Check
           `List<PayUWealthProducts>` Contains details of wealth management and investment products such as mutual funds. Each product includes information like type, amount, folio number, plan, scheme, AMC code, member ID, user ID, partner details, and investment type.
 
           **Mandatory only for WealthTech / Investment product transactions.**
-          
         </td>
 
         <td style={{ textAlign: "left" }}>
