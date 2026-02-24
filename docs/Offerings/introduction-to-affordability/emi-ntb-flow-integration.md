@@ -12,13 +12,10 @@ This section how to integrate New to Bank (NTB) flow using PayU’s **Get Checko
     New to our platform? Follow this guide to get started.
   </Card>
 
-  <Card title="API Reference" href="#" icon="fa-code">
+  <Card title="Step 2: Get EMI Checkout Details" href="#step-2-get-emi-checkout-details" icon="fa-code">
     Explore our interactive API reference.
   </Card>
 
-  <Card title="Support & Community" href="#" icon="fa-comments" target="_blank">
-    Join our community or checkout our FAQ.
-  </Card>
 </Cards>
 
 ***
