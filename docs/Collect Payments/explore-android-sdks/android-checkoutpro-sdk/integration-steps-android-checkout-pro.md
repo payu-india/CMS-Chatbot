@@ -990,6 +990,131 @@ To initiate a payment, your app must send transactional information to the Check
           should be string with PG:Amount or IBIBOCode:Amount
           Sample : CC:100,NB:50,SBIB:25
         </td>
+          </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          payUSIParams
+          `conditional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `Object` Contains SI/mandate details for recurring payments.
+
+          **Mandatory for Recurring (Subscription / Standing Instruction) transactions.**
+          
+          For more details: [Recurring Payments Integration](https://docs.payu.in/docs/introduction-recurring-payments-integration)
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          siParams object
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          enableNativeOTP
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `Boolean` Enable native OTP flow for card transactions. When set to true, OTP will be handled natively within the SDK.
+
+          * *Note*: Optional parameter for enhanced OTP handling experience.
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          true / false
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          splitPaymentDetails
+          `conditional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String (JSON encoded)` Contains details for split payment/settlement between multiple parties.
+
+          **Mandatory only for Aggregator transactions.**
+          
+          For more details: [Split Settlements](https://docs.payu.in/docs/split-settlments)
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          json.encode(splitPaymentDetails)
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          enforcementOfferKeys
+          `optional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `String` Comma-separated list of offer keys to enforce specific offers during checkout. Allows merchants to apply targeted promotional offers.
+
+          * *Note*: Optional parameter for enforcing specific offer keys at checkout.
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          "HoliSale@JbBdLOBritj5,Instantoffer@Kp78nFDENX5S"
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          beneficiaryDetails
+          `conditional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `Object/List` Contains beneficiary account details for payment verification in TPV flow.
+
+          **Mandatory only for TPV (Third Party Verification) transactions.**
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          beneficiaryDetails object or list
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          address / addressDetails
+          `conditional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `Object` Contains customer's complete billing address including address lines, city, state, country, and zipcode.
+
+          **Mandatory only for OPGSP Merchant.**
+          
+          For more details: [Cross-Border Payments (Import)](https://docs.payu.in/docs/introduction-cross-border-payments-import)
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          addressDetails object
+        </td>
+      </tr>
+
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          products
+          `conditional`
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          `List<PayUWealthProducts>` Contains details of wealth management and investment products such as mutual funds. Each product includes information like type, amount, folio number, plan, scheme, AMC code, member ID, user ID, partner details, and investment type.
+
+          **Mandatory only for WealthTech / Investment product transactions.**
+          
+        </td>
+
+        <td style={{ textAlign: "left" }}>
+          List of PayUWealthProducts objects
+        </td>
       </tr>
     </tbody>
   </Table>
