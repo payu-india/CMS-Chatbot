@@ -5,17 +5,16 @@ hidden: true
 metadata:
   robots: index
 ---
-This section how to integrate New to Bank (NTB) flow using PayU’s **Get Checkout Details (NTB Seamless Journey)** and **Get EMI Checkout Details** APIs. Use these in order when building custom checkout pages that need payment options, EMI details, and customer eligibility.
+This section how to integrate New to Bank (NTB) flow using PayU’s as described in the following steps. Use these in order when building custom checkout pages that need payment options, EMI details, and customer eligibility.
 
 <Cards>
   <Card title=" Step 1: Get Checkout Details" href="#step-1-check-eligibility" icon="fa-rocket">
-    New to our platform? Follow this guide to get started.
+    USe Get Checkout Details API and look for ntb in the response.
   </Card>
 
   <Card title="Step 2: Get EMI Checkout Details" href="#step-2-get-emi-checkout-details" icon="fa-code">
-    Explore our interactive API reference.
+    Use the Get EMI Checkout Details API to integrate.
   </Card>
-
 </Cards>
 
 ***
