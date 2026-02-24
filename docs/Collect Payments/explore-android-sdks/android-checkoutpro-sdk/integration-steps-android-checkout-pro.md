@@ -1012,7 +1012,7 @@ To initiate a payment, your app must send transactional information to the Check
 
         <td style={{ textAlign: "left" }}>
           siParams object
-
+<br/>
           Refer to Step 3.2: For Recurring Payments(SI) (Optional) or Step 3.3: For UPI One Time Mandate 					Payments (Optional)
         </td>
       </tr>
