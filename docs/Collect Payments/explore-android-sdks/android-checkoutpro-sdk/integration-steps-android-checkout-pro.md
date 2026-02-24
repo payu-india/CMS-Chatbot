@@ -1089,7 +1089,7 @@ To initiate a payment, your app must send transactional information to the Check
         <td style={{ textAlign: "left" }}>
           `Object` Contains customer's complete billing address including address lines, city, state, country, and zipcode.
 
-          **Mandatory only for OPGSP Merchant.**
+          **Mandatory only for Cross-Border Payments (OPGSP) Merchant.**
 
           For more details: [Cross-Border Payments (Import)](https://docs.payu.in/docs/introduction-cross-border-payments-import)
         </td>
