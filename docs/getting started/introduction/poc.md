@@ -1,6 +1,6 @@
 ---
 title: Proof Of Concept
-excerpt: This page is to try custom codes in Readme (DO NOT PUBLISH)
+excerpt: This page is to try custom components in Readme (DO NOT PUBLISH)
 deprecated: false
 hidden: true
 metadata:
@@ -100,17 +100,21 @@ Accelerate your integration workflow with our net banking Postman collection for
     ['Axis Bank', 'Cards', 'Active'],
   ]}
   placeholder="Search"
-  />
+/>
 
 <Accordion title="My Accordion Title" icon="fa-info-circle">
-<SearchableTable
-  headers={['Bank', 'Type', 'Status']}
-  rows={[
+  <SearchableTable
+    headers={['Bank', 'Type', 'Status']}
+    rows={[
     ['HDFC Bank', 'Netbanking / Cards', 'Active'],
     ['ICICI Bank', 'Netbanking / Cards', 'Active'],
     ['State Bank of India', 'Netbanking', 'Active'],
     ['Axis Bank', 'Cards', 'Active'],
   ]}
-  placeholder="Search"
-/>
+    placeholder="Search"
+  />
 </Accordion>
+
+<AccordionOpen title="Request Parameters" icon="fa-info-circle">
+  <p>This accordion is open by default. The title is rendered as a heading. You can put any content here: tables, code blocks, or more MDX. Users can collapse or expand by clicking the header.</p>
+</AccordionOpen>
