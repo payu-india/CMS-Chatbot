@@ -14,7 +14,7 @@ HTTP Request Method: GET
 |            |                                                                                            |
 | :--------- | :----------------------------------------------------------------------------------------- |
 | Production | [https://info.payu.inpayment-mode/v1/upi/vpa](https://info.payu.inpayment-mode/v1/upi/vpa) |
-| Test       | [https://test.payu.in/payment-mode/v1/upi/vpa](https://test.payu.in/v1/upi/vpa)            |
+| Test       | [https://info.payu.inpayment-mode/v1/upi/vpa](https://info.payu.inpayment-mode/v1/upi/vpa) |
 
 ## Request headers
 
