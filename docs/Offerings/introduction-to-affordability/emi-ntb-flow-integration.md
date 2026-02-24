@@ -18,16 +18,16 @@ This section how to integrate New to Bank (NTB) flow using PayU’s **Get Checko
 
 Use the **Get Checkout Details** API (`get_checkout_details`) to get information for custom checkout pages: payment options, extended payment details (e.g. EMI breakup), additional charges, tax specification, downtime, and optional customer eligibility.
 
-<Accordion title="Endpoint and method" icon="fa-link">
+
   | Environment | URL                                                    |
   | :---------- | :----------------------------------------------------- |
   | Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
   | Production  | `https://info.payu.in/merchant/postservice.php?form=2` |
 
   **Method:** POST (form-encoded)
-</Accordion>
 
-<Accordion title="Key request parameters" icon="fa-list">
+
+<Accordion title="Request parameters" icon="fa-list">
   | Parameter | Description                                                                                                    | Example                |        |          |                                                       |
   | :-------- | :------------------------------------------------------------------------------------------------------------- | :--------------------- | ------ | -------- | ----------------------------------------------------- |
   | key       | Merchant key provided by PayU.                                                                                 | `JPM7Fg`               |        |          |                                                       |
@@ -55,29 +55,28 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
 </Accordion>
 
 <Accordion title="Sample response (excerpt)" icon="fa-reply">
-<Callout icon="📘" theme="info">
-  **Note**: You must look for the **eligibility** object is having **status=true**  inside the **ntb** JSON object similar to the following: 
+  <Callout icon="📘" theme="info">
+    **Note**: You must look for the **eligibility** object is having **status=true**  inside the **ntb** JSON object similar to the following:
 
-  ```json
+    ```json
 
-     "ntb": {
-                            "cardless": {
-                                "all": {
-                                    "LPEMI": {
-                                        "maximumAmount": null,
-                                        "eligibility": {
-                                            "status": true
-                                        }
-                                    }
-                                },
-                                "hasEligible": true
-                            }
-                        }
-                    }
-  ```
+       "ntb": {
+                              "cardless": {
+                                  "all": {
+                                      "LPEMI": {
+                                          "maximumAmount": null,
+                                          "eligibility": {
+                                              "status": true
+                                          }
+                                      }
+                                  },
+                                  "hasEligible": true
+                              }
+                          }
+                      }
+    ```
+  </Callout>
 
-
-</Callout>
   ```json
   {
     "httpCode": "200",
@@ -135,7 +134,7 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
 
 Use the **Get EMI Checkout Details** API to check detailed EMI eligibility for a specific bank/lender and customer (e.g. cardless EMI / Link and Pay NTB). It returns tenure options, maximum amounts, and eligibility status per tenure.
 
-<Accordion title="Endpoint and method" icon="fa-link">
+
   | Environment | URL                                                             |
   | :---------- | :-------------------------------------------------------------- |
   | Test        | `https://test.payu.in/info/linkAndPay/get_emi_checkout_details` |
@@ -143,7 +142,7 @@ Use the **Get EMI Checkout Details** API to check detailed EMI eligibility for a
 
   **Method:** POST (JSON body)\
   **Content-Type:** `application/json`
-</Accordion>
+
 
 <Accordion title="Authentication (headers)" icon="fa-lock">
   * **Date** (mandatory): Request time in GMT (e.g. `Thu, 17 Feb 2022 08:17:59 GMT`).
@@ -155,7 +154,7 @@ Use the **Get EMI Checkout Details** API to check detailed EMI eligibility for a
   * **platformId** (mandatory): Set to `1`.
 </Accordion>
 
-<Accordion title="Key body parameters" icon="fa-list">
+<Accordion title="Request parameters" icon="fa-list">
   | Parameter                           | Description                                                  | Example      |
   | :---------------------------------- | :----------------------------------------------------------- | :----------- |
   | bankCode                            | Bank/lender code (e.g. `LPEMI` for cardless EMI).            | `LPEMI`      |
