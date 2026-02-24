@@ -459,79 +459,206 @@ To initiate a payment, your app must send transactional information to the Check
   | BeneficiaryAccountNumber | ✓ Required | ✓ Required  | Beneficiary account number     |
   | BeneficiaryAccountType   | ✗ Optional | ✓ Required  | Account type (SAVINGS/CURRENT) |
   | BeneficiaryName          | ✗ Optional | ✓ Required  | Account holder's name          |
-    </Accordion>
-
-<Accordion title="Step 3.7 : Cross Broder Flow (OPGSP)" icon="fa-code">
-    OPGSP (Online Payment Gateway Service Provider) flow requires complete address details to be passed along with payment parameters. All address fields are mandatory for OPGSP transactions.
-
-    ```Text Java
-    PayUAddressDetails addressDetails = new PayUAddressDetails.Builder()
-        .setLastName("Doe")
-        .setAddress1("34 Saikripa-Estate, Tilak Nagar")
-        .setAddress2("Near Metro Station")
-        .setCity("Mumbai")
-        .setState("Maharashtra")
-        .setCountry("India")
-        .setZipcode("400004")
-        .build();
-    
-    // Add to payment params
-    paymentParams.setAddressDetails(addressDetails);
-    ```
-    ```Text Kotlin
-    val addressDetails = PayUAddressDetails.Builder()
-        .setLastName("Doe")
-        .setAddress1("34 Saikripa-Estate, Tilak Nagar")
-        .setAddress2("Near Metro Station")
-        .setCity("Mumbai")
-        .setState("Maharashtra")
-        .setCountry("India")
-        .setZipcode("400004")
-        .build()
-    
-    // Add to payment params
-    paymentParams.setAddressDetails(addressDetails)
-    ```
-
-    ### Address Parameters
-
-    | Parameter | Required | Description | Example |
-    |-----------|----------|-------------|---------|
-    | LastName | ✓ Required | Customer's last name | Doe |
-    | Address1 | ✓ Required | The first line of the billing address. **Note:** This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar |
-    | Address2 | ✓ Required | The second line of the billing address | Near Metro Station |
-    | City | ✓ Required | The city where your customer resides as part of the billing address | Mumbai |
-    | State | ✓ Required | The state where your customer resides as part of the billing address | Maharashtra |
-    | Country | ✓ Required | The country where your customer resides | India |
-    | Zipcode | ✓ Required | Billing address zip code is mandatory for the cardless EMI option. Character Limit: 20 | 400004 |
-
-    ---
-
-    ### **UDF5 Parameter (Invoice Number) - MANDATORY**
-
-    When using OPGSP flow, you **must** pass the Invoice Number in the **UDF5** parameter.
-
-    ```Text Java
-    // Set UDF5 with Invoice Number
-    HashMap<String, Object> additionalParams = new HashMap<>();
-    additionalParams.put("udf5", "098450845");
-    paymentParams.setAdditionalParams(additionalParams);
-    ```
-    ```Text Kotlin
-    // Set UDF5 with Invoice Number
-    val additionalParams = hashMapOf<String, Any?>()
-    additionalParams["udf5"] = "098450845"
-    paymentParams.setAdditionalParams(additionalParams)
-    ```
-
-    | Parameter | Required | Description | Example |
-    |-----------|----------|-------------|---------|
-    | udf5 | ✓ Required | The invoice ID or invoice number must be collected using this field | 098450845 |
-
 </Accordion>
 
+<Accordion title="Step 3.7 : Cross Broder Flow (OPGSP)" icon="fa-code">
+  OPGSP (Online Payment Gateway Service Provider) flow requires complete address details to be passed along with payment parameters. All address fields are mandatory for OPGSP transactions.
 
-<Accordion title="Step 3.8: Additional parameters (Optional)" icon="fa-code">
+  ```Text Java
+  PayUAddressDetails addressDetails = new PayUAddressDetails.Builder()
+      .setLastName("Doe")
+      .setAddress1("34 Saikripa-Estate, Tilak Nagar")
+      .setAddress2("Near Metro Station")
+      .setCity("Mumbai")
+      .setState("Maharashtra")
+      .setCountry("India")
+      .setZipcode("400004")
+      .build();
+
+  // Add to payment params
+  paymentParams.setAddressDetails(addressDetails);
+  ```
+  ```Text Kotlin
+  val addressDetails = PayUAddressDetails.Builder()
+      .setLastName("Doe")
+      .setAddress1("34 Saikripa-Estate, Tilak Nagar")
+      .setAddress2("Near Metro Station")
+      .setCity("Mumbai")
+      .setState("Maharashtra")
+      .setCountry("India")
+      .setZipcode("400004")
+      .build()
+
+  // Add to payment params
+  paymentParams.setAddressDetails(addressDetails)
+  ```
+
+  ### Address Parameters
+
+  | Parameter | Required   | Description                                                                                                                                                                                            | Example                         |
+  | --------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
+  | LastName  | ✓ Required | Customer's last name                                                                                                                                                                                   | Doe                             |
+  | Address1  | ✓ Required | The first line of the billing address. **Note:** This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar |
+  | Address2  | ✓ Required | The second line of the billing address                                                                                                                                                                 | Near Metro Station              |
+  | City      | ✓ Required | The city where your customer resides as part of the billing address                                                                                                                                    | Mumbai                          |
+  | State     | ✓ Required | The state where your customer resides as part of the billing address                                                                                                                                   | Maharashtra                     |
+  | Country   | ✓ Required | The country where your customer resides                                                                                                                                                                | India                           |
+  | Zipcode   | ✓ Required | Billing address zip code is mandatory for the cardless EMI option. Character Limit: 20                                                                                                                 | 400004                          |
+
+  ***
+
+  ### **UDF5 Parameter (Invoice Number) - MANDATORY**
+
+  When using OPGSP flow, you **must** pass the Invoice Number in the **UDF5** parameter.
+
+  ```Text Java
+  // Set UDF5 with Invoice Number
+  HashMap<String, Object> additionalParams = new HashMap<>();
+  additionalParams.put("udf5", "098450845");
+  paymentParams.setAdditionalParams(additionalParams);
+  ```
+  ```Text Kotlin
+  // Set UDF5 with Invoice Number
+  val additionalParams = hashMapOf<String, Any?>()
+  additionalParams["udf5"] = "098450845"
+  paymentParams.setAdditionalParams(additionalParams)
+  ```
+
+  | Parameter | Required   | Description                                                         | Example   |
+  | --------- | ---------- | ------------------------------------------------------------------- | --------- |
+  | udf5      | ✓ Required | The invoice ID or invoice number must be collected using this field | 098450845 |
+</Accordion>
+  
+<Accordion title="Step 3.8: WealthTech Flow" icon="fa-code">
+    WealthTech flow enables payments for wealth management products like mutual funds. You need to pass wealth product details as a list of PayUWealthProducts objects.
+
+    ```Text Java
+    private ArrayList<PayUWealthProducts> getWealthTechList(JSONArray jsonArray) {
+        ArrayList<PayUWealthProducts> list = new ArrayList<>();
+        
+        try {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                
+                PayUWealthProducts payUWealthProducts = new PayUWealthProducts.Builder(
+                    jsonObject.optString("type"),
+                    jsonObject.optString("amount"),
+                    jsonObject.optString("receipt"),
+                    jsonObject.optString("mf_member_id"),
+                    jsonObject.optString("mf_user_id"),
+                    jsonObject.optString("mf_partner"),
+                    jsonObject.optString("mf_investment_type")
+                )
+                .setFolio(jsonObject.optString("folio"))
+                .setPlan(jsonObject.optString("plan"))
+                .setMfAmcCode(jsonObject.optString("mf_amc_code"))
+                .build();
+                
+                list.add(payUWealthProducts);
+            }
+        } catch (Exception e) {
+            System.out.println("Error parsing JSON: " + e.getMessage());
+        }
+        
+        return list;
+    }
+    
+    // Sample JSON format
+    String jsonString = "[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]";
+    JSONArray jsonArray = new JSONArray(jsonString);
+    ArrayList<PayUWealthProducts> wealthProductsList = getWealthTechList(jsonArray);
+    
+    // Add to payment params
+    paymentParams.setPayUWealthProducts(wealthProductsList);
+    ```
+    ```Text Kotlin
+    private fun getWealthTechList(jsonArray: JSONArray): ArrayList<PayUWealthProducts> {
+        val list = ArrayList<PayUWealthProducts>()
+        
+        try {
+            for (i in 0 until jsonArray.length()) {
+                val jsonObject = jsonArray.getJSONObject(i)
+                
+                val payUWealthProducts = PayUWealthProducts.Builder(
+                    jsonObject.optString("type"),
+                    jsonObject.optString("amount"),
+                    jsonObject.optString("receipt"),
+                    jsonObject.optString("mf_member_id"),
+                    jsonObject.optString("mf_user_id"),
+                    jsonObject.optString("mf_partner"),
+                    jsonObject.optString("mf_investment_type")
+                )
+                .setFolio(jsonObject.optString("folio"))
+                .setPlan(jsonObject.optString("plan"))
+                .setMfAmcCode(jsonObject.optString("mf_amc_code"))
+                .build()
+                
+                list.add(payUWealthProducts)
+            }
+        } catch (e: Exception) {
+            println("Error parsing JSON: ${e.message}")
+        }
+        
+        return list
+    }
+    
+    // Sample JSON format
+    val jsonString = """[{"type":"mutual_fund","plan":"GD","folio":"9104927822","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]"""
+    val jsonArray = JSONArray(jsonString)
+    val wealthProductsList = getWealthTechList(jsonArray)
+    
+    // Add to payment params
+    paymentParams.setPayUWealthProducts(wealthProductsList)
+    ```
+
+    ### WealthTech Parameters
+
+    | Parameter | Required | Description |
+    |-----------|----------|-------------|
+    | type | ✓ Required | Product type (e.g., mutual_fund) |
+    | amount | ✓ Required | Investment amount |
+    | receipt | ✓ Required | Receipt number |
+    | mf_member_id | ✓ Required | Member ID |
+    | mf_user_id | ✓ Required | User ID |
+    | mf_partner | ✓ Required | Partner name (e.g., cams) |
+    | mf_investment_type | ✓ Required | Investment type |
+    | folio | Optional | Folio number |
+    | plan | Optional | Plan code |
+    | mf_amc_code | Optional | AMC code |
+</Accordion>
+
+<Accordion title="Step 3.9 :Enforce Offer Keys" icon="fa-code">
+    Enforce Offer Keys allows you to apply specific promotional offers to transactions. Pass a comma-separated list of offer keys to enforce specific offers during checkout.
+
+    ```Text Java
+    private List<String> getOfferKeyList(String offerKeys) {
+        return Arrays.asList(offerKeys.split(","));
+    }
+    
+    // Usage
+    String offerKeys = "OFFER123,OFFER456,OFFER789";
+    List<String> offerKeyList = getOfferKeyList(offerKeys);
+    
+    // Add to payment params
+    paymentParams.setEnforcementOfferKeys(offerKeyList);
+    ```
+    ```Text Kotlin
+    private fun getOfferKeyList(offerKeys: String): List<String> {
+        return offerKeys.split(",")
+    }
+    
+    // Usage
+    val offerKeys = "OFFER123,OFFER456,OFFER789"
+    val offerKeyList = getOfferKeyList(offerKeys)
+    
+    // Add to payment params
+    paymentParams.setEnforcementOfferKeys(offerKeyList)
+    ```
+
+    **Note:** Offer keys should be comma-separated. You can pass multiple offer keys to enforce different promotional offers during the payment process.
+    </Accordion>
+
+<Accordion title="Step 3.10: Additional parameters (Optional)" icon="fa-code">
   Additional parameters are optional parameters such as UDF (User Defined Fields), static hashes, etc. More details on static hash generation and passing are mentioned in the hash generation section. The following is a list of other parameters that can be passed in additional parameters.
 
   | Parameter                                               | Description                                                                                            | Example      |
@@ -607,7 +734,7 @@ To initiate a payment, your app must send transactional information to the Check
   ```
 </Accordion>
 
-<Accordion title="Step 3.9: Payment Param Definitions" icon="fa-code">
+<Accordion title="Step 3.11: Payment Param Definitions" icon="fa-code">
   <Table align={["left","left","left"]}>
     <thead>
       <tr>
