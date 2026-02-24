@@ -18,14 +18,12 @@ This section how to integrate New to Bank (NTB) flow using PayU’s **Get Checko
 
 Use the **Get Checkout Details** API (`get_checkout_details`) to get information for custom checkout pages: payment options, extended payment details (e.g. EMI breakup), additional charges, tax specification, downtime, and optional customer eligibility.
 
+| Environment | URL                                                    |
+| :---------- | :----------------------------------------------------- |
+| Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
+| Production  | `https://info.payu.in/merchant/postservice.php?form=2` |
 
-  | Environment | URL                                                    |
-  | :---------- | :----------------------------------------------------- |
-  | Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
-  | Production  | `https://info.payu.in/merchant/postservice.php?form=2` |
-
-  **Method:** POST (form-encoded)
-
+**Method:** POST (form-encoded)
 
 <Accordion title="Request parameters" icon="fa-list">
   | Parameter | Description                                                                                                    | Example                |        |          |                                                       |
@@ -134,22 +132,20 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
 
 Use the **Get EMI Checkout Details** API to check detailed EMI eligibility for a specific bank/lender and customer (e.g. cardless EMI / Link and Pay NTB). It returns tenure options, maximum amounts, and eligibility status per tenure.
 
+| Environment | URL                                                             |
+| :---------- | :-------------------------------------------------------------- |
+| Test        | `https://test.payu.in/info/linkAndPay/get_emi_checkout_details` |
+| Production  | `https://info.payu.in/linkAndPay/get_emi_checkout_details`      |
 
-  | Environment | URL                                                             |
-  | :---------- | :-------------------------------------------------------------- |
-  | Test        | `https://test.payu.in/info/linkAndPay/get_emi_checkout_details` |
-  | Production  | `https://info.payu.in/linkAndPay/get_emi_checkout_details`      |
-
-  **Method:** POST (JSON body)\
-  **Content-Type:** `application/json`
-
+**Method:** POST (JSON body)  
+**Content-Type:** `application/json`
 
 <Accordion title="Authentication (headers)" icon="fa-lock">
   * **Date** (mandatory): Request time in GMT (e.g. `Thu, 17 Feb 2022 08:17:59 GMT`).
   * **Authorization** (mandatory): HMAC-SHA512 signature. Format:\
     `hmac username="<merchant_key>", algorithm="hmac-sha512", headers="date digest", signature="<signature>"`\
     Signing string: `Date + "\n" + Digest`. Use merchant **Salt** as secret.\
-    See [Get EMI Checkout Details API – Authorization](ref:get-emi-checkout-details-api#required-parameters-for-calculating-authorization).
+    For more information, referr to [Get EMI Checkout Details API > Authorization](ref:get-emi-checkout-details-api#required-parameters-for-calculating-authorization).
   * **Digest** (mandatory when required by spec): Base64(sha256(request body)).
   * **platformId** (mandatory): Set to `1`.
 </Accordion>
