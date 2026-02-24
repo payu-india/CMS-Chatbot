@@ -214,7 +214,7 @@ To initiate a payment, your app must send transactional information to the Check
   For more information on the Additional Charges, refer to [Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges).
 </Accordion>
 
-<Accordion title="Step 3:5: For split Payments details (Optional)" icon="fa-code">
+<Accordion title="Step 3.5: For split Payments details (Optional)" icon="fa-code">
   For a split payment transaction, create a JSON string with the split payment parameters as shown below:
 
   **JSON Request Structure of splitInfo Field**
@@ -315,7 +315,7 @@ To initiate a payment, your app must send transactional information to the Check
   </Table>
 </Accordion>
 
-<Accordion title="Step 3:6 : SKU details (Optional)" icon="fa-code">
+<Accordion title="Step 3.6: SKU details (Optional)" icon="fa-code">
   ```Text Kotlin
   SkuDetails: It contains below properties
   SkuDetails(val skus: List<SKU>)
@@ -347,7 +347,7 @@ To initiate a payment, your app must send transactional information to the Check
   > if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities \* skuAmount of each item.
 </Accordion>
 
-<Accordion title="Step 3:7 : Third Party Verification (TPV) Flow (Optional)" icon="fa-code">
+<Accordion title="Step 3.7: Third Party Verification (TPV) Flow (Optional)" icon="fa-code">
   CheckoutPro SDK supports TPV flow for both UPI and Net Banking payment methods. TPV validates that payments are made from authorized beneficiary accounts by verifying account details during the transaction.
 
   <Accordion title="TPV for UPI Payments" icon="fa-mobile">
@@ -461,7 +461,7 @@ To initiate a payment, your app must send transactional information to the Check
   | BeneficiaryName          | ✗ Optional | ✓ Required  | Account holder's name          |
 </Accordion>
 
-<Accordion title="Step 3.8 : Cross Broder Flow (OPGSP)" icon="fa-code">
+<Accordion title="Step 3.8: Cross Broder Flow (OPGSP)" icon="fa-code">
   OPGSP (Online Payment Gateway Service Provider) flow requires complete address details to be passed along with payment parameters. All address fields are mandatory for OPGSP transactions.
 
   ```Text Java
@@ -528,135 +528,135 @@ To initiate a payment, your app must send transactional information to the Check
   | --------- | ---------- | ------------------------------------------------------------------- | --------- |
   | udf5      | ✓ Required | The invoice ID or invoice number must be collected using this field | 098450845 |
 </Accordion>
-  
-<Accordion title="Step 3.9 : WealthTech Flow" icon="fa-code">
-    WealthTech flow enables payments for wealth management products like mutual funds. You need to pass wealth product details as a list of PayUWealthProducts objects.
 
-    ```Text Java
-    private ArrayList<PayUWealthProducts> getWealthTechList(JSONArray jsonArray) {
-        ArrayList<PayUWealthProducts> list = new ArrayList<>();
-        
-        try {
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                
-                PayUWealthProducts payUWealthProducts = new PayUWealthProducts.Builder(
-                    jsonObject.optString("type"),
-                    jsonObject.optString("amount"),
-                    jsonObject.optString("receipt"),
-                    jsonObject.optString("mf_member_id"),
-                    jsonObject.optString("mf_user_id"),
-                    jsonObject.optString("mf_partner"),
-                    jsonObject.optString("mf_investment_type")
-                )
-                .setFolio(jsonObject.optString("folio"))
-                .setPlan(jsonObject.optString("plan"))
-                .setMfAmcCode(jsonObject.optString("mf_amc_code"))
-                .build();
-                
-                list.add(payUWealthProducts);
-            }
-        } catch (Exception e) {
-            System.out.println("Error parsing JSON: " + e.getMessage());
-        }
-        
-        return list;
-    }
-    
-    // Sample JSON format
-    String jsonString = "[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]";
-    JSONArray jsonArray = new JSONArray(jsonString);
-    ArrayList<PayUWealthProducts> wealthProductsList = getWealthTechList(jsonArray);
-    
-    // Add to payment params
-    paymentParams.setPayUWealthProducts(wealthProductsList);
-    ```
-    ```Text Kotlin
-    private fun getWealthTechList(jsonArray: JSONArray): ArrayList<PayUWealthProducts> {
-        val list = ArrayList<PayUWealthProducts>()
-        
-        try {
-            for (i in 0 until jsonArray.length()) {
-                val jsonObject = jsonArray.getJSONObject(i)
-                
-                val payUWealthProducts = PayUWealthProducts.Builder(
-                    jsonObject.optString("type"),
-                    jsonObject.optString("amount"),
-                    jsonObject.optString("receipt"),
-                    jsonObject.optString("mf_member_id"),
-                    jsonObject.optString("mf_user_id"),
-                    jsonObject.optString("mf_partner"),
-                    jsonObject.optString("mf_investment_type")
-                )
-                .setFolio(jsonObject.optString("folio"))
-                .setPlan(jsonObject.optString("plan"))
-                .setMfAmcCode(jsonObject.optString("mf_amc_code"))
-                .build()
-                
-                list.add(payUWealthProducts)
-            }
-        } catch (e: Exception) {
-            println("Error parsing JSON: ${e.message}")
-        }
-        
-        return list
-    }
-    
-    // Sample JSON format
-    val jsonString = """[{"type":"mutual_fund","plan":"GD","folio":"9104927822","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]"""
-    val jsonArray = JSONArray(jsonString)
-    val wealthProductsList = getWealthTechList(jsonArray)
-    
-    // Add to payment params
-    paymentParams.setPayUWealthProducts(wealthProductsList)
-    ```
+<Accordion title="Step 3.9: WealthTech Flow" icon="fa-code">
+  WealthTech flow enables payments for wealth management products like mutual funds. You need to pass wealth product details as a list of PayUWealthProducts objects.
 
-    ### WealthTech Parameters
+  ```Text Java
+  private ArrayList<PayUWealthProducts> getWealthTechList(JSONArray jsonArray) {
+      ArrayList<PayUWealthProducts> list = new ArrayList<>();
+      
+      try {
+          for (int i = 0; i < jsonArray.length(); i++) {
+              JSONObject jsonObject = jsonArray.getJSONObject(i);
+              
+              PayUWealthProducts payUWealthProducts = new PayUWealthProducts.Builder(
+                  jsonObject.optString("type"),
+                  jsonObject.optString("amount"),
+                  jsonObject.optString("receipt"),
+                  jsonObject.optString("mf_member_id"),
+                  jsonObject.optString("mf_user_id"),
+                  jsonObject.optString("mf_partner"),
+                  jsonObject.optString("mf_investment_type")
+              )
+              .setFolio(jsonObject.optString("folio"))
+              .setPlan(jsonObject.optString("plan"))
+              .setMfAmcCode(jsonObject.optString("mf_amc_code"))
+              .build();
+              
+              list.add(payUWealthProducts);
+          }
+      } catch (Exception e) {
+          System.out.println("Error parsing JSON: " + e.getMessage());
+      }
+      
+      return list;
+  }
 
-    | Parameter | Required | Description |
-    |-----------|----------|-------------|
-    | type | ✓ Required | Product type (e.g., mutual_fund) |
-    | amount | ✓ Required | Investment amount |
-    | receipt | ✓ Required | Receipt number |
-    | mf_member_id | ✓ Required | Member ID |
-    | mf_user_id | ✓ Required | User ID |
-    | mf_partner | ✓ Required | Partner name (e.g., cams) |
-    | mf_investment_type | ✓ Required | Investment type |
-    | folio | Optional | Folio number |
-    | plan | Optional | Plan code |
-    | mf_amc_code | Optional | AMC code |
+  // Sample JSON format
+  String jsonString = "[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]";
+  JSONArray jsonArray = new JSONArray(jsonString);
+  ArrayList<PayUWealthProducts> wealthProductsList = getWealthTechList(jsonArray);
+
+  // Add to payment params
+  paymentParams.setPayUWealthProducts(wealthProductsList);
+  ```
+  ```Text Kotlin
+  private fun getWealthTechList(jsonArray: JSONArray): ArrayList<PayUWealthProducts> {
+      val list = ArrayList<PayUWealthProducts>()
+      
+      try {
+          for (i in 0 until jsonArray.length()) {
+              val jsonObject = jsonArray.getJSONObject(i)
+              
+              val payUWealthProducts = PayUWealthProducts.Builder(
+                  jsonObject.optString("type"),
+                  jsonObject.optString("amount"),
+                  jsonObject.optString("receipt"),
+                  jsonObject.optString("mf_member_id"),
+                  jsonObject.optString("mf_user_id"),
+                  jsonObject.optString("mf_partner"),
+                  jsonObject.optString("mf_investment_type")
+              )
+              .setFolio(jsonObject.optString("folio"))
+              .setPlan(jsonObject.optString("plan"))
+              .setMfAmcCode(jsonObject.optString("mf_amc_code"))
+              .build()
+              
+              list.add(payUWealthProducts)
+          }
+      } catch (e: Exception) {
+          println("Error parsing JSON: ${e.message}")
+      }
+      
+      return list
+  }
+
+  // Sample JSON format
+  val jsonString = """[{"type":"mutual_fund","plan":"GD","folio":"9104927822","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]"""
+  val jsonArray = JSONArray(jsonString)
+  val wealthProductsList = getWealthTechList(jsonArray)
+
+  // Add to payment params
+  paymentParams.setPayUWealthProducts(wealthProductsList)
+  ```
+
+  ### WealthTech Parameters
+
+  | Parameter            | Required   | Description                       |
+  | -------------------- | ---------- | --------------------------------- |
+  | type                 | ✓ Required | Product type (e.g., mutual\_fund) |
+  | amount               | ✓ Required | Investment amount                 |
+  | receipt              | ✓ Required | Receipt number                    |
+  | mf\_member\_id       | ✓ Required | Member ID                         |
+  | mf\_user\_id         | ✓ Required | User ID                           |
+  | mf\_partner          | ✓ Required | Partner name (e.g., cams)         |
+  | mf\_investment\_type | ✓ Required | Investment type                   |
+  | folio                | Optional   | Folio number                      |
+  | plan                 | Optional   | Plan code                         |
+  | mf\_amc\_code        | Optional   | AMC code                          |
 </Accordion>
 
-<Accordion title="Step 3.10 :Enforce Offer Keys" icon="fa-code">
-    Enforce Offer Keys allows you to apply specific promotional offers to transactions. Pass a comma-separated list of offer keys to enforce specific offers during checkout.
+<Accordion title="Step 3.10: Enforce Offer Keys" icon="fa-code">
+  Enforce Offer Keys allows you to apply specific promotional offers to transactions. Pass a comma-separated list of offer keys to enforce specific offers during checkout.
 
-    ```Text Java
-    private List<String> getOfferKeyList(String offerKeys) {
-        return Arrays.asList(offerKeys.split(","));
-    }
-    
-    // Usage
-    String offerKeys = "OFFER123,OFFER456,OFFER789";
-    List<String> offerKeyList = getOfferKeyList(offerKeys);
-    
-    // Add to payment params
-    paymentParams.setEnforcementOfferKeys(offerKeyList);
-    ```
-    ```Text Kotlin
-    private fun getOfferKeyList(offerKeys: String): List<String> {
-        return offerKeys.split(",")
-    }
-    
-    // Usage
-    val offerKeys = "OFFER123,OFFER456,OFFER789"
-    val offerKeyList = getOfferKeyList(offerKeys)
-    
-    // Add to payment params
-    paymentParams.setEnforcementOfferKeys(offerKeyList)
-    ```
+  ```Text Java
+  private List<String> getOfferKeyList(String offerKeys) {
+      return Arrays.asList(offerKeys.split(","));
+  }
 
-    **Note:** Offer keys should be comma-separated. You can pass multiple offer keys to enforce different promotional offers during the payment process.
-    </Accordion>
+  // Usage
+  String offerKeys = "OFFER123,OFFER456,OFFER789";
+  List<String> offerKeyList = getOfferKeyList(offerKeys);
+
+  // Add to payment params
+  paymentParams.setEnforcementOfferKeys(offerKeyList);
+  ```
+  ```Text Kotlin
+  private fun getOfferKeyList(offerKeys: String): List<String> {
+      return offerKeys.split(",")
+  }
+
+  // Usage
+  val offerKeys = "OFFER123,OFFER456,OFFER789"
+  val offerKeyList = getOfferKeyList(offerKeys)
+
+  // Add to payment params
+  paymentParams.setEnforcementOfferKeys(offerKeyList)
+  ```
+
+  **Note:** Offer keys should be comma-separated. You can pass multiple offer keys to enforce different promotional offers during the payment process.
+</Accordion>
 
 <Accordion title="Step 3.11: Additional parameters (Optional)" icon="fa-code">
   Additional parameters are optional parameters such as UDF (User Defined Fields), static hashes, etc. More details on static hash generation and passing are mentioned in the hash generation section. The following is a list of other parameters that can be passed in additional parameters.
