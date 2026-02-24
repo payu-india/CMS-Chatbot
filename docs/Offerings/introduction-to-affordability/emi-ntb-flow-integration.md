@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This section describes how to integrate New to Bank (NTB) flow as described in the following steps. These steps will help you check whether the customer is eligible for NTB.
+This section describes how to integrate New-to-Bank (NTB) flow as described in the following steps. These steps will help you check whether the customer is eligible for NTB.
 
 <Cards>
   <Card title=" Step 1: Get Checkout Details" href="#step-1-check-eligibility" icon="fa-rocket">
@@ -163,7 +163,9 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
                       }
     ```
   </Callout>
-### NTB Customer
+
+  ### NTB Customer
+
   ```json
   {
     "httpCode": "200",
@@ -211,10 +213,12 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
     }
   }
   ```
-</Accordion>
 
+</Accordion>
 <br />
-### ETB Customer
+
+<Accordion title="Existing-to-Bank (ETB) Customer" icon="fa-reply">
+
 ```json
 {
     "httpCode": "200",
@@ -431,7 +435,7 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
 }
 
 ```
-
+</Accordion>
 ***
 
 ## Step 2: Get EMI Checkout Details
@@ -446,7 +450,7 @@ Use the **Get EMI Checkout Details** API to check detailed EMI eligibility for a
 **Method:** POST (JSON body)  
 **Content-Type:** `application/json`
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Reference:** For more information on using the **Get EMI Checkout Details** API, refer to [Get EMI Checkout Details API](ref:get-emi-checkout-details-api).
 </Callout>
 
