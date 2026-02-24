@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This section describes how to integrate New to Bank (NTB) flow as described in the following steps. These steps will help you check the customer eligibility for NTB.
+This section describes how to integrate New to Bank (NTB) flow as described in the following steps. These steps will help you check whether the customer is eligible for NTB.
 
 <Cards>
   <Card title=" Step 1: Get Checkout Details" href="#step-1-check-eligibility" icon="fa-rocket">
