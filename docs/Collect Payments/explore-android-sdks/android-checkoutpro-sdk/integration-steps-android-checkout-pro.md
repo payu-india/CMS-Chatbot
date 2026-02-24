@@ -989,7 +989,8 @@ To initiate a payment, your app must send transactional information to the Check
         <td style={{ textAlign: "left" }}>
           should be string with PG:Amount or IBIBOCode:Amount
           Sample : CC:100,NB:50,SBIB:25
-          <br/>
+
+          <br />
 
           Refer to Step 3.4: For Additional Charges (Optional)
         </td>
@@ -1047,7 +1048,9 @@ To initiate a payment, your app must send transactional information to the Check
 
         <td style={{ textAlign: "left" }}>
           json.encode(splitPaymentDetails)
-<br/>
+
+          <br />
+
           Refer to Step 3.5: For split Payments details (Optional)
         </td>
       </tr>
@@ -1066,7 +1069,9 @@ To initiate a payment, your app must send transactional information to the Check
 
         <td style={{ textAlign: "left" }}>
           "HoliSale\@JbBdLOBritj5,Instantoffer\@Kp78nFDENX5S"
-<br/>
+
+          <br />
+
           Refer to Step 3.10: Enforce Offer Keys
         </td>
       </tr>
@@ -1085,7 +1090,7 @@ To initiate a payment, your app must send transactional information to the Check
 
         <td style={{ textAlign: "left" }}>
           beneficiaryDetails object or list
-
+<br/>
           Refer to Step 3.7: Third Party Verification (TPV) Flow (Optional)
         </td>
       </tr>
@@ -1106,7 +1111,9 @@ To initiate a payment, your app must send transactional information to the Check
 
         <td style={{ textAlign: "left" }}>
           addressDetails object
-<br/>
+
+          <br />
+
           Refer to Step 3.8: Cross Border Flow (OPGSP)
         </td>
       </tr>
@@ -1125,7 +1132,9 @@ To initiate a payment, your app must send transactional information to the Check
 
         <td style={{ textAlign: "left" }}>
           List of PayUWealthProducts objects
-<br/>
+
+          <br />
+
           Refer to Step 3.9: WealthTech Flow
         </td>
       </tr>
