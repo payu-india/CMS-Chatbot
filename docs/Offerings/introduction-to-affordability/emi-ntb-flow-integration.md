@@ -14,7 +14,7 @@ This section how to integrate New to Bank (NTB) flow using PayU’s **Get Checko
 
 ***
 
-## Step 1: Get Checkout Details 
+## Step 1: Get Checkout Details
 
 Use the **Get Checkout Details** API (`get_checkout_details`) to get information for custom checkout pages: payment options, extended payment details (e.g. EMI breakup), additional charges, tax specification, downtime, and optional customer eligibility.
 
@@ -28,12 +28,12 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
 </Accordion>
 
 <Accordion title="Key request parameters" icon="fa-list">
-  | Parameter | Description                                                                                                    | Example                                               |
-  | :-------- | :------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------- |
-  | key       | Merchant key provided by PayU.                                                                                 | `JPM7Fg`                                              |
-  | command   | Must be `get_checkout_details`.                                                                                | `get_checkout_details`                                |
-  | var1      | JSON string with `requestId`, `transactionDetails`, `useCase`, and optionally `customerDetails` and `filters`. | See sample below                                      |
-  | hash      | `sha512(key\\|command\\|var1\\|salt)`.                                                                         | Generated per [hash logic](ref:get_checkout_details). |
+  | Parameter | Description                                                                                                    | Example                |        |          |                                                       |
+  | :-------- | :------------------------------------------------------------------------------------------------------------- | :--------------------- | ------ | -------- | ----------------------------------------------------- |
+  | key       | Merchant key provided by PayU.                                                                                 | `JPM7Fg`               |        |          |                                                       |
+  | command   | Must be `get_checkout_details`.                                                                                | `get_checkout_details` |        |          |                                                       |
+  | var1      | JSON string with `requestId`, `transactionDetails`, `useCase`, and optionally `customerDetails` and `filters`. | See sample below       |        |          |                                                       |
+  | hash      | \`sha512(key\\                                                                                                 | command\\              | var1\\ | salt)\`. | Generated per [hash logic](ref:get_checkout_details). |
 
   **var1 JSON (main fields):**
 
@@ -55,7 +55,29 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
 </Accordion>
 
 <Accordion title="Sample response (excerpt)" icon="fa-reply">
+<Callout icon="📘" theme="info">
+  **Note**: You must look for the **eligibility** object is having **status=true**  inside the **ntb** JSON object similar to the following: 
 
+  ```json
+
+     "ntb": {
+                            "cardless": {
+                                "all": {
+                                    "LPEMI": {
+                                        "maximumAmount": null,
+                                        "eligibility": {
+                                            "status": true
+                                        }
+                                    }
+                                },
+                                "hasEligible": true
+                            }
+                        }
+                    }
+  ```
+
+
+</Callout>
   ```json
   {
     "httpCode": "200",
@@ -92,21 +114,20 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
                         }
                     }
                 },
-...
-...
-...
+  ...
+  ...
+  ...
                         }
                     }
                 }
             }
         }
     }
-}
+  }
   ```
 </Accordion>
 
-**Full reference:** [Get Checkout Details – NTB Seamless Journey](ref:get-checkout-details-ntb-seamless-journey)  
-**API reference (all use cases):** [Get Checkout Details API](ref:get_checkout_details)
+<br />
 
 ***
 
