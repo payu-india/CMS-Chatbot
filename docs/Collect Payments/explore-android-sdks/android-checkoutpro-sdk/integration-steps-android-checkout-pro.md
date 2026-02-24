@@ -315,7 +315,7 @@ To initiate a payment, your app must send transactional information to the Check
   </Table>
 </Accordion>
 
-<Accordion title="Step 3:5 : SKU details (Optional)" icon="fa-code">
+<Accordion title="Step 3:6 : SKU details (Optional)" icon="fa-code">
   ```Text Kotlin
   SkuDetails: It contains below properties
   SkuDetails(val skus: List<SKU>)
@@ -347,7 +347,7 @@ To initiate a payment, your app must send transactional information to the Check
   > if we are adding details of SKU offers, the amount passed in PayUPaymentParam must be equal to the sum of quantities \* skuAmount of each item.
 </Accordion>
 
-<Accordion title="Step 3:6 : Third Party Verification (TPV) Flow (Optional)" icon="fa-code">
+<Accordion title="Step 3:7 : Third Party Verification (TPV) Flow (Optional)" icon="fa-code">
   CheckoutPro SDK supports TPV flow for both UPI and Net Banking payment methods. TPV validates that payments are made from authorized beneficiary accounts by verifying account details during the transaction.
 
   <Accordion title="TPV for UPI Payments" icon="fa-mobile">
@@ -461,7 +461,7 @@ To initiate a payment, your app must send transactional information to the Check
   | BeneficiaryName          | ✗ Optional | ✓ Required  | Account holder's name          |
 </Accordion>
 
-<Accordion title="Step 3.7 : Cross Broder Flow (OPGSP)" icon="fa-code">
+<Accordion title="Step 3.8 : Cross Broder Flow (OPGSP)" icon="fa-code">
   OPGSP (Online Payment Gateway Service Provider) flow requires complete address details to be passed along with payment parameters. All address fields are mandatory for OPGSP transactions.
 
   ```Text Java
@@ -529,7 +529,7 @@ To initiate a payment, your app must send transactional information to the Check
   | udf5      | ✓ Required | The invoice ID or invoice number must be collected using this field | 098450845 |
 </Accordion>
   
-<Accordion title="Step 3.8: WealthTech Flow" icon="fa-code">
+<Accordion title="Step 3.9 : WealthTech Flow" icon="fa-code">
     WealthTech flow enables payments for wealth management products like mutual funds. You need to pass wealth product details as a list of PayUWealthProducts objects.
 
     ```Text Java
@@ -627,7 +627,7 @@ To initiate a payment, your app must send transactional information to the Check
     | mf_amc_code | Optional | AMC code |
 </Accordion>
 
-<Accordion title="Step 3.9 :Enforce Offer Keys" icon="fa-code">
+<Accordion title="Step 3.10 :Enforce Offer Keys" icon="fa-code">
     Enforce Offer Keys allows you to apply specific promotional offers to transactions. Pass a comma-separated list of offer keys to enforce specific offers during checkout.
 
     ```Text Java
@@ -658,7 +658,7 @@ To initiate a payment, your app must send transactional information to the Check
     **Note:** Offer keys should be comma-separated. You can pass multiple offer keys to enforce different promotional offers during the payment process.
     </Accordion>
 
-<Accordion title="Step 3.10: Additional parameters (Optional)" icon="fa-code">
+<Accordion title="Step 3.11: Additional parameters (Optional)" icon="fa-code">
   Additional parameters are optional parameters such as UDF (User Defined Fields), static hashes, etc. More details on static hash generation and passing are mentioned in the hash generation section. The following is a list of other parameters that can be passed in additional parameters.
 
   | Parameter                                               | Description                                                                                            | Example      |
@@ -734,7 +734,7 @@ To initiate a payment, your app must send transactional information to the Check
   ```
 </Accordion>
 
-<Accordion title="Step 3.11: Payment Param Definitions" icon="fa-code">
+<Accordion title="Step 3.12: Payment Param Definitions" icon="fa-code">
   <Table align={["left","left","left"]}>
     <thead>
       <tr>
