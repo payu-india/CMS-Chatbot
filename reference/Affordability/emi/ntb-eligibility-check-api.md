@@ -28,11 +28,30 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
 | Production Environment | [https://info.payu.in-merchant/postservice?form=2](https://info.payu.in-merchant/postservice?form=2) |
 
 <Callout icon="📘" theme="info">
-  **Note**: You must look for the **NTB** JSON object in the response
+  **Note**: You must look for the **eligibility** object is having **status=true**  inside the **ntb** JSON object similar to the following: 
+
+  ```json
+
+     "ntb": {
+                            "cardless": {
+                                "all": {
+                                    "LPEMI": {
+                                        "maximumAmount": null,
+                                        "eligibility": {
+                                            "status": true
+                                        }
+                                    }
+                                },
+                                "hasEligible": true
+                            }
+                        }
+                    }
+  ```
+
+
 </Callout>
 
 <Accordion title="Sample request" icon="fa-code">
-
   ```cUrl
   curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
   --form 'key="0d5aDh"' \
@@ -41,193 +60,193 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
   --form 'hash="5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a"'
   ```
 </Accordion>
-<Accordion title="Sample response" icon="fa-reply">
 
-```json
-  {
-    "httpCode": "200",
-    "message": "",
-    "status": 1,
-    "data": {
-        "details": {
-            "paymentOption": {
-                "emi": {
-                    "all": {
-                        "cardless": {
-                            "all": {
-                                "BIMAPAY": {
-                                    "tenureOptions": {
-                                        "BIMAP03": {
-                                            "tenure": 3,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        },
-                                        "BIMAP06": {
-                                            "tenure": 6,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        },
-                                        "BIMAPAY": {
-                                            "tenure": 0,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": false,
-                                                "reason": "This mobile number is not eligible. Please change the mobile number."
-                                            }
-                                        },
-                                        "BIMAP09": {
-                                            "tenure": 9,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        },
-                                        "BIMAP12": {
-                                            "tenure": 12,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        }
-                                    },
-                                    "maximumAmount": null,
-                                    "eligibility": {
-                                        "status": true
-                                    }
-                                },
-                                "SMPI3": {
-                                    "tenureOptions": {
-                                        "SMPI03": {
-                                            "tenure": 3,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        }
-                                    },
-                                    "maximumAmount": null,
-                                    "eligibility": {
-                                        "status": true
-                                    }
-                                },
-                                "ICICI_CL": {
-                                    "tenureOptions": {
-                                        "ICICIC12": {
-                                            "tenure": 12,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        },
-                                        "ICICIC03": {
-                                            "tenure": 3,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        },
-                                        "ICICIC09": {
-                                            "tenure": 9,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        },
-                                        "ICICIC06": {
-                                            "tenure": 6,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        }
-                                    },
-                                    "maximumAmount": null,
-                                    "eligibility": {
-                                        "status": true
-                                    }
-                                },
-                                "HDFC_CL": {
-                                    "tenureOptions": {
-                                        "HDFCCL09": {
-                                            "tenure": 9,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        },
-                                        "HDFCCL18": {
-                                            "tenure": 18,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        },
-                                        "HDFCCL06": {
-                                            "tenure": 6,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        },
-                                        "HDFCCL03": {
-                                            "tenure": 3,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        },
-                                        "HDFCCL12": {
-                                            "tenure": 12,
-                                            "maximumAmount": null,
-                                            "eligibility": {
-                                                "status": true
-                                            }
-                                        }
-                                    },
-                                    "maximumAmount": null,
-                                    "eligibility": {
-                                        "status": true
-                                    }
-                                }
-                            },
-                            "hasEligible": true
-                        }
-                    },
-                    "ntb": {
-                        "cardless": {
-                            "all": {
-                                "LPEMI": {
-                                    "maximumAmount": null,
-                                    "eligibility": {
-                                        "status": true
-                                    }
-                                }
-                            },
-                            "hasEligible": true
-                        }
-                    }
-                },
-                "bnpl": {
-                    "all": {
-                        "LAZYPAY": {
-                            "imageURL": null,
-                            "imageUpdatedOn": null,
-                            "maximumAmount": null,
-                            "eligibility": {
-                                "status": false,
-                                "reason": "This mobile number is not eligible. Please change the mobile number."
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+<Accordion title="Sample response" icon="fa-reply">
+  ```json
+    {
+      "httpCode": "200",
+      "message": "",
+      "status": 1,
+      "data": {
+          "details": {
+              "paymentOption": {
+                  "emi": {
+                      "all": {
+                          "cardless": {
+                              "all": {
+                                  "BIMAPAY": {
+                                      "tenureOptions": {
+                                          "BIMAP03": {
+                                              "tenure": 3,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          },
+                                          "BIMAP06": {
+                                              "tenure": 6,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          },
+                                          "BIMAPAY": {
+                                              "tenure": 0,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": false,
+                                                  "reason": "This mobile number is not eligible. Please change the mobile number."
+                                              }
+                                          },
+                                          "BIMAP09": {
+                                              "tenure": 9,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          },
+                                          "BIMAP12": {
+                                              "tenure": 12,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          }
+                                      },
+                                      "maximumAmount": null,
+                                      "eligibility": {
+                                          "status": true
+                                      }
+                                  },
+                                  "SMPI3": {
+                                      "tenureOptions": {
+                                          "SMPI03": {
+                                              "tenure": 3,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          }
+                                      },
+                                      "maximumAmount": null,
+                                      "eligibility": {
+                                          "status": true
+                                      }
+                                  },
+                                  "ICICI_CL": {
+                                      "tenureOptions": {
+                                          "ICICIC12": {
+                                              "tenure": 12,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          },
+                                          "ICICIC03": {
+                                              "tenure": 3,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          },
+                                          "ICICIC09": {
+                                              "tenure": 9,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          },
+                                          "ICICIC06": {
+                                              "tenure": 6,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          }
+                                      },
+                                      "maximumAmount": null,
+                                      "eligibility": {
+                                          "status": true
+                                      }
+                                  },
+                                  "HDFC_CL": {
+                                      "tenureOptions": {
+                                          "HDFCCL09": {
+                                              "tenure": 9,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          },
+                                          "HDFCCL18": {
+                                              "tenure": 18,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          },
+                                          "HDFCCL06": {
+                                              "tenure": 6,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          },
+                                          "HDFCCL03": {
+                                              "tenure": 3,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          },
+                                          "HDFCCL12": {
+                                              "tenure": 12,
+                                              "maximumAmount": null,
+                                              "eligibility": {
+                                                  "status": true
+                                              }
+                                          }
+                                      },
+                                      "maximumAmount": null,
+                                      "eligibility": {
+                                          "status": true
+                                      }
+                                  }
+                              },
+                              "hasEligible": true
+                          }
+                      },
+                      "ntb": {
+                          "cardless": {
+                              "all": {
+                                  "LPEMI": {
+                                      "maximumAmount": null,
+                                      "eligibility": {
+                                          "status": true
+                                      }
+                                  }
+                              },
+                              "hasEligible": true
+                          }
+                      }
+                  },
+                  "bnpl": {
+                      "all": {
+                          "LAZYPAY": {
+                              "imageURL": null,
+                              "imageUpdatedOn": null,
+                              "maximumAmount": null,
+                              "eligibility": {
+                                  "status": false,
+                                  "reason": "This mobile number is not eligible. Please change the mobile number."
+                              }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+  }
   ```
 </Accordion>
 
