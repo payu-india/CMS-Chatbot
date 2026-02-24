@@ -13,8 +13,8 @@ HTTP Request Method: GET
 
 |            |                                                                                            |
 | :--------- | :----------------------------------------------------------------------------------------- |
-| Test       | [https://info.payu.inpayment-mode/v1/upi/vpa](https://info.payu.inpayment-mode/v1/upi/vpa) |
-| Production | [https://test.payu.in/payment-mode/v1/upi/vpa](https://test.payu.in/v1/upi/vpa)            |
+| Production | [https://info.payu.inpayment-mode/v1/upi/vpa](https://info.payu.inpayment-mode/v1/upi/vpa) |
+| Test       | [https://test.payu.in/payment-mode/v1/upi/vpa](https://test.payu.in/v1/upi/vpa)            |
 
 ## Request headers
 
@@ -153,9 +153,9 @@ curl --location 'https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=tru
 
 ### result JSON fields description
 
-| Parameter         | Description                                      | Example              |
-| ----------------- | ------------------------------------------------ | -------------------- |
-| isValidVpa        | Indicates whether the provided VPA is valid.     | true                 |
-| payerAccountName  | Name associated with the VPA.                    | RIDHI GARG           |
-| vpa               | The validated VPA.                               | ridhigarg95\@okicici |
-| isAutoPayVPAValid | Indicates whether the VPA is valid for auto-pay. | true                 |
+| Parameter         | Description                                      | Example             |
+| ----------------- | ------------------------------------------------ | ------------------- |
+| isValidVpa        | Indicates whether the provided VPA is valid.     | true                |
+| payerAccountName  | Name associated with the VPA.                    | RIDHI GARG          |
+| vpa               | The validated VPA.                               | ridhigarg95@okicici |
+| isAutoPayVPAValid | Indicates whether the VPA is valid for auto-pay. | true                |
