@@ -1011,7 +1011,7 @@ To initiate a payment, your app must send transactional information to the Check
         <td style={{ textAlign: "left" }}>
           siParams object
 
-          **Refer to Step 3.2: For Recurring Payments(SI) (Optional)** or **Step 3.3: For UPI One Time Mandate 					Payments (Optional)**
+          Refer to Step 3.2: For Recurring Payments(SI) (Optional) or Step 3.3: For UPI One Time Mandate 					Payments (Optional)
         </td>
       </tr>
 
@@ -1047,7 +1047,7 @@ To initiate a payment, your app must send transactional information to the Check
         <td style={{ textAlign: "left" }}>
           json.encode(splitPaymentDetails)
 
-          **Refer to Step 3.5: For split Payments details (Optional)**
+          Refer to Step 3.5: For split Payments details (Optional)
         </td>
       </tr>
 
@@ -1066,7 +1066,7 @@ To initiate a payment, your app must send transactional information to the Check
         <td style={{ textAlign: "left" }}>
           "HoliSale\@JbBdLOBritj5,Instantoffer\@Kp78nFDENX5S"
 
-          **Refer to Step 3.10: Enforce Offer Keys**
+          Refer to Step 3.10: Enforce Offer Keys
         </td>
       </tr>
 
@@ -1085,7 +1085,7 @@ To initiate a payment, your app must send transactional information to the Check
         <td style={{ textAlign: "left" }}>
           beneficiaryDetails object or list
 
-          **Refer to Step 3.7: Third Party Verification (TPV) Flow (Optional)**
+          Refer to Step 3.7: Third Party Verification (TPV) Flow (Optional)
         </td>
       </tr>
 
@@ -1106,7 +1106,7 @@ To initiate a payment, your app must send transactional information to the Check
         <td style={{ textAlign: "left" }}>
           addressDetails object
 
-          **Refer to Step 3.8: Cross Border Flow (OPGSP)**
+          Refer to Step 3.8: Cross Border Flow (OPGSP)
         </td>
       </tr>
 
@@ -1125,7 +1125,7 @@ To initiate a payment, your app must send transactional information to the Check
         <td style={{ textAlign: "left" }}>
           List of PayUWealthProducts objects
 
-          *Refer to Step 3.9: WealthTech Flow*
+          Refer to Step 3.9: WealthTech Flow
         </td>
       </tr>
     </tbody>
