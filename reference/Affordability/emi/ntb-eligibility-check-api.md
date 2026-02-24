@@ -27,8 +27,21 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
 | Test Environment       | [https://test.payu.in-merchant/postservice?form=2](https://test.payu.in-merchant/postservice?form=2) |
 | Production Environment | [https://info.payu.in-merchant/postservice?form=2](https://info.payu.in-merchant/postservice?form=2) |
 
+
+<Accordion title="Sample request" icon="fa-code">
+  ```cUrl
+  curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
+  --form 'key="0d5aDh"' \
+  --form 'command="get_checkout_details"' \
+  --form 'var1="{\"requestId\":\"9920371372_38\",\"transactionDetails\":{\"amount\":8000},\"useCase\":{\"getExtendedPaymentDetails\":true}}"' \
+  --form 'hash="5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a"'
+  ```
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-reply">
+
 <Callout icon="📘" theme="info">
-  **Note**: You must look for the **eligibility** object is having **status=true**  inside the **ntb** JSON object similar to the following: 
+  **Note**: You must look for the **eligibility** object is having **status=true**  inside the **ntb** JSON object similar to the following:
 
   ```json
 
@@ -47,21 +60,7 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
                         }
                     }
   ```
-
-
 </Callout>
-
-<Accordion title="Sample request" icon="fa-code">
-  ```cUrl
-  curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
-  --form 'key="0d5aDh"' \
-  --form 'command="get_checkout_details"' \
-  --form 'var1="{\"requestId\":\"9920371372_38\",\"transactionDetails\":{\"amount\":8000},\"useCase\":{\"getExtendedPaymentDetails\":true}}"' \
-  --form 'hash="5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a"'
-  ```
-</Accordion>
-
-<Accordion title="Sample response" icon="fa-reply">
   ```json
     {
       "httpCode": "200",
