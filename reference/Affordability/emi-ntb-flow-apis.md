@@ -1,7 +1,7 @@
 ---
 title: EMI - NTB Flow APIs
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
