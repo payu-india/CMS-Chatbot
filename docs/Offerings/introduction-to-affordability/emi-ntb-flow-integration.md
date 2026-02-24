@@ -7,14 +7,23 @@ metadata:
 ---
 This section how to integrate New to Bank (NTB) flow using PayU’s **Get Checkout Details (NTB Seamless Journey)** and **Get EMI Checkout Details** APIs. Use these in order when building custom checkout pages that need payment options, EMI details, and customer eligibility.
 
-### Flow overview
+<Cards>
+  <Card title=" Step 1: Get Checkout Details" href="#step-1-check-eligibility" icon="fa-rocket">
+    New to our platform? Follow this guide to get started.
+  </Card>
 
-1. **Step 1** – Call Get Checkout Details to fetch payment options, offers, downtime, and (optionally) high-level eligibility for your transaction.
-2. **Step 2** – Call Get EMI Checkout Details with customer and bank/lender details to get EMI tenure options and detailed eligibility (e.g. for cardless EMI / Link and Pay NTB).
+  <Card title="API Reference" href="#" icon="fa-code">
+    Explore our interactive API reference.
+  </Card>
+
+  <Card title="Support & Community" href="#" icon="fa-comments" target="_blank">
+    Join our community or checkout our FAQ.
+  </Card>
+</Cards>
 
 ***
 
-## Step 1: Get Checkout Details
+## Step 1: Check Eligibility
 
 Use the **Get Checkout Details** API (`get_checkout_details`) to get information for custom checkout pages: payment options, extended payment details (e.g. EMI breakup), additional charges, tax specification, downtime, and optional customer eligibility.
 
@@ -26,105 +35,100 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
 **Method:** POST (form-encoded)
 
 <Accordion title="Request parameters" icon="fa-list">
+  <Table>
+    <thead>
+      <tr>
+        <th>
+          Parameter
+        </th>
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+        <th>
+          Description
+        </th>
 
-      <th>
-        Description
-      </th>
+        <th>
+          Example
+        </th>
+      </tr>
+    </thead>
 
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
+    <tbody>
+      <tr>
+        <td>
+          key  <br />  `mandatory`
+        </td>
 
-  <tbody>
-    <tr>
-      <td>
-        key  <br/>  `mandatory`
-      </td>
+        <td>
+          <code>String</code> Merchant key provided by PayU.
+        </td>
 
-      <td>
-        <code>String</code> Merchant key provided by PayU.
-      </td>
+        <td>
+          JPM7Fg
+        </td>
+      </tr>
 
-      <td>
-        JPM7Fg
-      </td>
-    </tr>
+      <tr>
+        <td>
+          command<br />  `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        command<br/>  `mandatory`
-      </td>
+        <td>
+          <code>String</code> Must be <code>get\_checkout\_details</code> (name of the web-service).
+        </td>
 
-      <td>
-        <code>String</code> Must be <code>get_checkout_details</code> (name of the web-service).
-      </td>
+        <td>
+          get\_checkout\_details
+        </td>
+      </tr>
 
-      <td>
-        get_checkout_details
-      </td>
-    </tr>
+      <tr>
+        <td>
+          var1<br />  `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        var1<br/>  `mandatory`
-      </td>
+        <td>
+          <code>String</code> JSON string containing requestId, transactionDetails, useCase, and optionally customerDetails and filters. See var1 JSON fields below.
+        </td>
 
-      <td>
-        <code>String</code> JSON string containing requestId, transactionDetails, useCase, and optionally customerDetails and filters. See var1 JSON fields below.
-      </td>
+        <td>
+          See
+        </td>
+      </tr>
 
-      <td>
-        See
-      </td>
-    </tr>
+      <tr>
+        <td>
+          hash<br />  `mandatory`
+        </td>
 
-    <tr>
-      <td>
-        hash<br/>  `mandatory`
-      </td>
+        <td>
+          <code>String</code> The hash must be calculated based on the following logic:
+          sha512(key|command|var1|salt)
+        </td>
 
-      <td>
-        <code>String</code> The hash must be calculated based on the following logic:  
-        sha512(key\|command\|var1\|salt)
-      </td>
+        <td />
+      </tr>
+    </tbody>
+  </Table>
 
-      <td>
+  ### var1 JSON Object fields description (inside var1)
 
-      </td>
-    </tr>
-  </tbody>
-</Table>
+  | Parameter          | Description                                                                                                                                                                                                                                                                                                                                                                                       | Example                                        |
+  | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+  | requestId          | <code>String</code> Request ID.                                                                                                                                                                                                                                                                                                                                                                   | 12345678                                       |
+  | transactionDetails | <code>Object</code> Must contain <code>amount</code> (transaction amount) and optionally <code>txnid</code> (transaction ID).                                                                                                                                                                                                                                                                     | \{"amount": "100.00", "txnid": "TXN123"}       |
+  | useCase            | <code>Object</code> Flags for which information to return: <code>getExtendedPaymentDetails</code>, <code>getAdditionalCharges</code>, <code>getTaxSpecification</code>, <code>checkDownStatus</code>, <code>checkCustomerEligibility</code>. Optionally <code>filters</code> (e.g. <code>paymentOptions.emi.dc</code>, <code>cc</code>, <code>cardless</code>; <code>paymentOptions.bnpl</code>). | \{"getExtendedPaymentDetails": true}           |
+  | customerDetails    | <code>Object</code> Optional. Customer info (e.g. <code>mobile</code>) for eligibility checks.                                                                                                                                                                                                                                                                                                    | \{"mobile": "9098765432"}                      |
+  | filters            | <code>Object</code> Optional. Filter response by <code>paymentOptions</code> (emi.dc, cc, cardless; bnpl). Include "all" for all banks in a category.                                                                                                                                                                                                                                             | \{"paymentOptions": \{"emi": \{"dc": "ICIC"}}} |
 
+  ### useCase JSON Object Fields Description
 
-
-### var1 JSON Object fields description (inside var1)
-
-| Parameter          | Description                                                                                                                                                                                                                                                                                                                                                                                       | Example                                        |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| requestId          | <code>String</code> Request ID.                                                                                                                                                                                                                                                                                                                                                                   | 12345678                                       |
-| transactionDetails | <code>Object</code> Must contain <code>amount</code> (transaction amount) and optionally <code>txnid</code> (transaction ID).                                                                                                                                                                                                                                                                     | \{"amount": "100.00", "txnid": "TXN123"}       |
-| useCase            | <code>Object</code> Flags for which information to return: <code>getExtendedPaymentDetails</code>, <code>getAdditionalCharges</code>, <code>getTaxSpecification</code>, <code>checkDownStatus</code>, <code>checkCustomerEligibility</code>. Optionally <code>filters</code> (e.g. <code>paymentOptions.emi.dc</code>, <code>cc</code>, <code>cardless</code>; <code>paymentOptions.bnpl</code>). | \{"getExtendedPaymentDetails": true}           |
-| customerDetails    | <code>Object</code> Optional. Customer info (e.g. <code>mobile</code>) for eligibility checks.                                                                                                                                                                                                                                                                                                    | \{"mobile": "9098765432"}                      |
-| filters            | <code>Object</code> Optional. Filter response by <code>paymentOptions</code> (emi.dc, cc, cardless; bnpl). Include "all" for all banks in a category.                                                                                                                                                                                                                                             | \{"paymentOptions": \{"emi": \{"dc": "ICIC"}}} |
-
-### useCase JSON Object Fields Description
-
-| Field                     | Description                                                                                                                                       |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| getExtendedPaymentDetails | <code>Boolean</code> Set <code>true</code> to check EMI eligibility (mobile/card) and “Buy Now Pay Later” modes; returns title, EMI breakup, etc. |
-| getAdditionalCharges      | <code>Boolean</code> Set <code>true</code> to return additional charges for all payment options.                                                  |
-| getTaxSpecification       | <code>Boolean</code> Set <code>true</code> to return tax specification from backend for splitting additional charges.                             |
-| checkDownStatus           | <code>Boolean</code> Set <code>true</code> to return downtime of payment options.                                                                 |
-| checkCustomerEligibility  | <code>Boolean</code> Set <code>true</code> to return customer eligibility.                                                                        |
+  | Field                     | Description                                                                                                                                       |
+  | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | getExtendedPaymentDetails | <code>Boolean</code> Set <code>true</code> to check EMI eligibility (mobile/card) and “Buy Now Pay Later” modes; returns title, EMI breakup, etc. |
+  | getAdditionalCharges      | <code>Boolean</code> Set <code>true</code> to return additional charges for all payment options.                                                  |
+  | getTaxSpecification       | <code>Boolean</code> Set <code>true</code> to return tax specification from backend for splitting additional charges.                             |
+  | checkDownStatus           | <code>Boolean</code> Set <code>true</code> to return downtime of payment options.                                                                 |
+  | checkCustomerEligibility  | <code>Boolean</code> Set <code>true</code> to return customer eligibility.                                                                        |
 </Accordion>
 
 <Accordion title="Sample request (cURL)" icon="fa-code">
@@ -213,7 +217,7 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
 
 ***
 
-## Step 2: Get EMI Checkout Details API
+## Step 2: Get EMI Checkout Details
 
 Use the **Get EMI Checkout Details** API to check detailed EMI eligibility for a specific bank/lender and customer (e.g. cardless EMI / Link and Pay NTB). It returns tenure options, maximum amounts, and eligibility status per tenure.
 
