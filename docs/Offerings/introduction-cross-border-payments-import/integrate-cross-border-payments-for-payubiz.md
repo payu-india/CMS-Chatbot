@@ -364,9 +364,9 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
 
 <br />
 
-## Step 3: Upload the Invoices [Optional]
+## Step 3: Upload the Invoices & AWBs [Conditional]
 
-According to the RBI guidelines, the invoice file must be shared with PayU within 10 days of the transaction. The invoices / Airway Bill can be uploaded using the **Invoice Upload API** API. AWB details are mandatory for Goods transactions.
+ The invoices / Airway Bill can be uploaded using the **Invoice Upload API** API. AWB details are mandatory for Goods transactions. Invoice copies can be uploaded optionally.
 
 <GENERALAPIsEnvironment />
 
