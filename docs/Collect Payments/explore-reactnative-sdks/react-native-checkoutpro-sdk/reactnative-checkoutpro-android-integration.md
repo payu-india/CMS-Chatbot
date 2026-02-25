@@ -22,6 +22,8 @@ metadata:
 next:
   description: ''
 ---
+This section describes how to integrate React Native with Android Checkout Pro SDK.
+
 ## 🔴 IMPORTANT NOTICE - React Native 0.82.0+ Users
 
 <Callout icon="❗️" theme="error">
