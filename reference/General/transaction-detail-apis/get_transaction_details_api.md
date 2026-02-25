@@ -24,7 +24,7 @@ The Get Transaction Details **(get_Transaction_Details)** API works based on inp
 <Callout icon="📮" theme="default">
   **Postman Collection**: Access the **Get Transaction Details API Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/g3nukpg/get-transaction-details-api
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/g3nukpg/get-transaction-details-api](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/g3nukpg/get-transaction-details-api)
 </Callout>
 
 <GENERALAPIsEnvironment />
@@ -175,7 +175,9 @@ The Get Transaction Details **(get_Transaction_Details)** API works based on inp
 </Accordion>
 
 <Accordion title="Response parameters" icon="fa-list">
-  Transaction\_details parameter of the response is in the JSON format. For the details of the fields in the JSON format, refer to [Additional Info for General APIs](ref:addl-info-general-apis).
+  The **transaction\_details** parameter of the response is in JSON format. The fields in this JSON are described in the following table:
+
+<Transaction_detailsResponseParameter />
 
   To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 </Accordion>
