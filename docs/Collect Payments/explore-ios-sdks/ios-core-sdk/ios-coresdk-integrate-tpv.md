@@ -17,16 +17,16 @@ next:
 To integrate TPV with the BizSDK framework:
 
 <Cards>
-  <Card title="Step 1: Calculate hash" href="#step-1-calculate-hash" icon="fa-rocket">
+  <Card title="Step 1: Calculate hash" href="#step-1-calculate-hash" icon="fa-code">
     Calculate hash as the hash calculation formula is different from the result type of payment
   </Card>
 
-  <Card title="Step 2: Make payment" href="#step-2-make-payment" icon="fa-code">
+  <Card title="Step 2: Make payment" href="#step-2-make-payment" icon="fa-card">
     Create an object of the class `PayUCreateRequest`
   </Card>
 
-  <Card title="Step 3: Handle Response" href="#step-3-handle-response" icon="fa-comments" target="_blank">
-    Join our community or checkout our FAQ.
+  <Card title="Step 3: Handle Response" href="#step-3-handle-response" icon="fa-reply">
+    Handle the response from PayU
   </Card>
 </Cards>
 
@@ -150,4 +150,4 @@ let createRequest = PayUCreateRequest()
 
 ## Step 3: Handle response
 
-The procedure for response handling is similar to how you handle other payment options. 
+The procedure for response handling is similar to how you handle other payment options.
