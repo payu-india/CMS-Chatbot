@@ -23,20 +23,20 @@ The Verify Payment (**verify_payment**) API gives you the status of the transact
 <GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
- curl --request POST \
-     --url 'https://test.payu.in/merchant/postservice?form=2' \
-     --header 'Content-Type: application/x-www-form-urlencoded' \
-     --data key=JPM7Fg \
-     --data command=verify_payment \
-     --data var1=IhfgcZnXR4o4nB \
-     --data hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9
+  curl --request POST \
+  \--url '[https://test.payu.in/merchant/postservice?form=2](https://test.payu.in/merchant/postservice?form=2)' \
+  \--header 'Content-Type: application/x-www-form-urlencoded' \
+  \--data key=JPM7Fg \
+  \--data command=verify\_payment \
+  \--data var1=IhfgcZnXR4o4nB \
+  \--data hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
   * If credit card payment is made, the response is similar to the following:
 
   ```plaintext
- {
+  {
   "status":0,
   "msg":"0 out of 1 Transactions Fetched Successfully",
   "transaction_details":
@@ -47,7 +47,7 @@ The Verify Payment (**verify_payment**) API gives you the status of the transact
       "status":"Not Found"
     }
   }
-}
+  }
   ```
 
   * Offer availed on cart level
@@ -270,7 +270,7 @@ The Verify Payment (**verify_payment**) API gives you the status of the transact
         </td>
 
         <td style={{ textAlign: "left" }}>
-          This parameter contains the response in a JSON format. For more information refer to [JSON fields description for transaction\_details parameter ](#json-field-description-for-transaction_details-parameter).
+          This parameter contains the response in a JSON format. For more information refer to the next table.
         </td>
 
         <td style={{ textAlign: "left" }} />
@@ -305,6 +305,9 @@ The Verify Payment (**verify_payment**) API gives you the status of the transact
       </tr>
     </tbody>
   </Table>
+<Accordion title="Transaction_details JSON Object Fields Description " icon="fa-flask">  
+<Transaction_detailsResponseParameter />
+</Accordion>
 
   To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 </Accordion>
