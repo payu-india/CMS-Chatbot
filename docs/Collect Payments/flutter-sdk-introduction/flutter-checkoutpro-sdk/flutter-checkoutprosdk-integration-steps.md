@@ -1,5 +1,5 @@
 ---
-title: Steps to Integrate
+title: Flutter SDK Integration
 deprecated: false
 hidden: false
 link:
@@ -17,6 +17,19 @@ metadata:
     - Mobile Flutter SDK Basic Integration with Checkout Pro
   robots: index
 ---
+This section describes the steps to integrate on Flutter SDK.
+
+<Cards>
+  <Card title="Step 1: SDK Integration" href="#step-1-sdk-integration" icon="fa-rocket">
+    New to our platform? Follow this guide to get started.
+  </Card>
+
+  <Card title="Step 2: Test the Integration and Go-Live" href="#step-2-test-the-integration-and-go-live" icon="fa-list">
+    Explore our interactive API reference.
+  </Card>
+
+</Cards>
+
 ## Step 1: SDK Integration
 
 To integrate PayU CheckoutPro with Flutter SDK:
