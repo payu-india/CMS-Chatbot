@@ -23,11 +23,36 @@ PayU offers for WhatsApp Business enables your customers to make seamless paymen
 
 Customers can now access to a wide range of payment options, including UPI, cards, Net Banking, EMI, BNPL and International Payments.
 
+This part of the documentation includes:
+
+<Cards>
+  <Card title="Why are native payments on WhatsApp important?" href="#why-are-native-payments-on-whatsapp-important" icon="fa-info-circle" target="_blank">
+    Understand the value of enabling payments directly inside WhatsApp for your users and business.
+  </Card>
+
+  <Card title="How does PayU help your business?" href="#how-does-payu-help-your-business" icon="fa-briefcase" target="_blank">
+    Learn how PayU supports your WhatsApp payment integration and what you get from the partnership.
+  </Card>
+
+  <Card title="Payments Journey" href="#payments-journey" icon="fa-route" target="_blank">
+    End-to-end flow of how payments work from initiation to completion on WhatsApp.
+  </Card>
+
+  <Card title="Experience Native WhatsApp Payments" href="#experience-native-whatsapp-payments" icon="fa-mobile-alt" target="_blank">
+    See or try the native WhatsApp payment experience before integrating.
+  </Card>
+
+  <Card title="Pre-requisites" href="#pre-requisites" icon="fa-list-check" target="_blank">
+    What you need in place before integrating WhatsApp payments with PayU.
+  </Card>
+</Cards>
+
+
 ## Why are native payments on WhatsApp important?
 
-WhatsApp Business has proven to be an effective customer engagement channel for a wide range of business use cases. However, businesses have been unable to complete the sales cycle on the platform. 
+WhatsApp Business has proven to be an effective customer engagement channel for a wide range of business use cases. However, businesses have been unable to complete the sales cycle on the platform.
 
-With PayU’s in-app payments on WhatsApp Business, businesses can now offer their customers a native payment experience inside WhatsApp. This opens up a range of commercial opportunities for businesses, including the following: 
+With PayU’s in-app payments on WhatsApp Business, businesses can now offer their customers a native payment experience inside WhatsApp. This opens up a range of commercial opportunities for businesses, including the following:
 
 * Recover Abandoned Carts
 
@@ -43,13 +68,13 @@ With PayU’s in-app payments on WhatsApp Business, businesses can now offer the
 
 ## How does PayU help your business?
 
-**Reduce drop-offs & improve conversion:** With PayU’s in-app payments on WhatsApp Business, businesses can close the entire discovery-to-payment loop directly on a WhatsApp chat conversation, thereby reducing drop-offs. 
+**Reduce drop-offs & improve conversion:** With PayU’s in-app payments on WhatsApp Business, businesses can close the entire discovery-to-payment loop directly on a WhatsApp chat conversation, thereby reducing drop-offs.
 
 **Accept all payment modes:** The frictionless checkout experience offered by PayU’s industry-leading technology, which includes 100+ payment methods, including EMI and pay-later options, saved cards, and native OTP, adds up to a great purchase experience for customers.
 
 ## Payments Journey
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/ed4f484-image.png" />
+<Image align="center" border={true} src="https://files.readme.io/ed4f484-image.png" className="border" />
 
 ## Experience Native WhatsApp Payments
 
