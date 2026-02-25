@@ -172,7 +172,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant[udyam_number]<br /><code>mandatory</code>
+        merchant[registration_number]<br /><code>mandatory</code>
       </td>
 
       <td>
@@ -181,6 +181,79 @@ This API is authorised through a client token generated using the client ID and 
 
       <td>
         20162049547
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchant[website_details][website_url]<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>string</code> The merchant's website URL.
+      </td>
+
+      <td>
+        [www.merchant-website.com](www.merchant-website.com)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchant[registered_address][address]  
+        <br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>string</code> Registered office address
+      </td>
+
+      <td>
+        877 E 1200 S #970397, Orem, UT, USA 84097
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchant[registered_address][settlement_country]  
+        <br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>string</code> Settlement country
+      </td>
+
+      <td>
+        USA
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchant[settlement_currency]  
+        <br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>string</code> Settlement currency
+      </td>
+
+      <td>
+        USD
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        merchant[purpose_code]
+      </td>
+
+      <td>
+        <code>string</code> Applicable Purpose code as per Reserve Bank of India's [list](https://www.rbi.org.in/upload/notification/pdfs/52220.pdf)(Refer to "Imports" section) 
+      </td>
+
+      <td>
+        S0102
       </td>
     </tr>
 
@@ -225,20 +298,6 @@ This API is authorised through a client token generated using the client ID and 
 
       <td>
         ABCDUS33XXX
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        merchant[website_details][website_url]<br /><code>mandatory</code>
-      </td>
-
-      <td>
-        <code>string</code> The merchant's website URL.
-      </td>
-
-      <td>
-        [https://www.example.com](https://www.example.com)
       </td>
     </tr>
 
