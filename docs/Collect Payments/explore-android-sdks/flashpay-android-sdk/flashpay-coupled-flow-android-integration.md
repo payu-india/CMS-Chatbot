@@ -642,7 +642,6 @@ implementation 'in.payu:threeds-sdk:2.0.0'
   </Accordion>
       
 
-
   <Callout icon="📘" theme="info">
     **Saved Card Payments**: Requires both `networkToken` and `cardToken` under `mPaymentParams` for saved card-related transactions.
   </Callout>
