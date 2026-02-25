@@ -34,9 +34,9 @@ The refunds workflow in PayU typically follows this sequence:
    - **PayU Dashboard**, or
    - **Refund (Cancel Refund Transaction) API**, providing the transaction ID and refund amount.
 3. **PayU Validates Refund Request**: Before processing, PayU checks:
-   1. Whether the transaction exists
-   2. Whether the refund is within allowed conditions
-   3. Whether the refund amount matches full or partial rules
+   - Whether the transaction exists
+   - Whether the refund is within allowed conditions
+   - Whether the refund amount matches full or partial rules
 4. **PayU Sends Refund Request to the Payment Partner (Bank / Lender)**: After the refund request is validated, PayU forwards it to the respective payment instrument provider (the bank, card network, lender, etc.).
 5. **Bank / Payment Partner Processes the Refund**: The bank or issuer processes the refund and transfers the money back to the customer’s source account (card, UPI, net banking account, etc.).
 6. **Refund Settlement Adjustments**: The refund amount is deducted from the merchant’s settlement balance.
