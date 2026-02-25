@@ -25,6 +25,27 @@ Order cancellations are an unfortunate reality for any business. Customers may c
 
 <Image align="center" border={true} src="https://files.readme.io/6f2c927270ce644702c834ab110c0154eb172579ff6b9740f1117b8b34a37eda-Refunds_Workflow.png" className="border" />
 
+<br />
+
+The refunds workflow in PayU typically follows this sequence:
+
+1. **Customer Requests a Refund**: A refund begins when the **customer cancels an order**, returns an item, or did not receive the expected service after being charged.  
+2. **Merchant Initiates Refund Request**: The merchant can initiate the refund using:
+   - **PayU Dashboard**, or
+   - **Refund (Cancel Refund Transaction) API**, providing the transaction ID and refund amount.
+3. **PayU Validates Refund Request**: Before processing, PayU checks:
+   1. Whether the transaction exists
+   2. Whether the refund is within allowed conditions
+   3. Whether the refund amount matches full or partial rules
+4. **PayU Sends Refund Request to the Payment Partner (Bank / Lender)**: After the refund request is validated, PayU forwards it to the respective payment instrument provider (the bank, card network, lender, etc.).
+5. **Bank / Payment Partner Processes the Refund**: The bank or issuer processes the refund and transfers the money back to the customer’s source account (card, UPI, net banking account, etc.).
+6. **Refund Settlement Adjustments**: The refund amount is deducted from the merchant’s settlement balance.
+7. **Customer Receives the Refund**:  The refund reflects in the customer’s account.  
+   Processing time depends on the payment method:
+   - Typically **5–21 days** for the refunded amount to reflect.
+   - Some government banks may take longer.  PayU informs the merchant via email once refund is processed.
+8. **Automatic Refunds (Special Case)**: If a transaction fails but the customer was still charged, PayU automatically refunds the money after reconciling with the bank the next day.   For more information, refer[ Automatic Refund](#automatic-refund). 
+
 ## Automatic refund
 
 White a customer is making a payment and if the transaction was not successful (transaction status is "Pending" or Dropped"), but the amount got debited from account due to unforeseen circumstances, After bank will send the amount to PayU and it reconciled to find that transaction was not successful. Hence, PayU will automatically initiates the refund to the customer.
