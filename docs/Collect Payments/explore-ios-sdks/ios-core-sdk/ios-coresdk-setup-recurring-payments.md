@@ -13,16 +13,16 @@ next:
 This section describes how to set up subscriptions or recurring payments on iOS Core SDK platform.
 
 <Cards>
-  <Card title="Getting Started" href="#" icon="fa-rocket">
-    New to our platform? Follow this guide to get started.
+  <Card title="Step 1: Calculate hash" href="#step-1-calculate-hash" icon="fa-code">
+    Calculate hash as the hash calculation formula is different from the result type of payment
   </Card>
 
-  <Card title="API Reference" href="#" icon="fa-code">
-    Explore our interactive API reference.
+  <Card title="Step 2: Make payment" href="#step-2-make-payment" icon="fa-card">
+    Create `PayUSIParams` object
   </Card>
 
-  <Card title="Support & Community" href="#" icon="fa-comments" target="_blank">
-    Join our community or checkout our FAQ.
+  <Card title="Step 3: Handle Response" href="#step-3-handle-response" icon="fa-reply">
+    Handle the response from PayU
   </Card>
 </Cards>
 
