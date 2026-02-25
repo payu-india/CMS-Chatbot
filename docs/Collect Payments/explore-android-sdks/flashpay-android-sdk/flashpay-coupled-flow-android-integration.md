@@ -605,7 +605,8 @@ implementation 'in.payu:threeds-sdk:2.0.0'
         mpaymentParams.networkToken = <Network Token>
         mpaymentParams.cardToken = <Card Token>
   ```
-<Accordion title="Card Tokenization" icon="fa-code">
+
+  <Accordion title="Card Tokenization" icon="fa-code">
     Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
 
     <Accordion title="Card Tokenization with PayU" icon="fa-code">
@@ -638,7 +639,9 @@ implementation 'in.payu:threeds-sdk:2.0.0'
       mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token details
       ```
     </Accordion>
-</Accordion>
+  </Accordion>
+      
+
 
   <Callout icon="📘" theme="info">
     **Saved Card Payments**: Requires both `networkToken` and `cardToken` under `mPaymentParams` for saved card-related transactions.
