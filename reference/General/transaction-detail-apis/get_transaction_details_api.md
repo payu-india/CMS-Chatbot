@@ -179,7 +179,7 @@ The Get Transaction Details **(get_Transaction_Details)** API works based on inp
 
 <Transaction_detailsResponseParameter />
 
-  To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
+  For more information on the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 </Accordion>
 
 ## Request parameters
