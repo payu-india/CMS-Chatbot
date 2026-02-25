@@ -122,25 +122,17 @@ Accelerate your integration workflow with our net banking Postman collection for
 <Cards>
   <Card title="1. Validate the card type" href="https://docs.payu.in/docs/collect-payments-with-cards-seamless#step-1-valiadate-the-card-type" target="_blank">
     Validate the card type using the card BIN API>
-
-    <br />
   </Card>
 
   <Card title="2. Initiate the Payment to PayU" href="https://docs.payu.in/docs/collect-payments-with-cards-seamless#step-2-initiate-the-payment-to-payu" target="_blank">
     Initiate the payment to PayU with pg=CC and bankcode=CC
-
-    <br />
   </Card>
 
   <Card title="3. Check response from PayU" href="https://docs.payu.in/docs/collect-payments-with-cards-seamless#step-3-check-response-from-payu">
     Check the response from PayU
-
-    <br />
   </Card>
 
   <Card title="4. Verify the payment" href="https://docs.payu.in/docs/collect-payments-with-cards-seamless#step-4-verify-the-payment">
     Verify the payment using verify\_payment and monitor using webhooks
   </Card>
-
-  <br />
 </Cards>
