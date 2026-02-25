@@ -16,9 +16,19 @@ next:
 
 To integrate TPV with the BizSDK framework:
 
-* Calculate Hash
-* Make Payment
-* Handle Response
+<Cards>
+  <Card title="Step 1: Calculate hash" href="#step-1-calculate-hash" icon="fa-rocket">
+    Calculate hash as the hash calculation formula is different from the result type of payment
+  </Card>
+
+  <Card title="Step 2: Make payment" href="#step-2-make-payment" icon="fa-code">
+    Create an object of the class `PayUCreateRequest`
+  </Card>
+
+  <Card title="Step 3: Handle Response" href="#step-3-handle-response" icon="fa-comments" target="_blank">
+    Join our community or checkout our FAQ.
+  </Card>
+</Cards>
 
 ## Step 1: Calculate hash
 
@@ -44,7 +54,7 @@ Hash = sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|u
 
 ## Step 2: Make payment
 
-To get a request, create an object of the class `PayUCreateRequest`` as below. The callbacks give you NSURLRequest as well as post parameters (in String). You can use these post parameters to initialize Custom Browser Instance.
+To get a request, create an object of the class `PayUCreateRequest`` as in the following code snippet. The callbacks give you NSURLRequest as well as post parameters (in String). You can use these post parameters to initialize Custom Browser Instance.
 
 ```swift Swift
 let createRequest = PayUCreateRequest()
@@ -88,7 +98,6 @@ let createRequest = PayUCreateRequest()
         }
     }];
     ```
-
   </Tab>
 
   <Tab title="UPI">
@@ -113,6 +122,7 @@ let createRequest = PayUCreateRequest()
     // Set VPA
     self.paymentParamForPassing.vpa = @"umang@axis";
     ```
+
     After configuring the above parameters, you can get the request by using the `createRequestWithPaymentParam `method, for instance.
 
     ```swift Swift
@@ -140,4 +150,4 @@ let createRequest = PayUCreateRequest()
 
 ## Step 3: Handle response
 
-The procedure for response handling is similar to how you handle other payment options.
+The procedure for response handling is similar to how you handle other payment options. 
