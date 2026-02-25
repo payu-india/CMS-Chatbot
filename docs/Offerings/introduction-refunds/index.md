@@ -21,6 +21,10 @@ Order cancellations are an unfortunate reality for any business. Customers may c
   **Publish refund policy on your website**: PayU recommends publishing the Refund policy on your website, including the time taken to refund for failed transactions and the process to refund.
 </Callout>
 
+## Refunds Workflow
+
+<Image align="center" border={true} src="https://files.readme.io/6f2c927270ce644702c834ab110c0154eb172579ff6b9740f1117b8b34a37eda-Refunds_Workflow.png" className="border" />
+
 ## Automatic refund
 
 White a customer is making a payment and if the transaction was not successful (transaction status is "Pending" or Dropped"), but the amount got debited from account due to unforeseen circumstances, After bank will send the amount to PayU and it reconciled to find that transaction was not successful. Hence, PayU will automatically initiates the refund to the customer.
