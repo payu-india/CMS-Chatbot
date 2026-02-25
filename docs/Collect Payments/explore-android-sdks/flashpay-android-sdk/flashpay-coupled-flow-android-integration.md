@@ -605,6 +605,40 @@ implementation 'in.payu:threeds-sdk:2.0.0'
         mpaymentParams.networkToken = <Network Token>
         mpaymentParams.cardToken = <Card Token>
   ```
+<Accordion title="Card Tokenization" icon="fa-code">
+    Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
+
+    <Accordion title="Card Tokenization with PayU" icon="fa-code">
+      To make payments using a previously saved card, you need to pass both the network token and the card token..
+
+      ```kotlin
+       cardDetails.networkToken = "<networkToken>"
+       cardDetails.cardToken = "<cardToken>"
+      ```
+    </Accordion>
+
+    <Accordion title="Third-Party Card Tokenization" icon="fa-code">
+      If the card has been tokenized outside of PayU’s platform (via a third-party service), you need to provide additional tokenization information.
+
+      ```kotlin
+       private fun getTokenizedDetails(): TokenizedCardAdditionalParam? {
+          var token = TokenizedCardAdditionalParam()
+          token.last4Digits = "XXXX"                // Last 4 digits of the card
+          token.tavv = "XXXXXXXXXXXXXX"             // Transaction authorization verification value
+          token.tokenRefNo = "XXXXXXXXXXXXXX"       // Reference number for tokenized card
+          token.trid = "XXXXXXXXXXXXXX"             // Transaction ID for this payment
+          return token
+      }
+
+      mPaymentParams.expiryMonth = "XX"              // Card expiry month (MM)
+      mPaymentParams.expiryYear = "XXXX"             // Card expiry year (YYYY)
+      mPaymentParams.cardToken = "XXXXXXXXXXXXXXXXX" // The token representing the saved card
+      mPaymentParams.cardTokenType = 1               // Type of tokenization (e.g., 1 = PayU token, 2 = third-party token)
+
+      mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token details
+      ```
+    </Accordion>
+</Accordion>
 
   <Callout icon="📘" theme="info">
     **Saved Card Payments**: Requires both `networkToken` and `cardToken` under `mPaymentParams` for saved card-related transactions.
