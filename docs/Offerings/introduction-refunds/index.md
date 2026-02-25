@@ -39,12 +39,15 @@ The refunds workflow in PayU typically follows this sequence:
    * Whether the refund amount matches full or partial rules
 4. **PayU Sends Refund Request to the Payment Partner (Bank / Lender)**: After the refund request is validated, PayU forwards it to the respective payment instrument provider (the bank, card network, wallet, etc.).
 5. **Bank / Payment Partner Processes the Refund**: The bank or issuer processes the refund and transfers the money back to the customer’s source account (card, UPI, Net Banking account, etc.).
+   <Callout icon="📘" theme="info">
+     **Automatic retries**: If the refund has failed at the bank end, the bank will try three retries automatically.
+   </Callout>
 6. **Refund Settlement Adjustments**: The refund amount is deducted from the merchant’s settlement balance.
 7. **Customer Receives the Refund**:  The refund reflects in the customer’s account.  
    Processing time depends on the payment method:
    * Typically **5–21 days** for the refunded amount to reflect.
    * Some government banks may take longer.  PayU informs the merchant via email once refund is processed.
-8. **Automatic Refunds (Special Case)**: If a transaction fails but the customer was still charged, PayU automatically refunds the money after reconciling with the bank the next day.   For more information, refer[ Automatic Refund](#automatic-refund).
+8. **Automatic Refunds (Special Case)**: If a transaction fails but the customer was still charged, PayU automatically refunds the money after reconciling with the bank the next day.  For more information, refer[ Automatic Refund](#automatic-refund).
 
 ## Automatic refund
 
