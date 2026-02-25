@@ -210,7 +210,7 @@ next:
 ## UPI CC EMI Codes
 
 <SearchableTable
-    headers={['Bank or Institutions', 'bankcode', 'Tenure']}
+  headers={['Bank or Institutions', 'bankcode', 'Tenure']}
   rows={[
     ['Axis Bank', 'INTAX03', '3 Months'],
     ['Axis Bank', 'INTAX06', '6 Months'],
@@ -252,6 +252,6 @@ next:
     ['Bajaj Finserv Limited', 'BAJFIN15', '15 Months', 'No-Cost EMI', 'Rs. 22,500', 'Rs. 150,000'],
     ['Bajaj Finserv Limited', 'BAJFIN18', '18 Months', 'No-Cost EMI', 'Rs. 14,940', 'Rs. 180,000'],
   ]}
-/>
-  placeholder="Search"
+
+placeholder="Search"
 />
