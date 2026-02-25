@@ -406,7 +406,7 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        `String`Amount of TCS to be charged. For travel payments, a 2% TCS needs to be charged from payers
+        `String`Amount of TCS to be charged.
       </td>
 
       <td>
