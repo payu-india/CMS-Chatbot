@@ -22,7 +22,7 @@ This API is authorised through a client token generated using the client ID and 
 
 ## Request Parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -60,7 +60,7 @@ This API is authorised through a client token generated using the client ID and 
       </td>
 
       <td>
-        <code>string</code> Primary email address of the merchant for communication and notifications.  
+        <code>string</code> Primary email address of the merchant for communication and notifications.
 
         In case of PA-PA model, same email as primary owner of parent MID to be shared.
       </td>
@@ -76,7 +76,7 @@ This API is authorised through a client token generated using the client ID and 
       </td>
 
       <td>
-        <code>string</code> Primary mobile number of the merchant for communication and notifications. A valid 10-digit Indian phone number is expected.  
+        <code>string</code> Primary mobile number of the merchant for communication and notifications. A valid 10-digit Indian phone number is expected.
 
         In case of PA-PA model, same email as primary owner of parent MID to be shared.
       </td>
@@ -88,11 +88,11 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant[business_details][pan]<br /><code>optional</code>
+        merchant[business_details][pan]<br /><code>mandatory</code>
       </td>
 
       <td>
-        <code>string</code> Permanent Account Number (PAN) of the merchant business.
+        <code>string</code> Taxation Registration Number of the merchant (in their home country)
       </td>
 
       <td>
@@ -106,25 +106,11 @@ This API is authorised through a client token generated using the client ID and 
       </td>
 
       <td>
-        <code>string</code> Type of business entity (e.g. Sole Proprietorship, Partnership, Private Limited).
+        <code>string</code> Type of business entity (e.g.. LLP, LLC etc.)
       </td>
 
       <td>
-        Sole Proprietorship
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        merchant[business_details][pancard_name]<br /><code>optional</code>
-      </td>
-
-      <td>
-        <code>string</code> Name as it appears on the PAN card. Required if PAN number is posted.
-      </td>
-
-      <td>
-        DIVY HARESHKUMAR SHAH
+        LLC
       </td>
     </tr>
 
@@ -186,11 +172,25 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
+        merchant[udyam_number]<br /><code>mandatory</code>
+      </td>
+
+      <td>
+        <code>string</code> Business registration / incorporation number
+      </td>
+
+      <td>
+        20162049547
+      </td>
+    </tr>
+
+    <tr>
+      <td>
         merchant[bank_details][account_no]<br /><code>mandatory</code>
       </td>
 
       <td>
-        <code>string</code> Bank account number of the merchant for settlements. All bank fields must be sent together if any is sent.  
+        <code>string</code> Bank account number of the merchant for settlements. All bank fields must be sent together if any is sent.
 
         It can be either the IBAN or local bank account number.
       </td>
@@ -239,20 +239,6 @@ This API is authorised through a client token generated using the client ID and 
 
       <td>
         [https://www.example.com](https://www.example.com)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        merchant[monthly_expected_volume]<br /><code>optional</code>
-      </td>
-
-      <td>
-        <code>integer</code> The monthly expected transaction volume in monetary terms (in INR)
-      </td>
-
-      <td>
-        12000
       </td>
     </tr>
 
@@ -309,48 +295,6 @@ This API is authorised through a client token generated using the client ID and 
 
       <td>
         Seamless
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        merchant[gst_number]<br /><code>optional</code>
-      </td>
-
-      <td>
-        <code>string</code> The GST number of the merchant business.
-      </td>
-
-      <td>
-        24FANPS6362D1ZE
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        merchant[udyam_number]<br /><code>optional</code>
-      </td>
-
-      <td>
-        <code>string</code> Udyam Registration Number for MSMEs.
-      </td>
-
-      <td>
-        UDYAM-UP-19-0002053
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        merchant[gst_consent]<br /><code>optional</code>
-      </td>
-
-      <td>
-        <code>string</code> Consent for GST verification and processing (e.g. true/false).
-      </td>
-
-      <td>
-        false
       </td>
     </tr>
   </tbody>
