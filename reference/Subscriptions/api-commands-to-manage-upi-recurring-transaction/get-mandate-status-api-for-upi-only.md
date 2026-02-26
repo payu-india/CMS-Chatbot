@@ -126,14 +126,15 @@ HTTP Method: **POST**
 ## Sample request
 
 ```
-curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
+curl --location 'https://info.payu.in/merchant/postservice.php' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---header 'accept: application/json' \
---header 'Cookie: PHPSESSID=dup9u3hqruls8chvpbefcssn49; USERTXNINFO=68257c7d7ae994.37780025; PHPSESSID=68258296ba6e1' \
---data-urlencode 'key=a4vGC2' \
---data-urlencode 'command=upi_mandate_status' \
---data-urlencode 'var1={ "authPayuId": "403993715536867403", "requestId": "UPI_SUB_STATUS_12345" }' \
---data-urlencode 'hash=1194b3878fd67c4a57d16f7e450fe37f139f02c134cef15264b15ad13170066823f690ea517755cf9a12a8e4491e99cd4b4935ffdf47e0ba3c2fa9dabc7e443b'
+--header 'Authorization: Bearer gYUn<}[^]4cM[@b{' \
+--header 'Cookie: USERTXNINFO=650c00573d45c7.61571480; PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
+--data-urlencode 'form=2' \
+--data-urlencode 'key=B*T**G' \
+--data-urlencode 'command=upi_mandate_modify' \
+--data-urlencode 'hash=edcd3fd98e796d03e77d08ded0d5305055a153b2f6ff47a0f1e3e88c974da3ed740432e9f52e51854db57d4de52ab2ad9c904a833ae379bc60ca2108f63867c1' \
+--data-urlencode 'var1={"requestId":"hvdwshvujbdifubsjbsii","authPayuId":"18478074135","endDate":"2025-11-15","amount":1}'
 ```
 
 ## Sample response
