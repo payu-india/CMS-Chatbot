@@ -360,7 +360,7 @@ The _Offer Rules_ page is displayed.
   <tbody>
     <tr>
       <td>
-        User Limits
+        **User Limits**
       </td>
 
       <td>
@@ -377,8 +377,7 @@ The _Offer Rules_ page is displayed.
         Select any of the following options from the drop-down list to specify the maximum number of transactions the user can avail this offer:
 
         * **Set unlimited**: Users can avail the offer for unlimited transactions.
-
-        - **Custom**: Specify the custom limit up to which the users can avail the offer.
+        * **Custom**: Specify the custom limit up to which the users can avail the offer.
       </td>
     </tr>
 
