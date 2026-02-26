@@ -40,38 +40,38 @@ This section describes how to set up a Payment Consent or Registration transacti
   Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                        <style>
-                        .tooltip-btn {
-                            position: relative;
-                            background-color: #4CAF50;
-                            color: white;
-                            padding: 10px 20px;
-                            border: none;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            font-weight: bold; /* Added this line */
-                        }
-                        .tooltip-btn:hover::after {
-                            content: attr(data-tooltip);
-                            position: absolute;
-                            bottom: 125%;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            background-color: #333;
-                            color: white;
-                            padding: 5px 10px;
-                            border-radius: 4px;
-                            white-space: nowrap;
-                            font-size: 12px;
-                            z-index: 1;
-                        }
-                        </style>
+                          <style>
+                          .tooltip-btn {
+                              position: relative;
+                              background-color: #4CAF50;
+                              color: white;
+                              padding: 10px 20px;
+                              border: none;
+                              border-radius: 5px;
+                              cursor: pointer;
+                              font-weight: bold; /* Added this line */
+                          }
+                          .tooltip-btn:hover::after {
+                              content: attr(data-tooltip);
+                              position: absolute;
+                              bottom: 125%;
+                              left: 50%;
+                              transform: translateX(-50%);
+                              background-color: #333;
+                              color: white;
+                              padding: 5px 10px;
+                              border-radius: 4px;
+                              white-space: nowrap;
+                              font-size: 12px;
+                              z-index: 1;
+                          }
+                          </style>
 
-                        <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
-                                class="tooltip-btn" 
-                                data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
-                            Experience the flow and get the code
-                        </button>
+                          <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
+                                  class="tooltip-btn" 
+                                  data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
+                              Experience the flow and get the code
+                          </button>
   `}</HTMLBlock>
 </Callout>
 
@@ -356,6 +356,166 @@ curl --location 'https://secure.payu.in/_payment' \
 --data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
 --data-urlencode 'si_details={"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01"}' \
 --data-urlencode 'hash=67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb'
+```
+```python
+import requests
+
+url = "https://secure.payu.in/_payment"
+
+headers = {
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Cookie": "PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68ed52caaaf5e",
+}
+
+payload = {
+    "key": "BmTY3G",
+    "txnid": "my_order_49428",
+    "amount": "1",
+    "firstname": "PayU User",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "productinfo": "my_order_49428",
+    "pg": "cc#bankcode=AIRPENCC",
+    "si": "1",
+    "surl": "https://apiplayground-response.herokuapp.com/",
+    "furl": "https://apiplayground-response.herokuapp.com/",
+    "si_details": '{"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01"}',
+    "hash": "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb",
+}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.status_code)
+print(response.text)
+```
+```csharp
+using System;
+using System.Collections.Specialized;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+class PayUPayment
+{
+    static async Task Main(string[] args)
+    {
+        string url = "https://secure.payu.in/_payment";
+
+        var formData = new NameValueCollection
+        {
+            { "key", "BmTY3G" },
+            { "txnid", "my_order_49428" },
+            { "amount", "1" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "my_order_49428" },
+            { "pg", "cc#bankcode=AIRPENCC" },
+            { "si", "1" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "si_details", "{\"billingAmount\": \"1.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2025-10-14\",\"paymentEndDate\": \"2027-12-01\"}" },
+            { "hash", "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb" }
+        };
+
+        string body = string.Join("&", Array.ConvertAll(formData.AllKeys, key =>
+            $"{Uri.EscapeDataString(key)}={Uri.EscapeDataString(formData[key])}"));
+
+        using var client = new HttpClient();
+        var content = new StringContent(body, Encoding.UTF8, "application/x-www-form-urlencoded");
+        content.Headers.ContentType.CharSet = "utf-8";
+
+        var request = new HttpRequestMessage(HttpMethod.Post, url)
+        {
+            Content = content
+        };
+        request.Headers.Add("Cookie", "PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68ed52caaaf5e");
+
+        HttpResponseMessage response = await client.SendAsync(request);
+        Console.WriteLine((int)response.StatusCode);
+        Console.WriteLine(await response.Content.ReadAsStringAsync());
+    }
+}
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.stream.Collectors;
+
+public class PayUPayment {
+    public static void main(String[] args) throws Exception {
+        String url = "https://secure.payu.in/_payment";
+
+        String body = String.join("&",
+            "key=" + URLEncoder.encode("BmTY3G", StandardCharsets.UTF_8),
+            "txnid=" + URLEncoder.encode("my_order_49428", StandardCharsets.UTF_8),
+            "amount=" + URLEncoder.encode("1", StandardCharsets.UTF_8),
+            "firstname=" + URLEncoder.encode("PayU User", StandardCharsets.UTF_8),
+            "email=" + URLEncoder.encode("test@gmail.com", StandardCharsets.UTF_8),
+            "phone=" + URLEncoder.encode("9876543210", StandardCharsets.UTF_8),
+            "productinfo=" + URLEncoder.encode("my_order_49428", StandardCharsets.UTF_8),
+            "pg=" + URLEncoder.encode("cc#bankcode=AIRPENCC", StandardCharsets.UTF_8),
+            "si=" + URLEncoder.encode("1", StandardCharsets.UTF_8),
+            "surl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8),
+            "furl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8),
+            "si_details=" + URLEncoder.encode("{\"billingAmount\": \"1.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2025-10-14\",\"paymentEndDate\": \"2027-12-01\"}", StandardCharsets.UTF_8),
+            "hash=" + URLEncoder.encode("67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb", StandardCharsets.UTF_8)
+        );
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .header("Cookie", "PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68ed52caaaf5e")
+            .POST(HttpRequest.BodyPublishers.ofString(body))
+            .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.statusCode());
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://secure.payu.in/_payment';
+
+$headers = [
+    'Content-Type: application/x-www-form-urlencoded',
+    'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68ed52caaaf5e',
+];
+
+$data = [
+    'key'         => 'BmTY3G',
+    'txnid'       => 'my_order_49428',
+    'amount'      => '1',
+    'firstname'   => 'PayU User',
+    'email'       => 'test@gmail.com',
+    'phone'       => '9876543210',
+    'productinfo' => 'my_order_49428',
+    'pg'          => 'cc#bankcode=AIRPENCC',
+    'si'          => '1',
+    'surl'        => 'https://apiplayground-response.herokuapp.com/',
+    'furl'        => 'https://apiplayground-response.herokuapp.com/',
+    'si_details'  => '{"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01"}',
+    'hash'        => '67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb',
+];
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+echo $httpCode . "\n";
+echo $response;
 ```
 
 Characters allowed for parameters
