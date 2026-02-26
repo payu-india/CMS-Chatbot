@@ -299,13 +299,13 @@ PayU’s Merchant Hosted Checkout allows you to create a custom payment experien
 2. A payment process initiated from your e-commerce website travels through PayU’s secured environment before reaching the card ACS or a bank’s Net Banking page.
 3. After the transaction is completed in the bank’s website environment, the customer is redirected to your website.
 
-<Image align="center" border={false} src="https://files.readme.io/4aeeafdbefc392fa362522d8209dc7268178e104e699b067895a3408ff412c42-merchant_hosted_flow.png" />
+<Image align="center" src="https://files.readme.io/4aeeafdbefc392fa362522d8209dc7268178e104e699b067895a3408ff412c42-merchant_hosted_flow.png" />
 
 ### Customer Journey
 
 The overall customer journey involves:
 
-<Image align="center" border={false} width="250px" src="https://files.readme.io/f3853b72839386d63dda5c0929a3d8f82812c794036a97a5e50f3940a6bea27c-merchant_hosted_customer_journey.png" />
+<Image align="center" width="250px" src="https://files.readme.io/f3853b72839386d63dda5c0929a3d8f82812c794036a97a5e50f3940a6bea27c-merchant_hosted_customer_journey.png" />
 
 The steps includes:
 
@@ -326,6 +326,8 @@ The steps includes:
 ## Payment Methods
 
 Merchant Hosted Checkout supports a wide range of payment methods: 
+
+<Image align="center" border={true} width="400px" src="https://files.readme.io/a350be2f359e2c4c3a0f3ef570b1db6c842c3502b74c3bb0639ebd8916e2f832-merchant_hosted_supported_payment_method.jpg" className="border" />
 
 * **Credit Cards and Debit Cards**: Visa, Mastercard, American Express, etc. For more information, refer to [Cards Integration](https://docs.payu.in/docs/collect-payments-with-cards-seamless`).
 * **Net Banking**: Collect payments through Net Banking using PayU’s Merchant Hosted Checkout integration. Merchants should always send both customer account no and customer IFSC Code in Request. For more information, refer to [Net Banking Integration](doc:collect-payments-with-net-banking-seamless)
