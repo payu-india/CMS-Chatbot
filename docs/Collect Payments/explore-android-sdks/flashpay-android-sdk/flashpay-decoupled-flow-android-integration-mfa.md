@@ -15,6 +15,37 @@ metadata:
 
 FlashPay solution primarily offers advanced biometric-based out-of-band (OOB) authentication. The Wibmo Tridentity SDK enables seamless integration of FlashPay functionality using various API methods and configuration options tailored to business needs.
 
+<Cards columns={3}>
+  <Card title="1. Gradle Changes" href="#step-1-gradle-changes">
+    Add Tridentity SDK dependency and minimum requirements to build.gradle
+  </Card>
+
+  <Card title="2. Android Manifest Permissions" href="#step-2-android-manifest-permissions">
+    Declare required permissions for biometric auth and SIM binding
+  </Card>
+
+  <Card title="3. SDK Configuration" href="#step-3-sdk-configuration">
+    Initialize the SDK with client-specific config and configSdk
+  </Card>
+
+  <Card title="4. Customer Enrollment" href="#step-4-customer-enrollment">
+    Enroll users for Tridentity-based biometric authentication
+  </Card>
+
+  <Card title="5. Check Registration Status" href="#step-5-check-registration-status">
+    Verify if a customer is already registered in Tridentity
+  </Card>
+
+  <Card title="6. Process Transaction" href="#step-6-process-transaction">
+    Process transactions with biometric OOB authentication
+  </Card>
+
+  <Card title="7. UI Customization" href="#step-7-ui-customization">
+    Customize SDK UI via themeConfig and text configurations
+  </Card>
+
+</Cards>
+
 ## Step 1: Gradle Changes
 
 <Accordion title="Minimum Requirements" icon="fa-info-circle">
@@ -40,27 +71,27 @@ The SDK requires specific application-level permissions to enable its functional
 
 <Accordion title="Required Permissions" icon="fa-info-circle">
   <HTMLBlock>{`
-  <table>
-    <thead>
-      <tr>
-        <th>Parameter</th>
-        <th>Description</th>
-        <th>Example</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Phone State<br/><code>mandatory</code></td>
-        <td>Mandatory to detect SIM swap scenarios.</td>
-        <td>android.permission.READ_PHONE_STATE</td>
-      </tr>
-      <tr>
-        <td>SMS<br/><code>conditional</code></td>
-        <td>For auto send of SMS if SDK is enabled for binding the device.</td>
-        <td>android.permission.SEND_SMS</td>
-      </tr>
-    </tbody>
-  </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Phone State<br/><code>mandatory</code></td>
+          <td>Mandatory to detect SIM swap scenarios.</td>
+          <td>android.permission.READ_PHONE_STATE</td>
+        </tr>
+        <tr>
+          <td>SMS<br/><code>conditional</code></td>
+          <td>For auto send of SMS if SDK is enabled for binding the device.</td>
+          <td>android.permission.SEND_SMS</td>
+        </tr>
+      </tbody>
+    </table>
   `}</HTMLBlock>
 
   Include the following permissions in your AndroidManifest.xml file to enable the SDK functionalities:
@@ -78,87 +109,87 @@ This is a prerequisite step where you invoke the SDK's configuration method to i
 
 <Accordion title="Configuration Parameters" icon="fa-info-circle">
   <HTMLBlock>{`
-  <table>
-    <thead>
-      <tr>
-        <th>Parameter</th>
-        <th>Description</th>
-        <th>Example</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>context<br/><code>mandatory</code></td>
-        <td>Application Context</td>
-        <td>this</td>
-      </tr>
-      <tr>
-        <td>clientId<br/><code>mandatory</code></td>
-        <td><code>String</code>. Will be shared offline.</td>
-        <td>"CLIENT_123"</td>
-      </tr>
-      <tr>
-        <td>env<br/><code>mandatory</code></td>
-        <td><code>String</code>. Build Environment.</td>
-        <td>"UAT" or "PROD"</td>
-      </tr>
-      <tr>
-        <td>authType<br/><code>mandatory</code></td>
-        <td><code>String</code>. Must be passed as "Biometric".</td>
-        <td>"Biometric"</td>
-      </tr>
-      <tr>
-        <td>bin<br/><code>mandatory</code></td>
-        <td><code>String</code>. First 6 digits of the card used for the transaction.</td>
-        <td>"123456"</td>
-      </tr>
-      <tr>
-        <td>bankLogoUrl<br/><code>optional</code></td>
-        <td><code>String</code>. Logo of the issuer bank associated with the card.</td>
-        <td>"https://example.com/bank-logo.png"</td>
-      </tr>
-      <tr>
-        <td>merchantName<br/><code>optional</code></td>
-        <td><code>String</code>. Name of the recipient.</td>
-        <td>"Sample Merchant"</td>
-      </tr>
-      <tr>
-        <td>themeConfig<br/><code>optional</code></td>
-        <td>Theme configuration. Configures SDK appearance. If not passed, default settings or server-configured settings will be used.</td>
-        <td>themeConfigObject</td>
-      </tr>
-      <tr>
-        <td>bankId<br/><code>mandatory</code></td>
-        <td><code>String</code>. Identifier for the bank.</td>
-        <td>"BANK_001"</td>
-      </tr>
-      <tr>
-        <td>bindingType<br/><code>conditional</code></td>
-        <td><code>String</code>. Indicates if the card is the first for that bank. This parameter is mandatory if present in ACS response during Registration flow. Possible values: "01", "02", "03".</td>
-        <td>"01"</td>
-      </tr>
-      <tr>
-        <td>customerId<br/><code>conditional</code></td>
-        <td><code>String</code>. Mandatory for transaction/de-registration flows. Mandatory in registration flow if bindingType is available.</td>
-        <td>"CUST_12345"</td>
-      </tr>
-      <tr>
-        <td>registrationTimeout<br/><code>conditional</code></td>
-        <td><code>Int</code>. Specifies the maximum duration allowed for registration completion within the SDK. This value is mandatory during registration flow.</td>
-        <td>300</td>
-      </tr>
-      <tr>
-        <td>transactionTimeout<br/><code>conditional</code></td>
-        <td><code>Int</code>.  Specifies the maximum duration allowed for authentication of transaction within the SDK. This value is mandatory during transaction flow.</td>
-        <td>120</td>
-      </tr>
-      <tr>
-        <td>uid<br/><code>mandatory</code></td>
-        <td><code>String</code>. A unique identifier for the card. (dynamically retrieved from ACS).</td>
-        <td>"CARD_UID_789"</td>
-      </tr>
-    </tbody>
-  </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>context<br/><code>mandatory</code></td>
+          <td>Application Context</td>
+          <td>this</td>
+        </tr>
+        <tr>
+          <td>clientId<br/><code>mandatory</code></td>
+          <td><code>String</code>. Will be shared offline.</td>
+          <td>"CLIENT_123"</td>
+        </tr>
+        <tr>
+          <td>env<br/><code>mandatory</code></td>
+          <td><code>String</code>. Build Environment.</td>
+          <td>"UAT" or "PROD"</td>
+        </tr>
+        <tr>
+          <td>authType<br/><code>mandatory</code></td>
+          <td><code>String</code>. Must be passed as "Biometric".</td>
+          <td>"Biometric"</td>
+        </tr>
+        <tr>
+          <td>bin<br/><code>mandatory</code></td>
+          <td><code>String</code>. First 6 digits of the card used for the transaction.</td>
+          <td>"123456"</td>
+        </tr>
+        <tr>
+          <td>bankLogoUrl<br/><code>optional</code></td>
+          <td><code>String</code>. Logo of the issuer bank associated with the card.</td>
+          <td>"https://example.com/bank-logo.png"</td>
+        </tr>
+        <tr>
+          <td>merchantName<br/><code>optional</code></td>
+          <td><code>String</code>. Name of the recipient.</td>
+          <td>"Sample Merchant"</td>
+        </tr>
+        <tr>
+          <td>themeConfig<br/><code>optional</code></td>
+          <td>Theme configuration. Configures SDK appearance. If not passed, default settings or server-configured settings will be used.</td>
+          <td>themeConfigObject</td>
+        </tr>
+        <tr>
+          <td>bankId<br/><code>mandatory</code></td>
+          <td><code>String</code>. Identifier for the bank.</td>
+          <td>"BANK_001"</td>
+        </tr>
+        <tr>
+          <td>bindingType<br/><code>conditional</code></td>
+          <td><code>String</code>. Indicates if the card is the first for that bank. This parameter is mandatory if present in ACS response during Registration flow. Possible values: "01", "02", "03".</td>
+          <td>"01"</td>
+        </tr>
+        <tr>
+          <td>customerId<br/><code>conditional</code></td>
+          <td><code>String</code>. Mandatory for transaction/de-registration flows. Mandatory in registration flow if bindingType is available.</td>
+          <td>"CUST_12345"</td>
+        </tr>
+        <tr>
+          <td>registrationTimeout<br/><code>conditional</code></td>
+          <td><code>Int</code>. Specifies the maximum duration allowed for registration completion within the SDK. This value is mandatory during registration flow.</td>
+          <td>300</td>
+        </tr>
+        <tr>
+          <td>transactionTimeout<br/><code>conditional</code></td>
+          <td><code>Int</code>.  Specifies the maximum duration allowed for authentication of transaction within the SDK. This value is mandatory during transaction flow.</td>
+          <td>120</td>
+        </tr>
+        <tr>
+          <td>uid<br/><code>mandatory</code></td>
+          <td><code>String</code>. A unique identifier for the card. (dynamically retrieved from ACS).</td>
+          <td>"CARD_UID_789"</td>
+        </tr>
+      </tbody>
+    </table>
   `}</HTMLBlock>
 
   The SDK must be configured with client-specific details before any other methods can be used. Create a configuration object with the required parameters and call the configSdk method to initialize the SDK properly. Check the message flag in the onSuccess callback for configuration status:
@@ -205,27 +236,27 @@ This method facilitates user enrollment for Tridentity-based authentication.
 
 <Accordion title="Enrollment Parameters" icon="fa-info-circle">
   <HTMLBlock>{`
-  <table>
-    <thead>
-      <tr>
-        <th>Parameter</th>
-        <th>Description</th>
-        <th>Example</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>activity<br/><code>mandatory</code></td>
-        <td>Instance of AppCompatActivity.</td>
-        <td>this</td>
-      </tr>
-      <tr>
-        <td>uid<br/><code>mandatory</code></td>
-        <td>Card ID.</td>
-        <td>"CARD_UID_789"</td>
-      </tr>
-    </tbody>
-  </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>activity<br/><code>mandatory</code></td>
+          <td>Instance of AppCompatActivity.</td>
+          <td>this</td>
+        </tr>
+        <tr>
+          <td>uid<br/><code>mandatory</code></td>
+          <td>Card ID.</td>
+          <td>"CARD_UID_789"</td>
+        </tr>
+      </tbody>
+    </table>
   `}</HTMLBlock>
 
   To enable biometric authentication for users, they must first be enrolled in the Tridentity system. Call the initiateRegistration method with the activity instance and registration object to begin the enrollment process. Check the message in the onSuccess response object for the registration status:
@@ -261,27 +292,27 @@ This method retrieves the customer's current registration status in the Tridenti
 
 <Accordion title="Registration Status Parameters" icon="fa-info-circle">
   <HTMLBlock>{`
-  <table>
-    <thead>
-      <tr>
-        <th>Parameter</th>
-        <th>Description</th>
-        <th>Example</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>context<br/><code>mandatory</code></td>
-        <td>Application Context</td>
-        <td>this</td>
-      </tr>
-      <tr>
-        <td>clientId<br/><code>mandatory</code></td>
-        <td>Will be shared offline.</td>
-        <td>"CLIENT_123"</td>
-      </tr>
-    </tbody>
-  </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>context<br/><code>mandatory</code></td>
+          <td>Application Context</td>
+          <td>this</td>
+        </tr>
+        <tr>
+          <td>clientId<br/><code>mandatory</code></td>
+          <td>Will be shared offline.</td>
+          <td>"CLIENT_123"</td>
+        </tr>
+      </tbody>
+    </table>
   `}</HTMLBlock>
 
   Use the checkRegistrationStatus method to verify if a customer is already registered in the Tridentity system:
@@ -314,68 +345,68 @@ This method processes transactions and validates them using biometric OOB authen
 
 <Accordion title="Transaction Parameters" icon="fa-info-circle">
   <HTMLBlock>{`
-  <table>
-    <thead>
-      <tr>
-        <th>Parameter</th>
-        <th>Description</th>
-        <th>Example</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>context<br/><code>mandatory</code></td>
-        <td>Application Context.</td>
-        <td>this</td>
-      </tr>
-      <tr>
-        <td>jsonObject<br/><code>mandatory</code></td>
-        <td>JSON Object containing transaction parameters.</td>
-        <td>transactionObject</td>
-      </tr>
-    </tbody>
-  </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>context<br/><code>mandatory</code></td>
+          <td>Application Context.</td>
+          <td>this</td>
+        </tr>
+        <tr>
+          <td>jsonObject<br/><code>mandatory</code></td>
+          <td>JSON Object containing transaction parameters.</td>
+          <td>transactionObject</td>
+        </tr>
+      </tbody>
+    </table>
   `}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Transaction JSON Object Parameters" icon="fa-info-circle">
   <HTMLBlock>{`
-  <table>
-    <thead>
-      <tr>
-        <th>Parameter</th>
-        <th>Description</th>
-        <th>Example</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>txnId<br/><code>mandatory</code></td>
-        <td>Unique for each transaction. Max length: 25 characters. No special chars like _,$,%,&.</td>
-        <td>"TXN123456789"</td>
-      </tr>
-      <tr>
-        <td>clientID<br/><code>mandatory</code></td>
-        <td>Will be shared offline.</td>
-        <td>"CLIENT_123"</td>
-      </tr>
-      <tr>
-        <td>amount<br/><code>optional</code></td>
-        <td>Total transaction amount.</td>
-        <td>"100.00"</td>
-      </tr>
-      <tr>
-        <td>merchantName<br/><code>optional</code></td>
-        <td>Merchant issuer name.</td>
-        <td>"Sample Merchant"</td>
-      </tr>
-      <tr>
-        <td>hashKey<br/><code>mandatory</code></td>
-        <td>Dynamically retrieved from the ACS.</td>
-        <td>"ABC123DEF456"</td>
-      </tr>
-    </tbody>
-  </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>txnId<br/><code>mandatory</code></td>
+          <td>Unique for each transaction. Max length: 25 characters. No special chars like _,$,%,&.</td>
+          <td>"TXN123456789"</td>
+        </tr>
+        <tr>
+          <td>clientID<br/><code>mandatory</code></td>
+          <td>Will be shared offline.</td>
+          <td>"CLIENT_123"</td>
+        </tr>
+        <tr>
+          <td>amount<br/><code>optional</code></td>
+          <td>Total transaction amount.</td>
+          <td>"100.00"</td>
+        </tr>
+        <tr>
+          <td>merchantName<br/><code>optional</code></td>
+          <td>Merchant issuer name.</td>
+          <td>"Sample Merchant"</td>
+        </tr>
+        <tr>
+          <td>hashKey<br/><code>mandatory</code></td>
+          <td>Dynamically retrieved from the ACS.</td>
+          <td>"ABC123DEF456"</td>
+        </tr>
+      </tbody>
+    </table>
   `}</HTMLBlock>
 
   Create a JSON object with the transaction details and call the processTransaction method to initiate biometric authentication for the transaction:
@@ -410,61 +441,61 @@ The SDK allows UI customizations through a configuration object passed in as `th
 
 <Accordion title="UI Customization Parameters" icon="fa-info-circle">
   <HTMLBlock>{`
-  <table>
-    <thead>
-      <tr>
-        <th>Parameter</th>
-        <th>Description</th>
-        <th>Example</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>LabelCustomization<br/><code>optional</code></td>
-        <td>Configurations: headingCustomization, subHeadingCustomization. Sub Components: textColor, fontSize, fontName</td>
-        <td>labelConfigObject</td>
-      </tr>
-      <tr>
-        <td>ToolbarCustomization<br/><code>optional</code></td>
-        <td>Configurations: backgroundColor, textColor, fontSize, fontName</td>
-        <td>toolbarConfigObject</td>
-      </tr>
-      <tr>
-        <td>ButtonCustomization<br/><code>optional</code></td>
-        <td>Configurations: primaryButtonCustomization, secondaryButtonCustomization. Sub Components: buttonCornerRadius, fontSize, fontName, Enabled/disabled text & background color</td>
-        <td>buttonConfigObject</td>
-      </tr>
-    </tbody>
-  </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Description</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>LabelCustomization<br/><code>optional</code></td>
+          <td>Configurations: headingCustomization, subHeadingCustomization. Sub Components: textColor, fontSize, fontName</td>
+          <td>labelConfigObject</td>
+        </tr>
+        <tr>
+          <td>ToolbarCustomization<br/><code>optional</code></td>
+          <td>Configurations: backgroundColor, textColor, fontSize, fontName</td>
+          <td>toolbarConfigObject</td>
+        </tr>
+        <tr>
+          <td>ButtonCustomization<br/><code>optional</code></td>
+          <td>Configurations: primaryButtonCustomization, secondaryButtonCustomization. Sub Components: buttonCornerRadius, fontSize, fontName, Enabled/disabled text & background color</td>
+          <td>buttonConfigObject</td>
+        </tr>
+      </tbody>
+    </table>
   `}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Text Customization Parameters" icon="fa-info-circle">
   <HTMLBlock>{`
-  <table>
-    <thead>
-      <tr>
-        <td>bottomSheetPermissionPopupConfiguration<br/><code>optional</code></td>
-        <td>Text customization for permission popup: topHeaderText, topSubHeaderText, buttonText, etc.</td>
-        <td>permissionPopupConfig</td>
-      </tr>
-      <tr>
-        <td>bottomSheetSimBindingProcessingPopupConfiguration<br/><code>optional</code></td>
-        <td>Texts for SIM binding, number verification, biometric setup, etc.</td>
-        <td>simBindingConfig</td>
-      </tr>
-      <tr>
-        <td>bottomSheetRegistrationSuccessfulPopupConfiguration<br/><code>optional</code></td>
-        <td>Success messages and buttonText</td>
-        <td>registrationSuccessConfig</td>
-      </tr>
-      <tr>
-        <td>bottomSheetFailureScreenConfiguration<br/><code>optional</code></td>
-        <td>Error messages and buttonText</td>
-        <td>failureScreenConfig</td>
-      </tr>
-    </tbody>
-  </table>
+    <table>
+      <thead>
+        <tr>
+          <td>bottomSheetPermissionPopupConfiguration<br/><code>optional</code></td>
+          <td>Text customization for permission popup: topHeaderText, topSubHeaderText, buttonText, etc.</td>
+          <td>permissionPopupConfig</td>
+        </tr>
+        <tr>
+          <td>bottomSheetSimBindingProcessingPopupConfiguration<br/><code>optional</code></td>
+          <td>Texts for SIM binding, number verification, biometric setup, etc.</td>
+          <td>simBindingConfig</td>
+        </tr>
+        <tr>
+          <td>bottomSheetRegistrationSuccessfulPopupConfiguration<br/><code>optional</code></td>
+          <td>Success messages and buttonText</td>
+          <td>registrationSuccessConfig</td>
+        </tr>
+        <tr>
+          <td>bottomSheetFailureScreenConfiguration<br/><code>optional</code></td>
+          <td>Error messages and buttonText</td>
+          <td>failureScreenConfig</td>
+        </tr>
+      </tbody>
+    </table>
   `}</HTMLBlock>
 </Accordion>
 
