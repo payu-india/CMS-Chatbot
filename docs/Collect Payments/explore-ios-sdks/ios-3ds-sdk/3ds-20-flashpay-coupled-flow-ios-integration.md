@@ -385,7 +385,11 @@ cardDetails.cardToken = "<Card Token>"
 
 // For Stored Card with Network Token
 cardDetails.networkToken = "<Network Token>"
-cardDetails.cardTokenType = "1"
+
+Note: To make payment using another payment aggregator vault saved card.
+cardDetails.networkToken = "<networkToken>"
+paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","trid" : "40020003934", "tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
+paymentParam.cardTokenTpe = "1" //if passing networkToken otherwise value = 0 if you will pass cardToken
 
 paymentParam.cardinfo = cardDetails
 ```
