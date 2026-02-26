@@ -1,7 +1,7 @@
 ---
 title: FlashPay Coupled Flow 3DS 2.0 Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: FlashPay Coupled Flow 3DS 2.0 Integration - Android SDK
   description: >-
