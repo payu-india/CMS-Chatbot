@@ -25,7 +25,7 @@ Below are the integration steps:
     Check the response from PayU
   </Card>
 
-  <Card title="3. Verify the payment" href="https://docs.payu.in/docs/collect-payments-with-net-banking-seamless#step-3-verify-the-payment">
+  <Card title="3. Verify the Payment" href="https://docs.payu.in/docs/collect-payments-with-net-banking-seamless#step-3-verify-the-payment">
     Verify the payment using verify\_payment and monitor using webhooks
   </Card>
 </Cards>
