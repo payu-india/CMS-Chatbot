@@ -12,6 +12,8 @@ next:
 ---
 Collect payments using Net Banking with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
 
+## Steps to Integrate
+
 **The Net Banking with Merchant Hosted Checkout integration involves the following steps:**
 
 <Cards>
