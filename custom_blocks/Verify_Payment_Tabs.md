@@ -1,16 +1,19 @@
 ---
 name: Verify_Payment_Tabs
 ---
-<p>Upon receiving the response, PayU recommends you performing a reconciliation step to validate all transaction details.
-You can verify your payments using either of the following methods:</p>
+Upon receiving the response, PayU recommends you performing a reconciliation step to validate all transaction details.
+
+You can verify your payments using either of the following methods:
 
 <Tabs>
   <Tab title="1. Verify using Webhooks">
     Configure the webhooks to monitor the status of payments.\
     Webhooks enable a server to communicate with another server by sending an HTTP callback or message.\
     These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.
-    <br/>
-		Know how to manage [Webhooks for Payments](https://docs.payu.in/reference/webhooks).
+
+    <br />
+
+    Know how to manage [Webhooks for Payments](https://docs.payu.in/reference/webhooks).
   </Tab>
 
   <Tab title="2. Verify using Verify Payments API">
