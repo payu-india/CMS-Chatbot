@@ -1,6 +1,9 @@
 ---
 title: Create a New Webhook
-excerpt: ''
+excerpt: >-
+  Learn how to create a new webhook in the PayU dashboard. Step-by-step guide to
+  set up payment webhooks, configure events, and receive real-time payment
+  notifications from PayU.
 deprecated: false
 hidden: false
 metadata:
