@@ -1,9 +1,9 @@
 ---
 name: Verify_Payment_Tabs
 ---
-Upon receiving the response, PayU recommends you performing a reconciliation step to validate all transaction details.
+Upon receiving the response, PayU recommends you performing a reconciliation step to validate all transaction details.<br/>
 
-You can verify your payments using either of the following methods:
+You can verify your payments using either of the following methods:<br/>
 
 <Tabs>
   <Tab title="1. Verify using Webhooks">
