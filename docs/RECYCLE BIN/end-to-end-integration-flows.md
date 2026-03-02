@@ -508,7 +508,263 @@ CVV: 123
 
 ## Merchant Hosted - UPI
 
-### 🔁 Common UPI Parameters (Same Across All Languages)
+### 1️⃣ Overview of Flow
+
+```
+Browser (UPI Form)
+        ↓
+Your Server (Generate txnid + hash)
+        ↓
+POST to PayU _payment endpoint
+        ↓
+User approves payment in UPI app
+        ↓
+PayU redirects to success/failure URL
+        ↓
+Server verifies reverse hash
+        ↓
+Update DB
+```
+
+⚠️ Important difference from Cards:
+UPI is often **asynchronous**. User may approve in UPI app after leaving your site.
+
+***
+
+### 2️⃣ Environment Setup
+
+Create `.env` file:
+
+```
+PAYU_KEY=your_test_key
+PAYU_SALT=your_test_salt
+PAYU_BASE_URL=https://test.payu.in/_payment
+PORT=3000
+```
+
+***
+
+### 3️⃣ Project Setup (Node + Express)
+
+```bash
+mkdir payu-upi-demo
+cd payu-upi-demo
+npm init -y
+npm install express body-parser axios crypto dotenv
+```
+
+***
+
+### 4️⃣ Server: server.js
+
+```javascript
+require("dotenv").config();
+const express = require("express");
+const bodyParser = require("body-parser");
+const crypto = require("crypto");
+const axios = require("axios");
+
+const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+const { PAYU_KEY, PAYU_SALT, PAYU_BASE_URL, PORT } = process.env;
+
+// Generate hash
+function generateHash(data) {
+  const hashString = `${PAYU_KEY}|${data.txnid}|${data.amount}|${data.productinfo}|${data.firstname}|${data.email}|||||||||||${PAYU_SALT}`;
+  return crypto.createHash("sha512").update(hashString).digest("hex");
+}
+
+// Home page
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/upiform.html");
+});
+
+// Create UPI payment
+app.post("/pay", async (req, res) => {
+  try {
+    const txnid = "upi_" + Date.now();
+
+    const paymentData = {
+      key: PAYU_KEY,
+      txnid: txnid,
+      amount: "10.00",
+      productinfo: "UPI Demo Product",
+      firstname: req.body.firstname,
+      email: req.body.email,
+      phone: req.body.phone,
+      surl: "http://localhost:3000/success",
+      furl: "http://localhost:3000/failure",
+
+      // UPI specific
+      pg: "UPI",
+      bankcode: "UPI",
+      vpa: req.body.vpa
+    };
+
+    paymentData.hash = generateHash(paymentData);
+
+    const formParams = new URLSearchParams(paymentData);
+
+    const response = await axios.post(
+      PAYU_BASE_URL,
+      formParams.toString(),
+      { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
+    );
+
+    // PayU usually returns HTML (redirect or QR/Intent)
+    res.send(response.data);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("UPI Payment Error");
+  }
+});
+
+// Success callback
+app.post("/success", (req, res) => {
+  const posted = req.body;
+
+  const reverseHashString =
+    `${PAYU_SALT}|${posted.status}|||||||||||${posted.email}|${posted.firstname}|${posted.productinfo}|${posted.amount}|${posted.txnid}|${PAYU_KEY}`;
+
+  const calculatedHash = crypto
+    .createHash("sha512")
+    .update(reverseHashString)
+    .digest("hex");
+
+  if (calculatedHash === posted.hash) {
+    // Update DB here
+    res.send("UPI Payment Successful & Verified!");
+  } else {
+    res.send("Hash mismatch. Possible tampering.");
+  }
+});
+
+// Failure callback
+app.post("/failure", (req, res) => {
+  res.send("UPI Payment Failed or Cancelled.");
+});
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+```
+
+***
+
+### 5️⃣ HTML Form (upiform.html)
+
+Create this in root folder.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>UPI Payment</title>
+</head>
+<body>
+
+<h3>Pay via UPI</h3>
+
+<form method="POST" action="/pay">
+
+  <label>First Name</label><br>
+  <input type="text" name="firstname" required /><br><br>
+
+  <label>Email</label><br>
+  <input type="email" name="email" required /><br><br>
+
+  <label>Phone</label><br>
+  <input type="text" name="phone" required /><br><br>
+
+  <hr>
+
+  <label>UPI ID (VPA)</label><br>
+  <input type="text" name="vpa" placeholder="example@upi" required /><br><br>
+
+  <button type="submit">Pay ₹10 via UPI</button>
+
+</form>
+
+</body>
+</html>
+```
+
+***
+
+### 6️⃣ What Happens Behind the Scenes
+
+| Step                            | What Happens              |
+| ------------------------------- | ------------------------- |
+| User enters UPI ID              | Browser → Your Server     |
+| Server generates hash           | Prevents tampering        |
+| Server posts to PayU `_payment` | Initiates UPI collect     |
+| PayU triggers UPI app           | User approves in bank app |
+| Bank confirms to PayU           | PayU updates status       |
+| PayU calls your `surl` / `furl` | You verify hash           |
+
+⚠️ User might close browser.
+Always rely on webhook + verification for final status.
+
+***
+
+### 7️⃣ Webhook Handling (Recommended)
+
+Add this:
+
+```javascript
+app.post("/webhook", (req, res) => {
+  const payload = req.body;
+
+  console.log("Webhook received:", payload);
+
+  // Verify hash here again
+  // Update DB status
+
+  res.status(200).send("OK");
+});
+```
+
+Configure webhook URL in PayU dashboard.
+
+UPI is async-heavy → webhook is critical.
+
+***
+
+### 8️⃣ Common Errors & Fixes
+
+| Problem                     | Cause               | Fix                  |
+| --------------------------- | ------------------- | -------------------- |
+| Invalid hash                | Wrong field order   | Match exact sequence |
+| Payment pending forever     | No webhook          | Enable webhook       |
+| Success redirect not called | User closed browser | Use verify API       |
+| Invalid VPA                 | Typo in UPI ID      | Use validateVPA API  |
+| Duplicate order updates     | Multiple callbacks  | Add idempotency      |
+
+***
+
+### 9️⃣ Test Credentials (Sandbox)
+
+UPI does not use test cards.
+
+Instead use:
+
+```
+VPA: Your VPA handle
+```
+
+# 🔥 Important Differences from Cards
+
+| Cards              | UPI              |
+| ------------------ | ---------------- |
+| Needs CVV & expiry | Needs VPA        |
+| PCI required       | No PCI           |
+| 3DS page           | UPI App approval |
+| Mostly synchronous | Often async      |
+
+### Code in  Language Bindings
+
+#### 🔁 Common UPI Parameters (Same Across All Languages)
 
 ```text
 key
@@ -528,7 +784,7 @@ hash
 
 ***
 
-### 🔐 Hash Formula (CRITICAL)
+#### 🔐 Hash Formula (CRITICAL)
 
 ```text
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
