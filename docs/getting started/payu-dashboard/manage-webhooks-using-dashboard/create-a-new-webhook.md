@@ -22,7 +22,16 @@ metadata:
     - Set up PayU webhooks
   robots: index
 next:
-  description: ''
+  pages:
+    - slug: manage-webhooks-using-dashboard
+      title: Manage Webhooks using Dashboard
+      type: basic
+    - slug: update-a-webhook
+      title: Update a Webhook
+      type: basic
+    - slug: delete-a-webhook-on-dashboard
+      title: Delete a Webhook
+      type: basic
 ---
 You can create, [update](https://docs.payu.in/docs/update-a-webhook) and [delete](https://docs.payu.in/docs/delete-a-webhook-on-dashboard) webhooks and monitor responses from the PayU dashboard.
 
@@ -48,3 +57,5 @@ To create a new webhook:
 6. Click **Create** to create a webhook.
 
 <Image align="center" src="https://files.readme.io/296459b395d36d191679019fc9116ce3ceaadb588da7bb86e3cb7be1c4f501fd-Screenshot_2026-03-02_at_11.20.54_AM.png" />
+
+<br />
