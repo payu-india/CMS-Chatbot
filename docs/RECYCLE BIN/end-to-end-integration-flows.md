@@ -160,7 +160,7 @@ Only trust:
 
 ***
 
-### &#x20;What Developers Usually Get Wrong
+### Mistakes to avoid
 
 | Mistake                        | Result                  |
 | ------------------------------ | ----------------------- |
@@ -753,7 +753,7 @@ Instead use:
 VPA: Your VPA handle
 ```
 
-# 🔥 Important Differences from Cards
+### 🔥 Important Differences from Cards
 
 | Cards              | UPI              |
 | ------------------ | ---------------- |
@@ -762,7 +762,7 @@ VPA: Your VPA handle
 | 3DS page           | UPI App approval |
 | Mostly synchronous | Often async      |
 
-### Code in  Language Bindings
+### Code in  Other Language Bindings
 
 #### 🔁 Common UPI Parameters (Same Across All Languages)
 
@@ -795,60 +795,6 @@ Reverse hash for success:
 ```text
 sha512(salt|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
 ```
-
-***
-
-***
-
-#### 🟢 1️⃣ JavaScript (Node.js / Express)
-
-```javascript
-require("dotenv").config();
-const express = require("express");
-const crypto = require("crypto");
-const axios = require("axios");
-
-const app = express();
-app.use(express.urlencoded({ extended: true }));
-
-function generateHash(data) {
-  const str = `${process.env.KEY}|${data.txnid}|${data.amount}|${data.productinfo}|${data.firstname}|${data.email}|||||||||||${process.env.SALT}`;
-  return crypto.createHash("sha512").update(str).digest("hex");
-}
-
-app.post("/pay", async (req, res) => {
-  const txnid = "upi_" + Date.now();
-
-  const data = {
-    key: process.env.KEY,
-    txnid,
-    amount: "10.00",
-    productinfo: "UPI Test",
-    firstname: req.body.firstname,
-    email: req.body.email,
-    phone: req.body.phone,
-    pg: "UPI",
-    bankcode: "UPI",
-    vpa: req.body.vpa,
-    surl: "http://localhost:3000/success",
-    furl: "http://localhost:3000/failure"
-  };
-
-  data.hash = generateHash(data);
-
-  const response = await axios.post(
-    "https://test.payu.in/_payment",
-    new URLSearchParams(data).toString(),
-    { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
-  );
-
-  res.send(response.data);
-});
-
-app.listen(3000);
-```
-
-***
 
 #### 🟢 2️⃣ Python (Flask)
 
