@@ -24,7 +24,7 @@ metadata:
 next:
   description: ''
 ---
-You can create as many webhooks as per your requirements and monitor the response from PayU. This section describes how to create webhook for payments.
+You can create, [update](https://docs.payu.in/docs/update-a-webhook) and [delete](https://docs.payu.in/docs/delete-a-webhook-on-dashboard) webhooks and monitor responses from the PayU dashboard.
 
 To create a new webhook:
 
