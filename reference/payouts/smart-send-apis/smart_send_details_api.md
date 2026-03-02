@@ -59,20 +59,20 @@ This API for fetching the details of a particular Smart Send using payoutMerchan
   | link                 | Contains the Smart pay link                                                                                                                                                                                                                         | String           |                                       |
   | succeedOn            | Timestamp when Transaction got succeeded                                                                                                                                                                                                            | Timestamp in UTC | "2023-11-09T00:00:01.000+0000"        |
   | txnSource            | Contains source of transcation                                                                                                                                                                                                                      | String           | "API"                                 |
-  
-  ###Smart Send Status Descriptions
-| Status        | Description                                                                |
-| ----------------- | ------------------------------------------------------------------------------ |
-| PENDING           | Smart Send Link Created Successfully but yet to be filled details by customer. |
-| INITIATED         | Payment Initiated, wait for sometime for payment to be competed.               |
-| FAILED            | Smart Send Payment failed, Can be reinitiated after sometime.                  |
-| SUCCESS           | Payout is initiated, wait for sometime for the payout to be completed.         |
-| REJECTED          | Smart Send approval rejected, check with the approver.                         |
-| EXPIRED           | Smart send link expired, create a new link.                                    |
-| CANCELLED         | Smart Send Link cancelled by the merchant, create a new link.                  |
-| APPROVAL\_PENDING | Link Approval is pending, contact your approver.                               |
-| APPROVED          | Link is approved by the approver.                                              |
 
+  ### Smart Send Status Descriptions
+
+  | Status            | Description                                                                    |
+  | ----------------- | ------------------------------------------------------------------------------ |
+  | PENDING           | Smart Send Link Created Successfully but yet to be filled details by customer. |
+  | INITIATED         | Payment Initiated, wait for sometime for payment to be competed.               |
+  | FAILED            | Smart Send Payment failed, Can be reinitiated after sometime.                  |
+  | SUCCESS           | Payout is initiated, wait for sometime for the payout to be completed.         |
+  | REJECTED          | Smart Send approval rejected, check with the approver.                         |
+  | EXPIRED           | Smart send link expired, create a new link.                                    |
+  | CANCELLED         | Smart Send Link cancelled by the merchant, create a new link.                  |
+  | APPROVAL\_PENDING | Link Approval is pending, contact your approver.                               |
+  | APPROVED          | Link is approved by the approver.                                              |
 </details>
 
 <details>
