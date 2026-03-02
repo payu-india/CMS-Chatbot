@@ -7,11 +7,19 @@ excerpt: >-
 deprecated: false
 hidden: false
 metadata:
-  title: ''
+  title: Create a New Webhook | PayU Dashboard
   description: ''
   keywords:
+    - Create webhook PayU dashboard
+    - PayU webhook setup
+    - PayU payment webhooks
+    - Configure webhook PayU
+    - PayU dashboard webhook
     - Create Webhook using Dashboard
     - Webhook using Dashboard
+    - PayU webhook URL
+    - PayU payment event webhook
+    - Set up PayU webhooks
   robots: index
 next:
   description: ''
