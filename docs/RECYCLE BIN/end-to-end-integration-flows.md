@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-## PayU Hosted 
+## PayU Hosted
 
 ### 🔁 Flow Overview
 
@@ -506,6 +506,293 @@ Expiry: 12/24
 CVV: 123
 ```
 
-(Different banks will let you generate different responses.)
+## Merchant Hosted - UPI
+
+### 🔁 Common UPI Parameters (Same Across All Languages)
+
+```text
+key
+txnid
+amount
+productinfo
+firstname
+email
+phone
+surl
+furl
+pg = UPI
+bankcode = UPI
+vpa = user@upi
+hash
+```
+
+***
+
+### 🔐 Hash Formula (CRITICAL)
+
+```text
+sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
+```
+
+Reverse hash for success:
+
+```text
+sha512(salt|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+```
+
+***
+
+***
+
+#### 🟢 1️⃣ JavaScript (Node.js / Express)
+
+```javascript
+require("dotenv").config();
+const express = require("express");
+const crypto = require("crypto");
+const axios = require("axios");
+
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+
+function generateHash(data) {
+  const str = `${process.env.KEY}|${data.txnid}|${data.amount}|${data.productinfo}|${data.firstname}|${data.email}|||||||||||${process.env.SALT}`;
+  return crypto.createHash("sha512").update(str).digest("hex");
+}
+
+app.post("/pay", async (req, res) => {
+  const txnid = "upi_" + Date.now();
+
+  const data = {
+    key: process.env.KEY,
+    txnid,
+    amount: "10.00",
+    productinfo: "UPI Test",
+    firstname: req.body.firstname,
+    email: req.body.email,
+    phone: req.body.phone,
+    pg: "UPI",
+    bankcode: "UPI",
+    vpa: req.body.vpa,
+    surl: "http://localhost:3000/success",
+    furl: "http://localhost:3000/failure"
+  };
+
+  data.hash = generateHash(data);
+
+  const response = await axios.post(
+    "https://test.payu.in/_payment",
+    new URLSearchParams(data).toString(),
+    { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
+  );
+
+  res.send(response.data);
+});
+
+app.listen(3000);
+```
+
+***
+
+#### 🟢 2️⃣ Python (Flask)
+
+```python
+import hashlib, os, requests
+from flask import Flask, request
+
+app = Flask(__name__)
+
+KEY = os.getenv("KEY")
+SALT = os.getenv("SALT")
+
+def generate_hash(d):
+    s = f"{KEY}|{d['txnid']}|{d['amount']}|{d['productinfo']}|{d['firstname']}|{d['email']}|||||||||||{SALT}"
+    return hashlib.sha512(s.encode()).hexdigest()
+
+@app.route("/pay", methods=["POST"])
+def pay():
+    txnid = "upi_" + str(os.urandom(4).hex())
+    data = {
+        "key": KEY,
+        "txnid": txnid,
+        "amount": "10.00",
+        "productinfo": "UPI Test",
+        "firstname": request.form["firstname"],
+        "email": request.form["email"],
+        "phone": request.form["phone"],
+        "pg": "UPI",
+        "bankcode": "UPI",
+        "vpa": request.form["vpa"],
+        "surl": "http://localhost:5000/success",
+        "furl": "http://localhost:5000/failure"
+    }
+
+    data["hash"] = generate_hash(data)
+    r = requests.post("https://test.payu.in/_payment", data=data)
+    return r.text
+```
+
+***
+
+#### 🟢 3️⃣ Java (Spring Boot)
+
+```java
+import java.security.MessageDigest;
+import java.util.Formatter;
+
+public class PayUUtil {
+
+    public static String generateHash(String key, String salt,
+                                      String txnid, String amount,
+                                      String productinfo,
+                                      String firstname,
+                                      String email) throws Exception {
+
+        String input = key + "|" + txnid + "|" + amount + "|" +
+                productinfo + "|" + firstname + "|" + email +
+                "|||||||||||" + salt;
+
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        byte[] hash = md.digest(input.getBytes("UTF-8"));
+
+        Formatter formatter = new Formatter();
+        for (byte b : hash) {
+            formatter.format("%02x", b);
+        }
+        return formatter.toString();
+    }
+}
+```
+
+Controller:
+
+```java
+@PostMapping("/pay")
+public ResponseEntity<String> pay(@RequestParam String firstname,
+                                  @RequestParam String email,
+                                  @RequestParam String phone,
+                                  @RequestParam String vpa) throws Exception {
+
+    String txnid = "upi_" + System.currentTimeMillis();
+
+    MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
+    data.add("key", KEY);
+    data.add("txnid", txnid);
+    data.add("amount", "10.00");
+    data.add("productinfo", "UPI Test");
+    data.add("firstname", firstname);
+    data.add("email", email);
+    data.add("phone", phone);
+    data.add("pg", "UPI");
+    data.add("bankcode", "UPI");
+    data.add("vpa", vpa);
+    data.add("hash", PayUUtil.generateHash(KEY, SALT, txnid, "10.00",
+            "UPI Test", firstname, email));
+
+    RestTemplate restTemplate = new RestTemplate();
+    String response = restTemplate.postForObject(
+            "https://test.payu.in/_payment",
+            data,
+            String.class
+    );
+
+    return ResponseEntity.ok(response);
+}
+```
+
+***
+
+### 🟢 4️⃣ Perl (CGI Style)
+
+```perl
+use strict;
+use warnings;
+use Digest::SHA qw(sha512_hex);
+use LWP::UserAgent;
+
+my $KEY  = "your_key";
+my $SALT = "your_salt";
+
+my $txnid = "upi_" . time();
+my $hash_string = "$KEY|$txnid|10.00|UPI Test|Rahul|rahul\@test.com|||||||||||$SALT";
+my $hash = sha512_hex($hash_string);
+
+my %data = (
+    key => $KEY,
+    txnid => $txnid,
+    amount => "10.00",
+    productinfo => "UPI Test",
+    firstname => "Rahul",
+    email => "rahul\@test.com",
+    phone => "9999999999",
+    pg => "UPI",
+    bankcode => "UPI",
+    vpa => "test@upi",
+    hash => $hash
+);
+
+my $ua = LWP::UserAgent->new;
+my $response = $ua->post("https://test.payu.in/_payment", \%data);
+
+print $response->decoded_content;
+```
+
+***
+
+#### 🟢 5️⃣ C# (.NET Core)
+
+```csharp
+using System.Security.Cryptography;
+using System.Text;
+using System.Net.Http;
+
+public static string GenerateHash(string key, string salt,
+                                  string txnid, string amount,
+                                  string productinfo,
+                                  string firstname,
+                                  string email)
+{
+    string input = $"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|||||||||||{salt}";
+    using (SHA512 sha = SHA512.Create())
+    {
+        byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(input));
+        return BitConverter.ToString(bytes).Replace("-", "").ToLower();
+    }
+}
+```
+
+Posting:
+
+```csharp
+var values = new Dictionary<string, string>
+{
+    {"key", KEY},
+    {"txnid", txnid},
+    {"amount", "10.00"},
+    {"productinfo", "UPI Test"},
+    {"firstname", firstname},
+    {"email", email},
+    {"phone", phone},
+    {"pg", "UPI"},
+    {"bankcode", "UPI"},
+    {"vpa", vpa},
+    {"hash", GenerateHash(KEY, SALT, txnid, "10.00", "UPI Test", firstname, email)}
+};
+
+var content = new FormUrlEncodedContent(values);
+var client = new HttpClient();
+var response = await client.PostAsync("https://test.payu.in/_payment", content);
+var html = await response.Content.ReadAsStringAsync();
+```
+
+***
+
+### 🧠 Real-World Advice (Important)
+
+1. Always verify reverse hash on success
+2. Enable webhook in dashboard
+3. Store txnid before calling PayU
+4. Handle duplicate callbacks
+5. UPI is async — user may not return to site
 
 <br />
