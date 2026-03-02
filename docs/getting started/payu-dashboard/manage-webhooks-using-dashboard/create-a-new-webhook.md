@@ -17,19 +17,23 @@ You can create as many webhooks as per your requirements and monitor the respons
 
 To create a new webhook:
 
-1. Select **Developers** > **Webhooks tab**.
+1. Log in to the [PayU dashboard](https://onboarding.payu.in/app/account/signin) and click **Developers** from the left menu.
 
-<Image align="center" src="https://files.readme.io/da995061d23e136d36c3bfe4482a90bfc5d2644e5c8e13b831a304e3ded73100-Screenshot_2024-10-08_at_5.21.21_PM.png" />
+<Image align="center" src="https://files.readme.io/ef485a951c6227cfab10d06d5af1c446849bc5e7048a223384c51f5b49bb5e3f-Screenshot_2026-03-02_at_10.15.10_AM.png" />
 
-    The Create Webhooks page is displayed with the list of webhooks.
+2. Go to **Webhooks** tab and click **Create Webhook**.
 
-2. Click **Create Webhook** on the top-right corner of the *Create Webhooks* page.
+<Image align="center" src="https://files.readme.io/4015a3183106114e615ff8623382b8f290f577054603ecd89f8c3e3cb95ad543-Screenshot_2026-03-02_at_11.04.17_AM.png" />
 
-   The *Create Webhook* pop-up page is displayed.
+    The **Create Webhook** pop-up menu is displayed.
 
-<Image align="center" src="https://files.readme.io/b1afa2ecaf68bcc42dcc8906f4d56d12183126483b65652f19417ff9cac243de-Screenshot_2024-10-08_at_5.22.20_PM.png" />
+3. Select **Payments** from the **Type** drop-down list.
+4. Select the event type from the **Event** drop-down list. Below are the available options:
+   * **Successful**
+   * **Failed**
+   * **Refund**
+   * **Dispute**
+5. Enter the webhook URL in the **Webhook URL** field. You can multiple URLs separated by commas.
+6. Click **Create** to create a webhook.
 
-3. Select the **Payments** type from the **Type** drop-down list:
-4. Select the event type from the **Event** drop-down list.
-5. Enter the webhook URL in the **Webhook URL** field.
-6. Click **Create** to finish.
+<Image align="center" src="https://files.readme.io/296459b395d36d191679019fc9116ce3ceaadb588da7bb86e3cb7be1c4f501fd-Screenshot_2026-03-02_at_11.20.54_AM.png" />
