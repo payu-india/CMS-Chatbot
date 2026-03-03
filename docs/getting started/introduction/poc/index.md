@@ -121,10 +121,12 @@ Accelerate your integration workflow with our net banking Postman collection for
 
 <NewBadge title="Getting Started" />
 
-
-
-
-
 <br />
 
 <NewBadge title="API Reference" headingLevel={2} />
+
+<br />
+
+<Callout icon="🆕">
+  **What's New!**
+</Callout>
