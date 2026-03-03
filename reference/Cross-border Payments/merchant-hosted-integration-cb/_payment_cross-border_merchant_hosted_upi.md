@@ -26,96 +26,64 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
 | **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
 | **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
-<details>
-  <summary>Sample request</summary>
-
+<Accordion title="Sample request" icon="fa-code">
   ```curl
-curl --location --request POST 'https://test.payu.in/_payment' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=JPM7Fg' \
---data-urlencode 'txnid=payuTestTransaction12345' \
---data-urlencode 'amount=100.00' \
---data-urlencode 'firstname=Ashish' \
---data-urlencode 'email=test@payu.in' \
---data-urlencode 'phone=9988776655' \
---data-urlencode 'productinfo=Product Info' \
---data-urlencode 'surl=https://test.payu.in/admin/test_response' \
---data-urlencode 'furl=https://test.payu.in/admin/test_response' \
---data-urlencode 'pg=UPI' \
---data-urlencode 'bankcode=INTENT' \
---data-urlencode 'txn_s2s_flow=4' \
---data-urlencode 's2s_client_ip=10.200.12.12' \
---data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
---data-urlencode 'udf1=AELPR1234E' \
---data-urlencode 'udf3=02-02-1980' \
---data-urlencode 'udf4=XYZ Pvt. Ltd.' \
---data-urlencode 'udf5=INV123456' \
---data-urlencode 'buyer_type_business=1' \
---data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
---data-urlencode 'hash=YOUR_CALCULATED_HASH'
+  curl --location --request POST 'https://test.payu.in/_payment' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'key=JPM7Fg' \
+  --data-urlencode 'txnid=payuTestTransaction12345' \
+  --data-urlencode 'amount=100.00' \
+  --data-urlencode 'firstname=Ashish' \
+  --data-urlencode 'email=test@payu.in' \
+  --data-urlencode 'phone=9988776655' \
+  --data-urlencode 'productinfo=Product Info' \
+  --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'pg=UPI' \
+  --data-urlencode 'bankcode=INTENT' \
+  --data-urlencode 'txn_s2s_flow=4' \
+  --data-urlencode 's2s_client_ip=10.200.12.12' \
+  --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+  --data-urlencode 'udf1=AELPR1234E' \
+  --data-urlencode 'udf3=02-02-1980' \
+  --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+  --data-urlencode 'udf5=INV123456' \
+  --data-urlencode 'buyer_type_business=1' \
+  --data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
+  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
   ```
-</details>
+</Accordion>
 
-<details>
-  <summary>Sample response</summary>
+<Accordion title="Sample Response" icon="fa-reply">
 
-  ```plaintext
-  Array
-  (
-      [mihpayid] => 403993715523409521
-      [mode] => UPI
-      [status] => success
-      [unmappedstatus] => captured
-      [key] => JPM7Fg
-      [txnid] => 5jJ9xRceXX1ydT
-      [amount] => 10.00
-      [discount] => 0.00
-      [net_amount_debit] => 1000
-      [addedon] => 2021-07-02 15:03:50
-      [productinfo] => iPhone
-      [firstname] => PayU User
-      [lastname] => 
-      [address1] => 
-      [address2] => 
-      [city] => 
-      [state] => 
-      [country] => 
-      [zipcode] => 
-      [email] => test@gmail.com
-      [phone] => 9876543210
-      [udf1] => 
-      [udf2] => 
-      [udf3] => 
-      [udf4] => 
-      [udf5] => 
-      [udf6] => 
-      [udf7] => 
-      [udf8] => 
-      [udf9] => 
-      [udf10] => 
-      [hash] => 716f92a6452adadba68d133ba7f5ca3f3403f03f554e3ef850911f3e6727ee73402b249054170ad276c8b55ca12368a5e27cc69ffb0642ef6403dae9a5708794
-      [field1] => vpa-anything@payu
-      [field2] => 5jJ9xRceXX1ydT
-      [field3] => 
-      [field4] => PayU User
-      [field5] => AXIhh4ExnaJ9dKiJvPxsewHwxMMmT3ba7UY
-      [field6] => 
-      [field7] => Transaction completed successfully
-      [field8] => 
-      [field9] => Transaction completed successfully
-      [payment_source] => payu
-      [PG_TYPE] => UPI-PG
-      [bank_ref_num] => 5jJ9xRceXX1ydT
-      [bankcode] => UPI
-      [error] => E000
-      [error_Message] => No Error
-  )
+  **Parsed response**
+
+  ```json
+  { 
+    "rawBankData" : ""  
+    "referenceId":  "00c44a4c8306f9cbe5ecf6133afe08a7" 
+    "bankData" : { 
+    "referenceId": "00c44a4c8306f9cbe5ecf6133afe08a7", 
+    "messageDigest": "c2e9e456037f033e5cc3d7b6e556189adf41eeabf706844dff70aac91f6b8e73bb1846286c8f99ea768cf38f7c12369c|523727493647950f32684bd6f1ab07aa6474016f", 
+    "pares": "eNrVmdeS47i2pl+lo8+loje968jOCHojGtGLvKM3opHoyacfZmZVde06PWfOzMXEjCIUgkBiYRHAWv8H4s0phyzj7CyZh+z9TcvGMSqy36r0r99jFAfhGIT/gLE8/QNNM/IPEiGoP5CUgGEwAjGCSH9/f7vRVjZ+NvgsnTVLNoxV371D/wL/Bb8B3/+exoekjLrp/S1KXoysv6MkQhHYG/Dt71ubDTL3DkMwhZIgRoIIAoL4G/BV/Qb83f42f5TG0+GtSt9Dp5gMTkMMGzxCLtm1mik1zkV02PzrDfi44y2NpuwdBuHTNgj9BiF/IsSfyOnbZ/3b88Mc3fbzaRuCwDfg54q3c2SGrEv2dwQ7nfnx7y3bnn2XnXecdn6U34C/fXtG3Tv40wcFQeK0fda+Off3t6lqf/YJ/RMi/4ShN+Cz/m2comme34M34FvpLYmW5Z2maYYVTJqWzadhJqu+0t8/57N+3vKWJdU7eA7rx+9nK7op+qGayvbD1X+veAM+XAE+p+79za6K7uxsyH7b2qYb//q9nKbnnwCwruu/VuRf/VAA8PkgAEgB5w3pWBX/8ftXqyyVu7z/32rGRl3fVUnUVEc0nQtEy6ayT3/74ds/mXGsD0sQYPHsH6epPxII7f74qAERCDttAv9s9Kcn++/08quzwxj9MZYR9NHBL4be36wszz5WRPaba8l//f4f36OAq4psnP5Puvve1c8WvtvzombO3mc3DXRwZEp92R+80+1LH1P8RNQ4/9f3dl93vgE//Pvm/NdM/TQiXzc6RMf6GG04qXdxrxgV1PAQ4FJa38tkuNT", 
+    "additionalInfo": 
+    { 
+        "authUdf1": "", 
+        "authUdf2": "", 
+        "authUdf3": "", 
+        "authUdf4": "", 
+        "authUdf5": "", 
+        "authUdf6": "", 
+        "authUdf7": "", 
+        "authUdf8": "", 
+        "authUdf9": "", 
+        "authUdf10": "" 
+    } 
+  }, 
+    "authenticationStatus"  :  "success", 
+    "hash" : "664b8ddd1b5b2d1b68abb7eee5ea6e001a02773499ddcd86956ba0833315e7d4e69c641d7b0b3e7590532e21e71936da173f4eda716fc09f83cd1117f0d0c37c"} 
   ```
-</details>
-
-<details>
-  <summary>Response parameters</summary>
-</details>
+</Accordion>
 
 ## Request parameters
 
