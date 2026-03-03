@@ -118,20 +118,263 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     <Accordion title="Mandatory parameters" icon="fa-code">
       Use the following table to pass the mandatory parameters in the PayU SDK:
 
-      | Parameter                                                              | Description                                                                                                                                            | Required |
-      | :--------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-      | key                                                                    | Merchant Key provided by PayU during onboarding.                                                                                                       | Yes      |
-      | transactionId                                                          | A unique ID passed by the merchant for each transaction.                                                                                               | Yes      |
-      | amount                                                                 | The transaction amount.                                                                                                                                | Yes      |
-      | productInfo                                                            | A brief description of the product.                                                                                                                    | Yes      |
-      | firstName                                                              | Customer's first name.                                                                                                                                 | Yes      |
-      | email                                                                  | Customer's email address.                                                                                                                              | Yes      |
-      | phone                                                                  | Customer's phone number.                                                                                                                               | Yes      |
-      | surl                                                                   | Success URL - where the customer is redirected after a successful payment                                                                              | Yes      |
-      | furl                                                                   | Failure URL - where the customer is redirected after an unsuccessful/failed payment                                                                    | Yes      |
-      | environment                                                            | The environment in which the transaction is initiated. For TEST transactions, use PayUTestEnvironment. For LIVE transactions, use PayUProdEnvironment. | Yes      |
-      | The code block for passing the parameters is similar to the following: |                                                                                                                                                        |          |
+     <Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
+      <th>
+        Description
+      </th>
+
+      <th>
+        Data Type and Validation
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Key
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Merchant Key received from PayU Dashboard
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        TransactionId
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Cannot be null or empty and should be unique for each transaction. Maximum allowed length is 25 characters. It cannot contain special characters like: - /, & , @ etc.
+      </td>
+
+      <td>
+        Should be unique for each transaction
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Amount
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Total transaction amount.
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Product Info
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Information about Product
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        First Name
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Customer’s first name
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Email
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Customer’s Email ID
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Phone
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Customer’s phone number
+      </td>
+
+      <td>
+        Should be of 10 digits
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        surl
+        `mandatory`
+      </td>
+
+      <td>
+        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
+
+        * *Sample URL*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+        * *Note*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        furl\
+        `mandatory`
+      </td>
+
+      <td>
+        `String` When the transaction gets fail, PayU will load this url and pass transaction response.
+
+        * *Sample URL*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+        * *Note*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+      </td>
+
+      <td>
+        Cannot be null or empty
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Environment\
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Environment of SDK
+      </td>
+
+      <td>
+        Should be either
+
+        * *Swift*\*:`production or test `**ObjectiveC**: `EnvironmentProduction `or `EnvironmentTest`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        User Credential\
+        `optional`
+      </td>
+
+      <td>
+        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards
+      </td>
+
+      <td>
+        Should be a unique value\
+        Format: \<merchantKey>:\<userId>
+        Here, UserId is any id/email/phone number to uniquely identify the user
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        PayUSIParams\
+        `optional`
+      </td>
+
+      <td>
+        `Object` of PayUSIParams. This contains SI Details.
+      </td>
+
+      <td>
+        Object of PayUSIParams
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        SplitPaymentDetails\
+        `optional`
+      </td>
+
+      <td>
+        `String`\
+        This parameter is required for splitting the transactions.
+      </td>
+
+      <td>
+        Should be a json String
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        additionalCharges
+      </td>
+
+      <td>
+        String\
+        This parameter is required if merchant want to take additional charge from user
+      </td>
+
+      <td>
+        should be string with PG:Amount or IBIBOCode:Amount\
+        Sample: CC:10,NB:20,SBIB:15
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        percentageAdditionalCharges
+      </td>
+
+      <td>
+        String\
+        This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable
+      </td>
+
+      <td>
+        should be string with PG:Amount or IBIBOCode:Amount\
+        Sample: CC:100,NB:50,SBIB:25
+      </td>
+    </tr>
+  </tbody>
+</Table>
       If you required any value in the response then pass the below value
 
       ```Text Swift
@@ -602,7 +845,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
   <Accordion title="Create a Custom Note List and Pass to SDK" icon="fa-info-circle">
-    Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom_note and custom_note_category need to be passed.To pass the custom note list, Create a PayUCheckoutProConfig object and set the CustomNoteDetails similar to the following code block:
+    Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and custom\_note\_category need to be passed.To pass the custom note list, Create a PayUCheckoutProConfig object and set the CustomNoteDetails similar to the following code block:
 
     ```swift Swift
     var customNotes = [PayUCustomNote]()
@@ -614,7 +857,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     let customNote2 = PayUCustomNote()
     customNote.note = “<your note message>”
     customNote.noteCategories =  [PaymentType.ccdc, PaymentType.NB, PaymentType.wallet, PaymentType.emi, PaymentType.savedCard, PaymentType.sodexo, PaymentType.upi, PaymentType.neftRtgs] 
-// pass Payment type to show notes on specific payment mode screen
+    // pass Payment type to show notes on specific payment mode screen
     customNotes.append(customNote)
 
     // Initialize the PayU CheckoutPro Configuration
