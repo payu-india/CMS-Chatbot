@@ -1,0 +1,35 @@
+---
+name: NewBadge
+---
+/**
+ * NewBadge - Readme CMS Custom Component
+ *
+ * A glowing animated "New" badge to place next to page titles or headings
+ * so readers know the page was recently created.
+ */
+
+export const NewBadge = (props) => {
+  const {
+    text = 'New',
+    size = 'sm',
+    className = '',
+  } = props;
+
+  const sizeClasses =
+    size === 'lg'
+      ? 'px-2.5 py-1 text-xs font-semibold'
+      : size === 'md'
+        ? 'px-2 py-0.5 text-[10px] font-semibold'
+        : 'px-1.5 py-0.5 text-[10px] font-semibold';
+
+  return (
+    <span
+      className={`inline-flex items-center align-middle rounded-md bg-emerald-500 text-white shadow-[0_0_12px_rgba(16,185,129,0.5)] animate-pulse ${sizeClasses} ${className}`}
+    >
+      {text}
+    </span>
+  );
+};
+
+// Preview for Readme CMS (component must appear after exports)
+<NewBadge />
