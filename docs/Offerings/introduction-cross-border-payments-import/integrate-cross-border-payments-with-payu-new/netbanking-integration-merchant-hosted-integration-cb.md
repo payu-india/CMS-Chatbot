@@ -14,13 +14,25 @@ This section explains how to integrate NetBanking payments for cross-border tran
     <br />
   </Card>
 
-  <Card title="2. Check Response from PayU" href="#step-2-check-response-from-payu">
+  <Card title="2. Handle Initiate Response from PayU" href="#step-2-handle-the-initiate-response-from-payu">
     Check and handle the response received from PayU
 
     <br />
   </Card>
 
-  <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
+  <Card title="3. Redirect the Customer" href="#step-2-redirect-the-customer">
+    Redirect the user to the bank page using acsTemplate after successful authentication response
+
+    <br />
+  </Card>
+
+  <Card title="4. Authorize (Charge) the Payment" href="#step-3-authorize-charge-the-payment">
+    Complete the authorization request from your server to PayU to charge the payment
+
+    <br />
+  </Card>
+
+  <Card title="5. Verify the Payment" href="#step-4-verify-the-payment">
     Verify the payment status and ensure transaction completion
   </Card>
 </Cards>
