@@ -127,6 +127,8 @@ Accelerate your integration workflow with our net banking Postman collection for
 
 <br />
 
-<Callout icon="🆕">
-  **What's New!**
+<Callout icon="📘">
+  <NewBadge title="What's New" />
+
+  Lorem Ispum
 </Callout>
