@@ -85,7 +85,15 @@ Post the payment parameters to PayU's `_payment` API endpoint to initiate a plai
   | buyer\_type\_business<br />`optional in <br /> case of B2B <br /> transaction for <br /> cross-border <br /> payments` | `Binary` To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0".<br />**Note**: This will be included in hash if posted (covered in next section).                                                                                                                                                                                                                | 1                                                             |
   | udf\_params<br />`optional`                                                                                         | `String JSON`<br />UDF7 value to capture "Import or Export Code" of the buyer<br /><br />UDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports)                                                                                                                                                                                                                                       | \{"udf7":"0100000029",<br />"udf8":"99953729071"}             |
   | hash<br />`mandatory`                                                                                               | `String` Crucial security parameter using SHA512 hash encryption. Formula incorporates key, txnid, amount, productinfo, firstname, email, udf fields, si\_details, and merchant salt.                                                                                                                                                                                                                                         | \<Generated Hash>                                             |
+  <Accordion title="Hash Generation" icon="fa-lock">
 
+  <HashingRequestParameters />
+
+  For sample hashing coding, check the following:
+
+  <HashingSample />
+
+  </Accordion>
 
 </Accordion>
 
