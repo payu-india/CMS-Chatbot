@@ -11,7 +11,7 @@ metadata:
 ---
 PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to [UPI Handles](doc:upi-handles). The **buyer_type_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
 
- After the payment is complete, you must use the [Invoice Upload API](ref:invoice_upload_api) to upload invoices / AWBs (Air-way bill number). AWB details are mandatory for Goods transactions.
+After the payment is complete, you must use the [Invoice Upload API](ref:invoice_upload_api) to upload invoices / AWBs (Air-way bill number). AWB details are mandatory for Goods transactions.
 
 ## Recommended prerequisite before initiating payment
 
@@ -29,11 +29,30 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
 <details>
   <summary>Sample request</summary>
 
-  ```bash
-  curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=xdB9G7qYpfqszo&amount=10&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=UPI&bankcode=UPI&vpa=VPA-anything@payu&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
+  ```curl
+curl --location --request POST 'https://test.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=JPM7Fg' \
+--data-urlencode 'txnid=payuTestTransaction12345' \
+--data-urlencode 'amount=100.00' \
+--data-urlencode 'firstname=Ashish' \
+--data-urlencode 'email=test@payu.in' \
+--data-urlencode 'phone=9988776655' \
+--data-urlencode 'productinfo=Product Info' \
+--data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'pg=UPI' \
+--data-urlencode 'bankcode=INTENT' \
+--data-urlencode 'txn_s2s_flow=4' \
+--data-urlencode 's2s_client_ip=10.200.12.12' \
+--data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+--data-urlencode 'udf1=AELPR1234E' \
+--data-urlencode 'udf3=02-02-1980' \
+--data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+--data-urlencode 'udf5=INV123456' \
+--data-urlencode 'buyer_type_business=1' \
+--data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
+--data-urlencode 'hash=YOUR_CALCULATED_HASH'
   ```
 </details>
 
