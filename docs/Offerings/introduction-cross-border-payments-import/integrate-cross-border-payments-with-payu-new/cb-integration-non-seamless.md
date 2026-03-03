@@ -5,7 +5,26 @@ hidden: true
 metadata:
   robots: index
 ---
-This section describes how to integrate Cross-Border Subscriptions with PayU Hosted Checkout integration using **_payment** API.
+This section describes how to integrate Cross-Border Subscriptions with PayU Hosted Checkout integration using **_payment** API. This integration following steps:
+
+<Cards columns={3}>
+  <Card title="1. Post the Payment Request with PayU" href="#step-1-post-the-payment-request-with-payu">
+    Post the payment parameters to PayU's _payment API with required UDFs for cross-border.
+
+    <br />
+  </Card>
+
+  <Card title="2. Check Response from PayU" href="#step-2-check-response-from-payu">
+    Handle the URL-format response from PayU and validate using reverse hashing.
+
+    <br />
+  </Card>
+
+  <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
+    Reconcile and validate transaction details using verification methods.
+  </Card>
+</Cards>
+
 
 
 <Callout icon="📘" theme="info">
