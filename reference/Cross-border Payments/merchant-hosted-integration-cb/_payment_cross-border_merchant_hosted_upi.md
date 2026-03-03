@@ -55,7 +55,17 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-reply">
+  Collect the response in the  [UPI Collection - S2S](ref:_payment_s2s_upi_collection). under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs.](ref:addl_info-payment-apis#response-for-initial-server-to-server-request)
 
+  <Accordion title="Using the IntentURIData value in response" icon="fa-code">
+    The **IntentURIData** parameter returns the URI in the response. For example, it contains the first debit amount .
+
+    > 📘 Notes:
+    >
+    > * Every time there is a change, you need to incorporate the changes to avoid breaking the transactions.
+    > * The **tid** value which is passed in the intent URI acts as a validation check at NPCI's end which do not allow duplicate transaction.
+    > * The tr value not necessary and it is a payU\_id. It can be any reference id for PayU's internal reconciliation.
+  </Accordion>
   **Parsed response**
 
   ```json
