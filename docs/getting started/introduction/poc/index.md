@@ -120,3 +120,11 @@ Accelerate your integration workflow with our net banking Postman collection for
 </AccordionOpen>
 
 <NewBadge title="Getting Started" />
+
+
+
+
+
+<br />
+
+<NewBadge title="API Reference" headingLevel={2} />
