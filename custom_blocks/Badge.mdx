@@ -10,6 +10,7 @@ name: Badge
  * Usage:
  *   <NewBadge title="Getting Started" />
  *   <NewBadge title="API Reference" headingLevel={2} />
+ *   <NewBadge title="Note" asHeading={false} />
  * Or badge only: <NewBadge />
  */
 
@@ -17,6 +18,7 @@ export const NewBadge = (props) => {
   const {
     title = '',
     headingLevel = 1,
+    asHeading = true,
     text = 'New',
     size = 'sm',
     className = '',
@@ -41,11 +43,22 @@ export const NewBadge = (props) => {
     return badge;
   }
 
+  const wrapperClass = "flex flex-wrap items-center gap-2 !mb-0";
+
+  if (!asHeading) {
+    return (
+      <span className={`font-bold ${wrapperClass}`}>
+        <span>{title}</span>
+        {badge}
+      </span>
+    );
+  }
+
   const level = Math.min(6, Math.max(1, Number(headingLevel)));
   const HeadingTag = `h${level}`;
 
   return (
-    <HeadingTag className="flex flex-wrap items-center gap-2 !mb-0">
+    <HeadingTag className={wrapperClass}>
       <span>{title}</span>
       {badge}
     </HeadingTag>
