@@ -7,6 +7,7 @@ metadata:
 ---
 This section describes how to integrate Cross-Border Subscriptions with PayU Hosted Checkout integration using **_payment** API.
 
+
 <Callout icon="📘" theme="info">
   After you complete this integration, you need to perform the following steps as required:
 
