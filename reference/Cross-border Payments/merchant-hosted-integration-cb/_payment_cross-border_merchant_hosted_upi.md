@@ -13,6 +13,10 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
 
 After the payment is complete, you must use the [Invoice Upload API](ref:invoice_upload_api) to upload invoices / AWBs (Air-way bill number). AWB details are mandatory for Goods transactions.
 
+<Callout icon="📘" theme="info">
+  **Reference**: For steps to integrate UPI for Cross-Border Payments, refer to [[S2S] UPI Consent Transaction - Cross Border](doc:upi-consent-transaction-cb)
+</Callout>
+
 ## Recommended prerequisite before initiating payment
 
 When your customer makes payment through UPI, you can validate the customer's Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle.
