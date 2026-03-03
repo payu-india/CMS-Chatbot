@@ -1,0 +1,56 @@
+---
+name: Badge
+---
+/**
+ * NewBadge - Readme CMS Custom Component
+ *
+ * A glowing animated "New" badge. Use with the title prop so the badge
+ * stays on the same line as the page title.
+ *
+ * Usage:
+ *   <NewBadge title="Getting Started" />
+ *   <NewBadge title="API Reference" headingLevel={2} />
+ * Or badge only: <NewBadge />
+ */
+
+export const NewBadge = (props) => {
+  const {
+    title = '',
+    headingLevel = 1,
+    text = 'New',
+    size = 'sm',
+    className = '',
+  } = props;
+
+  const sizeClasses =
+    size === 'lg'
+      ? 'px-2.5 py-1 text-xs font-semibold'
+      : size === 'md'
+        ? 'px-2 py-0.5 text-[10px] font-semibold'
+        : 'px-1.5 py-0.5 text-[10px] font-semibold';
+
+  const badge = (
+    <span
+      className={`inline-flex flex-shrink-0 items-center align-middle rounded-md bg-emerald-500 text-white shadow-[0_0_12px_rgba(16,185,129,0.5)] animate-pulse ${sizeClasses} ${className}`}
+    >
+      {text}
+    </span>
+  );
+
+  if (!title) {
+    return badge;
+  }
+
+  const level = Math.min(6, Math.max(1, Number(headingLevel)));
+  const HeadingTag = `h${level}`;
+
+  return (
+    <HeadingTag className="flex flex-wrap items-center gap-2 !mb-0">
+      <span>{title}</span>
+      {badge}
+    </HeadingTag>
+  );
+};
+
+// Preview for Readme CMS (component must appear after exports)
+<NewBadge title="Getting Started" />
