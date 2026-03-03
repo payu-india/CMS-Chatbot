@@ -1,5 +1,5 @@
 ---
-title: Seamless Integration - CB
+title: S2S Integration - CB
 excerpt: ''
 deprecated: false
 hidden: false
@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-You can use Merchant Hosted Integration integration to collect Cross Border Payments for the following payment methods:
+You can use S2S Integration integration to collect Cross Border Payments for the following payment methods:
 
 * [Cards](https://docs.payu.in/reference/_payment_cross-border_merchant_hosted_cards)
 * [UPI](https://docs.payu.in/reference/_payment_cross-border_merchant_hosted_upi)
