@@ -20,19 +20,19 @@ This section explains how to integrate NetBanking payments for cross-border tran
     <br />
   </Card>
 
-  <Card title="3. Redirect the Customer" href="#step-2-redirect-the-customer">
+  <Card title="3. Redirect the Customer" href="#step-3-redirect-the-customer">
     Redirect the user to the bank page using acsTemplate after successful authentication response
 
     <br />
   </Card>
 
-  <Card title="4. Authorize (Charge) the Payment" href="#step-3-authorize-charge-the-payment">
+  <Card title="4. Authorize (Charge) the Payment" href="#step-4-authorize-charge-the-payment">
     Complete the authorization request from your server to PayU to charge the payment
 
     <br />
   </Card>
 
-  <Card title="5. Verify the Payment" href="#step-4-verify-the-payment">
+  <Card title="5. Verify the Payment" href="#step-5-verify-the-payment">
     Verify the payment status and ensure transaction completion
   </Card>
 </Cards>
@@ -185,7 +185,7 @@ After posting the payment request, PayU returns a response containing transactio
 
 <br />
 
-## Step 2: Redirect the customer
+## Step 3: Redirect the customer
 
 Basis a successful response of the authentication API, you need to redirect the user to the bank page using **acsTemplate**.  This API specifies the response that is posted to `termUrl` after the authentication for the transaction has been processed.
 
@@ -342,7 +342,7 @@ Basis a successful response of the authentication API, you need to redirect the 
   ```
 </Accordion>
 
-## Step 3: Authorize (charge) the payment
+## Step 4: Authorize (charge) the payment
 
 The authorization request is the final step of transaction processing. This again needs to be an S2S call from the merchant's server to PayU server.
 
@@ -445,7 +445,7 @@ The authorization request is the final step of transaction processing. This agai
   | pares          | This parameter contains the pares being returned by the bank.                                          |                           |
 </Accordion>
 
-## Step 4: Verify the Payment
+## Step 5: Verify the Payment
 
 After the payment is complete, verify the transaction status using PayU's verification APIs.
 
