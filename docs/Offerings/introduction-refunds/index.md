@@ -25,7 +25,6 @@ Order cancellations are an unfortunate reality for any business. Customers may c
 
 <Image align="center" border={true} src="https://files.readme.io/6f2c927270ce644702c834ab110c0154eb172579ff6b9740f1117b8b34a37eda-Refunds_Workflow.png" className="border" />
 
-<br />
 
 The refunds workflow in PayU typically follows this sequence:
 
@@ -38,10 +37,10 @@ The refunds workflow in PayU typically follows this sequence:
    * Whether the refund is within allowed conditions
    * Whether the refund amount matches full or partial rules
 4. **PayU Sends Refund Request to the Payment Partner (Bank / Lender)**: After the refund request is validated, PayU forwards it to the respective payment instrument provider (the bank, card network, wallet, etc.).
-5. **Bank / Payment Partner Processes the Refund**: The bank or issuer processes the refund and transfers the money back to the customer’s source account (card, UPI, Net Banking account, etc.).
    <Callout icon="📘" theme="info">
-     **Automatic retries**: If the refund has failed at the bank end, the bank will try three retries automatically.
+     **Automatic retries**: If the Refund API call has failed at the bank end, the bank will try three retries automatically. If the refund still fails, PayU team will request the refund manually (for example, mail) with the bank.
    </Callout>
+5. **Bank / Payment Partner Processes the Refund**: The bank or issuer processes the refund and transfers the money back to the customer’s source account (card, UPI, Net Banking account, etc.).
 6. **Refund Settlement Adjustments**: The refund amount is deducted from the merchant’s settlement balance.
 7. **Customer Receives the Refund**:  The refund reflects in the customer’s account.  
    Processing time depends on the payment method:
