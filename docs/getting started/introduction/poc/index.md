@@ -127,8 +127,10 @@ Accelerate your integration workflow with our net banking Postman collection for
 
 <br />
 
-<Callout icon="📘">
-  <NewBadge title="What's New" />
+<Callout icon="📘" theme="info">
+  <NewBadge title="Note" asHeading={false} />
 
   Lorem Ispum
 </Callout>
+
+<br />
