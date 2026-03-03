@@ -1,5 +1,5 @@
 ---
-title: Merchant Hosted Integration - CB
+title: Seamless Integration - CB
 excerpt: ''
 deprecated: false
 hidden: false
