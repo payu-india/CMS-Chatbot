@@ -119,6 +119,4 @@ Accelerate your integration workflow with our net banking Postman collection for
   <p>This accordion is open by default. The title is rendered as a heading. You can put any content here: tables, code blocks, or more MDX. Users can collapse or expand by clicking the header.</p>
 </AccordionOpen>
 
-<NewBadge title="Getting Started" />
-
 <br />
