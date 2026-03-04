@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-Configure chargeback webhooks to automatically receive instant notifications when refunds status has changed. This section describes how to create and configure refund webhooks using any of the following to receive automated notifications.
+Configure refund webhooks to automatically receive instant notifications when refunds status has changed. This section describes how to create and configure refund webhooks using any of the following to receive automated notifications.
 
 <Callout icon="📘" theme="info">
   **Prerequiistes**: Before configuring a refund event webhook, ensure that:
