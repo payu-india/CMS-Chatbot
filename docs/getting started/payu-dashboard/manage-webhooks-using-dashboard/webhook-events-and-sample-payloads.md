@@ -23,7 +23,7 @@ The table below lists the available webhook events.
 
 Given below are the sample payloads for webhook events.
 
-<Callout icon="❗️">
+<Callout icon="❗️" theme="error">
   **Watch Out!**
 
   * The payment successful and failure payloads are in the URL Encoded format.
@@ -316,39 +316,37 @@ mihpayid=27553369917
 #### Payload Parameters
 
 <Accordion title="Parameters and Description" icon="fa-info-circle">
-  | Field       | Description                                                                                                                                                                                                      |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type        | Type of transaction  and merchant must include the value as **payments** only.                                                                                                                                   |
-| event       | Event type and the merchant must the include the value as **dispute** only.                                                                                                                                      |
-| reason_code | Reason for the chargeback. For the list of reason codes, refer to [Reason codes for chargebacks](https://docs.payu.in/docs/webhooks-for-chargeback#reason-codes-for-chargebacks).                                |
-| created_at  | Timestamp when the chargeback was created                                                                                                                                                                        |
-| updated_at  | Timestamp when the chargeback was last updated                                                                                                                                                                   |
-| mid         | PayU Merchant ID                                                                                                                                                                                                 |
-| cb_id       | Chargeback ID                                                                                                                                                                                                    |
-| txn_id      | This is the PayU transaction ID that is associated with the chargeback.                                                                                                                                          |
-| cb_type     | Type of chargeback (for example, "RBI/BO", that is, Reserve Bank of India/Banking Operations)                                                                                                                    |
-| due_date    | Due date for the chargeback resolution                                                                                                                                                                           |
-| cb_amount   | Amount involved in the chargeback                                                                                                                                                                                |
-| cb_status   | Current status of the chargeback. For the possible chargeback status values, refer to [cb_status field values description](https://docs.payu.in/docs/webhooks-for-chargeback#cb_status-field-values-description) |
+  | Field        | Description                                                                                                                                                                                                       |
+  | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | type         | Type of transaction  and merchant must include the value as **payments** only.                                                                                                                                    |
+  | event        | Event type and the merchant must the include the value as **dispute** only.                                                                                                                                       |
+  | reason\_code | Reason for the chargeback. For the list of reason codes, refer to [Reason codes for chargebacks](https://docs.payu.in/docs/webhooks-for-chargeback#reason-codes-for-chargebacks).                                 |
+  | created\_at  | Timestamp when the chargeback was created                                                                                                                                                                         |
+  | updated\_at  | Timestamp when the chargeback was last updated                                                                                                                                                                    |
+  | mid          | PayU Merchant ID                                                                                                                                                                                                  |
+  | cb\_id       | Chargeback ID                                                                                                                                                                                                     |
+  | txn\_id      | This is the PayU transaction ID that is associated with the chargeback.                                                                                                                                           |
+  | cb\_type     | Type of chargeback (for example, "RBI/BO", that is, Reserve Bank of India/Banking Operations)                                                                                                                     |
+  | due\_date    | Due date for the chargeback resolution                                                                                                                                                                            |
+  | cb\_amount   | Amount involved in the chargeback                                                                                                                                                                                 |
+  | cb\_status   | Current status of the chargeback. For the possible chargeback status values, refer to [cb\_status field values description](https://docs.payu.in/docs/webhooks-for-chargeback#cb_status-field-values-description) |
 </Accordion>
 
 #### cb_status Parameter Values
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
-
+<Accordion title="Parameters and Description" icon="fa-info-circle">
   The `cb_status` or chargeback status field can have the following values:
 
-| Chargeback Status            | Description                                                                                                                                                                                                                                                                                                            |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| New                          | It indicates that a new chargeback has been initiated by the customer basis the chargeback reason.                                                                                                                                                                                                                     |
-| Pending Response             | It indicates that the chargeback is awaiting merchant response, that is, to accept, partially accept or decline with evidence.                                                                                                                                                                                         |
-| Pending Doc Review           | It indicates that merchant has submitted their response, and the response are being reviewed by the PayU Chargeback team.                                                                                                                                                                                              |
-| Submitted to Bank            | It indicates that the PayU Chargeback team has completed their review and forwarded the evidence to the bank for representment.                                                                                                                                                                                        |
-| Insufficient Document        | It indicates that the PayU Chargeback team has reviewed the evidence documents and is requesting the merchant for additional documents for representment or the correct document based on the Chargeback team's comment.                                                                                               |
-| Closed Customer Favour       | It indicates that that the chargeback has been closed in the customer's favour. The merchant will lose the chargeback amount to the customer.                                                                                                                                                                          |
-| Closed in Merchant Favour    | It indicates that the chargeback has been closed in the merchant's favour. The chargeback amount will be reversed back to the merchant account.                                                                                                                                                                        |
-| Closed under Fraud Liability | It indicates that the chargeback has been closed since the transaction has been identified as fraudulent. Moreover, PayU will cover the chargeback amount under the fraud liability program so the chargeback amount will be reversed back to the merchant account or will not be debited from the merchant's account. |
-
+  | Chargeback Status            | Description                                                                                                                                                                                                                                                                                                            |
+  | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | New                          | It indicates that a new chargeback has been initiated by the customer basis the chargeback reason.                                                                                                                                                                                                                     |
+  | Pending Response             | It indicates that the chargeback is awaiting merchant response, that is, to accept, partially accept or decline with evidence.                                                                                                                                                                                         |
+  | Pending Doc Review           | It indicates that merchant has submitted their response, and the response are being reviewed by the PayU Chargeback team.                                                                                                                                                                                              |
+  | Submitted to Bank            | It indicates that the PayU Chargeback team has completed their review and forwarded the evidence to the bank for representment.                                                                                                                                                                                        |
+  | Insufficient Document        | It indicates that the PayU Chargeback team has reviewed the evidence documents and is requesting the merchant for additional documents for representment or the correct document based on the Chargeback team's comment.                                                                                               |
+  | Closed Customer Favour       | It indicates that that the chargeback has been closed in the customer's favour. The merchant will lose the chargeback amount to the customer.                                                                                                                                                                          |
+  | Closed in Merchant Favour    | It indicates that the chargeback has been closed in the merchant's favour. The chargeback amount will be reversed back to the merchant account.                                                                                                                                                                        |
+  | Closed under Fraud Liability | It indicates that the chargeback has been closed since the transaction has been identified as fraudulent. Moreover, PayU will cover the chargeback amount under the fraud liability program so the chargeback amount will be reversed back to the merchant account or will not be debited from the merchant's account. |
 </Accordion>
 
 <br />
