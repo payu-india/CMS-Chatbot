@@ -29,75 +29,67 @@ Given below are the sample payloads for webhook events.
 
 ### Payment Successful
 
-```json
-{
-  "timestamp":"2026-02-26 11:35:25.000000",
-  "request_identifier":"27455843883",
-  "event_type":"payment",
-  "status":"Success",
-  "webhook_delivery_message":null,
-  "http_method":"POST",
-  "endpoint":"https://partnerapilayer.payu.in/apilayer/partner/paymentCallback",
-  "response_code":200,
-  "response_body":"",
-  "endpoint_latency":1085,
-  "event_payload":{
-    "country":"",
-    "curl":"https://api.payu.in/partner/paymentCancelled",
-    "udf10":"",
-    "discount":"0.00",
-    "offer_key":"",
-    "error_Message":"The Bank servers are unreachable over the network",
-    "state":"",
-    "payment_source":"payuPureS2S",
-    "txnid":"25841132755570991",
-    "surl":"https://api.payu.in/partner/paymentSuccess",
-    "net_amount_debit":"0",
-    "lastname":"",
-    "zipcode":"",
-    "offer_availed":"",
-    "phone":"918921784385",
-    "pa_name":"Camspay",
-    "productinfo":"25841132755570991",
-    "hash":"bd4b8272f8a2d3b57a42f4c444642ef9c7c965e41378264f1d94645e386b4c22f4bf810d1020e38586b3e44d3197154be136f467821a166a5119af7d042d426c",
-    "status":"pending",
-    "firstname":"",
-    "city":"",
-    "authenticaticationMethod":"",
-    "error":"E214",
-    "bank_ref_no":"",
-    "addedon":"2026-02-26 11:12:25",
-    "udf9":"",
-    "udf7":"",
-    "udf8":"",
-    "bank_ref_num":"",
-    "key":"rM5M43",
-    "email":"",
-    "amount":"1.00",
-    "unmappedstatus":"in progress",
-    "address2":"",
-    "address1":"",
-    "udf5":"whatsapp",
-    "mihpayid":"27455843883",
-    "udf6":"",
-    "udf3":"",
-    "udf4":"",
-    "udf1":"",
-    "udf2":"",
-    "field1":"",
-    "field0":"",
-    "field7":"VERNEGATIVE",
-    "field6":"",
-    "furl":"https://api.payu.in/partner/paymentFailed",
-    "field9":"HTTP/1.1 500 Internal Server Error",
-    "field8":"Verification | failed | Transaction failed at bank end",
-    "field3":"",
-    "field2":"",
-    "field5":"",
-    "PG_TYPE":"UPI-PG",
-    "field4":""
-  }
-}
+```text
+mihpayid=27553369917
+&mode=SBQR
+&status=success
+&key=rZ1fX4
+&txnid=T2603041446091822117753
+&amount=40.00
+&addedon=2026-03-04+14%3A46%3A14
+&productinfo=Static+QR
+&firstname=
+&lastname=
+&address1=
+&address2=
+&city=Gurgaon
+&state=
+&country=
+&zipcode=122001
+&email=
+&"phone"="##########"
+&udf1=
+&udf2=
+&udf3=
+&udf4=SoftQR
+&udf5=BFL0000006601446
+&udf6=
+&udf7=
+&udf8=
+&udf9=
+&udf10=
+&card_token=
+&card_no=
+&field0=STQ9IUFeqlafg78815827
+&field1=PRIYA+SHANKAR+PUSNAKE
+&field2=995486
+&field3=_mobilenum_%40axl
+&field4=bajajpay.6879729.d2m9cckd%40indus
+&field5=AXLd36cfcd317f243b5b3a2d62bc71caf78
+&field6=00000038683323284%7C_mobilenum_%7CSBIN0011418
+&field7=APPROVED+OR+COMPLETED+SUCCESSFULLY%7C00
+&field8=Payment+from+PhonePe
+&field9=Transaction+is+Successful.+Bank+Sent%3ATransaction+success
+&payment_source=payu
+&cardToken=
+&authenticaticationMethod=
+&PG_TYPE=SBQR-PG
+&error=E000
+&error_Message=No+Error
+&net_amount_debit=40
+&discount=0.00
+&offer_key=
+&offer_availed=
+&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
+&unmappedstatus=captured
+&hash=aefe0213c4299c7ee2039d5430f7bee63711ee627e1b47d2605d0384abbbf828f3641dae3cb126c8b2f761084cbb0bebad27bb325696cc44ce3061157d7cd9ff
+&bank_ref_no=793887773815
+&bank_ref_num=793887773815
+&bankcode=UPISBQR
+&surl=
+&curl=
+&furl=
+&psp_name=CARDHOLDERXXXXXXXXNAME
 ```
 
 ### Payment Failed
