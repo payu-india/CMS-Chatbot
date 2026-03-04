@@ -213,3 +213,47 @@ Given below are the sample payloads for webhook events.
   | authenticaticationMethod | Authentication method used (e.g. 3DS). Note: name may appear with typo in payload.                                                                                                                                                                              |
   | field0 – field9          | Gateway- or flow-specific fields. Content varies by payment mode and outcome (e.g. bank reference, RRN, auth result, status message). For cards, field7/field8/field9 often carry auth result or message (e.g. AUCNEGATIVE, UNKNOWN, Message Received Invalid). |
 </Accordion>
+
+### Refund Successful
+
+```json
+{
+  "additionalValue1":null,
+  "bank_arn":308239782136,
+  "refund_mode":"Instant Credit through UPI",
+  "bank_ref_num":"308239782136",
+  "key":"lF76TH",
+  "amt":"149.00",
+  "remark":null,
+  "status":"success",
+  "token":"DG0036362",
+  "mihpayid":"17025521702",
+  "request_id":"11865427756",
+  "merchantTxnId":"ORDER_33172661_1679394745",
+  "additionalValue2":null,
+  "action":"refund"
+}
+```
+
+### Refund Failure
+
+```json
+{
+  "additionalValue1": null,
+  "bank_arn": null,
+  "refund_mode": "Instant Credit through UPI",
+  "bank_ref_num": "100142082006",
+  "key": "IahMJL",
+  "amt": "72.00",
+  "remark": null,
+  "status": "failure",
+  "token": "PZT2506150013OR4AN33",
+  "mihpayid": " 23907365951 ",
+  "request_id": "17265314530",
+  "merchantTxnId": "PZT2506150013OR4AN02",
+  "additionalValue2": null,
+  "action": "refund"
+}
+```
+
+<br />
