@@ -178,7 +178,7 @@ mihpayid=27553387529
   | country                  | Customer country (from request).                                                                                                                                                                                                                                |
   | zipcode                  | Customer zip/postal code (from request).                                                                                                                                                                                                                        |
   | udf1 – udf10             | User-defined fields (udf1–udf5 documented; udf6–udf10 in response). Same values as sent in the transaction request. Character limit 255 for udf1–udf5.                                                                                                          |
-  | hash                     | Hash calculated by PayU. Merchant must verify it before marking the transaction success/failure to ensure integrity. See [Response Handling](doc:using-payu-hash-verification-tool).                                                                                    |
+  | hash                     | Hash calculated by PayU. Merchant must verify it before marking the transaction success/failure to ensure integrity. See [Response Handling](doc:using-payu-hash-verification-tool).                                                                            |
   | status                   | Outcome of the transaction: `success`, `failure`, or `pending`. Treat only `success` as successful.                                                                                                                                                             |
   | error                    | Error code indicating the reason for failure (e.g. E500). Failure reasons vary by bank.                                                                                                                                                                         |
   | error\_Message           | Human-readable error message. Refer to [Error Codes](ref:error-codes) for the list.                                                                                                                                                                             |
@@ -210,6 +210,15 @@ The following table provides description for each status of the transaction. You
 </Accordion>
 
 ### Refund Successful
+
+<Callout icon="📘" theme="info">
+  **Note:**
+
+  The Refund and Dispute payloads are in the following format:
+
+  * **Method:** POST
+  * **Content type:** application/json
+</Callout>
 
 ```json
 {
