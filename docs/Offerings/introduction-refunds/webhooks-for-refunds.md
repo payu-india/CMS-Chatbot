@@ -36,10 +36,12 @@ To create a refund webhook:
 5. Click **Create** to finish.
 
 <Callout icon="📘" theme="info">
-  **Reference**: To update or delete an existing webhook, refer to:
+  **References**: 
 
-  * [Update a Webhook](doc:update-a-webhook)
-  * [Delete a Webhook](doc:delete-a-webhook-on-dashboard)
+  * **Sample webhook response**: For sample webhook responses, refer to [Refund Status Callback](ref:refund-status-callback).
+  * **Update or delete a webhook**: To update or delete an existing webhook, refer to:
+    * [Update a Webhook](doc:update-a-webhook)
+    * [Delete a Webhook](doc:delete-a-webhook-on-dashboard)
 </Callout>
 
 <br />
