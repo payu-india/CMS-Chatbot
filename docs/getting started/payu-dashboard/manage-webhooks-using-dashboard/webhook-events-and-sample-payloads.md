@@ -157,7 +157,7 @@ mihpayid=27553387529
 &threeDSVersion=2.2.0
 ```
 
-#### Event Payload Parameter Description
+#### Payments Event Payload Parameter Description
 
 <Accordion title="Parameters and Description" icon="fa-table">
   | Parameters               | Description                                                                                                                                                                                                                                                     |
@@ -276,7 +276,7 @@ Hash verification in PayU is a crucial security measure used to ensure the authe
 }
 ```
 
-#### Payload Parameters
+#### Refunds Payload Parameters
 
 <Accordion title="Parameters and Description" icon="fa-table">
   | Parameter        | Description                                                               | Source Data                      |
