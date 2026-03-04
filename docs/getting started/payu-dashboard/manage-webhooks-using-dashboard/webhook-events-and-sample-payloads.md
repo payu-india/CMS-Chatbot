@@ -205,10 +205,8 @@ mihpayid=27553387529
 
 The following table provides description for each status of the transaction. You must map the order status using the payment state specified in the **Status** column of the following table. As Test environment (Sandbox) is a replica of the Production environment, you can push the code in production by just replacing account credentials and URL.
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
-
-<Payment_State_Explanation />
-
+<Accordion title="Status and Description" icon="fa-info-circle">
+  <Payment_State_Explanation />
 </Accordion>
 
 ### Refund Successful without ARN
