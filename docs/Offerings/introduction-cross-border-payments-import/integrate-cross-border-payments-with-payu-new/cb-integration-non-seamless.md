@@ -9,7 +9,7 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
 
 <Cards columns={3}>
   <Card title="1. Post the Payment Request with PayU" href="#step-1-post-the-payment-request-with-payu">
-    Post the payment parameters to PayU's _payment API with required UDFs for cross-border.
+    Post the payment parameters to PayU's \_payment API with required UDFs for cross-border.
 
     <br />
   </Card>
@@ -24,8 +24,6 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
     Reconcile and validate transaction details using verification methods.
   </Card>
 </Cards>
-
-
 
 <Callout icon="📘" theme="info">
   After you complete this integration, you need to perform the following steps as required:
@@ -407,9 +405,6 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
 
   For more information, refer to  <a href="generate-hash-merchant-hosted" target="_blank"> Generate Hash</a>.
 
-  <Accordion title="Hashing sample" icon="fa-info-circle">
-    <HashingSample />
-  </Accordion>
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
@@ -423,6 +418,10 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
 ## Step 2: Check Response from PayU
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded). You must implement the reverse hashing as described in the following:
+
+<Callout icon="📘" theme="info">
+  **Reference:** PayU recommends you to use PayU Hash Verification Tool to verify the hashing. For more information, refer to [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
+</Callout>
 
 <ReverseHashing />
 
