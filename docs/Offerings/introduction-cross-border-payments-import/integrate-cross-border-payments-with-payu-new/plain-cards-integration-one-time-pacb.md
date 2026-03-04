@@ -51,11 +51,9 @@ Post the payment parameters to PayU's `_payment` API endpoint to initiate a plai
   <br />
 
   <Accordion title="Hash Generation" icon="fa-lock">
-    Generate the hash using the following formula:
+    <HashingRequestParameters />
 
-    ```
-    hash = sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
-    ```
+    <HashingSample />
   </Accordion>
 </Accordion>
 
