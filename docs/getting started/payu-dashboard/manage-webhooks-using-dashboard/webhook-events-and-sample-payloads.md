@@ -25,6 +25,8 @@ Given below are the sample payloads for webhook events.
 
 <Callout icon="❗️">
   **Watch Out!**
+
+  * The payment and 
 </Callout>
 
 ### Payment Successful
@@ -210,7 +212,7 @@ mihpayid=27553369917
   | field0 – field9          | Gateway- or flow-specific fields. Content varies by payment mode and outcome (e.g. bank reference, RRN, auth result, status message). For cards, field7/field8/field9 often carry auth result or message (e.g. AUCNEGATIVE, UNKNOWN, Message Received Invalid). |
 </Accordion>
 
-### Refund Successful
+### Refund Successful with ARN Updated
 
 ```json
 {
@@ -230,6 +232,29 @@ mihpayid=27553369917
   "action":"refund"
 }
 ```
+
+### Refund Successful without ARN
+
+```json
+{
+  "additionalValue1": null,
+  "bank_arn": null,
+  "refund_mode": "Instant Credit through UPI",
+  "bank_ref_num": "100142082006",
+  "key": "IahMJL",
+  "amt": "72.00",
+  "remark": null,
+  "status": "success",
+  "token": "PZT2506150013OR4AN33",
+  "mihpayid": " 23907365951 ",
+  "request_id": "17265314530",
+  "merchantTxnId": "PZT2506150013OR4AN02",
+  "additionalValue2": null,
+  "action": "refund"
+}
+```
+
+<br />
 
 ### Refund Failure
 
