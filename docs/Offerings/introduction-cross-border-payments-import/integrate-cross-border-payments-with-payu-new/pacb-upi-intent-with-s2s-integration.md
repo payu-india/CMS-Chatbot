@@ -521,6 +521,22 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
       </tr>
     </tbody>
   </Table>
+  <Accordion title="Hashing Logic" icon="fa-lock">
+  <PACB_Hashing />
+
+  ```
+  key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt|additional_charges|buyer_type_business
+  ```
+
+  * **Case4 example**: if the merchant wants to pass the api\_version = 7 and buyer\_type\_business, udf\_params in the payment request.
+
+  ```
+  key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|si_details|salt|udf_params|buyer_type_business
+  ```
+
+  For more information, refer to  <a href="generate-hash-merchant-hosted" target="_blank"> Generate Hash</a>.
+
+</Accordion>
 
   <Accordion title="Sample Request" icon="fa-code">
     ```curl
