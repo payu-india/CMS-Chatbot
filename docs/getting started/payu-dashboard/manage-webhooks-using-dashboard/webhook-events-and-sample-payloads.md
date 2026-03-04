@@ -26,7 +26,7 @@ Given below are the sample payloads for webhook events.
 <Callout icon="❗️" theme="error">
   **Watch Out!**
 
-  * The payment successful and failure payloads are in the URL Encoded format.
+  * The payment successful and failure payloads are in the Form POST URL Encoded format.
 </Callout>
 
 ### Payment Successful
