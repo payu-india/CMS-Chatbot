@@ -364,3 +364,12 @@ The following table provides description for each status of the transaction. You
 
   Ensure that your webhook URL is captures and handles the posted response payload. Additionally, you may use the <Anchor label="Transaction Callback API" target="_blank" href="https://docs.payu.in/reference/transaction-callback-api">Transaction Callback API</Anchor> to manually test the response payload:
 </Callout>
+
+## IP Addresses
+
+All our webhook requests originate from a set of IP addresses. If your server-handing webhook requests is behind a firewall, you should whitelist the following set of IP addresses to ensure that requests are successful:
+
+| **Environment**        | **DC IPs**                                                             | **DR IPs**                                                              |
+| :--------------------- | :--------------------------------------------------------------------- | :---------------------------------------------------------------------- |
+| Test Environment       | <ul><li>180.179.174.1</li> <li>3.6.73.183</li> <li>3.6.83.44</li></ul> | NA                                                                      |
+| Production Environment | <ul><li>3.7.89.1</li> <li>3.7.89.2</li> <li>3.7.89.3</li></ul>         | <ul><li>52.140.8.88</li> <li>52.140.8.89</li> <li>52.140.8.64</li></ul> |
