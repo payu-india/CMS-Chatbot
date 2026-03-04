@@ -170,10 +170,10 @@ Given below are the sample payloads for webhook events.
 }
 ```
 
-#### Payload Parameter Description
+#### Event Payload Parameter Description
 
 <Accordion title="Parameters and Description" icon="fa-table">
-  | Parameters                    | Description                                                                                                                                                                                                                                                     |
+  | Parameters               | Description                                                                                                                                                                                                                                                     |
   | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | mihpayid                 | Unique transaction ID assigned by PayU for each transaction. Use for inquiry or refund.                                                                                                                                                                         |
   | key                      | Merchant key identifying the merchant's PayU account; same as in the transaction request.                                                                                                                                                                       |
