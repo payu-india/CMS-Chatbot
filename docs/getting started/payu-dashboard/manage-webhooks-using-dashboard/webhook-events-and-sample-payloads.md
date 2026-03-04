@@ -201,7 +201,15 @@ mihpayid=27553387529
   | field0 – field9          | Gateway- or flow-specific fields. Content varies by payment mode and outcome (e.g. bank reference, RRN, auth result, status message). For cards, field7/field8/field9 often carry auth result or message (e.g. AUCNEGATIVE, UNKNOWN, Message Received Invalid). |
 </Accordion>
 
-<br />
+#### Payment State Explanations
+
+The following table provides description for each status of the transaction. You must map the order status using the payment state specified in the **Status** column of the following table. As Test environment (Sandbox) is a replica of the Production environment, you can push the code in production by just replacing account credentials and URL.
+
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+
+<Payment_State_Explanation />
+
+</Accordion>
 
 ### Refund Successful without ARN
 
