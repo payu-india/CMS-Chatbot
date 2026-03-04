@@ -96,76 +96,66 @@ mihpayid=27553369917
 
 ### Payment Failed
 
-```json
-{
-  "timestamp":"2026-02-27 14:24:45.000000",
-  "request_identifier":"27472524682",
-  "event_type":"payment",
-  "status":"Failed",
-  "webhook_delivery_message":"HTTP/2 405 ",
-  "http_method":"POST",
-  "endpoint":"https://payu.in",
-  "response_code":405,
-  "response_body":"<html>\r\n<head><title>405 Not Allowed</title></head>\r\n<body>\r\n<center><h1>405 Not Allowed</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n",
-  "endpoint_latency":7,
-  "event_payload":{
-    "country":"",
-    "curl":"https://admin.payu.in/test_response",
-    "udf10":"",
-    "discount":"0.00",
-    "offer_key":"",
-    "error_Message":"Bank failed to authenticate the customer",
-    "state":"",
-    "payment_source":"payu",
-    "txnid":"5e2e5eb03a45f13a8bdb",
-    "surl":"https://admin.payu.in/test_response",
-    "net_amount_debit":"0",
-    "lastname":"",
-    "zipcode":"",
-    "offer_availed":"",
-    "additionalCharges":"0.03",
-    "phone":"1234567890",
-    "pa_name":"PayU",
-    "productinfo":"Product Info",
-    "hash":"5aa580a257fc7f7acd8350db00142360d385b105d6b1aa1cb4bb9e14a945fc0bd84afecba321561485046a46d009581c77ec4d184cdf02d134a9c6e41b398817",
-    "status":"failure",
-    "firstname":"Payu-Admin",
-    "city":"",
-    "authenticaticationMethod":"",
-    "error":"E500",
-    "bank_ref_no":"",
-    "addedon":"2026-02-27 14:24:42",
-    "udf9":"",
-    "udf7":"",
-    "udf8":"",
-    "bank_ref_num":"",
-    "key":"rM5M43",
-    "email":"test@example.com",
-    "amount":"1.00",
-    "unmappedstatus":"failed",
-    "address2":"",
-    "address1":"",
-    "udf5":"",
-    "mihpayid":"27472524682",
-    "udf6":"",
-    "udf3":"",
-    "udf4":"",
-    "udf1":"",
-    "udf2":"",
-    "field1":"",
-    "field0":"",
-    "field7":"AUCNEGATIVE",
-    "field6":"",
-    "furl":"https://admin.payu.in/test_response",
-    "field9":"UNKNOWN",
-    "field8":"Message Received Invalid",
-    "field3":"",
-    "field2":"",
-    "field5":"",
-    "PG_TYPE":"DC-PG",
-    "field4":""
-  }
-}
+```text
+mihpayid=27553387529
+&mode=CC
+&status=failure
+&key=1LtbLt
+&txnid=adanilounge-fef018ea-dd58-4af9-bce2-9d1920a93421-1
+&amount=2.00
+&addedon=2026-03-04+14%3A47%3A38
+&productinfo=Description+not+provided
+&firstname=CARDHOLDERXXXXXXXXNAME
+&lastname=CARDHOLDERXXXXXXXXNAME
+&address1=
+&address2=
+&city=
+&state=
+&country=
+&zipcode=
+&email=name%40mail.com
+&"phone"="##########"
+&udf1=fef018eadd584af9bce29d1920a93421
+&udf2=loungeone
+&udf3=loungeone
+&udf4=fef018eadd584af9bce29d1920a93421
+&udf5=0
+&udf6=
+&udf7=
+&udf8=
+&udf9=
+&udf10=
+&card_token=
+&card_no=XXXXXXXXXXXX6509
+&field0=
+&field1=7726158727156987305915
+&field2=
+&field3=
+&field4=
+&field5=93
+&field6=05
+&field7=AUTHNEGATIVE
+&field8=93+%7C+Transaction+cannot+be+completed%3B+violation+of+law+%7C+Transaction+cannot+be+completed%3B+violation+of+law
+&field9=Transaction+declined+due+to+card+not+enabled+for+online+transactions+or+user+%2F+Bank+Defined+Restrictions
+&payment_source=payuS2S
+&cardToken=
+&authenticaticationMethod=
+&PG_TYPE=CC-PG
+&error=E325
+&error_Message=Bank+denied+transaction+on+the+card.
+&net_amount_debit=0
+&discount=0.00
+&offer_key=
+&offer_availed=
+&unmappedstatus=failed
+&hash=eded314a21cc033d3c9d620006492b76a430bef7f0d661313a6ed9f5717fa7dca8c6ec885cba8ecfdf95396fce3a5ef1a55e42c4b9f0fc8fcab0767e80130eeb
+&bank_ref_no=7726158727156987305915
+&bank_ref_num=7726158727156987305915
+&bankcode=CC
+&surl=https%3A%2F%2Fapi.juspay.in%2Fv2%2Fpay%2Fresponse%2Fadanilounge%2FmozmFhdZrfsT69TfhWB
+&curl=https%3A%2F%2Fapi.juspay.in%2Fv2%2Fpay%2Fresponse%2Fadanilounge%2FmozmFhdZrfsT69TfhWB
+&furl=https%3A%2F%2Fapi.juspay.in%2Fv2%2Fpay%2Fresponse%2Fadanilounge%2FmozmFhdZrfsT69TfhWB
+&threeDSVersion=2.2.0
 ```
 
 #### Event Payload Parameter Description
@@ -335,7 +325,7 @@ mihpayid=27553369917
 #### cb_status Parameter Values
 
 <Accordion title="Parameters and Description" icon="fa-info-circle">
-  The `cb_status` or chargeback status field can have the following values:<br/>
+  The `cb_status` or chargeback status field can have the following values:<br />
 
   | Chargeback Status            | Description                                                                                                                                                                                                                                                                                                            |
   | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
