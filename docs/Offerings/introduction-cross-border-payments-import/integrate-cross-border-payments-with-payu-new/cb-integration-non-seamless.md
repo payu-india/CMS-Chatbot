@@ -403,8 +403,10 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
   key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|si_details|salt|udf_params|buyer_type_business
   ```
 
-  For more information, refer to  <a href="generate-hash-merchant-hosted" target="_blank"> Generate Hash</a>.
-
+  <Callout icon="📘" theme="info">
+  **Reference:** PayU recommends you to use PayU Hash Verification Tool to verify the hashing. For more information, refer to [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
+</Callout>
+    
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
@@ -418,10 +420,6 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
 ## Step 2: Check Response from PayU
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded). You must implement the reverse hashing as described in the following:
-
-<Callout icon="📘" theme="info">
-  **Reference:** PayU recommends you to use PayU Hash Verification Tool to verify the hashing. For more information, refer to [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
-</Callout>
 
 <ReverseHashing />
 
