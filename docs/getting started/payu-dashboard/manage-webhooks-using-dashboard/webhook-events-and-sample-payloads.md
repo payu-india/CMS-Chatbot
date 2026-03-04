@@ -172,9 +172,7 @@ Given below are the sample payloads for webhook events.
 
 #### Payload Parameter Description
 
-<br />
-
-<Accordion title="Description of fields in event_payload parameter" icon="fa-table">
+<Accordion title="Parameters and Description" icon="fa-table">
   | Field                    | Description                                                                                                                                                                                                                                                     |
   | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | mihpayid                 | Unique transaction ID assigned by PayU for each transaction. Use for inquiry or refund.                                                                                                                                                                         |
