@@ -82,7 +82,6 @@ mihpayid=27553369917
 &discount=0.00
 &offer_key=
 &offer_availed=
-&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
 &unmappedstatus=captured
 &hash=aefe0213c4299c7ee2039d5430f7bee63711ee627e1b47d2605d0384abbbf828f3641dae3cb126c8b2f761084cbb0bebad27bb325696cc44ce3061157d7cd9ff
 &bank_ref_no=793887773815
