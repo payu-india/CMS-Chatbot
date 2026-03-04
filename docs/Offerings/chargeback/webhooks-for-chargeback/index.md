@@ -11,11 +11,11 @@ Chargeback webhooks provide real-time notifications about important chargeback e
 * Chargeback status is changed
 * Chargeback amount is changed
 
-To create webhooks using Dashboard, refer to [Confgire Chargeback Webhook](https://docs.payu.in/docs/create-a-chargeback-webhook) > [Using Dashboard](https://docs.payu.in/docs/create-a-chargeback-webhook#using-dashboard). To update or delete an existing webhook, refer to any of the following:
+To create webhooks using Dashboard, refer to <Anchor label="Configure Chargeback Webhook" target="_blank" href="https://docs.payu.in/docs/create-a-chargeback-webhook">Configure Chargeback Webhook</Anchor> > <Anchor label="Using Dashboard" target="_blank" href="https://docs.payu.in/docs/create-a-chargeback-webhook#using-dashboard">Using Dashboard</Anchor>. To update or delete an existing webhook, refer to any of the following:
 
-* [Create a New Webhook](doc:create-a-new-webhook)
-* [Update a Webhook](https://docs.payu.in/docs/update-a-webhook)
-* [Delete a Webhook](https://docs.payu.in/docs/delete-a-webhook-on-dashboard)
+* <Anchor label="Create a New Webhook" target="_blank" href="doc:create-a-new-webhook">Create a New Webhook</Anchor>
+* <Anchor label="Update a Webhook" target="_blank" href="https://docs.payu.in/docs/update-a-webhook">Update a Webhook</Anchor>
+* <Anchor label="Delete a Webhook" target="_blank" href="https://docs.payu.in/docs/delete-a-webhook-on-dashboard">Delete a Webhook</Anchor>
 
 ## Understanding payload
 
