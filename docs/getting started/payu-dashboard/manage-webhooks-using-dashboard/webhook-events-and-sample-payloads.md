@@ -23,6 +23,10 @@ The table below lists the available webhook events.
 
 Given below are the sample payloads for webhook events.
 
+<Callout icon="❗️">
+  **Watch Out!**
+</Callout>
+
 ### Payment Successful
 
 ```json
