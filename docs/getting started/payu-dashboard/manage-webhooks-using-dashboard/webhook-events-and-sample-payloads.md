@@ -305,7 +305,7 @@ mihpayid=27553387529
 
 #### Payload Parameters
 
-<Accordion title="Parameters and Description" icon="fa-info-circle">
+<Accordion title="Parameters and Description" icon="fa-table">
   | Field        | Description                                                                                                                                                                                                       |
   | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | type         | Type of transaction  and merchant must include the value as **payments** only.                                                                                                                                    |
@@ -324,7 +324,7 @@ mihpayid=27553387529
 
 #### cb_status Parameter Values
 
-<Accordion title="Parameters and Description" icon="fa-info-circle">
+<Accordion title="Parameters and Description" icon="fa-table">
   The `cb_status` or chargeback status field can have the following values:<br />
 
   | Chargeback Status            | Description                                                                                                                                                                                                                                                                                                            |
