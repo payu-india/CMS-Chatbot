@@ -335,7 +335,7 @@ mihpayid=27553369917
 #### cb_status Parameter Values
 
 <Accordion title="Parameters and Description" icon="fa-info-circle">
-  The `cb_status` or chargeback status field can have the following values:
+  The `cb_status` or chargeback status field can have the following values:<br/>
 
   | Chargeback Status            | Description                                                                                                                                                                                                                                                                                                            |
   | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
