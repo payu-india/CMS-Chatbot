@@ -74,7 +74,7 @@ To use Webhooks during integration with PayU:
 
 Sample response from PayU to the merchant:
 
-```json
+```text
 mihpayid=403993715528735905&mode=CASH&status=success&key=QyT13U&txnid=e41097ba86bffc0eb67f&amount=10.00&addedon=2023-04-18+17%3A53%3A43&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=Test1&udf2=test2&udf3=Test3&udf4=Test4&udf5=Test5&card_token=&card_no=&field0=&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=CASH-PG&error=E000&error_Message=No+Error&net_amount_debit=10&discount=0.00&offer_key=&offer_availed=&unmappedstatus=captured&hash=6cac0092a7b6bff2e17822e2917fed490c984392c6f5a5bbdc4c37b9a6f9660c30442a64254236eb10b0af628258288fb1eb94e724e05c8d2bff58957509b945&bank_ref_no=2eec20f3-3608-4c25-a1e7-2af96e5c47c5&bank_ref_num=2eec20f3-3608-4c25-a1e7-2af96e5c47c5&bankcode=AMON&surl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response
 ```
 
