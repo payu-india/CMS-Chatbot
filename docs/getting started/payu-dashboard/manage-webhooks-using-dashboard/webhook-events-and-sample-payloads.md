@@ -213,7 +213,7 @@ The following table provides description for each status of the transaction. You
 
 Hash verification in PayU is a crucial security measure used to ensure the authenticity and integrity of transaction data, protecting against "man-in-the-middle" attacks. PayU uses the SHA-512 hash function to generate these hash values. For more information refer to the <Anchor label="Using PayU Hash Verification Tool" target="_blank" href="https://docs.payu.in/docs/using-payu-hash-verification-tool">Using PayU Hash Verification Tool</Anchor>.
 
-### Refund Successful without ARN
+### Refund Successful
 
 ```json
 {
