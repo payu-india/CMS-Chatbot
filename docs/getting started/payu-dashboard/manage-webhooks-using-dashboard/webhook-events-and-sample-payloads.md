@@ -339,4 +339,12 @@ mihpayid=27553387529
   | Closed under Fraud Liability | It indicates that the chargeback has been closed since the transaction has been identified as fraudulent. Moreover, PayU will cover the chargeback amount under the fraud liability program so the chargeback amount will be reversed back to the merchant account or will not be debited from the merchant's account. |
 </Accordion>
 
-<br />
+<Callout icon="📘" theme="info">
+  **Webhook Logs**
+
+  You can now view the webhook logs on your dashboard by navigating to:
+
+  Dashboard -> Developers -> Webhook logs
+
+  Ensure that your webhook URL is captures and handles the posted response payload. Additionally, you may use the <Anchor label="Transaction Callback API" target="_blank" href="https://docs.payu.in/reference/transaction-callback-api">Transaction Callback API</Anchor> to manually test the response payload:
+</Callout>
