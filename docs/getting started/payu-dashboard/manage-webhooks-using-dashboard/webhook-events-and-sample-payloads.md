@@ -314,7 +314,7 @@ Hash verification in PayU is a crucial security measure used to ensure the authe
 }
 ```
 
-#### Payload Parameters
+#### Dispute Payload Parameters
 
 <Accordion title="Parameters and Description" icon="fa-table">
   | Field        | Description                                                                                                                                                                                                       |
