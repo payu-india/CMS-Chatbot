@@ -2,7 +2,7 @@
 title: Webhook Events and Sample Payloads
 excerpt: List of webhook events along with sample payloads.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
