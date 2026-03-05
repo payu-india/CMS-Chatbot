@@ -1,8 +1,9 @@
 ---
-title: '[Not Supported]Native OTP Flow for BNPL'
-excerpt: ''
+title: Native OTP Flow for BNPL
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
@@ -17,8 +18,6 @@ metadata:
     - Merchant Hosted BNPL Merchant Integration
     - Flexible Payment Options Merchant Hosted Checkout Integration
   robots: index
-next:
-  description: ''
 ---
 ---
 title: Native OTP Flow for BNPL
@@ -42,6 +41,7 @@ metadata:
 next:
   description: ''
 ---
+
 This section describes what is Native OTP flow with benefits and how to implement Native OTP flow when collecting payments using <Glossary>BNPL</Glossary>.
 
 **Steps to integrate**
