@@ -62,7 +62,7 @@ The following steps allow you to integrate the server-to-server UPI intent:
 
 <PaymentAPIEnvironment />
 
-The **_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
+The **_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <Anchor label="UPI Intent - Non SDK Flow" target="_blank" href="doc:upi-smart-intent-non-sdk-flow">UPI Intent - Non SDK Flow</Anchor>.
 
 This needs to be a server-to-server cURL request. This API is used for both Cards and UPI for generating a new transaction.
 
