@@ -1,5 +1,5 @@
 ---
-title: Collect Payments with BNPL Link and Pay
+title: BNPL Link and Pay
 deprecated: false
 hidden: false
 link:
@@ -12,30 +12,6 @@ metadata:
 <Glossary>BNPL</Glossary> like Lazypay allow your customers to checkout in "Click and Pay Later" with no hidden charges, while you get paid upfront.
 
 You can integrate with PayU’s Pay Later stack to enable the one-click checkout feature on the payment page, across BNPLs that support link and pay flow.
-
-**Steps to integrate**
-
-<Cards columns={3}>
-  <Card title="1. Check the BNPL Eligibility" href="#step-1-check-the-bnpl-eligibility">
-    Verify customer eligibility for Buy Now Pay Later options using PayU hosted checkout
-  </Card>
-
-  <Card title="2. Initiate the Payment" href="#step-2-initiate-the-payment">
-    Start the payment process using PayU hosted checkout integration with offers
-  </Card>
-
-  <Card title="3. Check the Response from PayU" href="#step-3-check-the-response-from-payu">
-    Handle and process the response received from PayU after payment initiation
-  </Card>
-
-  <Card title="4. Submit the OTP (First Time Flow Only)" href="#step-4-submit-the-otp-for-first-time-flow-only">
-    Submit and validate OTP for first-time users in the BNPL flow
-  </Card>
-
-  <Card title="5. Verify the Payment" href="s#step-5-verify-the-payment">
-    Confirm the payment status and ensure successful transaction completion
-  </Card>
-</Cards>
 
 ## Benefits and Customer Journey
 
@@ -94,7 +70,31 @@ You can integrate with PayU’s Pay Later stack to enable the one-click checkout
   4. [Submit the OTP (First-Time flow only)](#step-4-submit-the-otp-for-first-time-flow-only)
 </Accordion>
 
-## Step 1: Check the BNPL eligibility
+## Steps to Integrate
+
+<Cards columns={3}>
+  <Card title="1. Check the BNPL Eligibility" href="#step-1-check-the-bnpl-eligibility">
+    Verify customer eligibility for Buy Now Pay Later options using PayU hosted checkout
+  </Card>
+
+  <Card title="2. Initiate the Payment" href="#step-2-initiate-the-payment">
+    Start the payment process using PayU hosted checkout integration with offers
+  </Card>
+
+  <Card title="3. Check the Response from PayU" href="#step-3-check-the-response-from-payu">
+    Handle and process the response received from PayU after payment initiation
+  </Card>
+
+  <Card title="4. Submit the OTP (First Time Flow Only)" href="#step-4-submit-the-otp-for-first-time-flow-only">
+    Submit and validate OTP for first-time users in the BNPL flow
+  </Card>
+
+  <Card title="5. Verify the Payment" href="s#step-5-verify-the-payment">
+    Confirm the payment status and ensure successful transaction completion
+  </Card>
+</Cards>
+
+### Step 1: Check the BNPL eligibility
 
 Before you can initiate payment with PayU, you can check the eligibility using the **Get EMI Checkout Details** API. For more information, refer to <Anchor label="Get EMI Checkout Details API" target="_blank" href="ref:get-emi-checkout-details-api">Get EMI Checkout Details API</Anchor>.
 
@@ -327,7 +327,7 @@ Before you can initiate payment with PayU, you can check the eligibility using t
   ```
 </Accordion>
 
-## Step 2: Initiate the payment
+### Step 2: Initiate the payment
 
 You can initiate the payment using the _payment API along with the following additional parameters as in Merchant Hosted Checkout Integration for BNPL. For complete list of parameters and "Try It" experience on API Reference, refer to [Collect Payment API - S2S Link and Pay](https://docs.payu.in/reference/_payment_s2s_link_pay/).
 
@@ -344,236 +344,236 @@ You can initiate the payment using the _payment API along with the following add
   </Callout>
 
   <HTMLBlock>{`
-                                     <table style="width: 100%; border-collapse: collapse;">
-                                     <thead>
-                                     <tr>
-                                       <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                                       <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                                       <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-                                     </tr>
-                                     </thead>
-                                     <tbody>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Merchant key provided by PayU during onboarding.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p> JPg***r</p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>txnid<br> <code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The transaction ID is a reference number for a specific order that is generated by the merchant.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p> ypl938459435</p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>amount  <code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The payment amount for the transaction.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p> 10.00</p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>productinfo  <code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>A brief description of the product.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p> iPhone</p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>firstname  <code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The first name of the customer.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>Ashish</p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The email address of the customer.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p> <a href="mailto:abc@payu.in">abc@payu.in</a></p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br> <code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The phone number of the customer.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>pg<br><code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><em>String</em> It defines the payment category using the Merchant Hosted Checkout integration. For a BNPL payment, &quot;BNPL&quot; must be specified in the pg parameter.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>BNPL</p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>bankcode<br><code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bankcodes for BNPL, refer to <a href="https://docs.payu.in/docs/bnpl-codes">BNPL Codes</a> .</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>LAZYPAY</p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>furl<br><code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The success URL, which is the page PayU will redirect to if the transaction is successful.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>surl<br><code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The Failure URL, which is the page PayU will redirect to if the transaction is failed.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>txn_s2s_flow<br><code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Pass the values as <strong>4</strong> for Link &amp; Pay.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>4</p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>LinkAndPayFlowType<br><code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter can contain any of the following values:<br>    - <strong>0</strong>: If the value is 1, then auto-debit will be preferred if customer is found already linked for the payment instrument basis result of the API and final captured / failure response will be returned.  </p>
-                                     <ul>
-                                     <li><strong>1</strong>: If value is 0, then the request will be considered as a standard native OTP request and transaction in progress response will be returned with OTP sent to the customer by the issuer</li>
-                                     </ul>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>LinkAndPayFlowDetails<br><code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter is to include additional details are required.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>abc:xyz</p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>storecard_token_type<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>  This parameter is used to specify the store card token type for stored card. For this scenario, you must include 0.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>storecard_token<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must include the token generated by PayU for the payment instrument and applicable for stored card only.<br><strong>Note</strong>: Either pass PayU token or user credentials with mobile number for customer identification </p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
-                                     </td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>user_credentials<br><code>mandatory</code></p>
-                                       <td style="border: 1px solid #ddd; padding: 8px;">
-                                         <p>String\` Unique user credential mapped against each user, to be passed by the merchant..</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>It is the hash calculated by the merchant. The hash calculation logic is:<br><code>sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>address1<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The first line of the billing address.<br><strong>For Fraud Detection</strong>: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>address2<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The second line of the billing address.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>city<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The city where your customer resides as part of the billing address.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>state<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The state where your customer resides as part of the billing address,</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>country<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The country where your customer resides.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>zipcode<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br><code>Character Limit</code>-20</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>udf1<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>udf2<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>udf3<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>udf4<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     <tr>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p>udf5<br><code>optional</code></p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</p>
-                                     </td>
-                                       <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                     </tr>
-                                     </tbody>
-                                     </table>
+                                       <table style="width: 100%; border-collapse: collapse;">
+                                       <thead>
+                                       <tr>
+                                         <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                                         <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                                         <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+                                       </tr>
+                                       </thead>
+                                       <tbody>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Merchant key provided by PayU during onboarding.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p> JPg***r</p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>txnid<br> <code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The transaction ID is a reference number for a specific order that is generated by the merchant.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p> ypl938459435</p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>amount  <code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The payment amount for the transaction.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p> 10.00</p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>productinfo  <code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>A brief description of the product.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p> iPhone</p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>firstname  <code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The first name of the customer.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>Ashish</p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The email address of the customer.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p> <a href="mailto:abc@payu.in">abc@payu.in</a></p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br> <code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The phone number of the customer.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>pg<br><code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><em>String</em> It defines the payment category using the Merchant Hosted Checkout integration. For a BNPL payment, &quot;BNPL&quot; must be specified in the pg parameter.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>BNPL</p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>bankcode<br><code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bankcodes for BNPL, refer to <a href="https://docs.payu.in/docs/bnpl-codes">BNPL Codes</a> .</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>LAZYPAY</p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>furl<br><code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The success URL, which is the page PayU will redirect to if the transaction is successful.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>surl<br><code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The Failure URL, which is the page PayU will redirect to if the transaction is failed.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>txn_s2s_flow<br><code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Pass the values as <strong>4</strong> for Link &amp; Pay.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>4</p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>LinkAndPayFlowType<br><code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter can contain any of the following values:<br>    - <strong>0</strong>: If the value is 1, then auto-debit will be preferred if customer is found already linked for the payment instrument basis result of the API and final captured / failure response will be returned.  </p>
+                                       <ul>
+                                       <li><strong>1</strong>: If value is 0, then the request will be considered as a standard native OTP request and transaction in progress response will be returned with OTP sent to the customer by the issuer</li>
+                                       </ul>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>LinkAndPayFlowDetails<br><code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter is to include additional details are required.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>abc:xyz</p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>storecard_token_type<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>  This parameter is used to specify the store card token type for stored card. For this scenario, you must include 0.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>storecard_token<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must include the token generated by PayU for the payment instrument and applicable for stored card only.<br><strong>Note</strong>: Either pass PayU token or user credentials with mobile number for customer identification </p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>123456</p>
+                                       </td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>user_credentials<br><code>mandatory</code></p>
+                                         <td style="border: 1px solid #ddd; padding: 8px;">
+                                           <p>String\` Unique user credential mapped against each user, to be passed by the merchant..</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>It is the hash calculated by the merchant. The hash calculation logic is:<br><code>sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||SALT)</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>address1<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The first line of the billing address.<br><strong>For Fraud Detection</strong>: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>address2<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The second line of the billing address.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>city<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The city where your customer resides as part of the billing address.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>state<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The state where your customer resides as part of the billing address,</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>country<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The country where your customer resides.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>zipcode<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br><code>Character Limit</code>-20</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>udf1<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>udf2<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>udf3<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>udf4<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       <tr>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p>udf5<br><code>optional</code></p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</p>
+                                       </td>
+                                         <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                       </tr>
+                                       </tbody>
+                                       </table>
   `}</HTMLBlock>
 
   `<HashingRequestParameters />`
@@ -779,7 +779,7 @@ You can initiate the payment using the _payment API along with the following add
   <br />
 </Accordion>
 
-## Step 3: Check the response from PayU
+### Step 3: Check the response from PayU
 
 <Accordion title="Sample response" icon="fa-code">
   > 📘 Notes:
@@ -932,7 +932,7 @@ You can initiate the payment using the _payment API along with the following add
   > Hence, for cases where the above response is not successful, it could either be Failed or Pending. In the **Pending** state, you can send a fallback URL (as above) which can be shown to the customer.
 </Accordion>
 
-## Step 4: Submit the OTP (for First time Flow only)
+### Step 4: Submit the OTP (for First time Flow only)
 
 You can submit the OTP using any of the following methods:
 
@@ -997,7 +997,7 @@ You can submit the OTP using any of the following methods:
   </Callout>
 </Accordion>
 
-## Step 5: Verify the payment
+### Step 5: Verify the payment
 
 <p>Upon receiving the response, we recommend performing a reconciliation step to validate all transaction details.\
 You can verify your payments using either of the following methods:</p>
