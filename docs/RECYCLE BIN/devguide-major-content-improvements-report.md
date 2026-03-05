@@ -71,6 +71,10 @@ The PayU Developer Guide underwent **comprehensive content restructuring and UX 
 | Payu Hosted Checkout Integration Dynamic Currency Conversion    | 7.0            | 9.3          | +2.4         | introduction-dynamic-currency-conversion           | ✓ Excellent improvement  |
 | Integrate With S2S For Cards Classic Integration                | 7.4            | 9.3          | +1.9         | server-to-server-integration                       | ✓ Significantly improved |
 
+## New Product Devguide Releases
+
+* <br />
+
 ## 🔮 **Upcoming Initiatives**
 
 ### **Q2 2026 Roadmap**
