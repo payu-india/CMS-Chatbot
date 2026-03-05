@@ -9,7 +9,6 @@ After the payment is complete, verify the transaction status using PayU's verifi
   1. **Webhook/Callback**: PayU sends a POST request to your `surl` or `furl` with transaction details
   2. **Verify Payment API**: Call the `verify_payment` API with the transaction ID
 </Accordion>
-
 <Accordion title="Verify Payment API" icon="fa-code">
   ```bash
   curl --location --request POST 'https://info.payu.in/merchant/postservice.php?form=2' \
@@ -21,7 +20,10 @@ After the payment is complete, verify the transaction status using PayU's verifi
   ```
 </Accordion>
 
-<Accordion title="Sample Webhook Response" icon="fa-table">
+
+Use the webhooks to verify the payment. The following is the sample webhook payload in response. For more information, refer to [Webhook Events and Sample Payloads](doc:webhook-events-and-sample-payloads).
+
+<Accordion title="Sample Webhook Response" icon="fa-reply">
   ```plaintext
   mihpayid=27553369917
   &mode=SBQR
@@ -81,21 +83,8 @@ After the payment is complete, verify the transaction status using PayU's verifi
   &surl=
   &curl=
   &furl=
-  &psp_name=CARDHOLDERXXXXXXXXNAME
-  ```
-</Accordion>
-
-For more information, refer to (Webhook Events and Sample Payloads)[docs:webhook-events-and-sample-payloads]
-
-<Accordion title="Callback Response Parameters" icon="fa-table">
-  | Parameter   | Description                                |
-  | ----------- | ------------------------------------------ |
-  | status      | Transaction status: `success` or `failure` |
-  | txnid       | Your transaction ID                        |
-  | mihpayid    | PayU transaction ID                        |
-  | amount      | Transaction amount                         |
-  | productinfo | Product information                        |
-  | hash        | Response hash for verification             |
+  &psp_n
+```
 </Accordion>
 
 <br />
