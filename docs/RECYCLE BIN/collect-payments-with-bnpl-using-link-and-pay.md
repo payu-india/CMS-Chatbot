@@ -1,7 +1,7 @@
 ---
 title: Collect Payments with BNPL Link and Pay
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
