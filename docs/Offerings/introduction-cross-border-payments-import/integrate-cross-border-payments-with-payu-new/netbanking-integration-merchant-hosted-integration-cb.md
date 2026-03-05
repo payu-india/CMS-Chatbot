@@ -211,6 +211,11 @@ After the payment is complete, verify the transaction status using PayU's verifi
   ```
 </Accordion>
 
+<Accordion title="Sample Webhook Response" icon="fa-table">
+
+</Accordion>
+For more information, refer to (Webhook Events and Sample Payloads)[docs:webhook-events-and-sample-payloads]
+
 <Accordion title="Callback Response Parameters" icon="fa-table">
   | Parameter   | Description                                |
   | ----------- | ------------------------------------------ |
