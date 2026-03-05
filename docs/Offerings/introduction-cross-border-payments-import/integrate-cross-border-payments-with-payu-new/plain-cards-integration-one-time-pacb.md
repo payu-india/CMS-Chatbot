@@ -21,13 +21,7 @@ This section explains how to integrate plain card payments for cross-border tran
     <br />
   </Card>
 
-  <Card title="3. Redirect the Customer" href="#step-3-redirect-the-customer">
-    Redirect the user to the bank page using acsTemplate after successful authentication response
-
-    <br />
-  </Card>
-
-  <Card title="4. Verify the Payment" href="#step-4-verify-the-payment">
+  <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
     Verify the payment status and ensure transaction completion
   </Card>
 </Cards>
@@ -191,228 +185,176 @@ After posting the payment request, PayU returns a response containing transactio
   ```
 </Accordion>
 
-<Accordion title="Handling the Response" icon="fa-info-circle">
-  Based on the `unmappedStatus` value, take the following actions:
+<Callout icon="📘" theme="info">
+  **Redirect** the customer using the result.acsTemplate(base64encoded) to their bank's page for authentication. The final response will be posted to surl/furl and the configured Webhook. 
+</Callout>
+<Accordion title="Submit OTP and Resend OTP" icon="fa-reply">
+  For S2S4 flow, you'll receive an OTP enrollment response if the card requires OTP authentication. Use the Submit OTP API and Resend OTP API (if the OTP entered by the customer fails). For more information refer to (Submit OTP API)[ref:submit-otp-to-payu] and (Resend OTP API)[ref:resend-otp-api].
+  <Accordion title="Sample response from Submit OTP" icon="fa-code">
 
-  | Status     | Action                                                              |
-  | ---------- | ------------------------------------------------------------------- |
-  | `pending`  | Proceed with 3DS authentication using the `acsTemplate` or OTP flow |
-  | `captured` | Transaction successful, no further action needed                    |
-  | `failed`   | Transaction failed, display error to customer                       |
+    **First failure**
+    ```json 
+{ 
+    "metaData": { 
+        "message": "OTP invalid. 2 retry attempts left out of 3", 
+        "referenceId": "3d954a723bbb920cee8b0975556f115957ca9992514e4810c859365f0666b044", 
+        "statusCode": null, 
+        "txnId": "my_order_13975", 
+        "unmappedStatus": "pending", 
+        "submitOtp": { 
+            "status": "failed", 
+            "attemptsLeft": 2 
+        } 
+    }, 
+    "result": {} 
+} 
+```
+    **Second failure** 
+
+    ```json
+{ 
+    "metaData": { 
+        "message": "OTP invalid. 1 retry attempts left out of 3", 
+        "referenceId": "3d954a723bbb920cee8b0975556f115957ca9992514e4810c859365f0666b044", 
+        "statusCode": null, 
+        "txnId": "my_order_13975", 
+        "unmappedStatus": "pending", 
+        "submitOtp": { 
+            "status": "failed", 
+            "attemptsLeft": 1 
+        } 
+    }, 
+    "result": {} 
+} 
+    ```
+    **Third attempt (success)**, any further attempt for SUBMIT/RESEND OTP, when the unmapped status reached to success/failure will provide the final result as below JSON only. 
+    ```json
+{ 
+    "metaData": { 
+        "message": "No Error", 
+        "referenceId": "3d954a723bbb920cee8b0975556f115957ca9992514e4810c859365f0666b044", 
+        "statusCode": "E000", 
+        "txnId": "my_order_13975", 
+        "unmappedStatus": "success", 
+        "submitOtp": { 
+            "status": "success" 
+        } 
+    }, 
+    "result": { 
+        "mihpayid": "403993715534252033", 
+        "mode": "CC", 
+        "status": "success", 
+        "key": "PRiQvJ", 
+        "txnid": "my_order_13975", 
+        "amount": "2.00", 
+        "addedon": "2025-07-03 19:12:46", 
+        "productinfo": "asfas", 
+        "firstname": "sudhanshu", 
+        "lastname": "", 
+        "address1": "", 
+        "address2": "", 
+        "city": "", 
+        "state": "", 
+        "country": "", 
+        "zipcode": "", 
+        "email": "test@test.com", 
+        "phone": "9999999999", 
+        "udf1": "<optional>", 
+        "udf2": "<optional>", 
+        "udf3": "<optional>", 
+        "udf4": "<optional>", 
+        "udf5": "", 
+        "udf6": "", 
+        "udf7": "", 
+        "udf8": "", 
+        "udf9": "", 
+        "udf10": "", 
+        "card_token": "", 
+        "card_no": "XXXXXXXXXXXX0008", 
+        "field0": "", 
+        "field1": "766301020057097000", 
+        "field2": "466683", 
+        "field3": "2.00", 
+        "field4": "", 
+        "field5": "00", 
+        "field6": "02", 
+        "field7": "AUTHPOSITIVE", 
+        "field8": "AUTHORIZED", 
+        "field9": "Transaction is Successful", 
+        "payment_source": "payuPureS2S", 
+        "PG_TYPE": "CC-PG", 
+        "error": "E000", 
+        "error_Message": "No Error", 
+        "issuing_bank": "YES", 
+        "card_type": "MAST", 
+        "cardToken": "", 
+        "net_amount_debit": "2", 
+        "discount": "0.00", 
+        "offer_key": "", 
+        "offer_availed": "", 
+        "unmappedstatus": "captured", 
+        "hash": "67d5aa0304a0699ab0764d157d362074f4cfd54178abd060e1f53850b6b1445a9627dd17c679c0902d74f5c03718e5e8ce32ef836d175786ef42c372a43801fa", 
+        "bank_ref_no": "766301020057097000", 
+        "bank_ref_num": "766301020057097000", 
+        "bankcode": "CC", 
+        "surl": "https://test.payu.in/admin/test_response", 
+        "curl": "https://test.payu.in/admin/test_response", 
+        "furl": "https://test.payu.in/admin/test_response", 
+        "card_hash": "46261359f70225c5ed11ef395058f3b2f7d003280bb4feb2f21e41aac113a252", 
+        "threeDSVersion": "2.2.0" 
+    } 
+} 
+    ```
+  </Accordion>
+  <Accordion title="Resend OTP" icon="fa-code">
+**First resend** 
+    ```json
+{ 
+    "metaData": { 
+        "message": null, 
+        "referenceId": "3d954a723bbb920cee8b0975556f115957ca9992514e4810c859365f0666b044", 
+        "statusCode": null, 
+        "txnId": "my_order_13975", 
+        "unmappedStatus": "pending", 
+        "resendOtp": { 
+            "status": "success", 
+            "attemptsLeft": 1 
+        } 
+    }, 
+    "result": {} 
+} 
+    ``` 
+    **Second resend** 
+```json
+{ 
+    "metaData": { 
+        "message": null, 
+        "referenceId": "3d954a723bbb920cee8b0975556f115957ca9992514e4810c859365f0666b044", 
+        "statusCode": null, 
+        "txnId": "my_order_13975", 
+        "unmappedStatus": "pending", 
+        "resendOtp": { 
+            "status": "success", 
+            "attemptsLeft": 0 
+        } 
+    }, 
+    "result": {} 
+} 
+  ```
+  </Accordion>
+
+
+
+<Callout icon="👍">
+  **Reference:** PayU recommends you to use PayU Hash Verification Tool to verify the reverse hashing. For more information, refer to [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
+</Callout>
 </Accordion>
 
 ***
 
-## Step 3: Redirect the customer
+## Step 3: Verify the Payment
 
-Basis a successful response of the authentication API, you need to redirect the user to the bank page using **acsTemplate**.  This API specifies the response that is posted to `termUrl` after the authentication for the transaction has been processed.
-
-> 📘 Notes:
->
-> * All callbacks POST form data on the merchant's `termUrl` that is passed in Initiate Transaction API.
-> * Validation of the response happens on the basis of the hash value being returned in the hash value of the response.
-
-<Accordion title="Request parameters" icon="fa-code">
-  <HTMLBlock>{`
-                                           <style>
-                                           /* Target only the second column in the table */
-                                           .markdown-body table td:nth-child(2) {
-                                             word-break: break-word !important;
-                                           }
-                                           
-                                           /* Keep the first column from breaking unnecessarily */
-                                           .markdown-body table td:nth-child(1) {
-                                             word-break: normal;
-                                             white-space: nowrap;
-                                           }
-                                           </style>
-                                           <table style="width: 100%; border-collapse: collapse;">
-                                           <thead>
-                                           <tr>
-                                             <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-                                             <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-                                           </tr>
-                                           </thead>
-                                           <tbody>
-                                           <tr>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p>rawBankData<br><code>mandatory</code></p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the raw response that is received from bank after authentication. The response is urlencoded and in query string format.</p>
-                                           </td>
-                                           </tr>
-                                           <tr>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><code>mandatory</code></p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the reference id being returned for the transaction</p>
-                                           </td>
-                                           </tr>
-                                           <tr>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p>bankData<br><code>mandatory</code></p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code> This parameter contains the JSON string that is to be used for authorization call.This parameter is received in case of successful OTP submission of decoupled transactions. The postToBank contains messageDigest and pares that is to be posted back for authorization. For more information on the fields in this JSON, refer to bankData <a href="#bankdata-json-fields-description">JSON Fields Description</a>.</p>
-                                           </td>
-                                           </tr>
-                                           <tr>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p>authenticationStatus<br><code>mandatory</code></p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the authentication status of the transaction</p>
-                                           </td>
-                                           </tr>
-                                           <tr>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the calculated hash of the data that is posted to the merchant. For security purpose it is recommended to validate the hash value before consuming the response. The hash calculation logic is:<br><code>sha512(authenticationStatus\|bankData\|rawBankData\|referenceId\|salt)</code></p>
-                                           </td>
-                                           </tr>
-                                           </tbody>
-                                           </table>
-  `}</HTMLBlock>
-
-  #### bankData JSON fields description
-
-  <HTMLBlock>{`
-                                           <table style="width: 100%; border-collapse: collapse;">
-                                           <thead>
-                                           <tr>
-                                             <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-                                             <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-                                             <th style="border: 1px solid #ddd; padding: 8px;"><strong>Applicable for EMV 3DS</strong></th>
-                                           </tr>
-                                           </thead>
-                                           <tbody>
-                                           <tr>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p>cres<br><code>mandatory</code></p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field contains the Base64 encoded value received from ACS as part of the authentication response.</p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
-                                           </td>
-                                           </tr>
-                                           <tr>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><code>mandatory</code></p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the reference id for the transaction</p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                           </td>
-                                           </tr>
-                                           <tr>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p>messageDigest<br><code>mandatory</code></p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the MD value being returned by the bank.</p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                           </td>
-                                           </tr>
-                                           <tr>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p>pares<br><code>mandatory</code></p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the pares being returned by the bank</p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                           </td>
-                                           </tr>
-                                           <tr>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br><code>mandatory</code></p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the data that is being used for the gateways that do not return pares.</p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                           </td>
-                                           </tr>
-                                           <tr>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p>authorizationUrl<br><code>mandatory</code></p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This integration document assumes that you have opt-ed out for the particular configuration.<br>The authorization URL in legacy integrations are present basis the config at PayU. Please reach out to <a href="mailto:integration@payu.in">integration@payu.in</a> to know more about.</p>
-                                           </td>
-                                             <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                           </tr>
-                                           </tbody>
-                                           </table>
-  `}</HTMLBlock>
-</Accordion>
-
-<Accordion title="Sample Response" icon="fa-code">
-  ```json
-  {
-      "metaData": { 
-          "message": null, 
-          "referenceId": "5a3e7cb9884e003dce1f28f965478a9a12fb9244fc15be91b0b3de48763a12e7", 
-          "statusCode": null, 
-          "txnId": "my_order_49721", 
-          "txnStatus": "Enrolled", 
-          "unmappedStatus": "pending", 
-          "resendOtp": { 
-              "isSupported": true, 
-              "attemptsLeft": 2 
-          }, 
-          "submitOtp": { 
-              "attemptsLeft": 3 
-          } 
-      }, 
-      "result": { 
-          "otpPostUrl": "https://test.payu.in/ResponseHandler.php", 
-          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluLzVhM2U3Y2I5ODg0ZTAwM2RjZTFmMjhmOTY1NDc4YTlhNDRiOTZkZDY5MmRjMWEzMDAzOTRhMmEwODNjNWU0ZjhkZTgyMTliMjJlZjA4ZDdmODFjNGRjMDg4NTEzNDMxMi9iYW5rQWNzIiBtZXRob2Q9InBvc3QiPjwvZm9ybT48c2NyaXB0IHR5cGU9J3RleHQvamF2YXNjcmlwdCc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB3aW5kb3cub25sb2FkPWZ1bmN0aW9uKCl7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZm9ybXNbJ3BheW1lbnRfcG9zdCddLnN1Ym1pdCgpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA8L3NjcmlwdD48L2JvZHk+PC9odG1sPg==" 
-      }, 
-      "binData": { 
-          "pureS2SSupported": true, 
-          "issuingBank": "AXIS", 
-          "category": "creditcard", 
-          "cardType": "MAST", 
-          "isDomestic": true 
-      } 
-  } 
-  ```
-</Accordion>
-
-<Accordion title="Handling the Response" icon="fa-info-circle">
-  In S2S4, rely on the metaData.unmappedStatus field from the response JSON. Perform the following actions based on its value: 
-
-  1. If metaData.unmappedStatus = 'pending': 
-     * Check the value of the binData.pureS2SSupported parameter: 
-       * If binData.pureS2SSupported = true: 
-       * Invoke the OTP page and present it to the customer, Use Submit OTP API to Collect & Submit OTP from your Page.
-       * If the customer opts to redirect to the bank ACS for entering the OTP, provide a "Redirect to Bank Page" link. Upon selection, load the value of the result.acsTemplate parameter as the Bank Form by decoding it using base64 encoding formula.
-       * If binData.pureS2SSupported = false: 
-       * Redirect the customer using the result.acsTemplate parameter, which contains a Base64-encoded HTML form. 
-  2. The metaData.referenceId value from the response JSON will be used as the input for the referenceId parameter in both the submitOtp and resentOtp APIs. 
-     * If metaData.unmappedStatus = 'failure', refer to the metaData.statusCode and metaData.msg fields for details on the failure reasons.
-</Accordion>
-
-Redirect the customer using the result.acsTemplate(base64encoded) to their bank's page for authentication. The final response will be posted to surl/furl and the configured Webhook.
-
-## Step 4: Verify the Payment
-
-After the payment is complete, verify the transaction status using PayU's verification APIs.
-
-<Accordion title="Verification Methods" icon="fa-check-circle">
-  Use one of the following methods to verify the payment:
-
-  1. **Webhook/Callback**: PayU sends a POST request to your `surl` or `furl` with transaction details
-  2. **Verify Payment API**: Call the `verify_payment` API with the transaction ID
-</Accordion>
-
-<Accordion title="Verify Payment API" icon="fa-code">
-  ```bash
-  curl --location --request POST 'https://info.payu.in/merchant/postservice.php?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JPM7Fg' \
-  --data-urlencode 'command=verify_payment' \
-  --data-urlencode 'var1=payuTestTransaction12345' \
-  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
-  ```
-</Accordion>
-
-<Accordion title="Callback Response Parameters" icon="fa-table">
-  | Parameter   | Description                                |
-  | ----------- | ------------------------------------------ |
-  | status      | Transaction status: `success` or `failure` |
-  | txnid       | Your transaction ID                        |
-  | mihpayid    | PayU transaction ID                        |
-  | amount      | Transaction amount                         |
-  | productinfo | Product information                        |
-  | hash        | Response hash for verification             |
-</Accordion>
+<PACB_Verify_Payment />
 
 ***
 
