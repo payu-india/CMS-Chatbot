@@ -4,7 +4,7 @@ name: PACB_Hashing
 Parameters in the below sequence needs to be checked before generating the hash, if these params are being posted, it needs to be added in the hash calculation:
 
 ```
-|additional_charges|miles|base_payuid|base_merchantid|paisa_mecode|subvention_amount|subvention_eligibility|merchant_data|payoutdetails|loan_id|twid_customer_hash|splitrequest|percentage_additional_charges|force_pa|udf_params|buyer_type_business|tcs_amount|
+|additional_charges|miles|base_payuid|base_merchantid|paisa_mecode|subvention_amount|subvention_eligibility|merchant_data|payoutdetails|loan_id|twid_customer_hash|splitrequest|percentage_additional_charges|force_pa|udf_params|buyer_type_business|tcs_amount
 ```
 
 * **Case1 example**: Simple Hashing, if the merchant is not sending the api_version in the payment request, then it will be treated as hash sequence version 1.
