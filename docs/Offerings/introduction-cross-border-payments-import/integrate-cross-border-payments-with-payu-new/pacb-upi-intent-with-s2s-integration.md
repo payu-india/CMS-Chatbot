@@ -701,9 +701,7 @@ PayU can also send a server-to-server callback response whenever the transaction
 
 ## Step 5. Verify the payment
 
-After the payment is complete, verify the transaction status using PayU's verification APIs. Use the webhooks to verify the payment. The following is the sample webhook payload in response. For more information, refer to (Webhook Events and Sample Payloads)[docs:webhook-events-and-sample-payloads].
-
-
+After the payment is complete, verify the transaction status using PayU's verification APIs. Use the webhooks to verify the payment. The following is the sample webhook payload in response. For more information, refer to [Webhook Events and Sample Payloads](doc:webhook-events-and-sample-payloads).
 
 <Accordion title="Sample Webhook Response" icon="fa-table">
   ```plaintext
