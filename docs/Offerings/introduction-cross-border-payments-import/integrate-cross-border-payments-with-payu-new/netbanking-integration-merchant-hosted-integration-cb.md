@@ -187,9 +187,11 @@ After posting the payment request, PayU returns a response containing transactio
   **Redirect** the customer using the result.acsTemplate(base64encoded) to their bank's page for authentication. The final response will be posted to surl/furl and the configured Webhook.
 </Callout>
 
-<Callout icon="📘" theme="info">
+<Callout icon="👍">
   **Reference:** PayU recommends you to use PayU Hash Verification Tool to verify the reverse hashing. For more information, refer to [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
 </Callout>
+
+## Step 3: Verify the payment
 
 <PACB_Verify_Payment />
 
