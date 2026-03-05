@@ -189,45 +189,9 @@ Redirect the customer using the result.acsTemplate(base64encoded) to their bank'
   **Reference:** PayU recommends you to use PayU Hash Verification Tool to verify the reverse hashing. For more information, refer to [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
 </Callout>
 
-## Step 3: Verify the Payment
+<PACB_Verify_Payment />
 
-After the payment is complete, verify the transaction status using PayU's verification APIs.
-
-<Accordion title="Verification Methods" icon="fa-check-circle">
-  Use one of the following methods to verify the payment:
-
-  1. **Webhook/Callback**: PayU sends a POST request to your `surl` or `furl` with transaction details
-  2. **Verify Payment API**: Call the `verify_payment` API with the transaction ID
-</Accordion>
-
-<Accordion title="Verify Payment API" icon="fa-code">
-  ```bash
-  curl --location --request POST 'https://info.payu.in/merchant/postservice.php?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JPM7Fg' \
-  --data-urlencode 'command=verify_payment' \
-  --data-urlencode 'var1=payuTestTransaction12345' \
-  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
-  ```
-</Accordion>
-
-<Accordion title="Sample Webhook Response" icon="fa-table">
-
-</Accordion>
-For more information, refer to (Webhook Events and Sample Payloads)[docs:webhook-events-and-sample-payloads]
-
-<Accordion title="Callback Response Parameters" icon="fa-table">
-  | Parameter   | Description                                |
-  | ----------- | ------------------------------------------ |
-  | status      | Transaction status: `success` or `failure` |
-  | txnid       | Your transaction ID                        |
-  | mihpayid    | PayU transaction ID                        |
-  | amount      | Transaction amount                         |
-  | productinfo | Product information                        |
-  | hash        | Response hash for verification             |
-</Accordion>
-
-***
+<br />
 
 ## Error Handling
 
