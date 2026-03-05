@@ -40,18 +40,36 @@ The PayU Developer Guide underwent **comprehensive content restructuring and UX 
 * **Resource Optimization**: Achieved maximum impact with limited resources
 * **Rapid Iteration**: Fast development cycles enabling quick improvements
 
-## 📊  IMPACT 
+## 📊  IMPACT
 
 ### **Traffic Growth - Exceeded Expectations**
 
 <Image align="center" src="https://files.readme.io/6927531985a9578acd3040832c151e0d5f4244ce5d54816a9047b399f1543401-monthly_visits_chart_no_september.png" />
 
-### **Key Performance Indicators**
+### Improved Lint Scores
 
-* **Total Web Platform Users**: 205,864 users
-* **Peak Weekly Active Users**: 40,419 users
-* **Peak New Weekly Users**: 31,489 users
-* **Post-December Growth**: **48.2% increase** (Dec to Feb)
+| Page Title                                                      | Jan 2025 Score | Latest Score | Score Change | Category                                           | Notes                    |
+| --------------------------------------------------------------- | -------------- | ------------ | ------------ | -------------------------------------------------- | ------------------------ |
+| Collect Payments With Wallets Seamless                          | 8.2            | 10.0         | +1.9         | custom-checkout-merchant-hosted                    | ✓ Significantly improved |
+| Collect Payments With Cards Seamless                            | 7.9            | 10.0         | +2.1         | custom-checkout-merchant-hosted                    | ✓ Excellent improvement  |
+| Instant Discount Or Cashback Offers Integration Using Mercha... | 6.8            | 10.0         | +3.2         | offers-integration                                 | ✓ Excellent improvement  |
+| Collect Payments With Sku Based Offer Using Merchant Hosted ... | 6.2            | 10.0         | +3.9         | offers-integration                                 | ✓ Excellent improvement  |
+| Integrate With Merchant Hosted Checkout For Pluxee Card         | 8.2            | 10.0         | +1.9         | custom-checkout-merchant-hosted                    | ✓ Significantly improved |
+| Pay Hosted Checkout Merchant Integration Merchant Wallet        | 1.5            | 10.0         | +8.5         | closed-loop-wallet-management                      | ✓ Excellent improvement  |
+| Offers Integration                                              | 2.8            | 10.0         | +7.2         | offers-integration                                 | ✓ Excellent improvement  |
+| Merchant Hosted Checkout Dynamic Currency Conversion            | 7.9            | 10.0         | +2.1         | introduction-dynamic-currency-conversion           | ✓ Excellent improvement  |
+| Pre Authorize Payment                                           | 7.2            | 9.8          | +2.7         | pre-authorize-card-transactions                    | ✓ Excellent improvement  |
+| Integrate With Decoupled Flow S2S                               | 7.4            | 9.8          | +2.5         | server-to-server-integration                       | ✓ Excellent improvement  |
+| Collect Payments With Upi Seamless                              | 8.2            | 9.8          | +1.7         | custom-checkout-merchant-hosted                    | ✓ Significantly improved |
+| Payu Hosted Integration Pre Authorize Payments                  | 8.7            | 9.8          | +1.2         | pre-authorize-card-transactions                    | ✓ Significantly improved |
+| Merchant Hosted Integration Pre Authorize Payment               | 8.7            | 9.8          | +1.2         | pre-authorize-card-transactions                    | ✓ Significantly improved |
+| Integrate With S2S                                              | 7.4            | 9.8          | +2.5         | server-to-server-integration                       | ✓ Excellent improvement  |
+| Collect Payments With Emi Using Debit Card                      | 7.2            | 9.8          | +2.5         | emi-api-integration                                | ✓ Excellent improvement  |
+| Collect Payments With Cardless Emi Using Merchant Hosted Che... | 7.7            | 9.8          | +2.1         | emi-api-integration                                | ✓ Excellent improvement  |
+| Upi Integration For Tpv                                         | 7.2            | 9.8          | +2.5         | collect-payments-with-tpv-merchant-hosted-checkout | ✓ Excellent improvement  |
+| Payu Hosted Checkout Integration With Offers                    | 7.7            | 9.5          | +1.9         | offers-integration                                 | ✓ Significantly improved |
+| Payu Hosted Checkout Integration Dynamic Currency Conversion    | 7.0            | 9.3          | +2.4         | introduction-dynamic-currency-conversion           | ✓ Excellent improvement  |
+| Integrate With S2S For Cards Classic Integration                | 7.4            | 9.3          | +1.9         | server-to-server-integration                       | ✓ Significantly improved |
 
 ## 🔮 **Upcoming Initiatives**
 
