@@ -120,26 +120,52 @@ function isEmpty(obj) {
 
 ### Body parameters
 
-| Parameter                                                       | Description                                                                                 | Example           |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------- |
-| bankCode<br /><code>mandatory</code>                            | <code>String</code> Bank/lender code (e.g. LPEMI for cardless EMI).                         | `LPEMI`           |
-| phone<br /><code>mandatory</code>                               | <code>String</code> Customer mobile number for eligibility check.                           | `8178959206`      |
-| amount<br /><code>mandatory</code>                              | <code>String</code> Transaction amount for which eligibility is checked.                    | `10000.00`        |
-| pg<br /><code>mandatory</code>                                  | <code>String</code> Payment category; use `EMI` for EMI/Link and Pay NTB flow.              | `EMI`             |
-| checkCustomerEligibilityWithDetails<br /><code>mandatory</code> | <code>Boolean</code> When true, eligibility is checked using the provided customer details. | `true`            |
-| customerDetails<br /><code>mandatory</code>                     | <code>Object</code> Customer onboarding details for NTB eligibility.                        | See example below |
-| customerDetails.panNumber<br /><code>mandatory</code>           | <code>String</code> Customer PAN number.                                                    | `EIJPS1234R`      |
-| customerDetails.dob<br /><code>mandatory</code>                 | <code>String</code> Date of birth (DD-MM-YYYY).                                             | `14-12-1996`      |
-| customerDetails.zipcode<br /><code>mandatory</code>             | <code>String</code> Postal zip code.                                                        | `411014`          |
-| customerDetails.firstName<br /><code>mandatory</code>           | <code>String</code> Customer first name.                                                    | `Shray`           |
-| customerDetails.lastName<br /><code>mandatory</code>            | <code>String</code> Customer last name.                                                     | `Suri`            |
-| customerDetails.bureauPullConsent<br /><code>optional</code>    | <code>String</code> Consent for bureau pull (e.g. "true" or "false").                       | `false`           |
-| customerDetails.gender<br /><code>optional</code>               | <code>String</code> Customer gender.                                                        | `Male`            |
-| customerDetails.income<br /><code>optional</code>               | <code>String</code> Customer income.                                                        | `65000`           |
-| customerDetails.employeeType<br /><code>optional</code>         | <code>String</code> Employment type (e.g. Salaried).                                        | `Salaried`        |
-| customerDetails.abs<br /><code>optional</code>                  | <code>String</code> Additional business-specific field if required.                         | `Asnw`            |
+| Parameter                                                       | Description                                                                                                                                                                              | Example           |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| bankCode<br /><code>mandatory</code>                            | <code>String</code> Bank/lender code (e.g. LPEMI for cardless EMI).                                                                                                                      | `LPEMI`           |
+| phone<br /><code>mandatory</code>                               | <code>String</code> Customer mobile number for eligibility check.                                                                                                                        | `8178959206`      |
+| amount<br /><code>mandatory</code>                              | <code>String</code> Transaction amount for which eligibility is checked.                                                                                                                 | `10000.00`        |
+| pg<br /><code>mandatory</code>                                  | <code>String</code> Payment category; use `EMI` for EMI/Link and Pay NTB flow.                                                                                                           | `EMI`             |
+| checkCustomerEligibilityWithDetails<br /><code>mandatory</code> | <code>Boolean</code> When true, eligibility is checked using the provided customer details.                                                                                              | `true`            |
+| payuToken<br /><code>optional</code>                            | <code>String</code>This parameter must contain is the PayU instrument token for saved card.                                                                                              |                   |
+| userCredentials<br /><code>optional</code>                      | <code>String</code>This parameter must contain an unique user credential mapped against each user, to be passed by the merchant for saved card.                                          | abc:xyz           |
+| customerDetails<br /><code>mandatory for NTB eligibility</code> | <code>Object</code> Customer onboarding details for NTB eligibility. For more information, refer to [customerDetails JSON Fields Description](#customerDetails-json-fields-description). | See example below |
+
+### customerDetails JSON Fields Description
+
+| Field                                        | Description                                                           | Example      |
+| -------------------------------------------- | --------------------------------------------------------------------- | ------------ |
+| panNumber<br /><code>mandatory</code>        | <code>String</code> Customer PAN number.                              | EIJPS1234R   |
+| dob<br /><code>mandatory</code>              | <code>String</code> Date of birth (DD-MM-YYYY).                       | `14-12-1996` |
+| zipcode<br /><code>mandatory</code>          | <code>String</code> Postal zip code.                                  | `411014`     |
+| firstName<br /><code>mandatory</code>        | <code>String</code> Customer first name.                              | `Shray`      |
+| lastName<br /><code>mandatory</code>         | <code>String</code> Customer last name.                               | `Suri`       |
+| bureauPullConsent<br /><code>optional</code> | <code>String</code> Consent for bureau pull (e.g. "true" or "false"). | `false`      |
+| gender<br /><code>optional</code>            | <code>String</code> Customer gender.                                  | `Male`       |
+| income<br /><code>optional</code>            | <code>String</code> Customer income.                                  | `65000`      |
+| employeeType<br /><code>optional</code>      | <code>String</code> Employment type (e.g. Salaried).                  | `Salaried`   |
+| abs<br /><code>optional</code>               | <code>String</code> Additional business-specific field if required.   | `Asnw`       |
 
 ## Sample request
+
+### Link and Pay Eligibilty
+
+```
+curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' \
+--header 'x-credential-username: smsplus' \
+--header 'Content-Type: application/json' \
+--header 'authorization: hmac username="x0i6r2", algorithm="sha512", headers="date", signature="0e0ebc518c085d8ff49058b7c232bfe2e8779e9e9cafd34a4cdf1c11114035eea75b0e404a9b9e152757dbcc4926f78b6f18ba7f6643e2bf687a65942d3bde38"' \
+--header 'date: Mon, 28 Oct 2024 10:34:49 GMT' \
+--data '{
+    "amount": 2000000,
+    "userCredentials": "aaa:bbb",
+    "phone": "9560012582",
+    "bankCode": null,
+    "payuToken": null
+}'
+```
+
+### NTP Eligibility
 
 ```
 curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' \
