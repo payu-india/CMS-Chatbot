@@ -609,66 +609,68 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
   | referenceId   | As received in JSON response in key referenceId.                                                  |
   | amount        | Amount of transaction. This must be the same as the amount passed to the **initiatePayment** API. |
 
-<Accordion title="Sample request" icon="fa-info-circle">
-  ```curl
-curl --location 'https://test.payu.in/_payment' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=PRiQvJ' \
---data-urlencode 'txnid=my_order_991' \
---data-urlencode 'amount=1' \
---data-urlencode 'productinfo=my_order_991' \
---data-urlencode 'email=' \
---data-urlencode 'phone=9368252248' \
---data-urlencode 'txn_s2s_flow=4' \
---data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
---data-urlencode 'surl=https://test.payu.in/admin/test_response' \
---data-urlencode 'furl=https://test.payu.in/admin/test_response' \
---data-urlencode 'udf1=buyer'\''s DOB' \
---data-urlencode 'udf2=' \
---data-urlencode 'udf3=buyer'\''s PAN' \
---data-urlencode 'udf4=' \
---data-urlencode 'udf5=invoice number' \
---data-urlencode 's2s_client_ip=10.200.12.12' \
---data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
---data-urlencode 'firstname=' \
---data-urlencode 'lastname=kr' \
---data-urlencode 'address1=308,third floor' \
---data-urlencode 'address2=testing' \
---data-urlencode 'city=Gurugram' \
---data-urlencode 'state=UP' \
---data-urlencode 'country=India' \
---data-urlencode 'zipcode=122018' \
---data-urlencode 'pg=UPI' \
---data-urlencode 'bankcode=INTENT' \
---data-urlencode 'upiAppName=gpay/phonepe/paytm/qr/amazonpay' \
---data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
---data-urlencode 'buyer_type_business=1'
-```
+  <Accordion title="Sample request" icon="fa-info-circle">
+    ```curl
+    curl --location 'https://test.payu.in/_payment' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'key=PRiQvJ' \
+    --data-urlencode 'txnid=my_order_991' \
+    --data-urlencode 'amount=1' \
+    --data-urlencode 'productinfo=my_order_991' \
+    --data-urlencode 'email=' \
+    --data-urlencode 'phone=9368252248' \
+    --data-urlencode 'txn_s2s_flow=4' \
+    --data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
+    --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'udf1=buyer'\''s DOB' \
+    --data-urlencode 'udf2=' \
+    --data-urlencode 'udf3=buyer'\''s PAN' \
+    --data-urlencode 'udf4=' \
+    --data-urlencode 'udf5=invoice number' \
+    --data-urlencode 's2s_client_ip=10.200.12.12' \
+    --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+    --data-urlencode 'firstname=' \
+    --data-urlencode 'lastname=kr' \
+    --data-urlencode 'address1=308,third floor' \
+    --data-urlencode 'address2=testing' \
+    --data-urlencode 'city=Gurugram' \
+    --data-urlencode 'state=UP' \
+    --data-urlencode 'country=India' \
+    --data-urlencode 'zipcode=122018' \
+    --data-urlencode 'pg=UPI' \
+    --data-urlencode 'bankcode=INTENT' \
+    --data-urlencode 'upiAppName=gpay/phonepe/paytm/qr/amazonpay' \
+    --data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
+    --data-urlencode 'buyer_type_business=1'
+    ```
   </Accordion>
+
   <Accordion title="Sample respose" icon="fa-info-circle">
-If metaData.unmappedStatus = pending, then get the result.intentURIData and add the prefix upi://pay?to make it to create a fully qualified deeplink to trigger the UPI App.
-  ```json
-{
-    "metaData": {
-        "message": null,
-        "referenceId": "c99a6455b3e0dc5cd7167ab8c8cc10d2fa153cb509e3f64c6cd0ed9c5b64a8c9",
-        "statusCode": null,
-        "txnId": "my_order_26075",
-        "txnStatus": "pending",
-        "unmappedStatus": "pending"
-    },
-    "result": {
-        "paymentId": "403993715535965242",
-        "merchantName": "Sudhanshu",
-        "merchantVpa": "payutest@hdfcbank",
-        "amount": "1.00",
-        "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent",
-        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluL2M5OWE2NDU1YjNlMGRjNWNkNzE2N2FiOGM4Y2MxMGQyYzgzYTk5NmFhNDhiYTk4MmZjMGQ4MTI1MGY1ODgxZjMvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjhERDNFRUFFLUI5NTktQzY1RS03MDczLTYzQTNGQUUxMjZGRiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMS4wMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSJjOTlhNjQ1NWIzZTBkYzVjZDcxNjdhYjhjOGNjMTBkMmZhMTUzY2I1MDllM2Y2NGM2Y2QwZWQ5YzViNjRhOGM5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSJwYXl1dGVzdEBoZGZjYmFuayI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVOYW1lIiB2YWx1ZT0iU3VkaGFuc2h1Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMS4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
-        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+    If metaData.unmappedStatus = pending, then get the result.intentURIData and add the prefix upi://pay?to make it to create a fully qualified deeplink to trigger the UPI App.
+
+    ```json
+    {
+      "metaData": {
+          "message": null,
+          "referenceId": "c99a6455b3e0dc5cd7167ab8c8cc10d2fa153cb509e3f64c6cd0ed9c5b64a8c9",
+          "statusCode": null,
+          "txnId": "my_order_26075",
+          "txnStatus": "pending",
+          "unmappedStatus": "pending"
+      },
+      "result": {
+          "paymentId": "403993715535965242",
+          "merchantName": "Sudhanshu",
+          "merchantVpa": "payutest@hdfcbank",
+          "amount": "1.00",
+          "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent",
+          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluL2M5OWE2NDU1YjNlMGRjNWNkNzE2N2FiOGM4Y2MxMGQyYzgzYTk5NmFhNDhiYTk4MmZjMGQ4MTI1MGY1ODgxZjMvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjhERDNFRUFFLUI5NTktQzY1RS03MDczLTYzQTNGQUUxMjZGRiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMS4wMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSJjOTlhNjQ1NWIzZTBkYzVjZDcxNjdhYjhjOGNjMTBkMmZhMTUzY2I1MDllM2Y2NGM2Y2QwZWQ5YzViNjRhOGM5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSJwYXl1dGVzdEBoZGZjYmFuayI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVOYW1lIiB2YWx1ZT0iU3VkaGFuc2h1Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMS4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+      }
     }
-}
-  ```
-</Accordion>
+    ```
+  </Accordion>
 </Accordion>
 
 ***
@@ -699,4 +701,85 @@ PayU can also send a server-to-server callback response whenever the transaction
 
 ## Step 5. Verify the payment
 
-<Verify_Payment_Tabs />
+After the payment is complete, verify the transaction status using PayU's verification APIs. Use the webhooks to verify the payment. The following is the sample webhook payload in response. For more information, refer to (Webhook Events and Sample Payloads)[docs:webhook-events-and-sample-payloads].
+
+
+
+<Accordion title="Sample Webhook Response" icon="fa-table">
+  ```plaintext
+  mihpayid=27553369917
+  &mode=SBQR
+  &status=success
+  &key=rZ1fX4
+  &txnid=T2603041446091822117753
+  &amount=40.00
+  &addedon=2026-03-04+14%3A46%3A14
+  &productinfo=Static+QR
+  &firstname=
+  &lastname=
+  &address1=
+  &address2=
+  &city=Gurgaon
+  &state=
+  &country=
+  &zipcode=122001
+  &email=
+  &phone=##########
+  &udf1=
+  &udf2=
+  &udf3=
+  &udf4=SoftQR
+  &udf5=BFL0000006601446
+  &udf6=
+  &udf7=
+  &udf8=
+  &udf9=
+  &udf10=
+  &card_token=
+  &card_no=
+  &field0=STQ9IUFeqlafg78815827
+  &field1=PRIYA+SHANKAR+PUSNAKE
+  &field2=995486
+  &field3=_mobilenum_%40axl
+  &field4=bajajpay.6879729.d2m9cckd%40indus
+  &field5=AXLd36cfcd317f243b5b3a2d62bc71caf78
+  &field6=00000038683323284%7C_mobilenum_%7CSBIN0011418
+  &field7=APPROVED+OR+COMPLETED+SUCCESSFULLY%7C00
+  &field8=Payment+from+PhonePe
+  &field9=Transaction+is+Successful.+Bank+Sent%3ATransaction+success
+  &payment_source=payu
+  &cardToken=
+  &authenticaticationMethod=
+  &PG_TYPE=SBQR-PG
+  &error=E000
+  &error_Message=No+Error
+  &net_amount_debit=40
+  &discount=0.00
+  &offer_key=
+  &offer_availed=
+  &unmappedstatus=captured
+  &hash=aefe0213c4299c7ee2039d5430f7bee63711ee627e1b47d2605d0384abbbf828f3641dae3cb126c8b2f761084cbb0bebad27bb325696cc44ce3061157d7cd9ff
+  &bank_ref_no=793887773815
+  &bank_ref_num=793887773815
+  &bankcode=UPISBQR
+  &surl=
+  &curl=
+  &furl=
+  &psp_name=CARDHOLDERXXXXXXXXNAME
+  ```
+</Accordion>
+
+<Accordion title="Callback Response Parameters" icon="fa-table">
+  | Parameter   | Description                                |
+  | ----------- | ------------------------------------------ |
+  | status      | Transaction status: `success` or `failure` |
+  | txnid       | Your transaction ID                        |
+  | mihpayid    | PayU transaction ID                        |
+  | amount      | Transaction amount                         |
+  | productinfo | Product information                        |
+  | hash        | Response hash for verification             |
+</Accordion>
+
+<br />
+
+<br />
