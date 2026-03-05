@@ -33,13 +33,7 @@ Before using PayU tokens, ensure you have:
     <br />
   </Card>
 
-  <Card title="3. Redirect the Customer" href="#step-3-redirect-the-customer">
-    Redirect the user to the bank page using acsTemplate after successful authentication response
-
-    <br />
-  </Card>
-
-  <Card title="4. Verify the Payment" href="#step-4-verify-the-payment">
+  <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
     Verify the payment status and ensure transaction completion
   </Card>
 </Cards>
@@ -306,121 +300,121 @@ Basis a successful response of the authentication API, you need to redirect the 
 
 <Accordion title="Request parameters" icon="fa-code">
   <HTMLBlock>{`
-                                 <style>
-                                 /* Target only the second column in the table */
-                                 .markdown-body table td:nth-child(2) {
-                                   word-break: break-word !important;
-                                 }
-                                 
-                                 /* Keep the first column from breaking unnecessarily */
-                                 .markdown-body table td:nth-child(1) {
-                                   word-break: normal;
-                                   white-space: nowrap;
-                                 }
-                                 </style>
-                                 <table style="width: 100%; border-collapse: collapse;">
-                                 <thead>
-                                 <tr>
-                                   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-                                   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-                                 </tr>
-                                 </thead>
-                                 <tbody>
-                                 <tr>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>rawBankData<br><code>mandatory</code></p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the raw response that is received from bank after authentication. The response is urlencoded and in query string format.</p>
-                                 </td>
-                                 </tr>
-                                 <tr>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><code>mandatory</code></p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the reference id being returned for the transaction</p>
-                                 </td>
-                                 </tr>
-                                 <tr>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>bankData<br><code>mandatory</code></p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code> This parameter contains the JSON string that is to be used for authorization call.This parameter is received in case of successful OTP submission of decoupled transactions. The postToBank contains messageDigest and pares that is to be posted back for authorization. For more information on the fields in this JSON, refer to bankData <a href="#bankdata-json-fields-description">JSON Fields Description</a>.</p>
-                                 </td>
-                                 </tr>
-                                 <tr>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>authenticationStatus<br><code>mandatory</code></p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the authentication status of the transaction</p>
-                                 </td>
-                                 </tr>
-                                 <tr>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the calculated hash of the data that is posted to the merchant. For security purpose it is recommended to validate the hash value before consuming the response. The hash calculation logic is:<br><code>sha512(authenticationStatus\|bankData\|rawBankData\|referenceId\|salt)</code></p>
-                                 </td>
-                                 </tr>
-                                 </tbody>
-                                 </table>
+                                   <style>
+                                   /* Target only the second column in the table */
+                                   .markdown-body table td:nth-child(2) {
+                                     word-break: break-word !important;
+                                   }
+                                   
+                                   /* Keep the first column from breaking unnecessarily */
+                                   .markdown-body table td:nth-child(1) {
+                                     word-break: normal;
+                                     white-space: nowrap;
+                                   }
+                                   </style>
+                                   <table style="width: 100%; border-collapse: collapse;">
+                                   <thead>
+                                   <tr>
+                                     <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+                                     <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                                   </tr>
+                                   </thead>
+                                   <tbody>
+                                   <tr>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p>rawBankData<br><code>mandatory</code></p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the raw response that is received from bank after authentication. The response is urlencoded and in query string format.</p>
+                                   </td>
+                                   </tr>
+                                   <tr>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><code>mandatory</code></p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the reference id being returned for the transaction</p>
+                                   </td>
+                                   </tr>
+                                   <tr>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p>bankData<br><code>mandatory</code></p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code> This parameter contains the JSON string that is to be used for authorization call.This parameter is received in case of successful OTP submission of decoupled transactions. The postToBank contains messageDigest and pares that is to be posted back for authorization. For more information on the fields in this JSON, refer to bankData <a href="#bankdata-json-fields-description">JSON Fields Description</a>.</p>
+                                   </td>
+                                   </tr>
+                                   <tr>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p>authenticationStatus<br><code>mandatory</code></p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the authentication status of the transaction</p>
+                                   </td>
+                                   </tr>
+                                   <tr>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the calculated hash of the data that is posted to the merchant. For security purpose it is recommended to validate the hash value before consuming the response. The hash calculation logic is:<br><code>sha512(authenticationStatus\|bankData\|rawBankData\|referenceId\|salt)</code></p>
+                                   </td>
+                                   </tr>
+                                   </tbody>
+                                   </table>
   `}</HTMLBlock>
 
   #### bankData JSON fields description
 
   <HTMLBlock>{`
-                                 <table style="width: 100%; border-collapse: collapse;">
-                                 <thead>
-                                 <tr>
-                                   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-                                   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-                                   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Applicable for EMV 3DS</strong></th>
-                                 </tr>
-                                 </thead>
-                                 <tbody>
-                                 <tr>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>cres<br><code>mandatory</code></p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field contains the Base64 encoded value received from ACS as part of the authentication response.</p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
-                                 </td>
-                                 </tr>
-                                 <tr>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><code>mandatory</code></p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the reference id for the transaction</p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                 </td>
-                                 </tr>
-                                 <tr>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>messageDigest<br><code>mandatory</code></p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the MD value being returned by the bank.</p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                 </td>
-                                 </tr>
-                                 <tr>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>pares<br><code>mandatory</code></p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the pares being returned by the bank</p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                 </td>
-                                 </tr>
-                                 <tr>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br><code>mandatory</code></p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the data that is being used for the gateways that do not return pares.</p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                 </td>
-                                 </tr>
-                                 <tr>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>authorizationUrl<br><code>mandatory</code></p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This integration document assumes that you have opt-ed out for the particular configuration.<br>The authorization URL in legacy integrations are present basis the config at PayU. Please reach out to <a href="mailto:integration@payu.in">integration@payu.in</a> to know more about.</p>
-                                 </td>
-                                   <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                 </tr>
-                                 </tbody>
-                                 </table>
+                                   <table style="width: 100%; border-collapse: collapse;">
+                                   <thead>
+                                   <tr>
+                                     <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+                                     <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                                     <th style="border: 1px solid #ddd; padding: 8px;"><strong>Applicable for EMV 3DS</strong></th>
+                                   </tr>
+                                   </thead>
+                                   <tbody>
+                                   <tr>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p>cres<br><code>mandatory</code></p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field contains the Base64 encoded value received from ACS as part of the authentication response.</p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
+                                   </td>
+                                   </tr>
+                                   <tr>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><code>mandatory</code></p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the reference id for the transaction</p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+                                   </td>
+                                   </tr>
+                                   <tr>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p>messageDigest<br><code>mandatory</code></p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the MD value being returned by the bank.</p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+                                   </td>
+                                   </tr>
+                                   <tr>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p>pares<br><code>mandatory</code></p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the pares being returned by the bank</p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+                                   </td>
+                                   </tr>
+                                   <tr>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br><code>mandatory</code></p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the data that is being used for the gateways that do not return pares.</p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+                                   </td>
+                                   </tr>
+                                   <tr>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p>authorizationUrl<br><code>mandatory</code></p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This integration document assumes that you have opt-ed out for the particular configuration.<br>The authorization URL in legacy integrations are present basis the config at PayU. Please reach out to <a href="mailto:integration@payu.in">integration@payu.in</a> to know more about.</p>
+                                   </td>
+                                     <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                   </tr>
+                                   </tbody>
+                                   </table>
   `}</HTMLBlock>
 </Accordion>
 
