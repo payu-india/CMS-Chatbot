@@ -396,7 +396,7 @@ Basis a successful response of the authentication API, you need to redirect the 
 
 </Accordion>
 
-## Step 5: Verify the Payment
+## Step 4: Verify the Payment
 
 After the payment is complete, verify the transaction status and retrieve the stored card token.
 
