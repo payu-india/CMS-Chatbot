@@ -10,7 +10,7 @@ This section explains how to use the **Reasons** page of the Chargeback dashbaor
 <Callout icon="📘" theme="info">
   **Reference**: For understanding the various reasons, types and status, refer to
 
-  [Chargeback Reasons](doc:chargeback-closurer-reasons)
+  [Chargeback Closure Reasons](doc:chargeback-closure-reasons).
 </Callout>
 
 <Image align="center" border={true} src="https://files.readme.io/240245acd8b166a5c93f7988e052667428c8455168e62485d16756fca9865506-charge_dashboard_reasons.png" className="border" />
