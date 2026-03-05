@@ -521,22 +521,22 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
       </tr>
     </tbody>
   </Table>
+
   <Accordion title="Hashing Logic" icon="fa-lock">
-  <PACB_Hashing />
+    <PACB_Hashing />
 
-  ```
-  key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt|additional_charges|buyer_type_business
-  ```
+    ```
+    key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt|additional_charges|buyer_type_business
+    ```
 
-  * **Case4 example**: if the merchant wants to pass the api\_version = 7 and buyer\_type\_business, udf\_params in the payment request.
+    * **Case4 example**: if the merchant wants to pass the api\_version = 7 and buyer\_type\_business, udf\_params in the payment request.
 
-  ```
-  key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|si_details|salt|udf_params|buyer_type_business
-  ```
+    ```
+    key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|si_details|salt|udf_params|buyer_type_business
+    ```
 
-  For more information, refer to  <a href="generate-hash-merchant-hosted" target="_blank"> Generate Hash</a>.
-
-</Accordion>
+    For more information, refer to  <a href="generate-hash-merchant-hosted" target="_blank"> Generate Hash</a>.
+  </Accordion>
 
   <Accordion title="Sample Request" icon="fa-code">
     ```curl
@@ -608,6 +608,67 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
   | merchantName  | As received in JSON response in key merchantName.                                                 |
   | referenceId   | As received in JSON response in key referenceId.                                                  |
   | amount        | Amount of transaction. This must be the same as the amount passed to the **initiatePayment** API. |
+
+<Accordion title="Sample request" icon="fa-info-circle">
+  ```curl
+curl --location 'https://test.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=PRiQvJ' \
+--data-urlencode 'txnid=my_order_991' \
+--data-urlencode 'amount=1' \
+--data-urlencode 'productinfo=my_order_991' \
+--data-urlencode 'email=' \
+--data-urlencode 'phone=9368252248' \
+--data-urlencode 'txn_s2s_flow=4' \
+--data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
+--data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'udf1=buyer'\''s DOB' \
+--data-urlencode 'udf2=' \
+--data-urlencode 'udf3=buyer'\''s PAN' \
+--data-urlencode 'udf4=' \
+--data-urlencode 'udf5=invoice number' \
+--data-urlencode 's2s_client_ip=10.200.12.12' \
+--data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+--data-urlencode 'firstname=' \
+--data-urlencode 'lastname=kr' \
+--data-urlencode 'address1=308,third floor' \
+--data-urlencode 'address2=testing' \
+--data-urlencode 'city=Gurugram' \
+--data-urlencode 'state=UP' \
+--data-urlencode 'country=India' \
+--data-urlencode 'zipcode=122018' \
+--data-urlencode 'pg=UPI' \
+--data-urlencode 'bankcode=INTENT' \
+--data-urlencode 'upiAppName=gpay/phonepe/paytm/qr/amazonpay' \
+--data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
+--data-urlencode 'buyer_type_business=1'
+```
+  </Accordion>
+  <Accordion title="Sample respose" icon="fa-info-circle">
+If metaData.unmappedStatus = pending, then get the result.intentURIData and add the prefix upi://pay?to make it to create a fully qualified deeplink to trigger the UPI App.
+  ```json
+{
+    "metaData": {
+        "message": null,
+        "referenceId": "c99a6455b3e0dc5cd7167ab8c8cc10d2fa153cb509e3f64c6cd0ed9c5b64a8c9",
+        "statusCode": null,
+        "txnId": "my_order_26075",
+        "txnStatus": "pending",
+        "unmappedStatus": "pending"
+    },
+    "result": {
+        "paymentId": "403993715535965242",
+        "merchantName": "Sudhanshu",
+        "merchantVpa": "payutest@hdfcbank",
+        "amount": "1.00",
+        "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent",
+        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluL2M5OWE2NDU1YjNlMGRjNWNkNzE2N2FiOGM4Y2MxMGQyYzgzYTk5NmFhNDhiYTk4MmZjMGQ4MTI1MGY1ODgxZjMvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjhERDNFRUFFLUI5NTktQzY1RS03MDczLTYzQTNGQUUxMjZGRiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMS4wMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSJjOTlhNjQ1NWIzZTBkYzVjZDcxNjdhYjhjOGNjMTBkMmZhMTUzY2I1MDllM2Y2NGM2Y2QwZWQ5YzViNjRhOGM5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSJwYXl1dGVzdEBoZGZjYmFuayI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVOYW1lIiB2YWx1ZT0iU3VkaGFuc2h1Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMS4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+    }
+}
+  ```
+</Accordion>
 </Accordion>
 
 ***
