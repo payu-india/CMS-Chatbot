@@ -5,5 +5,5 @@
 - old_payment_s2s_direct_authorization_flow
 - _payment_s2s_direct_authorization_flow
 - _payment_s2s_upi_collection
-- not_supported_payment_s2s_link_pay
+- _payment_s2s_link_pay
 - error-codes-for-s2s-link-and-pay
