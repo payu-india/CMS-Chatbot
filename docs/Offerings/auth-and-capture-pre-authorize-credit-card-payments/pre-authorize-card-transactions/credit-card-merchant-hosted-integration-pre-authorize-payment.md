@@ -21,19 +21,19 @@ The **pre_authorize** parameter is used to pre-authorize payments using the Merc
 <br />
 
 <Cards columns={2}>
-  <Card title="1. Post the Pre-Auth Transaction Request" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-1-post-the-pre-auth-transaction-request">
+  <Card title="1. Post the Pre-Auth Transaction Request" href="#step-1-post-the-pre-auth-transaction-request">
     Submit the pre-authorization transaction request to PayU for payment hold
   </Card>
 
-  <Card title="2. Check the Response from PayU" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-2-check-the-response-from-payu">
+  <Card title="2. Check the Response from PayU" href="#step-2-check-the-response-from-payu">
     Handle and process the response received from PayU after pre-auth request submission
   </Card>
 
-  <Card title="3. Capture a Pre-Authorized Payment" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-3-capture-a-pre-authorized-payment">
+  <Card title="3. Capture a Pre-Authorized Payment" href="#step-3-capture-a-pre-authorized-payment">
     Complete the payment capture process for the pre-authorized transaction
   </Card>
 
-  <Card title="4. Check Action Status" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-4-check-action-status">
+  <Card title="4. Check Action Status" href="#step-4-check-action-status">
     Verify the status of the capture action and confirm transaction completion
   </Card>
 </Cards>
@@ -480,198 +480,197 @@ The **pre_authorize** parameter as specified is used to pre-authorize payments u
   ```curl
   curl --request POST      --url 'https://test.payu.in/_payment?form=2'      --header 'Content-Type: application/x-www-form-urlencoded'      --header 'accept: text/plain'      --data key=JPM7Fg      --data pg=CC      --data bankcode=CC      --data pre_authorize=1      --data surl=https://test-payment-middleware.payu.in/simulatorResponse      --data furl=https://test-payment-middleware.payu.in/simulatorResponse      --data txnid=ypskjfdaaksdjfh      --data amount=10000      --data productinfo=iPhone      --data firstname=Ashish      --data email=ashish@gmail.com      --data phone=9889XXXXXX      --data ccnum=512*******012346      --data ccname=Ashish      --data ccexpmon=11      --data ccexpyr=2025      --data ccvv=123      --data hash=d99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced
   ```
-```python
-import requests
+  ```python
+  import requests
 
-url = "https://test.payu.in/_payment?form=2"
+  url = "https://test.payu.in/_payment?form=2"
 
-headers = {
-    "accept": "text/plain",
-    "Content-Type": "application/x-www-form-urlencoded"
-}
+  headers = {
+      "accept": "text/plain",
+      "Content-Type": "application/x-www-form-urlencoded"
+  }
 
-data = {
-    "key": "JPM7Fg",
-    "pg": "CC",
-    "bankcode": "CC",
-    "pre_authorize": "1",
-    "surl": "https://test-payment-middleware.payu.in/simulatorResponse",
-    "furl": "https://test-payment-middleware.payu.in/simulatorResponse",
-    "txnid": "ypskjfdaaksdjfh",
-    "amount": "10000",
-    "productinfo": "iPhone",
-    "firstname": "Ashish",
-    "email": "ashish@gmail.com",
-    "phone": "9889XXXXXX",
-    "ccnum": "512*******012346",
-    "ccname": "Ashish",
-    "ccexpmon": "11",
-    "ccexpyr": "2025",
-    "ccvv": "123",
-    "hash": "d99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced"
-}
+  data = {
+      "key": "JPM7Fg",
+      "pg": "CC",
+      "bankcode": "CC",
+      "pre_authorize": "1",
+      "surl": "https://test-payment-middleware.payu.in/simulatorResponse",
+      "furl": "https://test-payment-middleware.payu.in/simulatorResponse",
+      "txnid": "ypskjfdaaksdjfh",
+      "amount": "10000",
+      "productinfo": "iPhone",
+      "firstname": "Ashish",
+      "email": "ashish@gmail.com",
+      "phone": "9889XXXXXX",
+      "ccnum": "512*******012346",
+      "ccname": "Ashish",
+      "ccexpmon": "11",
+      "ccexpyr": "2025",
+      "ccvv": "123",
+      "hash": "d99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced"
+  }
 
-response = requests.post(url, headers=headers, data=data)
+  response = requests.post(url, headers=headers, data=data)
 
-print("Status Code:", response.status_code)
-print("Response:", response.text)
-```
-```java
-import java.io.IOException;
-import java.net.URI;
-import java.net.URLEncoder;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+  print("Status Code:", response.status_code)
+  print("Response:", response.text)
+  ```
+  ```java
+  import java.io.IOException;
+  import java.net.URI;
+  import java.net.URLEncoder;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.nio.charset.StandardCharsets;
+  import java.util.LinkedHashMap;
+  import java.util.Map;
+  import java.util.stream.Collectors;
 
-public class PayUPreAuthorizePayment {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        String url = "https://test.payu.in/_payment?form=2";
-        
-        Map<String, String> formData = new LinkedHashMap<>();
-        formData.put("key", "JPM7Fg");
-        formData.put("pg", "CC");
-        formData.put("bankcode", "CC");
-        formData.put("pre_authorize", "1");
-        formData.put("surl", "https://test-payment-middleware.payu.in/simulatorResponse");
-        formData.put("furl", "https://test-payment-middleware.payu.in/simulatorResponse");
-        formData.put("txnid", "ypskjfdaaksdjfh");
-        formData.put("amount", "10000");
-        formData.put("productinfo", "iPhone");
-        formData.put("firstname", "Ashish");
-        formData.put("email", "ashish@gmail.com");
-        formData.put("phone", "9889XXXXXX");
-        formData.put("ccnum", "512*******012346");
-        formData.put("ccname", "Ashish");
-        formData.put("ccexpmon", "11");
-        formData.put("ccexpyr", "2025");
-        formData.put("ccvv", "123");
-        formData.put("hash", "d99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced");
-        
-        String formBody = formData.entrySet()
-            .stream()
-            .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" + 
-                          URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
-            .collect(Collectors.joining("&"));
-        
-        HttpClient client = HttpClient.newHttpClient();
-        
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .header("accept", "text/plain")
-            .header("Content-Type", "application/x-www-form-urlencoded")
-            .POST(HttpRequest.BodyPublishers.ofString(formBody))
-            .build();
-        
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Response: " + response.body());
-    }
-}
-```
-```php
-<?php
+  public class PayUPreAuthorizePayment {
+      public static void main(String[] args) throws IOException, InterruptedException {
+          String url = "https://test.payu.in/_payment?form=2";
+          
+          Map<String, String> formData = new LinkedHashMap<>();
+          formData.put("key", "JPM7Fg");
+          formData.put("pg", "CC");
+          formData.put("bankcode", "CC");
+          formData.put("pre_authorize", "1");
+          formData.put("surl", "https://test-payment-middleware.payu.in/simulatorResponse");
+          formData.put("furl", "https://test-payment-middleware.payu.in/simulatorResponse");
+          formData.put("txnid", "ypskjfdaaksdjfh");
+          formData.put("amount", "10000");
+          formData.put("productinfo", "iPhone");
+          formData.put("firstname", "Ashish");
+          formData.put("email", "ashish@gmail.com");
+          formData.put("phone", "9889XXXXXX");
+          formData.put("ccnum", "512*******012346");
+          formData.put("ccname", "Ashish");
+          formData.put("ccexpmon", "11");
+          formData.put("ccexpyr", "2025");
+          formData.put("ccvv", "123");
+          formData.put("hash", "d99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced");
+          
+          String formBody = formData.entrySet()
+              .stream()
+              .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" + 
+                            URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
+              .collect(Collectors.joining("&"));
+          
+          HttpClient client = HttpClient.newHttpClient();
+          
+          HttpRequest request = HttpRequest.newBuilder()
+              .uri(URI.create(url))
+              .header("accept", "text/plain")
+              .header("Content-Type", "application/x-www-form-urlencoded")
+              .POST(HttpRequest.BodyPublishers.ofString(formBody))
+              .build();
+          
+          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+          
+          System.out.println("Status Code: " + response.statusCode());
+          System.out.println("Response: " + response.body());
+      }
+  }
+  ```
+  ```php
+  <?php
 
-$url = "https://test.payu.in/_payment?form=2";
+  $url = "https://test.payu.in/_payment?form=2";
 
-$data = array(
-    'key' => 'JPM7Fg',
-    'pg' => 'CC',
-    'bankcode' => 'CC',
-    'pre_authorize' => '1',
-    'surl' => 'https://test-payment-middleware.payu.in/simulatorResponse',
-    'furl' => 'https://test-payment-middleware.payu.in/simulatorResponse',
-    'txnid' => 'ypskjfdaaksdjfh',
-    'amount' => '10000',
-    'productinfo' => 'iPhone',
-    'firstname' => 'Ashish',
-    'email' => 'ashish@gmail.com',
-    'phone' => '9889XXXXXX',
-    'ccnum' => '512*******012346',
-    'ccname' => 'Ashish',
-    'ccexpmon' => '11',
-    'ccexpyr' => '2025',
-    'ccvv' => '123',
-    'hash' => 'd99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced'
-);
+  $data = array(
+      'key' => 'JPM7Fg',
+      'pg' => 'CC',
+      'bankcode' => 'CC',
+      'pre_authorize' => '1',
+      'surl' => 'https://test-payment-middleware.payu.in/simulatorResponse',
+      'furl' => 'https://test-payment-middleware.payu.in/simulatorResponse',
+      'txnid' => 'ypskjfdaaksdjfh',
+      'amount' => '10000',
+      'productinfo' => 'iPhone',
+      'firstname' => 'Ashish',
+      'email' => 'ashish@gmail.com',
+      'phone' => '9889XXXXXX',
+      'ccnum' => '512*******012346',
+      'ccname' => 'Ashish',
+      'ccexpmon' => '11',
+      'ccexpyr' => '2025',
+      'ccvv' => '123',
+      'hash' => 'd99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced'
+  );
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'accept: text/plain',
-    'Content-Type: application/x-www-form-urlencoded'
-));
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'accept: text/plain',
+      'Content-Type: application/x-www-form-urlencoded'
+  ));
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-$error = curl_error($ch);
-curl_close($ch);
+  $response = curl_exec($ch);
+  $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  $error = curl_error($ch);
+  curl_close($ch);
 
-if ($error) {
-    echo "cURL Error: " . $error . "\n";
-} else {
-    echo "Status Code: " . $httpCode . "\n";
-    echo "Response: " . $response . "\n";
-}
-?>
-```
-```perl
-#!/usr/bin/perl
-use strict;
-use warnings;
-use LWP::UserAgent;
-use HTTP::Request::Common qw(POST);
+  if ($error) {
+      echo "cURL Error: " . $error . "\n";
+  } else {
+      echo "Status Code: " . $httpCode . "\n";
+      echo "Response: " . $response . "\n";
+  }
+  ?>
+  ```
+  ```perl
+  #!/usr/bin/perl
+  use strict;
+  use warnings;
+  use LWP::UserAgent;
+  use HTTP::Request::Common qw(POST);
 
-my $url = "https://test.payu.in/_payment?form=2";
+  my $url = "https://test.payu.in/_payment?form=2";
 
-my $ua = LWP::UserAgent->new;
-$ua->timeout(30);
+  my $ua = LWP::UserAgent->new;
+  $ua->timeout(30);
 
-my %data = (
-    'key'           => 'JPM7Fg',
-    'pg'            => 'CC',
-    'bankcode'      => 'CC',
-    'pre_authorize' => '1',
-    'surl'          => 'https://test-payment-middleware.payu.in/simulatorResponse',
-    'furl'          => 'https://test-payment-middleware.payu.in/simulatorResponse',
-    'txnid'         => 'ypskjfdaaksdjfh',
-    'amount'        => '10000',
-    'productinfo'   => 'iPhone',
-    'firstname'     => 'Ashish',
-    'email'         => 'ashish@gmail.com',
-    'phone'         => '9889XXXXXX',
-    'ccnum'         => '512*******012346',
-    'ccname'        => 'Ashish',
-    'ccexpmon'      => '11',
-    'ccexpyr'       => '2025',
-    'ccvv'          => '123',
-    'hash'          => 'd99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced'
-);
+  my %data = (
+      'key'           => 'JPM7Fg',
+      'pg'            => 'CC',
+      'bankcode'      => 'CC',
+      'pre_authorize' => '1',
+      'surl'          => 'https://test-payment-middleware.payu.in/simulatorResponse',
+      'furl'          => 'https://test-payment-middleware.payu.in/simulatorResponse',
+      'txnid'         => 'ypskjfdaaksdjfh',
+      'amount'        => '10000',
+      'productinfo'   => 'iPhone',
+      'firstname'     => 'Ashish',
+      'email'         => 'ashish@gmail.com',
+      'phone'         => '9889XXXXXX',
+      'ccnum'         => '512*******012346',
+      'ccname'        => 'Ashish',
+      'ccexpmon'      => '11',
+      'ccexpyr'       => '2025',
+      'ccvv'          => '123',
+      'hash'          => 'd99f230c19d781016fa64c57f976d0ec8ff3761fe5d9d6448933cf46d7177db6fb7b370e551e39dd37f2045a2a761f9065f8462838bbaad22963c083c84f9ced'
+  );
 
-my $response = $ua->request(POST $url,
-    Content_Type => 'application/x-www-form-urlencoded',
-    Accept       => 'text/plain',
-    Content      => [%data]
-);
+  my $response = $ua->request(POST $url,
+      Content_Type => 'application/x-www-form-urlencoded',
+      Accept       => 'text/plain',
+      Content      => [%data]
+  );
 
-if ($response->is_success) {
-    print "Status Code: " . $response->code . "\n";
-    print "Response: " . $response->decoded_content . "\n";
-} else {
-    print "Error: " . $response->status_line . "\n";
-    print "Response: " . $response->decoded_content . "\n";
-}
-```
-
+  if ($response->is_success) {
+      print "Status Code: " . $response->code . "\n";
+      print "Response: " . $response->decoded_content . "\n";
+  } else {
+      print "Error: " . $response->status_line . "\n";
+      print "Response: " . $response->decoded_content . "\n";
+  }
+  ```
 </Accordion>
 
 ## Step 2: Check the response from PayU
