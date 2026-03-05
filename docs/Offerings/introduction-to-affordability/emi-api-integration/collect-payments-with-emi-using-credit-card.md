@@ -30,31 +30,31 @@ When your customer wants to opt for the EMI option with credit cards, you can us
 **Steps to integrate**
 
 <Cards columns={2}>
-  <Card title="1. Check the Card EMI Eligibility" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-1-check-the-card-emi-eligibility">
+  <Card title="1. Check the Card EMI Eligibility" href="#step-1-check-the-card-emi-eligibility">
     Verify if the customer's card is eligible for EMI payments before proceeding
 
     <br />
   </Card>
 
-  <Card title="2. Calculate the EMI Interest" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-2-calculate-the-emi-interest">
+  <Card title="2. Calculate the EMI Interest" href="#step-2-calculate-the-emi-interest">
     Calculate the EMI interest rates and monthly installment amounts for the transaction
 
     <br />
   </Card>
 
-  <Card title="3. Initiate the Payment" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-3-initiate-the-payment">
+  <Card title="3. Initiate the Payment" href="#step-3-initiate-the-payment">
     Start the payment process with EMI configuration in Android Checkout Pro
 
     <br />
   </Card>
 
-  <Card title="4. Check the PayU Response" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro?#step-4-check-the-payu-response">
+  <Card title="4. Check the PayU Response" href="#step-4-check-the-payu-response">
     Handle and process the response received from PayU after payment initiation
 
     <br />
   </Card>
 
-  <Card title="5. Verify the Payment" href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-5-verify-the-payment">
+  <Card title="5. Verify the Payment" href="#step-5-verify-the-payment">
     Verify the payment status and ensure successful EMI transaction completion
   </Card>
 
@@ -64,7 +64,7 @@ When your customer wants to opt for the EMI option with credit cards, you can us
 <Callout icon="📮" theme="default">
   **Postman Collection**: Download the **Merchant Hosted Checkout > Credit Card EMI** Postman Collection from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/vaqlmg8/integrate-with-credit-card
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/vaqlmg8/integrate-with-credit-card](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/vaqlmg8/integrate-with-credit-card)
 </Callout>
 
 ## Step 1: Check the card EMI eligibility
