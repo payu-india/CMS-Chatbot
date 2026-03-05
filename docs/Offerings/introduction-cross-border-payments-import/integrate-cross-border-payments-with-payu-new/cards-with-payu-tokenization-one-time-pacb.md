@@ -203,9 +203,73 @@ Post the payment parameters to PayU's `_payment` API endpoint with the stored Pa
 
 ***
 
-## Step 3: Handle the initial response
+## Step 3: Handle the initial response from PayU
 
-## Step 2: Redirect the customer
+After posting the payment request, PayU returns a response containing transaction status and next steps for 3DS authentication.
+
+<Accordion title="Response Parameters" icon="fa-table">
+  | Parameter                | Description                                                                | Example                                                            |
+  | ------------------------ | -------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+  | metaData                 | `Object`<br />JSON object containing transaction metadata.                 | -                                                                  |
+  | metaData.referenceId     | `String`<br />PayU reference ID to be sent back in subsequent calls.       | `5a3e7cb9884e003dce1f28f965478a9a12fb9244fc15be91b0b3de48763a12e7` |
+  | metaData.txnId           | `String`<br />Merchant's transaction ID.                                   | `payuTestTransaction12345`                                         |
+  | metaData.txnStatus       | `String`<br />Transaction status (e.g., "Enrolled").                       | `Enrolled`                                                         |
+  | metaData.unmappedStatus  | `String`<br />Status for flow control: `pending`, `captured`, or `failed`. | `pending`                                                          |
+  | result.otpPostUrl        | `String`<br />URL to post OTP for verification.                            | `https://test.payu.in/ResponseHandler.php`                         |
+  | result.acsTemplate       | `String`<br />Base64 encoded HTML form for bank ACS redirect.              | `PGh0bWw+PGJvZHk+...`                                              |
+  | binData.pureS2SSupported | `Boolean`<br />Whether native S2S OTP flow is supported.                   | `true`                                                             |
+  | binData.issuingBank      | `String`<br />Card issuing bank.                                           | `AXIS`                                                             |
+  | binData.category         | `String`<br />Card category (`creditcard` or `debitcard`).                 | `creditcard`                                                       |
+  | binData.cardType         | `String`<br />Card network (`VISA`, `MAST`, `RUPAY`).                      | `MAST`                                                             |
+  | binData.isDomestic       | `Boolean`<br />Whether the card is domestic.                               | `true`                                                             |
+</Accordion>
+
+<Accordion title="Sample Response" icon="fa-code">
+  ```json
+  {
+    "metaData": {
+      "message": null,
+      "referenceId": "5a3e7cb9884e003dce1f28f965478a9a12fb9244fc15be91b0b3de48763a12e7",
+      "statusCode": null,
+      "txnId": "payuTestTransaction12345",
+      "txnStatus": "Enrolled",
+      "unmappedStatus": "pending",
+      "resendOtp": {
+        "isSupported": true,
+        "attemptsLeft": 2
+      },
+      "submitOtp": {
+        "attemptsLeft": 3
+      }
+    },
+    "result": {
+      "otpPostUrl": "https://test.payu.in/ResponseHandler.php",
+      "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0i..."
+    },
+    "binData": {
+      "pureS2SSupported": true,
+      "issuingBank": "AXIS",
+      "category": "creditcard",
+      "cardType": "MAST",
+      "isDomestic": true
+    }
+  }
+  ```
+</Accordion>
+
+<Accordion title="Handling the Response" icon="fa-info-circle">
+  Based on the `unmappedStatus` value, take the following actions:
+
+  | Status     | Action                                                              |
+  | ---------- | ------------------------------------------------------------------- |
+  | `pending`  | Proceed with 3DS authentication using the `acsTemplate` or OTP flow |
+  | `captured` | Transaction successful, no further action needed                    |
+  | `failed`   | Transaction failed, display error to customer                       |
+</Accordion>
+
+***
+
+## Step 3: Redirect the customer
 
 Basis a successful response of the authentication API, you need to redirect the user to the bank page using **acsTemplate**.  This API specifies the response that is posted to `termUrl` after the authentication for the transaction has been processed.
 
@@ -430,6 +494,6 @@ After the payment is complete, verify the transaction status using PayU's verifi
 
 If any error message is displayed with an error code, refer to [Error Codes](ref:error-codes) to understand the reason. For error codes during various transaction stages, refer to [Transaction Stages - Error References](ref:transaction-stages-error-references-on-field7-field8).
 
-> 📘 Reference
->
-> For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+<Callout icon="📘" theme="info">
+  **Reference**: For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+</Callout>
