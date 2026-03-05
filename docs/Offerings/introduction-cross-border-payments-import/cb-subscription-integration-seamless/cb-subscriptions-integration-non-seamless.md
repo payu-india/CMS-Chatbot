@@ -13,12 +13,14 @@ This section describes how to set up a Payment Consent or Registration transacti
 **Payment Consent Flow**
 
 <Cards columns={2}>
-  <Card title="1. Post the Request" href="#step-1-post-the-request">
+  <Card title="1. Payment Consent Transaction" href="##step-1-payment-consent-transaction-using-payu-hosted-checkout">
     Send the ENACH consent transaction request with S2S parameters.
   </Card>
+
   <Card title="2. Verify the Mandate" href="#step-2-verify-the-mandate">
     Send the ENACH consent transaction request with S2S parameters.
   </Card>
+
   <Card title="3. Verify Payment" href="#step-3-verify_the_payment">
     Handle the response for Net Banking flow.
   </Card>
