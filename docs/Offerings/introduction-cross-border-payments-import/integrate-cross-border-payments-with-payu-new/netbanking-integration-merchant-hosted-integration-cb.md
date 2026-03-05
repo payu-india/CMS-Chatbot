@@ -183,7 +183,9 @@ After posting the payment request, PayU returns a response containing transactio
   | `failed`   | Transaction failed, display error to customer                       |
 </Accordion>
 
-Redirect the customer using the result.acsTemplate(base64encoded) to their bank's page for authentication. The final response will be posted to surl/furl and the configured Webhook.
+<Callout icon="📘" theme="info">
+  **Redirect** the customer using the result.acsTemplate(base64encoded) to their bank's page for authentication. The final response will be posted to surl/furl and the configured Webhook.
+</Callout>
 
 <Callout icon="📘" theme="info">
   **Reference:** PayU recommends you to use PayU Hash Verification Tool to verify the reverse hashing. For more information, refer to [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
