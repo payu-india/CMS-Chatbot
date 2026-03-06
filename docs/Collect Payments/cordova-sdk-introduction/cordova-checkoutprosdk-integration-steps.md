@@ -231,14 +231,14 @@ The Cordova Checkout SDK integration involves the following steps:
     Add additional charges or percentage-based charges for specific payment methods.
 
     ```javascript
-    const payUPaymentParams = {
-      // ... other parameters
-      
+    var payUPaymentParams = {
+  // ... other parameters
+  
       // Fixed additional charges
       additionalCharges: 'CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55',
-      
+
       // Percentage-based additional charges
-      percentageAdditionalCharges: 'CC:50,AMEX:100,DINR:75,DC:25',
+      percentageAdditionalCharges: 'CC:50,AMEX:100,DINR:75,DC:25'
     };
     ```
 
@@ -258,7 +258,7 @@ The Cordova Checkout SDK integration involves the following steps:
 
     ```javascript
       // Split payment configuration
-      const splitPaymentDetails = {
+      var splitPaymentDetails = {
         type: 'absolute', // or 'percentage'
         splitInfo: {
           'imAJ7I': { // Child Merchant Key
@@ -269,7 +269,7 @@ The Cordova Checkout SDK integration involves the following steps:
         },
       };
       
-      const payUPaymentParams = {
+      var payUPaymentParams = {
         // Add split payment details as JSON string
         splitPaymentDetails: JSON.stringify(splitPaymentDetails),
       };
@@ -291,7 +291,7 @@ The Cordova Checkout SDK integration involves the following steps:
     ```javascript
 
       // SKU Details
-      const skuDetails = {
+      var skuDetails = {
         skus: [
           {
             skuId: '111',
@@ -310,7 +310,7 @@ The Cordova Checkout SDK integration involves the following steps:
         ],
       };
       
-      const payUPaymentParams = {
+      var payUPaymentParams = {
         // Add SKU details
         skuDetails: skuDetails,
       };
@@ -332,7 +332,7 @@ The Cordova Checkout SDK integration involves the following steps:
     ```javascript
 
       // TPV Beneficiary Details
-      const beneficiaryDetails = [
+      var beneficiaryDetails = [
         // For UPI
         {
           beneficiaryAccount: '002001600674',
@@ -347,7 +347,7 @@ The Cordova Checkout SDK integration involves the following steps:
         },
       ];
       
-      const payUPaymentParams = {   
+      var payUPaymentParams = {   
         // Add TPV beneficiary details
         beneficiaryDetails: beneficiaryDetails,
       };
@@ -372,7 +372,7 @@ The Cordova Checkout SDK integration involves the following steps:
     ```javascript
 
       // Address Details (Mandatory for OPGSP)
-      const address = {
+      var address = {
         lastName: 'LastName',
         address1: 'Address1 value',
         address2: 'Address2 value',
@@ -383,7 +383,7 @@ The Cordova Checkout SDK integration involves the following steps:
       };
       
       // Additional Param with UDF5 (Invoice Number - Mandatory for OPGSP)
-      const additionalParam = {
+      var additionalParam = {
         udf1: 'udf1',
         udf2: 'udf2',
         udf3: 'udf3',
@@ -391,7 +391,7 @@ The Cordova Checkout SDK integration involves the following steps:
         udf5: 'Sample_Invoice_11', // Mandatory for OPGSP
       };
       
-      const payUPaymentParams = {
+      var payUPaymentParams = {
         // Add address details
         address: address,
         // Add additional params with UDF5, pass invoice number
@@ -412,7 +412,7 @@ The Cordova Checkout SDK integration involves the following steps:
 
     ```javascript
       // WealthTech Product Details
-      const products = [
+      var products = [
         {
           type: 'mutual_fund',
           plan: 'GD',
@@ -429,7 +429,7 @@ The Cordova Checkout SDK integration involves the following steps:
         },
       ];
       
-      const payUPaymentParams = {
+      var payUPaymentParams = {
         // Add WealthTech products
         products: products,
       };
@@ -443,7 +443,7 @@ The Cordova Checkout SDK integration involves the following steps:
     Apply specific promotional offers during checkout.
 
     ```javascript
-    const payUPaymentParams = {
+    var payUPaymentParams = {
       // ... other parameters
       
       // Comma-separated offer keys
@@ -807,10 +807,10 @@ The Cordova Checkout SDK integration involves the following steps:
     ```javascript
 
     const createPaymentParams = () => {
-      const txnid = new Date().getTime().toString();
+      var txnid = new Date().getTime().toString();
 
       // ========== Basic Payment Parameters (Mandatory) ==========
-      const payUPaymentParams = {
+      var payUPaymentParams = {
         key: 'YOUR_MERCHANT_KEY',
         transactionId: txnid,
         amount: '10',
@@ -828,7 +828,7 @@ The Cordova Checkout SDK integration involves the following steps:
       };
 
       // ========== Additional Parameters ==========
-      const additionalParam = {
+      var additionalParam = {
         udf1: 'udf1',
         udf2: 'udf2',
         udf3: 'udf3',
@@ -927,7 +927,7 @@ The Cordova Checkout SDK integration involves the following steps:
       ];
 
       // ========== Split Payment - Optional ==========
-      const splitPaymentDetails = {
+      var splitPaymentDetails = {
         type: 'absolute', // or 'percentage'
         splitInfo: {
           imAJ7I: { // Child Merchant Key
