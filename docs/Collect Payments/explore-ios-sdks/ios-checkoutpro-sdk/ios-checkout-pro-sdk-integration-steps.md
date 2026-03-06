@@ -435,9 +435,22 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     ```Text Onjective-C
     paymentParam.siParams = siParam;
     ```
-  </Accordion>
+    </Accordion>
 
-  <Accordion title="Step 2.4: For Split Payments details (Optional)" icon="fa-code">
+<Accordion title="Step 2.4:For Additional Charges" icon="fa-code">
+      Additional charges can be applied to transactions:
+
+      ```Text Swift
+      paymentParam.additionalCharges = "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55"
+      paymentParam.percentageAdditionalCharges = "CC:50,SBIB:100,DINR:100,DC:25,NB:50"
+      ```
+      ```Text Objective-C
+      paymentParam.additionalCharges = @"CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
+      paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50";
+      ```
+    </Accordion>
+
+  <Accordion title="Step 2.5: For Split Payments details (Optional)" icon="fa-code">
     Split payments allow you to distribute the payment amount between a parent merchant and sub-merchants.
 
     <Accordion title="JSON request structure of splitInfo field" icon="fa-code">
@@ -467,18 +480,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       ```
     </Accordion>
     </Accordion>
-<Accordion title="Step 2.5:For Additional Charges" icon="fa-code">
-      Additional charges can be applied to transactions:
 
-      ```Text Swift
-      paymentParam.additionalCharges = "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55"
-      paymentParam.percentageAdditionalCharges = "CC:50,SBIB:100,DINR:100,DC:25,NB:50"
-      ```
-      ```Text Objective-C
-      paymentParam.additionalCharges = @"CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
-      paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50";
-      ```
-    </Accordion>
 </Accordion>
 
 <Accordion title="Step 3: Generate the hash" icon="fa-code">
