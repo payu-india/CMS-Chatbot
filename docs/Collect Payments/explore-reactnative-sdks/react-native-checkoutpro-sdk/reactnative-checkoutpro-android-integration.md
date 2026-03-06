@@ -191,9 +191,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
     For Standing Instructions / subscription payments, build the `payUSIParams` object.
 
     ```javascript
-    const createRecurringPaymentParams = () => {
-      const txnid = new Date().getTime().toString();
-      
+
       // SI Parameters
       const payUSIParams = {
         isFreeTrial: false,
@@ -211,9 +209,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
         // Add SI Parameters
         payUSIParams: payUSIParams,
       };
-      
-      return payUPaymentParams;
-    };
+   
     ```
 
     **SI Parameters Reference:**
@@ -223,7 +219,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
     | `isFreeTrial`      | Boolean | Whether this is a free trial period | `true` / `false`                                        |
     | `billingAmount`    | String  | Amount to be charged                | `"3000"`                                                |
     | `billingCycle`     | String  | Billing frequency                   | `MONTHLY`, `DAILY`, `WEEKLY`, `YEARLY`, `ADHOC`, `ONCE` |
-    | `billingInterval`  | String  | Interval between charges            | `"1"`                                                  |
+    | `billingInterval`  | String  | Interval between charges            | `"10"`                                                  |
     | `paymentStartDate` | String  | Start date (YYYY-MM-DD)             | `"2027-05-06"`                                          |
     | `paymentEndDate`   | String  | End date (YYYY-MM-DD)               | `"2028-05-10"`                                          |
     | `remarks`          | String  | Additional notes                    | `"Subscription"`                                        |
@@ -239,9 +235,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
     For UPI OTM, enable pre-auth and provide mandate dates.
 
     ```javascript
-    const createOTMPaymentParams = () => {
-      const txnid = new Date().getTime().toString();
-      
+
       // OTM Parameters
       const payUSIParams = {
         isPreAuthTxn: true, // Mandatory for UPI OTM
@@ -254,8 +248,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
         payUSIParams: payUSIParams,
       };
       
-      return payUPaymentParams;
-    };
+ 
     ```
 
     ***
@@ -291,9 +284,6 @@ To integrate with the CheckoutPro mobile SDK for Android:
     For split payments (aggregator model), create a JSON object and pass it as a string.
 
     ```javascript
-    const createSplitPaymentParams = () => {
-      const txnid = new Date().getTime().toString();
-      
       // Split payment configuration
       const splitPaymentDetails = {
         type: 'absolute', // or 'percentage'
@@ -311,8 +301,6 @@ To integrate with the CheckoutPro mobile SDK for Android:
         splitPaymentDetails: JSON.stringify(splitPaymentDetails),
       };
       
-      return payUPaymentParams;
-    };
     ```
 
     **Important:**
@@ -328,9 +316,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
     Pass item-level details for cart-based transactions.
 
     ```javascript
-    const createPaymentWithSKU = () => {
-      const txnid = new Date().getTime().toString();
-      
+
       // SKU Details
       const skuDetails = {
         skus: [
@@ -356,8 +342,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
         skuDetails: skuDetails,
       };
       
-      return payUPaymentParams;
-    };
+  
     ```
 
     > **🚧 Keep in mind:**
@@ -372,9 +357,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
     For TPV transactions, pass beneficiary account details for verification.
 
     ```javascript
-    const createTPVPaymentParams = () => {
-      const txnid = new Date().getTime().toString();
-      
+
       // TPV Beneficiary Details
       const beneficiaryDetails = [
         // For UPI
@@ -395,9 +378,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
         // Add TPV beneficiary details
         beneficiaryDetails: beneficiaryDetails,
       };
-      
-      return payUPaymentParams;
-    };
+ 
     ```
 
     **TPV Parameters:**
@@ -416,9 +397,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
     For OPGSP merchants, complete address details are mandatory. UDF5 (invoice number) is also required.
 
     ```javascript
-    const createOPGSPPaymentParams = () => {
-      const txnid = new Date().getTime().toString();
-      
+
       // Address Details (Mandatory for OPGSP)
       const address = {
         lastName: 'LastName',
@@ -445,9 +424,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
         // Add additional params with UDF5, pass invoice number
         additionalParam: additionalParam,
       };
-      
-      return payUPaymentParams;
-    };
+ 
     ```
 
     > **Important:** For OPGSP merchants, both `address` and `udf5` (invoice number) are mandatory.
@@ -461,9 +438,6 @@ To integrate with the CheckoutPro mobile SDK for Android:
     For investment and mutual fund transactions.
 
     ```javascript
-    const createWealthTechPaymentParams = () => {
-      const txnid = new Date().getTime().toString();
-      
       // WealthTech Product Details
       const products = [
         {
@@ -486,9 +460,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
         // Add WealthTech products
         products: products,
       };
-      
-      return payUPaymentParams;
-    };
+
     ```
 
     ***
