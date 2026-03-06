@@ -356,7 +356,7 @@ const createPaymentWithSKU = () => {
 
 ---
   </Accordion>
-<Accordion title="Step 2.6: Third Party Verification (TPV) Flow - Optional" icon="fa-code">
+<Accordion title="Step 2.7: Third Party Verification (TPV) Flow - Optional" icon="fa-code">
 For TPV transactions, pass beneficiary account details for verification.
 ```javascript
 const createTPVPaymentParams = () => {
@@ -398,9 +398,118 @@ const createTPVPaymentParams = () => {
 
 ---
 </Accordion>
+<Accordion title="Step 2.8: Cross Border Flow (OPGSP) - Optional" icon="fa-code">
+For OPGSP merchants, complete address details are mandatory. UDF5 (invoice number) is also required.
 
+```javascript
+const createOPGSPPaymentParams = () => {
+  const txnid = new Date().getTime().toString();
+  
+  // Address Details (Mandatory for OPGSP)
+  const address = {
+    lastName: 'LastName',
+    address1: 'Address1 value',
+    address2: 'Address2 value',
+    city: 'Gurgaon',
+    state: 'Haryana',
+    country: 'India',
+    zipcode: '122001',
+  };
+  
+  // Additional Param with UDF5 (Invoice Number - Mandatory for OPGSP)
+  const additionalParam = {
+    udf1: 'udf1',
+    udf2: 'udf2',
+    udf3: 'udf3',
+    udf4: 'udf4',
+    udf5: 'Sample_Invoice_11', // Mandatory for OPGSP
+  };
+  
+  const payUPaymentParams = {
+    // Add address details
+    address: address,
+    // Add additional params with UDF5, pass invoice number
+    additionalParam: additionalParam,
+  };
+  
+  return payUPaymentParams;
+};
+```
 
-  <Accordion title="Payment parameters" icon="fa-code">
+> **Important:** For OPGSP merchants, both `address` and `udf5` (invoice number) are mandatory.
+
+For more details: [Cross-Border Payments (Import)](https://docs.payu.in/docs/introduction-cross-border-payments-import)
+
+---
+  </Accordion>
+<Accordion title="Step 2.9: WealthTech Flow - Optional" icon="fa-code">
+For investment and mutual fund transactions.
+
+```javascript
+const createWealthTechPaymentParams = () => {
+  const txnid = new Date().getTime().toString();
+  
+  // WealthTech Product Details
+  const products = [
+    {
+      type: 'mutual_fund',
+      plan: 'GD',
+      folio: '9104927822',
+      amount: '50000',
+      option: 'G',
+      scheme: 'LT',
+      receipt: '77407',
+      mfMemberID: '123445',
+      mfUserID: '77407',
+      mfPartner: 'cams',
+      mfInvestmentType: 'L',
+      mfAMCCode: 'UTB',
+    },
+  ];
+  
+  const payUPaymentParams = {
+    // Add WealthTech products
+    products: products,
+  };
+  
+  return payUPaymentParams;
+};
+```
+
+---
+  </Accordion>
+<Accordion title="Step 2.10: Enforce Offer Keys" icon="fa-code">
+ Apply specific promotional offers during checkout.
+
+```javascript
+const payUPaymentParams = {
+  // ... other parameters
+  
+  // Comma-separated offer keys
+  enforcementOfferKeys: ['offer_key_1', 'offer_key_2'],
+};
+
+// Or as a comma-separated string (if parsing on your side)
+// enforcementOfferKeys: 'HoliSale@JbBdLOBritj5,Instantoffer@Kp78nFDENX5S'
+```
+---
+  </Accordion>
+<Accordion title="Step 2.11: Additional Parameters - Optional" icon="fa-code">
+The additional parameters that are optional that can be passed to SDK are udf parameters, static hashes, and other parameters. For more details on Static Hash generation and passing them, refer to [generate hashes](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk). The following is a list of parameters that can be passed in additional parameters:
+
+    | Parameter                                   | Description                                                                                                                                                                         |
+    | :------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | PayUCheckoutProConstants.CP\_UDF1           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+    | PayUCheckoutProConstants.CP\_UDF2           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+    | PayUCheckoutProConstants.CP\_UDF3           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+    | PayUCheckoutProConstants.CP\_UDF4           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+    | PayUCheckoutProConstants.CP\_UDF5           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+    | Static hashes                               | `String` The static hashes is specified in this parameter. For more information, refer to [Hash Generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) section. |
+    | PayUCheckoutProConstants.SODEX\_OSOURC\_EID | `String` Sodexo Source ID, Merchant can store it from the third field of PayU response.                                                                                             |
+    | PaymentParamConstant.walletUrn              | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                                  |
+  </Accordion>
+  
+<Accordion title="Steps 2.12: Payment Param Definitions" icon="fa-code">
     <Table align={["left","left"]}>
       <thead>
         <tr>
@@ -623,101 +732,7 @@ const createTPVPaymentParams = () => {
     For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
   </Accordion>
 
-  <Accordion title="Additional parameters (Optional)" icon="fa-code">
-    The additional parameters that are optional that can be passed to SDK are udf parameters, static hashes, and other parameters. For more details on Static Hash generation and passing them, refer to [generate hashes](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk). The following is a list of parameters that can be passed in additional parameters:
-
-    | Parameter                                   | Description                                                                                                                                                                         |
-    | :------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | PayUCheckoutProConstants.CP\_UDF1           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-    | PayUCheckoutProConstants.CP\_UDF2           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-    | PayUCheckoutProConstants.CP\_UDF3           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-    | PayUCheckoutProConstants.CP\_UDF4           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-    | PayUCheckoutProConstants.CP\_UDF5           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-    | Static hashes                               | `String` The static hashes is specified in this parameter. For more information, refer to [Hash Generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) section. |
-    | PayUCheckoutProConstants.SODEX\_OSOURC\_EID | `String` Sodexo Source ID, Merchant can store it from the third field of PayU response.                                                                                             |
-    | PaymentParamConstant.walletUrn              | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                                  |
-  </Accordion>
-
-  <Accordion title="For split Payments details (Optional)" icon="fa-code">
-    For a split payment transaction, create a JSON string with the split payment parameters as shown below:
-
-    JSON Request Structure of splitInfo Field
-    Here is a sample JSON structure for the splitPaymentDetails field:
-
-    ```
-    {  
-       "type":"absolute",  
-       "splitInfo":{  
-          "P**\*_Y":{  
-             "aggregatorSubTxnId":"9a70ea0155268101001ba",  
-             "aggregatorSubAmt":"50",  
-             "aggregatorCharges":"20"  
-          },  
-          "P_**K":{  
-             "aggregatorSubTxnId":"9a70ea0155268101001bb",  
-             "aggregatorSubAmt":"30"  
-          }  
-       }  
-    }
-    ```
-
-    Then create an object of the PayUPaymentParam class and set the splitPaymentDetails property of the object to the JSON string you created in the earlier step.
-
-    ```
-    splitPaymentDetails = '<pass the splitPayment Json Data>';
-    ```
-
-    Kindly refer to the below link for more details about the [Split During Transaction](https://docs.payu.in/reference/split-during-transaction-using-_payment)
-
-    The payment parameters and additional parameters can be passed using the following code snippet:
-
-    ```Text React.js
-    var payUPaymentParams = {
-        key: "Merchant key",
-        transactionId: "Transaction Id",
-        amount: "Transaction amount",
-        productInfo: "product Info",
-        firstName: "Customer firstName",
-        email: "Customer email",
-        phone: "Customer phone",
-        ios_surl: "Success Url for iOS",
-        ios_furl: "Failure Url for iOS",
-        android_surl: "Success Url for Android",
-        android_furl: "Failure Url for Android",
-        environment: "0 or 1",//<0 for Production/1 for Staging>
-        userCredential: "key:CustomerID",
-        userToken: "<pass the User Token>", //Optional, Only use for Offer
-        additionalCharges:"CC:10,NB:20,SBIB:15", //Optional, Only use if want to take addional charges from user
-        percentageAdditionalCharges:"CC:10,NB:20,SBIB:15", //Optional, Only use if want to take addional charges dynamically from user
-        additionalParam: {
-            udf1: "user defined value 1",
-            udf2: "user defined value 2",
-            udf3: "user defined value 3",
-            udf4: "user defined value 4",
-            udf5: "user defined value 5",
-            payment_related_details_for_mobile_sdk: "payment_related_details_for_mobile_sdk hash",
-            vas_for_mobile_sdk: "vas_for_mobile_sdk hash",
-            payment: "Payment Hash",
-            walletUrn: "<walletUrn>"
-        },
-        splitPaymentDetails: splitPaymentData, // //Optional, Only use for Split Payment
-        payUSIParams: {
-          isFreeTrial:true,
-        	billingAmount:'10',
-        	billingInterval:'1',
-        	paymentStartDate:'2023-04-20',
-        	paymentEndDate:'2023-04-30',
-          billingCycle:"DAILY", //Can be any of  YEARLY | MONTHLY | WEEKLY | DAILY | ONCE | ADHOC
-        	remarks:'Test SI transcaction',
-        	billingCurrency:'INR'
-        }
-    }
-    ```
-
-    For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
-
-    ***
-  </Accordion>
+  
 </Accordion>
 
 <Accordion title="Step 3: Initiate the payment" icon="fa-code">
