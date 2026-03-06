@@ -787,10 +787,6 @@ To integrate with the CheckoutPro mobile SDK for Android:
           <td style={{ textAlign: "left" }}>
             `Boolean` Enable native OTP flow for card transactions. When set to true, OTP will be handled natively within the SDK.
           </td>
-
-          <td style={{ textAlign: "left" }}>
-            true / false
-          </td>
         </tr>
 
         <tr>
@@ -807,13 +803,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
             For more details: [Split Settlements](https://docs.payu.in/docs/split-settlments)
           </td>
 
-          <td style={{ textAlign: "left" }}>
-            json.encode(splitPaymentDetails)
-
-            <br />
-
-            Refer to Step 5.5: For split Payments details (Optional)
-          </td>
+ 
         </tr>
 
         <tr>
@@ -838,16 +828,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
           <td style={{ textAlign: "left" }}>
             `Object/List` Contains beneficiary account details for payment verification in TPV flow.
-
             **Mandatory only for TPV (Third Party Verification) transactions.**
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            beneficiaryDetails object or list
-
-            <br />
-
-            Refer to Step 5.7: Third Party Verification (TPV) Flow (Optional)
           </td>
         </tr>
 
@@ -859,18 +840,9 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
           <td style={{ textAlign: "left" }}>
             `Object` Contains customer's complete billing address including address lines, city, state, country, and zipcode.
-
             **Mandatory only for Cross-Border Payments (OPGSP) Merchant.**
 
             For more details: [Cross-Border Payments (Import)](https://docs.payu.in/docs/introduction-cross-border-payments-import)
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            addressDetails object
-
-            <br />
-
-            Refer to Step 5.8: Cross Border Flow (OPGSP)
           </td>
         </tr>
 
@@ -882,16 +854,8 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
           <td style={{ textAlign: "left" }}>
             `List<PayUWealthProducts>` Contains details of wealth management and investment products such as mutual funds. Each product includes information like type, amount, folio number, plan, scheme, AMC code, member ID, user ID, partner details, and investment type.
-
+                
             **Mandatory only for WealthTech / Investment product transactions.**
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            List of PayUWealthProducts objects
-
-            <br />
-
-            Refer to Step 5.9: WealthTech Flow
           </td>
         </tr>
       </tbody>
