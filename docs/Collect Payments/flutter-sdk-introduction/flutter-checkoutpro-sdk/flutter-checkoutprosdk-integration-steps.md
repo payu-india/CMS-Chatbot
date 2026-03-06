@@ -183,7 +183,7 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
 
 To initiate a payment, your app must send transactional information to the CheckoutPro SDK. For Flutter, you pass this information as a `Map` using the keys from `PayUPaymentParamKey` (and related key classes).
 
-<Accordion title="Step 3.1: Basic Integration" icon="fa-code">
+<Accordion title="Step 5.1: Basic Integration" icon="fa-code">
   ```Text Dart
   static Map createPayUPaymentParams() {
     var payUPaymentParams = {
@@ -216,7 +216,7 @@ To initiate a payment, your app must send transactional information to the Check
   > - The `transactionId` must not include special characters and must not exceed 25 characters.
 </Accordion>
 
-<Accordion title="Step 3.2: For Recurring Payments (SI) (Optional)" icon="fa-code">
+<Accordion title="Step 5.2: For Recurring Payments (SI) (Optional)" icon="fa-code">
   If you are integrating Standing Instructions / subscription payments, build the `siParams` map and pass it using `PayUPaymentParamKey.payUSIParams`.
 
   ```Text Dart
@@ -242,7 +242,7 @@ To initiate a payment, your app must send transactional information to the Check
   For more details, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
 </Accordion>
 
-<Accordion title="Step 3.3: For UPI One Time Mandate Payments (Optional)" icon="fa-code">
+<Accordion title="Step 5.3: For UPI One Time Mandate Payments (Optional)" icon="fa-code">
   For UPI OTM, enable pre-auth and provide mandate dates.
 
   ```Text Dart
@@ -256,7 +256,7 @@ To initiate a payment, your app must send transactional information to the Check
   ```
 </Accordion>
 
-<Accordion title="Step 3.4: For Additional Charges (Optional)" icon="fa-code">
+<Accordion title="Step 5.4: For Additional Charges (Optional)" icon="fa-code">
   ```Text Dart
   payUPaymentParams[PayUPaymentParamKey.additionalCharges] =
       "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
@@ -267,7 +267,7 @@ To initiate a payment, your app must send transactional information to the Check
   For more information, refer to [Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges).
 </Accordion>
 
-<Accordion title="Step 3.5: For Split Payments details (Optional)" icon="fa-code">
+<Accordion title="Step 5.5: For Split Payments details (Optional)" icon="fa-code">
   For split payments, create a JSON object and pass it as an encoded string.
 
   ```Text Dart
@@ -288,7 +288,7 @@ To initiate a payment, your app must send transactional information to the Check
   ```
 </Accordion>
 
-<Accordion title="Step 3.6: SKU details (Optional)" icon="fa-code">
+<Accordion title="Step 5.6: SKU details (Optional)" icon="fa-code">
   ```Text Dart
   var skus = [
     {
@@ -315,7 +315,7 @@ To initiate a payment, your app must send transactional information to the Check
   > If you are passing SKU offer details, the `amount` must equal the sum of \(quantity × skuAmount\) across all items.
 </Accordion>
 
-<Accordion title="Step 3.7: Third Party Verification (TPV) Flow (Optional)" icon="fa-code">
+<Accordion title="Step 5.7: Third Party Verification (TPV) Flow (Optional)" icon="fa-code">
   ```Text Dart
   var beneficiaryDetails = [
     // For UPI
@@ -336,7 +336,7 @@ To initiate a payment, your app must send transactional information to the Check
   ```
 </Accordion>
 
-<Accordion title="Step 3.8: Cross Border Flow (OPGSP)" icon="fa-code">
+<Accordion title="Step 5.8: Cross Border Flow (OPGSP)" icon="fa-code">
   OPGSP flow requires complete address details. When using OPGSP, **UDF5 (invoice number)** is mandatory.
 
   ```Text Dart
@@ -361,7 +361,7 @@ To initiate a payment, your app must send transactional information to the Check
   ```
 </Accordion>
 
-<Accordion title="Step 3.9: WealthTech Flow (Optional)" icon="fa-code">
+<Accordion title="Step 5.9: WealthTech Flow (Optional)" icon="fa-code">
   ```Text Dart
   var wealthTech = [
     {
@@ -384,14 +384,14 @@ To initiate a payment, your app must send transactional information to the Check
   ```
 </Accordion>
 
-<Accordion title="Step 3.10: Enforce Offer Keys (Optional)" icon="fa-code">
+<Accordion title="Step 5.10: Enforce Offer Keys (Optional)" icon="fa-code">
   ```Text Dart
   payUPaymentParams[PayUPaymentParamKey.enforcementOfferKeys] =
       "HoliSale@JbBdLOBritj5,Instantoffer@Kp78nFDENX5S";
   ```
 </Accordion>
 
-<Accordion title="Step 3.11: Additional parameters (Optional)" icon="fa-code">
+<Accordion title="Step 5.11: Additional parameters (Optional)" icon="fa-code">
   Additional parameters are optional parameters such as UDF (User Defined Fields), access keys, static hashes, etc. The following is a list of commonly used fields:
 
   | Parameter                                   | Description |
@@ -424,7 +424,7 @@ To initiate a payment, your app must send transactional information to the Check
   For more details on Static Hash generation and passing them, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk).
 </Accordion>
 
-<Accordion title="Step 3.12: Payment Param Definitions" icon="fa-code">
+<Accordion title="Step 5.12: Payment Param Definitions" icon="fa-code">
   <Table align={["left","left","left"]}>
     <thead>
       <tr>
@@ -682,7 +682,7 @@ To initiate a payment, your app must send transactional information to the Check
 
           <br />
 
-          Refer to Step 3.4: For Additional Charges (Optional)
+          Refer to Step 5.4: For Additional Charges (Optional)
         </td>
       </tr>
 
@@ -705,7 +705,7 @@ To initiate a payment, your app must send transactional information to the Check
 
           <br />
 
-          Refer to Step 3.2: For Recurring Payments(SI) (Optional) or Step 3.3: For UPI One Time Mandate Payments (Optional)
+          Refer to Step 5.2: For Recurring Payments(SI) (Optional) or Step 3.3: For UPI One Time Mandate Payments (Optional)
         </td>
       </tr>
 
@@ -743,7 +743,7 @@ To initiate a payment, your app must send transactional information to the Check
 
           <br />
 
-          Refer to Step 3.5: For split Payments details (Optional)
+          Refer to Step 5.5: For split Payments details (Optional)
         </td>
       </tr>
 
@@ -764,7 +764,7 @@ To initiate a payment, your app must send transactional information to the Check
 
           <br />
 
-          Refer to Step 3.10: Enforce Offer Keys
+          Refer to Step 5.10: Enforce Offer Keys
         </td>
       </tr>
 
@@ -785,7 +785,7 @@ To initiate a payment, your app must send transactional information to the Check
 
           <br />
 
-          Refer to Step 3.7: Third Party Verification (TPV) Flow (Optional)
+          Refer to Step 5.7: Third Party Verification (TPV) Flow (Optional)
         </td>
       </tr>
 
@@ -808,7 +808,7 @@ To initiate a payment, your app must send transactional information to the Check
 
           <br />
 
-          Refer to Step 3.8: Cross Border Flow (OPGSP)
+          Refer to Step 5.8: Cross Border Flow (OPGSP)
         </td>
       </tr>
 
@@ -829,14 +829,14 @@ To initiate a payment, your app must send transactional information to the Check
 
           <br />
 
-          Refer to Step 3.9: WealthTech Flow
+          Refer to Step 5.9: WealthTech Flow
         </td>
       </tr>
     </tbody>
   </Table>
 </Accordion>
 
-<Accordion title="Step 3.13: Full Flutter sample (recommended)" icon="fa-code">
+<Accordion title="Step 5.13:  sample (recommended)" icon="fa-code">
   ```Text Dart
   // import 'dart:convert';
 
