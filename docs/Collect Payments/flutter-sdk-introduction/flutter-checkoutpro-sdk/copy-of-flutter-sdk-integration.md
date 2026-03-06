@@ -1,7 +1,7 @@
 ---
 title: Copy of Flutter SDK Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Flutter Check Out SDK Integration Steps
   keywords:
