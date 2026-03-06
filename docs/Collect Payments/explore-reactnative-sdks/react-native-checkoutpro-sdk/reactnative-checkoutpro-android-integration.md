@@ -739,6 +739,203 @@ To integrate with the CheckoutPro mobile SDK for Android:
             should be string with PG:Amount or IBIBOCode:Amount
             Sample : CC:100,NB:50,SBIB:25
           </td>
+            </tr>
+				<tr>
+          <td style={{ textAlign: "left" }}>
+            SkuDetails
+            `'madatory'`
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to PayUPaymentParams.
+
+            * \*Note:- \*\*When we use SKU features then it's a mandatory parameter otherwise it's not required.
+          </td>
+
+          <td style={{ textAlign: "left" }} />
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            additionalCharges
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            String
+            This parameter is required if merchant want to take additional charge from user
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            should be string with PG:Amount or IBIBOCode:Amount
+            Sample : CC:10,NB:20,SBIB:15
+          </td>
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            percentageAdditionalCharges
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            String
+            This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            should be string with PG:Amount or IBIBOCode:Amount
+            Sample : CC:100,NB:50,SBIB:25
+
+            <br />
+
+            Refer to Step 5.4: For Additional Charges (Optional)
+          </td>
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            payUSIParams
+            `conditional`
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            `Object` Contains SI/mandate details for recurring payments.
+
+            **Mandatory for Recurring (Subscription / Standing Instruction) transactions.**
+
+            For more details: [Recurring Payments Integration](https://docs.payu.in/docs/introduction-recurring-payments-integration)
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            siParams object
+
+            <br />
+
+            Refer to Step 5.2: For Recurring Payments(SI) (Optional) or Step 3.3: For UPI One Time Mandate Payments (Optional)
+          </td>
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            enableNativeOTP
+            `optional`
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            `Boolean` Enable native OTP flow for card transactions. When set to true, OTP will be handled natively within the SDK.
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            true / false
+          </td>
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            splitPaymentDetails
+            `conditional`
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            `String (JSON encoded)` Contains details for split payment/settlement between multiple parties.
+
+            **Mandatory only for Aggregator transactions.**
+
+            For more details: [Split Settlements](https://docs.payu.in/docs/split-settlments)
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            json.encode(splitPaymentDetails)
+
+            <br />
+
+            Refer to Step 5.5: For split Payments details (Optional)
+          </td>
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            enforcementOfferKeys
+            `optional`
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            `String` Comma-separated list of offer keys to enforce specific offers during checkout. Allows merchants to apply targeted promotional offers.
+
+            * *Note*: Optional parameter for enforcing specific offer keys at checkout.
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            "HoliSale\@JbBdLOBritj5,Instantoffer\@Kp78nFDENX5S"
+
+            <br />
+
+            Refer to Step 5.10: Enforce Offer Keys
+          </td>
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            beneficiaryDetails
+            `conditional`
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            `Object/List` Contains beneficiary account details for payment verification in TPV flow.
+
+            **Mandatory only for TPV (Third Party Verification) transactions.**
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            beneficiaryDetails object or list
+
+            <br />
+
+            Refer to Step 5.7: Third Party Verification (TPV) Flow (Optional)
+          </td>
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            address / addressDetails
+            `conditional`
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            `Object` Contains customer's complete billing address including address lines, city, state, country, and zipcode.
+
+            **Mandatory only for Cross-Border Payments (OPGSP) Merchant.**
+
+            For more details: [Cross-Border Payments (Import)](https://docs.payu.in/docs/introduction-cross-border-payments-import)
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            addressDetails object
+
+            <br />
+
+            Refer to Step 5.8: Cross Border Flow (OPGSP)
+          </td>
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            products
+            `conditional`
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            `List<PayUWealthProducts>` Contains details of wealth management and investment products such as mutual funds. Each product includes information like type, amount, folio number, plan, scheme, AMC code, member ID, user ID, partner details, and investment type.
+
+            **Mandatory only for WealthTech / Investment product transactions.**
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            List of PayUWealthProducts objects
+
+            <br />
+
+            Refer to Step 5.9: WealthTech Flow
+          </td>
         </tr>
       </tbody>
     </Table>
