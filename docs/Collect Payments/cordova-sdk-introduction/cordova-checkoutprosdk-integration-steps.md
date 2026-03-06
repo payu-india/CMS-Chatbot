@@ -110,40 +110,45 @@ The Cordova Checkout SDK integration involves the following steps:
 
   <Accordion title="Step 3.1: Basic Integration" icon="fa-code">
     ```javascript
-
-    const createPaymentParams = () => {
-      const txnid = new Date().getTime().toString();
-      
-      const payUPaymentParams = {
-        key: 'YOUR_MERCHANT_KEY',
-        transactionId: txnid,
-        amount: '10',
-        productInfo: 'Macbook Pro',
-        firstName: 'Abc',
-        email: 'test@gmail.com',
-        phone: '9999999999',
-        // Redirect URLs
-        android_surl: 'https://cbjs.payu.in/sdk/success',
-        android_furl: 'https://cbjs.payu.in/sdk/failure',
-        ios_surl: 'https://cbjs.payu.in/sdk/success',
-        ios_furl: 'https://cbjs.payu.in/sdk/failure',
-        // Environment: '0' => Production, '1' => Test
-        environment: '1',
-        // User credentials for saved cards
-        userCredential: 'YOUR_MERCHANT_KEY:user@email.com',
-        // User token for offer engine
-        userToken: 'userId:userName',
-        // Additional parameters
-        additionalParam: {
-          udf1: 'udf1',
-          udf2: 'udf2',
-          udf3: 'udf3',
-          udf4: 'udf4',
-          udf5: 'udf5',
-        },
-      };
-      return payUPaymentParams;
-    };
+    function createBasicPaymentParams() {
+  var txnid = new Date().getTime().toString();
+  
+  var payUPaymentParams = {
+    key: 'YOUR_MERCHANT_KEY',
+    transactionId: txnid,
+    amount: '10',
+    productInfo: 'Macbook Pro',
+    firstName: 'Abc',
+    email: 'test@gmail.com',
+    phone: '9999999999',
+    
+    // Redirect URLs
+    android_surl: 'https://cbjs.payu.in/sdk/success',
+    android_furl: 'https://cbjs.payu.in/sdk/failure',
+    ios_surl: 'https://cbjs.payu.in/sdk/success',
+    ios_furl: 'https://cbjs.payu.in/sdk/failure',
+    
+    // Environment: '0' => Production, '1' => Test
+    environment: '1',
+    isProduction: false,
+    
+    // User credentials for saved cards
+    userCredential: 'YOUR_MERCHANT_KEY:user@email.com',
+    
+    // User token for offer engine
+    userToken: 'userId:userName',
+    
+    // Additional parameters
+    additionalParam: {
+      udf1: 'udf1',
+      udf2: 'udf2',
+      udf3: 'udf3',
+      udf4: 'udf4',
+      udf5: 'udf5'
+    }
+  };
+  return payUPaymentParams;
+}
     ```
 
     > **📘 Important:**
@@ -161,7 +166,7 @@ The Cordova Checkout SDK integration involves the following steps:
     ```javascript
 
       // SI Parameters
-      const payUSIParams = {
+      var payUSIParams = {
         isFreeTrial: false,
         billingAmount: '200',
         billingCycle: 'MONTHLY', // DAILY/WEEKLY/MONTHLY/YEARLY/ADHOC/ONCE
@@ -205,13 +210,13 @@ The Cordova Checkout SDK integration involves the following steps:
     ```javascript
 
       // OTM Parameters
-      const payUSIParams = {
+      var payUSIParams = {
         isPreAuthTxn: true, // Mandatory for UPI OTM
         paymentStartDate: '2025-04-01', // YYYY-MM-DD
-        paymentEndDate: '2025-04-10',   // YYYY-MM-DD
+        paymentEndDate: '2025-04-10'    // YYYY-MM-DD
       };
       
-      const payUPaymentParams = {
+      var payUPaymentParams = {
         // Add OTM Parameters
         payUSIParams: payUSIParams,
       };
