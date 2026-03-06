@@ -187,315 +187,334 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
     ***
   </Accordion>
+
   <Accordion title="Step 2.2: For Recurring Payments (SI) - Optional" icon="fa-code">
-For Standing Instructions / subscription payments, build the `payUSIParams` object.
-```javascript
-const createRecurringPaymentParams = () => {
-  const txnid = new Date().getTime().toString();
-  
-  // SI Parameters
-  const payUSIParams = {
-    isFreeTrial: false,
-    billingAmount: '3000',
-    billingCycle: 'MONTHLY', // DAILY/WEEKLY/MONTHLY/YEARLY/ADHOC/ONCE
-    billingCurrency: 'INR',
-    billingInterval: '10',
-    paymentStartDate: '2027-05-06', // YYYY-MM-DD
-    paymentEndDate: '2028-05-10',   // YYYY-MM-DD
-    remarks: 'Subscription payment',
-    billingDate: '', // Optional
-  };
-  
-  const payUPaymentParams = {
-    // Add SI Parameters
-    payUSIParams: payUSIParams,
-  };
-  
-  return payUPaymentParams;
-};
-```
+    For Standing Instructions / subscription payments, build the `payUSIParams` object.
 
-**SI Parameters Reference:**
+    ```javascript
+    const createRecurringPaymentParams = () => {
+      const txnid = new Date().getTime().toString();
+      
+      // SI Parameters
+      const payUSIParams = {
+        isFreeTrial: false,
+        billingAmount: '3000',
+        billingCycle: 'MONTHLY', // DAILY/WEEKLY/MONTHLY/YEARLY/ADHOC/ONCE
+        billingCurrency: 'INR',
+        billingInterval: '10',
+        paymentStartDate: '2027-05-06', // YYYY-MM-DD
+        paymentEndDate: '2028-05-10',   // YYYY-MM-DD
+        remarks: 'Subscription payment',
+        billingDate: '', // Optional
+      };
+      
+      const payUPaymentParams = {
+        // Add SI Parameters
+        payUSIParams: payUSIParams,
+      };
+      
+      return payUPaymentParams;
+    };
+    ```
 
-| Parameter | Type | Description | Example |
-|-----------|------|-------------|---------|
-| `isFreeTrial` | Boolean | Whether this is a free trial period | `true` / `false` |
-| `billingAmount` | String | Amount to be charged | `"3000"` |
-| `billingCycle` | String | Billing frequency | `MONTHLY`, `DAILY`, `WEEKLY`, `YEARLY`, `ADHOC`, `ONCE` |
-| `billingInterval` | String | Interval between charges | `"10"` |
-| `paymentStartDate` | String | Start date (YYYY-MM-DD) | `"2027-05-06"` |
-| `paymentEndDate` | String | End date (YYYY-MM-DD) | `"2028-05-10"` |
-| `remarks` | String | Additional notes | `"Subscription"` |
-| `billingCurrency` | String | Currency code | `"INR"` |
-| `billingDate` | String | Specific billing date (optional) | `""` |
+    **SI Parameters Reference:**
 
-For more details, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
+    | Parameter          | Type    | Description                         | Example                                                 |
+    | ------------------ | ------- | ----------------------------------- | ------------------------------------------------------- |
+    | `isFreeTrial`      | Boolean | Whether this is a free trial period | `true` / `false`                                        |
+    | `billingAmount`    | String  | Amount to be charged                | `"3000"`                                                |
+    | `billingCycle`     | String  | Billing frequency                   | `MONTHLY`, `DAILY`, `WEEKLY`, `YEARLY`, `ADHOC`, `ONCE` |
+    | `billingInterval`  | String  | Interval between charges            | `"10"`                                                  |
+    | `paymentStartDate` | String  | Start date (YYYY-MM-DD)             | `"2027-05-06"`                                          |
+    | `paymentEndDate`   | String  | End date (YYYY-MM-DD)               | `"2028-05-10"`                                          |
+    | `remarks`          | String  | Additional notes                    | `"Subscription"`                                        |
+    | `billingCurrency`  | String  | Currency code                       | `"INR"`                                                 |
+    | `billingDate`      | String  | Specific billing date (optional)    | `""`                                                    |
 
----
+    For more details, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
+
+    ***
   </Accordion>
 
-<Accordion title="Step 2.3: For UPI One Time Mandate Payments - Optional" icon="fa-code">
-For UPI OTM, enable pre-auth and provide mandate dates.
-```javascript
-const createOTMPaymentParams = () => {
-  const txnid = new Date().getTime().toString();
-  
-  // OTM Parameters
-  const payUSIParams = {
-    isPreAuthTxn: true, // Mandatory for UPI OTM
-    paymentStartDate: '2025-04-01', // YYYY-MM-DD
-    paymentEndDate: '2025-04-10',   // YYYY-MM-DD
-  };
-  
-  const payUPaymentParams = {
-    // Add OTM Parameters
-    payUSIParams: payUSIParams,
-  };
-  
-  return payUPaymentParams;
-};
-```
-  ---
+  <Accordion title="Step 2.3: For UPI One Time Mandate Payments - Optional" icon="fa-code">
+    For UPI OTM, enable pre-auth and provide mandate dates.
+
+    ```javascript
+    const createOTMPaymentParams = () => {
+      const txnid = new Date().getTime().toString();
+      
+      // OTM Parameters
+      const payUSIParams = {
+        isPreAuthTxn: true, // Mandatory for UPI OTM
+        paymentStartDate: '2025-04-01', // YYYY-MM-DD
+        paymentEndDate: '2025-04-10',   // YYYY-MM-DD
+      };
+      
+      const payUPaymentParams = {
+        // Add OTM Parameters
+        payUSIParams: payUSIParams,
+      };
+      
+      return payUPaymentParams;
+    };
+    ```
+
+    ***
   </Accordion>
-<Accordion title="Step 2.4: For Additional Charges - Optional" icon="fa-code">
-Add additional charges or percentage-based charges for specific payment methods.
-```javascript
-const payUPaymentParams = {
-  // ... other parameters
-  
-  // Fixed additional charges
-  additionalCharges: 'CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55',
-  
-  // Percentage-based additional charges
-  percentageAdditionalCharges: 'CC:50,AMEX:100,DINR:75,DC:25',
-};
-```
-**Format:**
-- `PaymentMode:Amount` separated by commas
-- Payment modes: `CC` (Credit Card), `DC` (Debit Card), `NB` (Net Banking), `UPI`, `WALLET`, `EMI`, `BNPL`
-- Or use specific bank codes like `SBIB` (State Bank), `AMEX`, etc.
 
-For more information, refer to [Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges).
+  <Accordion title="Step 2.4: For Additional Charges - Optional" icon="fa-code">
+    Add additional charges or percentage-based charges for specific payment methods.
 
-  ---
+    ```javascript
+    const payUPaymentParams = {
+      // ... other parameters
+      
+      // Fixed additional charges
+      additionalCharges: 'CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55',
+      
+      // Percentage-based additional charges
+      percentageAdditionalCharges: 'CC:50,AMEX:100,DINR:75,DC:25',
+    };
+    ```
+
+    **Format:**
+
+    * `PaymentMode:Amount` separated by commas
+    * Payment modes: `CC` (Credit Card), `DC` (Debit Card), `NB` (Net Banking), `UPI`, `WALLET`, `EMI`, `BNPL`
+    * Or use specific bank codes like `SBIB` (State Bank), `AMEX`, etc.
+
+    For more information, refer to [Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges).
+
+    ***
   </Accordion>
-<Accordion title="Step 2.5: For Split Payments Details - Optional" icon="fa-code">
-For split payments (aggregator model), create a JSON object and pass it as a string.
 
-```javascript
-const createSplitPaymentParams = () => {
-  const txnid = new Date().getTime().toString();
-  
-  // Split payment configuration
-  const splitPaymentDetails = {
-    type: 'absolute', // or 'percentage'
-    splitInfo: {
-      'imAJ7I': { // Child Merchant Key
-        aggregatorSubTxnId: '12345673443540dd33d099887766650091', // Unique per transaction
-        aggregatorSubAmt: '10',
-        aggregatorCharges: '0',
-      },
-    },
-  };
-  
-  const payUPaymentParams = {
-    // Add split payment details as JSON string
-    splitPaymentDetails: JSON.stringify(splitPaymentDetails),
-  };
-  
-  return payUPaymentParams;
-};
-```
+  <Accordion title="Step 2.5: For Split Payments Details - Optional" icon="fa-code">
+    For split payments (aggregator model), create a JSON object and pass it as a string.
 
-**Important:**
-- `aggregatorSubTxnId` must be unique for each transaction
-- `type` can be `'absolute'` or `'percentage'`
-- Multiple child merchants can be added to `splitInfo`
+    ```javascript
+    const createSplitPaymentParams = () => {
+      const txnid = new Date().getTime().toString();
+      
+      // Split payment configuration
+      const splitPaymentDetails = {
+        type: 'absolute', // or 'percentage'
+        splitInfo: {
+          'imAJ7I': { // Child Merchant Key
+            aggregatorSubTxnId: '12345673443540dd33d099887766650091', // Unique per transaction
+            aggregatorSubAmt: '10',
+            aggregatorCharges: '0',
+          },
+        },
+      };
+      
+      const payUPaymentParams = {
+        // Add split payment details as JSON string
+        splitPaymentDetails: JSON.stringify(splitPaymentDetails),
+      };
+      
+      return payUPaymentParams;
+    };
+    ```
 
----
+    **Important:**
+
+    * `aggregatorSubTxnId` must be unique for each transaction
+    * `type` can be `'absolute'` or `'percentage'`
+    * Multiple child merchants can be added to `splitInfo`
+
+    ***
   </Accordion>
-<Accordion title="Step 2.6: SKU Details - Optional" icon="fa-code">
-Pass item-level details for cart-based transactions.
 
-```javascript
-const createPaymentWithSKU = () => {
-  const txnid = new Date().getTime().toString();
-  
-  // SKU Details
-  const skuDetails = {
-    skus: [
-      {
-        skuId: '111',
-        skuName: 'Shoes',
-        skuAmount: '100',
-        quantity: 1,
-        offerKeys: null,
-      },
-      {
-        skuId: '222',
-        skuName: 'Shirt',
-        skuAmount: '100',
-        quantity: 1,
-        offerKeys: null,
-      },
-    ],
-  };
-  
-  const payUPaymentParams = {
-    // Add SKU details
-    skuDetails: skuDetails,
-  };
-  
-  return payUPaymentParams;
-};
-```
+  <Accordion title="Step 2.6: SKU Details - Optional" icon="fa-code">
+    Pass item-level details for cart-based transactions.
 
-> **🚧 Keep in mind:**
-> - The total `amount` must equal the sum of `(quantity × skuAmount)` for all items
-> - If passing SKU-specific offers, use the `offerKeys` field
+    ```javascript
+    const createPaymentWithSKU = () => {
+      const txnid = new Date().getTime().toString();
+      
+      // SKU Details
+      const skuDetails = {
+        skus: [
+          {
+            skuId: '111',
+            skuName: 'Shoes',
+            skuAmount: '100',
+            quantity: 1,
+            offerKeys: null,
+          },
+          {
+            skuId: '222',
+            skuName: 'Shirt',
+            skuAmount: '100',
+            quantity: 1,
+            offerKeys: null,
+          },
+        ],
+      };
+      
+      const payUPaymentParams = {
+        // Add SKU details
+        skuDetails: skuDetails,
+      };
+      
+      return payUPaymentParams;
+    };
+    ```
 
----
+    > **🚧 Keep in mind:**
+    >
+    > * The total `amount` must equal the sum of `(quantity × skuAmount)` for all items
+    > * If passing SKU-specific offers, use the `offerKeys` field
+
+    ***
   </Accordion>
-<Accordion title="Step 2.7: Third Party Verification (TPV) Flow - Optional" icon="fa-code">
-For TPV transactions, pass beneficiary account details for verification.
-```javascript
-const createTPVPaymentParams = () => {
-  const txnid = new Date().getTime().toString();
-  
-  // TPV Beneficiary Details
-  const beneficiaryDetails = [
-    // For UPI
-    {
-      beneficiaryAccount: '002001600674',
-      beneficiaryIfsc: 'HDFC0000090',
-    },
-    // For Net Banking
-    {
-      beneficiaryName: 'SACHIN Tendulkar',
-      beneficiaryAccount: '002001600674',
-      beneficiaryIfsc: 'ICIC0000090',
-      beneficiaryAccountType: 'SAVINGS',
-    },
-  ];
-  
-  const payUPaymentParams = {   
-    // Add TPV beneficiary details
-    beneficiaryDetails: beneficiaryDetails,
-  };
-  
-  return payUPaymentParams;
-};
-```
 
-**TPV Parameters:**
+  <Accordion title="Step 2.7: Third Party Verification (TPV) Flow - Optional" icon="fa-code">
+    For TPV transactions, pass beneficiary account details for verification.
 
-| Parameter | Required For | Description |
-|-----------|--------------|-------------|
-| `beneficiaryAccount` | All | Beneficiary account number |
-| `beneficiaryIfsc` | All | Bank IFSC code |
-| `beneficiaryName` | Net Banking | Account holder name |
-| `beneficiaryAccountType` | Net Banking | `SAVINGS` or `CURRENT` |
+    ```javascript
+    const createTPVPaymentParams = () => {
+      const txnid = new Date().getTime().toString();
+      
+      // TPV Beneficiary Details
+      const beneficiaryDetails = [
+        // For UPI
+        {
+          beneficiaryAccount: '002001600674',
+          beneficiaryIfsc: 'HDFC0000090',
+        },
+        // For Net Banking
+        {
+          beneficiaryName: 'SACHIN Tendulkar',
+          beneficiaryAccount: '002001600674',
+          beneficiaryIfsc: 'ICIC0000090',
+          beneficiaryAccountType: 'SAVINGS',
+        },
+      ];
+      
+      const payUPaymentParams = {   
+        // Add TPV beneficiary details
+        beneficiaryDetails: beneficiaryDetails,
+      };
+      
+      return payUPaymentParams;
+    };
+    ```
 
----
-</Accordion>
-<Accordion title="Step 2.8: Cross Border Flow (OPGSP) - Optional" icon="fa-code">
-For OPGSP merchants, complete address details are mandatory. UDF5 (invoice number) is also required.
+    **TPV Parameters:**
 
-```javascript
-const createOPGSPPaymentParams = () => {
-  const txnid = new Date().getTime().toString();
-  
-  // Address Details (Mandatory for OPGSP)
-  const address = {
-    lastName: 'LastName',
-    address1: 'Address1 value',
-    address2: 'Address2 value',
-    city: 'Gurgaon',
-    state: 'Haryana',
-    country: 'India',
-    zipcode: '122001',
-  };
-  
-  // Additional Param with UDF5 (Invoice Number - Mandatory for OPGSP)
-  const additionalParam = {
-    udf1: 'udf1',
-    udf2: 'udf2',
-    udf3: 'udf3',
-    udf4: 'udf4',
-    udf5: 'Sample_Invoice_11', // Mandatory for OPGSP
-  };
-  
-  const payUPaymentParams = {
-    // Add address details
-    address: address,
-    // Add additional params with UDF5, pass invoice number
-    additionalParam: additionalParam,
-  };
-  
-  return payUPaymentParams;
-};
-```
+    | Parameter                | Required For | Description                |
+    | ------------------------ | ------------ | -------------------------- |
+    | `beneficiaryAccount`     | All          | Beneficiary account number |
+    | `beneficiaryIfsc`        | All          | Bank IFSC code             |
+    | `beneficiaryName`        | Net Banking  | Account holder name        |
+    | `beneficiaryAccountType` | Net Banking  | `SAVINGS` or `CURRENT`     |
 
-> **Important:** For OPGSP merchants, both `address` and `udf5` (invoice number) are mandatory.
-
-For more details: [Cross-Border Payments (Import)](https://docs.payu.in/docs/introduction-cross-border-payments-import)
-
----
+    ***
   </Accordion>
-<Accordion title="Step 2.9: WealthTech Flow - Optional" icon="fa-code">
-For investment and mutual fund transactions.
 
-```javascript
-const createWealthTechPaymentParams = () => {
-  const txnid = new Date().getTime().toString();
-  
-  // WealthTech Product Details
-  const products = [
-    {
-      type: 'mutual_fund',
-      plan: 'GD',
-      folio: '9104927822',
-      amount: '50000',
-      option: 'G',
-      scheme: 'LT',
-      receipt: '77407',
-      mfMemberID: '123445',
-      mfUserID: '77407',
-      mfPartner: 'cams',
-      mfInvestmentType: 'L',
-      mfAMCCode: 'UTB',
-    },
-  ];
-  
-  const payUPaymentParams = {
-    // Add WealthTech products
-    products: products,
-  };
-  
-  return payUPaymentParams;
-};
-```
+  <Accordion title="Step 2.8: Cross Border Flow (OPGSP) - Optional" icon="fa-code">
+    For OPGSP merchants, complete address details are mandatory. UDF5 (invoice number) is also required.
 
----
+    ```javascript
+    const createOPGSPPaymentParams = () => {
+      const txnid = new Date().getTime().toString();
+      
+      // Address Details (Mandatory for OPGSP)
+      const address = {
+        lastName: 'LastName',
+        address1: 'Address1 value',
+        address2: 'Address2 value',
+        city: 'Gurgaon',
+        state: 'Haryana',
+        country: 'India',
+        zipcode: '122001',
+      };
+      
+      // Additional Param with UDF5 (Invoice Number - Mandatory for OPGSP)
+      const additionalParam = {
+        udf1: 'udf1',
+        udf2: 'udf2',
+        udf3: 'udf3',
+        udf4: 'udf4',
+        udf5: 'Sample_Invoice_11', // Mandatory for OPGSP
+      };
+      
+      const payUPaymentParams = {
+        // Add address details
+        address: address,
+        // Add additional params with UDF5, pass invoice number
+        additionalParam: additionalParam,
+      };
+      
+      return payUPaymentParams;
+    };
+    ```
+
+    > **Important:** For OPGSP merchants, both `address` and `udf5` (invoice number) are mandatory.
+
+    For more details: [Cross-Border Payments (Import)](https://docs.payu.in/docs/introduction-cross-border-payments-import)
+
+    ***
   </Accordion>
-<Accordion title="Step 2.10: Enforce Offer Keys" icon="fa-code">
- Apply specific promotional offers during checkout.
 
-```javascript
-const payUPaymentParams = {
-  // ... other parameters
-  
-  // Comma-separated offer keys
-  enforcementOfferKeys: ['offer_key_1', 'offer_key_2'],
-};
+  <Accordion title="Step 2.9: WealthTech Flow - Optional" icon="fa-code">
+    For investment and mutual fund transactions.
 
-// Or as a comma-separated string (if parsing on your side)
-// enforcementOfferKeys: 'HoliSale@JbBdLOBritj5,Instantoffer@Kp78nFDENX5S'
-```
----
+    ```javascript
+    const createWealthTechPaymentParams = () => {
+      const txnid = new Date().getTime().toString();
+      
+      // WealthTech Product Details
+      const products = [
+        {
+          type: 'mutual_fund',
+          plan: 'GD',
+          folio: '9104927822',
+          amount: '50000',
+          option: 'G',
+          scheme: 'LT',
+          receipt: '77407',
+          mfMemberID: '123445',
+          mfUserID: '77407',
+          mfPartner: 'cams',
+          mfInvestmentType: 'L',
+          mfAMCCode: 'UTB',
+        },
+      ];
+      
+      const payUPaymentParams = {
+        // Add WealthTech products
+        products: products,
+      };
+      
+      return payUPaymentParams;
+    };
+    ```
+
+    ***
   </Accordion>
-<Accordion title="Step 2.11: Additional Parameters - Optional" icon="fa-code">
-The additional parameters that are optional that can be passed to SDK are udf parameters, static hashes, and other parameters. For more details on Static Hash generation and passing them, refer to [generate hashes](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk). The following is a list of parameters that can be passed in additional parameters:
+
+  <Accordion title="Step 2.10: Enforce Offer Keys" icon="fa-code">
+    Apply specific promotional offers during checkout.
+
+    ```javascript
+    const payUPaymentParams = {
+      // ... other parameters
+      
+      // Comma-separated offer keys
+      enforcementOfferKeys: ['offer_key_1', 'offer_key_2'],
+    };
+
+    // Or as a comma-separated string (if parsing on your side)
+    // enforcementOfferKeys: 'HoliSale@JbBdLOBritj5,Instantoffer@Kp78nFDENX5S'
+    ```
+
+    ***
+  </Accordion>
+
+  <Accordion title="Step 2.11: Additional Parameters - Optional" icon="fa-code">
+    The additional parameters that are optional that can be passed to SDK are udf parameters, static hashes, and other parameters. For more details on Static Hash generation and passing them, refer to [generate hashes](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk). The following is a list of parameters that can be passed in additional parameters:
 
     | Parameter                                   | Description                                                                                                                                                                         |
     | :------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -508,8 +527,8 @@ The additional parameters that are optional that can be passed to SDK are udf pa
     | PayUCheckoutProConstants.SODEX\_OSOURC\_EID | `String` Sodexo Source ID, Merchant can store it from the third field of PayU response.                                                                                             |
     | PaymentParamConstant.walletUrn              | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                                  |
   </Accordion>
-  
-<Accordion title="Steps 2.12: Payment Param Definitions" icon="fa-code">
+
+  <Accordion title="Steps 2.12: Payment Param Definitions" icon="fa-code">
     <Table align={["left","left"]}>
       <thead>
         <tr>
@@ -730,12 +749,12 @@ The additional parameters that are optional that can be passed to SDK are udf pa
     > The sample URLs mentioned in **surl** and **furl** are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed.
 
     For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
-        </Accordion>
+  </Accordion>
 
- <Accordion title="Step 2.13: Complete Sample (Recommended)" icon="fa-code">
-			The payment parameters and additional parameters can be passed using the following code snippet:
+  <Accordion title="Step 2.13: Complete Sample (Recommended)" icon="fa-code">
+    The payment parameters and additional parameters can be passed using the following code snippet:
 
-</Accordion>
+  </Accordion>
 </Accordion>
 
 <Accordion title="Step 3: Initiate the payment" icon="fa-code">
