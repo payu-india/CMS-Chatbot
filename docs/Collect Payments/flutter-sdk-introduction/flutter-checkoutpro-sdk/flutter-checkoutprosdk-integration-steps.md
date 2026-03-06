@@ -396,14 +396,14 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
 
     | Parameter                                 | Description                                                      |
     | :---------------------------------------- | :--------------------------------------------------------------- |
-    | PayUAdditionalParamKeys.udf1              | `String` User-defined field                                      |
-    | PayUAdditionalParamKeys.udf2              | `String` User-defined field                                      |
-    | PayUAdditionalParamKeys.udf3              | `String` User-defined field                                      |
-    | PayUAdditionalParamKeys.udf4              | `String` User-defined field                                      |
-    | PayUAdditionalParamKeys.udf5              | `String` User-defined field (mandatory for OPGSP invoice number) |
+    | PayUAdditionalParamKeys.udf1              | `String` User defined field, Merchant can store their customer id, etc.                                      |
+    | PayUAdditionalParamKeys.udf2              | `String` User defined field, Merchant can store their customer id, etc.                                      |
+    | PayUAdditionalParamKeys.udf3              | `String` User defined field, Merchant can store their customer id, etc.                                      |
+    | PayUAdditionalParamKeys.udf4              | `String` User defined field, Merchant can store their customer id, etc.                                      |
+    | PayUAdditionalParamKeys.udf5              | `String` User-defined field, Merchant can store their customer id, etc.																			 |
     | PayUAdditionalParamKeys.merchantAccessKey | `String` Merchant access key (optional)                          |
-    | PayUAdditionalParamKeys.sourceId          | `String` Sodexo source id (optional)                             |
-    | PayUAdditionalParamKeys.walletUrn         | `String` ClosedLoopWallet (optional)                             |
+    | PayUAdditionalParamKeys.sourceId          | `String` Sodexo Source ID, Merchant can store it from the third field of PayU response.                             |
+    | PayUAdditionalParamKeys.walletUrn         | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                             |
 
     ```Text Dart
     var additionalParam = {
