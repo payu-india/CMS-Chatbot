@@ -399,7 +399,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     </Accordion>
   </Accordion>
 
-  <Accordion title="Step 2.2:For Recurring Payments(SI) (Optional)" icon="fa-code">
+  <Accordion title="Step 2.2: For Recurring Payments(SI) (Optional)" icon="fa-code">
     For setting up Standing Instructions (SI) or recurring payments, you can refer to the [Recurring Payments Documentation](doc:ios-recurring-payments-si).
 
     Use the following sample code:
@@ -421,7 +421,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     ```
   </Accordion>
 
-  <Accordion title="Step 2.3:For UPI One Time Mandate Payments (Optional)" icon="fa-code">
+  <Accordion title="Step 2.3: For UPI One Time Mandate Payments (Optional)" icon="fa-code">
     For UPI One Time Mandate (OTM) payments, use the following parameters:
 
     ```Text Swift
@@ -437,7 +437,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     ```
     </Accordion>
 
-<Accordion title="Step 2.4:For Additional Charges" icon="fa-code">
+<Accordion title="Step 2.4: For Additional Charges" icon="fa-code">
       Additional charges can be applied to transactions:
 
       ```Text Swift
