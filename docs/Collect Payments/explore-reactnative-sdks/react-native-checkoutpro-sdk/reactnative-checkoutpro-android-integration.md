@@ -757,42 +757,6 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
         <tr>
           <td style={{ textAlign: "left" }}>
-            additionalCharges
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            String
-            This parameter is required if merchant want to take additional charge from user
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            should be string with PG:Amount or IBIBOCode:Amount
-            Sample : CC:10,NB:20,SBIB:15
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            percentageAdditionalCharges
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            String
-            This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            should be string with PG:Amount or IBIBOCode:Amount
-            Sample : CC:100,NB:50,SBIB:25
-
-            <br />
-
-            Refer to Step 5.4: For Additional Charges (Optional)
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
             payUSIParams
             `conditional`
           </td>
@@ -864,13 +828,6 @@ To integrate with the CheckoutPro mobile SDK for Android:
             * *Note*: Optional parameter for enforcing specific offer keys at checkout.
           </td>
 
-          <td style={{ textAlign: "left" }}>
-            "HoliSale\@JbBdLOBritj5,Instantoffer\@Kp78nFDENX5S"
-
-            <br />
-
-            Refer to Step 5.10: Enforce Offer Keys
-          </td>
         </tr>
 
         <tr>
