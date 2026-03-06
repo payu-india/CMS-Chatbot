@@ -671,67 +671,6 @@ To initiate a payment, your app must send transactional information to the Check
   | PayUCheckoutProConstants.SODEXO\_SOURCE\_ID `mandatory` | `String`When we use SODEXO Card payment then it's a mandatory parameter otherwise not required.        | 456788765678 |
   | PayUCheckoutProConstants.WALLET\_URN `mandatory`        | `String`When we use ClossedLoop Wallet payment then it's a mandatory parameter otherwise not required. | 67890987     |
 
-  ***
-
-  ```java JAVA
-  HashMap additionalParams = new HashMap(); 
-  additionalParams.put(PayUCheckoutProConstants.CP_UDF1, "udf1"); 
-  additionalParams.put(PayUCheckoutProConstants.CP_UDF2, "udf2"); 
-  additionalParams.put(PayUCheckoutProConstants.CP_UDF3, "udf3"); 
-  additionalParams.put(PayUCheckoutProConstants.CP_UDF4, "udf4"); 
-  additionalParams.put(PayUCheckoutProConstants.CP_UDF5, "udf5"); 
-  // to show saved sodexo card
-  additionalParams.put(PayUCheckoutProConstants.SODEXO_SOURCE_ID, "srcid123"); 
-  // to show ClooseLoop Wallet 
-   additionalParamsMap[PayUCheckoutProConstants.WALLET_URN] = "<Wallet URN>"
-   
-  PayUPaymentParams.Builder builder = new PayUPaymentParams.Builder(); 
-  builder.setAmount("1.0") 
-       .setIsProduction(true) 
-       .setProductInfo("Macbook Pro") 
-       .setKey(key) 
-       .setPhone(phone) 
-       .setTransactionId(String.valueOf(System.currentTimeMillis())) 
-       .setFirstName("John") 
-       .setEmail("john@yopmail.com") 
-       .setSurl("https://cbjs.payu.in/sdk/success") // This URL is used for Test Only. Don't go live
-       .setFurl("https://cbjs.payu.in/sdk/failure") // This URL is used for Test Only. Don't go live
-       .setUserCredential(key+":john@yopmail.com") 
-       .setUserToken("")  //Optional, Only use for Offers
-       .setSkuDetails(<SkuDetails>) //Optional, create SKU Details as mention above
-       .setAdditionalParams(<HashMap>) //Optional, can contain any additional PG params
-       .setPayUSIParams(siDetails) //Only for SI parameter
-       .setBeneficiaryDetailsList(payUBeneficiaryDetailArrayList) // Only for TPV parameter
-       .setSplitPaymentDetails(splitPaymentDetails); //Only for Split parameter
-  PayUPaymentParams payUPaymentParams = builder.build();
-  ```
-  ```kotlin Kotlin
-  val additionalParamsMap: HashMap = HashMap() 
-    additionalParamsMap[PayUCheckoutProConstants.CP_UDF1] = "udf1" 
-    additionalParamsMap[PayUCheckoutProConstants.CP_UDF2] = "udf2" 
-    additionalParamsMap[PayUCheckoutProConstants.CP_UDF3] = "udf3" 
-    additionalParamsMap[PayUCheckoutProConstants.CP_UDF4] = "udf4" 
-    additionalParamsMap[PayUCheckoutProConstants.CP_UDF5] = "udf5" 
-    //to show saved sodexo card
-    additionalParamsMap[PayUCheckoutProConstants.SODEXO_SOURCE_ID] = "srcid123" 
-    //to show ClossedLoop Wallet
-    additionalParamsMap[PayUCheckoutProConstants.WALLET_URN] = "<Wallet URN>"
-
-    val payUPaymentParams = PayUPaymentParams.Builder() 
-                            .setAmount("1.0") 
-                            .setIsProduction(true) 
-                            .setKey(key) 
-                            .setProductInfo("Macbook Pro") 
-                            .setPhone(phone) 
-                            .setTransactionId(System.currentTimeMillis().toString()) 
-                            .setFirstName("John") 
-                            .setEmail("john@yopmail.com") 
-                            .setSurl(“https://cbjs.payu.in/sdk/success”) // This URL is used for Test Only
-                            .setFurl("https://cbjs.payu.in/sdk/failure ") // This URL is used for Test Only
-                            .setUserCredential("$key:john@yopmail.com”) 
-                            .setAdditionalParams(additionalParamsMap) 
-                            .build() 
-  ```
 </Accordion>
 
 <Accordion title="Step 3.12: Payment Param Definitions" icon="fa-code">
@@ -1145,7 +1084,67 @@ To initiate a payment, your app must send transactional information to the Check
     </tbody>
   </Table>
 
-  ***
+ ***
+
+  ```java JAVA
+  HashMap additionalParams = new HashMap(); 
+  additionalParams.put(PayUCheckoutProConstants.CP_UDF1, "udf1"); 
+  additionalParams.put(PayUCheckoutProConstants.CP_UDF2, "udf2"); 
+  additionalParams.put(PayUCheckoutProConstants.CP_UDF3, "udf3"); 
+  additionalParams.put(PayUCheckoutProConstants.CP_UDF4, "udf4"); 
+  additionalParams.put(PayUCheckoutProConstants.CP_UDF5, "udf5"); 
+  // to show saved sodexo card
+  additionalParams.put(PayUCheckoutProConstants.SODEXO_SOURCE_ID, "srcid123"); 
+  // to show ClooseLoop Wallet 
+   additionalParamsMap[PayUCheckoutProConstants.WALLET_URN] = "<Wallet URN>"
+   
+  PayUPaymentParams.Builder builder = new PayUPaymentParams.Builder(); 
+  builder.setAmount("1.0") 
+       .setIsProduction(true) 
+       .setProductInfo("Macbook Pro") 
+       .setKey(key) 
+       .setPhone(phone) 
+       .setTransactionId(String.valueOf(System.currentTimeMillis())) 
+       .setFirstName("John") 
+       .setEmail("john@yopmail.com") 
+       .setSurl("https://cbjs.payu.in/sdk/success") // This URL is used for Test Only. Don't go live
+       .setFurl("https://cbjs.payu.in/sdk/failure") // This URL is used for Test Only. Don't go live
+       .setUserCredential(key+":john@yopmail.com") 
+       .setUserToken("")  //Optional, Only use for Offers
+       .setSkuDetails(<SkuDetails>) //Optional, create SKU Details as mention above
+       .setAdditionalParams(<HashMap>) //Optional, can contain any additional PG params
+       .setPayUSIParams(siDetails) //Only for SI parameter
+       .setBeneficiaryDetailsList(payUBeneficiaryDetailArrayList) // Only for TPV parameter
+       .setSplitPaymentDetails(splitPaymentDetails); //Only for Split parameter
+  PayUPaymentParams payUPaymentParams = builder.build();
+  ```
+  ```kotlin Kotlin
+  val additionalParamsMap: HashMap = HashMap() 
+    additionalParamsMap[PayUCheckoutProConstants.CP_UDF1] = "udf1" 
+    additionalParamsMap[PayUCheckoutProConstants.CP_UDF2] = "udf2" 
+    additionalParamsMap[PayUCheckoutProConstants.CP_UDF3] = "udf3" 
+    additionalParamsMap[PayUCheckoutProConstants.CP_UDF4] = "udf4" 
+    additionalParamsMap[PayUCheckoutProConstants.CP_UDF5] = "udf5" 
+    //to show saved sodexo card
+    additionalParamsMap[PayUCheckoutProConstants.SODEXO_SOURCE_ID] = "srcid123" 
+    //to show ClossedLoop Wallet
+    additionalParamsMap[PayUCheckoutProConstants.WALLET_URN] = "<Wallet URN>"
+
+    val payUPaymentParams = PayUPaymentParams.Builder() 
+                            .setAmount("1.0") 
+                            .setIsProduction(true) 
+                            .setKey(key) 
+                            .setProductInfo("Macbook Pro") 
+                            .setPhone(phone) 
+                            .setTransactionId(System.currentTimeMillis().toString()) 
+                            .setFirstName("John") 
+                            .setEmail("john@yopmail.com") 
+                            .setSurl(“https://cbjs.payu.in/sdk/success”) // This URL is used for Test Only
+                            .setFurl("https://cbjs.payu.in/sdk/failure ") // This URL is used for Test Only
+                            .setUserCredential("$key:john@yopmail.com”) 
+                            .setAdditionalParams(additionalParamsMap) 
+                            .build() 
+  ```
 </Accordion>
 
 ### Step 4: Secure the payment request using Hash
