@@ -180,7 +180,7 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
 </Accordion>
 
 <Accordion title="Step 5: Build the payment parameters" icon="fa-code">
-  To initiate a payment, your app must send transactional information to the CheckoutPro SDK. For Flutter, you pass this information as a `Map` using the keys from `PayUPaymentParamKey` (and related key classes).
+  To initiate a payment, your app must send transactional information to the CheckoutPro SDK.
 
   <Accordion title="Step 5.1: Basic Integration" icon="fa-code">
     ```Text Dart
@@ -199,7 +199,7 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
         PayUPaymentParamKey.android_furl: PayUTestCredentials.androidFurl,
         // 0 => Production, 1 => Test
         PayUPaymentParamKey.environment: "1",
-				PayUPaymentParamKey.additionalParam: additionalParam,
+    			PayUPaymentParamKey.additionalParam: additionalParam,
         PayUPaymentParamKey.userCredential:
             "${PayUTestCredentials.merchantKey}:test@gmail.com",
         // Must be <= 25 chars and should not contain special characters
