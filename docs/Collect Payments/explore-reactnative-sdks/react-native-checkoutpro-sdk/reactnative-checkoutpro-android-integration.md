@@ -87,7 +87,7 @@ This section describes how to integrate React Native with Android Checkout Pro S
   </Callout>
 </Accordion>
 
-<Callout icon="👍" theme="okay">
+<Callout icon="👍" theme="success">
   **Why This Change?**
 
   * Required for compatibility with React Native 0.82.0+
@@ -743,7 +743,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
 				<tr>
           <td style={{ textAlign: "left" }}>
             SkuDetails
-            `'madatory'`
+            `mandatory`
           </td>
 
           <td style={{ textAlign: "left" }}>
@@ -751,8 +751,6 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
             * \*Note:- \*\*When we use SKU features then it's a mandatory parameter otherwise it's not required.
           </td>
-
-          <td style={{ textAlign: "left" }} />
         </tr>
 
         <tr>
@@ -960,7 +958,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
       ];
 
       // ========== OPGSP (Cross Border) - Optional ==========
-      Note: For OPGSP, udf5 (invoice number) is also mandatory
+      // Note: For OPGSP, udf5 (invoice number) is also mandatory
       payUPaymentParams.address = {
         lastName: 'LastName',
         address1: 'Address1 value',
