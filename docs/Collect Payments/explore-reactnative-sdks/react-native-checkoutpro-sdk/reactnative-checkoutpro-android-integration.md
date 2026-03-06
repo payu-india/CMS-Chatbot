@@ -232,7 +232,173 @@ const createRecurringPaymentParams = () => {
 For more details, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
 
 ---
+  </Accordion>
+
+<Accordion title="Step 2.3: For UPI One Time Mandate Payments - Optional" icon="fa-code">
+For UPI OTM, enable pre-auth and provide mandate dates.
+```javascript
+const createOTMPaymentParams = () => {
+  const txnid = new Date().getTime().toString();
+  
+  // OTM Parameters
+  const payUSIParams = {
+    isPreAuthTxn: true, // Mandatory for UPI OTM
+    paymentStartDate: '2025-04-01', // YYYY-MM-DD
+    paymentEndDate: '2025-04-10',   // YYYY-MM-DD
+  };
+  
+  const payUPaymentParams = {
+    // Add OTM Parameters
+    payUSIParams: payUSIParams,
+  };
+  
+  return payUPaymentParams;
+};
+```
+  ---
+  </Accordion>
+<Accordion title="Step 2.4: For Additional Charges - Optional" icon="fa-code">
+Add additional charges or percentage-based charges for specific payment methods.
+```javascript
+const payUPaymentParams = {
+  // ... other parameters
+  
+  // Fixed additional charges
+  additionalCharges: 'CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55',
+  
+  // Percentage-based additional charges
+  percentageAdditionalCharges: 'CC:50,AMEX:100,DINR:75,DC:25',
+};
+```
+**Format:**
+- `PaymentMode:Amount` separated by commas
+- Payment modes: `CC` (Credit Card), `DC` (Debit Card), `NB` (Net Banking), `UPI`, `WALLET`, `EMI`, `BNPL`
+- Or use specific bank codes like `SBIB` (State Bank), `AMEX`, etc.
+
+For more information, refer to [Collect Additional Charges](https://docs.payu.in/docs/collect-additional-charges).
+
+  ---
+  </Accordion>
+<Accordion title="Step 2.5: For Split Payments Details - Optional" icon="fa-code">
+For split payments (aggregator model), create a JSON object and pass it as a string.
+
+```javascript
+const createSplitPaymentParams = () => {
+  const txnid = new Date().getTime().toString();
+  
+  // Split payment configuration
+  const splitPaymentDetails = {
+    type: 'absolute', // or 'percentage'
+    splitInfo: {
+      'imAJ7I': { // Child Merchant Key
+        aggregatorSubTxnId: '12345673443540dd33d099887766650091', // Unique per transaction
+        aggregatorSubAmt: '10',
+        aggregatorCharges: '0',
+      },
+    },
+  };
+  
+  const payUPaymentParams = {
+    // Add split payment details as JSON string
+    splitPaymentDetails: JSON.stringify(splitPaymentDetails),
+  };
+  
+  return payUPaymentParams;
+};
+```
+
+**Important:**
+- `aggregatorSubTxnId` must be unique for each transaction
+- `type` can be `'absolute'` or `'percentage'`
+- Multiple child merchants can be added to `splitInfo`
+
+---
+  </Accordion>
+<Accordion title="Step 2.6: SKU Details - Optional" icon="fa-code">
+Pass item-level details for cart-based transactions.
+
+```javascript
+const createPaymentWithSKU = () => {
+  const txnid = new Date().getTime().toString();
+  
+  // SKU Details
+  const skuDetails = {
+    skus: [
+      {
+        skuId: '111',
+        skuName: 'Shoes',
+        skuAmount: '100',
+        quantity: 1,
+        offerKeys: null,
+      },
+      {
+        skuId: '222',
+        skuName: 'Shirt',
+        skuAmount: '100',
+        quantity: 1,
+        offerKeys: null,
+      },
+    ],
+  };
+  
+  const payUPaymentParams = {
+    // Add SKU details
+    skuDetails: skuDetails,
+  };
+  
+  return payUPaymentParams;
+};
+```
+
+> **🚧 Keep in mind:**
+> - The total `amount` must equal the sum of `(quantity × skuAmount)` for all items
+> - If passing SKU-specific offers, use the `offerKeys` field
+
+---
+  </Accordion>
+<Accordion title="Step 2.6: Third Party Verification (TPV) Flow - Optional" icon="fa-code">
+For TPV transactions, pass beneficiary account details for verification.
+```javascript
+const createTPVPaymentParams = () => {
+  const txnid = new Date().getTime().toString();
+  
+  // TPV Beneficiary Details
+  const beneficiaryDetails = [
+    // For UPI
+    {
+      beneficiaryAccount: '002001600674',
+      beneficiaryIfsc: 'HDFC0000090',
+    },
+    // For Net Banking
+    {
+      beneficiaryName: 'SACHIN Tendulkar',
+      beneficiaryAccount: '002001600674',
+      beneficiaryIfsc: 'ICIC0000090',
+      beneficiaryAccountType: 'SAVINGS',
+    },
+  ];
+  
+  const payUPaymentParams = {   
+    // Add TPV beneficiary details
+    beneficiaryDetails: beneficiaryDetails,
+  };
+  
+  return payUPaymentParams;
+};
+```
+
+**TPV Parameters:**
+
+| Parameter | Required For | Description |
+|-----------|--------------|-------------|
+| `beneficiaryAccount` | All | Beneficiary account number |
+| `beneficiaryIfsc` | All | Bank IFSC code |
+| `beneficiaryName` | Net Banking | Account holder name |
+| `beneficiaryAccountType` | Net Banking | `SAVINGS` or `CURRENT` |
+
+---
 </Accordion>
+
 
   <Accordion title="Payment parameters" icon="fa-code">
     <Table align={["left","left"]}>
