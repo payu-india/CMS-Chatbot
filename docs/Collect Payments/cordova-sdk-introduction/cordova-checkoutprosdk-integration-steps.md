@@ -111,9 +111,9 @@ The Cordova Checkout SDK integration involves the following steps:
   <Accordion title="Step 3.1: Basic Integration" icon="fa-code">
     ```javascript
     function createBasicPaymentParams() {
-  var txnid = new Date().getTime().toString();
-  
-  var payUPaymentParams = {
+    var txnid = new Date().getTime().toString();
+
+    var payUPaymentParams = {
     key: 'YOUR_MERCHANT_KEY',
     transactionId: txnid,
     amount: '10',
@@ -121,23 +121,23 @@ The Cordova Checkout SDK integration involves the following steps:
     firstName: 'Abc',
     email: 'test@gmail.com',
     phone: '9999999999',
-    
+
     // Redirect URLs
     android_surl: 'https://cbjs.payu.in/sdk/success',
     android_furl: 'https://cbjs.payu.in/sdk/failure',
     ios_surl: 'https://cbjs.payu.in/sdk/success',
     ios_furl: 'https://cbjs.payu.in/sdk/failure',
-    
+
     // Environment: '0' => Production, '1' => Test
     environment: '1',
     isProduction: false,
-    
+
     // User credentials for saved cards
     userCredential: 'YOUR_MERCHANT_KEY:user@email.com',
-    
+
     // User token for offer engine
     userToken: 'userId:userName',
-    
+
     // Additional parameters
     additionalParam: {
       udf1: 'udf1',
@@ -146,9 +146,9 @@ The Cordova Checkout SDK integration involves the following steps:
       udf4: 'udf4',
       udf5: 'udf5'
     }
-  };
-  return payUPaymentParams;
-}
+    };
+    return payUPaymentParams;
+    }
     ```
 
     > **📘 Important:**
@@ -178,7 +178,7 @@ The Cordova Checkout SDK integration involves the following steps:
         billingDate: '', // Optional
       };
       
-      const payUPaymentParams = {
+      var payUPaymentParams = {
         // Add SI Parameters
         payUSIParams: payUSIParams,
       };
@@ -232,8 +232,8 @@ The Cordova Checkout SDK integration involves the following steps:
 
     ```javascript
     var payUPaymentParams = {
-  // ... other parameters
-  
+    // ... other parameters
+
       // Fixed additional charges
       additionalCharges: 'CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55',
 
