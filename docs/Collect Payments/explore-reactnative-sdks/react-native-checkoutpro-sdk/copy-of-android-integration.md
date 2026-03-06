@@ -1,7 +1,7 @@
 ---
 title: Copy of Android Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: React Native Checkout Pro SDK for Android Integration
   description: >-
