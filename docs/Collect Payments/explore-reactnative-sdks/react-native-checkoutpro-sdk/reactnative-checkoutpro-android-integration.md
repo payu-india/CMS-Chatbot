@@ -730,9 +730,12 @@ The additional parameters that are optional that can be passed to SDK are udf pa
     > The sample URLs mentioned in **surl** and **furl** are for temporary use. PayU recommends you to design or use your own surl and furl after testing is completed.
 
     For details on Standing Instructions parameters, refer to [PayU Standing Instruction Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
-  </Accordion>
+        </Accordion>
 
-  
+ <Accordion title="Step 2.13: Complete Sample (Recommended)" icon="fa-code">
+			The payment parameters and additional parameters can be passed using the following code snippet:
+
+</Accordion>
 </Accordion>
 
 <Accordion title="Step 3: Initiate the payment" icon="fa-code">
