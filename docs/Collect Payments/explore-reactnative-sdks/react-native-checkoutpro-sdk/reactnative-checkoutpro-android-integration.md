@@ -223,7 +223,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
     | `isFreeTrial`      | Boolean | Whether this is a free trial period | `true` / `false`                                        |
     | `billingAmount`    | String  | Amount to be charged                | `"3000"`                                                |
     | `billingCycle`     | String  | Billing frequency                   | `MONTHLY`, `DAILY`, `WEEKLY`, `YEARLY`, `ADHOC`, `ONCE` |
-    | `billingInterval`  | String  | Interval between charges            | `"10"`                                                  |
+    | `billingInterval`  | String  | Interval between charges            | `"1"`                                                  |
     | `paymentStartDate` | String  | Start date (YYYY-MM-DD)             | `"2027-05-06"`                                          |
     | `paymentEndDate`   | String  | End date (YYYY-MM-DD)               | `"2028-05-10"`                                          |
     | `remarks`          | String  | Additional notes                    | `"Subscription"`                                        |
@@ -739,8 +739,9 @@ To integrate with the CheckoutPro mobile SDK for Android:
             should be string with PG:Amount or IBIBOCode:Amount
             Sample : CC:100,NB:50,SBIB:25
           </td>
-            </tr>
-				<tr>
+        </tr>
+
+        <tr>
           <td style={{ textAlign: "left" }}>
             SkuDetails
             `mandatory`
@@ -792,8 +793,6 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
             For more details: [Split Settlements](https://docs.payu.in/docs/split-settlments)
           </td>
-
- 
         </tr>
 
         <tr>
@@ -807,7 +806,6 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
             * *Note*: Optional parameter for enforcing specific offer keys at checkout.
           </td>
-
         </tr>
 
         <tr>
@@ -844,7 +842,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
           <td style={{ textAlign: "left" }}>
             `List<PayUWealthProducts>` Contains details of wealth management and investment products such as mutual funds. Each product includes information like type, amount, folio number, plan, scheme, AMC code, member ID, user ID, partner details, and investment type.
-                
+
             **Mandatory only for WealthTech / Investment product transactions.**
           </td>
         </tr>
