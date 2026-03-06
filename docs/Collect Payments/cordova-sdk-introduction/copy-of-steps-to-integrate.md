@@ -1,7 +1,7 @@
 ---
 title: Copy of Steps to Integrate
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Cordova Checkout Pro SDK Integration Steps
   description: >-
