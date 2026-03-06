@@ -97,9 +97,10 @@ This section describes how to integrate React Native with Android Checkout Pro S
 
 ***
 
+## SDK Integration
+
 To integrate with the CheckoutPro mobile SDK for Android:
 
-<Accordion title="SDK Integration Steps" icon="fa-gear">
   <Accordion title="Step 1: Include the SDK in your app project" icon="fa-code">
     The CheckoutPro SDK is offered through npm.
 
@@ -564,7 +565,6 @@ To integrate with the CheckoutPro mobile SDK for Android:
     * URLs like [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success) are placeholders; replace with your backend URLs post-testing.
     * Split payment and SI (Standing Instruction) are optional features—only use them if needed.
   </Callout>
-</Accordion>
 
 ## Test the Integration and Go-Live
 
