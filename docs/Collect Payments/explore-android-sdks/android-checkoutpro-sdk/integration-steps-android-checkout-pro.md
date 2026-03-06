@@ -138,7 +138,7 @@ To initiate a payment, your app must send transactional information to the Check
 </Accordion>
 
 <Accordion title="Step 3.2: For Recurring Payments(SI) (Optional)" icon="fa-code">
-  If you are integrating SI, then generate the below payment params additionally
+  For Recurring Payments(SI), then generate the below payment params additionally
 
   ```Text Java
   PayUSIParams siDetails  = new PayUSIParams.Builder()
@@ -173,7 +173,7 @@ To initiate a payment, your app must send transactional information to the Check
 </Accordion>
 
 <Accordion title="Step 3.3: For UPI One Time Mandate Payments (Optional)" icon="fa-code">
-  If you are integrating UPI OTM, then generate the below payment params additionally
+  For UPI One Time Mandate Payments, then generate the below payment params additionally
 
   ```Text Java
   PayUSIParams siDetails  = new PayUSIParams.Builder()
@@ -201,7 +201,7 @@ To initiate a payment, your app must send transactional information to the Check
 </Accordion>
 
 <Accordion title="Step 3.4: For Additional Charges (Optional)" icon="fa-code">
-  If you are integrating additional charges or percentage additional charges, then generate the below payment params additionally
+  For additional charges or percentage additional charges, then generate the below payment params additionally
 
   ```Text Java
   paymentParam.setAdditionalCharges("CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55")
@@ -670,7 +670,6 @@ To initiate a payment, your app must send transactional information to the Check
   | PayUCheckoutProConstants.CP\_UDF5        `optional`     | `String`User-defined field, Merchant can store their customer ID, etc.                                 | udf5         |
   | PayUCheckoutProConstants.SODEXO\_SOURCE\_ID `mandatory` | `String`When we use SODEXO Card payment then it's a mandatory parameter otherwise not required.        | 456788765678 |
   | PayUCheckoutProConstants.WALLET\_URN `mandatory`        | `String`When we use ClossedLoop Wallet payment then it's a mandatory parameter otherwise not required. | 67890987     |
-
 </Accordion>
 
 <Accordion title="Step 3.12: Payment Param Definitions" icon="fa-code">
@@ -1084,7 +1083,7 @@ To initiate a payment, your app must send transactional information to the Check
     </tbody>
   </Table>
 
- ***
+  ***
 
   ```java JAVA
   HashMap additionalParams = new HashMap(); 
@@ -1805,50 +1804,49 @@ You can make test payments using one of the payment methods configured at the Ch
 You can make test payments using one of the payment methods configured at the Checkout.
 
 <Accordion title="Test credentials for supported payment methods" icon="fa-code">
+  Following are the payment methods supported in PayU Test mode.
 
-Following are the payment methods supported in PayU Test mode.
+  <Accordion title="Test Credential for Card" icon="fa-code">
+    | Card Number      | Expiry | CVV | OTP    |
+    | :--------------- | :----- | :-- | :----- |
+    | 5123456789012346 | 05/25  | 123 | 123456 |
+  </Accordion>
 
-<Accordion title="Test Credential for Card" icon="fa-code">
-  | Card Number      | Expiry | CVV | OTP    |
-  | :--------------- | :----- | :-- | :----- |
-  | 5123456789012346 | 05/25  | 123 | 123456 |
+  <Accordion title="Test credentials for Net Banking" icon="fa-code">
+    Use the following credentials to test the Net Banking integration:
+
+    * **user name:** payu
+    * **password**: payu
+    * **OTP**: 123456
+  </Accordion>
+
+  <Accordion title="Test VPA for UPI" icon="fa-code">
+    You can use either of the following VPAs to test your UPI-related integration:
+
+    * anything\@upi
+    * 9999999999\@upi
+
+    For Testing the UPI Collect flow, Please follow the below steps:- 
+
+    1. Once you enter the VPA click on the verify button and proceed to pay.
+    2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
+    3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
+
+    [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)`<Txn_id>`
+  </Accordion>
+
+  <Accordion title="Test cards for EMI" icon="fa-code">
+    You can use the following Debit and Credit cards to test EMI integration.\\
+
+    <EMITestCards />
+  </Accordion>
+
+  <Accordion title="Test Wallets" icon="fa-code">
+    You can use the following wallets and their corresponding credentials to test wallet integration.
+
+    <EMITestWallets />
+  </Accordion>
 </Accordion>
-
-<Accordion title="Test credentials for Net Banking" icon="fa-code">
-  Use the following credentials to test the Net Banking integration:
-
-  * **user name:** payu
-  * **password**: payu
-  * **OTP**: 123456
-</Accordion>
-
-<Accordion title="Test VPA for UPI" icon="fa-code">
-  You can use either of the following VPAs to test your UPI-related integration:
-
-  * anything\@upi
-  * 9999999999\@upi
-
-  For Testing the UPI Collect flow, Please follow the below steps:- 
-
-  1. Once you enter the VPA click on the verify button and proceed to pay.
-  2. In NPCI page timer will start, Don't "CLICK" on click text. Please wait on the NPCI page.
-  3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
-
-  [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)`<Txn_id>`
-</Accordion>
-
-<Accordion title="Test cards for EMI" icon="fa-code">
-  You can use the following Debit and Credit cards to test EMI integration.\\
-
-  <EMITestCards />
-</Accordion>
-
-<Accordion title="Test Wallets" icon="fa-code">
-  You can use the following wallets and their corresponding credentials to test wallet integration.
-
-  <EMITestWallets />
-  </Accordion></Accordion>
-
 
 ## Go-live Checklist
 
