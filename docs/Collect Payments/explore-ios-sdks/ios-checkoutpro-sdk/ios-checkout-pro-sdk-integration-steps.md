@@ -118,263 +118,264 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     <Accordion title="Mandatory parameters" icon="fa-code">
       Use the following table to pass the mandatory parameters in the PayU SDK:
 
-     <Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+      <Table align={["left","left","left"]}>
+        <thead>
+          <tr>
+            <th style={{ textAlign: "left" }}>
+              Parameter
+            </th>
 
-      <th>
-        Description
-      </th>
+            <th style={{ textAlign: "left" }}>
+              Description
+            </th>
 
-      <th>
-        Data Type and Validation
-      </th>
-    </tr>
-  </thead>
+            <th style={{ textAlign: "left" }}>
+              Data Type and Validation
+            </th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <tr>
-      <td>
-        Key
-        `mandatory`
-      </td>
+        <tbody>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              Key
+              `mandatory`
+            </td>
 
-      <td>
-        `String` Merchant Key received from PayU Dashboard
-      </td>
+            <td style={{ textAlign: "left" }}>
+              `String` Merchant Key received from PayU Dashboard
+            </td>
 
-      <td>
-        Cannot be null or empty
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              Cannot be null or empty
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        TransactionId
-        `mandatory`
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              TransactionId
+              `mandatory`
+            </td>
 
-      <td>
-        `String` Cannot be null or empty and should be unique for each transaction. Maximum allowed length is 25 characters. It cannot contain special characters like: - /, & , @ etc.
-      </td>
+            <td style={{ textAlign: "left" }}>
+              `String` Cannot be null or empty and should be unique for each transaction. Maximum allowed length is 25 characters. It cannot contain special characters like: - /, & , @ etc.
+            </td>
 
-      <td>
-        Should be unique for each transaction
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              Should be unique for each transaction
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        Amount
-        `mandatory`
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              Amount
+              `mandatory`
+            </td>
 
-      <td>
-        `String` Total transaction amount.
-      </td>
+            <td style={{ textAlign: "left" }}>
+              `String` Total transaction amount.
+            </td>
 
-      <td>
-        Cannot be null or empty
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              Cannot be null or empty
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        Product Info
-        `mandatory`
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              Product Info
+              `mandatory`
+            </td>
 
-      <td>
-        `String` Information about Product
-      </td>
+            <td style={{ textAlign: "left" }}>
+              `String` Information about Product
+            </td>
 
-      <td>
-        Cannot be null or empty
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              Cannot be null or empty
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        First Name
-        `mandatory`
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              First Name
+              `mandatory`
+            </td>
 
-      <td>
-        `String` Customer’s first name
-      </td>
+            <td style={{ textAlign: "left" }}>
+              `String` Customer’s first name
+            </td>
 
-      <td>
-        Cannot be null or empty
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              Cannot be null or empty
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        Email
-        `mandatory`
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              Email
+              `mandatory`
+            </td>
 
-      <td>
-        `String` Customer’s Email ID
-      </td>
+            <td style={{ textAlign: "left" }}>
+              `String` Customer’s Email ID
+            </td>
 
-      <td>
-        Cannot be null or empty
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              Cannot be null or empty
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        Phone
-        `mandatory`
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              Phone
+              `mandatory`
+            </td>
 
-      <td>
-        `String` Customer’s phone number
-      </td>
+            <td style={{ textAlign: "left" }}>
+              `String` Customer’s phone number
+            </td>
 
-      <td>
-        Should be of 10 digits
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              Should be of 10 digits
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        surl
-        `mandatory`
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              surl
+              `mandatory`
+            </td>
 
-      <td>
-        `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
+            <td style={{ textAlign: "left" }}>
+              `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
 
-        * *Sample URL*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
-        * *Note*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
-      </td>
+              * *Sample URL*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
+              * *Note*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+            </td>
 
-      <td>
-        Cannot be null or empty
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              Cannot be null or empty
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        furl\
-        `mandatory`
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              furl\
+              `mandatory`
+            </td>
 
-      <td>
-        `String` When the transaction gets fail, PayU will load this url and pass transaction response.
+            <td style={{ textAlign: "left" }}>
+              `String` When the transaction gets fail, PayU will load this url and pass transaction response.
 
-        * *Sample URL*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
-        * *Note*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
-      </td>
+              * *Sample URL*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
+              * *Note*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
+            </td>
 
-      <td>
-        Cannot be null or empty
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              Cannot be null or empty
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        Environment\
-        `mandatory`
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              Environment\
+              `mandatory`
+            </td>
 
-      <td>
-        `String`Environment of SDK
-      </td>
+            <td style={{ textAlign: "left" }}>
+              `String`Environment of SDK
+            </td>
 
-      <td>
-        Should be either
+            <td style={{ textAlign: "left" }}>
+              Should be either
 
-        * *Swift*\*:`production or test `**ObjectiveC**: `EnvironmentProduction `or `EnvironmentTest`
-      </td>
-    </tr>
+              * *Swift*\*:`production or test `**ObjectiveC**: `EnvironmentProduction `or `EnvironmentTest`
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        User Credential\
-        `optional`
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              User Credential\
+              `optional`
+            </td>
 
-      <td>
-        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards
-      </td>
+            <td style={{ textAlign: "left" }}>
+              `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards
+            </td>
 
-      <td>
-        Should be a unique value\
-        Format: \<merchantKey>:\<userId>
-        Here, UserId is any id/email/phone number to uniquely identify the user
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              Should be a unique value\
+              Format: \<merchantKey>:\<userId>
+              Here, UserId is any id/email/phone number to uniquely identify the user
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        PayUSIParams\
-        `optional`
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              PayUSIParams\
+              `optional`
+            </td>
 
-      <td>
-        `Object` of PayUSIParams. This contains SI Details.
-      </td>
+            <td style={{ textAlign: "left" }}>
+              `Object` of PayUSIParams. This contains SI Details.
+            </td>
 
-      <td>
-        Object of PayUSIParams
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              Object of PayUSIParams
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        SplitPaymentDetails\
-        `optional`
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              SplitPaymentDetails\
+              `optional`
+            </td>
 
-      <td>
-        `String`\
-        This parameter is required for splitting the transactions.
-      </td>
+            <td style={{ textAlign: "left" }}>
+              `String`\
+              This parameter is required for splitting the transactions.
+            </td>
 
-      <td>
-        Should be a json String
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              Should be a json String
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        additionalCharges
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              additionalCharges
+            </td>
 
-      <td>
-        String\
-        This parameter is required if merchant want to take additional charge from user
-      </td>
+            <td style={{ textAlign: "left" }}>
+              String\
+              This parameter is required if merchant want to take additional charge from user
+            </td>
 
-      <td>
-        should be string with PG:Amount or IBIBOCode:Amount\
-        Sample: CC:10,NB:20,SBIB:15
-      </td>
-    </tr>
+            <td style={{ textAlign: "left" }}>
+              should be string with PG:Amount or IBIBOCode:Amount\
+              Sample: CC:10,NB:20,SBIB:15
+            </td>
+          </tr>
 
-    <tr>
-      <td>
-        percentageAdditionalCharges
-      </td>
+          <tr>
+            <td style={{ textAlign: "left" }}>
+              percentageAdditionalCharges
+            </td>
 
-      <td>
-        String\
-        This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable
-      </td>
+            <td style={{ textAlign: "left" }}>
+              String\
+              This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable
+            </td>
 
-      <td>
-        should be string with PG:Amount or IBIBOCode:Amount\
-        Sample: CC:100,NB:50,SBIB:25
-      </td>
-    </tr>
-  </tbody>
-</Table>
+            <td style={{ textAlign: "left" }}>
+              should be string with PG:Amount or IBIBOCode:Amount\
+              Sample: CC:100,NB:50,SBIB:25
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+
       If you required any value in the response then pass the below value
 
       ```Text Swift
@@ -465,8 +466,8 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       paymentParam.splitPaymentDetails = @"";
       ```
     </Accordion>
-
-    <Accordion title="Step 2.5:For Additional Charges" icon="fa-code">
+    </Accordion>
+<Accordion title="Step 2.5:For Additional Charges" icon="fa-code">
       Additional charges can be applied to transactions:
 
       ```Text Swift
@@ -478,7 +479,6 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50";
       ```
     </Accordion>
-  </Accordion>
 </Accordion>
 
 <Accordion title="Step 3: Generate the hash" icon="fa-code">
