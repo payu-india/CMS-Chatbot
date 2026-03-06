@@ -199,6 +199,7 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
         PayUPaymentParamKey.android_furl: PayUTestCredentials.androidFurl,
         // 0 => Production, 1 => Test
         PayUPaymentParamKey.environment: "1",
+				PayUPaymentParamKey.additionalParam: additionalParam,
         PayUPaymentParamKey.userCredential:
             "${PayUTestCredentials.merchantKey}:test@gmail.com",
         // Must be <= 25 chars and should not contain special characters
@@ -999,7 +1000,6 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
 
   ); 
   ```
-
 </Accordion>
 
 <Accordion title="IOS specific integration" icon="fa-code">
