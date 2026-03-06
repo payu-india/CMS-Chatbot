@@ -217,7 +217,7 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
   </Accordion>
 
   <Accordion title="Step 5.2: For Recurring Payments (SI) (Optional)" icon="fa-code">
-    If you are integrating Standing Instructions / subscription payments, build the `siParams` map and pass it using `PayUPaymentParamKey.payUSIParams`.
+    For Standing Instructions / subscription payments, build the `siParams` map and pass it using `PayUPaymentParamKey.payUSIParams`.
 
     ```Text Dart
     // Mandatory for Recurring (Subscription / Standing Instruction) transactions, optional otherwise
