@@ -140,55 +140,99 @@ To integrate with the CheckoutPro mobile SDK for Android:
   To initiate a payment, your app needs to send transactional information to the Checkout Pro SDK.
 
   <Accordion title="Step 2.1: Basic Integration" icon="fa-code">
+    ```javascript
+    import {NativeModules} from 'react-native';
+    const {PayUBizSdk} = NativeModules;
 
+    const createBasicPaymentParams = () => {
+      const txnid = new Date().getTime().toString();
+      
+      const payUPaymentParams = {
+        key: 'YOUR_MERCHANT_KEY',
+        transactionId: txnid,
+        amount: '10',
+        productInfo: 'Macbook Pro',
+        firstName: 'Abc',
+        email: 'test@gmail.com',
+        phone: '9999999999',
+        // Redirect URLs
+        android_surl: 'https://cbjs.payu.in/sdk/success',
+        android_furl: 'https://cbjs.payu.in/sdk/failure',
+        ios_surl: 'https://cbjs.payu.in/sdk/success',
+        ios_furl: 'https://cbjs.payu.in/sdk/failure',
+        // Environment: '0' => Production, '1' => Test
+        environment: '1',
+        // User credentials for saved cards
+        userCredential: 'YOUR_MERCHANT_KEY:user@email.com',
+        // User token for offer engine
+        userToken: 'userId:userName',
+        // Additional parameters
+        additionalParam: {
+          udf1: 'udf1',
+          udf2: 'udf2',
+          udf3: 'udf3',
+          udf4: 'udf4',
+          udf5: 'udf5',
+        },
+      };
+      return payUPaymentParams;
+    };
+    ```
+
+    > **📘 Important:**
+    >
+    > * The sample SURL/FURL values are for testing only. Use your own URLs before going live.
+    > * The `transactionId` must be unique, ≤ 25 characters, and cannot contain special characters like `_`, `$`, `%`, `&`, etc.
+    > * For more information, refer to [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
+
+    ***
+  </Accordion>
+  <Accordion title="Step 2.2: For Recurring Payments (SI) - Optional" icon="fa-code">
+For Standing Instructions / subscription payments, build the `payUSIParams` object.
 ```javascript
-import {NativeModules} from 'react-native';
-const {PayUBizSdk} = NativeModules;
-
-const createBasicPaymentParams = () => {
+const createRecurringPaymentParams = () => {
   const txnid = new Date().getTime().toString();
   
-  const payUPaymentParams = {
-    key: 'YOUR_MERCHANT_KEY',
-    transactionId: txnid,
-    amount: '10',
-    productInfo: 'Macbook Pro',
-    firstName: 'Abc',
-    email: 'test@gmail.com',
-    phone: '9999999999',
-    // Redirect URLs
-    android_surl: 'https://cbjs.payu.in/sdk/success',
-    android_furl: 'https://cbjs.payu.in/sdk/failure',
-    ios_surl: 'https://cbjs.payu.in/sdk/success',
-    ios_furl: 'https://cbjs.payu.in/sdk/failure',
-    // Environment: '0' => Production, '1' => Test
-    environment: '1',
-    // User credentials for saved cards
-    userCredential: 'YOUR_MERCHANT_KEY:user@email.com',
-    // User token for offer engine
-    userToken: 'userId:userName',
-    // Additional parameters
-    additionalParam: {
-      udf1: 'udf1',
-      udf2: 'udf2',
-      udf3: 'udf3',
-      udf4: 'udf4',
-      udf5: 'udf5',
-    },
+  // SI Parameters
+  const payUSIParams = {
+    isFreeTrial: false,
+    billingAmount: '3000',
+    billingCycle: 'MONTHLY', // DAILY/WEEKLY/MONTHLY/YEARLY/ADHOC/ONCE
+    billingCurrency: 'INR',
+    billingInterval: '10',
+    paymentStartDate: '2027-05-06', // YYYY-MM-DD
+    paymentEndDate: '2028-05-10',   // YYYY-MM-DD
+    remarks: 'Subscription payment',
+    billingDate: '', // Optional
   };
+  
+  const payUPaymentParams = {
+    // Add SI Parameters
+    payUSIParams: payUSIParams,
+  };
+  
   return payUPaymentParams;
 };
-    ```
-> **📘 Important:**
-> - The sample SURL/FURL values are for testing only. Use your own URLs before going live.
-> - The `transactionId` must be unique, ≤ 25 characters, and cannot contain special characters like `_`, `$`, `%`, `&`, etc.
-> - For more information, refer to [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
+```
+
+**SI Parameters Reference:**
+
+| Parameter | Type | Description | Example |
+|-----------|------|-------------|---------|
+| `isFreeTrial` | Boolean | Whether this is a free trial period | `true` / `false` |
+| `billingAmount` | String | Amount to be charged | `"3000"` |
+| `billingCycle` | String | Billing frequency | `MONTHLY`, `DAILY`, `WEEKLY`, `YEARLY`, `ADHOC`, `ONCE` |
+| `billingInterval` | String | Interval between charges | `"10"` |
+| `paymentStartDate` | String | Start date (YYYY-MM-DD) | `"2027-05-06"` |
+| `paymentEndDate` | String | End date (YYYY-MM-DD) | `"2028-05-10"` |
+| `remarks` | String | Additional notes | `"Subscription"` |
+| `billingCurrency` | String | Currency code | `"INR"` |
+| `billingDate` | String | Specific billing date (optional) | `""` |
+
+For more details, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters).
 
 ---
-
-    </Accordion>
-  
-
+</Accordion>
 
   <Accordion title="Payment parameters" icon="fa-code">
     <Table align={["left","left"]}>
