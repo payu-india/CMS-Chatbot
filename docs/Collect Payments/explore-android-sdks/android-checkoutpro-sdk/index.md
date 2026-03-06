@@ -56,6 +56,7 @@ The PayUCheckoutPro SDK gives you the following key capabilities:
 * Recommendation Engine Support
 * TPV Support (NB & UPI)
 * SI TPV Support For UPI (Intent & Collect)
+* Cross-Border Payment Support
 
 ## Compatibility
 
