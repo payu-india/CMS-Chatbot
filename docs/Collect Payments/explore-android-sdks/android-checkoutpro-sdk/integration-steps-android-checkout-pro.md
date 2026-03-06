@@ -1642,12 +1642,13 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
 </Accordion>
 
 ### Additional Integrations
-  The following are the additional Android SDK offerings:
 
-  * Offer Integration
-  * MCP Integration
-  * Custom Note Integration
-  * Add-on SDKs
+The following are the additional Android SDK offerings:
+
+* Offer Integration
+* MCP Integration
+* Custom Note Integration
+* Add-on SDKs
 
 <Accordion title="Offers Integration" icon="fa-code">
   Kindly add the `setUserToken` parameter in paymentParam.
@@ -1691,149 +1692,142 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
 </Accordion>
 
 <Accordion title="MCP Integration" icon="fa-code">
-    <Callout icon="📘" theme="info">
+  <Callout icon="📘" theme="info">
     **Note**: MCP is inbulit in CheckoutPro SDK. Get in touch with your KAMs to enable this feature for your MID.
-    </Callout>
+  </Callout>
 </Accordion>
 
 <Accordion title="Custom Note Integration" icon="fa-code">
-This section describes how to integrate custom notes in PayUCheckoutPro SDK.
-<Accordion title="Step 1: Create a Custom Note List" icon="fa-code">
-  Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and `custom_note_category` need to be passed.
+  This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
-  ```Text Java
-  // for specific custom_note_category
+  <Accordion title="Step 1: Create a Custom Note List" icon="fa-code">
+    Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and `custom_note_category` need to be passed.
 
-        ArrayList<CustomNote> customNote = new ArrayList<>();
-        ArrayList<PaymentType> noteCategory1 = new ArrayList<>();
-        noteCategory1.add(PaymentType.CARD);
-        CustomNote customNote1 = new CustomNote("Please welcome note", noteCategory1);
-        customNote1.setCustom_note("Please welcome note");
-        customNote1.setCustom_note_category(noteCategory1);
-
-        ArrayList<PaymentType> noteCategory2 = new ArrayList<>();
-        noteCategory2.add(PaymentType.CARD);
-        CustomNote customNote2 = new CustomNote("Please welcome note", noteCategory1);
-        customNote2.setCustom_note("Please welcome note");
-        customNote2.setCustom_note_category(noteCategory2);
-        customNote.add( customNote1);
-        customNote.add( customNote2); 
-          
-  // when want to pass same custom note for multiple custom_note_category
+    ```Text Java
+    // for specific custom_note_category
 
           ArrayList<CustomNote> customNote = new ArrayList<>();
           ArrayList<PaymentType> noteCategory1 = new ArrayList<>();
           noteCategory1.add(PaymentType.CARD);
-          noteCategory1.add(PaymentType.NB);
-          noteCategory1.add(PaymentType.UPI);
           CustomNote customNote1 = new CustomNote("Please welcome note", noteCategory1);
           customNote1.setCustom_note("Please welcome note");
           customNote1.setCustom_note_category(noteCategory1);
+
+          ArrayList<PaymentType> noteCategory2 = new ArrayList<>();
+          noteCategory2.add(PaymentType.CARD);
+          CustomNote customNote2 = new CustomNote("Please welcome note", noteCategory1);
+          customNote2.setCustom_note("Please welcome note");
+          customNote2.setCustom_note_category(noteCategory2);
           customNote.add( customNote1);
-          
-          // if do not want to pass any custom_note_category
-          ArrayList<CustomNote> customNote = new ArrayList<>();
-          CustomNote customNote1 = new CustomNote("Please welcome note", null);
-          customNote1.setCustom_note("Please welcome note");
-          customNote1.setCustom_note_category(null);
-          
-  ```
-  ```Text Kotlin
-       // for specific custom_note_category
-          val customNote = ArrayList<CustomNote>()
-          customNote.add(CustomNote().also{
-          it.custom_note = "Please welcome in Cards"
-          it.custom_note_category = ArrayList<PaymentType>().also {
-                  it.add(PaymentType.CARD)
-              }
-          }
-          // when want to pass same custom note for multiple custom_note_category
-         
-          val customNote = ArrayList<CustomNote>()
-          customNote.add(CustomNote().also{
-          it.custom_note = "Please welcome in Cards"
-          it.custom_note_category = ArrayList<PaymentType>().also {
-                  it.add(PaymentType.NB)
-                  it.add(PaymentType.CARD)
-              }
-          } 
-          // if do not want to pass any custom_note_category
-          
-          val customNote = ArrayList<CustomNote>()
-          customNote.add(CustomNote().also{
-          it.custom_note = "Please welcome in Cards"
-          it.custom_note_category = null
-          } 
-  ```
-</Accordion>
+          customNote.add( customNote2); 
+            
+    // when want to pass same custom note for multiple custom_note_category
 
-<Accordion title="Step 2: Pass Custom Note List to SDK" icon="fa-code">
-  To pass the custom note list created in the above section to the SDK. Create a `PayUCheckoutProConfig` object and set the `CustomNoteDetails` similar to the following code block:
+            ArrayList<CustomNote> customNote = new ArrayList<>();
+            ArrayList<PaymentType> noteCategory1 = new ArrayList<>();
+            noteCategory1.add(PaymentType.CARD);
+            noteCategory1.add(PaymentType.NB);
+            noteCategory1.add(PaymentType.UPI);
+            CustomNote customNote1 = new CustomNote("Please welcome note", noteCategory1);
+            customNote1.setCustom_note("Please welcome note");
+            customNote1.setCustom_note_category(noteCategory1);
+            customNote.add( customNote1);
+            
+            // if do not want to pass any custom_note_category
+            ArrayList<CustomNote> customNote = new ArrayList<>();
+            CustomNote customNote1 = new CustomNote("Please welcome note", null);
+            customNote1.setCustom_note("Please welcome note");
+            customNote1.setCustom_note_category(null);
+            
+    ```
+    ```Text Kotlin
+         // for specific custom_note_category
+            val customNote = ArrayList<CustomNote>()
+            customNote.add(CustomNote().also{
+            it.custom_note = "Please welcome in Cards"
+            it.custom_note_category = ArrayList<PaymentType>().also {
+                    it.add(PaymentType.CARD)
+                }
+            }
+            // when want to pass same custom note for multiple custom_note_category
+           
+            val customNote = ArrayList<CustomNote>()
+            customNote.add(CustomNote().also{
+            it.custom_note = "Please welcome in Cards"
+            it.custom_note_category = ArrayList<PaymentType>().also {
+                    it.add(PaymentType.NB)
+                    it.add(PaymentType.CARD)
+                }
+            } 
+            // if do not want to pass any custom_note_category
+            
+            val customNote = ArrayList<CustomNote>()
+            customNote.add(CustomNote().also{
+            it.custom_note = "Please welcome in Cards"
+            it.custom_note_category = null
+            } 
+    ```
+  </Accordion>
 
-  ```Text Java
-  PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
-  payUCheckoutProConfig.setCustomNoteDetails(<customNote>);
-  ```
-  ```Text Kotlin
-  val checkoutProConfig = PayUCheckoutProConfig()  
-  checkoutProConfig.customNoteDetails = customNote
-  ```
-</Accordion>
+  <Accordion title="Step 2: Pass Custom Note List to SDK" icon="fa-code">
+    To pass the custom note list created in the above section to the SDK. Create a `PayUCheckoutProConfig` object and set the `CustomNoteDetails` similar to the following code block:
 
+    ```Text Java
+    PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
+    payUCheckoutProConfig.setCustomNoteDetails(<customNote>);
+    ```
+    ```Text Kotlin
+    val checkoutProConfig = PayUCheckoutProConfig()  
+    checkoutProConfig.customNoteDetails = customNote
+    ```
+  </Accordion>
 </Accordion>
 
 <Accordion title="Additional SDK Offerings" icon="fa-code">
-
   If you want to add features like **Native OTP**, **Gpay InApp**, **PhonePe Inapp**, and **Ola Money** in our PayUCheckoutPro SDK, then please refer to the below [Add-on SDKs](doc:android-checkoutpro-addonsdks)
-
 </Accordion>
 
 ## Test the Integration
 
-  After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
+After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
-  You can make test payments using one of the payment methods configured at the Checkout.
+You can make test payments using one of the payment methods configured at the Checkout.
 
-  > 🚧 Callout
-  >
-  > The UPI in-app and UPI intent flow is not available in the Test mode.
+> 🚧 Callout
+>
+> The UPI in-app and UPI intent flow is not available in the Test mode.
 
-  
+<TestingChecklist />
 
-  <TestingChecklist />
+***
 
-  ***
+<TestCardsCallout />
 
-  <TestCardsCallout />
+You can make test payments using one of the payment methods configured at the Checkout.
 
-  You can make test payments using one of the payment methods configured at the Checkout.
+<Accordion title="Test credentials for supported payment methods" icon="fa-code">
 
-  ### Test credentials for supported payment methods
+Following are the payment methods supported in PayU Test mode.
 
-  Following are the payment methods supported in PayU Test mode.
-
-  <Accordion title="Test Credential for Card" icon="fa-code">
-
+<Accordion title="Test Credential for Card" icon="fa-code">
   | Card Number      | Expiry | CVV | OTP    |
   | :--------------- | :----- | :-- | :----- |
   | 5123456789012346 | 05/25  | 123 | 123456 |
+</Accordion>
 
-  </Accordion>
-  <Accordion title="Test credentials for Net Banking" icon="fa-code">
-
+<Accordion title="Test credentials for Net Banking" icon="fa-code">
   Use the following credentials to test the Net Banking integration:
 
   * **user name:** payu
   * **password**: payu
   * **OTP**: 123456
+</Accordion>
 
-  </Accordion>
-  <Accordion title="Test VPA for UPI" icon="fa-code">
-
+<Accordion title="Test VPA for UPI" icon="fa-code">
   You can use either of the following VPAs to test your UPI-related integration:
 
-  * anything@upi
-  * 9999999999@upi
+  * anything\@upi
+  * 9999999999\@upi
 
   For Testing the UPI Collect flow, Please follow the below steps:- 
 
@@ -1842,7 +1836,6 @@ This section describes how to integrate custom notes in PayUCheckoutPro SDK.
   3. The below link opens in the browser Paste the transaction ID at the end of the URL then click on the success/failure simulator page. After that, your app will redirect to your app with the transaction response.
 
   [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)`<Txn_id>`
-
 </Accordion>
 
 <Accordion title="Test cards for EMI" icon="fa-code">
@@ -1855,9 +1848,8 @@ This section describes how to integrate custom notes in PayUCheckoutPro SDK.
   You can use the following wallets and their corresponding credentials to test wallet integration.
 
   <EMITestWallets />
-</Accordion>
+  </Accordion></Accordion>
 
-<br />
 
 ## Go-live Checklist
 
