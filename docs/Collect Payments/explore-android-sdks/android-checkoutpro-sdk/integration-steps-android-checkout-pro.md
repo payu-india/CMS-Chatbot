@@ -1012,7 +1012,9 @@ To initiate a payment, your app must send transactional information to the Check
 
         <td style={{ textAlign: "left" }}>
           siParams object
-<br/>
+
+          <br />
+
           Refer to Step 3.2: For Recurring Payments(SI) (Optional) or Step 3.3: For UPI One Time Mandate 					Payments (Optional)
         </td>
       </tr>
@@ -1090,7 +1092,9 @@ To initiate a payment, your app must send transactional information to the Check
 
         <td style={{ textAlign: "left" }}>
           beneficiaryDetails object or list
-<br/>
+
+          <br />
+
           Refer to Step 3.7: Third Party Verification (TPV) Flow (Optional)
         </td>
       </tr>
@@ -1637,14 +1641,13 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
   ***
 </Accordion>
 
-<Accordion title="Additional Integrations" icon="fa-code">
+### Additional Integrations
   The following are the additional Android SDK offerings:
 
   * Offer Integration
   * MCP Integration
   * Custom Note Integration
   * Add-on SDKs
-</Accordion>
 
 <Accordion title="Offers Integration" icon="fa-code">
   Kindly add the `setUserToken` parameter in paymentParam.
@@ -1687,16 +1690,14 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
   For more details on Offer Integration, refer to [Integration with PayU Hosted Checkout Integration](https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers)
 </Accordion>
 
-### MCP Integration
+<Accordion title="MCP Integration" icon="fa-code">
+    <Callout icon="📘" theme="info">
+    **Note**: MCP is inbulit in CheckoutPro SDK. Get in touch with your KAMs to enable this feature for your MID.
+    </Callout>
+</Accordion>
 
-<Callout icon="📘" theme="info">
-  **Note**: MCP is inbulit in CheckoutPro SDK. Get in touch with your KAMs to enable this feature for your MID.
-</Callout>
-
-### Custom Note Integration
-
+<Accordion title="Custom Note Integration" icon="fa-code">
 This section describes how to integrate custom notes in PayUCheckoutPro SDK.
-
 <Accordion title="Step 1: Create a Custom Note List" icon="fa-code">
   Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and `custom_note_category` need to be passed.
 
@@ -1773,14 +1774,21 @@ This section describes how to integrate custom notes in PayUCheckoutPro SDK.
   PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
   payUCheckoutProConfig.setCustomNoteDetails(<customNote>);
   ```
-  ````Text Kotlin
+  ```Text Kotlin
   val checkoutProConfig = PayUCheckoutProConfig()  
   checkoutProConfig.customNoteDetails = customNote
-  </Accordion>```
+  ```
+</Accordion>
 
-  ### Additional SDK Offerings
+</Accordion>
+
+<Accordion title="Additional SDK Offerings" icon="fa-code">
 
   If you want to add features like **Native OTP**, **Gpay InApp**, **PhonePe Inapp**, and **Ola Money** in our PayUCheckoutPro SDK, then please refer to the below [Add-on SDKs](doc:android-checkoutpro-addonsdks)
+
+</Accordion>
+
+## Test the Integration
 
   After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
@@ -1790,7 +1798,7 @@ This section describes how to integrate custom notes in PayUCheckoutPro SDK.
   >
   > The UPI in-app and UPI intent flow is not available in the Test mode.
 
-  ## Test the Integration
+  
 
   <TestingChecklist />
 
@@ -1835,21 +1843,6 @@ This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
   [https://pgsim01.payu.in/UPI-test-transaction/confirm/](https://pgsim01.payu.in/UPI-test-transaction/confirm/)`<Txn_id>`
 
-  **For Android**
-
-  You can add the below metadata under the application tag in the manifest file to test the UPI Collect flow on test env:-
-
-  <Callout icon="🚧" theme="warn">
-    **Remove code from manifest**: Ensure to remove the code from the manifest file before going live.
-  </Callout>
-
-  ```Text xml
-  <application>
-  <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
-  <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
-  <meta-data android:name="payu_post_url" android:value="https://test.payu.in"/> //Comment in case of Production-->
-  </application>
-  ````
 </Accordion>
 
 <Accordion title="Test cards for EMI" icon="fa-code">
@@ -1863,6 +1856,8 @@ This section describes how to integrate custom notes in PayUCheckoutPro SDK.
 
   <EMITestWallets />
 </Accordion>
+
+<br />
 
 ## Go-live Checklist
 
