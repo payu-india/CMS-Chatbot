@@ -1,6 +1,5 @@
 ---
 title: Android Integration
-excerpt: ''
 deprecated: false
 hidden: false
 metadata:
@@ -753,7 +752,160 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
   <Accordion title="Step 2.13: Complete Sample (Recommended)" icon="fa-code">
     The payment parameters and additional parameters can be passed using the following code snippet:
+```javascript
+import React from 'react';
+import {NativeModules, Alert} from 'react-native';
+import CryptoJS from 'crypto-js';
 
+const {PayUBizSdk} = NativeModules;
+
+const createPaymentParams = () => {
+  const txnid = new Date().getTime().toString();
+
+  // ========== Basic Payment Parameters (Mandatory) ==========
+  const payUPaymentParams = {
+    key: 'YOUR_MERCHANT_KEY',
+    transactionId: txnid,
+    amount: '10',
+    productInfo: 'Product Info',
+    firstName: 'Abc',
+    email: 'test@gmail.com',
+    phone: '9999999999',
+    android_surl: 'https://cbjs.payu.in/sdk/success',
+    android_furl: 'https://cbjs.payu.in/sdk/failure',
+    ios_surl: 'https://cbjs.payu.in/sdk/success',
+    ios_furl: 'https://cbjs.payu.in/sdk/failure',
+    environment: '1', // '0' => Production, '1' => Test
+    userCredential: 'YOUR_MERCHANT_KEY:test@gmail.com',
+    userToken: 'userId:userName',
+  };
+
+  // ========== Additional Parameters ==========
+  const additionalParam = {
+    udf1: 'udf1',
+    udf2: 'udf2',
+    udf3: 'udf3',
+    udf4: 'udf4',
+    udf5: 'udf5',
+    walletUrn: '100000',
+    sourceId: 'src_dfcbd083-f38d-4d0d-9fac-80d7d1bb8f2d',
+  };
+  payUPaymentParams.additionalParam = additionalParam;
+
+  // ========== Standing Instruction (SI) - Optional ==========
+  payUPaymentParams.payUSIParams = {
+    isFreeTrial: false,
+    billingAmount: '3000',
+    billingCycle: 'MONTHLY', // DAILY/WEEKLY/MONTHLY/YEARLY/ADHOC/ONCE
+    billingCurrency: 'INR',
+    billingInterval: '10',
+    paymentStartDate: '2027-05-06', // YYYY-MM-DD
+    paymentEndDate: '2028-05-10',   // YYYY-MM-DD
+    remarks: 'Subscription payment',
+    billingDate: '',
+  };
+
+  // ========== One Time Mandate (OTM) - Optional ==========
+  payUPaymentParams.payUSIParams = {
+    isPreAuthTxn: true,
+    paymentStartDate: '2025-04-01', // YYYY-MM-DD
+    paymentEndDate: '2025-04-10',   // YYYY-MM-DD
+  };
+
+  // ========== SKU Details - Optional ==========
+  payUPaymentParams.skuDetails = {
+    skus: [
+      {
+        skuId: '111',
+        skuName: 'Shoes',
+        skuAmount: '100',
+        quantity: 1,
+        offerKeys: null,
+      },
+      {
+        skuId: '222',
+        skuName: 'Shirt',
+        skuAmount: '100',
+        quantity: 1,
+        offerKeys: null,
+      },
+    ],
+  };
+
+  // ========== TPV (Third Party Verification) - Optional ==========
+  payUPaymentParams.beneficiaryDetails = [
+    // For UPI
+    {
+      beneficiaryAccount: '002001600674',
+      beneficiaryIfsc: 'HDFC0000090',
+    },
+    // For Net Banking
+    {
+      beneficiaryName: 'SACHIN Tendulkar',
+      beneficiaryAccount: '002001600674',
+      beneficiaryIfsc: 'ICIC0000090',
+      beneficiaryAccountType: 'SAVINGS',
+    },
+  ];
+
+  // ========== OPGSP (Cross Border) - Optional ==========
+  Note: For OPGSP, udf5 (invoice number) is also mandatory
+  payUPaymentParams.address = {
+    lastName: 'LastName',
+    address1: 'Address1 value',
+    address2: 'Address2 value',
+    city: 'Gurgaon',
+    state: 'Haryana',
+    country: 'India',
+    zipcode: '122001',
+  };
+  additionalParam.udf5 = 'Sample_Invoice_11'; // Mandatory for OPGSP
+
+  // ========== WealthTech - Optional ==========
+  payUPaymentParams.products = [
+    {
+      type: 'mutual_fund',
+      plan: 'GD',
+      folio: '9104927822',
+      amount: '50000',
+      option: 'G',
+      scheme: 'LT',
+      receipt: '77407',
+      mfMemberID: '123445',
+      mfUserID: '77407',
+      mfPartner: 'cams',
+      mfInvestmentType: 'L',
+      mfAMCCode: 'UTB',
+    },
+  ];
+
+  // ========== Split Payment - Optional ==========
+  Uncomment below to enable Split Payments (Aggregator model)
+  const splitPaymentDetails = {
+    type: 'absolute', // or 'percentage'
+    splitInfo: {
+      imAJ7I: { // Child Merchant Key
+        aggregatorSubTxnId: '12345673443540dd33d099887766650091', // Unique per transaction
+        aggregatorSubAmt: '10',
+        aggregatorCharges: '0',
+      },
+    },
+  };
+  payUPaymentParams.splitPaymentDetails = JSON.stringify(splitPaymentDetails);
+
+  // ========== Additional Charges - Optional ==========
+  payUPaymentParams.additionalCharges = 'CC:12,AMEX:19,SBIB:98,DC:25,NB:55';
+  payUPaymentParams.percentageAdditionalCharges = 'CC:50,AMEX:100,DC:25';
+
+  // ========== Offer Keys - Optional ==========
+  payUPaymentParams.enforcementOfferKeys = ['offer_key_1', 'offer_key_2'];
+
+  // ========== Enable Native OTP - Optional ==========
+  payUPaymentParams.enableNativeOTP = true;
+
+  return payUPaymentParams;
+};
+```
   </Accordion>
 </Accordion>
 
