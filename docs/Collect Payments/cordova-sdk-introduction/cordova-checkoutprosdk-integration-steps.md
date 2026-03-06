@@ -107,12 +107,11 @@ The Cordova Checkout SDK integration involves the following steps:
 
 <Accordion title="Step 3: Build the payment parameters" icon="fa-code">
   Your app needs to send transactional information to the CheckoutPro SDK to initiate a payment. Build the transactional information using the following code snippet:
-<Accordion title="Step 3.1: Basic Integration" icon="fa-code">
-    ```javascript
-    import {NativeModules} from 'react-native';
-    const {PayUBizSdk} = NativeModules;
 
-    const createBasicPaymentParams = () => {
+  <Accordion title="Step 3.1: Basic Integration" icon="fa-code">
+    ```javascript
+
+    const createPaymentParams = () => {
       const txnid = new Date().getTime().toString();
       
       const payUPaymentParams = {
@@ -188,7 +187,7 @@ The Cordova Checkout SDK integration involves the following steps:
     | `isFreeTrial`      | Boolean | Whether this is a free trial period | `true` / `false`                                        |
     | `billingAmount`    | String  | Amount to be charged                | `"3000"`                                                |
     | `billingCycle`     | String  | Billing frequency                   | `MONTHLY`, `DAILY`, `WEEKLY`, `YEARLY`, `ADHOC`, `ONCE` |
-    | `billingInterval`  | String  | Interval between charges            | `"1"`                                                  |
+    | `billingInterval`  | String  | Interval between charges            | `"1"`                                                   |
     | `paymentStartDate` | String  | Start date (YYYY-MM-DD)             | `"2027-05-06"`                                          |
     | `paymentEndDate`   | String  | End date (YYYY-MM-DD)               | `"2028-05-10"`                                          |
     | `remarks`          | String  | Additional notes                    | `"Subscription"`                                        |
