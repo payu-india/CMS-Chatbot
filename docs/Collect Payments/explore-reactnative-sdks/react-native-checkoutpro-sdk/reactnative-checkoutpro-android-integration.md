@@ -141,7 +141,53 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
   <Accordion title="Step 2.1: Basic Integration" icon="fa-code">
 
+```javascript
+import {NativeModules} from 'react-native';
+const {PayUBizSdk} = NativeModules;
+
+const createBasicPaymentParams = () => {
+  const txnid = new Date().getTime().toString();
+  
+  const payUPaymentParams = {
+    key: 'YOUR_MERCHANT_KEY',
+    transactionId: txnid,
+    amount: '10',
+    productInfo: 'Macbook Pro',
+    firstName: 'Abc',
+    email: 'test@gmail.com',
+    phone: '9999999999',
+    // Redirect URLs
+    android_surl: 'https://cbjs.payu.in/sdk/success',
+    android_furl: 'https://cbjs.payu.in/sdk/failure',
+    ios_surl: 'https://cbjs.payu.in/sdk/success',
+    ios_furl: 'https://cbjs.payu.in/sdk/failure',
+    // Environment: '0' => Production, '1' => Test
+    environment: '1',
+    // User credentials for saved cards
+    userCredential: 'YOUR_MERCHANT_KEY:user@email.com',
+    // User token for offer engine
+    userToken: 'userId:userName',
+    // Additional parameters
+    additionalParam: {
+      udf1: 'udf1',
+      udf2: 'udf2',
+      udf3: 'udf3',
+      udf4: 'udf4',
+      udf5: 'udf5',
+    },
+  };
+  return payUPaymentParams;
+};
+    ```
+> **📘 Important:**
+> - The sample SURL/FURL values are for testing only. Use your own URLs before going live.
+> - The `transactionId` must be unique, ≤ 25 characters, and cannot contain special characters like `_`, `$`, `%`, `&`, etc.
+> - For more information, refer to [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
+
+---
+
     </Accordion>
+  
 
 
   <Accordion title="Payment parameters" icon="fa-code">
