@@ -4,6 +4,20 @@ deprecated: false
 hidden: false
 metadata:
   title: Prerequisites and Set up for Apple Pay Integration
+  description: >-
+    Review the required prerequisites and configuration steps for enabling Apple
+    Pay with PayU. Understand merchant setup, certificates, domains, payment
+    processing capabilities, and environment requirements.
+  keywords:
+    - apple pay prerequisites
+    - apple pay setup
+    - payu apple pay configuration
+    - merchant setup apple pay
+    - domain verification apple pay
+    - payment processing setup
+    - apple pay certificates
+    - ios payment setup
+    - payu integration steps
   robots: index
 ---
 To enable Apple Pay on your website:
