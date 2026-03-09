@@ -1,10 +1,11 @@
 ---
-title: Apple Pay - Merchant Hosted with Session Management Integration
+title: Merchant Hosted with Session Management Integration
 deprecated: false
 hidden: false
 link:
   new_tab: false
 metadata:
+  title: Apple Pay - Merchant Hosted with Session Management Integration
   robots: index
 ---
 This section provides a comprehensive guide for integrating Apple Pay Seamless Flow with session management.
