@@ -4,6 +4,20 @@ deprecated: false
 hidden: false
 metadata:
   title: Apple Pay Integration-Merchant Hosted Checkout
+  description: >-
+    Implement Apple Pay on your merchant‑hosted checkout page using PayU APIs.
+    Integrate directly with your custom frontend while leveraging PayU for
+    secure Apple Pay transaction processing.
+  keywords:
+    - merchant hosted checkout apple pay
+    - payu merchant checkout
+    - direct integration apple pay
+    - custom checkout apple pay
+    - apple pay api integration
+    - merchant frontend integration
+    - payu api apple pay
+    - seamless integration with Apple Pay
+    - Apple Pay Seamless integration
   robots: index
 ---
 This section describes step-by-step procedure to integrate Apple Pay as a payment method using Merchant Hosted Checkout integration with two kinds of decryption integration:
