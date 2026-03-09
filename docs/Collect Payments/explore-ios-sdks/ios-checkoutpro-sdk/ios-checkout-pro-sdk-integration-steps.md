@@ -552,166 +552,245 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     // Attach SKU details to payment params
     paymentParam.skuDetail = skuDetails;
     ```
+  </Accordion>
+
+  <Accordion title="Step 2.7: Third Party Verification (TPV) Flow (Optional)" icon="fa-code">
+    CheckoutPro SDK supports TPV (Third Party Verification) flow for both UPI and Net Banking payment methods. TPV validates that payments are made from authorized beneficiary accounts by verifying account details during the transaction.
+
+    > **What is TPV?**\
+    > TPV is a security feature that ensures payments are made only from pre-registered and verified bank accounts. It helps prevent fraudulent transactions by matching the payer's account details with pre-approved beneficiary information.
+
+    <Accordion title="TPV for UPI Payments" icon="fa-code">
+      To enable TPV for UPI payments, you need to pass beneficiary account details with IFSC code and account number. This ensures that UPI transactions are processed only from the specified bank account.
+
+      **Required Parameters for UPI TPV:**
+
+      * `beneficiaryIFSC`: Bank's IFSC code
+      * `beneficiaryAccountNumber`: Account number from which payment should be made
+
+      ```Text Swift
+      let beneficiary1 = PayUBeneficiaryParams(
+          beneficiaryName: "",
+          beneficiaryAccountNumber: "002001600674",
+          beneficiaryIFSC: "HDFC0000090",
+          beneficiaryAccountType: .savings
+      )
+
+      var beneficiaryList = [PayUBeneficiaryParams]()
+      beneficiaryList.append(beneficiary1)
+
+      paymentParam.payuBeneficieryDetails = beneficiaryList
+      ```
+      ```Text Objective-C
+      PayUBeneficiaryParams *beneficiary1 = [[PayUBeneficiaryParams alloc]
+          initWithBeneficiaryName:@""
+          beneficiaryAccountNumber:@"002001600674"
+          beneficiaryIFSC:@"HDFC0000090"
+          beneficiaryAccountType:BeneficiaryAccountTypeSavings];
+
+      NSMutableArray *beneficiaryList = [NSMutableArray array];
+      [beneficiaryList addObject:beneficiary1];
+
+      paymentParam.payuBeneficieryDetails = beneficiaryList;
+      ```
+
+      > **Note**\
+      > For UPI payments, only IFSC and Account Number are mandatory. Account type and beneficiary name are optional.
     </Accordion>
-<Accordion title="Step 2.7: Third Party Verification (TPV) Flow (Optional)" icon="fa-code">
-  CheckoutPro SDK supports TPV (Third Party Verification) flow for both UPI and Net Banking payment methods. TPV validates that payments are made from authorized beneficiary accounts by verifying account details during the transaction.
 
-  > **What is TPV?**\
-  > TPV is a security feature that ensures payments are made only from pre-registered and verified bank accounts. It helps prevent fraudulent transactions by matching the payer's account details with pre-approved beneficiary information.
+    <Accordion title="TPV for Net Banking Payments" icon="fa-code">
+      To enable TPV for Net Banking, you need to pass additional parameters including account type and beneficiary name along with IFSC and account number. This provides enhanced verification for Net Banking transactions.
 
-  <Accordion title="TPV for UPI Payments" icon="fa-code">
-    To enable TPV for UPI payments, you need to pass beneficiary account details with IFSC code and account number. This ensures that UPI transactions are processed only from the specified bank account.
+      **Required Parameters for Net Banking TPV:**
 
-    **Required Parameters for UPI TPV:**
-    - `beneficiaryIFSC`: Bank's IFSC code
-    - `beneficiaryAccountNumber`: Account number from which payment should be made
+      * `beneficiaryIFSC`: Bank's IFSC code
+      * `beneficiaryAccountNumber`: Account number from which payment should be made
+      * `beneficiaryAccountType`: Type of account (savings or current)
+      * `beneficiaryName`: Account holder's name (must match bank records)
 
-    ```Text Swift
-    let beneficiary1 = PayUBeneficiaryParams(
-        beneficiaryName: "",
-        beneficiaryAccountNumber: "002001600674",
-        beneficiaryIFSC: "HDFC0000090",
-        beneficiaryAccountType: .savings
-    )
+      ```Text Swift
+      let beneficiary1 = PayUBeneficiaryParams(
+          beneficiaryName: "John Doe",
+          beneficiaryAccountNumber: "002001600674",
+          beneficiaryIFSC: "HDFC0000090",
+          beneficiaryAccountType: .savings
+      )
 
-    var beneficiaryList = [PayUBeneficiaryParams]()
-    beneficiaryList.append(beneficiary1)
+      var beneficiaryList = [PayUBeneficiaryParams]()
+      beneficiaryList.append(beneficiary1)
 
-    paymentParam.payuBeneficieryDetails = beneficiaryList
-    ```
-    ```Text Objective-C
-    PayUBeneficiaryParams *beneficiary1 = [[PayUBeneficiaryParams alloc]
-        initWithBeneficiaryName:@""
-        beneficiaryAccountNumber:@"002001600674"
-        beneficiaryIFSC:@"HDFC0000090"
-        beneficiaryAccountType:BeneficiaryAccountTypeSavings];
+      paymentParam.payuBeneficieryDetails = beneficiaryList
+      ```
+      ```Text Objective-C
+      PayUBeneficiaryParams *beneficiary1 = [[PayUBeneficiaryParams alloc]
+          initWithBeneficiaryName:@"John Doe"
+          beneficiaryAccountNumber:@"002001600674"
+          beneficiaryIFSC:@"HDFC0000090"
+          beneficiaryAccountType:BeneficiaryAccountTypeSavings];
 
-    NSMutableArray *beneficiaryList = [NSMutableArray array];
-    [beneficiaryList addObject:beneficiary1];
+      NSMutableArray *beneficiaryList = [NSMutableArray array];
+      [beneficiaryList addObject:beneficiary1];
 
-    paymentParam.payuBeneficieryDetails = beneficiaryList;
-    ```
+      paymentParam.payuBeneficieryDetails = beneficiaryList;
+      ```
 
-    > **Note**\
-    > For UPI payments, only IFSC and Account Number are mandatory. Account type and beneficiary name are optional.
-  </Accordion>
+      **Available Account Types:**
 
-  <Accordion title="TPV for Net Banking Payments" icon="fa-code">
-    To enable TPV for Net Banking, you need to pass additional parameters including account type and beneficiary name along with IFSC and account number. This provides enhanced verification for Net Banking transactions.
+      * `.savings` (Swift) / `BeneficiaryAccountTypeSavings` (Objective-C) - For savings bank accounts
+      * `.current` (Swift) / `BeneficiaryAccountTypeCurrent` (Objective-C) - For current/checking accounts
 
-    **Required Parameters for Net Banking TPV:**
-    - `beneficiaryIFSC`: Bank's IFSC code
-    - `beneficiaryAccountNumber`: Account number from which payment should be made
-    - `beneficiaryAccountType`: Type of account (savings or current)
-    - `beneficiaryName`: Account holder's name (must match bank records)
+      > **Important**\
+      > The beneficiary name must exactly match the name registered with the bank. Any mismatch will cause the transaction to fail.
+    </Accordion>
 
-    ```Text Swift
-    let beneficiary1 = PayUBeneficiaryParams(
-        beneficiaryName: "John Doe",
-        beneficiaryAccountNumber: "002001600674",
-        beneficiaryIFSC: "HDFC0000090",
-        beneficiaryAccountType: .savings
-    )
+    <Accordion title="TPV for Multiple Payment Methods" icon="fa-layer-group">
+      To support TPV for both UPI and Net Banking in the same transaction, create separate beneficiary detail objects and add them to an array. This allows customers to choose between UPI or Net Banking while maintaining TPV verification for both methods.
 
-    var beneficiaryList = [PayUBeneficiaryParams]()
-    beneficiaryList.append(beneficiary1)
+      **Use Case:**\
+      This is useful when you want to offer multiple payment options to the customer while enforcing TPV validation on all available methods.
 
-    paymentParam.payuBeneficieryDetails = beneficiaryList
-    ```
-    ```Text Objective-C
-    PayUBeneficiaryParams *beneficiary1 = [[PayUBeneficiaryParams alloc]
-        initWithBeneficiaryName:@"John Doe"
-        beneficiaryAccountNumber:@"002001600674"
-        beneficiaryIFSC:@"HDFC0000090"
-        beneficiaryAccountType:BeneficiaryAccountTypeSavings];
+      ```Text Swift
+      // Beneficiary details for UPI
+      let upiBeneficiary = PayUBeneficiaryParams(
+          beneficiaryName: "",
+          beneficiaryAccountNumber: "1234567890",
+          beneficiaryIFSC: "BANK0001234",
+          beneficiaryAccountType: .savings
+      )
 
-    NSMutableArray *beneficiaryList = [NSMutableArray array];
-    [beneficiaryList addObject:beneficiary1];
+      // Beneficiary details for Net Banking
+      let netBankingBeneficiary = PayUBeneficiaryParams(
+          beneficiaryName: "John Doe",
+          beneficiaryAccountNumber: "9876543210",
+          beneficiaryIFSC: "BANK0005678",
+          beneficiaryAccountType: .savings
+      )
 
-    paymentParam.payuBeneficieryDetails = beneficiaryList;
-    ```
+      // Add both beneficiary details to array
+      var beneficiaryList = [PayUBeneficiaryParams]()
+      beneficiaryList.append(upiBeneficiary)
+      beneficiaryList.append(netBankingBeneficiary)
 
-    **Available Account Types:**
-    - `.savings` (Swift) / `BeneficiaryAccountTypeSavings` (Objective-C) - For savings bank accounts
-    - `.current` (Swift) / `BeneficiaryAccountTypeCurrent` (Objective-C) - For current/checking accounts
+      paymentParam.payuBeneficieryDetails = beneficiaryList
+      ```
+      ```Text Objective-C
+      // Beneficiary details for UPI
+      PayUBeneficiaryParams *upiBeneficiary = [[PayUBeneficiaryParams alloc]
+          initWithBeneficiaryName:@""
+          beneficiaryAccountNumber:@"1234567890"
+          beneficiaryIFSC:@"BANK0001234"
+          beneficiaryAccountType:BeneficiaryAccountTypeSavings];
 
-    > **Important**\
-    > The beneficiary name must exactly match the name registered with the bank. Any mismatch will cause the transaction to fail.
-  </Accordion>
+      // Beneficiary details for Net Banking
+      PayUBeneficiaryParams *netBankingBeneficiary = [[PayUBeneficiaryParams alloc]
+          initWithBeneficiaryName:@"John Doe"
+          beneficiaryAccountNumber:@"9876543210"
+          beneficiaryIFSC:@"BANK0005678"
+          beneficiaryAccountType:BeneficiaryAccountTypeSavings];
 
-  <Accordion title="TPV for Multiple Payment Methods" icon="fa-layer-group">
-    To support TPV for both UPI and Net Banking in the same transaction, create separate beneficiary detail objects and add them to an array. This allows customers to choose between UPI or Net Banking while maintaining TPV verification for both methods.
+      // Add both beneficiary details to array
+      NSMutableArray *beneficiaryList = [NSMutableArray array];
+      [beneficiaryList addObject:upiBeneficiary];
+      [beneficiaryList addObject:netBankingBeneficiary];
 
-    **Use Case:**\
-    This is useful when you want to offer multiple payment options to the customer while enforcing TPV validation on all available methods.
+      paymentParam.payuBeneficieryDetails = beneficiaryList;
+      ```
 
-    ```Text Swift
-    // Beneficiary details for UPI
-    let upiBeneficiary = PayUBeneficiaryParams(
-        beneficiaryName: "",
-        beneficiaryAccountNumber: "1234567890",
-        beneficiaryIFSC: "BANK0001234",
-        beneficiaryAccountType: .savings
-    )
+      > **Best Practice**\
+      > When supporting multiple payment methods, ensure that you provide complete beneficiary details for each payment method according to their respective requirements.
+    </Accordion>
 
-    // Beneficiary details for Net Banking
-    let netBankingBeneficiary = PayUBeneficiaryParams(
-        beneficiaryName: "John Doe",
-        beneficiaryAccountNumber: "9876543210",
-        beneficiaryIFSC: "BANK0005678",
-        beneficiaryAccountType: .savings
-    )
+    ### Required Parameters Summary
 
-    // Add both beneficiary details to array
-    var beneficiaryList = [PayUBeneficiaryParams]()
-    beneficiaryList.append(upiBeneficiary)
-    beneficiaryList.append(netBankingBeneficiary)
+    | Parameter                | UPI        | Net Banking | Description                                                |
+    | ------------------------ | ---------- | ----------- | ---------------------------------------------------------- |
+    | beneficiaryIFSC          | ✓ Required | ✓ Required  | Bank IFSC code (11 characters)                             |
+    | beneficiaryAccountNumber | ✓ Required | ✓ Required  | Beneficiary account number                                 |
+    | beneficiaryAccountType   | ✗ Optional | ✓ Required  | Account type (savings/current) - Mandatory for Net Banking |
+    | beneficiaryName          | ✗ Optional | ✓ Required  | Account holder's name - Must match bank records exactly    |
 
-    paymentParam.payuBeneficieryDetails = beneficiaryList
-    ```
-    ```Text Objective-C
-    // Beneficiary details for UPI
-    PayUBeneficiaryParams *upiBeneficiary = [[PayUBeneficiaryParams alloc]
-        initWithBeneficiaryName:@""
-        beneficiaryAccountNumber:@"1234567890"
-        beneficiaryIFSC:@"BANK0001234"
-        beneficiaryAccountType:BeneficiaryAccountTypeSavings];
+    <br />
 
-    // Beneficiary details for Net Banking
-    PayUBeneficiaryParams *netBankingBeneficiary = [[PayUBeneficiaryParams alloc]
-        initWithBeneficiaryName:@"John Doe"
-        beneficiaryAccountNumber:@"9876543210"
-        beneficiaryIFSC:@"BANK0005678"
-        beneficiaryAccountType:BeneficiaryAccountTypeSavings];
+    > **Common Issues**\
+    > • **Invalid IFSC Code**: Ensure the IFSC code is valid and matches the beneficiary's bank\
+    > • **Name Mismatch**: For Net Banking, beneficiary name must exactly match bank records\
+    > • **Account Type Error**: Use the correct account type enum value (savings or current)
+    </Accordion>
+<Accordion title="Step 2.8: Cross Border Flow (OPGSP) (Optional)" icon="fa-code">
+  OPGSP (Online Payment Gateway Service Provider) flow is designed for cross-border and international transactions. It requires complete address details to be passed along with payment parameters for compliance and fraud prevention purposes.
 
-    // Add both beneficiary details to array
-    NSMutableArray *beneficiaryList = [NSMutableArray array];
-    [beneficiaryList addObject:upiBeneficiary];
-    [beneficiaryList addObject:netBankingBeneficiary];
+  > **When to use OPGSP?**\
+  > Use OPGSP flow when processing international payments or when your business requires complete billing address verification for risk management and regulatory compliance.
 
-    paymentParam.payuBeneficieryDetails = beneficiaryList;
-    ```
+  **PayUAddressDetails** – Contains the following properties:
 
-    > **Best Practice**\
-    > When supporting multiple payment methods, ensure that you provide complete beneficiary details for each payment method according to their respective requirements.
-  </Accordion>
+  ```Text Swift
+  let address = PayUAddressDetails()
+  address.lastName = "Doe"
+  address.address1 = "34 Saikripa-Estate, Tilak Nagar"
+  address.address2 = "Near Metro Station"
+  address.city = "Mumbai"
+  address.state = "Maharashtra"
+  address.country = "India"
+  address.zipcode = "400004"
 
-  ### Required Parameters Summary
+  paymentParam.address = address
+  ```
+  ```Text Objective-C
+  PayUAddressDetails *address = [[PayUAddressDetails alloc] init];
+  address.lastName = @"Doe";
+  address.address1 = @"34 Saikripa-Estate, Tilak Nagar";
+  address.address2 = @"Near Metro Station";
+  address.city = @"Mumbai";
+  address.state = @"Maharashtra";
+  address.country = @"India";
+  address.zipcode = @"400004";
 
-  | Parameter                | UPI        | Net Banking | Description                                                    |
-  | ------------------------ | ---------- | ----------- | -------------------------------------------------------------- |
-  | beneficiaryIFSC          | ✓ Required | ✓ Required  | Bank IFSC code (11 characters)                                 |
-  | beneficiaryAccountNumber | ✓ Required | ✓ Required  | Beneficiary account number                                     |
-  | beneficiaryAccountType   | ✗ Optional | ✓ Required  | Account type (savings/current) - Mandatory for Net Banking     |
-  | beneficiaryName          | ✗ Optional | ✓ Required  | Account holder's name - Must match bank records exactly        |
+  paymentParam.address = address;
+  ```
+
+  ### Address Parameters
+
+  | Parameter | Required   | Description                                                                                                                                                                                            | Example                         |
+  | --------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
+  | lastName  | ✓ Required | Customer's last name                                                                                                                                                                                   | Doe                             |
+  | address1  | ✓ Required | The first line of the billing address. **Note:** This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar |
+  | address2  | ✓ Required | The second line of the billing address                                                                                                                                                                 | Near Metro Station              |
+  | city      | ✓ Required | The city where your customer resides as part of the billing address                                                                                                                                    | Mumbai                          |
+  | state     | ✓ Required | The state where your customer resides as part of the billing address                                                                                                                                   | Maharashtra                     |
+  | country   | ✓ Required | The country where your customer resides                                                                                                                                                                | India                           |
+  | zipcode   | ✓ Required | Billing address zip code is mandatory for the cardless EMI option. Character Limit: 20                                                                                                                 | 400004                          |
 
   <br />
 
-  > **Common Issues**\
-  > • **Invalid IFSC Code**: Ensure the IFSC code is valid and matches the beneficiary's bank\
-  > • **Name Mismatch**: For Net Banking, beneficiary name must exactly match bank records\
-  > • **Account Type Error**: Use the correct account type enum value (savings or current)
+  > **Keep in mind**\
+  > All address fields are **mandatory** for OPGSP transactions. Incomplete or incorrect address information may result in transaction failure or delays in processing.
+
+  ---
+
+  ### **UDF5 Parameter (Invoice Number) - MANDATORY**
+
+  When using OPGSP flow, you **must** pass the Invoice Number in the **UDF5** parameter. This is a critical requirement for cross-border transactions and helps in transaction tracking and reconciliation.
+
+  ```Text Swift
+  paymentParam.additionalParam[PaymentParamConstant.udf5] = "INV-2024-001234"
+  ```
+  ```Text Objective-C
+  paymentParam.additionalParam[PaymentParamConstantUdf5] = @"INV-2024-001234";
+  ```
+
+  | Parameter | Required   | Description                                                         | Example          |
+  | --------- | ---------- | ------------------------------------------------------------------- | ---------------- |
+  | udf5      | ✓ Required | The invoice ID or invoice number must be collected using this field | INV-2024-001234  |
+
+  <br />
+
+  > **Important**\
+  > • The invoice number in UDF5 should be unique for each transaction\
+  > • Keep the invoice number for your records as it will be used for reconciliation\
+  > • Failure to provide UDF5 will result in transaction rejection for OPGSP flow
 </Accordion>
+
 </Accordion>
 
 <Accordion title="Step 3: Generate the hash" icon="fa-code">
