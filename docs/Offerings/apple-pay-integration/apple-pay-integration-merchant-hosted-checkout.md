@@ -5,7 +5,10 @@ hidden: true
 metadata:
   robots: index
 ---
-This section describes step-by-step procedure to integrate Apple Pay as a payment method using Merchant Hosted Checkout integration.
+This section describes step-by-step procedure to integrate Apple Pay as a payment method using Merchant Hosted Checkout integration with two kinds of decryption integration:
+
+* (Merchant-side decryption)(#step-2a-merchant-side-decryption)
+*  (PayU-side decryption)(#step-2b-payu-side-decryption)
 
 <Callout icon="📘" theme="info">
   **Before you begin**:   Ensure that you have completed the prerequisites before you start the integration. For more information, refer to [Prerequisites and Set up for Apple Pay Integration](doc:prerequisites-and-set-up-for-apple-pay-integration).
@@ -47,7 +50,7 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | key<br />`mandatory`                  | `String` - This parameter contains the merchant key provided by PayU during onboarding.                                                                                                                                                                                                                   | JP\*\*\*g                                                                                                                     |
   | txnid<br />`mandatory`                | `String` - This parameter contains a unique transaction ID. You can generate this ID or use the PayU API to generate it. The maximum length of this parameter is 25 characters.                                                                                                                           | txn\_applepay\_001                                                                                                            |
   | amount<br />`mandatory`               | `String` - This parameter contains the payment amount.                                                                                                                                                                                                                                                    | 100.00                                                                                                                        |
-  | authentication\_info<br />`mandatory` | `String` - This parameter contains the authentication info based on Merchant-side or PayU-side decryption. For more information, refer to any of the following <br />    - (Merchant-side decryption)(#step-2a-merchant-side-decryption)<br />    - (PayU-side decryption)(#step-2b-payu-side-decryption) | iPhone Case                                                                                                                   |
+  | authentication\_info<br />`mandatory` | `String` - This parameter contains the authentication info based on Merchant-side or PayU-side decryption. For more information, refer to any of the following: <br />    - (Merchant-side decryption)(#step-2a-merchant-side-decryption)<br />    - (PayU-side decryption)(#step-2b-payu-side-decryption) | iPhone Case                                                                                                                   |
   | firstname<br />`mandatory`            | `String` - This parameter contains the first name of the customer.                                                                                                                                                                                                                                        | John                                                                                                                          |
   | email<br />`mandatory`                | `String` - This parameter contains the email address of the customer.                                                                                                                                                                                                                                     | [john@example.com](mailto:john@example.com)                                                                                   |
   | phone<br />`mandatory`                | `String` - This parameter contains the phone number of the customer.                                                                                                                                                                                                                                      | 9876543210                                                                                                                    |
@@ -108,7 +111,7 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | `type`        | Product type of the card: e.g. `credit`, `debit`, `prepaid`. Used for routing, compliance, and UX.                                                                |
 </Accordion>
 
-### Step 2b: PayU-side Decryption
+### Step 2b. PayU-side Decryption
 
 <Accordion title="Authentication info for PayU-side Decryption" icon="fa-code">
   **Sample Authentication Info**
