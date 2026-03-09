@@ -26,106 +26,25 @@ This section provides a comprehensive guide for integrating Apple Pay Seamless F
 6. Decode and verify response hash
 7. Process authorization result
 
-## Step 1: S2S Direct Authorization Request
+## Step 1: Initiate Payment Session
 
-<PaymentAPIEnvironment />
+Initiate the payment session similar to the following cURL request:
 
-### Request Parameters
-
-| Parameter                            | Description                                     | Example                                                        |
-| ------------------------------------ | ----------------------------------------------- | -------------------------------------------------------------- |
-| key<br />`mandatory`                 | `string` PayU merchant key                      | "your_merchant_key"                                            |
-| txnid<br />`mandatory`               | `string` Unique transaction ID                  | "TXN123456789"                                                 |
-| amount<br />`mandatory`              | `string` Transaction amount                     | "100.00"                                                       |
-| productinfo<br />`mandatory`         | `string` Product description                    | "iPhone 15 Pro"                                                |
-| firstname<br />`mandatory`           | `string` Customer first name                    | "John"                                                         |
-| email<br />`mandatory`               | `string` Customer email                         | "[john@example.com](mailto:john@example.com)"                  |
-| phone<br />`mandatory`               | `string` Customer phone number                  | "+1234567890"                                                  |
-| pg<br />`mandatory`                  | `string` Payment gateway; set to "APPLEPAY"     | "APPLEPAY"                                                     |
-| bankcode<br />`mandatory`            | `string` Bank code; set to "CCAP" or "APPLEPAY" | "CCAP"                                                         |
-| ccnum<br />`mandatory`               | `string` Decrypted card number                  | "4111111111111111"                                             |
-| ccname<br />`mandatory`              | `string` Cardholder name                        | "John Doe"                                                     |
-| ccexpmon<br />`mandatory`            | `string` Expiry month (MM)                      | "12"                                                           |
-| ccexpyr<br />`mandatory`             | `string` Expiry year (YYYY)                     | "2025"                                                         |
-| ccvv<br />`mandatory`                | `string` CVV code                               | "123"                                                          |
-| txn_s2s_flow<br />`mandatory`        | `string` Transaction flow type; set to "3"      | "3"                                                            |
-| authentication_info<br />`mandatory` | `string` JSON with 3DS authentication data      | '\{"threeDSData":"..."}'                                       |
-| s2s_client_ip<br />`mandatory`       | `string` Client IP address                      | "192.168.1.1"                                                  |
-| s2s_device_info<br />`mandatory`     | `string` Device information JSON                | '\{"deviceId":"..."}'                                          |
-| hash<br />`mandatory`                | `string` SHA512 request hash                    | "abc123def456..."                                              |
-| surl<br />`mandatory`                | `string` Success URL                            | "[https://merchant.com/success](https://merchant.com/success)" |
-| furl<br />`mandatory`                | `string` Failure URL                            | "[https://merchant.com/failure](https://merchant.com/failure)" |
-
-<Accordion title="Understanding Hashing and sample code" icon="fa-code">
-  <HashingRequestParameters />
-
-  #### Hashing Sample Code
-
-  <HashingSample />
-</Accordion>
-
-### Authentication Info JSON Structure
-
-```json
-{
-  "eci": "05",
-  "cavv": "base64_encoded_cavv",
-  "flowType": "APPLEPAY",
-  "threeDSTransID": "apple_transaction_id",
-  "threeDSServerTransID": "server_transaction_id",
-  "threeDSTransStatus": "Y",
-  "threeDSTransStatusReason": "01",
-  "acquirer_bin": "000000",
-  "additionalinfo": "{"appleTransactionId":"...","network":"Visa"}"
-}
+```curl
+curl --location 'https://secure.payu.in/seamless/Session' \
+--header 'Content-Type: application/json' \
+--header 'mid: 2' \
+--data '{
+    "validationUrl": "https://apple-pay-gateway.apple.com/paymentservices/paymentSession",
+    "txnid": "06fb0aa23eaeb32772e18"
+  }'
 ```
 
-### 3DS2 Request Data JSON (when applicable)
+## Step 2: Authorize Transaction
 
-```json
-{
-  "threeDSVersion": "2.2.0",
-  "deviceChannel": "BRW",
-  "userAgent": "Mozilla/5.0...",
-  "acceptHeader": "text/html,application/xhtml+xml...",
-  "language": "en-US",
-  "colorDepth": 24,
-  "screenHeight": 1080,
-  "screenWidth": 1920,
-  "timeZone": 330,
-  "javaEnabled": false
-}
-```
+<Apple_Pay_Step1 />
 
-### Sample Request
-
-```bash
-curl -X POST "https://test.payu.in/_payment"   
--H "Content-Type: application/x-www-form-urlencoded"   
--H "Accept: application/json"   
--d "key=your_merchant_key"   
--d "txnid=APPLEPAY_DA_$(date +%s)_$(openssl rand -hex 4)"   
--d "amount=100.00"   
--d "productinfo=Apple Pay Direct Authorization"   
--d "firstname=John"   
--d "email=john@example.com"   
--d "phone=9876543210"   
--d "pg=APPLEPAY"   
--d "bankcode=CCAP"   
--d "ccnum=4111111111111111"   
--d "ccname=Apple Pay User"   
--d "ccexpmon=12"   
--d "ccexpyr=2025"   
--d "ccvv=123"   
--d "txn_s2s_flow=3"   
--d "authentication_info={"eci":"05","cavv":"AAABCIEFEwAAAAECAwQFBgc=","flowType":"APPLEPAY","threeDSTransID":"$(openssl rand -hex 16)","threeDSTransStatus":"Y","acquirer_bin":"000000"}"   -d "threeDS2RequestData={"threeDSVersion":"2.2.0","deviceChannel":"BRW"}"   
--d "s2s_client_ip=192.168.1.1"   
--d "s2s_device_info={"device_type":"web","user_agent":"Mozilla/5.0"}"   
--d "surl=https://yourapp.com/success"   
--d "furl=https://yourapp.com/failure"   -d "hash=calculated_hash"
-```
-
-## Step 2: Check Response from PayU
+## Step 3: Check Response from PayU
 
 The Direct Authorization API returns a **base64-encoded** response that needs to be decoded:
 
