@@ -503,42 +503,43 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     For more information on the SKU parameters, refer to [Create SKU Based Offers for iOS Checkout Pro](https://docs.payu.in/docs/ios_checkoutpro-offers_integration).
 
-    > 🚧 Keep in mind\
-    > If you are adding SKU offer details, the `amount` passed in `PayUPaymentParam` must be equal to the sum of (quantity × skuAmount) of each item.
+    > 🚧 Keep in mind<br/>
+> If you are adding SKU offer details, the `amount` passed in `PayUPaymentParam` must be equal to the sum of (quantity × skuAmount) of each item.
 
-    ```Text swift
-    let sku1 = PayUSku(skuId: "111", skuName: "Shoes", skuAmount: "100", quantity: 1, offerKeys: nil)
-    let sku2 = PayUSku(skuId: "222", skuName: "Shirt", skuAmount: "100", quantity: 1, offerKeys: nil)
+```Text
+// Swift
+let sku1 = PayUSku(skuId: "111", skuName: "Shoes", skuAmount: "100", quantity: 1, offerKeys: nil)
+let sku2 = PayUSku(skuId: "222", skuName: "Shirt", skuAmount: "100", quantity: 1, offerKeys: nil)
 
-    let skuDetails = PayUSkuDetails(skus: [sku1, sku2])
+let skuDetails = PayUSkuDetails(skus: [sku1, sku2])
 
-    // Attach SKU details to payment params
-    paymentParam.skuDetail = skuDetails
-    ```
+// Attach SKU details to payment params
+paymentParam.skuDetail = skuDetails
 
-    ```Text objectivec
-    PayUSku *sku1 = [PayUSku new];
-    sku1.skuId = @"111";
-    sku1.skuName = @"Shoes";
-    sku1.skuAmount = @"100";
-    sku1.quantity = 1;
-    sku1.offerKeys = nil;
 
-    PayUSku *sku2 = [PayUSku new];
-    sku2.skuId = @"222";
-    sku2.skuName = @"Shirt";
-    sku2.skuAmount = @"100";
-    sku2.quantity = 1;
-    sku2.offerKeys = nil;
+// Objective-C
+PayUSku *sku1 = [PayUSku new];
+sku1.skuId = @"111";
+sku1.skuName = @"Shoes";
+sku1.skuAmount = @"100";
+sku1.quantity = 1;
+sku1.offerKeys = nil;
 
-    NSArray<PayUSku *> *skus = @[sku1, sku2];
+PayUSku *sku2 = [PayUSku new];
+sku2.skuId = @"222";
+sku2.skuName = @"Shirt";
+sku2.skuAmount = @"100";
+sku2.quantity = 1;
+sku2.offerKeys = nil;
 
-    PayUSkuDetails *skuDetails = [PayUSkuDetails new];
-    skuDetails.skus = skus;
+NSArray<PayUSku *> *skus = @[sku1, sku2];
 
-    // Attach SKU details to payment params
-    paymentParam.skuDetail = skuDetails;
-    ```
+PayUSkuDetails *skuDetails = [PayUSkuDetails new];
+skuDetails.skus = skus;
+
+// Attach SKU details to payment params
+paymentParam.skuDetail = skuDetails;
+```
   </Accordion>
 </Accordion>
 
