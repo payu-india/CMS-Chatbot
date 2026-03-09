@@ -868,26 +868,71 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     > • Ensure the total amount in PaymentParams matches the sum of all product amounts\
     > • Partner codes must match the RTA (Registrar and Transfer Agent) handling the mutual fund\
     > • For existing investments (additional purchase), always include the folio number
-    </Accordion>
+  </Accordion>
 
   <Accordion title="Step 2.10: Enforce Offer Keys (Optional)" icon="fa-code">
-  Enforce Offer Keys allows you to apply specific promotional offers to transactions. Pass an array of offer keys to enforce specific offers during checkout.
+    Enforce Offer Keys allows you to apply specific promotional offers to transactions. Pass an array of offer keys to enforce specific offers during checkout.
+
+    ```Text Swift
+    paymentParam.enforcementOfferKeys = ["offer_key_1"]
+
+    // Usage - Multiple offers
+    paymentParam.enforcementOfferKeys = ["OFFER123", "OFFER456", "OFFER789"]
+    ```
+    ```Text Objective-C
+    paymentParam.enforcementOfferKeys = @[@"offer_key_1"];
+
+    // Usage - Multiple offers
+    paymentParam.enforcementOfferKeys = @[@"OFFER123", @"OFFER456", @"OFFER789"];
+    ```
+
+    **Note:** You can pass multiple offer keys to enforce different promotional offers during the payment process.
+    </Accordion>
+<Accordion title="Step 2.11: Additional Parameters (Optional)" icon="fa-code">
+  Additional parameters are optional parameters such as UDF (User Defined Fields), static hashes, etc. More details on static hash generation and passing are mentioned in the hash generation section. The following is a list of other parameters that can be passed in additional parameters.
+
+  ### Additional Parameters
+
+  | Parameter                                    | Description                                                      | Example       |
+  | -------------------------------------------- | ---------------------------------------------------------------- | ------------- |
+  | PaymentParamConstant.udf1 (optional)         | User-defined field, Merchant can store their customer ID, etc.   | udf1          |
+  | PaymentParamConstant.udf2 (optional)         | User-defined field, Merchant can store their customer ID, etc.   | udf2          |
+  | PaymentParamConstant.udf3 (optional)         | User-defined field, Merchant can store their customer ID, etc.   | udf3          |
+  | PaymentParamConstant.udf4 (optional)         | User-defined field, Merchant can store their customer ID, etc.   | udf4          |
+  | PaymentParamConstant.udf5 (optional)         | User-defined field, Merchant can store their customer ID, etc.   | udf5          |
+  | PaymentParamConstant.sourceId (mandatory)    | When we use SODEXO Card payment then it's a mandatory parameter  | 456788765678  |
+  | PaymentParamConstant.walletURN (mandatory)   | When we use ClosedLoop Wallet payment then it's a mandatory parameter | 67890987   |
+  | PaymentParamConstant.merchantAccessKey       | Merchant access key for specific payment flows                   | YOUR_KEY      |
+
+  <br />
 
   ```Text Swift
-  paymentParam.enforcementOfferKeys = ["offer_key_1"]
+  // UDF Parameters
+  paymentParam.additionalParam[PaymentParamConstant.udf1] = "udf1"
+  paymentParam.additionalParam[PaymentParamConstant.udf2] = "udf2"
+  paymentParam.additionalParam[PaymentParamConstant.udf3] = "udf3"
+  paymentParam.additionalParam[PaymentParamConstant.udf4] = "udf4"
+  paymentParam.additionalParam[PaymentParamConstant.udf5] = "udf5"
 
-  // Usage - Multiple offers
-  paymentParam.enforcementOfferKeys = ["OFFER123", "OFFER456", "OFFER789"]
+  // Other Parameters
+  paymentParam.additionalParam[PaymentParamConstant.walletURN] = "100000"
+  paymentParam.additionalParam[PaymentParamConstant.sourceId] = "src_xxx"
+  paymentParam.additionalParam[PaymentParamConstant.merchantAccessKey] = "YOUR_KEY"
   ```
   ```Text Objective-C
-  paymentParam.enforcementOfferKeys = @[@"offer_key_1"];
+  // UDF Parameters
+  paymentParam.additionalParam[PaymentParamConstantUdf1] = @"udf1";
+  paymentParam.additionalParam[PaymentParamConstantUdf2] = @"udf2";
+  paymentParam.additionalParam[PaymentParamConstantUdf3] = @"udf3";
+  paymentParam.additionalParam[PaymentParamConstantUdf4] = @"udf4";
+  paymentParam.additionalParam[PaymentParamConstantUdf5] = @"udf5";
 
-  // Usage - Multiple offers
-  paymentParam.enforcementOfferKeys = @[@"OFFER123", @"OFFER456", @"OFFER789"];
+  // Other Parameters
+  paymentParam.additionalParam[PaymentParamConstantWalletURN] = @"100000";
+  paymentParam.additionalParam[PaymentParamConstantSourceId] = @"src_xxx";
+  paymentParam.additionalParam[PaymentParamConstantMerchantAccessKey] = @"YOUR_KEY";
   ```
-
-  **Note:** You can pass multiple offer keys to enforce different promotional offers during the payment process.
-  </Accordion>
+</Accordion>
 </Accordion>
 
 <Accordion title="Step 3: Generate the hash" icon="fa-code">
