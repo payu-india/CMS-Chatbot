@@ -5,7 +5,11 @@ hidden: false
 metadata:
   robots: index
 ---
-Chargeback reasons which are provided by customers while raising chargeback are listed in this section.
+Chargeback reasons are provided by customers while raising  chargebacks are listed in this section.
+
+<Callout icon="📘" theme="info">
+  **Note**: The following are the list of reasons provided by customers while raising chargebacks.
+</Callout>
 
 * Non Receipt of Goods or Services
 * Cancelled recurring Transaction
