@@ -19,7 +19,7 @@ PayU MCP Server is a secure, OAuth-protected remote MCP (Model Context Protocol)
 ## Setup
 
 1. Visit the [Anthropic MCP Directory](https://claude.com/connectors)
-2. Find and connect to **PayU Merchant MCP Server**
+2. Find and connect to **PayU MCP Server**
 3. Complete OAuth authentication — a browser window will open for you to log in with your PayU merchant credentials
 4. If you have multiple merchant accounts, select the desired account using the `switch_team_account` tool
 
@@ -206,6 +206,6 @@ For PayU Privacy policy, refer to the following page:
 
 Contact PayU Support using the [PayU Support page.](https://help.payu.in).
 
-Email - ai-solutions@payu.in
+Email - [ai-solutions@payu.in](mailto:ai-solutions@payu.in)
 
-Issues - https://github.com/payu-intrepos/payu-mcp-server/issues
+Issues - [https://github.com/payu-intrepos/payu-mcp-server/issues](https://github.com/payu-intrepos/payu-mcp-server/issues)
