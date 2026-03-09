@@ -435,20 +435,20 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     ```Text Onjective-C
     paymentParam.siParams = siParam;
     ```
-    </Accordion>
+  </Accordion>
 
-<Accordion title="Step 2.4: For Additional Charges" icon="fa-code">
-      Additional charges can be applied to transactions:
+  <Accordion title="Step 2.4: For Additional Charges" icon="fa-code">
+    Additional charges can be applied to transactions:
 
-      ```Text Swift
-      paymentParam.additionalCharges = "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55"
-      paymentParam.percentageAdditionalCharges = "CC:50,SBIB:100,DINR:100,DC:25,NB:50"
-      ```
-      ```Text Objective-C
-      paymentParam.additionalCharges = @"CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
-      paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50";
-      ```
-    </Accordion>
+    ```Text Swift
+    paymentParam.additionalCharges = "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55"
+    paymentParam.percentageAdditionalCharges = "CC:50,SBIB:100,DINR:100,DC:25,NB:50"
+    ```
+    ```Text Objective-C
+    paymentParam.additionalCharges = @"CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
+    paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50";
+    ```
+  </Accordion>
 
   <Accordion title="Step 2.5: For Split Payments details (Optional)" icon="fa-code">
     Split payments allow you to distribute the payment amount between a parent merchant and sub-merchants.
@@ -480,7 +480,46 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       ```
     </Accordion>
     </Accordion>
+    <Accordion title="Step 2.6: For SKU details (Optional)" icon="fa-code">
+`SkuDetails` is used for SKU-based offers. Conceptually it contains:
 
+- **SkuDetails**: `skus` (List/Array) of `SKU`
+- **SKU**:
+  - **skuId**: Product ID (used while creating the offer on dashboard)
+  - **skuName**: Product name
+  - **skuAmount**: Amount for a single unit of the SKU (String)
+  - **quantity**: Total quantity (Int)
+  - **offerKeys**: Optional – restrict offer to specific offer keys, else keep it empty / omit
+
+For more information, refer to [Create SKU Based Offers details](https://docs.payu.in/docs/create-sku-based-offers-for-android-checkout-pro).
+
+> 🚧 Keep in mind  
+> If you are adding SKU offer details, the `amount` passed in `PayUPaymentParam` must be equal to the sum of \(quantity × skuAmount\) of each item.
+
+#### Swift
+
+```swift
+let skus: [[String: Any]] = [
+    ["skuId": "111", "skuName": "Shoes", "skuAmount": "100", "quantity": 1, "offerKeys": []],
+    ["skuId": "222", "skuName": "Shirt", "skuAmount": "100", "quantity": 1, "offerKeys": []]
+]
+
+// Attach SKU details to payment params
+paymentParam.skuDetail = ["skus": skus]
+```
+
+#### Objective-C
+
+```objectivec
+NSArray *skus = @[
+    @{@"skuId": @"111", @"skuName": @"Shoes", @"skuAmount": @"100", @"quantity": @1, @"offerKeys": @[]},
+    @{@"skuId": @"222", @"skuName": @"Shirt", @"skuAmount": @"100", @"quantity": @1, @"offerKeys": @[]}
+];
+
+// Attach SKU details to payment params
+paymentParam.skuDetail = @{ @"skus": skus };
+```
+</Accordion>
 </Accordion>
 
 <Accordion title="Step 3: Generate the hash" icon="fa-code">
