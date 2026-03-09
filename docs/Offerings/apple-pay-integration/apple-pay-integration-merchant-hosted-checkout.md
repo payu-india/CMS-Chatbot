@@ -64,13 +64,10 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | udf1<br />`optional`                  | `String` - This parameter must contain the Apple transaction identifier. Maximum length is 255 characters.                                                                                                                                                                                                 |                                                                                                                               |
   | udf2<br />`optional`                  | `String` - This parameter must contain the value as MAST:credit. Maximum length is 255 characters.                                                                                                                                                                                                         |                                                                                                                               |
 
-  <Accordion title="Understanding Hashing and sample code" icon="fa-code">
-    <HashingRequestParameters />
-
-    #### Hashing Sample Code
-
-    <HashingSample />
-  </Accordion>
+  **Hashing logic**
+  <code>
+sha[key|txnid|amt|info|salt]
+</code>
 </Accordion>
 
 ### Step 2a. Merchant-side Decryption
