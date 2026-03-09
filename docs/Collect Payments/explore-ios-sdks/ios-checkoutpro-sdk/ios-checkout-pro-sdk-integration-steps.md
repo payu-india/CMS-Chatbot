@@ -482,7 +482,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
   <Accordion title="Step 2.6: For SKU details (Optional)" icon="fa-code">
     `PayUSkuDetails` is used for SKU-based offers.
-
+<br/>
     PayUSkuDetails: It contains below properties\
     PayUSkuDetails(skus: \[PayUSku])\
     skus: "{"<Array of PayUSku's>"}"
@@ -505,7 +505,6 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     > 🚧 Keep in mind\
     > If you are adding SKU offer details, the `amount` passed in `PayUPaymentParam` must be equal to the sum of (quantity × skuAmount) of each item.
-
 
     ```Text swift
     let sku1 = PayUSku(skuId: "111", skuName: "Shoes", skuAmount: "100", quantity: 1, offerKeys: nil)
