@@ -1,7 +1,7 @@
 ---
 title: Merchant Hosted Checkout Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Apple Pay Integration-Merchant Hosted Checkout
   description: >-
