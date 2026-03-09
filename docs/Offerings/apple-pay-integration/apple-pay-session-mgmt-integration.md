@@ -110,6 +110,9 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
 
 <Accordion title="Authentication info for PayU-side Decryption" icon="fa-code">
   **Sample Authentication Info**
+<Callout icon="📘" theme="info">
+  **Note**:  You will receive the following JSON on your registered domain from Apple Pay.
+</Callout>
 
   ```json
   {
