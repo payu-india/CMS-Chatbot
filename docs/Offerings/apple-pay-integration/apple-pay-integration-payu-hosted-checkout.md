@@ -4,6 +4,21 @@ deprecated: false
 hidden: false
 metadata:
   title: Apple Pay - PayU Hosted Integration
+  description: >-
+    Learn how to integrate Apple Pay using PayU’s Hosted Checkout. Follow
+    step‑by‑step guidelines to enable Apple Pay on PayU’s secure payment page
+    with minimal development effort.
+  keywords:
+    - apple pay hosted checkout
+    - PayU hosted checkout
+    - apple pay integration hosted
+    - payu checkout flow
+    - easy apple pay integration
+    - hosted payment page apple pay
+    - payu hpp apple pay
+    - digital wallet hosted checkout
+    - Apple Pay Non-seamless integration
+    - non-seamless integration with Apple Pay
   robots: index
 ---
 This section describes step-by-step procedure to integrate Apple Pay as a payment method using PayU Hosted Checkout integration.
