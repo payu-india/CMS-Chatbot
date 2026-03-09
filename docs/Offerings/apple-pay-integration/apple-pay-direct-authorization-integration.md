@@ -57,53 +57,6 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | udf1<br />`optional`                  | `String` - This parameter must contain the Apple transaction identifier. Maximum length is 255 characters.                                                                      |                                                                                                                               |
   | udf2<br />`optional`                  | `String` - This parameter must contain the value as MAST:credit. Maximum length is 255 characters.                                                                              |                                                                                                                               |
 
-  ### Authentication Info
-
-  <Accordion title="Authentication info for Apple Pay" icon="fa-code">
-    **Sample Authentication Info**
-
-    ```json
-    {
-      "paymentData": {
-        "data": "<Base64 encrypted payload>",
-        "signature": "<Base64 PKCS#7 signature>",
-        "header": {
-          "publicKeyHash": "<Base64 SHA-256 hash>",
-          "ephemeralPublicKey": "<Base64 EC P-256 public key>",
-          "transactionId": "<hex string>"
-        },
-        "version": "EC_v1"
-      },
-      "paymentMethod": {
-        "displayName": "Visa 7013",
-        "network": "Visa",
-        "type": "debit"
-      },
-      "transactionIdentifier": "<hex string>"
-    }
-    ```
-
-    ### paymentData JSON object fields
-
-    | Field | Description |
-    |-------|------|-------------|
-    | `data`| **Encrypted payment data** (Base64). Symmetrically encrypted payload containing tokenized card and cryptogram data. Decryption key is derived using the merchant’s private key and `header.ephemeralPublicKey` (ECDH). Must be decrypted by the merchant/processor to obtain the payment token used for authorization. |
-    | `signature` | **PKCS#7 detached signature** (Base64). Contains Apple’s certificate chain and a signature over the payload. Used to verify that the token was issued by a valid Apple Pay environment and was not tampered with. |
-    | `header` | **Key agreement and transaction metadata.** Supplies the ephemeral public key for decryption and the transaction ID. |
-    | `version` | **Token format version.** Value `EC_v1` indicates EC-based key agreement and this encrypted structure. Determines how to parse and decrypt the token. |
-    | `header.publicKeyHash` | **Merchant certificate public key hash** (Base64, SHA-256). Identifies the merchant’s Apple Pay certificate used for this token. Used to select the correct private key for decryption and to verify the token was intended for this merchant. |
-    | `header.ephemeralPublicKey` | **Ephemeral EC P-256 public key** (Base64). Generated per transaction by the device. The merchant combines this with their private key (ECDH) to derive the symmetric key that decrypts `paymentData.data`. |
-    | `header.transactionId` | **Unique transaction identifier** (e.g. hex). Ties this token to a single transaction. Must match top-level `transactionIdentifier`; use for idempotency and audit. |
-
-    ### paymentMethod JSON object
-
-    | Field  | Description |
-    |-------|------|-------------|
-    | `displayName` | **User-facing label** for the card (e.g. “Visa 7013”). Often “Network” + last 4 digits. Safe for receipts and UI; must not be used as PAN or for authorization. |
-    | `network`| **Card scheme/network** (e.g. `Visa`, `MasterCard`, `AMEX`). Used for routing and scheme-specific handling. |
-    | `type` | **Product type** of the card: e.g. `credit`, `debit`, `prepaid`. Used for routing, compliance, and UX. |
-    |
-  </Accordion>
 
   <Accordion title="Understanding Hashing and sample code" icon="fa-code">
     <HashingRequestParameters />
@@ -113,6 +66,122 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
     <HashingSample />
   </Accordion>
 </Accordion>
+
+### Step 2a. Merchant-side Decryption
+
+<Accordion title="Authentication info for Apple Pay" icon="fa-code">
+  **Sample Authentication Info**
+
+  ```
+  {"applicationPrimaryAccountNumber":"4832086841071751","applicationExpirationDate":"290228","currencyCode":"356","transactionAmount":1000,"deviceManufacturerIdentifier":"040010030273","paymentDataType":"3DSecure","paymentData":{"onlinePaymentCryptogram":"KgAAAAoDK12xsrcAAAAAgTtgE4A=","eciIndicator":"5"}, "paymentMethod":{"displayName":"MasterCard 0049","network":"MasterCard","type":"credit"}}
+  ```
+
+  | Field                             | Description                                                                                                                                                                                                                                                                                |
+  | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | `applicationPrimaryAccountNumber` | Tokenized Primary Account Number (FPAN). Device-specific token that replaces the real card number (DPAN). Format is card-like (e.g. 16 digits); last 4 may match the real card for display. Must not be stored as a card number; use only for the current transaction and token lifecycle. |
+  | `applicationExpirationDate`       | Token expiration date in `YYMM` format (e.g. `290228` = February 28, 2029). Indicates when this payment token expires; distinct from the underlying card’s expiry.                                                                                                                         |
+  | `currencyCode`                    | ISO 4217 numeric currency code (e.g. `356` = INR, `840` = USD). Must match the transaction currency.                                                                                                                                                                                       |
+  | `transactionAmount`               | Transaction amount in minor units (e.g. paise for INR, cents for USD). Example: `1000` = ₹10.00 or $10.00 depending on `currencyCode`.                                                                                                                                                     |
+  | `deviceManufacturerIdentifier`    | Device-specific identifier from the Secure Element. Used for risk, fraud, and token lifecycle (e.g. linking tokens to the same device). Opaque; format is manufacturer-specific.                                                                                                           |
+  | `paymentDataType`                 | Type of cryptogram in `paymentData`. Common values: `3DSecure` (e-commerce/CNP), `EMV` (contactless CP), `ECv1` (legacy). Determines which cryptogram field to use and how to validate.                                                                                                    |
+  | `paymentData`                     | Cryptogram and 3DS data used to authorize the transaction. Contents depend on `paymentDataType`.                                                                                                                                                                                           |
+  | `paymentMethod`                   | Display and card-method metadata (network, type, display name). For UI and routing only; not used as primary authorization data.                                                                                                                                                           |
+
+  #### paymentDat`object (when`paymentDataType`is`3DSecure\`)
+
+  | Field                     | Description                                                                                                                                                                                                                                        |
+  | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `onlinePaymentCryptogram` | One-time payment cryptogram (Base64). Generated by the device for this transaction; must be sent to the payment network/processor within its validity window. Used to prove that the transaction was authorized on the device.                     |
+  | `eciIndicator`            | E-commerce Indicator (ECI). Indicates 3DS authentication level and liability shift. Common values: `05`/`06` = 3DS authenticated, `07` = 3DS attempted, `01`/`02` = not 3DS. Used by acquirers and schemes for authentication and liability rules. |
+
+  ***
+
+  #### paymentMethod object
+
+  | Field         | Description                                                                                                                                                       |
+  | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `displayName` | User-facing label for the card (e.g. “MasterCard 0049”). Often “Network” + last 4 digits. Safe for receipts and UI; must not be used as PAN or for authorization. |
+  | `network`     | Card scheme/network (e.g. `MasterCard`, `Visa`, `AMEX`). Used for routing and scheme-specific handling.                                                           |
+  | `type`        | Product type of the card: e.g. `credit`, `debit`, `prepaid`. Used for routing, compliance, and UX.                                                                |
+</Accordion>
+
+### Step 2b. PayU-side Decryption
+
+<Accordion title="Authentication info for PayU-side Decryption" icon="fa-code">
+  **Sample Authentication Info**
+
+  ```json
+  {
+    "paymentData": {
+      "data": "<Base64 encrypted payload>",
+      "signature": "<Base64 PKCS#7 signature>",
+      "header": {
+        "publicKeyHash": "<Base64 SHA-256 hash>",
+        "ephemeralPublicKey": "<Base64 EC P-256 public key>",
+        "transactionId": "<hex string>"
+      },
+      "version": "EC_v1"
+    },
+    "paymentMethod": {
+      "displayName": "Visa 7013",
+      "network": "Visa",
+      "type": "debit"
+    },
+    "transactionIdentifier": "<hex string>"
+  }
+  ```
+
+  ### paymentData JSON object fields
+
+  \| Field | Description |
+  \|-------|------|-------------|
+  \| `data`| **Encrypted payment data** (Base64). Symmetrically encrypted payload containing tokenized card and cryptogram data. Decryption key is derived using the merchant’s private key and `header.ephemeralPublicKey` (ECDH). Must be decrypted by the merchant/processor to obtain the payment token used for authorization. |
+  \| `signature` | **PKCS#7 detached signature** (Base64). Contains Apple’s certificate chain and a signature over the payload. Used to verify that the token was issued by a valid Apple Pay environment and was not tampered with. |
+  \| `header` | **Key agreement and transaction metadata.** Supplies the ephemeral public key for decryption and the transaction ID. |
+  \| `version` | **Token format version.** Value `EC_v1` indicates EC-based key agreement and this encrypted structure. Determines how to parse and decrypt the token. |
+  \| `header.publicKeyHash` | **Merchant certificate public key hash** (Base64, SHA-256). Identifies the merchant’s Apple Pay certificate used for this token. Used to select the correct private key for decryption and to verify the token was intended for this merchant. |
+  \| `header.ephemeralPublicKey` | **Ephemeral EC P-256 public key** (Base64). Generated per transaction by the device. The merchant combines this with their private key (ECDH) to derive the symmetric key that decrypts `paymentData.data`. |
+  \| `header.transactionId` | **Unique transaction identifier** (e.g. hex). Ties this token to a single transaction. Must match top-level `transactionIdentifier`; use for idempotency and audit. |
+
+  ### paymentMethod JSON object
+
+  \| Field  | Description |
+  \|-------|------|-------------|
+  \| `displayName` | **User-facing label** for the card (e.g. “Visa 7013”). Often “Network” + last 4 digits. Safe for receipts and UI; must not be used as PAN or for authorization. |
+  \| `network`| **Card scheme/network** (e.g. `Visa`, `MasterCard`, `AMEX`). Used for routing and scheme-specific handling. |
+  \| `type` | **Product type** of the card: e.g. `credit`, `debit`, `prepaid`. Used for routing, compliance, and UX. |
+  |
+</Accordion>
+
+<Accordion title="Sample request" icon="fa-code">
+  ```bash
+  curl --location 'https://secure.payu.in/AuthorizeTransaction.php' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'key={{key}}' \
+  --data-urlencode 'txnid={{txnid}}' \
+  --data-urlencode 'authentication_info={{info}}' \
+  --data-urlencode 'hash={{hash1}}' \
+  --data-urlencode 'pg=ApplePay' \
+  --data-urlencode 'bankcode=CCAP' \
+  --data-urlencode 'firstname=John' \
+  --data-urlencode 'country=IN' \
+  --data-urlencode 'city=Banglore' \
+  --data-urlencode 'state=KA' \
+  --data-urlencode 'email=abc@gmail.com' \
+  --data-urlencode 'address1=street1 area' \
+  --data-urlencode 'udf1=appleTransactionIdentifier' \
+  --data-urlencode 'udf2=MAST:credit' \
+  --data-urlencode 'lastname=Bing' \
+  --data-urlencode 'zipcode=45678' \
+  --data-urlencode 'phone=9876543210' \
+  --data-urlencode 'productinfo=ABC info' \
+  --data-urlencode 'amount={{amt}}'
+  ```
+
+  <br />
+</Accordion>
+
+***
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
