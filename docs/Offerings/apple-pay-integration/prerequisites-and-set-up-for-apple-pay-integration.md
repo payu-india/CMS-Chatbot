@@ -1,8 +1,9 @@
 ---
-title: Prerequisites and Set up for Apple Pay Integration
+title: Prerequisites and Set up
 deprecated: false
 hidden: false
 metadata:
+  title: Prerequisites and Set up for Apple Pay Integration
   robots: index
 ---
 To enable Apple Pay on your website:
