@@ -38,7 +38,7 @@ This section walks you through the complete integration workflow for implementin
     <br />
   </Card>
 
-  <Card title="6. Verify Transaction" href="https://docs.payu.in/docs/connect-agent-integration#step-6-verify-transaction-status">
+  <Card title="6. Verify the Transaction" href="#step-6-verify-the-transaction">
     Check payment status and handle responses
 
     <br />
