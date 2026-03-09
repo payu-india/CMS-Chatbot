@@ -60,7 +60,7 @@ After posting the payment request, PayU returns a response containing transactio
 </Callout>
 
 <Accordion title="Submit OTP and Resend OTP" icon="fa-reply">
-  For S2S4 flow, you'll receive an OTP enrollment response if the card requires OTP authentication. Use the Submit OTP API and Resend OTP API (if the OTP entered by the customer fails). For more information refer to (Submit OTP API)[ref:submit-otp-to-payu] and (Resend OTP API)[ref:resend-otp-api].
+  For S2S4 flow, you'll receive an OTP enrollment response if the card requires OTP authentication. Use the Submit OTP API and Resend OTP API (if the OTP entered by the customer fails). For more information refer to [Submit OTP API](ref:submit-otp-to-payu) and [Resend OTP API](ref:resend-otp-api).
 
   <Accordion title="Sample response from Submit OTP" icon="fa-code">
     **First failure**
