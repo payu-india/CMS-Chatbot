@@ -38,7 +38,7 @@ This section walks you through the complete integration workflow for implementin
     <br />
   </Card>
 
-  <Card title="6. Verify the Transaction" href="#step-6-verify-the-transaction">
+  <Card title="6. Verify the Transaction" href="#step-6-verify-transaction-status">
     Check payment status and handle responses
 
     <br />
