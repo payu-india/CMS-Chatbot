@@ -51,14 +51,17 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | phone<br />`mandatory`                | `String` - This parameter contains the phone number of the customer.                                                                                                            | 9876543210                                                                                                                    |  
   | pg<br />`mandatory`                   | `String` - This parameter specifies the payment category. For Apple Pay integration, the value must be `APPLEPAY`.                                                              | APPLEPAY     |
   | bankcode<br />`mandatory`             | `String` - This parameter specifies the payment option. For Apple Pay integration, the value must be CCAP                                                                       | CCAP    |   
-  | surl<br />`mandatory`                 | `String` - This parameter contains the Success URL. PayU will redirect the customer to this URL after a successful payment.                                                     | [https://yoursite.com/success](https://yoursite.com/success)                                                                  |   
-  | furl<br />`mandatory`                 | `String` - This parameter contains the Failure URL. PayU will redirect the customer to this URL after a failed payment.                                                         | [https://yoursite.com/failure](https://yoursite.com/failure)                                                                  |   
+  | address1<br />`mandatory`                 | `String` - This parameter must contain the address details of the customer.                                                     |                                                                  |  
+  | city<br />`mandatory`                 | `String` - This parameter must contain the city of tof the customer address.                                                     |                                                                  |   
+  | state<br />`mandatory`                 | `String` - This parameter must contain the state of tof the customer address.                                                     |                                                                  |  
+  | country<br />`mandatory`                 | `String` - This parameter must contain the country of tof the customer address.                                                     |                                                                  |  
   | hash<br />`mandatory`                 | `String` - This parameter contains the hash value calculated using SHA-512 algorithm. Hash logic ensures the integrity of the transaction data.                                 | Refer to [Hashing sample code](https://docs.payu.in/docs/apple-pay-integration-merchant-hosted-checkout#/hashing-sample-code) |   |   |
-  | udf1<br />`optional`                  | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                                                                                               |   
-  | udf2<br />`optional`                  | `String` - This parameter contains any additional information you want to pass. Maximum length is 255 characters.                                                               |                                                                                                                               |  
+  | udf1<br />`optional`                  | `String` - This parameter must contain the Apple transaction identifier. Maximum length is 255 characters.                                                               |                                                                                                                               |   
+  | udf2<br />`optional`                  | `String` - This parameter must contain the value as MAST:credit. Maximum length is 255 characters.                                                               |                                                                                                                               |  
 
   ### Authentication Info
 
+<Accordion title="Sample request" icon="fa-code">
   **Sample Authentication Info**
 
   ```
@@ -92,7 +95,7 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | `displayName` | User-facing label for the card (e.g. “MasterCard 0049”). Often “Network” + last 4 digits. Safe for receipts and UI; must not be used as PAN or for authorization. |
   | `network`     | Card scheme/network (e.g. `MasterCard`, `Visa`, `AMEX`). Used for routing and scheme-specific handling.                                                           |
   | `type`        | Product type of the card: e.g. `credit`, `debit`, `prepaid`. Used for routing, compliance, and UX.                                                                |
-
+  </Accordion>
   <Accordion title="Understanding Hashing and sample code" icon="fa-code">
     <HashingRequestParameters />
 
