@@ -61,7 +61,7 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
 
   ### Authentication Info
 
-<Accordion title="Sample request" icon="fa-code">
+<Accordion title="Authentication info for Apple Pay" icon="fa-code">
   **Sample Authentication Info**
 
   ```
