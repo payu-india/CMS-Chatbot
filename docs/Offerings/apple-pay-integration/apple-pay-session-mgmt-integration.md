@@ -6,6 +6,21 @@ link:
   new_tab: false
 metadata:
   title: Apple Pay - Merchant Hosted with Session Management Integration
+  description: >-
+    Enable Apple Pay on your merchant‑hosted checkout with session management
+    for enhanced security and optimized transaction flows. Learn how to create
+    sessions, validate requests, and process payments with PayU.
+  keywords:
+    - apple pay session management
+    - merchant hosted session apple pay
+    - payu session flow
+    - secure apple pay integration
+    - session-based apple pay checkout
+    - payu apple pay api
+    - merchant checkout session
+    - apple pay session management
+    - Apple Pay Seamless integration with Session Management
+    - Session Management Apply Pay Integration with Seamless
   robots: index
 ---
 This section provides a comprehensive guide for integrating Apple Pay Seamless Flow with session management.
