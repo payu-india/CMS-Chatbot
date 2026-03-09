@@ -1,7 +1,7 @@
 ---
 title: Apple Pay Integration-Merchant Hosted Checkout
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
