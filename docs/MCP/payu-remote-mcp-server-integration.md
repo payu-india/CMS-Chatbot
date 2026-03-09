@@ -205,3 +205,7 @@ For PayU Privacy policy, refer to the following page:
 ## Support
 
 Contact PayU Support using the [PayU Support page.](https://help.payu.in).
+
+Email - ai-solutions@payu.in
+
+Issues - https://github.com/payu-intrepos/payu-mcp-server/issues
