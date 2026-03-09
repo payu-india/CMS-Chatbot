@@ -715,82 +715,161 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     > • **Invalid IFSC Code**: Ensure the IFSC code is valid and matches the beneficiary's bank\
     > • **Name Mismatch**: For Net Banking, beneficiary name must exactly match bank records\
     > • **Account Type Error**: Use the correct account type enum value (savings or current)
-    </Accordion>
-<Accordion title="Step 2.8: Cross Border Flow (OPGSP) (Optional)" icon="fa-code">
-  OPGSP (Online Payment Gateway Service Provider) flow is designed for cross-border and international transactions. It requires complete address details to be passed along with payment parameters for compliance and fraud prevention purposes.
+  </Accordion>
 
-  > **When to use OPGSP?**\
-  > Use OPGSP flow when processing international payments or when your business requires complete billing address verification for risk management and regulatory compliance.
+  <Accordion title="Step 2.8: Cross Border Flow (OPGSP) (Optional)" icon="fa-code">
+    OPGSP (Online Payment Gateway Service Provider) flow is designed for cross-border and international transactions. It requires complete address details to be passed along with payment parameters for compliance and fraud prevention purposes.
 
-  **PayUAddressDetails** – Contains the following properties:
+    > **When to use OPGSP?**\
+    > Use OPGSP flow when processing international payments or when your business requires complete billing address verification for risk management and regulatory compliance.
+
+    **PayUAddressDetails** – Contains the following properties:
+
+    ```Text Swift
+    let address = PayUAddressDetails()
+    address.lastName = "Doe"
+    address.address1 = "34 Saikripa-Estate, Tilak Nagar"
+    address.address2 = "Near Metro Station"
+    address.city = "Mumbai"
+    address.state = "Maharashtra"
+    address.country = "India"
+    address.zipcode = "400004"
+
+    paymentParam.address = address
+    ```
+    ```Text Objective-C
+    PayUAddressDetails *address = [[PayUAddressDetails alloc] init];
+    address.lastName = @"Doe";
+    address.address1 = @"34 Saikripa-Estate, Tilak Nagar";
+    address.address2 = @"Near Metro Station";
+    address.city = @"Mumbai";
+    address.state = @"Maharashtra";
+    address.country = @"India";
+    address.zipcode = @"400004";
+
+    paymentParam.address = address;
+    ```
+
+    ### Address Parameters
+
+    | Parameter | Required   | Description                                                                                                                                                                                            | Example                         |
+    | --------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
+    | lastName  | ✓ Required | Customer's last name                                                                                                                                                                                   | Doe                             |
+    | address1  | ✓ Required | The first line of the billing address. **Note:** This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar |
+    | address2  | ✓ Required | The second line of the billing address                                                                                                                                                                 | Near Metro Station              |
+    | city      | ✓ Required | The city where your customer resides as part of the billing address                                                                                                                                    | Mumbai                          |
+    | state     | ✓ Required | The state where your customer resides as part of the billing address                                                                                                                                   | Maharashtra                     |
+    | country   | ✓ Required | The country where your customer resides                                                                                                                                                                | India                           |
+    | zipcode   | ✓ Required | Billing address zip code is mandatory for the cardless EMI option. Character Limit: 20                                                                                                                 | 400004                          |
+
+    <br />
+
+    > **Keep in mind**\
+    > All address fields are **mandatory** for OPGSP transactions. Incomplete or incorrect address information may result in transaction failure or delays in processing.
+
+    ***
+
+    ### **UDF5 Parameter (Invoice Number) - MANDATORY**
+
+    When using OPGSP flow, you **must** pass the Invoice Number in the **UDF5** parameter. This is a critical requirement for cross-border transactions and helps in transaction tracking and reconciliation.
+
+    ```Text Swift
+    paymentParam.additionalParam[PaymentParamConstant.udf5] = "INV-2024-001234"
+    ```
+    ```Text Objective-C
+    paymentParam.additionalParam[PaymentParamConstantUdf5] = @"INV-2024-001234";
+    ```
+
+    | Parameter | Required   | Description                                                         | Example         |
+    | --------- | ---------- | ------------------------------------------------------------------- | --------------- |
+    | udf5      | ✓ Required | The invoice ID or invoice number must be collected using this field | INV-2024-001234 |
+
+    <br />
+
+    > **Important**\
+    > • The invoice number in UDF5 should be unique for each transaction\
+    > • Keep the invoice number for your records as it will be used for reconciliation\
+    > • Failure to provide UDF5 will result in transaction rejection for OPGSP flow
+  </Accordion>
+
+  <Accordion title="Step 2.9: WealthTech Flow (Optional)" icon="fa-code">
+  WealthTech flow enables payments for wealth management products like mutual funds, SIPs (Systematic Investment Plans), and other investment instruments. You need to pass wealth product details as an array of PayUWealthProducts objects.
+
+  > **What is WealthTech Flow?**\
+  > WealthTech flow is specifically designed for fintech and wealth management platforms that facilitate investments in mutual funds and other financial products through PayU's payment gateway.
+
+  **PayUWealthProducts** – Contains the following properties:
+
+  | Parameter            | Required   | Description                                           | Example      |
+  | -------------------- | ---------- | ----------------------------------------------------- | ------------ |
+  | type                 | ✓ Required | Product type (e.g., mutual\_fund)                     | mutual\_fund |
+  | amount               | ✓ Required | Investment amount                                     | 50000        |
+  | receipt              | ✓ Required | Receipt number for the transaction                    | 77407        |
+  | mfMemberID           | ✓ Required | Unique member ID for the investor                     | 123445       |
+  | mfUserID             | ✓ Required | User ID for the investor                              | 77407        |
+  | mfPartner            | ✓ Required | Partner name (e.g., cams, karvy, franklin)            | cams         |
+  | mfInvestmentType     | ✓ Required | Investment type (L=Lumpsum, S=SIP)                    | L            |
+  | folio                | Optional   | Folio number (for existing investments)               | 9104927822   |
+  | scheme               | Optional   | Scheme code                                           | LT           |
+  | mfAMCCode            | Optional   | AMC (Asset Management Company) code                   | UTB          |
+
+  <br />
 
   ```Text Swift
-  let address = PayUAddressDetails()
-  address.lastName = "Doe"
-  address.address1 = "34 Saikripa-Estate, Tilak Nagar"
-  address.address2 = "Near Metro Station"
-  address.city = "Mumbai"
-  address.state = "Maharashtra"
-  address.country = "India"
-  address.zipcode = "400004"
+  let product = PayUWealthProducts(
+      type: "mutual_fund",
+      amount: "50000",
+      receipt: "77407",
+      mfMemberID: "123445",
+      mfUserID: "77407",
+      mfPartner: "cams",
+      mfInvestmentType: "L"
+  )
+  product.scheme = "LT"
+  product.mfAMCCode = "UTB"
 
-  paymentParam.address = address
+  paymentParam.products = [product]
   ```
   ```Text Objective-C
-  PayUAddressDetails *address = [[PayUAddressDetails alloc] init];
-  address.lastName = @"Doe";
-  address.address1 = @"34 Saikripa-Estate, Tilak Nagar";
-  address.address2 = @"Near Metro Station";
-  address.city = @"Mumbai";
-  address.state = @"Maharashtra";
-  address.country = @"India";
-  address.zipcode = @"400004";
+  PayUWealthProducts *product = [[PayUWealthProducts alloc]
+      initWithType:@"mutual_fund"
+      amount:@"50000"
+      receipt:@"77407"
+      mfMemberID:@"123445"
+      mfUserID:@"77407"
+      mfPartner:@"cams"
+      mfInvestmentType:@"L"];
 
-  paymentParam.address = address;
+  product.scheme = @"LT";
+  product.mfAMCCode = @"UTB";
+
+  paymentParam.products = @[product];
   ```
 
-  ### Address Parameters
+  ### Investment Type Values
 
-  | Parameter | Required   | Description                                                                                                                                                                                            | Example                         |
-  | --------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
-  | lastName  | ✓ Required | Customer's last name                                                                                                                                                                                   | Doe                             |
-  | address1  | ✓ Required | The first line of the billing address. **Note:** This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar |
-  | address2  | ✓ Required | The second line of the billing address                                                                                                                                                                 | Near Metro Station              |
-  | city      | ✓ Required | The city where your customer resides as part of the billing address                                                                                                                                    | Mumbai                          |
-  | state     | ✓ Required | The state where your customer resides as part of the billing address                                                                                                                                   | Maharashtra                     |
-  | country   | ✓ Required | The country where your customer resides                                                                                                                                                                | India                           |
-  | zipcode   | ✓ Required | Billing address zip code is mandatory for the cardless EMI option. Character Limit: 20                                                                                                                 | 400004                          |
+  | Code | Description | Use Case                      |
+  | ---- | ----------- | ----------------------------- |
+  | L    | Lumpsum     | One-time investment           |
+  | S    | SIP         | Systematic Investment Plan    |
+
+  ### Supported RTA Partners
+
+  | Partner Code | Partner Name              |
+  | ------------ | ------------------------- |
+  | cams         | CAMS (Computer Age)       |
+  | karvy        | Karvy/Kfintech            |
+  | franklin     | Franklin Templeton        |
 
   <br />
 
   > **Keep in mind**\
-  > All address fields are **mandatory** for OPGSP transactions. Incomplete or incorrect address information may result in transaction failure or delays in processing.
+  > • You can pass multiple wealth products in a single transaction\
+  > • Ensure the total amount in PaymentParams matches the sum of all product amounts\
+  > • Partner codes must match the RTA (Registrar and Transfer Agent) handling the mutual fund\
+  > • For existing investments (additional purchase), always include the folio number
 
-  ---
-
-  ### **UDF5 Parameter (Invoice Number) - MANDATORY**
-
-  When using OPGSP flow, you **must** pass the Invoice Number in the **UDF5** parameter. This is a critical requirement for cross-border transactions and helps in transaction tracking and reconciliation.
-
-  ```Text Swift
-  paymentParam.additionalParam[PaymentParamConstant.udf5] = "INV-2024-001234"
-  ```
-  ```Text Objective-C
-  paymentParam.additionalParam[PaymentParamConstantUdf5] = @"INV-2024-001234";
-  ```
-
-  | Parameter | Required   | Description                                                         | Example          |
-  | --------- | ---------- | ------------------------------------------------------------------- | ---------------- |
-  | udf5      | ✓ Required | The invoice ID or invoice number must be collected using this field | INV-2024-001234  |
-
-  <br />
-
-  > **Important**\
-  > • The invoice number in UDF5 should be unique for each transaction\
-  > • Keep the invoice number for your records as it will be used for reconciliation\
-  > • Failure to provide UDF5 will result in transaction rejection for OPGSP flow
-</Accordion>
-
+  </Accordion>
 </Accordion>
 
 <Accordion title="Step 3: Generate the hash" icon="fa-code">
