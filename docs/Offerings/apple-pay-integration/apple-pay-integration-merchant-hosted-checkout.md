@@ -141,28 +141,25 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   }
   ```
 
-### paymentData JSON object fields
+  ### paymentData JSON object fields description 
 
-| Field                       | Description                                                                                                                                                                                                                                                                                                            |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data`                      | **Encrypted payment data** (Base64). Symmetrically encrypted payload containing tokenized card and cryptogram data. Decryption key is derived using the merchant’s private key and `header.ephemeralPublicKey` (ECDH). Must be decrypted by the merchant/processor to obtain the payment token used for authorization. |
-| `signature`                 | **PKCS#7 detached signature** (Base64). Contains Apple’s certificate chain and a signature over the payload. Used to verify that the token was issued by a valid Apple Pay environment and was not tampered with.                                                                                                      |
-| `header`                    | **Key agreement and transaction metadata.** Supplies the ephemeral public key for decryption and the transaction ID.                                                                                                                                                                                                   |
-| `version`                   | **Token format version.** Value `EC_v1` indicates EC-based key agreement and this encrypted structure. Determines how to parse and decrypt the token.                                                                                                                                                                  |
-| `header.publicKeyHash`      | **Merchant certificate public key hash** (Base64, SHA-256). Identifies the merchant’s Apple Pay certificate used for this token. Used to select the correct private key for decryption and to verify the token was intended for this merchant.                                                                         |
-| `header.ephemeralPublicKey` | **Ephemeral EC P-256 public key** (Base64). Generated per transaction by the device. The merchant combines this with their private key (ECDH) to derive the symmetric key that decrypts `paymentData.data`.                                                                                                            |
-| `header.transactionId`      | **Unique transaction identifier** (e.g., hex). Ties this token to a single transaction. Must match top-level `transactionIdentifier`; use for idempotency and audit.                                                                                                                                                   |
+  | Field                       | Description                                                                                                                                                                                                                                                                                                            |
+  | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `data`                      | **Encrypted payment data** (Base64). Symmetrically encrypted payload containing tokenized card and cryptogram data. Decryption key is derived using the merchant’s private key and `header.ephemeralPublicKey` (ECDH). Must be decrypted by the merchant/processor to obtain the payment token used for authorization. |
+  | `signature`                 | **PKCS#7 detached signature** (Base64). Contains Apple’s certificate chain and a signature over the payload. Used to verify that the token was issued by a valid Apple Pay environment and was not tampered with.                                                                                                      |
+  | `header`                    | **Key agreement and transaction metadata.** Supplies the ephemeral public key for decryption and the transaction ID.                                                                                                                                                                                                   |
+  | `version`                   | **Token format version.** Value `EC_v1` indicates EC-based key agreement and this encrypted structure. Determines how to parse and decrypt the token.                                                                                                                                                                  |
+  | `header.publicKeyHash`      | **Merchant certificate public key hash** (Base64, SHA-256). Identifies the merchant’s Apple Pay certificate used for this token. Used to select the correct private key for decryption and to verify the token was intended for this merchant.                                                                         |
+  | `header.ephemeralPublicKey` | **Ephemeral EC P-256 public key** (Base64). Generated per transaction by the device. The merchant combines this with their private key (ECDH) to derive the symmetric key that decrypts `paymentData.data`.                                                                                                            |
+  | `header.transactionId`      | **Unique transaction identifier** (e.g., hex). Ties this token to a single transaction. Must match top-level `transactionIdentifier`; use for idempotency and audit.                                                                                                                                                   |
 
+  ### paymentMethod JSON object fields description
 
-### paymentMethod JSON object
-
-| Field         | Description                                                                                                                                                      |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `displayName` | **User-facing label** for the card (e.g., “Visa 7013”). Often “Network” + last 4 digits. Safe for receipts and UI; must not be used as PAN or for authorization. |
-| `network`     | **Card scheme/network** (e.g., `Visa`, `MasterCard`, `AMEX`). Used for routing and scheme‑specific handling.                                                     |
-| `type`        | **Product type** of the card: e.g., `credit`, `debit`, `prepaid`. Used for routing, compliance, and UX.                                                          |
-
-
+  | Field         | Description                                                                                                                                                      |
+  | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `displayName` | **User-facing label** for the card (e.g., “Visa 7013”). Often “Network” + last 4 digits. Safe for receipts and UI; must not be used as PAN or for authorization. |
+  | `network`     | **Card scheme/network** (e.g., `Visa`, `MasterCard`, `AMEX`). Used for routing and scheme‑specific handling.                                                     |
+  | `type`        | **Product type** of the card: e.g., `credit`, `debit`, `prepaid`. Used for routing, compliance, and UX.                                                          |
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
