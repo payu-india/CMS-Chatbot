@@ -1,8 +1,6 @@
 ---
 name: Apple_Pay_Step1
 ---
-## Step 1: Authorize Transaction
-
 To initiate an Apple Pay payment, post the payment parameters to PayU's transaction endpoint.
 
 | Environment | URL                                                                                                |
