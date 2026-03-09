@@ -18,19 +18,13 @@ Before using PayU tokens, ensure you have:
 2. Retrieved the `store_card_token` using the [Get User Cards API](ref:get_user_cards_api)
 3. The same `user_credentials` value used during tokenization
 
-<br />
-
 <Cards columns={2}>
   <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
     Post the required parameters to PayU for plain card payment
-
-    <br />
   </Card>
 
   <Card title="2. Handle Initiate Response from PayU" href="#step-2-handle-the-initiate-response-from-payu">
     Check and handle the response received from PayU
-
-    <br />
   </Card>
 
   <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
@@ -44,6 +38,13 @@ Before using PayU tokens, ensure you have:
 
 Post the payment parameters to PayU's `_payment` API endpoint with the stored PayU token instead of raw card details.
 
+<Callout icon="📘" theme="info">
+  **References:**
+
+  * For more information on CB integration for cards, refer to <Anchor label="One-Time Payment for Cards - CB" target="_blank" href="ref:one-time-payment-for-cards-pacb-integration">One-Time Payment for Cards - CB</Anchor>./bu
+  * For more information on tokenization with PayU vault, refer to [Using Card Tokenized with PayU](ref:using-card-tokenized-with-payu).
+</Callout>
+
 <Accordion title="Environment" icon="fa-server">
   | Environment | URL                               |
   | ----------- | --------------------------------- |
@@ -54,10 +55,6 @@ Post the payment parameters to PayU's `_payment` API endpoint with the stored Pa
 
   **Content Type**: application/x-www-form-urlencoded
 </Accordion>
-
-<Callout icon="📘" theme="info">
-  **Reference:**  For more information on tokenization with PayU vault, refer to [Using Card Tokenized with PayU](ref:using-card-tokenized-with-payu).
-</Callout>
 
 <Accordion title="Request Parameters" icon="fa-table">
   | Parameter                                                                                                         | Description                                                                                                                                                                                                     | Example                                                       |
@@ -82,7 +79,7 @@ Post the payment parameters to PayU's `_payment` API endpoint with the stored Pa
   | txn\_s2s\_flow<br />`mandatory`                                                                                   | `Integer`<br />Parameter to enable S2S flow. Set to `4` for S2S4 flow.                                                                                                                                          | `4`                                                           |
   | s2s\_client\_ip<br />`mandatory`                                                                                  | `String`<br />Client IP captured by merchant in S2S flow. Required for fraud detection.                                                                                                                         | `10.200.12.12`                                                |
   | \\\| s2s\_device\_info<br />`mandatory`                                                                           | `String`<br />User Agent captured by merchant in S2S flow.                                                                                                                                                      | `Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0` |
-  |  user\_credentials<br />`mandatory`                                                                           | `String`<br />Format: `merchant_key:customer_id`. Must match the value used during tokenization.                                                                                                                | `JPM7Fg:customer_1112`                                        |
+  | user\_credentials<br />`mandatory`                                                                                | `String`<br />Format: `merchant_key:customer_id`. Must match the value used during tokenization.                                                                                                                | `JPM7Fg:customer_1112`                                        |
   | storecard\_token\_type<br />`mandatory`                                                                           | `Integer`<br />Token type. Set to `1` for PayU tokens.                                                                                                                                                          | `1`                                                           |
   | store\_card\_token<br />`mandatory`                                                                               | `String`<br />PayU token value retrieved from Get User Cards API.                                                                                                                                               | `10a7d7a45b72644460f108`                                      |
   | udf1 <br /> `optional but`<br />`recommended`<br />`for higher approval rate`                                     | `String` The Permanent Account Number (PAN primary taxation ID in India) of the buyer must be collected in this field.Character limit: 10 character alphanumeric                                                | ABCDE1234K                                                    |
