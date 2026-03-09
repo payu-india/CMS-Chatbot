@@ -31,6 +31,8 @@ This section describes step-by-step procedure to integrate Apple Pay as a paymen
 
 ***
 
+## Step 1: Authorize transaction
+
 <Apple_Pay_Step1 />
 
 <br />
