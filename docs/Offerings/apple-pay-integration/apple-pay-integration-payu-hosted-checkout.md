@@ -1,8 +1,9 @@
 ---
-title: Apple Pay Integration-PayU Hosted Checkout
+title: PayU Hosted Checkout Integration
 deprecated: false
 hidden: false
 metadata:
+  title: Apple Pay - PayU Hosted Integration
   robots: index
 ---
 This section describes step-by-step procedure to integrate Apple Pay as a payment method using PayU Hosted Checkout integration.
