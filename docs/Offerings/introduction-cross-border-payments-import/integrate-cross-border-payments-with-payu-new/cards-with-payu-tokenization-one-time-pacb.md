@@ -8,7 +8,7 @@ metadata:
 ---
 This section describes the steps to integrate card payments using previously stored PayU tokens for cross-border transactions.
 
-**Use this flow when the customer has already saved their card through a previous tokenization transaction.**
+**Use this flow for cross-border transactions when the customer has already saved their card through a previous tokenization transaction.**
 
 ### Prerequisites
 
