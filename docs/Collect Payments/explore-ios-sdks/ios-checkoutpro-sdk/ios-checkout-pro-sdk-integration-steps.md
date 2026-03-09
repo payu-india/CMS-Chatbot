@@ -479,19 +479,24 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       ```
     </Accordion>
   </Accordion>
+
   <Accordion title="Step 2.6: For SKU details (Optional)" icon="fa-code">
     `PayUSkuDetails` is used for SKU-based offers.
-<br/>
+
+    <br />
+
     PayUSkuDetails: It contains below properties\
     PayUSkuDetails(skus: \[PayUSku])\
     skus: "{"<Array of PayUSku's>"}"
+
+    Initalise Object of Sku details with vaild SKU's.
 
     PayUSku(
     skuId: String,
     skuName: String,
     skuAmount: String,
     quantity: Int,
-    offerKeys: \[String]? = nil
+    offerKeys:[String]? = nil
     )
 
     skuId: "{'<Product Id which you use when creating offer on dashboard >'}"\\
@@ -538,7 +543,6 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     paymentParam.skuDetail = skuDetails;
     ```
   </Accordion>
-
 </Accordion>
 
 <Accordion title="Step 3: Generate the hash" icon="fa-code">
