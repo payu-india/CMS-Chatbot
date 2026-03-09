@@ -793,82 +793,100 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   </Accordion>
 
   <Accordion title="Step 2.9: WealthTech Flow (Optional)" icon="fa-code">
-  WealthTech flow enables payments for wealth management products like mutual funds, SIPs (Systematic Investment Plans), and other investment instruments. You need to pass wealth product details as an array of PayUWealthProducts objects.
+    WealthTech flow enables payments for wealth management products like mutual funds, SIPs (Systematic Investment Plans), and other investment instruments. You need to pass wealth product details as an array of PayUWealthProducts objects.
 
-  > **What is WealthTech Flow?**\
-  > WealthTech flow is specifically designed for fintech and wealth management platforms that facilitate investments in mutual funds and other financial products through PayU's payment gateway.
+    > **What is WealthTech Flow?**\
+    > WealthTech flow is specifically designed for fintech and wealth management platforms that facilitate investments in mutual funds and other financial products through PayU's payment gateway.
 
-  **PayUWealthProducts** – Contains the following properties:
+    **PayUWealthProducts** – Contains the following properties:
 
-  | Parameter            | Required   | Description                                           | Example      |
-  | -------------------- | ---------- | ----------------------------------------------------- | ------------ |
-  | type                 | ✓ Required | Product type (e.g., mutual\_fund)                     | mutual\_fund |
-  | amount               | ✓ Required | Investment amount                                     | 50000        |
-  | receipt              | ✓ Required | Receipt number for the transaction                    | 77407        |
-  | mfMemberID           | ✓ Required | Unique member ID for the investor                     | 123445       |
-  | mfUserID             | ✓ Required | User ID for the investor                              | 77407        |
-  | mfPartner            | ✓ Required | Partner name (e.g., cams, karvy, franklin)            | cams         |
-  | mfInvestmentType     | ✓ Required | Investment type (L=Lumpsum, S=SIP)                    | L            |
-  | folio                | Optional   | Folio number (for existing investments)               | 9104927822   |
-  | scheme               | Optional   | Scheme code                                           | LT           |
-  | mfAMCCode            | Optional   | AMC (Asset Management Company) code                   | UTB          |
+    | Parameter        | Required   | Description                                | Example      |
+    | ---------------- | ---------- | ------------------------------------------ | ------------ |
+    | type             | ✓ Required | Product type (e.g., mutual\_fund)          | mutual\_fund |
+    | amount           | ✓ Required | Investment amount                          | 50000        |
+    | receipt          | ✓ Required | Receipt number for the transaction         | 77407        |
+    | mfMemberID       | ✓ Required | Unique member ID for the investor          | 123445       |
+    | mfUserID         | ✓ Required | User ID for the investor                   | 77407        |
+    | mfPartner        | ✓ Required | Partner name (e.g., cams, karvy, franklin) | cams         |
+    | mfInvestmentType | ✓ Required | Investment type (L=Lumpsum, S=SIP)         | L            |
+    | folio            | Optional   | Folio number (for existing investments)    | 9104927822   |
+    | scheme           | Optional   | Scheme code                                | LT           |
+    | mfAMCCode        | Optional   | AMC (Asset Management Company) code        | UTB          |
 
-  <br />
+    <br />
+
+    ```Text Swift
+    let product = PayUWealthProducts(
+        type: "mutual_fund",
+        amount: "50000",
+        receipt: "77407",
+        mfMemberID: "123445",
+        mfUserID: "77407",
+        mfPartner: "cams",
+        mfInvestmentType: "L"
+    )
+    product.scheme = "LT"
+    product.mfAMCCode = "UTB"
+
+    paymentParam.products = [product]
+    ```
+    ```Text Objective-C
+    PayUWealthProducts *product = [[PayUWealthProducts alloc]
+        initWithType:@"mutual_fund"
+        amount:@"50000"
+        receipt:@"77407"
+        mfMemberID:@"123445"
+        mfUserID:@"77407"
+        mfPartner:@"cams"
+        mfInvestmentType:@"L"];
+
+    product.scheme = @"LT";
+    product.mfAMCCode = @"UTB";
+
+    paymentParam.products = @[product];
+    ```
+
+    ### Investment Type Values
+
+    | Code | Description | Use Case                   |
+    | ---- | ----------- | -------------------------- |
+    | L    | Lumpsum     | One-time investment        |
+    | S    | SIP         | Systematic Investment Plan |
+
+    ### Supported RTA Partners
+
+    | Partner Code | Partner Name        |
+    | ------------ | ------------------- |
+    | cams         | CAMS (Computer Age) |
+    | karvy        | Karvy/Kfintech      |
+    | franklin     | Franklin Templeton  |
+
+    <br />
+
+    > **Keep in mind**\
+    > • You can pass multiple wealth products in a single transaction\
+    > • Ensure the total amount in PaymentParams matches the sum of all product amounts\
+    > • Partner codes must match the RTA (Registrar and Transfer Agent) handling the mutual fund\
+    > • For existing investments (additional purchase), always include the folio number
+    </Accordion>
+
+  <Accordion title="Step 2.10: Enforce Offer Keys (Optional)" icon="fa-code">
+  Enforce Offer Keys allows you to apply specific promotional offers to transactions. Pass an array of offer keys to enforce specific offers during checkout.
 
   ```Text Swift
-  let product = PayUWealthProducts(
-      type: "mutual_fund",
-      amount: "50000",
-      receipt: "77407",
-      mfMemberID: "123445",
-      mfUserID: "77407",
-      mfPartner: "cams",
-      mfInvestmentType: "L"
-  )
-  product.scheme = "LT"
-  product.mfAMCCode = "UTB"
+  paymentParam.enforcementOfferKeys = ["offer_key_1"]
 
-  paymentParam.products = [product]
+  // Usage - Multiple offers
+  paymentParam.enforcementOfferKeys = ["OFFER123", "OFFER456", "OFFER789"]
   ```
   ```Text Objective-C
-  PayUWealthProducts *product = [[PayUWealthProducts alloc]
-      initWithType:@"mutual_fund"
-      amount:@"50000"
-      receipt:@"77407"
-      mfMemberID:@"123445"
-      mfUserID:@"77407"
-      mfPartner:@"cams"
-      mfInvestmentType:@"L"];
+  paymentParam.enforcementOfferKeys = @[@"offer_key_1"];
 
-  product.scheme = @"LT";
-  product.mfAMCCode = @"UTB";
-
-  paymentParam.products = @[product];
+  // Usage - Multiple offers
+  paymentParam.enforcementOfferKeys = @[@"OFFER123", @"OFFER456", @"OFFER789"];
   ```
 
-  ### Investment Type Values
-
-  | Code | Description | Use Case                      |
-  | ---- | ----------- | ----------------------------- |
-  | L    | Lumpsum     | One-time investment           |
-  | S    | SIP         | Systematic Investment Plan    |
-
-  ### Supported RTA Partners
-
-  | Partner Code | Partner Name              |
-  | ------------ | ------------------------- |
-  | cams         | CAMS (Computer Age)       |
-  | karvy        | Karvy/Kfintech            |
-  | franklin     | Franklin Templeton        |
-
-  <br />
-
-  > **Keep in mind**\
-  > • You can pass multiple wealth products in a single transaction\
-  > • Ensure the total amount in PaymentParams matches the sum of all product amounts\
-  > • Partner codes must match the RTA (Registrar and Transfer Agent) handling the mutual fund\
-  > • For existing investments (additional purchase), always include the folio number
-
+  **Note:** You can pass multiple offer keys to enforce different promotional offers during the payment process.
   </Accordion>
 </Accordion>
 
