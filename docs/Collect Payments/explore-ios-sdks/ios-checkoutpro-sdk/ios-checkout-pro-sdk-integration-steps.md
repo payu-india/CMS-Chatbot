@@ -480,6 +480,67 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     </Accordion>
   </Accordion>
 
+  <Accordion title="Step 2.6: For SKU details (Optional)" icon="fa-code">
+    `PayUSkuDetails` is used for SKU-based offers.
+
+    PayUSkuDetails: It contains below properties\
+    PayUSkuDetails(skus: \[PayUSku])\
+    skus: "{"<Array of PayUSku's>"}"
+
+    PayUSku(
+    skuId: String,
+    skuName: String,
+    skuAmount: String,
+    quantity: Int,
+    offerKeys: \[String]? = nil
+    )
+
+    skuId: "{'<Product Id which you use when creating offer on dashboard >'}"\
+    skuName: "{'<Name of product>'}"\
+    skuAmount: "{'<Amount of product>'}"\
+    quantity: "{'<total quantity of product>'}"\
+    offerKeys: "{'<Optional - Provide offer keys only if want to restrict offer for mention products, else set nil>'}"
+
+    For more information on the SKU parameters, refer to [Create SKU Based Offers for iOS Checkout Pro](https://docs.payu.in/docs/ios_checkoutpro-offers_integration).
+
+    > 🚧 Keep in mind\
+    > If you are adding SKU offer details, the `amount` passed in `PayUPaymentParam` must be equal to the sum of (quantity × skuAmount) of each item.
+
+
+    ```Text swift
+    let sku1 = PayUSku(skuId: "111", skuName: "Shoes", skuAmount: "100", quantity: 1, offerKeys: nil)
+    let sku2 = PayUSku(skuId: "222", skuName: "Shirt", skuAmount: "100", quantity: 1, offerKeys: nil)
+
+    let skuDetails = PayUSkuDetails(skus: [sku1, sku2])
+
+    // Attach SKU details to payment params
+    paymentParam.skuDetail = skuDetails
+    ```
+
+    ```Text objectivec
+    PayUSku *sku1 = [PayUSku new];
+    sku1.skuId = @"111";
+    sku1.skuName = @"Shoes";
+    sku1.skuAmount = @"100";
+    sku1.quantity = 1;
+    sku1.offerKeys = nil;
+
+    PayUSku *sku2 = [PayUSku new];
+    sku2.skuId = @"222";
+    sku2.skuName = @"Shirt";
+    sku2.skuAmount = @"100";
+    sku2.quantity = 1;
+    sku2.offerKeys = nil;
+
+    NSArray<PayUSku *> *skus = @[sku1, sku2];
+
+    PayUSkuDetails *skuDetails = [PayUSkuDetails new];
+    skuDetails.skus = skus;
+
+    // Attach SKU details to payment params
+    paymentParam.skuDetail = skuDetails;
+    ```
+  </Accordion>
 </Accordion>
 
 <Accordion title="Step 3: Generate the hash" icon="fa-code">
