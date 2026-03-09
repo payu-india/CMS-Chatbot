@@ -21,19 +21,19 @@ To integrate with EFTNET:
 **Steps to Integrate**
 
 <Cards columns={3}>
-  <Card title="1. Initiate the Payment to PayU" href="https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless#step-1-initiate-the-payment-to-payu">
+  <Card title="1. Initiate the Payment to PayU" href="#step-1-initiate-the-payment-to-payu">
     Initiate the payment to PayU with pg= NEFTRTGS and bankcode= \<based on the bank>
 
     <br />
   </Card>
 
-  <Card title="2. Check response from PayU" href="https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless#step-2-check-response-from-payu">
+  <Card title="2. Check response from PayU" href="#step-2-check-response-from-payu">
     Check the response from PayU
 
     <br />
   </Card>
 
-  <Card title="3. Verify the payment" href="https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless#step-3-verify-the-payment">
+  <Card title="3. Verify the payment" href="#step-3-verify-the-payment">
     Verify the payment using verify\_payment and monitor using webhooks
   </Card>
 
@@ -128,13 +128,12 @@ To integrate with EFTNET:
   | udf5 <br /> `optional`         | string - This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                     | custom\_data\_5                                                                                |
 
   <Accordion title="Understanding Hashing and sample code" icon="fa-code">
-  <HashingRequestParameters />
+    <HashingRequestParameters />
 
-  #### Hashing Sample Code
+    #### Hashing Sample Code
 
-  <HashingSample />
-</Accordion>
-
+    <HashingSample />
+  </Accordion>
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
