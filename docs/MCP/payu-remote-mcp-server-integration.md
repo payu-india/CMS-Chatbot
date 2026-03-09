@@ -9,12 +9,12 @@ PayU MCP Server is a secure, OAuth-protected remote MCP (Model Context Protocol)
 
 ## Features
 
-- **Merchant Account Management:** List, switch, and manage multiple merchant team accounts. Single-account users are auto-selected; multi-account users can switch seamlessly via tool calls.
-- **Transaction Reporting:** Create and retrieve CSV reports for transactions, settlements, refunds, and payouts with configurable date filters and comprehensive field selection.
-- **Payment Link Operations:** Create, send, update, and track payment links with support for partial payments, expiry settings, invoice numbers, and multi-channel delivery (SMS/Email).
-- **OAuth 2.1 Authentication with PKCE:** Industry-standard authorization code flow with PKCE, token introspection, automatic merchant validation, and per-request merchant isolation.
-- **Built-in Security Guardrails:** Automatic PII redaction, secret scanning, and data sanitization on all responses to protect sensitive merchant and customer data.
-- **Stateless HTTP with Persistent Connections:** Horizontally scalable architecture using stateless HTTP sessions with global downstream server persistence for fast tool execution.
+* **Merchant Account Management:** List, switch, and manage multiple merchant team accounts. Single-account users are auto-selected; multi-account users can switch seamlessly via tool calls.
+* **Transaction Reporting:** Create and retrieve CSV reports for transactions, settlements, refunds, and payouts with configurable date filters and comprehensive field selection.
+* **Payment Link Operations:** Create, send, update, and track payment links with support for partial payments, expiry settings, invoice numbers, and multi-channel delivery (SMS/Email).
+* **OAuth 2.1 Authentication with PKCE:** Industry-standard authorization code flow with PKCE, token introspection, automatic merchant validation, and per-request merchant isolation.
+* **Built-in Security Guardrails:** Automatic PII redaction, secret scanning, and data sanitization on all responses to protect sensitive merchant and customer data.
+* **Stateless HTTP with Persistent Connections:** Horizontally scalable architecture using stateless HTTP sessions with global downstream server persistence for fast tool execution.
 
 ## Setup
 
@@ -42,9 +42,9 @@ Add the following to your MCP client configuration:
 
 This server requires OAuth 2.1 authentication. You'll need:
 
-- A valid PayU merchant account
-- Access granted to the PayU MCP service
-- Your MCP client will handle the OAuth flow automatically:
+* A valid PayU merchant account
+* Access granted to the PayU MCP service
+* Your MCP client will handle the OAuth flow automatically:
   1. Discovery via `https://api.payu.in/.well-known/oauth-authorization-server`
   2. Authorization through `https://accounts.payu.in/oauth/authorize`
   3. Token exchange and refresh are managed transparently by the client
@@ -55,42 +55,43 @@ Tokens are validated on every request via introspection.
 
 ### Account Management (4 tools)
 
-| Tool | Description |
-|------|-------------|
+| Tool                           | Description                                                     |
+| ------------------------------ | --------------------------------------------------------------- |
 | `list_available_team_accounts` | Lists all merchant accounts available to the authenticated user |
-| `get_current_team_account` | Shows the currently selected merchant account |
-| `switch_team_account` | Switches to a different merchant account by MID |
-| `clear_team_selection` | Clears the current merchant account selection |
+| `get_current_team_account`     | Shows the currently selected merchant account                   |
+| `switch_team_account`          | Switches to a different merchant account by MID                 |
+| `clear_team_selection`         | Clears the current merchant account selection                   |
 
 ### Reporting (2 tools)
 
-| Tool | Description |
-|------|-------------|
+| Tool                     | Description                                                                                   |
+| ------------------------ | --------------------------------------------------------------------------------------------- |
 | `reporting_createReport` | Creates a CSV report with specified fields and date filters (transactions, settlements, etc.) |
-| `reporting_getReport` | Fetches a previously created report by report ID, returns status and download URL |
+| `reporting_getReport`    | Fetches a previously created report by report ID, returns status and download URL             |
 
 ### Payment Links (4 tools)
 
-| Tool | Description |
-|------|-------------|
-| `payLinks_paymentLink_create` | Creates a new payment link with customer details, amount, expiry, and template settings |
-| `payLinks_paymentLink_sendPaymentLink` | Sends a payment link to a customer via SMS or Email |
-| `payLinks_paymentLink_getByInvoiceNumber` | Retrieves payment link status and details by invoice number |
-| `payLinks_paymentLink_updatePaymentLink` | Updates an existing payment link's description, status, or expiry |
+| Tool                                      | Description                                                                             |
+| ----------------------------------------- | --------------------------------------------------------------------------------------- |
+| `payLinks_paymentLink_create`             | Creates a new payment link with customer details, amount, expiry, and template settings |
+| `payLinks_paymentLink_sendPaymentLink`    | Sends a payment link to a customer via SMS or Email                                     |
+| `payLinks_paymentLink_getByInvoiceNumber` | Retrieves payment link status and details by invoice number                             |
+| `payLinks_paymentLink_updatePaymentLink`  | Updates an existing payment link's description, status, or expiry                       |
 
 ### System (3 tools)
 
-| Tool | Description |
-|------|-------------|
-| `list_available_tools` | Lists all available tools from all proxied servers |
-| `get_metadata` | Provides metadata about all available proxied MCPs and their capabilities |
-| `health_check` | Verifies the MCP server is running and reachable |
+| Tool                   | Description                                                               |
+| ---------------------- | ------------------------------------------------------------------------- |
+| `list_available_tools` | Lists all available tools from all proxied servers                        |
+| `get_metadata`         | Provides metadata about all available proxied MCPs and their capabilities |
+| `health_check`         | Verifies the MCP server is running and reachable                          |
 
 ## Examples
 
 ### Example 1: Generate a Transaction Report
 
 **User prompt:**
+
 > "Create a transactions report for the last 7 days"
 
 **What happens:** The AI calls `reporting_createReport` with the date range and relevant fields, then uses `reporting_getReport` to poll for the completed report and return a download link.
@@ -111,6 +112,7 @@ Assistant: Let me check.
 ### Example 2: Create and Send a Payment Link
 
 **User prompt:**
+
 > "Create a payment link for ₹5,000 and send it to the customer via email"
 
 **What happens:** The AI calls `payLinks_paymentLink_create` with the amount and customer details, then sends it using `payLinks_paymentLink_sendPaymentLink`.
@@ -129,6 +131,7 @@ t: I'll create the payment link and send it.
 ### Example 3: Manage Merchant Accounts
 
 **User prompt:**
+
 > "Which merchant accounts do I have access to? Switch to MID 180012."
 
 **What happens:** The AI lists available accounts and switches to the requested one.
@@ -151,6 +154,7 @@ Assistant: Switching now.
 ### Example 4: Check Payment Link Status
 
 **User prompt:**
+
 > "What's the status of payment link INV-67890?"
 
 **What happens:** The AI retrieves the payment link details including payment status.
@@ -164,6 +168,8 @@ Assistant: Let me look that up.
 
 ## Privacy Policy
 
-For PayU Privacy policy, refer (https://www.payu.in/privacy-policy)[https://www.payu.in/privacy-policy]
+For PayU Privacy policy, refer ([https://www.payu.in/privacy-policy)[https://www.payu.in/privacy-policy](https://www.payu.in/privacy-policy)]
 
 ## Support
+
+Contact our Integration support using the [PayU Support page.](https://help.payu.in).
