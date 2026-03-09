@@ -31,7 +31,9 @@ This section describes step-by-step procedure to integrate Apple Pay as a paymen
 
 ***
 
+<Apple_Pay_Step1 />
 
+<br />
 
 ## Step 2: Check response from PayU
 
