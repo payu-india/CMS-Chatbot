@@ -14,7 +14,7 @@ This section describes the steps to integrate card payments using previously sto
 
 Before using PayU tokens, ensure you have:
 
-1. Previously tokenized a card using the [Plain Cards + Tokenization Integration](plain-cards-tokenization-integration)
+1. Previously tokenized a card using the [Process Card Transactions with PayU Tokenization ](doc:plain-cards-with-tokenization-integration-one-time-pacb).
 2. Retrieved the `store_card_token` using the [Get User Cards API](ref:get_user_cards_api)
 3. The same `user_credentials` value used during tokenization
 
