@@ -1,7 +1,7 @@
 ---
 title: Merchant Hosted with Session Management Integration
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
