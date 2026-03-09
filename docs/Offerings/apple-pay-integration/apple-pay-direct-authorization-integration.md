@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This section provides a comprehensive guide for integrating Apple Pay Seamless Flow with PayU's Server-to-Server (S2S). This approach enables direct authorization of pre-authenticated Apple Pay transactions through server-to-server communication.
+This section provides a comprehensive guide for integrating Apple Pay Seamless Flow with session management.
 
 ## Step 1: Initiate Payment Session
 
