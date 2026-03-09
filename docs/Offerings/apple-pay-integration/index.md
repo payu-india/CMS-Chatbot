@@ -8,7 +8,7 @@ metadata:
 ---
 Apple Pay offers a fast, secure, and seamless payment experience across iOS and watchOS apps, as well as websites on Safari. With a simple Face ID, Touch ID, or a double-click on Apple Watch, users can instantly and securely share their payment, shipping, and contact details to complete transactions.
 
-### Key Features for Users
+## Key Features for Users
 
 | Feature              | Description                                                                 |
 | :------------------- | :-------------------------------------------------------------------------- |
@@ -17,7 +17,7 @@ Apple Pay offers a fast, secure, and seamless payment experience across iOS and 
 | Cross-Device Support | Works seamlessly across iPhone, iPad, Mac, and Apple Watch                  |
 | No Additional Fees   | Users are not charged any extra fees for using Apple Pay                    |
 
-### Key Features for Merchants
+## Key Features for Merchants
 
 | Feature                 | Description                                                |
 | :---------------------- | :--------------------------------------------------------- |
@@ -26,7 +26,7 @@ Apple Pay offers a fast, secure, and seamless payment experience across iOS and 
 | 3D Secure Compatible    | Apple handles 3DS authentication with issuing bank         |
 | No Processing Fees      | Apple does not charge merchants for Apple Pay transactions |
 
-### How Does Apple Pay Work?
+## How Does Apple Pay Work?
 
 1. **Card Tokenization**: When a user adds a card to Apple Pay, the card number is replaced with a Device Account Number (DAN) - a unique token specific to that device.
 
@@ -38,7 +38,7 @@ Apple Pay offers a fast, secure, and seamless payment experience across iOS and 
 
 5. **Network Processing**: The tokenized payment is sent through the payment network, which de-tokenizes it and processes the transaction with the issuing bank.
 
-### Supported Payment Networks
+## Supported Payment Networks
 
 * Visa
 * Mastercard
@@ -46,7 +46,7 @@ Apple Pay offers a fast, secure, and seamless payment experience across iOS and 
 * Diners Club
 * Discover (in supported regions)
 
-### Goals
+## Goals
 
 | Goal                    | Description                                        |
 | :---------------------- | :------------------------------------------------- |
