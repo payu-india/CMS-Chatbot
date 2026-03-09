@@ -60,14 +60,10 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   | city<br />`mandatory`                 | `String` - This parameter must contain the city of the customer address.                                                                                                                                                                                                                                   |                                                                                                                               |
   | state<br />`mandatory`                | `String` - This parameter must contain the state of the customer address.                                                                                                                                                                                                                                  |                                                                                                                               |
   | country<br />`mandatory`              | `String` - This parameter must contain the country of the customer address.                                                                                                                                                                                                                                |                                                                                                                               |
-  | hash<br />`mandatory`                 | `String` - This parameter contains the hash value calculated using SHA-512 algorithm. Hash logic ensures the integrity of the transaction data.                                                                                                                                                            | Refer to [Hashing sample code](https://docs.payu.in/docs/apple-pay-integration-merchant-hosted-checkout#/hashing-sample-code) |
+  | hash<br />`mandatory`                 | `String` - This parameter contains the hash value calculated using SHA-512 algorithm. Use the following hash logic:<br/>
+`sha[key|txnid|amt|info|salt]` |
   | udf1<br />`optional`                  | `String` - This parameter must contain the Apple transaction identifier. Maximum length is 255 characters.                                                                                                                                                                                                 |                                                                                                                               |
   | udf2<br />`optional`                  | `String` - This parameter must contain the value as MAST:credit. Maximum length is 255 characters.                                                                                                                                                                                                         |                                                                                                                               |
-
-  **Hashing logic**
-  <code>
-sha[key|txnid|amt|info|salt]
-</code>
 </Accordion>
 
 ### Step 2a. Merchant-side Decryption
@@ -138,7 +134,7 @@ sha[key|txnid|amt|info|salt]
   }
   ```
 
-  ### paymentData JSON object fields description 
+  ### paymentData JSON object fields description
 
   | Field                       | Description                                                                                                                                                                                                                                                                                                            |
   | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
