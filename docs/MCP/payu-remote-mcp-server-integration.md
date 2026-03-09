@@ -51,6 +51,36 @@ This server requires OAuth 2.1 authentication. You'll need:
 
 Tokens are validated on every request via introspection.
 
+### OAuth 2.1 Flow
+
+The authentication process is handled automatically by your MCP client:
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant MCP Client
+    participant Browser
+    participant PayU Auth
+    
+    User->>MCP Client: Make request
+    MCP Client->>PayU Auth: Discover authentication
+    PayU Auth->>Browser: Open login page
+    User->>Browser: Enter credentials
+    Browser->>PayU Auth: Approve permissions
+    PayU Auth->>MCP Client: Return tokens
+    MCP Client->>MCP Client: Store tokens securely
+```
+
+### Flow Steps
+
+1. **Configure Service URL** - Add the PayU MCP URL to your client
+2. **Client Discovers Authentication** - Client detects OAuth requirements
+3. **Browser Opens** - Login page opens automatically
+4. **Enter Credentials** - Sign in with your PayU account
+5. **Approve Permissions** - Review and grant access
+6. **Tokens Stored Securely** - Client stores encrypted tokens
+7. **Automatic Authentication** - All subsequent requests use stored tokens
+
 ## Available Tools
 
 ### Account Management (4 tools)
@@ -168,7 +198,7 @@ Assistant: Let me look that up.
 
 ## Privacy Policy
 
-For PayU Privacy policy, refer ([https://www.payu.in/privacy-policy)[https://www.payu.in/privacy-policy](https://www.payu.in/privacy-policy)]
+For PayU Privacy policy, refer ([[https://www.payu.in/privacy-policy](https://www.payu.in/privacy-policy))[https://www.payu.in/privacy-policy](https://www.payu.in/privacy-policy)]
 
 ## Support
 
