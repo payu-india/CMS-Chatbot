@@ -1,7 +1,7 @@
 ---
 title: PayU Remote MCP - Introduction
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
