@@ -11,14 +11,10 @@ This section explains how to integrate plain card payments for cross-border tran
 <Cards columns={2}>
   <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
     Post the required parameters to PayU for plain card payment
-
-    <br />
   </Card>
 
   <Card title="2. Handle Initiate Response from PayU" href="#step-2-handle-the-initiate-response-from-payu">
     Check and handle the response received from PayU
-
-    <br />
   </Card>
 
   <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
@@ -33,6 +29,21 @@ This section explains how to integrate plain card payments for cross-border tran
 ## Step 1: Post Parameters to PayU
 
 Post the payment parameters to PayU's `_payment` API endpoint to initiate a plain card transaction.
+
+<Callout icon="📘" theme="info">
+  **Reference:** For more information, refer to <Anchor label="One-Time Payment for Cards - CB" target="_blank" href="ref:one-time-payment-for-cards-pacb-integration">One-Time Payment for Cards - CB</Anchor>.
+</Callout>
+
+<Accordion title="Environment" icon="fa-server">
+  | Environment | URL                               |
+  | ----------- | --------------------------------- |
+  | Test        | `https://test.payu.in/_payment`   |
+  | Production  | `https://secure.payu.in/_payment` |
+
+  **HTTP Method**: POST
+
+  **Content Type**: application/x-www-form-urlencoded
+</Accordion>
 
 <Accordion title="Request Parameters" icon="fa-table">
   | Parameter                                                                                                         | Description                                                                                                                                                                                                     | Example                                                       |
