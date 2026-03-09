@@ -1,5 +1,5 @@
 ---
-title: PayU Remote MCP - Introduction
+title: PayU Remote MCP
 deprecated: false
 hidden: false
 metadata:
