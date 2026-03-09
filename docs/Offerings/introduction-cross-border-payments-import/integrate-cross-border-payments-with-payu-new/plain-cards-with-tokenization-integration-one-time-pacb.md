@@ -11,14 +11,10 @@ This section describes the steps to integrate credit / debit card payments with 
 <Cards columns={2}>
   <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
     Post the required parameters to PayU for plain card payment
-
-    <br />
   </Card>
 
   <Card title="2. Handle Initiate Response from PayU" href="#step-2-handle-the-initiate-response-from-payu">
     Check and handle the response received from PayU
-
-    <br />
   </Card>
 
   <Card title="4. Verify the Payment" href="#step-4-verify-the-payment">
@@ -34,20 +30,23 @@ This section describes the steps to integrate credit / debit card payments with 
 
 Post the payment parameters to PayU's `_payment` API endpoint with tokenization parameters to store the card for future use.
 
-**Environment**
-
-| Environment | URL                               |
-| ----------- | --------------------------------- |
-| Test        | `https://test.payu.in/_payment`   |
-| Production  | `https://secure.payu.in/_payment` |
-
-**HTTP Method**: POST
-
-**Content Type**: application/x-www-form-urlencoded
-
 <Callout icon="📘" theme="info">
-  **Reference:** For more information on tokenization with PayU vault, refer to [Using Card Tokenized with PayU](ref:using-card-tokenized-with-payu).
+  **References:** 
+
+  * For more information on CB integration for cards, refer to <Anchor label="One-Time Payment for Cards - CB" target="_blank" href="ref:one-time-payment-for-cards-pacb-integration">One-Time Payment for Cards - CB</Anchor>./bu
+  * For more information on tokenization with PayU vault, refer to [Using Card Tokenized with PayU](ref:using-card-tokenized-with-payu).
 </Callout>
+
+<Accordion title="Environment" icon="fa-server">
+  | Environment | URL                               |
+  | ----------- | --------------------------------- |
+  | Test        | `https://test.payu.in/_payment`   |
+  | Production  | `https://secure.payu.in/_payment` |
+
+  **HTTP Method**: POST
+
+  **Content Type**: application/x-www-form-urlencoded
+</Accordion>
 
 <Accordion title="Request Parameters" icon="fa-table">
   | Parameter                                                                                                         | Description                                                                                                                                                                                                     | Example                                                       |
