@@ -1,8 +1,9 @@
 ---
-title: Apple Pay Integration-Merchant Hosted Checkout
+title: Merchant Hosted Checkout Integration
 deprecated: false
 hidden: false
 metadata:
+  title: Apple Pay Integration-Merchant Hosted Checkout
   robots: index
 ---
 This section describes step-by-step procedure to integrate Apple Pay as a payment method using Merchant Hosted Checkout integration with two kinds of decryption integration:
