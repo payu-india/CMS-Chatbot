@@ -130,10 +130,3 @@ For merchants with direct API integration:
 9. Merchant sends token to PayU `_payment` API with `pg=APPLEPAY`
 10. PayU processes payment and returns response
 11. Merchant completes payment and shows result
-
-<Callout icon="📘" theme="info">
-  **Reference:** For Merchant Hosted or seamless integration with Apple Pay, refer to:
-
-  * [Merchant Hosted Checkout](https://docs.payu.in/docs/apple-pay-integration-merchant-hosted-checkout) 
-  * [Merchant Hosted with Session Management Integration](https://docs.payu.in/docs/apple-pay-session-mgmt-integration)
-</Callout>
