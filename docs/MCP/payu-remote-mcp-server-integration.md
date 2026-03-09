@@ -198,7 +198,9 @@ Assistant: Let me look that up.
 
 ## Privacy Policy
 
-For PayU Privacy policy, refer ([[https://www.payu.in/privacy-policy](https://www.payu.in/privacy-policy))[https://www.payu.in/privacy-policy](https://www.payu.in/privacy-policy)]
+For PayU Privacy policy, refer to the following page:
+
+[https://www.payu.in/privacy-policy](https://www.payu.in/privacy-policy)]
 
 ## Support
 
