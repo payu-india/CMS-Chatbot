@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: '[OLD]MCP Server Introduction'
 deprecated: false
 hidden: true
 metadata:
