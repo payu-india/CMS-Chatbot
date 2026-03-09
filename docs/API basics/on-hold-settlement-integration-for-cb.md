@@ -8,13 +8,13 @@ metadata:
 This section describes the step-by-step procedure to process on-hold transactions. The integration involves retrieving transactions that require additional information and submitting the required details to release settlements.
 
 <Cards columns={2}>
-  <Card title="1. Get On-Hold Transactions" href="https://docs.payu.in/docs/on-hold-settlement-integration#step-1-get-on-hold-transactions">
+  <Card title="1. Get On-Hold Transactions" href="https://docs.payu.in/docs/#step-1-get-on-hold-transactions">
     Retrieve list of transactions requiring additional information
 
     <br />
   </Card>
 
-  <Card title="2. Update Transaction Details" href="https://docs.payu.in/docs/on-hold-settlement-integration#step-2-update-transaction-details">
+  <Card title="2. Update Transaction Details" href="#step-2-update-transaction-details">
     Submit required customer information to release settlement
 
     <br />
@@ -34,103 +34,104 @@ Retrieve on-hold transactions using the GET API to identify which transactions r
 | Production  | `https://oneapi.payu.in/opgsp/getOnHoldTxnDetails` | GET    |
 
 <Accordion title="Request headers" icon="fa-heading">
-  | Parameter                      | Description                                 | Example                       |
-  | :----------------------------- | :------------------------------------------ | :---------------------------- |
-  | mid<br />`mandatory`           | `String` - Merchant ID of the merchant      | 8763182                       |
-  | Authorization<br />`mandatory` | `String` - HMAC SHA512 authorization header | Refer to  [Authorization field format](#authorization-field-format)   |
-  | Date<br />`mandatory`          | `String` - Current UTC date in HTTP format  | Wed, 28 Jun 2023 11:25:19 GMT |
-### Authorization field format
+  | Parameter                      | Description                                 | Example                                                             |
+  | :----------------------------- | :------------------------------------------ | :------------------------------------------------------------------ |
+  | mid<br />`mandatory`           | `String` - Merchant ID of the merchant      | 8763182                                                             |
+  | Authorization<br />`mandatory` | `String` - HMAC SHA512 authorization header | Refer to  [Authorization field format](#authorization-field-format) |
+  | Date<br />`mandatory`          | `String` - Current UTC date in HTTP format  | Wed, 28 Jun 2023 11:25:19 GMT                                       |
 
-The **Authorization** field format is similar to the following example:
+  ### Authorization field format
 
-```java
-hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="
-```
+  The **Authorization** field format is similar to the following example:
 
-Where, the fields in this example are:
+  ```java
+  hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="
+  ```
 
-* **username**: The merchant key of the merchant.
-* **algorithm**: This must have the value as hmac-sha256 that is used for this API.
-* **headers**: This must have the value as date digest.
-* **signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:
-  * **signing_string**: It must be in the following format. Here, the dateVale and digestValue is the same values in the fields listed in this table For example, "date: Thu, 17 Feb 2022 08:17:59 GMT\ndigest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
+  Where, the fields in this example are:
 
-```
-"date: {dateValue}"+"\\n"+"digest: {digestValue}"
-  - **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.
-```
+  * **username**: The merchant key of the merchant.
+  * **algorithm**: This must have the value as hmac-sha256 that is used for this API.
+  * **headers**: This must have the value as date digest.
+  * **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:
+    * **signing\_string**: It must be in the following format. Here, the dateVale and digestValue is the same values in the fields listed in this table For example, "date: Thu, 17 Feb 2022 08:17:59 GMT\ndigest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
 
-The following sample Java code contains the logic used to encrypt as described in the above table:
+  ```
+  "date: {dateValue}"+"\\n"+"digest: {digestValue}"
+    - **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.
+  ```
 
-```java
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import org.apache.commons.codec.binary.Base64;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
+  The following sample Java code contains the logic used to encrypt as described in the above table:
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.security.InvalidKeyException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+  ```java
+  import com.google.gson.Gson;
+  import com.google.gson.JsonObject;
+  import org.apache.commons.codec.binary.Base64;
+  import org.joda.time.DateTime;
+  import org.joda.time.format.DateTimeFormat;
 
-public class HmacAuth {
+  import javax.crypto.Mac;
+  import javax.crypto.spec.SecretKeySpec;
+  import java.security.InvalidKeyException;
+  import java.security.MessageDigest;
+  import java.security.NoSuchAlgorithmException;
 
-    public static String getSha256(String input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] digest = md.digest(input.getBytes());
-            return Base64.encodeBase64String(digest);
-        } catch (NoSuchAlgorithmException ignored) {}
-        return null;
-    }
+  public class HmacAuth {
 
-    public static JsonObject getRequestBody(){
-        JsonObject requestJson = new JsonObject();
-        requestJson.addProperty("firstname","John");
-        requestJson.addProperty("lastname","Doe");
-        return requestJson;
-    }
+      public static String getSha256(String input) {
+          try {
+              MessageDigest md = MessageDigest.getInstance("SHA-256");
+              byte[] digest = md.digest(input.getBytes());
+              return Base64.encodeBase64String(digest);
+          } catch (NoSuchAlgorithmException ignored) {}
+          return null;
+      }
 
-    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException {
-        String key = "smsplus";
-        String secret = "admin";
-        Gson gson = new Gson();
-        String date = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'").withZoneUTC().print(new DateTime());
-        System.out.println(date);
-        JsonObject requestJson = getRequestBody();
-        String digest = getSha256(gson.toJson(requestJson));
-        System.out.println(digest);
-        String signingString = new StringBuilder()
-            .append("date: " + date)
-            .append("\ndigest: " + digest).toString();
-        Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
-        SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
-        sha256_HMAC.init(secret_key);
-        String signature = Base64.encodeBase64String(sha256_HMAC.doFinal(signingString.getBytes()));
-        String authorization = new StringBuilder()
-            .append("hmac username=\"")
-            .append(key)
-            .append("\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"")
-            .append(signature)
-            .append("\"").toString();
-        System.out.println(authorization);
-    }
-}
-```
+      public static JsonObject getRequestBody(){
+          JsonObject requestJson = new JsonObject();
+          requestJson.addProperty("firstname","John");
+          requestJson.addProperty("lastname","Doe");
+          return requestJson;
+      }
 
-The sample header is similar to the following:
+      public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException {
+          String key = "smsplus";
+          String secret = "admin";
+          Gson gson = new Gson();
+          String date = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'").withZoneUTC().print(new DateTime());
+          System.out.println(date);
+          JsonObject requestJson = getRequestBody();
+          String digest = getSha256(gson.toJson(requestJson));
+          System.out.println(digest);
+          String signingString = new StringBuilder()
+              .append("date: " + date)
+              .append("\ndigest: " + digest).toString();
+          Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+          SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+          sha256_HMAC.init(secret_key);
+          String signature = Base64.encodeBase64String(sha256_HMAC.doFinal(signingString.getBytes()));
+          String authorization = new StringBuilder()
+              .append("hmac username=\"")
+              .append(key)
+              .append("\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"")
+              .append(signature)
+              .append("\"").toString();
+          System.out.println(authorization);
+      }
+  }
+  ```
 
-> 📘 **Note:**
->
-> You need to include the current date and time in the **Date** field of the header.
+  The sample header is similar to the following:
 
-```java
-'Date: Tue, 09 Aug 2022 12:14:51 GMT'
-'Digest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0= '
-'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=""'
-```
+  > 📘 **Note:**
+  >
+  > You need to include the current date and time in the **Date** field of the header.
+
+  ```java
+  'Date: Tue, 09 Aug 2022 12:14:51 GMT'
+  'Digest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0= '
+  'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=""'
+  ```
 </Accordion>
 
 <Accordion title="Request parameters" icon="fa-table">
@@ -431,151 +432,152 @@ Submit the required customer information using the POST API to release the on-ho
 </Accordion>
 
 <Accordion title="Request headers" icon="fa-heading">
-  | Parameter                      | Description                                 | Example                       |
-  | :----------------------------- | :------------------------------------------ | :---------------------------- |
-  | mid<br />`mandatory`           | `String` - Merchant ID of the merchant      | 180012                        |
-  | accept<br />`mandatory`        | `String` - Type of JSON required in the API | application/json              |
-  | Content-Type<br />`mandatory`  | `String` - Content type of the request body | application/json              |
-  | Authorization<br />`mandatory` | `String` - HMAC SHA512 authorization header | Refer to [Authorization field format](#authorization-field-format)                  |
-  | Date<br />`mandatory`          | `String` - Current UTC date in HTTP format  | Wed, 28 Jun 2023 11:25:19 GMT |
-### Authorization field format
+  | Parameter                      | Description                                 | Example                                                            |
+  | :----------------------------- | :------------------------------------------ | :----------------------------------------------------------------- |
+  | mid<br />`mandatory`           | `String` - Merchant ID of the merchant      | 180012                                                             |
+  | accept<br />`mandatory`        | `String` - Type of JSON required in the API | application/json                                                   |
+  | Content-Type<br />`mandatory`  | `String` - Content type of the request body | application/json                                                   |
+  | Authorization<br />`mandatory` | `String` - HMAC SHA512 authorization header | Refer to [Authorization field format](#authorization-field-format) |
+  | Date<br />`mandatory`          | `String` - Current UTC date in HTTP format  | Wed, 28 Jun 2023 11:25:19 GMT                                      |
 
-The **Authorization** field format is similar to the following example:
+  ### Authorization field format
 
-```java
-hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="
-```
+  The **Authorization** field format is similar to the following example:
 
-Where, the fields in this example are:
-
-* **username**: The merchant key of the merchant.
-* **algorithm**: This must have the value as hmac-sha256 that is used for this API.
-* **headers**: This must have the value as date digest.
-* **signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:
-  * **signing_string**: It must be in the following format. Here, the dateVale and digestValue is the same values in the fields listed in this table For example, "date: Thu, 17 Feb 2022 08:17:59 GMT\ndigest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
-
-```
-"date: {dateValue}"+"\\n"+"digest: {digestValue}"
-  - **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.
-```
-
-The following sample Java code contains the logic used to encrypt as described in the above table:
-
-```java
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import org.apache.commons.codec.binary.Base64;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.security.InvalidKeyException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-public class HmacAuth {
-
-    public static String getSha256(String input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] digest = md.digest(input.getBytes());
-            return Base64.encodeBase64String(digest);
-        } catch (NoSuchAlgorithmException ignored) {}
-        return null;
-    }
-
-    public static JsonObject getRequestBody(){
-        JsonObject requestJson = new JsonObject();
-        requestJson.addProperty("firstname","John");
-        requestJson.addProperty("lastname","Doe");
-        return requestJson;
-    }
-
-    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException {
-        String key = "smsplus";
-        String secret = "admin";
-        Gson gson = new Gson();
-        String date = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'").withZoneUTC().print(new DateTime());
-        System.out.println(date);
-        JsonObject requestJson = getRequestBody();
-        String digest = getSha256(gson.toJson(requestJson));
-        System.out.println(digest);
-        String signingString = new StringBuilder()
-            .append("date: " + date)
-            .append("\ndigest: " + digest).toString();
-        Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
-        SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
-        sha256_HMAC.init(secret_key);
-        String signature = Base64.encodeBase64String(sha256_HMAC.doFinal(signingString.getBytes()));
-        String authorization = new StringBuilder()
-            .append("hmac username=\"")
-            .append(key)
-            .append("\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"")
-            .append(signature)
-            .append("\"").toString();
-        System.out.println(authorization);
-    }
-}
-```
-
-The sample header is similar to the following:
-
-> 📘 **Note:**
->
-> You need to include the current date and time in the **Date** field of the header.
-
-```java
-'Date: Tue, 09 Aug 2022 12:14:51 GMT'
-'Digest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0= '
-'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=""'
-
-</Accordion>
-
-<Accordion title="Request parameters" icon="fa-table">
-  | Parameter                                   | Description                                                          | Example     |
-  | :------------------------------------------ | :------------------------------------------------------------------- | :---------- |
-  | transactionId<br />`mandatory`              | `String` - The PayU transaction ID (requestId from GET API response) | 15916911884 |
-  | amlockTxnRequestMappingDto<br />`mandatory` | `Array` - Array of key-value pairs containing the required fields    | See below   |
-
-  **amlockTxnRequestMappingDto Object:**
-
-  | Parameter              | Description                                     | Example     |
-  | :--------------------- | :---------------------------------------------- | :---------- |
-  | key<br />`mandatory`   | `String` - Field key name (from keyMappingList) | first\_name |
-  | value<br />`mandatory` | `String` - Value for the field                  | John        |
-</Accordion>
-
-<Accordion title="Sample request" icon="fa-code">
-  Based on the GET API response above, submit the required fields:
-
-  ```bash
-  curl --location 'https://oneapi.payu.in/opgsp/updateOnHoldTxnDetails' \
-  --header 'accept: application/json' \
-  --header 'mid: 180012' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: hmac username="<key>", algorithm="sha512", headers="date", signature="<hash>"' \
-  --header 'Date: Wed, 28 Jun 2023 11:25:19 GMT' \
-  --data '[
-      {
-          "transactionId": "15916911884",
-          "amlockTxnRequestMappingDto": [
-              {
-                  "key": "first_name",
-                  "value": "John"
-              },
-              {
-                  "key": "last_name",
-                  "value": "Doe"
-              },
-              {
-                  "key": "invoice_id",
-                  "value": "INV123456"
-              }
-          ]
-      }
-  ]'
+  ```java
+  hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="
   ```
+
+  Where, the fields in this example are:
+
+  * **username**: The merchant key of the merchant.
+  * **algorithm**: This must have the value as hmac-sha256 that is used for this API.
+  * **headers**: This must have the value as date digest.
+  * **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:
+    * **signing\_string**: It must be in the following format. Here, the dateVale and digestValue is the same values in the fields listed in this table For example, "date: Thu, 17 Feb 2022 08:17:59 GMT\ndigest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
+
+  ```
+  "date: {dateValue}"+"\\n"+"digest: {digestValue}"
+    - **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.
+  ```
+
+  The following sample Java code contains the logic used to encrypt as described in the above table:
+
+  ```java
+  import com.google.gson.Gson;
+  import com.google.gson.JsonObject;
+  import org.apache.commons.codec.binary.Base64;
+  import org.joda.time.DateTime;
+  import org.joda.time.format.DateTimeFormat;
+
+  import javax.crypto.Mac;
+  import javax.crypto.spec.SecretKeySpec;
+  import java.security.InvalidKeyException;
+  import java.security.MessageDigest;
+  import java.security.NoSuchAlgorithmException;
+
+  public class HmacAuth {
+
+      public static String getSha256(String input) {
+          try {
+              MessageDigest md = MessageDigest.getInstance("SHA-256");
+              byte[] digest = md.digest(input.getBytes());
+              return Base64.encodeBase64String(digest);
+          } catch (NoSuchAlgorithmException ignored) {}
+          return null;
+      }
+
+      public static JsonObject getRequestBody(){
+          JsonObject requestJson = new JsonObject();
+          requestJson.addProperty("firstname","John");
+          requestJson.addProperty("lastname","Doe");
+          return requestJson;
+      }
+
+      public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException {
+          String key = "smsplus";
+          String secret = "admin";
+          Gson gson = new Gson();
+          String date = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'").withZoneUTC().print(new DateTime());
+          System.out.println(date);
+          JsonObject requestJson = getRequestBody();
+          String digest = getSha256(gson.toJson(requestJson));
+          System.out.println(digest);
+          String signingString = new StringBuilder()
+              .append("date: " + date)
+              .append("\ndigest: " + digest).toString();
+          Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+          SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+          sha256_HMAC.init(secret_key);
+          String signature = Base64.encodeBase64String(sha256_HMAC.doFinal(signingString.getBytes()));
+          String authorization = new StringBuilder()
+              .append("hmac username=\"")
+              .append(key)
+              .append("\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"")
+              .append(signature)
+              .append("\"").toString();
+          System.out.println(authorization);
+      }
+  }
+  ```
+
+  The sample header is similar to the following:
+
+  > 📘 **Note:**
+  >
+  > You need to include the current date and time in the **Date** field of the header.
+
+  ````java
+  'Date: Tue, 09 Aug 2022 12:14:51 GMT'
+  'Digest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0= '
+  'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=""'
+
+  </Accordion>
+
+  <Accordion title="Request parameters" icon="fa-table">
+    | Parameter                                   | Description                                                          | Example     |
+    | :------------------------------------------ | :------------------------------------------------------------------- | :---------- |
+    | transactionId<br />`mandatory`              | `String` - The PayU transaction ID (requestId from GET API response) | 15916911884 |
+    | amlockTxnRequestMappingDto<br />`mandatory` | `Array` - Array of key-value pairs containing the required fields    | See below   |
+
+    **amlockTxnRequestMappingDto Object:**
+
+    | Parameter              | Description                                     | Example     |
+    | :--------------------- | :---------------------------------------------- | :---------- |
+    | key<br />`mandatory`   | `String` - Field key name (from keyMappingList) | first\_name |
+    | value<br />`mandatory` | `String` - Value for the field                  | John        |
+  </Accordion>
+
+  <Accordion title="Sample request" icon="fa-code">
+    Based on the GET API response above, submit the required fields:
+
+    ```bash
+    curl --location 'https://oneapi.payu.in/opgsp/updateOnHoldTxnDetails' \
+    --header 'accept: application/json' \
+    --header 'mid: 180012' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: hmac username="<key>", algorithm="sha512", headers="date", signature="<hash>"' \
+    --header 'Date: Wed, 28 Jun 2023 11:25:19 GMT' \
+    --data '[
+        {
+            "transactionId": "15916911884",
+            "amlockTxnRequestMappingDto": [
+                {
+                    "key": "first_name",
+                    "value": "John"
+                },
+                {
+                    "key": "last_name",
+                    "value": "Doe"
+                },
+                {
+                    "key": "invoice_id",
+                    "value": "INV123456"
+                }
+            ]
+        }
+    ]'
+  ````
 
   ```python
   import requests
