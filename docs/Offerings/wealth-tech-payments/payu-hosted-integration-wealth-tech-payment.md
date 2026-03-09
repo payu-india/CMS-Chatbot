@@ -12,19 +12,19 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
 </Callout>
 
 <Cards columns={3}>
-  <Card title="1. Initiate the Payment to PayU" href="https://docs.payu.in/docs/payu-hosted-integration-wealth-tech-payment#step-1-initiate-the-payment-to-payu">
+  <Card title="1. Initiate the Payment to PayU" href="#step-1-initiate-the-payment-to-payu">
     Send payment request to PayU through POST endpoint with mandatory parameters including merchant key, transaction ID, amount, customer details, and Wealth Tech specific wtParams object for mutual fund transactions
 
     <br />
   </Card>
 
-  <Card title="2. Check Response from PayU" href="https://docs.payu.in/docs/payu-hosted-integration-wealth-tech-payment#step-2-check-response-from-payu">
+  <Card title="2. Check Response from PayU" href="#step-2-check-response-from-payu">
     Handle the response from PayU after transaction processing, including success/failure status, transaction details, and verify the reverse hash for data authenticity
 
     <br />
   </Card>
 
-  <Card title="3. Verify the Payment" href="https://docs.payu.in/docs/payu-hosted-integration-wealth-tech-payment#step-3-verify-the-payment">
+  <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
     Reconcile payment details through webhooks or Verify Payments API to ensure accuracy and completeness of each transaction
   </Card>
 
