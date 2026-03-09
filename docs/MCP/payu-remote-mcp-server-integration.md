@@ -202,4 +202,4 @@ For PayU Privacy policy, refer ([[https://www.payu.in/privacy-policy](https://ww
 
 ## Support
 
-Contact our Integration support using the [PayU Support page.](https://help.payu.in).
+Contact PayU Support using the [PayU Support page.](https://help.payu.in).
