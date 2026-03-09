@@ -96,6 +96,10 @@ For merchants using PayU's hosted checkout:
 4. PayU processes the payment and returns result
 5. Customer is redirected to merchant's success/failure URL
 
+<Callout icon="📘" theme="info">
+  **Reference:** For Apple Pay - PayU Hosted Integration, refer to [PayU Hosted Checkout Integration](doc:apple-pay-integration-payu-hosted-checkout)
+</Callout>
+
 ### Flow for Seamless Merchants (Direct API)
 
 For merchants with direct API integration:
