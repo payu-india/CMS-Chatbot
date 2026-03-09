@@ -483,32 +483,37 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   <Accordion title="Step 2.6: For SKU details (Optional)" icon="fa-code">
     `PayUSkuDetails` is used for SKU-based offers.
 
-    <br />
+**PayUSkuDetails** – contains the following property:
+- `PayUSkuDetails(skus: [PayUSku])`
+- `skus`: Array of `PayUSku`
 
-    PayUSkuDetails: It contains below properties\
-    PayUSkuDetails(skus: \[PayUSku])\
-    skus: "{"<Array of PayUSku's>"}"
+**PayUSku** – Swift / Objective-C model:
 
-    Initalise Object of Sku details with vaild SKU's.
-
-    PayUSku(
+```swift
+// Swift
+PayUSku(
     skuId: String,
     skuName: String,
     skuAmount: String,
     quantity: Int,
-    offerKeys:[String]? = nil
-    )
+    offerKeys: [String]? = nil
+)
+```
 
-    skuId: "{'<Product Id which you use when creating offer on dashboard >'}"\\
-    skuName: "{'<Name of product>'}"\\
-    skuAmount: "{'<Amount of product>'}"\\
-    quantity: "{'<total quantity of product>'}"\\
-    offerKeys: "{'<Optional - Provide offer keys only if want to restrict offer for mention products, else set nil>'}"
+| Parameter   | Description |
+|------------|-------------|
+| `skuId`    | Product Id used when creating the offer on the dashboard |
+| `skuName`  | Name of product |
+| `skuAmount`| Amount of product |
+| `quantity` | Total quantity of product |
+| `offerKeys`| Optional – provide offer keys only if you want to restrict the offer to these products; otherwise set `nil` |
 
-    For more information on the SKU parameters, refer to [Create SKU Based Offers for iOS Checkout Pro](https://docs.payu.in/docs/ios_checkoutpro-offers_integration).
+For more information on the SkuDetails parameters, refer to [Create SKU Based Offers for iOS Checkout Pro](https://docs.payu.in/docs/ios_checkoutpro-offers_integration).
 
-    > 🚧 Keep in mind\
-    > If you are adding SKU offer details, the `amount` passed in `PayUPaymentParam` must be equal to the sum of (quantity × skuAmount) of each item.
+After creating the `PayUSkuDetails` object, set it on `PayUPaymentParam` as shown below.
+
+> **Keep in mind**  
+> If you add SKU offer details, the `amount` in `PayUPaymentParam` must equal the sum of (quantity × skuAmount) for each item.
 
     ```Text Swift
     let sku1 = PayUSku(skuId: "111", skuName: "Shoes", skuAmount: "100", quantity: 1, offerKeys: nil)
