@@ -4,6 +4,21 @@ excerpt: Apple Pay Integration
 deprecated: false
 hidden: false
 metadata:
+  title: Apple Pay with PayU Payments Integration
+  description: >-
+    Integrate Apple Pay with PayU to enable secure, seamless, one‑tap payments
+    on iOS devices. Learn the complete setup process, supported flows, and
+    implementation steps for merchants.
+  keywords:
+    - apple pay integration
+    - payu apple pay
+    - ios payment integration
+    - apple pay documentation
+    - apple pay setup
+    - digital wallet integration
+    - one tap payments
+    - payment gateway apple pay
+    - apple pay india
   robots: index
 ---
 Apple Pay offers a fast, secure, and seamless payment experience across iOS and watchOS apps, as well as websites on Safari. With a simple Face ID, Touch ID, or a double-click on Apple Watch, users can instantly and securely share their payment, shipping, and contact details to complete transactions.
