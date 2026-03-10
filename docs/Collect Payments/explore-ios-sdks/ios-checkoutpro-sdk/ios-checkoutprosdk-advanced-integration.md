@@ -50,46 +50,46 @@ The iOS CheckoutPro SDK provides the following advanced integration options:
   config.merchantName = <#T##String?#>
   config.merchantLogo = <#T##UIImage?#>
   ```
-  </Accordion>
+</Accordion>
 
 <Accordion title="Show/Hide Merchant Logo" icon="fa-code">
-    Merchants can display their logo on the PayU Hosted Page. By default, the logo is invisible.
+  Merchants can display their logo on the PayU Hosted Page. By default, the logo is invisible.
 
-    ```swift Swift
-    let config = PayUCheckoutProConfig()
-    config.showMerchantLogo = true // true/false
-    ```
+  ```swift Swift
+  let config = PayUCheckoutProConfig()
+  config.showMerchantLogo = true // true/false
+  ```
 </Accordion>
 
 <Accordion title="Show/Hide Saved Card Features" icon="fa-code">
-    Merchants can control the Saved Card feature visibility. By default, the Saved Card feature is enabled.
+  Merchants can control the Saved Card feature visibility. By default, the Saved Card feature is enabled.
 
-    ```swift Swift
-    let config = PayUCheckoutProConfig()
-    config.enableSavedCard = true // true/false
-    ```
+  ```swift Swift
+  let config = PayUCheckoutProConfig()
+  config.enableSavedCard = true // true/false
+  ```
 </Accordion>
 
-<Accordion title="Screen Protection" icon="fa-shield">
-    Screen protection is enabled by default to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
+<Accordion title="Screen Protection" icon="fa-code">
+  Screen protection is enabled by default to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
 
-    If you need to disable this protection (not recommended), set the value to false. When disabled, sensitive information will be visible in screen recordings and screenshots.
+  If you need to disable this protection (not recommended), set the value to false. When disabled, sensitive information will be visible in screen recordings and screenshots.
 
-    ```swift Swift
-    let config = PayUCheckoutProConfig()
-    config.isProtectedScreen = false // Disable protection (NOT RECOMMENDED)
-    ```
+  ```swift Swift
+  let config = PayUCheckoutProConfig()
+  config.isProtectedScreen = false // Disable protection (NOT RECOMMENDED)
+  ```
 
-    ⚠️ **Security Warning:** Disabling screen protection may expose sensitive payment information in screenshots and recordings.
+  ⚠️ **Security Warning:** Disabling screen protection may expose sensitive payment information in screenshots and recordings.
 </Accordion>
 
 <Accordion title="Customize UPI Apps Order" icon="fa-code">
-    You can customize the display order of UPI payment apps. Define the sequence using a pipe-separated format to rearrange how UPI apps appear to users.
+  You can customize the display order of UPI payment apps. Define the sequence using a pipe-separated format to rearrange how UPI apps appear to users.
 
-    ```swift Swift
-    let config = PayUCheckoutProConfig()
-    config.upiAppsOrder = "phonepe|paytm|gpay"
-    ```
+  ```swift Swift
+  let config = PayUCheckoutProConfig()
+  config.upiAppsOrder = "phonepe|paytm|gpay"
+  ```
 </Accordion>
 
 <Accordion title="Hide Checkout screen Back button dialog box" icon="fa-code">
