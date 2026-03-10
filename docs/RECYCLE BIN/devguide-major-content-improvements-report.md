@@ -79,7 +79,7 @@ The PayU Developer Guide underwent **comprehensive content restructuring and UX 
 * UPI Reserve Pay Integration
 * UPI Autopay Integration
 * Devguide Changes for Transaction Currency and MCP Lookup API Reference Page
-* Apple Pay Integration
+* Apple Pay Integration [Non-seamless]
 * NBBL Integration
 * NTB Integration
 * WealthTech Integration
