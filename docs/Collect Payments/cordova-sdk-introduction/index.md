@@ -19,15 +19,7 @@ metadata:
 next:
   description: ''
 ---
-Software development kits (SDK) or dev kits are a collection of tools and programs that are indispensable for creating platform-specific applications. They can accelerate the application development journey by providing a range of enablers, including frameworks, code samples, processes, documentation, libraries, and guides that the developers can directly plug into their builds. SDKs allow the apps to be readily equipped with enhanced functionalities while conveniently bypassing the need to be developed from scratch, optimizing application development costs, and complexities.
-
-In addition to Cordova, PayU provides the following SDKs based on the mobile platform you want to integrate with:
-
-* Android SDKs
-* Apple iOS SDKs
-* React Native
-* Flutter SDK
-* PayU’s SDK Offerings
+The Checkout Pro SDK provides a complete Mobile Checkout solution for the Flutter App. The Checkout Pro experience allows you to integrate with the PayU PG with minimal integration effort and accept payments faster.
 
 PayU’s Mobile SDK offers important mobility features that help customers to make smooth and easy transactions using mobile phones:
 
@@ -38,7 +30,7 @@ PayU’s Mobile SDK offers important mobility features that help customers to ma
 
 ## Features
 
-The PayUCheckoutPro SDK gives you the following key capabilities:  
+The PayUCheckoutPro SDK gives you the following key capabilities:
 
 * A complete, ready-to-use native Checkout UI
 
