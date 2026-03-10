@@ -26,7 +26,7 @@ The Checkout Pro SDK provides a complete Mobile Checkout solution for the React 
 
 ## Capabilities
 
-The Checkout Pro SDK gives you the following key capabilities: 
+The Checkout Pro SDK gives you the following key capabilities:
 
 * A complete, ready-to-use native Checkout UI
 * Support for multiple payment options
@@ -48,7 +48,7 @@ The Checkout Pro SDK gives you the following key capabilities:
 ### For Android:
 
 * Min SDK Version: 21
-* Compile SDK Version: 28+
+* Compile SDK Version: 31 and above
 
 The procedure to integrate with Checkout Pro slightly varies for Android and iOS integration. The following sections describe the procedure to integrate with Checkout Pro for Android and iOS:
 
