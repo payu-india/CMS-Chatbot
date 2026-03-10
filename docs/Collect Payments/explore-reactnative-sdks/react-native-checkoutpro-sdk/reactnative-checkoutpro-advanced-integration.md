@@ -239,7 +239,7 @@ Screen protection is enabled by default to hide sensitive information during scr
 
   ```Text React.js
   var payUCheckoutProConfig = {
-  isProtectedScreen: true/false
+  isProtectedScreen: false // Disable protection (NOT RECOMMENDED)
   }
   ```
 </Accordion>
