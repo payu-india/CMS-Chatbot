@@ -83,8 +83,24 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
 <Accordion title="Authentication info for Apple Pay" icon="fa-code">
   **Sample Authentication Info**
 
-  ```
-  {"applicationPrimaryAccountNumber":"4832086841071751","applicationExpirationDate":"290228","currencyCode":"356","transactionAmount":1000,"deviceManufacturerIdentifier":"040010030273","paymentDataType":"3DSecure","paymentData":{"onlinePaymentCryptogram":"KgAAAAoDK12xsrcAAAAAgTtgE4A=","eciIndicator":"5"}, "paymentMethod":{"displayName":"MasterCard 0049","network":"MasterCard","type":"credit"}}
+  ```Json 
+	{
+  "applicationPrimaryAccountNumber":"4832086841071751",
+  "applicationExpirationDate":"290228",
+  "currencyCode":"356",
+  "transactionAmount":1000,
+  "deviceManufacturerIdentifier":"040010030273",
+  "paymentDataType":"3DSecure",
+  "paymentData":{
+    "onlinePaymentCryptogram":"KgAAAAoDK12xsrcAAAAAgTtgE4A=",
+    "eciIndicator":"5"
+  },
+  "paymentMethod":{
+    "displayName":"MasterCard 0049",
+    "network":"MasterCard",
+    "type":"credit"
+  	}
+	}
   ```
 
   | Field                             | Description                                                                                                                                                                                                                                                                                |
@@ -198,8 +214,6 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
 </Accordion>
 
 ***
-
-<br />
 
 ## Step 2: Check response from PayU
 
