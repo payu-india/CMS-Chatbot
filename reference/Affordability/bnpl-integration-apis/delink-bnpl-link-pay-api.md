@@ -2,7 +2,7 @@
 title: Delink BNPL Link & Pay API
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
@@ -10,12 +10,14 @@ metadata:
 next:
   description: ''
 ---
+This API is used to delink the BNPL Link & Pay. 
+
 ### Environment
 
-|                        |                                                         |
-| ---------------------- | ------------------------------------------------------- |
-| Test Environment       | \<https://test.payu.in/info/linkAndPay/delinkInstrument> |
-| Production Environment | \<https://info.payu.in/linkAndPay/delinkInstrument>      |
+|                        |                                                                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Test Environment       | \<[https://test.payu.in/info/linkAndPay/delinkInstrument>](https://test.payu.in/info/linkAndPay/delinkInstrument>) |
+| Production Environment | \<[https://info.payu.in/linkAndPay/delinkInstrument>](https://info.payu.in/linkAndPay/delinkInstrument>)           |
 
 ## Request Parameters
 
@@ -79,11 +81,10 @@ The request header contains the following fields:
 </table>
 `}</HTMLBlock>
 
-
 **Required parameters for calculating authorization**
 
-- Date
-- Authorization
+* Date
+* Authorization
 
 The following sample Java code contains the logic used to encrypt as described in the above table:
 
@@ -156,11 +157,11 @@ public class HmacAuth {
 ### Body parameters
 
 > 📘 Note:
-> 
+>
 > You can use any of the following combination of the mandatory parameters apart from requestId and amount:
-> 
-> - pg+bankcode+user_credentials
-> - payuToken+user_credentials
+>
+> * pg+bankcode+user_credentials
+> * payuToken+user_credentials
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -243,7 +244,6 @@ public class HmacAuth {
 </tbody>
 </table>
 `}</HTMLBlock>
-
 
 ## Sample request
 
