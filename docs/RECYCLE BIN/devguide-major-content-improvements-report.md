@@ -7,7 +7,7 @@ metadata:
 ---
 ## 📈 Executive Summary
 
-The PayU Developer Guide underwent **comprehensive content restructuring and UX improvements** over the past 4-5 months, achieving remarkable results that **far exceeded initial projections**. 
+The PayU Developer Guide underwent **comprehensive content restructuring and UX improvements** over the past 4-5 months, achieving remarkable results that **far exceeded initial projections**.
 
 **Period: October 2025 - February 2026**
 **Generated: March 05, 2026**
@@ -73,7 +73,16 @@ The PayU Developer Guide underwent **comprehensive content restructuring and UX 
 
 ## New Product Devguide Releases
 
-* <br />
+* Chargeback User Guide
+* OTM- Status Check Integration
+* Refund Wallet Dashboard User Guide
+* UPI Reserve Pay Integration
+* UPI Autopay Integration
+* Devguide Changes for Transaction Currency and MCP Lookup API Reference Page
+* Apple Pay Integration
+* NBBL Integration
+* NTB Integration
+* WealthTech Integration
 
 ## 🔮 **Upcoming Initiatives**
 
