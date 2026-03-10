@@ -209,261 +209,261 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   --data-urlencode 'productinfo=ABC info' \
   --data-urlencode 'amount={{amt}}'
   ```
-```python
-import requests
-import urllib.parse
+  ```python
+  import requests
+  import urllib.parse
 
-url = "https://secure.payu.in/AuthorizeTransaction.php"
+  url = "https://secure.payu.in/AuthorizeTransaction.php"
 
-# Form data
-data = {
-    'key': '{{key}}',
-    'txnid': '{{txnid}}',
-    'authentication_info': '{{info}}',
-    'hash': '{{hash1}}',
-    'pg': 'ApplePay',
-    'bankcode': 'CCAP',
-    'firstname': 'John',
-    'country': 'IN',
-    'city': 'Banglore',
-    'state': 'KA',
-    'email': 'abc@gmail.com',
-    'address1': 'street1 area',
-    'udf1': 'appleTransactionIdentifier',
-    'udf2': 'MAST:credit',
-    'lastname': 'Bing',
-    'zipcode': '45678',
-    'phone': '9876543210',
-    'productinfo': 'ABC info',
-    'amount': '{{amt}}'
-}
+  # Form data
+  data = {
+      'key': '{{key}}',
+      'txnid': '{{txnid}}',
+      'authentication_info': '{{info}}',
+      'hash': '{{hash1}}',
+      'pg': 'ApplePay',
+      'bankcode': 'CCAP',
+      'firstname': 'John',
+      'country': 'IN',
+      'city': 'Banglore',
+      'state': 'KA',
+      'email': 'abc@gmail.com',
+      'address1': 'street1 area',
+      'udf1': 'appleTransactionIdentifier',
+      'udf2': 'MAST:credit',
+      'lastname': 'Bing',
+      'zipcode': '45678',
+      'phone': '9876543210',
+      'productinfo': 'ABC info',
+      'amount': '{{amt}}'
+  }
 
-headers = {
-    'Content-Type': 'application/x-www-form-urlencoded'
-}
+  headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+  }
 
-try:
-    response = requests.post(url, data=data, headers=headers)
-    print(f"Status Code: {response.status_code}")
-    print(f"Response: {response.text}")
-except requests.exceptions.RequestException as e:
-    print(f"Error: {e}")
-```
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+  try:
+      response = requests.post(url, data=data, headers=headers)
+      print(f"Status Code: {response.status_code}")
+      print(f"Response: {response.text}")
+  except requests.exceptions.RequestException as e:
+      print(f"Error: {e}")
+  ```
+  ```csharp
+  using System;
+  using System.Collections.Generic;
+  using System.Net.Http;
+  using System.Text;
+  using System.Threading.Tasks;
 
-class Program
-{
-    private static readonly HttpClient client = new HttpClient();
+  class Program
+  {
+      private static readonly HttpClient client = new HttpClient();
 
-    static async Task Main(string[] args)
-    {
-        string url = "https://secure.payu.in/AuthorizeTransaction.php";
+      static async Task Main(string[] args)
+      {
+          string url = "https://secure.payu.in/AuthorizeTransaction.php";
 
-        var formData = new List<KeyValuePair<string, string>>
-        {
-            new KeyValuePair<string, string>("key", "{{key}}"),
-            new KeyValuePair<string, string>("txnid", "{{txnid}}"),
-            new KeyValuePair<string, string>("authentication_info", "{{info}}"),
-            new KeyValuePair<string, string>("hash", "{{hash1}}"),
-            new KeyValuePair<string, string>("pg", "ApplePay"),
-            new KeyValuePair<string, string>("bankcode", "CCAP"),
-            new KeyValuePair<string, string>("firstname", "John"),
-            new KeyValuePair<string, string>("country", "IN"),
-            new KeyValuePair<string, string>("city", "Banglore"),
-            new KeyValuePair<string, string>("state", "KA"),
-            new KeyValuePair<string, string>("email", "abc@gmail.com"),
-            new KeyValuePair<string, string>("address1", "street1 area"),
-            new KeyValuePair<string, string>("udf1", "appleTransactionIdentifier"),
-            new KeyValuePair<string, string>("udf2", "MAST:credit"),
-            new KeyValuePair<string, string>("lastname", "Bing"),
-            new KeyValuePair<string, string>("zipcode", "45678"),
-            new KeyValuePair<string, string>("phone", "9876543210"),
-            new KeyValuePair<string, string>("productinfo", "ABC info"),
-            new KeyValuePair<string, string>("amount", "{{amt}}")
-        };
+          var formData = new List<KeyValuePair<string, string>>
+          {
+              new KeyValuePair<string, string>("key", "{{key}}"),
+              new KeyValuePair<string, string>("txnid", "{{txnid}}"),
+              new KeyValuePair<string, string>("authentication_info", "{{info}}"),
+              new KeyValuePair<string, string>("hash", "{{hash1}}"),
+              new KeyValuePair<string, string>("pg", "ApplePay"),
+              new KeyValuePair<string, string>("bankcode", "CCAP"),
+              new KeyValuePair<string, string>("firstname", "John"),
+              new KeyValuePair<string, string>("country", "IN"),
+              new KeyValuePair<string, string>("city", "Banglore"),
+              new KeyValuePair<string, string>("state", "KA"),
+              new KeyValuePair<string, string>("email", "abc@gmail.com"),
+              new KeyValuePair<string, string>("address1", "street1 area"),
+              new KeyValuePair<string, string>("udf1", "appleTransactionIdentifier"),
+              new KeyValuePair<string, string>("udf2", "MAST:credit"),
+              new KeyValuePair<string, string>("lastname", "Bing"),
+              new KeyValuePair<string, string>("zipcode", "45678"),
+              new KeyValuePair<string, string>("phone", "9876543210"),
+              new KeyValuePair<string, string>("productinfo", "ABC info"),
+              new KeyValuePair<string, string>("amount", "{{amt}}")
+          };
 
-        try
-        {
-            var formContent = new FormUrlEncodedContent(formData);
-            formContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-www-form-urlencoded");
+          try
+          {
+              var formContent = new FormUrlEncodedContent(formData);
+              formContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-www-form-urlencoded");
 
-            HttpResponseMessage response = await client.PostAsync(url, formContent);
-            string responseContent = await response.Content.ReadAsStringAsync();
+              HttpResponseMessage response = await client.PostAsync(url, formContent);
+              string responseContent = await response.Content.ReadAsStringAsync();
 
-            Console.WriteLine($"Status Code: {(int)response.StatusCode}");
-            Console.WriteLine($"Response: {responseContent}");
-        }
-        catch (HttpRequestException ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-        }
-    }
-}
-```
-```javascript
-async function makePayURequest() {
-    const url = 'https://secure.payu.in/AuthorizeTransaction.php';
+              Console.WriteLine($"Status Code: {(int)response.StatusCode}");
+              Console.WriteLine($"Response: {responseContent}");
+          }
+          catch (HttpRequestException ex)
+          {
+              Console.WriteLine($"Error: {ex.Message}");
+          }
+      }
+  }
+  ```
+  ```javascript
+  async function makePayURequest() {
+      const url = 'https://secure.payu.in/AuthorizeTransaction.php';
 
-    const formData = new URLSearchParams({
-        'key': '{{key}}',
-        'txnid': '{{txnid}}',
-        'authentication_info': '{{info}}',
-        'hash': '{{hash1}}',
-        'pg': 'ApplePay',
-        'bankcode': 'CCAP',
-        'firstname': 'John',
-        'country': 'IN',
-        'city': 'Banglore',
-        'state': 'KA',
-        'email': 'abc@gmail.com',
-        'address1': 'street1 area',
-        'udf1': 'appleTransactionIdentifier',
-        'udf2': 'MAST:credit',
-        'lastname': 'Bing',
-        'zipcode': '45678',
-        'phone': '9876543210',
-        'productinfo': 'ABC info',
-        'amount': '{{amt}}'
-    });
+      const formData = new URLSearchParams({
+          'key': '{{key}}',
+          'txnid': '{{txnid}}',
+          'authentication_info': '{{info}}',
+          'hash': '{{hash1}}',
+          'pg': 'ApplePay',
+          'bankcode': 'CCAP',
+          'firstname': 'John',
+          'country': 'IN',
+          'city': 'Banglore',
+          'state': 'KA',
+          'email': 'abc@gmail.com',
+          'address1': 'street1 area',
+          'udf1': 'appleTransactionIdentifier',
+          'udf2': 'MAST:credit',
+          'lastname': 'Bing',
+          'zipcode': '45678',
+          'phone': '9876543210',
+          'productinfo': 'ABC info',
+          'amount': '{{amt}}'
+      });
 
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: formData
-        });
+      try {
+          const response = await fetch(url, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              body: formData
+          });
 
-        const responseText = await response.text();
-        
-        console.log(`Status Code: ${response.status}`);
-        console.log(`Response: ${responseText}`);
-    } catch (error) {
-        console.log(`Error: ${error.message}`);
-    }
-}
+          const responseText = await response.text();
+          
+          console.log(`Status Code: ${response.status}`);
+          console.log(`Response: ${responseText}`);
+      } catch (error) {
+          console.log(`Error: ${error.message}`);
+      }
+  }
 
-makePayURequest();
-```
-```java
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+  makePayURequest();
+  ```
+  ```java
+  import java.io.BufferedReader;
+  import java.io.DataOutputStream;
+  import java.io.IOException;
+  import java.io.InputStreamReader;
+  import java.net.HttpURLConnection;
+  import java.net.URL;
+  import java.net.URLEncoder;
+  import java.nio.charset.StandardCharsets;
 
-public class PayURequest {
-    public static void main(String[] args) {
-        try {
-            String urlString = "https://secure.payu.in/AuthorizeTransaction.php";
-            URL url = new URL(urlString);
+  public class PayURequest {
+      public static void main(String[] args) {
+          try {
+              String urlString = "https://secure.payu.in/AuthorizeTransaction.php";
+              URL url = new URL(urlString);
 
-            String postData = "key=" + URLEncoder.encode("{{key}}", StandardCharsets.UTF_8) +
-                    "&txnid=" + URLEncoder.encode("{{txnid}}", StandardCharsets.UTF_8) +
-                    "&authentication_info=" + URLEncoder.encode("{{info}}", StandardCharsets.UTF_8) +
-                    "&hash=" + URLEncoder.encode("{{hash1}}", StandardCharsets.UTF_8) +
-                    "&pg=" + URLEncoder.encode("ApplePay", StandardCharsets.UTF_8) +
-                    "&bankcode=" + URLEncoder.encode("CCAP", StandardCharsets.UTF_8) +
-                    "&firstname=" + URLEncoder.encode("John", StandardCharsets.UTF_8) +
-                    "&country=" + URLEncoder.encode("IN", StandardCharsets.UTF_8) +
-                    "&city=" + URLEncoder.encode("Banglore", StandardCharsets.UTF_8) +
-                    "&state=" + URLEncoder.encode("KA", StandardCharsets.UTF_8) +
-                    "&email=" + URLEncoder.encode("abc@gmail.com", StandardCharsets.UTF_8) +
-                    "&address1=" + URLEncoder.encode("street1 area", StandardCharsets.UTF_8) +
-                    "&udf1=" + URLEncoder.encode("appleTransactionIdentifier", StandardCharsets.UTF_8) +
-                    "&udf2=" + URLEncoder.encode("MAST:credit", StandardCharsets.UTF_8) +
-                    "&lastname=" + URLEncoder.encode("Bing", StandardCharsets.UTF_8) +
-                    "&zipcode=" + URLEncoder.encode("45678", StandardCharsets.UTF_8) +
-                    "&phone=" + URLEncoder.encode("9876543210", StandardCharsets.UTF_8) +
-                    "&productinfo=" + URLEncoder.encode("ABC info", StandardCharsets.UTF_8) +
-                    "&amount=" + URLEncoder.encode("{{amt}}", StandardCharsets.UTF_8);
+              String postData = "key=" + URLEncoder.encode("{{key}}", StandardCharsets.UTF_8) +
+                      "&txnid=" + URLEncoder.encode("{{txnid}}", StandardCharsets.UTF_8) +
+                      "&authentication_info=" + URLEncoder.encode("{{info}}", StandardCharsets.UTF_8) +
+                      "&hash=" + URLEncoder.encode("{{hash1}}", StandardCharsets.UTF_8) +
+                      "&pg=" + URLEncoder.encode("ApplePay", StandardCharsets.UTF_8) +
+                      "&bankcode=" + URLEncoder.encode("CCAP", StandardCharsets.UTF_8) +
+                      "&firstname=" + URLEncoder.encode("John", StandardCharsets.UTF_8) +
+                      "&country=" + URLEncoder.encode("IN", StandardCharsets.UTF_8) +
+                      "&city=" + URLEncoder.encode("Banglore", StandardCharsets.UTF_8) +
+                      "&state=" + URLEncoder.encode("KA", StandardCharsets.UTF_8) +
+                      "&email=" + URLEncoder.encode("abc@gmail.com", StandardCharsets.UTF_8) +
+                      "&address1=" + URLEncoder.encode("street1 area", StandardCharsets.UTF_8) +
+                      "&udf1=" + URLEncoder.encode("appleTransactionIdentifier", StandardCharsets.UTF_8) +
+                      "&udf2=" + URLEncoder.encode("MAST:credit", StandardCharsets.UTF_8) +
+                      "&lastname=" + URLEncoder.encode("Bing", StandardCharsets.UTF_8) +
+                      "&zipcode=" + URLEncoder.encode("45678", StandardCharsets.UTF_8) +
+                      "&phone=" + URLEncoder.encode("9876543210", StandardCharsets.UTF_8) +
+                      "&productinfo=" + URLEncoder.encode("ABC info", StandardCharsets.UTF_8) +
+                      "&amount=" + URLEncoder.encode("{{amt}}", StandardCharsets.UTF_8);
 
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            connection.setDoOutput(true);
+              HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+              connection.setRequestMethod("POST");
+              connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+              connection.setDoOutput(true);
 
-            try (DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream())) {
-                outputStream.writeBytes(postData);
-                outputStream.flush();
-            }
+              try (DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream())) {
+                  outputStream.writeBytes(postData);
+                  outputStream.flush();
+              }
 
-            int responseCode = connection.getResponseCode();
-            System.out.println("Status Code: " + responseCode);
+              int responseCode = connection.getResponseCode();
+              System.out.println("Status Code: " + responseCode);
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
+              BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+              String inputLine;
+              StringBuilder response = new StringBuilder();
 
-            while ((inputLine = reader.readLine()) != null) {
-                response.append(inputLine);
-            }
-            reader.close();
+              while ((inputLine = reader.readLine()) != null) {
+                  response.append(inputLine);
+              }
+              reader.close();
 
-            System.out.println("Response: " + response.toString());
+              System.out.println("Response: " + response.toString());
 
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-}
-```
-```php
-<?php
-$url = 'https://secure.payu.in/AuthorizeTransaction.php';
+          } catch (IOException e) {
+              System.out.println("Error: " + e.getMessage());
+          }
+      }
+  }
+  ```
+  ```php
+  <?php
+  $url = 'https://secure.payu.in/AuthorizeTransaction.php';
 
-$data = array(
-    'key' => '{{key}}',
-    'txnid' => '{{txnid}}',
-    'authentication_info' => '{{info}}',
-    'hash' => '{{hash1}}',
-    'pg' => 'ApplePay',
-    'bankcode' => 'CCAP',
-    'firstname' => 'John',
-    'country' => 'IN',
-    'city' => 'Banglore',
-    'state' => 'KA',
-    'email' => 'abc@gmail.com',
-    'address1' => 'street1 area',
-    'udf1' => 'appleTransactionIdentifier',
-    'udf2' => 'MAST:credit',
-    'lastname' => 'Bing',
-    'zipcode' => '45678',
-    'phone' => '9876543210',
-    'productinfo' => 'ABC info',
-    'amount' => '{{amt}}'
-);
+  $data = array(
+      'key' => '{{key}}',
+      'txnid' => '{{txnid}}',
+      'authentication_info' => '{{info}}',
+      'hash' => '{{hash1}}',
+      'pg' => 'ApplePay',
+      'bankcode' => 'CCAP',
+      'firstname' => 'John',
+      'country' => 'IN',
+      'city' => 'Banglore',
+      'state' => 'KA',
+      'email' => 'abc@gmail.com',
+      'address1' => 'street1 area',
+      'udf1' => 'appleTransactionIdentifier',
+      'udf2' => 'MAST:credit',
+      'lastname' => 'Bing',
+      'zipcode' => '45678',
+      'phone' => '9876543210',
+      'productinfo' => 'ABC info',
+      'amount' => '{{amt}}'
+  );
 
-$options = array(
-    'http' => array(
-        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-        'method' => 'POST',
-        'content' => http_build_query($data)
-    )
-);
+  $options = array(
+      'http' => array(
+          'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+          'method' => 'POST',
+          'content' => http_build_query($data)
+      )
+  );
 
-$context = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
+  $context = stream_context_create($options);
+  $result = file_get_contents($url, false, $context);
 
-if ($result === FALSE) {
-    echo "Error: Failed to make request";
-} else {
-    $http_response_header = $http_response_header ?? [];
-    $statusLine = $http_response_header[0] ?? 'Unknown status';
-    echo "Status: " . $statusLine . "\n";
-    echo "Response: " . $result;
-}
-?>
-```
+  if ($result === FALSE) {
+      echo "Error: Failed to make request";
+  } else {
+      $http_response_header = $http_response_header ?? [];
+      $statusLine = $http_response_header[0] ?? 'Unknown status';
+      echo "Status: " . $statusLine . "\n";
+      echo "Response: " . $result;
+  }
+  ?>
+  ```
 
   <br />
 </Accordion>
@@ -511,7 +511,7 @@ The Direct Authorization API returns a **base64-encoded** response that needs to
   }
 }
 ```
-
+***
 ## Step 4: Verify the Payment
 
 <Verify_Payment_Tabs />
