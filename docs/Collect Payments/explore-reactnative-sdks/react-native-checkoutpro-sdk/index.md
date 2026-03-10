@@ -29,14 +29,38 @@ The Checkout Pro SDK provides a complete Mobile Checkout solution for the React 
 The Checkout Pro SDK gives you the following key capabilities:
 
 * A complete, ready-to-use native Checkout UI
-* Support for multiple payment options
-* All major card providers (Amex, Mastercard, Rupay, Visa, and more)
+
+**Support for multiple payment options:**
+
+* All major Credit/Debit card providers (Amex, Mastercard, Rupay, Visa, and more)
 * Netbanking with 150+ Indian banks
-* UPI Payments
+* One-click checkout with Net Banking Support (Axis & ICICI)
+* UPI Payments (Intent & Collect)
+* Google Pay™ InApp & Cards
+* PhonePe InApp & Intent
+* Native OTP Assist
+* Recurring Payments Support [Card, ENACH & UPI Autopay (Collect & Intent)]
+* Convenience Fee support
+* Offers support (Cashback, Instant & Coupon-based discounts Offer)
+* BNPL Support (Lazypay, ICICI Pay later, Simple & Mobikwik)
+* NEFT/RTGS Payments Support
+* Multi-Currency Payments Support
 * Prepaid Wallets
-* Credit Card EMI Payments
-* OTP Assist for faster and improved OTP authentication
+* ClosedLoop Wallets Support
+* EMI Payments Support (CC, DC & No Cost)
+* OTP read for faster and improved OTP authentication
+* Enforce Payment Mode
 * Customization capabilities to make the SDK your own
+* Saved Card Support
+* Recommendation Engine Support
+* TPV Support (NB & UPI)
+* SI TPV Support For UPI (Intent & Collect)
+* Cross-Border Payment Support
+* SKU Based Offers Support
+* Wealth Tech Payment Support
+* Enforce Offers Support
+* Additional Charges Support
+* Split Payment Support
 
 ## Compatibility
 
