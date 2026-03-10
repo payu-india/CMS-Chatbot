@@ -38,31 +38,41 @@ PayU’s Mobile SDK offers important mobility features that help customers to ma
 
 ## Features
 
-The PayUCheckoutPro SDK gives you the following key capabilities:
+The PayUCheckoutPro SDK gives you the following key capabilities:  
 
 * A complete, ready-to-use native Checkout UI
-* Support for multiple payment options:
+
+**Support for multiple payment options:**
+
 * All major Credit/Debit card providers (Amex, Mastercard, Rupay, Visa, and more)
-* Netbanking with 150+ Indian banks UPI Payments (Intent & Collect)
-* Change the Theme
-* Set Merchant Logo
-* Set Merchant Name
-* Hide Back Buttons
-* On the Checkout Screen Dialog box
-* On the Dialog box after Payment Initialisation
-* Auto Select OTP
-* Set Merchant Response Timeout
-* Review Order
-* Additional Payment Options on the Checkout Screen
-* Configure Checkout Payment Modes Order
-* Offers
+* Netbanking with 150+ Indian banks
+* One-click checkout with Net Banking Support (Axis & ICICI)
+* UPI Payments (Intent & Collect)
+* Google Pay™ InApp & Cards
+* PhonePe InApp & Intent
 * Native OTP Assist
-* Custom Note Integration
-* Enforced Payment Modes
-* Android Specific Configurations
-* Runtime SMS Permission
-* Auto Approve OTP
-* Hide the Toolbar in the Custom Browser (CB)
+* Recurring Payments Support [Card, ENACH & UPI Autopay (Collect & Intent)]
+* Convenience Fee support
+* Offers support (Cashback, Instant & Coupon-based discounts Offer)
+* BNPL Support (Lazypay, ICICI Pay later, Simple & Mobikwik)
+* NEFT/RTGS Payments Support
+* Multi-Currency Payments Support
+* Prepaid Wallets
+* ClosedLoop Wallets Support
+* EMI Payments Support (CC, DC & No Cost)
+* OTP read for faster and improved OTP authentication
+* Enforce Payment Mode
+* Customization capabilities to make the SDK your own
+* Saved Card Support
+* Recommendation Engine Support
+* TPV Support (NB & UPI)
+* SI TPV Support For UPI (Intent & Collect)
+* Cross-Border Payment Support
+* SKU Based Offers Support
+* Wealth Tech Payment Support
+* Enforce Offers Support
+* Additional Charges Support
+* Split Payment Support
 
 ***
 
