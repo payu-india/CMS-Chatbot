@@ -57,10 +57,11 @@ The PayUCheckoutPro SDK gives you the following key capabilities:
 * TPV Support (NB & UPI)
 * SI TPV Support For UPI (Intent & Collect)
 * Cross-Border Payment Support
-* SKU Based Offers
-* Wealth Tech Payment Flow
+* SKU Based Offers Support
+* Wealth Tech Payment Support
 * Enforce Offers Support
 * Additional Charges Support
+* Split Payment Support
 
 ## Compatibility
 
