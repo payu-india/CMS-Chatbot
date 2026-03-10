@@ -24,7 +24,7 @@ next:
 ---
 The Checkout Pro SDK provides a complete Mobile Checkout solution for the React Native App. The Checkout Pro experience allows you to integrate with the PayU PG with minimal integration effort and accept payments faster. To integrate Checkout Pro SDK with React Native, see Integration with Checkout Pro.
 
-## Capabilities
+## Features
 
 The Checkout Pro SDK gives you the following key capabilities:
 
