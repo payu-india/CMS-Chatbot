@@ -42,7 +42,7 @@ The PayUCheckoutPro SDK gives you the following key capabilities:
 * Native OTP Assist
 * Recurring Payments Support [Card, ENACH & UPI Autopay (Collect & Intent)]
 * Convenience Fee support
-* Offers support (Cashback, Instant, Coupon-based discounts Offer & SKU Based Offers)
+* Offers support (Cashback, Instant & Coupon-based discounts Offer)
 * BNPL Support (Lazypay, ICICI Pay later, Simple & Mobikwik)
 * NEFT/RTGS Payments Support
 * Multi-Currency Payments Support
@@ -57,6 +57,9 @@ The PayUCheckoutPro SDK gives you the following key capabilities:
 * TPV Support (NB & UPI)
 * SI TPV Support For UPI (Intent & Collect)
 * Cross-Border Payment Support
+* SKU Based Offers
+* WealthTech Flow 
+* Enforce OfferKeys
 
 ## Compatibility
 
