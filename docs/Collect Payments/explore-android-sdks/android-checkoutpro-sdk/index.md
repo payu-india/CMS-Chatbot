@@ -60,6 +60,7 @@ The PayUCheckoutPro SDK gives you the following key capabilities:
 * SKU Based Offers
 * Wealth Tech Payment Flow
 * Enforce Offers Support
+* Additional Charges Support
 
 ## Compatibility
 
