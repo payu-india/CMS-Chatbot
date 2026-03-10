@@ -231,25 +231,26 @@ This section describes how to integrate the following advanced features with Flu
   ```
 </Accordion>
 
-<Accordion title="Enable Screen Protection" icon="fa-shield">
-    You can enable screen protection to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
+<Accordion title="Disable Screen Protection" icon="fa-code">
+Screen protection is enabled by default to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
 
-    ```Text Dart
-    var payUCheckoutProConfig = {
-    PayUCheckoutProConfigKeys.isProtectedScreen: true/false
-    }
-    ```
-  </Accordion>
+  If you need to disable this protection (not recommended), set the value to false. When disabled, sensitive information will be visible in screen recordings and screenshots.
 
-  <Accordion title="Customize UPI Apps Order" icon="fa-list">
-    You can customize the display order of UPI payment apps. Define the sequence using a pipe-separated format to rearrange how UPI apps appear to users.
+  ```dart Dart
+  var payUCheckoutProConfig = {
+    PayUCheckoutProConfigKeys.isProtectedScreen: false // Disable protection (NOT RECOMMENDED)
+  };
+</Accordion>
 
-    ```Text Dart
-    var payUCheckoutProConfig = {
-    PayUCheckoutProConfigKeys.upiAppsOrder: "phonepe|paytm|gpay"
-    }
-    ```
-  </Accordion>
+<Accordion title="Customize UPI Apps Order" icon="fa-code">
+  You can customize the display order of UPI payment apps. Define the sequence using a pipe-separated format to rearrange how UPI apps appear to users.
+
+  ```Text Dart
+  var payUCheckoutProConfig = {
+  PayUCheckoutProConfigKeys.upiAppsOrder: "phonepe|paytm|gpay"
+  }
+  ```
+</Accordion>
 
 <Accordion title="Custom Note integration" icon="fa-code">
   This subsection describes how to integrate custom notes in PayUCheckoutPro SDK. To integrate custom notes in PayUCheckoutPro SDK:
@@ -330,20 +331,18 @@ This section describes how to integrate the following advanced features with Flu
     }
     ```
   </Accordion>
-  
+
   <Accordion title="Show SSL Dialog Alert" icon="fa-code">
     you are trying to show the dialog from a place that isn't permitted.
 
     ```Text Dart
      var payUCheckoutProConfig = {
       payUCheckoutProConfig.enableSslDialog = true //true/false
-}
+    }
     ```
 
     . The error message is shown as received from the SSL error description
 
     <Image align="center" src="https://files.readme.io/c19a750-MicrosoftTeams-image_8.png" width="200px" />
   </Accordion>
-
-
 </Accordion>
