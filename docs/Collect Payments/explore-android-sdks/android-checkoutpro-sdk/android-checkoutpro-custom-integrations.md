@@ -394,31 +394,31 @@ The PayUCheckoutPro SDK provides several customization options allowing you to m
     ```
   </Accordion>
 
-<Accordion title="Enable Screen Protection" icon="fa-shield">
-  You can enable screen protection to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
+  <Accordion title="Enable Screen Protection" icon="fa-code">
+    You can enable screen protection to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
 
-   ```java Java
-    PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
-    payUCheckoutProConfig.setProtectedScreen(true); //true/false
+    ```java Java
+     PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
+     payUCheckoutProConfig.setProtectedScreen(true); //true/false
     ```
     ```kotlin Kotlin
     val payUCheckoutProConfig = PayUCheckoutProConfig() 
     payUCheckoutProConfig.isProtectedScreen = true //true/false
     ```
-</Accordion>
+  </Accordion>
 
-<Accordion title="Customize UPI Apps Order" icon="fa-list">
-  You can customize the display order of UPI payment apps. Define the sequence using a pipe-separated format to rearrange how UPI apps appear to users.
+  <Accordion title="Customize UPI Apps Order" icon="fa-code">
+    You can customize the display order of UPI payment apps. Define the sequence using a pipe-separated format to rearrange how UPI apps appear to users.
 
-  ```java Java
-    PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
-    payUCheckoutProConfig.setUpiAppsOrder("phonepe|paytm|gpay");
+    ```java Java
+      PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
+      payUCheckoutProConfig.setUpiAppsOrder("phonepe|paytm|gpay");
     ```
     ```kotlin Kotlin
     val payUCheckoutProConfig = PayUCheckoutProConfig() 
     payUCheckoutProConfig.upiAppsOrder = "phonepe|paytm|gpay"
     ```
-</Accordion>
+  </Accordion>
 
   <Accordion title="Show SSL Dialog Alert" icon="fa-code">
     you are trying to show the dialog from a place that isn't permitted.
