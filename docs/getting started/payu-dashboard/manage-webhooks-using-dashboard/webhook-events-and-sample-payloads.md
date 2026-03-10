@@ -6,7 +6,7 @@ hidden: false
 metadata:
   robots: index
 ---
-You can accept customer payments using PayU products. By subscribing to payments webhook events you can get notified about payment state changes.
+You can accept customer payments using PayU products. By subscribing to payments webhook events you can get notified about payment state changes. Know more about managing webhooks using the dashboard.
 
 ## List of Webhook Events
 
