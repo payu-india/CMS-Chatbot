@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-This API is used to delink the BNPL Link & Pay. 
+This API is used to delink the BNPL Link & Pay that was done earlier using **_payment** API as in the [Collect Payment API - BNPL Link & Pay](ref:collect-payment-api-bnpl-link-pay). 
 
 ### Environment
 
