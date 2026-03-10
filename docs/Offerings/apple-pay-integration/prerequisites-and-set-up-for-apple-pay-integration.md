@@ -80,3 +80,11 @@ To enable Apple Pay on your website:
 4. Confirm with PayU:
    * After the files are uploaded, notify your PayU Key Account Manager(KAM) or contact [PayU Integration Support](mailto:integration@payu.in).
    * PayU will verify the setup and activate Apple Pay on your account.
+
+## Next Steps
+
+For the steps to integrate Apple Pay with PayU, refer to:
+
+* [PayU Hosted Checkout Integration](https://docs.payu.in/docs/apple-pay-integration-payu-hosted-checkout)
+* [Merchant Hosted Checkout Integration](https://docs.payu.in/docs/apple-pay-integration-merchant-hosted-checkout)
+* [Merchant Hosted with Session Management Integration](https://docs.payu.in/docs/apple-pay-session-mgmt-integration)
