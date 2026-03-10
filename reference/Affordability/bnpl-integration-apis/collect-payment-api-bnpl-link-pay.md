@@ -2,7 +2,7 @@
 title: Collect Payment API - BNPL Link & Pay
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
