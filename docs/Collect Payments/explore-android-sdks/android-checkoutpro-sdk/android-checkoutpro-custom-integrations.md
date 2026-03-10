@@ -394,17 +394,21 @@ The PayUCheckoutPro SDK provides several customization options allowing you to m
     ```
   </Accordion>
 
-  <Accordion title="Enable Screen Protection" icon="fa-code">
-    You can enable screen protection to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
+  <Accordion title="Disable Screen Protection" icon="fa-code">
+    Screen protection is enabled by default to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
+
+    If you need to disable this protection (not recommended), set the value to false. When disabled, sensitive information will be visible in screen recordings and screenshots.
 
     ```java Java
-     PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
-     payUCheckoutProConfig.setProtectedScreen(true); //true/false
+    PayUCheckoutProConfig payUCheckoutProConfig = new PayUCheckoutProConfig();
+    payUCheckoutProConfig.setProtectedScreen(false); // Disable protection (NOT RECOMMENDED)
     ```
     ```kotlin Kotlin
     val payUCheckoutProConfig = PayUCheckoutProConfig() 
-    payUCheckoutProConfig.isProtectedScreen = true //true/false
+    payUCheckoutProConfig.isProtectedScreen = false // Disable protection (NOT RECOMMENDED)
     ```
+    
+    ⚠️ **Security Warning:** Disabling screen protection may expose sensitive payment information in screenshots and recordings.
   </Accordion>
 
   <Accordion title="Customize UPI Apps Order" icon="fa-code">
