@@ -1,5 +1,5 @@
 ---
-title: Tokenize Card with PayU Tokenization Integration
+title: Tokenize Card with PayU Vault Integration
 excerpt: Collect payments via Cards and tokenize them for future transactions
 deprecated: false
 hidden: false
