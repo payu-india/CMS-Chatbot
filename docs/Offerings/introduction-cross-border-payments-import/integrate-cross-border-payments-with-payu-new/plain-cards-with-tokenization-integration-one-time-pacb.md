@@ -17,12 +17,17 @@ This section describes the steps to integrate credit / debit card payments with 
     Check and handle the response received from PayU
   </Card>
 
-  <Card title="4. Verify the Payment" href="#step-4-verify-the-payment">
+  <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
     Verify the payment status and ensure transaction completion
   </Card>
-</Cards>
+  <Card title="4. Update Invoice ID (Conditional)" href="#step-4-update-invoice-id-conditional">
+    Update the invoice ID associated with the transaction
+  </Card>
 
-<CB_Additional_Steps />
+  <Card title="5. Upload the Invoices / Shipping Document (Conditional)" href="#step-5-upload-the-invoices-optional">
+    Upload invoice documents related to the completed transaction
+  </Card>
+</Cards>
 
 ***
 
@@ -31,7 +36,7 @@ This section describes the steps to integrate credit / debit card payments with 
 Post the payment parameters to PayU's `_payment` API endpoint with tokenization parameters to store the card for future use.
 
 <Callout icon="📘" theme="info">
-  **References:** 
+  **References:**
 
   * For more information on CB integration for cards, refer to <Anchor label="One-Time Payment for Cards - CB" target="_blank" href="ref:one-time-payment-for-cards-pacb-integration">One-Time Payment for Cards - CB</Anchor>./bu
   * For more information on tokenization with PayU vault, refer to [Using Card Tokenized with PayU](ref:using-card-tokenized-with-payu).
@@ -155,7 +160,18 @@ Post the payment parameters to PayU's `_payment` API endpoint with tokenization 
 <PACB_Verify_Payment />
 
 <br />
+***
 
+## Step 4: Update Invoice ID [Conditional]
+
+<Update_Invoice_ID />
+
+***
+
+## Step 5: Upload the Invoices [Optional]
+
+<Upload_Invoices />
+***
 ## Error Handling
 
 If any error message is displayed with an error code, refer to [Error Codes](ref:error-codes) to understand the reason. For error codes during various transaction stages, refer to [Transaction Stages - Error References](ref:transaction-stages-error-references-on-field7-field8).
