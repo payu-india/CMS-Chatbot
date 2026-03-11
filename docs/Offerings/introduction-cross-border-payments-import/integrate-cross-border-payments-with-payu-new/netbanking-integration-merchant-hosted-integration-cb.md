@@ -1,5 +1,5 @@
 ---
-title: '[S2S] NetBanking Integration'
+title: NetBanking Integration
 deprecated: false
 hidden: false
 metadata:
