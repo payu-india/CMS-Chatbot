@@ -7,7 +7,13 @@ deprecated: false
 hidden: true
 metadata:
   title: ''
-  description: ''
+  description: >-
+    Server-side (S2S) payment integration with PayU. Server-to-server API flow
+    and parameters.
+  keywords:
+    - Server side integration PayU
+    - S2S payment API
+    - server to server payment integration
   robots: index
 next:
   description: ''
