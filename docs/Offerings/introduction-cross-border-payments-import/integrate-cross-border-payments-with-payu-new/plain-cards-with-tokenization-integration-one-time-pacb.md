@@ -1,5 +1,5 @@
 ---
-title: '[S2S] Process Card Transactions with PayU Tokenization '
+title: Tokenize Card with PayU Tokenization Integration
 excerpt: Collect payments via Cards and tokenize them for future transactions
 deprecated: false
 hidden: true
