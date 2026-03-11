@@ -22,7 +22,19 @@ metadata:
     - ''' PayUBiz integration for cross border payments'''
   robots: index
 ---
-The cross-border payment integration for PayU involves the following steps:
+This part of the document includes the steps-to-integrate for the following payment modes with various integrations:
+
+* [ PayU Hosted Payment Integration](doc:cb-integration-non-seamless) (Non-seamless)
+* Server-to-Server Integration (Seamless)
+  * [ NetBanking Integration](doc:netbanking-integration-merchant-hosted-integration-cb)
+  * **Cards**
+    * [ Plain Cards Integration](doc:plain-cards-integration-one-time-pacb)
+    * [ Save Card Transactions with PayU Tokenization](doc:plain-cards-with-tokenization-integration-one-time-pacb)
+    * [Saved Cards with a PayU Token Integration](doc:cards-with-payu-tokenization-one-time-pacb)
+    * [Saved Cards with a Network Token Integration](doc:network-tokens-one-time-payment-pacb)
+  * [ UPI Intent with S2S Integration](doc:pacb-upi-intent-with-s2s-integration)
+
+The cross-border payment integration for PayU involves the following steps for the various payment methods in general:
 
 <Cards columns={3}>
   <Card title="1. Make Payment Using Web Checkout Integration" href="step-1-make-payment-using-web-checkout-integration">
