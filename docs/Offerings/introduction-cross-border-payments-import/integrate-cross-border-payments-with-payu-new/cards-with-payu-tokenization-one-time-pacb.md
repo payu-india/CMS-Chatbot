@@ -1,5 +1,5 @@
 ---
-title: '[S2S] Saved Cards with a PayU Token Integration'
+title: Saved Cards with a PayU Token Integration
 excerpt: Process a saved card transactions via PayU (using PayU generated token)
 deprecated: false
 hidden: true
