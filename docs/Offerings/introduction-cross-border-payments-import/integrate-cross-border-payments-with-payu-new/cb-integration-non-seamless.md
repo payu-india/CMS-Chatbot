@@ -35,13 +35,6 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
   </Card>
 </Cards>
 
-<Callout icon="📘" theme="info">
-  After you complete this integration, you need to perform the following steps as required:
-
-  * <Anchor label="Update Invoice ID [Conditional]" target="_blank" href="https://docs.payu.in/docs/integrate-cross-border-payments-with-payu-new?isFramePreview=true#step-2-update-invoice-id-conditional">Update Invoice ID [Conditional]</Anchor>
-  * <Anchor label="Upload the Invoices [Optional]" target="_blank" href="https://docs.payu.in/docs/integrate-cross-border-payments-with-payu-new?isFramePreview=true#step-3-upload-the-invoices-optional">Upload the Invoices [Optional]</Anchor>
-</Callout>
-
 ## Step 1: Post the Payment Request with PayU
 
 <Callout icon="📘" theme="info">
@@ -425,7 +418,9 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
     -d "key=JPM7Fg&txnid=payuTestTxn12345&amount=100.00&productinfo=iPhone&firstname=Ashish&lastname=Kumar&email=test@gmail.com&phone=9876543210&zipcode=110075&surl=https://example.com/success&furl=https://example.com/failure&udf1=AELPR1234E&udf3=02-02-1980&udf4=XYZ Pvt. Ltd.&udf5=INV123456&buyer_type_business=1&udf_params={\"udf7\":\"<IE_CODE>\",\"udf8\":\"<AWB Num>\"}&hash=<generated_hash>"
   ```
 </Accordion>
+
 ***
+
 ## Step 2: Check Response from PayU
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded). You must implement the reverse hashing as described in the following:
@@ -479,13 +474,17 @@ The response URL returned from PayU is in the form URL format (application/x-www
   )
   ```
 </Accordion>
+
 ***
+
 ## Step 3: Verify the Payment
 
 Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
 
 <Verify_Payment_Tabs />
+
 ***
+
 ## Step 4: Update Invoice ID [Conditional]
 
 <Update_Invoice_ID />
