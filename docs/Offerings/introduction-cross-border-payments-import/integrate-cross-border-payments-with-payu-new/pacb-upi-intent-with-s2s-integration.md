@@ -7,7 +7,7 @@ metadata:
 ---
 The following steps allow you to integrate the server-to-server UPI (United Payments Interface) intent:
 
-<Cards columns={2}>
+<Cards columns={3}>
   <Card title="1. Initiate payment" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-1-initiate-payment">
     Initiate the UPI Intent payment request with required parameters
   </Card>
@@ -26,6 +26,15 @@ The following steps allow you to integrate the server-to-server UPI (United Paym
 
   <Card title="5. Verify the payment" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-5-verify-the-payment">
     Verify the payment status and ensure successful transaction completion
+  </Card>
+  <Card title="6. Update Invoice ID (Conditional)" href="#step-6-update-invoice-id-conditional">
+    Update the invoice ID associated with the transaction
+
+    <br />
+  </Card>
+
+  <Card title="7. Upload the Invoices / Shipping Document (Conditional)" href="#step-7-upload-the-invoices-optional">
+    Upload invoice documents related to the completed transaction
   </Card>
 
   <br />
@@ -698,7 +707,7 @@ PayU can also send a server-to-server callback response whenever the transaction
   mihpayid,mode,status,key,txnid,amount,productinfo,firstname,lastname,address1,address2,city,state,country,zipcode,email,phone,udf1,udf2,udf3,udf4,udf5,udf6,udf7,udf8,udf9,udf10,card_token,card_no,field0,field1,field2,field3,field4,field5,field6,field7,field8,field9,offer,discou nt,offer_availed,unmappedstatus,hash,bank_ref_no,surl,curl,furl,card_hash
   ```
 </Accordion>
-
+***
 ## Step 5. Verify the payment
 
 Use the webhooks to verify the payment. The following is the sample webhook payload in response. For more information, refer to [Webhook Events and Sample Payloads](doc:webhook-events-and-sample-payloads).
@@ -777,7 +786,13 @@ Use the webhooks to verify the payment. The following is the sample webhook payl
   | productinfo | Product information                        |
   | hash        | Response hash for verification             |
 </Accordion>
+***
+## Step 6: Update Invoice ID [Conditional]
 
-<br />
+<Update_Invoice_ID />
 
-<br />
+***
+
+## Step 7: Upload the Invoices [Optional]
+
+<Upload_Invoices />
