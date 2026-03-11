@@ -36,6 +36,15 @@ Before using Network Tokens, ensure you have:
   <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
     Verify the payment status and ensure transaction completion
   </Card>
+  <Card title="4. Update Invoice ID (Conditional)" href="#step-4-update-invoice-id-conditional">
+    Update the invoice ID associated with the transaction
+
+    <br />
+  </Card>
+
+  <Card title="5. Upload the Invoices / Shipping Document (Conditional)" href="#step-5-upload-the-invoices-optional">
+    Upload invoice documents related to the completed transaction
+  </Card>
 </Cards>
 
 ## Step 1: Post Parameters to PayU
@@ -76,7 +85,7 @@ Post the payment parameters to PayU's `_payment` API endpoint with network token
   | furl<br />`mandatory`                                                                                             | `String`<br />The Failure URL - page PayU will redirect to if the transaction fails.                                                                                                                            | `https://example.com/failure`                                 |
   | pg<br />`mandatory`                                                                                               | `String`<br />Payment gateway type. For cards, use `CC`.                                                                                                                                                        | `CC`                                                          |
   | bankcode<br />`mandatory`                                                                                         | `String`<br />Bank code for the payment option. Use `CC` for credit cards, `DC` for debit cards.                                                                                                                | `CC`                                                          |
-  | ccvv<br />`optional`                                                                                             | `String`<br />3-digit CVV (4 digits for AMEX).                                                                                                                                                                  | `123`                                                         |
+  | ccvv<br />`optional`                                                                                              | `String`<br />3-digit CVV (4 digits for AMEX).                                                                                                                                                                  | `123`                                                         |
   | ccexpmon<br />`mandatory`                                                                                         | `String`<br />**Token expiry month** in MM format (01-12). Use token expiry, not original card expiry.                                                                                                          | `09`                                                          |
   | ccexpyr<br />`mandatory`                                                                                          | `String`<br />**Token expiry year** in YYYY format. Use token expiry, not original card expiry.                                                                                                                 | `2026`                                                        |
   | txn\_s2s\_flow<br />`mandatory`                                                                                   | `Integer`<br />Parameter to enable S2S flow. Set to `4` for S2S4 flow.                                                                                                                                          | `4`                                                           |
@@ -186,14 +195,15 @@ Post the payment parameters to PayU's `_payment` API endpoint with network token
 
 ***
 
-## Network Token Benefits
+## Step 4: Update Invoice ID [Conditional]
 
-| Benefit                  | Description                                                         |
-| ------------------------ | ------------------------------------------------------------------- |
-| Higher Approval Rates    | Network tokens typically have 2-5% higher approval rates            |
-| Auto-Updated Credentials | Token credentials are automatically updated when cards are reissued |
-| Enhanced Security        | Cryptogram-based authentication reduces fraud                       |
-| Lifecycle Management     | Network handles token lifecycle including updates and deletions     |
+<Update_Invoice_ID />
+
+***
+
+## Step 5: Upload the Invoices [Optional]
+
+<Upload_Invoices />
 
 ***
 
