@@ -1,5 +1,5 @@
 ---
-title: '[Review]Integrate Cross-Border Payments with PayU '
+title: 'Integrate Cross-Border Payments with PayU '
 deprecated: false
 hidden: true
 metadata:
