@@ -20,9 +20,15 @@ This section explains how to integrate plain card payments for cross-border tran
   <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
     Verify the payment status and ensure transaction completion
   </Card>
-</Cards>
+  <Card title="4. Update Invoice ID (Conditional)" href="#step-4-update-invoice-id-conditional">
+    Update the invoice ID associated with the transaction
+  </Card>
 
-<CB_Additional_Steps />
+  <Card title="5. Upload the Invoices / Shipping Document (Conditional)" href="#step-5-upload-the-invoices-optional">
+    Upload invoice documents related to the completed transaction
+  </Card>
+
+</Cards>
 
 ***
 
@@ -193,6 +199,7 @@ Post the payment parameters to PayU's `_payment` API endpoint to initiate a plai
 </Accordion>
 
 <PACB_Cards_Step2 />
+***
 
 ## Step 3: Verify the Payment
 
@@ -207,3 +214,13 @@ If any error message is displayed with an error code, refer to [Error Codes](ref
 > 📘 Reference
 >
 > For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+***
+## Step 4: Update Invoice ID [Conditional]
+
+<Update_Invoice_ID />
+
+***
+
+## Step 5: Upload the Invoices [Optional]
+
+<Upload_Invoices />
