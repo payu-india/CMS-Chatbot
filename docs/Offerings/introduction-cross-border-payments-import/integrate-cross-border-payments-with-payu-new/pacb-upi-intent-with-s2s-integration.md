@@ -1,5 +1,5 @@
 ---
-title: '[S2S] UPI Intent with S2S Integration'
+title: UPI Intent with S2S Integration
 deprecated: false
 hidden: true
 metadata:
