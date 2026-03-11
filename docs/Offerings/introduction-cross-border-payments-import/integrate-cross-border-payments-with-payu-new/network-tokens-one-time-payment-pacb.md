@@ -2,7 +2,7 @@
 title: Saved Cards with a Network Token Integration
 excerpt: Process a saved card transactions via PayU (using a network token)
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
