@@ -23,6 +23,17 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
   <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
     Reconcile and validate transaction details using verification methods.
   </Card>
+
+<Card title="4. Update Invoice ID (Conditional)" href="#step-4-update-invoice-id-conditional">
+  Update the invoice ID associated with the transaction
+
+  <br />
+</Card>
+
+<Card title="5. Upload the Invoices / Shipping Document (Conditional)" href="#step-3-upload-the-invoices-optional">
+  Upload invoice documents related to the completed transaction
+</Card>
+
 </Cards>
 
 <Callout icon="📘" theme="info">
@@ -476,4 +487,12 @@ Upon receiving the response, PayU recommends performing a reconciliation step to
 
 <Verify_Payment_Tabs />
 
-<br />
+## Step 4: Update Invoice ID [Conditional]
+
+<Update_Invoice_ID />
+
+***
+
+## Step 5: Upload the Invoices [Optional]
+
+<Upload_Invoices />
