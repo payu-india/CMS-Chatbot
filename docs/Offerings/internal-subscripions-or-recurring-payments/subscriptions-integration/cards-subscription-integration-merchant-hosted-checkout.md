@@ -3,6 +3,10 @@ title: 'Cards Subscriptions Integration - Merchant Hosted Checkout '
 deprecated: false
 hidden: true
 metadata:
+  title: Cross-Border Payments  - Card Subscriptions with Merchant-Hosted Checkout
+  description: >-
+    Cross-Border Payments  - Card Subscriptions with Merchant-Hosted Checkout.
+    SI on cards integration.
   robots: index
 ---
 PayU's Card Subscription Integration using the Merchant-Hosted Checkout method enables businesses to set up automated recurring payments through credit and debit cards with enhanced control over the payment flow. This section covers the complete process from capturing initial customer consent and mandate registration to executing seamless recurring transactions without requiring additional 2-factor authentication. 
