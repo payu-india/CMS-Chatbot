@@ -24,16 +24,15 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
     Reconcile and validate transaction details using verification methods.
   </Card>
 
-<Card title="4. Update Invoice ID (Conditional)" href="#step-4-update-invoice-id-conditional">
-  Update the invoice ID associated with the transaction
+  <Card title="4. Update Invoice ID (Conditional)" href="#step-4-update-invoice-id-conditional">
+    Update the invoice ID associated with the transaction
 
-  <br />
-</Card>
+    <br />
+  </Card>
 
-<Card title="5. Upload the Invoices / Shipping Document (Conditional)" href="#step-3-upload-the-invoices-optional">
-  Upload invoice documents related to the completed transaction
-</Card>
-
+  <Card title="5. Upload the Invoices / Shipping Document (Conditional)" href="#step-5-upload-the-invoices-optional">
+    Upload invoice documents related to the completed transaction
+  </Card>
 </Cards>
 
 <Callout icon="📘" theme="info">
@@ -426,7 +425,7 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
     -d "key=JPM7Fg&txnid=payuTestTxn12345&amount=100.00&productinfo=iPhone&firstname=Ashish&lastname=Kumar&email=test@gmail.com&phone=9876543210&zipcode=110075&surl=https://example.com/success&furl=https://example.com/failure&udf1=AELPR1234E&udf3=02-02-1980&udf4=XYZ Pvt. Ltd.&udf5=INV123456&buyer_type_business=1&udf_params={\"udf7\":\"<IE_CODE>\",\"udf8\":\"<AWB Num>\"}&hash=<generated_hash>"
   ```
 </Accordion>
-
+***
 ## Step 2: Check Response from PayU
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded). You must implement the reverse hashing as described in the following:
@@ -480,13 +479,13 @@ The response URL returned from PayU is in the form URL format (application/x-www
   )
   ```
 </Accordion>
-
+***
 ## Step 3: Verify the Payment
 
 Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
 
 <Verify_Payment_Tabs />
-
+***
 ## Step 4: Update Invoice ID [Conditional]
 
 <Update_Invoice_ID />
