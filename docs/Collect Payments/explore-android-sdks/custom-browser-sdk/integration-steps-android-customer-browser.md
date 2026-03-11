@@ -5,7 +5,9 @@ deprecated: false
 hidden: false
 metadata:
   title: Integration Steps - Android Customer Browser
-  description: ''
+  description: >-
+    Step-by-step guide to integrate Android Custom Browser SDK with PayU. Covers
+    build.gradle, test credentials, and go-live checklist.
   keywords:
     - Integration Steps - Android Customer Browser
     - Android Customer Browser Integration Steps
