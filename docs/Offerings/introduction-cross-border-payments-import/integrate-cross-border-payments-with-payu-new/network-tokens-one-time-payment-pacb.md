@@ -1,5 +1,5 @@
 ---
-title: '[S2S] Saved Cards with a Network Token Integration'
+title: Saved Cards with a Network Token Integration
 excerpt: Process a saved card transactions via PayU (using a network token)
 deprecated: false
 hidden: true
