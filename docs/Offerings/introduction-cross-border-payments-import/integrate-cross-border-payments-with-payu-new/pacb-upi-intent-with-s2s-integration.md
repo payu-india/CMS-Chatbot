@@ -1,11 +1,11 @@
 ---
-title: '[S2S]UPI Intent with S2S Integration - PACB'
+title: '[S2S] UPI Intent with S2S Integration'
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-The following steps allow you to integrate the server-to-server UPI intent:
+The following steps allow you to integrate the server-to-server UPI (United Payments Interface) intent:
 
 <Cards columns={2}>
   <Card title="1. Initiate payment" href="https://docs.payu.in/docs/upi-intent-server-to-server#step-1-initiate-payment">
