@@ -4,8 +4,15 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: UPI Bolt UI SDK integration
+  description: >-
+    Integrate UPI Bolt UI SDK on Android with native flow. Steps for PayUBolt
+    SDK setup and UPI intent/collect.
+  keywords:
+    - UPI Bolt UI SDK integration
+    - PayUBolt Android
+    - UPI native integration Android
+    - PayU Bolt SDK
   robots: index
 next:
   description: ''
