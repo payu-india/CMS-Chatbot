@@ -35,7 +35,7 @@ This part of the document includes the steps-to-integrate for the following paym
   * [ UPI Intent with S2S Integration](doc:pacb-upi-intent-with-s2s-integration)
 
 <Callout icon="📘" theme="info">
-  **Note:** You have perform the procedure in [ Save Card Transactions with PayU Tokenization](doc:plain-cards-with-tokenization-integration-one-time-pacb) and then use the [Saved Cards with a PayU Token Integration](doc:cards-with-payu-tokenization-one-time-pacb) for collecting payments.
+  **Note:** You have to perform the procedure in [ Save Card Transactions with PayU Tokenization](doc:plain-cards-with-tokenization-integration-one-time-pacb) and then use the [Saved Cards with a PayU Token Integration](doc:cards-with-payu-tokenization-one-time-pacb) for collecting payments using PayU Token.
 </Callout>
 
 The cross-border payment integration for PayU involves the following steps for the various payment methods in general:
