@@ -11,6 +11,7 @@ metadata:
     outlines the process of initiating payments and verifying payment status for
     secure and seamless transactions.
   keywords:
+    - EFTNET integration
     - EFT integration
     - NEFT integration
     - RTGS integration
