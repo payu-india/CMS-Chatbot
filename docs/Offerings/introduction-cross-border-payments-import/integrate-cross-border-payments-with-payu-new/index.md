@@ -64,233 +64,45 @@ The following parameters (mandatory) must be posted using any of the following W
   Experience the end-to-end **PayU Hosted > Cross-Border Payments** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                                          <style>
-                                          .tooltip-btn {
-                                              position: relative;
-                                              background-color: #4CAF50;
-                                              color: white;
-                                              padding: 10px 20px;
-                                              border: none;
-                                              border-radius: 5px;
-                                              cursor: pointer;
-                                              font-weight: bold; /* Added this line */
-                                          }
-                                          .tooltip-btn:hover::after {
-                                              content: attr(data-tooltip);
-                                              position: absolute;
-                                              bottom: 125%;
-                                              left: 50%;
-                                              transform: translateX(-50%);
-                                              background-color: #333;
-                                              color: white;
-                                              padding: 5px 10px;
-                                              border-radius: 4px;
-                                              white-space: nowrap;
-                                              font-size: 12px;
-                                              z-index: 1;
-                                          }
-                                          </style>
+                                            <style>
+                                            .tooltip-btn {
+                                                position: relative;
+                                                background-color: #4CAF50;
+                                                color: white;
+                                                padding: 10px 20px;
+                                                border: none;
+                                                border-radius: 5px;
+                                                cursor: pointer;
+                                                font-weight: bold; /* Added this line */
+                                            }
+                                            .tooltip-btn:hover::after {
+                                                content: attr(data-tooltip);
+                                                position: absolute;
+                                                bottom: 125%;
+                                                left: 50%;
+                                                transform: translateX(-50%);
+                                                background-color: #333;
+                                                color: white;
+                                                padding: 5px 10px;
+                                                border-radius: 4px;
+                                                white-space: nowrap;
+                                                font-size: 12px;
+                                                z-index: 1;
+                                            }
+                                            </style>
 
-                                          <button onclick="window.open('https://payu.in/integrationlab/crossborder', '_blank')" 
-                                                  class="tooltip-btn" 
-                                                  data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
-                                               Experience the flow and get the code
-                                          </button>
+                                            <button onclick="window.open('https://payu.in/integrationlab/crossborder', '_blank')" 
+                                                    class="tooltip-btn" 
+                                                    data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
+                                                 Experience the flow and get the code
+                                            </button>
   `}</HTMLBlock>
 </Callout>
-
+***
 ## Step 2: Update Invoice ID [Conditional]
 
-If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter.
-
-<GENERALAPIsEnvironment />
-
-<Accordion title="Sample request other then UPI AutoPay" icon="fa-code">
-  ```
-    curl --location --globoff 'https://test.payu.in/merchant/postservice.php?form=2' \
-    --form 'key="PRiQvJ"' \
-    --form 'command="udf_update"' \
-    --form 'var1="my_order_642"' \
-    --form 'var2="AAAPZ1234C"' \
-    --form 'var4="22/08/1972"' \
-    --form 'var5="SellerName"' \
-    --form 'var6="INV000000005"' \
-    --form 'hash="{{hash}}"'
-  ```
-</Accordion>
-
-
-<Accordion title="Sample request for UPI AutoPay" icon="fa-code">
-  ```
-  curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
-  --form 'key="PRiQvJ"' \
-  --form 'command="udf_update"' \
-  --form 'var1="my_order_642"' \
-  --form 'var2="AAAPZ1234C||22-08-1972"' \
-  --form 'var4="INV_121312||SellerName"' \
-  --form 'hash="{{hash}}"'
-  ```
-</Accordion>
-
-<Accordion title="Sample response" icon="fa-reply">
-  ### Success Scenario
-
-  * If successfully updated for cards or Net Banking
-
-  ```JSON
-  {
-      "status": "UDF values updated",
-      "transaction_id": "my_order_64240",
-      "udf1": "AAAPZ1234C",
-      "udf2": "",
-      "udf3": "22/08/1972",
-      "udf4": "SellerName",
-      "udf5": "INV000000005"
-  }
-  ```
-
-  * If successfully updated for UPI autopay:
-
-  ```JSON
-  {
-    "status": "UDF values updated",
-    "transaction_id": "my_order_64240",
-    "udf1": "AAAPZ1234C||22-08-1972",
-    "udf2": "",
-    "udf3": "INV_121312||SellerName"
-  }
-  ```
-
-
-  ### Failure Scenarios
-
-  * If the transaction ID is empty
-
-  ```JSON
-  ( 
-  [status] => 0 
-  [msg] => Parameter missing 
-  ) 
-  ```
-
-  * If the transaction ID is invalid
-
-  ```JSON
-  ( 
-  [status] => 0 
-  [msg] => Invalid TXN ID 
-  ) 
-  ```
-
-  * If Hash is invalid:
-
-  ```JSON
-  {
-      "status": 0,
-      "msg": "Invalid Hash."
-  }
-  ```
-
-  * If the merchant is not enabled for UDF updates:
-
-  ```JSON
-  {
-    "status": "0",
-    "msg": "Update not allowed on provided Field"
-  }
-  ```
-
-  * If no data found in the transaction ID:
-
-  ```JSON
-  {
-    "status": "0",
-    "msg": "No Data Found for txnid: 3424"
-  }
-  ```
-
-  * If the merchant is inactive:
-
-  ```JSON
-  {
-    "msg": "Merchant is not authorized to use PayU API",
-    "status": 0
-  }
-  ```
-</Accordion>
-
-<br />
+<Update_Invoice_ID/>
+***
 
 ## Step 3: Upload the Invoices [Optional]
 
-The invoices / Airway Bill can be uploaded using the **Invoice Upload API API**. AWB details are mandatory for Goods transactions. Invoice copies can be uploaded optionally.
-
-<GENERALAPIsEnvironment />
-
-<Accordion title="Sample request" icon="fa-code">
-  ```curl
-  curl --location -g --request POST '{{baseUrl}}/merchant/postservice?form=2' \ 
-  --form 'key="{{merchantKey}}"' \ 
-  --form 'command="opgsp_upload_invoice_awb"' \ 
-  --form 'var1="403993715525825059"' \  - PayuId 
-  --form 'var2="TestInv0001234568"' \ - invoice Id 
-  --form 'var3="Invoice"' \ - type of upload - Invoice/AWB 
-  --form 'file=@"/path/to/file"' \ - file 
-  --form 'hash="{{hash}}"' 
-  ```
-</Accordion>
-
-<Accordion title="Sample response" icon="fa-reply">
-  <Accordion title="Success Scenario" icon="fa-check-circle">
-    * When a file is uploaded successfully:
-
-    ```plaintext
-    {
-    "responseCode":"00",
-    "responseMsg":"File Uploaded Successfully"
-    }
-    ```
-  </Accordion>
-
-  <Accordion title="Failure Scenarios" icon="fa-exclamation-triangle">
-    * When there is an error in uploading the file:
-
-    ```plaintext
-    { 
-    "responseCode": "103", 
-    "responseMsg": "Failed to Upload" 
-    } 
-    ```
-
-    * When the file format is not supported:
-
-    ```plaintext
-    { 
-    "responseCode": "105", 
-    "responseMsg": "Not an PACB merchant, contact KAM" 
-    } 
-    ```
-
-    * When the payuid is invalid:
-
-    ```plaintext
-    {
-    "responseCode":"107",
-    "responseMsg":"The PayuID in request is invalid"
-    }
-    ```
-
-    * When a mandatory field is missing:
-
-    ```plaintext
-    {
-    "responseCode":"109",
-    "responseMsg":"All fields are mandatory, please check!"
-    } 
-    ```
-  </Accordion>
-</Accordion>
-
-<Accordion title="Response Code and Description" icon="fa-list">
-  Refer to [Response Code and Description - Invoice Upload API](ref:response-code-and-description-invoice-upload-api).
-</Accordion>
