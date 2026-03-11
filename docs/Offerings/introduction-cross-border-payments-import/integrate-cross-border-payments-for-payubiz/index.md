@@ -71,7 +71,6 @@ The following parameters (mandatory) must be posted using any of the following W
   * [NetBanking Integration](https://docs.payu.in/docs/netbanking-integration-merchant-hosted-integration-cb)
   * Cards
     * [Plain Cards](https://docs.payu.in/docs/plain-cards-integration-one-time-pacb)
-    * [Plain Cards with Tokenization](https://docs.payu.in/docs/plain-cards-with-tokenization-integration-one-time-pacb)
     * [Cards with PayU Tokenization](https://docs.payu.in/docs/cards-with-payu-tokenization-one-time-pacb)
     * [Network Tokens Integration](https://docs.payu.in/docs/network-tokens-one-time-payment-pacb)
   * [UPI Intent with S2S Integration ](https://docs.payu.in/docs/pacb-upi-intent-with-s2s-integration)
@@ -80,38 +79,38 @@ The following parameters (mandatory) must be posted using any of the following W
   Experience the end-to-end **PayU Hosted > Cross-Border Payments** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                                                    <style>
-                                                    .tooltip-btn {
-                                                        position: relative;
-                                                        background-color: #4CAF50;
-                                                        color: white;
-                                                        padding: 10px 20px;
-                                                        border: none;
-                                                        border-radius: 5px;
-                                                        cursor: pointer;
-                                                        font-weight: bold; /* Added this line */
-                                                    }
-                                                    .tooltip-btn:hover::after {
-                                                        content: attr(data-tooltip);
-                                                        position: absolute;
-                                                        bottom: 125%;
-                                                        left: 50%;
-                                                        transform: translateX(-50%);
-                                                        background-color: #333;
-                                                        color: white;
-                                                        padding: 5px 10px;
-                                                        border-radius: 4px;
-                                                        white-space: nowrap;
-                                                        font-size: 12px;
-                                                        z-index: 1;
-                                                    }
-                                                    </style>
+                                                      <style>
+                                                      .tooltip-btn {
+                                                          position: relative;
+                                                          background-color: #4CAF50;
+                                                          color: white;
+                                                          padding: 10px 20px;
+                                                          border: none;
+                                                          border-radius: 5px;
+                                                          cursor: pointer;
+                                                          font-weight: bold; /* Added this line */
+                                                      }
+                                                      .tooltip-btn:hover::after {
+                                                          content: attr(data-tooltip);
+                                                          position: absolute;
+                                                          bottom: 125%;
+                                                          left: 50%;
+                                                          transform: translateX(-50%);
+                                                          background-color: #333;
+                                                          color: white;
+                                                          padding: 5px 10px;
+                                                          border-radius: 4px;
+                                                          white-space: nowrap;
+                                                          font-size: 12px;
+                                                          z-index: 1;
+                                                      }
+                                                      </style>
 
-                                                    <button onclick="window.open('https://payu.in/integrationlab/crossborder', '_blank')" 
-                                                            class="tooltip-btn" 
-                                                            data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
-                                                         Experience the flow and get the code
-                                                    </button>
+                                                      <button onclick="window.open('https://payu.in/integrationlab/crossborder', '_blank')" 
+                                                              class="tooltip-btn" 
+                                                              data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
+                                                           Experience the flow and get the code
+                                                      </button>
   `}</HTMLBlock>
 </Callout>
 
