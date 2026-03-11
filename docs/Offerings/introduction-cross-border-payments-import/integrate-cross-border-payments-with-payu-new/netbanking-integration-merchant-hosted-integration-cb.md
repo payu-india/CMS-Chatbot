@@ -7,25 +7,28 @@ metadata:
 ---
 This section explains how to integrate NetBanking payments for cross-border transactions using the Server-to-Server (S2S) flow.
 
-<Cards columns={2}>
+<Cards columns={3}>
   <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
     Post the required parameters to PayU for plain card payment
-
-    <br />
   </Card>
 
   <Card title="2. Handle Initiate Response from PayU" href="#step-2-handle-the-initiate-response-from-payu">
     Check and handle the response received from PayU
-
-    <br />
   </Card>
 
   <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
     Verify the payment status and ensure transaction completion
   </Card>
+
+  <Card title="4. Update Invoice ID (Conditional)" href="#step-4-update-invoice-id-conditional">
+    Update the invoice ID associated with the transaction
+  </Card>
+
+  <Card title="5. Upload the Invoices / Shipping Document (Conditional)" href="#step-5-upload-the-invoices-optional">
+    Upload invoice documents related to the completed transaction
+  </Card>
 </Cards>
 
-<CB_Additional_Steps />
 
 ***
 
@@ -117,8 +120,6 @@ Post the payment parameters to PayU's `_payment` API endpoint to initiate a plai
   ```
 </Accordion>
 
-<br />
-
 ***
 
 ## Step 2: Handle the Initiate Response from PayU
@@ -187,7 +188,7 @@ After posting the payment request, PayU returns a response containing transactio
   **Redirect** the customer using the result.acsTemplate(base64encoded) to their bank's page for authentication. The final response will be posted to surl/furl and the configured Webhook.
 </Callout>
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Reference:** PayU recommends you to use PayU Hash Verification Tool to verify the reverse hashing. For more information, refer to [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
 </Callout>
 
@@ -201,4 +202,13 @@ After posting the payment request, PayU returns a response containing transactio
 
 If any error message is displayed with an error code, refer to [Error Codes](ref:error-codes) to understand the reason. For error codes during various transaction stages, refer to [Transaction Stages - Error References](ref:transaction-stages-error-references-on-field7-field8).
 
-<br />
+***
+## Step 4: Update Invoice ID [Conditional]
+
+<Update_Invoice_ID />
+
+***
+
+## Step 5: Upload the Invoices [Optional]
+
+<Upload_Invoices />
