@@ -29,7 +29,6 @@ This section explains how to integrate NetBanking payments for cross-border tran
   </Card>
 </Cards>
 
-
 ***
 
 ## Step 1: Post Parameters to PayU
@@ -196,13 +195,8 @@ After posting the payment request, PayU returns a response containing transactio
 
 <PACB_Verify_Payment />
 
-<br />
-
-## Error Handling
-
-If any error message is displayed with an error code, refer to [Error Codes](ref:error-codes) to understand the reason. For error codes during various transaction stages, refer to [Transaction Stages - Error References](ref:transaction-stages-error-references-on-field7-field8).
-
 ***
+
 ## Step 4: Update Invoice ID [Conditional]
 
 <Update_Invoice_ID />
@@ -212,3 +206,9 @@ If any error message is displayed with an error code, refer to [Error Codes](ref
 ## Step 5: Upload the Invoices [Optional]
 
 <Upload_Invoices />
+
+***
+
+## Error Handling
+
+If any error message is displayed with an error code, refer to [Error Codes](ref:error-codes) to understand the reason. For error codes during various transaction stages, refer to [Transaction Stages - Error References](ref:transaction-stages-error-references-on-field7-field8).
