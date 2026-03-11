@@ -1,9 +1,9 @@
 ---
 title: 'Integrate Cross-Border Payments with PayU '
 deprecated: false
-hidden: true
+hidden: false
 metadata:
-  title: Integrate Cross-Border Payments for PayU Biz
+  title: Integrate Cross-Border Payments for PayU
   description: ' Learn how to integrate cross-border payments using PayUBiz. This guide provides detailed instructions, request parameters, and sample responses for seamless international transactions.'
   keywords:
     - Integrate Import for PayUBiz
