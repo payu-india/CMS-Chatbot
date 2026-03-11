@@ -3,6 +3,14 @@ title: 'UPI Subscriptions Integration - Merchant Hosted Checkout '
 deprecated: false
 hidden: true
 metadata:
+  title: UPI Subscriptions Integration for Merchant Hosted
+  description: >-
+    UPI subscriptions with merchant-hosted checkout. Recurring UPI Autopay
+    integration.
+  keywords:
+    - UPI subscriptions integration
+    - recurring UPI merchant hosted
+    - UPI Autopay integration
   robots: index
 ---
 This section describes step-by-step procedure to implement UPI Consent Transaction (SI mandate registration) for recurring UPI payments using PayU's Server-to-Server (S2S) integration with the Legacy Decoupled flow.
