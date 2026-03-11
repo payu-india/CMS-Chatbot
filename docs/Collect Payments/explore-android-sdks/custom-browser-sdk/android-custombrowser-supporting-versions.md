@@ -1,8 +1,5 @@
 ---
 title: Supporting Versions below Lolipop
-excerpt: >-
-  This page describes changes that need to be made to support the versions below
-  the Android Lollipop version (Android version 21).
 deprecated: false
 hidden: false
 metadata:
@@ -12,6 +9,8 @@ metadata:
 next:
   description: ''
 ---
+This section describes changes that need to be made to support the versions below the Android Lollipop version (Android version 21).
+
 ## Features
 
 * TLS v1.1+ Support for API levels 16-19 is done via chrome custom tabs.
