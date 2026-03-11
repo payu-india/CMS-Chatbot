@@ -3,7 +3,12 @@ name: Update_Invoice_ID
 ---
 If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter.
 
-<GENERALAPIsEnvironment />
+**Environment**
+
+|                        |                                                          |
+| :--------------------- | :------------------------------------------------------- |
+| Test Environment       | `<https://test.payu.in/merchant/postservice.php?form=2>` |
+| Production Environment | `<https://info.payu.in/merchant/postservice.php?form=2>` |
 
 <Accordion title="Sample request other then UPI AutoPay" icon="fa-code">
   ```
@@ -18,7 +23,6 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
     --form 'hash="{{hash}}"'
   ```
 </Accordion>
-
 
 <Accordion title="Sample request for UPI AutoPay" icon="fa-code">
   ```
@@ -60,7 +64,6 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
     "udf3": "INV_121312||SellerName"
   }
   ```
-
 
   ### Failure Scenarios
 
