@@ -98,4 +98,8 @@ The PayU Developer Guide underwent **comprehensive content restructuring and UX 
 * **Further Support Reduction**: Expanding comprehensive documentation coverage
 * **Developer Experience Excellence**: Establishing PayU as documentation standard
 
-<br />
+## Toqan Agents for PMs
+
+Before requesting devguide requirement to Devguide Content Team, the following Toqan.ai agent can be used by PMs to check if they are sharing all the necessary information to create Integration docs:
+
+ [https://work.toqan.ai/spaces/join/619a90d9-b276-439b-afc7-6e915ad9dc62](https://work.toqan.ai/spaces/join/619a90d9-b276-439b-afc7-6e915ad9dc62)
