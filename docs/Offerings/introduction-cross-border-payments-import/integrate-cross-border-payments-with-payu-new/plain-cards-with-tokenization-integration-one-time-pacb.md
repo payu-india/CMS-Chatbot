@@ -20,6 +20,7 @@ This section describes the steps to integrate credit / debit card payments with 
   <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
     Verify the payment status and ensure transaction completion
   </Card>
+
   <Card title="4. Update Invoice ID (Conditional)" href="#step-4-update-invoice-id-conditional">
     Update the invoice ID associated with the transaction
   </Card>
@@ -88,7 +89,7 @@ Post the payment parameters to PayU's `_payment` API endpoint with tokenization 
   | udf2 <br /> `optional`                                                                                            | `String` User-defined field for storing transaction-specific data. Character limit: 255.                                                                                                                        | Additional transaction data                                   |
   | udf3 <br />`optional but`<br />`recommended`<br />`for higher approval rate`                                      | `String` Date of Birth (DOB) of buyer in DD-MM-YYYY                                                                                                                                                             | 02-02-1980                                                    |
   | udf4 <br />`mandatory`<br />`for payment`<br />`aggregators`                                                      | `String` End merchant legal entity name. For UPI, this field should not be passed. Character limit: 255.                                                                                                        | XYZ Pvt. Ltd.                                                 |
-  | udf5 <br />`mandatory`<br />`for cross-border`<br />`payments`                                                    | `String` Contains invoice ID for the merchant. Character limit: 255.                                                                                                                                            | INV123456                                                     |
+  | udf5 <br />`mandatory`                                                    | `String` Contains invoice ID for the transaction. Invoice ID / number should be the ID present on the invoice issued to the customer. Character limit: 255.                                                                                                                                            | INV123456                                                     |
   | buyer\_type\_business<br /> `optional in`<br />`case of B2B`<br />`transaction for`<br /> `cross-border payments` | `Binary` To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0". <br />**Note**: This will be included in hash if posted (covered in next section). | 1                                                             |
   | udf\_params <br /> `optional`                                                                                     | `String JSON`UDF7 value to capture "Import or Export Code" of the buyerUDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports)                                                 | \{"udf7":"0100000029",<br />"udf8":"99953729071"}             |
   | hash <br />`mandatory`                                                                                            | `String` This must include the generated hash. For more information, refer to Hash Generation below this table.                                                                                                 | Your Generated Hash                                           |
@@ -160,6 +161,7 @@ Post the payment parameters to PayU's `_payment` API endpoint with tokenization 
 <PACB_Verify_Payment />
 
 <br />
+
 ***
 
 ## Step 4: Update Invoice ID [Conditional]
@@ -171,7 +173,9 @@ Post the payment parameters to PayU's `_payment` API endpoint with tokenization 
 ## Step 5: Upload the Invoices [Optional]
 
 <Upload_Invoices />
+
 ***
+
 ## Error Handling
 
 If any error message is displayed with an error code, refer to [Error Codes](ref:error-codes) to understand the reason. For error codes during various transaction stages, refer to [Transaction Stages - Error References](ref:transaction-stages-error-references-on-field7-field8).
