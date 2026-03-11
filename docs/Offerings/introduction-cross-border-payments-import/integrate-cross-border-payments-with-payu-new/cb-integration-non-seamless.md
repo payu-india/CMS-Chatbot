@@ -329,11 +329,11 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
 
       <tr>
         <td style={{ textAlign: "left" }}>
-          udf5<br /><code>mandatory<br /> for cross-border<br /> payments</code>
+          udf5<br /><code>mandatory</code>
         </td>
 
         <td style={{ textAlign: "left" }}>
-          <code>String</code> Contains invoice ID for the merchant. Character limit: 255.
+          <code>String</code> Contains invoice ID for the transaction. Invoice ID / number should be the ID present on the invoice issued to the customer. Character limit: 255.
         </td>
 
         <td style={{ textAlign: "left" }}>
@@ -404,9 +404,8 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
   ```
 
   <Callout icon="📘" theme="info">
-  **Reference:** PayU recommends you to use PayU Hash Verification Tool to verify the hashing. For more information, refer to [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
-</Callout>
-    
+    **Reference:** PayU recommends you to use PayU Hash Verification Tool to verify the hashing. For more information, refer to [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
+  </Callout>
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
