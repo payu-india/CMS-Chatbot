@@ -5,6 +5,14 @@ hidden: true
 link:
   new_tab: false
 metadata:
+  title: PayU Hosted subscription integration for Cross-Border Payments
+  description: >-
+    PayU Hosted subscription integration for Cross-Border Payments. Recurring
+    payments with hosted checkout.
+  keywords:
+    - Cross-Border Payments PayU hosted subscription
+    - PayU hosted subscription integration for CB
+    - recurring payment hosted checkout
   robots: index
 ---
 This section describes steps to integrate Subscriptions using the PayU Hosted Checkout integration.
