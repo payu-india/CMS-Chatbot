@@ -10,6 +10,11 @@ metadata:
     transactions using PayU's Merchant Hosted Checkout integration. This guide
     outlines the process of initiating payments and verifying payment status for
     secure and seamless transactions.
+  keywords:
+    - EFT integration
+    - NEFT integration
+    - RTGS integration
+    - bank transfer
   robots: index
 next:
   description: ''
