@@ -75,7 +75,7 @@ Post the payment parameters to PayU's `_payment` API endpoint with the stored Pa
   | furl<br />`mandatory`                                                                                             | `String`<br />The Failure URL - page PayU will redirect to if the transaction fails.                                                                                                                            | `https://example.com/failure`                                 |
   | pg<br />`mandatory`                                                                                               | `String`<br />Payment gateway type. For cards, use `CC`.                                                                                                                                                        | `CC`                                                          |
   | bankcode<br />`mandatory`                                                                                         | `String`<br />Bank code for the payment option. Use `CC` for credit cards, `DC` for debit cards.                                                                                                                | `CC`                                                          |
-  | ccvv<br />`optional`                                                                                             | `String`<br />3-digit CVV (4 digits for AMEX). Customer must enter CVV for token transactions.                                                                                                                  | `123`                                                         |
+  | ccvv<br />`optional`                                                                                              | `String`<br />3-digit CVV (4 digits for AMEX). Customer must enter CVV for token transactions.                                                                                                                  | `123`                                                         |
   | txn\_s2s\_flow<br />`mandatory`                                                                                   | `Integer`<br />Parameter to enable S2S flow. Set to `4` for S2S4 flow.                                                                                                                                          | `4`                                                           |
   | s2s\_client\_ip<br />`mandatory`                                                                                  | `String`<br />Client IP captured by merchant in S2S flow. Required for fraud detection.                                                                                                                         | `10.200.12.12`                                                |
   | \\\| s2s\_device\_info<br />`mandatory`                                                                           | `String`<br />User Agent captured by merchant in S2S flow.                                                                                                                                                      | `Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0` |
@@ -226,8 +226,17 @@ Post the payment parameters to PayU's `_payment` API endpoint with the stored Pa
 
 <PACB_Verify_Payment />
 
-<br />
+***
 
+## Step 4: Update Invoice ID [Conditional]
+
+<Update_Invoice_ID />
+
+***
+
+## Step 5: Upload the Invoices [Optional]
+
+<Upload_Invoices />
 ## Error Handling
 
 If any error message is displayed with an error code, refer to [Error Codes](ref:error-codes) to understand the reason. For error codes during various transaction stages, refer to [Transaction Stages - Error References](ref:transaction-stages-error-references-on-field7-field8).
