@@ -1,7 +1,7 @@
 ---
 title: UPI Intent with S2S Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
