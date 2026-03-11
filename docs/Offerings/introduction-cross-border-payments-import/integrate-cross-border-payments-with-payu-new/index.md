@@ -34,6 +34,10 @@ This part of the document includes the steps-to-integrate for the following paym
     * [Saved Cards with a Network Token Integration](doc:network-tokens-one-time-payment-pacb)
   * [ UPI Intent with S2S Integration](doc:pacb-upi-intent-with-s2s-integration)
 
+<Callout icon="📘" theme="info">
+  **Note:** You have perform the procedure in [ Save Card Transactions with PayU Tokenization](doc:plain-cards-with-tokenization-integration-one-time-pacb) and then use the [Saved Cards with a PayU Token Integration](doc:cards-with-payu-tokenization-one-time-pacb) for collecting payments.
+</Callout>
+
 The cross-border payment integration for PayU involves the following steps for the various payment methods in general:
 
 <Cards columns={3}>
@@ -76,38 +80,38 @@ The following parameters (mandatory) must be posted using any of the following W
   Experience the end-to-end **PayU Hosted > Cross-Border Payments** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                                              <style>
-                                              .tooltip-btn {
-                                                  position: relative;
-                                                  background-color: #4CAF50;
-                                                  color: white;
-                                                  padding: 10px 20px;
-                                                  border: none;
-                                                  border-radius: 5px;
-                                                  cursor: pointer;
-                                                  font-weight: bold; /* Added this line */
-                                              }
-                                              .tooltip-btn:hover::after {
-                                                  content: attr(data-tooltip);
-                                                  position: absolute;
-                                                  bottom: 125%;
-                                                  left: 50%;
-                                                  transform: translateX(-50%);
-                                                  background-color: #333;
-                                                  color: white;
-                                                  padding: 5px 10px;
-                                                  border-radius: 4px;
-                                                  white-space: nowrap;
-                                                  font-size: 12px;
-                                                  z-index: 1;
-                                              }
-                                              </style>
+                                                <style>
+                                                .tooltip-btn {
+                                                    position: relative;
+                                                    background-color: #4CAF50;
+                                                    color: white;
+                                                    padding: 10px 20px;
+                                                    border: none;
+                                                    border-radius: 5px;
+                                                    cursor: pointer;
+                                                    font-weight: bold; /* Added this line */
+                                                }
+                                                .tooltip-btn:hover::after {
+                                                    content: attr(data-tooltip);
+                                                    position: absolute;
+                                                    bottom: 125%;
+                                                    left: 50%;
+                                                    transform: translateX(-50%);
+                                                    background-color: #333;
+                                                    color: white;
+                                                    padding: 5px 10px;
+                                                    border-radius: 4px;
+                                                    white-space: nowrap;
+                                                    font-size: 12px;
+                                                    z-index: 1;
+                                                }
+                                                </style>
 
-                                              <button onclick="window.open('https://payu.in/integrationlab/crossborder', '_blank')" 
-                                                      class="tooltip-btn" 
-                                                      data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
-                                                   Experience the flow and get the code
-                                              </button>
+                                                <button onclick="window.open('https://payu.in/integrationlab/crossborder', '_blank')" 
+                                                        class="tooltip-btn" 
+                                                        data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
+                                                     Experience the flow and get the code
+                                                </button>
   `}</HTMLBlock>
 </Callout>
 
