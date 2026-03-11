@@ -25,19 +25,19 @@ metadata:
 The cross-border payment integration for PayU involves the following steps:
 
 <Cards columns={3}>
-  <Card title="1. Make Payment Using Web Checkout Integration" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-1-make-payment-using-web-checkout-integration">
+  <Card title="1. Make Payment Using Web Checkout Integration" href="step-1-make-payment-using-web-checkout-integration">
     Complete the payment process using PayU's web checkout integration
 
     <br />
   </Card>
 
-  <Card title="2. Update Invoice ID (Conditional)" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-2-update-invoice-id-optional">
+  <Card title="2. Update Invoice ID (Conditional)" href="#step-2-update-invoice-id-optional">
     Optionally update the invoice ID associated with the transaction
 
     <br />
   </Card>
 
-  <Card title="3. Upload the Invoices / Shipping Document (Conditional)" href="https://docs.payu.in/docs/payu-hosted-checkout-integration-with-offers#step-3-upload-the-invoices">
+  <Card title="3. Upload the Invoices / Shipping Document (Conditional)" href="#step-3-upload-the-invoices">
     Upload invoice documents related to the completed transaction
   </Card>
 </Cards>
@@ -64,45 +64,49 @@ The following parameters (mandatory) must be posted using any of the following W
   Experience the end-to-end **PayU Hosted > Cross-Border Payments** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                                            <style>
-                                            .tooltip-btn {
-                                                position: relative;
-                                                background-color: #4CAF50;
-                                                color: white;
-                                                padding: 10px 20px;
-                                                border: none;
-                                                border-radius: 5px;
-                                                cursor: pointer;
-                                                font-weight: bold; /* Added this line */
-                                            }
-                                            .tooltip-btn:hover::after {
-                                                content: attr(data-tooltip);
-                                                position: absolute;
-                                                bottom: 125%;
-                                                left: 50%;
-                                                transform: translateX(-50%);
-                                                background-color: #333;
-                                                color: white;
-                                                padding: 5px 10px;
-                                                border-radius: 4px;
-                                                white-space: nowrap;
-                                                font-size: 12px;
-                                                z-index: 1;
-                                            }
-                                            </style>
+                                              <style>
+                                              .tooltip-btn {
+                                                  position: relative;
+                                                  background-color: #4CAF50;
+                                                  color: white;
+                                                  padding: 10px 20px;
+                                                  border: none;
+                                                  border-radius: 5px;
+                                                  cursor: pointer;
+                                                  font-weight: bold; /* Added this line */
+                                              }
+                                              .tooltip-btn:hover::after {
+                                                  content: attr(data-tooltip);
+                                                  position: absolute;
+                                                  bottom: 125%;
+                                                  left: 50%;
+                                                  transform: translateX(-50%);
+                                                  background-color: #333;
+                                                  color: white;
+                                                  padding: 5px 10px;
+                                                  border-radius: 4px;
+                                                  white-space: nowrap;
+                                                  font-size: 12px;
+                                                  z-index: 1;
+                                              }
+                                              </style>
 
-                                            <button onclick="window.open('https://payu.in/integrationlab/crossborder', '_blank')" 
-                                                    class="tooltip-btn" 
-                                                    data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
-                                                 Experience the flow and get the code
-                                            </button>
+                                              <button onclick="window.open('https://payu.in/integrationlab/crossborder', '_blank')" 
+                                                      class="tooltip-btn" 
+                                                      data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
+                                                   Experience the flow and get the code
+                                              </button>
   `}</HTMLBlock>
 </Callout>
+
 ***
+
 ## Step 2: Update Invoice ID [Conditional]
 
-<Update_Invoice_ID/>
+<Update_Invoice_ID />
+
 ***
 
 ## Step 3: Upload the Invoices [Optional]
-<Upload_Invoices/>
+
+<Upload_Invoices />
