@@ -42,7 +42,6 @@ The cross-border payment integration for PayU involves the following steps:
   </Card>
 </Cards>
 
-
 <Callout icon="📘" theme="info">
   **Reference**: After completing the above steps, you update the invoice, as in [Integrate Cross Border Payments  ](doc:integrate-cross-border-payments-with-payu-new)>  <Anchor label="Step 2: Update Invoice ID" target="_blank" href="doc:integrate-cross-border-payments-with-payu-new#step-2-update-invoice-id-conditional">Step 2: Update Invoice ID</Anchor>
 </Callout>
@@ -65,38 +64,38 @@ The following parameters (mandatory) must be posted using any of the following W
   Experience the end-to-end **PayU Hosted > Cross-Border Payments** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                                        <style>
-                                        .tooltip-btn {
-                                            position: relative;
-                                            background-color: #4CAF50;
-                                            color: white;
-                                            padding: 10px 20px;
-                                            border: none;
-                                            border-radius: 5px;
-                                            cursor: pointer;
-                                            font-weight: bold; /* Added this line */
-                                        }
-                                        .tooltip-btn:hover::after {
-                                            content: attr(data-tooltip);
-                                            position: absolute;
-                                            bottom: 125%;
-                                            left: 50%;
-                                            transform: translateX(-50%);
-                                            background-color: #333;
-                                            color: white;
-                                            padding: 5px 10px;
-                                            border-radius: 4px;
-                                            white-space: nowrap;
-                                            font-size: 12px;
-                                            z-index: 1;
-                                        }
-                                        </style>
+                                          <style>
+                                          .tooltip-btn {
+                                              position: relative;
+                                              background-color: #4CAF50;
+                                              color: white;
+                                              padding: 10px 20px;
+                                              border: none;
+                                              border-radius: 5px;
+                                              cursor: pointer;
+                                              font-weight: bold; /* Added this line */
+                                          }
+                                          .tooltip-btn:hover::after {
+                                              content: attr(data-tooltip);
+                                              position: absolute;
+                                              bottom: 125%;
+                                              left: 50%;
+                                              transform: translateX(-50%);
+                                              background-color: #333;
+                                              color: white;
+                                              padding: 5px 10px;
+                                              border-radius: 4px;
+                                              white-space: nowrap;
+                                              font-size: 12px;
+                                              z-index: 1;
+                                          }
+                                          </style>
 
-                                        <button onclick="window.open('https://payu.in/integrationlab/crossborder', '_blank')" 
-                                                class="tooltip-btn" 
-                                                data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
-                                             Experience the flow and get the code
-                                        </button>
+                                          <button onclick="window.open('https://payu.in/integrationlab/crossborder', '_blank')" 
+                                                  class="tooltip-btn" 
+                                                  data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Offers - PayU Hosted Checkout with zero coding knowledge.">
+                                               Experience the flow and get the code
+                                          </button>
   `}</HTMLBlock>
 </Callout>
 
@@ -120,10 +119,23 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
   ```
 </Accordion>
 
+
+<Accordion title="Sample request for UPI AutoPay" icon="fa-code">
+  ```
+  curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
+  --form 'key="PRiQvJ"' \
+  --form 'command="udf_update"' \
+  --form 'var1="my_order_642"' \
+  --form 'var2="AAAPZ1234C||22-08-1972"' \
+  --form 'var4="INV_121312||SellerName"' \
+  --form 'hash="{{hash}}"'
+  ```
+</Accordion>
+
 <Accordion title="Sample response" icon="fa-reply">
   ### Success Scenario
 
-  * If successfully updated for cards
+  * If successfully updated for cards or Net Banking
 
   ```JSON
   {
@@ -136,6 +148,19 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
       "udf5": "INV000000005"
   }
   ```
+
+  * If successfully updated for UPI autopay:
+
+  ```JSON
+  {
+    "status": "UDF values updated",
+    "transaction_id": "my_order_64240",
+    "udf1": "AAAPZ1234C||22-08-1972",
+    "udf2": "",
+    "udf3": "INV_121312||SellerName"
+  }
+  ```
+
 
   ### Failure Scenarios
 
