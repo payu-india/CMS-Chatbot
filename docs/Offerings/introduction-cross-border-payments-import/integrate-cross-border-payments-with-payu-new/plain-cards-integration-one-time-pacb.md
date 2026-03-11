@@ -2,7 +2,7 @@
 title: 'Plain Cards Integration '
 excerpt: Process a one-time card transactions via PayU (without tokenization)
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
