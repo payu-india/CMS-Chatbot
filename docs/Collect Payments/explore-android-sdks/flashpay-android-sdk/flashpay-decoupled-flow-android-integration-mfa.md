@@ -3,6 +3,14 @@ title: Flashpay Decoupled Flow Android Integration
 deprecated: false
 hidden: false
 metadata:
+  title: FlashPay Decoupled Flow Android Integration
+  description: >-
+    FlashPay decoupled flow with MFA on Android. 3DS and multi-factor
+    authentication integration steps.
+  keywords:
+    - FlashPay decoupled flow Android
+    - 3DS Android MFA
+    - PayU FlashPay integration
   robots: index
 ---
 ---
