@@ -3,7 +3,12 @@ name: Upload_Invoices
 ---
 The invoices / Airway Bill can be uploaded using the **Invoice Upload API API**. AWB details are mandatory for Goods transactions. Invoice copies can be uploaded optionally.
 
-<GENERALAPIsEnvironment />
+**Environment**
+
+|                        |                                                          |
+| :--------------------- | :------------------------------------------------------- |
+| Test Environment       | `<https://test.payu.in/merchant/postservice.php?form=2>` |
+| Production Environment | `<https://info.payu.in/merchant/postservice.php?form=2>` |
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
