@@ -387,6 +387,8 @@ Note: To make payment using another payment aggregator vault saved card.
 cardDetails.networkToken = "<networkToken>"
 paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","trid" : "40020003934", "tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
 paymentParam.cardTokenTpe = "1" //if passing networkToken otherwise value = 0 if you will pass cardToken
+paymentParam.partnerWebhookSuccess = "<url>"
+paymentParam.partnerWebhookFailure = "<url>"
 
 paymentParam.cardinfo = cardDetails
 ```
