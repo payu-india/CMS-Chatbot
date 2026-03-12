@@ -53,28 +53,28 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
   | udf5<br />`optional`                            | `String` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 3                                                                                                                                                                           |   |
   | additional\_charges<br />`optional`             | `String` Collect additional charges for the transaction. For example, platform fee                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 10.00                                                                                                                                                                                       |   |
   | beneficiarydetail <br /> `mandatory`            | This is a JSON format text and there should be key named **beneficiaryAccountNumber** with the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter.                                                                                                                                                                                                                                                                                                                        | Refer to [beneficiarydetail JSON Object Fields](https://docs.payu.in/docs/net-banking-integration-for-tpv#beneficiarydetail-json-object-fields)                                             |   |
-</Accordion>
-
+  
 <Accordion title="beneficiarydetail JSON Object Fields" icon="fa-code">
-      It must contain the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter. For example:
+  It must contain the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter. For example:
 
-      ```
-      {"beneficiaryAccountNumber":"002001600674|00000031957292212|00000035955239352|00000035955239352",  
-      "ifscCode":"KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"}
-      ```
+  ```
+  {"beneficiaryAccountNumber":"002001600674|00000031957292212|00000035955239352|00000035955239352",  
+  "ifscCode":"KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"}
+  ```
 
-      **Checksum Logic for Hash**
+  **Checksum Logic for Hash**
 
-      The following hash logic must be used for the parameters posted:
+  The following hash logic must be used for the parameters posted:
 
-      > 📘 si\_details parameter in Hashing:
-      >
-      > The **si\_details** parameter value will be at last or the last value to be appended.
-      >
-      > ```plaintext
-      > key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3
-      > |udf4|udf5||||||si_details|SALT
-      > ```
+  > 📘 si\_details parameter in Hashing:
+  >
+  > The **si\_details** parameter value will be at last or the last value to be appended.
+  >
+  > ```plaintext
+  > key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3
+  > |udf4|udf5||||||si_details|SALT
+  > ```
+</Accordion>
 </Accordion>
 
 <Accordion title="Wealth Tech Object (wtParams) Fields" icon="fa-cog">
@@ -451,14 +451,14 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 
 <Accordion title="Request parameters" icon="fa-key">
   <HTMLBlock>{`
-                  <table> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td>key <code>mandatory</code></td> <td><code>String</code> - The merchant key provided by PayU</td> <td>JPM7Fg</td> </tr> <tr> <td>command <code>mandatory</code></td> <td><code>String</code> - Command to execute the recurring transaction API. Must be si_transaction</td> <td>si_transaction</td> </tr> <tr> <td>var1 <code>mandatory</code></td> <td><code>JSON Object</code> - JSON-format object containing transaction details and optional fields. For more information, refer to <a href="https://docs.payu.in/docs/upi-autopay-integration-wealth-tech-payment#var1-object-field-descriptions">var1 object field descriptions</a></td> <td>{"authpayuid": "6611192557","invoiceDisplayNumber":"12345678910","amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "ashish@gmail.com"}</td> </tr> <tr> <td>hash <code>mandatory</code></td> <td><code>String</code> - SHA512 hash generated by concatenating key|command|var1|salt for request authentication</td> <td>jbUS07Og8BToVZ</td> </tr> </table> 
+                    <table> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td>key <code>mandatory</code></td> <td><code>String</code> - The merchant key provided by PayU</td> <td>JPM7Fg</td> </tr> <tr> <td>command <code>mandatory</code></td> <td><code>String</code> - Command to execute the recurring transaction API. Must be si_transaction</td> <td>si_transaction</td> </tr> <tr> <td>var1 <code>mandatory</code></td> <td><code>JSON Object</code> - JSON-format object containing transaction details and optional fields. For more information, refer to <a href="https://docs.payu.in/docs/upi-autopay-integration-wealth-tech-payment#var1-object-field-descriptions">var1 object field descriptions</a></td> <td>{"authpayuid": "6611192557","invoiceDisplayNumber":"12345678910","amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "ashish@gmail.com"}</td> </tr> <tr> <td>hash <code>mandatory</code></td> <td><code>String</code> - SHA512 hash generated by concatenating key|command|var1|salt for request authentication</td> <td>jbUS07Og8BToVZ</td> </tr> </table> 
   `}</HTMLBlock>
 
   <Accordion title="var1 object field descriptions" icon="fa-cog">
     ### var1 object field descriptions
 
     <HTMLBlock>{`
-                      <table id="var1-parameters"> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td colspan="3"><strong>Fields within the var1 JSON object</strong> - <a href="#main-parameters">Back to main parameters</a></td> </tr> <tr> <td>authpayuid <br/><code>mandatory</code></td> <td><code>String</code> - Authorization PayU ID</td> <td>6611192557</td> </tr> <tr> <td>invoiceDisplayNumber <br/><code>mandatory</code></td> <td><code>String</code> - Display invoice number</td> <td>12345678910</td> </tr> <tr> <td>amount <br/><code>mandatory</code></td> <td><code>Float</code> - Transaction amount</td> <td>3.00</td> </tr> <tr> <td>txnid <br/><code>mandatory</code></td> <td><code>String</code> - Transaction ID generated by the merchant</td> <td>REC15113506209</td> </tr> <tr> <td>phone <br/><code>mandatory</code></td> <td><code>String</code> - Customer's phone number</td> <td>9999999999</td> </tr> <tr> <td>email <br/><code>mandatory</code></td> <td><code>String</code> - Customer's email address</td> <td>ashish@gmail.com</td> </tr> <tr> <td>more_info <br/><code>mandatory for Wealth Tech</code></td> <td><code>JSON</code> - This parameter contains various fields including the Wealth Tech object (wtParams). For more information on wtParams object field, refer to Wealth Tech object (wtParams) fields Description table (next table)</td> <td></td> </tr> <tr> <td>udf2 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf3 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf4 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf5 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> </table> 
+                          <table id="var1-parameters"> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td colspan="3"><strong>Fields within the var1 JSON object</strong> - <a href="#main-parameters">Back to main parameters</a></td> </tr> <tr> <td>authpayuid <br/><code>mandatory</code></td> <td><code>String</code> - Authorization PayU ID</td> <td>6611192557</td> </tr> <tr> <td>invoiceDisplayNumber <br/><code>mandatory</code></td> <td><code>String</code> - Display invoice number</td> <td>12345678910</td> </tr> <tr> <td>amount <br/><code>mandatory</code></td> <td><code>Float</code> - Transaction amount</td> <td>3.00</td> </tr> <tr> <td>txnid <br/><code>mandatory</code></td> <td><code>String</code> - Transaction ID generated by the merchant</td> <td>REC15113506209</td> </tr> <tr> <td>phone <br/><code>mandatory</code></td> <td><code>String</code> - Customer's phone number</td> <td>9999999999</td> </tr> <tr> <td>email <br/><code>mandatory</code></td> <td><code>String</code> - Customer's email address</td> <td>ashish@gmail.com</td> </tr> <tr> <td>more_info <br/><code>mandatory for Wealth Tech</code></td> <td><code>JSON</code> - This parameter contains various fields including the Wealth Tech object (wtParams). For more information on wtParams object field, refer to Wealth Tech object (wtParams) fields Description table (next table)</td> <td></td> </tr> <tr> <td>udf2 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf3 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf4 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf5 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> </table> 
     `}</HTMLBlock>
   </Accordion>
 
