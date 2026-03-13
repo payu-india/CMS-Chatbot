@@ -79,3 +79,5 @@ UPI OTM is supported for below flows with various integrations: 
 * Merchant Hosted Integration (seamless flow)
   * [UPI Intent](doc:upi-intent-one-time-mandate-integration)
   * [UPI Collect](doc:upi-collect-one-time-mandate-integration)
+
+For checking the UPI OTM status, use the [UPI OTM Status Check API](ref:upi-otm-status-check-api).
