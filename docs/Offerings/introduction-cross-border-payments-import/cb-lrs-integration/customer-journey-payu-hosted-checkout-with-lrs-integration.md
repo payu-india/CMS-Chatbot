@@ -86,10 +86,10 @@ The typical customer journey for PayU Hosted Checkout with LRS checks involves t
                      travel&nbsp;
                  </td>
                  <td>
-                     2%&nbsp;
+                     0%&nbsp;
                  </td>
                  <td>
-                     2%&nbsp;
+                     20%&nbsp;
                  </td>
              </tr>
              <tr>
