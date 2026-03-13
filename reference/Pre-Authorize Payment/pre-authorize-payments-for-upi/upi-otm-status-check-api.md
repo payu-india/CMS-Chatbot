@@ -1,0 +1,248 @@
+---
+title: UPI OTM Status Check API
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
+---
+title: UPI OTM Status Check API
+excerpt: 'UPI Authorization Status Check API'
+deprecated: false
+hidden: false
+metadata:
+  title: UPI OTM Status Check API
+  description: >-
+    API documentation for checking the status of a UPI OTM authorization/mandate. Provides details about authorization status, authorized amount, and validity period.
+  keywords:
+    - UPI OTM Status Check
+    - UPI Authorization Status
+    - UPI Mandate
+    - OTM Status
+  robots: index
+next:
+  description: ''
+---
+
+The **UPI OTM Status Check** API allows you to check the status of a UPI (Unified Payments Interface) OTM authorization/mandate. It provides details about the authorization status, authorized amount, and validity period.
+
+**HTTP Method**: GET
+
+**Endpoint**: `/v1/transaction/upi_otm_status_check`
+
+**Environment**
+
+|                        |                                  |
+| :--------------------- | :------------------------------- |
+| Test Environment       | \<https://info.payu.in>          |
+| Production Environment | \<https://info.payu.in>          |
+
+<Callout icon="📘" theme="info">
+  **Notes and Best Practices**:
+
+  * This API should be used to verify the status of a UPI mandate before attempting to process a transaction.
+  * The paymentStartDate and paymentEndDate fields indicate the validity period of the mandate.
+  * Always check the authRecordStatus field to ensure the mandate is "Active" before proceeding with any transaction.
+</Callout>
+
+## Request headers
+
+The request header contains the following fields:
+
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Header</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Required</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Content-Type</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Must be set to <code>application/json</code>.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Date</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The date and time in GMT format. For creating HMAC authorization headers, replace <code>{{date}}</code> with the value generated from the pre script in the documentation.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Digest</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Base64-encoded SHA-256 hash of the request body. Replace <code>{{digest}}</code> with the value generated from the pre script.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>HMAC authorization header. Replace <code>{{authorization}}</code> with the value generated from the pre script. For creating HMAC authorization headers, refer to the documentation.</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
+
+## Request parameters
+
+### Query parameters
+
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Required</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Type</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>payuId</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The unique PayU ID for the authorization.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>25026596803</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
+
+## Response parameters
+
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Type</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>message</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Response message indicating success or failure.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Integer</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Status code (1 for success, 0 for failure).</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>authRecordStatus</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Status of the authorization record (e.g., "Active", "inactive").</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>authpayuid</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The PayU ID associated with the authorization.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Decimal</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The authorized amount.</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentStartDate</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The start date for the mandate validity (format: "YYYY-MM-DD HH:MM:SS").</p>
+</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentEndDate</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code></p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>The end date for the mandate validity (format: "YYYY-MM-DD HH:MM:SS").</p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
+
+## Status codes
+
+| Status | Description |
+| ------ | ----------- |
+| 1      | Success     |
+| 0      | Failure     |
+
+## Sample request
+
+```curl
+curl --location 'https://info.payu.in/v1/transaction/upi_otm_status_check?payuId=25026596803' \
+--header 'Content-Type: application/json' \
+--header 'Date: {{date}}' \
+--header 'Digest: {{digest}}' \
+--header 'Authorization: {{authorization}}'
+```
+
+For creating HMAC authorization headers, replace the `{{date}}`, `{{digest}}`, and `{{authorization}}` with values generated from the pre script added in the documentation.
+
+## Sample response
+
+### Success scenario
+
+```json
+{
+  "message": "Success",
+  "status": 1,
+  "authRecordStatus": "inactive",
+  "authpayuid": "25026596803",
+  "amount": 15675.0,
+  "paymentStartDate": "2025-09-05 00:00:00",
+  "paymentEndDate": "2025-09-18 00:00:00"
+}
+```
+
+### Failure scenario (Error)
+
+```json
+{
+  "status": 0,
+  "message": "Failed"
+}
+```
+
+## Error scenarios
+
+When the API call fails, the response returns `status: 0` along with an appropriate `message` describing the failure. Always check the `status` field before using the response data and ensure `authRecordStatus` is "Active" before proceeding with a transaction.
