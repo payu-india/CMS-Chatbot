@@ -195,7 +195,3 @@ For creating HMAC authorization headers, replace the `{{date}}`, `{{digest}}`, a
   "message": "Failed"
 }
 ```
-
-## Error scenarios
-
-When the API call fails, the response returns `status: 0` along with an appropriate `message` describing the failure. Always check the `status` field before using the response data and ensure `authRecordStatus` is "Active" before proceeding with a transaction.
