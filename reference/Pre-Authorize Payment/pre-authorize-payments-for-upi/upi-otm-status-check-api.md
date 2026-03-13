@@ -32,10 +32,9 @@ The **UPI OTM Status Check** API allows you to check the status of a UPI (Unifie
 
 **Environment**
 
-|                        |                                  |
-| :--------------------- | :------------------------------- |
-| Test Environment       | \<https://info.payu.in>          |
-| Production Environment | \<https://info.payu.in>          |
+|                        |                                                  |
+| :--------------------- | :----------------------------------------------- |
+| Production Environment | \<[https://info.payu.in>](https://info.payu.in>) |
 
 <Callout icon="📘" theme="info">
   **Notes and Best Practices**:
