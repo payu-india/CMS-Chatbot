@@ -171,7 +171,7 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 
 ### NTB Eligibility
 
-```
+```curl
 curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' \
 --header 'x-credential-username: smsplus' \
 --header 'Content-Type: application/json' \
