@@ -40,38 +40,38 @@ This section describes how to set up a Payment Consent or Registration transacti
   Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                          <style>
-                          .tooltip-btn {
-                              position: relative;
-                              background-color: #4CAF50;
-                              color: white;
-                              padding: 10px 20px;
-                              border: none;
-                              border-radius: 5px;
-                              cursor: pointer;
-                              font-weight: bold; /* Added this line */
-                          }
-                          .tooltip-btn:hover::after {
-                              content: attr(data-tooltip);
-                              position: absolute;
-                              bottom: 125%;
-                              left: 50%;
-                              transform: translateX(-50%);
-                              background-color: #333;
-                              color: white;
-                              padding: 5px 10px;
-                              border-radius: 4px;
-                              white-space: nowrap;
-                              font-size: 12px;
-                              z-index: 1;
-                          }
-                          </style>
+                            <style>
+                            .tooltip-btn {
+                                position: relative;
+                                background-color: #4CAF50;
+                                color: white;
+                                padding: 10px 20px;
+                                border: none;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                font-weight: bold; /* Added this line */
+                            }
+                            .tooltip-btn:hover::after {
+                                content: attr(data-tooltip);
+                                position: absolute;
+                                bottom: 125%;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                background-color: #333;
+                                color: white;
+                                padding: 5px 10px;
+                                border-radius: 4px;
+                                white-space: nowrap;
+                                font-size: 12px;
+                                z-index: 1;
+                            }
+                            </style>
 
-                          <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
-                                  class="tooltip-btn" 
-                                  data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
-                              Experience the flow and get the code
-                          </button>
+                            <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
+                                    class="tooltip-btn" 
+                                    data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
+                                Experience the flow and get the code
+                            </button>
   `}</HTMLBlock>
 </Callout>
 
@@ -339,6 +339,38 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 
 ## Sample request
 
+```html
+<!doctype html>
+<html>
+  <body onload="document.forms.payu.submit()">
+    <form name="payu" method="post" action="https://test.payu.in/_payment">
+      <input type="hidden" name="key" value="a4vGC2">
+      <input type="hidden" name="txnid" value="TXN_SUB_1773390864_5971">
+      <input type="hidden" name="amount" value="15000">
+      <input type="hidden" name="productinfo" value="John">
+      <input type="hidden" name="firstname" value="Jyoti">
+      <input type="hidden" name="email" value="jyoti@test.com">
+      <input type="hidden" name="phone" value="9876554322">
+      <input type="hidden" name="surl" value="https://payu.in/integrationlab/callback.php">
+      <input type="hidden" name="furl" value="https://payu.in/integrationlab/callback.php">
+      <input type="hidden" name="lastname" value="Test">
+      <input type="hidden" name="address1" value="FIRST FLOOR">
+      <input type="hidden" name="address2" value="NEW ASHOK NAGAR">
+      <input type="hidden" name="city" value="Delhi">
+      <input type="hidden" name="state" value="Delhi">
+      <input type="hidden" name="country" value="INDIA">
+      <input type="hidden" name="zipcode" value="201303">
+      <input type="hidden" name="udf2" value="Testing UDF2">
+      <input type="hidden" name="udf5" value="Sample_Invoice_11">
+      <input type="hidden" name="api_version" value="7">
+      <input type="hidden" name="si_details" value='{"billingAmount":"15000","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2026-03-13","paymentEndDate":"2026-04-03"}'>
+      <input type="hidden" name="si" value="1">
+      <input type="hidden" name="hash" value="28039a4fdf4179cf7573ff05942d795d6ca3da2c759b2e202b5841fca11648c1e336afb9d4e8104476de5bc9173c5ef187b51b5093a2753f226a93c459f4c7d4">
+      <input type="submit" value="Submit Payment">
+    </form>
+  </body>
+</html>
+```
 ```curl
 curl --location 'https://secure.payu.in/_payment' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
