@@ -150,22 +150,24 @@ function isEmpty(obj) {
 
 ### Link and Pay Eligibilty
 
-```
+```curl
 curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' \
 --header 'x-credential-username: smsplus' \
 --header 'Content-Type: application/json' \
 --header 'authorization: hmac username="x0i6r2", algorithm="sha512", headers="date", signature="0e0ebc518c085d8ff49058b7c232bfe2e8779e9e9cafd34a4cdf1c11114035eea75b0e404a9b9e152757dbcc4926f78b6f18ba7f6643e2bf687a65942d3bde38"' \
 --header 'date: Mon, 28 Oct 2024 10:34:49 GMT' \
 --data '{
-    "amount": 2000000,
-    "userCredentials": "aaa:bbb",
-    "phone": "9560012582",
-    "bankCode": null,
-    "payuToken": null
+  "Key": "yFbXg3",
+  "amount": 21,
+  "userCredentials": "yFbXg3:test_sud",
+  "phone": "9999999999",
+  "bankCode": "LAZYPAY",
+  "payuToken": null,
+  "requestId": "Testing_111"
 }'
 ```
 
-### NTP Eligibility
+### NTB Eligibility
 
 ```
 curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' \
