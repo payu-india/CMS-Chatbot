@@ -344,15 +344,15 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 <html>
   <body onload="document.forms.payu.submit()">
     <form name="payu" method="post" action="https://test.payu.in/_payment">
-      <input type="hidden" name="key" value="{{your_payukey}}">
+      <input type="hidden" name="key" value="JP***g">
       <input type="hidden" name="txnid" value="TXN_SUB_1773390864_5971">
       <input type="hidden" name="amount" value="15000">
       <input type="hidden" name="productinfo" value="John">
-      <input type="hidden" name="firstname" value="Jyoti">
-      <input type="hidden" name="email" value="jyoti@test.com">
-      <input type="hidden" name="phone" value="9876554322">
-      <input type="hidden" name="surl" value="https://payu.in/integrationlab/callback.php">
-      <input type="hidden" name="furl" value="https://payu.in/integrationlab/callback.php">
+      <input type="hidden" name="firstname" value="Doe">
+      <input type="hidden" name="email" value="john@test.com">
+      <input type="hidden" name="phone" value="1234567890">
+      <input type="hidden" name="surl" value="https://yourapp.com/payu/success">
+      <input type="hidden" name="furl" value="https://yourapp.com/payu/failure">
       <input type="hidden" name="lastname" value="Test">
       <input type="hidden" name="address1" value="FIRST FLOOR">
       <input type="hidden" name="address2" value="NEW ASHOK NAGAR">
