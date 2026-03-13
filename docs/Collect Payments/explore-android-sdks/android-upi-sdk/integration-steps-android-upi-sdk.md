@@ -60,7 +60,7 @@ implementation 'in.payu:upisdk:1.8.10'
   **Expand Manifest view for compilation error**: If you are getting the following compile error, expand the Merged Manifest view.
 
   `Android resource linking failed /Users/sample/AndroidStudioProjects/MyApp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:18: error: unexpected element found in <manifest>  
-        Manifest merger failed with multiple errors, see logs`
+          Manifest merger failed with multiple errors, see logs`
 </Callout>
 
 In the Merged Manifest view, the following additional error message is displayed. This indicates that you need to fix your Gradle plugin. For more information on the Gradle plugin, refer to the Google Andriod Documentation.
@@ -202,24 +202,9 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   </Accordion>
 </Accordion>
 
-### Step 5: Set up for Test Merchant
 
-If you are using the SDK with a test merchant, provide the following metadata value to the manifest file:
 
-<Accordion title="Manifest file" icon="fa-code">
-  ```java
-  <application
-  <meta-data
-  android:name="payu_web_service_url"
-  android:value="https://test.payu.in" />
-  <meta-data
-  android:name="payu_post_url"
-  android:value="https://test.payu.in" />
-  </application>
-  ```
-</Accordion>
-
-### Step 6: Payment Options
+### Step 5: Payment Options
 
 UPI SDK currently supports the following payment options:
 
@@ -276,7 +261,7 @@ PaymentOption.UPI_COLLECT: UPI payment through web flow.
     After you check the payment availability of Payment, you can go ahead to make the payment.
 </Accordion>
 
-### Step 7: Callbacks
+### Step 6: Callbacks
 
 <Accordion title="Callback Error Codes" icon="fa-table">
   * `onPaymentFailure`(String payuResult,String merchantResponse): Calls when payment fails.
@@ -331,8 +316,30 @@ PaymentOption.UPI_COLLECT: UPI payment through web flow.
   ```
 </Accordion>
 
+### Step 6: Make Payment
+
+ To make the payment, you need to create UpiConfig and provide mandatory parameters, merchant key, and postdata. For more information, refer to Payment Request Post Data.
+
 <Accordion title="Make Payment" icon="fa-code">
   To make the payment, you need to create UpiConfig and provide mandatory parameters, merchant key, and postdata. For more information, refer to Payment Request Post Data.
+
+  Provide the PayUUPICallback instance and Upiconfig object to the UPI makepayment() method.
+
+  Get the singleton, then call `makePayment` with **Activity** context:
+
+```java
+Upi upi = Upi.getInstance();
+upi.makePayment(callback, activity, upiConfig);
+```
+
+**Important:** Use an **Activity** reference (e.g. `getActivity()` in a fragment), not application context.
+
+**Seamless (in-app) payment:** If your SDK supports returning a Fragment:
+
+```java
+Fragment upiFragment = Upi.getInstance().makeSeamlessPayment(callback, upiConfig, context);
+// Add upiFragment to your FragmentManager
+```
 
   ```java JAVA
   UpiConfig upiConfig = new UpiConfig();
@@ -365,13 +372,6 @@ PaymentOption.UPI_COLLECT: UPI payment through web flow.
 
   ```java JAVA
   upiConfig.setDisableIntentSeamlessFailure(UpiConfig.FALSE/UpiConfig.TRUE);
-  ```
-
-  Provide the PayUUPICallback instance and Upiconfig object to the UPI makepayment() method.
-
-  ```java JAVA
-  Upi upi = Upi.getInstance();
-  upi.makePayment(payUUpiSdkCallbackUpiSdk, activity, upiConfig);
   ```
 
   > 📘 Tip
