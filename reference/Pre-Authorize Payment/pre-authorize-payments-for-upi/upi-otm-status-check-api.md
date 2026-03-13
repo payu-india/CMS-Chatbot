@@ -46,53 +46,7 @@ The **UPI OTM Status Check** API allows you to check the status of a UPI (Unifie
 
 ## Request headers
 
-The request header contains the following fields:
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Header</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Required</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Content-Type</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Must be set to <code>application/json</code>.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Date</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The date and time in GMT format. For creating HMAC authorization headers, replace <code>{{date}}</code> with the value generated from the pre script in the documentation.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Digest</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Base64-encoded SHA-256 hash of the request body. Replace <code>{{digest}}</code> with the value generated from the pre script.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>HMAC authorization header. Replace <code>{{authorization}}</code> with the value generated from the pre script. For creating HMAC authorization headers, refer to the documentation.</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+<V2_paymentHeader />
 
 ## Request parameters
 
