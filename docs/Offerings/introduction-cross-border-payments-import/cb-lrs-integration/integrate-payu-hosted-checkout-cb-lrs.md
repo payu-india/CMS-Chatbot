@@ -410,7 +410,7 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        2.00
+        20.00
       </td>
     </tr>
   </tbody>
