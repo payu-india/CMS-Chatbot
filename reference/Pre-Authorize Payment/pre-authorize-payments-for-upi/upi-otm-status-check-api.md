@@ -1,7 +1,7 @@
 ---
 title: UPI OTM Status Check API
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
