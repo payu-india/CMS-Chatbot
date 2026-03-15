@@ -1,0 +1,20 @@
+---
+name: Hash
+---
+/**
+ * PayUHashToolLink - Readme CMS
+ * Renders a link to the PayU Hash Verification Tool.
+ * In ReadMe: name the component "PayUHashToolLink"; preview line must be <PayUHashToolLink />
+ */
+
+import React from 'react';
+
+export var PayUHashToolLink = (props) => (
+  <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+    <p className="text-sm font-semibold text-gray-800">PayU hash tool (live)</p>
+    <a href="https://payu-hashverificationtool.onrender.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-medium">Open PayU Hash Verification Tool</a>
+    <p className="mt-2 text-sm text-gray-600">Paste your callback response and salt to verify the hash in the browser. Invaluable for debugging.</p>
+  </div>
+);
+
+<PayUHashToolLink />
