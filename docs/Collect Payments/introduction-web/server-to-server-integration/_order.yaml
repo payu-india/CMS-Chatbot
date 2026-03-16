@@ -12,4 +12,3 @@
 - hashing-request-and-response
 - legacy-flow-for-server-to-server
 - decoupled-flow-authentication-only-integration
-- decoupled-flow-authn-authz-flow

@@ -2,6 +2,7 @@
 - custom-checkout-merchant-hosted
 - checkout-express
 - checkout-plus-integration
+- decoupled-flow-authn-authz-flow
 - server-to-server-integration
 - bank-and-card-codes-for-integration
 - collect-additional-charges
