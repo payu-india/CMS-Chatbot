@@ -1277,26 +1277,26 @@ The following best practices will help you improve the success rate when designi
 
 ## Implementation Guidelines
 
-### 7.1 Before Payment (Card Entry)
+### Before Payment (Card Entry)
 
 * Clearly indicate that the payment is secure and that an **OTP will be sent** to the customer by the bank.
 * Ask for card details (number, name, expiry, CVV) in a clear, accessible form with sensible validation (e.g., card number length, expiry in future, CVV length).
 * If you collect billing address, ask only for what you will send in optional parameters; keep the form short to reduce drop-off.
 
-### 7.2 OTP Step
+### OTP Step
 
 * After initiating the payment, show a **single, clear OTP input** and a “Resend OTP” option where supported (with a visible timer per the Efficiency principle).
 * Tell the user **where** the OTP will arrive (SMS, bank app, etc.) and that it may take a few seconds.
 * Use a short timeout for OTP entry (e.g., 2–5 minutes) and show a clear message if the OTP expires or fails; offer “Try again” or “Use another card” where applicable.
 * Do not ask for OTP on the same screen as card number/CVV; use a dedicated step or screen with smooth transition (Familiarity).
 
-### 7.3 After Payment
+### After Payment
 
 * On **success:** Redirect to `surl` and show a clear success message; avoid showing sensitive data in the URL. Prefer showing order reference and next steps (e.g., email confirmation).
 * On **failure:** Redirect to `furl` and show a user-friendly error. Where possible, differentiate between “invalid OTP”, “card declined”, “network error” and suggest retry or another payment method.
 * **Always** confirm final status via PayU verification APIs before fulfilling the order; do not rely only on redirect or client-side logic.
 
-### 7.4 Accessibility and Compliance
+### Accessibility and Compliance
 
 * Ensure labels, focus order, and error messages work with screen readers.
 * Follow local regulations (e.g., RBI, PCI) and PayU’s acceptable use policy for card and OTP flows.
