@@ -38,7 +38,7 @@ The steps involved in cards with Native OTP:
 
 ## Step 1: Initiate the payment request
 
-<Accordion title="Request parameters" icon="table">
+<Accordion title="Request parameters" icon="fa-table">
   Send the following additional parameters to PayU through a server-to-server curl request to initiate the payment. As a result of this API call, the customer will receive the OTP. For sample request and response, refer to [Collect Payment API - Server-to-Server](ref:_payment_server_to_server).
 
   <Table align={["left","left","left"]}>
