@@ -1,5 +1,5 @@
 ---
-title: Decoupled Flow - AuthN AuthZ Flow
+title: Decoupled Flow - Authentication & Authorization Flow
 deprecated: false
 hidden: true
 metadata:
@@ -7,7 +7,7 @@ metadata:
 ---
 You can perform the payment authentication using **_payment** S2S4 flow with **auth_only=2** and then perform the authorization  using **_payment** S2S3 flow itself.
 
-## AuthN AuthZ Flow
+## Authentication and Authorization Flow
 
 The Authentication and Authorization flow with PayU S2S involves the following steps:
 
