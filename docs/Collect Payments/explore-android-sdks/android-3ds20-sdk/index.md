@@ -52,7 +52,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
     Use the following code snippet in your app’s build.gradle file:
 
   ```
-  implementation 'in.payu:threeds-sdk:2.0.0'
+  implementation 'in.payu:threeds-sdk:2.0.2'
   ```
 
   * Use our SDK for a complete transaction:
@@ -286,36 +286,36 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       The response includes the following parameters:
 
       <HTMLBlock>{`
-                                          <table style="width: 100%; border-collapse: collapse;">
-                                          <thead>
-                                          <tr>
-                                            <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                                            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                                          </tr>
-                                          </thead>
-                                          <tbody>
-                                          <tr>
-                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
-                                          </td>
-                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:  </p>
-                                          <p>0 - If the web service call succeeded  </p>
-                                          <p>1 - If the web service call failed.</p>
-                                          </td>
-                                          </tr>
-                                          <tr>
-                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p>
-                                          </td>
-                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p>
-                                          </td>
-                                          </tr>
-                                          <tr>
-                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
-                                          </td>
-                                            <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p>
-                                          </td>
-                                          </tr>
-                                          </tbody>
-                                          </table>
+                                                <table style="width: 100%; border-collapse: collapse;">
+                                                <thead>
+                                                <tr>
+                                                  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                                                  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+                                                </td>
+                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:  </p>
+                                                <p>0 - If the web service call succeeded  </p>
+                                                <p>1 - If the web service call failed.</p>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p>
+                                                </td>
+                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p>
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
+                                                </td>
+                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p>
+                                                </td>
+                                                </tr>
+                                                </tbody>
+                                                </table>
       `}</HTMLBlock>
 
       The following items are in the response:
@@ -351,36 +351,36 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
     **PayU3DS2Response**: Three items are in the response:
 
     <HTMLBlock>{`
-                            <table style="width: 100%; border-collapse: collapse;">
-                            <thead>
-                            <tr>
-                              <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                              <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                              <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
-                            </td>
-                              <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:  </p>
-                            <p>0 - If the web service call succeeded  </p>
-                            <p>1 - If the web service call failed.</p>
-                            </td>
-                            </tr>
-                            <tr>
-                              <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p>
-                            </td>
-                              <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p>
-                            </td>
-                            </tr>
-                            <tr>
-                              <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
-                            </td>
-                              <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p>
-                            </td>
-                            </tr>
-                            </tbody>
-                            </table>
+                                <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                <tr>
+                                  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                                  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
+                                </td>
+                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:  </p>
+                                <p>0 - If the web service call succeeded  </p>
+                                <p>1 - If the web service call failed.</p>
+                                </td>
+                                </tr>
+                                <tr>
+                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p>
+                                </td>
+                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p>
+                                </td>
+                                </tr>
+                                <tr>
+                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
+                                </td>
+                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p>
+                                </td>
+                                </tr>
+                                </tbody>
+                                </table>
     `}</HTMLBlock>
 
     ```kotlin Kotlin
@@ -409,33 +409,33 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
     ```
 
     <HTMLBlock>{`
-                            <table style="width: 100%; border-collapse: collapse;">
-                            <thead>
-                            <tr>
-                              <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                              <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                              <td style="border: 1px solid #ddd; padding: 8px;"><p>activity</p>
-                            </td>
-                              <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the <code>AppCompatActivity</code> reference.</p>
-                            </td>
-                            </tr>
-                            <tr>
-                              <td style="border: 1px solid #ddd; padding: 8px;"><p>challengeParameter</p>
-                            </td>
-                              <td style="border: 1px solid #ddd; padding: 8px;"><p>Create an object of ChallengeParameter class with the following parameters :  </p>
-                            <p>ChallengeParameter(&quot;acsSignedContent&quot;, &quot;acsRefNumber&quot;, &quot;acsTransactionID&quot;, &quot;threeDSServerTransactionID&quot;)  </p>
-                            <p><strong>acsSignedContent</strong>= Send ACS Signed Content received in ARes  </p>
-                            <p><strong>acsRefNumber</strong>= Send ACS Ref Number Content received in ARes  </p>
-                            <p><strong>acsTransactionID</strong>= Send ACS Transaction ID received in ARes  </p>
-                            <p><strong>threeDSServerTransactionID</strong>= Send ThreeDS Server Transaction ID received in ARes</p>
-                            </td>
-                            </tr>
-                            </tbody>
-                            </table>
+                                <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                <tr>
+                                  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+                                  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>activity</p>
+                                </td>
+                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the <code>AppCompatActivity</code> reference.</p>
+                                </td>
+                                </tr>
+                                <tr>
+                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>challengeParameter</p>
+                                </td>
+                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>Create an object of ChallengeParameter class with the following parameters :  </p>
+                                <p>ChallengeParameter(&quot;acsSignedContent&quot;, &quot;acsRefNumber&quot;, &quot;acsTransactionID&quot;, &quot;threeDSServerTransactionID&quot;)  </p>
+                                <p><strong>acsSignedContent</strong>= Send ACS Signed Content received in ARes  </p>
+                                <p><strong>acsRefNumber</strong>= Send ACS Ref Number Content received in ARes  </p>
+                                <p><strong>acsTransactionID</strong>= Send ACS Transaction ID received in ARes  </p>
+                                <p><strong>threeDSServerTransactionID</strong>= Send ThreeDS Server Transaction ID received in ARes</p>
+                                </td>
+                                </tr>
+                                </tbody>
+                                </table>
     `}</HTMLBlock>
 
     Before invoking this method, generate the authentication request through any aggregator and pass the above-defined challenge parameters to initiate challenges.
@@ -527,7 +527,6 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       ```
     </Accordion>
   </Accordion>
-      
 
   <Accordion title="Card Tokenization" icon="fa-code">
     Tokenization is used to securely store card details without exposing sensitive information. There are two main types of card tokenization:
