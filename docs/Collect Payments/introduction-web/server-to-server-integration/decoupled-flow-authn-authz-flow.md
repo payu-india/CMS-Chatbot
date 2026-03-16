@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-The S2S decoupled flow for cards with authentication only involves the following steps for the **redirect** experience. Unlike the Decoupled Flow, this flow requires merchants to call the **Auth Status Check API** to retrieve authentication results since 3DS2.0 cannot return the authentication response through the browser.
+The S2S decoupled flow for cards with authentication only involves the following steps for the **redirect** experience. Unlike the regular Decoupled Flow, this flow requires merchants to call the **Auth Status Check API** to retrieve authentication results since 3DS2.0 cannot return the authentication response through the browser.
 
 **Steps to integrate**
 
