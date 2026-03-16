@@ -1,5 +1,5 @@
 ---
-title: S2S Authorization Flow
+title: S2S Authorization Flow Integration
 deprecated: false
 hidden: true
 metadata:
