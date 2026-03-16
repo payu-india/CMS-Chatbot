@@ -53,7 +53,6 @@ The **pre_authorize** parameter is used to pre-authorize payments using the S2S 
 
 ## Step 1: Post the Pre-Auth transaction request
 
-
 <Accordion title="Environment" icon="fa-server">
   |                            |                                                                     |
   | :------------------------- | :------------------------------------------------------------------ |
@@ -81,7 +80,7 @@ The **pre_authorize** parameter is used to pre-authorize payments using the S2S 
 | ccexpyr<br/>`mandatory` | `String` This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits. | 2025 |
 | furl<br/>`mandatory` | `String` The success URL, which is the page PayU will redirect to if the transaction is successful. |  |
 | surl<br/>`mandatory` | `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed. |  |
-| hash<br/>`mandatory` | `String` It is the hash calculated by the merchant. The hash calculation logic is: `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||SALT)` |  |
+| hash<br/>`mandatory` | `String` It is the hash calculated by the merchant. The hash calculation logic is: `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|SALT)` |  |
 | txn_s2s_flow<br/>`mandatory` | `String` This parameter must be passed with the value as **4** for Legacy Decoupled flow. | 4 |
 | auth_only<br/>`mandatory` | `String` This parameter must be passed with the value as **2** for authentication-only flow. When set to 2, you must call the AuthData API to retrieve authentication results. | 2 |
 | termUrl<br/>`mandatory` | `String` This parameter must contain the URL which will receive the authentication response from ACS. |  |
@@ -100,6 +99,7 @@ The **pre_authorize** parameter is used to pre-authorize payments using the S2S 
 | udf4<br/>`optional` | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. |  |
 | udf5<br/>`optional` | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. |  |
 
+ 
   <Accordion title="Understanding Hashing and sample code" icon="fa-code">
     <HashingRequestParameters />
 
@@ -145,6 +145,7 @@ The **pre_authorize** parameter is used to pre-authorize payments using the S2S 
   -urlencode 'txn_s2s_flow=4' --data \
   -urlencode 'auth_only=2' --data \
   -urlencode 'termUrl=https://admin.payu.in/test_response' --data \
+  -urlencode 'pre_authorize=1' --data \
   ```
 </Accordion>
 
@@ -177,10 +178,6 @@ The **pre_authorize** parameter is used to pre-authorize payments using the S2S 
   }
   ```
 </Accordion>
-
-  
-
-
 
 ## Step 2: Check the PayU response
 
