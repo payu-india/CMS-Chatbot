@@ -36,8 +36,8 @@ The S2S decoupled flow for cards with authentication only involves the following
 > 📘 Notes:
 >
 > * This flow is specifically for `auth_only=2` where merchants need to call the AuthData API to get authentication results.
-> * For `auth_only=1` flow (with automatic authorization), refer to [Decoupled Flow Integration](integrate-with-decoupled-flow-s2s).
-> * If you are using legacy integration of decoupled flow for S2S, refer to [Legacy Flow for Server-to-Server](legacy-flow-for-server-to-server).
+> * For `auth_only=1` flow (with automatic authorization), refer to <Anchor label="Decoupled Flow Integration" target="_blank" href="integrate-with-decoupled-flow-s2s">Decoupled Flow Integration</Anchor>.
+> * If you are using legacy integration of decoupled flow for S2S, refer to <Anchor label="Legacy Flow for Server-to-Server" target="_blank" href="legacy-flow-for-server-to-server">Legacy Flow for Server-to-Server</Anchor>.
 
 ## Step 1: Initiate payment request with PayU
 
