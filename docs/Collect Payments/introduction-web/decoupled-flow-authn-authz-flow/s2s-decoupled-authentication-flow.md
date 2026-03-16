@@ -1,7 +1,7 @@
 ---
 title: S2S Decoupled Authentication Flow
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -470,4 +470,3 @@ For detailed API specifications, refer to [AuthData API Reference](ref:auth-data
 </Accordion>
 
 <br />
-
