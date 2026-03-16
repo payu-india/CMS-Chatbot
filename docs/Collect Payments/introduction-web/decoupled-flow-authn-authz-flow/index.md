@@ -17,7 +17,7 @@ The Authentication and Authorization flow with PayU S2S involves the following s
 
 **Step 1:** Customer provides card details to the Merchant.
 
-**Step 2:** Merchant initiates authentication by sending a `_payments` (s2s4 auth_only 2) request to PayU.
+**Step 2:** Merchant initiates authentication by sending a **_payments** (s2s4, auth_only=2) request to PayU.
 
 **Step 3:** PayU forwards the authentication request via 3DSS (3D Secure Server) to the Issuing Bank.
 
@@ -35,7 +35,7 @@ The Authentication and Authorization flow with PayU S2S involves the following s
 
 ### Phase 2: Authorization
 
-**Step 1:** Merchant sends a new `_payments` (s2s3) request to PayU with authentication results from Phase 1 and a new request ID.
+**Step 1:** Merchant sends a new **_payments** (s2s3) request to PayU with authentication results from Phase 1 and a new request ID.
 
 **Step 2:** PayU forwards the authorization request to the Issuing Bank via the Payment Gateway.
 
