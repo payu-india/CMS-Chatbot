@@ -110,7 +110,7 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
         </td>
 
         <td style={{ textAlign: "left" }}>
-          <code>varchar</code> A brief product description. Short information about the product/service. Character limit: 100
+          <code>varchar</code> Name or brief description of the goods/services being sold. In case of physical goods, please include name / description of all products Character limit: 100
         </td>
 
         <td style={{ textAlign: "left" }}>
