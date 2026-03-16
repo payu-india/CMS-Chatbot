@@ -36,6 +36,10 @@ The steps involved in cards with Native OTP:
   </Card>
 </Cards>
 
+## Sample Native OTP Flow
+
+<Image align="center" width="350px" src="https://files.readme.io/d9bd0c5be363cbba9a0dde4581f701c6f35b8326496696b1ce3ed7df92f7ca4e-Native_OTP_Flow.gif" />
+
 ## Step 1: Initiate the payment request
 
 <Accordion title="Request parameters" icon="fa-table">
