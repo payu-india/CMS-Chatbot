@@ -7,7 +7,7 @@ metadata:
 ---
 You can perform the payment authentication using **_payment** S2S4 flow with **auth_only=2** and then perform the authorization  using **_payment** S2S3 flow itself.
 
-## AuthN AuthZ Flow 
+## AuthN AuthZ Flow
 
 The Authentication and Authorization flow with PayU S2S involves the following steps:
 
@@ -45,3 +45,7 @@ The Authentication and Authorization flow with PayU S2S involves the following s
 
 **Step 5:** Merchant completes the transaction flow with the User.
 
+## Steps to Integrate
+
+1. [S2S Decoupled Authentication Flow Integration](doc:s2s-decoupled-authentication-flow)
+2. [S2S Authorization Flow Integration](doc:s2s-authorization-flow)
