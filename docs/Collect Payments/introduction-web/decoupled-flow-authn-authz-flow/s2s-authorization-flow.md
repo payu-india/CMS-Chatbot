@@ -5,10 +5,9 @@ hidden: true
 metadata:
   robots: index
 ---
-## Steps to integrate
+The S2S Authorization flow using S2S3 involves the following steps:
 
 <Cards>
-
   <Card title="1. Post the Parameters to PayU" href="#step-1-post-the-parameters-to-payu">
     Post the required parameters to PayU for direct authorization S2S integration
   </Card>
@@ -29,8 +28,6 @@ metadata:
 > * This flow is specifically for `auth_only=2` where merchants need to call the AuthData API to get authentication results.
 > * For `auth_only=1` flow (with automatic authorization), refer to <Anchor label="Decoupled Flow Integration" target="_blank" href="integrate-with-decoupled-flow-s2s">Decoupled Flow Integration</Anchor>.
 > * If you are using legacy integration of decoupled flow for S2S, refer to <Anchor label="Legacy Flow for Server-to-Server" target="_blank" href="legacy-flow-for-server-to-server">Legacy Flow for Server-to-Server</Anchor>.
-
-
 
 ## Step 1: Post the parameters to PayU
 
