@@ -202,8 +202,26 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   </Accordion>
 </Accordion>
 
-<Accordion title="Check for Payment availability Callback" icon="fa-code">
-  
+<Accordion title="Wealth Tech Payment" icon="fa-code">
+  ```java
+ List<Products> productsList = new ArrayList<>();
+        Products products = new Products();
+        products.setType("mutual_fund");
+        products.setPlan("GD");
+        products.setFolio("9104927822");
+        products.setAmount("50000");
+        products.setOption("G");
+        products.setScheme("LT");
+        products.setReceipt("77407");
+        products.setMfMemberId("123445");
+        products.setMfUserId("77407");
+        products.setMfPartner("cams");
+        products.setMfInvestmentType("L");
+        products.setMfAmcCode("UTB");
+        productsList.add(products);
+
+        mPaymentParamsUpiSdk.setProductsList(productsList);
+```
 </Accordion>
 
 
