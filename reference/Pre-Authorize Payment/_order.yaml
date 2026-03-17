@@ -3,6 +3,5 @@
 - pre-authorize-payments-for-cards
 - pre-authorize-payments-for-upi
 - cancel-a-pre-authorized-transaction
-- s2s_pre_authorize_payment
 - capture-a-payment1
 - error-codes-pre-authorize-payment
