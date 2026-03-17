@@ -249,6 +249,10 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
     ```Text
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|beneficiarydetail|si_details|user_token|offer_key|offer_auto_apply|cart_details|products
     ```
+    ```Text Sample Hash Data
+        String hashData = "<Key>|1714544838994|10|productInfo|firstName|test@gmail.com|udf1|udf2|udf3|udf4|udf5||||||{\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"HDFC0000090\"}|{\"paymentStartDate\":\"2026-04-20\",\"paymentEndDate\":\"2026-06-20\",\"billingAmount\":\"10\",\"billingCurrency\":\"INR\",\"billingCycle\":\"ADHOC\",\"billingInterval\":\"1\"}|||||[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]|<Salt>";
+
+    ```
   </Accordion>
 
   <Accordion title="Sample JSON Structure:" icon="fa-code">
