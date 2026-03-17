@@ -11,15 +11,6 @@ metadata:
 ---
 ***
 
-title: Cards - Native OTP Flow
-deprecated: false
-hidden: false
-link:
-new_tab: false
-metadata:
-title: ''
-description: ''
-robots: index
 The steps involved in cards with Native OTP:
 
 <Cards columns={3}>
@@ -36,7 +27,9 @@ The steps involved in cards with Native OTP:
   </Card>
 </Cards>
 
-<br />
+### Customer Experience
+
+<Image align="center" width="300px" src="https://files.readme.io/b6bfbc0ce1ac8fe083a98d9c0f3b8b3c02b5d06c0266c2cc38279637ccf9c25c-Native_OTP_Flow.gif" />
 
 ## Step 1: Initiate the payment request
 
