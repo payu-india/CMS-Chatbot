@@ -2,7 +2,6 @@
 - docs_required_api
 - create_kyc_document_api-1
 - delete_kyc_document_api
-- old_delete_kyc_document_api
 - post_ckyc_api
 - old_upload_aadhaar_xml_offline_api
 - upload_aadhaar_xml_offline_api

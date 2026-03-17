@@ -2346,63 +2346,6 @@
       "parameters": []
     },
     "/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}": {
-      "delete": {
-        "tags": [
-          "Delete KYC Document API"
-        ],
-        "summary": "delete_document",
-        "description": "It is used to delete document for a merchant.\n\nTest Environment: `https://uat-partner.payu.in`\n\nProduction Environment: `https://partner.payu.in`\n\nScope present in Token: `refer_merchant`",
-        "operationId": "delete_document",
-        "parameters": [
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "const": "application/x-www-form-urlencoded",
-              "type": "string",
-              "examples": [
-                "application/x-www-form-urlencoded"
-              ]
-            }
-          },
-          {
-            "name": "mid",
-            "in": "path",
-            "description": "The merchant key is a unique identifier for a merchant account in PayU's database. It is provided by PayU and use your Test key here.",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "kyc_document_uuid",
-            "in": "path",
-            "description": "The document UUID indicates the universally unique identifier of the document..",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        },
-        "deprecated": false,
-        "servers": [
-          {
-            "url": "https://uat-partner.payu.in/api",
-            "variables": {}
-          }
-        ]
-      },
       "parameters": []
     },
     "/api/v1/merchants/{mid}/credential": {
