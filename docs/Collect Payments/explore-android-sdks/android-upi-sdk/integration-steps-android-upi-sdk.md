@@ -59,7 +59,7 @@ implementation 'in.payu:upisdk:1.8.11'
   **Expand Manifest view for compilation error**: If you are getting the following compile error, expand the Merged Manifest view.
 
   `Android resource linking failed /Users/sample/AndroidStudioProjects/MyApp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:18: error: unexpected element found in <manifest>  
-                                  Manifest merger failed with multiple errors, see logs`
+                                    Manifest merger failed with multiple errors, see logs`
 </Callout>
 
 In the Merged Manifest view, the following additional error message is displayed. This indicates that you need to fix your Gradle plugin. For more information on the Gradle plugin, refer to the Google Andriod Documentation.
@@ -246,7 +246,7 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   ```
 
   <Accordion title="Hash Generation" icon="fa-code">
-    ```Text
+    ```Text Hash Formula
 key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|beneficiarydetail|si_details|user_token|offer_key|offer_auto_apply|cart_details|products
     ```
     ```Text Sample Hash Data
