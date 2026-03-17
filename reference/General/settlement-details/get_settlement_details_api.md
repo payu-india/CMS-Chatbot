@@ -25,7 +25,8 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
 ### Environment
   | Environment            | URL                                                                                                  |
-  | :--------------------- | :--------------------------------------------------------------------------------------------------- |                   |
+  | :--------------------- | :--------------------------------------------------------------------------------------------------- |
+  | Test Environment       | https://test.payu.in/merchant/postservice?form=2  |
   | Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2) |
 
 
