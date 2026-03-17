@@ -41,7 +41,7 @@ To integrate with Google Pay InApp flow, the merchant can add the below gradle d
 implementation 'in.payu:payu-gpay:4.0.1'
 ```
 
-The merchant needs to pass Google Pay as described in [Additional payment options in the Checkout screen](https://docs.payu.in/docs/android-checkoutpro-custom-integrations#additional-payment-options-in-the-checkout-screen).
+The merchant needs to pass Google Pay as described in [Additional payment options in the Checkout screen](doc:android-checkoutpro-custom-integrations).
 
 > ❗️ Callout
 >
