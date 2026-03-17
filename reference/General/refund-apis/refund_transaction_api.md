@@ -39,115 +39,319 @@ In this API:
 
 <GENERALAPIsEnvironment />
 
-<Accordion title="Sample request" icon="fa-code">
-  ### Simple sample request
-
+<Accordion title="Simple Sample Request" icon="fa-code">
   ```curl
   curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
   -H "accept: application/json" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10"
   ```
+  ```python
+  import requests
+
+  url = "https://test.payu.in/merchant/postservice?form=2"
+  headers = {
+      "accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+  }
+  data = {
+      "key": "JP***g",
+      "command": "cancel_refund_transaction",
+      "var1": "403993715521937565",
+      "var2": "20201105secrettokenaturend",
+      "hash": "10"
+  }
+
+  response = requests.post(url, headers=headers, data=data)
+  print(response.json())
+  ```
+  ```javascript
+  fetch("https://test.payu.in/merchant/postservice?form=2", {
+      method: "POST",
+      headers: {
+          "accept": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: new URLSearchParams({
+          "key": "JP***g",
+          "command": "cancel_refund_transaction",
+          "var1": "403993715521937565",
+          "var2": "20201105secrettokenaturend",
+          "hash": "10"
+      })
+  })
+  .then(response => response.json())
+  .then(data => console.log(data));
+  ```
+  ```java
+  import java.net.URI;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+
+  String url = "https://test.payu.in/merchant/postservice?form=2";
+  String formData = "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10";
+
+  HttpClient client = HttpClient.newHttpClient();
+  HttpRequest request = HttpRequest.newBuilder()
+      .uri(URI.create(url))
+      .header("accept", "application/json")
+      .header("Content-Type", "application/x-www-form-urlencoded")
+      .POST(HttpRequest.BodyPublishers.ofString(formData))
+      .build();
+
+  HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+  System.out.println(response.body());
+  ```
+  ```php
+  <?php
+  $url = "https://test.payu.in/merchant/postservice?form=2";
+  $data = array(
+      "key" => "JP***g",
+      "command" => "cancel_refund_transaction",
+      "var1" => "403993715521937565",
+      "var2" => "20201105secrettokenaturend",
+      "hash" => "10"
+  );
+
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      "accept: application/json",
+      "Content-Type: application/x-www-form-urlencoded"
+  ));
+
+  $response = curl_exec($ch);
+  curl_close($ch);
+
+  $result = json_decode($response, true);
+  print_r($result);
+  ?>
+  ```
+</Accordion>
+  <Accordion title="Sample request for split settlements" icon="fa-reply">
+```curl
+curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
+--header 'Cookie: PHPSESSID=7nv3d144qeh7g102p3uau1o6pm' \
+--form 'key="smsplus"' \
+--form 'command="cancel_refund_transaction"' \
+--form 'var1="24523622342"' \
+--form 'var2="test15"' \
+--form 'var3="0.10"' \
+--form 'hash=""' \
+--form 'var8="{\"amount\": 100,\"aggregatorRefundAmount\": 40 }"
+```
 ```python
 import requests
 
-url = "https://test.payu.in/merchant/postservice?form=2"
+url = "https://info.payu.in/merchant/postservice.php?form=2"
+
 headers = {
-    "accept": "application/json",
-    "Content-Type": "application/x-www-form-urlencoded"
+    'Cookie': 'PHPSESSID=7nv3d144qeh7g102p3uau1o6pm'
 }
+
 data = {
-    "key": "JP***g",
-    "command": "cancel_refund_transaction",
-    "var1": "403993715521937565",
-    "var2": "20201105secrettokenaturend",
-    "hash": "10"
+    'key': 'smsplus',
+    'command': 'cancel_refund_transaction',
+    'var1': '24523622342',
+    'var2': 'test15',
+    'var3': '0.10',
+    'hash': '',
+    'var8': '{"amount": 100,"aggregatorRefundAmount": 40 }'
 }
 
 response = requests.post(url, headers=headers, data=data)
-print(response.json())
+print(response.text)
 ```
+
 ```javascript
-fetch("https://test.payu.in/merchant/postservice?form=2", {
-    method: "POST",
-    headers: {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    },
-    body: new URLSearchParams({
-        "key": "JP***g",
-        "command": "cancel_refund_transaction",
-        "var1": "403993715521937565",
-        "var2": "20201105secrettokenaturend",
-        "hash": "10"
-    })
+const axios = require('axios');
+const FormData = require('form-data');
+
+const form = new FormData();
+form.append('key', 'smsplus');
+form.append('command', 'cancel_refund_transaction');
+form.append('var1', '24523622342');
+form.append('var2', 'test15');
+form.append('var3', '0.10');
+form.append('hash', '');
+form.append('var8', '{"amount": 100,"aggregatorRefundAmount": 40 }');
+
+axios.post('https://info.payu.in/merchant/postservice.php?form=2', form, {
+  headers: {
+    ...form.getHeaders(),
+    'Cookie': 'PHPSESSID=7nv3d144qeh7g102p3uau1o6pm'
+  }
 })
-.then(response => response.json())
-.then(data => console.log(data));
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
 ```
-```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
-String url = "https://test.payu.in/merchant/postservice?form=2";
-String formData = "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10";
-
-HttpClient client = HttpClient.newHttpClient();
-HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create(url))
-    .header("accept", "application/json")
-    .header("Content-Type", "application/x-www-form-urlencoded")
-    .POST(HttpRequest.BodyPublishers.ofString(formData))
-    .build();
-
-HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-System.out.println(response.body());
-```
 ```php
 <?php
-$url = "https://test.payu.in/merchant/postservice?form=2";
-$data = array(
-    "key" => "JP***g",
-    "command" => "cancel_refund_transaction",
-    "var1" => "403993715521937565",
-    "var2" => "20201105secrettokenaturend",
-    "hash" => "10"
-);
+$curl = curl_init();
 
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    "accept: application/json",
-    "Content-Type: application/x-www-form-urlencoded"
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://info.payu.in/merchant/postservice.php?form=2',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_HTTPHEADER => array(
+    'Cookie: PHPSESSID=7nv3d144qeh7g102p3uau1o6pm'
+  ),
+  CURLOPT_POSTFIELDS => array(
+    'key' => 'smsplus',
+    'command' => 'cancel_refund_transaction',
+    'var1' => '24523622342',
+    'var2' => 'test15',
+    'var3' => '0.10',
+    'hash' => '',
+    'var8' => '{"amount": 100,"aggregatorRefundAmount": 40 }'
+  )
 ));
 
-$response = curl_exec($ch);
-curl_close($ch);
-
-$result = json_decode($response, true);
-print_r($result);
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
 ?>
 ```
 
-  ### Sample request with split information JSON
+```java
+import java.io.*;
+import java.net.http.*;
+import java.net.*;
 
-  ```bash
-  curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
-  --header 'Cookie: PHPSESSID=7nv3d144qeh7g102p3uau1o6pm' \
-  --form 'key="smsplus"' \
-  --form 'command="cancel_refund_transaction"' \
-  --form 'var1="24523622342"' \
-  --form 'var2="test15"' \
-  --form 'var3="0.10"' \
-  --form 'hash=""' \
-  --form 'var8="{\"amount\": 100,\"aggregatorRefundAmount\": 40 }"
-  ```
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String boundary = "----Boundary" + System.currentTimeMillis();
+        String formData = "--" + boundary + "\r\n" +
+            "Content-Disposition: form-data; name=\"key\"\r\n\r\nsmsplus\r\n" +
+            "--" + boundary + "\r\n" +
+            "Content-Disposition: form-data; name=\"command\"\r\n\r\ncancel_refund_transaction\r\n" +
+            "--" + boundary + "\r\n" +
+            "Content-Disposition: form-data; name=\"var1\"\r\n\r\n24523622342\r\n" +
+            "--" + boundary + "\r\n" +
+            "Content-Disposition: form-data; name=\"var2\"\r\n\r\ntest15\r\n" +
+            "--" + boundary + "\r\n" +
+            "Content-Disposition: form-data; name=\"var3\"\r\n\r\n0.10\r\n" +
+            "--" + boundary + "\r\n" +
+            "Content-Disposition: form-data; name=\"hash\"\r\n\r\n\r\n" +
+            "--" + boundary + "\r\n" +
+            "Content-Disposition: form-data; name=\"var8\"\r\n\r\n{\"amount\": 100,\"aggregatorRefundAmount\": 40 }\r\n" +
+            "--" + boundary + "--\r\n";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://info.payu.in/merchant/postservice.php?form=2"))
+            .header("Content-Type", "multipart/form-data; boundary=" + boundary)
+            .header("Cookie", "PHPSESSID=7nv3d144qeh7g102p3uau1o6pm")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+
+```ruby
+require 'net/http'
+require 'uri'
+
+uri = URI.parse("https://info.payu.in/merchant/postservice.php?form=2")
+request = Net::HTTP::Post.new(uri)
+request["Cookie"] = "PHPSESSID=7nv3d144qeh7g102p3uau1o6pm"
+
+request.set_form({
+  "key" => "smsplus",
+  "command" => "cancel_refund_transaction",
+  "var1" => "24523622342",
+  "var2" => "test15",
+  "var3" => "0.10",
+  "hash" => "",
+  "var8" => '{"amount": 100,"aggregatorRefundAmount": 40 }'
+}, 'multipart/form-data')
+
+response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+  http.request(request)
+end
+
+puts response.body
+```
+
+```go
+package main
+
+import (
+    "bytes"
+    "fmt"
+    "io"
+    "mime/multipart"
+    "net/http"
+)
+
+func main() {
+    url := "https://info.payu.in/merchant/postservice.php?form=2"
+    
+    body := &bytes.Buffer{}
+    writer := multipart.NewWriter(body)
+    
+    writer.WriteField("key", "smsplus")
+    writer.WriteField("command", "cancel_refund_transaction")
+    writer.WriteField("var1", "24523622342")
+    writer.WriteField("var2", "test15")
+    writer.WriteField("var3", "0.10")
+    writer.WriteField("hash", "")
+    writer.WriteField("var8", `{"amount": 100,"aggregatorRefundAmount": 40 }`)
+    writer.Close()
+    
+    req, _ := http.NewRequest("POST", url, body)
+    req.Header.Set("Content-Type", writer.FormDataContentType())
+    req.Header.Set("Cookie", "PHPSESSID=7nv3d144qeh7g102p3uau1o6pm")
+    
+    client := &http.Client{}
+    resp, _ := client.Do(req)
+    defer resp.Body.Close()
+    
+    responseBody, _ := io.ReadAll(resp.Body)
+    fmt.Println(string(responseBody))
+}
+```
+
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        var client = new HttpClient();
+        var content = new MultipartFormDataContent();
+        
+        content.Add(new StringContent("smsplus"), "key");
+        content.Add(new StringContent("cancel_refund_transaction"), "command");
+        content.Add(new StringContent("24523622342"), "var1");
+        content.Add(new StringContent("test15"), "var2");
+        content.Add(new StringContent("0.10"), "var3");
+        content.Add(new StringContent(""), "hash");
+        content.Add(new StringContent("{\"amount\": 100,\"aggregatorRefundAmount\": 40 }"), "var8");
+        
+        client.DefaultRequestHeaders.Add("Cookie", "PHPSESSID=7nv3d144qeh7g102p3uau1o6pm");
+        
+        var response = await client.PostAsync("https://info.payu.in/merchant/postservice.php?form=2", content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+
+Each example replicates the same multipart form-data POST request with the split information JSON in the `var8` field 🚀
 </Accordion>
-
 <Accordion title="Sample response" icon="fa-reply">
   ### Success Scenarios
 
