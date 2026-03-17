@@ -59,7 +59,7 @@ implementation 'in.payu:upisdk:1.8.11'
   **Expand Manifest view for compilation error**: If you are getting the following compile error, expand the Merged Manifest view.
 
   `Android resource linking failed /Users/sample/AndroidStudioProjects/MyApp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:18: error: unexpected element found in <manifest>  
-                                    Manifest merger failed with multiple errors, see logs`
+                                      Manifest merger failed with multiple errors, see logs`
 </Callout>
 
 In the Merged Manifest view, the following additional error message is displayed. This indicates that you need to fix your Gradle plugin. For more information on the Gradle plugin, refer to the Google Andriod Documentation.
@@ -245,15 +245,26 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   mPaymentParamsUpiSdk.setProductsList(productsList);
   ```
 
-  <Accordion title="Hash Generation" icon="fa-code">
-    ```Text Hash Formula
-key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|beneficiarydetail|si_details|user_token|offer_key|offer_auto_apply|cart_details|products
-    ```
-    ```Text Sample Hash Data
-        String hashData = "<Key>|1714544838994|10|productInfo|firstName|test@gmail.com|udf1|udf2|udf3|udf4|udf5||||||{\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"HDFC0000090\"}|{\"paymentStartDate\":\"2026-04-20\",\"paymentEndDate\":\"2026-06-20\",\"billingAmount\":\"10\",\"billingCurrency\":\"INR\",\"billingCycle\":\"ADHOC\",\"billingInterval\":\"1\"}|||||[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]|<Salt>";
+Here's the content with the **Hash Formula** and **Sample Hash Data** sections highlighted:
 
-    ```
-  </Accordion>
+<Accordion title="Hash Generation" icon="fa-code">
+
+**✨ Hash Formula ✨**
+```
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|beneficiarydetail|si_details|user_token|offer_key|offer_auto_apply|cart_details|products
+```
+
+**🔍 Sample Hash Data 🔍**
+```java
+String hashData = "<Key>|1714544838994|10|productInfo|firstName|test@gmail.com|udf1|udf2|udf3|udf4|udf5||||||{\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"HDFC0000090\"}|{\"paymentStartDate\":\"2026-04-20\",\"paymentEndDate\":\"2026-06-20\",\"billingAmount\":\"10\",\"billingCurrency\":\"INR\",\"billingCycle\":\"ADHOC\",\"billingInterval\":\"1\"}|||||[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]|<Salt>";
+```
+
+The highlighted sections show:
+- **Hash Formula**: The pipe-separated structure defining the order of fields for hash generation
+- **Sample Hash Data**: A concrete example showing how the actual values are concatenated using the formula structure
+</Accordion>
+
+
 
   <Accordion title="Sample JSON Structure:" icon="fa-code">
     ```json
