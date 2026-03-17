@@ -59,7 +59,7 @@ implementation 'in.payu:upisdk:1.8.11'
   **Expand Manifest view for compilation error**: If you are getting the following compile error, expand the Merged Manifest view.
 
   `Android resource linking failed /Users/sample/AndroidStudioProjects/MyApp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:18: error: unexpected element found in <manifest>  
-                            Manifest merger failed with multiple errors, see logs`
+                              Manifest merger failed with multiple errors, see logs`
 </Callout>
 
 In the Merged Manifest view, the following additional error message is displayed. This indicates that you need to fix your Gradle plugin. For more information on the Gradle plugin, refer to the Google Andriod Documentation.
@@ -201,7 +201,20 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   </Accordion>
 </Accordion>
 
-<Accordion title="Wealth Tech Payment" icon="fa-code">
+<Accordion title="Step 4.3: For TPV (Optional Step)" icon="fa-code">
+  ```java
+// For single account number 
+mPaymentParams.setBeneficiaryAccountNumber("123456789");
+mPaymentParams.setIfscCode("SBIN000700");
+
+// For multiple account numbers
+mPaymentParams.setBeneficiaryAccountNumber("123456789|23456782|1234567"); 
+mPaymentParams.setIfscCode("SBIN000700|KTKN2937492|ICIC0002522");
+```
+  For more information, refer to https://docs.payu.in/docs/android-upisdk-tpv-integration
+
+</Accordion>
+<Accordion title="Step 4.4:Wealth Tech Payment" icon="fa-code">
   For Wealth Tech Payment, then generate the below payment params additionally
 
   ```java
@@ -239,8 +252,8 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
 
   <Accordion title="Sample JSON Structure:" icon="fa-code">
     ```json
-[
-  {
+    [
+    {
     "type": "mutual_fund",
     "plan": "GD",
     "amount": "50000",
@@ -252,8 +265,8 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
     "mf_partner": "cams",
     "mf_investment_type": "L",
     "mf_amc_code": "UTB"
-  }
-]
+    }
+    ]
 
     ```
   </Accordion>
