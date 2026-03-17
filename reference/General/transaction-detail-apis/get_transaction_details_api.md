@@ -36,6 +36,73 @@ The Get Transaction Details **(get_Transaction_Details)** API works based on inp
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JP***g&command=get_Transaction_Details&var1=2020-10-20&var2=2020-10-27&hash=0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634"
   ```
+```python
+import requests
+
+url = "https://test.payu.in/merchant/postservice?form=2"
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+data = {
+    "key": "JP***g",
+    "command": "get_Transaction_Details",
+    "var1": "2020-10-20",
+    "var2": "2020-10-27",
+    "hash": "0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634"
+}
+
+response = requests.post(url, headers=headers, data=data)
+print(response.json())
+```
+```javascript
+const axios = require('axios');
+
+const url = "https://test.payu.in/merchant/postservice?form=2";
+const data = new URLSearchParams({
+    "key": "JP***g",
+    "command": "get_Transaction_Details",
+    "var1": "2020-10-20",
+    "var2": "2020-10-27",
+    "hash": "0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634"
+});
+
+axios.post(url, data, {
+    headers: {
+        "accept": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+})
+.then(response => console.log(response.data));
+```
+```php
+<?php
+$url = "https://test.payu.in/merchant/postservice?form=2";
+$data = array(
+    "key" => "JP***g",
+    "command" => "get_Transaction_Details",
+    "var1" => "2020-10-20",
+    "var2" => "2020-10-27",
+    "hash" => "0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634"
+);
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    "accept: application/json",
+    "Content-Type: application/x-www-form-urlencoded"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+$result = json_decode($response, true);
+print_r($result);
+?>
+```
+
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
@@ -177,7 +244,7 @@ The Get Transaction Details **(get_Transaction_Details)** API works based on inp
 <Accordion title="Response parameters" icon="fa-list">
   The **transaction\_details** parameter of the response is in JSON format. The fields in this JSON are described in the following table:
 
-<Transaction_detailsResponseParameter />
+  <Transaction_detailsResponseParameter />
 
   For more information on the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 </Accordion>
