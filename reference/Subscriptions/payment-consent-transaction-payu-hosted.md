@@ -40,38 +40,38 @@ This section describes how to set up a Payment Consent or Registration transacti
   Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                                <style>
-                                .tooltip-btn {
-                                    position: relative;
-                                    background-color: #4CAF50;
-                                    color: white;
-                                    padding: 10px 20px;
-                                    border: none;
-                                    border-radius: 5px;
-                                    cursor: pointer;
-                                    font-weight: bold; /* Added this line */
-                                }
-                                .tooltip-btn:hover::after {
-                                    content: attr(data-tooltip);
-                                    position: absolute;
-                                    bottom: 125%;
-                                    left: 50%;
-                                    transform: translateX(-50%);
-                                    background-color: #333;
-                                    color: white;
-                                    padding: 5px 10px;
-                                    border-radius: 4px;
-                                    white-space: nowrap;
-                                    font-size: 12px;
-                                    z-index: 1;
-                                }
-                                </style>
+                                  <style>
+                                  .tooltip-btn {
+                                      position: relative;
+                                      background-color: #4CAF50;
+                                      color: white;
+                                      padding: 10px 20px;
+                                      border: none;
+                                      border-radius: 5px;
+                                      cursor: pointer;
+                                      font-weight: bold; /* Added this line */
+                                  }
+                                  .tooltip-btn:hover::after {
+                                      content: attr(data-tooltip);
+                                      position: absolute;
+                                      bottom: 125%;
+                                      left: 50%;
+                                      transform: translateX(-50%);
+                                      background-color: #333;
+                                      color: white;
+                                      padding: 5px 10px;
+                                      border-radius: 4px;
+                                      white-space: nowrap;
+                                      font-size: 12px;
+                                      z-index: 1;
+                                  }
+                                  </style>
 
-                                <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
-                                        class="tooltip-btn" 
-                                        data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
-                                    Experience the flow and get the code
-                                </button>
+                                  <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
+                                          class="tooltip-btn" 
+                                          data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
+                                      Experience the flow and get the code
+                                  </button>
   `}</HTMLBlock>
 </Callout>
 
@@ -310,7 +310,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 
       <td style={{ textAlign: "left" }}>
         This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.
-        <br/><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0</a> ) This is a JSON object and it includes a set of fields. For more information, refer to <a href="ref:https://docs.payu.in/reference/si-parameter-json-details/">SI Parameter JSON Details</a>
+        <br/><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0</a> ) This is a JSON object and it includes a set of fields. For more information, refer to <a href="https://docs.payu.in/reference/si-parameter-json-details/">SI Parameter JSON Details</a>
       </td>
 
       <td style={{ textAlign: "left" }}>
