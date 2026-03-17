@@ -1,1 +1,406 @@
-{"openapi":"3.1.0","info":{"title":"StoreCard","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://test.payu.in/merchant","variables":{}},{"url":"http://example.com/merchant","variables":{}}],"paths":{"/postservice.php":{"post":{"tags":["Misc"],"summary":"edit_payment_instrument","operationId":"edit_payment_instrument","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"const":2,"type":"integer","contentEncoding":"int32","examples":[2]}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/x-www-form-urlencoded","type":"string"}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","var1","var2","var3","var4","var5","var7","var8","hash"],"type":"object","properties":{"key":{"const":"JPM7Fg","type":"string","description":"The merchant key is a unique identifier provided by PayU."},"command":{"const":"edit_payment_instrument","type":"string","description":"The command name for this REST API call is edit_payment_instrument.","examples":["edit_payment_instrument"]},"var1":{"type":"string","description":"The user credentials are posted in this parameter in the following format: MerchantKey:UserId","examples":["JPM7Fg:abc"]},"var2":{"type":"string","description":"The card token of the card (cardToken) is specified in this parameter."},"var3":{"type":"string","description":"The card mode is specified in this parameter.","examples":["CC"]},"var4":{"type":"string","description":"The card type of the card is specified in this parameter.","examples":["AMEX"]},"var5":{"type":"string","description":"The name on the card is specified in this parameter."},"var6":{"type":"string","description":"The card network token is posted in this parameter. This field is mandatory for network token type."},"var7":{"type":"string","description":"The card expiry month is specified in this parameter."},"var8":{"type":"string","description":"The card expiry year is specified in this parameter."},"hash":{"type":"string","description":"The hash must be included in this parameter."}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"OK","headers":{"Access-Control-Allow-Origin":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"https://api-playground.payu.in"}}},"Content-Encoding":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"gzip"}}},"Content-Security-Policy":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"object-src 'none'; img-src https: data: *.payubiz.in *.payu.in  *.payumoney.com"}}},"Date":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"Wed, 24 Nov 2021 07:45:55 GMT"}}},"P3P":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""}}},"Server":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"PayuBiz"}}},"Strict-Transport-Security":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"max-age=31536000;includeSubDomains"}}},"Vary":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"Accept-Encoding"}}},"X-Content-Type-Options":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"nosniff"}}},"X-Frame-Options":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"SAMEORIGIN"}}},"X-XSS-Protection":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"1; mode=block"}}},"Content-Length":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"111"}}},"Connection":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"keep-alive"}}}},"content":{"text/html; charset=UTF-8":{"schema":{"allOf":[{"$ref":"#/components/schemas/edit_payment_instrument"},{"examples":[{"status":1,"msg":" edited Successfully.","cardToken":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","network_token":"8koNvAdC1bT0Hv5a","issuer_token":"LQ3QkzgEOnEjY428","card_number":"XXXXXXXXXXXXX2346","card_label":"testAll"}]}],"contentMediaType":"text/html; charset=UTF-8"},"example":{"status":1,"msg":" edited Successfully.","cardToken":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","network_token":"8koNvAdC1bT0Hv5a","issuer_token":"LQ3QkzgEOnEjY428","card_number":"XXXXXXXXXXXXX2346","card_label":"testAll"}}}}},"deprecated":false,"servers":[{"url":"http://example.com/merchant","variables":{}}]},"parameters":[]}},"components":{"schemas":{"save_payment_instrument":{"title":"save_payment_instrument","required":["status","msg","cardToken","card_number","card_label","network_token","issuer_token"],"type":"object","properties":{"status":{"type":"integer","contentEncoding":"int32"},"msg":{"type":"string"},"cardToken":{"type":"string"},"card_number":{"type":"string"},"card_label":{"type":"string"},"network_token":{"type":"string"},"issuer_token":{"type":"string"}},"examples":[{"status":1,"msg":"Card Stored Successfully.","cardToken":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","card_number":"XXXXXXXXXXXX8548","card_label":"nilesh_card_name","network_token":"8koNvAdC1bT0Hv5a","issuer_token":"LQ3QkzgEOnEjY428"}]},"get_payment_instrument_new":{"title":"get_payment_instrument_new","required":["status","msg","user_cards"],"type":"object","properties":{"status":{"type":"integer","contentEncoding":"int32"},"msg":{"type":"string"},"user_cards":{"allOf":[{"$ref":"#/components/schemas/UserCards"},{}]}},"examples":[{"status":1,"msg":"Cards fetched Succesfully","user_cards":{"0c186bdb8c0ebda30ab9d92816772cbfb946d027":{"card_no":"XXXXXXXXXXXX8548","card_token":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","card_name":"nilesh2_card_name","card_mode":"CC","card_PAR":"RCKGgxEEFX1un19I","card_type":"VISA","issuer_token":{"token_value":"8koNvAdC1bT0Hv5a","is_expired":0,"token_exp_mon":"11","token_exp_yr":"2021","token_bin":"123456"},"network_token":{"token_value":"8koNvAdC1bT0Hv5a","is_expired":0,"token_exp_mon":"11","token_exp_yr":"2021","token_bin":"512345"}}}}]},"UserCards":{"title":"UserCards","required":["0c186bdb8c0ebda30ab9d92816772cbfb946d027"],"type":"object","properties":{"0c186bdb8c0ebda30ab9d92816772cbfb946d027":{"allOf":[{"$ref":"#/components/schemas/0c186bdb8c0ebda30ab9d92816772cbfb946d027"},{}]}},"examples":[{"0c186bdb8c0ebda30ab9d92816772cbfb946d027":{"card_no":"XXXXXXXXXXXX8548","card_token":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","card_name":"nilesh2_card_name","card_mode":"CC","card_PAR":"RCKGgxEEFX1un19I","card_type":"VISA","issuer_token":{"token_value":"8koNvAdC1bT0Hv5a","is_expired":0,"token_exp_mon":"11","token_exp_yr":"2021","token_bin":"123456"},"network_token":{"token_value":"8koNvAdC1bT0Hv5a","is_expired":0,"token_exp_mon":"11","token_exp_yr":"2021","token_bin":"512345"}}}]},"0c186bdb8c0ebda30ab9d92816772cbfb946d027":{"title":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","required":["card_no","card_token","card_name","card_mode","card_PAR","card_type","issuer_token","network_token"],"type":"object","properties":{"card_no":{"type":"string"},"card_token":{"type":"string"},"card_name":{"type":"string"},"card_mode":{"type":"string"},"card_PAR":{"type":"string"},"card_type":{"type":"string"},"issuer_token":{"allOf":[{"$ref":"#/components/schemas/IssuerToken"},{}]},"network_token":{"allOf":[{"$ref":"#/components/schemas/NetworkToken"},{}]}},"examples":[{"card_no":"XXXXXXXXXXXX8548","card_token":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","card_name":"nilesh2_card_name","card_mode":"CC","card_PAR":"RCKGgxEEFX1un19I","card_type":"VISA","issuer_token":{"token_value":"8koNvAdC1bT0Hv5a","is_expired":0,"token_exp_mon":"11","token_exp_yr":"2021","token_bin":"123456"},"network_token":{"token_value":"8koNvAdC1bT0Hv5a","is_expired":0,"token_exp_mon":"11","token_exp_yr":"2021","token_bin":"512345"}}]},"IssuerToken":{"title":"IssuerToken","required":["token_value","is_expired","token_exp_mon","token_exp_yr","token_bin"],"type":"object","properties":{"token_value":{"type":"string"},"is_expired":{"type":"integer","contentEncoding":"int32"},"token_exp_mon":{"type":"string"},"token_exp_yr":{"type":"string"},"token_bin":{"type":"string"}},"examples":[{"token_value":"8koNvAdC1bT0Hv5a","is_expired":0,"token_exp_mon":"11","token_exp_yr":"2021","token_bin":"123456"}]},"NetworkToken":{"title":"NetworkToken","required":["token_value","is_expired","token_exp_mon","token_exp_yr","token_bin"],"type":"object","properties":{"token_value":{"type":"string"},"is_expired":{"type":"integer","contentEncoding":"int32"},"token_exp_mon":{"type":"string"},"token_exp_yr":{"type":"string"},"token_bin":{"type":"string"}},"examples":[{"token_value":"8koNvAdC1bT0Hv5a","is_expired":0,"token_exp_mon":"11","token_exp_yr":"2021","token_bin":"512345"}]},"delete_payment_instrument":{"title":"delete_payment_instrument","required":["status","msg"],"type":"object","properties":{"status":{"type":"integer","contentEncoding":"int32"},"msg":{"type":"string"}},"examples":[{"status":1,"msg":"name card deleted successfully"}]},"edit_payment_instrument":{"title":"edit_payment_instrument","required":["status","msg","cardToken","network_token","issuer_token","card_number","card_label"],"type":"object","properties":{"status":{"type":"integer","contentEncoding":"int32"},"msg":{"type":"string"},"cardToken":{"type":"string"},"network_token":{"type":"string"},"issuer_token":{"type":"string"},"card_number":{"type":"string"},"card_label":{"type":"string"}},"examples":[{"status":1,"msg":" edited Successfully.","cardToken":"0c186bdb8c0ebda30ab9d92816772cbfb946d027","network_token":"8koNvAdC1bT0Hv5a","issuer_token":"LQ3QkzgEOnEjY428","card_number":"XXXXXXXXXXXXX2346","card_label":"testAll"}]}}},"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "StoreCard",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/merchant",
+      "variables": {}
+    },
+    {
+      "url": "http://example.com/merchant",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/postservice.php": {
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "save_payment_instrument": {
+        "title": "save_payment_instrument",
+        "required": [
+          "status",
+          "msg",
+          "cardToken",
+          "card_number",
+          "card_label",
+          "network_token",
+          "issuer_token"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "cardToken": {
+            "type": "string"
+          },
+          "card_number": {
+            "type": "string"
+          },
+          "card_label": {
+            "type": "string"
+          },
+          "network_token": {
+            "type": "string"
+          },
+          "issuer_token": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "status": 1,
+            "msg": "Card Stored Successfully.",
+            "cardToken": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+            "card_number": "XXXXXXXXXXXX8548",
+            "card_label": "nilesh_card_name",
+            "network_token": "8koNvAdC1bT0Hv5a",
+            "issuer_token": "LQ3QkzgEOnEjY428"
+          }
+        ]
+      },
+      "get_payment_instrument_new": {
+        "title": "get_payment_instrument_new",
+        "required": [
+          "status",
+          "msg",
+          "user_cards"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "user_cards": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserCards"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "status": 1,
+            "msg": "Cards fetched Succesfully",
+            "user_cards": {
+              "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
+                "card_no": "XXXXXXXXXXXX8548",
+                "card_token": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+                "card_name": "nilesh2_card_name",
+                "card_mode": "CC",
+                "card_PAR": "RCKGgxEEFX1un19I",
+                "card_type": "VISA",
+                "issuer_token": {
+                  "token_value": "8koNvAdC1bT0Hv5a",
+                  "is_expired": 0,
+                  "token_exp_mon": "11",
+                  "token_exp_yr": "2021",
+                  "token_bin": "123456"
+                },
+                "network_token": {
+                  "token_value": "8koNvAdC1bT0Hv5a",
+                  "is_expired": 0,
+                  "token_exp_mon": "11",
+                  "token_exp_yr": "2021",
+                  "token_bin": "512345"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "UserCards": {
+        "title": "UserCards",
+        "required": [
+          "0c186bdb8c0ebda30ab9d92816772cbfb946d027"
+        ],
+        "type": "object",
+        "properties": {
+          "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/0c186bdb8c0ebda30ab9d92816772cbfb946d027"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
+              "card_no": "XXXXXXXXXXXX8548",
+              "card_token": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+              "card_name": "nilesh2_card_name",
+              "card_mode": "CC",
+              "card_PAR": "RCKGgxEEFX1un19I",
+              "card_type": "VISA",
+              "issuer_token": {
+                "token_value": "8koNvAdC1bT0Hv5a",
+                "is_expired": 0,
+                "token_exp_mon": "11",
+                "token_exp_yr": "2021",
+                "token_bin": "123456"
+              },
+              "network_token": {
+                "token_value": "8koNvAdC1bT0Hv5a",
+                "is_expired": 0,
+                "token_exp_mon": "11",
+                "token_exp_yr": "2021",
+                "token_bin": "512345"
+              }
+            }
+          }
+        ]
+      },
+      "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
+        "title": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+        "required": [
+          "card_no",
+          "card_token",
+          "card_name",
+          "card_mode",
+          "card_PAR",
+          "card_type",
+          "issuer_token",
+          "network_token"
+        ],
+        "type": "object",
+        "properties": {
+          "card_no": {
+            "type": "string"
+          },
+          "card_token": {
+            "type": "string"
+          },
+          "card_name": {
+            "type": "string"
+          },
+          "card_mode": {
+            "type": "string"
+          },
+          "card_PAR": {
+            "type": "string"
+          },
+          "card_type": {
+            "type": "string"
+          },
+          "issuer_token": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IssuerToken"
+              },
+              {}
+            ]
+          },
+          "network_token": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/NetworkToken"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "card_no": "XXXXXXXXXXXX8548",
+            "card_token": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+            "card_name": "nilesh2_card_name",
+            "card_mode": "CC",
+            "card_PAR": "RCKGgxEEFX1un19I",
+            "card_type": "VISA",
+            "issuer_token": {
+              "token_value": "8koNvAdC1bT0Hv5a",
+              "is_expired": 0,
+              "token_exp_mon": "11",
+              "token_exp_yr": "2021",
+              "token_bin": "123456"
+            },
+            "network_token": {
+              "token_value": "8koNvAdC1bT0Hv5a",
+              "is_expired": 0,
+              "token_exp_mon": "11",
+              "token_exp_yr": "2021",
+              "token_bin": "512345"
+            }
+          }
+        ]
+      },
+      "IssuerToken": {
+        "title": "IssuerToken",
+        "required": [
+          "token_value",
+          "is_expired",
+          "token_exp_mon",
+          "token_exp_yr",
+          "token_bin"
+        ],
+        "type": "object",
+        "properties": {
+          "token_value": {
+            "type": "string"
+          },
+          "is_expired": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "token_exp_mon": {
+            "type": "string"
+          },
+          "token_exp_yr": {
+            "type": "string"
+          },
+          "token_bin": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "token_value": "8koNvAdC1bT0Hv5a",
+            "is_expired": 0,
+            "token_exp_mon": "11",
+            "token_exp_yr": "2021",
+            "token_bin": "123456"
+          }
+        ]
+      },
+      "NetworkToken": {
+        "title": "NetworkToken",
+        "required": [
+          "token_value",
+          "is_expired",
+          "token_exp_mon",
+          "token_exp_yr",
+          "token_bin"
+        ],
+        "type": "object",
+        "properties": {
+          "token_value": {
+            "type": "string"
+          },
+          "is_expired": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "token_exp_mon": {
+            "type": "string"
+          },
+          "token_exp_yr": {
+            "type": "string"
+          },
+          "token_bin": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "token_value": "8koNvAdC1bT0Hv5a",
+            "is_expired": 0,
+            "token_exp_mon": "11",
+            "token_exp_yr": "2021",
+            "token_bin": "512345"
+          }
+        ]
+      },
+      "delete_payment_instrument": {
+        "title": "delete_payment_instrument",
+        "required": [
+          "status",
+          "msg"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "msg": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "status": 1,
+            "msg": "name card deleted successfully"
+          }
+        ]
+      },
+      "edit_payment_instrument": {
+        "title": "edit_payment_instrument",
+        "required": [
+          "status",
+          "msg",
+          "cardToken",
+          "network_token",
+          "issuer_token",
+          "card_number",
+          "card_label"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "msg": {
+            "type": "string"
+          },
+          "cardToken": {
+            "type": "string"
+          },
+          "network_token": {
+            "type": "string"
+          },
+          "issuer_token": {
+            "type": "string"
+          },
+          "card_number": {
+            "type": "string"
+          },
+          "card_label": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "status": 1,
+            "msg": " edited Successfully.",
+            "cardToken": "0c186bdb8c0ebda30ab9d92816772cbfb946d027",
+            "network_token": "8koNvAdC1bT0Hv5a",
+            "issuer_token": "LQ3QkzgEOnEjY428",
+            "card_number": "XXXXXXXXXXXXX2346",
+            "card_label": "testAll"
+          }
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
