@@ -60,7 +60,7 @@ implementation 'in.payu:upisdk:1.8.11'
   **Expand Manifest view for compilation error**: If you are getting the following compile error, expand the Merged Manifest view.
 
   `Android resource linking failed /Users/sample/AndroidStudioProjects/MyApp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:18: error: unexpected element found in <manifest>  
-                    Manifest merger failed with multiple errors, see logs`
+                      Manifest merger failed with multiple errors, see logs`
 </Callout>
 
 In the Merged Manifest view, the following additional error message is displayed. This indicates that you need to fix your Gradle plugin. For more information on the Gradle plugin, refer to the Google Andriod Documentation.
@@ -220,13 +220,18 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
         products.setMfPartner("cams");
         products.setMfInvestmentType("L");
         products.setMfAmcCode("UTB");
-        productsList.add(products);
+  productsList.add(products);
+  
+  Sample JSON Object:- 
+[{"type":"mutual_fund","plan":"GD","folio":"9104927822","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}
   ```
+
   After creating the above `productsList` object, configure it in the `PayUPaymentParams` object. For Wealth Tech Payment, complete `PayUPaymentParams` similar to the following code block:
 
   ```java Java
- mPaymentParamsUpiSdk.setProductsList(productsList);
+  mPaymentParamsUpiSdk.setProductsList(productsList);
   ```
+  
 
 </Accordion>
 
