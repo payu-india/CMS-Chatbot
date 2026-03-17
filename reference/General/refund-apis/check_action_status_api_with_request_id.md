@@ -1,24 +1,5 @@
 ---
 title: Check Refund Status with Request ID API
-excerpt: >-
-  Check the status of a specific refund request using the Request ID.
-
-
-  This API provides detailed information about:
-
-  - Refund processing status
-
-  - Settlement information  
-
-  - Transaction details
-
-  - Processing timestamps
-
-  - Error messages if any
-
-
-  **Request ID Source:** The Request ID is returned when the
-  cancel_refund_transaction API is successfully executed.
 api:
   file: payu_check_refund_status_requestid_oas31.json
   operationId: checkRefundStatusWithRequestId
@@ -36,6 +17,8 @@ metadata:
     - check_action_status API Command
     - Using Request ID to Check Refund Status API
 ---
+Check the status of a specific refund request using the Request ID.This API provides detailed information about:- Refund processing status- Settlement information  - Transaction details- Processing timestamps- Error messages if any**Request ID Source:** The Request ID is returned when the cancel_refund_transaction API is successfully executed.
+
 Whenever the **cancel_refund_transaction** API is executed successfully to cancel a transaction, a Request ID is returned in the output parameters for that particular request. For more information on the cancel_refund_transaction API, refer to Refund Transaction.
 
 In **check_action_status** API, you need to input this Request ID to get the current status of the request. The return parameters are MIHPayID, Amount, Discount, Mode, and Status of transaction. The following are different payment states:
