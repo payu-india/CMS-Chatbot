@@ -34,14 +34,138 @@ The **check_action_status** API has another usage too. For a particular PayUID, 
 <GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
-  ```bash
+  ```curl
   curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
   -H "accept: application/json" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JP***g&command=check_action_status&var1=403993715521937565&var2=payuid&hash=81bdb5b8e625f254398d744269844fc6b9d87b3782670331c2a6b856f42f315b9898f397df7292cfd33a6153abf4acac58ce3ac671e41999ff81d98ce432f48e"
   ```
+```python
+import requests
 
-  **Example Values:**
+url = "https://test.payu.in/merchant/postservice?form=2"
+
+headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+}
+
+data = {
+    'key': 'JP***g',
+    'command': 'check_action_status',
+    'var1': '403993715521937565',
+    'var2': 'payuid',
+    'hash': '81bdb5b8e625f254398d744269844fc6b9d87b3782670331c2a6b856f42f315b9898f397df7292cfd33a6153abf4acac58ce3ac671e41999ff81d98ce432f48e'
+}
+
+response = requests.post(url, headers=headers, data=data)
+print(response.json())
+```
+```javascript
+const axios = require('axios');
+
+const url = 'https://test.payu.in/merchant/postservice?form=2';
+
+const data = new URLSearchParams({
+  key: 'JP***g',
+  command: 'check_action_status',
+  var1: '403993715521937565',
+  var2: 'payuid',
+  hash: '81bdb5b8e625f254398d744269844fc6b9d87b3782670331c2a6b856f42f315b9898f397df7292cfd33a6153abf4acac58ce3ac671e41999ff81d98ce432f48e'
+});
+
+axios.post(url, data, {
+  headers: {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+```java
+import java.io.*;
+import java.net.http.*;
+import java.net.*;
+
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&command=check_action_status&var1=403993715521937565&var2=payuid&hash=81bdb5b8e625f254398d744269844fc6b9d87b3782670331c2a6b856f42f315b9898f397df7292cfd33a6153abf4acac58ce3ac671e41999ff81d98ce432f48e";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/merchant/postservice?form=2"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://test.payu.in/merchant/postservice?form=2',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_POST => true,
+  CURLOPT_HTTPHEADER => array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+  ),
+  CURLOPT_POSTFIELDS => http_build_query(array(
+    'key' => 'JP***g',
+    'command' => 'check_action_status',
+    'var1' => '403993715521937565',
+    'var2' => 'payuid',
+    'hash' => '81bdb5b8e625f254398d744269844fc6b9d87b3782670331c2a6b856f42f315b9898f397df7292cfd33a6153abf4acac58ce3ac671e41999ff81d98ce432f48e'
+  ))
+));
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?>
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        var client = new HttpClient();
+        
+        var data = new FormUrlEncodedContent(new[]
+        {
+            new KeyValuePair<string, string>("key", "JP***g"),
+            new KeyValuePair<string, string>("command", "check_action_status"),
+            new KeyValuePair<string, string>("var1", "403993715521937565"),
+            new KeyValuePair<string, string>("var2", "payuid"),
+            new KeyValuePair<string, string>("hash", "81bdb5b8e625f254398d744269844fc6b9d87b3782670331c2a6b856f42f315b9898f397df7292cfd33a6153abf4acac58ce3ac671e41999ff81d98ce432f48e")
+        });
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var response = await client.PostAsync("https://test.payu.in/merchant/postservice?form=2", data);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+
+Each example sends a POST request with URL-encoded form data to check the action status ✅
+</Accordion>
+<Accordion title="Example values" icon="fa-info">
 
   * `var1` (mihpayid): 403993715521937565
   * `var2`: payuid
