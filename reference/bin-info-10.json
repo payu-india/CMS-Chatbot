@@ -1,1 +1,51 @@
-{"openapi":"3.1.0","info":{"title":"BIN Info","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://test.payu.in/","variables":{}}],"paths":{"/merchant/postservice.php":{"post":{"summary":"GetIssuingBankDownBINs","description":"","operationId":"GetIssuingBankDownBINs","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"const":"2","type":"string"}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/x-www-form-urlencoded","type":"string"}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","var1","var2","hash"],"type":"object","properties":{"key":{"const":"JPM7Fg","type":"string","description":"The merchant key is a unique identifier for a merchant account that is provided by PayU."},"command":{"const":"getIssuingBankDownBins","type":"string","description":"This parameter must have getIssuingBankDownBins as command name."},"var1":{"type":"string","description":"This parameter must contain the bank name code (to be provided by PayU) or “default”.","examples":["default"]},"var2":{"type":"integer","description":"This parameter must contain either \"0\" (zero) to extract information about fully down BIN or  \"1\" to extract information about partially down BIN.","contentEncoding":"int32","examples":[1]},"hash":{"type":"string","description":"This parameter must contain the hash value to be calculated at your end. Hash logic for this API is: sha512(key|command|var1|salt) sha512"}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{},"content":{"text/plain":{"schema":{"type":"object","contentMediaType":"text/plain"}}}}},"deprecated":false},"parameters":[]}},"components":{"schemas":{"form":{"title":"form","const":2,"type":"integer"},"Content-Type":{"title":"Content-Type","const":"application/x-www-form-urlencoded","type":"string"},"key":{"title":"key","const":"JPM7Fg","type":"string","description":"The merchant key is a unique identifier for a merchant account that is provided by PayU."},"command":{"title":"command","const":"getIssuingBankDownBins","type":"string","description":"This parameter must have getIssuingBankDownBins as command name."}}},"tags":[],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "BIN Info",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/merchant/postservice.php": {
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "form": {
+        "title": "form",
+        "const": 2,
+        "type": "integer"
+      },
+      "Content-Type": {
+        "title": "Content-Type",
+        "const": "application/x-www-form-urlencoded",
+        "type": "string"
+      },
+      "key": {
+        "title": "key",
+        "const": "JPM7Fg",
+        "type": "string",
+        "description": "The merchant key is a unique identifier for a merchant account that is provided by PayU."
+      },
+      "command": {
+        "title": "command",
+        "const": "getIssuingBankDownBins",
+        "type": "string",
+        "description": "This parameter must have getIssuingBankDownBins as command name."
+      }
+    }
+  },
+  "tags": [],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
