@@ -36,73 +36,92 @@ The Get Transaction Details **(get_Transaction_Details)** API works based on inp
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JP***g&command=get_Transaction_Details&var1=2020-10-20&var2=2020-10-27&hash=0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634"
   ```
-```python
-import requests
+  ```python
+  import requests
 
-url = "https://test.payu.in/merchant/postservice?form=2"
-headers = {
-    "accept": "application/json",
-    "Content-Type": "application/x-www-form-urlencoded"
-}
-data = {
-    "key": "JP***g",
-    "command": "get_Transaction_Details",
-    "var1": "2020-10-20",
-    "var2": "2020-10-27",
-    "hash": "0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634"
-}
+  url = "https://test.payu.in/merchant/postservice?form=2"
+  headers = {
+      "accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+  }
+  data = {
+      "key": "JP***g",
+      "command": "get_Transaction_Details",
+      "var1": "2020-10-20",
+      "var2": "2020-10-27",
+      "hash": "0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634"
+  }
 
-response = requests.post(url, headers=headers, data=data)
-print(response.json())
+  response = requests.post(url, headers=headers, data=data)
+  print(response.json())
+  ```
+  ```javascript
+  const axios = require('axios');
+
+  const url = "https://test.payu.in/merchant/postservice?form=2";
+  const data = new URLSearchParams({
+      "key": "JP***g",
+      "command": "get_Transaction_Details",
+      "var1": "2020-10-20",
+      "var2": "2020-10-27",
+      "hash": "0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634"
+  });
+
+  axios.post(url, data, {
+      headers: {
+          "accept": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+      }
+  })
+  .then(response => console.log(response.data));
+  ```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+String url = "https://test.payu.in/merchant/postservice?form=2";
+String formData = "key=JP***g&command=get_Transaction_Details&var1=2020-10-20&var2=2020-10-27&hash=0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634";
+
+HttpClient client = HttpClient.newHttpClient();
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create(url))
+    .header("accept", "application/json")
+    .header("Content-Type", "application/x-www-form-urlencoded")
+    .POST(HttpRequest.BodyPublishers.ofString(formData))
+    .build();
+
+HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+System.out.println(response.body());
 ```
-```javascript
-const axios = require('axios');
+  ```php
+  <?php
+  $url = "https://test.payu.in/merchant/postservice?form=2";
+  $data = array(
+      "key" => "JP***g",
+      "command" => "get_Transaction_Details",
+      "var1" => "2020-10-20",
+      "var2" => "2020-10-27",
+      "hash" => "0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634"
+  );
 
-const url = "https://test.payu.in/merchant/postservice?form=2";
-const data = new URLSearchParams({
-    "key": "JP***g",
-    "command": "get_Transaction_Details",
-    "var1": "2020-10-20",
-    "var2": "2020-10-27",
-    "hash": "0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634"
-});
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      "accept: application/json",
+      "Content-Type: application/x-www-form-urlencoded"
+  ));
 
-axios.post(url, data, {
-    headers: {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
-})
-.then(response => console.log(response.data));
-```
-```php
-<?php
-$url = "https://test.payu.in/merchant/postservice?form=2";
-$data = array(
-    "key" => "JP***g",
-    "command" => "get_Transaction_Details",
-    "var1" => "2020-10-20",
-    "var2" => "2020-10-27",
-    "hash" => "0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634"
-);
+  $response = curl_exec($ch);
+  curl_close($ch);
 
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    "accept: application/json",
-    "Content-Type: application/x-www-form-urlencoded"
-));
-
-$response = curl_exec($ch);
-curl_close($ch);
-
-$result = json_decode($response, true);
-print_r($result);
-?>
-```
-
+  $result = json_decode($response, true);
+  print_r($result);
+  ?>
+  ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
