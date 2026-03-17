@@ -17,11 +17,11 @@ This API is used to update a payment link’s status and expiry date.
 
 > 📘 Note:
 >
-> The access token with the scope as **update\_payment\_links** from using the User Token APIs is required on the header. For more information on getting the access token, refer to [User Token APIs](ref:user-token-apis).
+> The access token with the scope as **update_payment_links** from using the User Token APIs is required on the header. For more information on getting the access token, refer to [User Token APIs](ref:partner-integration-user-token-apis).
 
 ### Environment
 
-|                            |                             |
-| :------------------------- | :-------------------------- |
-| **Test Environment**       | &lt;https://uatoneapi.payu.in&gt; |
-| **Production Environment** | &lt;https://oneapi.payu.in&gt; |
+|                            |                                                           |
+| :------------------------- | :-------------------------------------------------------- |
+| **Test Environment**       | \<[https://uatoneapi.payu.in](https://uatoneapi.payu.in)> |
+| **Production Environment** | \<[https://oneapi.payu.in](https://oneapi.payu.in)>       |
