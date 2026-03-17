@@ -133,6 +133,6 @@ Accelerate your integration workflow with our net banking Postman collection for
   Lorem Ispum
 </Callout>
 
-<PayUHashToolLink />
 
-<br />
+
+<PayUHostedHashToolLink />
