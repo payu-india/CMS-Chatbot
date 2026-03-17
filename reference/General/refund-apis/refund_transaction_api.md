@@ -34,7 +34,7 @@ In this API:
 <Callout icon="📮" theme="default">
   **Postman Collection**: Access the **Refund Transaction API Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/w4v94j2/refund-transaction-api
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/w4v94j2/refund-transaction-api](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/w4v94j2/refund-transaction-api)
 </Callout>
 
 <GENERALAPIsEnvironment />
@@ -42,12 +42,96 @@ In this API:
 <Accordion title="Sample request" icon="fa-code">
   ### Simple sample request
 
-  ```bash
+  ```curl
   curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
   -H "accept: application/json" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10"
   ```
+```python
+import requests
+
+url = "https://test.payu.in/merchant/postservice?form=2"
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+data = {
+    "key": "JP***g",
+    "command": "cancel_refund_transaction",
+    "var1": "403993715521937565",
+    "var2": "20201105secrettokenaturend",
+    "hash": "10"
+}
+
+response = requests.post(url, headers=headers, data=data)
+print(response.json())
+```
+```javascript
+fetch("https://test.payu.in/merchant/postservice?form=2", {
+    method: "POST",
+    headers: {
+        "accept": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: new URLSearchParams({
+        "key": "JP***g",
+        "command": "cancel_refund_transaction",
+        "var1": "403993715521937565",
+        "var2": "20201105secrettokenaturend",
+        "hash": "10"
+    })
+})
+.then(response => response.json())
+.then(data => console.log(data));
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+String url = "https://test.payu.in/merchant/postservice?form=2";
+String formData = "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10";
+
+HttpClient client = HttpClient.newHttpClient();
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create(url))
+    .header("accept", "application/json")
+    .header("Content-Type", "application/x-www-form-urlencoded")
+    .POST(HttpRequest.BodyPublishers.ofString(formData))
+    .build();
+
+HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+System.out.println(response.body());
+```
+```php
+<?php
+$url = "https://test.payu.in/merchant/postservice?form=2";
+$data = array(
+    "key" => "JP***g",
+    "command" => "cancel_refund_transaction",
+    "var1" => "403993715521937565",
+    "var2" => "20201105secrettokenaturend",
+    "hash" => "10"
+);
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    "accept: application/json",
+    "Content-Type: application/x-www-form-urlencoded"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+$result = json_decode($response, true);
+print_r($result);
+?>
+```
 
   ### Sample request with split information JSON
 
