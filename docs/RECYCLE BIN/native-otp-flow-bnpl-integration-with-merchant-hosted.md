@@ -84,7 +84,7 @@ In general, the transaction OTP is captured on Bank pages through multiple hops.
   The flow supports the latest native OTP generation flows through the **Payment** (\_payment\*\*)\*\*API, followed by **Submit OTP** API, to initiate an S2S=4 transaction.
 
   <Callout icon="📘" theme="info">
-    **Note**: If you don’t have BNPL enabled, try requesting using Dashboard. For more information, refer to[ Checkout payment modes](doc:configure-user-settings#disable-checkout-payment-modes). If you could not request through Dashboard, contact your PayU Key Account Manager or <Anchor label="PayU Support" target="_blank" href="https://help.payu.in/">PayU Support</Anchor>.
+    **Note**: If you don’t have BNPL enabled, try requesting using Dashboard. For more information, refer to[ Checkout payment modes](doc:payu-payment-page-customization#configure-checkout-payment-methods-and-settings). If you could not request through Dashboard, contact your PayU Key Account Manager or <Anchor label="PayU Support" target="_blank" href="https://help.payu.in/">PayU Support</Anchor>.
   </Callout>
 
   **Steps to Integrate**
@@ -664,8 +664,6 @@ Before you can initiate payment with PayU, you can check the eligibility using t
       </tr>
     </tbody>
   </Table>
-
-  Check the response mentioned in<a href="_payment_merchant_hosted_bnpl" target="_blank">Collect Payments API - BNPL</a> under API Reference..
 
   <HashingRequestParameters />
 </Accordion>
