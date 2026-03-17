@@ -22,8 +22,15 @@ The Check Payment (**check_payment**) API functions similar to the [Verify Payme
 <GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
-```curl
-curl --location 'https://secure.payu.in/merchant/postservice'   --header 'Content-Type: application/x-www-form-urlencoded'   --header 'Cookie: PHPSESSID=6i6633s3gknq1kvph6dtijoabu; USERTXNINFO=68ed4df291d9b7.27710642'   --data-urlencode 'key=BmTY3G'   --data-urlencode 'command=get_TDR'   --data-urlencode 'var1="25779819010"'   --data-urlencode 'hash=9ba8c5c14b1d8643053b121ce7beb556b1e81fe7f4685048008bcc9f81a35f2b03f879704c10e0999e84923701219fc507c53a57c5ea8ff033ccd4148fb3366c'   --data-urlencode 'form=2'
+``curl
+curl --location 'https://secure.payu.in/merchant/postservice'
+--header 'Content-Type: application/x-www-form-urlencoded'
+--header 'Cookie: PHPSESSID=6i6633s3gknq1kvph6dtijoabu; USERTXNINFO=68ed4df291d9b7.27710642'
+--data-urlencode 'key=JPM7Fg'
+--data-urlencode 'command=check_payment'
+--data-urlencode 'var1="25779819010"'
+--data-urlencode 'hash=9ba8c5c14b1d8643053b121ce7beb556b1e81fe7f4685048008bcc9f81a35f2b03f879704c10e0999e84923701219fc507c53a57c5ea8ff033ccd4148fb3366c'
+  --data-urlencode 'form=2'
 ```
 ```python
 import requests
@@ -35,8 +42,8 @@ try:
         'Cookie': 'PHPSESSID=6i6633s3gknq1kvph6dtijoabu; USERTXNINFO=68ed4df291d9b7.27710642'
     }
     data = {
-        'key': 'BmTY3G',
-        'command': 'get_TDR',
+        'key': 'JPM7Fg',
+        'command': 'check_payment',
         'var1': '"25779819010"',
         'hash': '9ba8c5c14b1d8643053b121ce7beb556b1e81fe7f4685048008bcc9f81a35f2b03f879704c10e0999e84923701219fc507c53a57c5ea8ff033ccd4148fb3366c',
         'form': '2'
@@ -66,8 +73,8 @@ class Program
             
             var postData = new List<KeyValuePair<string, string>>
             {
-                new("key", "BmTY3G"),
-                new("command", "get_TDR"),
+                new("key", "JPM7Fg"),
+                new("command", "check_payment"),
                 new("var1", "\"25779819010\""),
                 new("hash", "9ba8c5c14b1d8643053b121ce7beb556b1e81fe7f4685048008bcc9f81a35f2b03f879704c10e0999e84923701219fc507c53a57c5ea8ff033ccd4148fb3366c"),
                 new("form", "2")
@@ -97,8 +104,8 @@ async function makeRequest() {
         const url = 'https://secure.payu.in/merchant/postservice';
         
         const postData = new URLSearchParams({
-            'key': 'BmTY3G',
-            'command': 'get_TDR',
+            'key': 'JPM7Fg',
+            'command': 'check_payment',
             'var1': '"25779819010"',
             'hash': '9ba8c5c14b1d8643053b121ce7beb556b1e81fe7f4685048008bcc9f81a35f2b03f879704c10e0999e84923701219fc507c53a57c5ea8ff033ccd4148fb3366c',
             'form': '2'
@@ -130,7 +137,7 @@ import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 
-public class TDRRequest {
+public class PaymentCheck {
     public static void main(String[] args) {
         try {
             URL url = new URL("https://secure.payu.in/merchant/postservice");
@@ -141,8 +148,8 @@ public class TDRRequest {
             connection.setRequestProperty("Cookie", "PHPSESSID=6i6633s3gknq1kvph6dtijoabu; USERTXNINFO=68ed4df291d9b7.27710642");
             connection.setDoOutput(true);
             
-            String postData = "key=" + URLEncoder.encode("BmTY3G", StandardCharsets.UTF_8) +
-                            "&command=" + URLEncoder.encode("get_TDR", StandardCharsets.UTF_8) +
+            String postData = "key=" + URLEncoder.encode("JPM7Fg", StandardCharsets.UTF_8) +
+                            "&command=" + URLEncoder.encode("check_payment", StandardCharsets.UTF_8) +
                             "&var1=" + URLEncoder.encode("\"25779819010\"", StandardCharsets.UTF_8) +
                             "&hash=" + URLEncoder.encode("9ba8c5c14b1d8643053b121ce7beb556b1e81fe7f4685048008bcc9f81a35f2b03f879704c10e0999e84923701219fc507c53a57c5ea8ff033ccd4148fb3366c", StandardCharsets.UTF_8) +
                             "&form=" + URLEncoder.encode("2", StandardCharsets.UTF_8);
@@ -182,8 +189,8 @@ public class TDRRequest {
 $url = 'https://secure.payu.in/merchant/postservice';
 
 $postData = array(
-    'key' => 'BmTY3G',
-    'command' => 'get_TDR',
+    'key' => 'JPM7Fg',
+    'command' => 'check_payment',
     'var1' => '"25779819010"',
     'hash' => '9ba8c5c14b1d8643053b121ce7beb556b1e81fe7f4685048008bcc9f81a35f2b03f879704c10e0999e84923701219fc507c53a57c5ea8ff033ccd4148fb3366c',
     'form' => '2'
