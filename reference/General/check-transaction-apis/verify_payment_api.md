@@ -24,189 +24,187 @@ The Verify Payment (**verify_payment**) API gives you the status of the transact
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-curl --request POST   --url 'https://test.payu.in/merchant/postservice?form=2'   --header 'Content-Type: application/x-www-form-urlencoded'   --data key=JPM7Fg   --data command=verify_payment   --data var1=IhfgcZnXR4o4nB   --data hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9
-```
-```python
-import requests
+  curl --request POST   --url 'https://test.payu.in/merchant/postservice?form=2'   --header 'Content-Type: application/x-www-form-urlencoded'   --data key=JPM7Fg   --data command=verify_payment   --data var1=IhfgcZnXR4o4nB   --data hash=a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9
+  ```
+  ```python
+  import requests
 
-try:
-    url = "https://test.payu.in/merchant/postservice?form=2"
-    headers = {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-    data = {
-        'key': 'JPM7Fg',
-        'command': 'verify_payment',
-        'var1': 'IhfgcZnXR4o4nB',
-        'hash': 'a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
-    }
-    
-    response = requests.post(url, headers=headers, data=data)
-    print(f"Status Code: {response.status_code}")
-    print(f"Response: {response.text}")
-    
-except requests.exceptions.RequestException as e:
-    print(f"Error: {e}")
-```
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
+  try:
+      url = "https://test.payu.in/merchant/postservice?form=2"
+      headers = {
+          'Content-Type': 'application/x-www-form-urlencoded'
+      }
+      data = {
+          'key': 'JPM7Fg',
+          'command': 'verify_payment',
+          'var1': 'IhfgcZnXR4o4nB',
+          'hash': 'a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
+      }
+      
+      response = requests.post(url, headers=headers, data=data)
+      print(f"Status Code: {response.status_code}")
+      print(f"Response: {response.text}")
+      
+  except requests.exceptions.RequestException as e:
+      print(f"Error: {e}")
+  ```
+  ```csharp
+  using System;
+  using System.Collections.Generic;
+  using System.Net.Http;
+  using System.Threading.Tasks;
 
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        try
-        {
-            using var client = new HttpClient();
-            var url = "https://test.payu.in/merchant/postservice?form=2";
-            
-            var postData = new List<KeyValuePair<string, string>>
-            {
-                new("key", "JPM7Fg"),
-                new("command", "verify_payment"),
-                new("var1", "IhfgcZnXR4o4nB"),
-                new("hash", "a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9")
-            };
-            
-            var content = new FormUrlEncodedContent(postData);
-            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-www-form-urlencoded");
-            
-            var response = await client.PostAsync(url, content);
-            var responseContent = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine($"Status Code: {response.StatusCode}");
-            Console.WriteLine($"Response: {responseContent}");
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine($"Error: {e.Message}");
-        }
-    }
-}
-```
+  class Program
+  {
+      static async Task Main(string[] args)
+      {
+          try
+          {
+              using var client = new HttpClient();
+              var url = "https://test.payu.in/merchant/postservice?form=2";
+              
+              var postData = new List<KeyValuePair<string, string>>
+              {
+                  new("key", "JPM7Fg"),
+                  new("command", "verify_payment"),
+                  new("var1", "IhfgcZnXR4o4nB"),
+                  new("hash", "a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9")
+              };
+              
+              var content = new FormUrlEncodedContent(postData);
+              content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-www-form-urlencoded");
+              
+              var response = await client.PostAsync(url, content);
+              var responseContent = await response.Content.ReadAsStringAsync();
+              
+              Console.WriteLine($"Status Code: {response.StatusCode}");
+              Console.WriteLine($"Response: {responseContent}");
+          }
+          catch (HttpRequestException e)
+          {
+              Console.WriteLine($"Error: {e.Message}");
+          }
+      }
+  }
+  ```
+  ```javascript
+  async function makeRequest() {
+      try {
+          const url = 'https://test.payu.in/merchant/postservice?form=2';
+          
+          const postData = new URLSearchParams({
+              'key': 'JPM7Fg',
+              'command': 'verify_payment',
+              'var1': 'IhfgcZnXR4o4nB',
+              'hash': 'a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
+          });
+          
+          const response = await fetch(url, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              body: postData
+          });
+          
+          const responseText = await response.text();
+          
+          console.log(`Status Code: ${response.status}`);
+          console.log(`Response: ${responseText}`);
+          
+      } catch (error) {
+          console.error('Error:', error);
+      }
+  }
 
-**JavaScript (Async/Await Fetch)**
-```javascript
-async function makeRequest() {
-    try {
-        const url = 'https://test.payu.in/merchant/postservice?form=2';
-        
-        const postData = new URLSearchParams({
-            'key': 'JPM7Fg',
-            'command': 'verify_payment',
-            'var1': 'IhfgcZnXR4o4nB',
-            'hash': 'a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
-        });
-        
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: postData
-        });
-        
-        const responseText = await response.text();
-        
-        console.log(`Status Code: ${response.status}`);
-        console.log(`Response: ${responseText}`);
-        
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
+  makeRequest();
+  ```
+  ```java
+  import java.io.*;
+  import java.net.*;
+  import java.nio.charset.StandardCharsets;
 
-makeRequest();
-```
-```java
-import java.io.*;
-import java.net.*;
-import java.nio.charset.StandardCharsets;
+  public class PaymentVerification {
+      public static void main(String[] args) {
+          try {
+              URL url = new URL("https://test.payu.in/merchant/postservice?form=2");
+              HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+              
+              connection.setRequestMethod("POST");
+              connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+              connection.setDoOutput(true);
+              
+              String postData = "key=" + URLEncoder.encode("JPM7Fg", StandardCharsets.UTF_8) +
+                              "&command=" + URLEncoder.encode("verify_payment", StandardCharsets.UTF_8) +
+                              "&var1=" + URLEncoder.encode("IhfgcZnXR4o4nB", StandardCharsets.UTF_8) +
+                              "&hash=" + URLEncoder.encode("a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9", StandardCharsets.UTF_8);
+              
+              try (OutputStream os = connection.getOutputStream()) {
+                  byte[] input = postData.getBytes(StandardCharsets.UTF_8);
+                  os.write(input, 0, input.length);
+              }
+              
+              int statusCode = connection.getResponseCode();
+              System.out.println("Status Code: " + statusCode);
+              
+              BufferedReader reader;
+              if (statusCode >= 200 && statusCode < 300) {
+                  reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+              } else {
+                  reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+              }
+              
+              StringBuilder response = new StringBuilder();
+              String line;
+              while ((line = reader.readLine()) != null) {
+                  response.append(line);
+              }
+              reader.close();
+              
+              System.out.println("Response: " + response.toString());
+              
+          } catch (Exception e) {
+              System.err.println("Error: " + e.getMessage());
+          }
+      }
+  }
+  ```
+  ```php
+  <?php
+  $url = 'https://test.payu.in/merchant/postservice?form=2';
 
-public class PaymentVerification {
-    public static void main(String[] args) {
-        try {
-            URL url = new URL("https://test.payu.in/merchant/postservice?form=2");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            connection.setDoOutput(true);
-            
-            String postData = "key=" + URLEncoder.encode("JPM7Fg", StandardCharsets.UTF_8) +
-                            "&command=" + URLEncoder.encode("verify_payment", StandardCharsets.UTF_8) +
-                            "&var1=" + URLEncoder.encode("IhfgcZnXR4o4nB", StandardCharsets.UTF_8) +
-                            "&hash=" + URLEncoder.encode("a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9", StandardCharsets.UTF_8);
-            
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = postData.getBytes(StandardCharsets.UTF_8);
-                os.write(input, 0, input.length);
-            }
-            
-            int statusCode = connection.getResponseCode();
-            System.out.println("Status Code: " + statusCode);
-            
-            BufferedReader reader;
-            if (statusCode >= 200 && statusCode < 300) {
-                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            } else {
-                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-            }
-            
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-            reader.close();
-            
-            System.out.println("Response: " + response.toString());
-            
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-    }
-}
-```
-```php
-<?php
-$url = 'https://test.payu.in/merchant/postservice?form=2';
+  $postData = array(
+      'key' => 'JPM7Fg',
+      'command' => 'verify_payment',
+      'var1' => 'IhfgcZnXR4o4nB',
+      'hash' => 'a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
+  );
 
-$postData = array(
-    'key' => 'JPM7Fg',
-    'command' => 'verify_payment',
-    'var1' => 'IhfgcZnXR4o4nB',
-    'hash' => 'a0ae79fdd66c875af6e9b21c4a67f1822deb00f2df5e9f0b1948f3222f536a9bf741b24efbb1874ca0f84f76b036e6c0d641581d0100f7abe4aeed2f3264f5c9'
-);
+  $ch = curl_init();
 
-$ch = curl_init();
+  curl_setopt_array($ch, array(
+      CURLOPT_URL => $url,
+      CURLOPT_POST => true,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_POSTFIELDS => http_build_query($postData),
+      CURLOPT_HTTPHEADER => array(
+          'Content-Type: application/x-www-form-urlencoded'
+      )
+  ));
 
-curl_setopt_array($ch, array(
-    CURLOPT_URL => $url,
-    CURLOPT_POST => true,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_POSTFIELDS => http_build_query($postData),
-    CURLOPT_HTTPHEADER => array(
-        'Content-Type: application/x-www-form-urlencoded'
-    )
-));
+  $response = curl_exec($ch);
+  $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  if (curl_error($ch)) {
+      echo 'Error: ' . curl_error($ch) . "\n";
+  } else {
+      echo "Status Code: " . $httpCode . "\n";
+      echo "Response: " . $response . "\n";
+  }
 
-if (curl_error($ch)) {
-    echo 'Error: ' . curl_error($ch) . "\n";
-} else {
-    echo "Status Code: " . $httpCode . "\n";
-    echo "Response: " . $response . "\n";
-}
-
-curl_close($ch);
-?>
-```
+  curl_close($ch);
+  ?>
+  ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
