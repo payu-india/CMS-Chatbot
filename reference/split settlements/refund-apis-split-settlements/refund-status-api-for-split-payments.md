@@ -10,22 +10,22 @@ metadata:
 next:
   description: ''
 ---
-The **aggregator\_check\_action\_status\_txnid** API helps you to fetch the refund status of transactions where the refunds are for split payments.
+The **aggregator_check_action_status_txnid** API helps you to fetch the refund status of transactions where the refunds are for split payments.
 
-> 📘 Note:
-> 
-> The **aggregator\_check\_action\_status\_txnid** must be used only to check the split transactions’ refund status.
+<Callout icon="📘" theme="info">
+  **Note:** The **aggregator_check_action_status_txnid** must be used only to check the split transactions' refund status.
+</Callout>
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                  |
-| :--------------------- | :------------------------------- |
-| Test Environment       | \<https://test.payu.in/merchant/> |
-| Production Environment | \<https://info.payu.in/merchant/> |
+|                        |                                                                      |
+| :--------------------- | :------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/merchant/](https://test.payu.in/merchant/)     |
+| Production Environment | [https://info.payu.in/merchant/](https://info.payu.in/merchant/)     |
 
-## Request parameters
+<Accordion title="Request parameters" icon="fa-table">
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -58,7 +58,7 @@ HTTP Method: **POST**
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>hash</code> Has generated using the following logic:<br><code>sha512(key\|command\|var1\|salt)  </code>sha512 is the encryption method used here.</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
 </td>
 </tr>
 <tr>
@@ -73,7 +73,7 @@ HTTP Method: **POST**
 </table>
 `}</HTMLBlock>
 
-The valid values for **subvention\_mode** are listed in the following table:
+The valid values for **subvention_mode** are listed in the following table:
 
 | **Refund mode** | **Value** | **Description**                |
 | --------------- | --------- | ------------------------------ |
@@ -81,7 +81,9 @@ The valid values for **subvention\_mode** are listed in the following table:
 | IMPS            | 3         | Refunds with IMPS method       |
 | NEFT            | 4         | Refunds with NEFT method       |
 
-## Sample request
+</Accordion>
+
+<Accordion title="Sample request" icon="fa-code">
 
 ```curl
 curl -X \
@@ -89,19 +91,143 @@ curl -X \
  "Content-Type: application/x-www-form-urlencoded" -d"key=A6lB8r&command=aggregator_check_action_status_txnid&hash=2a04a44ed058ca724a17b4e4d4639aa15254a343e047c9085687810d815845aed5183ae7792adbc8c9c4991f978ee2f15ea4284706dfa3fbcd42d36491369848&var1=14370578416"
 ```
 
-## Response parameters
+Here are the equivalent code examples in the requested programming languages:
 
-| Parameter        | Description                                                                                                                                                                              | Example                                             |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| status           | This parameter returns the status of web service call. The status can be any of the following:<br/><br/>_ **0** \- If web service call failed.<br/>_ **1** \- If web service call succeeded | 1                                                   |
-| msg              | Displays the response message.                                                                                                                                                           |                                                     |
-| payuid           | Displays the PayU ID that was submitted in the request.                                                                                                                                  | 14370578416                                         |
-| transactionItems | A JSON returning the details of transaction before the split.                                                                                                                            | Refer to [transactionItems](#transactionitems-json) |
-| splitItems       | A JSON returning the details of transaction and refunds against each merchant key (including child key)                                                                                  | Refer to [splititems JSON](#splititems-json)        |
+```python
+import requests
+
+url = "https://test.payu.in/merchant/postservice?form=2"
+
+headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+}
+
+data = {
+    'key': 'A6lB8r',
+    'command': 'aggregator_check_action_status_txnid',
+    'hash': '2a04a44ed058ca724a17b4e4d4639aa15254a343e047c9085687810d815845aed5183ae7792adbc8c9c4991f978ee2f15ea4284706dfa3fbcd42d36491369848',
+    'var1': '14370578416'
+}
+
+response = requests.post(url, headers=headers, data=data)
+print(response.json())
+```
+```javascript
+const axios = require('axios');
+
+const url = 'https://test.payu.in/merchant/postservice?form=2';
+
+const data = new URLSearchParams({
+  key: 'A6lB8r',
+  command: 'aggregator_check_action_status_txnid',
+  hash: '2a04a44ed058ca724a17b4e4d4639aa15254a343e047c9085687810d815845aed5183ae7792adbc8c9c4991f978ee2f15ea4284706dfa3fbcd42d36491369848',
+  var1: '14370578416'
+});
+
+axios.post(url, data, {
+  headers: {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+```java
+import java.io.*;
+import java.net.http.*;
+import java.net.*;
+
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=A6lB8r&command=aggregator_check_action_status_txnid&hash=2a04a44ed058ca724a17b4e4d4639aa15254a343e047c9085687810d815845aed5183ae7792adbc8c9c4991f978ee2f15ea4284706dfa3fbcd42d36491369848&var1=14370578416";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/merchant/postservice?form=2"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        var client = new HttpClient();
+        
+        var data = new FormUrlEncodedContent(new[]
+        {
+            new KeyValuePair<string, string>("key", "A6lB8r"),
+            new KeyValuePair<string, string>("command", "aggregator_check_action_status_txnid"),
+            new KeyValuePair<string, string>("hash", "2a04a44ed058ca724a17b4e4d4639aa15254a343e047c9085687810d815845aed5183ae7792adbc8c9c4991f978ee2f15ea4284706dfa3fbcd42d36491369848"),
+            new KeyValuePair<string, string>("var1", "14370578416")
+        });
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var response = await client.PostAsync("https://test.payu.in/merchant/postservice?form=2", data);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common qw(POST);
+
+my $ua = LWP::UserAgent->new;
+
+my $url = 'https://test.payu.in/merchant/postservice?form=2';
+
+my $response = $ua->request(
+    POST $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => {
+        key => 'A6lB8r',
+        command => 'aggregator_check_action_status_txnid',
+        hash => '2a04a44ed058ca724a17b4e4d4639aa15254a343e047c9085687810d815845aed5183ae7792adbc8c9c4991f978ee2f15ea4284706dfa3fbcd42d36491369848',
+        var1 => '14370578416'
+    }
+);
+
+print $response->content;
+```
+
+Each example sends a POST request with URL-encoded form data to check the aggregator action status by transaction ID.
+
+</Accordion>
+
+<Accordion title="Response parameters" icon="fa-table">
+
+| Parameter        | Description                                                                                                                                                                                  | Example                                             |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| status           | This parameter returns the status of web service call. The status can be any of the following:<br /><br />**0** - If web service call failed.<br />**1** - If web service call succeeded | 1                                                   |
+| msg              | Displays the response message.                                                                                                                                                               |                                                     |
+| payuid           | Displays the PayU ID that was submitted in the request.                                                                                                                                      | 14370578416                                         |
+| transactionItems | A JSON returning the details of transaction before the split.                                                                                                                                 | Refer to [transactionItems](#transactionitems-json) |
+| splitItems       | A JSON returning the details of transaction and refunds against each merchant key (including child key)                                                                                      | Refer to [splititems JSON](#splititems-json)        |
 
 ### transactionItems JSON
 
-The **transactionItems** JSON that is part of the response for a successful transaction is similar to the following:
+The **transactionItems** JSON that is part of the response for a successful transaction is similar to the following:
 
 ```
   "transactionItems": {
@@ -127,11 +253,12 @@ The **transactionItems** JSON that is part of the response for a successful tra
         "refund_mode": "-"
       }
     }
+  }
 ```
 
 ### splitItems JSON
 
-The **splitItems** JSON that is part of the response for a successful transaction is similar to the following:
+The **splitItems** JSON that is part of the response for a successful transaction is similar to the following:
 
 ```
 "splitItems": {
@@ -176,9 +303,11 @@ The **splitItems** JSON that is part of the response for a successful transacti
   }
 ```
 
-## Sample response
+</Accordion>
 
-- Success
+<Accordion title="Sample response" icon="fa-file-code">
+
+* Success
 
 ```plaintext
 {
@@ -253,7 +382,7 @@ The **splitItems** JSON that is part of the response for a successful transacti
 
 ### Failure scenarios
 
-- Merchant not authorized
+* Merchant not authorized
 
 ```plaintext
 {
@@ -262,7 +391,7 @@ The **splitItems** JSON that is part of the response for a successful transacti
 }
 ```
 
-- Invalid hash
+* Invalid hash
 
 ```plaintext
 {
@@ -270,3 +399,5 @@ The **splitItems** JSON that is part of the response for a successful transacti
 "msg": "Invalid Hash."
 }
 ```
+
+</Accordion>
