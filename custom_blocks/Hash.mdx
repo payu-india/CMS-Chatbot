@@ -13,7 +13,7 @@ import React from 'react';
 
 export var PayUHostedHashToolLink = (props) => (
   <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-    <p className="text-sm font-semibold text-gray-800">Generate Hash</p>
+    <h2 className="text-sm font-semibold text-gray-800">Generate Hash</h2>
     <a href="https://timely-dolphin-49e294.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline font-medium">Forward Hash Generator</a>
     <p className="mt-2 text-sm text-gray-600">Enter your payment request mandatory parameters (key, txnid, amount, productinfo, firstname, email, salt. The udf1-udf5 parameters are optional) to generate the SHA-512 hash for the checkout form. For callback/response verification use the PayU Hash Verification Tool instead.</p>
   </div>
