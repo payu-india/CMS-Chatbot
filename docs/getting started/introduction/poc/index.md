@@ -133,6 +133,41 @@ Accelerate your integration workflow with our net banking Postman collection for
   Lorem Ispum
 </Callout>
 
+<br />
 
+<HTMLBlock>{`
+                <style>
+                .tooltip-btn {
+                    position: relative;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold; /* Added this line */
+                }
+                .tooltip-btn:hover::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: 125%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    z-index: 1;
+                }
+                </style>
 
-<PayUHostedHashToolLink />
+                <button onclick="window.open('https://timely-dolphin-49e294.netlify.app/', '_blank')" 
+                        class="tooltip-btn" 
+                        data-tooltip="Click to generate hash.">
+                    Generate Forward Hash
+                </button>
+`}</HTMLBlock>
+
+<br />
