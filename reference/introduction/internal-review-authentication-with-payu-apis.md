@@ -728,40 +728,28 @@ def generate_tpv_hash(params, salt, beneficiary_detail):
 
 ### 7) Payment API by Version
 
-| api_version | hash logic                                                                                                                                                                                                     |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>|udf5\|udf6\|udf7\|udf8\|udf9\|udf10                                                                                                 |
-| 2           | key\|txnid\|amount\|offer_key\|api_version                                                                                                                                                                     |
-| 3           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|user_credentials\|si\|visaToVisa                                                    |
-| 5           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|ccnum\|ccvv\|ccexpmon\|ccexpyr                                                                 |
-| 6           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|beneficiarydetail                                                                              |
-| 7           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|si_details                                                                                     |
-| 8           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|surl\|furl                                                                                     |
-| 9           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|ccnum\|ccvv\|ccexpmon\|ccexpyr\|pg\|bankcode                                                   |
-| 10          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|offer_product_id\|offer_brand_id                                                    |
-| 11          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|si_details\|free_trial                                                                         |
-| 12          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/>|udf6\|udf7\|udf8\|udf9\|udf10\|card_no                                                                                        |
-| 13          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/>|udf6\|udf7\|udf8\|udf9\|udf10\|splitInfo                                                                                      |
-| 14          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/>|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|offer_auto_apply                                                                    |
-| 15          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/>|udf6\|udf7\|udf8\|udf9\|udf10\|user_token\|offer_key\|offer_auto_apply\|cart_details                                          |
-| 16          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/>|udf6\|udf7\|udf8\|udf9\|udf10\|base_split_id                                                                                  |
-| 17          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/>|udf6\|udf7\|udf8\|udf9\|udf10\|user_token\|offer_key\|offer_auto_apply\|cart_details\|extra_charges                           |
-| 18          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/>|udf6\|udf7\|udf8\|udf9\|udf10\|phone                                                                                          |
-| 19          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/>|udf6\|udf7\|udf8\|udf9\|udf10\|user_token\|offer_key\|offer_auto_apply\|cart_details\|extra_charges\|phone                    |
-| 20          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/>|udf6\|udf7\|udf8\|udf9\|udf10\|beneficiarydetail\|si_details\|user_token\|offer_key\|offer_auto_apply\|cart_details           |
-| 21          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/>|udf6\|udf7\|udf8\|udf9\|udf10\|beneficiarydetail\|si_details\|user_token\|offer_key\|offer_auto_apply\|cart_details\|products |
-
-#### Version 6 for TPV Integration
-
-<br />
-
-#### Version 19
-
-#### Hash Formula
-
-```
-key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone
-```
+| api_version | hash logic                                                                            |                                                                                                                               |
+| :---------- | :------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------- |
+| 1           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>       | udf5\|udf6\|udf7\|udf8\|udf9\|udf10                                                                                           |
+| 2           | key\|txnid\|amount\|offer_key\|api_version                                            |                                                                                                                               |
+| 3           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>       | udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|user_credentials\|si\|visaToVisa                                              |
+| 5           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>       | udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|ccnum\|ccvv\|ccexpmon\|ccexpyr                                                           |
+| 6           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>       | udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|beneficiarydetail                                                                        |
+| 7           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>       | udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|si_details                                                                               |
+| 8           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>       | udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|surl\|furl                                                                               |
+| 9           | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>       | udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|ccnum\|ccvv\|ccexpmon\|ccexpyr\|pg\|bankcode                                             |
+| 10          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>       | udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|offer_product_id\|offer_brand_id                                              |
+| 11          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\<br/>       | udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|si_details\|free_trial                                                                   |
+| 12          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/> | udf6\|udf7\|udf8\|udf9\|udf10\|card_no                                                                                        |
+| 13          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/> | udf6\|udf7\|udf8\|udf9\|udf10\|splitInfo                                                                                      |
+| 14          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/> | udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|offer_auto_apply                                                                    |
+| 15          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/> | udf6\|udf7\|udf8\|udf9\|udf10\|user_token\|offer_key\|offer_auto_apply\|cart_details                                          |
+| 16          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/> | udf6\|udf7\|udf8\|udf9\|udf10\|base_split_id                                                                                  |
+| 17          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/> | udf6\|udf7\|udf8\|udf9\|udf10\|user_token\|offer_key\|offer_auto_apply\|cart_details\|extra_charges                           |
+| 18          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/> | udf6\|udf7\|udf8\|udf9\|udf10\|phone                                                                                          |
+| 19          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/> | udf6\|udf7\|udf8\|udf9\|udf10\|user_token\|offer_key\|offer_auto_apply\|cart_details\|extra_charges\|phone                    |
+| 20          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/> | udf6\|udf7\|udf8\|udf9\|udf10\|beneficiarydetail\|si_details\|user_token\|offer_key\|offer_auto_apply\|cart_details           |
+| 21          | key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\<br/> | udf6\|udf7\|udf8\|udf9\|udf10\|beneficiarydetail\|si_details\|user_token\|offer_key\|offer_auto_apply\|cart_details\|products |
 
 #### Code Examples
 
