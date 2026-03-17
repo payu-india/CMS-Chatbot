@@ -9,7 +9,6 @@
 - manage-recurring-payments-for-net-banking
 - api-commands-to-manage-upi-recurring-transaction
 - si-parameter-json-details
-- backup-of-recurring-payment-apis
 - >-
   set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank
 - update-si-api
