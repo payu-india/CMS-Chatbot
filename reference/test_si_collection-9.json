@@ -1,1 +1,176 @@
-{"openapi":"3.1.0","info":{"title":"Test_SI_Collection","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://test.payu.in/merchant","variables":{}}],"paths":{"/postservice.php":{"post":{"tags":["Misc"],"summary":"predebit","description":"predebit","operationId":"predebit","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"const":"2","type":"string"}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/x-www-form-urlencoded","type":"string"}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","var1","hash","command"],"type":"object","properties":{"key":{"const":"JPM7Fg","type":"string","description":"This parameter is the unique Merchant Key provided by PayU"},"var1":{"allOf":[{"$ref":"#/components/schemas/var11"},{"description":"This variable is in JSON format as described in the JSON fields table."}]},"hash":{"type":"string","description":"This parameter must contain the hash value to be calculated at your end. Hash logic for this API is: sha512(key|command|var1|salt) sha512"},"command":{"const":"pre_debit_SI","type":"string","description":"The command name for this REST API call is pre_debit_SI."}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{},"content":{}}},"deprecated":false},"parameters":[]}},"components":{"schemas":{"var1":{"title":"var1","required":["authpayuid","amount","txnid"],"type":"object","properties":{"authpayuid":{"type":"string","description":"The value of mihpayid returned in the payment response of Registration transaction when transaction is successfully completed."},"amount":{"type":"string","description":"The transaction amount which will be deducted from the customer’s payment instrument."},"txnid":{"type":"string","description":"This field is known as Transaction ID (or Order ID)."},"phone":{"type":"string","description":"The phone number of the customer is specified in this parameter."},"email":{"type":"string","description":"The email of the customer is specified in this parameter."},"invoiceDisplayNumber":{"type":"string","description":"A unique display number by merchant for every subsequent invoice/recurring charge.  This is applicable only for cards."},"udf1":{"type":"string","description":"This user defined field used to to pass any transactional information."},"udf2":{"type":"string","description":"This user defined field used to to pass any transactional information."},"udf3":{"type":"string","description":"This user defined field used to to pass any transactional information."},"udf4":{"type":"string","description":"This user defined field used to to pass any transactional information."},"udf5":{"type":"string","description":"This user defined field used to to pass any transactional information."},"Delete":{"type":"string","description":"Delete the already generated pre debit (Only authpayuid and invoice display number are mandatory for this)"}},"examples":[{"authpayuid":"{{payuid}}","amount":"10.00","txnid":"{{txnid}}","phone":"9599610045","email":""}]},"var11":{"title":"var11","required":["authPayuId","requestId","debitDate","amount"],"type":"object","properties":{"authPayuId":{"type":"string","description":"The value of mihpayid returned in the payment response of Registration transaction when transaction is successfully completed."},"requestId":{"type":"string","description":"Unique request value generated at merchant’s end to distinguish independent request call."},"debitDate":{"type":"string","description":"This field contains the date of debit when the recurring would be charged by merchant.","examples":["2021-10-08"]},"invoiceDisplayNumber":{"type":"string","description":"This field is required for cards. A unique display number by merchant for every subsequent invoice/recurring charge. This can be displayed on the merchant’s panel to the customer."},"amount":{"type":"string","description":"The transaction amount which will be deducted from the customer’s payment instrument."},"action":{"type":"string","description":"Pass \"Retrieve\" or \"Delete\" according to the action need to be performed. For more information, refer to Additional Information table.."}},"examples":[{"authPayuId":"403993715524262603","requestId":"2021-09-29 16:33:52","debitDate":"2021-10-08","invoiceDisplayNumber":"edc9d0ded5de13378845","amount":"10.00"}]},"command":{"title":"command","const":"pre_debit_SI","type":"string","description":"The command name for this REST API call is pre_debit_SI.","examples":["pre_debit_SI"]},"form":{"title":"form","const":2,"type":"integer","examples":[2]},"key":{"title":"key","const":"JPM7Fg","type":"string","description":"This parameter is the unique Merchant Key provided by PayU","examples":["JPM7Fg"]}}},"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Test_SI_Collection",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/merchant",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/postservice.php": {
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "var1": {
+        "title": "var1",
+        "required": [
+          "authpayuid",
+          "amount",
+          "txnid"
+        ],
+        "type": "object",
+        "properties": {
+          "authpayuid": {
+            "type": "string",
+            "description": "The value of mihpayid returned in the payment response of Registration transaction when transaction is successfully completed."
+          },
+          "amount": {
+            "type": "string",
+            "description": "The transaction amount which will be deducted from the customer’s payment instrument."
+          },
+          "txnid": {
+            "type": "string",
+            "description": "This field is known as Transaction ID (or Order ID)."
+          },
+          "phone": {
+            "type": "string",
+            "description": "The phone number of the customer is specified in this parameter."
+          },
+          "email": {
+            "type": "string",
+            "description": "The email of the customer is specified in this parameter."
+          },
+          "invoiceDisplayNumber": {
+            "type": "string",
+            "description": "A unique display number by merchant for every subsequent invoice/recurring charge.  This is applicable only for cards."
+          },
+          "udf1": {
+            "type": "string",
+            "description": "This user defined field used to to pass any transactional information."
+          },
+          "udf2": {
+            "type": "string",
+            "description": "This user defined field used to to pass any transactional information."
+          },
+          "udf3": {
+            "type": "string",
+            "description": "This user defined field used to to pass any transactional information."
+          },
+          "udf4": {
+            "type": "string",
+            "description": "This user defined field used to to pass any transactional information."
+          },
+          "udf5": {
+            "type": "string",
+            "description": "This user defined field used to to pass any transactional information."
+          },
+          "Delete": {
+            "type": "string",
+            "description": "Delete the already generated pre debit (Only authpayuid and invoice display number are mandatory for this)"
+          }
+        },
+        "examples": [
+          {
+            "authpayuid": "{{payuid}}",
+            "amount": "10.00",
+            "txnid": "{{txnid}}",
+            "phone": "9599610045",
+            "email": ""
+          }
+        ]
+      },
+      "var11": {
+        "title": "var11",
+        "required": [
+          "authPayuId",
+          "requestId",
+          "debitDate",
+          "amount"
+        ],
+        "type": "object",
+        "properties": {
+          "authPayuId": {
+            "type": "string",
+            "description": "The value of mihpayid returned in the payment response of Registration transaction when transaction is successfully completed."
+          },
+          "requestId": {
+            "type": "string",
+            "description": "Unique request value generated at merchant’s end to distinguish independent request call."
+          },
+          "debitDate": {
+            "type": "string",
+            "description": "This field contains the date of debit when the recurring would be charged by merchant.",
+            "examples": [
+              "2021-10-08"
+            ]
+          },
+          "invoiceDisplayNumber": {
+            "type": "string",
+            "description": "This field is required for cards. A unique display number by merchant for every subsequent invoice/recurring charge. This can be displayed on the merchant’s panel to the customer."
+          },
+          "amount": {
+            "type": "string",
+            "description": "The transaction amount which will be deducted from the customer’s payment instrument."
+          },
+          "action": {
+            "type": "string",
+            "description": "Pass \"Retrieve\" or \"Delete\" according to the action need to be performed. For more information, refer to Additional Information table.."
+          }
+        },
+        "examples": [
+          {
+            "authPayuId": "403993715524262603",
+            "requestId": "2021-09-29 16:33:52",
+            "debitDate": "2021-10-08",
+            "invoiceDisplayNumber": "edc9d0ded5de13378845",
+            "amount": "10.00"
+          }
+        ]
+      },
+      "command": {
+        "title": "command",
+        "const": "pre_debit_SI",
+        "type": "string",
+        "description": "The command name for this REST API call is pre_debit_SI.",
+        "examples": [
+          "pre_debit_SI"
+        ]
+      },
+      "form": {
+        "title": "form",
+        "const": 2,
+        "type": "integer",
+        "examples": [
+          2
+        ]
+      },
+      "key": {
+        "title": "key",
+        "const": "JPM7Fg",
+        "type": "string",
+        "description": "This parameter is the unique Merchant Key provided by PayU",
+        "examples": [
+          "JPM7Fg"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}

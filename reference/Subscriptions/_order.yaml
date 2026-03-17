@@ -3,7 +3,6 @@
 - payment-consent-transaction-payu-hosted
 - pay-and-subscribe-consent-transaction
 - payment-consent-transaction-merchant-hosted
-- old_pre_debit_notification_api
 - pre_debit_notification_api
 - recurring_payment_api_old
 - recurring_payment_api
