@@ -59,7 +59,7 @@ implementation 'in.payu:upisdk:1.8.11'
   **Expand Manifest view for compilation error**: If you are getting the following compile error, expand the Merged Manifest view.
 
   `Android resource linking failed /Users/sample/AndroidStudioProjects/MyApp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:18: error: unexpected element found in <manifest>  
-                        Manifest merger failed with multiple errors, see logs`
+                          Manifest merger failed with multiple errors, see logs`
 </Callout>
 
 In the Merged Manifest view, the following additional error message is displayed. This indicates that you need to fix your Gradle plugin. For more information on the Gradle plugin, refer to the Google Andriod Documentation.
@@ -236,11 +236,11 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
     key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|beneficiarydetail|si_details|user_token|offer_key|offer_auto_apply|cart_details|products
     ```
   </Accordion>
-  
-<Accordion title="Sample JSON Structure:" icon="fa-code">
+
+  <Accordion title="Sample JSON Structure:" icon="fa-code">
     ```json
-   			[
-            {
+[
+    {
                 "type": "mutual_fund",
                 "plan": "GD",
                 "amount": "50000",
@@ -252,14 +252,14 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
                 "mf_partner": "cams",
                 "mf_investment_type": "L",
                 "mf_amc_code": "UTB"
-            }
-        ]
-   
+    }
+]
+
     ```
   </Accordion>
 
-  <Accordion title="Wealth Tech object (wtParams) fields Description" icon="fa-cog">
-    <Accordion title="Sample JSON" icon="fa-code">
+  <Accordion title="Wealth Tech Payment Param Description" icon="fa-cog">
+   
       These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
 
       <Table align={["left","left","left"]}>
@@ -479,9 +479,7 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
           ***
         </Accordion>
       </Accordion>
-    </Accordion>
-
-</Accordion>
+  </Accordion>
 </Accordion>
 
 ### Step 5: Payment Options
