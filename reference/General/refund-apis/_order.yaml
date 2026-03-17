@@ -6,5 +6,4 @@
 - refund-arn-callback
 - refund-status-api-for-split-payments-1
 - instant-refunds-1
-- get_all_refunds_from_transaction_ids_api_old2
 - error-codes-for-refund-initiation
