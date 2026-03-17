@@ -307,9 +307,9 @@ The **splitItems** JSON that is part of the response for a successful transactio
 
 <Accordion title="Sample response" icon="fa-file-code">
 
-* Success
+### Success scenario
 
-```plaintext
+```json
 {
   "status": 1,
   "payuid": "14706907828",
