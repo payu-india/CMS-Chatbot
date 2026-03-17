@@ -2340,63 +2340,6 @@
       "parameters": []
     },
     "/v3/merchants/{mid}/kyc_document/required_docs": {
-      "get": {
-        "tags": [
-          "Docs Required API"
-        ],
-        "summary": "Docs required API",
-        "description": "It is used to fetch list of documents required for completing KYC of merchant.\n\nTest Environment: `https://uat-partner.payu.in`\n\nProduction Environment: `https://partner.payu.in`\n\nScope present in Token: `refer_merchant`",
-        "operationId": "DocsrequiredAPI",
-        "parameters": [
-          {
-            "name": "mid",
-            "in": "path",
-            "description": "The merchant ID provided by PayU must be included.",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/DocsrequiredAPI"
-                    },
-                    {
-                      "examples": [
-                        {
-                          "business_entity": null,
-                          "document_categories": []
-                        }
-                      ]
-                    }
-                  ],
-                  "contentMediaType": "application/json"
-                },
-                "example": {
-                  "business_entity": null,
-                  "document_categories": []
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "servers": [
-          {
-            "url": "https://uat-partner.payu.in/api",
-            "variables": {}
-          }
-        ]
-      },
       "parameters": []
     },
     "/v3/merchants/{mid}/kyc_document": {
