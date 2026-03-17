@@ -1,1 +1,68 @@
-{"openapi":"3.1.0","info":{"title":"Health Check","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://test.payu.in/merchant","variables":{}}],"paths":{"/postservice.php":{"post":{"tags":["Misc"],"summary":"NetBankingStatus","description":"","operationId":"NetBankingStatus","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"const":"2","type":"string"}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/x-www-form-urlencoded","type":"string"}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","var1","hash"],"type":"object","properties":{"key":{"const":"JPM7Fg","type":"string","description":"This parameter must contain the merchant key that was provided by PayU."},"command":{"const":"getNetBankingStatus","type":"string","description":"This parameter must contain the getNetBankingStatus as the command name."},"var1":{"type":"string","description":"The parameter must contain the value as default to get status for all banks or the Net Banking bankcode of a specific bank.","examples":["default"]},"hash":{"type":"string","description":"This parameter must contain the hash value to be calculated at your end. Hash logic for this API is: sha512(key|command|var1|salt) sha512"}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{},"content":{}}},"deprecated":false},"parameters":[]}},"components":{"schemas":{"form":{"title":"form","const":2,"type":"integer","examples":[2]},"Content-Type":{"title":"Content-Type","const":"application/x-www-form-urlencoded","type":"string","examples":["application/x-www-form-urlencoded"]},"key":{"title":"key","const":"JPM7Fg","type":"string","description":"This parameter must contain the merchant key that was provided by PayU.","examples":["JPM7Fg"]},"command":{"title":"command","const":"getNetbankingStatus","type":"string","description":"This parameter must contain the getNetBankingStatus as the command name.","examples":["getNetbankingStatus"]}}},"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Health Check",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/merchant",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/postservice.php": {
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "form": {
+        "title": "form",
+        "const": 2,
+        "type": "integer",
+        "examples": [
+          2
+        ]
+      },
+      "Content-Type": {
+        "title": "Content-Type",
+        "const": "application/x-www-form-urlencoded",
+        "type": "string",
+        "examples": [
+          "application/x-www-form-urlencoded"
+        ]
+      },
+      "key": {
+        "title": "key",
+        "const": "JPM7Fg",
+        "type": "string",
+        "description": "This parameter must contain the merchant key that was provided by PayU.",
+        "examples": [
+          "JPM7Fg"
+        ]
+      },
+      "command": {
+        "title": "command",
+        "const": "getNetbankingStatus",
+        "type": "string",
+        "description": "This parameter must contain the getNetBankingStatus as the command name.",
+        "examples": [
+          "getNetbankingStatus"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
