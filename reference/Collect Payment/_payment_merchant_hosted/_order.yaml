@@ -2,7 +2,6 @@
 - _payment_merchant_hosted_cards
 - _payment_merchant_hosted_upi
 - _payment_merchant_hosted_wallets
-- old_payment_merchant_hosted_emi
 - _payment_merchant_hosted_emi
 - old_payment_merchant_hosted_bnpl
 - _payment_merchant_hosted_bnpl
