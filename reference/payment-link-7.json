@@ -1,1 +1,276 @@
-{"openapi":"3.1.0","info":{"title":"Payment Link","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://uatoneapi.payu.in","variables":{}}],"paths":{"/payment-links":{"post":{"tags":["Misc"],"summary":"Create Payment Link API","description":"","operationId":"CreatePaymentLinkAPI","parameters":[],"requestBody":{"description":"","content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/CreatePaymentLinkAPIRequest"},{}],"contentMediaType":"application/json"}}},"required":true},"responses":{"200":{"description":"","headers":{}}},"deprecated":false},"parameters":[]}},"components":{"schemas":{"CreatePaymentLinkAPIRequest":{"title":"CreatePaymentLinkAPIRequest","required":["isPartialPaymentAllowed","subAmount","description","invoiceNumber","expiryDate","tax","source","customer","address"],"type":"object","properties":{"isPartialPaymentAllowed":{"type":"boolean","description":"This parameter contains any of the following: true-The part payment is enabled  false-The part payment is not enabled"},"maxPaymentsAllowed":{"type":"integer","description":"This parameter is used to specify the number of payments that can be accepted on a link.","contentEncoding":"int32"},"isAmountFilledByCustomer":{"type":"boolean","description":"This parameter is set to true to if the amount has to be entered by your customer in the payment link page."},"minAmountForCustomer":{"type":"integer","description":"This parameter contains the minimum amount a customer needs to pay in case of partial payment.","contentEncoding":"int64","examples":[100]},"subAmount":{"type":"integer","description":"This parameter must contain the payment amount.","contentEncoding":"int32","examples":[10]},"description":{"type":"string","description":"This parameter must contain the description or purpose of creating the.payment link.","examples":["10"]},"invoiceNumber":{"type":"string","description":"This parameter contains the unique string which is used for identifying a payment link. This must be alphanumeric.","examples":["INV8446471886220"]},"expiryDate":{"type":"string","description":"This parameter contains the expiry date of the payment link. This must be in yyyy-MM-dd HH:mm:ss format (will be 365 days in all other cases).","examples":["2012-11-21 22:11:11"]},"tax":{"type":"string","description":"This parameter contains the tax amount for the payment transaction. This value must be greater than zero.","examples":["10"]},"source":{"type":"string","description":"This parameter contains the source of payment generation.","examples":["API"]},"currency":{"type":"string","description":"This parameter contains the currency used for collecting the amount.","examples":["Rupee"]},"customer":{"allOf":[{"$ref":"#/components/schemas/Customer2"},{}]},"address":{"allOf":[{"$ref":"#/components/schemas/Address"},{}]},"udf1":{"type":"string","description":"User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."},"udf2":{"type":"string","description":"User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."},"udf3":{"type":"string","description":"User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."},"udf4":{"type":"string","description":"User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."},"udf5":{"type":"string","description":"User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."},"viaEmail":{"type":"integer","description":"This parameter is set to 1 to send the payment link via the email upon generation. Else, set to 0 (zero) so that email is not sent.","contentEncoding":"int32","examples":[1]},"viaSms":{"type":"integer","description":"This parameter is set to 1 to send the payment link via the SMS upon generation. Else, set to 0 (zero) so that SMS is not sent.","contentEncoding":"int32","examples":[1]},"shippingCharge":{"type":"string","description":"This parameter must contain the shipping charges if any,","examples":["10"]}}},"Customer":{"title":"Customer","required":["name","email","phone"],"type":"object","properties":{"name":{"type":"string"},"email":{"type":"string"},"phone":{"type":"string"}},"description":"The customer details in a JSON format.","examples":[{"name":"kshitij","email":"kshitij.tomar@payu.in","phone":"7452892102"}]},"Customer2":{"title":"Customer2","required":["name","email","phone"],"type":"object","properties":{"name":{"type":"string","description":"This parameter must contain the customer name."},"email":{"type":"string","description":"This parameter must contain the customer email."},"phone":{"type":"string","description":"This parameter must contain the customer phone number."}}},"Address":{"title":"Address","required":["line1","city","state","zipCode"],"type":"object","properties":{"line1":{"type":"string","description":"This parameter contains the 1st line of the address."},"line2":{"type":"string","description":"This parameter contains the 2nd line of the address."},"city":{"type":"string","description":"This parameter contains the city in the address."},"state":{"type":"string","description":"This parameter contains the state in the address."},"zipCode":{"type":"string","description":"This parameter contains the zip code or PIN code for the address."}},"description":"This parameter contains the customer address to which the goods are delivered."}},"securitySchemes":{"httpBearer":{"type":"http","scheme":"bearer"}}},"security":[{"httpBearer":[]}],"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Payment Link",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://uatoneapi.payu.in",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/payment-links": {
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreatePaymentLinkAPIRequest": {
+        "title": "CreatePaymentLinkAPIRequest",
+        "required": [
+          "isPartialPaymentAllowed",
+          "subAmount",
+          "description",
+          "invoiceNumber",
+          "expiryDate",
+          "tax",
+          "source",
+          "customer",
+          "address"
+        ],
+        "type": "object",
+        "properties": {
+          "isPartialPaymentAllowed": {
+            "type": "boolean",
+            "description": "This parameter contains any of the following: true-The part payment is enabled  false-The part payment is not enabled"
+          },
+          "maxPaymentsAllowed": {
+            "type": "integer",
+            "description": "This parameter is used to specify the number of payments that can be accepted on a link.",
+            "contentEncoding": "int32"
+          },
+          "isAmountFilledByCustomer": {
+            "type": "boolean",
+            "description": "This parameter is set to true to if the amount has to be entered by your customer in the payment link page."
+          },
+          "minAmountForCustomer": {
+            "type": "integer",
+            "description": "This parameter contains the minimum amount a customer needs to pay in case of partial payment.",
+            "contentEncoding": "int64",
+            "examples": [
+              100
+            ]
+          },
+          "subAmount": {
+            "type": "integer",
+            "description": "This parameter must contain the payment amount.",
+            "contentEncoding": "int32",
+            "examples": [
+              10
+            ]
+          },
+          "description": {
+            "type": "string",
+            "description": "This parameter must contain the description or purpose of creating the.payment link.",
+            "examples": [
+              "10"
+            ]
+          },
+          "invoiceNumber": {
+            "type": "string",
+            "description": "This parameter contains the unique string which is used for identifying a payment link. This must be alphanumeric.",
+            "examples": [
+              "INV8446471886220"
+            ]
+          },
+          "expiryDate": {
+            "type": "string",
+            "description": "This parameter contains the expiry date of the payment link. This must be in yyyy-MM-dd HH:mm:ss format (will be 365 days in all other cases).",
+            "examples": [
+              "2012-11-21 22:11:11"
+            ]
+          },
+          "tax": {
+            "type": "string",
+            "description": "This parameter contains the tax amount for the payment transaction. This value must be greater than zero.",
+            "examples": [
+              "10"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "description": "This parameter contains the source of payment generation.",
+            "examples": [
+              "API"
+            ]
+          },
+          "currency": {
+            "type": "string",
+            "description": "This parameter contains the currency used for collecting the amount.",
+            "examples": [
+              "Rupee"
+            ]
+          },
+          "customer": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Customer2"
+              },
+              {}
+            ]
+          },
+          "address": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Address"
+              },
+              {}
+            ]
+          },
+          "udf1": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          },
+          "udf2": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          },
+          "udf3": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          },
+          "udf4": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          },
+          "udf5": {
+            "type": "string",
+            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          },
+          "viaEmail": {
+            "type": "integer",
+            "description": "This parameter is set to 1 to send the payment link via the email upon generation. Else, set to 0 (zero) so that email is not sent.",
+            "contentEncoding": "int32",
+            "examples": [
+              1
+            ]
+          },
+          "viaSms": {
+            "type": "integer",
+            "description": "This parameter is set to 1 to send the payment link via the SMS upon generation. Else, set to 0 (zero) so that SMS is not sent.",
+            "contentEncoding": "int32",
+            "examples": [
+              1
+            ]
+          },
+          "shippingCharge": {
+            "type": "string",
+            "description": "This parameter must contain the shipping charges if any,",
+            "examples": [
+              "10"
+            ]
+          }
+        }
+      },
+      "Customer": {
+        "title": "Customer",
+        "required": [
+          "name",
+          "email",
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        },
+        "description": "The customer details in a JSON format.",
+        "examples": [
+          {
+            "name": "kshitij",
+            "email": "kshitij.tomar@payu.in",
+            "phone": "7452892102"
+          }
+        ]
+      },
+      "Customer2": {
+        "title": "Customer2",
+        "required": [
+          "name",
+          "email",
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "This parameter must contain the customer name."
+          },
+          "email": {
+            "type": "string",
+            "description": "This parameter must contain the customer email."
+          },
+          "phone": {
+            "type": "string",
+            "description": "This parameter must contain the customer phone number."
+          }
+        }
+      },
+      "Address": {
+        "title": "Address",
+        "required": [
+          "line1",
+          "city",
+          "state",
+          "zipCode"
+        ],
+        "type": "object",
+        "properties": {
+          "line1": {
+            "type": "string",
+            "description": "This parameter contains the 1st line of the address."
+          },
+          "line2": {
+            "type": "string",
+            "description": "This parameter contains the 2nd line of the address."
+          },
+          "city": {
+            "type": "string",
+            "description": "This parameter contains the city in the address."
+          },
+          "state": {
+            "type": "string",
+            "description": "This parameter contains the state in the address."
+          },
+          "zipCode": {
+            "type": "string",
+            "description": "This parameter contains the zip code or PIN code for the address."
+          }
+        },
+        "description": "This parameter contains the customer address to which the goods are delivered."
+      }
+    },
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
