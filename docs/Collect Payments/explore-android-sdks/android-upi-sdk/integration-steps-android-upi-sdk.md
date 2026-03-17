@@ -231,7 +231,12 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   ```java Java
   mPaymentParamsUpiSdk.setProductsList(productsList);
   ```
-  
+  <Accordion title="Hash Generation" icon="fa-code">
+    ```java
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|beneficiarydetail|si_details|user_token|offer_key|offer_auto_apply|cart_details|products
+```
+</Accordion>
+
 
 </Accordion>
 
