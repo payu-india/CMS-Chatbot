@@ -18,19 +18,21 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 <Callout icon="📮" theme="default">
   **Postman Collection**: Access the **Get Settlement Details API Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi)
 </Callout>
 
 <br />
 
-## Environment
+<Accordion title="Environment" icon="fa-info">
 
 | Environment            | URL                                                                                                  |
 | :--------------------- | :--------------------------------------------------------------------------------------------------- |
 | Test Environment       | Not applicable for Test environment                                                                  |
 | Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2) |
 
-## Request parameters
+</Accordion>
+
+<Accordion title="Request parameters" icon="fa-table">
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -159,7 +161,7 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
       <td>
         Hash logic for this API is:
-        sha512(key|command|var1|salt) sha512
+        sha512(key|command|var1|salt) sha512
       </td>
 
       <td>
@@ -169,7 +171,9 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
   </tbody>
 </Table>
 
-## Example values
+</Accordion>
+
+<Accordion title="Example values" icon="fa-list">
 
 Use the following sample values while trying out the API:
 
@@ -177,18 +181,137 @@ Use the following sample values while trying out the API:
 * `var2`: 5
 * `var3`: 2000 or more
 
-## Sample request
+</Accordion>
 
-### For version 1
+<Accordion title="Sample request" icon="fa-code">
 
-```bash
+### Simple Request
+
+```curl
 curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 -H "accept: application/json" \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8"
 ```
+```python
+import requests
 
-### For version 2
+url = "https://test.payu.in/merchant/postservice?form=2"
+
+headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+}
+
+data = {
+    'key': 'JP***g',
+    'command': 'get_settlement_details',
+    'var1': '2021-08-10',
+    'hash': '259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8'
+}
+
+response = requests.post(url, headers=headers, data=data)
+print(response.json())
+```
+```javascript
+const axios = require('axios');
+
+const url = 'https://test.payu.in/merchant/postservice?form=2';
+
+const data = new URLSearchParams({
+  key: 'JP***g',
+  command: 'get_settlement_details',
+  var1: '2021-08-10',
+  hash: '259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8'
+});
+
+axios.post(url, data, {
+  headers: {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+```java
+import java.io.*;
+import java.net.http.*;
+import java.net.*;
+
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/merchant/postservice?form=2"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        var client = new HttpClient();
+        
+        var data = new FormUrlEncodedContent(new[]
+        {
+            new KeyValuePair<string, string>("key", "JP***g"),
+            new KeyValuePair<string, string>("command", "get_settlement_details"),
+            new KeyValuePair<string, string>("var1", "2021-08-10"),
+            new KeyValuePair<string, string>("hash", "259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8")
+        });
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var response = await client.PostAsync("https://test.payu.in/merchant/postservice?form=2", data);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common qw(POST);
+
+my $ua = LWP::UserAgent->new;
+
+my $url = 'https://test.payu.in/merchant/postservice?form=2';
+
+my $response = $ua->request(
+    POST $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => {
+        key => 'JP***g',
+        command => 'get_settlement_details',
+        var1 => '2021-08-10',
+        hash => '259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8'
+    }
+);
+
+print $response->content;
+```
+
+### Sample Request with all the optional parameters
 
 ```bash
 curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
@@ -196,12 +319,146 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8&var2&var3&var4=L&var5=2"
 ```
+```python
+import requests
 
-> 📘 **Note**
->
-> The dates queried in the above requests using version 1 or version 2 are the same. The second sample request (under Sample Request for Version 2) includes the var5 parameter with the value 2 to indicate that it is for version 2.
+url = "https://test.payu.in/merchant/postservice?form=2"
 
-## Response parameters description
+headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+}
+
+data = {
+    'key': 'JP***g',
+    'command': 'get_settlement_details',
+    'var1': '2021-08-10',
+    'hash': '259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8',
+    'var2': '',
+    'var3': '',
+    'var4': 'L',
+    'var5': '2'
+}
+
+response = requests.post(url, headers=headers, data=data)
+print(response.json())
+```
+```javascript
+const axios = require('axios');
+
+const url = 'https://test.payu.in/merchant/postservice?form=2';
+
+const data = new URLSearchParams({
+  key: 'JP***g',
+  command: 'get_settlement_details',
+  var1: '2021-08-10',
+  hash: '259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8',
+  var2: '',
+  var3: '',
+  var4: 'L',
+  var5: '2'
+});
+
+axios.post(url, data, {
+  headers: {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+```java
+import java.io.*;
+import java.net.http.*;
+import java.net.*;
+
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8&var2=&var3=&var4=L&var5=2";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/merchant/postservice?form=2"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        var client = new HttpClient();
+        
+        var data = new FormUrlEncodedContent(new[]
+        {
+            new KeyValuePair<string, string>("key", "JP***g"),
+            new KeyValuePair<string, string>("command", "get_settlement_details"),
+            new KeyValuePair<string, string>("var1", "2021-08-10"),
+            new KeyValuePair<string, string>("hash", "259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8"),
+            new KeyValuePair<string, string>("var2", ""),
+            new KeyValuePair<string, string>("var3", ""),
+            new KeyValuePair<string, string>("var4", "L"),
+            new KeyValuePair<string, string>("var5", "2")
+        });
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var response = await client.PostAsync("https://test.payu.in/merchant/postservice?form=2", data);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common qw(POST);
+
+my $ua = LWP::UserAgent->new;
+
+my $url = 'https://test.payu.in/merchant/postservice?form=2';
+
+my $response = $ua->request(
+    POST $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => {
+        key => 'JP***g',
+        command => 'get_settlement_details',
+        var1 => '2021-08-10',
+        hash => '259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8',
+        var2 => '',
+        var3 => '',
+        var4 => 'L',
+        var5 => '2'
+    }
+);
+
+print $response->content;
+```
+<Callout icon="📘" theme="info">
+  **Note:** The dates queried in the above requests simple request or request with all the optional parameters are the same. The second sample request (under Sample Request for Version 2) includes the var5 parameter with the value 2 to indicate that it is for version 2.
+</Callout>
+
+</Accordion>
+
+<Accordion title="Response parameters description" icon="fa-table">
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -720,7 +977,9 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
   </tbody>
 </Table>
 
-## Sample response
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-file-code">
 
 ### Success Scenario
 
@@ -781,3 +1040,5 @@ If no data found for the particular date queried:
 ```
 
 For the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
+
+</Accordion>
