@@ -3,7 +3,6 @@
 - pre-authorize-payments-for-cards
 - pre-authorize-payments-for-upi
 - cancel-a-pre-authorized-transaction
-- pre_authorize_payment_bckup
 - pre_authorize_payment_merchant_hosted_bckup
 - s2s_pre_authorize_payment
 - capture-a-payment1
