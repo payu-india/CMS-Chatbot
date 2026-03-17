@@ -2,7 +2,6 @@
 - check_action_status_api_with_request_id
 - check_action_status_api_with_payu_id
 - get_all_refunds_from_transaction_ids_api
-- old_get_all_refunds_from_transaction_ids_api1
 - refund-status-callback
 - refund-arn-callback
 - refund-status-api-for-split-payments-1
