@@ -46,24 +46,138 @@ The **Get All Refunds for a Transaction ID** API (getAllRefundsFromTxnIds) comma
 
   https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/h40i4so/get-all-refunds-from-transaction-ids-api
 </Callout>
-
+<Accordion title="Refund States" icon="fa-code">
 <RefundStates />
-
+</Accordion>
 <GENERALAPIsEnvironment />
-
-<details>
-  <summary>Sample request</summary>
-
+<Accordion title="Sample request" icon="fa-code">
   ```curl
   curl -X POST "https://test.payu.in/merchant/postservice?form=2
-  -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d
-
-  "key=JP***g&command=getAllRefundsFromTxnIds&var1=db97dd56eff7296e5061&hash=69543c08018121cc882d2f8b1761567367c1806becde3db7f54ab552362677cc08d8dfa4b9411e234e4876e6aba80c05a32e75ed499aff458c7f6027bf4ef2a8"
+  -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&command=getAllRefundsFromTxnIds&var1=db97dd56eff7296e5061&hash=69543c08018121cc882d2f8b1761567367c1806becde3db7f54ab552362677cc08d8dfa4b9411e234e4876e6aba80c05a32e75ed499aff458c7f6027bf4ef2a8"
   ```
-</details>
+```python
+import requests
 
-<details>
-  <summary>Sample response</summary>
+url = "https://test.payu.in/merchant/postservice?form=2"
+
+headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+}
+
+data = {
+    'key': 'JP***g',
+    'command': 'getAllRefundsFromTxnIds',
+    'var1': 'db97dd56eff7296e5061',
+    'hash': '69543c08018121cc882d2f8b1761567367c1806becde3db7f54ab552362677cc08d8dfa4b9411e234e4876e6aba80c05a32e75ed499aff458c7f6027bf4ef2a8'
+}
+
+response = requests.post(url, headers=headers, data=data)
+print(response.json())
+```
+```javascript
+const axios = require('axios');
+
+const url = 'https://test.payu.in/merchant/postservice?form=2';
+
+const data = new URLSearchParams({
+  key: 'JP***g',
+  command: 'getAllRefundsFromTxnIds',
+  var1: 'db97dd56eff7296e5061',
+  hash: '69543c08018121cc882d2f8b1761567367c1806becde3db7f54ab552362677cc08d8dfa4b9411e234e4876e6aba80c05a32e75ed499aff458c7f6027bf4ef2a8'
+});
+
+axios.post(url, data, {
+  headers: {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+```java
+import java.io.*;
+import java.net.http.*;
+import java.net.*;
+
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&command=getAllRefundsFromTxnIds&var1=db97dd56eff7296e5061&hash=69543c08018121cc882d2f8b1761567367c1806becde3db7f54ab552362677cc08d8dfa4b9411e234e4876e6aba80c05a32e75ed499aff458c7f6027bf4ef2a8";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/merchant/postservice?form=2"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://test.payu.in/merchant/postservice?form=2',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_POST => true,
+  CURLOPT_HTTPHEADER => array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+  ),
+  CURLOPT_POSTFIELDS => http_build_query(array(
+    'key' => 'JP***g',
+    'command' => 'getAllRefundsFromTxnIds',
+    'var1' => 'db97dd56eff7296e5061',
+    'hash' => '69543c08018121cc882d2f8b1761567367c1806becde3db7f54ab552362677cc08d8dfa4b9411e234e4876e6aba80c05a32e75ed499aff458c7f6027bf4ef2a8'
+  ))
+));
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+?>
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        var client = new HttpClient();
+        
+        var data = new FormUrlEncodedContent(new[]
+        {
+            new KeyValuePair<string, string>("key", "JP***g"),
+            new KeyValuePair<string, string>("command", "getAllRefundsFromTxnIds"),
+            new KeyValuePair<string, string>("var1", "db97dd56eff7296e5061"),
+            new KeyValuePair<string, string>("hash", "69543c08018121cc882d2f8b1761567367c1806becde3db7f54ab552362677cc08d8dfa4b9411e234e4876e6aba80c05a32e75ed499aff458c7f6027bf4ef2a8")
+        });
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var response = await client.PostAsync("https://test.payu.in/merchant/postservice?form=2", data);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+
+Each example sends a POST request with URL-encoded form data to retrieve all refunds from transaction IDs 💳
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-file-code">
 
   **Success Scenario**
 
@@ -210,10 +324,9 @@ The **Get All Refunds for a Transaction ID** API (getAllRefundsFromTxnIds) comma
         "msg": "No Refunds Found for the transaction."
   }
   ```
-</details>
+</Accordion>
 
-<details>
-  <summary>Response parameters description</summary>
+<Accordion title="Response parameters description" icon="fa-table">
 
   <Table>
     <thead>
@@ -277,15 +390,14 @@ The **Get All Refunds for a Transaction ID** API (getAllRefundsFromTxnIds) comma
       </tr>
     </tbody>
   </Table>
-</details>
+</Accordion>
 
 ## Request parameters
 
-<details>
-  <summary>Reference information for request parameters</summary>
+<Accordion title="Reference information for request parameters" icon="fa-flask">
 
   <KeyHashForGeneralParametersDescription />
-</details>
+</Accordion>
 
 **Example values**
 
