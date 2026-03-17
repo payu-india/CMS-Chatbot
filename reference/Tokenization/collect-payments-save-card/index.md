@@ -20,10 +20,10 @@ When your customer has an account on your shopping website, they may store their
 
 ### **Steps to Integrate:**
 
-1. \[Get the saved card details of a customer]
-2. \[Post the payment to PayU using \_payment API]\[Post the payment to PayU using \_payment API]
-3. \[Check the PayU Response]
-4. \[Verify the payment]
+1. [Get the saved card details of a customer]
+2. [Post the payment to PayU using _payment API][Post the payment to PayU using _payment API]
+3. [Check the PayU Response]
+4. [Verify the payment]
 
 ***
 
@@ -37,7 +37,7 @@ This section explains the procedure for getting a customer’s card details and 
 
 ## Step 1: Get the Saved Card Details
 
-1. Get the customer’s card details your merchant key and customer’s registered mail ID to PayU using the **get\_user\_details** API:
+1. Get the customer’s card details your merchant key and customer’s registered mail ID to PayU using the **get_user_details** API:
 
 ```curl
 curl -X POST "https://test.payu.in/merchant/postservice?form=2"-H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d"key=J****g&command=get_user_cards&var1=yourkey:email@domain.com&hash=22744b991e9719a9823ee71832e37b022a77fce4d53188245114226d0d0d3a01ec0b6adce4aae9b9bd97baf97e3ef76912e29ca0726a57b16c1110dc66ffc653"
@@ -90,7 +90,7 @@ Make the transaction request with the payment details along with the card nickna
 * [Using Zero Code Change](ref:zero-code-change-payment)
 * [Using Complete Card Details](ref:complete-card-details-payment)
 * [Using Network Tokens](ref:using-network-tokens)
-* [Using MOTO with Network Tokens](ref:using-network-tokens-moto)
+* [Using Travel Quick Pay with Network Tokens](ref:using-network-tokens-travel-quick-pay)
 * [Using Issuer Tokens](ref:using-issuer-tokens)
 * [Using Card Tokenized with PayU](ref:using-card-tokenized-with-payu)
 * [Using Card on a Decoupled Flow with Network Token or Other Partner Tokenization](ref:using-card-a-decoupled-flow-with-network-token-or-other-partner-tokenization)
@@ -113,7 +113,7 @@ Make the transaction request with the payment details along with the card nickna
 
 ## Step 4: Verify the Payment
 
-Verify the transaction details using the Verification APIs. Post the transaction ID using the **verify\_payment** API to verify the payment. For more information, refer to [Verify Payment API](ref:verify_payment_api)/
+Verify the transaction details using the Verification APIs. Post the transaction ID using the **verify_payment** API to verify the payment. For more information, refer to [Verify Payment API](ref:verify_payment_api)/
 
 > 📘 Note:
 >
