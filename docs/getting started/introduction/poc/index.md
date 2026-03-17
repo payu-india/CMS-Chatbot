@@ -136,7 +136,8 @@ Accelerate your integration workflow with our net banking Postman collection for
 <br />
 
 <HTMLBlock>{`
-                <style>
+			<p>Use this tool to generate the forward hash by providing the mandatory parameter values (key, txnid, amount, productinfo, firstname, email, salt. udf1–udf5 are optional).</p><br/>
+								<style>
                 .tooltip-btn {
                     position: relative;
                     background-color: #4CAF50;
