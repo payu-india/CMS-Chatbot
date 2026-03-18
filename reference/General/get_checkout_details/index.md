@@ -42,9 +42,8 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
 
 <GENERALAPIsEnvironment />
 
-<Accordion title="Sample request and response" icon="fa-reply">
-  ### Get extended payment details
-
+<Accordion title="Sample request and response" icon="fa-code">
+<Accordion title="Get extended payment details" icon="fa-reply">
   ```curl
   curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
   --form 'key=0d5aDh' \
@@ -383,10 +382,11 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
     }
   }
   ```
+</Accordion>
+<Accordion title="Get additional charges" icon="fa-reply">
+The following JSON must be used in var1 for getting additional charges:
 
-  ### Get additional charges
-
-  ```bash
+  ```json
   {
       "requestId": "12345678",
       "transactionDetails": {
@@ -489,10 +489,10 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
     }
   }
   ```
-
-  ### Get tax specification
-
-  ```bash
+</Accordion>
+<Accordion title="Get tax specification" icon="fa-cash">
+The following JSON must be used in var1 for getting tax specification:
+  ```json
   {
     // Mandatory field, random id for debugging purposes only
     "requestId": "12345678",
@@ -532,10 +532,10 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
     }
   }
   ```
-
-  ### Check down status
-
-  ```bash
+</Accordion>
+<Accordion title="Check down status" icon="fa-reply">
+The following JSON must be used in var1 for checking down status:
+  ```json
   {
     // Mandatory field, random id for debugging purposes only
     "requestId": "12345678",
@@ -550,7 +550,7 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
   }
   ```
 
-  \*\* Response\*\*
+  **Response**
 
   ```json
   {
@@ -581,8 +581,8 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
     }
   }
   ```
-
-  ### Check customer eligibility
+</Accordion>
+<Accordion title="Check customer eligibility" icon="fa-reply">
 
   This field is used to check the customer eligibility.
 
@@ -1933,11 +1933,11 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
   }
   ```
 
-  #### emi field in the \*\*paymentOptions \*\*field with filters parameter
+  <Accordion title=" emi field in the paymentOptionsfield with filters parameter" icon="fa-code">
 
   In this example, SBI, Kotak Mahindra and ICICI Bank EMI options are filtered. For list of EMI options, refer to [EMI Options for Get Checkout Details API](#emi-options-for-get-checkout-details-api).
 
-  ```
+  ```json
   {
     "requestId": "4NQD7jcrGCt2LAxB",
     "filters": {
@@ -2111,6 +2111,8 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
   }
   has context menu
   ```
+ </Accordion>
+</Accordion>
 </Accordion>
 
 <Accordion title="Response parameters" icon="fa-book">
