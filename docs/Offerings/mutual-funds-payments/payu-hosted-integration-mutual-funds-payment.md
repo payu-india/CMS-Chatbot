@@ -7,10 +7,6 @@ metadata:
 ---
 This section explains how to implement the **_payment** API for mutual fund payment using PayU Hosted Checkout integration. The _payment includes the _product_ parameter contains various fields including the Wealth Tech object (**wtParams**).
 
-<Callout icon="📘" theme="info">
-  **Note**: Currently, PayU supports only UPI, Netbanking, UPI autopay and Enach modes for Wealth Tech payments. You must note that cards are not supported.
-</Callout>
-
 <Cards columns={3}>
   <Card title="1. Initiate the Payment to PayU" href="#step-1-initiate-the-payment-to-payu">
     Send payment request to PayU through POST endpoint with mandatory parameters include Wealth Tech specific wtParams object for mutual fund transactions
