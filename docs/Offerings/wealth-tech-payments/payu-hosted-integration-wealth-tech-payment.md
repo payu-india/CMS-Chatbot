@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-This section explains how to implement the **_payment** API for Wealth Tech merchants using PayU Hosted Checkout integration. The _payment includes the *_more_info_ parameter contains various fields including the Wealth Tech object (**wtParams**).
+This section explains how to implement the **_payment** API for Wealth Tech merchants using PayU Hosted Checkout integration. The _payment includes the _product_ parameter contains various fields including the Wealth Tech object (**wtParams**).
 
 <Callout icon="📘" theme="info">
   **Note**: Currently, PayU supports only UPI, Netbanking, UPI autopay and Enach modes for Wealth Tech payments. You must note that cards are not supported.
@@ -141,7 +141,7 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
     <Accordion title="Wealth Tech object (wtParams) fields Description" icon="fa-cog">
       <Accordion title="Sample JSON" icon="fa-code">
         ```
-        "more_info": {
+        "product": {
             "wtParams": [
               {
                 "type": "mutual_fund",
@@ -162,7 +162,7 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
       </Accordion>
 
       <Accordion title="Fields description" icon="fa-table">
-        These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
+        These parameters are included within the `product` field as a JSON array under the fiedl `wtParams`:
 
         <Table align={["left","left","left"]}>
           <thead>
