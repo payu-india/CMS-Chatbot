@@ -1,7 +1,7 @@
 ---
 title: PayU Hosted Integration - Mutual Funds Payment
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
