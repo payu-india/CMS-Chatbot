@@ -1,5 +1,5 @@
 ---
-title: PayU Hosted Integration - Wealth Tech Payment
+title: PayU Hosted Integration - Mutual Funds Payment
 deprecated: false
 hidden: false
 metadata:
