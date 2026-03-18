@@ -690,7 +690,7 @@ The following are possible errors and error codes for a transaction. You need t
 
 ## Other Error Codes from PayU
 
-| PayU Error Code | error_message / message                                                                                                                     | Error Description                           |
+| PayU Error Code | error_message / message                                                                                                                     | error_description                           |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
 | EX000           |  nan                                                                                                                                        | GRAND_TOTAL                                 |
 | EX001           | No MySQL DSN Supplied                                                                                                                       | MYSQL_DSN_ERROR                             |
