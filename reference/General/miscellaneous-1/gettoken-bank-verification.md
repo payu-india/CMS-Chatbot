@@ -25,14 +25,13 @@ next:
 
 The **Get Token** API returns the authentication token generated using the client ID and client secret where, `grant_type` is **client_credentials** and `scope` is **verify_bank_account**. This must be used along with [Bank Verification API](ref:bank-verification-api).
 
-<Accordion title="Environment" icon="fa-info">
-  <span id="environment" />
-
+##Environment
+  
   | Environment | URL                                                                                  |
   | ----------- | ------------------------------------------------------------------------------------ |
   | Test (UAT)  | [https://uat-accounts.payu.in/oauth/token](https://uat-accounts.payu.in/oauth/token) |
   | Production  | [https://accounts.payu.in/oauth/token](https://accounts.payu.in/oauth/token)         |
-</Accordion>
+
 
 <Accordion title="Request parameters" icon="fa-table">
   <span id="request-parameters" />
