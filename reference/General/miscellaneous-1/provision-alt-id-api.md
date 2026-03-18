@@ -25,7 +25,7 @@ HTTP Method: **POST**
 | Environment | URL                                                                      |
 | ----------- | ------------------------------------------------------------------------ |
 | Test        | [https://apitest.payu.in/card/altid](https://apitest.payu.in/card/altid) |
-| Production  | https://api.payu.in/card/altid                                           |
+| Production  | [https://api.payu.in/card/altid](https://api.payu.in/card/altid)         |
 
 ## Request Headers
 
@@ -351,7 +351,7 @@ public class HmacAuth {
 
 ## Sample Request
 
-```bash
+```curl
 curl --location --request POST 'https://apitest.payu.in/card/altid' \
 --header 'Content-Type: application/json' \
 --header 'date: Fri, 12 Jan 2024 10:13:08 GMT' \
@@ -370,7 +370,215 @@ curl --location --request POST 'https://apitest.payu.in/card/altid' \
     "authenticationCode": null
 }'
 ```
+```python
+import requests
+import json
 
+url = "https://apitest.payu.in/card/altid"
+
+headers = {
+    "Content-Type": "application/json",
+    "date": "Fri, 12 Jan 2024 10:13:08 GMT",
+    "digest": "n6XDOH1fAUrD+WC47SFsa+mNxmm1+yTrUAupmxbYMoc=",
+    "authorization": 'hmac username="DGy1hY", algorithm="hmac-sha256", headers="date digest", signature="FBp5QsOIxBzxyDnRXPCt76htkdm5ijc4nm/Hvyvaw/s="'
+}
+
+data = {
+    "clientReferenceId": None,
+    "cardNumber": "5299920970259709",
+    "nameOnCard": "Jagadesh Reddy",
+    "cardType": "MAST",
+    "expiryMonth": "06",
+    "expiryYear": "2024",
+    "cvv": "000",
+    "mail": "jagadesh@reddy.com",
+    "amount": "100",
+    "authenticationCode": None
+}
+
+try:
+    response = requests.post(url, headers=headers, json=data)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```javascript
+async function makeRequest() {
+    const url = "https://apitest.payu.in/card/altid";
+    
+    const headers = {
+        "Content-Type": "application/json",
+        "date": "Fri, 12 Jan 2024 10:13:08 GMT",
+        "digest": "n6XDOH1fAUrD+WC47SFsa+mNxmm1+yTrUAupmxbYMoc=",
+        "authorization": 'hmac username="DGy1hY", algorithm="hmac-sha256", headers="date digest", signature="FBp5QsOIxBzxyDnRXPCt76htkdm5ijc4nm/Hvyvaw/s="'
+    };
+
+    const requestData = {
+        "clientReferenceId": null,
+        "cardNumber": "5299920970259709",
+        "nameOnCard": "Jagadesh Reddy",
+        "cardType": "MAST",
+        "expiryMonth": "06",
+        "expiryYear": "2024",
+        "cvv": "000",
+        "mail": "jagadesh@reddy.com",
+        "amount": "100",
+        "authenticationCode": null
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(requestData)
+        });
+        
+        const responseText = await response.text();
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
+makeRequest();
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+
+public class ApiRequest {
+    public static void main(String[] args) {
+        try {
+            String url = "https://apitest.payu.in/card/altid";
+            
+            String jsonData = "{\"clientReferenceId\":null,\"cardNumber\":\"5299920970259709\",\"nameOnCard\":\"Jagadesh Reddy\",\"cardType\":\"MAST\",\"expiryMonth\":\"06\",\"expiryYear\":\"2024\",\"cvv\":\"000\",\"mail\":\"jagadesh@reddy.com\",\"amount\":\"100\",\"authenticationCode\":null}";
+            
+            HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Content-Type", "application/json")
+                .header("date", "Fri, 12 Jan 2024 10:13:08 GMT")
+                .header("digest", "n6XDOH1fAUrD+WC47SFsa+mNxmm1+yTrUAupmxbYMoc=")
+                .header("authorization", "hmac username=\"DGy1hY\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"FBp5QsOIxBzxyDnRXPCt76htkdm5ijc4nm/Hvyvaw/s=\"")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonData))
+                .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            
+            System.out.println("Status Code: " + response.statusCode());
+            System.out.println("Response: " + response.body());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main(string[] args)
+    {
+        try
+        {
+            string url = "https://apitest.payu.in/card/altid";
+            
+            client.DefaultRequestHeaders.Add("date", "Fri, 12 Jan 2024 10:13:08 GMT");
+            client.DefaultRequestHeaders.Add("digest", "n6XDOH1fAUrD+WC47SFsa+mNxmm1+yTrUAupmxbYMoc=");
+            client.DefaultRequestHeaders.Add("authorization", "hmac username=\"DGy1hY\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"FBp5QsOIxBzxyDnRXPCt76htkdm5ijc4nm/Hvyvaw/s=\"");
+
+            var requestData = new
+            {
+                clientReferenceId = (string)null,
+                cardNumber = "5299920970259709",
+                nameOnCard = "Jagadesh Reddy",
+                cardType = "MAST",
+                expiryMonth = "06",
+                expiryYear = "2024",
+                cvv = "000",
+                mail = "jagadesh@reddy.com",
+                amount = "100",
+                authenticationCode = (string)null
+            };
+
+            string jsonContent = JsonConvert.SerializeObject(requestData);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://apitest.payu.in/card/altid";
+
+$headers = [
+    "Content-Type: application/json",
+    "date: Fri, 12 Jan 2024 10:13:08 GMT",
+    "digest: n6XDOH1fAUrD+WC47SFsa+mNxmm1+yTrUAupmxbYMoc=",
+    "authorization: hmac username=\"DGy1hY\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"FBp5QsOIxBzxyDnRXPCt76htkdm5ijc4nm/Hvyvaw/s=\""
+];
+
+$requestData = [
+    "clientReferenceId" => null,
+    "cardNumber" => "5299920970259709",
+    "nameOnCard" => "Jagadesh Reddy",
+    "cardType" => "MAST",
+    "expiryMonth" => "06",
+    "expiryYear" => "2024",
+    "cvv" => "000",
+    "mail" => "jagadesh@reddy.com",
+    "amount" => "100",
+    "authenticationCode" => null
+];
+
+$jsonData = json_encode($requestData);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch) . "\n";
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
+?>
+```
 ## Response Parameters
 
 | Parameter           | Value                                            |
