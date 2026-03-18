@@ -293,14 +293,157 @@ curl_close($ch);
 
 ### For UPI Autopay
 
-```bash
+```curl
 curl --location --request GET 'https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=true&upiNumber=9123412345' \
 --header 'Content-Type: application/json' \
 --header 'Date: Thu, 09 Feb 2023 10:13:28 GMT' \
 --header 'Digest: 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' \
 --header 'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="T4FRZcZ3AUYNCMnpZOePT6EKwhiGwCPgglp0RLyYN6Q="'
 ```
+```python
+import requests
 
+url = "https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=true&upiNumber=9123412345"
+
+headers = {
+    "Content-Type": "application/json",
+    "Date": "Thu, 09 Feb 2023 10:13:28 GMT",
+    "Digest": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+    "Authorization": 'hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="T4FRZcZ3AUYNCMnpZOePT6EKwhiGwCPgglp0RLyYN6Q="'
+}
+
+try:
+    response = requests.get(url, headers=headers)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```javascript
+async function makeRequest() {
+    const url = "https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=true&upiNumber=9123412345";
+    
+    const headers = {
+        "Content-Type": "application/json",
+        "Date": "Thu, 09 Feb 2023 10:13:28 GMT",
+        "Digest": "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+        "Authorization": 'hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="T4FRZcZ3AUYNCMnpZOePT6EKwhiGwCPgglp0RLyYN6Q="'
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: headers
+        });
+        
+        const responseText = await response.text();
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
+makeRequest();
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+
+public class ApiRequest {
+    public static void main(String[] args) {
+        try {
+            String url = "https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=true&upiNumber=9123412345";
+            
+            HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Content-Type", "application/json")
+                .header("Date", "Thu, 09 Feb 2023 10:13:28 GMT")
+                .header("Digest", "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=")
+                .header("Authorization", "hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"T4FRZcZ3AUYNCMnpZOePT6EKwhiGwCPgglp0RLyYN6Q=\"")
+                .GET()
+                .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            
+            System.out.println("Status Code: " + response.statusCode());
+            System.out.println("Response: " + response.body());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main(string[] args)
+    {
+        try
+        {
+            string url = "https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=true&upiNumber=9123412345";
+            
+            client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+            client.DefaultRequestHeaders.Add("Date", "Thu, 09 Feb 2023 10:13:28 GMT");
+            client.DefaultRequestHeaders.Add("Digest", "47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=");
+            client.DefaultRequestHeaders.Add("Authorization", "hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"T4FRZcZ3AUYNCMnpZOePT6EKwhiGwCPgglp0RLyYN6Q=\"");
+
+            HttpResponseMessage response = await client.GetAsync(url);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=true&upiNumber=9123412345";
+
+$headers = [
+    "Content-Type: application/json",
+    "Date: Thu, 09 Feb 2023 10:13:28 GMT",
+    "Digest: 47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
+    "Authorization: hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"T4FRZcZ3AUYNCMnpZOePT6EKwhiGwCPgglp0RLyYN6Q=\""
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch) . "\n";
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
+?>
+```
 ## Response parameters
 
 | **Field** | **Description**                                                                                                                                                                                                                                                           | **Example**                   |
