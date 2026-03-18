@@ -1,5 +1,5 @@
 ---
-title: UPI Autopay Integration - Wealth Tech Payment
+title: UPI Autopay Integration - Mutual Funds
 deprecated: false
 hidden: false
 link:
