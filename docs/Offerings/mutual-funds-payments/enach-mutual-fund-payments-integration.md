@@ -58,8 +58,8 @@ HTTP Method: **POST**
   | firstname<br />`mandatory`                      | `Varchar` This parameter must contain the first name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Ankit                                                                                                                                                                |
   | email<br />`mandatory`                          | `Varchar` This parameter must contain the email of the customer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | [test@gmail.com](mailto:test@gmail.com)                                                                                                                              |
   | phone<br />`mandatory`                          | `Integer` Merchant needs to take the customer's GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.                                                                                                                                                                                                                                                                                                                                                                                                                                            | 9876543210                                                                                                                                                           |
-  | pg<br />`mandatory`                             | `String` This parameter contains the payment method to be enabled to collect payment from your customer. For the list of payment methods and their codes, refer to Payment Mode Codes. For Net Banking, use NB.                                                                                                                                                                                                                                                                                                                                                                                                                              | NB                                                                                                                                                                   |
-  | bankcode<br />`mandatory`                       | `string` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bankcodes for Net Banking, refer to Net Banking Codes.                                                                                                                                                                                                                                                                                                                                                                                      | AXIB                                                                                                                                                                 |
+  | pg<br />`mandatory`                             | `String` This parameter contains the payment method to be enabled to collect payment from your customer. For the list of payment methods and their codes, refer to Payment Mode Codes. For ENACH, use ENACH.                                                                                                                                                                                                                                                                                                                                                                                                                              | ENACH                                                                                                                                                                   |
+  | bankcode<br />`mandatory`                       | `string` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bankcodes for Net Banking, refer to (Net Banking Codes)[doc:bank-codes-recurring-payments].                                                                                                                                                                                                                                                                                                                                                                                      | ICICENCC                                                                                                                                                                 |
   | surl<br />`mandatory`                           | `string` The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                             | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                       |
   | furl<br />`mandatory`                           | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                                 | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                       |
   | api\_version<br />`mandatory`                   | API version must be posted as `21`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 21                                                                                                                                                                   |
@@ -115,25 +115,30 @@ HTTP Method: **POST**
 
   ```curl
   curl --location 'https://test.payu.in/_payment' \
-  --header 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
-  --header 'content-type: application/x-www-form-urlencoded' \
-  --header 'Cookie: PHPSESSID=kdihrj6ld6mbevful3ii02rqme; USERTXNINFO=698071743e9724.85896500; PHPSESSID=69ba9459eb84c' \
-  --data-urlencode 'key=j6Bb3k' \
-  --data-urlencode 'txnid=7f41f52808' \
-  --data-urlencode 'amount=50000' \
-  --data-urlencode 'productinfo=Mutual Fund' \
-  --data-urlencode 'firstname=John' \
-  --data-urlencode 'email=john@example.com' \
-  --data-urlencode 'phone=9876543210' \
-  --data-urlencode 'pg=NB' \
-  --data-urlencode 'bankcode=AXNBTPV' \
-  --data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
-  --data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
-  --data-urlencode 'api_version=21' \
-  --data-urlencode 'hash={{hash}}' \
-  --data-urlencode 'products={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}' \
-  --data-urlencode 'txn_s2s_flow=4' \
-  --data-urlencode 'beneficiarydetail={"beneficiaryAccountNumber":"1111111111","ifscCode":"111111189HSBB001"}'
+--header 'accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: USERTXNINFO=696de147e75262.22575647; PHPSESSID=699bf05fe3f41; PHPSESSID=69ba5520d142f' \
+--data-urlencode 'key=j6Bb3k' \
+--data-urlencode 'txnid=txn_97718080' \
+--data-urlencode 'amount=5000' \
+--data-urlencode 'productinfo=iphone' \
+--data-urlencode 'firstname=Sumit' \
+--data-urlencode 'email=test@gmail.com' \
+--data-urlencode 'phone=7715995865' \
+--data-urlencode 'surl=https://localhost:8080/PayU/success' \
+--data-urlencode 'furl=https://localhost:8080/PayU/failure' \
+--data-urlencode 'hash={{hash}}' \
+--data-urlencode 'pg=ENACH' \
+--data-urlencode 'bankcode=ICICENCC' \
+--data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'txn_s2s_flow=4' \
+--data-urlencode 'beneficiarydetail={"beneficiaryName": "Sachin Tendulkar","beneficiaryAccountNumber": "1211450021","beneficiaryAccountType": "SAVINGS", "beneficiaryIfscCode":"ICIC0000046", "verificationMode":"DEBIT_CARD"}' \
+--data-urlencode 'free_trail=1' \
+--data-urlencode 'si_details={"billingAmount":"50000.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2026-03-20","paymentEndDate":"2026-07-20"}' \
+--data-urlencode 'SI=1' \
+--data-urlencode 'api_version=21' \
+--data-urlencode 'products={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
   ```
 </Accordion>
 
@@ -695,4 +700,3 @@ All successful registration transactions are charged over the recurring interfac
 </Accordion>
 
 ***
-
