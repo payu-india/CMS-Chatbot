@@ -14,20 +14,16 @@ This part of the document outlines the integration process for Wealth Tech merch
 * Certain fields are mandatory for regulatory compliance
 * Additional data capture required for exchange/regulatory reporting
 
-## Use Case
+## Supported Payments
 
-#### Target Users:
-
-* Mutual Funds
-
-#### Payment Methods:
+### Payment Methods
 
 * Non-seamless
 * Seamless
   * Net Banking
   * UPI
 
-#### Subscriptions
+### Subscriptions
 
 * ENACH
 * UPI Autopay
