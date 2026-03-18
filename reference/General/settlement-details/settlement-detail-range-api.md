@@ -15,15 +15,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Settlement Detail Range API
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Settlement Detail Range API
+  description: ''
+  keywords:
+    - Settlement Detail Range API
+    - Merchant settlement range details API
+    - Retrieve settlement range details API
+    - API for transaction settlement range
+  robots: index
+next:
+  description: ''
+---
 Settlement Details Range API provides transaction level data for a given date or date range. This API returns paginated response for the given input page and page size.
 
 <Callout icon="📮" theme="default">
   **Postman Collection**: Access the **Settlement Detail Range API Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/lc2xiuz/settlementrangeapi
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/lc2xiuz/settlementrangeapi](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/lc2xiuz/settlementrangeapi)
 </Callout>
 
-**Environment**
+<Accordion title="Environment" icon="fa-info">
+
 
 |                        |                                                                                      |
 | :--------------------- | :----------------------------------------------------------------------------------- |
@@ -34,9 +52,12 @@ Settlement Details Range API provides transaction level data for a given date or
   **Note**: Use the endpoint as per above [https://\<environment base URL>/settlement/range](https://apitest.payu.in/settlement/range) and do not append slash (/) at the end of it.
 </Callout>
 
-## Request parameters
+</Accordion>
 
-### Header parameters
+<Accordion title="Request parameters" icon="fa-table">
+
+
+<Accordion title="Header parameters" icon="fa-table">
 
 The API needs encoded key and salt and date time when the request was generated in the header for authorisation. The following values that are needed in header:
 
@@ -67,8 +88,8 @@ function getAuthHeader(date) {
   return authHeader;
 }
 ```
-
-### Query Parameters
+</Accordion>
+<Accordion title="Query parameters" icon="fa-table">
 
 | **Parameter**          | **Description**                                                                                                                                                                                    | **Example** |
 | :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------- |
@@ -76,19 +97,168 @@ function getAuthHeader(date) {
 | dateTo **optional**    | This parameter must contain date for the settlement range is required is in YYYY-MM-DD format. **Note**: Date range is cannot be more tha. 3 days, so **dateTo** value must be posted accordingly. | 2024-03-28  |
 | pageSize **optional**  | This parameter must contain the number of records to be paginated on each page is specified in this parameter. By default, the value is 100.                                                       | 1000        |
 | page **optional**      | This parameter must contain the page to be displayed.                                                                                                                                              | 1           |
+</Accordion>
 
-## Sample request
+</Accordion>
 
-```bash
+<Accordion title="Sample request" icon="fa-code">
+
+```curl
 curl --location 'https://apitest.payu.in/settlement/range?pageSize=200&page=1&dateFrom=2025-02-04' \
 --header 'Authorization: hmac username="NpXRwp", algorithm="sha512", headers="date", signature="df282e193cc74618e8f7e13097acab38c321fc17ceed770f71ba5f4cb5e672a2b74a9b86ac8ba8baa3074cf740d1d91075bd3122acfa10833361d5f797a123a9"' \
 --header 'date: Tue, 04 Feb 2025 12:09:59 GMT' \
 --header 'mid: 114757' 
 ```
+```python
+import requests
 
-## Response parameters
+url = "https://apitest.payu.in/settlement/range"
+params = {
+    "pageSize": "200",
+    "page": "1",
+    "dateFrom": "2025-02-04"
+}
 
-The description of fields in the **data** JSON of the response:
+headers = {
+    "Authorization": 'hmac username="NpXRwp", algorithm="sha512", headers="date", signature="df282e193cc74618e8f7e13097acab38c321fc17ceed770f71ba5f4cb5e672a2b74a9b86ac8ba8baa3074cf740d1d91075bd3122acfa10833361d5f797a123a9"',
+    "date": "Tue, 04 Feb 2025 12:09:59 GMT",
+    "mid": "114757"
+}
+
+try:
+    response = requests.get(url, params=params, headers=headers)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main(string[] args)
+    {
+        try
+        {
+            string url = "https://apitest.payu.in/settlement/range?pageSize=200&page=1&dateFrom=2025-02-04";
+            
+            client.DefaultRequestHeaders.Add("Authorization", "hmac username=\"NpXRwp\", algorithm=\"sha512\", headers=\"date\", signature=\"df282e193cc74618e8f7e13097acab38c321fc17ceed770f71ba5f4cb5e672a2b74a9b86ac8ba8baa3074cf740d1d91075bd3122acfa10833361d5f797a123a9\"");
+            client.DefaultRequestHeaders.Add("date", "Tue, 04 Feb 2025 12:09:59 GMT");
+            client.DefaultRequestHeaders.Add("mid", "114757");
+
+            HttpResponseMessage response = await client.GetAsync(url);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+```
+```javascript
+async function makeRequest() {
+    const url = "https://apitest.payu.in/settlement/range?pageSize=200&page=1&dateFrom=2025-02-04";
+    
+    const headers = {
+        "Authorization": 'hmac username="NpXRwp", algorithm="sha512", headers="date", signature="df282e193cc74618e8f7e13097acab38c321fc17ceed770f71ba5f4cb5e672a2b74a9b86ac8ba8baa3074cf740d1d91075bd3122acfa10833361d5f797a123a9"',
+        "date": "Tue, 04 Feb 2025 12:09:59 GMT",
+        "mid": "114757"
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: headers
+        });
+        
+        const responseText = await response.text();
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
+makeRequest();
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+
+public class ApiRequest {
+    public static void main(String[] args) {
+        try {
+            String url = "https://apitest.payu.in/settlement/range?pageSize=200&page=1&dateFrom=2025-02-04";
+            
+            HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Authorization", "hmac username=\"NpXRwp\", algorithm=\"sha512\", headers=\"date\", signature=\"df282e193cc74618e8f7e13097acab38c321fc17ceed770f71ba5f4cb5e672a2b74a9b86ac8ba8baa3074cf740d1d91075bd3122acfa10833361d5f797a123a9\"")
+                .header("date", "Tue, 04 Feb 2025 12:09:59 GMT")
+                .header("mid", "114757")
+                .GET()
+                .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            
+            System.out.println("Status Code: " + response.statusCode());
+            System.out.println("Response: " + response.body());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://apitest.payu.in/settlement/range?pageSize=200&page=1&dateFrom=2025-02-04";
+
+$headers = [
+    "Authorization: hmac username=\"NpXRwp\", algorithm=\"sha512\", headers=\"date\", signature=\"df282e193cc74618e8f7e13097acab38c321fc17ceed770f71ba5f4cb5e672a2b74a9b86ac8ba8baa3074cf740d1d91075bd3122acfa10833361d5f797a123a9\"",
+    "date: Tue, 04 Feb 2025 12:09:59 GMT",
+    "mid: 114757"
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch) . "\n";
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
+?>
+```
+
+
+</Accordion>
+
+<Accordion title="Response parameters" icon="fa-table">
+
 
 | **Parameter**           | **Fields**                                                                                                                                                                                                   | **Sample Value**                              |
 | :---------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------- |
@@ -99,9 +269,12 @@ The description of fields in the **data** JSON of the response:
 | utrNumber               | This parameter contains an alphanumeric code generated by banks when a transaction is executed. This number serves as a reference code that helps track and identify specific transactions and their status. | UTIBR72023062000022728                        |
 | transaction             | This parameter contains the transaction details in a JSON format. For more information, refer to [transaction JSON fields desciption](#transaction-json-fields-description).                                 | Refer to [sample response](#sample-response). |
 
-## Transaction JSON Fields Description
 
-The description of fields in the **transaction** JSON of the response:
+</Accordion>
+
+<Accordion title="Transaction JSON fields description" icon="fa-table">
+
+<span id="transaction-json-fields-description" />
 
 <HTMLBlock>{`
 <table>
@@ -228,9 +401,12 @@ The description of fields in the **transaction** JSON of the response:
 
 To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
 
-## Sample response
 
-### Success Scenarios
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-file-code">
+
+<span id="sample-response" />
 
 * Only Start date is provided
 
@@ -5090,3 +5266,5 @@ To learn more about the possible error codes and their description, refer to [Er
     "message": "Unauthorized"
 }
 ```
+
+</Accordion>
