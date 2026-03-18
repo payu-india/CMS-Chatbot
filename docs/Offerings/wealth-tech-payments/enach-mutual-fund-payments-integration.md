@@ -98,6 +98,7 @@ HTTP Method: **POST**
   | BeneficiaryAccountType   | SAVINGS or CURRENT                                                                                                                                                                                                                                                                                                                                                                                                                                   |
   | beneficiaryIfscCode      | 11-digit IFSC code of the customer bank                                                                                                                                                                                                                                                                                                                                                                                                              |
   | verificationMode         | The verification mode can be any of the following: <ul><li>**DEBIT\_CARD** – authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow.</li><li>**AADHAAR** – authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow. If no value is provided, then it will trigger Net Banking login password flow.</li></ul> |
+<Mutual_Funds_Product_JSON/>
 </Accordion>
 
 <Accordion title="Sample Request Examples" icon="fa-code">
