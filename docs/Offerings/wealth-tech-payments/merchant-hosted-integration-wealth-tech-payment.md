@@ -394,7 +394,7 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
   <Glossary>SHA</Glossary>-512:
 
   ```plaintext
-  key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|SALT
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|si_details|||||products|salt
   ```
 
   * Use empty strings for missing udf\*.
@@ -402,9 +402,6 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
 
   For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
 
-  ### Sample Code for Hashing
-
-  <HashingSample />
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-exchange">
@@ -432,47 +429,11 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
 ## Step 2: Check Response from PayU
 
 <Accordion title="Success Response" icon="fa-exchange">
-  ```json
-  {
-      "status": 1,
-      "message": "Transaction Processed successfully",
-      "details": {
-          "transactionid": "48101c0c-5265-4c2a-b6d0-e6e73d42809e",
-          "authpayuid": "999990000005920",
-          "amount": "50000.00",
-          "txnid": "7f41f520f71b",
-          "status": "success",
-          "firstname": "John",
-          "email": "john@example.com",
-          "phone": "9876543210",
-          "productinfo": "Mutual Fund",
-          "hash": "reverse_hash_value",
-          "key": "KOEfPI"
-      }
-  }
+  ```plaintext
+mihpayid=403993715537000168&mode=UPI&status=success&key=j6Bb3k&txnid=txn_7798908nnm008&amount=50000.00&addedon=2026-03-17 14:48:25&productinfo=iphone&firstname=Sumit&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test@gmail.com&phone=7715995865&udf1=&udf2=&udf3=&udf4=Executed Callback&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=9999999999@upi&field2=&field3=ps@paytm&field4=&field5=403993715537000168&field6=&field7=00|APPROVED OR COMPLETED SUCCESSFULLY&field8=&field9=Transaction Successful|Completed Using Callback&payment_source=sist&cardToken=&authenticaticationMethod=&PG_TYPE=UPI-PG&error=E000&error_Message=No Error&net_amount_debit=50000&discount=0.00&offer_key=&offer_availed=&unmappedstatus=captured&hash=833ca55940bf5fa7ef6d334872848d4ad2ec775966aba23a8c3e82ecf5292ea7bd3e9573202ee093fdbc91dedd1cd6ff919411d84bce76c8cb676921cc997191&bank_ref_no=ICI9TI0Y06S0HCGA1DDHTN3ZH7YL0MPYBRUQ&bank_ref_num=ICI9TI0Y06S0HCGA1DDHTN3ZH7YL0MPYBRUQ&bankcode=INTENT&surl=https://test.payu.in/admin/test_response&curl=https://test.payu.in/admin/test_response&furl=https://test.payu.in/admin/test_response&IsStandingInstructionSet=1
   ```
 </Accordion>
 
-<Accordion title="Failure Response" icon="fa-exchange">
-  ```json
-  {
-      "status": 0,
-      "message": "Invalid Parameter: mf_partner must be less than or equal to 4 characters."
-  }
-  ```
-</Accordion>
-
-<Accordion title="Response Parameters" icon="fa-exchange">
-  | Parameter         | Description                    |
-  | ----------------- | ------------------------------ |
-  | **status**        | 1 for success, 0 for failure   |
-  | **message**       | Transaction status message     |
-  | **transactionid** | PayU transaction ID            |
-  | **authpayuid**    | PayU authorization ID          |
-  | **amount**        | Transaction amount             |
-  | **txnid**         | Merchant transaction ID        |
-  | **hash**          | Response hash for verification |
-</Accordion>
 
 <Accordion title="Hash Verification" icon="fa-key">
   Verify response using reverse hash calculation:
