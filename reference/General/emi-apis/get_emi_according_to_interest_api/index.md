@@ -20,20 +20,215 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Get EMI Amount according to Interest API
+excerpt: ''
+api:
+  file: emi-apis-11.json
+  operationId: GetEMIAccordingtoInterest
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    The document describes the Get EMI Amount According to Interest API, which
+    is used to retrieve EMI interest bank rates for enabled EMIs. It provides
+    sample requests, responses, and response parameters such as transaction
+    amount, loan amount, EMI amount, additional costs, bank rate, and more.
+  keywords:
+    - getEmiAmountAccordingToInterest
+    - Get EMI Amount According to Interest
+  robots: index
+next:
+  description: ''
+---
 The **Get EMI Amount According to Interest** API (**getEmiAmountAccordingToInterest** API) is used to get the EMI interest bank rates for all the enabled EMIs.
 
 <GENERALAPIsEnvironment />
 
-## Sample request
+<Accordion title="Sample request" icon="fa-code">
 
-```bash
+<span id="sample-request" />
+```curl
 curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 -H "accept: application/json" \
 -H "Content-Type: application/x-www-form-urlencoded" \
--d "key=JP***g&command=getEmiAmountAccordingToInterest&var1=20000&hash=3b16384427372f658244a106258790df9ed601e3c1dcd1f43d08f7e616bfe907f095947491baa3ec8629d33b3903e8b1e0a1872aa009c5f5c34b06466311dc95&hash="
+-d "key=JP***g&command=getEmiAmountAccordingToInterest&var1=20000&hash=3b16384427372f658244a106258790df9ed601e3c1dcd1f43d08f7e616bfe907f095947491baa3ec8629d33b3903e8b1e0a1872aa009c5f5c34b06466311dc95"
 ```
+```python
+import requests
 
-## Sample response
+url = "https://test.payu.in/merchant/postservice?form=2"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+data = {
+    "key": "JP***g",
+    "command": "getEmiAmountAccordingToInterest",
+    "var1": "20000",
+    "hash": "3b16384427372f658244a106258790df9ed601e3c1dcd1f43d08f7e616bfe907f095947491baa3ec8629d33b3903e8b1e0a1872aa009c5f5c34b06466311dc95"
+}
+
+try:
+    response = requests.post(url, headers=headers, data=data)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```javascript
+async function makeRequest() {
+    const url = "https://test.payu.in/merchant/postservice?form=2";
+    
+    const headers = {
+        "accept": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded"
+    };
+
+    const formData = new URLSearchParams({
+        "key": "JP***g",
+        "command": "getEmiAmountAccordingToInterest",
+        "var1": "20000",
+        "hash": "3b16384427372f658244a106258790df9ed601e3c1dcd1f43d08f7e616bfe907f095947491baa3ec8629d33b3903e8b1e0a1872aa009c5f5c34b06466311dc95"
+    });
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: headers,
+            body: formData
+        });
+        
+        const responseText = await response.text();
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
+makeRequest();
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+
+public class ApiRequest {
+    public static void main(String[] args) {
+        try {
+            String url = "https://test.payu.in/merchant/postservice?form=2";
+            
+            String formData = "key=JP***g&command=getEmiAmountAccordingToInterest&var1=20000&hash=3b16384427372f658244a106258790df9ed601e3c1dcd1f43d08f7e616bfe907f095947491baa3ec8629d33b3903e8b1e0a1872aa009c5f5c34b06466311dc95";
+            
+            HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("accept", "application/json")
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .POST(HttpRequest.BodyPublishers.ofString(formData))
+                .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            
+            System.out.println("Status Code: " + response.statusCode());
+            System.out.println("Response: " + response.body());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main(string[] args)
+    {
+        try
+        {
+            string url = "https://test.payu.in/merchant/postservice?form=2";
+            
+            client.DefaultRequestHeaders.Add("accept", "application/json");
+
+            var formData = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("key", "JP***g"),
+                new KeyValuePair<string, string>("command", "getEmiAmountAccordingToInterest"),
+                new KeyValuePair<string, string>("var1", "20000"),
+                new KeyValuePair<string, string>("hash", "3b16384427372f658244a106258790df9ed601e3c1dcd1f43d08f7e616bfe907f095947491baa3ec8629d33b3903e8b1e0a1872aa009c5f5c34b06466311dc95")
+            };
+
+            var formContent = new FormUrlEncodedContent(formData);
+            HttpResponseMessage response = await client.PostAsync(url, formContent);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://test.payu.in/merchant/postservice?form=2";
+
+$headers = [
+    "accept: application/json",
+    "Content-Type: application/x-www-form-urlencoded"
+];
+
+$postData = [
+    "key" => "JP***g",
+    "command" => "getEmiAmountAccordingToInterest",
+    "var1" => "20000",
+    "hash" => "3b16384427372f658244a106258790df9ed601e3c1dcd1f43d08f7e616bfe907f095947491baa3ec8629d33b3903e8b1e0a1872aa009c5f5c34b06466311dc95"
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch) . "\n";
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
+?>
+```
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-file-code">
+
+<span id="sample-response" />
 
 ```json
 {
@@ -59,7 +254,11 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 }
 ```
 
-## Response parameters
+</Accordion>
+
+<Accordion title="Response parameters" icon="fa-table">
+
+<span id="response-parameters" />
 
 The response includes the JSON array and each JSON has the fields as described in the following table:
 
@@ -82,7 +281,11 @@ The response includes the JSON array and each JSON has the fields as described i
 | emi_interest_paid | The total interest paid for all the EMIs.                                                                           | 434.89      |
 | tenure            | The tenure for the EMI in months. For example, 3, 6, 12, 24, 36, etc.                                               | 3           |
 
-## Request parameters
+</Accordion>
+
+<Accordion title="Request parameters" icon="fa-list">
+
+<span id="request-parameters" />
 
 ### Additional information
 
@@ -142,3 +345,5 @@ Use the following sample values while trying out the API:
 **Example values**:
 
 * `var1`: Any amount.
+
+</Accordion>
