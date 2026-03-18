@@ -264,8 +264,6 @@ curl --location 'https://info.payu.in/issuing-bank/v1/bin' \
     "checkCVVRequired": true
 }'
 ```
-Here are the equivalent code snippets for your CURL request in different programming languages:
-
 ```python
 import requests
 import json
