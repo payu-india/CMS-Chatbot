@@ -1,5 +1,5 @@
 ---
-title: Mutual Funds Payments
+title: Mutual Fund Payments
 deprecated: false
 hidden: true
 metadata:
