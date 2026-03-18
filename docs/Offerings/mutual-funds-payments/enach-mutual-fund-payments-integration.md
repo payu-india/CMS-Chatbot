@@ -68,6 +68,7 @@ HTTP Method: **POST**
   | si\_details<br />`mandatory`                    | This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br />**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) ) This is a JSON object and it includes a set of fields. For more information, refer to SI Parameter JSON Details                                      | \{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"} |
   | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|beneficiarydetail\\\|si\_details\\\|\\\|\\\|\\\|\\\|products\\\|salt) For more information, refer to Generate Hash.                                                                                                                                                                                                                                                                | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                             |
   | products<br />`mandatory for Wealth Tech`       | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to Wealth Tech object wtparams fields description.                                                                                                                                                                                                                                                                                                                                                                                                                                       | Refer to Wealth Tech object wtparams fields description.                                                                                                             |
+  | txn_s2s_flow <br />`mandatory` | `String` This parameter must be passed with the value as 4 for Decoupled flow.| 4|
   | lastname<br />`optional`                        | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                               |
   | address1<br />`optional`                        | `String` The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                      |
   | address2<br />`optional`                        | `String` The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Apartment 4B                                                                                                                                                         |
@@ -140,47 +141,41 @@ HTTP Method: **POST**
   #### Initial response
 
   ```json
-  {
-      "metaData": {
-          "message": null,
-          "referenceId": "18bd0c0c619ec09ad676dca7bf65225f242e20a983521934215c4074cb763518",
-          "statusCode": null,
-          "txnId": "Txn_098f7189",
-          "txnStatus": "pending",
-          "unmappedStatus": "pending"
-      },
-      "result": {
-          "paymentId": "403993715537012547",
-          "merchantName": "Merchant",
-          "merchantVpa": "kk.payutest@hdfcbank",
-          "amount": "50000.00",
-          "intentURIData": "pa=kk.payutest@hdfcbank&pn=&tr=403993715537012547&tid=PPPL4039937155370125471803261728086&am=50000.00&cu=INR&tn=UPIIntent",
-          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluLzE4YmQwYzBjNjE5ZWMwOWFkNjc2ZGNhN2JmNjUyMjVmNzg5YWZjNjBmZGYzYzE1OGNhYjdhMDUxZGY4MTUzOWIvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjY5NjAzMEQwLUI5QTAtRTMxQS1CRUVFLTlGOEI5RDc0MDc0OCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iNTAwMDAuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1paHBheWlkIiB2YWx1ZT0iMThiZDBjMGM2MTllYzA5YWQ2NzZkY2E3YmY2NTIyNWYyNDJlMjBhOTgzNTIxOTM0MjE1YzQwNzRjYjc2MzUxOCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iZGlzYWJsZUludGVudFNlYW1sZXNzRmFpbHVyZSIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlVnBhIiB2YWx1ZT0ia2sucGF5dXRlc3RAaGRmY2JhbmsiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlTmFtZSIgdmFsdWU9Ik1lcmNoYW50Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0idHJhbnNhY3Rpb25GZWUiIHZhbHVlPSI1MDAwMC4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
-          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
-      }
-  }
+    {
+    "metaData": {
+        "message": null,
+        "referenceId": "88ff908fb1a7ae9038499597bcd84e963ecea18adbfa0340c730156b8667f09d",
+        "statusCode": null,
+        "txnId": "txn_97718080",
+        "txnStatus": "pending",
+        "unmappedStatus": "pending"
+    },
+    "result": {
+        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vZW5hY2gtc2ltLnBheXUuaW4vc2ltdWxhdG9yL2NvcnAvQkFOS0FXQVkiIG1ldGhvZD0icG9zdCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iQkFZX0JBTktJRCIgdmFsdWU9IklDSSI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iRVMiIHZhbHVlPSJjTWprdHMzdDMvcmdHLzZ2eWF6dkZRTDZZMGRXVG05WHViSTcwdXdLMkFrNW5ua1U1d0tZSlppOHhaLytLVWlRV1k3NUlYTDlMc0xtZ1Nrc2R4THltNmYrTUxuK1Q1Q3hnV2huem1yWkRrVFZhMnJHNGl4QVRIdDltRzNuM3kySWd0d3pTTUh6cG5uNzdqNlZkdE14RFB0eWI4aVd6ckZPayt6QzNUUklvZHdBTGZjVmJMWGNHb0ZJMmJBTFgvTk9ZbkhoYlRXWVFqMHdwOFpmMkI5Q0JEOEFZcURQc1dPSWl4eVR4MjJxTTZZM2hwL1JKa3pQTHhCM1lOZE9NaHdISUhXV1FXbTFSL3l6QjB0STJuNGIwSFdiZ0NRQTc1K25VRnF4MzBWWVRTdFBJVXMyUmtQekFzSGJTK0VUV1NOOUJTMXMwYTlxcFVmbzYzU0JjNlppL0NCeTNjVy9JbnZFNjdKV0tjUWs0cWxDZXQ3SE1pRG1DckdNbWFwQzJ3d3FQdnBkdVByTHNDK05sMlRhZWdWL0pBPT0iPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9IklXUVJZVEFTS09CSk5BTUUiIHZhbHVlPSJiYXlfbWNfbG9naW4iPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Ik1EIiB2YWx1ZT0iUCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iUElEIiB2YWx1ZT0iMDAwMDAwMDAwNzIyIj48L2Zvcm0+PHNjcmlwdCB0eXBlPSd0ZXh0L2phdmFzY3JpcHQnPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgd2luZG93Lm9ubG9hZD1mdW5jdGlvbigpewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LmZvcm1zWydwYXltZW50X3Bvc3QnXS5zdWJtaXQoKTsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgPC9zY3JpcHQ+PC9ib2R5PjwvaHRtbD4=",
+        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+    }
+}
+
+
+}
 
   ```
 
   You must redirect the customer and authorize the charges as described in Decoupled Flow Integration. For more information, refer to (Decoupled Flow Integration)\[doc:integrate-with-decoupled-flow-s2s]. The parsed response similar to the following.
 
-  #### Parsed response
+####Parsed response
 
   ```json
-  Array
-  (
-      [mihpayid] => 403993715525331373
+(
+      [mihpayid] => 403993715537008957
       [mode] => ENACH
       [status] => success
-      [unmappedstatus] => captured
-      [key] => JPM7Fg
-      [txnid] => oRWSUMU4XSQBZn
-      [amount] => 0.00
-      [discount] => 0.00
-      [net_amount_debit] => 0
-      [addedon] => 2022-02-03 19:06:55
-      [productinfo] => iPhone
-      [firstname] => Ashish
+      [key] => j6Bb3k
+      [txnid] => txn_97718080
+      [amount] => 5000.00
+      [addedon] => 2026-03-18 13:02:49
+      [productinfo] => iphone
+      [firstname] => Sumit
       [lastname] => 
       [address1] => 
       [address2] => 
@@ -189,7 +184,7 @@ HTTP Method: **POST**
       [country] => 
       [zipcode] => 
       [email] => test@gmail.com
-      [phone] => 9876543210
+      [phone] => 7715995865
       [udf1] => 
       [udf2] => 
       [udf3] => 
@@ -200,9 +195,11 @@ HTTP Method: **POST**
       [udf8] => 
       [udf9] => 
       [udf10] => 
-      [hash] => f3f8e4088231b190930fc4b87d3f39397d1a1d02622ef4683a983244e1cd5158f39adbb67c3d87dcb4da25ae4a941ebbf55918e4575fa1c39677a774d02c0d2d
-      [field1] => ENACH285259747472911093
-      [field2] => 337026657857179355
+      [card_token] => 
+      [card_no] => 
+      [field0] => 
+      [field1] => ENACH866231933150874704
+      [field2] => 202859885067486788
       [field3] => 
       [field4] => 
       [field5] => 
@@ -211,12 +208,26 @@ HTTP Method: **POST**
       [field8] => 
       [field9] => Mandate successfully scheduled at bank end: Your payment is scheduled successfully
       [payment_source] => sist
+      [cardToken] => 
+      [authenticaticationMethod] => 
       [PG_TYPE] => ENACH-PG
-      [bank_ref_num] => 450699821592111537
-      [bankcode] => ICICENCC
       [error] => E000
       [error_Message] => No Error
-  )
+      [net_amount_debit] => 5000
+      [discount] => 0.00
+      [offer_key] => 
+      [offer_availed] => 
+      [unmappedstatus] => captured
+      [hash] => 2794739ed6ca0fdb00540b4cf76cd8d42146ce43596a49b79011214eb1cf72f525252a39c1db6a38c1e81724fc2f56542a383a57eaca262c7df6b62fcb92ac73
+      [bank_ref_no] => 154710586635169646
+      [bank_ref_num] => 154710586635169646
+      [bankcode] => ICICENCC
+      [surl] => https://test.payu.in/admin/test_response
+      [curl] => https://test.payu.in/admin/test_response
+      [furl] => https://test.payu.in/admin/test_response
+      [IsStandingInstructionSet] => 1
+)
+  
   ```
 </Accordion>
 
@@ -685,12 +696,3 @@ All successful registration transactions are charged over the recurring interfac
 
 ***
 
-### Request Parameters Reference
-
-<Accordion title="Reference Information" icon="fa-book">
-  | Parameter | Reference                                                                                                                                                                                                                                                                                                                                                    |
-  | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | **key**   | For more information on how to generate the Key and Salt, refer to any of the following: <ul><li>**Production**: [Generate Merchant Key and Salt](http://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard)</li><li>**Test**: [Generate Test Merchant Key and Salt](http://docs.payu.in/docs/generate-test-merchant-key-and-salt)</li></ul> |
-  | **hash**  | Hash logic for this API is:<br />sha512(key\\\|command\\\|var1\\\|salt)sha512                                                                                                                                                                                                                                                                                |
-  | **var1**  | For JSON fields description, refer to [Additional Info. Payment APIs](http://docs.payu.in/reference/addl_info-payment-apis#/)                                                                                                                                                                                                                                |
-</Accordion>
