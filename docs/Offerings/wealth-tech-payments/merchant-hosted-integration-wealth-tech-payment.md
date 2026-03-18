@@ -13,31 +13,28 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
 
 ## Step 1: Initiate the Payment to PayU
 
-<Accordion title="Environment" icon="fa-plug">
-  ```
-  POST https://test.payu.in/_payment
-  Content-Type: application/x-www-form-urlencoded
-  ```
-</Accordion>
+<PaymentAPIEnvironment />
+
+
 
 <Accordion title="Request Parameters" icon="fa-exchange">
   | Parameter                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Example                                                                                                                                                                    |
   | :---------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | key<br />`mandatory`                            | `String` This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).                                                                                                                                                                                                                                                                                                                                                                                                                        | 8488225                                                                                                                                                                    |
   | txnid<br />`mandatory`                          | `Varchar` This parameter is known as Transaction ID (or OrderID). It is the order reference number generated at your (Merchant's) end. It is an identifier which you(merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of same Transaction ID again would fail. Hence, it is essential that you post us a unique transaction ID for every new transaction (Please make sure that the transaction ID being sent to us hasn't been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID'). | fd3e847h2                                                                                                                                                                  |
-  | amount<br />`mandatory`                         | `float` This parameter should contain the payment amount of the particular transaction. Note: Type-cast the amount to float type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | 10.00                                                                                                                                                                         |
+  | amount<br />`mandatory`                         | `float` This parameter should contain the payment amount of the particular transaction. Note: Type-cast the amount to float type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | 10.00                                                                                                                                                                      |
   | productinfo<br />`mandatory`                    | `Varchar` This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice).                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | T-shirt                                                                                                                                                                    |
   | firstname<br />`mandatory`                      | `Varchar` This parameter must contain the first name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Ankit                                                                                                                                                                      |
   | email<br />`mandatory`                          | `Varchar` This parameter must contain the email of the customer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | [test@gmail.com](mailto:test@gmail.com)                                                                                                                                    |
   | phone<br />`mandatory`                          | `Integer` Merchant needs to take the customer's GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.                                                                                                                                                                                                                                                                                                                                                                                                                                            | 9876543210                                                                                                                                                                 |
-  | pg<br />`mandatory`                             | `String` This parameter contains the payment method to be enabled to collect payment from your customer. For Net Banking, use **NB** and **UPI** for UPI.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | NB                                                                                                                                                                         |
-  | bankcode<br />`mandatory`                       | `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bankcodes: <br /> \* **Net Banking**: refer to [Net Banking Codes](doc:net-banking-codes)<br /> \* **UPI**: Use `UPI`.                                                                                                                                                                                           | AXIB                                                                                                                                                                       |
+  | pg<br />`mandatory`                             | `String` This parameter contains the payment method to be enabled to collect payment from your customer. For Net Banking, use **NB** and **UPI** for UPI.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | NB                                                                                                                                                                         |
+  | bankcode<br />`mandatory`                       | `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bankcodes: <br /> \* **Net Banking**: refer to [Net Banking Codes](doc:net-banking-codes)<br /> \* **UPI**: Use `UPI`.                                                                                                                                                                                                                                                                                                                      | AXIB                                                                                                                                                                       |
   | surl<br />`mandatory`                           | `String` The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                             | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                             |
   | furl<br />`mandatory`                           | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                                 | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                             |
   | api\_version <br /> `mandatory`                 | API version must be posted as `21`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 21                                                                                                                                                                         |
   | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|SALT) For more information, refer to [Generate Hash](doc:hashing-request-and-response).                                                                                                                                                                                                                                                                                         | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                                   |
-  | product<br />mandatory for Wealth Tech       | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech#wealth-tech-object-wtparams-fields-description).                                                                                                                                                                                                                                                                                                                    | Refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech#wealth-tech-object-wtparams-fields-description) |
-  | beneficiarydetail<br />`mandatory ` | `String` String JSON object that contains account numbers and corresponding IFSC codes (max 4 accounts) in the same order| Refer the table in accordion below this table  |
+  | product<br />mandatory for Wealth Tech          | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech#wealth-tech-object-wtparams-fields-description).                                                                                                                                                                                                                                                                                                                    | Refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech#wealth-tech-object-wtparams-fields-description) |
+  | beneficiarydetail<br />`mandatory `             | `String` String JSON object that contains account numbers and corresponding IFSC codes (max 4 accounts) in the same order                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Refer the table in accordion below this table                                                                                                                              |
   | lastname<br />`optional`                        | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                                     |
   | address1<br />`optional`                        | `String` The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                            |
   | address2<br />`optional`                        | `String` The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Apartment 4B                                                                                                                                                               |
@@ -51,7 +48,8 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
   | udf4<br />`optional`                            | `String` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 2                                                                                                                                                          |
   | udf5<br />`optional`                            | `String` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 3                                                                                                                                                          |
   | additional\_charges<br />`optional`             | `String` Collect additional charges for the transaction. For example, platform fee                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 10.00                                                                                                                                                                      |
-<Accordion title="beneficiarydetail JSON Object Fields" icon="fa-code">
+
+  <Accordion title="beneficiarydetail JSON Object Fields" icon="fa-code">
     The `beneficiarydetail` parameter should be a JSON object with the following structure:
 
     <Table align={["left","left","left"]}>
@@ -124,255 +122,255 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
     > * Replace SALT with the salt value provided to you during onboarding.
   </Accordion>
 
-<Accordion title="Wealth Tech Object (wtParams) Fields" icon="fa-cog">
-  ### Wealth Tech object wtparams fields description
+  <Accordion title="Wealth Tech Object (wtParams) Fields" icon="fa-cog">
+    ### Wealth Tech object wtparams fields description
 
-  <Accordion title="Wealth Tech object (wtParams) fields Description" icon="fa-cog">
-    <Accordion title="Sample JSON" icon="fa-code">
-      ```
-      "product": {
-          "wtParams": [
-            {
-              "type": "mutual_fund",
-              "plan": "GD",
-              "amount": "50000",
-              "option": "G",
-              "scheme": "LT",
-              "receipt": "77407",
-              "mf_member_id": "123445",
-              "mf_user_id": "77407",
-              "mf_partner": "cams",
-              "mf_investment_type": "L",
-              "mf_amc_code": "UTB"
-            }
-          ]
-        }
-      ```
-    </Accordion>
+    <Accordion title="Wealth Tech object (wtParams) fields Description" icon="fa-cog">
+      <Accordion title="Sample JSON" icon="fa-code">
+        ```
+        "product": {
+            "wtParams": [
+              {
+                "type": "mutual_fund",
+                "plan": "GD",
+                "amount": "50000",
+                "option": "G",
+                "scheme": "LT",
+                "receipt": "77407",
+                "mf_member_id": "123445",
+                "mf_user_id": "77407",
+                "mf_partner": "cams",
+                "mf_investment_type": "L",
+                "mf_amc_code": "UTB"
+              }
+            ]
+          }
+        ```
+      </Accordion>
 
-    <Accordion title="Fields description" icon="fa-table">
-      These parameters are included within the `product` field as a JSON array under the fiedl `wtParams`:
+      <Accordion title="Fields description" icon="fa-table">
+        These parameters are included within the `product` field as a JSON array under the fiedl `wtParams`:
 
-      <Table align={["left","left","left"]}>
-        <thead>
-          <tr>
-            <th style={{ textAlign: "left" }}>
-              Parameter
-            </th>
+        <Table align={["left","left","left"]}>
+          <thead>
+            <tr>
+              <th style={{ textAlign: "left" }}>
+                Parameter
+              </th>
 
-            <th style={{ textAlign: "left" }}>
-              Description
-            </th>
+              <th style={{ textAlign: "left" }}>
+                Description
+              </th>
 
-            <th style={{ textAlign: "left" }}>
-              Example
-            </th>
-          </tr>
-        </thead>
+              <th style={{ textAlign: "left" }}>
+                Example
+              </th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              type <br />
-              `mandatory`
-            </td>
+          <tbody>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                type <br />
+                `mandatory`
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `string` - Transaction type, must be "mutual\_fund"
-            </td>
+              <td style={{ textAlign: "left" }}>
+                `string` - Transaction type, must be "mutual\_fund"
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `"mutual_fund"`
-            </td>
-          </tr>
+              <td style={{ textAlign: "left" }}>
+                `"mutual_fund"`
+              </td>
+            </tr>
 
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              amount <br />
-              `mandatory`
-            </td>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                amount <br />
+                `mandatory`
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `numeric` - Amount in paise, must match order amount
-            </td>
+              <td style={{ textAlign: "left" }}>
+                `numeric` - Amount in paise, must match order amount
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `50000`
-            </td>
-          </tr>
+              <td style={{ textAlign: "left" }}>
+                `50000`
+              </td>
+            </tr>
 
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              receipt <br />
-              `mandatory`
-            </td>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                receipt <br />
+                `mandatory`
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `string` - Unique PG reference number (max 25 chars)
-            </td>
+              <td style={{ textAlign: "left" }}>
+                `string` - Unique PG reference number (max 25 chars)
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `"77407"`
-            </td>
-          </tr>
+              <td style={{ textAlign: "left" }}>
+                `"77407"`
+              </td>
+            </tr>
 
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              mf\_member\_id <br />
-              `mandatory`
-            </td>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                mf\_member\_id <br />
+                `mandatory`
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `numeric` - Member ID issued by mutual fund platform (5-20 chars)
-            </td>
+              <td style={{ textAlign: "left" }}>
+                `numeric` - Member ID issued by mutual fund platform (5-20 chars)
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `"123445"`
-            </td>
-          </tr>
+              <td style={{ textAlign: "left" }}>
+                `"123445"`
+              </td>
+            </tr>
 
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              mf\_user\_id <br />
-              `mandatory`
-            </td>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                mf\_user\_id <br />
+                `mandatory`
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `string` - Unique mutual fund user/client ID (max 10 chars)
-            </td>
+              <td style={{ textAlign: "left" }}>
+                `string` - Unique mutual fund user/client ID (max 10 chars)
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `"77407"`
-            </td>
-          </tr>
+              <td style={{ textAlign: "left" }}>
+                `"77407"`
+              </td>
+            </tr>
 
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              mf\_partner <br />
-              `mandatory`
-            </td>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                mf\_partner <br />
+                `mandatory`
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `string` - Mutual fund platform: cams, kfin, bse, nse (max 4 chars)
-            </td>
+              <td style={{ textAlign: "left" }}>
+                `string` - Mutual fund platform: cams, kfin, bse, nse (max 4 chars)
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `"cams"`
-            </td>
-          </tr>
+              <td style={{ textAlign: "left" }}>
+                `"cams"`
+              </td>
+            </tr>
 
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              mf\_investment\_type <br /> `mandatory`
-            </td>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                mf\_investment\_type <br /> `mandatory`
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `string` - Investment type: L (Lump Sum) or S (SIP) (single char)
-            </td>
+              <td style={{ textAlign: "left" }}>
+                `string` - Investment type: L (Lump Sum) or S (SIP) (single char)
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `"L"`
-            </td>
-          </tr>
+              <td style={{ textAlign: "left" }}>
+                `"L"`
+              </td>
+            </tr>
 
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              plan <br />
-              `optional`
-            </td>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                plan <br />
+                `optional`
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `string` - Mutual fund plan name
-            </td>
+              <td style={{ textAlign: "left" }}>
+                `string` - Mutual fund plan name
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `"GD"`
-            </td>
-          </tr>
+              <td style={{ textAlign: "left" }}>
+                `"GD"`
+              </td>
+            </tr>
 
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              folio
-              `optional`
-            </td>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                folio
+                `optional`
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `string` - Unique mutual fund account identifier
-            </td>
+              <td style={{ textAlign: "left" }}>
+                `string` - Unique mutual fund account identifier
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `"12345678"`
-            </td>
-          </tr>
+              <td style={{ textAlign: "left" }}>
+                `"12345678"`
+              </td>
+            </tr>
 
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              option <br />
-              `optional`
-            </td>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                option <br />
+                `optional`
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `string` - Mutual fund plan option
-            </td>
+              <td style={{ textAlign: "left" }}>
+                `string` - Mutual fund plan option
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `"G"`
-            </td>
-          </tr>
+              <td style={{ textAlign: "left" }}>
+                `"G"`
+              </td>
+            </tr>
 
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              scheme <br />
-              `optional`
-            </td>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                scheme <br />
+                `optional`
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `string` - Mutual fund type/scheme
-            </td>
+              <td style={{ textAlign: "left" }}>
+                `string` - Mutual fund type/scheme
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `"LT"`
-            </td>
-          </tr>
+              <td style={{ textAlign: "left" }}>
+                `"LT"`
+              </td>
+            </tr>
 
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              mf\_amc\_code <br />
-              `optional`
-            </td>
+            <tr>
+              <td style={{ textAlign: "left" }}>
+                mf\_amc\_code <br />
+                `optional`
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `string` - Asset Management Company code (max 5 chars)
-            </td>
+              <td style={{ textAlign: "left" }}>
+                `string` - Asset Management Company code (max 5 chars)
+              </td>
 
-            <td style={{ textAlign: "left" }}>
-              `"UTB"`
-            </td>
-          </tr>
-        </tbody>
-      </Table>
+              <td style={{ textAlign: "left" }}>
+                `"UTB"`
+              </td>
+            </tr>
+          </tbody>
+        </Table>
 
-      <Accordion title="Validation Rules" icon="fa-code">
-        <Accordion title="Mandatory Field Validations" icon="fa-code">
-          * **type**: Must always be `"mutual_fund"`
-          * **amount**: Must match the overall order amount and be in paise
-          * **receipt**: Must be unique across transactions
-          * **mf\_member\_id**: Must be numeric with length between 5-20 characters
-          * **mf\_user\_id**: Maximum 10 characters allowed
-          * **mf\_partner**: Must be one of: `"cams"`, `"kfin"`, `"bse"`, `"nse"`
-          * **mf\_investment\_type**: Only `"L"` (Lump Sum) or `"S"` (SIP) allowed
-        </Accordion>
+        <Accordion title="Validation Rules" icon="fa-code">
+          <Accordion title="Mandatory Field Validations" icon="fa-code">
+            * **type**: Must always be `"mutual_fund"`
+            * **amount**: Must match the overall order amount and be in paise
+            * **receipt**: Must be unique across transactions
+            * **mf\_member\_id**: Must be numeric with length between 5-20 characters
+            * **mf\_user\_id**: Maximum 10 characters allowed
+            * **mf\_partner**: Must be one of: `"cams"`, `"kfin"`, `"bse"`, `"nse"`
+            * **mf\_investment\_type**: Only `"L"` (Lump Sum) or `"S"` (SIP) allowed
+          </Accordion>
 
-        <Accordion title="Optional Field Validations" icon="fa-code">
-          * **mf\_amc\_code**: Maximum 5 characters
-          * **receipt**: Maximum 25 characters for SIP registration ID
+          <Accordion title="Optional Field Validations" icon="fa-code">
+            * **mf\_amc\_code**: Maximum 5 characters
+            * **receipt**: Maximum 25 characters for SIP registration ID
 
-          ***
+            ***
+          </Accordion>
         </Accordion>
       </Accordion>
     </Accordion>
   </Accordion>
-</Accordion>
 </Accordion>
 
 <Accordion title="Hash Calculation" icon="fa-key">
@@ -394,14 +392,13 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
   <Glossary>SHA</Glossary>-512:
 
   ```plaintext
-key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|si_details|||||products|salt
+  key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|si_details|||||products|salt
   ```
 
   * Use empty strings for missing udf\*.
   * Compute on your server and include the lowercase hex digest as hash.
 
   For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
-
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-exchange">
@@ -426,14 +423,15 @@ key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||benef
   ```
 </Accordion>
 
+<br />
+
 ## Step 2: Check Response from PayU
 
 <Accordion title="Success Response" icon="fa-exchange">
   ```plaintext
-mihpayid=403993715537000168&mode=UPI&status=success&key=j6Bb3k&txnid=txn_7798908nnm008&amount=50000.00&addedon=2026-03-17 14:48:25&productinfo=iphone&firstname=Sumit&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test@gmail.com&phone=7715995865&udf1=&udf2=&udf3=&udf4=Executed Callback&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=9999999999@upi&field2=&field3=ps@paytm&field4=&field5=403993715537000168&field6=&field7=00|APPROVED OR COMPLETED SUCCESSFULLY&field8=&field9=Transaction Successful|Completed Using Callback&payment_source=sist&cardToken=&authenticaticationMethod=&PG_TYPE=UPI-PG&error=E000&error_Message=No Error&net_amount_debit=50000&discount=0.00&offer_key=&offer_availed=&unmappedstatus=captured&hash=833ca55940bf5fa7ef6d334872848d4ad2ec775966aba23a8c3e82ecf5292ea7bd3e9573202ee093fdbc91dedd1cd6ff919411d84bce76c8cb676921cc997191&bank_ref_no=ICI9TI0Y06S0HCGA1DDHTN3ZH7YL0MPYBRUQ&bank_ref_num=ICI9TI0Y06S0HCGA1DDHTN3ZH7YL0MPYBRUQ&bankcode=INTENT&surl=https://test.payu.in/admin/test_response&curl=https://test.payu.in/admin/test_response&furl=https://test.payu.in/admin/test_response&IsStandingInstructionSet=1
+  mihpayid=403993715537000168&mode=UPI&status=success&key=j6Bb3k&txnid=txn_7798908nnm008&amount=50000.00&addedon=2026-03-17 14:48:25&productinfo=iphone&firstname=Sumit&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test@gmail.com&phone=7715995865&udf1=&udf2=&udf3=&udf4=Executed Callback&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=9999999999@upi&field2=&field3=ps@paytm&field4=&field5=403993715537000168&field6=&field7=00|APPROVED OR COMPLETED SUCCESSFULLY&field8=&field9=Transaction Successful|Completed Using Callback&payment_source=sist&cardToken=&authenticaticationMethod=&PG_TYPE=UPI-PG&error=E000&error_Message=No Error&net_amount_debit=50000&discount=0.00&offer_key=&offer_availed=&unmappedstatus=captured&hash=833ca55940bf5fa7ef6d334872848d4ad2ec775966aba23a8c3e82ecf5292ea7bd3e9573202ee093fdbc91dedd1cd6ff919411d84bce76c8cb676921cc997191&bank_ref_no=ICI9TI0Y06S0HCGA1DDHTN3ZH7YL0MPYBRUQ&bank_ref_num=ICI9TI0Y06S0HCGA1DDHTN3ZH7YL0MPYBRUQ&bankcode=INTENT&surl=https://test.payu.in/admin/test_response&curl=https://test.payu.in/admin/test_response&furl=https://test.payu.in/admin/test_response&IsStandingInstructionSet=1
   ```
 </Accordion>
-
 
 <Accordion title="Hash Verification" icon="fa-key">
   Verify response using reverse hash calculation:
