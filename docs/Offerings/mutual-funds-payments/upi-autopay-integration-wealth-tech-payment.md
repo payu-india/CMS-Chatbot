@@ -26,7 +26,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
   | email<br />`mandatory`                          | `Varchar` This parameter must contain the email of the customer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | [test@gmail.com](mailto:test@gmail.com)                                                                                                                              |
   | phone<br />`mandatory`                          | `Integer` Merchant needs to take the customer's GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.                                                                                                                                                                                                                                                                                                                                                                                                                                            | 9876543210                                                                                                                                                           |
   | pg<br />`mandatory`                             | `String` This parameter contains the payment method to be enabled to collect payment from your customer. For the list of payment methods and their codes, refer to Payment Mode Codes. For UPI, use UPI.                                                                                                                                                                                                                                                                                                                                                                                                                                     | NB                                                                                                                                                                   |
-  | bankcode<br />`mandatory`                       | `string` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For UPI Autopay, use INTTPV.                                                                                                                                                                                                                                                                                                                                                                                                                                | INTTPV  |
+  | bankcode<br />`mandatory`                       | `string` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For UPI Autopay, use INTTPV.                                                                                                                                                                                                                                                                                                                                                                                                                                | INTTPV                                                                                                                                                               |
   | surl<br />`mandatory`                           | `string` The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                             | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                       |
   | furl<br />`mandatory`                           | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                                 | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                       |
   | api\_version<br />`mandatory`                   | API version must be posted as `21`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 21                                                                                                                                                                   |
@@ -34,8 +34,8 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
   | free\_trial<br />`optional`                     | This is mandatory only if the merchant wants to support free trial use cases. In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                      |
   | si\_details<br />`mandatory`                    | This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br />**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) ) This is a JSON object and it includes a set of fields. For more information, refer to SI Parameter JSON Details                                      | \{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"} |
   | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|beneficiarydetail\\\|si\_details\\\|\\\|\\\|\\\|\\\|products\\\|salt) For more information, refer to Generate Hash.                                                                                                                                                                                                                                                                | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                             |
-  | products<br />`mandatory for Wealth Tech`        | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to Wealth Tech object wtparams fields description.                                                                                                                                                                                                                                                                                                                                                                                                                                       | Refer to Wealth Tech object wtparams fields description.                                                                                                             |
-  | txn_s2s_flow <br />`mandatory`        | `String` This parameter must be passed with the value as 4 for Decoupled flow. | 4 |
+  | products<br />`mandatory for Wealth Tech`       | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to Wealth Tech object wtparams fields description.                                                                                                                                                                                                                                                                                                                                                                                                                                       | Refer to Wealth Tech object wtparams fields description.                                                                                                             |
+  | txn\_s2s\_flow <br />`mandatory`                | `String` This parameter must be passed with the value as 4 for Decoupled flow.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 4                                                                                                                                                                    |
   | lastname<br />`optional`                        | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                               |
   | address1<br />`optional`                        | `String` The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                      |
   | address2<br />`optional`                        | `String` The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Apartment 4B                                                                                                                                                         |
@@ -341,74 +341,122 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 
 <Accordion title="Sample Request" icon="fa-exchange">
   ```curl
-  
-curl --location 'https://test.payu.in/_payment' \
---header 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
---header 'content-type: application/x-www-form-urlencoded' \
---header 'Cookie: PHPSESSID=kdihrj6ld6mbevful3ii02rqme; USERTXNINFO=698071743e9724.85896500; PHPSESSID=69ba93505906f' \
---data-urlencode 'key=j6Bb3k' \
---data-urlencode 'txnid=Txn_098f7189' \
---data-urlencode 'amount=50000' \
---data-urlencode 'productinfo=Mutual Fund' \
---data-urlencode 'firstname=John' \
---data-urlencode 'email=john@example.com' \
---data-urlencode 'phone=9876543210' \
---data-urlencode 'pg=UPI' \
---data-urlencode 'bankcode=INTTPV' \
---data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
---data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
---data-urlencode 'api_version=21' \
---data-urlencode 'hash={{hash}}' \
---data-urlencode 'products={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}' \
---data-urlencode 'txn_s2s_flow=4' \
---data-urlencode 'beneficiarydetail={"beneficiaryAccountNumber":"1111111111","ifscCode":"111111189HSBB001"}'
+
+  curl --location 'https://test.payu.in/_payment' \
+  --header 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --header 'Cookie: PHPSESSID=kdihrj6ld6mbevful3ii02rqme; USERTXNINFO=698071743e9724.85896500; PHPSESSID=69ba93505906f' \
+  --data-urlencode 'key=j6Bb3k' \
+  --data-urlencode 'txnid=Txn_098f7189' \
+  --data-urlencode 'amount=50000' \
+  --data-urlencode 'productinfo=Mutual Fund' \
+  --data-urlencode 'firstname=John' \
+  --data-urlencode 'email=john@example.com' \
+  --data-urlencode 'phone=9876543210' \
+  --data-urlencode 'pg=UPI' \
+  --data-urlencode 'bankcode=INTTPV' \
+  --data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
+  --data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
+  --data-urlencode 'api_version=21' \
+  --data-urlencode 'hash={{hash}}' \
+  --data-urlencode 'products={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}' \
+  --data-urlencode 'txn_s2s_flow=4' \
+  --data-urlencode 'beneficiarydetail={"beneficiaryAccountNumber":"1111111111","ifscCode":"111111189HSBB001"}'
   ```
 </Accordion>
 
 ## Step 2: Check Response from PayU
 
 <Accordion title="Success Response" icon="fa-exchange">
+####Initial response
+```json
+{
+    "metaData": {
+        "message": null,
+        "referenceId": "18bd0c0c619ec09ad676dca7bf65225f242e20a983521934215c4074cb763518",
+        "statusCode": null,
+        "txnId": "Txn_098f7189",
+        "txnStatus": "pending",
+        "unmappedStatus": "pending"
+    },
+    "result": {
+        "paymentId": "403993715537012547",
+        "merchantName": "Merchant",
+        "merchantVpa": "kk.payutest@hdfcbank",
+        "amount": "50000.00",
+        "intentURIData": "pa=kk.payutest@hdfcbank&pn=&tr=403993715537012547&tid=PPPL4039937155370125471803261728086&am=50000.00&cu=INR&tn=UPIIntent",
+        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluLzE4YmQwYzBjNjE5ZWMwOWFkNjc2ZGNhN2JmNjUyMjVmNzg5YWZjNjBmZGYzYzE1OGNhYjdhMDUxZGY4MTUzOWIvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjY5NjAzMEQwLUI5QTAtRTMxQS1CRUVFLTlGOEI5RDc0MDc0OCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iNTAwMDAuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1paHBheWlkIiB2YWx1ZT0iMThiZDBjMGM2MTllYzA5YWQ2NzZkY2E3YmY2NTIyNWYyNDJlMjBhOTgzNTIxOTM0MjE1YzQwNzRjYjc2MzUxOCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iZGlzYWJsZUludGVudFNlYW1sZXNzRmFpbHVyZSIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlVnBhIiB2YWx1ZT0ia2sucGF5dXRlc3RAaGRmY2JhbmsiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlTmFtZSIgdmFsdWU9Ik1lcmNoYW50Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0idHJhbnNhY3Rpb25GZWUiIHZhbHVlPSI1MDAwMC4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+    }
+}
+```
+####Parsed response
   ```json
-  {
-      "status": 1,
-      "message": "Transaction Processed successfully",
-      "details": {
-          "transactionid": "48101c0c-5265-4c2a-b6d0-e6e73d42809e",
-          "authpayuid": "999990000005920",
-          "amount": "50000.00",
-          "txnid": "7f41f520f71b",
-          "status": "success",
-          "firstname": "John",
-          "email": "john@example.com",
-          "phone": "9876543210",
-          "productinfo": "Mutual Fund",
-          "hash": "reverse_hash_value",
-          "key": "KOEfPI"
-      }
-  }
+(
+      [mihpayid] => 403993715537012547
+      [mode] => UPI
+      [status] => success
+      [key] => j6Bb3k
+      [txnid] => Txn_098f7189
+      [amount] => 50000.00
+      [addedon] => 2026-03-18 17:28:08
+      [productinfo] => Mutual Fund
+      [firstname] => John
+      [lastname] => 
+      [address1] => 
+      [address2] => 
+      [city] => 
+      [state] => 
+      [country] => 
+      [zipcode] => 
+      [email] => john@example.com
+      [phone] => 9876543210
+      [udf1] => 
+      [udf2] => 
+      [udf3] => 
+      [udf4] => 
+      [udf5] => 
+      [udf6] => 
+      [udf7] => 
+      [udf8] => 
+      [udf9] => 
+      [udf10] => 
+      [card_token] => 
+      [card_no] => 
+      [field0] => 
+      [field1] => 
+      [field2] => 1773835213026
+      [field3] => kk@okhdfcbank
+      [field4] => 
+      [field5] => HDF4MKR1WHMFEO978JSAE5FKVK3NZTC3G5PY
+      [field6] => State Bank of India!098765432211!SBIN0011111!+917985392982
+      [field7] => APPROVED OR COMPLETED SUCCESSFULLY|00
+      [field8] => 
+      [field9] => SUCCESS|Completed Using Callback
+      [payment_source] => payuPureS2S
+      [cardToken] => 
+      [authenticaticationMethod] => 
+      [PG_TYPE] => UPI-PG
+      [error] => E000
+      [error_Message] => No Error
+      [net_amount_debit] => 50000
+      [discount] => 0.00
+      [offer_key] => 
+      [offer_availed] => 
+      [unmappedstatus] => captured
+      [hash] => e14b51c229ad8853074a008bff66f4421238517ad7bd409de60b6ff63be68e7f08425c2101a0774bd57ac95ec5d63e9f385e4cb25d41fd50d8b03b3cfafb0c7d
+      [bank_ref_no] => 886917606513
+      [bank_ref_num] => 886917606513
+      [bankcode] => INTTPV
+      [surl] => https://apiplayground-response.herokuapp.com/
+      [curl] => https://apiplayground-response.herokuapp.com/
+      [furl] => https://apiplayground-response.herokuapp.com/
+)
+
   ```
 </Accordion>
 
-<Accordion title="Failure Response" icon="fa-exchange">
-  ```json
-  {
-      "status": 0,
-      "message": "Invalid Parameter: mf_partner must be less than or equal to 4 characters."
-  }
-  ```
-</Accordion>
 
-<Accordion title="Response Parameters" icon="fa-exchange">
-  | Parameter         | Description                    |
-  | ----------------- | ------------------------------ |
-  | **status**        | 1 for success, 0 for failure   |
-  | **message**       | Transaction status message     |
-  | **transactionid** | PayU transaction ID            |
-  | **authpayuid**    | PayU authorization ID          |
-  | **amount**        | Transaction amount             |
-  | **txnid**         | Merchant transaction ID        |
-  | **hash**          | Response hash for verification |
-</Accordion>
 
 <Accordion title="Hash Verification" icon="fa-key">
   Verify response using reverse hash calculation:
@@ -487,14 +535,14 @@ curl --location 'https://test.payu.in/_payment' \
 
 <Accordion title="Request parameters" icon="fa-key">
   <HTMLBlock>{`
-                                                                    <table> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td>key <code>mandatory</code></td> <td><code>String</code> - The merchant key provided by PayU</td> <td>JPM7Fg</td> </tr> <tr> <td>command <code>mandatory</code></td> <td><code>String</code> - Command to execute the recurring transaction API. Must be si_transaction</td> <td>si_transaction</td> </tr> <tr> <td>var1 <code>mandatory</code></td> <td><code>JSON Object</code> - JSON-format object containing transaction details and optional fields. For more information, refer to <a href="https://docs.payu.in/docs/upi-autopay-integration-wealth-tech-payment#var1-object-field-descriptions">var1 object field descriptions</a></td> <td>{"authpayuid": "6611192557","invoiceDisplayNumber":"12345678910","amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "ashish@gmail.com"}</td> </tr> <tr> <td>hash <code>mandatory</code></td> <td><code>String</code> - SHA512 hash generated by concatenating key|command|var1|salt for request authentication</td> <td>jbUS07Og8BToVZ</td> </tr> </table> 
+                                                                      <table> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td>key <code>mandatory</code></td> <td><code>String</code> - The merchant key provided by PayU</td> <td>JPM7Fg</td> </tr> <tr> <td>command <code>mandatory</code></td> <td><code>String</code> - Command to execute the recurring transaction API. Must be si_transaction</td> <td>si_transaction</td> </tr> <tr> <td>var1 <code>mandatory</code></td> <td><code>JSON Object</code> - JSON-format object containing transaction details and optional fields. For more information, refer to <a href="https://docs.payu.in/docs/upi-autopay-integration-wealth-tech-payment#var1-object-field-descriptions">var1 object field descriptions</a></td> <td>{"authpayuid": "6611192557","invoiceDisplayNumber":"12345678910","amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "ashish@gmail.com"}</td> </tr> <tr> <td>hash <code>mandatory</code></td> <td><code>String</code> - SHA512 hash generated by concatenating key|command|var1|salt for request authentication</td> <td>jbUS07Og8BToVZ</td> </tr> </table> 
   `}</HTMLBlock>
 
   <Accordion title="var1 object field descriptions" icon="fa-cog">
     ### var1 object field descriptions
 
     <HTMLBlock>{`
-                                                                                                                          <table id="var1-parameters"> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td colspan="3"><strong>Fields within the var1 JSON object</strong> - <a href="#main-parameters">Back to main parameters</a></td> </tr> <tr> <td>authpayuid <br/><code>mandatory</code></td> <td><code>String</code> - Authorization PayU ID</td> <td>6611192557</td> </tr> <tr> <td>invoiceDisplayNumber <br/><code>mandatory</code></td> <td><code>String</code> - Display invoice number</td> <td>12345678910</td> </tr> <tr> <td>amount <br/><code>mandatory</code></td> <td><code>Float</code> - Transaction amount</td> <td>3.00</td> </tr> <tr> <td>txnid <br/><code>mandatory</code></td> <td><code>String</code> - Transaction ID generated by the merchant</td> <td>REC15113506209</td> </tr> <tr> <td>phone <br/><code>mandatory</code></td> <td><code>String</code> - Customer's phone number</td> <td>9999999999</td> </tr> <tr> <td>email <br/><code>mandatory</code></td> <td><code>String</code> - Customer's email address</td> <td>ashish@gmail.com</td> </tr> <tr> <td>more_info <br/><code>mandatory for Wealth Tech</code></td> <td><code>JSON</code> - This parameter contains various fields including the Wealth Tech object (wtParams). For more information on wtParams object field, refer to Wealth Tech object (wtParams) fields Description table (next table)</td> <td></td> </tr> <tr> <td>udf2 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf3 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf4 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf5 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> </table> 
+                                                                                                                              <table id="var1-parameters"> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td colspan="3"><strong>Fields within the var1 JSON object</strong> - <a href="#main-parameters">Back to main parameters</a></td> </tr> <tr> <td>authpayuid <br/><code>mandatory</code></td> <td><code>String</code> - Authorization PayU ID</td> <td>6611192557</td> </tr> <tr> <td>invoiceDisplayNumber <br/><code>mandatory</code></td> <td><code>String</code> - Display invoice number</td> <td>12345678910</td> </tr> <tr> <td>amount <br/><code>mandatory</code></td> <td><code>Float</code> - Transaction amount</td> <td>3.00</td> </tr> <tr> <td>txnid <br/><code>mandatory</code></td> <td><code>String</code> - Transaction ID generated by the merchant</td> <td>REC15113506209</td> </tr> <tr> <td>phone <br/><code>mandatory</code></td> <td><code>String</code> - Customer's phone number</td> <td>9999999999</td> </tr> <tr> <td>email <br/><code>mandatory</code></td> <td><code>String</code> - Customer's email address</td> <td>ashish@gmail.com</td> </tr> <tr> <td>more_info <br/><code>mandatory for Wealth Tech</code></td> <td><code>JSON</code> - This parameter contains various fields including the Wealth Tech object (wtParams). For more information on wtParams object field, refer to Wealth Tech object (wtParams) fields Description table (next table)</td> <td></td> </tr> <tr> <td>udf2 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf3 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf4 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf5 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> </table> 
     `}</HTMLBlock>
   </Accordion>
 
