@@ -23,7 +23,7 @@ next:
   description: ''
 ---
 
-The **Get Token** API returns the authentication token generated using the client ID and client secret where, `grant_type` is **client_credentials** and `scope` is **verify_bank_account**.
+The **Get Token** API returns the authentication token generated using the client ID and client secret where, `grant_type` is **client_credentials** and `scope` is **verify_bank_account**. This must be used along with [Bank Verification API](ref:bank-verification-api).
 
 <Accordion title="Environment" icon="fa-info">
   <span id="environment" />
