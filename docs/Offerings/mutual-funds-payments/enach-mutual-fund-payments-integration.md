@@ -67,7 +67,7 @@ HTTP Method: **POST**
   | free\_trial<br />`optional`                     | This is mandatory only if the merchant wants to support free trial use cases. In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                      |
   | si\_details<br />`mandatory`                    | This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br />**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) ) This is a JSON object and it includes a set of fields. For more information, refer to SI Parameter JSON Details                                      | \{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"} |
   | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|beneficiarydetail\\\|si\_details\\\|\\\|\\\|\\\|\\\|products\\\|salt) For more information, refer to Generate Hash.                                                                                                                                                                                                                                                                | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                             |
-  | product<br />`mandatory for Wealth Tech`        | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to Wealth Tech object wtparams fields description.                                                                                                                                                                                                                                                                                                                                                                                                                                       | Refer to Wealth Tech object wtparams fields description.                                                                                                             |
+  | products<br />`mandatory for Wealth Tech`        | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to Wealth Tech object wtparams fields description.                                                                                                                                                                                                                                                                                                                                                                                                                                       | Refer to Wealth Tech object wtparams fields description.                                                                                                             |
   | lastname<br />`optional`                        | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                               |
   | address1<br />`optional`                        | `String` The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                      |
   | address2<br />`optional`                        | `String` The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Apartment 4B                                                                                                                                                         |
@@ -112,62 +112,62 @@ HTTP Method: **POST**
 <Accordion title="Sample Request Examples" icon="fa-code">
   ### Sample request
 
-  If the merchant sends any other special characters, then they will be automatically removed. The address parameter will consider only the first 100 characters.
-
-  When the transaction POST REQUEST hits the PayU server, a new transaction entry is created in the PayU Database. A unique identifier is created in the PayU database to identify each new transaction. This identifier is known as the PayU ID (or mihpayid).
-
-  The Net Banking recurring payment registration is also known as e-Mandate. The request for Net Banking involves the following extra parameters posted compared to Cards or UPI:
-
-  * billingCycle
-  * billingInterval
-  * paymentStartDate
-  * paymentEndDate
-  * billingAmount
-  * beneficiaryName
-  * beneficiaryAccountNumber
-  * beneficiaryAccountType
-  * ifscCode
-  * verificationMode (optional)
-
-  #### Sample request with Debit Card as Verification mode
-
-  The sample code block for Net Banking Seamless integration (Merchant-Hosted Checkout) with the **verificationMode** field of the **beneficiaryDetail** JSON parameter with the values as **DEBIT\_CARD** is similar to the following:
-
   ```curl
-  curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" -H \
-  "Content-Type: application/x-www-form-urlencoded" -d \
-  "key=JP***g&txnid=oRWSUMU4XSQBZn&amount=0.0&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&si=1&pg=ENACH&bankcode=ICICENCC&surl=https://apiplayground-response.herokuapp.com/&furl=&api_version=7&beneficiarydetail={"beneficiaryName": "Ashish Kumar","beneficiaryAccountNumber": "1211450021","beneficiaryAccountType": "SAVINGS", "beneficiaryIfscCode":"ICIC0000046", "verificationMode":"DEBIT_CARD"} Kumar&hash=dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21"
-  ```
-
-  #### Sample request with Aadhaar as Verification mode
-
-  The sample code block for Net Banking Seamless integration (Merchant-Hosted Checkout) with the **verificationMode** field of the **beneficiaryDetail** JSON parameter with the values as **Aadhaar** is similar to the following:
-
-  ```curl
-  curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" -H \
-  "Content-Type: application/x-www-form-urlencoded" -d \
-  "key=JP***g&txnid=oRWSUMU4XSQBZn&amount=0.0&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&si=1&pg=ENACH&bankcode=ICICENCC&surl=https://apiplayground-response.herokuapp.com/&furl=&api_version=7&beneficiarydetail={"beneficiaryName": "Ashish Kumar","beneficiaryAccountNumber": "1211450021","beneficiaryAccountType": "SAVINGS", "beneficiaryIfscCode":"ICIC0000046", "verificationMode":"AADHAAR"} Kumar&hash=dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21"
+curl --location 'https://test.payu.in/_payment' \
+--header 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+--header 'content-type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=kdihrj6ld6mbevful3ii02rqme; USERTXNINFO=698071743e9724.85896500; PHPSESSID=69ba9459eb84c' \
+--data-urlencode 'key=j6Bb3k' \
+--data-urlencode 'txnid=7f41f52808' \
+--data-urlencode 'amount=50000' \
+--data-urlencode 'productinfo=Mutual Fund' \
+--data-urlencode 'firstname=John' \
+--data-urlencode 'email=john@example.com' \
+--data-urlencode 'phone=9876543210' \
+--data-urlencode 'pg=NB' \
+--data-urlencode 'bankcode=AXNBTPV' \
+--data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
+--data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
+--data-urlencode 'api_version=21' \
+--data-urlencode 'hash={{hash}}' \
+--data-urlencode 'products={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}' \
+--data-urlencode 'txn_s2s_flow=4' \
+--data-urlencode 'beneficiarydetail={"beneficiaryAccountNumber":"1111111111","ifscCode":"111111189HSBB001"}'
   ```
 </Accordion>
 
+
+
 <Accordion title="Sample Response" icon="fa-reply">
-  ### Sample response
 
-  For Net Banking, you must ensure that the payment response from PayU has the expected values as described in the following table so that Net Banking registration is successful or initiated successfully with the customer's bank.
+#### Initial response 
+```json
+{
+    "metaData": {
+        "message": null,
+        "referenceId": "18bd0c0c619ec09ad676dca7bf65225f242e20a983521934215c4074cb763518",
+        "statusCode": null,
+        "txnId": "Txn_098f7189",
+        "txnStatus": "pending",
+        "unmappedStatus": "pending"
+    },
+    "result": {
+        "paymentId": "403993715537012547",
+        "merchantName": "Merchant",
+        "merchantVpa": "kk.payutest@hdfcbank",
+        "amount": "50000.00",
+        "intentURIData": "pa=kk.payutest@hdfcbank&pn=&tr=403993715537012547&tid=PPPL4039937155370125471803261728086&am=50000.00&cu=INR&tn=UPIIntent",
+        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluLzE4YmQwYzBjNjE5ZWMwOWFkNjc2ZGNhN2JmNjUyMjVmNzg5YWZjNjBmZGYzYzE1OGNhYjdhMDUxZGY4MTUzOWIvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjY5NjAzMEQwLUI5QTAtRTMxQS1CRUVFLTlGOEI5RDc0MDc0OCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iNTAwMDAuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1paHBheWlkIiB2YWx1ZT0iMThiZDBjMGM2MTllYzA5YWQ2NzZkY2E3YmY2NTIyNWYyNDJlMjBhOTgzNTIxOTM0MjE1YzQwNzRjYjc2MzUxOCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iZGlzYWJsZUludGVudFNlYW1sZXNzRmFpbHVyZSIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlVnBhIiB2YWx1ZT0ia2sucGF5dXRlc3RAaGRmY2JhbmsiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlTmFtZSIgdmFsdWU9Ik1lcmNoYW50Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0idHJhbnNhY3Rpb25GZWUiIHZhbHVlPSI1MDAwMC4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+    }
+}
 
-  | **Response Parameter** | **Expected Value**               | **Description**                                                                 |
-  | ---------------------- | -------------------------------- | ------------------------------------------------------------------------------- |
-  | status                 | success                          | This indicates that the transaction is successful                               |
-  | payment\_source        | sist                             | Indicates that bank details have been marked correctly for Standing Instruction |
-  | mihpayid               | \<mihpayid number> sent. by PayU | Indicates PayU's transaction acknowledgment for a Consent transaction           |
+```
+You must redirect the customer and authorize the charges as described in Decoupled Flow Integration. For more information, refer to (Decoupled Flow Integration)[doc:integrate-with-decoupled-flow-s2s]. The parsed response similar to the following.
 
-  The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
+ #### Parsed response
 
-  #### Parsed response
-
-  ```php
+  ```json
   Array
   (
       [mihpayid] => 403993715525331373
