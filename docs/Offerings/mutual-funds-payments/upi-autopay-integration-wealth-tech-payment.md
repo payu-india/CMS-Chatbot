@@ -368,31 +368,36 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 ## Step 2: Check Response from PayU
 
 <Accordion title="Success Response" icon="fa-exchange">
-####Initial response
-```json
-{
-    "metaData": {
-        "message": null,
-        "referenceId": "18bd0c0c619ec09ad676dca7bf65225f242e20a983521934215c4074cb763518",
-        "statusCode": null,
-        "txnId": "Txn_098f7189",
-        "txnStatus": "pending",
-        "unmappedStatus": "pending"
-    },
-    "result": {
-        "paymentId": "403993715537012547",
-        "merchantName": "Merchant",
-        "merchantVpa": "kk.payutest@hdfcbank",
-        "amount": "50000.00",
-        "intentURIData": "pa=kk.payutest@hdfcbank&pn=&tr=403993715537012547&tid=PPPL4039937155370125471803261728086&am=50000.00&cu=INR&tn=UPIIntent",
-        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluLzE4YmQwYzBjNjE5ZWMwOWFkNjc2ZGNhN2JmNjUyMjVmNzg5YWZjNjBmZGYzYzE1OGNhYjdhMDUxZGY4MTUzOWIvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjY5NjAzMEQwLUI5QTAtRTMxQS1CRUVFLTlGOEI5RDc0MDc0OCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iNTAwMDAuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1paHBheWlkIiB2YWx1ZT0iMThiZDBjMGM2MTllYzA5YWQ2NzZkY2E3YmY2NTIyNWYyNDJlMjBhOTgzNTIxOTM0MjE1YzQwNzRjYjc2MzUxOCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iZGlzYWJsZUludGVudFNlYW1sZXNzRmFpbHVyZSIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlVnBhIiB2YWx1ZT0ia2sucGF5dXRlc3RAaGRmY2JhbmsiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlTmFtZSIgdmFsdWU9Ik1lcmNoYW50Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0idHJhbnNhY3Rpb25GZWUiIHZhbHVlPSI1MDAwMC4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
-        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
-    }
-}
-```
-####Parsed response
+ #### Initial response
+
   ```json
-(
+  {
+      "metaData": {
+          "message": null,
+          "referenceId": "18bd0c0c619ec09ad676dca7bf65225f242e20a983521934215c4074cb763518",
+          "statusCode": null,
+          "txnId": "Txn_098f7189",
+          "txnStatus": "pending",
+          "unmappedStatus": "pending"
+      },
+      "result": {
+          "paymentId": "403993715537012547",
+          "merchantName": "Merchant",
+          "merchantVpa": "kk.payutest@hdfcbank",
+          "amount": "50000.00",
+          "intentURIData": "pa=kk.payutest@hdfcbank&pn=&tr=403993715537012547&tid=PPPL4039937155370125471803261728086&am=50000.00&cu=INR&tn=UPIIntent",
+          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluLzE4YmQwYzBjNjE5ZWMwOWFkNjc2ZGNhN2JmNjUyMjVmNzg5YWZjNjBmZGYzYzE1OGNhYjdhMDUxZGY4MTUzOWIvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjY5NjAzMEQwLUI5QTAtRTMxQS1CRUVFLTlGOEI5RDc0MDc0OCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iNTAwMDAuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1paHBheWlkIiB2YWx1ZT0iMThiZDBjMGM2MTllYzA5YWQ2NzZkY2E3YmY2NTIyNWYyNDJlMjBhOTgzNTIxOTM0MjE1YzQwNzRjYjc2MzUxOCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iZGlzYWJsZUludGVudFNlYW1sZXNzRmFpbHVyZSIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlVnBhIiB2YWx1ZT0ia2sucGF5dXRlc3RAaGRmY2JhbmsiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlTmFtZSIgdmFsdWU9Ik1lcmNoYW50Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0idHJhbnNhY3Rpb25GZWUiIHZhbHVlPSI1MDAwMC4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+      }
+  }
+  ```
+<Callout icon="📘" theme="info">
+*Note*:  You must redirect the customer and authorize the charges as described in Decoupled Flow Integration. For more information, refer to [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s). The final response is in plain text and when it is parsed, it is similar to the following [Parsed response](#parsed-response).
+</Callout>
+  #### Parsed response
+
+  ```json
+  (
       [mihpayid] => 403993715537012547
       [mode] => UPI
       [status] => success
@@ -451,12 +456,10 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
       [surl] => https://apiplayground-response.herokuapp.com/
       [curl] => https://apiplayground-response.herokuapp.com/
       [furl] => https://apiplayground-response.herokuapp.com/
-)
+  )
 
   ```
 </Accordion>
-
-
 
 <Accordion title="Hash Verification" icon="fa-key">
   Verify response using reverse hash calculation:
@@ -535,14 +538,14 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 
 <Accordion title="Request parameters" icon="fa-key">
   <HTMLBlock>{`
-                                                                      <table> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td>key <code>mandatory</code></td> <td><code>String</code> - The merchant key provided by PayU</td> <td>JPM7Fg</td> </tr> <tr> <td>command <code>mandatory</code></td> <td><code>String</code> - Command to execute the recurring transaction API. Must be si_transaction</td> <td>si_transaction</td> </tr> <tr> <td>var1 <code>mandatory</code></td> <td><code>JSON Object</code> - JSON-format object containing transaction details and optional fields. For more information, refer to <a href="https://docs.payu.in/docs/upi-autopay-integration-wealth-tech-payment#var1-object-field-descriptions">var1 object field descriptions</a></td> <td>{"authpayuid": "6611192557","invoiceDisplayNumber":"12345678910","amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "ashish@gmail.com"}</td> </tr> <tr> <td>hash <code>mandatory</code></td> <td><code>String</code> - SHA512 hash generated by concatenating key|command|var1|salt for request authentication</td> <td>jbUS07Og8BToVZ</td> </tr> </table> 
+                                                                        <table> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td>key <code>mandatory</code></td> <td><code>String</code> - The merchant key provided by PayU</td> <td>JPM7Fg</td> </tr> <tr> <td>command <code>mandatory</code></td> <td><code>String</code> - Command to execute the recurring transaction API. Must be si_transaction</td> <td>si_transaction</td> </tr> <tr> <td>var1 <code>mandatory</code></td> <td><code>JSON Object</code> - JSON-format object containing transaction details and optional fields. For more information, refer to <a href="https://docs.payu.in/docs/upi-autopay-integration-wealth-tech-payment#var1-object-field-descriptions">var1 object field descriptions</a></td> <td>{"authpayuid": "6611192557","invoiceDisplayNumber":"12345678910","amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "ashish@gmail.com"}</td> </tr> <tr> <td>hash <code>mandatory</code></td> <td><code>String</code> - SHA512 hash generated by concatenating key|command|var1|salt for request authentication</td> <td>jbUS07Og8BToVZ</td> </tr> </table> 
   `}</HTMLBlock>
 
   <Accordion title="var1 object field descriptions" icon="fa-cog">
     ### var1 object field descriptions
 
     <HTMLBlock>{`
-                                                                                                                              <table id="var1-parameters"> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td colspan="3"><strong>Fields within the var1 JSON object</strong> - <a href="#main-parameters">Back to main parameters</a></td> </tr> <tr> <td>authpayuid <br/><code>mandatory</code></td> <td><code>String</code> - Authorization PayU ID</td> <td>6611192557</td> </tr> <tr> <td>invoiceDisplayNumber <br/><code>mandatory</code></td> <td><code>String</code> - Display invoice number</td> <td>12345678910</td> </tr> <tr> <td>amount <br/><code>mandatory</code></td> <td><code>Float</code> - Transaction amount</td> <td>3.00</td> </tr> <tr> <td>txnid <br/><code>mandatory</code></td> <td><code>String</code> - Transaction ID generated by the merchant</td> <td>REC15113506209</td> </tr> <tr> <td>phone <br/><code>mandatory</code></td> <td><code>String</code> - Customer's phone number</td> <td>9999999999</td> </tr> <tr> <td>email <br/><code>mandatory</code></td> <td><code>String</code> - Customer's email address</td> <td>ashish@gmail.com</td> </tr> <tr> <td>more_info <br/><code>mandatory for Wealth Tech</code></td> <td><code>JSON</code> - This parameter contains various fields including the Wealth Tech object (wtParams). For more information on wtParams object field, refer to Wealth Tech object (wtParams) fields Description table (next table)</td> <td></td> </tr> <tr> <td>udf2 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf3 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf4 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf5 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> </table> 
+                                                                                                                                  <table id="var1-parameters"> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td colspan="3"><strong>Fields within the var1 JSON object</strong> - <a href="#main-parameters">Back to main parameters</a></td> </tr> <tr> <td>authpayuid <br/><code>mandatory</code></td> <td><code>String</code> - Authorization PayU ID</td> <td>6611192557</td> </tr> <tr> <td>invoiceDisplayNumber <br/><code>mandatory</code></td> <td><code>String</code> - Display invoice number</td> <td>12345678910</td> </tr> <tr> <td>amount <br/><code>mandatory</code></td> <td><code>Float</code> - Transaction amount</td> <td>3.00</td> </tr> <tr> <td>txnid <br/><code>mandatory</code></td> <td><code>String</code> - Transaction ID generated by the merchant</td> <td>REC15113506209</td> </tr> <tr> <td>phone <br/><code>mandatory</code></td> <td><code>String</code> - Customer's phone number</td> <td>9999999999</td> </tr> <tr> <td>email <br/><code>mandatory</code></td> <td><code>String</code> - Customer's email address</td> <td>ashish@gmail.com</td> </tr> <tr> <td>more_info <br/><code>mandatory for Wealth Tech</code></td> <td><code>JSON</code> - This parameter contains various fields including the Wealth Tech object (wtParams). For more information on wtParams object field, refer to Wealth Tech object (wtParams) fields Description table (next table)</td> <td></td> </tr> <tr> <td>udf2 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf3 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf4 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf5 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> </table> 
     `}</HTMLBlock>
   </Accordion>
 
