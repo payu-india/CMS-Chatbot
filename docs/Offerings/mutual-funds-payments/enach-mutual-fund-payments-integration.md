@@ -1,7 +1,7 @@
 ---
 title: ENACH Integration -Mutual Funds
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
