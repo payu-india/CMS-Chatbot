@@ -39,6 +39,10 @@ metadata:
 
 The **Getting Issuing Bank Down Bins** API (**gettingIssuingBankDownBins**) is used to retrieve the card BINs for all the banks that are observing either full downtime or partial downtime at an instance.
 
+<br />
+
+<GENERALAPIsEnvironment />
+
 <Accordion title="Sample request" icon="fa-code">
   <span id="sample-request" />
 
