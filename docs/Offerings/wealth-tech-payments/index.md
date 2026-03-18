@@ -36,6 +36,9 @@ This part of the document outlines the integration process for Wealth Tech merch
 
 Integrate Wealth Tech with PayU Hosted Checkout or Merchant Hosted Checkout as mentioned in the following sections:
 
-* [PayU Hosted Integration](doc:payu-hosted-integration-wealth-tech-payment)
-* [Merchant Hosted Integration](doc:merchant-hosted-integration-wealth-tech-payment)
-* [UPI Autopay Integration](doc:upi-autopay-integration-wealth-tech-payment)
+* **Payments**
+  * **Non-seamless integration**: [PayU Hosted Integration](doc:payu-hosted-integration-wealth-tech-payment)
+  * **Seamless integration**: [Merchant Hosted Integration](doc:merchant-hosted-integration-wealth-tech-payment)
+* **Subscriptions**
+  * [ENACH Integration - Mutual Funds](doc:enach-mutual-fund-payments-integration)
+  * [UPI Autopay Integration - Mutual Funds](doc:upi-autopay-integration-wealth-tech-payment)
