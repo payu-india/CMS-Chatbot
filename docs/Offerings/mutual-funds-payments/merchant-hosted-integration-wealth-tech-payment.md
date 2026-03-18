@@ -5,7 +5,22 @@ hidden: true
 metadata:
   robots: index
 ---
-This section explains how to implement the **_payment** API for mutual fund payment using Merchant Hosted Checkout integration. The _payment includes the _product_ parameter contains various fields including the Wealth Tech object (**wtParams**).
+This section explains how to implement the **_payment** API for mutual fund payment using Merchant Hosted Checkout integration. The _payment includes the _product_ parameter contains various fields including the Wealth Tech object (**wtParams**). This integration involves the following steps:
+
+<Cards columns={3}>
+  <Card title="1. Initiate the Payment to PayU" href="https://docs.payu.in/docs/enach-mutual-fund-payments-integration#step-1-initiate-the-payment-to-payu">
+    Start the payment process to PayU for eNACH mutual fund payments integration
+  </Card>
+
+  <Card title="2. Check Response from PayU" href="https://docs.payu.in/docs/enach-mutual-fund-payments-integration#step-2-check-response-from-payu">
+    Check and handle the response received from PayU after initiating the payment
+  </Card>
+
+  <Card title="3. Verify the Payment" href="https://docs.payu.in/docs/enach-mutual-fund-payments-integration#step-3-verify-the-payment">
+    Verify the payment status and ensure the transaction is completed successfully
+  </Card>
+
+</Cards>
 
 ## Step 1: Initiate the Payment to PayU
 
