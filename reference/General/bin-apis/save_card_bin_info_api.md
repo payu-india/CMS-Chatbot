@@ -27,13 +27,44 @@ next:
       slug: collect-payments-save-card
       title: Collect Payments - Save Card
 ---
+---
+title: Save Card BIN Info API
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Save Card BIN Info API
+  description: >-
+    The Save Card BIN API helps determine whether CVV needs to be collected for
+    saved card transactions. It provides request headers, parameters, and sample
+    code for encryption.
+  keywords:
+    - Card BIN Info API
+    - Save Card BIN Info API
+    - Save BIN Info API
+    - Card BIN information API
+    - Store BIN info API
+    - Card BIN information API
+  robots: index
+next:
+  description: ''
+  pages:
+    - type: basic
+      slug: collect-payments-using-a-saved-card
+      title: Collect Payments using a Saved Card
+    - type: endpoint
+      slug: collect-payments-save-card
+      title: Collect Payments - Save Card
+---
 The **Save Card BIN** API helps you determine whether CVV needs to be collected from your customers and validated or not be collected for saved card transactions.
 
 HTTP Method: **POST**
 
 <GENERALAPIsEnvironment />
 
-## Request headers
+<Accordion title="Request headers" icon="fa-table">
+
+<span id="request-headers" />
 
 The request header contains the following fields:
 
@@ -171,7 +202,9 @@ public class HmacAuth {
 }
 ```
 
-## Request parameters
+</Accordion>
+
+<Accordion title="Request parameters" icon="fa-list">
 
 In addition to the [Request Headers](#request-headers) listed above, the **data** parameter is posted with the following fields are posted in an array:
 
@@ -214,9 +247,11 @@ In addition to the [Request Headers](#request-headers) listed above, the **data*
   </tbody>
 </Table>
 
-## Sample request
+</Accordion>
 
-```bash
+<Accordion title="Sample request" icon="fa-code">
+
+```curl
 curl --location 'https://info.payu.in/issuing-bank/v1/bin' \
 --header 'Content-Type: application/json' \
 --header 'Date: Thu, 01 Jun 2023 06:59:03 GMT' \
@@ -229,8 +264,198 @@ curl --location 'https://info.payu.in/issuing-bank/v1/bin' \
     "checkCVVRequired": true
 }'
 ```
+Here are the equivalent code snippets for your CURL request in different programming languages:
 
-## Response parameters
+```python
+import requests
+import json
+
+url = "https://info.payu.in/issuing-bank/v1/bin"
+
+headers = {
+    "Content-Type": "application/json",
+    "Date": "Thu, 01 Jun 2023 06:59:03 GMT",
+    "Digest": "sYxiEFksDG+h+sB11nonf9ry31aKynEJ/Hmxwc6M3pM=",
+    "Authorization": 'hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="F8D2PW2/Q2VF7FZKiY3RKJ6+1HU5OH8/HkxvitghvP4="',
+    "Cookie": "PHPSESSID=lf33il1bio9scn7cars1hqsf05; PHPSESSID=o7bbf6gbociqmroctldtslkc21",
+    "mid": "2"
+}
+
+data = {
+    "bin": "512345789",
+    "checkCVVRequired": True
+}
+
+try:
+    response = requests.post(url, headers=headers, json=data)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```javascript
+async function makeRequest() {
+    const url = "https://info.payu.in/issuing-bank/v1/bin";
+    
+    const headers = {
+        "Content-Type": "application/json",
+        "Date": "Thu, 01 Jun 2023 06:59:03 GMT",
+        "Digest": "sYxiEFksDG+h+sB11nonf9ry31aKynEJ/Hmxwc6M3pM=",
+        "Authorization": 'hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="F8D2PW2/Q2VF7FZKiY3RKJ6+1HU5OH8/HkxvitghvP4="',
+        "Cookie": "PHPSESSID=lf33il1bio9scn7cars1hqsf05; PHPSESSID=o7bbf6gbociqmroctldtslkc21",
+        "mid": "2"
+    };
+
+    const requestData = {
+        "bin": "512345789",
+        "checkCVVRequired": true
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(requestData)
+        });
+        
+        const responseText = await response.text();
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
+makeRequest();
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+
+public class ApiRequest {
+    public static void main(String[] args) {
+        try {
+            String url = "https://info.payu.in/issuing-bank/v1/bin";
+            
+            String jsonData = "{\"bin\":\"512345789\",\"checkCVVRequired\":true}";
+            
+            HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Content-Type", "application/json")
+                .header("Date", "Thu, 01 Jun 2023 06:59:03 GMT")
+                .header("Digest", "sYxiEFksDG+h+sB11nonf9ry31aKynEJ/Hmxwc6M3pM=")
+                .header("Authorization", "hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"F8D2PW2/Q2VF7FZKiY3RKJ6+1HU5OH8/HkxvitghvP4=\"")
+                .header("Cookie", "PHPSESSID=lf33il1bio9scn7cars1hqsf05; PHPSESSID=o7bbf6gbociqmroctldtslkc21")
+                .header("mid", "2")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonData))
+                .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            
+            System.out.println("Status Code: " + response.statusCode());
+            System.out.println("Response: " + response.body());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main(string[] args)
+    {
+        try
+        {
+            string url = "https://info.payu.in/issuing-bank/v1/bin";
+            
+            client.DefaultRequestHeaders.Add("Date", "Thu, 01 Jun 2023 06:59:03 GMT");
+            client.DefaultRequestHeaders.Add("Digest", "sYxiEFksDG+h+sB11nonf9ry31aKynEJ/Hmxwc6M3pM=");
+            client.DefaultRequestHeaders.Add("Authorization", "hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"F8D2PW2/Q2VF7FZKiY3RKJ6+1HU5OH8/HkxvitghvP4=\"");
+            client.DefaultRequestHeaders.Add("Cookie", "PHPSESSID=lf33il1bio9scn7cars1hqsf05; PHPSESSID=o7bbf6gbociqmroctldtslkc21");
+            client.DefaultRequestHeaders.Add("mid", "2");
+
+            var requestData = new
+            {
+                bin = "512345789",
+                checkCVVRequired = true
+            };
+
+            string jsonContent = JsonConvert.SerializeObject(requestData);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://info.payu.in/issuing-bank/v1/bin";
+
+$headers = [
+    "Content-Type: application/json",
+    "Date: Thu, 01 Jun 2023 06:59:03 GMT",
+    "Digest: sYxiEFksDG+h+sB11nonf9ry31aKynEJ/Hmxwc6M3pM=",
+    "Authorization: hmac username=\"smsplus\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"F8D2PW2/Q2VF7FZKiY3RKJ6+1HU5OH8/HkxvitghvP4=\"",
+    "Cookie: PHPSESSID=lf33il1bio9scn7cars1hqsf05; PHPSESSID=o7bbf6gbociqmroctldtslkc21",
+    "mid: 2"
+];
+
+$requestData = [
+    "bin" => "512345789",
+    "checkCVVRequired" => true
+];
+
+$jsonData = json_encode($requestData);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch) . "\n";
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
+?>
+```
+</Accordion>
+
+<Accordion title="Response parameters" icon="fa-table">
 
 The response involves the following parameters and the **result** parameter contains the offer results:
 
@@ -285,11 +510,17 @@ The response involves the following parameters and the **result** parameter cont
   </tbody>
 </Table>
 
+<span id="result-parameter-json-details" />
+
 ### result parameter JSON details
 
 The **result** parameter contains the result in a JSON format and the fields in the JSON are described in the following table:
 
-## Sample response
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-file-code">
+
+<span id="sample-response" />
 
 ### Success scenario
 
@@ -311,3 +542,5 @@ The **result** parameter contains the result in a JSON format and the fields in 
   }
 }
 ```
+
+</Accordion>
