@@ -27,7 +27,7 @@ This part of the document outlines the integration process for Wealth Tech merch
   * Net Banking
   * UPI
 
-### Subscriptions 
+#### Subscriptions 
 
 * ENACH
 * UPI Autopay
