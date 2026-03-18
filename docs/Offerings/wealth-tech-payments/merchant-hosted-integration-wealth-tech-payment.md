@@ -1,5 +1,5 @@
 ---
-title: Merchant Hosted Integration - Wealth Tech Payment
+title: Merchant Hosted Integration - Mutual Funds Payment
 deprecated: false
 hidden: false
 metadata:
