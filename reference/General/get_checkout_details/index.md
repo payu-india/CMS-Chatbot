@@ -48,13 +48,172 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
 <Accordion title="Sample request and response" icon="fa-reply">
   ### Get extended payment details
 
-  ```cUrl
-  curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
-  --form 'key="0d5aDh"' \
-  --form 'command="get_checkout_details"' \
-  --form 'var1="{\"requestId\":\"9920371372_38\",\"transactionDetails\":{\"amount\":8000},\"useCase\":{\"getExtendedPaymentDetails\":true}}"' \
-  --form 'hash="5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a"'
-  ```
+```curl
+curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
+--form 'key=0d5aDh' \
+--form 'command=get_checkout_details' \
+--form 'var1={"requestId":"9920371372_38","transactionDetails":{"amount":8000},"useCase":{"getExtendedPaymentDetails":true}}' \
+--form 'hash=5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a'
+```
+```python
+import requests
+
+url = "https://info.payu.in/merchant/postservice.php?form=2"
+
+files = {
+    'key': (None, '0d5aDh'),
+    'command': (None, 'get_checkout_details'),
+    'var1': (None, '{"requestId":"9920371372_38","transactionDetails":{"amount":8000},"useCase":{"getExtendedPaymentDetails":true}}'),
+    'hash': (None, '5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a')
+}
+
+try:
+    response = requests.post(url, files=files)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```javascript
+async function makeRequest() {
+    const url = "https://info.payu.in/merchant/postservice.php?form=2";
+    
+    const formData = new FormData();
+    formData.append('key', '0d5aDh');
+    formData.append('command', 'get_checkout_details');
+    formData.append('var1', '{"requestId":"9920371372_38","transactionDetails":{"amount":8000},"useCase":{"getExtendedPaymentDetails":true}}');
+    formData.append('hash', '5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a');
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            body: formData
+        });
+        
+        const responseText = await response.text();
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
+makeRequest();
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
+
+public class ApiRequest {
+    public static void main(String[] args) {
+        try {
+            String url = "https://info.payu.in/merchant/postservice.php?form=2";
+            String boundary = "----boundary" + System.currentTimeMillis();
+            
+            Map<String, String> formData = new HashMap<>();
+            formData.put("key", "0d5aDh");
+            formData.put("command", "get_checkout_details");
+            formData.put("var1", "{\"requestId\":\"9920371372_38\",\"transactionDetails\":{\"amount\":8000},\"useCase\":{\"getExtendedPaymentDetails\":true}}");
+            formData.put("hash", "5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a");
+            
+            StringBuilder body = new StringBuilder();
+            for (Map.Entry<String, String> entry : formData.entrySet()) {
+                body.append("--").append(boundary).append("\r\n");
+                body.append("Content-Disposition: form-data; name=\"").append(entry.getKey()).append("\"\r\n\r\n");
+                body.append(entry.getValue()).append("\r\n");
+            }
+            body.append("--").append(boundary).append("--\r\n");
+            
+            HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Content-Type", "multipart/form-data; boundary=" + boundary)
+                .POST(HttpRequest.BodyPublishers.ofString(body.toString()))
+                .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            
+            System.out.println("Status Code: " + response.statusCode());
+            System.out.println("Response: " + response.body());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main(string[] args)
+    {
+        try
+        {
+            string url = "https://info.payu.in/merchant/postservice.php?form=2";
+            
+            var formContent = new MultipartFormDataContent();
+            formContent.Add(new StringContent("0d5aDh"), "key");
+            formContent.Add(new StringContent("get_checkout_details"), "command");
+            formContent.Add(new StringContent("{\"requestId\":\"9920371372_38\",\"transactionDetails\":{\"amount\":8000},\"useCase\":{\"getExtendedPaymentDetails\":true}}"), "var1");
+            formContent.Add(new StringContent("5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a"), "hash");
+
+            HttpResponseMessage response = await client.PostAsync(url, formContent);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://info.payu.in/merchant/postservice.php?form=2";
+
+$postData = [
+    "key" => "0d5aDh",
+    "command" => "get_checkout_details",
+    "var1" => '{"requestId":"9920371372_38","transactionDetails":{"amount":8000},"useCase":{"getExtendedPaymentDetails":true}}',
+    "hash" => "5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a"
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch) . "\n";
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
+?>
+```
 
   **Response**
 
@@ -430,13 +589,172 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
 
   This field is used to check the customer eligibility.
 
-  ```bash
-  curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
-  --form 'key="merchant key"' \
-  --form 'command="get_checkout_details"' \
-  --form 'var1="{\"requestId\":\"Test212345\",\"transactionDetails\":{\"amount\":10000},\"customerDetails\":{\"mobile\":\"9368252248\"},\"useCase\":{\"checkCustomerEligibility\":true},\"filters\":{\"paymentOptions\":{\"emi\":{\"dc\":\"all\",\"cc\":\"all\",\"cardless\":\"all\"},\"bnpl\":\"all\"}}}"' \
-  --form 'hash="hash value"'
-  ```
+```curl
+curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
+--form 'key=merchant key' \
+--form 'command=get_checkout_details' \
+--form 'var1={"requestId":"Test212345","transactionDetails":{"amount":10000},"customerDetails":{"mobile":"9368252248"},"useCase":{"checkCustomerEligibility":true},"filters":{"paymentOptions":{"emi":{"dc":"all","cc":"all","cardless":"all"},"bnpl":"all"}}}' \
+--form 'hash=hash value'
+```
+```python
+import requests
+
+url = "https://info.payu.in/merchant/postservice.php?form=2"
+
+files = {
+    'key': (None, 'merchant key'),
+    'command': (None, 'get_checkout_details'),
+    'var1': (None, '{"requestId":"Test212345","transactionDetails":{"amount":10000},"customerDetails":{"mobile":"9368252248"},"useCase":{"checkCustomerEligibility":true},"filters":{"paymentOptions":{"emi":{"dc":"all","cc":"all","cardless":"all"},"bnpl":"all"}}}'),
+    'hash': (None, 'hash value')
+}
+
+try:
+    response = requests.post(url, files=files)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```javascript
+async function makeRequest() {
+    const url = "https://info.payu.in/merchant/postservice.php?form=2";
+    
+    const formData = new FormData();
+    formData.append('key', 'merchant key');
+    formData.append('command', 'get_checkout_details');
+    formData.append('var1', '{"requestId":"Test212345","transactionDetails":{"amount":10000},"customerDetails":{"mobile":"9368252248"},"useCase":{"checkCustomerEligibility":true},"filters":{"paymentOptions":{"emi":{"dc":"all","cc":"all","cardless":"all"},"bnpl":"all"}}}');
+    formData.append('hash', 'hash value');
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            body: formData
+        });
+        
+        const responseText = await response.text();
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
+makeRequest();
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
+
+public class ApiRequest {
+    public static void main(String[] args) {
+        try {
+            String url = "https://info.payu.in/merchant/postservice.php?form=2";
+            String boundary = "----boundary" + System.currentTimeMillis();
+            
+            Map<String, String> formData = new HashMap<>();
+            formData.put("key", "merchant key");
+            formData.put("command", "get_checkout_details");
+            formData.put("var1", "{\"requestId\":\"Test212345\",\"transactionDetails\":{\"amount\":10000},\"customerDetails\":{\"mobile\":\"9368252248\"},\"useCase\":{\"checkCustomerEligibility\":true},\"filters\":{\"paymentOptions\":{\"emi\":{\"dc\":\"all\",\"cc\":\"all\",\"cardless\":\"all\"},\"bnpl\":\"all\"}}}");
+            formData.put("hash", "hash value");
+            
+            StringBuilder body = new StringBuilder();
+            for (Map.Entry<String, String> entry : formData.entrySet()) {
+                body.append("--").append(boundary).append("\r\n");
+                body.append("Content-Disposition: form-data; name=\"").append(entry.getKey()).append("\"\r\n\r\n");
+                body.append(entry.getValue()).append("\r\n");
+            }
+            body.append("--").append(boundary).append("--\r\n");
+            
+            HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Content-Type", "multipart/form-data; boundary=" + boundary)
+                .POST(HttpRequest.BodyPublishers.ofString(body.toString()))
+                .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            
+            System.out.println("Status Code: " + response.statusCode());
+            System.out.println("Response: " + response.body());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main(string[] args)
+    {
+        try
+        {
+            string url = "https://info.payu.in/merchant/postservice.php?form=2";
+            
+            var formContent = new MultipartFormDataContent();
+            formContent.Add(new StringContent("merchant key"), "key");
+            formContent.Add(new StringContent("get_checkout_details"), "command");
+            formContent.Add(new StringContent("{\"requestId\":\"Test212345\",\"transactionDetails\":{\"amount\":10000},\"customerDetails\":{\"mobile\":\"9368252248\"},\"useCase\":{\"checkCustomerEligibility\":true},\"filters\":{\"paymentOptions\":{\"emi\":{\"dc\":\"all\",\"cc\":\"all\",\"cardless\":\"all\"},\"bnpl\":\"all\"}}}"), "var1");
+            formContent.Add(new StringContent("hash value"), "hash");
+
+            HttpResponseMessage response = await client.PostAsync(url, formContent);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://info.payu.in/merchant/postservice.php?form=2";
+
+$postData = [
+    "key" => "merchant key",
+    "command" => "get_checkout_details",
+    "var1" => '{"requestId":"Test212345","transactionDetails":{"amount":10000},"customerDetails":{"mobile":"9368252248"},"useCase":{"checkCustomerEligibility":true},"filters":{"paymentOptions":{"emi":{"dc":"all","cc":"all","cardless":"all"},"bnpl":"all"}}}',
+    "hash" => "hash value"
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch) . "\n";
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
+?>
+```
 
   **Sample response**
 
@@ -1855,11 +2173,11 @@ The Get Checkout Details (**get_checkout_details**) API is a generic API using w
 </Accordion>
 
 <Accordion title="Additional information for request parameters" icon="fa-book">
-  | Parameter | Reference                                                                                                                                                                                                                                                                                        |
-  | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | **key**   | For more information on how to generate the Key and Salt, refer to any of the following:      - **Production**: [Generate Merchant Key and Salt](#generate-merchant-key-and-salt-on-payu-dashboard)      - **Test**: [Generate Test Merchant Key and Salt](#generate-test-merchant-key-and-salt) |
-  | **hash**  | Hash logic for this API is:   `sha512(key\\|command\\|var1\\|salt) sha512 `                                                                                                                                                                                                                      |
-  | var1      | For JSON fields description, refer to [var1 JSON fields description](#var1-JSON-fields-description).                                                                                                                                                                                             |
+  | Parameter | Reference                                                                                                                                                                                                                                                                                        |           |        |                 |
+  | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ------ | --------------- |
+  | **key**   | For more information on how to generate the Key and Salt, refer to any of the following:      - **Production**: [Generate Merchant Key and Salt](#generate-merchant-key-and-salt-on-payu-dashboard)      - **Test**: [Generate Test Merchant Key and Salt](#generate-test-merchant-key-and-salt) |           |        |                 |
+  | **hash**  | Hash logic for this API is:   \`sha512(key\\                                                                                                                                                                                                                                                     | command\\ | var1\\ | salt) sha512 \` |
+  | var1      | For JSON fields description, refer to [var1 JSON fields description](#var1-JSON-fields-description).                                                                                                                                                                                             |           |        |                 |
 
   ### var1 JSON fields description
 
