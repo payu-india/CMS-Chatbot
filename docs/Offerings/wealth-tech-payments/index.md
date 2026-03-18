@@ -1,5 +1,5 @@
 ---
-title: Wealth Tech Payments
+title: Mututal Funds Payments
 deprecated: false
 hidden: true
 metadata:
