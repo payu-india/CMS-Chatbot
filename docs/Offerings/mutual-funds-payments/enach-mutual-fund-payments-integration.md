@@ -8,25 +8,25 @@ metadata:
 Merchants can set up automated subscription billing through various payment methods including Net Banking (e-NACH) for Mutual Fund Payments. This section describes how to integrate mutual fund subscription for ENACH using seamless integration.
 
 <Cards columns={2}>
-  <Card title="1. Consent Transaction" href="https://docs.payu.in/docs/subscription-for-netbanking#consent-transaction">
+  <Card title="1. Consent Transaction" href="#consent-transaction">
     Initiate the recurring payment process by capturing user consent for the mandate with required parameters including key, txnid, amount, productinfo, customer details, and si\_details JSON object
 
     <br />
   </Card>
 
-  <Card title="2. Verify the Payment" href="https://docs.payu.in/docs/subscription-for-netbanking#verify-the-payment">
+  <Card title="2. Verify the Payment" href="#verify-the-payment">
     Ensure the initial consent transaction or registration is successfully processed before proceeding with recurring charges
 
     <br />
   </Card>
 
-  <Card title="3. Pre-Debit Notification" href="https://docs.payu.in/docs/subscription-for-netbanking#pre-debit-notification">
+  <Card title="3. Pre-Debit Notification" href="#pre-debit-notification">
     Send advance notifications to customers about upcoming recurring payments, essential for UPI and Cards per RBI guidelines with authpayuid and debitDate parameters
 
     <br />
   </Card>
 
-  <Card title="4. Recurring Payment Transaction" href="https://docs.payu.in/docs/subscription-for-netbanking#recurring-payment-transaction">
+  <Card title="4. Recurring Payment Transaction" href="#recurring-payment-transaction">
     Execute recurring payments automatically without additional customer involvement using server-to-server integration with authpayuid and invoiceDisplayNumber
 
     <br />
@@ -67,7 +67,7 @@ HTTP Method: **POST**
   | free\_trial<br />`optional`                     | This is mandatory only if the merchant wants to support free trial use cases. In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                      |
   | si\_details<br />`mandatory`                    | This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br />**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) ) This is a JSON object and it includes a set of fields. For more information, refer to SI Parameter JSON Details                                      | \{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"} |
   | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|beneficiarydetail\\\|si\_details\\\|\\\|\\\|\\\|\\\|products\\\|salt) For more information, refer to Generate Hash.                                                                                                                                                                                                                                                                | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                             |
-  | products<br />`mandatory for Wealth Tech`        | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to Wealth Tech object wtparams fields description.                                                                                                                                                                                                                                                                                                                                                                                                                                       | Refer to Wealth Tech object wtparams fields description.                                                                                                             |
+  | products<br />`mandatory for Wealth Tech`       | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to Wealth Tech object wtparams fields description.                                                                                                                                                                                                                                                                                                                                                                                                                                       | Refer to Wealth Tech object wtparams fields description.                                                                                                             |
   | lastname<br />`optional`                        | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                               |
   | address1<br />`optional`                        | `String` The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                      |
   | address2<br />`optional`                        | `String` The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Apartment 4B                                                                                                                                                         |
@@ -113,59 +113,58 @@ HTTP Method: **POST**
   ### Sample request
 
   ```curl
-curl --location 'https://test.payu.in/_payment' \
---header 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
---header 'content-type: application/x-www-form-urlencoded' \
---header 'Cookie: PHPSESSID=kdihrj6ld6mbevful3ii02rqme; USERTXNINFO=698071743e9724.85896500; PHPSESSID=69ba9459eb84c' \
---data-urlencode 'key=j6Bb3k' \
---data-urlencode 'txnid=7f41f52808' \
---data-urlencode 'amount=50000' \
---data-urlencode 'productinfo=Mutual Fund' \
---data-urlencode 'firstname=John' \
---data-urlencode 'email=john@example.com' \
---data-urlencode 'phone=9876543210' \
---data-urlencode 'pg=NB' \
---data-urlencode 'bankcode=AXNBTPV' \
---data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
---data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
---data-urlencode 'api_version=21' \
---data-urlencode 'hash={{hash}}' \
---data-urlencode 'products={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}' \
---data-urlencode 'txn_s2s_flow=4' \
---data-urlencode 'beneficiarydetail={"beneficiaryAccountNumber":"1111111111","ifscCode":"111111189HSBB001"}'
+  curl --location 'https://test.payu.in/_payment' \
+  --header 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --header 'Cookie: PHPSESSID=kdihrj6ld6mbevful3ii02rqme; USERTXNINFO=698071743e9724.85896500; PHPSESSID=69ba9459eb84c' \
+  --data-urlencode 'key=j6Bb3k' \
+  --data-urlencode 'txnid=7f41f52808' \
+  --data-urlencode 'amount=50000' \
+  --data-urlencode 'productinfo=Mutual Fund' \
+  --data-urlencode 'firstname=John' \
+  --data-urlencode 'email=john@example.com' \
+  --data-urlencode 'phone=9876543210' \
+  --data-urlencode 'pg=NB' \
+  --data-urlencode 'bankcode=AXNBTPV' \
+  --data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
+  --data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
+  --data-urlencode 'api_version=21' \
+  --data-urlencode 'hash={{hash}}' \
+  --data-urlencode 'products={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}' \
+  --data-urlencode 'txn_s2s_flow=4' \
+  --data-urlencode 'beneficiarydetail={"beneficiaryAccountNumber":"1111111111","ifscCode":"111111189HSBB001"}'
   ```
 </Accordion>
 
-
-
 <Accordion title="Sample Response" icon="fa-reply">
+  #### Initial response
 
-#### Initial response 
-```json
-{
-    "metaData": {
-        "message": null,
-        "referenceId": "18bd0c0c619ec09ad676dca7bf65225f242e20a983521934215c4074cb763518",
-        "statusCode": null,
-        "txnId": "Txn_098f7189",
-        "txnStatus": "pending",
-        "unmappedStatus": "pending"
-    },
-    "result": {
-        "paymentId": "403993715537012547",
-        "merchantName": "Merchant",
-        "merchantVpa": "kk.payutest@hdfcbank",
-        "amount": "50000.00",
-        "intentURIData": "pa=kk.payutest@hdfcbank&pn=&tr=403993715537012547&tid=PPPL4039937155370125471803261728086&am=50000.00&cu=INR&tn=UPIIntent",
-        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluLzE4YmQwYzBjNjE5ZWMwOWFkNjc2ZGNhN2JmNjUyMjVmNzg5YWZjNjBmZGYzYzE1OGNhYjdhMDUxZGY4MTUzOWIvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjY5NjAzMEQwLUI5QTAtRTMxQS1CRUVFLTlGOEI5RDc0MDc0OCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iNTAwMDAuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1paHBheWlkIiB2YWx1ZT0iMThiZDBjMGM2MTllYzA5YWQ2NzZkY2E3YmY2NTIyNWYyNDJlMjBhOTgzNTIxOTM0MjE1YzQwNzRjYjc2MzUxOCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iZGlzYWJsZUludGVudFNlYW1sZXNzRmFpbHVyZSIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlVnBhIiB2YWx1ZT0ia2sucGF5dXRlc3RAaGRmY2JhbmsiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlTmFtZSIgdmFsdWU9Ik1lcmNoYW50Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0idHJhbnNhY3Rpb25GZWUiIHZhbHVlPSI1MDAwMC4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
-        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
-    }
-}
+  ```json
+  {
+      "metaData": {
+          "message": null,
+          "referenceId": "18bd0c0c619ec09ad676dca7bf65225f242e20a983521934215c4074cb763518",
+          "statusCode": null,
+          "txnId": "Txn_098f7189",
+          "txnStatus": "pending",
+          "unmappedStatus": "pending"
+      },
+      "result": {
+          "paymentId": "403993715537012547",
+          "merchantName": "Merchant",
+          "merchantVpa": "kk.payutest@hdfcbank",
+          "amount": "50000.00",
+          "intentURIData": "pa=kk.payutest@hdfcbank&pn=&tr=403993715537012547&tid=PPPL4039937155370125471803261728086&am=50000.00&cu=INR&tn=UPIIntent",
+          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluLzE4YmQwYzBjNjE5ZWMwOWFkNjc2ZGNhN2JmNjUyMjVmNzg5YWZjNjBmZGYzYzE1OGNhYjdhMDUxZGY4MTUzOWIvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjY5NjAzMEQwLUI5QTAtRTMxQS1CRUVFLTlGOEI5RDc0MDc0OCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iNTAwMDAuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1paHBheWlkIiB2YWx1ZT0iMThiZDBjMGM2MTllYzA5YWQ2NzZkY2E3YmY2NTIyNWYyNDJlMjBhOTgzNTIxOTM0MjE1YzQwNzRjYjc2MzUxOCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iZGlzYWJsZUludGVudFNlYW1sZXNzRmFpbHVyZSIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlVnBhIiB2YWx1ZT0ia2sucGF5dXRlc3RAaGRmY2JhbmsiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlTmFtZSIgdmFsdWU9Ik1lcmNoYW50Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0idHJhbnNhY3Rpb25GZWUiIHZhbHVlPSI1MDAwMC4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+      }
+  }
 
-```
-You must redirect the customer and authorize the charges as described in Decoupled Flow Integration. For more information, refer to (Decoupled Flow Integration)[doc:integrate-with-decoupled-flow-s2s]. The parsed response similar to the following.
+  ```
 
- #### Parsed response
+  You must redirect the customer and authorize the charges as described in Decoupled Flow Integration. For more information, refer to (Decoupled Flow Integration)\[doc:integrate-with-decoupled-flow-s2s]. The parsed response similar to the following.
+
+  #### Parsed response
 
   ```json
   Array
@@ -686,7 +685,7 @@ All successful registration transactions are charged over the recurring interfac
 
 ***
 
-## Request Parameters Reference
+### Request Parameters Reference
 
 <Accordion title="Reference Information" icon="fa-book">
   | Parameter | Reference                                                                                                                                                                                                                                                                                                                                                    |
