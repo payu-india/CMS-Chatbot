@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-Merchants can set up automated subscription billing through various payment methods including Net Banking (e-NACH) for Mutual Fund Payments. This section describes how to integrate mutual fund subscription for ENACH using seamless integration.
+Merchants can set up automated subscription billing through various payment methods including Net Banking (e-NACH) for Mutual Fund Payments. This section describes how to integrate mutual fund subscription for ENACH using seamless integration. 
 
 <Cards columns={2}>
   <Card title="1. Consent Transaction" href="#consent-transaction">
@@ -58,8 +58,8 @@ HTTP Method: **POST**
   | firstname<br />`mandatory`                      | `Varchar` This parameter must contain the first name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Ankit                                                                                                                                                                |
   | email<br />`mandatory`                          | `Varchar` This parameter must contain the email of the customer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | [test@gmail.com](mailto:test@gmail.com)                                                                                                                              |
   | phone<br />`mandatory`                          | `Integer` Merchant needs to take the customer's GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.                                                                                                                                                                                                                                                                                                                                                                                                                                            | 9876543210                                                                                                                                                           |
-  | pg<br />`mandatory`                             | `String` This parameter contains the payment method to be enabled to collect payment from your customer. For the list of payment methods and their codes, refer to Payment Mode Codes. For ENACH, use ENACH.                                                                                                                                                                                                                                                                                                                                                                                                                              | ENACH                                                                                                                                                                   |
-  | bankcode<br />`mandatory`                       | `string` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bankcodes for Net Banking, refer to (Net Banking Codes)[doc:bank-codes-recurring-payments].                                                                                                                                                                                                                                                                                                                                                                                      | ICICENCC                                                                                                                                                                 |
+  | pg<br />`mandatory`                             | `String` This parameter contains the payment method to be enabled to collect payment from your customer. For the list of payment methods and their codes, refer to Payment Mode Codes. For ENACH, use ENACH.                                                                                                                                                                                                                                                                                                                                                                                                                                 | ENACH                                                                                                                                                                |
+  | bankcode<br />`mandatory`                       | `string` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bankcodes for Net Banking, refer to (Net Banking Codes)\[doc:bank-codes-recurring-payments].                                                                                                                                                                                                                                                                                                                                                | ICICENCC                                                                                                                                                             |
   | surl<br />`mandatory`                           | `string` The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                             | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                       |
   | furl<br />`mandatory`                           | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                                 | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                       |
   | api\_version<br />`mandatory`                   | API version must be posted as `21`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 21                                                                                                                                                                   |
@@ -68,7 +68,7 @@ HTTP Method: **POST**
   | si\_details<br />`mandatory`                    | This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br />**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) ) This is a JSON object and it includes a set of fields. For more information, refer to SI Parameter JSON Details                                      | \{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"} |
   | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|beneficiarydetail\\\|si\_details\\\|\\\|\\\|\\\|\\\|products\\\|salt) For more information, refer to Generate Hash.                                                                                                                                                                                                                                                                | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                             |
   | products<br />`mandatory for Wealth Tech`       | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to Wealth Tech object wtparams fields description.                                                                                                                                                                                                                                                                                                                                                                                                                                       | Refer to Wealth Tech object wtparams fields description.                                                                                                             |
-  | txn_s2s_flow <br />`mandatory` | `String` This parameter must be passed with the value as 4 for Decoupled flow.| 4|
+  | txn\_s2s\_flow <br />`mandatory`                | `String` This parameter must be passed with the value as 4 for Decoupled flow.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 4                                                                                                                                                                    |
   | lastname<br />`optional`                        | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                               |
   | address1<br />`optional`                        | `String` The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                      |
   | address2<br />`optional`                        | `String` The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Apartment 4B                                                                                                                                                         |
@@ -115,30 +115,30 @@ HTTP Method: **POST**
 
   ```curl
   curl --location 'https://test.payu.in/_payment' \
---header 'accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Cookie: USERTXNINFO=696de147e75262.22575647; PHPSESSID=699bf05fe3f41; PHPSESSID=69ba5520d142f' \
---data-urlencode 'key=j6Bb3k' \
---data-urlencode 'txnid=txn_97718080' \
---data-urlencode 'amount=5000' \
---data-urlencode 'productinfo=iphone' \
---data-urlencode 'firstname=Sumit' \
---data-urlencode 'email=test@gmail.com' \
---data-urlencode 'phone=7715995865' \
---data-urlencode 'surl=https://localhost:8080/PayU/success' \
---data-urlencode 'furl=https://localhost:8080/PayU/failure' \
---data-urlencode 'hash={{hash}}' \
---data-urlencode 'pg=ENACH' \
---data-urlencode 'bankcode=ICICENCC' \
---data-urlencode 'surl=https://test.payu.in/admin/test_response' \
---data-urlencode 'furl=https://test.payu.in/admin/test_response' \
---data-urlencode 'txn_s2s_flow=4' \
---data-urlencode 'beneficiarydetail={"beneficiaryName": "Sachin Tendulkar","beneficiaryAccountNumber": "1211450021","beneficiaryAccountType": "SAVINGS", "beneficiaryIfscCode":"ICIC0000046", "verificationMode":"DEBIT_CARD"}' \
---data-urlencode 'free_trail=1' \
---data-urlencode 'si_details={"billingAmount":"50000.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2026-03-20","paymentEndDate":"2026-07-20"}' \
---data-urlencode 'SI=1' \
---data-urlencode 'api_version=21' \
---data-urlencode 'products={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
+  --header 'accept: application/json' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'Cookie: USERTXNINFO=696de147e75262.22575647; PHPSESSID=699bf05fe3f41; PHPSESSID=69ba5520d142f' \
+  --data-urlencode 'key=j6Bb3k' \
+  --data-urlencode 'txnid=txn_97718080' \
+  --data-urlencode 'amount=5000' \
+  --data-urlencode 'productinfo=iphone' \
+  --data-urlencode 'firstname=Sumit' \
+  --data-urlencode 'email=test@gmail.com' \
+  --data-urlencode 'phone=7715995865' \
+  --data-urlencode 'surl=https://localhost:8080/PayU/success' \
+  --data-urlencode 'furl=https://localhost:8080/PayU/failure' \
+  --data-urlencode 'hash={{hash}}' \
+  --data-urlencode 'pg=ENACH' \
+  --data-urlencode 'bankcode=ICICENCC' \
+  --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'txn_s2s_flow=4' \
+  --data-urlencode 'beneficiarydetail={"beneficiaryName": "Sachin Tendulkar","beneficiaryAccountNumber": "1211450021","beneficiaryAccountType": "SAVINGS", "beneficiaryIfscCode":"ICIC0000046", "verificationMode":"DEBIT_CARD"}' \
+  --data-urlencode 'free_trail=1' \
+  --data-urlencode 'si_details={"billingAmount":"50000.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2026-03-20","paymentEndDate":"2026-07-20"}' \
+  --data-urlencode 'SI=1' \
+  --data-urlencode 'api_version=21' \
+  --data-urlencode 'products={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
   ```
 </Accordion>
 
@@ -159,19 +159,19 @@ HTTP Method: **POST**
         "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vZW5hY2gtc2ltLnBheXUuaW4vc2ltdWxhdG9yL2NvcnAvQkFOS0FXQVkiIG1ldGhvZD0icG9zdCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iQkFZX0JBTktJRCIgdmFsdWU9IklDSSI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iRVMiIHZhbHVlPSJjTWprdHMzdDMvcmdHLzZ2eWF6dkZRTDZZMGRXVG05WHViSTcwdXdLMkFrNW5ua1U1d0tZSlppOHhaLytLVWlRV1k3NUlYTDlMc0xtZ1Nrc2R4THltNmYrTUxuK1Q1Q3hnV2huem1yWkRrVFZhMnJHNGl4QVRIdDltRzNuM3kySWd0d3pTTUh6cG5uNzdqNlZkdE14RFB0eWI4aVd6ckZPayt6QzNUUklvZHdBTGZjVmJMWGNHb0ZJMmJBTFgvTk9ZbkhoYlRXWVFqMHdwOFpmMkI5Q0JEOEFZcURQc1dPSWl4eVR4MjJxTTZZM2hwL1JKa3pQTHhCM1lOZE9NaHdISUhXV1FXbTFSL3l6QjB0STJuNGIwSFdiZ0NRQTc1K25VRnF4MzBWWVRTdFBJVXMyUmtQekFzSGJTK0VUV1NOOUJTMXMwYTlxcFVmbzYzU0JjNlppL0NCeTNjVy9JbnZFNjdKV0tjUWs0cWxDZXQ3SE1pRG1DckdNbWFwQzJ3d3FQdnBkdVByTHNDK05sMlRhZWdWL0pBPT0iPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9IklXUVJZVEFTS09CSk5BTUUiIHZhbHVlPSJiYXlfbWNfbG9naW4iPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Ik1EIiB2YWx1ZT0iUCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iUElEIiB2YWx1ZT0iMDAwMDAwMDAwNzIyIj48L2Zvcm0+PHNjcmlwdCB0eXBlPSd0ZXh0L2phdmFzY3JpcHQnPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgd2luZG93Lm9ubG9hZD1mdW5jdGlvbigpewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LmZvcm1zWydwYXltZW50X3Bvc3QnXS5zdWJtaXQoKTsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgPC9zY3JpcHQ+PC9ib2R5PjwvaHRtbD4=",
         "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
     }
-}
+  }
 
 
-}
+  }
 
   ```
-
-  You must redirect the customer and authorize the charges as described in Decoupled Flow Integration. For more information, refer to (Decoupled Flow Integration)\[doc:integrate-with-decoupled-flow-s2s]. The parsed response similar to the following.
-
-####Parsed response
+<Callout icon="📘" theme="info">
+*Note*:  You must redirect the customer and authorize the charges as described in Decoupled Flow Integration. For more information, refer to [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s). The final response is in plain text and when it is parsed, it is similar to the following [Parsed response](#parsed-response).
+</Callout>
+  #### Parsed response
 
   ```json
-(
+  (
       [mihpayid] => 403993715537008957
       [mode] => ENACH
       [status] => success
@@ -231,8 +231,8 @@ HTTP Method: **POST**
       [curl] => https://test.payu.in/admin/test_response
       [furl] => https://test.payu.in/admin/test_response
       [IsStandingInstructionSet] => 1
-)
-  
+  )
+
   ```
 </Accordion>
 
