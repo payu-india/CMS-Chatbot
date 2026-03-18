@@ -13,7 +13,7 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
 
 <Cards columns={3}>
   <Card title="1. Initiate the Payment to PayU" href="#step-1-initiate-the-payment-to-payu">
-    Send payment request to PayU through POST endpoint with mandatory parameters including merchant key, transaction ID, amount, customer details, and Wealth Tech specific wtParams object for mutual fund transactions
+    Send payment request to PayU through POST endpoint with mandatory parameters include Wealth Tech specific wtParams object for mutual fund transactions
 
     <br />
   </Card>
