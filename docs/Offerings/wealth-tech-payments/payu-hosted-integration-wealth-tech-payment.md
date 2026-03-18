@@ -138,8 +138,7 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
   </Accordion>
 
   <Accordion title="Wealth Tech Object (wtParams) Fields" icon="fa-cog">
-    <Accordion title="Wealth Tech object (wtParams) fields Description" icon="fa-cog">
-      <Accordion title="Sample JSON" icon="fa-code">
+<Accordion title="Sample JSON" icon="fa-code">
         ```
         "product": {
             "wtParams": [
@@ -160,8 +159,7 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
           }
         ```
       </Accordion>
-
-      <Accordion title="Fields description" icon="fa-table">
+    <Accordion title="Wealth Tech object (wtParams) fields Description" icon="fa-cog">
         These parameters are included within the `product` field as a JSON array under the fiedl `wtParams`:
 
         <Table align={["left","left","left"]}>
@@ -204,7 +202,7 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
               </td>
 
               <td style={{ textAlign: "left" }}>
-                `numeric` - Amount in paise, must match order amount
+                `float` - The transaction amount, must match order amount
               </td>
 
               <td style={{ textAlign: "left" }}>
@@ -379,7 +377,6 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
             * **receipt**: Maximum 25 characters for SIP registration ID
 
             ***
-          </Accordion>
         </Accordion>
       </Accordion>
     </Accordion>
