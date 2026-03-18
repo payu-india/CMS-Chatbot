@@ -46,308 +46,301 @@ metadata:
     - Health check of debit card issuing bank API
     - API Command getIssuingBankStatus
 ---
+
 The **Get Issuing Bank Status** API (**getIssuingBankStatus**) is used to help you handle the credit card or debit card issuing bank downtime.
 
-| Environment            | URL                                                                                                          |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Test Environment       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
-| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2)         |
+<GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
+  <span id="sample-request" />
 
-<span id="sample-request" />
+  ```curl
+  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=J****g&command=getIssuingBankStatus&var1=512345&hash=190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d"
+  ```
+  ```python
+  import requests
 
-```curl
-curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
--H "accept: application/json" \
--H "Content-Type: application/x-www-form-urlencoded" \
--d "key=J****g&command=getIssuingBankStatus&var1=512345&hash=190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d"
-```
-```python
-import requests
+  url = "https://test.payu.in/merchant/postservice?form=2"
 
-url = "https://test.payu.in/merchant/postservice?form=2"
+  headers = {
+      "accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+  }
 
-headers = {
-    "accept": "application/json",
-    "Content-Type": "application/x-www-form-urlencoded"
-}
+  data = {
+      "key": "J****g",
+      "command": "getIssuingBankStatus",
+      "var1": "512345",
+      "hash": "190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d"
+  }
 
-data = {
-    "key": "J****g",
-    "command": "getIssuingBankStatus",
-    "var1": "512345",
-    "hash": "190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d"
-}
+  try:
+      response = requests.post(url, headers=headers, data=data)
+      print(f"Status Code: {response.status_code}")
+      print(f"Response: {response.text}")
+  except requests.exceptions.RequestException as e:
+      print(f"Error: {e}")
+  ```
+  ```javascript
+  async function makeRequest() {
+      const url = "https://test.payu.in/merchant/postservice?form=2";
+      
+      const headers = {
+          "accept": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded"
+      };
 
-try:
-    response = requests.post(url, headers=headers, data=data)
-    print(f"Status Code: {response.status_code}")
-    print(f"Response: {response.text}")
-except requests.exceptions.RequestException as e:
-    print(f"Error: {e}")
-```
-```javascript
-async function makeRequest() {
-    const url = "https://test.payu.in/merchant/postservice?form=2";
-    
-    const headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    };
+      const formData = new URLSearchParams({
+          "key": "J****g",
+          "command": "getIssuingBankStatus",
+          "var1": "512345",
+          "hash": "190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d"
+      });
 
-    const formData = new URLSearchParams({
-        "key": "J****g",
-        "command": "getIssuingBankStatus",
-        "var1": "512345",
-        "hash": "190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d"
-    });
+      try {
+          const response = await fetch(url, {
+              method: "POST",
+              headers: headers,
+              body: formData
+          });
+          
+          const responseText = await response.text();
+          console.log(`Status Code: ${response.status}`);
+          console.log(`Response: ${responseText}`);
+      } catch (error) {
+          console.error(`Error: ${error.message}`);
+      }
+  }
 
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: headers,
-            body: formData
-        });
-        
-        const responseText = await response.text();
-        console.log(`Status Code: ${response.status}`);
-        console.log(`Response: ${responseText}`);
-    } catch (error) {
-        console.error(`Error: ${error.message}`);
-    }
-}
+  makeRequest();
+  ```
+  ```java
+  import java.net.URI;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.time.Duration;
 
-makeRequest();
-```
-```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
+  public class ApiRequest {
+      public static void main(String[] args) {
+          try {
+              String url = "https://test.payu.in/merchant/postservice?form=2";
+              
+              String formData = "key=J****g&command=getIssuingBankStatus&var1=512345&hash=190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d";
+              
+              HttpClient client = HttpClient.newBuilder()
+                  .connectTimeout(Duration.ofSeconds(10))
+                  .build();
 
-public class ApiRequest {
-    public static void main(String[] args) {
-        try {
-            String url = "https://test.payu.in/merchant/postservice?form=2";
-            
-            String formData = "key=J****g&command=getIssuingBankStatus&var1=512345&hash=190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d";
-            
-            HttpClient client = HttpClient.newBuilder()
-                .connectTimeout(Duration.ofSeconds(10))
-                .build();
+              HttpRequest request = HttpRequest.newBuilder()
+                  .uri(URI.create(url))
+                  .header("accept", "application/json")
+                  .header("Content-Type", "application/x-www-form-urlencoded")
+                  .POST(HttpRequest.BodyPublishers.ofString(formData))
+                  .build();
 
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(formData))
-                .build();
+              HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+              
+              System.out.println("Status Code: " + response.statusCode());
+              System.out.println("Response: " + response.body());
+          } catch (Exception e) {
+              System.err.println("Error: " + e.getMessage());
+          }
+      }
+  }
+  ```
+  ```csharp
+  using System;
+  using System.Collections.Generic;
+  using System.Net.Http;
+  using System.Threading.Tasks;
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            
-            System.out.println("Status Code: " + response.statusCode());
-            System.out.println("Response: " + response.body());
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-    }
-}
-```
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
+  class Program
+  {
+      private static readonly HttpClient client = new HttpClient();
 
-class Program
-{
-    private static readonly HttpClient client = new HttpClient();
+      static async Task Main(string[] args)
+      {
+          try
+          {
+              string url = "https://test.payu.in/merchant/postservice?form=2";
+              
+              client.DefaultRequestHeaders.Add("accept", "application/json");
 
-    static async Task Main(string[] args)
-    {
-        try
-        {
-            string url = "https://test.payu.in/merchant/postservice?form=2";
-            
-            client.DefaultRequestHeaders.Add("accept", "application/json");
+              var formData = new List<KeyValuePair<string, string>>
+              {
+                  new KeyValuePair<string, string>("key", "J****g"),
+                  new KeyValuePair<string, string>("command", "getIssuingBankStatus"),
+                  new KeyValuePair<string, string>("var1", "512345"),
+                  new KeyValuePair<string, string>("hash", "190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d")
+              };
 
-            var formData = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("key", "J****g"),
-                new KeyValuePair<string, string>("command", "getIssuingBankStatus"),
-                new KeyValuePair<string, string>("var1", "512345"),
-                new KeyValuePair<string, string>("hash", "190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d")
-            };
+              var formContent = new FormUrlEncodedContent(formData);
+              HttpResponseMessage response = await client.PostAsync(url, formContent);
+              string responseBody = await response.Content.ReadAsStringAsync();
+              
+              Console.WriteLine($"Status Code: {response.StatusCode}");
+              Console.WriteLine($"Response: {responseBody}");
+          }
+          catch (HttpRequestException ex)
+          {
+              Console.WriteLine($"Error: {ex.Message}");
+          }
+      }
+  }
+  ```
+  ```php
+  <?php
+  $url = "https://test.payu.in/merchant/postservice?form=2";
 
-            var formContent = new FormUrlEncodedContent(formData);
-            HttpResponseMessage response = await client.PostAsync(url, formContent);
-            string responseBody = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine($"Status Code: {response.StatusCode}");
-            Console.WriteLine($"Response: {responseBody}");
-        }
-        catch (HttpRequestException ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-        }
-    }
-}
-```
-```php
-<?php
-$url = "https://test.payu.in/merchant/postservice?form=2";
+  $headers = [
+      "accept: application/json",
+      "Content-Type: application/x-www-form-urlencoded"
+  ];
 
-$headers = [
-    "accept: application/json",
-    "Content-Type: application/x-www-form-urlencoded"
-];
+  $postData = [
+      "key" => "J****g",
+      "command" => "getIssuingBankStatus",
+      "var1" => "512345",
+      "hash" => "190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d"
+  ];
 
-$postData = [
-    "key" => "J****g",
-    "command" => "getIssuingBankStatus",
-    "var1" => "512345",
-    "hash" => "190908741314524c922d9587298eb64a076d058c085c66229f5acfeac4fb8a11dcd41f3f566cdb2e14a12f486a598a4e56943a2390c258384add9aeed1885e9d"
-];
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+  $response = curl_exec($ch);
+  $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  if (curl_errno($ch)) {
+      echo "Error: " . curl_error($ch) . "\n";
+  } else {
+      echo "Status Code: " . $httpCode . "\n";
+      echo "Response: " . $response . "\n";
+  }
 
-if (curl_errno($ch)) {
-    echo "Error: " . curl_error($ch) . "\n";
-} else {
-    echo "Status Code: " . $httpCode . "\n";
-    echo "Response: " . $response . "\n";
-}
-
-curl_close($ch);
-?>
-```
+  curl_close($ch);
+  ?>
+  ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-file-code">
+  <span id="sample-response" />
 
-<span id="sample-response" />
+  **Success scenario**
 
-**Success scenario**
+  ```json
+  {
+        "issuing_bank": "HDFC",
+        "up_status": "1"
+  }
+  ```
 
-```json
-{
-      "issuing_bank": "HDFC",
-      "up_status": "1"
-}
-```
+  * **up\_status** with value **0** — the issuing bank option is down at the moment.
+  * **up\_status** with value **1** — the issuing bank option is up at the moment.
 
-* **up\_status** with value **0** — the issuing bank option is down at the moment.
-* **up\_status** with value **1** — the issuing bank option is up at the moment.
+  **Failure scenario**
 
-**Failure scenario**
+  If issuing bank data is not available for the BIN:
 
-If issuing bank data is not available for the BIN:
-
-```json
-{
-      "msg": "No information available",
-      "status": 0
-}
-```
-
+  ```json
+  {
+        "msg": "No information available",
+        "status": 0
+  }
+  ```
 </Accordion>
 
 <Accordion title="Response parameters" icon="fa-table">
+  <span id="response-parameters" />
 
-<span id="response-parameters" />
+  For the BIN (first six digits) passed in **var1**, a successful response includes the fields below. If no data is available for that BIN, the API returns **msg** and **status** as in the failure sample.
 
-For the BIN (first six digits) passed in **var1**, a successful response includes the fields below. If no data is available for that BIN, the API returns **msg** and **status** as in the failure sample.
+  <Table>
+    <thead>
+      <tr>
+        <th>
+          **Parameter/JSON field**
+        </th>
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Parameter/JSON field**
-      </th>
+        <th>
+          **Description**
+        </th>
 
-      <th>
-        **Description**
-      </th>
+        <th>
+          **Example**
+        </th>
+      </tr>
+    </thead>
 
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
+    <tbody>
+      <tr>
+        <td>
+          issuing\_bank
+        </td>
 
-  <tbody>
-    <tr>
-      <td>
-        issuing\_bank
-      </td>
+        <td>
+          Name of the card issuing bank for the BIN.
+        </td>
 
-      <td>
-        Name of the card issuing bank for the BIN.
-      </td>
+        <td>
+          HDFC
+        </td>
+      </tr>
 
-      <td>
-        HDFC
-      </td>
-    </tr>
+      <tr>
+        <td>
+          up\_status
+        </td>
 
-    <tr>
-      <td>
-        up\_status
-      </td>
+        <td>
+          Issuing bank service status:
 
-      <td>
-        Issuing bank service status:
+          * **0** — down at the moment
+          * **1** — up at the moment
+        </td>
 
-        * **0** — down at the moment
-        * **1** — up at the moment
-      </td>
+        <td>
+          1
+        </td>
+      </tr>
 
-      <td>
-        1
-      </td>
-    </tr>
+      <tr>
+        <td>
+          msg
+        </td>
 
-    <tr>
-      <td>
-        msg
-      </td>
+        <td>
+          Returned on failure when no issuing bank information is available for the BIN.
+        </td>
 
-      <td>
-        Returned on failure when no issuing bank information is available for the BIN.
-      </td>
+        <td>
+          No information available
+        </td>
+      </tr>
 
-      <td>
-        No information available
-      </td>
-    </tr>
+      <tr>
+        <td>
+          status
+        </td>
 
-    <tr>
-      <td>
-        status
-      </td>
+        <td>
+          Returned on failure; **0** indicates the lookup did not succeed.
+        </td>
 
-      <td>
-        Returned on failure; **0** indicates the lookup did not succeed.
-      </td>
-
-      <td>
-        0
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
+        <td>
+          0
+        </td>
+      </tr>
+    </tbody>
+  </Table>
 </Accordion>
 
 ## Request parameters
@@ -357,60 +350,58 @@ For the BIN (first six digits) passed in **var1**, a successful response include
 Use the following sample values while trying out the API:
 
 <Accordion title="Reference information" icon="fa-table">
+  <span id="reference-information" />
 
-<span id="reference-information" />
+  <Table align={["left","left"]}>
+    <thead>
+      <tr>
+        <th style={{ textAlign: "left" }}>
+          Parameter
+        </th>
 
-<Table align={["left", "left"]}>
-  <thead>
-    <tr>
-      <th style={{ textAlign: "left" }}>
-        Parameter
-      </th>
+        <th style={{ textAlign: "left" }}>
+          Reference
+        </th>
+      </tr>
+    </thead>
 
-      <th style={{ textAlign: "left" }}>
-        Reference
-      </th>
-    </tr>
-  </thead>
+    <tbody>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          key
+        </td>
 
-  <tbody>
-    <tr>
-      <td style={{ textAlign: "left" }}>
-        key
-      </td>
+        <td style={{ textAlign: "left" }}>
+          For more information on how to generate the Key and Salt, refer to any of the following:
 
-      <td style={{ textAlign: "left" }}>
-        For more information on how to generate the Key and Salt, refer to any of the following:
+          * **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+          * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+        </td>
+      </tr>
 
-        * **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          hash
+        </td>
 
-    <tr>
-      <td style={{ textAlign: "left" }}>
-        hash
-      </td>
+        <td style={{ textAlign: "left" }}>
+          Hash logic for this API is:
 
-      <td style={{ textAlign: "left" }}>
-        Hash logic for this API is:
+          `sha512(key|command|var1|salt) sha512`
+        </td>
+      </tr>
 
-        `sha512(key|command|var1|salt) sha512`
-      </td>
-    </tr>
+      <tr>
+        <td style={{ textAlign: "left" }}>
+          var1
+        </td>
 
-    <tr>
-      <td style={{ textAlign: "left" }}>
-        var1
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        For JSON fields description, refer to [Additional Info for General APIs](ref:addl-info-general-apis)
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
+        <td style={{ textAlign: "left" }}>
+          For JSON fields description, refer to [Additional Info for General APIs](ref:addl-info-general-apis)
+        </td>
+      </tr>
+    </tbody>
+  </Table>
 </Accordion>
 
 **Example values**:
