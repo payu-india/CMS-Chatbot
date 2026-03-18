@@ -15,11 +15,11 @@ next:
 ---
 The **Bank Verification** API is used to verify bank account using penny drop/penniless transaction.
 
-## Environment
+### Environment
 
-| Environment            | URL                                                                                                                               |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Production Environment | [[https://onboarding.payu.in/dvs/bank\_accounts/acc\_verification](https://onboarding.payu.in/dvs/bank_accounts/acc_verification) |
+| Environment            | URL                                                                                                                             |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Production Environment | [[https://onboarding.payu.in/dvs/bank_accounts/acc_verification](https://onboarding.payu.in/dvs/bank_accounts/acc_verification) |
 
 <Callout icon="📘" theme="info">
   **Note:** The access token with the scope as **verify_bank_account** and grant type as **client_credentials** are required on the header. For more information on getting the access token, refer to [Get Token API - Bank Verification](ref:gettoken-bank-verification).
@@ -45,7 +45,7 @@ The **Bank Verification** API is used to verify bank account using penny drop/pe
 
 ## Sample request
 
-```bash
+```curl
 curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_verification' \
 --header 'clientId: <client Id>' \
 --header 'Content-Type: application/json' \
@@ -58,6 +58,188 @@ curl --location 'https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_ver
 }
 '
 ```
+```python
+import requests
+import json
+
+url = "https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_verification"
+
+headers = {
+    "clientId": "<client Id>",
+    "Content-Type": "application/json",
+    "Authorization": "••••••",
+    "Cookie": "Path=/"
+}
+
+data = {
+    "account_number": "0514100000****",
+    "ifsc": "HDFC0000514",
+    "name": "R******* P"
+}
+
+try:
+    response = requests.post(url, headers=headers, json=data)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```javascript
+async function makeRequest() {
+    const url = "https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_verification";
+    
+    const headers = {
+        "clientId": "<client Id>",
+        "Content-Type": "application/json",
+        "Authorization": "••••••",
+        "Cookie": "Path=/"
+    };
+
+    const requestData = {
+        "account_number": "0514100000****",
+        "ifsc": "HDFC0000514",
+        "name": "R******* P"
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(requestData)
+        });
+        
+        const responseText = await response.text();
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
+makeRequest();
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+
+public class ApiRequest {
+    public static void main(String[] args) {
+        try {
+            String url = "https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_verification";
+            
+            String jsonData = "{\"account_number\":\"0514100000****\",\"ifsc\":\"HDFC0000514\",\"name\":\"R******* P\"}";
+            
+            HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("clientId", "<client Id>")
+                .header("Content-Type", "application/json")
+                .header("Authorization", "••••••")
+                .header("Cookie", "Path=/")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonData))
+                .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            
+            System.out.println("Status Code: " + response.statusCode());
+            System.out.println("Response: " + response.body());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main(string[] args)
+    {
+        try
+        {
+            string url = "https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_verification";
+            
+            client.DefaultRequestHeaders.Add("clientId", "<client Id>");
+            client.DefaultRequestHeaders.Add("Authorization", "••••••");
+            client.DefaultRequestHeaders.Add("Cookie", "Path=/");
+
+            var requestData = new
+            {
+                account_number = "0514100000****",
+                ifsc = "HDFC0000514",
+                name = "R******* P"
+            };
+
+            string jsonContent = JsonConvert.SerializeObject(requestData);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://uat-onepayuonboarding.payu.in/dvs/bank_accounts/acc_verification";
+
+$headers = [
+    "clientId: <client Id>",
+    "Content-Type: application/json",
+    "Authorization: ••••••",
+    "Cookie: Path=/"
+];
+
+$requestData = [
+    "account_number" => "0514100000****",
+    "ifsc" => "HDFC0000514",
+    "name" => "R******* P"
+];
+
+$jsonData = json_encode($requestData);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch) . "\n";
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
+?>
+```
+
 
 ## Response parameters
 
