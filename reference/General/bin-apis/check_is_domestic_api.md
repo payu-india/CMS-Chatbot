@@ -33,12 +33,181 @@ The **Check is Domestic** or **Card BIN** API is used to detect whether a partic
 <GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
-  ```bash
+  ```curl
   curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
   -H "accept: application/json" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JP***g&command=check_isDomestic&var1=462273&hash=df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
   ```
+```python
+import requests
+
+url = "https://test.payu.in/merchant/postservice?form=2"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+data = {
+    "key": "JP***g",
+    "command": "check_isDomestic",
+    "var1": "462273",
+    "hash": "df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
+}
+
+try:
+    response = requests.post(url, headers=headers, data=data)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main(string[] args)
+    {
+        try
+        {
+            string url = "https://test.payu.in/merchant/postservice?form=2";
+            
+            client.DefaultRequestHeaders.Add("accept", "application/json");
+
+            var formData = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("key", "JP***g"),
+                new KeyValuePair<string, string>("command", "check_isDomestic"),
+                new KeyValuePair<string, string>("var1", "462273"),
+                new KeyValuePair<string, string>("hash", "df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2")
+            };
+
+            var formContent = new FormUrlEncodedContent(formData);
+            HttpResponseMessage response = await client.PostAsync(url, formContent);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+```
+```javascript
+async function makeRequest() {
+    const url = "https://test.payu.in/merchant/postservice?form=2";
+    
+    const headers = {
+        "accept": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded"
+    };
+
+    const formData = new URLSearchParams({
+        "key": "JP***g",
+        "command": "check_isDomestic",
+        "var1": "462273",
+        "hash": "df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
+    });
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: headers,
+            body: formData
+        });
+        
+        const responseText = await response.text();
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
+makeRequest();
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+
+public class ApiRequest {
+    public static void main(String[] args) {
+        try {
+            String url = "https://test.payu.in/merchant/postservice?form=2";
+            
+            String formData = "key=JP***g&command=check_isDomestic&var1=462273&hash=df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2";
+            
+            HttpClient client = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("accept", "application/json")
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .POST(HttpRequest.BodyPublishers.ofString(formData))
+                .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            
+            System.out.println("Status Code: " + response.statusCode());
+            System.out.println("Response: " + response.body());
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://test.payu.in/merchant/postservice?form=2";
+
+$headers = [
+    "accept: application/json",
+    "Content-Type: application/x-www-form-urlencoded"
+];
+
+$postData = [
+    "key" => "JP***g",
+    "command" => "check_isDomestic",
+    "var1" => "462273",
+    "hash" => "df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch) . "\n";
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
+?>
+```
 
   **Example Values:**
 
