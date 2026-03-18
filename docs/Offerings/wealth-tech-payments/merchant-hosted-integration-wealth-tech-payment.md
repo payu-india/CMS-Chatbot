@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-This section explains how to implement the **_payment** API for Wealth Tech merchants using Merchant Hosted Checkout integration. The _payment includes the *_more_info_ parameter contains various fields including the Wealth Tech object (**wtParams**).
+This section explains how to implement the **_payment** API for Wealth Tech merchants using Merchant Hosted Checkout integration. The _payment includes the _product_ parameter contains various fields including the Wealth Tech object (**wtParams**).
 
 <Callout icon="📘" theme="info">
   **Note**: Currently, PayU supports only UPI, Netbanking, UPI autopay and Enach modes for Wealth Tech payments. You must note that cards are not supported.
@@ -36,7 +36,8 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
   | furl<br />`mandatory`                           | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                                 | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                             |
   | api\_version <br /> `mandatory`                 | API version must be posted as `21`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 21                                                                                                                                                                         |
   | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|SALT) For more information, refer to [Generate Hash](doc:hashing-request-and-response).                                                                                                                                                                                                                                                                                         | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                                   |
-  | more\_info<br />mandatory for Wealth Tech       | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech#wealth-tech-object-wtparams-fields-description).                                                                                                                                                                                                                                                                                                                    | Refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech#wealth-tech-object-wtparams-fields-description) |
+  | product<br />mandatory for Wealth Tech       | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech#wealth-tech-object-wtparams-fields-description).                                                                                                                                                                                                                                                                                                                    | Refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech#wealth-tech-object-wtparams-fields-description) |
+  | beneficiarydetail<br />`mandatory ` | `String` String JSON object that contains account numbers and corresponding IFSC codes (max 4 accounts) in the same order| Refer the table in accordion below this table  |
   | lastname<br />`optional`                        | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                                     |
   | address1<br />`optional`                        | `String` The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                            |
   | address2<br />`optional`                        | `String` The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Apartment 4B                                                                                                                                                               |
@@ -50,37 +51,86 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
   | udf4<br />`optional`                            | `String` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 2                                                                                                                                                          |
   | udf5<br />`optional`                            | `String` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 3                                                                                                                                                          |
   | additional\_charges<br />`optional`             | `String` Collect additional charges for the transaction. For example, platform fee                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 10.00                                                                                                                                                                      |
-</Accordion>
+<Accordion title="beneficiarydetail JSON Object Fields" icon="fa-code">
+    The `beneficiarydetail` parameter should be a JSON object with the following structure:
+
+    <Table align={["left","left","left"]}>
+      <thead>
+        <tr>
+          <th style={{ textAlign: "left" }}>
+            Field
+          </th>
+
+          <th style={{ textAlign: "left" }}>
+            Description
+          </th>
+
+          <th style={{ textAlign: "left" }}>
+            Example
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            beneficiaryAccountNumber
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            `String` List of account numbers separated by pipe symbol (|). Maximum 4 accounts.
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            "002001600674|
+            00000031957292212|
+            00000035955239352|
+            00000035955239352"
+          </td>
+        </tr>
+
+        <tr>
+          <td style={{ textAlign: "left" }}>
+            ifscCode
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            `String` List of corresponding IFSC codes separated by pipe symbol (|). Maximum 4 IFSC codes in the same order as account numbers.
+          </td>
+
+          <td style={{ textAlign: "left" }}>
+            "KTKB0000046|
+            KTKB0000023|
+            KTKB0000035|
+            KTKB0000035"
+          </td>
+        </tr>
+      </tbody>
+    </Table>
+
+    **Example JSON**:
+
+    ```json
+    {
+      "beneficiaryAccountNumber": "002001600674|00000031957292212|00000035955239352|00000035955239352",
+      "ifscCode": "KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"
+    }
+    ```
+
+    > 📘 beneficiarydetail parameter in hashing:
+    >
+    > * The `beneficiarydetail` parameter must be included in the hash calculation.
+    > * The format should be exactly as shown in the hash formula above.
+    > * Replace SALT with the salt value provided to you during onboarding.
+  </Accordion>
 
 <Accordion title="Wealth Tech Object (wtParams) Fields" icon="fa-cog">
   ### Wealth Tech object wtparams fields description
 
-  <Accordion title="Sample JSON Structure:" icon="fa-code">
-    ```json
-    "more_info": {
-        "wtParams": [
-            {
-                "type": "mutual_fund",
-                "plan": "GD",
-                "amount": "50000",
-                "option": "G",
-                "scheme": "LT",
-                "receipt": "77407",
-                "mf_member_id": "123445",
-                "mf_user_id": "77407",
-                "mf_partner": "cams",
-                "mf_investment_type": "L",
-                "mf_amc_code": "UTB"
-            }
-        ]
-    }
-    ```
-  </Accordion>
-
   <Accordion title="Wealth Tech object (wtParams) fields Description" icon="fa-cog">
     <Accordion title="Sample JSON" icon="fa-code">
       ```
-      "more_info": {
+      "product": {
           "wtParams": [
             {
               "type": "mutual_fund",
@@ -101,7 +151,7 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
     </Accordion>
 
     <Accordion title="Fields description" icon="fa-table">
-      These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
+      These parameters are included within the `product` field as a JSON array under the fiedl `wtParams`:
 
       <Table align={["left","left","left"]}>
         <thead>
@@ -323,6 +373,7 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
     </Accordion>
   </Accordion>
 </Accordion>
+</Accordion>
 
 <Accordion title="Hash Calculation" icon="fa-key">
   Concatenate fields in this exact sequence, then
@@ -374,7 +425,7 @@ This section explains how to implement the **_payment** API for Wealth Tech merc
   --data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
   --data-urlencode 'api_version=21' \
   --data-urlencode 'hash=a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0' \
-  --data-urlencode 'more_info={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
+  --data-urlencode 'product={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
   ```
 </Accordion>
 
