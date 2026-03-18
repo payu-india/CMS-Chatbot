@@ -1,5 +1,5 @@
 ---
-title: ENACH Mutual Fund Payments Integration
+title: ENACH Integration -Mutual Funds
 deprecated: false
 hidden: false
 metadata:
