@@ -1,5 +1,5 @@
 ---
-title: _payment_API_Merchant_Hosted_AFT
+title: AFT
 deprecated: false
 hidden: true
 metadata:
