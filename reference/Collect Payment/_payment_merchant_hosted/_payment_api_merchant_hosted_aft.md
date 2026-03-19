@@ -85,7 +85,7 @@ HTTP Method: **POST**
 }
 ```
 
-#### Fields Description
+<Accordion title="Fields Description" icon="fa-table">
 
 | Field                    | Description                                                                                                | Example |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------- | ------- |
@@ -110,18 +110,39 @@ HTTP Method: **POST**
 
 The table now includes **bold sub-headers** for each parameter group (`senderInformation`, `recipientInformation`, `account`, `address`, and `KYCInfo`) to clearly show the hierarchical structure from the JSON. 📊
   </Accordion>
+  </Accordion>
 </Accordion>
-## Sample Request
+<Accordion title="Sample Request" icon="fa-code">
 
 ```curl
+# IMPORTANT: This is a server-side call, never execute this client-side
+# Replace placeholders with actual values
+# In production: Use environment variables for sensitive values
+curl -X POST "https://test.payu.in/_payment" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=YOUR_MERCHANT_KEY" \
+  -d "txnid=TXN_12345" \
+  -d "amount=1000.00" \
+  -d "productinfo=Product+Description" \
+  -d "firstname=Customer+Name" \
+  -d "email=customer@example.com" \
+  -d "phone=9988776655" \
+  -d "pg=CC" \
+  -d "bankcode=CC" \
+  -d "ccnum=CARD_NUMBER" \
+  -d "ccexpmon=MM" \
+  -d "ccexpyr=YY" \
+  -d "ccvv=CVV" \
+  -d "ccname=NAME_ON_CARD" \
+  -d "surl=https://yourwebsite.com/success" \
+  -d "furl=https://yourwebsite.com/failure" \
+  -d "hash=HASH_GENERATED_ON_SERVER" \
+  -d "additional_info=%7B%22senderInformation%22%3A%7B%22firstName%22%3A%22Sharp%22%2C%22lastName%22%3A%22Shooter%22%7D%2C%22recipientInformation%22%3A%7B%22firstName%22%3A%22Table%22%2C%22lastName%22%3A%22Cable%22%2C%22account%22%3A%7B%22number%22%3A%22619%22%7D%2C%22address%22%3A%7B%22city%22%3A%22%22%2C%22country%22%3A%22%22%2C%22postCodeZip%22%3A%22%22%2C%22stateProvinceCode%22%3A%22%22%2C%22street%22%3A%22%22%2C%22street2%22%3A%22%22%7D%2C%22KYCInfo%22%3A%7B%22GovtIdType%22%3A%22%22%2C%22GovtIdNumber%22%3A%222222%22%7D%7D%7D"
 ```
+</Accordion>
 
-<br />
 
-## Sample Response
-
-There are no changes in the response, it will remain as it is like the existing plain card number.
-
+<Accordion title="Sample Response" icon="fa-code">
 ```json
 Array
 (
@@ -177,5 +198,4 @@ Array
     [cardnum] => 512345XXXXXX2346
 )
 ```
-
-<br />
+</Accordion>
