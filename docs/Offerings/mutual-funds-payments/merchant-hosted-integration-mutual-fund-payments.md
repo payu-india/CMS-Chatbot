@@ -1,5 +1,5 @@
 ---
-title: Merchant Hosted Integration - Mutual Funds Payment
+title: Merchant Hosted Integration - Mutual Fund Payments
 deprecated: false
 hidden: true
 metadata:
