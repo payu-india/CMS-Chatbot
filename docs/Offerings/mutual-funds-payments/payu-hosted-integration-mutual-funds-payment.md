@@ -1,5 +1,5 @@
 ---
-title: PayU Hosted Integration - Mutual Funds Payment
+title: PayU Hosted Integration - Mutual Fund Payments
 deprecated: false
 hidden: true
 metadata:
