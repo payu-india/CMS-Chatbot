@@ -217,7 +217,7 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
       <tr>
         <td style={{ textAlign: "left" }}>
           lastname
-          `optional`
+          `mandatory`
         </td>
 
         <td style={{ textAlign: "left" }}>
@@ -378,15 +378,15 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
       <tr>
         <td style={{ textAlign: "left" }}>
           udf1
-          `optional`
+          `conditional` 
         </td>
 
         <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request (up to 255 characters).
+          `String` >User-defined field 1. For PACB: Buyer's PAN number.
         </td>
 
         <td style={{ textAlign: "left" }}>
-          Website order
+          `AELPR****E` 
         </td>
       </tr>
 
@@ -406,11 +406,11 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
       <tr>
         <td style={{ textAlign: "left" }}>
           udf3
-          `optional`
+          `optional but recommended for higher approval rate`
         </td>
 
         <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request.
+          `String` Date of Birth (DOB) of buyer in DD-MM-YYYY.
           (up to 255 characters.)
         </td>
 
@@ -420,11 +420,11 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
       <tr>
         <td style={{ textAlign: "left" }}>
           udf4
-          optional
+          `mandatory for payment aggregators`
         </td>
 
         <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request.
+          `String` End merchant legal entity name. For UPI, this field should not be passed.
           (up to 255 characters.)
         </td>
 
@@ -434,11 +434,11 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
       <tr>
         <td style={{ textAlign: "left" }}>
           udf5
-          `optional`
+          `mandatory`
         </td>
 
         <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request.
+          `String` Contains invoice ID for the transaction. Invoice ID / number should be the ID present on the invoice issued to the customer.
           (up to 255 characters.)
         </td>
 
