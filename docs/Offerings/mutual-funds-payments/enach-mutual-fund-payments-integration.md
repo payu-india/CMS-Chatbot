@@ -5,28 +5,22 @@ hidden: true
 metadata:
   robots: index
 ---
-Merchants can set up automated subscription billing through various payment methods including Net Banking (e-NACH) for Mutual Fund Payments. This section describes how to integrate mutual fund subscription for ENACH using seamless integration. 
+Merchants can set up automated subscription billing through various payment methods including Net Banking (e-NACH) for Mutual Fund Payments. This section describes how to integrate mutual fund subscription for ENACH using seamless integration.
 
 <Cards columns={2}>
-  <Card title="1. Consent Transaction" href="#consent-transaction">
+  <Card title="1. Consent Transaction" href="#step-1-consent-transaction">
     Initiate the recurring payment process by capturing user consent for the mandate with required parameters including key, txnid, amount, productinfo, customer details, and si\_details JSON object
 
     <br />
   </Card>
 
-  <Card title="2. Verify the Payment" href="#verify-the-payment">
+  <Card title="2. Verify the Payment" href="#step-2-verify-the-payment">
     Ensure the initial consent transaction or registration is successfully processed before proceeding with recurring charges
 
     <br />
   </Card>
 
-  <Card title="3. Pre-Debit Notification" href="#pre-debit-notification">
-    Send advance notifications to customers about upcoming recurring payments, essential for UPI and Cards per RBI guidelines with authpayuid and debitDate parameters
-
-    <br />
-  </Card>
-
-  <Card title="4. Recurring Payment Transaction" href="#recurring-payment-transaction">
+  <Card title="3. Recurring Payment Transaction" href="#step-3-recurring-payment-transaction">
     Execute recurring payments automatically without additional customer involvement using server-to-server integration with authpayuid and invoiceDisplayNumber
 
     <br />
@@ -165,9 +159,11 @@ HTTP Method: **POST**
   }
 
   ```
-<Callout icon="📘" theme="info">
-*Note*:  You must redirect the customer and authorize the charges as described in Decoupled Flow Integration. For more information, refer to [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s). The final response is in plain text and when it is parsed, it is similar to the following [Parsed response](#parsed-response).
-</Callout>
+
+  <Callout icon="📘" theme="info">
+    *Note*:  You must redirect the customer and authorize the charges as described in Decoupled Flow Integration. For more information, refer to [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s). The final response is in plain text and when it is parsed, it is similar to the following [Parsed response](#parsed-response).
+  </Callout>
+
   #### Parsed response
 
   ```json
@@ -243,101 +239,6 @@ HTTP Method: **POST**
 The payment verification step ensures the transaction has been processed successfully before proceeding to subsequent recurring payments.
 
 <Verify_Payment_Tabs />
-
-***
-
-## Step 3: Pre-Debit Notification
-
-The **Pre-Debit Notification** API allows the merchants to send a pre-debit notification to the customer regarding an upcoming payment which will be deducted from the customer's account as part of the registration.
-
-> ❗️ **Reminder**
->
-> * Check the mandate status before calling the **Pre-Debit Notification** API.
-> * Unless the Pre-Debit notification API is implemented, the **Recurring Payment Transaction** API will not work, and you will not be able to charge the customer for the given billing cycle.
-> * Pre-Debit notification is necessary only for Cards and UPI and works for only these two payment modes
-
-**Environment**
-
-|                        |                                                                  |
-| :--------------------- | :--------------------------------------------------------------- |
-| Production Environment | [https://info.payu.in/merchant/](https://info.payu.in/merchant/) |
-| Test Environment       | [https://test.payu.in/merchant/](https://test.payu.in/merchant/) |
-
-<Accordion title="Sample Request" icon="fa-upload">
-  ```curl
-  curl --location --request POST 'https://test.info.payu.in/merchant/postservice.php?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data
-  'key=JF****g&hash=9f5faabedb7f5d41f519db3a223cf5318ecc0b7e669f49e0a699d4c4879e1ccaed5b99f5cd8be4f2cbddefe5272ec983abd8f38480d9c2609a29447f750a3158&command=check_action_status_txnid&var1=7043873219'
-  ```
-</Accordion>
-
-<Accordion title="Sample Response" icon="fa-download">
-  **Successful scenario**
-
-  ```json
-  {
-    "invoiceid": "76323425",
-    "approvedStatus": "na",
-    "invoiceStatus": "unpaid",
-    "amount": "1.00",
-    "status": 1,
-    "message": "Invoice Created Successfully",
-    "action": "MANDATE_PRE_DEBIT"
-  }
-  ```
-
-  **Failure Scenarios**
-
-  * Mandate is active in PayU DB and Pre-Debit gets declined from Bank/NPCI
-
-  ```json
-  {
-    "status": "QC",
-    "action": "MANDATE_PRE_DEBIT",
-    "message": "MANDATE HAS BEEN REVOKED"
-  }
-  ```
-
-  Where, the **message** parameter in the response will display error code according to the scenario
-
-  * Mandate is already Paused/ Revoked in PayU DB
-
-  ```json
-  {
-    "status": 0,
-    "action": "MANDATE_PRE_DEBIT",
-    "message": "Mandate is not active"
-  }
-  ```
-
-  Where, the **message** parameter in the response will display according to the scenario.
-</Accordion>
-
-<Accordion title="Response Parameters" icon="fa-list">
-  | Parameter Name                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                      |
-  | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | status                               | Status defines acknowledgment from PayU. Possible values are :<br />• **1**- This value indicates that pre-debit notification is triggered successfully for customer or deleted successfully in case of action delete.<br /><br />• **0** – This value indicates pre-debit notification failed to get triggered and merchant should retry after some time to trigger the same or failed to get deleted in case of action delete. |
-  | action                               | Always returned as "MANDATE\_PRE\_DEBIT" to highlight the type of action.                                                                                                                                                                                                                                                                                                                                                        |
-  | message                              | Description of the pre-debit notification process                                                                                                                                                                                                                                                                                                                                                                                |
-  | invoiceId<br />`only for cards`      | This is an acknowledgment ID that a pre debit notification has been sent for processing.                                                                                                                                                                                                                                                                                                                                         |
-  | amount                               | The transaction amount for which the pre-debit notification has been sent.                                                                                                                                                                                                                                                                                                                                                       |
-  | invoiceStatus<br />`only for cards`  | This is the status of the invoice whether it has been charged for recurring or not. Values can be:<br />- Paid<br />- Unpaid<br />- Deleted<br />Since these statuses come from a third-party vendor, so these can vary if there is an addition of new status at the vendor end                                                                                                                                                  |
-  | approvedStatus<br />`only for cards` | This is for cases where the transaction is above 15000 as RBI guideline says approval is required through AFA (Additional Factor authentication). Values can be:<br />- Pending<br />- Approved<br />- Not\_applicable<br />Since these statuses come from third-party vendors, so these can vary if there is an addition of new status at the vendor end.                                                                       |
-
-  **var1 JSON fields description**
-
-  The **var1** variable is in JSON format and comprises of the following parameters:
-
-  | JSON Field                                             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-  | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | authpayuid<br />**mandatory**                          | The value of mihpayid returned in the payment response of Registration transaction when transaction is successfully completed. As explained earlier in the document, you need to map this value against customer profile at his end so that correct authPayuid will be passed in the request.                                                                                                                                                                                                                                                                              |
-  | requestId<br />**mandatory**                           | Unique request value generated at merchant's end to distinguish independent request call.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-  | debitDate<br />**mandatory for cards and UPI**         | This parameter contains the date of debit when the recurring would be charged by merchant.<br />**In UPI:** <ul><li>For all frequencies (other than Daily and Adhoc), the merchant must send the notification 48 hours before the debit.</li><li>For Daily and Adhoc frequency, the merchant must send the notification 24 hours before the debit. If the notification is sent after these durations, then the debit will fail.</li></ul>                                                                                                                                  |
-  | invoiceDisplayNumber<br />**mandatory only for cards** | A unique display number by merchant for every subsequent invoice/recurring charge. This can be displayed on the merchant's panel to the customer. This same value needs to be sent in the recurring api also.                                                                                                                                                                                                                                                                                                                                                              |
-  | amount<br />**mandatory for cards and UPI**            | The transaction amount which will be deducted from the customer's payment instrument.<br />**For Cards:** <ul><li>In case of Fixed billing plan, this amount should be same as billingAmount sent during Registration transaction.</li><li>In case of Adhoc billing plan, this amount should be equal to or lesser than billingAmount sent during the Registration transaction.<br />**Note**: The amount mentioned in the Pre-Debit notification API for UPI should be same as the next execution amount. Else, the next recurring execution request will fail.</li></ul> |
-  | action<br />**optional**                               | Any of the following actions can be performed:<br />• **Retrieve**: Query the status of the pre-debit notification. Only authpayuid and invoice display numbers are mandatory for this action.<br />• **Delete**: Delete the already generated pre debit. Only authpayuid and invoice display numbers are mandatory for this action.                                                                                                                                                                                                                                       |
-</Accordion>
 
 ***
 
