@@ -33,6 +33,10 @@ The Authentication and Authorization flow with PayU S2S involves the following s
 
 **Step 9:** PayU returns the authentication results to Merchant.
 
+<Callout icon="📘" theme="info">
+  **Reference:** For the steps to integrate S2S Decoupled Authentication Flow, refer to [S2S Decoupled Authentication Flow Integration](doc:s2s-decoupled-authentication-flow).
+</Callout>
+
 ### Phase 2: Authorization
 
 **Step 1:** Merchant sends a new **_payments** (s2s3) request to PayU with authentication results from Phase 1 and a new request ID.
@@ -44,6 +48,10 @@ The Authentication and Authorization flow with PayU S2S involves the following s
 **Step 4:** PayU returns the transaction status to Merchant.
 
 **Step 5:** Merchant completes the transaction flow with the User.
+
+<Callout icon="📘" theme="info">
+  **Reference**: For the steps to integrate S2S Decoupled Authorization Flow, refer to [S2S Authorization Flow Integration](doc:s2s-authorization-flow).
+</Callout>
 
 ## Steps to Integrate
 
