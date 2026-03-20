@@ -869,6 +869,10 @@ The parameters in the response for similar for all S2S flows. For more informati
   ```
 </Accordion>
 
+<Callout icon="📘" theme="info">
+  **Reference for Error Codes**: For the list of authorization error codes, refer to [Issuer Decline Error Codes](ref:issuer-decline-error-codes).
+</Callout>
+
 ## Step 3. Verify the payment
 
 <Verify_Payment_Tabs />
