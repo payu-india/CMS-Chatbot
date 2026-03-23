@@ -171,5 +171,8 @@ Accelerate your integration workflow with our net banking Postman collection for
                 </button>
 `}</HTMLBlock>
 
-<br />
+<HTMLBlock>{`
+[Download Errors in the CSV template](https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/AuthN_error_list.csv)
+`}</HTMLBlock>
 
+<br />
