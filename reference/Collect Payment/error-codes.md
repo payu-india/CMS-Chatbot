@@ -694,214 +694,220 @@ The following are possible errors and error codes for a transaction. You need t
 
 ## Other Error Codes from PayU
 
-| PayU Error Code | error_message / message                                                                                                                     | error_description                           |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| EX000           |  nan                                                                                                                                        | GRAND_TOTAL                                 |
-| EX001           | No MySQL DSN Supplied                                                                                                                       | MYSQL_DSN_ERROR                             |
-| EX002           | Default db not mentioned                                                                                                                    | MYSQL_DEFAULT_DB_UKNOWN                     |
-| EX003           | MySQL DSN not configured for ?                                                                                                              | MYSQL_DSN_NOT_CONFIGURED                    |
-| EX004           | MySQL DSN not configured for ?                                                                                                              | MYSQL_DSNKEY_NOT_CONFIGURED                 |
-| EX005           | Data is empty                                                                                                                               | MYSQL_DATA_EMPTY                            |
-| EX006           | where clause is empty                                                                                                                       | MYSQL_WHERE_CLAUSE_EMPTY                    |
-| EX007           | Table name is empty                                                                                                                         | MYSQL_TABLENAME_EMPTY                       |
-| EX008           | Insufficient dataTypes given.                                                                                                               | MYSQL_DATATYPE_INSUFFICIENT                 |
-| EX009           | DataTypes provided but whereParamTypes not provided                                                                                         | MYSQL_WHEREPARAMTYPE_EMPTY                  |
-| EX010           | Insufficent whereParamTypes provided                                                                                                        | MYSQL_WHEREPARAMTYPE_INSUFFICIENT           |
-| EX011           | CSRF happened                                                                                                                               | CSRF_OCCURRED                               |
-| EX012           | Key is Null                                                                                                                                 | NULL_KEY                                    |
-| EX013           | Insufficient Input                                                                                                                          | INSUFFICIENT_INPUT                          |
-| EX014           | Merchant Param: Key not supplied                                                                                                            | MERCHANT_PARAM_KEY_EMPTY                    |
-| EX015           | Merchant payment type insufficient parameters                                                                                               | MERCHANT_PAYMENT_TYPE_INSUFFICIENT          |
-| EX016           | Merchant gateway insufficient parameters                                                                                                    | MERCHANT_GATEWAY_INSUFFICIENT_PARAMS        |
-| EX017           | Payment gateway id not assigned to merchant payment type                                                                                    | PG_UNASSIGNED_TO_MERCHANT_PAYMENT_TYPE      |
-| EX018           | Invalid Payment Gateway Identifier                                                                                                          | INVALID_PAYMENTGATEWAY_INDENTIFIER          |
-| EX019           | Unable to obtain lock for transaction                                                                                                       | UNABLE_TO_LOCK                              |
-| EX020           | Inconsistent Transaction Status in database                                                                                                 | INCONSISTENCY_IN_TRANSACTION_STATUS         |
-| EX021           | The risk_category for this merchant hasn                                                                                                    | RISK_CATEGORY_MISSING                       |
-| EX022           | PayuId not attached to Transaction Class ?                                                                                                  | PAYUID_MISSING                              |
-| EX023           | Verifier hash mismatch                                                                                                                      | VERIFIER_MISMATCH                           |
-| EX024           | Empty lockid in transaction::unlock                                                                                                         | LOCKID_EMPTY                                |
-| EX025           | Merchant not found                                                                                                                          | MERCHANT_NOT_FOUND                          |
-| EX026           | Transaction could not be reinitiated due to empty base transaction or invalid status                                                        | TRANSACTION_REINITIATION_PROBLEM            |
-| EX027           | Empty previous transaction id                                                                                                               | TRANSACTIONID_EMPTY                         |
-| EX028           | Invalid Attempt                                                                                                                             | INVALID_ATTEMPT                             |
-| EX029           | Invalid User Identifier                                                                                                                     | INVALID_USER_IDENTIFIER                     |
-| EX030           | Invalid Vendor Identifier                                                                                                                   | INVALID_VENDOR_IDENTIFIER                   |
-| EX031           | Cancel Error: Invalid File or no data                                                                                                       | CANCEL_ERROR_INVALID_FILE                   |
-| EX032           | Cancel Error: Mandatory column missing. Mandatory columns are: \<b> ? \</b>                                                                 | CANCEL_ERROR_MANDATORY_COLUMN               |
-| EX033           | Refund Error: Invalid File or no data ?                                                                                                     | REFUND_ERROR_INVALID_FILE                   |
-| EX034           | Refund Error: Mandatory column missing. Mandatory columns are: \<b> ? \</b>                                                                 | REFUND_ERROR_MANDATORY_COLUMN               |
-| EX035           | Capture Error: Invalid File or no data                                                                                                      | CAPTURE_ERROR_INVALID_FILE                  |
-| EX036           | Captured Error: Mandatory column missing. Mandatory columns are: \<b> ? \</b>                                                               | CAPTURE_ERROR_MANDATORY_COLUMN              |
-| EX037           | Reconciliation Error: Invalid File or no data                                                                                               | RECONCILIATION_ERROR_INVALID_FILE           |
-| EX038           | Reconciliation Error: Mandatory column missing. Mandatory columns are: \<b> ? \</b>                                                         | RECONCILIATION_ERROR_MANDATORY_COLUMN       |
-| EX039           | Recon: Transaction not set                                                                                                                  | RECON_TRANSACTION_UNSET                     |
-| EX040           | ?                                                                                                                                           | NO_PRIVILEGE                                |
-| EX041           | The requested file does not exist or you do not have priviledge to access it                                                                | FILE_DO_NOT_EXIST_OR_NO_PRIVILEGE           |
-| EX042           | Invalid Invoice ID                                                                                                                          | INVOICE_INVALID                             |
-| EX043           | Problem reading data from ? : ?                                                                                                             | PROBLEM_READING_DATA_SENTROPI_URL           |
-| EX044           | pExcelReader: Invalid type ?                                                                                                                | PEXCELREADER_INVALID_TYPE                   |
-| EX045           | pExcelReader: File ? not readable                                                                                                           | PEXCELREADER_FILE_NOT_READABLE              |
-| EX046           | XLSXReader : File not readable Filepath : ( ? ) Error : ( ? )                                                                               | XLSXREADER_FILE_NOT_READABLE                |
-| EX047           | ODSReader :  File not readable Filepath : ( ? ) Error : ( ? )                                                                               | ODSREADER_FILE_NOT_READABLE                 |
-| EX048           | CSVReader :  File not readable Filepath : ( ? ) Error : ( ? )                                                                               | CSVREADER_FILE_NOT_READABLE                 |
-| EX049           | All edit keys must have an associated value                                                                                                 | EDIT_KEY_UNASSOCIATED_VALUE                 |
-| EX050           | No data found for this form. Edit form is unavailable                                                                                       | EDIT_FORM_UNAVAILABLE                       |
-| EX051           | All edit keys must be part of edit fields                                                                                                   | EDIT_KEY_PART_OF_EDIT_FIELDS                |
-| EX052           | TransactionID not found in Pg Response                                                                                                      | TRANSACTIONID_NOT_FOUND_PG_RESPONSE         |
-| EX053           | Invalid Transaction ID in gateway response                                                                                                  | TRANSACTIONID_INVALID_GATEWAY_RESPONSE      |
-| EX054           | Base merchant id not posted from the paisa request for payuId ?                                                                             | BASE_MERCHANT_ID_MISSING                    |
-| EX055           | Base payu id not posted from the paisa request for payuId ?                                                                                 | BASE_PAYU_ID_MISSING                        |
-| EX056           | Invalid Paisa Merchant Id                                                                                                                   | INVALID_PAISA_MERCHANT                      |
-| EX057           | Not Implemented                                                                                                                             | NOT_IMPLEMENTED                             |
-| EX058           | Object can not be saved to database. Identifiers not set                                                                                    | OBJECT_UNSAVED_IDENTIFIER_UNSET             |
-| EX059           | Object can not be saved to database. Table name not mentioned                                                                               | OBJECT_UNSAVED_TABLENAME_MISSING            |
-| EX060           | Object can not be saved to database. Identifier value missing                                                                               | OBJECT_UNSAVED_IDENTIFIER_MISSING           |
-| EX061           | Protocol Mismatch                                                                                                                           | PROTOCOL_MISSMATCH                          |
-| EX062           | Add Payment Call to payu_paisa_addpayment_url failed                                                                                        | PAYU_PAISA_ADDPAYMENT_URL_FAILED            |
-| EX063           | Invalid Transaction State: Transaction in IN PROGRESS state in cancel.php                                                                   | INVALID_TRANSACTION_STATE                   |
-| EX064           | Missing forward action                                                                                                                      | MISSING_FORWARD_ACTION                      |
-| EX065           | Invalid forward - App ? not available                                                                                                       | APPS_APPNAME_UNAVAILABLE                    |
-| EX066           | Action must extend PayuAction                                                                                                               | ACTION_MUST_EXTEND_PAYUACTION               |
-| EX067           | Unable to reload action: ?                                                                                                                  | UNABLE_TO_RELOAD_ACTION                     |
-| EX068           | No fields specified in adminViewer                                                                                                          | MISSING_ADMINVIEWER_FIELDS                  |
-| EX069           | The request parameter must be set                                                                                                           | REQUEST_PARAM_UNSET                         |
-| EX070           | The ? request parameter must be set                                                                                                         | HTTPREQUEST_PARAM_UNSET                     |
-| EX071           | Problem Building WURFL Repository: ?                                                                                                        | WURFL_REPOSITORY_PROBLEM                    |
-| EX072           | There is no device with ID [?] in the loaded WURFL Data                                                                                     | DEVICE_MISSING_IN_WURFL_DATA                |
-| EX073           | WriteRow failed: Unknown Result                                                                                                             | WRITE_ROW_FAILED                            |
-| EX074           | WriteFormattedRow failed: unknown result                                                                                                    | WRITE_FORMATTED_ROW_FAILED                  |
-| EX075           | OpenExcel failed: unknown result                                                                                                            | OPENEXCEL_FAILED                            |
-| EX076           | SaveFile failed: unknown result                                                                                                             | SAVEFILE_FAILED                             |
-| EX077           | Write N Rows failed: unknown result                                                                                                         | WRITE_N_ROW_FAILED                          |
-| EX078           | WriteFormattedNRows failed: unknown result                                                                                                  | WRITE_N_FORMATTED_ROW_FAILED                |
-| EX079           | Message : ?. Error Code : ?                                                                                                                 | DB_EXCEPTION_ERROR_OTHERS                   |
-| EX080           | Could not open remote file: ?                                                                                                               | REMOTE_FILE_OPEN_FAILED                     |
-| EX081           | Could not open local file: ?                                                                                                                | LOCAL_FILE_OPEN_FAILED                      |
-| EX082           | Could not send data from file: ?                                                                                                            | DATA_SENDIG_FAILED                          |
-| EX083           | Parameter Passed : ?                                                                                                                        | BLANK                                       |
-| EX084           | Return URI not received                                                                                                                     | URI_NOT_RECEIVED                            |
-| EX085           | Verifier payu Id not received                                                                                                               | VERIFIER_PAYUID_NOT_RECEIVED                |
-| EX086           | Card bin is not present                                                                                                                     | CARD_BIN_NOT_PRESENT                        |
-| EX087           | Transaction failed due to incorrectly calculated \<b>hash\</b> parameter. ?                                                                 | CHECKSUM_FAILED                             |
-| EX088           | Merchant registration limit exceeded in 1 hour                                                                                              | MERCHANT_REGISTRATION_LIMIT_EXCEEDED        |
-| EX089           | Token mismatch                                                                                                                              | TOKEN_MISMATCH                              |
-| EX090           | Payu id or token missing                                                                                                                    | PAYUID_MISSING_TOKEN_MISS                   |
-| EX091           | Invalid Request ?                                                                                                                           | INVALID_PAGE_REQUESTED                      |
-| EX092           | Upload Error: Invalid File or no data                                                                                                       | UPLOAD_ERROR                                |
-| EX093           | Reporting Error: Invalid File or no data                                                                                                    | REPORTING_ERROR_INVALID_FILE                |
-| EX094           | Vendor details not saved                                                                                                                    | VENDOR_DETAILS_NOT_SAVED                    |
-| EX095           | The value must be an integer (not 0) signifying the number of days ? ?                                                                      | NON_INTEGER_ERROR                           |
-| EX096           | Reconciliation Error: Undefined actions requested. Defined actions are : \<b> ? \</b> Change \<b> ? \</b> action(s) to appropriate actions. | RECONCILIATION_ERROR_UNDEFINED_ACTION       |
-| EX097           | Invalid Merchant Identifier                                                                                                                 | INVALID_MERCHANT_IDENTIFIER                 |
-| EX098           | Insufficient parameters for pt key addition                                                                                                 | INSUFFICIENT_PARAM_PT_KEY_ADDITION          |
-| EX099           | Insufficient parameters for pt key deletion                                                                                                 | INSUFFICIENT_PARAM_PT_KEY_DELETION          |
-| EX100           | Insufficient parameters for pt key update                                                                                                   | INSUFFICIENT_PARAM_PT_KEY_UPDATE            |
-| EX101           | Remove pg key - Invalid merchant id                                                                                                         | INVALID_MERCHANT_ID                         |
-| EX102           | Insufficient Input for pg keys                                                                                                              | INSUFFICIENT_INPUT_FOR_PG_KEYS              |
-| EX103           | Mapped status and unmapped status of payu id ? didnt match                                                                                  | MAPPED_UNMAPPED_STATUS                      |
-| EX104           | Reporting Error: Mandatory column missing. Mandatory columns are: \<b> ? \</b>                                                              | REPORTING_ERROR_MANDATORY_COL_MISSING       |
-| EX105           | Upload Error: Mandatory column missing. Mandatory columns are: \<b> ? \</b>                                                                 | UPLOAD_ERROR_MANDATORY_COL_MISSING          |
-| EX106           | Refund Reference Number Upload Error: Invalid File or no data                                                                               | REFUND_UPLOAD_ERROR_INVLALID_FILE           |
-| EX107           | Refund Reference Number Upload Error: Mandatory column missing. Mandatory columns are: \<b> ? \</b>                                         | REFUND_UPLOAD_ERROR_MANDATORY_COL_MISS      |
-| EX108           | This \<b>txnid\</b> has been used previously or was successfully captured. ?                                                                | DUPLICATE_ORDER_ID                          |
-| EX109           | Wallet Mode Override for ?                                                                                                                  | WALLET_MODE_OVERRIDE                        |
-| EX110           | Error! File upload for ? ? failed                                                                                                           | FILE_UPLOAD_FAILURE                         |
-| EX111           | Incorrect additional charge posted in paisa response for p1 ?                                                                               | INCORRECT_ADDITIONAL_CHARGE                 |
-| EX112           | Invalid request for payuid: ? : addedon: ? : updatedon: ? ?                                                                                 | INVALID_REQUEST_FOR_PAYUID                  |
-| EX113           | Invalid Transaction                                                                                                                         | ACCESS_TOKEN_MISMATCH                       |
-| EX114           | Merchant key missing in Request                                                                                                             | MERCHANT_KEY_MISSING                        |
-| EX115           | The \<b>key\</b> ? value which you are using in the transaction request - is currently inactive. ?                                          | PAYMENTFLOW_INACTIVE_MERCHANT               |
-| EX116           | Expired transaction.                                                                                                                        | PAYMENTFLOW_EXPIRED_TRANSACTION             |
-| EX117           | Invalid amount                                                                                                                              | INVALID_AMOUNT                              |
-| EX118           | Invalid Transaction.                                                                                                                        | PAYMENTFLOW_INVALID_TRANSACTION             |
-| EX119           | Card details invalid.                                                                                                                       | CARD_DETAILS_INVALID                        |
-| EX120           | Invalid additional amount                                                                                                                   | INVALID_ADDITIONAL_AMOUNT                   |
-| EX121           | No edit keys specified. Edit form is unavailable.                                                                                           | NO_EDIT_KEY_EDIT_FORM_UNAVAILABLE           |
-| EX122           | Error: Invalid File or no data                                                                                                              | ERROR_INVALID_FILE                          |
-| EX123           | Mandatory parameter payuId missing.                                                                                                         | MANDATORY_PARAMETER_PAYUID_MISSING          |
-| EX124           | One or more mandatory parameters are missing in the transaction request. ?                                                                  | MANDATORY_PARAMETER_TXNID_MISSING           |
-| EX125           | Transaction Expired, payuid: ?  base txn Id: ? uniqueness: ? , ?                                                                            | PAYMENT_FLOW_EXCEP_TRANSACTION_EXPIRED      |
-| EX126           | Invalid Data                                                                                                                                | PAYMENTFLOW_INVALID_DATA                    |
-| EX127           | Invalid check card is credit                                                                                                                | INVALID_CHECK_CARD_IS_CREDIT                |
-| EX128           | This Invoice has expired                                                                                                                    | INVOICE_EXPIRED                             |
-| EX129           | Invalid set user request                                                                                                                    | INVALID_SET_USER_REQUEST                    |
-| EX130           | Error: Mandatory column missing. Mandatory columns are: \<b> ? \</b>                                                                        | ERROR_MANDATORY_FILE_MISSING                |
-| EX131           | Switcher Failure - No active gateway set for merchant transaction id: ?.                                                                    | NO_ACTIVE_PG_FOUND                          |
-| EX132           | SS-ratio based Switcher failure - No eligible gateway returned for transaction id: ?.                                                       | SS_RATIO_BASED_SWITCHER_FAILURE             |
-| EX133           | Invalid discount amount                                                                                                                     | INVALID_DISCOUNT                            |
-| EX134           | Recon: All Ibibo Code not set                                                                                                               | RECON_ALL_IBIBO_CODE_UNSET                  |
-| EX135           | Number of elements in a row should be equal to column count                                                                                 | MYSQL_ROW_COLUMN_COUNT_MISMATCH             |
-| EX136           | Message sending failed. Message Content : ?; Mobile Number : ?; App : ? .  \n Response received : ?                                         | MESSAGE_SENDING_FAILED                      |
-| EX137           | Recon: Card bin map not set                                                                                                                 | RECON_CARDBIN_PGS_UNSET                     |
-| EX138           | Fatal Error Handler Counter                                                                                                                 | FATAL_ERROR_HANDLER                         |
-| EX139           | Recon: Email Template not set                                                                                                               | RECON_EMAIL_TEMPLATE_UNSET                  |
-| EX140           | Profiling error. ProfilerName: ?, AppName: ?, Event: ?, Message: ?                                                                          | PROFILING_ERROR                             |
-| EX141           | Mandrill ERROR : ?                                                                                                                          | MANDRILL_ERROR                              |
-| EX142           | Message : ?. Error Code : ?                                                                                                                 | DB_EXCEPTION_ERROR_MASTER                   |
-| EX143           | Message : ?. Error Code : ?                                                                                                                 | DB_EXCEPTION_ERROR_SLAVE                    |
-| EX144           | Message : ?. Error Code : ?                                                                                                                 | DB_EXCEPTION_ERROR_CONCURRENCY              |
-| EX145           | Redirection loop for key : ?                                                                                                                | EXCEPTION_REDIRECTION                       |
-| EX146           | ? table details are missing in lib/utility/RiskConstants.php                                                                                | INVALID_TABLENAME                           |
-| EX147           | You seem to be using an incorrect \<b>key\</b> or \<b>salt\</b> value. ?                                                                    | INCORRECT_MERCHANT_KEY                      |
-| EX148           | Invalid Request: ? Unable to parse URL.                                                                                                     | INVALID_URL                                 |
-| EX149           | Maximum retry attempts for this \<b>txnid\</b> has been exceeded.                                                                           | RETRY_EXHAUSTED                             |
-| EX150           | Invalid subvention amount                                                                                                                   | INVALID_SUBVENTION_AMOUNT                   |
-| EX151           |                                                                                                                                             | SFTP_CONNECTION_FAILED                      |
-| EX151           | Invalid subvention                                                                                                                          | INVALID_SUBVENTION                          |
-| EX152           | No form post variables found [S2S Flow]                                                                                                     | NO_FORM_POST_VARS_S2SFLOW                   |
-| EX153           | Category or ibibo code not recieved                                                                                                         | CATEGORY_IBIBO_NOT_RCVD_S2SFLOW             |
-| EX154           | Payment Method Enforced and wrong method selected                                                                                           | WRONG_PAYMENT_METHOD_SELECTED               |
-| EX155           | NB option is down                                                                                                                           | NB_OPTIION_DOWN                             |
-| EX156           | Issuing Bank is down                                                                                                                        | ISSUING_BANK_DOWN                           |
-| EX157           |  nan                                                                                                                                        | INVALID_CHECK_ALLOWED_BANKS_DC_IN_SI        |
-| EX158           | Merchant Integration Exception occurred                                                                                                     | MERCHANT_INTEGRATION_EXCEPTION_CODE         |
-| EX159           |  nan                                                                                                                                        | UNABLE_TO_DECRYPT_TRANSACTION               |
-| EX160           | Zipped file generation exception occurred                                                                                                   | PASSWORD_PROTECT_FILE_GENERATION_FAILED     |
-| EX200           | Something went wrong                                                                                                                        | V2_API_CURL_EXCEPTION                       |
-| EX201           | Merchant key used for HMAC auth is different from merchant key in data                                                                      | V2_API_MERCHANT_KEY_MISMATCH                |
-| EX210           | This link has expired                                                                                                                       | INTENT_LINK_EXPIRED                         |
-| EX211           | Link already used                                                                                                                           | INTENT_LINK_USED                            |
-| EX212           |  nan                                                                                                                                        | INVOICE_GMV_LIMIT_REACHED                   |
-| EX213           | Duplicate Callback. Please try after sometime                                                                                               | DUPLICATE_CALLBACK                          |
-| EX214           | Retry limit exhausted. Please ask your merchant to send you a new link.                                                                     | INTENT_LINK_USE_EXHAUSTED                   |
-| EX215           | Invalid response from curl                                                                                                                  | INVALID_CURL_RESPONSE                       |
-| EX216           |  nan                                                                                                                                        | REQUEST_LIMIT_REACHED                       |
-| EX217           | Invalid First Name                                                                                                                          | INVALID_FIRST_NAME_EXCEPTION                |
-| EX218           | Invalid Last Name                                                                                                                           | INVALID_LAST_NAME_EXCEPTION                 |
-| EX219           | Invalid Email                                                                                                                               | INVALID_EMAIL_EXCEPTION                     |
-| EX220           | Invalid phone number                                                                                                                        | INVALID_PHONE_EXCEPTION                     |
-| EX221           | Invalid ZipCode                                                                                                                             | INVALID_ZIPCODE_EXCEPTION                   |
-| EX222           | Invalid Product Info                                                                                                                        | INVALID_PRODUCT_INFO_EXCEPTION              |
-| EX223           | Incomplete Onboarding                                                                                                                       | INCOMPLETE_ONBOARDING                       |
-| EX224           | Transactions initiation not allowed on aggregator-child merchant.                                                                           | AGGREGATOR_CHILD_MERCHANT_KEY               |
-| EX225           |  nan                                                                                                                                        | INVALID_EXPIRY_TIME                         |
-| EX226           |                                                                                                                                             | PIH_ERROR                                   |
-| EX227           | This currency is not supported on your account. Please reach out to your KAM for activation                                                 | INACTIVE_CURRENCY_FOR_SINGLE_MID            |
-| EX300           |  nan                                                                                                                                        | MISMATCH_CART_AMOUNT_AND_TRANSACTION_AMOUNT |
-| EX301           |  nan                                                                                                                                        | INCOMPLETE_SKU_DETAILS                      |
-| EX302           |  nan                                                                                                                                        | MISMATCH_CART_ITEMS_AND_SKU_QUANTITY_SUM    |
-| EX303           |  nan                                                                                                                                        | MISMATCH_CART_AMOUNT_AND_PER_SKU_SUM        |
-| EX304           |  nan                                                                                                                                        | MULTIPLE_SAME_SKU_ID_IN_SINGLE_CART         |
-| EX305           | Invalid additional percentage                                                                                                               | INVALID_ADDITIONAL_PERCENTAGE               |
-| EX306           | Transaction amount convenience fee GST is incorrect, Please try again.                                                                      | INVALID_ADDITIONAL_GST                      |
-| EX306           | Invalid Webhook Url                                                                                                                         | INVALID_WEBHOOK_URL                         |
-| EX306           | Wrong Api version selected for split txn                                                                                                    | API_VERSION_INCORRECT_SPLIT_TXN             |
-| EX307           | Sent convenience fee over transaction amount is high. Please check & try again                                                              | HIGH_CONV_FEE                               |
-| EX307           | One or more mandatory parameters are missing in the transaction request for split txn                                                       | MANDATORY_PARAMS_MISSING_SPLIT_TXN          |
-| EX401           |  nan                                                                                                                                        | REDIS_DSN_ERROR                             |
-| EX401           |  nan                                                                                                                                        | REDIS_DSNKEY_NOT_CONFIGURED                 |
-| EX402           | Invalid Partner Param                                                                                                                       | INVALID_PARTNER_PARAM                       |
-| EX403           | Invalid UDF Param                                                                                                                           | INVALID_UDF_PARAM                           |
-| EX404           | Invalid Buyer Type Business                                                                                                                 | INVALID_BUYER_TYPE_BUSINESS                 |
-| EX405           | Invalid More Info Param                                                                                                                     | INVALID_MORE_INFO_PARAM                     |
-| EX406           | Invalid PAN or DOB Details                                                                                                                  | INVALID_PAN_DOB_DETAILS                     |
-| EX407           | Invalid TCS Amount                                                                                                                          | INVALID_TCS_AMOUNT                          |
-| EX408           | Insufficient TCS amount passed based on lrs service type                                                                                    | INSUFFICIENT_TCS_AMOUNT                     |
-| EX409           | Invalid value for pacb_lrs_declaration_individual                                                                                           | INVALID_PACB_LRS_DECLARATION_INDIVIDUAL     |
-| EX410           | Invalid Lrs Service Type                                                                                                                    | INVALID_LRS_SERVICE_TYPE                    |
-| EX411           |  nan                                                                                                                                        | INVALID_PRICING_RESPONSE                    |
-| EX412           | The IBIBO codes sent in request are wrong or not active for your merchant account.                                                          | INVALID_ENFORCE_PAYMETHOD                   |
+<br />
+
+<SearchableTable
+  headers={['Errors', 'Error_message/Message', 'Error Description', 'Title' ]}
+  rows={[
+  ["EX000", '', "GRAND_TOTAL", ''],
+  ["EX001", "No MySQL DSN Supplied", "MYSQL_DSN_ERROR", "No MySQL DSN Supplied"],
+  ["EX002", "Default db not mentioned", "MYSQL_DEFAULT_DB_UKNOWN", "Default db not mentioned"],
+  ["EX003", "MySQL DSN not configured for ?", "MYSQL_DSN_NOT_CONFIGURED", "MySQL DSN not configured for ?"],
+  ["EX004", "MySQL DSN not configured for ?", "MYSQL_DSNKEY_NOT_CONFIGURED", "MySQL DSN not configured for ?"],
+  ["EX005", "Data is empty", "MYSQL_DATA_EMPTY", "Data is empty"],
+  ["EX006", "where clause is empty", "MYSQL_WHERE_CLAUSE_EMPTY", "where clause is empty"],
+  ["EX007", "Table name is empty", "MYSQL_TABLENAME_EMPTY", "Table name is empty"],
+  ["EX008", "Insufficient dataTypes given.", "MYSQL_DATATYPE_INSUFFICIENT", "Insufficient dataTypes given."],
+  ["EX009", "DataTypes provided but whereParamTypes not provided", "MYSQL_WHEREPARAMTYPE_EMPTY", "DataTypes provided but whereParamTypes not provided"],
+  ["EX010", "Insufficent whereParamTypes provided", "MYSQL_WHEREPARAMTYPE_INSUFFICIENT", "Insufficent whereParamTypes provided"],
+  ["EX011", "CSRF happened", "CSRF_OCCURRED", "CSRF happened"],
+  ["EX012", "Key is Null", "NULL_KEY", "Key is Null"],
+  ["EX013", "Insufficient Input", "INSUFFICIENT_INPUT", "Insufficient Input"],
+  ["EX014", "Merchant Param: Key not supplied", "MERCHANT_PARAM_KEY_EMPTY", "Merchant Param: Key not supplied"],
+  ["EX015", "Merchant payment type insufficient parameters", "MERCHANT_PAYMENT_TYPE_INSUFFICIENT", "Merchant payment type insufficient parameters"],
+  ["EX016", "Merchant gateway insufficient parameters", "MERCHANT_GATEWAY_INSUFFICIENT_PARAMS", "Merchant gateway insufficient parameters"],
+  ["EX017", "Payment gateway id not assigned to merchant payment type", "PG_UNASSIGNED_TO_MERCHANT_PAYMENT_TYPE", "Payment gateway id not assigned to merchant payment type"],
+  ["EX018", "Invalid Payment Gateway Identifier", "INVALID_PAYMENTGATEWAY_INDENTIFIER", "Invalid Payment Gateway Identifier"],
+  ["EX019", "Unable to obtain lock for transaction", "UNABLE_TO_LOCK", "Unable to obtain lock for transaction"],
+  ["EX020", "Inconsistent Transaction Status in database", "INCONSISTENCY_IN_TRANSACTION_STATUS", "Inconsistent Transaction Status in database"],
+  ["EX021", "The risk_category for this merchant hasn", "RISK_CATEGORY_MISSING", "The risk_category for this merchant hasn"],
+  ["EX022", "PayuId not attached to Transaction Class ?", "PAYUID_MISSING", "PayuId not attached to Transaction Class ?"],
+  ["EX023", "Verifier hash mismatch", "VERIFIER_MISMATCH", "Verifier hash mismatch"],
+  ["EX024", "Empty lockid in transaction::unlock", "LOCKID_EMPTY", "Empty lockid in transaction::unlock"],
+  ["EX025", "Merchant not found", "MERCHANT_NOT_FOUND", "Merchant not found"],
+  ["EX026", "Transaction could not be reinitiated due to empty base transaction or invalid status", "TRANSACTION_REINITIATION_PROBLEM", "Transaction could not be reinitiated due to empty base transaction or invalid status"],
+  ["EX027", "Empty previous transaction id", "TRANSACTIONID_EMPTY", "Empty previous transaction id"],
+  ["EX028", "Invalid Attempt", "INVALID_ATTEMPT", "Invalid Attempt"],
+  ["EX029", "Invalid User Identifier", "INVALID_USER_IDENTIFIER", "Invalid User Identifier"],
+  ["EX030", "Invalid Vendor Identifier", "INVALID_VENDOR_IDENTIFIER", "Invalid Vendor Identifier"],
+  ["EX031", "Cancel Error: Invalid File or no data", "CANCEL_ERROR_INVALID_FILE", "Cancel Error: Invalid File or no data"],
+  ["EX032", "Cancel Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>", "CANCEL_ERROR_MANDATORY_COLUMN", "Cancel Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>"],
+  ["EX033", "Refund Error: Invalid File or no data ?", "REFUND_ERROR_INVALID_FILE", "Refund Error: Invalid File or no data ?"],
+  ["EX034", "Refund Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>", "REFUND_ERROR_MANDATORY_COLUMN", "Refund Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>"],
+  ["EX035", "Capture Error: Invalid File or no data", "CAPTURE_ERROR_INVALID_FILE", "Capture Error: Invalid File or no data"],
+  ["EX036", "Captured Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>", "CAPTURE_ERROR_MANDATORY_COLUMN", "Captured Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>"],
+  ["EX037", "Reconciliation Error: Invalid File or no data", "RECONCILIATION_ERROR_INVALID_FILE", "Reconciliation Error: Invalid File or no data"],
+  ["EX038", "Reconciliation Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>", "RECONCILIATION_ERROR_MANDATORY_COLUMN", "Reconciliation Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>"],
+  ["EX039", "Recon: Transaction not set", "RECON_TRANSACTION_UNSET", "Recon: Transaction not set"],
+  ["EX040", "?", "NO_PRIVILEGE", "?"],
+  ["EX041", "The requested file does not exist or you do not have priviledge to access it", "FILE_DO_NOT_EXIST_OR_NO_PRIVILEGE", "The requested file does not exist or you do not have priviledge to access it"],
+  ["EX042", "Invalid Invoice ID", "INVOICE_INVALID", "Invalid Invoice ID"],
+  ["EX043", "Problem reading data from ? : ?", "PROBLEM_READING_DATA_SENTROPI_URL", "Problem reading data from ? : ?"],
+  ["EX044", "pExcelReader: Invalid type ?", "PEXCELREADER_INVALID_TYPE", "pExcelReader: Invalid type ?"],
+  ["EX045", "pExcelReader: File ? not readable", "PEXCELREADER_FILE_NOT_READABLE", "pExcelReader: File ? not readable"],
+  ["EX046", "XLSXReader : File not readable Filepath : ( ? ) Error : ( ? )", "XLSXREADER_FILE_NOT_READABLE", "XLSXReader : File not readable Filepath : ( ? ) Error : ( ? )"],
+  ["EX047", "ODSReader :  File not readable Filepath : ( ? ) Error : ( ? )", "ODSREADER_FILE_NOT_READABLE", "ODSReader :  File not readable Filepath : ( ? ) Error : ( ? )"],
+  ["EX048", "CSVReader :  File not readable Filepath : ( ? ) Error : ( ? )", "CSVREADER_FILE_NOT_READABLE", "CSVReader :  File not readable Filepath : ( ? ) Error : ( ? )"],
+  ["EX049", "All edit keys must have an associated value", "EDIT_KEY_UNASSOCIATED_VALUE", "All edit keys must have an associated value"],
+  ["EX050", "No data found for this form. Edit form is unavailable", "EDIT_FORM_UNAVAILABLE", "No data found for this form. Edit form is unavailable"],
+  ["EX051", "All edit keys must be part of edit fields", "EDIT_KEY_PART_OF_EDIT_FIELDS", "All edit keys must be part of edit fields"],
+  ["EX052", "TransactionID not found in Pg Response", "TRANSACTIONID_NOT_FOUND_PG_RESPONSE", "TransactionID not found in Pg Response"],
+  ["EX053", "Invalid Transaction ID in gateway response", "TRANSACTIONID_INVALID_GATEWAY_RESPONSE", "Invalid Transaction ID in gateway response"],
+  ["EX054", "Base merchant id not posted from the paisa request for payuId ?", "BASE_MERCHANT_ID_MISSING", "Base merchant id not posted from the paisa request for payuId ?"],
+  ["EX055", "Base payu id not posted from the paisa request for payuId ?", "BASE_PAYU_ID_MISSING", "Base payu id not posted from the paisa request for payuId ?"],
+  ["EX056", "Invalid Paisa Merchant Id", "INVALID_PAISA_MERCHANT", "Invalid Paisa Merchant Id"],
+  ["EX057", "Not Implemented", "NOT_IMPLEMENTED", "Not Implemented"],
+  ["EX058", "Object can not be saved to database. Identifiers not set", "OBJECT_UNSAVED_IDENTIFIER_UNSET", "Object can not be saved to database. Identifiers not set"],
+  ["EX059", "Object can not be saved to database. Table name not mentioned", "OBJECT_UNSAVED_TABLENAME_MISSING", "Object can not be saved to database. Table name not mentioned"],
+  ["EX060", "Object can not be saved to database. Identifier value missing", "OBJECT_UNSAVED_IDENTIFIER_MISSING", "Object can not be saved to database. Identifier value missing"],
+  ["EX061", "Protocol Mismatch", "PROTOCOL_MISSMATCH", "Protocol Mismatch"],
+  ["EX062", "Add Payment Call to payu_paisa_addpayment_url failed", "PAYU_PAISA_ADDPAYMENT_URL_FAILED", "Add Payment Call to payu_paisa_addpayment_url failed"],
+  ["EX063", "Invalid Transaction State: Transaction in IN PROGRESS state in cancel.php", "INVALID_TRANSACTION_STATE", "Invalid Transaction State: Transaction in IN PROGRESS state in cancel.php"],
+  ["EX064", "Missing forward action", "MISSING_FORWARD_ACTION", "Missing forward action"],
+  ["EX065", "Invalid forward - App ? not available", "APPS_APPNAME_UNAVAILABLE", "Invalid forward - App ? not available"],
+  ["EX066", "Action must extend PayuAction", "ACTION_MUST_EXTEND_PAYUACTION", "Action must extend PayuAction"],
+  ["EX067", "Unable to reload action: ?", "UNABLE_TO_RELOAD_ACTION", "Unable to reload action: ?"],
+  ["EX068", "No fields specified in adminViewer", "MISSING_ADMINVIEWER_FIELDS", "No fields specified in adminViewer"],
+  ["EX069", "The request parameter must be set", "REQUEST_PARAM_UNSET", "The request parameter must be set"],
+  ["EX070", "The ? request parameter must be set", "HTTPREQUEST_PARAM_UNSET", "The ? request parameter must be set"],
+  ["EX071", "Problem Building WURFL Repository: ?", "WURFL_REPOSITORY_PROBLEM", "Problem Building WURFL Repository: ?"],
+  ["EX072", "There is no device with ID [?] in the loaded WURFL Data", "DEVICE_MISSING_IN_WURFL_DATA", "There is no device with ID [?] in the loaded WURFL Data"],
+  ["EX073", "WriteRow failed: Unknown Result", "WRITE_ROW_FAILED", "WriteRow failed: Unknown Result"],
+  ["EX074", "WriteFormattedRow failed: unknown result", "WRITE_FORMATTED_ROW_FAILED", "WriteFormattedRow failed: unknown result"],
+  ["EX075", "OpenExcel failed: unknown result", "OPENEXCEL_FAILED", "OpenExcel failed: unknown result"],
+  ["EX076", "SaveFile failed: unknown result", "SAVEFILE_FAILED", "SaveFile failed: unknown result"],
+  ["EX077", "Write N Rows failed: unknown result", "WRITE_N_ROW_FAILED", "Write N Rows failed: unknown result"],
+  ["EX078", "WriteFormattedNRows failed: unknown result", "WRITE_N_FORMATTED_ROW_FAILED", "WriteFormattedNRows failed: unknown result"],
+  ["EX079", "Message : ?. Error Code : ?", "DB_EXCEPTION_ERROR_OTHERS", "Message : ?. Error Code : ?"],
+  ["EX080", "Could not open remote file: ?", "REMOTE_FILE_OPEN_FAILED", "Could not open remote file: ?"],
+  ["EX081", "Could not open local file: ?", "LOCAL_FILE_OPEN_FAILED", "Could not open local file: ?"],
+  ["EX082", "Could not send data from file: ?", "DATA_SENDIG_FAILED", "Could not send data from file: ?"],
+  ["EX083", "Parameter Passed : ?", "BLANK", "Parameter Passed : ?"],
+  ["EX084", "Return URI not received", "URI_NOT_RECEIVED", "Return URI not received"],
+  ["EX085", "Verifier payu Id not received", "VERIFIER_PAYUID_NOT_RECEIVED", "Verifier payu Id not received"],
+  ["EX086", "Card bin is not present", "CARD_BIN_NOT_PRESENT", "Card bin is not present"],
+  ["EX087", "Transaction failed due to incorrectly calculated \\<b>hash\\</b> parameter. ?", "CHECKSUM_FAILED", "Transaction failed due to incorrectly calculated \\<b>hash\\</b> parameter. ?"],
+  ["EX088", "Merchant registration limit exceeded in 1 hour", "MERCHANT_REGISTRATION_LIMIT_EXCEEDED", "Merchant registration limit exceeded in 1 hour"],
+  ["EX089", "Token mismatch", "TOKEN_MISMATCH", "Token mismatch"],
+  ["EX090", "Payu id or token missing", "PAYUID_MISSING_TOKEN_MISS", "Payu id or token missing"],
+  ["EX091", "Invalid Request ?", "INVALID_PAGE_REQUESTED", "Invalid Request ?"],
+  ["EX092", "Upload Error: Invalid File or no data", "UPLOAD_ERROR", "Upload Error: Invalid File or no data"],
+  ["EX093", "Reporting Error: Invalid File or no data", "REPORTING_ERROR_INVALID_FILE", "Reporting Error: Invalid File or no data"],
+  ["EX094", "Vendor details not saved", "VENDOR_DETAILS_NOT_SAVED", "Vendor details not saved"],
+  ["EX095", "The value must be an integer (not 0) signifying the number of days ? ?", "NON_INTEGER_ERROR", "The value must be an integer (not 0) signifying the number of days ? ?"],
+  ["EX096", "Reconciliation Error: Undefined actions requested. Defined actions are : \\<b> ? \\</b> Change \\<b> ? \\</b> action(s) to appropriate actions.", "RECONCILIATION_ERROR_UNDEFINED_ACTION", "Reconciliation Error: Undefined actions requested. Defined actions are : \\<b> ? \\</b> Change \\<b> ? \\</b> action(s) to appropriate actions."],
+  ["EX097", "Invalid Merchant Identifier", "INVALID_MERCHANT_IDENTIFIER", "Invalid Merchant Identifier"],
+  ["EX098", "Insufficient parameters for pt key addition", "INSUFFICIENT_PARAM_PT_KEY_ADDITION", "Insufficient parameters for pt key addition"],
+  ["EX099", "Insufficient parameters for pt key deletion", "INSUFFICIENT_PARAM_PT_KEY_DELETION", "Insufficient parameters for pt key deletion"],
+  ["EX100", "Insufficient parameters for pt key update", "INSUFFICIENT_PARAM_PT_KEY_UPDATE", "Insufficient parameters for pt key update"],
+  ["EX101", "Remove pg key - Invalid merchant id", "INVALID_MERCHANT_ID", "Remove pg key - Invalid merchant id"],
+  ["EX102", "Insufficient Input for pg keys", "INSUFFICIENT_INPUT_FOR_PG_KEYS", "Insufficient Input for pg keys"],
+  ["EX103", "Mapped status and unmapped status of payu id ? didnt match", "MAPPED_UNMAPPED_STATUS", "Mapped status and unmapped status of payu id ? didnt match"],
+  ["EX104", "Reporting Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>", "REPORTING_ERROR_MANDATORY_COL_MISSING", "Reporting Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>"],
+  ["EX105", "Upload Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>", "UPLOAD_ERROR_MANDATORY_COL_MISSING", "Upload Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>"],
+  ["EX106", "Refund Reference Number Upload Error: Invalid File or no data", "REFUND_UPLOAD_ERROR_INVLALID_FILE", "Refund Reference Number Upload Error: Invalid File or no data"],
+  ["EX107", "Refund Reference Number Upload Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>", "REFUND_UPLOAD_ERROR_MANDATORY_COL_MISS", "Refund Reference Number Upload Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>"],
+  ["EX108", "This \\<b>txnid\\</b> has been used previously or was successfully captured. ?", "DUPLICATE_ORDER_ID", "This \\<b>txnid\\</b> has been used previously or was successfully captured. ?"],
+  ["EX109", "Wallet Mode Override for ?", "WALLET_MODE_OVERRIDE", "Wallet Mode Override for ?"],
+  ["EX110", "Error! File upload for ? ? failed", "FILE_UPLOAD_FAILURE", "Error! File upload for ? ? failed"],
+  ["EX111", "Incorrect additional charge posted in paisa response for p1 ?", "INCORRECT_ADDITIONAL_CHARGE", "Incorrect additional charge posted in paisa response for p1 ?"],
+  ["EX112", "Invalid request for payuid: ? : addedon: ? : updatedon: ? ?", "INVALID_REQUEST_FOR_PAYUID", "Invalid request for payuid: ? : addedon: ? : updatedon: ? ?"],
+  ["EX113", "Invalid Transaction", "ACCESS_TOKEN_MISMATCH", "Invalid Transaction"],
+  ["EX114", "Merchant key missing in Request", "MERCHANT_KEY_MISSING", "Merchant key missing in Request"],
+  ["EX115", "The \\<b>key\\</b> ? value which you are using in the transaction request - is currently inactive. ?", "PAYMENTFLOW_INACTIVE_MERCHANT", "The \\<b>key\\</b> ? value which you are using in the transaction request - is currently inactive. ?"],
+  ["EX116", "Expired transaction.", "PAYMENTFLOW_EXPIRED_TRANSACTION", "Expired transaction."],
+  ["EX117", "Invalid amount", "INVALID_AMOUNT", "Invalid amount"],
+  ["EX118", "Invalid Transaction.", "PAYMENTFLOW_INVALID_TRANSACTION", "Invalid Transaction."],
+  ["EX119", "Card details invalid.", "CARD_DETAILS_INVALID", "Card details invalid."],
+  ["EX120", "Invalid additional amount", "INVALID_ADDITIONAL_AMOUNT", "Invalid additional amount"],
+  ["EX121", "No edit keys specified. Edit form is unavailable.", "NO_EDIT_KEY_EDIT_FORM_UNAVAILABLE", "No edit keys specified. Edit form is unavailable."],
+  ["EX122", "Error: Invalid File or no data", "ERROR_INVALID_FILE", "Error: Invalid File or no data"],
+  ["EX123", "Mandatory parameter payuId missing.", "MANDATORY_PARAMETER_PAYUID_MISSING", "Mandatory parameter payuId missing."],
+  ["EX124", "One or more mandatory parameters are missing in the transaction request. ?", "MANDATORY_PARAMETER_TXNID_MISSING", "One or more mandatory parameters are missing in the transaction request. ?"],
+  ["EX125", "Transaction Expired, payuid: ?  base txn Id: ? uniqueness: ? , ?", "PAYMENT_FLOW_EXCEP_TRANSACTION_EXPIRED", "Transaction Expired, payuid: ?  base txn Id: ? uniqueness: ? , ?"],
+  ["EX126", "Invalid Data", "PAYMENTFLOW_INVALID_DATA", "Invalid Data"],
+  ["EX127", "Invalid check card is credit", "INVALID_CHECK_CARD_IS_CREDIT", "Invalid check card is credit"],
+  ["EX128", "This Invoice has expired", "INVOICE_EXPIRED", "This Invoice has expired"],
+  ["EX129", "Invalid set user request", "INVALID_SET_USER_REQUEST", "Invalid set user request"],
+  ["EX130", "Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>", "ERROR_MANDATORY_FILE_MISSING", "Error: Mandatory column missing. Mandatory columns are: \\<b> ? \\</b>"],
+  ["EX131", "Switcher Failure - No active gateway set for merchant transaction id: ?.", "NO_ACTIVE_PG_FOUND", "Switcher Failure - No active gateway set for merchant transaction id: ?."],
+  ["EX132", "SS-ratio based Switcher failure - No eligible gateway returned for transaction id: ?.", "SS_RATIO_BASED_SWITCHER_FAILURE", "SS-ratio based Switcher failure - No eligible gateway returned for transaction id: ?."],
+  ["EX133", "Invalid discount amount", "INVALID_DISCOUNT", "Invalid discount amount"],
+  ["EX134", "Recon: All Ibibo Code not set", "RECON_ALL_IBIBO_CODE_UNSET", "Recon: All Ibibo Code not set"],
+  ["EX135", "Number of elements in a row should be equal to column count", "MYSQL_ROW_COLUMN_COUNT_MISMATCH", "Number of elements in a row should be equal to column count"],
+  ["EX136", "Message sending failed. Message Content : ?; Mobile Number : ?; App : ? .  \\n Response received : ?", "MESSAGE_SENDING_FAILED", "Message sending failed. Message Content : ?; Mobile Number : ?; App : ? .  \\n Response received : ?"],
+  ["EX137", "Recon: Card bin map not set", "RECON_CARDBIN_PGS_UNSET", "Recon: Card bin map not set"],
+  ["EX138", "Fatal Error Handler Counter", "FATAL_ERROR_HANDLER", "Fatal Error Handler Counter"],
+  ["EX139", "Recon: Email Template not set", "RECON_EMAIL_TEMPLATE_UNSET", "Recon: Email Template not set"],
+  ["EX140", "Profiling error. ProfilerName: ?, AppName: ?, Event: ?, Message: ?", "PROFILING_ERROR", "Profiling error. ProfilerName: ?, AppName: ?, Event: ?, Message: ?"],
+  ["EX141", "Mandrill ERROR : ?", "MANDRILL_ERROR", "Mandrill ERROR : ?"],
+  ["EX142", "Message : ?. Error Code : ?", "DB_EXCEPTION_ERROR_MASTER", "Message : ?. Error Code : ?"],
+  ["EX143", "Message : ?. Error Code : ?", "DB_EXCEPTION_ERROR_SLAVE", "Message : ?. Error Code : ?"],
+  ["EX144", "Message : ?. Error Code : ?", "DB_EXCEPTION_ERROR_CONCURRENCY", "Message : ?. Error Code : ?"],
+  ["EX145", "Redirection loop for key : ?", "EXCEPTION_REDIRECTION", "Redirection loop for key : ?"],
+  ["EX146", "? table details are missing in lib/utility/RiskConstants.php", "INVALID_TABLENAME", "? table details are missing in lib/utility/RiskConstants.php"],
+  ["EX147", "You seem to be using an incorrect \\<b>key\\</b> or \\<b>salt\\</b> value. ?", "INCORRECT_MERCHANT_KEY", "You seem to be using an incorrect \\<b>key\\</b> or \\<b>salt\\</b> value. ?"],
+  ["EX148", "Invalid Request: ? Unable to parse URL.", "INVALID_URL", "Invalid Request: ? Unable to parse URL."],
+  ["EX149", "Maximum retry attempts for this \\<b>txnid\\</b> has been exceeded.", "RETRY_EXHAUSTED", "Maximum retry attempts for this \\<b>txnid\\</b> has been exceeded."],
+  ["EX150", "Invalid subvention amount", "INVALID_SUBVENTION_AMOUNT", "Invalid subvention amount"],
+  ["EX151", '', "SFTP_CONNECTION_FAILED", ''],
+  ["EX151", "Invalid subvention", "INVALID_SUBVENTION", "Invalid subvention"],
+  ["EX152", "No form post variables found [S2S Flow]", "NO_FORM_POST_VARS_S2SFLOW", "No form post variables found [S2S Flow]"],
+  ["EX153", "Category or ibibo code not recieved", "CATEGORY_IBIBO_NOT_RCVD_S2SFLOW", "Category or ibibo code not recieved"],
+  ["EX154", "Payment Method Enforced and wrong method selected", "WRONG_PAYMENT_METHOD_SELECTED", "Payment Method Enforced and wrong method selected"],
+  ["EX155", "NB option is down", "NB_OPTIION_DOWN", "NB option is down"],
+  ["EX156", "Issuing Bank is down", "ISSUING_BANK_DOWN", "Issuing Bank is down"],
+  ["EX157", '', "INVALID_CHECK_ALLOWED_BANKS_DC_IN_SI", ''],
+  ["EX158", "Merchant Integration Exception occurred", "MERCHANT_INTEGRATION_EXCEPTION_CODE", "Merchant Integration Exception occurred"],
+  ["EX159", '', "UNABLE_TO_DECRYPT_TRANSACTION", ''],
+  ["EX160", "Zipped file generation exception occurred", "PASSWORD_PROTECT_FILE_GENERATION_FAILED", "Zipped file generation exception occurred"],
+  ["EX200", "Something went wrong", "V2_API_CURL_EXCEPTION", "Something went wrong"],
+  ["EX201", "Merchant key used for HMAC auth is different from merchant key in data", "V2_API_MERCHANT_KEY_MISMATCH", "Merchant key used for HMAC auth is different from merchant key in data"],
+  ["EX210", "This link has expired", "INTENT_LINK_EXPIRED", "This link has expired"],
+  ["EX211", "Link already used", "INTENT_LINK_USED", "Link already used"],
+  ["EX212", '', "INVOICE_GMV_LIMIT_REACHED", ''],
+  ["EX213", "Duplicate Callback. Please try after sometime", "DUPLICATE_CALLBACK", "Duplicate Callback. Please try after sometime"],
+  ["EX214", "Retry limit exhausted. Please ask your merchant to send you a new link.", "INTENT_LINK_USE_EXHAUSTED", "Retry limit exhausted. Please ask your merchant to send you a new link."],
+  ["EX215", "Invalid response from curl", "INVALID_CURL_RESPONSE", "Invalid response from curl"],
+  ["EX216", '', "REQUEST_LIMIT_REACHED", ''],
+  ["EX217", "Invalid First Name", "INVALID_FIRST_NAME_EXCEPTION", "Invalid First Name"],
+  ["EX218", "Invalid Last Name", "INVALID_LAST_NAME_EXCEPTION", "Invalid Last Name"],
+  ["EX219", "Invalid Email", "INVALID_EMAIL_EXCEPTION", "Invalid Email"],
+  ["EX220", "Invalid phone number", "INVALID_PHONE_EXCEPTION", "Invalid phone number"],
+  ["EX221", "Invalid ZipCode", "INVALID_ZIPCODE_EXCEPTION", "Invalid ZipCode"],
+  ["EX222", "Invalid Product Info", "INVALID_PRODUCT_INFO_EXCEPTION", "Invalid Product Info"],
+  ["EX223", "Incomplete Onboarding", "INCOMPLETE_ONBOARDING", "Incomplete Onboarding"],
+  ["EX224", "Transactions initiation not allowed on aggregator-child merchant.", "AGGREGATOR_CHILD_MERCHANT_KEY", "Transactions initiation not allowed on aggregator-child merchant."],
+  ["EX225", '', "INVALID_EXPIRY_TIME", ''],
+  ["EX226", '', "PIH_ERROR", ''],
+  ["EX227", "This currency is not supported on your account. Please reach out to your KAM for activation", "INACTIVE_CURRENCY_FOR_SINGLE_MID", "This currency is not supported on your account. Please reach out to your KAM for activation"],
+  ["EX300", '', "MISMATCH_CART_AMOUNT_AND_TRANSACTION_AMOUNT", ''],
+  ["EX301", '', "INCOMPLETE_SKU_DETAILS", ''],
+  ["EX302", '', "MISMATCH_CART_ITEMS_AND_SKU_QUANTITY_SUM", ''],
+  ["EX303", '', "MISMATCH_CART_AMOUNT_AND_PER_SKU_SUM", ''],
+  ["EX304", '', "MULTIPLE_SAME_SKU_ID_IN_SINGLE_CART", ''],
+  ["EX305", "Invalid additional percentage", "INVALID_ADDITIONAL_PERCENTAGE", "Invalid additional percentage"],
+  ["EX306", "Transaction amount convenience fee GST is incorrect, Please try again.", "INVALID_ADDITIONAL_GST", "Transaction amount convenience fee GST is incorrect, Please try again."],
+  ["EX306", "Invalid Webhook Url", "INVALID_WEBHOOK_URL", "Invalid Webhook Url"],
+  ["EX306", "Wrong Api version selected for split txn", "API_VERSION_INCORRECT_SPLIT_TXN", "Wrong Api version selected for split txn"],
+  ["EX307", "Sent convenience fee over transaction amount is high. Please check & try again", "HIGH_CONV_FEE", "Sent convenience fee over transaction amount is high. Please check & try again"],
+  ["EX307", "One or more mandatory parameters are missing in the transaction request for split txn", "MANDATORY_PARAMS_MISSING_SPLIT_TXN", "One or more mandatory parameters are missing in the transaction request for split txn"],
+  ["EX401", '', "REDIS_DSN_ERROR", ''],
+  ["EX401", '', "REDIS_DSNKEY_NOT_CONFIGURED", ''],
+  ["EX402", "Invalid Partner Param", "INVALID_PARTNER_PARAM", "Invalid Partner Param"],
+  ["EX403", "Invalid UDF Param", "INVALID_UDF_PARAM", "Invalid UDF Param"],
+  ["EX404", "Invalid Buyer Type Business", "INVALID_BUYER_TYPE_BUSINESS", "Invalid Buyer Type Business"],
+  ["EX405", "Invalid More Info Param", "INVALID_MORE_INFO_PARAM", "Invalid More Info Param"],
+  ["EX406", "Invalid PAN or DOB Details", "INVALID_PAN_DOB_DETAILS", "Invalid PAN or DOB Details"],
+  ["EX407", "Invalid TCS Amount", "INVALID_TCS_AMOUNT", "Invalid TCS Amount"],
+  ["EX408", "Insufficient TCS amount passed based on lrs service type", "INSUFFICIENT_TCS_AMOUNT", "Insufficient TCS amount passed based on lrs service type"],
+  ["EX409", "Invalid value for pacb_lrs_declaration_individual", "INVALID_PACB_LRS_DECLARATION_INDIVIDUAL", "Invalid value for pacb_lrs_declaration_individual"],
+  ["EX410", "Invalid Lrs Service Type", "INVALID_LRS_SERVICE_TYPE", "Invalid Lrs Service Type"],
+  ["EX411", '', "INVALID_PRICING_RESPONSE", ''],
+  ["EX412", "The IBIBO codes sent in request are wrong or not active for your merchant account.", "INVALID_ENFORCE_PAYMETHOD", "The IBIBO codes sent in request are wrong or not active for your merchant account."],
+  ]}
+  placeholder="Search"
+/>
 
 ## Cards
 
