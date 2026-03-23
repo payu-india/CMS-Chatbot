@@ -23,6 +23,12 @@ The following are possible errors and error codes for a transaction. You need t
   **Transaction Stages Error handling**: For error references on during various transaction stages in Net Banking, Cards and Wallets, refer to [Transaction Stages - Error References on Field7 & Field8](#transaction-stages-error-references-field7-field8).
 </Callout>
 
+<Callout icon="📘">
+  **Reference**
+
+  Refer to the **Cards** section for AuthN and AuthZ errors.
+</Callout>
+
 <SearchableTable
   headers={['Errors', 'Error_message/Message', 'Error Description', 'Title' ]}
   rows={[
