@@ -869,13 +869,13 @@ The parameters in the response for similar for all S2S flows. For more informati
   ```
 </Accordion>
 
-<Callout icon="📘" theme="info">
-  **Reference for Error Codes**: For a list of authorization error codes, refer to [Issuer Decline Error Codes](ref:issuer-decline-error-codes).
-</Callout>
-
 <Accordion title="Error List" icon="fa-info-circle">
   Refer to the <a href="https://docs.payu.in/reference/error-codes#authz-errors" target="_blank">AuthZ Errors</a> section in the Error Codes page for the list of authorization errors.
 </Accordion>
+
+<Callout icon="📘" theme="info">
+  **Reference for Error Codes**: For a list of authorization error codes, refer to [Issuer Decline Error Codes](ref:issuer-decline-error-codes).
+</Callout>
 
 ## Step 3. Verify the payment
 
