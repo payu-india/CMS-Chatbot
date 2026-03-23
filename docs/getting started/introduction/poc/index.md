@@ -183,7 +183,7 @@ Accelerate your integration workflow with our net banking Postman collection for
 </button>
 <script>
 (function () {
-  var FILE_URL = 'https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/AuthN_error_list.csv';
+  var FILE_URL = 'https://github.com/palgunams21/payu-docs-assets/releases/download/AuthN-AuthZ-errors/AuthN_error_list.csv';
   var FILE_NAME = 'AuthN_error_list.csv';
   var btn = document.getElementById('payu-csv-download');
   if (!btn) return;
