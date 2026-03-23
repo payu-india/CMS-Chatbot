@@ -172,3 +172,43 @@ Accelerate your integration workflow with our net banking Postman collection for
 `}</HTMLBlock>
 
 [Download CSV template](https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/AuthN_error_list.csv)
+
+<HTMLBlock>{`
+<button
+  type="button"
+  id="payu-csv-download"
+  style="padding:10px 18px;background:#2563eb;color:#fff;font:600 14px system-ui,sans-serif;border:none;border-radius:6px;cursor:pointer;"
+>
+  Download CSV
+</button>
+<script>
+(function () {
+  var FILE_URL = 'https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/AuthN_error_list.csv';
+  var FILE_NAME = 'AuthN_error_list.csv';
+  var btn = document.getElementById('payu-csv-download');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    fetch(FILE_URL)
+      .then(function (res) {
+        if (!res.ok) throw new Error('fetch failed');
+        return res.blob();
+      })
+      .then(function (blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = FILE_NAME;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      })
+      .catch(function () {
+        window.location.href = FILE_URL;
+      });
+  });
+})();
+</script>
+`}</HTMLBlock>
+
+<br />
