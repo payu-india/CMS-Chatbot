@@ -2582,6 +2582,13 @@ The following are the errors associated with cards AuthN and AuthZ, along with t
   placeholder="Search"
 />
 
+<Callout icon="⬇️">
+  **Handy Tips**
+[Download Errors in the CSV template](https://github.com/palgunams21/payu-docs-assets/releases/download/AuthN-AuthZ-errors/AuthN_error_list.csv)
+
+
+</Callout>
+
 ### AuthZ Errors
 
 <SearchableTable
