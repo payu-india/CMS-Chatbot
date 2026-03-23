@@ -1009,22 +1009,7 @@ The Cordova Checkout SDK integration involves the following steps:
   The CheckoutPro SDK uses hashes to ensure the security of the transaction and prevent any unauthorized intrusion or modification. The CheckoutPro SDK requires two types of hashes. For more information on the two types of hashes, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) for CheckoutPro SDK.
 </Accordion>
 
-<Accordion title="Step 5: Initiate the payment" icon="fa-code">
-  Initialize and launch the Checkout Pro SDK by calling the following code snippet:
-
-  ```js
-  let payuParams = {
-    payUPaymentParams: `<PayUPaymentParams>`,
-    payUCheckoutProConfig: `<PayUCheckoutProConfig>`,
-  };
-  cordova.plugins.PayUCheckoutProCordova.openCheckoutScreen(
-    callbackResponse,
-    payuParams
-  );
-  ```
-</Accordion>
-
-<Accordion title="Step 6: Update AndroidManifest.xml" icon="fa-code">
+<Accordion title="Step 5: Update AndroidManifest.xml" icon="fa-code">
   To automatically fill OTP on bank pages, SDK requires `the RECEIVE_SMS` permission. Add the following code snippet to your `AndroidManifest.xml` like below.
 
   ```xml
