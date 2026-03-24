@@ -28,7 +28,7 @@ next:
   <tbody>
     <tr>
       <td style={{ textAlign: "left" }}>
-        3.3.3
+        4.2.1
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -44,19 +44,21 @@ next:
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        3.3.2
+        4.2.0
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * API encryption for v2 APIs
+        * Native Checkout Pro Android SDK Version updated to 3.3.0
 
-        * Hybrid Parameter changes for WealthTech
+        * Native Checkout Pro iOS SDK Version updated to 9.2   
+
+        * New HTTP request method for React 19.1.1 and React Native 0.82.0
       </td>
     </tr>
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        3.3.1
+        3.3.6
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -68,7 +70,7 @@ next:
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        3.3.0
+        3.3.5
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -80,7 +82,7 @@ next:
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        3.2.1/3.2.2
+        3.3.4
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -95,7 +97,7 @@ next:
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        3.1.1
+        3.3.3
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -105,7 +107,7 @@ next:
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        3.1.0
+        3.3.0
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -116,71 +118,66 @@ next:
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        2.8.1
+        2.2.0
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * _Memory leak fixes
-        * _Enhanced Kibana logging
-        * Billing date parameter support
-        * Android-iOS behavior differences handled
-        * Crash fix related to Ad ID permissions
+        * Added support for SI and offers._Memory leak fixes
+        * Added support for EMI and cards in the L1 screen._Enhanced Kibana logging
+        * Update Native Android CheckoutPro to v1.3.0
       </td>
     </tr>
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        2.8.0
+        2.1.1
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * Coupon-based Offers
-        * eNACH TPV support
-        * Socket SDK Update
-        * CF PE Phase 1 Implementation
+        * Added Merchant logo supportCoupon-based Offers
+        * Added support for EMI and cards in the L1 screen
       </td>
     </tr>
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        2.7.1
+        2.1.0
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * Hybrid changes to support different environments
-      </td>
-    </tr>
-
-    <tr>
-      <td style={{ textAlign: "left" }}>
-        2.7.0
-      </td>
-
-      <td style={{ textAlign: "left" }}>
-        * One-Time Mandate (OTM) support
-        * Standing Instruction (SI) Supported Apps
-        * Enforce Offer Mechanism
+        * Native Checkout Pro Android SDK Version updated to 1.1.1  
+        * Native Checkout Pro iOS SDK Version updated to 1.1.1
       </td>
     </tr>
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        2.6.1
+        2.0.0
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * Bug fix related to offerHybrid changes to support different environments
+        * Added CheckoutPro supporOne-Time Mandate (OTM) support
+        * Updated SampleStanding Instruction (SI) Supported Apps
       </td>
     </tr>
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        2.6.0
+        1.1.3
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * Issuer-led Offers
-        * Additional feature enhancements
+        * Updated CustomBrowser SDK version to 6.0 and 3.9.3 for iOS.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        1.1.1
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * Updated package name to `com.payubiz`
       </td>
     </tr>
   </tbody>
