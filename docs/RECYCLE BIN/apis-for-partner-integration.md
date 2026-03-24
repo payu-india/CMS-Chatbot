@@ -30,8 +30,15 @@ Full control. The merchant never leaves your platform. You build the UI; PayU pr
 <br />
 
 ```mermaid
-MERCHANT ──(browser)──> YOUR BACKEND ──(API)──> PAYU
-                                        <──(webhook)──
+sequenceDiagram
+    participant MERCHANT
+    participant YOUR BACKEND
+    participant PAYU
+    
+    MERCHANT->>YOUR BACKEND: browser
+    YOUR BACKEND->>PAYU: API
+    PAYU->>YOUR BACKEND: webhook
+
 ```
 
 All API calls are **server-to-server**. Never expose your `resellerToken` to the browser.
