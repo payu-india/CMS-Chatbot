@@ -1,7 +1,7 @@
 ---
 title: Testing and Go Live - Partner Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
