@@ -18,7 +18,7 @@ metadata:
 next:
   description: ''
 ---
-<Callout icon="🆕">
+<Callout icon="❗️">
   <NewBadge title="What's New!" asHeading={false} />
 
   <ul><li>RuPay Debit and Credit Cards are supported for Subscriptions.</li></ul>
