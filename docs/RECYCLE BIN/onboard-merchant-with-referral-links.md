@@ -23,7 +23,7 @@ metadata:
 
 Share a link. PayU handles everything else.
 
-**Planned sections**
+Dashboard steps for the following:
 
 1. Log in to [partner.payu.in](https://partner.payu.in/)
 2. Copy your unique referral link from the dashboard
