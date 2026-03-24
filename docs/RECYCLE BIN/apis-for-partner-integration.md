@@ -71,10 +71,8 @@ flowchart TD
 | CKYC flow        | Mobile OTP             | PAN + Date of Incorporation                                |
 | VKYC             | Conditional            | Conditional                                                |
 
-## What the merchant sees
+## APIs to integrate
 
-Your platform owns the UI. PayU is invisible except for OTP messages, DigiLocker redirect, and optional VKYC link.
-
-## After activation
+List of Partner Integration APIs in a table with respective scope and grant type used in **Get Token** API.
 
 Day-0 flags enable S2S payments, tokenisation, callbacks, and refunds. Link to [Collect, verify, refund](doc:collect-verify-refund) and [Webhooks](doc:webhooks-partner).
