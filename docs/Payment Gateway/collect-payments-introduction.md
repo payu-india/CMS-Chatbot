@@ -13,11 +13,9 @@ A **payment gateway** enables businesses to securely accept payments from custom
 ## Advantages
 
 <Accordion title="Secure and Reliable Transactions" icon="fa-shield-halved">
-  - Ensures **safe, encrypted payment processing**
-	- Protects customers from fraud and unauthorized access
-	- Built with industry-standard security practices
+  * Ensures **safe, encrypted payment processing**
+  * Protects customers from fraud and unauthorized access
+  * Built with industry-standard security practices
 </Accordion>
-
-
 
 <br />
