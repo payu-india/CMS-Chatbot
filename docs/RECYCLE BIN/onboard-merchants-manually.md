@@ -23,7 +23,7 @@ metadata:
 
 Onboard merchants manually through the PayU dashboard.
 
-**Planned sections**
+Dashboard steps for the following:
 
 1. Log in to [partner.payu.in](https://partner.payu.in/)
 2. **Refer a Merchant** — Add Single Merchant or Add Multiple Merchants (CSV)
