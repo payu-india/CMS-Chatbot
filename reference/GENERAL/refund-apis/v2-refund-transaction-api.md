@@ -36,19 +36,34 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
       <td>9999999900009081231239182</td>
     </tr>
     <tr>
-      <td>refundToken<br/><code>mandatory</code></td>
+      <td>token<br/><code>mandatory</code></td>
       <td><code>String</code> Unique token identifier for the refund request.</td>
-      <td>adij90</td>
+      <td>test_3</td>
     </tr>
     <tr>
       <td>amount<br/><code>mandatory</code></td>
       <td><code>Number</code> The refund amount to be processed.</td>
-      <td>2</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>source<br/><code>optional</code></td>
+      <td><code>Number</code> Source identifier for the refund initiation request.</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>merchantCallbackUrl<br/><code>optional</code></td>
+      <td><code>String</code> URL where PayU sends the merchant callback for this refund.</td>
+      <td>https://merchant.example.com/refund/callback</td>
+    </tr>
+    <tr>
+      <td>customerPhone<br/><code>optional</code></td>
+      <td><code>String</code> This will the customer's phone number against which wallet is created. It must be 10-digit mobile number</td>
+      <td>8127531459</td>
     </tr>
     <tr>
       <td>refundDetails<br/><code>optional</code></td>
-      <td><code>Object</code> Additional details related to the refund request.</td>
-      <td>{}</td>
+      <td><code>Object</code> This field tells that refund should be process into customer's wallet instead of original back to source account. It must include the <code>refundType</code> field with the value as "wallet".</td>
+      <td><code>{"refundType": "wallet"}</code></td>
     </tr>
     <tr>
       <td>refundSplitRequest<br/><code>optional</code></td>
@@ -90,7 +105,7 @@ curl --location 'http://10.248.8.237:9095/refund/v1/refundInitiation' \
 --data '{
     "payuId": "99999000000592959",
     "amount":6,
-    "token": "test_3",
+    "refundToken": "test_3",
     "source": 1,
     "merchantCallbackUrl": "https://merchant.example.com/refund/callback",
     "customerPhone": "8127531459",
