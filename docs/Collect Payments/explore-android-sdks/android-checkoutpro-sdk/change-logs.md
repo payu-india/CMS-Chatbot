@@ -28,6 +28,22 @@ next:
   <tbody>
     <tr>
       <td style={{ textAlign: "left" }}>
+        3.3.3
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * Ads Google ID temporary fixes and refactoring
+
+        * Retry payment functionality improvements
+
+        * Data masking enhancements
+
+        * Offer key support for hybrid flows
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
         2.8.1
       </td>
 
@@ -91,7 +107,7 @@ next:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Issuer-led Offers\
+        Issuer-led Offers  
         Additional feature enhancements
       </td>
     </tr>
