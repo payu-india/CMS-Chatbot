@@ -30,7 +30,7 @@ A **payment gateway** enables businesses to securely accept payments from custom
   * Ensures higher payment completion rates
 </Accordion>
 
-<Accordion title="My Accordion Title" icon="fa-list-ul">
+<Accordion title="My Accordion Title" icon="fa-money-bill-wave">
   Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
   ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
   occaecat cupidatat non proident!
