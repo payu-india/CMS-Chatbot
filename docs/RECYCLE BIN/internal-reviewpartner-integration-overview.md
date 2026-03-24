@@ -32,28 +32,36 @@ You integrate with PayU as a partner to bring merchants onto our payment platfor
 
 PayU handles verification (KYC, CKYC, VKYC), compliance, and activation. You collect merchant details, call our APIs, and receive status updates via webhooks.
 
-```
-Your Platform ──(API)──> PayU ──> KYC Registries, E-Sign, Banking Partners
-                  <──(Webhook)──
+```mermaid
+flowchart LR
+    A[Your Platform] -->|API| B[PayU]
+    B --> C[KYC Registries]
+    B --> D[E-Sign]
+    B --> E[Banking Partners]
+    B -.->|Webhook| A
+    
+    style B fill:#e1f5ff
+    style A fill:#fff4e1
+
 ```
 
 ## Choose your integration
 
-| | Referral Link | Partner Portal | Co-Branded OAuth | API |
-|---|---|---|---|---|
-| **You build UI** | No | No | No | Yes |
-| **Brand control** | None | None | Your logo + colors | Full |
-| **Technical effort** | None | None | Low | High |
-| **Merchant stays on your platform** | No | No | No | Yes |
-| **Best for** | Individual resellers | Manual onboarding | Mid-size platforms | Large platforms |
+|                                     | Referral Link        | Partner Portal    | Co-Branded OAuth   | API             |
+| ----------------------------------- | -------------------- | ----------------- | ------------------ | --------------- |
+| **You build UI**                    | No                   | No                | No                 | Yes             |
+| **Brand control**                   | None                 | None              | Your logo + colors | Full            |
+| **Technical effort**                | None                 | None              | Low                | High            |
+| **Merchant stays on your platform** | No                   | No                | No                 | Yes             |
+| **Best for**                        | Individual resellers | Manual onboarding | Mid-size platforms | Large platforms |
 
 If you need merchants to stay in your platform with an end-to-end controlled experience, use **API integration**. For a quick start with your branding, use **Co-Branded OAuth**.
 
 ## In this section
 
-- [Quick start — five API calls](doc:quick-start-partner-integration)
-- [Integration paths](doc:referral-link) (referral link, portal, OAuth, API)
-- [API reference](doc:partner-api-authentication) (auth, onboarding, KYC, payments, webhooks)
-- [Errors and troubleshooting](doc:errors-partner-integration)
-- [Testing and go-live](doc:testing-go-live-partner-integration)
-- [Endpoint reference](doc:endpoint-reference)
+* [Quick start — five API calls](doc:quick-start-partner-integration)
+* [Integration paths](doc:referral-link) (referral link, portal, OAuth, API)
+* [API reference](doc:partner-api-authentication) (auth, onboarding, KYC, payments, webhooks)
+* [Errors and troubleshooting](doc:errors-partner-integration)
+* [Testing and go-live](doc:testing-go-live-partner-integration)
+* [Endpoint reference](doc:endpoint-reference)
