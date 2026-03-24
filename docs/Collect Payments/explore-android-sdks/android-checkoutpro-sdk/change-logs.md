@@ -50,7 +50,31 @@ next:
       <td style={{ textAlign: "left" }}>
         * API encryption for v2 APIs
 
-        * Hybrid Parameter changes for WealthTech 
+        * Hybrid Parameter changes for WealthTech
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        3.3.1
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * Multiple callback prevention with checks
+        * Enhanced logging for callbacks and payment API analytics
+        * Tez Omni flow display fix for disabled generic intent and UPI collect flow
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        3.3.0
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * Standing Instruction (SI) Card Form feature with API and UI implementation
+        * Offer keys list format fix
+        * Code review fixes and improvements
       </td>
     </tr>
 
