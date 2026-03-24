@@ -25,9 +25,9 @@ A **payment gateway** enables businesses to securely accept payments from custom
 </Accordion>
 
 <Accordion title="Reduced Payment Failures" icon="fa-chart-line">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+  * mproves success rates with **real-time transaction handling**
+  * Intelligent routing and retry mechanisms help reduce declines
+  * Ensures higher payment completion rates
 </Accordion>
 
 <br />
