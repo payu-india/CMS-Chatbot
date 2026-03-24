@@ -1,5 +1,5 @@
 ---
-title: Modify Recurring Payments for an AMEX Card
+title: Modify Recurring Payments for AMEX and RuPay Cards
 excerpt: 'Resource: **_payment**'
 deprecated: false
 hidden: false
@@ -28,7 +28,7 @@ next:
       title: Cancel the Recurring Payment for a Card
       type: endpoint
 ---
-This section describes how to use the **_payment** API to update an existing recurring payment for American Express (AMEX) cards.
+This section describes how to use the **_payment** API to update an existing recurring payment for American Express (AMEX) and RuPay cards.
 
 <Callout icon="📘" theme="info">
   **Note**: As per RBI guidelines while modifying the recurring payment, taking consent from the customer and doing an additional factor of authentication is mandatory. You must ensure this is done before using this API. You need to pass **authPayuId** and **action** fields to modify the billing details as part of JSON using this API as described in this section.
@@ -38,7 +38,7 @@ HTTP Method: **POST**
 
 ## Request parameters
 
-The following table describes the parameters for modifying the recurring payment details for an AMEX card.
+The following table describes the parameters for modifying the recurring payment details for AMEX and RuPay cards.
 
 <HTMLBlock>{`
 <style>
@@ -68,14 +68,12 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>mode</td>
       <td>
-        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:<br/>
-        • Credit Card – CC<br/>
-        • Debit Card – DC
+        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are: <ul><li>\`CC\`: Credit Card</li> <li>\`DC\`: Debit Card</li></ul>
       </td>
     </tr>
     <tr>
       <td>bankcode</td>
-      <td>This parameter contains the code indicating the payment option used for the transaction. For AMEX, use AMEX.</td>
+      <td>Indicates the payment option used for the transaction. Possible values: <ul><li>\`AMEX\`: For American Express credit and debit cards</li> <li>\`RUPAYCC\`: For RuPay credit cards</li> <li>\`RUPAY\`: For RuPay debit cards</li></ul></td>
     </tr>
     <tr>
       <td>status</td>
