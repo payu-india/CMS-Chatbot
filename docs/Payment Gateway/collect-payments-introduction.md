@@ -19,9 +19,9 @@ A **payment gateway** enables businesses to securely accept payments from custom
 </Accordion>
 
 <Accordion title="Faster and Smoother Payments" icon="fa-bolt">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+  * Optimized checkout experience reduces friction
+	* Enables **quick transaction processing**
+	* Minimizes drop-offs during payment
 </Accordion>
 
 <br />
