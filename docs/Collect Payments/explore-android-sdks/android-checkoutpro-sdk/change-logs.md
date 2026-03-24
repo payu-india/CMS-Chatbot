@@ -86,7 +86,6 @@ next:
 
       <td style={{ textAlign: "left" }}>
         * Hybrid changes to support different environments
-        * <br />
       </td>
     </tr>
 
@@ -118,8 +117,8 @@ next:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Issuer-led Offers  
-        Additional feature enhancements
+        * Issuer-led Offers
+        * Additional feature enhancements
       </td>
     </tr>
   </tbody>
