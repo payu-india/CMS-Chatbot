@@ -45,7 +45,23 @@ All API calls are **server-to-server**. Never expose your `resellerToken` to the
 
 ## Onboarding sequence
 
-**Content to add:** Ordered table (create merchant → update PAN/bank/business/GST/CIN/URLs → business members & signatory for non-individual → CKYC → DigiLocker → required docs → upload → optional VKYC → e-sign → status/webhooks).
+<br />
+
+```mermaid
+flowchart TD
+    A[Create Merchant] --> B[Update PAN/Bank/Business/<br/>GST/CIN/URLs]
+    B --> C[Business Members & Signatory<br/>for non-individual]
+    C --> D[CKYC]
+    D --> E[DigiLocker]
+    E --> F[Required Docs]
+    F --> G[Upload]
+    G --> H{VKYC Required?}
+    H -->|Yes| I[VKYC]
+    H -->|No| J[E-Sign]
+    I --> J
+    J --> K[Status/Webhooks]
+
+```
 
 ## Entity type determines the flow
 
