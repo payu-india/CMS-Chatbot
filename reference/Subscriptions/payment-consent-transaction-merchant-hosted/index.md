@@ -17,6 +17,12 @@ next:
       slug: using-api-integration-recurring-payments
       title: Using API Integration
 ---
+<Callout icon="👍" theme="okay">
+  <NewBadge title="What's New!" asHeading={false} />
+
+  <ul><li><Anchor label="RuPay Debit and Credit Cards" target="_blank" href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction">RuPay Debit and Credit Cards</Anchor> are supported for Subscriptions.</li></ul>
+</Callout>
+
 Set up the recurring payment or subscription service with Merchant Hosted Checkout for the following Payment modes:
 
 * [Net Banking Recurring Payment Consent Transaction](ref:netbanking-recurring-payment-consent-transaction)
@@ -25,5 +31,5 @@ Set up the recurring payment or subscription service with Merchant Hosted Checko
 
 > 📘 Note:
 >
-> In the case of registration transaction, the formula is used to calculate this hash is similar to the following:\
+> In the case of registration transaction, the formula is used to calculate this hash is similar to the following:  
 > `HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)`
