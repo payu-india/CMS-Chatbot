@@ -18,7 +18,7 @@ A **payment gateway** enables businesses to securely accept payments from custom
   * Built with industry-standard security practices
 </Accordion>
 
-<Accordion title="Faster and Smoother Payments" icon="fa-gauge-high">
+<Accordion title="Faster and Smoother Payments" icon="fa-bolt">
   Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
   ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
   occaecat cupidatat non proident!
