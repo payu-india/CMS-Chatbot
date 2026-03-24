@@ -49,6 +49,8 @@ next:
 
       <td style={{ textAlign: "left" }}>
         * API encryption for v2 APIs
+
+        * Hybrid Parameter changes for WealthTech 
       </td>
     </tr>
 
