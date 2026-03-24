@@ -21,6 +21,8 @@ next:
 <Callout icon="📘" theme="info">
   <NewBadge title="What's New!" asHeading={false} />
 
+
+
   RuPay Debit and Credit Cards are supported for Subscriptions.
 </Callout>
 
