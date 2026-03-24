@@ -27,7 +27,9 @@ Full control. The merchant never leaves your platform. You build the UI; PayU pr
 
 ## Architecture
 
-```
+<br />
+
+```mermaid
 MERCHANT ──(browser)──> YOUR BACKEND ──(API)──> PAYU
                                         <──(webhook)──
 ```
@@ -40,13 +42,13 @@ All API calls are **server-to-server**. Never expose your `resellerToken` to the
 
 ## Entity type determines the flow
 
-| | Individual / Sole Prop | Non-Individual (Pvt Ltd, LLP, Partnership, Trust, Society) |
-|---|---|---|
-| Business members | Not required | Required |
-| Signatory & UBO | Not required | Required |
-| CIN | Not required | Required (Pvt Ltd, LLP) |
-| CKYC flow | Mobile OTP | PAN + Date of Incorporation |
-| VKYC | Conditional | Conditional |
+|                  | Individual / Sole Prop | Non-Individual (Pvt Ltd, LLP, Partnership, Trust, Society) |
+| ---------------- | ---------------------- | ---------------------------------------------------------- |
+| Business members | Not required           | Required                                                   |
+| Signatory & UBO  | Not required           | Required                                                   |
+| CIN              | Not required           | Required (Pvt Ltd, LLP)                                    |
+| CKYC flow        | Mobile OTP             | PAN + Date of Incorporation                                |
+| VKYC             | Conditional            | Conditional                                                |
 
 ## What the merchant sees
 
