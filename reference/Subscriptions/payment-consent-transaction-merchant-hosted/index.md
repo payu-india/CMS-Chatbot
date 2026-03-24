@@ -17,12 +17,6 @@ next:
       slug: using-api-integration-recurring-payments
       title: Using API Integration
 ---
-<Callout icon="👍" theme="okay">
-  <NewBadge title="What's New!" asHeading={false} />
-
-  <ul><li>RuPay Debit and Credit Cards are supported for Subscriptions.</li></ul>
-</Callout>
-
 Set up the recurring payment or subscription service with Merchant Hosted Checkout for the following Payment modes:
 
 * [Net Banking Recurring Payment Consent Transaction](ref:netbanking-recurring-payment-consent-transaction)
