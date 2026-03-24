@@ -89,6 +89,23 @@ flowchart LR
 
 If you need merchants to stay in your platform with an end-to-end controlled experience, use **API integration**. For a quick start with your branding, use **Co-Branded OAuth**.
 
+## Flow
+
+```mermaid
+flowchart TD
+    A[1. Create Merchant] --> B[2. Update Business Details]
+    B --> C[3. Update Website/App Details]
+    C --> D[4. Submit Signing Authority]
+    D --> E[5. Upload KYC Documents]
+    E --> F[KYC Verification]
+    F --> G[6. E-Sign Agreement]
+    G --> H[Merchant Activated]
+    
+    style A fill:#e1f5ff
+    style H fill:#d4edda
+
+```
+
 ## In this section
 
 * [Quick start — five API calls](doc:quick-start-partner-integration)
