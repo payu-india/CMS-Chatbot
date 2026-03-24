@@ -44,12 +44,22 @@ next:
 
     <tr>
       <td style={{ textAlign: "left" }}>
+        3.3.2
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * API encryption for v2 APIs
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
         2.8.1
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * Memory leak fixes
-        * Enhanced Kibana logging
+        * _Memory leak fixes
+        * _Enhanced Kibana logging
         * Billing date parameter support
         * Android-iOS behavior differences handled
         * Crash fix related to Ad ID permissions
@@ -75,7 +85,8 @@ next:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Hybrid changes to support different environments
+        * Hybrid changes to support different environments
+        * <br />
       </td>
     </tr>
 
@@ -97,7 +108,7 @@ next:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        Bug fix related to offers
+        * Bug fix related to offerHybrid changes to support different environments
       </td>
     </tr>
 
@@ -113,3 +124,5 @@ next:
     </tr>
   </tbody>
 </Table>
+
+<br />
