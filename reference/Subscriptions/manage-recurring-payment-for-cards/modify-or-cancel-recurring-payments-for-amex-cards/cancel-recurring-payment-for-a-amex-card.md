@@ -1,5 +1,5 @@
 ---
-title: Cancel Recurring Payment for an AMEX Card
+title: Cancel Recurring Payment for AMEX and RuPay Cards
 deprecated: false
 hidden: false
 metadata:
@@ -29,12 +29,12 @@ next:
       title: Check Mandate Status for Cards API
       type: endpoint
 ---
-This section describes how to use the **_payment** API with  to cancel a recurring payment registration for an AMEX card.
+This section describes how to use the **_payment** API with  to cancel a recurring payment registration for AMEX and RuPay cards.
 
 > 📘 Notes:
 >
 > * This API is mandatory for merchants to go live with all cards.
-> * The 2FA is required for cancelling recurring payment with AMEX cards.
+> * The 2FA is required for cancelling recurring payment with AMEX and RuPay cards.
 
 Method: **POST**
 
@@ -60,8 +60,8 @@ The following table describes the parameters for delete the recurring payment de
 | **phone**<br />`mandatory`                                                          | `varchar` Must contain the phone number of the customer.<br />This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br />`Character limit`: 50                                                                                                                                                                                                                                                                                          |
 | **api_version**<br />`mandatory`                                                    | This parameter must always needs to be passed as 7.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **si**<br />`mandatory`                                                             | This parameter must be passed with the value as 3 to cancel an already existing subscription/consent.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| **pg**<br />`mandatory`                                                             | `String` This parameter defines the payment category that the merchant wants the customer to see by default on the PayU's payment page. In this example, "CC" must be specified. For more information, refer to Payment Mode Codes.                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **bankcode**<br />`mandatory`                                                       | Each payment option is identified with a String unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to [Card Type Codes and Supported Banks for Cards](http://docs.payu.in/reference/card-type-codes-and-supported-banks-for-cards)                                                                                                                                                                                                                                                                                                                                      |
+| **pg**<br />`mandatory`                                                             | `String` Indicates the payment category that the merchant wants the customer to see by default on the PayU's payment page. Possible values: <ul><li>`DC`: For debit cards</li> <li>`CC`: For credit cards</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **bankcode**<br />`mandatory`                                                       | `string` A unique bank code of a payment option. Possible values: <ul><li>`AMEX`: For American Express credit and debit cards</li> <li>`RUPAYCC`: For RuPay credit cards</li> <li>`RUPAY`: For RuPay debit cards</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | **ccnum**<br />`mandatory`                                                          | This parameter must contain the 13 to 19-digit card number for credit or debit cards in general.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **ccname**<br />`mandatory`                                                         | This parameter must contain the name on card – as entered by the customer for the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **ccvv**<br />`mandatory`                                                           | This parameter must contain the 3-digit CVV number for credit cards or debit cards. For AMEX cards, 4-digit security code (4DBC) number of the card must be posted. Also, known as CID (Card Identification) number.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -174,14 +174,11 @@ curl --location 'https://secure.payu.in/_payment' \
     <tr>
       <td>mode</td>
       <td>
-        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:<br/>
-        • Credit Card – CC<br/>
-        • Debit Card – DC
-      </td>
+        This parameter describes the payment category by which the transaction was completed/attempted by the customer. Possible values: <ul><li><code>DC</code>: For debit cards</li> <li><code>CC</code>: For credit cards</li></ul></td>
     </tr>
     <tr>
       <td>bankcode</td>
-      <td>This parameter contains the code indicating the payment option used for the transaction. For AMEX, use AMEX.</td>
+      <td>This parameter contains the code indicating the payment option used for the transaction. Possible values: <ul><li><code>AMEX</code>: For American Express credit and debit cards</li> <li><code>RUPAYCC</code>: For RuPay credit cards</li> <li><code>RUPAY</code>: For RuPay debit cards</li></ul></td>
     </tr>
     <tr>
       <td>status</td>
