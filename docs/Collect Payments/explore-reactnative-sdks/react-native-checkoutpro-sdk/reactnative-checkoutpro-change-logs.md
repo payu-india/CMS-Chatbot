@@ -1,6 +1,8 @@
 ---
-title: Change Logs
-excerpt: ''
+title: Version History
+excerpt: >-
+  Track the evolution of CheckoutPro SDK with key features and fixes introduced
+  in each version.
 deprecated: false
 hidden: false
 metadata:
@@ -10,62 +12,176 @@ metadata:
 next:
   description: ''
 ---
-## 2.2.0
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: "left" }}>
+        Version
+      </th>
 
-### Added
+      <th style={{ textAlign: "left" }}>
+        Highlights / Features
+      </th>
+    </tr>
+  </thead>
 
-* Added support for SI and offers.
-* Added support for EMI and cards in the L1 screen.
-* Update Native Android CheckoutPro to v1.3.0
+  <tbody>
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        3.3.3
+      </td>
 
-***
+      <td style={{ textAlign: "left" }}>
+        * Ads Google ID temporary fixes and refactoring
 
-## 2.1.1
+        * Retry payment functionality improvements
 
-## Added
+        * Data masking enhancements
 
-* Added Merchant logo support.
-* Added support for EMI and cards in the L1 screen.
+        * Offer key support for hybrid flows
+      </td>
+    </tr>
 
-***
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        3.3.2
+      </td>
 
-## 2.1.0
+      <td style={{ textAlign: "left" }}>
+        * API encryption for v2 APIs
 
-### Added
+        * Hybrid Parameter changes for WealthTech
+      </td>
+    </tr>
 
-* Native Checkout Pro Android SDK Version updated to 1.1.1
-* Native Checkout Pro iOS SDK Version updated to 1.1.1
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        3.3.1
+      </td>
 
-***
+      <td style={{ textAlign: "left" }}>
+        * Multiple callback prevention with checks
+        * Enhanced logging for callbacks and payment API analytics
+        * Tez Omni flow display fix for disabled generic intent and UPI collect flow
+      </td>
+    </tr>
 
-## 2.0.0
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        3.3.0
+      </td>
 
-## Added
+      <td style={{ textAlign: "left" }}>
+        * Standing Instruction (SI) Card Form feature with API and UI implementation
+        * Offer keys list format fix
+        * Code review fixes and improvements
+      </td>
+    </tr>
 
-* Added CheckoutPro support.
-* Updated Sample App as per the Checkout Pro implementation.
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        3.2.1/3.2.2
+      </td>
 
-***
+      <td style={{ textAlign: "left" }}>
+        * CF PE Phase 2 Implementation
+        * Compounding feature support with API request/response handling
+        * EMI parsing and caching storage improvements
+        * Sodexo rebranded to Pluxee with logo updates
+        * Timer parsing keys added
+        * Bug fixes and code refactoring
+      </td>
+    </tr>
 
-## 2.0.0
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        3.1.1
+      </td>
 
-### Added
+      <td style={{ textAlign: "left" }}>
+        * React Native Android Checkout Pro hybrid changes
+      </td>
+    </tr>
 
-* Added CheckoutPro support.
-* Updated Sample.
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        3.1.0
+      </td>
 
-***
+      <td style={{ textAlign: "left" }}>
+        * Dynamic card scheme enforcement
+        * Integer parsing fix
+      </td>
+    </tr>
 
-## 1.1.3
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        2.8.1
+      </td>
 
-### Fixed
+      <td style={{ textAlign: "left" }}>
+        * _Memory leak fixes
+        * _Enhanced Kibana logging
+        * Billing date parameter support
+        * Android-iOS behavior differences handled
+        * Crash fix related to Ad ID permissions
+      </td>
+    </tr>
 
-Updated CustomBrowser SDK version to 6.0 and 3.9.3 for iOS.
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        2.8.0
+      </td>
 
-***
+      <td style={{ textAlign: "left" }}>
+        * Coupon-based Offers
+        * eNACH TPV support
+        * Socket SDK Update
+        * CF PE Phase 1 Implementation
+      </td>
+    </tr>
 
-## 1.1.1
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        2.7.1
+      </td>
 
-### Fixed
+      <td style={{ textAlign: "left" }}>
+        * Hybrid changes to support different environments
+      </td>
+    </tr>
 
-* Updated package name to `com.payubiz`
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        2.7.0
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * One-Time Mandate (OTM) support
+        * Standing Instruction (SI) Supported Apps
+        * Enforce Offer Mechanism
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        2.6.1
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * Bug fix related to offerHybrid changes to support different environments
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        2.6.0
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * Issuer-led Offers
+        * Additional feature enhancements
+      </td>
+    </tr>
+  </tbody>
+</Table>
