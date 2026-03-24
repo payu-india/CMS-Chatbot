@@ -10,10 +10,14 @@ metadata:
 ---
 A **payment gateway** enables businesses to securely accept payments from customers through their website or mobile application. The **PayU Payment Gateway** acts as a secure bridge between your customer, your application, and the banking networks to process transactions safely and reliably.
 
-<Accordion title="Advantages" icon="fa-lightbulb">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+## Advantages
+
+<Accordion title="Secure and Reliable Transactions" icon="fa-shield-halved">
+  - Ensures **safe, encrypted payment processing**
+	- Protects customers from fraud and unauthorized access
+	- Built with industry-standard security practices
 </Accordion>
+
+
 
 <br />
