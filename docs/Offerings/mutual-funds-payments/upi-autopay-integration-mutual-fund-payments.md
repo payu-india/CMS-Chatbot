@@ -24,7 +24,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
     Verify the payment status and ensure the consent transaction is completed successfully
   </Card>
 
-  <Card title="4. Initiate Recurring Payment" href="#step-4-initiate-recurring-payment">
+  <Card title="4. Pre-Debit Notification" href="#step-4-pre-debit-notification">
     Set up and initiate recurring payments using the established eNACH consent
   </Card>
 
@@ -499,28 +499,28 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 <Verify_Payment_Tabs />
 
 ## Step 4: Pre-debit Notification
+
 <GENERALAPIsEnvironment />
 
- <Accordion title="Request parameters" icon="fa-table">
-    | Parameter      | Description                                                                                            |           |        |                                                                                                  |
-    | :------------- | :----------------------------------------------------------------------------------------------------- | --------- | ------ | ------------------------------------------------------------------------------------------------ |
-    | key `string`   | `mandatory` This parameter is the unique Merchant Key provided by PayU                                 |           |        |                                                                                                  |
-    | var1 `object`  | The variable 1 object details.                                                                         |           |        |                                                                                                  |
-    | hash `string`  | `mandatory` It is used to avoid the possibility of transaction tampering. Hash formula: \`sha512(key\\ | command\\ | var1\\ | salt)\`. Please regenerate hash at the end everytime you make a change to the request parameters |
-    | command `enum` | `mandatory` The command name for this REST API call is pre\_debit\_SI.                                 |           |        |                                                                                                  |
+<Accordion title="Request parameters" icon="fa-table">
+  | Parameter      | Description                                                                                            |           |        |                                                                                                  |
+  | :------------- | :----------------------------------------------------------------------------------------------------- | --------- | ------ | ------------------------------------------------------------------------------------------------ |
+  | key `string`   | `mandatory` This parameter is the unique Merchant Key provided by PayU                                 |           |        |                                                                                                  |
+  | var1 `object`  | The variable 1 object details.                                                                         |           |        |                                                                                                  |
+  | hash `string`  | `mandatory` It is used to avoid the possibility of transaction tampering. Hash formula: \`sha512(key\\ | command\\ | var1\\ | salt)\`. Please regenerate hash at the end everytime you make a change to the request parameters |
+  | command `enum` | `mandatory` The command name for this REST API call is pre\_debit\_SI.                                 |           |        |                                                                                                  |
 
-    <Accordion title="var1 Object parameters" icon="fa-table">
-      | Parameter                     | Description                                                                                                                                                                                    |
-      | :---------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-      | authPayuId `string`           | `mandatory` The value of mihpayid returned in the payment response of Registration transaction when transaction is successfully completed.                                                     |
-      | requestId `string`            | `mandatory` Unique request value generated at merchant’s end to distinguish independent request call.                                                                                          |
-      | debitDate `string`            | `mandatory` This field contains the date of debit when the recurring would be charged by merchant.                                                                                             |
-      | invoiceDisplayNumber `string` | `optional` This field is required for cards. A unique display number by merchant for every subsequent invoice/recurring charge. This can be displayed on the merchant’s panel to the customer. |
-      | amount `number`               | `mandatory` The transaction amount which will be deducted from the customer’s payment instrument.                                                                                              |
-      | action `number`               | `optional` Pass "Retrieve" or "Delete" according to the action need to be performed. For more information, refer to Additional Information table.                                              |
-    </Accordion>
+  <Accordion title="var1 Object parameters" icon="fa-table">
+    | Parameter                     | Description                                                                                                                                                                                    |
+    | :---------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | authPayuId `string`           | `mandatory` The value of mihpayid returned in the payment response of Registration transaction when transaction is successfully completed.                                                     |
+    | requestId `string`            | `mandatory` Unique request value generated at merchant’s end to distinguish independent request call.                                                                                          |
+    | debitDate `string`            | `mandatory` This field contains the date of debit when the recurring would be charged by merchant.                                                                                             |
+    | invoiceDisplayNumber `string` | `optional` This field is required for cards. A unique display number by merchant for every subsequent invoice/recurring charge. This can be displayed on the merchant’s panel to the customer. |
+    | amount `number`               | `mandatory` The transaction amount which will be deducted from the customer’s payment instrument.                                                                                              |
+    | action `number`               | `optional` Pass "Retrieve" or "Delete" according to the action need to be performed. For more information, refer to Additional Information table.                                              |
   </Accordion>
-
+</Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
@@ -549,7 +549,6 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 
 <GENERALAPIsEnvironment />
 
-
 <Accordion title="Request parameters" icon="fa-key">
   | Parameter                                 | Description                                                                                                                                                                                                                                                | Example                                                                                                                                                                               |
   | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -563,7 +562,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
     ### var1 object field descriptions
 
     <HTMLBlock>{`
-                                                                                                                                                          <table id="var1-parameters"> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td colspan="3"><strong>Fields within the var1 JSON object</strong> - <a href="#main-parameters">Back to main parameters</a></td> </tr> <tr> <td>authpayuid <br/><code>mandatory</code></td> <td><code>String</code> - Authorization PayU ID</td> <td>6611192557</td> </tr> <tr> <td>invoiceDisplayNumber <br/><code>mandatory</code></td> <td><code>String</code> - Display invoice number</td> <td>12345678910</td> </tr> <tr> <td>amount <br/><code>mandatory</code></td> <td><code>Float</code> - Transaction amount</td> <td>3.00</td> </tr> <tr> <td>txnid <br/><code>mandatory</code></td> <td><code>String</code> - Transaction ID generated by the merchant</td> <td>REC15113506209</td> </tr> <tr> <td>phone <br/><code>mandatory</code></td> <td><code>String</code> - Customer's phone number</td> <td>9999999999</td> </tr> <tr> <td>email <br/><code>mandatory</code></td> <td><code>String</code> - Customer's email address</td> <td>ashish@gmail.com</td> </tr> <tr> <td>more_info <br/><code>mandatory for Wealth Tech</code></td> <td><code>JSON</code> - This parameter contains various fields including the Wealth Tech object (wtParams). For more information on wtParams object field, refer to Wealth Tech object (wtParams) fields Description table (next table)</td> <td></td> </tr> <tr> <td>udf2 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf3 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf4 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf5 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> </table> 
+                                                                                                                                                              <table id="var1-parameters"> <tr> <th>Parameter</th> <th>Description</th> <th>Example</th> </tr> <tr> <td colspan="3"><strong>Fields within the var1 JSON object</strong> - <a href="#main-parameters">Back to main parameters</a></td> </tr> <tr> <td>authpayuid <br/><code>mandatory</code></td> <td><code>String</code> - Authorization PayU ID</td> <td>6611192557</td> </tr> <tr> <td>invoiceDisplayNumber <br/><code>mandatory</code></td> <td><code>String</code> - Display invoice number</td> <td>12345678910</td> </tr> <tr> <td>amount <br/><code>mandatory</code></td> <td><code>Float</code> - Transaction amount</td> <td>3.00</td> </tr> <tr> <td>txnid <br/><code>mandatory</code></td> <td><code>String</code> - Transaction ID generated by the merchant</td> <td>REC15113506209</td> </tr> <tr> <td>phone <br/><code>mandatory</code></td> <td><code>String</code> - Customer's phone number</td> <td>9999999999</td> </tr> <tr> <td>email <br/><code>mandatory</code></td> <td><code>String</code> - Customer's email address</td> <td>ashish@gmail.com</td> </tr> <tr> <td>more_info <br/><code>mandatory for Wealth Tech</code></td> <td><code>JSON</code> - This parameter contains various fields including the Wealth Tech object (wtParams). For more information on wtParams object field, refer to Wealth Tech object (wtParams) fields Description table (next table)</td> <td></td> </tr> <tr> <td>udf2 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf3 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf4 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> <tr> <td>udf5 <br/><code>optional</code></td> <td><code>String</code> - User-defined field for additional information</td> <td>""</td> </tr> </table> 
     `}</HTMLBlock>
   </Accordion>
 </Accordion>
