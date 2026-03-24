@@ -173,31 +173,106 @@ To integrate the Flutter UPI SDK, perform the following steps:
     **Warning**: Always generate the hash at your backend to ensure security.
   </Callout>
 
-  Hash is required to authenticate the request and to make sure MiTM has not happened while data was traveling over the network. You have to set the hash in the hash parameter during the creation of payment parameters.  Use the following format to generate the hash:
+  Hash is required to authenticate the request and to make sure MiTM has not happened while data was traveling over the network. You have to set the hash in the hash parameter during the creation of payment parameters.  
+  
+Use the following format to generate the hash:
+  
+<Accordion title="Normal Payment Hash" icon="fa-code">
 
-  `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)`
+  ### Hash Formula
+```
+sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+```
 
-  > 📘 TPV Hash
-  >
-  > For TPV transactions, use the following format to generate the hash:
-  >
-  > `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)`
-  >
-  > The **beneficiarydetail** parameter value will be at last or the last value to be appended.`{"beneficiaryAccountNumber":<Account No>,"ifscCode":<IFSC>}`
+### Example
+```
+sha512(smsplus|1695662774012|1|Info|Abc|test@gmail.com|udf1|udf2|udf3|udf4|udf5||||||1b1b0)
+```
+  </Accordion>
 
-  Here is a sample hash value for your reference:
+ <Accordion title="TPV Payment Hash" icon="fa-code">
+   For TPV transactions, use the following format to generate the hash:
+### Hash Formula
+```
+sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)
+```
 
-  `smsplus|1695662774012|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||  {"beneficiaryAccountNumber":"1234567890","ifscCode":"IFSC0000024"}|1b1b0`
+   ### Beneficiary Detail Format
+The **beneficiarydetail** parameter value will be at last or the last value to be appended.
 
-  > 📘 SI Hash
-  >
-  > For SI Trasnaction, use the following format to generate the hash :-
-  >
-  > SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si\_details|SALT)
-  >
-  > Here is sample hash value for reference :-
-  >
-  > `3TnMpV|PayU_1752232075823|1|Info|Abc|[test@gmail.com](mailto:test@gmail.com)|udf1|udf2|udf3|udf4|udf5||||||\{"paymentStartDate":"2025-07-28","paymentEndDate":"2028-08-28","billingAmount":"100.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"billingRule":"MAX"}|g0nGFe03`
+```json
+{"beneficiaryAccountNumber":"<Account No>","ifscCode":"<IFSC>"}
+```
+
+### Example
+```
+sha512(smsplus|1695662774012|1|Info|Abc|test@gmail.com|udf1|udf2|udf3|udf4|udf5||||||{"beneficiaryAccountNumber":"1234567890","ifscCode":"IFSC0000024"}|1b1b0)
+```
+
+  </Accordion>
+ <Accordion title="SI Payment Hash" icon="fa-code">
+  For SI Trasnaction, use the following format to generate the hash :-
+### Hash Formula
+```
+sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)
+```
+
+### SI Details Format
+```json
+{
+  "paymentStartDate": "YYYY-MM-DD",
+  "paymentEndDate": "YYYY-MM-DD",
+  "billingAmount": "amount",
+  "billingCurrency": "INR",
+  "billingCycle": "MONTHLY/DAILY/WEEKLY/YEARLY/ADHOC",
+  "billingInterval": 1,
+  "billingRule": "MAX/ON"
+}
+```
+
+### Example
+```
+sha512(3TnMpV|PayU_1752232075823|1|Info|Abc|test@gmail.com|udf1|udf2|udf3|udf4|udf5||||||{"paymentStartDate":"2025-07-28","paymentEndDate":"2028-08-28","billingAmount":"100.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"billingRule":"MAX"}|g0nGFe03)
+   ```
+  </Accordion>
+  <Accordion title="WealthTech Payment Hash" icon="fa-code">
+## Hash Formula
+```
+sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|beneficiarydetail|si_details|user_token|offer_key|offer_auto_apply|cart_details|products|SALT)
+```
+
+### Products Format
+```json
+[{
+  "type": "mutual_fund",
+  "plan": "GD",
+  "folio": "9104927822",
+  "amount": "50000",
+  "option": "G",
+  "scheme": "LT",
+  "receipt": "77407",
+  "mf_member_id": "123445",
+  "mf_user_id": "77407",
+  "mf_partner": "cams",
+  "mf_investment_type": "L",
+  "mf_amc_code": "UTB"
+}]
+```
+
+### Example
+```java
+String hashData = "<Key>|1714544838994|10|productInfo|firstName|test@gmail.com|udf1|udf2|udf3|udf4|udf5||||||{\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"HDFC0000090\"}|{\"paymentStartDate\":\"2026-04-20\",\"paymentEndDate\":\"2026-06-20\",\"billingAmount\":\"10\",\"billingCurrency\":\"INR\",\"billingCycle\":\"ADHOC\",\"billingInterval\":\"1\"}|||||[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]|<Salt>";
+```
+
+</Accordion>
+
+## 📝 Important Notes
+
+- All hash values are generated using **SHA-512** algorithm
+- Use pipe (`|`) as the separator between parameters
+- Empty parameters must be represented with empty strings between pipes (e.g., `||||||`)
+- JSON objects (beneficiarydetail, si_details, products) should be properly formatted and escaped when used in hash generation
+- Always use your actual **key** and **salt** values provided by PayU
 </Accordion>
 
 <Accordion title="Step 5: Generate Payment Parameters" icon="fa-code">
