@@ -11,7 +11,7 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 |                        |                                                                                                          |
 | :--------------------- | :------------------------------------------------------------------------------------------------------- |
-| Production Environment | https://secure.payu.in/v2/refund/                                                                        |
+| Production Environment | [https://secure.payu.in/v2/refund/](https://secure.payu.in/v2/refund/)                                   |
 | Test Environment       | [https://apitest.payu.in/refund/v1/refundInitiation](https://apitest.payu.in/refund/v1/refundInitiation) |
 
 ## Request header
@@ -81,9 +81,30 @@ curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
  
 ```
 
-### With Split Settlements
+### Refund Initiation for Wallets
 
+```curl
+curl --location 'http://10.248.8.237:9095/refund/v1/refundInitiation' \
+--header 'Content-Type: application/json' \
+--header 'mid: 180012' \
+--data '{
+    "payuId": "99999000000592959",
+    "amount":6,
+    "token": "test_3",
+    "source": 1,
+    "merchantCallbackUrl": "https://merchant.example.com/refund/callback",
+    "customerPhone": "8127531459",
+    "refundDetails": {
+        "refundType": "wallet"
+    }
+}'
 ```
+
+<br />
+
+### Refund Initiaition With Split Settlements
+
+```curl
 curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
 --header 'Content-Type: application/json' \
 --header 'mid: 8006653' \
