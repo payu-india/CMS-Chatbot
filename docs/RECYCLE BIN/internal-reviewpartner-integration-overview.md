@@ -89,7 +89,7 @@ flowchart LR
 
 If you need merchants to stay in your platform with an end-to-end controlled experience, use **API integration**. For a quick start with your branding, use **Co-Branded OAuth**.
 
-## Flow
+## Merchant Onboarding Flow
 
 ```mermaid
 flowchart TD
