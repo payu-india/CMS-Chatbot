@@ -45,8 +45,6 @@ All API calls are **server-to-server**. Never expose your `resellerToken` to the
 
 ## Onboarding sequence
 
-<br />
-
 ```mermaid
 flowchart TD
     A[Create Merchant] --> B[Update PAN/Bank/Business/<br/>GST/CIN/URLs]
