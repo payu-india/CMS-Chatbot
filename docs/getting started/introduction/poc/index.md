@@ -212,3 +212,22 @@ Accelerate your integration workflow with our net banking Postman collection for
 `}</HTMLBlock>
 
 <br />
+
+<HoverCardGrid
+  columns={3}
+  items={[
+    {
+      title: 'Guides',
+      href: '/docs/guides',
+      image: 'https://your-cdn.com/card-guides.png',
+      imageAlt: 'Illustration of documentation guides',
+      text: 'Step-by-step integration guides.',
+    },
+    {
+      title: 'API',
+      href: '/reference',
+      icon: 'fa-code',
+      text: 'No image — icon only.',
+    },
+  ]}
+/>
