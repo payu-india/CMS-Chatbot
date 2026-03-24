@@ -51,32 +51,30 @@ next:
         * Native Checkout Pro Android SDK Version updated to 3.3.0
 
         * Native Checkout Pro iOS SDK Version updated to 9.2   
-
-        * New HTTP request method for React 19.1.1 and React Native 0.82.0
       </td>
     </tr>
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        3.3.6
+        4.1.0
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * Multiple callback prevention with checks
-        * Enhanced logging for callbacks and payment API analytics
-        * Tez Omni flow display fix for disabled generic intent and UPI collect flow
+        * New HTTP request method for support React 19.1.1 and React Native 0.82.0 above
       </td>
     </tr>
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        3.3.5
+        4.0.0
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * Standing Instruction (SI) Card Form feature with API and UI implementation
-        * Offer keys list format fix
-        * Code review fixes and improvements
+        * Error handling improvements
+        * Hybrid flow changes with native parsing method
+        * Checkout Pro version updates
+        * Google Pay dependencies version upgrade
+        * Card schema enforcement
       </td>
     </tr>
 
@@ -86,12 +84,13 @@ next:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * CF PE Phase 2 Implementation
-        * Compounding feature support with API request/response handling
-        * EMI parsing and caching storage improvements
-        * Sodexo rebranded to Pluxee with logo updates
-        * Timer parsing keys added
-        * Bug fixes and code refactoring
+        * Android and iOS version updates
+        * Card schema enforcement with Checkout Pro
+        * PPI Virtual Card feature implementation
+        * OlaMoney version upgrade
+        * Checkout Pro iOS dependency made dynamic
+        * Enforced payment issue fix
+        * ATS setting removed from info.plist
       </td>
     </tr>
 
@@ -101,18 +100,21 @@ next:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * React Native Android Checkout Pro hybrid changes
+        * iOS version update
+        * Checkout Pro version upgraded with production bug fixes
+        * PhonePe dependency added
       </td>
     </tr>
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        3.3.0
+        3.3.2/3.3.1
       </td>
 
       <td style={{ textAlign: "left" }}>
-        * Dynamic card scheme enforcement
-        * Integer parsing fix
+        * Native Checkout Pro Android SDK Version updated to 2.9.0
+
+        * Native Checkout Pro iOS SDK Version updated to 8.8.0
       </td>
     </tr>
 
