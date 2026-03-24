@@ -80,6 +80,42 @@ next:
 
     <tr>
       <td style={{ textAlign: "left" }}>
+        3.2.1/3.2.2
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * CF PE Phase 2 Implementation
+        * Compounding feature support with API request/response handling
+        * EMI parsing and caching storage improvements
+        * Sodexo rebranded to Pluxee with logo updates
+        * Timer parsing keys added
+        * Bug fixes and code refactoring
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        3.1.1
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * React Native Android Checkout Pro hybrid changes
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        3.1.0
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * Dynamic card scheme enforcement
+        * Integer parsing fix
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
         2.8.1
       </td>
 
