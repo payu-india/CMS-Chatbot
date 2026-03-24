@@ -21,9 +21,7 @@ next:
 <Callout icon="📘" theme="info">
   <NewBadge title="What's New!" asHeading={false} />
 
-
-
-  RuPay Debit and Credit Cards are supported for Subscriptions.
+  <ul><li>RuPay Debit and Credit Cards are supported for Subscriptions.</li></ul>
 </Callout>
 
 The Subscriptions, Recurring Payments or Standing Instruction (SI) from PayU to set up and manage recurring payments. These recurring payments:
