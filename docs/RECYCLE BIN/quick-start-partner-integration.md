@@ -1,7 +1,7 @@
 ---
 title: Quick Start Partner Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
