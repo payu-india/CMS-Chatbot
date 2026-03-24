@@ -68,12 +68,12 @@ The following table describes the parameters for modifying the recurring payment
     <tr>
       <td>mode</td>
       <td>
-        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are: <ul><li>\`CC\`: Credit Card</li> <li>\`DC\`: Debit Card</li></ul>
+        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are: <ul><li><code>CC</code>: Credit Card</li> <li><code>DC</code>: Debit Card</li></ul>
       </td>
     </tr>
     <tr>
       <td>bankcode</td>
-      <td>Indicates the payment option used for the transaction. Possible values: <ul><li>\`AMEX\`: For American Express credit and debit cards</li> <li>\`RUPAYCC\`: For RuPay credit cards</li> <li>\`RUPAY\`: For RuPay debit cards</li></ul></td>
+      <td>Indicates the payment option used for the transaction. Possible values: <ul><li><code>AMEX</code>: For American Express credit and debit cards</li> <li><code>RUPAYCC</code>: For RuPay credit cards</li> <li><code>RUPAY</code>: For RuPay debit cards</li></ul></td>
     </tr>
     <tr>
       <td>status</td>
