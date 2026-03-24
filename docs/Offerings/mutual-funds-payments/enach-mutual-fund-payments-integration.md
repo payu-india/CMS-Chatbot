@@ -262,24 +262,48 @@ All successful registration transactions are charged over the recurring interfac
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
-  curl --location 'https://test.payu.in/merchant/postservice?form=2' \
+curl --location 'https://test.payu.in/merchant/postservice?form=2' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Cookie: PHPSESSID=69bd1b9646679' \
+--header 'Cookie: PHPSESSID=69c253779decd' \
 --data-urlencode 'key=j6Bb3k' \
 --data-urlencode 'command=si_transaction' \
 --data-urlencode 'hash={{hash}}' \
---data-urlencode 'var1={"authpayuid":"403993715536957759","invoiceDisplayNumber":"INVI_403993715536957759","amount":1,"txnid":"txnId_403993715536957759","phone":"9988776655","email":"chota.bheem@gmail.com","more_info":{"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}}'
-
+--data-urlencode 'var1={"authpayuid":"403993715537049175","invoiceDisplayNumber":"IN_403993715537049175","amount":"1","txnid":"tx_403993715537049175","phone":"9988776655","email":"chota.bheem@gmail.com","more_info":{"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"1","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}}'
   ```
 </Accordion>
-```json
-{"status":1,"message":"Transaction Processed
-successfully","details":{"txnId_403993715536957759":{"authpayuid":"403993715536957759","transactionid":"txnId_403993715536957759","amount":1,"user_credentials":"j6Bb3k:cst_zqqmw0v4exbhvv2z","card_token":"","payuid":"403993715537041227","status":"failed","udf1":"","field9":"PayUErr:
-The request is invalid. The request method or content may be incorrect - Invalid UMRN number or MerchantAccessKey
-received","udf2":"","udf3":"","udf4":"","udf5":"","phone":"9988776655","email":"chota.bheem@gmail.com","fileName":"","paymentgatewayid":268,"addedon":"2026-03-23
-17:05:56","card_no":null}}}
-```
+
+
+
 <Accordion title="Sample response" icon="fa-reply">
+```json
+{
+    "status": 1,
+    "message": "Transaction Processed successfully",
+    "details": {
+        "tx_403993715537049175": {
+            "authpayuid": "403993715537049175",
+            "transactionid": "tx_403993715537049175",
+            "amount": "1",
+            "user_credentials": "j6Bb3k:txn_235898u",
+            "card_token": "",
+            "payuid": "403993715537049210",
+            "status": "captured",
+            "udf1": "",
+            "field9": "Payment Successful",
+            "udf2": "",
+            "udf3": "",
+            "udf4": "",
+            "udf5": "",
+            "phone": "9988776655",
+            "email": "chota.bheem@gmail.com",
+            "fileName": "",
+            "paymentgatewayid": 268,
+            "addedon": "2026-03-24 14:36:23",
+            "card_no": null
+        }
+    }
+}
+```
 </Accordion>
 <Accordion title="Response Parameters" icon="fa-table">
   **JSON fields description of the Details parameter**
