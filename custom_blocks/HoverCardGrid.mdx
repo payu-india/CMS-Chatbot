@@ -1,0 +1,118 @@
+---
+name: HoverCardGrid
+---
+/**
+ * HoverCardGrid - ReadMe CMS Custom Component
+ *
+ * Responsive card grid: cool gray background, rounded corners, lift + soft shadow on hover.
+ *
+ * ReadMe: Settings → Custom Components → paste this file. One registration; pass `items`.
+ *
+ * Usage: pass columns and items. Each item: title, href, optional text, icon, image, imageAlt, target.
+ * If `image` (URL) is set, it shows above the title; otherwise `icon` (Font Awesome class) is used.
+ *
+ * Props: items, columns 1–4, className.
+ */
+
+export const HoverCardGrid = (props) => {
+  const { items = [], columns = 3, className = '' } = props;
+
+  const safeCols = [1, 2, 3, 4].includes(Number(columns)) ? Number(columns) : 3;
+  const gridClass =
+    safeCols === 1
+      ? 'grid-cols-1'
+      : safeCols === 2
+        ? 'grid-cols-1 sm:grid-cols-2'
+        : safeCols === 4
+          ? 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-4'
+          : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
+
+  const cardBase =
+    'group flex h-full flex-col rounded-lg bg-[#f8faff] p-5 text-left no-underline ' +
+    'shadow-[0_2px_12px_-4px_rgba(15,23,42,0.08),0_1px_2px_-1px_rgba(15,23,42,0.04)] ' +
+    'transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ' +
+    'hover:-translate-y-2 ' +
+    'hover:shadow-[0_24px_48px_-12px_rgba(15,23,42,0.18),0_12px_24px_-10px_rgba(15,23,42,0.1)] ' +
+    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500';
+
+  const mediaTransition =
+    'transition-[box-shadow,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]';
+
+  return (
+    <div className={`my-6 ${className}`.trim()}>
+      <ul className={`grid gap-4 list-none p-0 m-0 ${gridClass}`}>
+        {items.map((item, index) => {
+          const title = item?.title != null ? String(item.title) : '';
+          const href = item?.href != null ? String(item.href) : '';
+          const text = item?.text != null ? String(item.text) : '';
+          const icon = item?.icon != null ? String(item.icon).trim() : '';
+          const rawImage =
+            item?.image != null
+              ? String(item.image).trim()
+              : item?.imageSrc != null
+                ? String(item.imageSrc).trim()
+                : item?.img != null
+                  ? String(item.img).trim()
+                  : '';
+          const imageSrc = rawImage;
+          const imageAlt =
+            item?.imageAlt != null && String(item.imageAlt).trim() !== ''
+              ? String(item.imageAlt).trim()
+              : title || 'Card illustration';
+          const target = item?.target != null ? String(item.target).trim() : undefined;
+          const key = item?.key != null ? String(item.key) : `card-${index}-${title}`;
+
+          const inner = (
+            <>
+              {imageSrc ? (
+                <span
+                  className={`mb-3 block overflow-hidden rounded-md bg-white/60 shadow-sm ring-1 ring-slate-900/5 ${mediaTransition} group-hover:shadow-md group-hover:ring-slate-900/10`}
+                >
+                  <img
+                    src={imageSrc}
+                    alt={imageAlt}
+                    className={`h-32 w-full object-cover ${mediaTransition} group-hover:scale-[1.03]`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+              ) : icon ? (
+                <span
+                  className={`mb-3 inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-white/80 text-[15px] text-slate-700 shadow-sm ring-1 ring-slate-900/5 ${mediaTransition} group-hover:scale-105 group-hover:shadow-md`}
+                  aria-hidden="true"
+                >
+                  <span className={`fa ${icon}`} aria-hidden="true" />
+                </span>
+              ) : null}
+              <span className="text-base font-semibold leading-snug text-slate-900">{title}</span>
+              {text ? (
+                <span className="mt-2 text-sm font-normal leading-relaxed text-slate-600">{text}</span>
+              ) : null}
+            </>
+          );
+
+          return (
+            <li key={key} className="m-0 list-none p-0">
+              {href ? (
+                <a
+                  href={href}
+                  target={target}
+                  rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+                  className={cardBase}
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div className={cardBase}>{inner}</div>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
+
+// Default preview for ReadMe CMS (component must appear after exports). Keep preview on one line — ReadMe’s MDX parser can fail on multiline object arrays here.
+
+<HoverCardGrid columns={3} items={[{ title: 'Getting Started', href: '#', icon: 'fa-rocket', text: 'New to our platform? Follow this guide to get started.' }, { title: 'API Reference', href: '#', icon: 'fa-code', text: 'Explore our interactive API reference.' }, { title: 'Support and Community', href: '#', icon: 'fa-comments', target: '_blank', text: 'Join our community or check out our FAQ.' }]} />
