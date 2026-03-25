@@ -43,11 +43,16 @@ flowchart TD
 
 ## Steps to integrate
 
-The followings steps will include the env, sample request and response in accordion.
+The followings steps will include the env, request parameters (for Step 1 alone) sample request and response in accordion.
 
 Step 1. Create Merchant (Name, Email, Phone, PAN)
+
 Step 2. Update Merchant Details (Business Info)
+
 Step 3. Update Website/App Details
+
 Step 4. Submit Signing Authority Details
+
 Step 5. Upload KYC Documents
+
 Step 6. Request E-Sign Agreement
