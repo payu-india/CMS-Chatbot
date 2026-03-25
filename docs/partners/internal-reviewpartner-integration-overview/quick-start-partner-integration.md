@@ -1,5 +1,5 @@
 ---
-title: Quick Start Partner Integration
+title: Quick Start Partner API Integration
 deprecated: false
 hidden: true
 metadata:
