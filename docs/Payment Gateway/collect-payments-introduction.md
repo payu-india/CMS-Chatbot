@@ -39,7 +39,7 @@ A **payment gateway** enables businesses to securely accept payments from custom
   * Supports multiple banks and card networks securely
 </Accordion>
 
-<Accordion title="Improved Customer Experience" icon="fa-face-smile">
+<Accordion title="Improved Customer Experience" icon="fa-star">
   Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
   ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
   occaecat cupidatat non proident!
