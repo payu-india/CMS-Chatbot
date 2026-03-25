@@ -62,7 +62,7 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
     </tr>
     <tr>
       <td>refundDetails<br/><code>optional</code></td>
-      <td><code>Object</code> This field tells that refund should be process into customer's wallet instead of original back to source account. It must include the <code>refundType</code> field with the value as "wallet".</td>
+      <td><code>Object</code> This field tells that refund should be process into customer's closed-loop wallet (CLW) instead of original back to source account. It must include the <code>refundType</code> field with the value as "wallet".</td>
       <td><code>{"refundType": "wallet"}</code></td>
     </tr>
     <tr>
