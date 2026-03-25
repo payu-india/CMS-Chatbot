@@ -40,10 +40,12 @@ The S2S decoupled flow for cards involves the following steps for the **redirect
 
 <RegisterMerchantPrerequiste />
 
-> 📘 Notes:
->
-> * This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
-> * If you are using legacy integration of decoupled flow for S2S, refer to [Legacy Flow for Server-to-Server](legacy-flow-for-server-to-server).
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
+  * If you are using legacy integration of decoupled flow for S2S, refer to [Legacy Flow for Server-to-Server](legacy-flow-for-server-to-server).
+</Callout>
 
 ## Step 1: Initiate payment request with PayU
 
@@ -467,8 +469,9 @@ You must rely on the **metaData.unmappedStatus** field from the response JSO
         * Upon selection, load the value of the `result.acsTemplate` parameter as the Bank Form by decoding it using base64 encoding formula
     * **If `binData.pureS2SSupported = false`:**
       * Redirect the customer using the `result.acsTemplate` parameter, which contains a Base64-encoded HTML form
+<Callout icon="📘" theme="info">
   * **Note:** The `metaData.referenceId` value from the response JSON will be used as the input for the `referenceId` parameter in both the `submitOtp` and `resentOtp` APIs
-
+</Callout>
 * **If `metaData.unmappedStatus = 'failure'`:**
   * Refer to the `metaData.statusCode` and `metaData.msg` fields for details on the failure reasons
 
