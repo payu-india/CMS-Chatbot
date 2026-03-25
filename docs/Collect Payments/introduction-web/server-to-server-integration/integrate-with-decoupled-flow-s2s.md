@@ -451,7 +451,10 @@ The **_payment** API response is similar to the following:
   ```
 </Accordion>
 
-You must rely on the metaData.unmappedStatus field from the response JSON. Perform the following actions based on its value: 
+
+#### Check metaData.unmappedStatus field value
+
+You must rely on the **metaData.unmappedStatus** field from the response JSON. Perform the following actions based on its value: 
 
 * **If `metaData.unmappedStatus = 'pending'`:**
 
