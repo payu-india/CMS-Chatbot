@@ -40,7 +40,22 @@ A **payment gateway** enables businesses to securely accept payments from custom
 </Accordion>
 
 <Accordion title="Improved Customer Experience" icon="fa-star">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+ * Seamless and intuitive checkout flow
+ * Saves time for customers during payment
+ * Builds trust and confidence in your platform
+</Accordion>
+
+<Accordion title="Flexible Integration Options" icon="fa-puzzle-piece">
+  * Choose from:
+  	* Hosted Checkout (quick setup)
+  	* Web Checkout (custom UI)
+  	* APIs (full control)
+  * Suitable for businesses of all sizes
+</Accordion>
+
+<Accordion title="Better Conversion Rates" icon="fa-bullseye">
+  * Smooth payment experience leads to:
+  	* Fewer drop-offs  
+  	* Higher successful transactions  
+  * Direct impact on revenue growth
 </Accordion>
