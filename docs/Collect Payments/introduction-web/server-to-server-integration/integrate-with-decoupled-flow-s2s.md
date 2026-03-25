@@ -471,7 +471,7 @@ You must rely on the **metaData.unmappedStatus** field from the response JSO
       * Redirect the customer using the `result.acsTemplate` parameter, which contains a Base64-encoded HTML form
 
 <Callout icon="📘" theme="info">
- **Note:** The `metaData.referenceId` value from the response JSON will be used as the input for the `referenceId` parameter in both the `submitOtp` and `resentOtp` APIs
+  **Note:** The `metaData.referenceId` value from the response JSON will be used as the input for the `referenceId` parameter in both the `submitOtp` and `resentOtp` APIs
 </Callout>
 
 * **If `metaData.unmappedStatus = 'failure'`:**
@@ -518,7 +518,7 @@ You must rely on the **metaData.unmappedStatus** field from the response JSO
 
 ### Step 2b: Non-Native OTP Flow
 
-Basis a successful response of the Collect Payment (**_payment**) API, you need to redirect the user to the bank page using **acsTemplate**. In case of Bank page authentication (Non Native OTP): ACS server will redirect the customer to termUrl passed in the payment request during initiation and authenticationResult will be posted along "cres" over the termUrl.
+On basis of a successful response of the Collect Payment (**_payment**) API, you need to redirect the user to the bank page using **acsTemplate**. In case of Bank page authentication (Non-Native OTP),  ACS server will redirect the customer to termUrl passed in the payment request during initiation and authenticationResult will be posted along "cres" over the termUrl.
 
 > 📘 Notes:
 >
