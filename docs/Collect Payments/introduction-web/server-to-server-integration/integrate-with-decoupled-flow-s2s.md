@@ -469,9 +469,11 @@ You must rely on the **metaData.unmappedStatus** field from the response JSO
         * Upon selection, load the value of the `result.acsTemplate` parameter as the Bank Form by decoding it using base64 encoding formula
     * **If `binData.pureS2SSupported = false`:**
       * Redirect the customer using the `result.acsTemplate` parameter, which contains a Base64-encoded HTML form
+
 <Callout icon="📘" theme="info">
-  * **Note:** The `metaData.referenceId` value from the response JSON will be used as the input for the `referenceId` parameter in both the `submitOtp` and `resentOtp` APIs
+ **Note:** The `metaData.referenceId` value from the response JSON will be used as the input for the `referenceId` parameter in both the `submitOtp` and `resentOtp` APIs
 </Callout>
+
 * **If `metaData.unmappedStatus = 'failure'`:**
   * Refer to the `metaData.statusCode` and `metaData.msg` fields for details on the failure reasons
 
@@ -551,7 +553,7 @@ Basis a successful response of the Collect Payment (**_payment**) API, you need 
 The authorization request is the final step of transaction processing. This again needs to be an S2S call from the merchant's server to PayU server.
 
 <Callout icon="📘" theme="info">
-  **Note:** 
+  **Note:**
 
   * **For Redirection Based authentication from termUrl(if being sent by PayU)**: If` authenticationStatus=success`, use `bankData` parameter value as it is to be passed under **authentication_info** parameter of **Authorize Transaction API**
   * **For Native OTP based Authentication**: If **metaData.txnStatus**is "Authenticated",  use `result.postToBank `object value to be passed in the authentication_info parameter of **Authorize Transaction API**.
