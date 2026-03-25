@@ -451,7 +451,6 @@ The **_payment** API response is similar to the following:
   ```
 </Accordion>
 
-
 #### Check metaData.unmappedStatus field value
 
 You must rely on the **metaData.unmappedStatus** field from the response JSON. Perform the following actions based on its value: 
@@ -462,7 +461,7 @@ You must rely on the **metaData.unmappedStatus** field from the response JSO
 
     * **If `binData.pureS2SSupported = true`:**
       * Invoke the OTP page and present it to the customer
-      * Use Submit OTP API to collect & submit OTP from your page. For more information, refer to [Submit OTP API](ref:submit-otp-to-payu).
+      * Use Submit OTP API to collect & submit OTP from your page. For more information, refer to [Submit OTP API](ref:submit-otp-to-payu). The response for this API as in [Sample response for authentication only flow on Submit OTP API](#sample-response-for-authentication-only-flow on-submit-otp-api).
       * If the customer opts to redirect to the bank ACS for entering the OTP:
         * Provide a "Redirect to Bank Page" link
         * Upon selection, load the value of the `result.acsTemplate` parameter as the Bank Form by decoding it using base64 encoding formula
@@ -473,7 +472,7 @@ You must rely on the **metaData.unmappedStatus** field from the response JSO
 * **If `metaData.unmappedStatus = 'failure'`:**
   * Refer to the `metaData.statusCode` and `metaData.msg` fields for details on the failure reasons
 
-#### Sample response for authentication only flow
+#### Sample response for authentication only flow on Submit OTP API
 
 <Accordion title="Sample response" icon="fa-code">
   ```json
@@ -544,31 +543,7 @@ Basis a successful response of the Collect Payment (**_payment**) API, you need 
   | authorizationUrl<br /><code>mandatory</code> | This integration document assumes that you have opt-ed out for the particular configuration. The authorization URL in legacy integrations are present basis the config at PayU. Reach out to [integration@payu.in](mailto:integration@payu.in) to know more about. <code>String</code> | [https://secure.payu.in/merchant/postservice?form=5ea3a2d](https://secure.payu.in/merchant/postservice?form=5ea3a2d) |
 </Accordion>
 
-<Accordion title="Sample response" icon="fa-code">
-  ```json
-  {
-    "metaData": {
-       "message": null,
-       "referenceId": "00c44a4c8306f9cbe5ecf6133afe08a7",
-       "statusCode": null,
-       "txnId": "payuTestTransaction447674",
-       "txnStatus": "Enrolled",
-       "unmappedStatus": "pending"
-    },
-    "result": {
-       "otpPostUrl": "",
-       "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vd3d3LjNkc2VjdXJlMS5pY2ljaWJhbmsuY29tL0FDU1dlYi9FbnJvbGxXZWIvSUNJQ0lCYW5rL3NlcnZlci9BY2Nlc3NDb250cm9sU2VydmVyP2lkY3Q9ODExMi5WIiBtZXRob2Q9InBvc3QiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Ik1EIiB2YWx1ZT0iYzJlOWU0NTYwMzdmMDMzZTVjYzNkN2I2ZTU1NjE4OWFkZjQxZWVhYmY3MDY4NDRkZmY3MGFhYzkxZjZiOGU3M2JiMTg0NjI4NmM4Zjk5ZWE3NjhjZjM4ZjdjMTIzNjljfDUyMzcyNzQ5MzY0Nzk1MGYzMjY4NGJkNmYxYWIwN2FhNjQ3NDAxNmYiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9IlBhUmVxIiB2YWx1ZT0iZU5wVlVrMXYyekFNL1N0Qjc3RytyTW9PV0FGTkRhdzVKTTNTN3RLYmJER3hoL2lqbGowMCsvV1RIR2ZkVHVLamlFZStSOEpiMlNObXIxaU1QV3JZb25QbWhJdktQdHpsOFQzbE9lVkxMbzkyR1Z0TWxvbFE2VkpZeFRrMVZDcGw3elRzSHcvNG9lRVg5cTVxRzgwaUduRWdOK2daKzZJMHphREJGQi9yelU3SGlVaVZCREpEcUxIZlpKb3puc1lKbFFrVmd0SjdJTmMwTktaRzdXclhuVWNIWkVKUXRHTXo5QmN0cEsrN0FSajdzeTZIb1hNclF0d2tKK3JNWll5cWh1UW1UMWw4dElVNVdta1pUeFJGcTR4TUZVdXBORGw1YXV1NmJmYW5BN3F1YlJ3K204YWVzUWNTU0lGOGFkaVBJWEoraU0vSzZ2ZTMwL0NTYmNYTEsvMzluaFdYN2M5MXVjMStpQjMvL2dBa1ZJQTFBMnBPdWRkSDJZS0psVkFyNGYyWjhtRHFNTDNlN0E0TEZqSHFUYmttb0F0OUhxK0FoWTkvRStERjlkZ1VOd2R1Q1FEVFQ0Kyt3amY0RzRORlYzZ1I4L09sNE9rNTdLUVlndnZ6Z040T0pTU1RLc2wzL0xSVzViZXdwNmtra0ZmZVp5Nm9uTmdEQUJKSXlId0NaTDRlSC8xM1ZYOEFEOUxGSGc9PSI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iVGVybVVybCIgdmFsdWU9Imh0dHBzOi8vc2VjdXJlLnBheXUuaW4vYmFiOTE0ZmRjYWZkNWQxMjg3MGVkN2E1OTcxOTA1YWIvQ29tbW9uUGdSZXNwb25zZUhhbmRsZXIiPjwvZm9ybT48c2NyaXB0IHR5cGU9J3RleHQvamF2YXNjcmlwdCc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB3aW5kb3cub25sb2FkPWZ1bmN0aW9uKCl7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZm9ybXNbJ3BheW1lbnRfcG9zdCddLnN1Ym1pdCgpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA8L3NjcmlwdD48L2JvZHk+PC9odG1sPg=="
-    },
-    "binData": {
-       "pureS2SSupported": false,
-       "issuingBank": "ICICI",
-       "category": "creditcard",
-       "cardType": "VISA",
-       "isDomestic": true
-    }
-  }
-  ```
-</Accordion>
+
 
 ## Step 3: Authorize (charge) the payment
 
