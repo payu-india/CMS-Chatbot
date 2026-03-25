@@ -32,9 +32,15 @@ A **payment gateway** enables businesses to securely accept payments from custom
 
 <Accordion title="Multiple Payment Options" icon="fa-money-bill-wave">
   * Accept a wide range of payment methods:
-  	* Credit & Debit Cards  
-  	* UPI  
-  	* Net Banking  
-  	* Wallets  
+    * Credit & Debit Cards
+    * UPI
+    * Net Banking
+    * Wallets
   * Supports multiple banks and card networks securely
+</Accordion>
+
+<Accordion title="Improved Customer Experience" icon="fa-face-smile">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
 </Accordion>
