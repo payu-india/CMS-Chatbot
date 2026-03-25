@@ -314,3 +314,4 @@ Any of the following response is displayed when the refund request is rejected:
 | 79 | 501         | Successfully Updated                                                                                         |
 | 80 | 502         | Failed to update                                                                                             |
 | 81 | 270         | FAILURE - Transaction not eligible for Instant Refund                                                        |
+| 82 | 132         | Error - wallet refunds are not allowed for this request                                                      |
