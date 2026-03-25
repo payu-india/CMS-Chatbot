@@ -96,7 +96,7 @@ curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
  
 ```
 
-### Refund Initiation for Wallets
+### Refund Initiation for Closed-Loop Wallet (CLW)
 
 ```curl
 curl --location 'http://10.248.8.237:9095/refund/v1/refundInitiation' \
