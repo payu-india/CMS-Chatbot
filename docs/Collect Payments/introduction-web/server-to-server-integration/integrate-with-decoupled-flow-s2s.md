@@ -461,7 +461,7 @@ You must rely on the **metaData.unmappedStatus** field from the response JSO
 
     * **If `binData.pureS2SSupported = true`:**
       * Invoke the OTP page and present it to the customer
-      * Use Submit OTP API to collect & submit OTP from your page. For more information, refer to [Submit OTP API](ref:submit-otp-to-payu). The response for this API as in [Sample response for authentication only flow on Submit OTP API](#sample-response-for-authentication-only-flow on-submit-otp-api).
+      * Use Submit OTP API to collect & submit OTP from your page. For more information, refer to [Submit OTP API](ref:submit-otp-to-payu). The response for this API as in [Sample response for authentication only flow on Submit OTP API.](<#sample-response-for-authentication-only-flow on-submit-otp-api>)
       * If the customer opts to redirect to the bank ACS for entering the OTP:
         * Provide a "Redirect to Bank Page" link
         * Upon selection, load the value of the `result.acsTemplate` parameter as the Bank Form by decoding it using base64 encoding formula
@@ -542,8 +542,6 @@ Basis a successful response of the Collect Payment (**_payment**) API, you need 
   | additionalInfo<br /><code>mandatory</code>   |                                                                                                                       This field is returned in case of decoupled flow. This field contains the data that is being used for the gateways that do not return pares. <code>String</code> | transaction\_id=12345\&status=pending                                                                                |
   | authorizationUrl<br /><code>mandatory</code> | This integration document assumes that you have opt-ed out for the particular configuration. The authorization URL in legacy integrations are present basis the config at PayU. Reach out to [integration@payu.in](mailto:integration@payu.in) to know more about. <code>String</code> | [https://secure.payu.in/merchant/postservice?form=5ea3a2d](https://secure.payu.in/merchant/postservice?form=5ea3a2d) |
 </Accordion>
-
-
 
 ## Step 3: Authorize (charge) the payment
 
