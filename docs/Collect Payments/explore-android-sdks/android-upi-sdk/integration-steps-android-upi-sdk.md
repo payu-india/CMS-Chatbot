@@ -59,7 +59,7 @@ implementation 'in.payu:upisdk:1.8.11'
   **Expand Manifest view for compilation error**: If you are getting the following compile error, expand the Merged Manifest view.
 
   `Android resource linking failed /Users/sample/AndroidStudioProjects/MyApp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:18: error: unexpected element found in <manifest>  
-                                        Manifest merger failed with multiple errors, see logs`
+                                          Manifest merger failed with multiple errors, see logs`
 </Callout>
 
 In the Merged Manifest view, the following additional error message is displayed. This indicates that you need to fix your Gradle plugin. For more information on the Gradle plugin, refer to the Google Andriod Documentation.
@@ -135,8 +135,8 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   siParamsDetails.setBillingAmount("100");
   siParamsDetails.setBillingCurrency("INR");
   siParamsDetails.setBillingCycle(BillingCycle.YEARLY);
-  siParamsDetails.setPaymentStartDate("08-02-2024");
-  siParamsDetails.setPaymentEndDate("08-02-2025");
+  siParamsDetails.setPaymentStartDate("2026-05-23");
+  siParamsDetails.setPaymentEndDate("2026-05-23");
   siParamsDetails.setBillingInterval(1);
   siParamsDetails.setBillingLimit(BillingLimit.ON);
   siParamsDetails.setBillingRule(BillingRule.EXACT);
@@ -149,8 +149,8 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   siParamsDetails.billingAmount = "100"
   siParamsDetails.billingCurrency = "INR"
   siParamsDetails.billingCycle = BillingCycle.YEARLY
-  siParamsDetails.paymentStartDate = "08-02-2024"
-  siParamsDetails.paymentEndDate = "08-02-2025"
+  siParamsDetails.paymentStartDate = "2026-05-23"
+  siParamsDetails.paymentEndDate = "2026-05-23"
   siParamsDetails.billingInterval = 1
   siParamsDetails.billingLimit = BillingLimit.ON
   siParamsDetails.billingRule = BillingRule.EXACT
@@ -208,16 +208,16 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   SIParams siParams = new SIParams();
   SIParamsDetails siParamsDetails = new SIParamsDetails();
   siParamsDetails.setPreAuthorize(true);
-  siParamsDetails.setPaymentStartDate("08-02-2024");
-  siParamsDetails.setPaymentEndDate("08-02-2025");
+  siParamsDetails.setPaymentStartDate("2026-03-26");
+  siParamsDetails.setPaymentEndDate("2026-05-23");
   siParams.setSi_details(siParamsDetails);       
   ```
   ```kotlin Kotlin
   val siParams = SIParams()
   val siParamsDetails = SIParamsDetails()
   siParamsDetails.isPreAuthorize = true
-  siParamsDetails.paymentStartDate = "08-02-2024"
-  siParamsDetails.paymentEndDate = "08-02-2025"
+  siParamsDetails.paymentStartDate = "2026-03-26"
+  siParamsDetails.paymentEndDate = "2026-05-23"
   siParams.si_details = siParamsDetails
   ```
 
@@ -229,8 +229,8 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   ```kotlin Kotlin
   paymentParamsUpiSdk.siParams = siParams
   ```
-
 </Accordion>
+
 <Accordion title="Step 4.4: For TPV (Optional Step)" icon="fa-code">
   ```java
   // For single account number 
