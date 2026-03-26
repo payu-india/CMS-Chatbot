@@ -400,7 +400,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         tcs_amount
-        `optional, to be sent for lower drop-offs`
+        `optional`
 
         <br />
       </td>
