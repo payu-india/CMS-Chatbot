@@ -470,6 +470,343 @@ You can append the parameter names in your transaction request to opt for all or
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFDC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=debitcard&hash=REPLACE_WITH_GENERATED_HASH"
     ```
+```python
+import requests
+
+def make_payu_request():
+    try:
+        url = "https://test.payu.in/_payment"
+        
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        
+        data = {
+            'key': 'JP***g',
+            'txnid': 'ENFDC001',
+            'amount': '10.00',
+            'firstname': 'PayU User',
+            'email': 'test@gmail.com',
+            'phone': '9876543210',
+            'productinfo': 'iPhone',
+            'surl': 'https://apiplayground-response.herokuapp.com/',
+            'furl': 'https://apiplayground-response.herokuapp.com/',
+            'enforce_paymethod': 'debitcard',
+            'hash': 'REPLACE_WITH_GENERATED_HASH'
+        }
+        
+        response = requests.post(url, headers=headers, data=data)
+        
+        print(f"Status Code: {response.status_code}")
+        print(f"Response: {response.text}")
+        
+        return {
+            'status_code': response.status_code,
+            'response': response.text
+        }
+        
+    except requests.exceptions.RequestException as e:
+        print(f"Error occurred: {e}")
+        return None
+
+# Execute the request
+result = make_payu_request()
+```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        await MakePayURequest();
+    }
+    
+    static async Task MakePayURequest()
+    {
+        try
+        {
+            using (var client = new HttpClient())
+            {
+                var url = "https://test.payu.in/_payment";
+                
+                client.DefaultRequestHeaders.Add("accept", "application/json");
+                
+                var formParams = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("key", "JP***g"),
+                    new KeyValuePair<string, string>("txnid", "ENFDC001"),
+                    new KeyValuePair<string, string>("amount", "10.00"),
+                    new KeyValuePair<string, string>("firstname", "PayU User"),
+                    new KeyValuePair<string, string>("email", "test@gmail.com"),
+                    new KeyValuePair<string, string>("phone", "9876543210"),
+                    new KeyValuePair<string, string>("productinfo", "iPhone"),
+                    new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
+                    new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
+                    new KeyValuePair<string, string>("enforce_paymethod", "debitcard"),
+                    new KeyValuePair<string, string>("hash", "REPLACE_WITH_GENERATED_HASH")
+                };
+                
+                var formContent = new FormUrlEncodedContent(formParams);
+                
+                var response = await client.PostAsync(url, formContent);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                
+                Console.WriteLine($"Status Code: {(int)response.StatusCode}");
+                Console.WriteLine($"Response: {responseContent}");
+            }
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine($"Error occurred: {e.Message}");
+        }
+    }
+}
+```
+```javascript
+async function makePayURequest() {
+    try {
+        const url = "https://test.payu.in/_payment";
+        
+        const formData = new URLSearchParams({
+            'key': 'JP***g',
+            'txnid': 'ENFDC001',
+            'amount': '10.00',
+            'firstname': 'PayU User',
+            'email': 'test@gmail.com',
+            'phone': '9876543210',
+            'productinfo': 'iPhone',
+            'surl': 'https://apiplayground-response.herokuapp.com/',
+            'furl': 'https://apiplayground-response.herokuapp.com/',
+            'enforce_paymethod': 'debitcard',
+            'hash': 'REPLACE_WITH_GENERATED_HASH'
+        });
+        
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData
+        });
+        
+        const responseText = await response.text();
+        
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+        
+        return {
+            status_code: response.status,
+            response: responseText
+        };
+        
+    } catch (error) {
+        console.error(`Error occurred: ${error.message}`);
+        return null;
+    }
+}
+
+// Execute the request
+makePayURequest()
+    .then(result => {
+        if (result) {
+            console.log('Request completed successfully');
+        }
+    })
+    .catch(error => {
+        console.error('Request failed:', error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
+
+public class PayURequest {
+    public static void main(String[] args) {
+        makePayURequest();
+    }
+    
+    public static void makePayURequest() {
+        try {
+            URL url = new URL("https://test.payu.in/_payment");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("accept", "application/json");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setDoOutput(true);
+            
+            String formData = "key=" + URLEncoder.encode("JP***g", StandardCharsets.UTF_8) +
+                "&txnid=" + URLEncoder.encode("ENFDC001", StandardCharsets.UTF_8) +
+                "&amount=" + URLEncoder.encode("10.00", StandardCharsets.UTF_8) +
+                "&firstname=" + URLEncoder.encode("PayU User", StandardCharsets.UTF_8) +
+                "&email=" + URLEncoder.encode("test@gmail.com", StandardCharsets.UTF_8) +
+                "&phone=" + URLEncoder.encode("9876543210", StandardCharsets.UTF_8) +
+                "&productinfo=" + URLEncoder.encode("iPhone", StandardCharsets.UTF_8) +
+                "&surl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
+                "&furl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
+                "&enforce_paymethod=" + URLEncoder.encode("debitcard", StandardCharsets.UTF_8) +
+                "&hash=" + URLEncoder.encode("REPLACE_WITH_GENERATED_HASH", StandardCharsets.UTF_8);
+            
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = formData.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
+            }
+            
+            int statusCode = connection.getResponseCode();
+            System.out.println("Status Code: " + statusCode);
+            
+            InputStream responseStream = (statusCode >= 200 && statusCode < 300) 
+                ? connection.getInputStream() 
+                : connection.getErrorStream();
+            
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(responseStream, StandardCharsets.UTF_8))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                System.out.println("Response: " + response.toString());
+            }
+            
+            connection.disconnect();
+            
+        } catch (IOException e) {
+            System.err.println("Error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
+```
+```php
+<?php
+function makePayURequest() {
+    try {
+        $url = "https://test.payu.in/_payment";
+        
+        $postData = array(
+            'key' => 'JP***g',
+            'txnid' => 'ENFDC001',
+            'amount' => '10.00',
+            'firstname' => 'PayU User',
+            'email' => 'test@gmail.com',
+            'phone' => '9876543210',
+            'productinfo' => 'iPhone',
+            'surl' => 'https://apiplayground-response.herokuapp.com/',
+            'furl' => 'https://apiplayground-response.herokuapp.com/',
+            'enforce_paymethod' => 'debitcard',
+            'hash' => 'REPLACE_WITH_GENERATED_HASH'
+        );
+        
+        $ch = curl_init();
+        
+        curl_setopt_array($ch, array(
+            CURLOPT_URL => $url,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => http_build_query($postData),
+            CURLOPT_HTTPHEADER => array(
+                'accept: application/json',
+                'Content-Type: application/x-www-form-urlencoded'
+            ),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_SSL_VERIFYPEER => true,
+            CURLOPT_SSL_VERIFYHOST => 2
+        ));
+        
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $error = curl_error($ch);
+        
+        curl_close($ch);
+        
+        if ($error) {
+            echo "cURL Error: " . $error . "\n";
+            return array('status_code' => 0, 'response' => 'Error: ' . $error);
+        }
+        
+        echo "Status Code: " . $httpCode . "\n";
+        echo "Response: " . $response . "\n";
+        
+        return array(
+            'status_code' => $httpCode,
+            'response' => $response
+        );
+        
+    } catch (Exception $e) {
+        echo "Error occurred: " . $e->getMessage() . "\n";
+        return null;
+    }
+}
+
+// Execute the request
+$result = makePayURequest();
+?>
+```
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common qw(POST);
+
+sub make_payu_request {
+    my $ua = LWP::UserAgent->new;
+    $ua->timeout(30);
+    
+    my $url = "https://test.payu.in/_payment";
+    
+    my %form_data = (
+        'key' => 'JP***g',
+        'txnid' => 'ENFDC001',
+        'amount' => '10.00',
+        'firstname' => 'PayU User',
+        'email' => 'test@gmail.com',
+        'phone' => '9876543210',
+        'productinfo' => 'iPhone',
+        'surl' => 'https://apiplayground-response.herokuapp.com/',
+        'furl' => 'https://apiplayground-response.herokuapp.com/',
+        'enforce_paymethod' => 'debitcard',
+        'hash' => 'REPLACE_WITH_GENERATED_HASH'
+    );
+    
+    my $request = POST $url, 
+        'accept' => 'application/json',
+        'Content-Type' => 'application/x-www-form-urlencoded',
+        Content => \%form_data;
+    
+    my $response = $ua->request($request);
+    
+    if ($response->is_success) {
+        print "Status Code: " . $response->code . "\n";
+        print "Response: " . $response->decoded_content . "\n";
+        
+        return {
+            'status_code' => $response->code,
+            'response' => $response->decoded_content
+        };
+    } else {
+        print "Error occurred: " . $response->status_line . "\n";
+        print "Status Code: " . $response->code . "\n";
+        print "Error Response: " . $response->decoded_content . "\n" if $response->decoded_content;
+        return undef;
+    }
+}
+
+# Execute the request
+my $result = make_payu_request();
+if ($result) {
+    print "Request completed successfully\n";
+} else {
+    print "Request failed\n";
+}
+```
 
     **Net Banking only (`netbanking`)**
 
