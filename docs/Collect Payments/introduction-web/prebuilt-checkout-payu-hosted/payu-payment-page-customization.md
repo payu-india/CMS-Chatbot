@@ -22,6 +22,7 @@ metadata:
 next:
   description: ''
 ---
+
 After you complete PayU Hosted Checkout integration, you will be able to see the PayU Payment page similar to the following screenshot when calling the **Collect Payment** API:
 
 <Image align="center" border={true} width="400px" src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" className="border" />
@@ -58,7 +59,8 @@ You can append the parameter names in your transaction request to opt for all or
   | Wallet      | Airtel Money, YPay, ITZ, Cash Card, etc.  |
   | UPI         | GooglePay, PhonePe, UPI, etc.             |
 
-<br/>
+  <br />
+
   To enforce complete categories, use the values as described in the following table:
 
   | Category    | Value of enforced\_payment |
@@ -86,71 +88,7 @@ You can append the parameter names in your transaction request to opt for all or
 
   All the credit card and debit card options are displayed (as the whole category is enforced). The rest of the categories will not be displayed, that is, EMI, cash card, credit card, debit card, etc. – as they are not being mentioned in the string.
 
-  #### creditcard|netbanking|cashcard
-
-  All the credit card, Net Banking, and cash card options are displayed (as the whole category is enforced for these).
-
-  <Callout icon="📘" theme="info">
-    **Note**: Ensure you use this parameter only after testing properly as an incorrect string will lead to undesirable payment options being displayed.
-  </Callout>
-
-  For an example procedure on how to enforce payment with a credit card, refer to Enforce Payment with Credit Card.
-</Accordion>
-
-<Accordion title="Hide Specific Payment Modes" icon="fa-code">
-  **Parameter name : drop\_category**
-
-  The **drop\_category** parameter can be used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
-
-  If 30 Net Banking options are available and you want to drop two of those net banking options (that is, do not display those two options on the PayU page), the **drop\_category** parameter can be used effectively.
-
-  To drop the whole category, use the following values:
-
-  | Category    | Category Value |
-  | :---------- | :------------- |
-  | Credit Card | CC             |
-  | Debit Card  | DC             |
-  | Net Banking | NB             |
-  | NEFT/RTGS   | NEFTRTGS       |
-  | EMI         | EMI            |
-  | Wallet      | CASH           |
-  | BNPL        | BNPL           |
-  | Sodexo      | SODEXO         |
-
-  To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration).
-</Accordion>
-
-<Accordion title="Checkout customization examples" icon="fa-code">
-  **drop\_category – DC|VISA|MAST**
-
-  In this example:
-
-  * For the debit card category, only Visa and Master Card options will be dropped, so they are not displayed on the PayU page.
-  * All other active payment options are displayed.
-
-  **drop\_category – CC|AMEX, DC|VISA, EMI|EMI6**
-
-  In this example:
-
-  * For the credit card category, only the AMEX option is dropped and not displayed on the PayU page.
-  * In the debit card category, only the VISA option would be dropped.
-  * In the EMI category, only HDFC 6 months EMI option (bank code – EMI6) will be dropped.
-  * All the other active payment options will be displayed on the PayU page.
-
-  <Callout icon="📘" theme="info">
-    **Note**: Use this parameter only after proper testing as an incorrect string will display undesirable payment modes.
-  </Callout>
-</Accordion>
-
-### Sample Collect Payment requests (`enforced_payment` and `drop_category`)
-
-The examples below use the PayU Hosted Checkout **Collect Payment** endpoint (`POST /_payment`). Replace `key` with your merchant key, use a unique `txnid` for every attempt, set `surl` and `furl` to your return URLs, and compute **`hash`** using PayU’s hash generation rules for the exact set of parameters you post. Use the **pipe (`|`)** delimiter when you pass more than one value in `enforced_payment` or `drop_category`.
-
-<Callout icon="📘" theme="info">
-  The POST field name **`enforced_payment`** carries the same pipe-delimited values described in the **Value of enforced_payment** table above (some materials refer to this concept as **enforce_paymethod**).
-</Callout>
-
-#### `enforced_payment` — single category (one sample per value)
+<Accordion title="Sample request with single category" icon="fa-code">
 
 **Credit Card only (`creditcard`)**
 
@@ -241,8 +179,17 @@ curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JP***g&txnid=ENFQR001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=qr&hash=REPLACE_WITH_GENERATED_HASH"
 ```
+</Accordion>
+  #### creditcard|netbanking|cashcard
 
-#### `enforced_payment` — multiple categories in one request
+  All the credit card, Net Banking, and cash card options are displayed (as the whole category is enforced for these).
+
+  <Callout icon="📘" theme="info">
+    **Note**: Ensure you use this parameter only after testing properly as an incorrect string will lead to undesirable payment options being displayed.
+  </Callout>
+
+  For an example procedure on how to enforce payment with a credit card, refer to Enforce Payment with Credit Card.
+<Accordion title="Sample request with multiple categories" icon="fa-code">
 
 **Credit Card and Debit Card (`creditcard|debitcard`)**
 
@@ -261,8 +208,52 @@ curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JP***g&txnid=ENFMIX001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=creditcard|netbanking|cashcard&hash=REPLACE_WITH_GENERATED_HASH"
 ```
+</Accordion>
+</Accordion>
 
-#### `drop_category` — hide a whole category (one sample per category value)
+<Accordion title="Hide Specific Payment Modes" icon="fa-code">
+  **Parameter name : drop\_category**
+
+  The **drop\_category** parameter can be used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
+
+  If 30 Net Banking options are available and you want to drop two of those net banking options (that is, do not display those two options on the PayU page), the **drop\_category** parameter can be used effectively.
+
+  To drop the whole category, use the following values:
+
+  | Category    | Category Value |
+  | :---------- | :------------- |
+  | Credit Card | CC             |
+  | Debit Card  | DC             |
+  | Net Banking | NB             |
+  | NEFT/RTGS   | NEFTRTGS       |
+  | EMI         | EMI            |
+  | Wallet      | CASH           |
+  | BNPL        | BNPL           |
+  | Sodexo      | SODEXO         |
+
+  To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration).
+
+<Accordion title="Checkout customization examples" icon="fa-code">
+  **drop\_category – DC|VISA|MAST**
+
+  In this example:
+
+  * For the debit card category, only Visa and Master Card options will be dropped, so they are not displayed on the PayU page.
+  * All other active payment options are displayed.
+
+
+  In this example:
+
+  * For the credit card category, only the AMEX option is dropped and not displayed on the PayU page.
+  * In the debit card category, only the VISA option would be dropped.
+  * In the EMI category, only HDFC 6 months EMI option (bank code – EMI6) will be dropped.
+  * All the other active payment options will be displayed on the PayU page.
+
+  <Callout icon="📘" theme="info">
+    **Note**: Use this parameter only after proper testing as an incorrect string will display undesirable payment modes.
+  </Callout>
+</Accordion>
+<Accordion title="Sample request with a single payment method removed or dropped" icon="fa-code">
 
 **Hide Credit Card (`CC`)**
 
@@ -335,8 +326,8 @@ curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JP***g&txnid=DROPSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=SODEXO&hash=REPLACE_WITH_GENERATED_HASH"
 ```
-
-#### `drop_category` — hide multiple whole categories
+</Accordion>
+<Accordion title="Sample request with multiple payment method removed or dropped" icon="fa-code">
 
 **Hide Credit Card and Net Banking (`CC|NB`)**
 
@@ -368,6 +359,9 @@ curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JP***g&txnid=DROPSUB002&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|AMEX, DC|VISA, EMI|EMI6&hash=REPLACE_WITH_GENERATED_HASH"
 ```
+</Accordion>
+</Accordion>
+
 
 ## Change the Language
 
@@ -396,7 +390,7 @@ curl -X POST "https://test.payu.in/_payment" \
 
 The PayU payment page is displayed with the display language as "Hindi" similar to the following screenshot:
 
-<Image border={false} src="https://files.readme.io/3aae0ef-hindipage.png" />
+![](https://files.readme.io/3aae0ef-hindipage.png)
 
 ## Configure Checkout Payment Methods and Settings
 
