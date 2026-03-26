@@ -63,7 +63,7 @@ You can append the parameter names in your transaction request to opt for all or
 
   To enforce complete categories, use the values as described in the following table:
 
-  | Category    | Value of enforced\_payment |
+  | Category    | Value of enforce\_paymethod |
   | :---------- | :------------------------- |
   | Credit Card | creditcard                 |
   | Debit Card  | debitcard                  |
@@ -88,98 +88,98 @@ You can append the parameter names in your transaction request to opt for all or
 
   All the credit card and debit card options are displayed (as the whole category is enforced). The rest of the categories will not be displayed, that is, EMI, cash card, credit card, debit card, etc. – as they are not being mentioned in the string.
 
-<Accordion title="Sample request with single category" icon="fa-code">
+  <Accordion title="Sample request with single category" icon="fa-code">
+    **Credit Card only (`creditcard`)**
 
-**Credit Card only (`creditcard`)**
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=ENFCC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=creditcard&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
 
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=ENFCC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=creditcard&hash=REPLACE_WITH_GENERATED_HASH"
-```
+    **Debit Card only (`debitcard`)**
 
-**Debit Card only (`debitcard`)**
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=ENFDC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=debitcard&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
 
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=ENFDC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=debitcard&hash=REPLACE_WITH_GENERATED_HASH"
-```
+    **Net Banking only (`netbanking`)**
 
-**Net Banking only (`netbanking`)**
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=ENFNB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=netbanking&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
 
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=ENFNB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=netbanking&hash=REPLACE_WITH_GENERATED_HASH"
-```
+    **NEFT/RTGS only (`neftrtgs`)**
 
-**NEFT/RTGS only (`neftrtgs`)**
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=ENFNEFT001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=neftrtgs&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
 
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=ENFNEFT001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=neftrtgs&hash=REPLACE_WITH_GENERATED_HASH"
-```
+    **EMI only (`emi`)**
 
-**EMI only (`emi`)**
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=ENFEMI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=emi&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
 
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=ENFEMI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=emi&hash=REPLACE_WITH_GENERATED_HASH"
-```
+    **UPI only (`upi`)**
 
-**UPI only (`upi`)**
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=ENFUPI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=upi&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
 
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=ENFUPI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=upi&hash=REPLACE_WITH_GENERATED_HASH"
-```
+    **Wallet / Cash Card only (`cashcard`)**
 
-**Wallet / Cash Card only (`cashcard`)**
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=ENFCASH001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=cashcard&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
 
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=ENFCASH001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=cashcard&hash=REPLACE_WITH_GENERATED_HASH"
-```
+    **Sodexo only (`SODEXO`)**
 
-**Sodexo only (`SODEXO`)**
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=ENFSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=SODEXO&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
 
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=ENFSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=SODEXO&hash=REPLACE_WITH_GENERATED_HASH"
-```
+    **BNPL only (`bnpl`)**
 
-**BNPL only (`bnpl`)**
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=ENFBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=bnpl&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
 
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=ENFBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=bnpl&hash=REPLACE_WITH_GENERATED_HASH"
-```
+    **QR only (`qr`)**
 
-**QR only (`qr`)**
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=ENFQR001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=qr&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+  </Accordion>
 
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=ENFQR001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=qr&hash=REPLACE_WITH_GENERATED_HASH"
-```
-</Accordion>
   #### creditcard|netbanking|cashcard
 
   All the credit card, Net Banking, and cash card options are displayed (as the whole category is enforced for these).
@@ -189,26 +189,26 @@ curl -X POST "https://test.payu.in/_payment" \
   </Callout>
 
   For an example procedure on how to enforce payment with a credit card, refer to Enforce Payment with Credit Card.
-<Accordion title="Sample request with multiple categories" icon="fa-code">
 
-**Credit Card and Debit Card (`creditcard|debitcard`)**
+  <Accordion title="Sample request with multiple categories" icon="fa-code">
+    **Credit Card and Debit Card (`creditcard|debitcard`)**
 
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=ENFCCDC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=creditcard|debitcard&hash=REPLACE_WITH_GENERATED_HASH"
-```
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=ENFCCDC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=creditcard|debitcard&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
 
-**Credit Card, Net Banking, and Wallet (`creditcard|netbanking|cashcard`)**
+    **Credit Card, Net Banking, and Wallet (`creditcard|netbanking|cashcard`)**
 
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=ENFMIX001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforced_payment=creditcard|netbanking|cashcard&hash=REPLACE_WITH_GENERATED_HASH"
-```
-</Accordion>
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=ENFMIX001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=creditcard|netbanking|cashcard&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+  </Accordion>
 </Accordion>
 
 <Accordion title="Hide Specific Payment Modes" icon="fa-code">
@@ -233,135 +233,133 @@ curl -X POST "https://test.payu.in/_payment" \
 
   To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration).
 
-<Accordion title="Checkout customization examples" icon="fa-code">
-  **drop\_category – DC|VISA|MAST**
+  <Accordion title="Checkout customization examples" icon="fa-code">
+    **drop\_category – DC|VISA|MAST**
 
-  In this example:
+    In this example:
 
-  * For the debit card category, only Visa and Master Card options will be dropped, so they are not displayed on the PayU page.
-  * All other active payment options are displayed.
+    * For the debit card category, only Visa and Master Card options will be dropped, so they are not displayed on the PayU page.
+    * All other active payment options are displayed.
 
+    In this example:
 
-  In this example:
+    * For the credit card category, only the AMEX option is dropped and not displayed on the PayU page.
+    * In the debit card category, only the VISA option would be dropped.
+    * In the EMI category, only HDFC 6 months EMI option (bank code – EMI6) will be dropped.
+    * All the other active payment options will be displayed on the PayU page.
 
-  * For the credit card category, only the AMEX option is dropped and not displayed on the PayU page.
-  * In the debit card category, only the VISA option would be dropped.
-  * In the EMI category, only HDFC 6 months EMI option (bank code – EMI6) will be dropped.
-  * All the other active payment options will be displayed on the PayU page.
+    <Callout icon="📘" theme="info">
+      **Note**: Use this parameter only after proper testing as an incorrect string will display undesirable payment modes.
+    </Callout>
+  </Accordion>
 
-  <Callout icon="📘" theme="info">
-    **Note**: Use this parameter only after proper testing as an incorrect string will display undesirable payment modes.
-  </Callout>
+  <Accordion title="Sample request with a single payment method removed or dropped" icon="fa-code">
+    **Hide Credit Card (`CC`)**
+
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPCC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+
+    **Hide Debit Card (`DC`)**
+
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPD001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+
+    **Hide Net Banking (`NB`)**
+
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NB&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+
+    **Hide NEFT/RTGS (`NEFTRTGS`)**
+
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPNE001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NEFTRTGS&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+
+    **Hide EMI (`EMI`)**
+
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPEMI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=EMI&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+
+    **Hide Wallet (`CASH`)**
+
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPCASH001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CASH&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+
+    **Hide BNPL (`BNPL`)**
+
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=BNPL&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+
+    **Hide Sodexo (`SODEXO`)**
+
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=SODEXO&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+  </Accordion>
+
+  <Accordion title="Sample request with multiple payment method removed or dropped" icon="fa-code">
+    **Hide Credit Card and Net Banking (`CC|NB`)**
+
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROP2CAT001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|NB&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+
+    #### `drop_category` — hide sub-options (bank / scheme codes)
+
+    Use the bank and scheme codes from [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration) (illustrative codes below match the earlier examples in this page).
+
+    **Debit Card: drop Visa and Mastercard only (`DC|VISA|MAST`)**
+
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPSUB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC|VISA|MAST&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+
+    **Mixed sub-category drops (`CC|AMEX, DC|VISA, EMI|EMI6`)**
+
+    ```curl
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPSUB002&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|AMEX, DC|VISA, EMI|EMI6&hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+  </Accordion>
 </Accordion>
-<Accordion title="Sample request with a single payment method removed or dropped" icon="fa-code">
-
-**Hide Credit Card (`CC`)**
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=DROPCC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC&hash=REPLACE_WITH_GENERATED_HASH"
-```
-
-**Hide Debit Card (`DC`)**
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=DROPD001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC&hash=REPLACE_WITH_GENERATED_HASH"
-```
-
-**Hide Net Banking (`NB`)**
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=DROPB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NB&hash=REPLACE_WITH_GENERATED_HASH"
-```
-
-**Hide NEFT/RTGS (`NEFTRTGS`)**
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=DROPNE001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NEFTRTGS&hash=REPLACE_WITH_GENERATED_HASH"
-```
-
-**Hide EMI (`EMI`)**
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=DROPEMI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=EMI&hash=REPLACE_WITH_GENERATED_HASH"
-```
-
-**Hide Wallet (`CASH`)**
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=DROPCASH001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CASH&hash=REPLACE_WITH_GENERATED_HASH"
-```
-
-**Hide BNPL (`BNPL`)**
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=DROPBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=BNPL&hash=REPLACE_WITH_GENERATED_HASH"
-```
-
-**Hide Sodexo (`SODEXO`)**
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=DROPSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=SODEXO&hash=REPLACE_WITH_GENERATED_HASH"
-```
-</Accordion>
-<Accordion title="Sample request with multiple payment method removed or dropped" icon="fa-code">
-
-**Hide Credit Card and Net Banking (`CC|NB`)**
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=DROP2CAT001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|NB&hash=REPLACE_WITH_GENERATED_HASH"
-```
-
-#### `drop_category` — hide sub-options (bank / scheme codes)
-
-Use the bank and scheme codes from [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration) (illustrative codes below match the earlier examples in this page).
-
-**Debit Card: drop Visa and Mastercard only (`DC|VISA|MAST`)**
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=DROPSUB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC|VISA|MAST&hash=REPLACE_WITH_GENERATED_HASH"
-```
-
-**Mixed sub-category drops (`CC|AMEX, DC|VISA, EMI|EMI6`)**
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=DROPSUB002&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|AMEX, DC|VISA, EMI|EMI6&hash=REPLACE_WITH_GENERATED_HASH"
-```
-</Accordion>
-</Accordion>
-
 
 ## Change the Language
 
