@@ -118,12 +118,194 @@ You can append the parameter names in your transaction request to opt for all or
   <Accordion title="Sample request with single category" icon="fa-code">
     **Credit Card only (`creditcard`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFCC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=creditcard&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'ENFCC001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'enforce_paymethod': 'creditcard', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "ENFCC001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "enforce_paymethod", "creditcard" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'ENFCC001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod': 'creditcard',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=ENFCC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=creditcard&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'ENFCC001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod' => 'creditcard',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'ENFCC001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    enforce_paymethod => 'creditcard',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
     ```python
     import requests
 
@@ -464,233 +646,487 @@ You can append the parameter names in your transaction request to opt for all or
 
     **Debit Card only (`debitcard`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFDC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=debitcard&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
 ```python
 import requests
 
-def make_payu_request():
-    try:
-        url = "https://test.payu.in/_payment"
-        
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-        
-        data = {
-            'key': 'JP***g',
-            'txnid': 'ENFDC001',
-            'amount': '10.00',
-            'firstname': 'PayU User',
-            'email': 'test@gmail.com',
-            'phone': '9876543210',
-            'productinfo': 'iPhone',
-            'surl': 'https://apiplayground-response.herokuapp.com/',
-            'furl': 'https://apiplayground-response.herokuapp.com/',
-            'enforce_paymethod': 'debitcard',
-            'hash': 'REPLACE_WITH_GENERATED_HASH'
-        }
-        
-        response = requests.post(url, headers=headers, data=data)
-        
-        print(f"Status Code: {response.status_code}")
-        print(f"Response: {response.text}")
-        
-        return {
-            'status_code': response.status_code,
-            'response': response.text
-        }
-        
-    except requests.exceptions.RequestException as e:
-        print(f"Error occurred: {e}")
-        return None
+url = "https://test.payu.in/_payment"
 
-# Execute the request
-result = make_payu_request()
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'ENFDC001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'enforce_paymethod': 'debitcard', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
 ```
 ```csharp
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 class Program
 {
     static async Task Main(string[] args)
     {
-        await MakePayURequest();
-    }
-    
-    static async Task MakePayURequest()
-    {
-        try
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
         {
-            using (var client = new HttpClient())
-            {
-                var url = "https://test.payu.in/_payment";
-                
-                client.DefaultRequestHeaders.Add("accept", "application/json");
-                
-                var formParams = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("key", "JP***g"),
-                    new KeyValuePair<string, string>("txnid", "ENFDC001"),
-                    new KeyValuePair<string, string>("amount", "10.00"),
-                    new KeyValuePair<string, string>("firstname", "PayU User"),
-                    new KeyValuePair<string, string>("email", "test@gmail.com"),
-                    new KeyValuePair<string, string>("phone", "9876543210"),
-                    new KeyValuePair<string, string>("productinfo", "iPhone"),
-                    new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
-                    new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
-                    new KeyValuePair<string, string>("enforce_paymethod", "debitcard"),
-                    new KeyValuePair<string, string>("hash", "REPLACE_WITH_GENERATED_HASH")
-                };
-                
-                var formContent = new FormUrlEncodedContent(formParams);
-                
-                var response = await client.PostAsync(url, formContent);
-                var responseContent = await response.Content.ReadAsStringAsync();
-                
-                Console.WriteLine($"Status Code: {(int)response.StatusCode}");
-                Console.WriteLine($"Response: {responseContent}");
-            }
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine($"Error occurred: {e.Message}");
-        }
+            { "key", "JP***g" },
+            { "txnid", "ENFDC001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "enforce_paymethod", "debitcard" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
     }
 }
 ```
 ```javascript
-async function makePayURequest() {
-    try {
-        const url = "https://test.payu.in/_payment";
-        
-        const formData = new URLSearchParams({
-            'key': 'JP***g',
-            'txnid': 'ENFDC001',
-            'amount': '10.00',
-            'firstname': 'PayU User',
-            'email': 'test@gmail.com',
-            'phone': '9876543210',
-            'productinfo': 'iPhone',
-            'surl': 'https://apiplayground-response.herokuapp.com/',
-            'furl': 'https://apiplayground-response.herokuapp.com/',
-            'enforce_paymethod': 'debitcard',
-            'hash': 'REPLACE_WITH_GENERATED_HASH'
-        });
-        
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: formData
-        });
-        
-        const responseText = await response.text();
-        
-        console.log(`Status Code: ${response.status}`);
-        console.log(`Response: ${responseText}`);
-        
-        return {
-            status_code: response.status,
-            response: responseText
-        };
-        
-    } catch (error) {
-        console.error(`Error occurred: ${error.message}`);
-        return null;
-    }
-}
+const axios = require('axios');
+const qs = require('querystring');
 
-// Execute the request
-makePayURequest()
-    .then(result => {
-        if (result) {
-            console.log('Request completed successfully');
-        }
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'ENFDC001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod': 'debitcard',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
     })
     .catch(error => {
-        console.error('Request failed:', error);
+        console.error(error);
     });
 ```
 ```java
 import java.io.*;
 import java.net.*;
-import java.nio.charset.StandardCharsets;
+import java.net.http.*;
 
-public class PayURequest {
-    public static void main(String[] args) {
-        makePayURequest();
-    }
-    
-    public static void makePayURequest() {
-        try {
-            URL url = new URL("https://test.payu.in/_payment");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("accept", "application/json");
-            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            connection.setDoOutput(true);
-            
-            String formData = "key=" + URLEncoder.encode("JP***g", StandardCharsets.UTF_8) +
-                "&txnid=" + URLEncoder.encode("ENFDC001", StandardCharsets.UTF_8) +
-                "&amount=" + URLEncoder.encode("10.00", StandardCharsets.UTF_8) +
-                "&firstname=" + URLEncoder.encode("PayU User", StandardCharsets.UTF_8) +
-                "&email=" + URLEncoder.encode("test@gmail.com", StandardCharsets.UTF_8) +
-                "&phone=" + URLEncoder.encode("9876543210", StandardCharsets.UTF_8) +
-                "&productinfo=" + URLEncoder.encode("iPhone", StandardCharsets.UTF_8) +
-                "&surl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
-                "&furl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
-                "&enforce_paymethod=" + URLEncoder.encode("debitcard", StandardCharsets.UTF_8) +
-                "&hash=" + URLEncoder.encode("REPLACE_WITH_GENERATED_HASH", StandardCharsets.UTF_8);
-            
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = formData.getBytes(StandardCharsets.UTF_8);
-                os.write(input, 0, input.length);
-            }
-            
-            int statusCode = connection.getResponseCode();
-            System.out.println("Status Code: " + statusCode);
-            
-            InputStream responseStream = (statusCode >= 200 && statusCode < 300) 
-                ? connection.getInputStream() 
-                : connection.getErrorStream();
-            
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(responseStream, StandardCharsets.UTF_8))) {
-                StringBuilder response = new StringBuilder();
-                String responseLine;
-                while ((responseLine = br.readLine()) != null) {
-                    response.append(responseLine.trim());
-                }
-                System.out.println("Response: " + response.toString());
-            }
-            
-            connection.disconnect();
-            
-        } catch (IOException e) {
-            System.err.println("Error occurred: " + e.getMessage());
-            e.printStackTrace();
-        }
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=ENFDC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=debitcard&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
 }
 ```
 ```php
 <?php
-function makePayURequest() {
-    try {
-        $url = "https://test.payu.in/_payment";
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'ENFDC001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod' => 'debitcard',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'ENFDC001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    enforce_paymethod => 'debitcard',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
+    ```python
+    import requests
+
+    def make_payu_request():
+        try:
+            url = "https://test.payu.in/_payment"
+            
+            headers = {
+                'accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            
+            data = {
+                'key': 'JP***g',
+                'txnid': 'ENFDC001',
+                'amount': '10.00',
+                'firstname': 'PayU User',
+                'email': 'test@gmail.com',
+                'phone': '9876543210',
+                'productinfo': 'iPhone',
+                'surl': 'https://apiplayground-response.herokuapp.com/',
+                'furl': 'https://apiplayground-response.herokuapp.com/',
+                'enforce_paymethod': 'debitcard',
+                'hash': 'REPLACE_WITH_GENERATED_HASH'
+            }
+            
+            response = requests.post(url, headers=headers, data=data)
+            
+            print(f"Status Code: {response.status_code}")
+            print(f"Response: {response.text}")
+            
+            return {
+                'status_code': response.status_code,
+                'response': response.text
+            }
+            
+        except requests.exceptions.RequestException as e:
+            print(f"Error occurred: {e}")
+            return None
+
+    # Execute the request
+    result = make_payu_request()
+    ```
+    ```csharp
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+
+    class Program
+    {
+        static async Task Main(string[] args)
+        {
+            await MakePayURequest();
+        }
         
-        $postData = array(
+        static async Task MakePayURequest()
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var url = "https://test.payu.in/_payment";
+                    
+                    client.DefaultRequestHeaders.Add("accept", "application/json");
+                    
+                    var formParams = new List<KeyValuePair<string, string>>
+                    {
+                        new KeyValuePair<string, string>("key", "JP***g"),
+                        new KeyValuePair<string, string>("txnid", "ENFDC001"),
+                        new KeyValuePair<string, string>("amount", "10.00"),
+                        new KeyValuePair<string, string>("firstname", "PayU User"),
+                        new KeyValuePair<string, string>("email", "test@gmail.com"),
+                        new KeyValuePair<string, string>("phone", "9876543210"),
+                        new KeyValuePair<string, string>("productinfo", "iPhone"),
+                        new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
+                        new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
+                        new KeyValuePair<string, string>("enforce_paymethod", "debitcard"),
+                        new KeyValuePair<string, string>("hash", "REPLACE_WITH_GENERATED_HASH")
+                    };
+                    
+                    var formContent = new FormUrlEncodedContent(formParams);
+                    
+                    var response = await client.PostAsync(url, formContent);
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    
+                    Console.WriteLine($"Status Code: {(int)response.StatusCode}");
+                    Console.WriteLine($"Response: {responseContent}");
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine($"Error occurred: {e.Message}");
+            }
+        }
+    }
+    ```
+    ```javascript
+    async function makePayURequest() {
+        try {
+            const url = "https://test.payu.in/_payment";
+            
+            const formData = new URLSearchParams({
+                'key': 'JP***g',
+                'txnid': 'ENFDC001',
+                'amount': '10.00',
+                'firstname': 'PayU User',
+                'email': 'test@gmail.com',
+                'phone': '9876543210',
+                'productinfo': 'iPhone',
+                'surl': 'https://apiplayground-response.herokuapp.com/',
+                'furl': 'https://apiplayground-response.herokuapp.com/',
+                'enforce_paymethod': 'debitcard',
+                'hash': 'REPLACE_WITH_GENERATED_HASH'
+            });
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: formData
+            });
+            
+            const responseText = await response.text();
+            
+            console.log(`Status Code: ${response.status}`);
+            console.log(`Response: ${responseText}`);
+            
+            return {
+                status_code: response.status,
+                response: responseText
+            };
+            
+        } catch (error) {
+            console.error(`Error occurred: ${error.message}`);
+            return null;
+        }
+    }
+
+    // Execute the request
+    makePayURequest()
+        .then(result => {
+            if (result) {
+                console.log('Request completed successfully');
+            }
+        })
+        .catch(error => {
+            console.error('Request failed:', error);
+        });
+    ```
+    ```java
+    import java.io.*;
+    import java.net.*;
+    import java.nio.charset.StandardCharsets;
+
+    public class PayURequest {
+        public static void main(String[] args) {
+            makePayURequest();
+        }
+        
+        public static void makePayURequest() {
+            try {
+                URL url = new URL("https://test.payu.in/_payment");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("accept", "application/json");
+                connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                connection.setDoOutput(true);
+                
+                String formData = "key=" + URLEncoder.encode("JP***g", StandardCharsets.UTF_8) +
+                    "&txnid=" + URLEncoder.encode("ENFDC001", StandardCharsets.UTF_8) +
+                    "&amount=" + URLEncoder.encode("10.00", StandardCharsets.UTF_8) +
+                    "&firstname=" + URLEncoder.encode("PayU User", StandardCharsets.UTF_8) +
+                    "&email=" + URLEncoder.encode("test@gmail.com", StandardCharsets.UTF_8) +
+                    "&phone=" + URLEncoder.encode("9876543210", StandardCharsets.UTF_8) +
+                    "&productinfo=" + URLEncoder.encode("iPhone", StandardCharsets.UTF_8) +
+                    "&surl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
+                    "&furl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
+                    "&enforce_paymethod=" + URLEncoder.encode("debitcard", StandardCharsets.UTF_8) +
+                    "&hash=" + URLEncoder.encode("REPLACE_WITH_GENERATED_HASH", StandardCharsets.UTF_8);
+                
+                try (OutputStream os = connection.getOutputStream()) {
+                    byte[] input = formData.getBytes(StandardCharsets.UTF_8);
+                    os.write(input, 0, input.length);
+                }
+                
+                int statusCode = connection.getResponseCode();
+                System.out.println("Status Code: " + statusCode);
+                
+                InputStream responseStream = (statusCode >= 200 && statusCode < 300) 
+                    ? connection.getInputStream() 
+                    : connection.getErrorStream();
+                
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(responseStream, StandardCharsets.UTF_8))) {
+                    StringBuilder response = new StringBuilder();
+                    String responseLine;
+                    while ((responseLine = br.readLine()) != null) {
+                        response.append(responseLine.trim());
+                    }
+                    System.out.println("Response: " + response.toString());
+                }
+                
+                connection.disconnect();
+                
+            } catch (IOException e) {
+                System.err.println("Error occurred: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+    ```
+    ```php
+    <?php
+    function makePayURequest() {
+        try {
+            $url = "https://test.payu.in/_payment";
+            
+            $postData = array(
+                'key' => 'JP***g',
+                'txnid' => 'ENFDC001',
+                'amount' => '10.00',
+                'firstname' => 'PayU User',
+                'email' => 'test@gmail.com',
+                'phone' => '9876543210',
+                'productinfo' => 'iPhone',
+                'surl' => 'https://apiplayground-response.herokuapp.com/',
+                'furl' => 'https://apiplayground-response.herokuapp.com/',
+                'enforce_paymethod' => 'debitcard',
+                'hash' => 'REPLACE_WITH_GENERATED_HASH'
+            );
+            
+            $ch = curl_init();
+            
+            curl_setopt_array($ch, array(
+                CURLOPT_URL => $url,
+                CURLOPT_POST => true,
+                CURLOPT_POSTFIELDS => http_build_query($postData),
+                CURLOPT_HTTPHEADER => array(
+                    'accept: application/json',
+                    'Content-Type: application/x-www-form-urlencoded'
+                ),
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_SSL_VERIFYPEER => true,
+                CURLOPT_SSL_VERIFYHOST => 2
+            ));
+            
+            $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $error = curl_error($ch);
+            
+            curl_close($ch);
+            
+            if ($error) {
+                echo "cURL Error: " . $error . "\n";
+                return array('status_code' => 0, 'response' => 'Error: ' . $error);
+            }
+            
+            echo "Status Code: " . $httpCode . "\n";
+            echo "Response: " . $response . "\n";
+            
+            return array(
+                'status_code' => $httpCode,
+                'response' => $response
+            );
+            
+        } catch (Exception $e) {
+            echo "Error occurred: " . $e->getMessage() . "\n";
+            return null;
+        }
+    }
+
+    // Execute the request
+    $result = makePayURequest();
+    ?>
+    ```
+    ```perl
+    #!/usr/bin/perl
+    use strict;
+    use warnings;
+    use LWP::UserAgent;
+    use HTTP::Request::Common qw(POST);
+
+    sub make_payu_request {
+        my $ua = LWP::UserAgent->new;
+        $ua->timeout(30);
+        
+        my $url = "https://test.payu.in/_payment";
+        
+        my %form_data = (
             'key' => 'JP***g',
             'txnid' => 'ENFDC001',
             'amount' => '10.00',
@@ -704,339 +1140,521 @@ function makePayURequest() {
             'hash' => 'REPLACE_WITH_GENERATED_HASH'
         );
         
-        $ch = curl_init();
+        my $request = POST $url, 
+            'accept' => 'application/json',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            Content => \%form_data;
         
-        curl_setopt_array($ch, array(
-            CURLOPT_URL => $url,
-            CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => http_build_query($postData),
-            CURLOPT_HTTPHEADER => array(
-                'accept: application/json',
-                'Content-Type: application/x-www-form-urlencoded'
-            ),
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_SSL_VERIFYPEER => true,
-            CURLOPT_SSL_VERIFYHOST => 2
-        ));
+        my $response = $ua->request($request);
         
-        $response = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $error = curl_error($ch);
-        
-        curl_close($ch);
-        
-        if ($error) {
-            echo "cURL Error: " . $error . "\n";
-            return array('status_code' => 0, 'response' => 'Error: ' . $error);
+        if ($response->is_success) {
+            print "Status Code: " . $response->code . "\n";
+            print "Response: " . $response->decoded_content . "\n";
+            
+            return {
+                'status_code' => $response->code,
+                'response' => $response->decoded_content
+            };
+        } else {
+            print "Error occurred: " . $response->status_line . "\n";
+            print "Status Code: " . $response->code . "\n";
+            print "Error Response: " . $response->decoded_content . "\n" if $response->decoded_content;
+            return undef;
         }
-        
-        echo "Status Code: " . $httpCode . "\n";
-        echo "Response: " . $response . "\n";
-        
-        return array(
-            'status_code' => $httpCode,
-            'response' => $response
-        );
-        
-    } catch (Exception $e) {
-        echo "Error occurred: " . $e->getMessage() . "\n";
-        return null;
     }
-}
 
-// Execute the request
-$result = makePayURequest();
-?>
-```
-```perl
-#!/usr/bin/perl
-use strict;
-use warnings;
-use LWP::UserAgent;
-use HTTP::Request::Common qw(POST);
-
-sub make_payu_request {
-    my $ua = LWP::UserAgent->new;
-    $ua->timeout(30);
-    
-    my $url = "https://test.payu.in/_payment";
-    
-    my %form_data = (
-        'key' => 'JP***g',
-        'txnid' => 'ENFDC001',
-        'amount' => '10.00',
-        'firstname' => 'PayU User',
-        'email' => 'test@gmail.com',
-        'phone' => '9876543210',
-        'productinfo' => 'iPhone',
-        'surl' => 'https://apiplayground-response.herokuapp.com/',
-        'furl' => 'https://apiplayground-response.herokuapp.com/',
-        'enforce_paymethod' => 'debitcard',
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'
-    );
-    
-    my $request = POST $url, 
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%form_data;
-    
-    my $response = $ua->request($request);
-    
-    if ($response->is_success) {
-        print "Status Code: " . $response->code . "\n";
-        print "Response: " . $response->decoded_content . "\n";
-        
-        return {
-            'status_code' => $response->code,
-            'response' => $response->decoded_content
-        };
+    # Execute the request
+    my $result = make_payu_request();
+    if ($result) {
+        print "Request completed successfully\n";
     } else {
-        print "Error occurred: " . $response->status_line . "\n";
-        print "Status Code: " . $response->code . "\n";
-        print "Error Response: " . $response->decoded_content . "\n" if $response->decoded_content;
-        return undef;
+        print "Request failed\n";
     }
-}
-
-# Execute the request
-my $result = make_payu_request();
-if ($result) {
-    print "Request completed successfully\n";
-} else {
-    print "Request failed\n";
-}
-```
+    ```
 
     **Net Banking only (`netbanking`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFNB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=netbanking&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
 ```python
 import requests
 
-def make_payu_request():
-    try:
-        url = "https://test.payu.in/_payment"
-        
-        headers = {
-            'accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-        
-        data = {
-            'key': 'JP***g',
-            'txnid': 'ENFNB001',
-            'amount': '10.00',
-            'firstname': 'PayU User',
-            'email': 'test@gmail.com',
-            'phone': '9876543210',
-            'productinfo': 'iPhone',
-            'surl': 'https://apiplayground-response.herokuapp.com/',
-            'furl': 'https://apiplayground-response.herokuapp.com/',
-            'enforce_paymethod': 'netbanking',
-            'hash': 'REPLACE_WITH_GENERATED_HASH'
-        }
-        
-        response = requests.post(url, headers=headers, data=data)
-        
-        print(f"Status Code: {response.status_code}")
-        print(f"Response: {response.text}")
-        
-        return {
-            'status_code': response.status_code,
-            'response': response.text
-        }
-        
-    except requests.exceptions.RequestException as e:
-        print(f"Error occurred: {e}")
-        return None
+url = "https://test.payu.in/_payment"
 
-# Execute the request
-result = make_payu_request()
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'ENFNB001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'enforce_paymethod': 'netbanking', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
 ```
 ```csharp
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 class Program
 {
     static async Task Main(string[] args)
     {
-        await MakePayURequest();
-    }
-    
-    static async Task MakePayURequest()
-    {
-        try
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
         {
-            using (var client = new HttpClient())
-            {
-                var url = "https://test.payu.in/_payment";
-                
-                client.DefaultRequestHeaders.Add("accept", "application/json");
-                
-                var formParams = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("key", "JP***g"),
-                    new KeyValuePair<string, string>("txnid", "ENFNB001"),
-                    new KeyValuePair<string, string>("amount", "10.00"),
-                    new KeyValuePair<string, string>("firstname", "PayU User"),
-                    new KeyValuePair<string, string>("email", "test@gmail.com"),
-                    new KeyValuePair<string, string>("phone", "9876543210"),
-                    new KeyValuePair<string, string>("productinfo", "iPhone"),
-                    new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
-                    new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
-                    new KeyValuePair<string, string>("enforce_paymethod", "netbanking"),
-                    new KeyValuePair<string, string>("hash", "REPLACE_WITH_GENERATED_HASH")
-                };
-                
-                var formContent = new FormUrlEncodedContent(formParams);
-                
-                var response = await client.PostAsync(url, formContent);
-                var responseContent = await response.Content.ReadAsStringAsync();
-                
-                Console.WriteLine($"Status Code: {(int)response.StatusCode}");
-                Console.WriteLine($"Response: {responseContent}");
-            }
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine($"Error occurred: {e.Message}");
-        }
+            { "key", "JP***g" },
+            { "txnid", "ENFNB001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "enforce_paymethod", "netbanking" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
     }
 }
 ```
 ```javascript
-async function makePayURequest() {
-    try {
-        const url = "https://test.payu.in/_payment";
-        
-        const formData = new URLSearchParams({
-            'key': 'JP***g',
-            'txnid': 'ENFNB001',
-            'amount': '10.00',
-            'firstname': 'PayU User',
-            'email': 'test@gmail.com',
-            'phone': '9876543210',
-            'productinfo': 'iPhone',
-            'surl': 'https://apiplayground-response.herokuapp.com/',
-            'furl': 'https://apiplayground-response.herokuapp.com/',
-            'enforce_paymethod': 'netbanking',
-            'hash': 'REPLACE_WITH_GENERATED_HASH'
-        });
-        
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: formData
-        });
-        
-        const responseText = await response.text();
-        
-        console.log(`Status Code: ${response.status}`);
-        console.log(`Response: ${responseText}`);
-        
-        return {
-            status_code: response.status,
-            response: responseText
-        };
-        
-    } catch (error) {
-        console.error(`Error occurred: ${error.message}`);
-        return null;
-    }
-}
+const axios = require('axios');
+const qs = require('querystring');
 
-// Execute the request
-makePayURequest()
-    .then(result => {
-        if (result) {
-            console.log('Request completed successfully');
-        }
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'ENFNB001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod': 'netbanking',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
     })
     .catch(error => {
-        console.error('Request failed:', error);
+        console.error(error);
     });
 ```
 ```java
 import java.io.*;
 import java.net.*;
-import java.nio.charset.StandardCharsets;
+import java.net.http.*;
 
-public class PayURequest {
-    public static void main(String[] args) {
-        makePayURequest();
-    }
-    
-    public static void makePayURequest() {
-        try {
-            URL url = new URL("https://test.payu.in/_payment");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("accept", "application/json");
-            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            connection.setDoOutput(true);
-            
-            String formData = "key=" + URLEncoder.encode("JP***g", StandardCharsets.UTF_8) +
-                "&txnid=" + URLEncoder.encode("ENFNB001", StandardCharsets.UTF_8) +
-                "&amount=" + URLEncoder.encode("10.00", StandardCharsets.UTF_8) +
-                "&firstname=" + URLEncoder.encode("PayU User", StandardCharsets.UTF_8) +
-                "&email=" + URLEncoder.encode("test@gmail.com", StandardCharsets.UTF_8) +
-                "&phone=" + URLEncoder.encode("9876543210", StandardCharsets.UTF_8) +
-                "&productinfo=" + URLEncoder.encode("iPhone", StandardCharsets.UTF_8) +
-                "&surl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
-                "&furl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
-                "&enforce_paymethod=" + URLEncoder.encode("netbanking", StandardCharsets.UTF_8) +
-                "&hash=" + URLEncoder.encode("REPLACE_WITH_GENERATED_HASH", StandardCharsets.UTF_8);
-            
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = formData.getBytes(StandardCharsets.UTF_8);
-                os.write(input, 0, input.length);
-            }
-            
-            int statusCode = connection.getResponseCode();
-            System.out.println("Status Code: " + statusCode);
-            
-            InputStream responseStream = (statusCode >= 200 && statusCode < 300) 
-                ? connection.getInputStream() 
-                : connection.getErrorStream();
-            
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(responseStream, StandardCharsets.UTF_8))) {
-                StringBuilder response = new StringBuilder();
-                String responseLine;
-                while ((responseLine = br.readLine()) != null) {
-                    response.append(responseLine.trim());
-                }
-                System.out.println("Response: " + response.toString());
-            }
-            
-            connection.disconnect();
-            
-        } catch (IOException e) {
-            System.err.println("Error occurred: " + e.getMessage());
-            e.printStackTrace();
-        }
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=ENFNB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=netbanking&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
 }
 ```
 ```php
 <?php
-function makePayURequest() {
-    try {
-        $url = "https://test.payu.in/_payment";
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'ENFNB001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod' => 'netbanking',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'ENFNB001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    enforce_paymethod => 'netbanking',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
+    ```python
+    import requests
+
+    def make_payu_request():
+        try:
+            url = "https://test.payu.in/_payment"
+            
+            headers = {
+                'accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            
+            data = {
+                'key': 'JP***g',
+                'txnid': 'ENFNB001',
+                'amount': '10.00',
+                'firstname': 'PayU User',
+                'email': 'test@gmail.com',
+                'phone': '9876543210',
+                'productinfo': 'iPhone',
+                'surl': 'https://apiplayground-response.herokuapp.com/',
+                'furl': 'https://apiplayground-response.herokuapp.com/',
+                'enforce_paymethod': 'netbanking',
+                'hash': 'REPLACE_WITH_GENERATED_HASH'
+            }
+            
+            response = requests.post(url, headers=headers, data=data)
+            
+            print(f"Status Code: {response.status_code}")
+            print(f"Response: {response.text}")
+            
+            return {
+                'status_code': response.status_code,
+                'response': response.text
+            }
+            
+        except requests.exceptions.RequestException as e:
+            print(f"Error occurred: {e}")
+            return None
+
+    # Execute the request
+    result = make_payu_request()
+    ```
+    ```csharp
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+
+    class Program
+    {
+        static async Task Main(string[] args)
+        {
+            await MakePayURequest();
+        }
         
-        $postData = array(
+        static async Task MakePayURequest()
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var url = "https://test.payu.in/_payment";
+                    
+                    client.DefaultRequestHeaders.Add("accept", "application/json");
+                    
+                    var formParams = new List<KeyValuePair<string, string>>
+                    {
+                        new KeyValuePair<string, string>("key", "JP***g"),
+                        new KeyValuePair<string, string>("txnid", "ENFNB001"),
+                        new KeyValuePair<string, string>("amount", "10.00"),
+                        new KeyValuePair<string, string>("firstname", "PayU User"),
+                        new KeyValuePair<string, string>("email", "test@gmail.com"),
+                        new KeyValuePair<string, string>("phone", "9876543210"),
+                        new KeyValuePair<string, string>("productinfo", "iPhone"),
+                        new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
+                        new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
+                        new KeyValuePair<string, string>("enforce_paymethod", "netbanking"),
+                        new KeyValuePair<string, string>("hash", "REPLACE_WITH_GENERATED_HASH")
+                    };
+                    
+                    var formContent = new FormUrlEncodedContent(formParams);
+                    
+                    var response = await client.PostAsync(url, formContent);
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    
+                    Console.WriteLine($"Status Code: {(int)response.StatusCode}");
+                    Console.WriteLine($"Response: {responseContent}");
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine($"Error occurred: {e.Message}");
+            }
+        }
+    }
+    ```
+    ```javascript
+    async function makePayURequest() {
+        try {
+            const url = "https://test.payu.in/_payment";
+            
+            const formData = new URLSearchParams({
+                'key': 'JP***g',
+                'txnid': 'ENFNB001',
+                'amount': '10.00',
+                'firstname': 'PayU User',
+                'email': 'test@gmail.com',
+                'phone': '9876543210',
+                'productinfo': 'iPhone',
+                'surl': 'https://apiplayground-response.herokuapp.com/',
+                'furl': 'https://apiplayground-response.herokuapp.com/',
+                'enforce_paymethod': 'netbanking',
+                'hash': 'REPLACE_WITH_GENERATED_HASH'
+            });
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: formData
+            });
+            
+            const responseText = await response.text();
+            
+            console.log(`Status Code: ${response.status}`);
+            console.log(`Response: ${responseText}`);
+            
+            return {
+                status_code: response.status,
+                response: responseText
+            };
+            
+        } catch (error) {
+            console.error(`Error occurred: ${error.message}`);
+            return null;
+        }
+    }
+
+    // Execute the request
+    makePayURequest()
+        .then(result => {
+            if (result) {
+                console.log('Request completed successfully');
+            }
+        })
+        .catch(error => {
+            console.error('Request failed:', error);
+        });
+    ```
+    ```java
+    import java.io.*;
+    import java.net.*;
+    import java.nio.charset.StandardCharsets;
+
+    public class PayURequest {
+        public static void main(String[] args) {
+            makePayURequest();
+        }
+        
+        public static void makePayURequest() {
+            try {
+                URL url = new URL("https://test.payu.in/_payment");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("accept", "application/json");
+                connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                connection.setDoOutput(true);
+                
+                String formData = "key=" + URLEncoder.encode("JP***g", StandardCharsets.UTF_8) +
+                    "&txnid=" + URLEncoder.encode("ENFNB001", StandardCharsets.UTF_8) +
+                    "&amount=" + URLEncoder.encode("10.00", StandardCharsets.UTF_8) +
+                    "&firstname=" + URLEncoder.encode("PayU User", StandardCharsets.UTF_8) +
+                    "&email=" + URLEncoder.encode("test@gmail.com", StandardCharsets.UTF_8) +
+                    "&phone=" + URLEncoder.encode("9876543210", StandardCharsets.UTF_8) +
+                    "&productinfo=" + URLEncoder.encode("iPhone", StandardCharsets.UTF_8) +
+                    "&surl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
+                    "&furl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
+                    "&enforce_paymethod=" + URLEncoder.encode("netbanking", StandardCharsets.UTF_8) +
+                    "&hash=" + URLEncoder.encode("REPLACE_WITH_GENERATED_HASH", StandardCharsets.UTF_8);
+                
+                try (OutputStream os = connection.getOutputStream()) {
+                    byte[] input = formData.getBytes(StandardCharsets.UTF_8);
+                    os.write(input, 0, input.length);
+                }
+                
+                int statusCode = connection.getResponseCode();
+                System.out.println("Status Code: " + statusCode);
+                
+                InputStream responseStream = (statusCode >= 200 && statusCode < 300) 
+                    ? connection.getInputStream() 
+                    : connection.getErrorStream();
+                
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(responseStream, StandardCharsets.UTF_8))) {
+                    StringBuilder response = new StringBuilder();
+                    String responseLine;
+                    while ((responseLine = br.readLine()) != null) {
+                        response.append(responseLine.trim());
+                    }
+                    System.out.println("Response: " + response.toString());
+                }
+                
+                connection.disconnect();
+                
+            } catch (IOException e) {
+                System.err.println("Error occurred: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+    ```
+    ```php
+    <?php
+    function makePayURequest() {
+        try {
+            $url = "https://test.payu.in/_payment";
+            
+            $postData = array(
+                'key' => 'JP***g',
+                'txnid' => 'ENFNB001',
+                'amount' => '10.00',
+                'firstname' => 'PayU User',
+                'email' => 'test@gmail.com',
+                'phone' => '9876543210',
+                'productinfo' => 'iPhone',
+                'surl' => 'https://apiplayground-response.herokuapp.com/',
+                'furl' => 'https://apiplayground-response.herokuapp.com/',
+                'enforce_paymethod' => 'netbanking',
+                'hash' => 'REPLACE_WITH_GENERATED_HASH'
+            );
+            
+            $ch = curl_init();
+            
+            curl_setopt_array($ch, array(
+                CURLOPT_URL => $url,
+                CURLOPT_POST => true,
+                CURLOPT_POSTFIELDS => http_build_query($postData),
+                CURLOPT_HTTPHEADER => array(
+                    'accept: application/json',
+                    'Content-Type: application/x-www-form-urlencoded'
+                ),
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_SSL_VERIFYPEER => true,
+                CURLOPT_SSL_VERIFYHOST => 2
+            ));
+            
+            $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $error = curl_error($ch);
+            
+            curl_close($ch);
+            
+            if ($error) {
+                echo "cURL Error: " . $error . "\n";
+                return array('status_code' => 0, 'response' => 'Error: ' . $error);
+            }
+            
+            echo "Status Code: " . $httpCode . "\n";
+            echo "Response: " . $response . "\n";
+            
+            return array(
+                'status_code' => $httpCode,
+                'response' => $response
+            );
+            
+        } catch (Exception $e) {
+            echo "Error occurred: " . $e->getMessage() . "\n";
+            return null;
+        }
+    }
+
+    // Execute the request
+    $result = makePayURequest();
+    ?>
+    ```
+    ```perl
+    #!/usr/bin/perl
+    use strict;
+    use warnings;
+    use LWP::UserAgent;
+    use HTTP::Request::Common qw(POST);
+
+    sub make_payu_request {
+        my $ua = LWP::UserAgent->new;
+        $ua->timeout(30);
+        
+        my $url = "https://test.payu.in/_payment";
+        
+        my %form_data = (
             'key' => 'JP***g',
             'txnid' => 'ENFNB001',
             'amount' => '10.00',
@@ -1050,171 +1668,1375 @@ function makePayURequest() {
             'hash' => 'REPLACE_WITH_GENERATED_HASH'
         );
         
-        $ch = curl_init();
+        my $request = POST $url, 
+            'accept' => 'application/json',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            Content => \%form_data;
         
-        curl_setopt_array($ch, array(
-            CURLOPT_URL => $url,
-            CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => http_build_query($postData),
-            CURLOPT_HTTPHEADER => array(
-                'accept: application/json',
-                'Content-Type: application/x-www-form-urlencoded'
-            ),
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_SSL_VERIFYPEER => true,
-            CURLOPT_SSL_VERIFYHOST => 2
-        ));
+        my $response = $ua->request($request);
         
-        $response = curl_exec($ch);
-        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $error = curl_error($ch);
-        
-        curl_close($ch);
-        
-        if ($error) {
-            echo "cURL Error: " . $error . "\n";
-            return array('status_code' => 0, 'response' => 'Error: ' . $error);
+        if ($response->is_success) {
+            print "Status Code: " . $response->code . "\n";
+            print "Response: " . $response->decoded_content . "\n";
+            
+            return {
+                'status_code' => $response->code,
+                'response' => $response->decoded_content
+            };
+        } else {
+            print "Error occurred: " . $response->status_line . "\n";
+            print "Status Code: " . $response->code . "\n";
+            print "Error Response: " . $response->decoded_content . "\n" if $response->decoded_content;
+            return undef;
         }
-        
-        echo "Status Code: " . $httpCode . "\n";
-        echo "Response: " . $response . "\n";
-        
-        return array(
-            'status_code' => $httpCode,
-            'response' => $response
-        );
-        
-    } catch (Exception $e) {
-        echo "Error occurred: " . $e->getMessage() . "\n";
-        return null;
     }
-}
 
-// Execute the request
-$result = makePayURequest();
-?>
-```
-```perl
-#!/usr/bin/perl
-use strict;
-use warnings;
-use LWP::UserAgent;
-use HTTP::Request::Common qw(POST);
-
-sub make_payu_request {
-    my $ua = LWP::UserAgent->new;
-    $ua->timeout(30);
-    
-    my $url = "https://test.payu.in/_payment";
-    
-    my %form_data = (
-        'key' => 'JP***g',
-        'txnid' => 'ENFNB001',
-        'amount' => '10.00',
-        'firstname' => 'PayU User',
-        'email' => 'test@gmail.com',
-        'phone' => '9876543210',
-        'productinfo' => 'iPhone',
-        'surl' => 'https://apiplayground-response.herokuapp.com/',
-        'furl' => 'https://apiplayground-response.herokuapp.com/',
-        'enforce_paymethod' => 'netbanking',
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'
-    );
-    
-    my $request = POST $url, 
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%form_data;
-    
-    my $response = $ua->request($request);
-    
-    if ($response->is_success) {
-        print "Status Code: " . $response->code . "\n";
-        print "Response: " . $response->decoded_content . "\n";
-        
-        return {
-            'status_code' => $response->code,
-            'response' => $response->decoded_content
-        };
+    # Execute the request
+    my $result = make_payu_request();
+    if ($result) {
+        print "Request completed successfully\n";
     } else {
-        print "Error occurred: " . $response->status_line . "\n";
-        print "Status Code: " . $response->code . "\n";
-        print "Error Response: " . $response->decoded_content . "\n" if $response->decoded_content;
-        return undef;
+        print "Request failed\n";
     }
-}
+    ```
 
-# Execute the request
-my $result = make_payu_request();
-if ($result) {
-    print "Request completed successfully\n";
-} else {
-    print "Request failed\n";
-}
-```
     **NEFT/RTGS only (`neftrtgs`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFNEFT001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=neftrtgs&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'ENFNEFT001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'enforce_paymethod': 'neftrtgs', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "ENFNEFT001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "enforce_paymethod", "neftrtgs" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'ENFNEFT001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod': 'neftrtgs',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=ENFNEFT001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=neftrtgs&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'ENFNEFT001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod' => 'neftrtgs',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'ENFNEFT001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    enforce_paymethod => 'neftrtgs',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **EMI only (`emi`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFEMI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=emi&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'ENFEMI001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'enforce_paymethod': 'emi', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "ENFEMI001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "enforce_paymethod", "emi" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'ENFEMI001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod': 'emi',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=ENFEMI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=emi&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'ENFEMI001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod' => 'emi',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'ENFEMI001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    enforce_paymethod => 'emi',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **UPI only (`upi`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFUPI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=upi&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'ENFUPI001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'enforce_paymethod': 'upi', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "ENFUPI001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "enforce_paymethod", "upi" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'ENFUPI001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod': 'upi',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=ENFUPI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=upi&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'ENFUPI001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod' => 'upi',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'ENFUPI001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    enforce_paymethod => 'upi',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **Wallet / Cash Card only (`cashcard`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFCASH001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=cashcard&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'ENFCASH001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'enforce_paymethod': 'cashcard', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "ENFCASH001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "enforce_paymethod", "cashcard" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'ENFCASH001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod': 'cashcard',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=ENFCASH001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=cashcard&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'ENFCASH001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod' => 'cashcard',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'ENFCASH001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    enforce_paymethod => 'cashcard',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **Sodexo only (`SODEXO`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=SODEXO&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'ENFSODEXO001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'enforce_paymethod': 'SODEXO', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "ENFSODEXO001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "enforce_paymethod", "SODEXO" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'ENFSODEXO001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod': 'SODEXO',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=ENFSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=SODEXO&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'ENFSODEXO001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod' => 'SODEXO',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'ENFSODEXO001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    enforce_paymethod => 'SODEXO',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **BNPL only (`bnpl`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=bnpl&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'ENFBNPL001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'enforce_paymethod': 'bnpl', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "ENFBNPL001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "enforce_paymethod", "bnpl" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'ENFBNPL001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod': 'bnpl',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=ENFBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=bnpl&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'ENFBNPL001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod' => 'bnpl',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'ENFBNPL001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    enforce_paymethod => 'bnpl',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **QR only (`qr`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFQR001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=qr&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'ENFQR001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'enforce_paymethod': 'qr', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "ENFQR001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "enforce_paymethod", "qr" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'ENFQR001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod': 'qr',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=ENFQR001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=qr&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'ENFQR001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod' => 'qr',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'ENFQR001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    enforce_paymethod => 'qr',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
   </Accordion>
 
   #### creditcard|netbanking|cashcard
@@ -1230,21 +3052,385 @@ if ($result) {
   <Accordion title="Sample request with multiple categories" icon="fa-code">
     **Credit Card and Debit Card (`creditcard|debitcard`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFCCDC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=creditcard|debitcard&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'ENFCCDC001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'enforce_paymethod': 'creditcard|debitcard', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "ENFCCDC001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "enforce_paymethod", "creditcard|debitcard" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'ENFCCDC001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod': 'creditcard|debitcard',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=ENFCCDC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=creditcard|debitcard&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'ENFCCDC001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod' => 'creditcard|debitcard',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'ENFCCDC001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    enforce_paymethod => 'creditcard|debitcard',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **Credit Card, Net Banking, and Wallet (`creditcard|netbanking|cashcard`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=ENFMIX001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=creditcard|netbanking|cashcard&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'ENFMIX001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'enforce_paymethod': 'creditcard|netbanking|cashcard', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "ENFMIX001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "enforce_paymethod", "creditcard|netbanking|cashcard" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'ENFMIX001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod': 'creditcard|netbanking|cashcard',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=ENFMIX001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&enforce_paymethod=creditcard|netbanking|cashcard&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'ENFMIX001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'enforce_paymethod' => 'creditcard|netbanking|cashcard',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'ENFMIX001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    enforce_paymethod => 'creditcard|netbanking|cashcard',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
   </Accordion>
 </Accordion>
 
@@ -1293,86 +3479,1725 @@ if ($result) {
   <Accordion title="Sample request with a single payment method removed or dropped" icon="fa-code">
     **Hide Credit Card (`CC`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=DROPCC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'DROPCC001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'drop_category': 'CC', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "DROPCC001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "drop_category", "CC" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'DROPCC001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'drop_category': 'CC',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=DROPCC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'DROPCC001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'drop_category' => 'CC',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'DROPCC001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    drop_category => 'CC',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **Hide Debit Card (`DC`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=DROPD001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'DROPD001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'drop_category': 'DC', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "DROPD001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "drop_category", "DC" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'DROPD001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'drop_category': 'DC',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=DROPD001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'DROPD001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'drop_category' => 'DC',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'DROPD001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    drop_category => 'DC',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **Hide Net Banking (`NB`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=DROPB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NB&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'DROPB001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'drop_category': 'NB', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "DROPB001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "drop_category", "NB" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'DROPB001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'drop_category': 'NB',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=DROPB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NB&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'DROPB001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'drop_category' => 'NB',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'DROPB001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    drop_category => 'NB',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **Hide NEFT/RTGS (`NEFTRTGS`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=DROPNE001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NEFTRTGS&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'DROPNE001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'drop_category': 'NEFTRTGS', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "DROPNE001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "drop_category", "NEFTRTGS" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'DROPNE001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'drop_category': 'NEFTRTGS',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=DROPNE001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NEFTRTGS&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'DROPNE001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'drop_category' => 'NEFTRTGS',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'DROPNE001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    drop_category => 'NEFTRTGS',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **Hide EMI (`EMI`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=DROPEMI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=EMI&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'DROPEMI001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'drop_category': 'EMI', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "DROPEMI001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "drop_category", "EMI" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'DROPEMI001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'drop_category': 'EMI',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=DROPEMI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=EMI&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'DROPEMI001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'drop_category' => 'EMI',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'DROPEMI001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    drop_category => 'EMI',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **Hide Wallet (`CASH`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=DROPCASH001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CASH&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'DROPCASH001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'drop_category': 'CASH', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "DROPCASH001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "drop_category", "CASH" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'DROPCASH001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'drop_category': 'CASH',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=DROPCASH001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CASH&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'DROPCASH001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'drop_category' => 'CASH',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'DROPCASH001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    drop_category => 'CASH',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **Hide BNPL (`BNPL`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
-      -d "key=JP***g&txnid=DROPBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=BNPL&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+      -d "key=JP***g&txnid=DROPBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=BNPL&hash=REPLACE_WITH_GENERATED_HASH"```
+
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'DROPBNPL001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'drop_category': 'BNPL', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "DROPBNPL001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "drop_category", "BNPL" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'DROPBNPL001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'drop_category': 'BNPL',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=DROPBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=BNPL&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'DROPBNPL001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'drop_category' => 'BNPL',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'DROPBNPL001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    drop_category => 'BNPL',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **Hide Sodexo (`SODEXO`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=DROPSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=SODEXO&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'DROPSODEXO001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'drop_category': 'SODEXO', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "DROPSODEXO001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "drop_category", "SODEXO" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'DROPSODEXO001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'drop_category': 'SODEXO',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=DROPSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=SODEXO&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'DROPSODEXO001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'drop_category' => 'SODEXO',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'DROPSODEXO001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    drop_category => 'SODEXO',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
   </Accordion>
 
   <Accordion title="Sample request with multiple payment method removed or dropped" icon="fa-code">
     **Hide Credit Card and Net Banking (`CC|NB`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=DROP2CAT001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|NB&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'DROP2CAT001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'drop_category': 'CC|NB', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "DROP2CAT001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "drop_category", "CC|NB" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'DROP2CAT001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'drop_category': 'CC|NB',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=DROP2CAT001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|NB&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'DROP2CAT001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'drop_category' => 'CC|NB',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'DROP2CAT001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    drop_category => 'CC|NB',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     #### `drop_category` — hide sub-options (bank / scheme codes)
 
@@ -1380,21 +5205,385 @@ if ($result) {
 
     **Debit Card: drop Visa and Mastercard only (`DC|VISA|MAST`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=DROPSUB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC|VISA|MAST&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'DROPSUB001', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'drop_category': 'DC|VISA|MAST', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "DROPSUB001" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "drop_category", "DC|VISA|MAST" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'DROPSUB001',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'drop_category': 'DC|VISA|MAST',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=DROPSUB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC|VISA|MAST&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'DROPSUB001',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'drop_category' => 'DC|VISA|MAST',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'DROPSUB001',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    drop_category => 'DC|VISA|MAST',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
 
     **Mixed sub-category drops (`CC|AMEX, DC|VISA, EMI|EMI6`)**
 
-    ```curl
-    curl -X POST "https://test.payu.in/_payment" \
+```curl
+curl -X POST "https://test.payu.in/_payment" \
       -H "accept: application/json" \
       -H "Content-Type: application/x-www-form-urlencoded" \
       -d "key=JP***g&txnid=DROPSUB002&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|AMEX, DC|VISA, EMI|EMI6&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'DROPSUB002', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'drop_category': 'CC|AMEX, DC|VISA, EMI|EMI6', 'hash': 'REPLACE_WITH_GENERATED_HASH'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "DROPSUB002" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "drop_category", "CC|AMEX, DC|VISA, EMI|EMI6" },
+            { "hash", "REPLACE_WITH_GENERATED_HASH" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'DROPSUB002',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'drop_category': 'CC|AMEX, DC|VISA, EMI|EMI6',
+    'hash': 'REPLACE_WITH_GENERATED_HASH'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=DROPSUB002&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|AMEX, DC|VISA, EMI|EMI6&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'DROPSUB002',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'drop_category' => 'CC|AMEX, DC|VISA, EMI|EMI6',
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'DROPSUB002',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    drop_category => 'CC|AMEX, DC|VISA, EMI|EMI6',
+    hash => 'REPLACE_WITH_GENERATED_HASH'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
   </Accordion>
 </Accordion>
 
@@ -1418,9 +5607,191 @@ Here is an example payment request API call with the `display_lang` parameter se
 
 ```curl
 curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&display_lang=Hindi&hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&display_lang=Hindi&hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {'key': 'JP***g', 'txnid': 'PQI6MqpYrjEefU', 'amount': '10.00', 'firstname': 'PayU User', 'email': 'test@gmail.com', 'phone': '9876543210', 'productinfo': 'iPhone', 'surl': 'https://apiplayground-response.herokuapp.com/', 'furl': 'https://apiplayground-response.herokuapp.com/', 'display_lang': 'Hindi', 'hash': '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
+        {
+            { "key", "JP***g" },
+            { "txnid", "PQI6MqpYrjEefU" },
+            { "amount", "10.00" },
+            { "firstname", "PayU User" },
+            { "email", "test@gmail.com" },
+            { "phone", "9876543210" },
+            { "productinfo", "iPhone" },
+            { "surl", "https://apiplayground-response.herokuapp.com/" },
+            { "furl", "https://apiplayground-response.herokuapp.com/" },
+            { "display_lang", "Hindi" },
+            { "hash", "05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072" }
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
+    }
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',
+    'txnid': 'PQI6MqpYrjEefU',
+    'amount': '10.00',
+    'firstname': 'PayU User',
+    'email': 'test@gmail.com',
+    'phone': '9876543210',
+    'productinfo': 'iPhone',
+    'surl': 'https://apiplayground-response.herokuapp.com/',
+    'furl': 'https://apiplayground-response.herokuapp.com/',
+    'display_lang': 'Hindi',
+    'hash': '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String formData = "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&display_lang=Hindi&hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```php
+<?php
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',
+    'txnid' => 'PQI6MqpYrjEefU',
+    'amount' => '10.00',
+    'firstname' => 'PayU User',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'display_lang' => 'Hindi',
+    'hash' => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',
+    txnid => 'PQI6MqpYrjEefU',
+    amount => '10.00',
+    firstname => 'PayU User',
+    email => 'test@gmail.com',
+    phone => '9876543210',
+    productinfo => 'iPhone',
+    surl => 'https://apiplayground-response.herokuapp.com/',
+    furl => 'https://apiplayground-response.herokuapp.com/',
+    display_lang => 'Hindi',
+    hash => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
 ```
 
 The PayU payment page is displayed with the display language as "Hindi" similar to the following screenshot:
