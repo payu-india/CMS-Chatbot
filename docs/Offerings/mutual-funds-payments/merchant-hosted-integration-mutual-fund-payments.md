@@ -129,7 +129,9 @@ This section explains how to implement the **_payment** API for mutual fund paym
     > * The format should be exactly as shown in the hash formula above.
     > * Replace SALT with the salt value provided to you during onboarding.
   </Accordion>
-  ## Wealth Tech Object wtparams Fields Description
+
+  #### Wealth Tech Object wtparams Fields Description
+
   <Mutual_Funds_Product_JSON />
 </Accordion>
 
