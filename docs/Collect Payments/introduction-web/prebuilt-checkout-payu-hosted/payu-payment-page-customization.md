@@ -306,7 +306,6 @@ You can append the parameter names in your transaction request to opt for all or
 
     print $response->content;
     ```
-    
 
     **Debit Card only (`debitcard`)**
 
@@ -498,7 +497,7 @@ You can append the parameter names in your transaction request to opt for all or
 
     print $response->content;
     ```
-    
+
     **Net Banking only (`netbanking`)**
 
     ```curl
@@ -689,7 +688,7 @@ You can append the parameter names in your transaction request to opt for all or
 
     print $response->content;
     ```
-    
+
     **NEFT/RTGS only (`neftrtgs`)**
 
     ```curl
@@ -811,7 +810,6 @@ You can append the parameter names in your transaction request to opt for all or
         }
     }
     ```
-
     ```php
     <?php
     $url = 'https://test.payu.in/_payment';
