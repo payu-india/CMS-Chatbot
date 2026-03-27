@@ -3386,7 +3386,6 @@ You can append the parameter names in your transaction request to opt for all or
     echo $response;
     ?>
     ```
-
     ```perl
     use strict;
     use warnings;
@@ -3618,8 +3617,8 @@ You can append the parameter names in your transaction request to opt for all or
     curl -X POST "https://test.payu.in/_payment" \
           -H "accept: application/json" \
           -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "key=JP***g&txnid=DROPBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=BNPL&hash=REPLACE_WITH_GENERATED_HASH"```
-
+          -d "key=JP***g&txnid=DROPBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=BNPL&hash=REPLACE_WITH_GENERATED_HASH"
+```
     ```python
     import requests
 
