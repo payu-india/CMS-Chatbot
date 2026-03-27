@@ -41,7 +41,6 @@ HTTP Method: **POST**
 | Production Environment | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
 <Accordion title="Request Parameters" icon="fa-table">
-  Now I'll create the cleaned table with only the necessary three columns and proper formatting:
 
   | Parameter                                       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Example                                                                                                                                                              |
   | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -61,7 +60,7 @@ HTTP Method: **POST**
   | free\_trial<br />`optional`                     | This is mandatory only if the merchant wants to support free trial use cases. In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                      |
   | si\_details<br />`mandatory`                    | This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br />**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) ) This is a JSON object and it includes a set of fields. For more information, refer to SI Parameter JSON Details                                      | \{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"} |
   | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|beneficiarydetail\\\|si\_details\\\|\\\|\\\|\\\|\\\|products\\\|salt) For more information, refer to Generate Hash.                                                                                                                                                                                                                                                                | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                             |
-  | products<br />`mandatory for Wealth Tech`       | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to Wealth Tech object wtparams fields description.                                                                                                                                                                                                                                                                                                                                                                                                                                       | Refer to Wealth Tech object wtparams fields description.                                                                                                             |
+  | products<br />`mandatory for Wealth Tech`       | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [Wealth Tech object wtparams fields description](https://docs.payu.in/docs/enach-mutual-fund-payments-integration#wealth-tech-object-wtparams-fields-description).                                                                                                                                                                                                                                                                                                                                                                                                                                       | Refer to [Wealth Tech object wtparams fields description](https://docs.payu.in/docs/enach-mutual-fund-payments-integration#wealth-tech-object-wtparams-fields-description).                                                                                                             |
   | txn\_s2s\_flow <br />`mandatory`                | `String` This parameter must be passed with the value as 4 for Decoupled flow.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 4                                                                                                                                                                    |
   | lastname<br />`optional`                        | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                               |
   | address1<br />`optional`                        | `String` The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                      |
@@ -262,49 +261,48 @@ All successful registration transactions are charged over the recurring interfac
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
-curl --location 'https://test.payu.in/merchant/postservice?form=2' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Cookie: PHPSESSID=69c253779decd' \
---data-urlencode 'key=j6Bb3k' \
---data-urlencode 'command=si_transaction' \
---data-urlencode 'hash={{hash}}' \
---data-urlencode 'var1={"authpayuid":"403993715537049175","invoiceDisplayNumber":"IN_403993715537049175","amount":"1","txnid":"tx_403993715537049175","phone":"9988776655","email":"chota.bheem@gmail.com","more_info":{"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"1","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}}'
+  curl --location 'https://test.payu.in/merchant/postservice?form=2' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'Cookie: PHPSESSID=69c253779decd' \
+  --data-urlencode 'key=j6Bb3k' \
+  --data-urlencode 'command=si_transaction' \
+  --data-urlencode 'hash={{hash}}' \
+  --data-urlencode 'var1={"authpayuid":"403993715537049175","invoiceDisplayNumber":"IN_403993715537049175","amount":"1","txnid":"tx_403993715537049175","phone":"9988776655","email":"chota.bheem@gmail.com","more_info":{"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"1","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}}'
   ```
 </Accordion>
 
-
-
 <Accordion title="Sample response" icon="fa-reply">
-```json
-{
-    "status": 1,
-    "message": "Transaction Processed successfully",
-    "details": {
-        "tx_403993715537049175": {
-            "authpayuid": "403993715537049175",
-            "transactionid": "tx_403993715537049175",
-            "amount": "1",
-            "user_credentials": "j6Bb3k:txn_235898u",
-            "card_token": "",
-            "payuid": "403993715537049210",
-            "status": "captured",
-            "udf1": "",
-            "field9": "Payment Successful",
-            "udf2": "",
-            "udf3": "",
-            "udf4": "",
-            "udf5": "",
-            "phone": "9988776655",
-            "email": "chota.bheem@gmail.com",
-            "fileName": "",
-            "paymentgatewayid": 268,
-            "addedon": "2026-03-24 14:36:23",
-            "card_no": null
-        }
-    }
-}
-```
+  ```json
+  {
+      "status": 1,
+      "message": "Transaction Processed successfully",
+      "details": {
+          "tx_403993715537049175": {
+              "authpayuid": "403993715537049175",
+              "transactionid": "tx_403993715537049175",
+              "amount": "1",
+              "user_credentials": "j6Bb3k:txn_235898u",
+              "card_token": "",
+              "payuid": "403993715537049210",
+              "status": "captured",
+              "udf1": "",
+              "field9": "Payment Successful",
+              "udf2": "",
+              "udf3": "",
+              "udf4": "",
+              "udf5": "",
+              "phone": "9988776655",
+              "email": "chota.bheem@gmail.com",
+              "fileName": "",
+              "paymentgatewayid": 268,
+              "addedon": "2026-03-24 14:36:23",
+              "card_no": null
+          }
+      }
+  }
+  ```
 </Accordion>
+
 <Accordion title="Response Parameters" icon="fa-table">
   **JSON fields description of the Details parameter**
 
