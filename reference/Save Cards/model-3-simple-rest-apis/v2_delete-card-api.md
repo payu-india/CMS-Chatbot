@@ -15,52 +15,25 @@ HTTP Method: **POST**
 | :--------- | :---------------------------------------------- |
 | Production | \<info.storecard.service.url>/storecard/card/v1 |
 
-## Query parameters
+## Header parameters
 
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>userCredential<br/><code>mandatory</code></td>
-      <td><code>String</code> User authentication credential in the format <code>username:userid</code>.</td>
-      <td>testuser:testuser123</td>
-    </tr>
-    <tr>
-      <td>getSoftDeleted<br/><code>optional</code></td>
-      <td><code>Integer</code> Flag to include soft-deleted records in the response. Set to <code>1</code> to include, <code>0</code> to exclude.</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+### Authentication header
+
+<HeaderAuthentication />
+
+### Query parameters
+
+
+| Parameter | Description | Example |
+|---|---|---|
+| userCredential<br/>`mandatory` | `String` User authentication credential in the format `username:userid`. | testuser:testuser123 |
+| getSoftDeleted<br/>`optional` | `Integer` Flag to include soft-deleted records in the response. Set to `1` to include, `0` to exclude. | 1 |
+
 
 ## Request header
-
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>mid<br/><code>mandatory</code></td>
-      <td><code>String</code> Merchant identifier for the API request.</td>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+| Parameter | Description | Example |
+|---|---|---|
+| mid<br/>`mandatory` | `String` Merchant identifier for the API request. | 2 |
 
 ## Sample request
 
@@ -77,8 +50,8 @@ curl --location --request DELETE '<info.storecard.service.url>/storecard/card/v1
 
   ```plaintext
   {
-          status: 1,
-          msg: "My_card card deleted successfully",
+      "message": "testAll card deleted successfully",
+      "status": 1
   }
   ```
 
