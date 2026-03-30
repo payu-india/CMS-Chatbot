@@ -17,7 +17,7 @@ HTTP Method:  **GET**
 
 ## Request header
 
-### Header authentication
+### Authentication header
 
 <HeaderAuthentication />
 
