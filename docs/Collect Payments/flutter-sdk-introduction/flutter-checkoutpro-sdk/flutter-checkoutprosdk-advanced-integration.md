@@ -231,25 +231,14 @@ This section describes how to integrate the following advanced features with Flu
   ```
 </Accordion>
 
-<Accordion title="Disable Screen Protection" icon="fa-code">
-Screen protection is enabled by default to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
-
-  If you need to disable this protection (not recommended), set the value to false. When disabled, sensitive information will be visible in screen recordings and screenshots.
-
-  ```dart Dart
-  var payUCheckoutProConfig = {
-    PayUCheckoutProConfigKeys.isProtectedScreen: false // Disable protection (NOT RECOMMENDED)
-  };
-</Accordion>
-
-<Accordion title="Customize UPI Apps Order" icon="fa-code">
+  <Accordion title="Customize UPI Apps Order" icon="fa-code">
   You can customize the display order of UPI payment apps. Define the sequence using a pipe-separated format to rearrange how UPI apps appear to users.
 
   ```Text Dart
   var payUCheckoutProConfig = {
   PayUCheckoutProConfigKeys.upiAppsOrder: "phonepe|paytm|gpay"
   }
-  ```
+  ````
 </Accordion>
 
 <Accordion title="Custom Note integration" icon="fa-code">
