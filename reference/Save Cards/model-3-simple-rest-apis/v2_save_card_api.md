@@ -15,141 +15,30 @@ HTTP Method: **POST**
 | :--------------------- | :---------------------------------------------- |
 | Production Environment | \<info.storecard.service.url>/storecard/card/v1 |
 
+## Request Header
+
+### Authentication header
+
+<HeaderAuthentication />
+
 ## Request parameters
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Reference</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU while onboarding.<br>For more information on how to generate the Key and Salt, refer to any of the following:  </p>
-<ul>
-<li><strong>Production</strong>: <a href="https://docs.payu.in/v1/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt</a></li>
-<li><strong>Test</strong>: <a href="https://docs.payu.in/v1/docs/generate-test-merchant-key-and-salt">Generate Test Merchant Key and Salt</a></li>
-</ul>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>JP*****g</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>command<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The command name for this REST API call must be included in this parameter. For getting user cards details, use <strong>save_payment_instrument</strong> here.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>save_payment_instrument</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The hash must be included in this parameter. Hash logic for this API is:<br><code>sha512(key\|command\|var1\|salt) sha512  </code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>var1<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The user credentials are posted in this parameter in the following format: MerchantKey:UserId</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>JP***G:abc</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>var2<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The nickname of the card is specified in this parameter.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>My_card</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>var3<br>mandatory</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card mode is specified in this parameter. For more information on card mode codes, refer to <a href="https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a>.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>CC</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>var4<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card type of the card is specified in this parameter. For more information on card type codes, refer to <a href="https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>AMEX</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>var5<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The name on the card is specified in this parameter.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Ashish</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>var6<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card number is is specified in this parameter. For the <strong>test cards</strong> to do mock API calls, refer to <a href="https://docs.payu.in/v1/docs/test-cards-upi-id-and-wallets">Test Cards, UPI ID and Wallets</a>.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>var7<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card expiry month is specified in this parameter.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>9</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>var8<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>The card expiry year is specified in this parameter.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>2021</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>var9<br><code>mandatory for Rupay and AMEX cards</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter can be any of the following based on the Rupay or AMEX card used:  </p>
-<ul>
-<li>The authorization reference number received during authorization call of Rupay card transactions.</li>
-<li>The &lt;&lt;glossary:AEVV&gt;&gt; received during authorization call of Amex card transactions.<br><strong>Notes</strong>:</li>
-<li>This parameter is mandatory for Rupay cards. Authentication reference number will be sent by the PG in the authorization response. Currently, this check is skipped by Rupay.</li>
-<li>This parameter is mandatory for AMEX cards. American Express Verification Value will be sent by the PG in the authorization response.</li>
-</ul>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>6381242223626382106105</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>var10<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must be set to <strong>true</strong> if the transaction authentication has been done for the tokenisation.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>var11<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must be set to <strong>true</strong> if the user has given consent to tokenise the card.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+| Parameter | Reference | Example |
+|---|---|---|
+| key<br/>`mandatory` | `String` The merchant key provided by PayU while onboarding.<br/>For more information on how to generate the Key and Salt, refer to any of the following:<br/>• **Production**: [Generate Merchant Key and Salt](https://docs.payu.in/v1/docs/generate-merchant-key-and-salt-on-payu-dashboard)<br/>• **Test**: [Generate Test Merchant Key and Salt](https://docs.payu.in/v1/docs/generate-test-merchant-key-and-salt) | JP*****g |
+| command<br/>`mandatory` | `String` The command name for this REST API call must be included in this parameter. For getting user cards details, use **save_payment_instrument** here. | save_payment_instrument |
+| hash<br/>`mandatory` | `String` The hash must be included in this parameter. Hash logic for this API is:<br/>`sha512(key|command|var1|salt) sha512` |  |
+| var1<br/>`mandatory` | `String` The user credentials are posted in this parameter in the following format: MerchantKey:UserId | JP***G:abc |
+| var2<br/>`mandatory` | `String` The nickname of the card is specified in this parameter. | My_card |
+| var3<br/>`mandatory` | `String` The card mode is specified in this parameter. For more information on card mode codes, refer to [Card Type Codes and Supported Banks for Cards](https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards). | CC |
+| var4<br/>`mandatory` | `String` The card type of the card is specified in this parameter. For more information on card type codes, refer to [Card Type Codes and Supported Banks for Cards](https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards) | AMEX |
+| var5<br/>`mandatory` | `String` The name on the card is specified in this parameter. | Ashish |
+| var6<br/>`mandatory` | `String` The card number is specified in this parameter. For the **test cards** to do mock API calls, refer to [Test Cards, UPI ID and Wallets](https://docs.payu.in/v1/docs/test-cards-upi-id-and-wallets). |  |
+| var7<br/>`mandatory` | `String` The card expiry month is specified in this parameter. | 9 |
+| var8<br/>`mandatory` | `String` The card expiry year is specified in this parameter. | 2021 |
+| var9<br/>`mandatory for Rupay and AMEX cards` | `String` This parameter can be any of the following based on the Rupay or AMEX card used:<br/>• The authorization reference number received during authorization call of Rupay card transactions.<br/>• The AEVV received during authorization call of Amex card transactions.<br/>**Notes**:<br/>• This parameter is mandatory for Rupay cards. Authentication reference number will be sent by the PG in the authorization response. Currently, this check is skipped by Rupay.<br/>• This parameter is mandatory for AMEX cards. American Express Verification Value will be sent by the PG in the authorization response. | 6381242223626382106105 |
+| var10<br/>`optional` | `String` This parameter must be set to **true** if the transaction authentication has been done for the tokenisation. | true |
+| var11<br/>`optional` | `String` This parameter must be set to **true** if the user has given consent to tokenise the card. | true |
 
 ## Sample request
 
@@ -166,11 +55,14 @@ curl --location '<info.storecard.service.url>/storecard/card/v1' \
 "cardExpiryMonth":12,
 "cardExpiryYear":2025,
 "authRefNumber":"asd"}'
+
 ```
 
 ## Sample response
 
-```
+### Success scenario 
+
+```json
 {
     "message": "Card Stored Successfully.",
     "status": 1,
@@ -183,77 +75,85 @@ curl --location '<info.storecard.service.url>/storecard/card/v1' \
 }
 ```
 
-## Response parameters
+### Success scenarios for various cards
 
-### Success scenarios
+#### VISA
 
-* VISA
-
-```plaintext
+```json
 {
 status: 1,
 msg: "Card Stored Successfully.",
-cardToken: "917757449926e57ff2662",
-card_number: "XXXXXXXXXXXX1165",
-card_label: "My_card",
-network_token: "44173XXX1000XXX1",
-issuer_token: QQ3LkzgZOnEjY428,
+"result": {
+   "cardToken": "917757449926e57ff2662",
+   "cardNo": "XXXXXXXXXXXX1165",
+   "cardLabel": "My_card",
+   "networkToken": "44173XXX1000XXX1",
+   "issuerToken": "QQ3LkzgZOnEjY428"
+  }
 }
 ```
 
-* Mastercard
+#### Mastercard
 
-```plaintext
+```json
 {
-status: 1,
-msg: "Card Stored Successfully.",
-cardToken: "917e296b5b6da5d20fbfb",
-card_number: "XXXXXXXXXXXX2346",
-card_label: "Test_Card",
-network_token: "3117328711111210",
-issuer_token: AQ3LkzgBNyEjY213,
+  "status": 1,
+  "msg": "Card Stored Successfully.",
+  "result": {
+    "cardToken": "917e296b5b6da5d20fbfb",
+    "cardNo": "XXXXXXXXXXXX2346",
+    "cardLabel": "Test_Card",
+    "networkToken": "3117328711111210",
+    "issuerToken": "AQ3LkzgBNyEjY213"
+  }
 }
 ```
 
-* American Express
+#### American Express
 
-```plaintext
+```json
 {
-status: 1,
-msg: "Card Stored Successfully.",
-cardToken: "917e29XXX6da5XXCbfb",
-card_number: "XXXXXXXXXXX1002",
-card_label: "AMEX_Card",
-network_token: "51273287XXX61215",
-issuer_token: Va3RaqBNyPnY673,
+  "status": 1,
+  "msg": "Card Stored Successfully.",
+  "result": {
+    "cardToken": "917e29XXX6da5XXCbfb",
+    "cardNo": "XXXXXXXXXXX1002",
+    "cardLabel": "AMEX_Card",
+    "networkToken": "51273287XXX61215",
+    "issuerToken": "Va3RaqBNyPnY673"
+  }
 }
 ```
 
-* Rupay
+#### Rupay
 
-```plaintext
+```json
 {
-status: 1,
-msg: "Card Stored Successfully.",
-cardToken: "91XXX96b5b6da5dXXXbfb",
-card_number: "XXXXXXXXXXXX0001",
-card_label: "Rupay_Card",
-network_token: "712XXX870976XX2",
-issuer_token: Ya4HawKgbLmr312,
+  "status": 1,
+  "msg": "Card Stored Successfully.",
+  "result": {
+    "cardToken": "91XXX96b5b6da5dXXXbfb",
+    "cardNo": "XXXXXXXXXXXX0001",
+    "cardLabel": "Rupay_Card",
+    "networkToken": "712XXX870976XX2",
+    "issuerToken": "Ya4HawKgbLmr312"
+  }
 }
 ```
 
-* Diners
+#### Diners
 
-```plaintext
+```json
 {
-status: 1,
-msg: "Card Stored Successfully.",
-cardToken: "91XXX296b5b6da5XXXbfb",
-card_number: "XXXXXXXXXXXX0009",
-card_label: "Diner_Card",
-"network_token": "8koNXXXC1bT0Hv5a",
-"issuer_token": "LQ3QkzXXXnEjY428"
+  "status": 1,
+  "msg": "Card Stored Successfully.",
+  "result": {
+    "cardToken": "91XXX296b5b6da5XXXbfb",
+    "cardNo": "XXXXXXXXXXXX0009",
+    "cardLabel": "Diner_Card",
+    "networkToken": "8koNXXXC1bT0Hv5a",
+    "issuerToken": "LQ3QkzXXXnEjY428"
+  }
 }
 ```
 
@@ -272,58 +172,22 @@ card_label: "Diner_Card",
 
 The following table describes the parameters in the response:
 
-**Note**: For every successful payment transactions, PayU returns the **mihpayuid** and **cardToken** parameters to the merchants, but networkToken and issuer_token are returned only if you are PCI-DSS compliant.
+<Callout icon="📘" theme="info">
+  **Note**: For every successful payment transactions, PayU returns the **mihpayuid** and **cardToken** parameters to the merchants, but networkToken and issuer_token are returned only if you are PCI-DSS compliant.
+</Callout>
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The status of the response can be any of the following:<br>_ 1: Success <br>_  0: Failure</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>msg</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The description of the response whether the card details were stored successfully or not stored.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Card Stored Successfully.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>cardToken</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The cardToken is sent by PayU for the successful response.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>74\*\*\*2e2fd9b7e\*\*\*24fef4e7ed7dac1fe624b7</code></p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>network_token</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The network token is returned in this parameter.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>1234 5*** 9*** 3456</code></p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>issuer_token</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The parameter contains the issuer token that is returned by issuer.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>3456 7*** A*** EFGH</code></p>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+| Parameter | Description                                                                                                                                         | Example                   |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| message   | The description of the response whether the card details were stored successfully or not stored.                                                    | Card Stored Successfully. |
+| status    | The status of the response can be any of the following:<br/>• 1: Success<br/>• 0: Failure                                                             | 1                         |
+| result    | This contains the token details in a JSON format. For more information, refer to [result JSON fields description](#result-json-fields-description). |                           |
+
+### result JSON fields description
+
+| Parameter     | Description                                                         | Example               |
+| ------------- | ------------------------------------------------------------------- | --------------------- |
+| cardToken     | The cardToken is sent by PayU for the successful response.          | 18**\*1067***8c3d3241 |
+| cardNo        | The redacted card number with last four digits that was saved.      | XXXXXXXXXXXX1258      |
+| cardName      | The name on card that was saved.                                    | testAll               |
+| network_token | The network token is returned in this parameter.                    | `1234 5*** 9*** 3456` |
+| issuer_token  | The parameter contains the issuer token that is returned by issuer. | `3456 7*** A*** EFGH` |
