@@ -13,11 +13,13 @@ HTTP Method:  **GET**
 
 * **Production Environment**: `<info.storecard.service.url>/storecard/card/v1/cryptogram`
 
-## Header Authentication
+## Request header
+
+### Header Authentication
 
 <HeaderAuthentication />
 
-## Request headers
+### Header parameters
 
 <Table>
   <thead>
