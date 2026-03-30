@@ -17,7 +17,7 @@ HTTP Method: **POST**
 
 ## Request Header
 
-### Header authentication
+### Authentication header
 
 <HeaderAuthentication />
 
