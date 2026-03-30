@@ -13,6 +13,10 @@ HTTP Method:  **GET**
 
 * **Production Environment**: `<info.storecard.service.url>/storecard/card/v1/cryptogram`
 
+## Header Authentication
+
+<HeaderAuthentication />
+
 ## Request headers
 
 <Table>
@@ -37,6 +41,17 @@ HTTP Method:  **GET**
 
       <td>
         Merchant ID provided by PayU. Use the value provided in your PayU dashboard.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        date  
+        `mandatory`
+      </td>
+
+      <td>
+        The date when the request was made.
       </td>
     </tr>
   </tbody>
@@ -142,19 +157,19 @@ curl --location --request GET 'https://pp30info.payu.in/storecard/card/v1/crypto
     "result": {
         "oneClickFlow": "",
         "oneClickStatus": "",
-        "cardType": "AMEX",
-        "trid": "400000340055",
+        "cardType": "VISA",
+        "trid": "400000340044",
         "networkToken": {
-            "tokenValue": "3711110000000001",
-            "tokenExpiryMonth": 10,
+            "tokenValue": "4761360000000009",
+            "tokenExpiryMonth": 12,
             "tokenExpiryYear": 2026
         },
         "cardMode": "",
-        "par": "LI0K7PL4VJNHJZ6LVQ7LWXHGD3LPS",
-        "tokenReferenceId": "a98d513e56cbc4ef2fdb603ceb1027b2",
-        "cardNo": "XXXXXXXXXXXX1114",
+        "par": "ZCLY85YBYQ4Q8D6162O8M0V414GK7",
+        "tokenReferenceId": "3dc50cce023cf4d7dd243c9af272c5c6",
+        "cardNo": "XXXXXXXXXXXX1258",
         "oneClickCardAlias": "",
-        "cardToken": "1817ca29b7cdd28a0e406",
+        "cardToken": "9350516de374f7bab4cd2",
         "cardName": "",
         "cryptogram": "AgAAAGQBdCZtW8sAmbHTg0UAAAA="
     }
