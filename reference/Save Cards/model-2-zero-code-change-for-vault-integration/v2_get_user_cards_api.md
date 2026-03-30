@@ -15,7 +15,15 @@ The **Get User Cards** API is used to fetch all the cards for a customer which w
 
 HTTP Method: **POST**
 
-## Query parameter
+## Request Header
+
+### Header authentication
+
+<HeaderAuthentication />
+
+<br />
+
+### Query parameter
 
 <HTMLBlock>{`
 <table>
@@ -228,13 +236,13 @@ curl --location '<info.storecard.service.url>/storecard/instrument/v1?testuser%3
 
 ## Response parameters
 
-| Field  | Description                                                                                                                                                                                               | Example                    |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| status | Status indicator: `1` for success, `0` for failure.                                                                                                                                                       | 1                          |
-| msg    | Human-readable response message indicating if card fetching was successful.                                                                                                                               | Cards fetched Successfully |
-| result | It contains the **user_cards** JSON array with saved card details for the user, with unique card tokens as object keys. For more information, refer to [User Cards JSON Object](#user-cards-json-object). |                            |
+| Field      | Description                                                                       | Example                    |
+| ---------- | --------------------------------------------------------------------------------- | -------------------------- |
+| status     | Status indicator: `1` for success, `0` for failure.                               | 1                          |
+| msg        | Human-readable response message indicating if card fetching was successful.       | Cards fetched Successfully |
+| user_cards | Contains saved card details for the user, with unique card tokens as object keys. |                            |
 
-### User Cards JSON Object
+### User Cards Object
 
 | Field         | Description                                                                                                                           | Example                                                                        |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
