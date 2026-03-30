@@ -21,8 +21,6 @@ HTTP Method: **POST**
 
 <HeaderAuthentication />
 
-<br />
-
 ### Query parameter
 
 <HTMLBlock>{`
@@ -49,7 +47,7 @@ HTTP Method: **POST**
 </table>
 `}</HTMLBlock>
 
-## Request header
+### &#x20;Header parameters
 
 <Table>
   <thead>
