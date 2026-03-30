@@ -4,10 +4,9 @@ name: HeaderAuthentication
 | Parameter     | Description                                                                                                                                                                                                    |
 | :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | date          | The current date and time. For example,  format of the date is Wed, 28 Jun 2023 11:25:19 GMT.                                                                                                                  |
-| authorization | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to[ authorization fields description](#authorization-fields-description). |
+| authorization | The actual HMAC signature generated using the specified algorithm (sha512) and includes the hashed data. For more information, refer to authorization fields description table below. |
 
-#### authorization fields description
-
+<Accordion title="authorization fields description" icon="fa-table">
 | Parameter | Description                                                                                                                                                                      |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | username  | Represents the username or identifier for the client or merchant, in this case, it's "smsplus".                                                                                  |
@@ -25,8 +24,7 @@ sha512(<Body data> + '|' + date + '|' + merchant_secret}
 
 Where, \<Body data> contains the request Body posted with the request.
 
-<details>
-  <summary>Sample header code</summary>
+<Accordion title="Sample authorization header code" icon="fa-info-circle">
 
   ```
   var merchant_key = 'smsplus';
@@ -64,6 +62,6 @@ Where, \<Body data> contains the request Body posted with the request.
   return true;
   }
   ```
-</details>
 
-##
+ </Accordion>
+</Accordion>
