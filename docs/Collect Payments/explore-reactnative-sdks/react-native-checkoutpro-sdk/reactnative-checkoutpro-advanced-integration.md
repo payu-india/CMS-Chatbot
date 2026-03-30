@@ -232,18 +232,6 @@ This section includes the following advanced integrations with React Native Chec
   ```
 </Accordion>
 
-<Accordion title="Disable Screen Protection" icon="fa-code">
-Screen protection is enabled by default to hide sensitive information during screen recording or screenshots. When enabled, card details and credentials will be protected and not visible in screen captures.
-
-  If you need to disable this protection (not recommended), set the value to false. When disabled, sensitive information will be visible in screen recordings and screenshots.
-
-  ```Text React.js
-  var payUCheckoutProConfig = {
-  isProtectedScreen: false // Disable protection (NOT RECOMMENDED)
-  }
-  ```
-</Accordion>
-
 <Accordion title="Android specific configurations" icon="fa-code">
   <Accordion title="Runtime SMS permission" icon="fa-code">
     Merchants can set this flag to false if they do not want CheckoutPro SDK to ask for runtime SMS permission on the bank OTP page. The default value is true.
