@@ -118,16 +118,19 @@ HTTP Method:  **GET**
 ## Sample request
 
 ```bash
-curl --location '<info.storecard.service.url>/storecard/card/v1/cryptogram' \
+curl --location --request GET 'https://pp30info.payu.in/storecard/card/v1/cryptogram?userCredential=testuser%3Atestuser123&cardToken=9350516de374f7bab4cd2&amount=10&currency_type=INR&tokenType=null' \
 --header 'Content-Type: application/json' \
 --header 'mid: 2' \
+--header 'date: {{date}}' \
+--header 'Authorization: {{authorization}}' \
 --data '{
-    "userCredential": "sartaj:info",
-    "tokenType": "PayUToken",
-    "cardToken": "1817ca29b7cdd28a0e406",
-    "amount": "10",
-    "currencyType": "INR"
+    "userCredential":"testuser:testuser123",
+    "cardToken":"8da719a3742ca6fe1663d",
+    "amount":10,
+    "currency_type":"INR",
+    "tokenType":null
 }'
+
 ```
 
 ## Sample response
