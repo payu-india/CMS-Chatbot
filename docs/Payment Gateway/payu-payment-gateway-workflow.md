@@ -44,6 +44,12 @@ The following diagram illustrates how PayU payment gateway works.
   PayU receives the response and displays the final status (success or failure) to the customer on the checkout page. The merchant system is also updated with the transaction result.
 </Accordion>
 
+## Try PayU Checkout 
+
+You can try PayU checkout and make test transactions using our **Integration Labs**.
+
+<PayU_Labs />
+
 ## Post-Transaction Capabilities
 
 Once you integrate with PayU, you can also manage post-payment operations seamlessly:
