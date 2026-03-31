@@ -73,10 +73,8 @@ PayU offers the following checkout types:
   items={[
     {
       title: 'PayU Hosted (Prebuilt Hosted)',
-      href: '/docs/guides',
-      image: 'https://your-cdn.com/card-guides.png',
-      imageAlt: 'Illustration of documentation guides',
-      text: 'Step-by-step integration guides.',
+      href: '/docs/prebuilt-checkout-payu-hosted',
+      text: '<ul><li>Quick and easy integration</li> <li>No PCI compliance required</li> <li>PayU handles UI, security, and payment flow</li></ul>',
     },
     {
       title: 'API',
