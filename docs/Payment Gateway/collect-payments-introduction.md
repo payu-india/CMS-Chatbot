@@ -72,12 +72,15 @@ PayU offers the following checkout types:
   <Tab title="PayU Hosted (Prebulit or Standard Web)">
     * Quick and easy integration
     * No PCI compliance required
-    * PayU handles UI, security, and payment flow<br/>
-Know more about <a href="/docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout.</a>
+    * PayU handles UI, security, and payment flow<br />
+      Know more about <a href="/docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout</a>.
   </Tab>
 
-  <Tab title="Second Tab">
-    Here's content that's only inside the second Tab.
+  <Tab title="Merchant Hosted (Custom)">
+    - Full control over UI/UX
+    - Better branding and customization
+    - Seamless user experience<br/>
+Know more about <a href="/docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted Checkout</a>.
   </Tab>
 
   <Tab title="Third Tab">
