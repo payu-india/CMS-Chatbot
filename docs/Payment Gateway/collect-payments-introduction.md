@@ -72,6 +72,9 @@ PayU offers the following checkout types:
   columns={3}
   items={[
     {
+      title: 'PayU Hosted (Prebuilt Web)',
+      href: '/docs/prebuilt-checkout-payu-hosted',
+      icon: 'fa-rocket',
       text: (
         <ul>
           <li>Quick and easy integration</li>
@@ -79,12 +82,6 @@ PayU offers the following checkout types:
           <li>PayU handles UI, security, and payment flow</li>
         </ul>
       ),
-    },
-    {
-      title: 'API',
-      href: '/reference',
-      icon: 'fa-code',
-      text: 'No image — icon only.',
     },
   ]}
 />
