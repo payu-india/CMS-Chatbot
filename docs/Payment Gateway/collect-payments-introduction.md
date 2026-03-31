@@ -115,7 +115,7 @@ PayU offers the following checkout types:
 <Callout icon="📘" theme="info">
   **No-code Solutions**
 
-  PayU also provides <Anchor label="No-code options" target="_blank" href="https://docs.payu.in/docs/introduction-no-code-payments-integration">No-code options</Anchor> to collect payments without integration.
+  PayU also provides <Anchor label="No-code options" target="_blank" href="https://docs.payu.in/docs/introduction-no-code-payments-integration">No-code options</Anchor> to collect payments based on your business needs without integration.
 </Callout>
 
 <br />
