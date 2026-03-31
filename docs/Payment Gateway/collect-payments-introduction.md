@@ -69,7 +69,7 @@ The following diagram illustrates how PayU payment gateway works.
 PayU offers the following checkout types:
 
 <Tabs>
-  <Tab title="PayU Hosted (Prebulit or Standard Web)">
+  <Tab title="PayU Hosted">
     * Quick and easy integration
     * No PCI compliance required
     * PayU handles UI, security, and payment flow<br />
@@ -96,7 +96,8 @@ PayU offers the following checkout types:
     * Reduced drop-offs using recommendation engine
     * Lower RTO with intelligent COD controls
   </Tab>
-<Tab title="Checkout Plus">
+
+  <Tab title="Checkout Plus">
     * Reduced drop-offs
     * Faster checkout experience
     * Improved conversion rates
