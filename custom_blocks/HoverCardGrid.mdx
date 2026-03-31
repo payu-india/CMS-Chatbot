@@ -30,7 +30,7 @@ export const HoverCardGrid = (props) => {
   const cardBase =
     // Prevent global styles from underlining the whole card; we simulate underline on the title
     // using a bottom border instead of text-decoration so only the title appears underlined.
-    'group flex h-full flex-col rounded-lg bg-[#e3efff] p-5 text-left no-underline hover:no-underline ' +
+    'group flex h-full flex-col rounded-lg bg-[#e3efff] p-5 text-left !no-underline hover:!no-underline ' +
     'shadow-[0_2px_12px_-4px_rgba(15,23,42,0.08),0_1px_2px_-1px_rgba(15,23,42,0.04)] ' +
     'transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ' +
     'hover:-translate-y-2 ' +
@@ -149,7 +149,7 @@ export const HoverCardGrid = (props) => {
                 </span>
               ) : null}
               <span
-                className="inline-block text-base font-semibold leading-snug text-slate-900 border-b border-transparent pb-[1px] group-hover:border-[#00b058]"
+                className="inline-block text-base font-semibold leading-snug text-slate-900 !no-underline group-hover:underline group-hover:decoration-[#00b058] group-hover:underline-offset-[3px]"
               >
                 {title}
               </span>
@@ -169,6 +169,7 @@ export const HoverCardGrid = (props) => {
                   target={target}
                   rel={target === '_blank' ? 'noopener noreferrer' : undefined}
                   className={cardBase}
+                  style={{ textDecoration: 'none', textDecorationLine: 'none' }}
                 >
                   {inner}
                 </a>
@@ -183,6 +184,31 @@ export const HoverCardGrid = (props) => {
   );
 };
 
-// Default preview for ReadMe CMS (component must appear after exports). Keep preview on one line — ReadMe’s MDX parser can fail on multiline object arrays here.
+// Default preview for ReadMe CMS (component must appear after exports).
+// If the ReadMe editor ever complains, you can collapse this back to one line,
+// but the multiline form below is easier to read and copy.
 
-<HoverCardGrid columns={3} items={[{ title: 'Getting Started', href: '#', icon: 'fa-rocket', text: 'New to our platform? Follow this guide to get started.' }, { title: 'API Reference', href: '#', icon: 'fa-code', text: 'Explore our interactive API reference.' }, { title: 'Support and Community', href: '#', icon: 'fa-comments', target: '_blank', text: 'Join our community or check out our FAQ.' }]} />
+<HoverCardGrid
+  columns={3}
+  items={[
+    {
+      title: 'Getting Started',
+      href: '#',
+      icon: 'fa-rocket',
+      text: 'New to our platform? Follow this guide to get started.',
+    },
+    {
+      title: 'API Reference',
+      href: '#',
+      icon: 'fa-code',
+      text: 'Explore our interactive API reference.',
+    },
+    {
+      title: 'Support and Community',
+      href: '#',
+      icon: 'fa-comments',
+      target: '_blank',
+      text: 'Join our community or check out our FAQ.',
+    },
+  ]}
+/>
