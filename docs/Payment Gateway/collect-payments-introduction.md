@@ -75,13 +75,7 @@ PayU offers the following checkout types:
       title: 'PayU Hosted (Prebuilt Web)',
       href: '/docs/prebuilt-checkout-payu-hosted',
       icon: 'fa-rocket',
-      text: (
-        <ul>
-          <li>Quick and easy integration</li>
-          <li>No PCI compliance required</li>
-          <li>PayU handles UI, security, and payment flow</li>
-        </ul>
-      ),
+      text: '- Quick and easy integration\n- No PCI compliance required\n- PayU handles UI, security, and payment flow'
     },
   ]}
 />
