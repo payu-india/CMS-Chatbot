@@ -96,20 +96,3 @@ PayU offers the following checkout types:
     Here's content that's only inside the third Tab.
   </Tab>
 </Tabs>
-
-<HoverCardGrid
-  columns={3}
-  items={[
-    {
-      title: 'PayU Hosted (Prebuilt Web)',
-      href: '/docs/prebuilt-checkout-payu-hosted',
-      text: (
-        <ul>
-          <li>Easier and faster integration.</li>
-          <li>Redirect customers to PayU pages.</li>
-          <li>No PCI-DSS certification required.</li>
-        </ul>
-      ),
-    },
-  ]}
-/>
