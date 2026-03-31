@@ -87,13 +87,16 @@ PayU offers the following checkout types:
 
 <Accordion title="E-commerce (Retail and D2C)" icon="fa-cart-shopping">
   **Issues**
-  	-	High drop-offs during checkout
-  	- Diverse payment preferences (UPI, cards, wallets and BNPL)
+  
+		* High drop-offs during checkout
+  	* Diverse payment preferences (UPI, cards, wallets and BNPL)
+  
   **Recommended Checkout Solutions**
-		- Hosted Checkout
- 		- Seamless Checkout
-		- UPI Intent & Collect
-		- EMI / Pay Later
+
+    * Hosted Checkout
+    * Seamless Checkout
+    * UPI Intent & Collect
+    * EMI / Pay Later
 </Accordion>
 
 <br />
