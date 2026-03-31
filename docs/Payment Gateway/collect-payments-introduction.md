@@ -25,7 +25,7 @@ A **payment gateway** enables businesses to securely accept payments from custom
 
 ## How PayU Payment Gateway Works
 
-<Accordion title="Customer Initiates a Payment" icon="fa-check">
+<Accordion title=" **Step 1: Customer Initiates a Payment**" icon="fa-check">
   A customer selects products or services on your website or app and clicks on “Pay Now” at checkout.
 </Accordion>
 
@@ -47,8 +47,9 @@ A **payment gateway** enables businesses to securely accept payments from custom
 
 <Accordion title="Issuing Bank Verifies Payment" icon="fa-check">
   The issuing bank (customer’s bank):
-  	- Verifies if the account has sufficient balance and payment details are valid
-  	- Performs authentication (like OTP or 3D Secure)
+
+  * Verifies if the account has sufficient balance and payment details are valid
+  * Performs authentication (like OTP or 3D Secure)
 </Accordion>
 
 <Accordion title="Issuing Bank Gebnerates the Authorization Response" icon="fa-check">
