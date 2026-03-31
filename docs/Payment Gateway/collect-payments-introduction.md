@@ -64,4 +64,25 @@ The following diagram illustrates how PayU payment gateway works.
   PayU receives the response and displays the final status (success or failure) to the customer on the checkout page. The merchant system is also updated with the transaction result.
 </Accordion>
 
-<br />
+## Types of Checkout
+
+PayU offers the following checkout types:
+
+<HoverCardGrid
+  columns={3}
+  items={[
+    {
+      title: 'PayU Hosted (Prebuilt Hosted)',
+      href: '/docs/guides',
+      image: 'https://your-cdn.com/card-guides.png',
+      imageAlt: 'Illustration of documentation guides',
+      text: 'Step-by-step integration guides.',
+    },
+    {
+      title: 'API',
+      href: '/reference',
+      icon: 'fa-code',
+      text: 'No image — icon only.',
+    },
+  ]}
+/>
