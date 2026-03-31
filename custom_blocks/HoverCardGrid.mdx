@@ -44,7 +44,9 @@ export const HoverCardGrid = (props) => {
         {items.map((item, index) => {
           const title = item?.title != null ? String(item.title) : '';
           const href = item?.href != null ? String(item.href) : '';
-          const text = item?.text != null ? String(item.text) : '';
+          const content = item?.text;
+          const hasContent =
+            content != null && (typeof content === 'string' ? content.trim() !== '' : true);
           const icon = item?.icon != null ? String(item.icon).trim() : '';
           const rawImage =
             item?.image != null
@@ -59,8 +61,68 @@ export const HoverCardGrid = (props) => {
             item?.imageAlt != null && String(item.imageAlt).trim() !== ''
               ? String(item.imageAlt).trim()
               : title || 'Card illustration';
-          const target = item?.target != null ? String(item.target).trim() : undefined;
+          // Default to opening links in a new tab (Razorpay-style behavior).
+          // If you want same-tab navigation, pass `target="_self"` explicitly.
+          const target =
+            item?.target != null && String(item.target).trim() !== ''
+              ? String(item.target).trim()
+              : '_blank';
           const key = item?.key != null ? String(item.key) : `card-${index}-${title}`;
+
+          const renderContentNode = () => {
+            if (content == null) return null;
+
+            // Allow authoring as an array of strings (rare in ReadMe, but supported).
+            if (Array.isArray(content)) {
+              const listItems = content
+                .filter((v) => v != null && String(v).trim() !== '')
+                .map((v) => String(v).trim());
+              if (listItems.length < 1) return null;
+              return (
+                <ul className="list-disc pl-5 space-y-1">
+                  {listItems.map((li, liIndex) => (
+                    <li key={`${liIndex}-${li}`}>{li}</li>
+                  ))}
+                </ul>
+              );
+            }
+
+            // Most ReadMe authors will paste plain text; support "- item" newline bullets.
+            if (typeof content === 'string') {
+              const raw = content.trim();
+              if (raw === '') return null;
+
+              const lines = raw
+                .split(/\\n|\r?\n/)
+                .map((l) => l.trim())
+                .filter(Boolean);
+
+              const bulletRe = /^(-|\*|•)\s+/;
+              const bulletLines = lines.filter((l) => bulletRe.test(l));
+
+              const looksLikeBullets =
+                bulletLines.length >= 2 && bulletLines.every((l) => bulletRe.test(l)) && bulletLines.length === lines.length;
+
+              if (looksLikeBullets) {
+                const listItems = bulletLines.map((l) => l.replace(bulletRe, '').trim());
+                if (listItems.length < 1) return null;
+
+                return (
+                  <ul className="list-disc pl-5 space-y-1">
+                    {listItems.map((li, liIndex) => (
+                      <li key={`${liIndex}-${li}`}>{li}</li>
+                    ))}
+                  </ul>
+                );
+              }
+
+              // Fallback: render as normal text (prose handles wrapping).
+              return <span>{content}</span>;
+            }
+
+            // For any other non-string content (e.g. JSX from MDX), render it directly.
+            return <>{content}</>;
+          };
 
           const inner = (
             <>
@@ -85,8 +147,10 @@ export const HoverCardGrid = (props) => {
                 </span>
               ) : null}
               <span className="text-base font-semibold leading-snug text-slate-900">{title}</span>
-              {text ? (
-                <span className="mt-2 text-sm font-normal leading-relaxed text-slate-600">{text}</span>
+              {hasContent ? (
+                <div className="mt-2 prose prose-sm max-w-none text-slate-600">
+                  {renderContentNode()}
+                </div>
               ) : null}
             </>
           );
