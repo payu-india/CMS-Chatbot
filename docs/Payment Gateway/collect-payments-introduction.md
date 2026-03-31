@@ -96,6 +96,11 @@ PayU offers the following checkout types:
     * Reduced drop-offs using recommendation engine
     * Lower RTO with intelligent COD controls
   </Tab>
+<Tab title="Checkout Plus">
+    * Reduced drop-offs
+    * Faster checkout experience
+    * Improved conversion rates
+  </Tab>
 </Tabs>
 
 <br />
