@@ -74,13 +74,10 @@ PayU offers the following checkout types:
     {
       title: 'PayU Hosted (Prebuilt Web)',
       href: '/docs/prebuilt-checkout-payu-hosted',
-      text: (
-        <ul>
-          <li>Easier and faster integration.</li>
-          <li>Redirect customers to PayU pages.</li>
-          <li>No PCI-DSS certification required.</li>
-        </ul>
-      ),
+      text:
+        "- Easier and faster integration.\n" +
+        "- Redirect customers to PayU pages.\n" +
+        "- No PCI-DSS certification required.",
     },
   ]}
 />
