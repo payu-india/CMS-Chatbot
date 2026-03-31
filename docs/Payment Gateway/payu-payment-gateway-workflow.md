@@ -43,3 +43,25 @@ The following diagram illustrates how PayU payment gateway works.
 <Accordion title="8. PayU Shares the Response with Merchant and Customer" icon="fa-check">
   PayU receives the response and displays the final status (success or failure) to the customer on the checkout page. The merchant system is also updated with the transaction result.
 </Accordion>
+
+## Post-Transaction Capabilities
+
+Once you integrate with PayU, you can also manage post-payment operations seamlessly:
+
+<HoverCardGrid
+  columns={3}
+  items={[
+    {
+      title: 'Refunds',
+      href: '/docs/introduction-refunds',
+      text: 'Initiate full or partial refunds for successful transactions directly via PayU APIs or dashboard.',
+    },
+    {
+      title: 'Split Settlements',
+      href: '/docs/split-settlments',
+      text: 'Automatically split incoming payments between multiple stakeholders (such as vendors or partners) as per predefined rules.',
+    },
+  ]}
+/>
+
+<br />
