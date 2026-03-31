@@ -71,8 +71,8 @@ PayU offers the following checkout types:
 <Tabs>
   <Tab title="Web">
     <HoverCardGrid
-  columns={3}
-  items={[
+      columns={3}
+      items={[
     {
       title: 'Checkout Integrations',
       href: '/docs/introduction-web',
@@ -86,7 +86,6 @@ PayU offers the following checkout types:
     {
       title: 'Server Integrations',
       href: '/docs/explore-server-integrations',
-      icon: 'fa-code',
       text: (
         <ul>
           <li>GO</li>
@@ -98,7 +97,7 @@ PayU offers the following checkout types:
       ),
     },
   ]}
-/>
+    />
   </Tab>
 
   <Tab title="Second Tab">
