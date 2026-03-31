@@ -70,41 +70,41 @@ PayU offers the following checkout types:
 
 <Tabs>
   <Tab title="PayU Hosted">
-    * Quick and easy integration
-    * No PCI compliance required
-    * PayU handles UI, security, and payment flow<br />
+    	* Quick and easy integration
+    	* No PCI compliance required
+    	* PayU handles UI, security, and payment flow<br />
       Know more about <a href="/docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout</a>.
   </Tab>
 
   <Tab title="Merchant Hosted (Custom)">
-    * Full control over UI/UX
-    * Better branding and customization
-    * Seamless user experience<br />
+    	* Full control over UI/UX
+    	* Better branding and customization
+    	* Seamless user experience<br />
       Know more about <a href="/docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted Checkout</a>.
   </Tab>
 
   <Tab title="S2S">
-    * Eliminates intermediate browser hops
-    * Reduces latency and failure points
-    * Higher control over payment flow
-    * Better success rates due to fewer redirects<br />
+    	* Eliminates intermediate browser hops
+    	* Reduces latency and failure points
+    	* Higher control over payment flow
+    	* Better success rates due to fewer redirects<br />
 
     Know more about <a href="/docs/server-to-server-integration" target="_blank">Server-to-Server (S2S)</a>.
   </Tab>
 
   <Tab title="CommercePro">
-    	* Faster checkout with minimal form filling
-    	* Higher conversions through personalization
-    	* Reduced drop-offs using recommendation engine
-    	* Lower RTO with intelligent COD controls<br />
+    * Faster checkout with minimal form filling
+    * Higher conversions through personalization
+    * Reduced drop-offs using recommendation engine
+    * Lower RTO with intelligent COD controls<br />
 
     Know more about <a href="/docs/checkout-express" target="_blank">CommercePro (checkout Express)</a>.
   </Tab>
 
   <Tab title="Checkout Plus">
-    	* Reduced drop-offs
-    	* Faster checkout experience
-    	* Improved conversion rates<br />
+    * Reduced drop-offs
+    * Faster checkout experience
+    * Improved conversion rates<br />
 
     Know more about <a href="/docs/checkout-plus-integration" target="_blank">Checkout Plus</a>.
   </Tab>
