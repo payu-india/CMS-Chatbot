@@ -77,13 +77,26 @@ PayU offers the following checkout types:
   </Tab>
 
   <Tab title="Merchant Hosted (Custom)">
-    - Full control over UI/UX
-    - Better branding and customization
-    - Seamless user experience<br/>
-Know more about <a href="/docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted Checkout</a>.
+    * Full control over UI/UX
+    * Better branding and customization
+    * Seamless user experience<br />
+      Know more about <a href="/docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted Checkout</a>.
   </Tab>
 
-  <Tab title="Third Tab">
-    Here's content that's only inside the third Tab.
+  <Tab title="Server-to-Server (S2S)">
+    - Eliminates intermediate browser hops
+    - Reduces latency and failure points
+    - Higher control over payment flow
+    - Better success rates due to fewer redirects
   </Tab>
+
+<Tab title="CommercePro (Checkout Express)">
+  * Faster checkout with minimal form filling
+  * Higher conversions through personalization
+  * Reduced drop-offs using recommendation engine
+  * Lower RTO with intelligent COD controls
+</Tab>
+
 </Tabs>
+
+<br />
