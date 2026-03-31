@@ -88,6 +88,7 @@ PayU offers the following checkout types:
     * Reduces latency and failure points
     * Higher control over payment flow
     * Better success rates due to fewer redirects<br />
+    
 Know more about <a href="/docs/server-to-server-integration" target="_blank">Server-to-Server (S2S)</a>.
   </Tab>
 
@@ -96,6 +97,7 @@ Know more about <a href="/docs/server-to-server-integration" target="_blank">Ser
     * Higher conversions through personalization
     * Reduced drop-offs using recommendation engine
     * Lower RTO with intelligent COD controls<br />
+    
 Know more about <a href="/docs/checkout-express" target="_blank">CommercePro (checkout Express)</a>.
   </Tab>
 
@@ -103,6 +105,7 @@ Know more about <a href="/docs/checkout-express" target="_blank">CommercePro (ch
     * Reduced drop-offs
     * Faster checkout experience
     * Improved conversion rates<br />
+    
 Know more about <a href="/docs/checkout-plus-integration" target="_blank">Checkout Plus</a>.
   </Tab>
 </Tabs>
