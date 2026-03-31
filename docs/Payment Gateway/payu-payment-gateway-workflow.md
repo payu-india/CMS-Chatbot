@@ -50,6 +50,10 @@ You can try PayU checkout and make test transactions using our **Integration Lab
 
 <PayU_Labs />
 
+## Test Credentials
+
+You can use these <Anchor label="test credentials" target="_blank" href="/docs/test-cards-upi-id-and-wallets">test credentials</Anchor> to test subscriptions, domestic, and international payments.
+
 ## Post-Transaction Capabilities
 
 Once you integrate with PayU, you can also manage post-payment operations seamlessly:
