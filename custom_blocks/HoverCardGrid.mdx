@@ -28,9 +28,9 @@ export const HoverCardGrid = (props) => {
           : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
 
   const cardBase =
-    // `no-underline` and `hover:no-underline` ensure the global docs theme
-    // does not underline the whole card; we control underline only on the title.
-    'group flex h-full flex-col rounded-lg bg-[#edf2ff] p-5 text-left no-underline hover:no-underline ' +
+    // Prevent global styles from underlining the whole card; we simulate underline on the title
+    // using a bottom border instead of text-decoration so only the title appears underlined.
+    'group flex h-full flex-col rounded-lg bg-[#e3efff] p-5 text-left no-underline hover:no-underline ' +
     'shadow-[0_2px_12px_-4px_rgba(15,23,42,0.08),0_1px_2px_-1px_rgba(15,23,42,0.04)] ' +
     'transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ' +
     'hover:-translate-y-2 ' +
@@ -148,7 +148,9 @@ export const HoverCardGrid = (props) => {
                   <span className={`fa ${icon}`} aria-hidden="true" />
                 </span>
               ) : null}
-              <span className="text-base font-semibold leading-snug text-slate-900 underline-offset-[3px] group-hover:underline">
+              <span
+                className="inline-block text-base font-semibold leading-snug text-slate-900 border-b border-transparent pb-[1px] group-hover:border-[#00b058]"
+              >
                 {title}
               </span>
               {hasContent ? (
