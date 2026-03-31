@@ -7,6 +7,12 @@ metadata:
   keywords:
     - Collect Payments Introduction
   robots: index
+next:
+  description: Refer to the following pages for additional information.
+  pages:
+    - slug: payu-payment-gateway-workflow
+      title: PayU Payment Gateway Workflow
+      type: basic
 ---
 A **payment gateway** enables businesses to securely accept payments from customers through their website or mobile application. The **PayU Payment Gateway** acts as a secure bridge between your customer, your application, and the banking networks to process transactions safely and reliably.
 
@@ -117,5 +123,3 @@ PayU offers the following checkout types:
 
   PayU also provides <Anchor label="No-code options" target="_blank" href="https://docs.payu.in/docs/introduction-no-code-payments-integration">No-code options</Anchor> to collect payments based on your business needs without integration.
 </Callout>
-
-<br />
