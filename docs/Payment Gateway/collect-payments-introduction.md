@@ -69,18 +69,31 @@ The following diagram illustrates how PayU payment gateway works.
 PayU offers the following checkout types:
 
 <Tabs>
-  <Tab title="First Tab">
+  <Tab title="Web">
     <HoverCardGrid
   columns={3}
   items={[
     {
-      title: 'PayU Hosted (Prebuilt Web)',
-      href: '/docs/prebuilt-checkout-payu-hosted',
+      title: 'Checkout Integrations',
+      href: '/docs/introduction-web',
       text: (
         <ul>
-          <li>Easier and faster integration.</li>
-          <li>Redirect customers to PayU pages.</li>
-          <li>No PCI-DSS certification required.</li>
+          <li>PayU Hosted (Standard)</li>
+          <li>Merchant Hosted (Custom)</li>
+        </ul>
+      ),
+    },
+    {
+      title: 'Server Integrations',
+      href: '/docs/explore-server-integrations',
+      icon: 'fa-code',
+      text: (
+        <ul>
+          <li>GO</li>
+          <li>JAVA</li>
+          <li>PHP</li>
+          <li>Phython</li>
+          <li>NodeJS</li>
         </ul>
       ),
     },
@@ -96,3 +109,5 @@ PayU offers the following checkout types:
     Here's content that's only inside the third Tab.
   </Tab>
 </Tabs>
+
+<br />
