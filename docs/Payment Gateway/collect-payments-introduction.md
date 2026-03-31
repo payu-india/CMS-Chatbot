@@ -68,14 +68,18 @@ The following diagram illustrates how PayU payment gateway works.
 
 PayU offers the following checkout types:
 
-<HoverCardGrid
-  columns={3}
-  items={[
-    {
-      title: 'PayU Hosted (Prebuilt Web)',
-      href: '/docs/prebuilt-checkout-payu-hosted',
-      icon: 'fa-rocket',
-      text: '- Quick and easy integration\n- No PCI compliance required\n- PayU handles UI, security, and payment flow'
-    },
-  ]}
-/>
+<Cards>
+  <Card title="PayU Hosted (Prebuilt Web)" href="https://docs.payu.in/docs/prebuilt-checkout-payu-hosted" icon="fa-rocket">
+    - Quick and easy integration
+    - No PCI compliance required
+    - PayU handles UI, security, and payment flow
+  </Card>
+
+  <Card title="API Reference" href="#" icon="fa-code">
+    Explore our interactive API reference.
+  </Card>
+
+  <Card title="Support & Community" href="#" icon="fa-comments" target="_blank">
+    Join our community or checkout our FAQ.
+  </Card>
+</Cards>
