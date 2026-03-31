@@ -85,17 +85,16 @@ PayU offers the following checkout types:
 
 ## Payment Gateway Solutions by Industry
 
-| Industry                       | Key Payment Needs                                        | Recommended Solutions                                         | Key Capabilities                                     | Primary Benefit                              |
-| ------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------- |
-| **E-commerce (Retail, D2C)**   | High conversion, multiple payment options, fast checkout | Hosted Checkout, Seamless Checkout, UPI Intent, EMI/Pay Later | One-click payments, dynamic options, tokenized cards | Reduced cart abandonment, higher conversions |
-| **Travel & Ticketing**         | Time-sensitive payments, high success rate, refunds      | Hosted Checkout, UPI Intent, International Cards              | Fast redirects, retry flows, real-time status        | Fewer booking failures, smooth refunds       |
-| **EdTech**                     | High-value payments, installments, recurring billing     | Hosted Checkout, Recurring Payments, EMI, Payment Links       | Auto-debit mandates, installment options, reminders  | Predictable revenue, flexible payments       |
-| **Gaming & Digital Services**  | High-frequency, low-value, real-time confirmation        | Seamless Checkout, UPI, Tokenized Cards, SDKs                 | In-app checkout, instant callbacks, one-tap pay      | Faster transactions, better in-app UX        |
-| **Subscriptions (SaaS, OTT)**  | Recurring billing, churn reduction, mandate management   | Recurring Payments, UPI AutoPay, Tokenized Cards              | Automated billing, retry logic, lifecycle management | Reduced churn, automated collections         |
-| **Financial Services (NBFCs)** | EMI collections, compliance, secure payments             | Payment Links, Recurring Payments, UPI Collect                | eMandates, on-demand payments, reconciliation        | Improved collections, reduced defaults       |
-| **Marketplaces & Aggregators** | Multi-vendor payments, split settlements                 | Hosted/Seamless Checkout, Split Payments                      | Vendor split, unified checkout, reconciliation       | Simplified operations, scalable payments     |
-
-<br />
+<Accordion title="E-commerce (Retail and D2C)" icon="fa-cart-shopping">
+  **Issues**
+  	-	High drop-offs during checkout
+  	- Diverse payment preferences (UPI, cards, wallets and BNPL)
+  **Recommended Checkout Solutions**
+		- Hosted Checkout
+ 		- Seamless Checkout
+		- UPI Intent & Collect
+		- EMI / Pay Later
+</Accordion>
 
 <br />
 
