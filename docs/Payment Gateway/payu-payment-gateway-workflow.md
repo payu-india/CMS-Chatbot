@@ -1,5 +1,5 @@
 ---
-title: PayU Payment Gateway Workflow
+title: Payment Gateway Workflow
 deprecated: false
 hidden: false
 metadata:
