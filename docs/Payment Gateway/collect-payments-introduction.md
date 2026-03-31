@@ -25,6 +25,10 @@ A **payment gateway** enables businesses to securely accept payments from custom
 
 ## How PayU Payment Gateway Works
 
+The following diagram illustrates how PayU payment gateway works.
+
+<Image align="center" border={true} caption="PayU Payment Gateway Workflow" src="https://files.readme.io/c7438f5e473e942bca45e172732f5c92803419d8a7b2ee2869894f73973ec0fe-Payment_Checkout_Process-2026-03-31-063227.png" />
+
 <Accordion title="Step 1: Customer Initiates a Payment" icon="fa-check">
   A customer selects products or services on your website or app and clicks on “Pay Now” at checkout.
 </Accordion>
