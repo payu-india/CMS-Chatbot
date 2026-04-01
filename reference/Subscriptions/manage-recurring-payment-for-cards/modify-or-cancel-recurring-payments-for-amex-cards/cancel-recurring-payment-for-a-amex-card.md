@@ -330,9 +330,9 @@ curl --location 'https://secure.payu.in/_payment' \
 Array
 (
     [mihpayid] => 25630320296
-    [mode] => CC
+    [mode] => CC -- CC/DC
     [status] => success
-    [unmappedstatus] => auth
+    [unmappedstatus] => captured
     [key] => BmTY3G
     [txnid] => 7932bf4b5a36b0536953
     [amount] => 1.00
@@ -375,7 +375,7 @@ Array
     [meCode] => {"MID":"8366132637","Key":"2a9a271f513eb63778a4ffc31b52bf91"}
     [PG_TYPE] => CC-PG
     [bank_ref_num] => 000072430663426
-    [bankcode] => AMEX
+    [bankcode] => CC --- RUPAYCC/RUPAY
     [error] => E000
     [error_Message] => No Error
     [cardnum] => XXXXXXXXXXXX1005
