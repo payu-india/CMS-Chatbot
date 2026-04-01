@@ -93,10 +93,10 @@ PayU offers the following checkout types:
 
   **Recommended Checkout Solutions**
 
-  * Hosted Checkout
-  * Seamless Checkout
-  * UPI Intent and Collect
-  * EMI or Pay Later
+  * <a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout</a>
+  * <a href="docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted</a> or <a href="docs/server-to-server-integration" target="_blank">S2S</a> Checkout
+  * <a href="docs/upi-intent-and-collect-autopay-tpv-integration" target="_blank">UPI Intent and Collect</a>
+  * <a href="docs/emi-api-integration" target="_blank">EMI</a> or <a href="docs/payu-bnpl-integration-introduction" target="_blank">BNPL</a>
 
   **Benefits**
 
@@ -114,9 +114,9 @@ PayU offers the following checkout types:
 
   **Recommended Checkout Solutions**
 
-  * Hosted Checkout
-  * UPI Intent
-  * International Cards
+  * <a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout</a>
+  * <a href="docs/upi-intent-and-collect-autopay-tpv-integration" target="_blank">UPI Intent</a>
+  * <a href="docs/introduction-dynamic-currency-conversion" target="_blank">International Cards</a>
 
   **Benefits**
 
@@ -134,10 +134,10 @@ PayU offers the following checkout types:
 
   **Recommended Checkout Solutions**
 
-  * Hosted Checkout
-  * Recurring Payments (Subscriptions)
-  * EMI options
-  * Payment Links
+  * <a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout</a>
+  * <a href="docs/introduction-recurring-payments-integration" target="_blank">Recurring Payments (Subscriptions)</a>
+  * <a href="docs/emi-api-integration" target="_blank">EMI</a>
+  * <a href="docs/payment-links-dashboard" target="_blank">Payment Links</a>
 
   **Benefits**
 
@@ -155,11 +155,11 @@ PayU offers the following checkout types:
 
   **Recommended Checkout Solutions**
 
-  * Seamless Checkout
-  * UPI Intent and Collect
-  * EMI options
-  * Tokenized Cards
-  * Mobile SDKs
+  * <a href="docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted</a> or <a href="docs/server-to-server-integration" target="_blank">S2S</a> Checkout
+  * <a href="docs/upi-intent-and-collect-autopay-tpv-integration" target="_blank">UPI Intent and Collect</a>
+  * <a href="docs/emi-api-integration" target="_blank">EMI</a>
+  * <a href="docs/collect-payments-using-a-saved-card" target="_blank">Tokenized Cards</a>
+  * <a href="docs/explore-android-sdks" target="_blank">Mobile SDKs</a>
 
   **Benefits**
 
