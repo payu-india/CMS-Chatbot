@@ -245,7 +245,8 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant[purpose_code]
+        merchant[purpose_code]  
+        <br /><code>mandatory</code>
       </td>
 
       <td>
