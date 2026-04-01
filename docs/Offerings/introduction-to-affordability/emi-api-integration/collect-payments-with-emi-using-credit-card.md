@@ -21,6 +21,7 @@ When your customer wants to opt for the EMI option with credit cards, you can us
 
   * You can create EMI offers using the PayU Dashboard and use them for collecting payments as described in this procedure. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer)
   * For Server-to-Server integration, CC-EMI works on **txn_s2s_flow=1, 2,** or **4**, whereas, DC-EMI only works on **txn_s2s_flow=1**. The same **base64Decoder** logic will be used to decode the encrypted **acsTemplate** (in case of txn_s2s_flow=4) and post_data (in case of txn_s2s_flow=1 or 2).
+  * You can handle Guest Checkout transactions for EMI integration. For more information, refer to[ Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
 </Callout>
 
 <Callout icon="🚧" theme="warn">
