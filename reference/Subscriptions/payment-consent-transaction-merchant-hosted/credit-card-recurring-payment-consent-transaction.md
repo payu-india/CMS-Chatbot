@@ -135,7 +135,7 @@ curl --location 'https://secure.payu.in/_payment' \
 --data-urlencode 'api_version=7' \
 --data-urlencode 'si=1' \
 --data-urlencode 'pg=CC' \
---data-urlencode 'bankcode=UTIBENCC' \
+--data-urlencode 'bankcode=RUPAYCC' \
 --data-urlencode 'surl=https://test.payu.in/admin/test_response/' \
 --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
 --data-urlencode 'ccnum=5123456789012346' \
