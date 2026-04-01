@@ -177,10 +177,9 @@ PayU offers the following checkout types:
 
   **Recommended Checkout Solutions**
 
-  * Recurring Payments
-  * UPI AutoPay
-  * Tokenized Cards
-  * Hosted Checkout (for mandate setup)
+  * <a href="docs/introduction-recurring-payments-integration" target="_blank">Recurring Payments (Subscriptions)</a>
+  * <a href="docs/collect-payments-using-a-saved-card" target="_blank">Tokenized Cards</a>
+  * <a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout (for mandate setup)</a>
 
   **Benefits**
 
