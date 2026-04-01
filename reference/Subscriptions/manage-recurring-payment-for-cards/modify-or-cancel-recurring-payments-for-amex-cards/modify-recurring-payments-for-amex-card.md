@@ -548,17 +548,17 @@ curl --location 'https://secure.payu.in/_payment' \
 ```
 Array
 (
-    [mihpayid] => 25630224100
-    [mode] => CC
+    [mihpayid] => 25603951365
+    [mode] => CC -- CC/DC
     [status] => success
-    [unmappedstatus] => auth
+    [unmappedstatus] => captured
     [key] => BmTY3G
-    [txnid] => bdf9079d4be377229526
+    [txnid] => 5527fc7d02f2bfc00eb4
     [amount] => 1.00
-    [cardCategory] => domestic
+    [cardCategory] => signature_premium
     [discount] => 0.00
     [net_amount_debit] => 1
-    [addedon] => 2025-10-16 12:36:47
+    [addedon] => 2025-10-14 15:44:41
     [productinfo] => Product Info
     [firstname] => Payu-Admin
     [lastname] => 
@@ -580,24 +580,23 @@ Array
     [udf8] => 
     [udf9] => 
     [udf10] => 
-    [hash] => 65293bddb2d36339d0466d777ea1d4dca55f73a0e949fd85570a02a176fe6e0a1023bf931942ac436a24b2de60906a02cc079a89de78bf997247adf9300c9f85
-    [field1] => 
-    [field2] => 115MBTL9D38VRC
+    [hash] => {{hash_value}}
+    [field1] => CBC10141015051509EGR573
+    [field2] => 185869
     [field3] => 
-    [field4] => 25630224100auth
+    [field4] => 
     [field5] => 
-    [field6] => 
-    [field7] => 3DS_CHALLENGE_POSITIVE
-    [field8] => 
-    [field9] => Authorization done using Billdesk-AmexSiHub
+    [field6] => 05
+    [field7] => AUTHPOSITIVE
+    [field8] => 0 | Transaction Completed
+    [field9] => Transaction Completed
     [payment_source] => payu
-    [meCode] => {"MID":"8366132637","Key":"2a9a271f513eb63778a4ffc31b52bf91"}
+    [meCode] => {"wibmo_merchant_id":"1*****72","hash_key":"{{hash_value}}","acquirer_merchant_id":"1********049780","mcc":"5499"}
     [PG_TYPE] => CC-PG
-    [bank_ref_num] => 000072431543429
-    [bankcode] => AMEX
+    [bank_ref_num] => 528710004895
+    [bankcode] => CC -- RUPAYCC/RUPAY
     [error] => E000
     [error_Message] => No Error
-    [cardnum] => XXXXXXXXXXXX1005
-    [cardhash] => This field is no longer supported in postback params.
+    [cardnum] => XXXXXXXXXXXX4879
 )
 ```
