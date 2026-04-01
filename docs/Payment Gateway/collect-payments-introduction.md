@@ -366,8 +366,8 @@ PayU offers the following various integrations:
               }}
             >
               <i className="fa-brands fa-shopify fa-2x" />
-              <a href="/docs/go-sdk" target="_blank" rel="noopener noreferrer">
-                <strong>Shopify Plugin</strong>
+              <a href="/docs/shopify" target="_blank" rel="noopener noreferrer">
+                <strong>Shopify</strong>
               </a>
             </li>
 
@@ -379,9 +379,9 @@ PayU offers the following various integrations:
                 marginBottom: "6px",
               }}
             >
-              <i className="fa-brands fa-java fa-2x" />
-              <a href="/docs/java-sdk" target="_blank" rel="noopener noreferrer">
-                <strong>JAVA SDK</strong>
+              <i className="fa-brands fa-wix fa-2x" />
+              <a href="/docs/wix" target="_blank" rel="noopener noreferrer">
+                <strong>Wix</strong>
               </a>
             </li>
 
@@ -393,9 +393,9 @@ PayU offers the following various integrations:
                 marginBottom: "6px",
               }}
             >
-              <i className="fa-brands fa-php fa-2x" />
+              <i className="fa-brands fa-odoo fa-2x" />
               <a href="/docs/php-sdk" target="_blank" rel="noopener noreferrer">
-                <strong>PHP SDK</strong>
+                <strong>Odoo</strong>
               </a>
             </li>
 
