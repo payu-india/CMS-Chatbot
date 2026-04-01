@@ -232,10 +232,45 @@ PayU offers the following checkout types:
   Combine Hosted or Seamless Checkout + UPI + Cards + Recurring Payments based on your business model to optimize success rates and user experience.
 </Callout>
 
-<br />
-
 ## Payment Gateway for Web, Mobile and E-commerce
 
 PayU offers the following various integrations:
+
+<Tabs>
+  <Tab title="Web">
+<HoverCardGrid
+  columns={3}
+  items={[
+    {
+      title: 'Getting Started',
+      href: '#',
+      icon: 'fa-rocket',
+      text: 'New to our platform? Follow this guide to get started.',
+    },
+    {
+      title: 'API Reference',
+      href: '#',
+      icon: 'fa-code',
+      text: 'Explore our interactive API reference.',
+    },
+    {
+      title: 'Support and Community',
+      href: '#',
+      icon: 'fa-comments',
+      target: '_blank',
+      text: 'Join our community or check out our FAQ.',
+    },
+  ]}
+/>
+  </Tab>
+
+  <Tab title="Plugins">
+    Here's content that's only inside the second Tab.
+  </Tab>
+
+  <Tab title="Mobile">
+    Here's content that's only inside the third Tab.
+  </Tab>
+</Tabs>
 
 <br />
