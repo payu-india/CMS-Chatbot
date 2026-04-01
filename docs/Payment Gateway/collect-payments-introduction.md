@@ -393,7 +393,7 @@ PayU offers the following various integrations:
                 marginBottom: "6px",
               }}
             >
-              <i className="oi oi-odoo fa-2x" />
+              <i className="fa-solid fa-o fa-2x" />
               <a href="/docs/php-sdk" target="_blank" rel="noopener noreferrer">
                 <strong>Odoo</strong>
               </a>
