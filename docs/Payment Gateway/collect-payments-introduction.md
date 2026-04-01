@@ -86,7 +86,7 @@ PayU offers the following checkout types:
 ## Payment Gateway Solutions by Industry
 
 <Accordion title="E-commerce (Retail and D2C)" icon="fa-cart-shopping">
-  **Issues**
+  **Challenges**
 
   * High drop-offs during checkout
   * Diverse payment preferences (UPI, cards, wallets and BNPL)
@@ -107,7 +107,7 @@ PayU offers the following checkout types:
 <br />
 
 <Accordion title="Travel and Ticketing" icon="fa-plane-departure">
-  **Issues**
+  **Challenges**
 
   * Time-critical bookings
   * High cost of payment failures
@@ -127,7 +127,7 @@ PayU offers the following checkout types:
 <br />
 
 <Accordion title="Educational Technology (EdTech)" icon="fa-laptop-file">
-  **Issues**
+  **Challenges**
 
   * High ticket-size transactions
   * Installments and recurring payments
@@ -148,7 +148,7 @@ PayU offers the following checkout types:
 <br />
 
 <Accordion title="Gaming and Digital Services" icon="fa-gamepad">
-  **Issues**
+  **Challenges**
 
   * Frequent microtransactions
   * Real-time payment confirmation required
@@ -169,24 +169,43 @@ PayU offers the following checkout types:
 
 <br />
 
-<Accordion title="Gaming and Digital Services" icon="fa-gamepad">
-  **Issues**
+<Accordion title="Subscription Services (SaaS and OTT)" icon="fa-square-rss">
+  **Challenges**
 
-  * Frequent microtransactions
-  * Real-time payment confirmation required
+  * Recurring billing cycles
+  * Payment failures leading to churn
 
   **Recommended Checkout Solutions**
 
-  * Seamless Checkout
-  * UPI Intent and Collect
-  * EMI options
+  * Recurring Payments
+  * UPI AutoPay
   * Tokenized Cards
-  * Mobile SDKs
+  * Hosted Checkout (for mandate setup)
 
   **Benefits**
 
-  * **Merchants:** Higher success rates and better engagement
-  * **Users:** Fast and uninterrupted experience
+  * **Merchants:** Reduced churn and predictable revenue
+  * **Users:** Hassle-free renewals and billing transparency
+</Accordion>
+
+<br />
+
+<Accordion title="Financial Services (Lending and NBFCs)" icon="fa-money-bill">
+  **Challenges**
+
+  * EMI collections and repayments
+  * Compliance and trust requirements
+
+  **Recommended Checkout Solutions**
+
+  * Payment Links
+  * Recurring Payments (eMandates)
+  * UPI Collect
+
+  **Benefits**
+
+  * **Merchants:** Improved recovery rates
+  * **Users:** Convenient repayment options
 </Accordion>
 
 <br />
