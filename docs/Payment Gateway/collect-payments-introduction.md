@@ -112,7 +112,7 @@ PayU offers the following checkout types:
 
 <br />
 
-<Accordion title="Travel and Ticketing" icon="fa-brands">
+<Accordion title="Travel and Ticketing" icon="fa-plane-departure">
   **Issues**
 
   * High drop-offs during checkout
