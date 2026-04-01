@@ -264,7 +264,7 @@ PayU offers the following various integrations:
           title: 'Server-side Integrations',
 					text: (
         <ul>
-          <li><a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted</a></li>
+              <li><strong>[GO]</strong> <a href="docs/prebuilt-checkout-payu-hosted" target="_blank">GO SDK</a></li>
           <li><a href="docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted</a></li>
           <li><a href="docs/checkout-express" target="_blank">CommercePro</a></li>
           <li><a href="docs/checkout-plus-integration" target="_blank">Checkout Plus</a></li> 
