@@ -150,20 +150,43 @@ PayU offers the following checkout types:
 <Accordion title="Gaming and Digital Services" icon="fa-gamepad">
   **Issues**
 
-  * High ticket-size transactions
-  * Installments and recurring payments
+  * Frequent microtransactions
+  * Real-time payment confirmation required
 
   **Recommended Checkout Solutions**
 
-  * Hosted Checkout
-  * Recurring Payments (Subscriptions)
+  * Seamless Checkout
+  * UPI Intent and Collect
   * EMI options
-  * Payment Links
+  * Tokenized Cards
+  * Mobile SDKs
 
   **Benefits**
 
-  * **Merchants:** Consistent revenue collection
-  * **Users:** Flexible and manageable payments
+  * **Merchants:** Higher success rates and better engagement
+  * **Users:** Fast and uninterrupted experience
+</Accordion>
+
+<br />
+
+<Accordion title="Gaming and Digital Services" icon="fa-gamepad">
+  **Issues**
+
+  * Frequent microtransactions
+  * Real-time payment confirmation required
+
+  **Recommended Checkout Solutions**
+
+  * Seamless Checkout
+  * UPI Intent and Collect
+  * EMI options
+  * Tokenized Cards
+  * Mobile SDKs
+
+  **Benefits**
+
+  * **Merchants:** Higher success rates and better engagement
+  * **Users:** Fast and uninterrupted experience
 </Accordion>
 
 <br />
