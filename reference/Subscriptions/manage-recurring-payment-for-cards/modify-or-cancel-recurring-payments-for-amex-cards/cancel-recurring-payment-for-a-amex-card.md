@@ -361,7 +361,7 @@ Array
     [udf8] => 
     [udf9] => 
     [udf10] => 
-    [hash] => 989e95e586efcb9fb7403807fa811eb18c0c8478db99832b06b0c86fc0cf40f1c96aaf8cbec4d2dcb95e3c6a785e48c418653983f0ec010910c8cecaf0521637
+    [hash] => {{hash_value}}
     [field1] => 
     [field2] => 3PRFM70FA6NQ1
     [field3] => 
@@ -372,7 +372,7 @@ Array
     [field8] => 
     [field9] => Authorization done using Billdesk-AmexSiHub
     [payment_source] => payu
-    [meCode] => {"MID":"8366132637","Key":"2a9a271f513eb63778a4ffc31b52bf91"}
+    [meCode] => {"MID":"83********","Key":"2a9a2**********778a4ffc31b52bf91"}
     [PG_TYPE] => CC-PG
     [bank_ref_num] => 000072430663426
     [bankcode] => CC --- RUPAYCC/RUPAY
