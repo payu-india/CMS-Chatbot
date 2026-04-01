@@ -11,10 +11,10 @@ HTTP Method:  **GET**
 
 **Environment**
 
-|            |                                                   |
-| :--------- | :------------------------------------------------ |
-| Test       | https://test.payu.in/storecard/card/v1/cryptogram |
-| Production | https://info.payu.in/storecard/card/v1/cryptogram |
+|            |                                                                                                        |
+| :--------- | :----------------------------------------------------------------------------------------------------- |
+| Test       | [https://test.payu.in/storecard/card/v1/cryptogram](https://test.payu.in/storecard/card/v1/cryptogram) |
+| Production | [https://info.payu.in/storecard/card/v1/cryptogram](https://info.payu.in/storecard/card/v1/cryptogram) |
 
 ## Request header
 
@@ -56,7 +56,7 @@ HTTP Method:  **GET**
       </td>
 
       <td>
-        The date when the request was made.
+        The current date and time. For example, format of the date is Wed, 28 Jun 2023 11:25:19 GMT.
       </td>
     </tr>
   </tbody>
