@@ -242,7 +242,8 @@ PayU offers the following various integrations:
       columns={3}
       items={[
         {
-          text: (
+          title: 'Checkout Integrations',
+					text: (
         <ul>
           <li><a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted</a></li>
           <li><a href="docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted</a></li>
@@ -256,7 +257,22 @@ PayU offers the following various integrations:
   </Tab>
 
   <Tab title="Plugins">
-    Here's content that's only inside the second Tab.
+    <HoverCardGrid
+      columns={3}
+      items={[
+        {
+          title: 'Server-side Integrations',
+					text: (
+        <ul>
+          <li><a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted</a></li>
+          <li><a href="docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted</a></li>
+          <li><a href="docs/checkout-express" target="_blank">CommercePro</a></li>
+          <li><a href="docs/checkout-plus-integration" target="_blank">Checkout Plus</a></li> 
+        </ul>
+      )
+        }
+      ]}
+    />
   </Tab>
 
   <Tab title="Mobile">
