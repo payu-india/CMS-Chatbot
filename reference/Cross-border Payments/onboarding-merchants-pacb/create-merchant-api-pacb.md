@@ -249,7 +249,7 @@ This API is authorised through a client token generated using the client ID and 
       </td>
 
       <td>
-        <code>string</code> Applicable Purpose code as per Reserve Bank of India's [list](https://www.rbi.org.in/upload/notification/pdfs/52220.pdf)(Refer to "Imports" section) 
+        <code>string</code> Applicable Purpose code as per Reserve Bank of India's [list](https://www.rbi.org.in/upload/notification/pdfs/52220.pdf)(Refer to "Imports" section)
       </td>
 
       <td>
@@ -259,7 +259,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant[bank_details][account_no]<br /><code>mandatory</code>
+        merchant[bank_details][account_no]<br /><code>optional</code>
       </td>
 
       <td>
@@ -275,7 +275,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant[bank_details][account_holder_name]<br /><code>mandatory</code>
+        merchant[bank_details][account_holder_name]<br /><code>optional</code>
       </td>
 
       <td>
@@ -289,7 +289,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant[bank_details][ifsc_code]<br /><code>mandatory</code>
+        merchant[bank_details][ifsc_code]<br /><code>optional</code>
       </td>
 
       <td>
