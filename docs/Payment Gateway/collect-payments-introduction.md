@@ -210,6 +210,31 @@ PayU offers the following checkout types:
 
 <br />
 
+<Accordion title="Marketplaces and Aggregators" icon="fa-shop">
+  **Challenges**
+
+  * Multiple sellers in one transaction
+  * Complex settlement flows
+
+  **Recommended Checkout Solutions**
+
+  * Hosted or Seamless Checkout
+  * Split Payments
+
+  **Benefits**
+
+  * **Merchants:** Operational efficiency and scalability
+  * **Users:** Unified checkout experience
+</Accordion>
+
+<Callout icon="📘" theme="info">
+  **Implementation Tips**
+
+  Combine Hosted or Seamless Checkout + UPI + Cards + Recurring Payments based on your business model to optimize success rates and user experience.
+</Callout>
+
+<br />
+
 ## Payment Gateway for Web, Mobile and E-commerce
 
 PayU offers the following various integrations:
