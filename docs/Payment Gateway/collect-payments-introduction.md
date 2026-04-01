@@ -406,9 +406,9 @@ PayU offers the following various integrations:
                 gap: "8px",
               }}
             >
-              <i className="fa-brands fa-node-js fa-2x" />
+              <i className="fa-brands fa-woocommerce fa-2x" />
               <a href="/docs/node-js-sdk" target="_blank" rel="noopener noreferrer">
-                <strong>NodeJS SDK</strong>
+                <strong>WooCommerce</strong>
               </a>
             </li>
           </ul>
