@@ -238,30 +238,22 @@ PayU offers the following various integrations:
 
 <Tabs>
   <Tab title="Web">
-<HoverCardGrid
-  columns={3}
-  items={[
-    {
-      title: 'Getting Started',
-      href: '#',
-      icon: 'fa-rocket',
-      text: 'New to our platform? Follow this guide to get started.',
-    },
-    {
-      title: 'API Reference',
-      href: '#',
-      icon: 'fa-code',
-      text: 'Explore our interactive API reference.',
-    },
-    {
-      title: 'Support and Community',
-      href: '#',
-      icon: 'fa-comments',
-      target: '_blank',
-      text: 'Join our community or check out our FAQ.',
-    },
-  ]}
-/>
+    <HoverCardGrid
+      columns={3}
+      items={[
+        {
+          title: "Getting Started",
+          text: (
+        <ul>
+          <li><a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted</a></li>
+          <li><a href="docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted</a></li>
+          <li><a href="docs/checkout-express" target="_blank">CommercePro</a></li>
+          <li><a href="docs/checkout-plus-integration" target="_blank">Checkout Plus</a></li> 
+        </ul>
+      )
+        }
+      ]}
+    />
   </Tab>
 
   <Tab title="Plugins">
