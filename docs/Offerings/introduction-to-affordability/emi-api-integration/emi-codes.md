@@ -181,13 +181,13 @@ next:
 <SearchableTable
   headers={['Bank Name', 'bank_code', 'Tenure', 'Interest Rate', 'Min. Amt.', 'Max. Amt.', 'Default Processing Fee']}
   rows={[
-    ['Axio', 'AXIO', 'Axio', '99%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['Axio', 'AXIO03', '3 Months', '99%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['Axio', 'AXIO06', '6 Months', '99%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['Axio', 'AXIO09', '9 Months', '99%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['Axio', 'AXIO12', '12 Months', '99%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['Axio', 'AXIO18', '18 Months', '99%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['Axio', 'AXIO24', '24 Months', '99%', 'Rs. 60,000', 'N/A', 'N/A'],
+    ['Axio', 'AXIO', 'Axio', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
+    ['Axio', 'AXIO03', '3 Months', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
+    ['Axio', 'AXIO06', '6 Months', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
+    ['Axio', 'AXIO09', '9 Months', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
+    ['Axio', 'AXIO12', '12 Months', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
+    ['Axio', 'AXIO18', '18 Months', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
+    ['Axio', 'AXIO24', '24 Months', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
     ['HDFC Cardless EMI', 'HDFCCL03', '3 Months', '16%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
     ['HDFC Cardless EMI', 'HDFCCL06', '6 Months', '16%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
     ['HDFC Cardless EMI', 'HDFCCL09', '9 Months', '16%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
@@ -252,6 +252,5 @@ next:
     ['Bajaj Finserv Limited', 'BAJFIN15', '15 Months', 'No-Cost EMI', 'Rs. 22,500', 'Rs. 150,000'],
     ['Bajaj Finserv Limited', 'BAJFIN18', '18 Months', 'No-Cost EMI', 'Rs. 14,940', 'Rs. 180,000'],
   ]}
-
-placeholder="Search"
+  placeholder="Search"
 />
