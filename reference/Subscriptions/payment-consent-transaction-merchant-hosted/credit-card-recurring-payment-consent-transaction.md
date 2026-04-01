@@ -33,7 +33,7 @@ next:
       slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
 ---
-<Callout icon="📘" theme="info">
+<Callout icon="👍">
   <NewBadge title="What's New!" asHeading={false} />
 
   Lorem Ispum
