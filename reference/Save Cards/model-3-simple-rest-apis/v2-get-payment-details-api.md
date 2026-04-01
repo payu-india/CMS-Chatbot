@@ -11,7 +11,10 @@ HTTP Method:  **GET**
 
 **Environment**
 
-* **Production Environment**: `<info.storecard.service.url>/storecard/card/v1/cryptogram`
+|            |                                                   |
+| :--------- | :------------------------------------------------ |
+| Test       | https://test.payu.in/storecard/card/v1/cryptogram |
+| Production | https://info.payu.in/storecard/card/v1/cryptogram |
 
 ## Request header
 
@@ -59,7 +62,7 @@ HTTP Method:  **GET**
   </tbody>
 </Table>
 
-## Request body
+### Query parameters
 
 <Table>
   <thead>
@@ -88,17 +91,6 @@ HTTP Method:  **GET**
 
     <tr>
       <td>
-        tokenType
-        `mandatory`
-      </td>
-
-      <td>
-        `String`Type of token.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
         cardToken
         `mandatory`
       </td>
@@ -121,12 +113,23 @@ HTTP Method:  **GET**
 
     <tr>
       <td>
-        currencyType
+        currency_type
         `mandatory`
       </td>
 
       <td>
         `String`Currency in which the payment is being processed.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        tokenType
+        `mandatory`
+      </td>
+
+      <td>
+        `String`Type of token.
       </td>
     </tr>
   </tbody>
@@ -135,46 +138,36 @@ HTTP Method:  **GET**
 ## Sample request
 
 ```bash
-curl --location --request GET 'https://pp30info.payu.in/storecard/card/v1/cryptogram?userCredential=testuser%3Atestuser123&cardToken=9350516de374f7bab4cd2&amount=10&currency_type=INR&tokenType=null' \
---header 'Content-Type: application/json' \
---header 'mid: 2' \
---header 'date: {{date}}' \
---header 'Authorization: {{authorization}}' \
---data '{
-    "userCredential":"testuser:testuser123",
-    "cardToken":"8da719a3742ca6fe1663d",
-    "amount":10,
-    "currency_type":"INR",
-    "tokenType":null
-}'
-
+curl --location --request GET 'https://test.payu.in/storecard/card/v1/cryptogram?userCredential=testuser%3Atestuser123&cardToken=9350516de374f7bab4cd2&amount=10&currency_type=INR&tokenType=null' \
+  --header 'date: {{date}}' \
+  --header 'Authorization: {{authorization}}' \
 ```
 
 ## Sample response
 
 ```json
 {
-    "message": "Instrument details",
-    "status": 1,
-    "result": {
-        "oneClickFlow": "",
-        "oneClickStatus": "",
-        "cardType": "VISA",
-        "trid": "400000340044",
-        "networkToken": {
-            "tokenValue": "4761360000000009",
-            "tokenExpiryMonth": 12,
-            "tokenExpiryYear": 2026
-        },
-        "cardMode": "",
-        "par": "ZCLY85YBYQ4Q8D6162O8M0V414GK7",
-        "tokenReferenceId": "3dc50cce023cf4d7dd243c9af272c5c6",
-        "cardNo": "XXXXXXXXXXXX1258",
-        "oneClickCardAlias": "",
-        "cardToken": "9350516de374f7bab4cd2",
-        "cardName": "",
-        "cryptogram": "AgAAAGQBdCZtW8sAmbHTg0UAAAA="
-    }
+  "message": "Instrument details",
+  "status": 1,
+  "result": {
+    "oneClickFlow": "",
+    "oneClickStatus": "",
+    "cardType": "VISA",
+    "trid": "400000340044",
+    "networkToken": {
+      "tokenValue": "4761360000000009",
+      "tokenExpiryMonth": 12,
+      "tokenExpiryYear": 2026
+    },
+    "cardMode": "",
+    "par": "ZCLY85YBYQ4Q8D6162O8M0V414GK7",
+    "tokenReferenceId": "3dc50cce023cf4d7dd243c9af272c5c6",
+    "cardNo": "XXXXXXXXXXXX1258",
+    "oneClickCardAlias": "",
+    "cardToken": "9350516de374f7bab4cd2",
+    "cardName": "",
+    "cryptogram": "AgAAAGQBdCZtW8sAmbHTg0UAAAA="
+  }
 }
 ```
 
