@@ -35,7 +35,6 @@ PayU's Recurring Payment Integration enables merchants to set up automated subsc
   <br />
 </Cards>
 
-
 ## Step 1: Consent Transaction
 
 HTTP Method: **POST**
@@ -46,6 +45,10 @@ HTTP Method: **POST**
 | :--------------------- | :----------------------------------------------------------------- |
 | Test Environment       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
 | Production Environment | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+
+<Callout icon="📘" theme="info">
+  **Handle Guest Checkout Transaction**: You can handle Guest Checkout transactions for EMI integration. For more information, refer to[ Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
+</Callout>
 
 <Accordion title="Request Parameters" icon="fa-table">
   | **Parameter**                                       | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | **Value**                                                                                        |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
