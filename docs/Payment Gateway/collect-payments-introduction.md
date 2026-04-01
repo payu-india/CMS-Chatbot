@@ -394,7 +394,7 @@ PayU offers the following various integrations:
               }}
             >
               <i className="fa-solid fa-o fa-2x" />
-              <a href="/docs/php-sdk" target="_blank" rel="noopener noreferrer">
+              <a href="/docs/odoo" target="_blank" rel="noopener noreferrer">
                 <strong>Odoo</strong>
               </a>
             </li>
@@ -406,8 +406,8 @@ PayU offers the following various integrations:
                 gap: "8px",
               }}
             >
-              <i className="fa-brands fa-woocommerce fa-2x" />
-              <a href="/docs/node-js-sdk" target="_blank" rel="noopener noreferrer">
+              <i className="fa-brands fa-wordpress fa-2x" />
+              <a href="/docs/woocommerce" target="_blank" rel="noopener noreferrer">
                 <strong>WooCommerce</strong>
               </a>
             </li>
