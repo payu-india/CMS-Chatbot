@@ -143,17 +143,17 @@ curl --location 'https://secure.payu.in/_payment' \
 --data-urlencode 'productinfo=my_order_96977' \
 --data-urlencode 'api_version=1' \
 --data-urlencode 'si=3' \
---data-urlencode 'pg=CC' \
---data-urlencode 'bankcode=AMEX' \
---data-urlencode 'surl=https://pp58admin.payu.in/test_response' \
---data-urlencode 'furl=https://pp58admin.payu.in/test_response' \
+--data-urlencode 'pg=CC' \ -- CC/DC
+--data-urlencode 'bankcode=CC' \ -- RUPAYCC/RUPAY
+--data-urlencode 'surl=https://admin.payu.in/test_response' \
+--data-urlencode 'furl=https://admin.payu.in/test_response' \
 --data-urlencode 'ccnum=' \
 --data-urlencode 'ccname=Test User' \
 --data-urlencode 'ccexpmon=05' \
 --data-urlencode 'ccexpyr=2025' \
 --data-urlencode 'ccvv=123' \
 --data-urlencode 'si_details={"action":"delete","authPayuId":25630224100}' \
---data-urlencode 'hash=65f4d07a452916828aba740ec36f81c7de7f041d7349a0a89b873be9f3ec0caa78cabdfa5654b032b144bc1192ce304ae5f6a96513cbee3747e931c08dd3a09c'
+--data-urlencode 'hash={{hash_value}}'
 ```
 
 ## Response parameters
