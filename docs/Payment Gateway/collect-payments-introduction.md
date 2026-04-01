@@ -256,8 +256,8 @@ PayU offers the following various integrations:
           title: 'Server-side Integrations',
 					text: (
         <ul>
-              <li><i className="fa-brands fa-golang fa-2x" style={{ verticalAlign: "middle", marginRight: "6px" }}></i> <a href="docs/prebuilt-checkout-payu-hosted" target="_blank"><strong>GO SDK</strong></a></li>
-          <li><i className="fa-brands fa-java fa-2x" style={{ verticalAlign: "middle", marginRight: "6px" }}></i> <a href="docs/prebuilt-checkout-payu-hosted" target="_blank"><strong>JAVA SDK</strong></a></li>
+              <li><i className="fa-brands fa-golang fa-2x" style={{ verticalAlign: "middle", marginRight: "6px" }}></i> <a href="docs/go-sdk" target="_blank"><strong>GO SDK</strong></a></li>
+          <li><i className="fa-brands fa-java fa-2x" style={{ verticalAlign: "middle", marginRight: "6px" }}></i> <a href="docs/java-sdk" target="_blank"><strong>JAVA SDK</strong></a></li>
           <li><a href="docs/checkout-express" target="_blank">CommercePro</a></li>
           <li><a href="docs/checkout-plus-integration" target="_blank">Checkout Plus</a></li> 
         </ul>
