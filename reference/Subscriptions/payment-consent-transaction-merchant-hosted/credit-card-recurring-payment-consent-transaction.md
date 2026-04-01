@@ -33,10 +33,10 @@ next:
       slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
 ---
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   <NewBadge title="What's New!" asHeading={false} />
 
-  Lorem Ispum
+  <ul><li><Anchor label="RuPay Debit and Credit Cards" target="_blank" href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction">RuPay Debit and Credit Cards</Anchor> are supported for Subscriptions.</li></ul>
 </Callout>
 
 This section provides the request parameters, sample request and response for a Cards Recurring Payment.
