@@ -11,9 +11,9 @@ Use this API to retrieve a list of on-hold transactions that require additional 
 
 **Endpoint**
 
-| Environment | URL                                                | Method |
-| :---------- | :------------------------------------------------- | :----- |
-| Production  | `https://oneapi.payu.in/opgsp/getOnHoldTxnDetails` | GET    |
+| Environment | URL                                              | Method |
+| :---------- | :----------------------------------------------- | :----- |
+| Production  | `https://info.payu.in/opgsp/getOnHoldTxnDetails` | GET    |
 
 ***
 
@@ -26,98 +26,98 @@ Use this API to retrieve a list of on-hold transactions that require additional 
 | Date<br />`mandatory`          | `String` - Current UTC date in HTTP format  | Wed, 28 Jun 2023 11:25:19 GMT                                       |
 
 ### Authorization field format
+
 <Accordion title="Authorization field format" icon="fa-heading">
+  The **Authorization** field format is similar to the following example:
 
-The **Authorization** field format is similar to the following example:
+  ```java
+  hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="
+  ```
 
-```java
-hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="
-```
+  Where, the fields in this example are:
 
-Where, the fields in this example are:
+  * **username**: The merchant key of the merchant.
+  * **algorithm**: This must have the value as hmac-sha256 that is used for this API.
+  * **headers**: This must have the value as date digest.
+  * **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:
+    * **signing\_string**: It must be in the following format. Here, the dateVale and digestValue is the same values in the fields listed in this table For example, "date: Thu, 17 Feb 2022 08:17:59 GMT\ndigest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
 
-* **username**: The merchant key of the merchant.
-* **algorithm**: This must have the value as hmac-sha256 that is used for this API.
-* **headers**: This must have the value as date digest.
-* **signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:
-  * **signing_string**: It must be in the following format. Here, the dateVale and digestValue is the same values in the fields listed in this table For example, "date: Thu, 17 Feb 2022 08:17:59 GMT\ndigest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
+  ```
+  "date: {dateValue}"+"\\n"+"digest: {digestValue}"
+    - **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.
+  ```
 
-```
-"date: {dateValue}"+"\\n"+"digest: {digestValue}"
-  - **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt.
-```
+  The following sample Java code contains the logic used to encrypt as described in the above table:
 
-The following sample Java code contains the logic used to encrypt as described in the above table:
+  ```java
+  import com.google.gson.Gson;
+  import com.google.gson.JsonObject;
+  import org.apache.commons.codec.binary.Base64;
+  import org.joda.time.DateTime;
+  import org.joda.time.format.DateTimeFormat;
 
-```java
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import org.apache.commons.codec.binary.Base64;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
+  import javax.crypto.Mac;
+  import javax.crypto.spec.SecretKeySpec;
+  import java.security.InvalidKeyException;
+  import java.security.MessageDigest;
+  import java.security.NoSuchAlgorithmException;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.security.InvalidKeyException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+  public class HmacAuth {
 
-public class HmacAuth {
+      public static String getSha256(String input) {
+          try {
+              MessageDigest md = MessageDigest.getInstance("SHA-256");
+              byte[] digest = md.digest(input.getBytes());
+              return Base64.encodeBase64String(digest);
+          } catch (NoSuchAlgorithmException ignored) {}
+          return null;
+      }
 
-    public static String getSha256(String input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] digest = md.digest(input.getBytes());
-            return Base64.encodeBase64String(digest);
-        } catch (NoSuchAlgorithmException ignored) {}
-        return null;
-    }
+      public static JsonObject getRequestBody(){
+          JsonObject requestJson = new JsonObject();
+          requestJson.addProperty("firstname","John");
+          requestJson.addProperty("lastname","Doe");
+          return requestJson;
+      }
 
-    public static JsonObject getRequestBody(){
-        JsonObject requestJson = new JsonObject();
-        requestJson.addProperty("firstname","John");
-        requestJson.addProperty("lastname","Doe");
-        return requestJson;
-    }
+      public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException {
+          String key = "smsplus";
+          String secret = "admin";
+          Gson gson = new Gson();
+          String date = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'").withZoneUTC().print(new DateTime());
+          System.out.println(date);
+          JsonObject requestJson = getRequestBody();
+          String digest = getSha256(gson.toJson(requestJson));
+          System.out.println(digest);
+          String signingString = new StringBuilder()
+              .append("date: " + date)
+              .append("\ndigest: " + digest).toString();
+          Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+          SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+          sha256_HMAC.init(secret_key);
+          String signature = Base64.encodeBase64String(sha256_HMAC.doFinal(signingString.getBytes()));
+          String authorization = new StringBuilder()
+              .append("hmac username=\"")
+              .append(key)
+              .append("\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"")
+              .append(signature)
+              .append("\"").toString();
+          System.out.println(authorization);
+      }
+  }
+  ```
 
-    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException {
-        String key = "smsplus";
-        String secret = "admin";
-        Gson gson = new Gson();
-        String date = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'").withZoneUTC().print(new DateTime());
-        System.out.println(date);
-        JsonObject requestJson = getRequestBody();
-        String digest = getSha256(gson.toJson(requestJson));
-        System.out.println(digest);
-        String signingString = new StringBuilder()
-            .append("date: " + date)
-            .append("\ndigest: " + digest).toString();
-        Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
-        SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
-        sha256_HMAC.init(secret_key);
-        String signature = Base64.encodeBase64String(sha256_HMAC.doFinal(signingString.getBytes()));
-        String authorization = new StringBuilder()
-            .append("hmac username=\"")
-            .append(key)
-            .append("\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"")
-            .append(signature)
-            .append("\"").toString();
-        System.out.println(authorization);
-    }
-}
-```
+  The sample header is similar to the following:
 
-The sample header is similar to the following:
+  > 📘 **Note:**
+  >
+  > You need to include the current date and time in the **Date** field of the header.
 
-> 📘 **Note:**
->
-> You need to include the current date and time in the **Date** field of the header.
-
-```java
-'Date: Tue, 09 Aug 2022 12:14:51 GMT'
-'Digest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0= '
-'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=""'
-```
+  ```java
+  'Date: Tue, 09 Aug 2022 12:14:51 GMT'
+  'Digest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0= '
+  'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI=""'
+  ```
 </Accordion>
 
 ## Request Parameters
