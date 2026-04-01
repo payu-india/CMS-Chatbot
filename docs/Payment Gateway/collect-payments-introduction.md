@@ -95,14 +95,8 @@ PayU offers the following checkout types:
 
   * Hosted Checkout
   * Seamless Checkout
-  * UPI Intent & Collect
-  * EMI / Pay Later
-
-  **Recommended Checkout Solutions**
-
-  * Saved cards with tokenization
-  * Dynamic payment method display
-  * Mobile-optimized checkout
+  * UPI Intent and Collect
+  * EMI or Pay Later
 
   **Benefits**
 
@@ -115,26 +109,61 @@ PayU offers the following checkout types:
 <Accordion title="Travel and Ticketing" icon="fa-plane-departure">
   **Issues**
 
-  * High drop-offs during checkout
-  * Diverse payment preferences (UPI, cards, wallets and BNPL)
+  * Time-critical bookings
+  * High cost of payment failures
 
   **Recommended Checkout Solutions**
 
   * Hosted Checkout
-  * Seamless Checkout
-  * UPI Intent & Collect
-  * EMI / Pay Later
-
-  **Recommended Checkout Solutions**
-
-  * Saved cards with tokenization
-  * Dynamic payment method display
-  * Mobile-optimized checkout
+  * UPI Intent
+  * International Cards
 
   **Benefits**
 
-  * **Merchants:** Higher conversion rates, easy integration
-  * **Users:** Faster, flexible, secure checkout
+  * **Merchants:** Reduced booking drop-offs
+  * **Users:** Faster confirmations, smoother refunds
+</Accordion>
+
+<br />
+
+<Accordion title="Educational Technology (EdTech)" icon="fa-laptop-file">
+  **Issues**
+
+  * High ticket-size transactions
+  * Installments and recurring payments
+
+  **Recommended Checkout Solutions**
+
+  * Hosted Checkout
+  * Recurring Payments (Subscriptions)
+  * EMI options
+  * Payment Links
+
+  **Benefits**
+
+  * **Merchants:** Consistent revenue collection
+  * **Users:** Flexible and manageable payments
+</Accordion>
+
+<br />
+
+<Accordion title="Gaming and Digital Services" icon="fa-gamepad">
+  **Issues**
+
+  * High ticket-size transactions
+  * Installments and recurring payments
+
+  **Recommended Checkout Solutions**
+
+  * Hosted Checkout
+  * Recurring Payments (Subscriptions)
+  * EMI options
+  * Payment Links
+
+  **Benefits**
+
+  * **Merchants:** Consistent revenue collection
+  * **Users:** Flexible and manageable payments
 </Accordion>
 
 <br />
