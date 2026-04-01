@@ -11,13 +11,14 @@ HTTP Method:  **GET**
 
 **Environment**
 
-|            |                                                 |
-| :--------- | :---------------------------------------------- |
-| Production | \<info.storecard.service.url>/storecard/card/v2 |
+|            |                                                                                              |
+| :--------- | :------------------------------------------------------------------------------------------- |
+| Test       | https://test.payu.in/storecard/instrument/v1                                                 |
+| Production | [https://info.payu.in/storecard/instrument/v1](https://info.payu.in/storecard/instrument/v1) |
 
 ## Request header
 
-### Authentication header
+### Authorization header
 
 <HeaderAuthentication />
 
@@ -39,12 +40,41 @@ HTTP Method:  **GET**
   <tbody>
     <tr>
       <td>
-        mid
+        date
         `mandatory`
       </td>
 
       <td>
-        Merchant ID provided by PayU. Use the value provided in your PayU dashboard.
+        The current date and time. For example, format of the date is Wed, 28 Jun 2023 11:25:19 GMT.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### Query parameters
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        userCredential
+        `mandatory`
+      </td>
+
+      <td>
+        `String` Encrypted user credentials, typically `<username>:<password>`.
       </td>
     </tr>
   </tbody>
@@ -59,41 +89,48 @@ None
 ### Request
 
 ```bash
-curl --location '<info.storecard.service.url>/storecard/card/v1' \
---header 'Content-Type: application/json' \
---header 'mid: 2' \
+curl --location 'https://pp30info.payu.in/storecard/instrument/v1?userCredentials=testuser%3Atestuser123' \
+  --header 'authorization: {{authorization}}' \
+  --header 'date: {{date}}'
 ```
 
 ### Response
 
 ```json
 {
-    "status": 1,
-    "msg": "Cards fetched Successfully",
+  "message": "Success",
+  "status": 1,
+  "result": {
     "user_cards": {
-        "a52aa1c09e11ac56926005": {
-            "card_type": "CC",
-            "expiry_year": "2030",
-            "expiry_month": "11",
-            "is_expired": 0,
-            "card_mode": "CC",
-            "card_no": "XXXXXXXXXXXX6937",
-            "card_name": "raghu_visa",
-            "name_on_card": "DUMMY",
-            "card_brand": "VISA",
-            "card_bin": "439040",
-            "isDomestic": "Y",
-            "card_cvv": 0,
-            "PAR": "V0010013022526170404000072387",
-            "network_token": {
-                "token_bin": "439040",
-                "is_expired": 0,
-                "token_exp_yr": "2030",
-                "token_exp_mon": "11",
-                "token_value": "4390406210204342"
-            }
-        }
+      "13b390284be7ef8acf8": {
+        "cardNo": "XXXXXXXXXXXX1258",
+        "cardMode": "CC",
+        "par": "0185NPMT1F8OS22Y4X0UU6AQUL8R1",
+        "oneClickStatus": "",
+        "oneClickCardAlias": "",
+        "cardToken": "13b390284be7ef8acf8",
+        "oneClickFlow": "",
+        "cardName": "testAll",
+        "nameOnCard": "DUMMY",
+        "cardType": "CC",
+        "isExpired": false,
+        "cardExpiryMonth": 12,
+        "cardExpiryYear": 2026,
+        "networkToken": {
+          "tokenValue": "4761360000000009",
+          "isExpired": false,
+          "tokenExpiryMonth": 12,
+          "tokenExpiryYear": 2026,
+          "tokenBin": "476136"
+        },
+        "cardCVV": "0",
+        "isDomestic": "Y",
+        "cardBin": "476136",
+        "cardBrand": "VISA"
+      }
+      // ... more tokens
     }
+  }
 }
 ```
 
