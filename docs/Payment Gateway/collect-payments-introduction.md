@@ -245,10 +245,10 @@ PayU offers the following various integrations:
           title: 'Checkout Integrations',
 					text: (
         <ul>
-          <li><a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted</a></li>
-          <li><a href="docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted</a></li>
-          <li><a href="docs/checkout-express" target="_blank">CommercePro</a></li>
-          <li><a href="docs/checkout-plus-integration" target="_blank">Checkout Plus</a></li> 
+          <li><a href="docs/prebuilt-checkout-payu-hosted" target="_blank"><strong>PayU Hosted</strong></a></li>
+          <li><a href="docs/custom-checkout-merchant-hosted" target="_blank"><strong>Merchant Hosted</strong></a></li>
+          <li><a href="docs/checkout-express" target="_blank"><strong>CommercePro</strong></a></li>
+          <li><a href="docs/checkout-plus-integration" target="_blank"><strong>Checkout Plus</strong></a></li> 
         </ul>
       ),
         },
@@ -257,7 +257,7 @@ PayU offers the following various integrations:
 					text: (
         <ul>
               <li><i class="fa-brands fa-golang fa-1.9x"></i> <a href="docs/prebuilt-checkout-payu-hosted" target="_blank"><strong>GO SDK</strong></a></li>
-          <li><a href="docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted</a></li>
+          <li><i class="fa-brands fa-java fa-1.9x"></i> <a href="docs/prebuilt-checkout-payu-hosted" target="_blank"><strong>JAVA SDK</strong></a></li>
           <li><a href="docs/checkout-express" target="_blank">CommercePro</a></li>
           <li><a href="docs/checkout-plus-integration" target="_blank">Checkout Plus</a></li> 
         </ul>
