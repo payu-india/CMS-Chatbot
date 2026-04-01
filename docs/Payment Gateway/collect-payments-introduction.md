@@ -238,33 +238,86 @@ PayU offers the following various integrations:
 
 <Tabs>
   <Tab title="Web">
-    <HoverCardGrid
-      columns={3}
-      items={[
-        {
-          title: 'Checkout Integrations',
-					text: (
-        <ul>
-          <li><a href="docs/prebuilt-checkout-payu-hosted" target="_blank"><strong>PayU Hosted</strong></a></li>
-          <li><a href="docs/custom-checkout-merchant-hosted" target="_blank"><strong>Merchant Hosted</strong></a></li>
-          <li><a href="docs/checkout-express" target="_blank"><strong>CommercePro</strong></a></li>
-          <li><a href="docs/checkout-plus-integration" target="_blank"><strong>Checkout Plus</strong></a></li> 
-        </ul>
-      ),
-        },
+  <HoverCardGrid
+    columns={2}
+    items={[
       {
-          title: 'Server-side Integrations',
-					text: (
-        <ul>
-              <li><i className="fa-brands fa-golang fa-2x" style={{ verticalAlign: "middle", marginRight: "6px" }}></i> <a href="docs/go-sdk" target="_blank"><strong>GO SDK</strong></a></li>
-          <li><i className="fa-brands fa-java fa-2x" style={{ verticalAlign: "middle", marginRight: "6px" }}></i> <a href="docs/java-sdk" target="_blank"><strong>JAVA SDK</strong></a></li>
-          <li><i className="fa-brands fa-php fa-2x" style={{ verticalAlign: "middle", marginRight: "6px" }}></i> <a href="docs/php-sdk" target="_blank"><strong>PHP SDK</strong></a></li>
-          <li><i className="fa-brands fa-node-js fa-2x" style={{ verticalAlign: "middle", marginRight: "6px" }}></i> <a href="docs/node-js-sdk" target="_blank"><strong>NodeJS SDK</strong></a></li></ul>
-      )
-        }
-      ]}
-    />
-  </Tab>
+        title: "Checkout Integrations",
+        text: (
+          <ul style={{ paddingLeft: "16px", margin: 0 }}>
+            <li>
+              <a
+                href="/docs/prebuilt-checkout-payu-hosted"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <strong>PayU Hosted</strong>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/docs/custom-checkout-merchant-hosted"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <strong>Merchant Hosted</strong>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/docs/checkout-express"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <strong>CommercePro</strong>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/docs/checkout-plus-integration"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <strong>Checkout Plus</strong>
+              </a>
+            </li>
+          </ul>
+        ),
+      },
+      {
+        title: "Server-side Integrations",
+        text: (
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <li style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+              <i className="fa fa-code fa-lg" />
+              <a href="/docs/go-sdk" target="_blank" rel="noopener noreferrer">
+                <strong>Go SDK</strong>
+              </a>
+            </li>
+            <li style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+              <i className="fa fa-coffee fa-lg" />
+              <a href="/docs/java-sdk" target="_blank" rel="noopener noreferrer">
+                <strong>Java SDK</strong>
+              </a>
+            </li>
+            <li style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+              <i className="fa fa-code fa-lg" />
+              <a href="/docs/php-sdk" target="_blank" rel="noopener noreferrer">
+                <strong>PHP SDK</strong>
+              </a>
+            </li>
+            <li style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <i className="fa fa-terminal fa-lg" />
+              <a href="/docs/node-js-sdk" target="_blank" rel="noopener noreferrer">
+                <strong>Node.js SDK</strong>
+              </a>
+            </li>
+          </ul>
+        ),
+      },
+    ]}
+  />
+</Tab>
 
   <Tab title="Mobile">
     Here's content that's only inside the third Tab.
