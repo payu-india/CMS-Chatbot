@@ -112,7 +112,7 @@ PayU offers the following checkout types:
 
 <br />
 
-<Accordion title="E-commerce (Retail and D2C)" icon="fa-cart-shopping">
+<Accordion title="Travel and Ticketing" icon="fa-avianex">
   **Issues**
 
   * High drop-offs during checkout
