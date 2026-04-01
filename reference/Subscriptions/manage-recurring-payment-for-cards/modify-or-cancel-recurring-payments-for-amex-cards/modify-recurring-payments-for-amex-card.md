@@ -519,28 +519,29 @@ For a yearly plan starting from 1st January 2019, having a monthly billing amoun
 
 ```bash
 curl --location 'https://secure.payu.in/_payment' \
+--header 'accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
 --data-urlencode 'key=BmTY3G' \
---data-urlencode 'txnid=my_order_96977' \
---data-urlencode 'amount=1' \
+--data-urlencode 'txnid=my_order_47719' \
+--data-urlencode 'amount=1.00' \
 --data-urlencode 'firstname=Payu-Admin' \
 --data-urlencode 'email=test@example.com' \
 --data-urlencode 'phone=1234567890' \
---data-urlencode 'productinfo=my_order_96977' \
---data-urlencode 'api_version=1' \
+--data-urlencode 'productinfo=my_order_47719' \
+--data-urlencode 'api_version=7' \
 --data-urlencode 'si=3' \
---data-urlencode 'pg=CC' \
---data-urlencode 'bankcode=AMEX' \
---data-urlencode 'surl=https://pp58admin.payu.in/test_response' \
---data-urlencode 'furl=https://pp58admin.payu.in/test_response' \
---data-urlencode 'ccnum=' \
---data-urlencode 'ccname=Test User' \
+--data-urlencode 'pg=CC' \ -- CC/DC
+--data-urlencode 'bankcode=CC' \ -- RUPAYCC/RUPAY
+--data-urlencode 'surl=https://admin.payu.in/test_response' \
+--data-urlencode 'furl=https://admin.payu.in/test_response' \
+--data-urlencode 'ccnum=5123456789012346' \
 --data-urlencode 'ccexpmon=05' \
---data-urlencode 'ccexpyr=2025' \
+--data-urlencode 'ccexpyr=2030' \
 --data-urlencode 'ccvv=123' \
---data-urlencode 'si_details={"billingAmount":"10.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2022-02-04","paymentEndDate":"2022-12-12","action":"modify","authPayuId":"25630089596"}' \
---data-urlencode 'hash=65f4d07a452916828aba740ec36f81c7de7f041d7349a0a89b873be9f3ec0caa78cabdfa5654b032b144bc1192ce304ae5f6a96513cbee3747e931c08dd3a09c'
+--data-urlencode 'ccname=Test User' \
+--data-urlencode 'si_details={billingAmount:100.00,billingCurrency:INR,billingCycle:MONTHLY,billingInterval:1,paymentStartDate:2022-09-01,paymentEndDate:2022-12-01,authpayuid:403993715525316543,action:modify}' \
+--data-urlencode 'hash={{hash_value}}'
 ```
 
 ## Sample response
