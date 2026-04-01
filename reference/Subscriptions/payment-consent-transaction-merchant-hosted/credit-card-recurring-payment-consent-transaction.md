@@ -33,6 +33,12 @@ next:
       slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
 ---
+<Callout icon="📘" theme="info">
+  <NewBadge title="What's New!" asHeading={false} />
+
+  Lorem Ispum
+</Callout>
+
 This section provides the request parameters, sample request and response for a Cards Recurring Payment.
 
 <Callout icon="📘" theme="info">
