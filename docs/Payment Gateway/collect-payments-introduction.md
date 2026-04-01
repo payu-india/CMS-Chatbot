@@ -242,7 +242,6 @@ PayU offers the following various integrations:
       columns={3}
       items={[
         {
-          title: "Getting Started",
           text: (
         <ul>
           <li><a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted</a></li>
