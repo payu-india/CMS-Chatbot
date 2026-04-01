@@ -288,28 +288,58 @@ PayU offers the following various integrations:
         title: "Server-side Integrations",
         text: (
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            <li style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
-              <i className="fa fa-code fa-lg" />
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                marginBottom: "6px",
+              }}
+            >
+              <i className="fa-brands fa-golang fa-2x" />
               <a href="/docs/go-sdk" target="_blank" rel="noopener noreferrer">
-                <strong>Go SDK</strong>
+                <strong>GO SDK</strong>
               </a>
             </li>
-            <li style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
-              <i className="fa fa-coffee fa-lg" />
+
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                marginBottom: "6px",
+              }}
+            >
+              <i className="fa-brands fa-java fa-2x" />
               <a href="/docs/java-sdk" target="_blank" rel="noopener noreferrer">
-                <strong>Java SDK</strong>
+                <strong>JAVA SDK</strong>
               </a>
             </li>
-            <li style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
-              <i className="fa fa-code fa-lg" />
+
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                marginBottom: "6px",
+              }}
+            >
+              <i className="fa-brands fa-php fa-2x" />
               <a href="/docs/php-sdk" target="_blank" rel="noopener noreferrer">
                 <strong>PHP SDK</strong>
               </a>
             </li>
-            <li style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <i className="fa fa-terminal fa-lg" />
+
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa-brands fa-node-js fa-2x" />
               <a href="/docs/node-js-sdk" target="_blank" rel="noopener noreferrer">
-                <strong>Node.js SDK</strong>
+                <strong>NodeJS SDK</strong>
               </a>
             </li>
           </ul>
