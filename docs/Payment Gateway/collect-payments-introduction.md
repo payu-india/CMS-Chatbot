@@ -197,9 +197,9 @@ PayU offers the following checkout types:
 
   **Recommended Checkout Solutions**
 
-  * Payment Links
-  * Recurring Payments (eMandates)
-  * UPI Collect
+  * <a href="docs/payment-links-dashboard" target="_blank">Payment Links</a>
+  * <a href="docs/introduction-recurring-payments-integration" target="_blank">Recurring Payments (eMandates)</a>
+  * <a href="docs/upi-intent-and-collect-autopay-tpv-integration" target="_blank">UPI Collect</a>
 
   **Benefits**
 
@@ -217,8 +217,8 @@ PayU offers the following checkout types:
 
   **Recommended Checkout Solutions**
 
-  * Hosted or Seamless Checkout
-  * Split Payments
+  * <a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout</a> or <a href="docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted</a> Checkout
+  * <a href="docs/split-settlments" target="_blank">Split Payments</a>
 
   **Benefits**
 
