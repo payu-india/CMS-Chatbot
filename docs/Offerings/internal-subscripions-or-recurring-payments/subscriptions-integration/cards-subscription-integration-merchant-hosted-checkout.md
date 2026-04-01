@@ -9,8 +9,7 @@ metadata:
     SI on cards integration.
   robots: index
 ---
-PayU's Card Subscription Integration using the Merchant-Hosted Checkout method enables businesses to set up automated recurring payments through credit and debit cards with enhanced control over the payment flow. This section covers the complete process from capturing initial customer consent and mandate registration to executing seamless recurring transactions without requiring additional 2-factor authentication. 
-
+PayU's Card Subscription Integration using the Merchant-Hosted Checkout method enables businesses to set up automated recurring payments through credit and debit cards with enhanced control over the payment flow. This section covers the complete process from capturing initial customer consent and mandate registration to executing seamless recurring transactions without requiring additional 2-factor authentication.
 
 <Cards columns={2}>
   <Card title="1. Consent Transaction" href="https://docs.payu.in/docs/subscription-for-cards#step-1-consent-transaction">
@@ -40,7 +39,6 @@ PayU's Card Subscription Integration using the Merchant-Hosted Checkout method e
   <br />
 </Cards>
 
-
 ## Step 1: Consent Transaction
 
 HTTP Method: **POST**
@@ -51,6 +49,10 @@ HTTP Method: **POST**
 | :--------------------- | :----------------------------------------------------------------- |
 | Test Environment       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
 | Production Environment | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+
+<Callout icon="📘" theme="info">
+  **Handle Guest Checkout Transaction**: You can handle Guest Checkout transactions for EMI integration. For more information, refer to[ Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
+</Callout>
 
 ## Request parameters
 
