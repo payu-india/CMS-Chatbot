@@ -20,11 +20,9 @@ This API is retrieve detailed information about a specific transaction using the
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
-  curl -X GET \
-    -H "Authorization: Bearer YOUR_BEARER_TOKEN_HERE" \
-    -H "mid: 135670" \
-    -H "Accept: application/json" \
-    "http://test.payu.in/settlement/transactionDetails?merchantTransactionId=ORDER123456"
+ curl --location 'http://test.payu.in/settlement/transactionDetails?merchantTransactionId=W49OV6KQXR4H' \
+--header 'mid: 180012'
+--header 'Authorization: Bearer <token>'
   ```
   ```python
   import requests
