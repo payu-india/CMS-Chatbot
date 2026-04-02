@@ -3,9 +3,13 @@ title: Settlement Transaction Details API
 api:
   file: updated_settlement_devguide_api_postman_collection_v1.json
   operationId: get_settlement-transactiondetails
-hidden: false
+hidden: true
 ---
 This API is retrieve detailed information about a specific transaction using the merchant transaction ID. This API provides comprehensive transaction data including status, amount, settlement details, and associated metadata.
+
+<Callout icon="📘" theme="info">
+  **Note**: This API uses Bearer token for authentication and Bearer token must be generated using **Get Access Token**API. For more information, refer to [Get Access Token ](ref:get-token-api-for-general-apis)API.
+</Callout>
 
 Environment
 
