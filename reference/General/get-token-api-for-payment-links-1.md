@@ -1,5 +1,5 @@
 ---
-title: Copy of Get Access Token
+title: Get Access Token API
 excerpt: >-
   Obtain an access token using OAuth 2.0 Client Credentials flow for API
   authentication
