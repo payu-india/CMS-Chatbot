@@ -229,7 +229,8 @@
               "type": "string"
             },
             "description": "Bearer token for authentication (required). Format: 'Bearer <token>'",
-            "example": "{{authorizationBearer}}"
+            "example": "{{authorizationBearer}}",
+            "required": true
           },
           {
             "name": "mid",
@@ -238,7 +239,8 @@
               "type": "string"
             },
             "description": "Your Merchant ID (required). Can be integer or string.",
-            "example": "{{mid}}"
+            "example": "{{mid}}",
+            "required": true
           },
           {
             "name": "Accept",
@@ -256,7 +258,8 @@
               "type": "string"
             },
             "description": "Your unique merchant transaction/reference ID used to look up settlement entries (required). Length: 1-100 characters.",
-            "example": "{{merchantTransactionId}}"
+            "example": "{{merchantTransactionId}}",
+            "required": true
           }
         ],
         "responses": {
