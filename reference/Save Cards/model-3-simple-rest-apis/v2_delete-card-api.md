@@ -7,14 +7,14 @@ metadata:
 ---
 This API is used to delete an existing card stored on PayU Vault.
 
-HTTP Method: **POST**
+HTTP Method: **DELETE**
 
 **Environment**
 
-|            |                                        |
-| :--------- | :------------------------------------- |
-| Test       | https://test.payu.in/storecard/card/v1 |
-| Production | https://info.payu.in/storecard/card/v1 |
+|            |                                                                                  |
+| :--------- | :------------------------------------------------------------------------------- |
+| Test       | [https://test.payu.in/storecard/card/v1](https://test.payu.in/storecard/card/v1) |
+| Production | [https://info.payu.in/storecard/card/v1](https://info.payu.in/storecard/card/v1) |
 
 ## Request parameters
 
