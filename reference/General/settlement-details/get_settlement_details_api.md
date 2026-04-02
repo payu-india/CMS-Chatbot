@@ -13,16 +13,21 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
   [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi)
 </Callout>
 
+**Environment**
 
-### Environment
-
-| Environment            | URL                                                                                                  |
-| :--------------------- | :--------------------------------------------------------------------------------------------------- |
-| Test Environment       | https://test.payu.in/treasury/int/payu/settlement/settlementDetails |
-| Production Environment | https://info.payu.in/treasury/settlement/settlementDetails |
+| Environment            | URL                                                                                                                                        |
+| :--------------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/treasury/int/payu/settlement/settlementDetails](https://test.payu.in/treasury/int/payu/settlement/settlementDetails) |
+| Production Environment | [https://info.payu.in/treasury/settlement/settlementDetails](https://info.payu.in/treasury/settlement/settlementDetails)                   |
 
 ## Sample Request
-
+```curl
+curl -X GET \
+  -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"YOUR_SIGNATURE_HASH\"" \
+  -H "Date: Wed, 28 Jun 2023 11:25:19 GMT" \
+  -H "mid: 135670" \
+  "https://test.payu.in/treasury/int/payu/settlement/settlementDetails?settledOn=2023-06-28&page=1&pageSize=2000&type=G&isVersion=1"
+```
 ```python
 import requests
 import hashlib
@@ -247,6 +252,7 @@ curl_close($ch);
 ```
 
 **Sample Response**
+
 ```json
 {
     "status": 1,
@@ -287,43 +293,44 @@ curl_close($ch);
 ```
 
 ## Response Parameters
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| status | Integer | Response status (1 = success, 0 = failure) |
-| msg | String | Response message |
-| result | Object | Main response data container in a JSON format. For more information, refer to [result JSON Fields Descriptions](#result-json-fields-descriptions) |
+
+| Parameter | Description                                                                                                                                       |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| status    | Response status (1 = success, 0 = failure)                                                                                                        |
+| msg       | Response message                                                                                                                                  |
+| result    | Main response data container in a JSON format. For more information, refer to [result JSON Fields Descriptions](#result-json-fields-descriptions) |
 
 ### result JSON Fields Descriptions
 
-| Parameter      | Description                              |
-|:---------------|:-----------------------------------------|
-| settlementData | Array of settlement records in a JSON format.   For more information, refer to  [settlementData JSON Fields Descriptions](#settlementdata-json-fields-descriptions)          |
-| totalRecords   | Total number of settlement records found |
-| page           | Current page number                      |
-| pageSize       | Number of records per page               |
-| totalPages     | Total number of pages available          |
+| Parameter      | Description                                                                                                                                                         |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| settlementData | Array of settlement records in a JSON format.   For more information, refer to  [settlementData JSON Fields Descriptions](#settlementdata-json-fields-descriptions) |
+| totalRecords   | Total number of settlement records found                                                                                                                            |
+| page           | Current page number                                                                                                                                                 |
+| pageSize       | Number of records per page                                                                                                                                          |
+| totalPages     | Total number of pages available                                                                                                                                     |
 
 #### settlementData JSON Fields Descriptions
 
-| Parameter        | Description                                     |
-|:-----------------|:------------------------------------------------|
-| settlementId     | Unique settlement identifier                    |
-| utr              | Unique Transaction Reference from bank          |
-| settlementAmount | Net amount settled to merchant account          |
-| settlementDate   | Date when settlement was processed (YYYY-MM-DD) |
-| transactionCount | Number of transactions in this settlement       |
-| totalAmount      | Total gross transaction amount                  |
-| totalFees        | Total processing fees deducted                  |
-| totalTax         | Total tax on fees                               |
-| totalAdjustments | Any adjustments applied to settlement           |
-| bankName         | Merchant's settlement bank name                 |
-| accountNumber    | Masked bank account number                      |
-| transactions     | Individual transaction details (if requested) in a JSON format. For more information, refer to [transactions JSON Fields description][#transactions-json-fields-description]    |
+| Parameter        | Description                                                                                                                                                                  |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| settlementId     | Unique settlement identifier                                                                                                                                                 |
+| utr              | Unique Transaction Reference from bank                                                                                                                                       |
+| settlementAmount | Net amount settled to merchant account                                                                                                                                       |
+| settlementDate   | Date when settlement was processed (YYYY-MM-DD)                                                                                                                              |
+| transactionCount | Number of transactions in this settlement                                                                                                                                    |
+| totalAmount      | Total gross transaction amount                                                                                                                                               |
+| totalFees        | Total processing fees deducted                                                                                                                                               |
+| totalTax         | Total tax on fees                                                                                                                                                            |
+| totalAdjustments | Any adjustments applied to settlement                                                                                                                                        |
+| bankName         | Merchant's settlement bank name                                                                                                                                              |
+| accountNumber    | Masked bank account number                                                                                                                                                   |
+| transactions     | Individual transaction details (if requested) in a JSON format. For more information, refer to [transactions JSON Fields description][#transactions-json-fields-description] |
 
 #### transactions JSON Fields description
 
 | Parameter     | Description                      |
-|:--------------|:---------------------------------|
+| :------------ | :------------------------------- |
 | transactionId | Merchant transaction identifier  |
 | payuId        | PayU internal transaction ID     |
 | amount        | Transaction amount               |
