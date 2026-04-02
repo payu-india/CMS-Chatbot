@@ -7,6 +7,8 @@ api:
   file: updated_settlement_devguide_api_postman_collection_v1.json
   operationId: get_treasury-v1-settlement-transactiondetails
 hidden: true
+link:
+  new_tab: false
 ---
 This API retrieves detailed information about a specific transaction using the merchant transaction ID. This API provides comprehensive transaction data including status, amount, settlement details, and associated metadata.
 
