@@ -24,7 +24,7 @@ The following steps allow you to integrate the server-to-server UPI (United Paym
     Receive and process the server-to-server callback response from PayU
   </Card>
 
-  <Card title="5. Verify the payment" href="h#step-5-verify-the-payment">
+  <Card title="5. Verify the payment" href="#step-5-verify-the-payment">
     Verify the payment status and ensure successful transaction completion
   </Card>
 
