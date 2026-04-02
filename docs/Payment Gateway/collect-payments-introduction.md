@@ -513,6 +513,7 @@ PayU offers the following various integrations:
     ]}
     />
   </Tab>
+
   <Tab title="Mobile SDKs">
     <HoverCardGrid
       columns={2}
@@ -543,9 +544,9 @@ PayU offers the following various integrations:
                 marginBottom: "6px",
               }}
             >
-              <i className="fa-brands fa-wix fa-2x" />
-              <a href="/docs/wix" target="_blank" rel="noopener noreferrer">
-                <strong>Wix</strong>
+              <i className="fa-apple fa-2x" />
+              <a href="/docs/explore-ios-sdks" target="_blank" rel="noopener noreferrer">
+                <strong>iOS Mobile SDK</strong>
               </a>
             </li>
 
@@ -557,9 +558,9 @@ PayU offers the following various integrations:
                 marginBottom: "6px",
               }}
             >
-              <i className="fa-solid fa-o fa-2x" />
-              <a href="/docs/odoo" target="_blank" rel="noopener noreferrer">
-                <strong>Odoo</strong>
+              <i className="fa-brands fa-react fa-2x" />
+              <a href="/docs/explore-reactnative-sdks" target="_blank" rel="noopener noreferrer">
+                <strong>React Native Mobile SDK</strong>
               </a>
             </li>
 
@@ -570,9 +571,9 @@ PayU offers the following various integrations:
                 gap: "8px",
               }}
             >
-              <i className="fa-brands fa-wordpress fa-2x" />
-              <a href="/docs/woocommerce" target="_blank" rel="noopener noreferrer">
-                <strong>WooCommerce</strong>
+              <i className="fa fa-mobile fa-2x" />
+              <a href="/docs/flutter-sdk-introduction" target="_blank" rel="noopener noreferrer">
+                <strong>Flutter Mobile SDK</strong>
               </a>
             </li>
             <li
