@@ -1,3 +1,4 @@
 - get_settlement_details_api
 - settlement-detail-range-api
 - get_treasury-v1-settlement-transactiondetails
+- get_settlement-v1-merchantupcomingsettlement
