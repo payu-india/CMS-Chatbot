@@ -17,8 +17,7 @@ This API retrieves detailed information about a specific transaction using the m
 | Test Environment | [http://info.payu.in/treasury/v1/settlement/transactionDetails](http://info.payu.in/treasury/v1/settlement/transactionDetails)                                                                    |
 | Production URL   | [[http://info.payu.in/treasury/v1/settlement/transactionDetails](http://info.payu.in/treasury/v1/settlement/transactionDetails)`](http://info.payu.in/treasury/v1/settlement/transactionDetails`) |
 
-## Sample Request
-
+<Accordion title="Sample Request" icon="fa-code">
 ```curl
 curl --location 'http://info.payu.in/treasury/v1/settlement/transactionDetails?merchantTransactionId=W49OV6KQXR4H' \
 --header 'mid: 180012'
@@ -163,8 +162,8 @@ if (curl_errno($ch)) {
 curl_close($ch);
 ?>
 ```
-
-## Sample Response
+</Accordion>
+<Accordion title="Sample Response" icon="fa-reply">
 
 ```json
 {
@@ -183,12 +182,12 @@ curl_close($ch);
     }
 }
 ```
-
-## Response Parameters
+</Accordion>
+<Accordion title="Response Parameters" icon="fa-code">
 
 | Parameter | Description                                                                                                                                      |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| status    | This parameter contains response status: <br/>- 1 = success <br/>- 0 = failure                                                                   |
+| status    | This parameter contains response status: <br />- 1 = success <br />- 0 = failure                                                                 |
 | msg       | Response message                                                                                                                                 |
 | result    | Main response data container in a JSON format. For more information, refer to  [result JSON Field Descriptions](#result-json-field-descriptions) |
 
@@ -212,5 +211,5 @@ curl_close($ch);
 | transactionDate     | Transaction timestamp (ISO 8601 format)         |
 | result.merchantName | Merchant business name                          |
 | result.productInfo  | Product description from transaction            |
-
-<br />
+</Accordion>
+## Request parameters
