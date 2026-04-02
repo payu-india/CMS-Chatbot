@@ -11,7 +11,7 @@ hidden: true
 This API retrieves detailed information about a specific transaction using the merchant transaction ID. This API provides comprehensive transaction data including status, amount, settlement details, and associated metadata.
 
 <Callout icon="📘" theme="info">
-  **Bearer Token**: This API is uses OAuth and you have to use **Get Token API** to get this Bearer token. For more information, refer to[ Get Token API](ref:get-token-api-for-payment-links).
+  **Bearer Token**: This API is uses OAuth and you have to use **Get Token API** to get this Bearer token. For more information, refer to[ Get Token API](ref:get-token-api-for-general-apis).
 </Callout>
 
 **Environment**
