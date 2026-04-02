@@ -218,3 +218,7 @@ This API retrieves detailed information about a specific transaction using the m
 </Accordion>
 
 ## Request parameters
+
+<Callout icon="📘" theme="info">
+  **Bearer Token**: This API is uses OAuth and you have to use **Get Token API** to get this Bearer token. For more information, refer to[ Get Token API](ref:get-token-api-for-payment-links).
+</Callout>
