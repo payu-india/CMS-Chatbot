@@ -544,7 +544,7 @@ PayU offers the following various integrations:
                 marginBottom: "6px",
               }}
             >
-              <i className="fa fa-apple fa-lg fa-2x" />
+              <i className="fa fa-tablet fa-lg fa-2x" />
               <a href="/docs/explore-ios-sdks" target="_blank" rel="noopener noreferrer">
                 <strong>iOS Mobile SDK</strong>
               </a>
