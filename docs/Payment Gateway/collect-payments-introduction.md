@@ -411,6 +411,90 @@ PayU offers the following various integrations:
                 <strong>WooCommerce</strong>
               </a>
             </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa-brands fa-whatsapp fa-2x" />
+              <a href="/docs/interakt-for-whatsapp-business" target="_blank" rel="noopener noreferrer">
+                <strong>Interakt</strong>
+              </a>
+            </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa-brands fa-magento fa-2x" />
+              <a href="/docs/magento" target="_blank" rel="noopener noreferrer">
+                <strong>Magento</strong>
+              </a>
+            </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa-brands fa-opencart fa-2x" />
+              <a href="/docs/opencart" target="_blank" rel="noopener noreferrer">
+                <strong>OpenCart</strong>
+              </a>
+            </li>
+	          <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa fa-shopping-cart fa-2x" />
+              <a href="/docs/shopmatic" target="_blank" rel="noopener noreferrer">
+                <strong>Shopmatic</strong>
+              </a>
+            </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa-brands fa-prestashop fa-2x" />
+              <a href="/docs/prestashop" target="_blank" rel="noopener noreferrer">
+                <strong>PrestaShop</strong>
+              </a>
+            </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa-brands fa-bigcommerce fa-2x" />
+              <a href="/docs/bigcommerce" target="_blank" rel="noopener noreferrer">
+                <strong>BigCommerce</strong>
+              </a>
+            </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa-brands fa-zoho fa-2x" />
+              <a href="/docs/zoho-integration" target="_blank" rel="noopener noreferrer">
+                <strong>Zoho</strong>
+              </a>
+            </li>
           </ul>
         ),
       },
