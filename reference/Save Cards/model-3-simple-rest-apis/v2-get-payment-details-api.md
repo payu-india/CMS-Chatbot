@@ -173,11 +173,17 @@ curl --location --request GET 'https://test.payu.in/storecard/card/v1/cryptogram
 
 ## Response parameters
 
-| Parameter | Description                                                                                                                         | Example              |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| message   | Response message indicating the operation result.                                                                                   | `Instrument details` |
-| status    | Status code for the operation. `1` for success, `0` for failure.                                                                    | `1`                  |
-| result    | Result of response in JSON format. For more information, refer to [result JSON fields description](#result-josn-fields-description) |                      |
+| Parameter         | Description                                                                                                                                                                                                            | Example                         |
+| :---------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------ |
+| message           | Response message indicating the operation result.                                                                                                                                                                      | `Instrument details`            |
+| status            | Status code for the operation. `1` for success, `0` for failure.                                                                                                                                                       | `1`                             |
+| result            | Result of response in JSON format. For more information, refer to [result JSON fields description](#result-josn-fields-description)                                                                                    |                                 |
+| par               | Payment Account Reference.                                                                                                                                                                                             | `LI0K7PL4VJNHJZ6LVQ7LWXHGD3LPS` |
+| cardNo            | Masked card number.                                                                                                                                                                                                    | `XXXXXXXXXXXX1114`              |
+| oneClickCardAlias | It is a non-sensitive, unique identifier (or token) that represents a customer's actual credit or debit card number (PAN), allowing them to make future purchases with a single click without re-entering card details | A\*\*\*176724***941             |
+| cardToken         | Card token.                                                                                                                                                                                                            | `1817ca29b7cdd28a0e406`         |
+| cardName          | Name on card.                                                                                                                                                                                                          | Ashsih K                        |
+| cryptogram        | Generated encrypted string for payment security.                                                                                                                                                                       | `AgAAAGQBdCZtW8sAmbHTg0UAAAA=`  |
 
 ### result JSON fields description
 
@@ -199,6 +205,34 @@ curl --location --request GET 'https://test.payu.in/storecard/card/v1/cryptogram
   </thead>
 
   <tbody>
+    <tr>
+      <td>
+        oneClickFlow
+      </td>
+
+      <td>
+        A one-click flow in a saved card system is a fast, secure payment checkout experience that allows returning customers to finalize purchases with a single click or tap, without re-entering card details, CVV, or authentication codes like OTP.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        oneClickStatus
+      </td>
+
+      <td>
+        Wheter it allows a returning customer to complete a purchase with a single click or tap, without needing to re-enter card details (card number, CVV, or expiry date) or undergo additional 3D Secure authentication for every transaction.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
     <tr>
       <td>
         cardType
@@ -247,57 +281,7 @@ curl --location --request GET 'https://test.payu.in/storecard/card/v1/cryptogram
 
     <tr>
       <td>
-        par
-      </td>
 
-      <td>
-        Payment Account Reference.
-      </td>
-
-      <td>
-        `LI0K7PL4VJNHJZ6LVQ7LWXHGD3LPS`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cardNo
-      </td>
-
-      <td>
-        Masked card number.
-      </td>
-
-      <td>
-        `XXXXXXXXXXXX1114`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cardToken
-      </td>
-
-      <td>
-        Card token.
-      </td>
-
-      <td>
-        `1817ca29b7cdd28a0e406`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cryptogram
-      </td>
-
-      <td>
-        Generated encrypted string for payment security.
-      </td>
-
-      <td>
-        `AgAAAGQBdCZtW8sAmbHTg0UAAAA=`
       </td>
     </tr>
   </tbody>
