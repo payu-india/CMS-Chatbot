@@ -8,13 +8,18 @@ hidden: false
 This API is retrieve detailed information about a specific transaction using the merchant transaction ID. This API provides comprehensive transaction data including status, amount, settlement details, and associated metadata.
 
 Environment
-- **Test Environment**: `https://test.payu.in/settlement/transactionDetails`
-- **Production Environment**: `https://info.payu.in/settlement/transactionDetails`
 
-
+* **Test Environment**: `https://test.payu.in/settlement/transactionDetails`
+* **Production Environment**: `https://info.payu.in/settlement/transactionDetails`
 
 ## Sample Request
-
+```curl
+curl -X GET \
+  -H "Authorization: Bearer YOUR_BEARER_TOKEN_HERE" \
+  -H "mid: 135670" \
+  -H "Accept: application/json" \
+  "http://test.payu.in/settlement/transactionDetails?merchantTransactionId=ORDER123456"
+```
 ```python
 import requests
 import json
@@ -36,7 +41,6 @@ try:
 except requests.exceptions.RequestException as e:
     print(f"Error: {e}")
 ```
-
 ```csharp
 using System;
 using System.Net.Http;
@@ -67,7 +71,6 @@ class Program
     }
 }
 ```
-
 ```javascript
 async function getTransactionDetails() {
     const url = "https://test.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
@@ -92,7 +95,6 @@ async function getTransactionDetails() {
 
 getTransactionDetails();
 ```
-
 ```java
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -129,7 +131,6 @@ public class TransactionDetailsAPI {
     }
 }
 ```
-
 ```php
 <?php
 $url = "https://test.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
@@ -160,6 +161,7 @@ curl_close($ch);
 ```
 
 ## Sample Response
+
 ```json
 {
     "status": 1,
@@ -186,29 +188,30 @@ curl_close($ch);
 ```
 
 ## Response Parameters
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| status | Integer | Response status (1 = success, 0 = failure) |
-| msg | String | Response message |
-| result | Object | Main response data container in a JSON format. For more information, refer to [result JSON Fields Description](#result-json-fields-descriptions) |
+
+| Parameter | Type    | Description                                                                                                                                      |
+| --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| status    | Integer | Response status (1 = success, 0 = failure)                                                                                                       |
+| msg       | String  | Response message                                                                                                                                 |
+| result    | Object  | Main response data container in a JSON format. For more information, refer to [result JSON Fields Description](#result-json-fields-descriptions) |
 
 ## result JSON Fields Descriptions
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| transactionId | String | Merchant transaction identifier |
-| payuId | String | PayU internal transaction ID |
-| amount | String | Original transaction amount |
-| status | String | Transaction status (success, failure, pending) |
-| settlementId | String | Settlement batch identifier |
-| settlementAmount | String | Net amount settled to merchant |
-| fees | String | Transaction processing fees |
-| tax | String | Tax amount on fees |
-| settlementDate | String | Date when settlement was processed (YYYY-MM-DD) |
-| paymentMode | String | Payment method used (CC, DC, NB, UPI, etc.) |
-| bankRefNumber | String | Bank reference number for the transaction |
-| cardNumber | String | Masked card number (if card payment) |
-| nameOnCard | String | Cardholder name (if card payment) |
-| transactionDate | String | Transaction timestamp (ISO 8601 format) |
-| merchantName | String | Merchant business name |
-| productInfo | String | Product description from transaction |
 
+| Parameter        | Type   | Description                                     |
+| ---------------- | ------ | ----------------------------------------------- |
+| transactionId    | String | Merchant transaction identifier                 |
+| payuId           | String | PayU internal transaction ID                    |
+| amount           | String | Original transaction amount                     |
+| status           | String | Transaction status (success, failure, pending)  |
+| settlementId     | String | Settlement batch identifier                     |
+| settlementAmount | String | Net amount settled to merchant                  |
+| fees             | String | Transaction processing fees                     |
+| tax              | String | Tax amount on fees                              |
+| settlementDate   | String | Date when settlement was processed (YYYY-MM-DD) |
+| paymentMode      | String | Payment method used (CC, DC, NB, UPI, etc.)     |
+| bankRefNumber    | String | Bank reference number for the transaction       |
+| cardNumber       | String | Masked card number (if card payment)            |
+| nameOnCard       | String | Cardholder name (if card payment)               |
+| transactionDate  | String | Transaction timestamp (ISO 8601 format)         |
+| merchantName     | String | Merchant business name                          |
+| productInfo      | String | Product description from transaction            |
