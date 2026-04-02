@@ -28,7 +28,7 @@ The following steps allow you to integrate the server-to-server UPI (United Paym
     Verify the payment status and ensure successful transaction completion
   </Card>
 
-  <Card title="6. Update Invoice ID (Conditional)" href="#step-6-upload-the-invoices-optional">
+  <Card title="6. Update Invoice ID (Conditional)" href="#step-6-update-invoice-id-conditional">
     Update the invoice ID associated with the transaction
 
     <br />
