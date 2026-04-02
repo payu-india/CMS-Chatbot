@@ -17,7 +17,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
   curl --request GET \
-     --url http://test.payu.in/settlement/v1/merchantUpcomingSettlement \
+     --url https://test.payu.in/settlement/v1/merchantUpcomingSettlement \
      --header 'accept: application/json' \
      --header 'mid: <your_merchant_mid>'
   ```
