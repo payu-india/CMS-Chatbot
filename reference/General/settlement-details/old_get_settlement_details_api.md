@@ -20,1005 +20,346 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
   [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi)
 </Callout>
 
-<br />
+**Environment**
 
-### Environment
+| Environment            | URL                                                                                                                                        |
+| :--------------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/treasury/int/payu/settlement/settlementDetails](https://test.payu.in/treasury/int/payu/settlement/settlementDetails) |
+| Production Environment | [https://info.payu.in/treasury/settlement/settlementDetails](https://info.payu.in/treasury/settlement/settlementDetails)                   |
 
-| Environment            | URL                                                                                                  |
-| :--------------------- | :--------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/merchant/postservice?form=2](https://test.payu.in/merchant/postservice?form=2) |
-| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2) |
+## Request Parameters
 
-<Accordion title="Request parameters" icon="fa-table">
-  <Table align={["left","left","left"]}>
-    <thead>
-      <tr>
-        <th style={{ textAlign: "left" }}>
-          Parameter
-        </th>
+### Authentication Header
 
-        <th style={{ textAlign: "left" }}>
-          Reference
-        </th>
+<HeaderAuthentication />
 
-        <th style={{ textAlign: "left" }}>
-          Example
-        </th>
-      </tr>
-    </thead>
+### Query Parameters
 
-    <tbody>
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          key
-          `mandatory`
-        </td>
+| Parameter                    | Description                                                                                             |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------- |
+| settledOn  <br/> `mandatory` | `String` This parameter must contain the settlement date (required if utr not provided).                |
+| utr<br/> `mandatory`         | `String` This parameter must contain the  Unique Transaction Reference (UTR, alternative to settledOn). |
+| page<br/> `mandatory`        | `Integer` This parameter must contain the page number for pagination                                    |
+| pageSize<br/> `mandatory`    | `Integer` This parameter must contain the records per page (2000-50000)                                 |
+| type<br/> `optional`         | `String` This parameter must contain the Settlement type ('G' or blank).                                |
+| isVersion<br/> `optional`    | `Integer` This parameter must contain the API version and it can be 1 or 2.                             |
 
-        <td style={{ textAlign: "left" }}>
-          This parameter must contain the key provided by PayU. For more information on how to generate the Key and Salt, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
-        </td>
+## Sample Request
 
-        <td style={{ textAlign: "left" }} />
-      </tr>
+```curl
+curl -X GET \
+  -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"YOUR_SIGNATURE_HASH\"" \
+  -H "Date: Wed, 28 Jun 2023 11:25:19 GMT" \
+  -H "mid: 135670" \
+  "https://test.payu.in/treasury/int/payu/settlement/settlementDetails?settledOn=2023-06-28&page=1&pageSize=2000&type=G&isVersion=1"
+```
+```python
+import requests
+import hashlib
+import hmac
+import base64
+from datetime import datetime
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          command
-          `mandatory`
-        </td>
+url = "https://info.payu.in/treasury/settlement/settlementDetails"
+merchant_key = "<your_merchant_key>"
+merchant_secret = "<your_merchant_secret>"
+date_string = datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
 
-        <td style={{ textAlign: "left" }}>
-          This parameter must contain the API command as **get\_settlement\_details**.
-        </td>
+# Create HMAC SHA512 signature
+message = f"date: {date_string}"
+signature = hmac.new(
+    merchant_secret.encode(), 
+    message.encode(), 
+    hashlib.sha512
+).hexdigest()
 
-        <td style={{ textAlign: "left" }} />
-      </tr>
+headers = {
+    'Authorization': f'hmac username="{merchant_key}", algorithm="sha512", headers="date", signature="{signature}"',
+    'Date': date_string,
+    'mid': '<your_merchant_id>'
+}
 
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          var1 `mandatory`
-        </td>
+params = {
+    'settledOn': '2023-06-28',
+    'page': 1,
+    'pageSize': 5000,
+    'type': '',
+    'isVersion': 1
+}
 
-        <td style={{ textAlign: "left" }}>
-          This parameter must either contain either date for the settlement or UTR (Unique Transaction Reference number).
-        </td>
+try:
+    response = requests.get(url, headers=headers, params=params)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 
-        <td style={{ textAlign: "left" }}>
-          2023-09-26
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          var2 `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter must contain the page number to be fetched.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          5
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          var3 `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter must contain the number of records to be paginated on each page is specified in this parameter. If not specified, 2000 records will be fetched.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          1000
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          var4
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter must contain either L or leave it blank.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          L
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          var5
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter must contain the version of the API that can be either 1 or 2.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          1
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          hash `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Hash logic for this API is:
-          sha512(key|command|var1|salt) sha512
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-    </tbody>
-  </Table>
-</Accordion>
-
-<Accordion title="Example values" icon="fa-list">
-  Use the following sample values while trying out the API:
-
-  * `var1` (date of the transaction/UTR number): 2020-10-26
-  * `var2`: 5
-  * `var3`: 2000 or more
-</Accordion>
-
-<Accordion title="Sample request" icon="fa-code">
-  ### Simple Request
-
-  ```curl
-  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8"
-  ```
-  ```python
-  import requests
-
-  url = "https://test.payu.in/merchant/postservice?form=2"
-
-  headers = {
-      'accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded'
-  }
-
-  data = {
-      'key': 'JP***g',
-      'command': 'get_settlement_details',
-      'var1': '2021-08-10',
-      'hash': '259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8'
-  }
-
-  response = requests.post(url, headers=headers, data=data)
-  print(response.json())
-  ```
-  ```javascript
-  const axios = require('axios');
-
-  const url = 'https://test.payu.in/merchant/postservice?form=2';
-
-  const data = new URLSearchParams({
-    key: 'JP***g',
-    command: 'get_settlement_details',
-    var1: '2021-08-10',
-    hash: '259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8'
-  });
-
-  axios.post(url, data, {
-    headers: {
-      'accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded'
+class Program
+{
+    static async Task Main()
+    {
+        var client = new HttpClient();
+        var url = "https://info.payu.in/treasury/settlement/settlementDetails?settledOn=2023-06-28&page=1&pageSize=5000&type=&isVersion=1";
+        var merchantKey = "<your_merchant_key>";
+        var merchantSecret = "<your_merchant_secret>";
+        var dateString = DateTime.UtcNow.ToString("ddd, dd MMM yyyy HH:mm:ss 'GMT'");
+        
+        var message = $"date: {dateString}";
+        var signature = CreateHmacSha512(message, merchantSecret);
+        
+        client.DefaultRequestHeaders.Add("Authorization", $"hmac username=\"{merchantKey}\", algorithm=\"sha512\", headers=\"date\", signature=\"{signature}\"");
+        client.DefaultRequestHeaders.Add("Date", dateString);
+        client.DefaultRequestHeaders.Add("mid", "<your_merchant_id>");
+        
+        try
+        {
+            var response = await client.GetAsync(url);
+            var content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {content}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
+        }
     }
-  })
-  .then(response => console.log(response.data))
-  .catch(error => console.error(error));
-  ```
-  ```java
-  import java.io.*;
-  import java.net.http.*;
-  import java.net.*;
-
-  public class PayURequest {
-      public static void main(String[] args) throws Exception {
-          HttpClient client = HttpClient.newHttpClient();
-          
-          String formData = "key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8";
-          
-          HttpRequest request = HttpRequest.newBuilder()
-              .uri(URI.create("https://test.payu.in/merchant/postservice?form=2"))
-              .header("accept", "application/json")
-              .header("Content-Type", "application/x-www-form-urlencoded")
-              .POST(HttpRequest.BodyPublishers.ofString(formData))
-              .build();
-          
-          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-          System.out.println(response.body());
-      }
-  }
-  ```
-  ```csharp
-  using System;
-  using System.Net.Http;
-  using System.Collections.Generic;
-  using System.Threading.Tasks;
-
-  class Program
-  {
-      static async Task Main()
-      {
-          var client = new HttpClient();
-          
-          var data = new FormUrlEncodedContent(new[]
-          {
-              new KeyValuePair<string, string>("key", "JP***g"),
-              new KeyValuePair<string, string>("command", "get_settlement_details"),
-              new KeyValuePair<string, string>("var1", "2021-08-10"),
-              new KeyValuePair<string, string>("hash", "259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8")
-          });
-          
-          client.DefaultRequestHeaders.Add("accept", "application/json");
-          
-          var response = await client.PostAsync("https://test.payu.in/merchant/postservice?form=2", data);
-          var result = await response.Content.ReadAsStringAsync();
-          
-          Console.WriteLine(result);
-      }
-  }
-  ```
-  ```perl
-  use strict;
-  use warnings;
-  use LWP::UserAgent;
-  use HTTP::Request::Common qw(POST);
-
-  my $ua = LWP::UserAgent->new;
-
-  my $url = 'https://test.payu.in/merchant/postservice?form=2';
-
-  my $response = $ua->request(
-      POST $url,
-      'accept' => 'application/json',
-      'Content-Type' => 'application/x-www-form-urlencoded',
-      Content => {
-          key => 'JP***g',
-          command => 'get_settlement_details',
-          var1 => '2021-08-10',
-          hash => '259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8'
-      }
-  );
-
-  print $response->content;
-  ```
-
-  ### Sample Request with all the optional parameters
-
-  ```bash
-  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8&var2&var3&var4=L&var5=2"
-  ```
-  ```python
-  import requests
-
-  url = "https://test.payu.in/merchant/postservice?form=2"
-
-  headers = {
-      'accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded'
-  }
-
-  data = {
-      'key': 'JP***g',
-      'command': 'get_settlement_details',
-      'var1': '2021-08-10',
-      'hash': '259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8',
-      'var2': '',
-      'var3': '',
-      'var4': 'L',
-      'var5': '2'
-  }
-
-  response = requests.post(url, headers=headers, data=data)
-  print(response.json())
-  ```
-  ```javascript
-  const axios = require('axios');
-
-  const url = 'https://test.payu.in/merchant/postservice?form=2';
-
-  const data = new URLSearchParams({
-    key: 'JP***g',
-    command: 'get_settlement_details',
-    var1: '2021-08-10',
-    hash: '259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8',
-    var2: '',
-    var3: '',
-    var4: 'L',
-    var5: '2'
-  });
-
-  axios.post(url, data, {
-    headers: {
-      'accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded'
+    
+    static string CreateHmacSha512(string message, string secret)
+    {
+        var encoding = new UTF8Encoding();
+        var keyByte = encoding.GetBytes(secret);
+        var messageBytes = encoding.GetBytes(message);
+        using (var hmac = new HMACSHA512(keyByte))
+        {
+            var hashmessage = hmac.ComputeHash(messageBytes);
+            return BitConverter.ToString(hashmessage).Replace("-", "").ToLower();
+        }
     }
-  })
-  .then(response => console.log(response.data))
-  .catch(error => console.error(error));
-  ```
-  ```java
-  import java.io.*;
-  import java.net.http.*;
-  import java.net.*;
-
-  public class PayURequest {
-      public static void main(String[] args) throws Exception {
-          HttpClient client = HttpClient.newHttpClient();
-          
-          String formData = "key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8&var2=&var3=&var4=L&var5=2";
-          
-          HttpRequest request = HttpRequest.newBuilder()
-              .uri(URI.create("https://test.payu.in/merchant/postservice?form=2"))
-              .header("accept", "application/json")
-              .header("Content-Type", "application/x-www-form-urlencoded")
-              .POST(HttpRequest.BodyPublishers.ofString(formData))
-              .build();
-          
-          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-          System.out.println(response.body());
-      }
-  }
-  ```
-  ```csharp
-  using System;
-  using System.Net.Http;
-  using System.Collections.Generic;
-  using System.Threading.Tasks;
-
-  class Program
-  {
-      static async Task Main()
-      {
-          var client = new HttpClient();
-          
-          var data = new FormUrlEncodedContent(new[]
-          {
-              new KeyValuePair<string, string>("key", "JP***g"),
-              new KeyValuePair<string, string>("command", "get_settlement_details"),
-              new KeyValuePair<string, string>("var1", "2021-08-10"),
-              new KeyValuePair<string, string>("hash", "259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8"),
-              new KeyValuePair<string, string>("var2", ""),
-              new KeyValuePair<string, string>("var3", ""),
-              new KeyValuePair<string, string>("var4", "L"),
-              new KeyValuePair<string, string>("var5", "2")
-          });
-          
-          client.DefaultRequestHeaders.Add("accept", "application/json");
-          
-          var response = await client.PostAsync("https://test.payu.in/merchant/postservice?form=2", data);
-          var result = await response.Content.ReadAsStringAsync();
-          
-          Console.WriteLine(result);
-      }
-  }
-  ```
-  ```perl
-  use strict;
-  use warnings;
-  use LWP::UserAgent;
-  use HTTP::Request::Common qw(POST);
-
-  my $ua = LWP::UserAgent->new;
-
-  my $url = 'https://test.payu.in/merchant/postservice?form=2';
-
-  my $response = $ua->request(
-      POST $url,
-      'accept' => 'application/json',
-      'Content-Type' => 'application/x-www-form-urlencoded',
-      Content => {
-          key => 'JP***g',
-          command => 'get_settlement_details',
-          var1 => '2021-08-10',
-          hash => '259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8',
-          var2 => '',
-          var3 => '',
-          var4 => 'L',
-          var5 => '2'
-      }
-  );
-
-  print $response->content;
-  ```
-
-  <Callout icon="📘" theme="info">
-    **Note:** The dates queried in the above requests simple request or request with all the optional parameters are the same. The second sample request (under Sample Request for Version 2) includes the var5 parameter with the value 2 to indicate that it is for version 2.
-  </Callout>
-</Accordion>
-
-<Accordion title="Response parameters description" icon="fa-table">
-  <Table align={["left","left","left"]}>
-    <thead>
-      <tr>
-        <th style={{ textAlign: "left" }}>
-          **Field**
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          **Description**
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          **Example**
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          payuid
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains a unique sale transaction id generated by Payu for every sale transaction.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          403993715521937565
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          txn\_id
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the sale transaction ID (merchant reference ID for sale).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          13818
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          txn\_date
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the date of the transaction.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          2021-08-10 23:46:25
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          mode
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the mode of the transaction such as credit card, debit card, etc. For more information, refer to [Payment Mode Codes](doc:payment-mode-codes).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          CC
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          amount
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the original amount which was sent in the transaction request by the merchant.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          100
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          request\_id
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the unique request id generated from PayU with any of the following transaction actions: capture/refund/chargeback/refundReversal/chargebackreversal actions actions.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          131278418
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          requestdate
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the request date and time stamp.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          2021-08-10 23:49:16
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          requestaction
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the action taken on the transaction. The action can be any of the following:
-
-          * capture
-          * refund
-          * cancel
-          * chargeback
-          * chargeback reversal
-          * refundreversal
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          refund
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          requestamount
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The parameter contains the amount requested by the merchant to the bank.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          100
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          mer\_UTR
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the merchant Unique Transaction Reference (UTR) number.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          N223211598444659
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          mer\_service\_fee
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the service fee paid by the merchant to the bank. for the transaction
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          239.6000
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          mer\_service\_tax
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the tax on service fee paid by the merchant to the bank. for the transaction
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          43.1300
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          mer\_net\_amount
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the net amount to be settled by bank to merchant.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          100
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          bank\_name
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the bank name or the card type based on the transaction.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          MAST
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          issuing\_bank
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the card issuing bank name is displayed.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          SBI
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          merchant\_subvention\_amount
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains merchant subvention amount.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          100
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          cgst
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the CGST (Central GST) for the transaction.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          43.13000
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          igst
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the IGST (Integrated GST) for the transaction.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          43.13000
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          sgst
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the SGST (State GST) for the transaction where the supplier or merchant is from a different state of the customer.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          43.13000
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          PG\_TYPE
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the payment gateway type is displayed in this transaction.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          HDFC\_Internal\_Plus
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          Card Type
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter indicates whether the card is international or domestic
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Domestic.
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          SettlementType
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This describes about the charges whether its regular processing fee or instant charges
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Regular or Instant
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          Scheme
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the scheme.
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          FeeType
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains fee type if the fee is collected for instant settlements or refunds.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          tdrFee
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          InstantSettlementTDR
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the TDR collected for instant settlement.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          0.0
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          InstantSettlementTDRTax
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the tax for the TDR collected for instant settlement.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          0.0
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          InstantSettlementTdrType
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the TDR type for instant settlement.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          0.0
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          InstantRefundTDR
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the TDR collected for instant refunds.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          0.0
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          InstantRefundTDRTax
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the tax for the TDR collected for instant refunds.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          0.0
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          InstantRefundTdrType
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the TDR type for instant refund.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          0.0
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          perDayServiceFee
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the per day service fee for instant settlement or refunds.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          0,0
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          perDayServiceTax
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the per day service tax for instant settlement or refunds.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          0,0
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          pricingDays
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the pricing days for instant settlement or refunds.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          1
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          offerServiceFee
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the service fee for offer.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          0,0
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          offerServiceTax
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter contains the tax for offer service fee.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          0,0
-        </td>
-      </tr>
-    </tbody>
-  </Table>
-</Accordion>
-
-<Accordion title="Sample response" icon="fa-file-code">
-  ### Success Scenario
-
-  On successful processing from PayU, the response is similar to the following:
-
-  ```json
-  {
-      "status": 1,
-      "msg": "1 transactions settled on 2021-08-11",
-      "Txn_details": {
-          "1": {
-              "payuid": "13799177287",
-              "txnid": "13818",
-              "txndate": "2021-08-10 23:46:25",
-              "mode": "DC",
-              "amount": "11979.88",
-              "requestid": "9586840660",
-              "requestdate": "2021-08-10 23:49:16",
-              "requestaction": "capture",
-              "requestamount": "11979.88",
-              "mer_utr": "N223211598444659",
-              "mer_service_fee": "239.6000",
-              "mer_service_tax": "43.1300",
-              "mer_net_amount": "11697.1500",
-              "bank_name": "MAST",
-              "issuing_bank": "SBI",
-              "merchant_subvention_amount": "0.00",
-              "cgst": "0.00000",
-              "igst": "43.13000",
-              "sgst": "0.00000",
-              "PG_TYPE": "HDFC_Internal_Plus",
-              "Card Type": "",
-              "token": ""
-          }
-      }
-  }
-  ```
-
-  ### Failure scenario
-
-  If the date format is incorrect:
-
-  ```json
-  {
-      "status": 0,
-      "msg": "Please check date format it should be YYYY-MM-DD"
-  }
-  ```
-
-  If no data found for the particular date queried:
-
-  ```json
-  {
-      "status": 1,
-      "msg": "0 transactions settled on 2015-05-01",
-      "Txn_details": {}
-  }
-  ```
-
-  For the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
-</Accordion>
+}
+```
+```javascript
+async function getSettlementDetails() {
+    const crypto = require('crypto');
+    const url = "https://info.payu.in/treasury/settlement/settlementDetails?settledOn=2023-06-28&page=1&pageSize=5000&type=&isVersion=1";
+    const merchantKey = "<your_merchant_key>";
+    const merchantSecret = "<your_merchant_secret>";
+    const dateString = new Date().toUTCString();
+    
+    const message = `date: ${dateString}`;
+    const signature = crypto.createHmac('sha512', merchantSecret).update(message).digest('hex');
+    
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `hmac username="${merchantKey}", algorithm="sha512", headers="date", signature="${signature}"`,
+                'Date': dateString,
+                'mid': '<your_merchant_id>'
+            }
+        });
+        
+        const data = await response.text();
+        console.log(`Status: ${response.status}`);
+        console.log(`Response: ${data}`);
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
+getSettlementDetails();
+```
+```java
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
+public class SettlementDetailsAPI {
+    public static void main(String[] args) {
+        try {
+            String urlString = "https://info.payu.in/treasury/settlement/settlementDetails?settledOn=2023-06-28&page=1&pageSize=5000&type=&isVersion=1";
+            String merchantKey = "<your_merchant_key>";
+            String merchantSecret = "<your_merchant_secret>";
+            
+            SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss 'GMT'", Locale.US);
+            sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+            String dateString = sdf.format(new Date());
+            
+            String message = "date: " + dateString;
+            String signature = createHmacSha512(message, merchantSecret);
+            
+            URL url = new URL(urlString);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Authorization", "hmac username=\"" + merchantKey + "\", algorithm=\"sha512\", headers=\"date\", signature=\"" + signature + "\"");
+            connection.setRequestProperty("Date", dateString);
+            connection.setRequestProperty("mid", "<your_merchant_id>");
+            
+            int statusCode = connection.getResponseCode();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+            
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+            
+            System.out.println("Status Code: " + statusCode);
+            System.out.println("Response: " + response.toString());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+    
+    private static String createHmacSha512(String message, String secret) throws Exception {
+        Mac sha512Hmac = Mac.getInstance("HmacSHA512");
+        SecretKeySpec secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA512");
+        sha512Hmac.init(secretKey);
+        byte[] hashBytes = sha512Hmac.doFinal(message.getBytes());
+        
+        StringBuilder result = new StringBuilder();
+        for (byte b : hashBytes) {
+            result.append(String.format("%02x", b));
+        }
+        return result.toString();
+    }
+}
+```
+```php
+<?php
+$url = "https://info.payu.in/treasury/settlement/settlementDetails?settledOn=2023-06-28&page=1&pageSize=5000&type=&isVersion=1";
+$merchantKey = "<your_merchant_key>";
+$merchantSecret = "<your_merchant_secret>";
+$dateString = gmdate('D, d M Y H:i:s T');
+
+$message = "date: " . $dateString;
+$signature = hash_hmac('sha512', $message, $merchantSecret);
+
+$headers = [
+    'Authorization: hmac username="' . $merchantKey . '", algorithm="sha512", headers="date", signature="' . $signature . '"',
+    'Date: ' . $dateString,
+    'mid: <your_merchant_id>'
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo 'Error: ' . curl_error($ch);
+} else {
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response;
+}
+
+curl_close($ch);
+?>
+```
+
+**Sample Response**
+
+```json
+{
+    "status": 1,
+    "msg": "Settlement details retrieved successfully",
+    "result": {
+        "settlementData": [
+            {
+                "settlementId": "SETT123456",
+                "utr": "UTR123456789",
+                "settlementAmount": "9800.00",
+                "settlementDate": "2023-06-28",
+                "transactionCount": 10,
+                "totalAmount": "10000.00",
+                "totalFees": "200.00",
+                "totalTax": "36.00",
+                "totalAdjustments": "0.00",
+                "bankName": "HDFC Bank",
+                "accountNumber": "XXXX5678",
+                "transactions": [
+                    {
+                        "transactionId": "TXN001",
+                        "payuId": "403993715525901741",
+                        "amount": "1000.00",
+                        "fees": "20.00",
+                        "tax": "3.60",
+                        "netAmount": "976.40",
+                        "status": "settled"
+                    }
+                ]
+            }
+        ],
+        "totalRecords": 1,
+        "page": 1,
+        "pageSize": 5000,
+        "totalPages": 1
+    }
+}
+```
+
+## Response Parameters
+
+| Parameter | Description                                                                                                                                       |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| status    | Response status (1 = success, 0 = failure)                                                                                                        |
+| msg       | Response message                                                                                                                                  |
+| result    | Main response data container in a JSON format. For more information, refer to [result JSON Fields Descriptions](#result-json-fields-descriptions) |
+
+### result JSON Fields Descriptions
+
+| Parameter      | Description                                                                                                                                                         |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| settlementData | Array of settlement records in a JSON format.   For more information, refer to  [settlementData JSON Fields Descriptions](#settlementdata-json-fields-descriptions) |
+| totalRecords   | Total number of settlement records found                                                                                                                            |
+| page           | Current page number                                                                                                                                                 |
+| pageSize       | Number of records per page                                                                                                                                          |
+| totalPages     | Total number of pages available                                                                                                                                     |
+
+#### settlementData JSON Fields Descriptions
+
+| Parameter        | Description                                                                                                                                                                  |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| settlementId     | Unique settlement identifier                                                                                                                                                 |
+| utr              | Unique Transaction Reference from bank                                                                                                                                       |
+| settlementAmount | Net amount settled to merchant account                                                                                                                                       |
+| settlementDate   | Date when settlement was processed (YYYY-MM-DD)                                                                                                                              |
+| transactionCount | Number of transactions in this settlement                                                                                                                                    |
+| totalAmount      | Total gross transaction amount                                                                                                                                               |
+| totalFees        | Total processing fees deducted                                                                                                                                               |
+| totalTax         | Total tax on fees                                                                                                                                                            |
+| totalAdjustments | Any adjustments applied to settlement                                                                                                                                        |
+| bankName         | Merchant's settlement bank name                                                                                                                                              |
+| accountNumber    | Masked bank account number                                                                                                                                                   |
+| transactions     | Individual transaction details (if requested) in a JSON format. For more information, refer to [transactions JSON Fields description][#transactions-json-fields-description] |
+
+#### transactions JSON Fields description
+
+| Parameter     | Description                      |
+| :------------ | :------------------------------- |
+| transactionId | Merchant transaction identifier  |
+| payuId        | PayU internal transaction ID     |
+| amount        | Transaction amount               |
+| fees          | Fees for this transaction        |
+| tax           | Tax on fees for this transaction |
+| netAmount     | Net amount after fees and tax    |
+| status        | Transaction settlement status    |
