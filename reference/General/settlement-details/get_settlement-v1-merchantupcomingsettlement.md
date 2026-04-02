@@ -207,10 +207,10 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 </Accordion>
 
 <Accordion title="Response Parameters" icon="fa-table">
-  | Parameter | Type    | Description                                |
-  | --------- | ------- | ------------------------------------------ |
-  | status    | Integer | Response status (1 = success, 0 = failure) |
-  | msg       | String  | Response message                           |
+  | Parameter | Type    | Description                                                                                                                                    |
+  | --------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+  | status    | Integer | Response status (1 = success, 0 = failure)                                                                                                     |
+  | msg       | String  | Response message                                                                                                                               |
   | result    | Object  | Main response data container in JSON format. For more information, refer to  [result JSON Field Descriptions](#result-json-field-descriptions) |
 
   ### result JSON Field Descriptions
@@ -218,8 +218,8 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   | Parameter           | Description                                                                                                                                                        |
   | :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | upcomingSettlements | Array of upcoming settlement schedules. For more information, refer to [upcomingSettlements JSON Field Descriptions](#upcomingSettlements-json-field-descriptions) |
-  | pendingSettlements  | Array of delayed/pending settlements. For more information, refer to [pendingSettlements JSON Field Descriiptions](pendingSettlements-json-field-descriiptions)     |
-  | summary             | Overall summary of upcoming and pending settlements. For more information, refer to [summary JSON Field Descriptions](#summary-json-field-descriptions)             |
+  | pendingSettlements  | Array of delayed/pending settlements. For more information, refer to [pendingSettlements JSON Field Descriptions](#pendingSettlements-json-field-descriptions)    |
+  | summary             | Overall summary of upcoming and pending settlements. For more information, refer to [summary JSON Field Descriptions](#summary-json-field-descriptions)            |
 
   #### upcomingSettlements JSON Field Descriptions
 
@@ -236,7 +236,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   | estimatedTax              | Estimated tax on fees                        |
   | netExpectedAmount         | Expected net amount after fees and tax       |
 
-  #### pendingSettlements JSON Field Descriiptions
+  #### pendingSettlements JSON Field Descriptions
 
   | Parameter              | Description                                                     |
   | :--------------------- | :-------------------------------------------------------------- |
