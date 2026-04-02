@@ -15,12 +15,6 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 | Production Environment | [https://info.payu.in/settlement/v1/merchantUpcomingSettlement](https://info.payu.in/settlement/v1/merchantUpcomingSettlement) |
 
 <Accordion title="Sample Request" icon="fa-code">
-```curl
-curl --request GET \
-     --url http://test.payu.in/settlement/v1/merchantUpcomingSettlement \
-     --header 'accept: application/json' \
-     --header 'mid: <Your MID>'
-```
   ```python
   import requests
 
@@ -217,52 +211,52 @@ curl --request GET \
   | --------- | ------- | ------------------------------------------ |
   | status    | Integer | Response status (1 = success, 0 = failure) |
   | msg       | String  | Response message                           |
-  | result    | Object  | Main response data container               |
+  | result    | Object  | Main response data container in JSON format. For more information, refer to  [result JSON Field Descriptions](#result-json-field-descriptions) |
 
   ### result JSON Field Descriptions
 
-| Parameter           | Description                                         |
-|:--------------------|:----------------------------------------------------|
-| upcomingSettlements | Array of upcoming settlement schedules. For more information, refer to [upcomingSettlements JSON Field Descriptions](#upcomingSettlements-json-field-descriptions)             |
-| pendingSettlements  | Array of delayed/pending settlements. For more information, refer to [pendingSettlements JSON Field Descriiptions](pendingSettlements-json-fiel-descriiptions)                |
-| summary             | Overall summary of upcoming and pending settlements. For more information, refer to [summary JSON Field Descriptions](#summary-jsonfield-descriptions) |
+  | Parameter           | Description                                                                                                                                                        |
+  | :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | upcomingSettlements | Array of upcoming settlement schedules. For more information, refer to [upcomingSettlements JSON Field Descriptions](#upcomingSettlements-json-field-descriptions) |
+  | pendingSettlements  | Array of delayed/pending settlements. For more information, refer to [pendingSettlements JSON Field Descriiptions](pendingSettlements-json-field-descriiptions)     |
+  | summary             | Overall summary of upcoming and pending settlements. For more information, refer to [summary JSON Field Descriptions](#summary-json-field-descriptions)             |
 
   #### upcomingSettlements JSON Field Descriptions
 
-| Parameter                 | Description                                  |
-|:--------------------------|:---------------------------------------------|
-| expectedSettlementDate    | Expected date for settlement (YYYY-MM-DD)    |
-| expectedAmount            | Expected gross settlement amount             |
-| transactionCount          | Number of transactions to be settled         |
-| settlementCycle           | Settlement cycle (T+1, T+2, etc.)            |
-| transactionDateRange      | Date range of transactions included          |
-| transactionDateRange.from | Start date of transaction range (YYYY-MM-DD) |
-| transactionDateRange.to   | End date of transaction range (YYYY-MM-DD)   |
-| estimatedFees             | Estimated processing fees to be deducted     |
-| estimatedTax              | Estimated tax on fees                        |
-| netExpectedAmount         | Expected net amount after fees and tax       |
+  | Parameter                 | Description                                  |
+  | :------------------------ | :------------------------------------------- |
+  | expectedSettlementDate    | Expected date for settlement (YYYY-MM-DD)    |
+  | expectedAmount            | Expected gross settlement amount             |
+  | transactionCount          | Number of transactions to be settled         |
+  | settlementCycle           | Settlement cycle (T+1, T+2, etc.)            |
+  | transactionDateRange      | Date range of transactions included          |
+  | transactionDateRange.from | Start date of transaction range (YYYY-MM-DD) |
+  | transactionDateRange.to   | End date of transaction range (YYYY-MM-DD)   |
+  | estimatedFees             | Estimated processing fees to be deducted     |
+  | estimatedTax              | Estimated tax on fees                        |
+  | netExpectedAmount         | Expected net amount after fees and tax       |
 
-#### pendingSettlements JSON Field Descriiptions
+  #### pendingSettlements JSON Field Descriiptions
 
-| Parameter              | Description                                                   |
-|:-----------------------|:--------------------------------------------------------------|
-| originalSettlementDate | Originally scheduled settlement date                          |
-| transactionDate        | Date of transactions that are pending settlement              |
-| pendingAmount          | Gross amount pending settlement                               |
-| reason                 | Human-readable reason for delay                               |
-| reasonCode             | System code for delay reason (BANK_HOLIDAY, TECH_ISSUE, etc.) |
-| expectedClearanceDate  | Expected date when settlement will be processed               |
-| transactionCount       | Number of transactions pending settlement                     |
-| estimatedFees          | Estimated fees for pending transactions                       |
-| estimatedTax           | Estimated tax on fees for pending transactions                |
-| netPendingAmount       | Expected net amount for pending settlement                    |
+  | Parameter              | Description                                                     |
+  | :--------------------- | :-------------------------------------------------------------- |
+  | originalSettlementDate | Originally scheduled settlement date                            |
+  | transactionDate        | Date of transactions that are pending settlement                |
+  | pendingAmount          | Gross amount pending settlement                                 |
+  | reason                 | Human-readable reason for delay                                 |
+  | reasonCode             | System code for delay reason (BANK\_HOLIDAY, TECH\_ISSUE, etc.) |
+  | expectedClearanceDate  | Expected date when settlement will be processed                 |
+  | transactionCount       | Number of transactions pending settlement                       |
+  | estimatedFees          | Estimated fees for pending transactions                         |
+  | estimatedTax           | Estimated tax on fees for pending transactions                  |
+  | netPendingAmount       | Expected net amount for pending settlement                      |
 
-#### summary JSON Field Descriptions
+  #### summary JSON Field Descriptions
 
-| Parameter           | Description                                    |
-|:--------------------|:-----------------------------------------------|
-| totalUpcomingAmount | Total gross amount in upcoming settlements     |
-| totalPendingAmount  | Total gross amount in pending settlements      |
-| totalExpectedNet    | Total expected net amount after all deductions |
-| nextSettlementDate  | Date of the next scheduled settlement          |
+  | Parameter           | Description                                    |
+  | :------------------ | :--------------------------------------------- |
+  | totalUpcomingAmount | Total gross amount in upcoming settlements     |
+  | totalPendingAmount  | Total gross amount in pending settlements      |
+  | totalExpectedNet    | Total expected net amount after all deductions |
+  | nextSettlementDate  | Date of the next scheduled settlement          |
 </Accordion>
