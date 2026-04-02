@@ -15,7 +15,10 @@ PayU’s **_payment** API supports LRS implementation using the following parame
 * lrs_mandatory_limit_declaration
 * lrs_tnc
 * tcs_amount
+* lrs_tcs_declaration_under_limit
 * buyer_type_business (optional)
+
+<br />
 
 The steps to integrate involves:
 
@@ -200,11 +203,11 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"79c0d918a  
-                                                                                                                                                                4f4661cb9cb  
-                                                                                                                                                                17d96d24ac1  
-                                                                                                                                                                cf04b6013d50  
-                                                                                                                                                                4cc766ac5235  
-                                                                                                                                                                380bfc0d5"`
+                                                                                                                                                                        4f4661cb9cb  
+                                                                                                                                                                        17d96d24ac1  
+                                                                                                                                                                        cf04b6013d50  
+                                                                                                                                                                        4cc766ac5235  
+                                                                                                                                                                        380bfc0d5"`
       </td>
     </tr>
 
@@ -261,12 +264,12 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"195ab95fa  
-                                                                                                                                                                4700eeaaf38  
-                                                                                                                                                                b7f5b538d29  
-                                                                                                                                                                79f0f281e0  
-                                                                                                                                                                a4eaedca1a  
-                                                                                                                                                                a675b79b3  
-                                                                                                                                                                31a2"`
+                                                                                                                                                                        4700eeaaf38  
+                                                                                                                                                                        b7f5b538d29  
+                                                                                                                                                                        79f0f281e0  
+                                                                                                                                                                        a4eaedca1a  
+                                                                                                                                                                        a675b79b3  
+                                                                                                                                                                        31a2"`
       </td>
     </tr>
 
@@ -852,7 +855,7 @@ The following parameters (mandatory) must be posted using any of the following s
       </td>
 
       <td>
-        `String` Amount of TCS (Tax Collected at Source) to be charged.  
+        `String` Amount of TCS (Tax Collected at Source) to be charged.
 
         **Note**: The amount needs to be captured as per guidance in the [lrs_service_type parameter values](#lrs_service_type-parameter-values)   table.
       </td>
@@ -864,18 +867,18 @@ The following parameters (mandatory) must be posted using any of the following s
 
     <tr>
       <td>
-        lrs_tcs_declaration_under_limit  
+        lrs_tcs_declaration_under_limit
 
         `mandatory for LRS S2S transactions`
       </td>
 
       <td>
-        `String`Declaration from buyer that they are either under or over INR 1,00,000 based on which TCS will be collected.  
+        `String`Declaration from buyer that they are either under or over INR 1,00,000 based on which TCS will be collected.
 
         Values expected:
 
         **0** (in case of under the limit)  
-        **1**   (in case of over the limit  
+        **1**   (in case of over the limit
 
         **Note**: The declaration needs to be taken mandatorily from the buyer on the checkout page. Also, when user declares they are over the limit (i.e. when this param is sent as "1", the "tcs_amount" field to contain amount calculated as per the the [lrs_service_type parameter values](#lrs_service_type-parameter-values)    table.
       </td>
