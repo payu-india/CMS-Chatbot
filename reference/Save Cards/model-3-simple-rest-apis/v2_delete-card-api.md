@@ -68,7 +68,7 @@ No body parameters for this API
 ## Sample request
 
 ```
-curl --location --request DELETE '<info.storecard.service.url>/storecard/card/v1?userCredential=sms%3A123&cardToken=18c7804aafdac732b5e8&networkTokene=null&issuerToken=null&bankType=null' \
+curl --location --request DELETE 'https://test.payu.in/storecard/card/v1?userCredential=sms%3A123&cardToken=18c7804aafdac732b5e8&networkTokene=null&issuerToken=null&bankType=null' \
   --header 'authorization: {{authorization}}' \
   --header 'date: {{date}}'
 ```
