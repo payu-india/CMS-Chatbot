@@ -5,13 +5,13 @@ api:
   operationId: get_settlement-v1-merchantupcomingsettlement
 hidden: true
 ---
-This API retrieves information about upcoming and pending settlements for a merchant. This API provides visibility into future settlements, helping merchants with cash flow planning and financial forecasting.
+Retrieve information about upcoming and pending settlements for a merchant. This API provides visibility into future settlements, helping merchants with cash flow planning and financial forecasting.
 
 **Environment**
 
 |                        |                                                                                                                                |
 | :--------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://info.payu.in/settlement/v1/merchantUpcomingSettlement](https://info.payu.in/settlement/v1/merchantUpcomingSettlement) |
+| Test Environment       | https://test.payu.in/settlement/v1/merchantUpcomingSettlement                                                                  |
 | Production Environment | [https://info.payu.in/settlement/v1/merchantUpcomingSettlement](https://info.payu.in/settlement/v1/merchantUpcomingSettlement) |
 
 <Accordion title="Sample Request" icon="fa-code">
