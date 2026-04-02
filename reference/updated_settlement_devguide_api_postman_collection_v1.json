@@ -6,13 +6,13 @@
   },
   "servers": [
     {
-      "url": "http://info.payu.in"
+      "url": "http://test.payu.in"
     },
     {
       "url": "http://127.0.0.1:8090"
     },
     {
-      "url": "https://info.payu.in"
+      "url": "https://test.payu.in"
     }
   ],
   "paths": {
@@ -28,10 +28,9 @@
             "name": "Authorization",
             "in": "header",
             "schema": {
-              "type": "string",
-              "default": ""
+              "type": "string"
             },
-            "description": "Bearer token for authentication (required). Format: 'Bearer \\<token>'",
+            "description": "Bearer token for authentication (required). Format: 'Bearer <token>'",
             "example": "{{authorizationBearer}}"
           },
           {
