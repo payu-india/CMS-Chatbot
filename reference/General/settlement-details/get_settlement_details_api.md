@@ -1,17 +1,16 @@
 ---
 title: Get Settlement Details API
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
-  title: Get Settlement Details API
+  title: '[OLD]Get Settlement Details API'
   description: >-
     This document provides information on using an API to retrieve settlement
     details from a bank based on a specified date or Unique Transaction
     Reference number. The API can be posted with version 1 or 2 parameters.
   robots: index
-next:
-  description: ''
 ---
 You can use the **Get Settlement Details** API to retrieve settlement details which the bank has to settle for you. The input is the date for which settlement details are required, where the var1 parameter is the date you want to know the settlement status or UTR (Unique Transaction Reference number). This API can be posted with version (1 or 2) in the var5 parameter.
 
@@ -24,11 +23,11 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 <br />
 
 ### Environment
-  | Environment            | URL                                                                                                  |
-  | :--------------------- | :--------------------------------------------------------------------------------------------------- |
-  | Test Environment       | https://test.payu.in/merchant/postservice?form=2  |
-  | Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2) |
 
+| Environment            | URL                                                                                                  |
+| :--------------------- | :--------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/merchant/postservice?form=2](https://test.payu.in/merchant/postservice?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2) |
 
 <Accordion title="Request parameters" icon="fa-table">
   <Table align={["left","left","left"]}>
