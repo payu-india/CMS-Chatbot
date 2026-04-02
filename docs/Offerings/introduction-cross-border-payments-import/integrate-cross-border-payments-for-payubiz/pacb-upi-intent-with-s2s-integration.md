@@ -8,7 +8,7 @@ metadata:
 The following steps allow you to integrate the server-to-server UPI (United Payments Interface) intent:
 
 <Cards columns={3}>
-  <Card title="1. Initiate payment" href="step-1-initiate-payment">
+  <Card title="1. Initiate payment" href="step-1-initiate-a-payment">
     Initiate the UPI Intent payment request with required parameters
   </Card>
 
@@ -28,7 +28,7 @@ The following steps allow you to integrate the server-to-server UPI (United Paym
     Verify the payment status and ensure successful transaction completion
   </Card>
 
-  <Card title="6. Update Invoice ID (Conditional)" href="#step-6-update-invoice-id-conditional">
+  <Card title="6. Update Invoice ID (Conditional)" href="#step-7-upload-the-invoices-optional">
     Update the invoice ID associated with the transaction
 
     <br />
