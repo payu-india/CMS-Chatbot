@@ -9,22 +9,25 @@ This API retrieves detailed information about a specific transaction using the m
 
 **Environment**
 
-|                  |                                                                |
-| :--------------- | :------------------------------------------------------------- |
-| Test Environment | http://info.payu.in/treasury/v1/settlement/transactionDetails  |
-| Production URL   | http://info.payu.in/treasury/v1/settlement/transactionDetails` |
+|                  |                                                                                                                                  |
+| :--------------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| Test Environment | [http://info.payu.in/treasury/v1/settlement/transactionDetails](http://info.payu.in/treasury/v1/settlement/transactionDetails)   |
+| Production URL   | [http://info.payu.in/treasury/v1/settlement/transactionDetails`](http://info.payu.in/treasury/v1/settlement/transactionDetails`) |
 
 ## Request Parameter
-## Authentication Header
 
+### Authentication Header
 
-## Header Parameters*
+<HeaderAuthentication />
 
-| Parameter             | Type   | Required | Description                                          |
-| --------------------- | ------ | -------- | ---------------------------------------------------- |
-| merchantTransactionId | String | Yes      | Merchant transaction/reference ID (1-100 characters) |
+### Header Parameters
 
-##Saample Request
+| Parameter                                 | Description                                          |
+| ----------------------------------------- | ---------------------------------------------------- |
+| merchantTransactionId   <br/> `mandatory` | Merchant transaction/reference ID (1-100 characters) |
+
+## Sample Request
+
 ```curl
 curl --location 'http://info.payu.in/treasury/v1/settlement/transactionDetails?merchantTransactionId=W49OV6KQXR4H' \
 --header 'mid: 180012'
