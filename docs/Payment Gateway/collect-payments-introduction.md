@@ -466,7 +466,7 @@ PayU offers the following various integrations:
                 gap: "8px",
               }}
             >
-              <i className="fa-brands fa-prestashop fa-2x" />
+              <i className="fa fa-shopping-cart fa-lg fa-2x" />
               <a href="/docs/prestashop" target="_blank" rel="noopener noreferrer">
                 <strong>PrestaShop</strong>
               </a>
@@ -478,7 +478,7 @@ PayU offers the following various integrations:
                 gap: "8px",
               }}
             >
-              <i className="fa-brands fa-bigcommerce fa-2x" />
+              <i className="fa fa-store fa-lg fa-2x" />
               <a href="/docs/bigcommerce" target="_blank" rel="noopener noreferrer">
                 <strong>BigCommerce</strong>
               </a>
@@ -490,7 +490,7 @@ PayU offers the following various integrations:
                 gap: "8px",
               }}
             >
-              <i className="fa-brands fa-zoho fa-2x" />
+              <i className="fa fa-briefcase fa-lg fa-2x" />
               <a href="/docs/zoho-integration" target="_blank" rel="noopener noreferrer">
                 <strong>Zoho</strong>
               </a>
