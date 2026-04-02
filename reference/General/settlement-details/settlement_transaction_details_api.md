@@ -20,9 +20,9 @@ This API is retrieve detailed information about a specific transaction using the
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
- curl --location 'http://test.payu.in/settlement/transactionDetails?merchantTransactionId=W49OV6KQXR4H' \
---header 'mid: 180012'
---header 'Authorization: Bearer <token>'
+  curl --location 'http://test.payu.in/settlement/transactionDetails?merchantTransactionId=W49OV6KQXR4H' \
+  --header 'mid: 180012'
+  --header 'Authorization: Bearer <token>'
   ```
   ```python
   import requests
@@ -281,8 +281,6 @@ This API is retrieve detailed information about a specific transaction using the
   }
   ```
 
-  ### Failure Scenario
-
   #### Empty Response (No Settlement Records)
 
   ```json
@@ -293,6 +291,15 @@ This API is retrieve detailed information about a specific transaction using the
     "result": []
   }
   ```
+
+### Failure scenario
+
+  | Code  | Status   | Meaning                         |
+  | ----- | -------- | ------------------------------- |
+  | 4000  | Failure  | Invalid request parameters      |
+  | 4001  | Failure  | Unauthorized / access denied    |
+  | 500   | Failure  | Internal server error           |
+
 </Accordion>
 
 <Accordion title="Response Parameters" icon="fa-table">
@@ -317,16 +324,6 @@ This API is retrieve detailed information about a specific transaction using the
   | settlementAmount      | **Final amount settled to the merchant** after deducting all applicable fees, taxes, and adjustments. This is the net amount that was actually transferred to the merchant's account.            |
 </Accordion>
 
-<Accordion title="Error Codes" icon="fa-code">
-  ### Error Codes
-
-  | Code  | Status   | Meaning                         |
-  | ----- | -------- | ------------------------------- |
-  | 2000  | Success  | Request processed successfully  |
-  | 4000  | Failure  | Invalid request parameters      |
-  | 4001  | Failure  | Unauthorized / access denied    |
-  | 500   | Failure  | Internal server error           |
-</Accordion>
 
 ## Request Parameters
 
