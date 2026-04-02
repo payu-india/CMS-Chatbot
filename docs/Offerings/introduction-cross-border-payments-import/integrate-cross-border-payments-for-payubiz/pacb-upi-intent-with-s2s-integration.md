@@ -8,7 +8,7 @@ metadata:
 The following steps allow you to integrate the server-to-server UPI (United Payments Interface) intent:
 
 <Cards columns={3}>
-  <Card title="1. Initiate payment" href="step-1-initiate-a-payment">
+  <Card title="1. Initiate payment" href="#step-1-initiate-a-payment">
     Initiate the UPI Intent payment request with required parameters
   </Card>
 
