@@ -1,5 +1,5 @@
 - old_get_settlement_details_api
-- get_settlement_details_api
+- backup_get_settlement_details_api
 - settlement-detail-range-api
 - get_settlement-range
 - get_treasury-v1-settlement-transactiondetails
