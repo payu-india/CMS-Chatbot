@@ -13,10 +13,10 @@ This API is retrieve detailed information about a specific transaction using the
 
 ### Environment
 
-|                        |                                                                                                            |
-| :--------------------- | :--------------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/settlement/transactionDetails`](https://test.payu.in/settlement/transactionDetails`) |
-| Production Environment | [https://info.payu.in/settlement/transactionDetails](https://info.payu.in/settlement/transactionDetails)   |
+|                        |                                                                                                                                                                  |
+| :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Test Environment       | [[https://test.payu.in/settlement/transactionDetails](https://test.payu.in/settlement/transactionDetails)`](https://test.payu.in/settlement/transactionDetails`) |
+| Production Environment | [https://info.payu.in/settlement/transactionDetails](https://info.payu.in/settlement/transactionDetails)                                                         |
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
@@ -168,132 +168,133 @@ This API is retrieve detailed information about a specific transaction using the
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-reply">
-### Success Scenarios
-#### Capture Only
+  ### Success Scenarios
 
-```json
-{
-  "code": "2000",
-  "message": "Success",
-  "status": 0,
-  "result": [
-    {
-      "merchantId": 180012,
-      "merchantTransactionId": "W49OV6KQXR4H",
-      "payuId": "943323893640",
-      "transactionType": "capture",
-      "settlementStatus": "Settled",
-      "settlementUTR": "TESTUTR001",
-      "settlementDate": "2025-12-10T15:58:43",
-      "settlementId": "180012202512101738",
-      "settlementAmount": 8.0
-    }
-  ]
-}
-```
+  #### Capture Only
 
-#### Capture + Refund + Chargeback
+  ```json
+  {
+    "code": "2000",
+    "message": "Success",
+    "status": 0,
+    "result": [
+      {
+        "merchantId": 180012,
+        "merchantTransactionId": "W49OV6KQXR4H",
+        "payuId": "943323893640",
+        "transactionType": "capture",
+        "settlementStatus": "Settled",
+        "settlementUTR": "TESTUTR001",
+        "settlementDate": "2025-12-10T15:58:43",
+        "settlementId": "180012202512101738",
+        "settlementAmount": 8.0
+      }
+    ]
+  }
+  ```
 
-```json
-{
-  "code": "2000",
-  "message": "Success",
-  "status": 0,
-  "result": [
-    {
-      "merchantId": 180012,
-      "merchantTransactionId": "W49OV6KQXR4H",
-      "payuId": "943323893640",
-      "transactionType": "capture",
-      "settlementStatus": "Settled",
-      "settlementUTR": "TESTUTR001",
-      "settlementDate": "2025-12-10T15:58:43",
-      "settlementId": "180012202512101738",
-      "settlementAmount": 8.0
-    },
-    {
-      "merchantId": 180012,
-      "merchantTransactionId": "W49OV6KQXR4H",
-      "payuId": "943323893640",
-      "transactionType": "refund",
-      "settlementStatus": "Settled",
-      "settlementUTR": "TESTUTR001",
-      "settlementDate": "2025-12-10T15:58:43",
-      "settlementId": "180012202512101738",
-      "settlementAmount": -8.0
-    },
-    {
-      "merchantId": 180012,
-      "merchantTransactionId": "W49OV6KQXR4H",
-      "payuId": "943323893640",
-      "transactionType": "chargeback",
-      "settlementStatus": "Settled",
-      "settlementUTR": "TESTUTR001",
-      "settlementDate": "2025-12-10T15:58:43",
-      "settlementId": "180012202512101738",
-      "settlementAmount": -8.0
-    }
-  ]
-}
-```
+  #### Capture + Refund + Chargeback
 
-#### Capture + Chargeback + Chargeback Reversal
+  ```json
+  {
+    "code": "2000",
+    "message": "Success",
+    "status": 0,
+    "result": [
+      {
+        "merchantId": 180012,
+        "merchantTransactionId": "W49OV6KQXR4H",
+        "payuId": "943323893640",
+        "transactionType": "capture",
+        "settlementStatus": "Settled",
+        "settlementUTR": "TESTUTR001",
+        "settlementDate": "2025-12-10T15:58:43",
+        "settlementId": "180012202512101738",
+        "settlementAmount": 8.0
+      },
+      {
+        "merchantId": 180012,
+        "merchantTransactionId": "W49OV6KQXR4H",
+        "payuId": "943323893640",
+        "transactionType": "refund",
+        "settlementStatus": "Settled",
+        "settlementUTR": "TESTUTR001",
+        "settlementDate": "2025-12-10T15:58:43",
+        "settlementId": "180012202512101738",
+        "settlementAmount": -8.0
+      },
+      {
+        "merchantId": 180012,
+        "merchantTransactionId": "W49OV6KQXR4H",
+        "payuId": "943323893640",
+        "transactionType": "chargeback",
+        "settlementStatus": "Settled",
+        "settlementUTR": "TESTUTR001",
+        "settlementDate": "2025-12-10T15:58:43",
+        "settlementId": "180012202512101738",
+        "settlementAmount": -8.0
+      }
+    ]
+  }
+  ```
 
-```json
-{
-  "code": "2000",
-  "message": "Success",
-  "status": 0,
-  "result": [
-    {
-      "merchantId": 180012,
-      "merchantTransactionId": "W49OV6KQXR4H",
-      "payuId": "943323893640",
-      "transactionType": "capture",
-      "settlementStatus": "Settled",
-      "settlementUTR": "TESTUTR001",
-      "settlementDate": "2025-12-10T15:58:43",
-      "settlementId": "180012202512101738",
-      "settlementAmount": 8.0
-    },
-    {
-      "merchantId": 180012,
-      "merchantTransactionId": "W49OV6KQXR4H",
-      "payuId": "943323893640",
-      "transactionType": "chargeback",
-      "settlementStatus": "Settled",
-      "settlementUTR": "TESTUTR001",
-      "settlementDate": "2025-12-10T15:58:43",
-      "settlementId": "180012202512101738",
-      "settlementAmount": -8.0
-    },
-    {
-      "merchantId": 180012,
-      "merchantTransactionId": "W49OV6KQXR4H",
-      "payuId": "943323893640",
-      "transactionType": "chargebackreversal",
-      "settlementStatus": "Settled",
-      "settlementUTR": "TESTUTR001",
-      "settlementDate": "2025-12-10T15:58:43",
-      "settlementId": "180012202512101738",
-      "settlementAmount": 8.0
-    }
-  ]
-}
-```
+  #### Capture + Chargeback + Chargeback Reversal
 
-### Failure Scenario
-#### Empty Response (No Settlement Records)
+  ```json
+  {
+    "code": "2000",
+    "message": "Success",
+    "status": 0,
+    "result": [
+      {
+        "merchantId": 180012,
+        "merchantTransactionId": "W49OV6KQXR4H",
+        "payuId": "943323893640",
+        "transactionType": "capture",
+        "settlementStatus": "Settled",
+        "settlementUTR": "TESTUTR001",
+        "settlementDate": "2025-12-10T15:58:43",
+        "settlementId": "180012202512101738",
+        "settlementAmount": 8.0
+      },
+      {
+        "merchantId": 180012,
+        "merchantTransactionId": "W49OV6KQXR4H",
+        "payuId": "943323893640",
+        "transactionType": "chargeback",
+        "settlementStatus": "Settled",
+        "settlementUTR": "TESTUTR001",
+        "settlementDate": "2025-12-10T15:58:43",
+        "settlementId": "180012202512101738",
+        "settlementAmount": -8.0
+      },
+      {
+        "merchantId": 180012,
+        "merchantTransactionId": "W49OV6KQXR4H",
+        "payuId": "943323893640",
+        "transactionType": "chargebackreversal",
+        "settlementStatus": "Settled",
+        "settlementUTR": "TESTUTR001",
+        "settlementDate": "2025-12-10T15:58:43",
+        "settlementId": "180012202512101738",
+        "settlementAmount": 8.0
+      }
+    ]
+  }
+  ```
 
-```json
-{
-  "code": "2000",
-  "message": "Success",
-  "status": 0,
-  "result": []
-}
-```
+  ### Failure Scenario
 
+  #### Empty Response (No Settlement Records)
+
+  ```json
+  {
+    "code": "2000",
+    "message": "Success",
+    "status": 0,
+    "result": []
+  }
+  ```
 </Accordion>
 
 <Accordion title="Response Parameters" icon="fa-table">
@@ -324,6 +325,15 @@ This API is retrieve detailed information about a specific transaction using the
   | merchantName     | Merchant business name                          |
   | productInfo      | Product description from transaction            |
 </Accordion>
+
+## Error Codes
+
+| Code  | Status   | Meaning                         |
+| ----- | -------- | ------------------------------- |
+| 2000  | Success  | Request processed successfully  |
+| 4000  | Failure  | Invalid request parameters      |
+| 4001  | Failure  | Unauthorized / access denied    |
+| 500   | Failure  | Internal server error           |
 
 ## Request Parameters
 
