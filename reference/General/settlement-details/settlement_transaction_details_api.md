@@ -1,5 +1,5 @@
 ---
-title: Transaction Details API
+title: Settlement Transaction Details API
 excerpt: >-
   This API retrieves detailed transaction information for settlement
   reconciliation purposes using your merchant transaction ID.
@@ -18,14 +18,14 @@ This API retrieves detailed information about a specific transaction using the m
 
 **Environment**
 
-|                  |                                                                                                         |
-| :--------------- | :------------------------------------------------------------------------------------------------------ |
-| Test Environment | [http://test.payu.in/settlement/transactionDetails](http://test.payu.in/settlement/transactionDetails)  |
-| Production URL   | [http://info.payu.in/settlement/transactionDetails](http://info.payu.in/settlement/transactionDetails)` |
+|                  |                                                                                                                                   |
+| :--------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| Test Environment | [https://test.payu.in/treasury/v1/settlement/transactionDetails](https://test.payu.in/treasury/v1/settlement/transactionDetails)  |
+| Production URL   | [https://info.payu.in/treasury/v1/settlement/transactionDetails](https://info.payu.in/treasury/v1/settlement/transactionDetails)` |
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
-  curl --location 'http://test.payu.in/settlement/transactionDetails?merchantTransactionId=W49OV6KQXR4H' \
+  curl --location 'http://info.payu.in/treasury/v1/settlement/transactionDetails?merchantTransactionId=W49OV6KQXR4H' \
   --header 'mid: 180012'
   --header 'Authorization: Bearer <token>'
   ```
@@ -33,7 +33,7 @@ This API retrieves detailed information about a specific transaction using the m
   import requests
   import json
 
-  url = "http://test.payu.in/settlement/transactionDetails"
+  url = "http://info.payu.in/treasury/v1/settlement/transactionDetails"
   headers = {
       'Authorization': 'Bearer <your_token>',
       'mid': '<your_merchant_id>',
@@ -60,7 +60,7 @@ This API retrieves detailed information about a specific transaction using the m
       static async Task Main()
       {
           var client = new HttpClient();
-          var url = "http://test.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
+          var url = "http://info.payu.in/treasury/v1/settlement/transactionDetails?merchantTransactionId=TXN123456789";
           
           client.DefaultRequestHeaders.Add("Authorization", "Bearer <your_token>");
           client.DefaultRequestHeaders.Add("mid", "<your_merchant_id>");
@@ -82,7 +82,7 @@ This API retrieves detailed information about a specific transaction using the m
   ```
   ```javascript
   async function getTransactionDetails() {
-      const url = "http://test.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
+      const url = "http://info.payu.in/treasury/v1/settlement/transactionDetails?merchantTransactionId=TXN123456789";
       
       try {
           const response = await fetch(url, {
@@ -113,7 +113,7 @@ This API retrieves detailed information about a specific transaction using the m
   public class TransactionDetailsAPI {
       public static void main(String[] args) {
           try {
-              String urlString = "http://test.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
+              String urlString = "http://info.payu.in/treasury/v1/settlement/transactionDetails?merchantTransactionId=TXN123456789";
               URL url = new URL(urlString);
               HttpURLConnection connection = (HttpURLConnection) url.openConnection();
               
@@ -142,7 +142,7 @@ This API retrieves detailed information about a specific transaction using the m
   ```
   ```php
   <?php
-  $url = "http://test.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
+  $url = "http://info.payu.in/treasury/v1/settlement/transactionDetails?merchantTransactionId=TXN123456789";
 
   $headers = [
       'Authorization: Bearer <your_token>',
