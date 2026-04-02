@@ -15,6 +15,12 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 | Production Environment | [https://info.payu.in/settlement/v1/merchantUpcomingSettlement](https://info.payu.in/settlement/v1/merchantUpcomingSettlement) |
 
 <Accordion title="Sample Request" icon="fa-code">
+```curl
+curl --request GET \
+     --url http://test.payu.in/settlement/v1/merchantUpcomingSettlement \
+     --header 'accept: application/json' \
+     --header 'mid: <Your MID>'
+```
   ```python
   import requests
 
