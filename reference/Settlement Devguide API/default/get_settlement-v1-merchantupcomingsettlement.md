@@ -1,14 +1,11 @@
 ---
 title: Merchant Upcoming And Pending Settlement API
-excerpt: >-
-  This API retrieves upcoming and pending settlement information for the
-  merchant. No query parameters or request body required.
 api:
   file: updated_settlement_devguide_api_postman_collection_v1.json
   operationId: get_settlement-v1-merchantupcomingsettlement
 hidden: true
 ---
-Retrieve information about upcoming and pending settlements for a merchant. This API provides visibility into future settlements, helping merchants with cash flow planning and financial forecasting.
+This API retrieves information about upcoming and pending settlements for a merchant. This API provides visibility into future settlements, helping merchants with cash flow planning and financial forecasting.
 
 **Environment**
 
@@ -210,11 +207,12 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 </Accordion>
 
 <Accordion title="Response Parameters" icon="fa-table">
-  | Parameter                                               | Type    | Description                                                     |
-  | ------------------------------------------------------- | ------- | --------------------------------------------------------------- |
-  | status                                                  | Integer | Response status (1 = success, 0 = failure)                      |
-  | msg                                                     | String  | Response message                                                |
-  | result                                                  | Object  | Main response data container                                    |
+  | Parameter | Type    | Description                                |
+  | --------- | ------- | ------------------------------------------ |
+  | status    | Integer | Response status (1 = success, 0 = failure) |
+  | msg       | String  | Response message                           |
+  | result    | Object  | Main response data container               |
+
   ### result JSON Field Descriptions
 
   | Parameter                                        | Type    | Description                                                     |
