@@ -46,7 +46,8 @@
             "name": "Accept",
             "in": "header",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "application/json"
             },
             "description": "Response content type (recommended). Should be 'application/json'.",
             "example": "application/json"
@@ -58,7 +59,8 @@
               "type": "string"
             },
             "description": "Your unique merchant transaction/reference ID used to look up settlement entries (required). Length: 1-100 characters.",
-            "example": "{{merchantTransactionId}}"
+            "example": "{{merchantTransactionId}}",
+            "required": true
           }
         ],
         "responses": {
