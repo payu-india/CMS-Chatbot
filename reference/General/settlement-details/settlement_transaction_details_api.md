@@ -13,6 +13,7 @@ Environment
 * **Production Environment**: `https://info.payu.in/settlement/transactionDetails`
 
 ## Sample Request
+
 ```curl
 curl -X GET \
   -H "Authorization: Bearer YOUR_BEARER_TOKEN_HERE" \
@@ -195,7 +196,7 @@ curl_close($ch);
 | msg       | String  | Response message                                                                                                                                 |
 | result    | Object  | Main response data container in a JSON format. For more information, refer to [result JSON Fields Description](#result-json-fields-descriptions) |
 
-## result JSON Fields Descriptions
+### result JSON Fields Descriptions
 
 | Parameter        | Type   | Description                                     |
 | ---------------- | ------ | ----------------------------------------------- |
