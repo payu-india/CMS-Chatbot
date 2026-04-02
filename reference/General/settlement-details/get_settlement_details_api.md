@@ -276,7 +276,7 @@ curl_close($ch);
 ?>
 ```
 
-**Sample Response**
+## Sample Response
 
 ```json
 {
