@@ -495,6 +495,18 @@ PayU offers the following various integrations:
                 <strong>Zoho</strong>
               </a>
             </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa fa-store fa-2x" />
+              <a href="/docs/fynd-integration" target="_blank" rel="noopener noreferrer">
+                <strong>Fynd Store</strong>
+              </a>
+            </li>
           </ul>
         ),
       },
