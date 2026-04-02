@@ -220,3 +220,9 @@ curl_close($ch);
 | transactionDate  | Transaction timestamp (ISO 8601 format)         |
 | merchantName     | Merchant business name                          |
 | productInfo      | Product description from transaction            |
+
+## Request Parameters
+
+<Callout icon="📘" theme="info">
+  **Note**: This API uses Bearer token for authentication and Bearer token must be generated using **Get Access Token**API. For more information, refer to [Get Access Token ](ref:get-token-api-for-general-apis)API.
+</Callout>
