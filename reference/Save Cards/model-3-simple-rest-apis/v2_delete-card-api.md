@@ -11,11 +11,12 @@ HTTP Method: **POST**
 
 **Environment**
 
-|            |                                                 |
-| :--------- | :---------------------------------------------- |
-| Production | \<info.storecard.service.url>/storecard/card/v1 |
+|            |                                        |
+| :--------- | :------------------------------------- |
+| Test       | https://test.payu.in/storecard/card/v1 |
+| Production | https://info.payu.in/storecard/card/v1 |
 
-## Header parameters
+## Request parameters
 
 ### Authentication header
 
@@ -23,25 +24,53 @@ HTTP Method: **POST**
 
 ### Query parameters
 
+| Parameter                       | Description                                                                                | Example              |
+| ------------------------------- | ------------------------------------------------------------------------------------------ | -------------------- |
+| userCredential<br />`mandatory` | `String` User authentication credential in the format `username:userid`.                   | testuser:testuser123 |
+| cardToken<br />`mandatory`      | `String` Card token of the saved card.                                                     |                      |
+| networkToken<br />`optional`    | `String` Network issuer token.                                                             |                      |
+| issuerToken  <br />`optional`   | `String` Issuer token.                                                                     |                      |
+| bankType <br />`optional`       | `String` The bank type of card. It can be any of the following: Credit, Debit, or Prepaid. | Credit               |
 
-| Parameter | Description | Example |
-|---|---|---|
-| userCredential<br/>`mandatory` | `String` User authentication credential in the format `username:userid`. | testuser:testuser123 |
-| getSoftDeleted<br/>`optional` | `Integer` Flag to include soft-deleted records in the response. Set to `1` to include, `0` to exclude. | 1 |
+### Header parameters
 
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
 
-## Request header
-| Parameter | Description | Example |
-|---|---|---|
-| mid<br/>`mandatory` | `String` Merchant identifier for the API request. | 2 |
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        date  
+        `mandatory`
+      </td>
+
+      <td>
+        The current date and time. For example, format of the date is Wed, 28 Jun 2023 11:25:19 GMT.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### Body parameters
+
+No body parameters for this API
 
 ## Sample request
 
 ```
-curl --location --request DELETE '<info.storecard.service.url>/storecard/card/v1?userCredential=sartaj%3Ainfo&cardToken=18ca2c6b01be04fd0248b' \
---header 'Content-Type: application/json' \
---header 'mid: 2' \
---data ''
+curl --location --request DELETE '<info.storecard.service.url>/storecard/card/v1?userCredential=sms%3A123&cardToken=18c7804aafdac732b5e8&networkTokene=null&issuerToken=null&bankType=null' \
+  --header 'authorization: {{authorization}}' \
+  --header 'date: {{date}}'
 ```
 
 ## Sample Response
