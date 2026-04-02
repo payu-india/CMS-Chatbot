@@ -16,10 +16,10 @@ This API retrieves detailed information about a specific transaction using the m
 
 **Environment**
 
-|                  |                                                                                                                                                                                                   |
-| :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Test Environment | [http://info.payu.in/treasury/v1/settlement/transactionDetails](http://info.payu.in/treasury/v1/settlement/transactionDetails)                                                                    |
-| Production URL   | [[http://info.payu.in/treasury/v1/settlement/transactionDetails](http://info.payu.in/treasury/v1/settlement/transactionDetails)`](http://info.payu.in/treasury/v1/settlement/transactionDetails`) |
+|                  |                                                                                                                                 |
+| :--------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| Test Environment | [http://test.payu.in/treasury/v1/settlement/transactionDetails](http://test.payu.in/treasury/v1/settlement/transactionDetails)  |
+| Production URL   | [http://info.payu.in/treasury/v1/settlement/transactionDetails](http://info.payu.in/treasury/v1/settlement/transactionDetails)` |
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
