@@ -190,29 +190,29 @@ curl_close($ch);
 
 ## Response Parameters
 
-| Parameter | Type    | Description                                                                                                                                      |
-| --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| status    | Integer | Response status (1 = success, 0 = failure)                                                                                                       |
-| msg       | String  | Response message                                                                                                                                 |
-| result    | Object  | Main response data container in a JSON format. For more information, refer to [result JSON Fields Description](#result-json-fields-descriptions) |
+| Parameter | Description                                                                                                                                      |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| status    | Response status (1 = success, 0 = failure)                                                                                                       |
+| msg       | Response message                                                                                                                                 |
+| result    | Main response data container in a JSON format. For more information, refer to [result JSON Fields Description](#result-json-fields-descriptions) |
 
-### result JSON Fields Descriptions
+## result JSON Fields Descriptions
 
-| Parameter        | Type   | Description                                     |
-| ---------------- | ------ | ----------------------------------------------- |
-| transactionId    | String | Merchant transaction identifier                 |
-| payuId           | String | PayU internal transaction ID                    |
-| amount           | String | Original transaction amount                     |
-| status           | String | Transaction status (success, failure, pending)  |
-| settlementId     | String | Settlement batch identifier                     |
-| settlementAmount | String | Net amount settled to merchant                  |
-| fees             | String | Transaction processing fees                     |
-| tax              | String | Tax amount on fees                              |
-| settlementDate   | String | Date when settlement was processed (YYYY-MM-DD) |
-| paymentMode      | String | Payment method used (CC, DC, NB, UPI, etc.)     |
-| bankRefNumber    | String | Bank reference number for the transaction       |
-| cardNumber       | String | Masked card number (if card payment)            |
-| nameOnCard       | String | Cardholder name (if card payment)               |
-| transactionDate  | String | Transaction timestamp (ISO 8601 format)         |
-| merchantName     | String | Merchant business name                          |
-| productInfo      | String | Product description from transaction            |
+| Parameter        | Description                                     |
+| ---------------- | ----------------------------------------------- |
+| transactionId    | Merchant transaction identifier                 |
+| payuId           | PayU internal transaction ID                    |
+| amount           | Original transaction amount                     |
+| status           | Transaction status (success, failure, pending)  |
+| settlementId     | Settlement batch identifier                     |
+| settlementAmount | Net amount settled to merchant                  |
+| fees             | Transaction processing fees                     |
+| tax              | Tax amount on fees                              |
+| settlementDate   | Date when settlement was processed (YYYY-MM-DD) |
+| paymentMode      | Payment method used (CC, DC, NB, UPI, etc.)     |
+| bankRefNumber    | Bank reference number for the transaction       |
+| cardNumber       | Masked card number (if card payment)            |
+| nameOnCard       | Cardholder name (if card payment)               |
+| transactionDate  | Transaction timestamp (ISO 8601 format)         |
+| merchantName     | Merchant business name                          |
+| productInfo      | Product description from transaction            |
