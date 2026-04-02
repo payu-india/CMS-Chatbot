@@ -5,7 +5,7 @@ hidden: true
 link:
   new_tab: false
 metadata:
-  title: '[OLD]Get Settlement Details API'
+  title: Get Settlement Details API
   description: >-
     This document provides information on using an API to retrieve settlement
     details from a bank based on a specified date or Unique Transaction
@@ -35,14 +35,14 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
 ### Query Parameters
 
-| Parameter                    | Description                                                                                             |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------- |
-| settledOn  <br/> `mandatory` | `String` This parameter must contain the settlement date (required if utr not provided).                |
-| utr<br/> `mandatory`         | `String` This parameter must contain the  Unique Transaction Reference (UTR, alternative to settledOn). |
-| page<br/> `mandatory`        | `Integer` This parameter must contain the page number for pagination                                    |
-| pageSize<br/> `mandatory`    | `Integer` This parameter must contain the records per page (2000-50000)                                 |
-| type<br/> `optional`         | `String` This parameter must contain the Settlement type ('G' or blank).                                |
-| isVersion<br/> `optional`    | `Integer` This parameter must contain the API version and it can be 1 or 2.                             |
+| Parameter                     | Description                                                                                             |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------- |
+| settledOn  <br /> `mandatory` | `String` This parameter must contain the settlement date (required if utr not provided).                |
+| utr<br /> `mandatory`         | `String` This parameter must contain the  Unique Transaction Reference (UTR, alternative to settledOn). |
+| page<br /> `mandatory`        | `Integer` This parameter must contain the page number for pagination                                    |
+| pageSize<br /> `mandatory`    | `Integer` This parameter must contain the records per page (2000-50000)                                 |
+| type<br /> `optional`         | `String` This parameter must contain the Settlement type ('G' or blank).                                |
+| isVersion<br /> `optional`    | `Integer` This parameter must contain the API version and it can be 1 or 2.                             |
 
 ## Sample Request
 
