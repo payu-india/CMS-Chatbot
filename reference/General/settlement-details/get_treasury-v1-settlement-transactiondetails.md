@@ -183,3 +183,34 @@ curl_close($ch);
     }
 }
 ```
+
+## Response Parameters
+
+| Parameter | Description                                                                                                                                      |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| status    | This parameter contains response status: <br/>- 1 = success <br/>- 0 = failure                                                                   |
+| msg       | Response message                                                                                                                                 |
+| result    | Main response data container in a JSON format. For more information, refer to  [result JSON Field Descriptions](#result-json-field-descriptions) |
+
+### result JSON Field Descriptions
+
+| Field               | Description                                     |
+| :------------------ | :---------------------------------------------- |
+| transactionId       | Merchant transaction identifier                 |
+| payuId              | PayU internal transaction ID                    |
+| amount              | Original transaction amount                     |
+| status              | Transaction status (success, failure, pending)  |
+| settlementId        | Settlement batch identifier                     |
+| settlementAmount    | Net amount settled to merchant                  |
+| fees                | Transaction processing fees                     |
+| tax                 | Tax amount on fees                              |
+| settlementDate      | Date when settlement was processed (YYYY-MM-DD) |
+| paymentMode         | Payment method used (CC, DC, NB, UPI, etc.)     |
+| bankRefNumber       | Bank reference number for the transaction       |
+| cardNumber          | Masked card number (if card payment)            |
+| nameOnCard          | Cardholder name (if card payment)               |
+| transactionDate     | Transaction timestamp (ISO 8601 format)         |
+| result.merchantName | Merchant business name                          |
+| result.productInfo  | Product description from transaction            |
+
+<br />
