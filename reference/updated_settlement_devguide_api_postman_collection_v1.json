@@ -28,9 +28,10 @@
             "name": "Authorization",
             "in": "header",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
-            "description": "Bearer token for authentication (required). Format: 'Bearer <token>'",
+            "description": "Bearer token for authentication (required). Format: 'Bearer \\<token>'",
             "example": "{{authorizationBearer}}"
           },
           {
