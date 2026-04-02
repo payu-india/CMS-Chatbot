@@ -6,16 +6,68 @@
   },
   "servers": [
     {
-      "url": "http://test.payu.in"
+      "url": "https://test.payu.in"
     },
     {
       "url": "http://127.0.0.1:8090"
-    },
-    {
-      "url": "https://test.payu.in"
     }
   ],
   "paths": {
+    "/treasury/v1/settlement/transactionDetails": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Transaction Details API",
+        "description": "This API retrieves detailed transaction information for settlement reconciliation purposes using your merchant transaction ID.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Bearer token for authentication (required). Format: 'Bearer <token>'",
+            "example": "{{authorizationBearer}}"
+          },
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Your Merchant ID (required). Can be integer or string.",
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Response content type (recommended). Should be 'application/json'.",
+            "example": "application/json"
+          },
+          {
+            "name": "merchantTransactionId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Your unique merchant transaction/reference ID used to look up settlement entries (required). Length: 1-100 characters.",
+            "example": "{{merchantTransactionId}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
     "/treasury/int/payu/settlement/settlementDetails": {
       "get": {
         "tags": [
@@ -107,7 +159,79 @@
         }
       }
     },
-    "/settlement/range/": {},
+    "/settlement/range/": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Settlement Details Range API",
+        "description": "This API provides transaction-level data for a specified date or date range and returns paginated results.",
+        "parameters": [
+          {
+            "name": "Date",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Request timestamp in UTC string format (e.g., 'Wed, 28 Jun 2023 11:25:19 GMT') (required)",
+            "example": "{{date}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "SHA512 HMAC-style header built from request data, Date, merchant key and secret in the form: hmac username=\"<key>\", algorithm=\"sha512\", headers=\"date\", signature=\"<hexhash>\" (required)",
+            "example": "{{authorization}}"
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Start date in YYYY-MM-DD format (required). If only start date provided, end date defaults to same date.",
+            "example": "{{dateFrom}}"
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "End date in YYYY-MM-DD format (optional). When omitted, system uses dateFrom. Must be >= dateFrom and date range must not exceed 3 days.",
+            "example": "{{dateTo}}"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Page number for paginated response (required). 1-based integer.",
+            "example": "{{page}}"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Number of records per page (required). Max allowed 50000, practical recommendation: <=500 to avoid timeouts.",
+            "example": "{{pageSize}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
     "/settlement/v1/merchantUpcomingSettlement": {
       "get": {
         "tags": [
@@ -143,62 +267,6 @@
             }
           }
         }
-      }
-    },
-    "/settlement/transactionDetails": {
-      "get": {
-        "tags": [
-          "default"
-        ],
-        "summary": "Transaction Details API",
-        "description": "This API retrieves detailed transaction information for settlement reconciliation purposes using your merchant transaction ID.",
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Bearer token for authentication (required). Format: 'Bearer <token>'",
-            "example": "{{authorizationBearer}}"
-          },
-          {
-            "name": "mid",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Your Merchant ID (required). Can be integer or string.",
-            "example": "{{mid}}"
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Response content type (recommended). Should be 'application/json'.",
-            "example": "application/json"
-          },
-          {
-            "name": "merchantTransactionId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Your unique merchant transaction/reference ID used to look up settlement entries (required). Length: 1-100 characters.",
-            "example": "{{merchantTransactionId}}"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
-        "operationId": "get_settlement-transactiondetails"
       }
     }
   }
