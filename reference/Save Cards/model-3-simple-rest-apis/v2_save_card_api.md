@@ -11,10 +11,10 @@ HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                        |
-| :--------------------- | :------------------------------------- |
-| Production Environment | https://info.payu.in/storecard/card/v1 |
-|                        | https://test.payu.in/storecard/card/v1 |
+|                        |                                                                                  |
+| :--------------------- | :------------------------------------------------------------------------------- |
+| Production Environment | [https://info.payu.in/storecard/card/v1](https://info.payu.in/storecard/card/v1) |
+|                        | [https://test.payu.in/storecard/card/v1](https://test.payu.in/storecard/card/v1) |
 
 ## Request Parameters
 
@@ -68,7 +68,7 @@ HTTP Method: **POST**
 ## Sample request
 
 ```
-curl --location '<info.storecard.service.url>/storecard/card/v1' \
+curl --location 'https://test.payu.in/storecard/card/v1)' \
   --header 'authorization: {{authorization}}' \
   --header 'date: {{date}}'
   --data '{
@@ -212,7 +212,7 @@ The following table describes the parameters in the response:
 
 | Parameter     | Description                                                         | Example               |
 | ------------- | ------------------------------------------------------------------- | --------------------- |
-| cardToken     | The cardToken is sent by PayU for the successful response.          | 18***1067***8c3d3241  |
+| cardToken     | The cardToken is sent by PayU for the successful response.          | 18_**1067**_8c3d3241  |
 | cardNo        | The redacted card number with last four digits that was saved.      | XXXXXXXXXXXX1258      |
 | cardName      | The name on card that was saved.                                    | testAll               |
 | network_token | The network token is returned in this parameter.                    | `1234 5*** 9*** 3456` |
