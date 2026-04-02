@@ -167,30 +167,139 @@ curl_close($ch);
 
 ## Sample Response
 
+### Success Scenarios
+
+#### For Capture
+
 ```json
 {
-    "status": 1,
-    "msg": "Transaction details retrieved successfully",
-    "result": {
-        "transactionId": "TXN123456789",
-        "payuId": "403993715525901741",
-        "amount": "1000.00",
-        "status": "success",
-        "settlementId": "SETT123456",
-        "settlementAmount": "980.00",
-        "fees": "20.00",
-        "tax": "3.60",
-        "settlementDate": "2023-06-28",
-        "paymentMode": "CC",
-        "bankRefNumber": "BRN123456789",
-        "cardNumber": "XXXX1234",
-        "nameOnCard": "John Doe",
-        "transactionDate": "2023-06-26T14:30:00Z",
-        "merchantName": "Test Merchant",
-        "productInfo": "Test Product"
+  "code": "2000",
+  "message": "Success",
+  "status": 0,
+  "result": [
+    {
+      "merchantId": 180012,
+      "merchantTransactionId": "W49OV6KQXR4H",
+      "payuId": "943323893640",
+      "transactionType": "capture",
+      "settlementStatus": "Settled",
+      "settlementUTR": "TESTUTR001",
+      "settlementDate": "2025-12-10T15:58:43",
+      "settlementId": "180012202512101738",
+      "settlementAmount": 8.0
     }
+  ]
 }
+
 ```
+
+#### For Capture + Refund + Chargeback
+
+```json
+{
+  "code": "2000",
+  "message": "Success",
+  "status": 0,
+  "result": [
+    {
+      "merchantId": 180012,
+      "merchantTransactionId": "W49OV6KQXR4H",
+      "payuId": "943323893640",
+      "transactionType": "capture",
+      "settlementStatus": "Settled",
+      "settlementUTR": "TESTUTR001",
+      "settlementDate": "2025-12-10T15:58:43",
+      "settlementId": "180012202512101738",
+      "settlementAmount": 8.0
+    },
+    {
+      "merchantId": 180012,
+      "merchantTransactionId": "W49OV6KQXR4H",
+      "payuId": "943323893640",
+      "transactionType": "refund",
+      "settlementStatus": "Settled",
+      "settlementUTR": "TESTUTR001",
+      "settlementDate": "2025-12-10T15:58:43",
+      "settlementId": "180012202512101738",
+      "settlementAmount": -8.0
+    },
+    {
+      "merchantId": 180012,
+      "merchantTransactionId": "W49OV6KQXR4H",
+      "payuId": "943323893640",
+      "transactionType": "chargeback",
+      "settlementStatus": "Settled",
+      "settlementUTR": "TESTUTR001",
+      "settlementDate": "2025-12-10T15:58:43",
+      "settlementId": "180012202512101738",
+      "settlementAmount": -8.0
+    }
+  ]
+}
+
+```
+
+#### For Capture + Chargeback + Chargeback Reversal
+
+```json
+{
+  "code": "2000",
+  "message": "Success",
+  "status": 0,
+  "result": [
+    {
+      "merchantId": 180012,
+      "merchantTransactionId": "W49OV6KQXR4H",
+      "payuId": "943323893640",
+      "transactionType": "capture",
+      "settlementStatus": "Settled",
+      "settlementUTR": "TESTUTR001",
+      "settlementDate": "2025-12-10T15:58:43",
+      "settlementId": "180012202512101738",
+      "settlementAmount": 8.0
+    },
+    {
+      "merchantId": 180012,
+      "merchantTransactionId": "W49OV6KQXR4H",
+      "payuId": "943323893640",
+      "transactionType": "chargeback",
+      "settlementStatus": "Settled",
+      "settlementUTR": "TESTUTR001",
+      "settlementDate": "2025-12-10T15:58:43",
+      "settlementId": "180012202512101738",
+      "settlementAmount": -8.0
+    },
+    {
+      "merchantId": 180012,
+      "merchantTransactionId": "W49OV6KQXR4H",
+      "payuId": "943323893640",
+      "transactionType": "chargebackreversal",
+      "settlementStatus": "Settled",
+      "settlementUTR": "TESTUTR001",
+      "settlementDate": "2025-12-10T15:58:43",
+      "settlementId": "180012202512101738",
+      "settlementAmount": 8.0
+    }
+  ]
+}
+
+```
+
+### Failure Scenario
+
+```json
+{
+  "code": "2000",
+  "message": "Success",
+  "status": 0,
+  "result": []
+}
+
+```
+
+<Callout icon="📘" theme="info">
+  **Note:** For the list of error codes, refer to the [Error Codes](#error-codes) section.
+</Callout>
 
 ## Response Parameters
 
@@ -202,27 +311,31 @@ curl_close($ch);
 
 ## result JSON Fields Descriptions
 
-| Parameter        | Description                                     |
-| ---------------- | ----------------------------------------------- |
-| transactionId    | Merchant transaction identifier                 |
-| payuId           | PayU internal transaction ID                    |
-| amount           | Original transaction amount                     |
-| status           | Transaction status (success, failure, pending)  |
-| settlementId     | Settlement batch identifier                     |
-| settlementAmount | Net amount settled to merchant                  |
-| fees             | Transaction processing fees                     |
-| tax              | Tax amount on fees                              |
-| settlementDate   | Date when settlement was processed (YYYY-MM-DD) |
-| paymentMode      | Payment method used (CC, DC, NB, UPI, etc.)     |
-| bankRefNumber    | Bank reference number for the transaction       |
-| cardNumber       | Masked card number (if card payment)            |
-| nameOnCard       | Cardholder name (if card payment)               |
-| transactionDate  | Transaction timestamp (ISO 8601 format)         |
-| merchantName     | Merchant business name                          |
-| productInfo      | Product description from transaction            |
+| Field | Data Type | Description |
+|-----------|-----------|-------------|
+| **merchantId** | `integer` | **Merchant identifier** assigned by PayU to uniquely identify the merchant account. This is the same ID used for authentication and API access. |
+| **merchantTransactionId** | `string` | **Merchant's unique transaction reference** provided during the original payment request. This is the merchant-generated identifier used to track the transaction in their system. |
+| **payuId** | `string` | **PayU's internal unique transaction identifier**. This is generated by PayU for every transaction and can be used for future transaction inquiries, refunds, or support requests. |
+| **transactionType** | `string` | **Type of transaction action** processed. Common values include: `capture` (successful payment), `refund`, `chargeback`, `adjustment`, `cancel`, etc. |
+| **settlementStatus** | `string` | **Current settlement status** of the transaction. Possible values: `Settled` (amount transferred to merchant), `Pending` (awaiting settlement), `On Hold`, `Failed`, etc. |
+| **settlementUTR** | `string` | **Unique Transaction Reference (UTR)** number generated by the bank for the settlement transfer. This is the bank reference for the actual money transfer to the merchant's account. |
+| **settlementDate** | `string` (ISO 8601) | **Date and time when the settlement was completed**. Format: `YYYY-MM-DDTHH:MM:SS`. Represents when the funds were actually transferred to the merchant's bank account. |
+| **settlementId** | `string` | **PayU's internal settlement batch identifier**. This groups multiple transactions that were settled together in the same batch. Format typically includes merchant ID + date + sequence number. |
+| **settlementAmount** | `number` (decimal) | **Final amount settled to the merchant** after deducting all applicable fees, taxes, and adjustments. This is the net amount that was actually transferred to the merchant's account. |
+
+## Erorr Codes
+
+| Code | Status  | Meaning                        |
+| ---- | ------- | ------------------------------ |
+| 2000 | Success | Request processed successfully |
+| 4000 | Failure | Invalid request parameters     |
+| 4001 | Failure | Unauthorized / access denied   |
+| 500  | Failure | Internal server error          |
 
 ## Request Parameters
 
 <Callout icon="📘" theme="info">
   **Note**: This API uses Bearer token for authentication and Bearer token must be generated using **Get Access Token**API. For more information, refer to [Get Access Token ](ref:get-token-api-for-general-apis)API.
 </Callout>
+
+
