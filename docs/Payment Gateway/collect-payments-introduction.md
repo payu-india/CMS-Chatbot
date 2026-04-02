@@ -513,6 +513,170 @@ PayU offers the following various integrations:
     ]}
     />
   </Tab>
+  <Tab title="Mobile SDKs">
+    <HoverCardGrid
+      columns={2}
+      items={[
+      {
+        title: "Mobile SDK Integrations",
+        text: (
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                marginBottom: "6px",
+              }}
+            >
+              <i className="fa-brands fa-android fa-2x" />
+              <a href="/docs/explore-android-sdks" target="_blank" rel="noopener noreferrer">
+                <strong>Android SDK</strong>
+              </a>
+            </li>
+
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                marginBottom: "6px",
+              }}
+            >
+              <i className="fa-brands fa-wix fa-2x" />
+              <a href="/docs/wix" target="_blank" rel="noopener noreferrer">
+                <strong>Wix</strong>
+              </a>
+            </li>
+
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                marginBottom: "6px",
+              }}
+            >
+              <i className="fa-solid fa-o fa-2x" />
+              <a href="/docs/odoo" target="_blank" rel="noopener noreferrer">
+                <strong>Odoo</strong>
+              </a>
+            </li>
+
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa-brands fa-wordpress fa-2x" />
+              <a href="/docs/woocommerce" target="_blank" rel="noopener noreferrer">
+                <strong>WooCommerce</strong>
+              </a>
+            </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa-brands fa-whatsapp fa-2x" />
+              <a href="/docs/interakt-for-whatsapp-business" target="_blank" rel="noopener noreferrer">
+                <strong>Interakt</strong>
+              </a>
+            </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa-brands fa-magento fa-2x" />
+              <a href="/docs/magento" target="_blank" rel="noopener noreferrer">
+                <strong>Magento</strong>
+              </a>
+            </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa-brands fa-opencart fa-2x" />
+              <a href="/docs/opencart" target="_blank" rel="noopener noreferrer">
+                <strong>OpenCart</strong>
+              </a>
+            </li>
+	          <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa fa-shopping-cart fa-2x" />
+              <a href="/docs/shopmatic" target="_blank" rel="noopener noreferrer">
+                <strong>Shopmatic</strong>
+              </a>
+            </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa fa-shopping-cart fa-lg fa-2x" />
+              <a href="/docs/prestashop" target="_blank" rel="noopener noreferrer">
+                <strong>PrestaShop</strong>
+              </a>
+            </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa fa-store fa-lg fa-2x" />
+              <a href="/docs/bigcommerce" target="_blank" rel="noopener noreferrer">
+                <strong>BigCommerce</strong>
+              </a>
+            </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa fa-briefcase fa-lg fa-2x" />
+              <a href="/docs/zoho-integration" target="_blank" rel="noopener noreferrer">
+                <strong>Zoho</strong>
+              </a>
+            </li>
+            <li
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <i className="fa fa-store fa-2x" />
+              <a href="/docs/fynd-integration" target="_blank" rel="noopener noreferrer">
+                <strong>Fynd Store</strong>
+              </a>
+            </li>
+          </ul>
+        ),
+      },
+    ]}
+    />
+  </Tab>
 </Tabs>
 
 <br />
