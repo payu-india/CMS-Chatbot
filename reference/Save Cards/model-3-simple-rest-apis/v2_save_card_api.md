@@ -14,7 +14,7 @@ HTTP Method: **POST**
 |                        |                                                                                  |
 | :--------------------- | :------------------------------------------------------------------------------- |
 | Production Environment | [https://info.payu.in/storecard/card/v1](https://info.payu.in/storecard/card/v1) |
-|                        | [https://test.payu.in/storecard/card/v1](https://test.payu.in/storecard/card/v1) |
+| Test Environment       | [https://test.payu.in/storecard/card/v1](https://test.payu.in/storecard/card/v1) |
 
 ## Request Parameters
 
