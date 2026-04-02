@@ -72,7 +72,7 @@ The following steps allow you to integrate the server-to-server UPI (United Paym
 
 <PaymentAPIEnvironment />
 
-The **_payment** API needs to be called with all the required parameters. For the complete list of parameters, refer to  <Anchor label="UPI Intent - Non SDK Flow" target="_blank" href="doc:upi-smart-intent-non-sdk-flow">UPI Intent - Non SDK Flow</Anchor>.
+The **_payment** API needs to be called with all the required parameters. 
 
 This needs to be a server-to-server cURL request. This API is used for both Cards and UPI for generating a new transaction.
 
@@ -139,34 +139,34 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
     For more information, refer to  <a href="generate-hash-merchant-hosted" target="_blank"> Generate Hash</a>.
   </Accordion>
 </Accordion>
-  <Accordion title="Sample Request" icon="fa-code">
-    ```curl
-    curl --location --request POST 'https://test.payu.in/_payment' \
-    --header 'Content-Type: application/x-www-form-urlencoded' \
-    --data-urlencode 'key=JPM7Fg' \
-    --data-urlencode 'txnid=payuTestTransaction12345' \
-    --data-urlencode 'amount=100.00' \
-    --data-urlencode 'firstname=Ashish' \
-    --data-urlencode 'email=test@payu.in' \
-    --data-urlencode 'phone=9988776655' \
-    --data-urlencode 'productinfo=Product Info' \
-    --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
-    --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
-    --data-urlencode 'pg=UPI' \
-    --data-urlencode 'bankcode=INTENT' \
-    --data-urlencode 'txn_s2s_flow=4' \
-    --data-urlencode 's2s_client_ip=10.200.12.12' \
-    --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
-    --data-urlencode 'udf1=AELPR1234E' \
-    --data-urlencode 'udf3=02-02-1980' \
-    --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
-    --data-urlencode 'udf5=INV123456' \
-    --data-urlencode 'buyer_type_business=1' \
-    --data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
-    --data-urlencode 'hash=YOUR_CALCULATED_HASH'
-    ```
-  </Accordion>
 
+<Accordion title="Sample Request" icon="fa-code">
+  ```curl
+  curl --location --request POST 'https://test.payu.in/_payment' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'key=JPM7Fg' \
+  --data-urlencode 'txnid=payuTestTransaction12345' \
+  --data-urlencode 'amount=100.00' \
+  --data-urlencode 'firstname=Ashish' \
+  --data-urlencode 'email=test@payu.in' \
+  --data-urlencode 'phone=9988776655' \
+  --data-urlencode 'productinfo=Product Info' \
+  --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'pg=UPI' \
+  --data-urlencode 'bankcode=INTENT' \
+  --data-urlencode 'txn_s2s_flow=4' \
+  --data-urlencode 's2s_client_ip=10.200.12.12' \
+  --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+  --data-urlencode 'udf1=AELPR1234E' \
+  --data-urlencode 'udf3=02-02-1980' \
+  --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+  --data-urlencode 'udf5=INV123456' \
+  --data-urlencode 'buyer_type_business=1' \
+  --data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
+  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
+  ```
+</Accordion>
 
 <Accordion title="Response for S2S request" icon="fa-code">
   Collect the response in the  [UPI Collection - S2S](ref:_payment_s2s_upi_collection). under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters, refer to [Additional Info for Payment APIs.](ref:addl_info-payment-apis#response-for-initial-server-to-server-request)
