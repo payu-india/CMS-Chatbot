@@ -27,7 +27,7 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 | Test Environment       | [https://test.payu.in/treasury/int/payu/settlement/settlementDetails](https://test.payu.in/treasury/int/payu/settlement/settlementDetails) |
 | Production Environment | [https://info.payu.in/treasury/settlement/settlementDetails](https://info.payu.in/treasury/settlement/settlementDetails)                   |
 
-## Request Parameters
+<Accordion title="Request Parameters" icon="fa-table">
 
 ### Authentication Header
 
@@ -43,9 +43,8 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 | pageSize<br /> `mandatory`    | `Integer` This parameter must contain the records per page (2000-50000)                                 |
 | type<br /> `optional`         | `String` This parameter must contain the Settlement type ('G' or blank).                                |
 | isVersion<br /> `optional`    | `Integer` This parameter must contain the API version and it can be 1 or 2.                             |
-
-## Sample Request
-
+</Accordion>
+<Accordion title="Sample Request" icon="fa-info-circle">
 ```curl
 curl -X GET \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"YOUR_SIGNATURE_HASH\"" \
@@ -275,9 +274,8 @@ if (curl_errno($ch)) {
 curl_close($ch);
 ?>
 ```
-
-## Sample Response
-
+</Accordion>
+<Accordion title="Sample Response" icon="fa-reply">
 ```json
 {
     "status": 1,
@@ -316,7 +314,8 @@ curl_close($ch);
     }
 }
 ```
-
+</Accordion>
+<Accordion title="Response Parameters" icon="fa-table">
 ## Response Parameters
 
 | Parameter | Description                                                                                                                                       |
@@ -363,3 +362,4 @@ curl_close($ch);
 | tax           | Tax on fees for this transaction |
 | netAmount     | Net amount after fees and tax    |
 | status        | Transaction settlement status    |
+</Accordion>
