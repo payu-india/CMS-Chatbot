@@ -13,10 +13,10 @@ This API is retrieve detailed information about a specific transaction using the
 
 ### Environment
 
-|                        |                                                                                                            |
-| :--------------------- | :--------------------------------------------------------------------------------------------------------- |
-| Test Environment       | [[https://test.payu.in/settlement/transactionDetails](https://test.payu.in/settlement/transactionDetails)] |
-| Production Environment | [https://info.payu.in/settlement/transactionDetails](https://info.payu.in/settlement/transactionDetails)   |
+|                        |                                                                                                          |
+| :--------------------- | :------------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/settlement/transactionDetails](https://test.payu.in/settlement/transactionDetails) |
+| Production Environment | [https://info.payu.in/settlement/transactionDetails](https://info.payu.in/settlement/transactionDetails) |
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
