@@ -15,6 +15,12 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 | Production Environment | [https://info.payu.in/settlement/v1/merchantUpcomingSettlement](https://info.payu.in/settlement/v1/merchantUpcomingSettlement) |
 
 <Accordion title="Sample Request" icon="fa-code">
+  ```curl
+curl --request GET \
+     --url http://test.payu.in/settlement/v1/merchantUpcomingSettlement \
+     --header 'accept: application/json' \
+     --header 'mid: 3434'
+  ```
   ```python
   import requests
 
@@ -218,7 +224,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   | Parameter           | Description                                                                                                                                                        |
   | :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | upcomingSettlements | Array of upcoming settlement schedules. For more information, refer to [upcomingSettlements JSON Field Descriptions](#upcomingSettlements-json-field-descriptions) |
-  | pendingSettlements  | Array of delayed/pending settlements. For more information, refer to [pendingSettlements JSON Field Descriptions](#pendingSettlements-json-field-descriptions)    |
+  | pendingSettlements  | Array of delayed/pending settlements. For more information, refer to [pendingSettlements JSON Field Descriptions](#pendingSettlements-json-field-descriptions)     |
   | summary             | Overall summary of upcoming and pending settlements. For more information, refer to [summary JSON Field Descriptions](#summary-json-field-descriptions)            |
 
   #### upcomingSettlements JSON Field Descriptions
