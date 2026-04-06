@@ -1,6 +1,6 @@
 - get-token-api-for-general-apis
 - get_settlement_details_api
-- copy-of-get-settlement-details-api
+- new-get-settlement-details-api
 - settlement-detail-range-api
 - copy-of-settlement-detail-range-api
 - settlement_transaction_details_api
