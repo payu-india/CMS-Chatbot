@@ -13,16 +13,16 @@ This API is retrieve detailed information about a specific transaction using the
 
 ### Environment
 
-|                        |                                                                                                          |
-| :--------------------- | :------------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/settlement/transactionDetails](https://test.payu.in/settlement/transactionDetails) |
-| Production Environment | [https://info.payu.in/settlement/transactionDetails](https://info.payu.in/settlement/transactionDetails) |
+|                        |                                                                                                                |
+| :--------------------- | :------------------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://apitest.payu.in/settlement/transactionDetails](https://apitest.payu.in/settlement/transactionDetails) |
+| Production Environment | [https://info.payu.in/settlement/transactionDetails](https://info.payu.in/settlement/transactionDetails)       |
 
 **HTTP Method**: POST
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
-  curl --location 'http://test.payu.in/settlement/transactionDetails?merchantTransactionId=W49OV6KQXR4H' \
+  curl --location 'http://apitest.payu.in/settlement/transactionDetails?merchantTransactionId=W49OV6KQXR4H' \
   --header 'mid: 180012'
   --header 'Authorization: Bearer <token>'
   ```
@@ -30,7 +30,7 @@ This API is retrieve detailed information about a specific transaction using the
   import requests
   import json
 
-  url = "https://test.payu.in/settlement/transactionDetails"
+  url = "https://apitest.payu.in/settlement/transactionDetails"
   headers = {
       'Authorization': 'Bearer <your_token>',
       'mid': '<your_merchant_id>',
@@ -57,7 +57,7 @@ This API is retrieve detailed information about a specific transaction using the
       static async Task Main()
       {
           var client = new HttpClient();
-          var url = "https://test.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
+          var url = "https://apitest.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
           
           client.DefaultRequestHeaders.Add("Authorization", "Bearer <your_token>");
           client.DefaultRequestHeaders.Add("mid", "<your_merchant_id>");
@@ -79,7 +79,7 @@ This API is retrieve detailed information about a specific transaction using the
   ```
   ```javascript
   async function getTransactionDetails() {
-      const url = "https://test.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
+      const url = "https://apitest.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
       
       try {
           const response = await fetch(url, {
@@ -110,7 +110,7 @@ This API is retrieve detailed information about a specific transaction using the
   public class TransactionDetailsAPI {
       public static void main(String[] args) {
           try {
-              String urlString = "https://test.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
+              String urlString = "https://apitest.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
               URL url = new URL(urlString);
               HttpURLConnection connection = (HttpURLConnection) url.openConnection();
               
@@ -139,7 +139,7 @@ This API is retrieve detailed information about a specific transaction using the
   ```
   ```php
   <?php
-  $url = "https://test.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
+  $url = "https://apitest.payu.in/settlement/transactionDetails?merchantTransactionId=TXN123456789";
 
   $headers = [
       'Authorization: Bearer <your_token>',
