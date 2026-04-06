@@ -1,5 +1,5 @@
 ---
-title: Web Checkout Integration
+title: Checkout Integration
 excerpt: ''
 deprecated: false
 hidden: false
