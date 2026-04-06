@@ -219,7 +219,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   | `chargebackAmount`         | Total chargebacks (reductions due to disputes)                |
   | `refundReversalAmount`     | Amounts from reversed refunds (restored to merchant)          |
   | `chargebackReversalAmount` | Amounts from reversed chargebacks                             |
-  | `serviceFee`               | Service fees charged (typically negative)                     |
+  | `serviceFee`               | Service fees charged                   |
   | `serviceTax`               | Tax on service fee                                            |
   | `convenienceFee`           | Convenience fees charged to customer (affect settlement)      |
   | `convenienceTax`           | Tax on convenience fee                                        |
