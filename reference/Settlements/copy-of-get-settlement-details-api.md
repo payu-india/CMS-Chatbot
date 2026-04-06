@@ -1,7 +1,7 @@
 ---
-title: Copy of Get Settlement Details API
+title: '[NEW] Get Settlement Details API'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Get Settlement Details API
   description: >-
