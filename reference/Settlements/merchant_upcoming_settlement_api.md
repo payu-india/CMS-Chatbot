@@ -17,6 +17,8 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 | Test Environment       | [https://test.payu.in/settlement/v1/merchantUpcomingSettlement](https://test.payu.in/settlement/v1/merchantUpcomingSettlement) |
 | Production Environment | [https://info.payu.in/settlement/v1/merchantUpcomingSettlement](https://info.payu.in/settlement/v1/merchantUpcomingSettlement) |
 
+**HTTP Method**: POST
+
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
   curl --request GET \
@@ -198,6 +200,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   | result    | Object  | Main response data container in JSON format. For more information, refer to  [result JSON Field Descriptions](#result-json-field-descriptions) |
 
   ### result JSON Field Descriptions
+
   | Field                          | Description                                                                                                                                                                                                                                                                                                          |
   | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | `holdSettlementStatus`         | Indicator whether merchant settlements are on hold. Values: `1` = on hold, `0` = not on hold                                                                                                                                                                                                                         |
