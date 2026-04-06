@@ -1,7 +1,6 @@
 - check-transaction-apis
 - transaction-detail-apis
 - refund-apis
-- settlement-details
 - bin-apis
 - emi-apis
 - health-check-apis
