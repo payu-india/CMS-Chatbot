@@ -32,12 +32,13 @@ metadata:
 next:
   description: ''
 ---
+
 Settlement Details Range API provides transaction level data for a given date or date range. This API returns paginated response for the given input page and page size.
 
 <Callout icon="📮" theme="default">
   **Postman Collection**: Access the **Settlement Detail Range API Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/lc2xiuz/settlementrangeapi
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/lc2xiuz/settlementrangeapi](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/lc2xiuz/settlementrangeapi)
 </Callout>
 
 **Environment**
@@ -45,7 +46,7 @@ Settlement Details Range API provides transaction level data for a given date or
 |                        |                                                                                      |
 | :--------------------- | :----------------------------------------------------------------------------------- |
 | Test Environment       | [https://apitest.payu.in/settlement/range](https://apitest.payu.in/settlement/range) |
-| Production Environment | [https://info.payu.in/settlement/range/](https://info.payu.in/settlement/range/)     |
+| Production Environment | [https://info.payu.in/settlement/range](https://info.payu.in/settlement/range)       |
 
 <Callout icon="📘" theme="info">
   **Note**: Use the endpoint as per above [https://\<environment base URL>/settlement/range](https://apitest.payu.in/settlement/range) and do not append slash (/) at the end of it.
