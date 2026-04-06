@@ -1,8 +1,5 @@
 ---
 title: Merchant Upcoming and Pending Settlement API
-excerpt: >-
-  This API retrieves upcoming and pending settlement information for the
-  merchant. No query parameters or request body required.
 api:
   file: settlement_apis_filtered_collection.json
   operationId: get_settlement-v1-merchantupcomingsettlement
@@ -14,24 +11,24 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 
 **Environment**
 
-|                        |                                                                                                                                |
-| :--------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/settlement/v1/merchantUpcomingSettlement](https://test.payu.in/settlement/v1/merchantUpcomingSettlement) |
-| Production Environment | [https://info.payu.in/settlement/v1/merchantUpcomingSettlement](https://info.payu.in/settlement/v1/merchantUpcomingSettlement) |
+|                        |                                                                                                                                      |
+| :--------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://apitest.payu.in/settlement/v1/merchantUpcomingSettlement](https://apitest.payu.in/settlement/v1/merchantUpcomingSettlement) |
+| Production Environment | [https://info.payu.in/settlement/v1/merchantUpcomingSettlement](https://info.payu.in/settlement/v1/merchantUpcomingSettlement)       |
 
 **HTTP Method**: POST
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
   curl --request GET \
-     --url https://test.payu.in/settlement/v1/merchantUpcomingSettlement \
+     --url https://apitest.payu.in/settlement/v1/merchantUpcomingSettlement \
      --header 'accept: application/json' \
      --header 'mid: <your_merchant_mid>'
   ```
   ```python
   import requests
 
-  url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement"
+  url = "https://apitest.payu.in/settlement/v1/merchantUpcomingSettlement"
   headers = {
       'mid': '<your_merchant_id>',
       'Accept': 'application/json'
@@ -54,7 +51,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
       static async Task Main()
       {
           var client = new HttpClient();
-          var url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement";
+          var url = "https://apitest.payu.in/settlement/v1/merchantUpcomingSettlement";
           
           client.DefaultRequestHeaders.Add("mid", "<your_merchant_id>");
           client.DefaultRequestHeaders.Add("Accept", "application/json");
@@ -75,7 +72,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   ```
   ```javascript
   async function getUpcomingSettlements() {
-      const url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement";
+      const url = "https://apitest.payu.in/settlement/v1/merchantUpcomingSettlement";
       
       try {
           const response = await fetch(url, {
@@ -105,7 +102,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   public class UpcomingSettlementAPI {
       public static void main(String[] args) {
           try {
-              String urlString = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement";
+              String urlString = "https://apitest.payu.in/settlement/v1/merchantUpcomingSettlement";
               URL url = new URL(urlString);
               HttpURLConnection connection = (HttpURLConnection) url.openConnection();
               
@@ -133,7 +130,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   ```
   ```php
   <?php
-  $url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement";
+  $url = "https://apitest.payu.in/settlement/v1/merchantUpcomingSettlement";
 
   $headers = [
       'mid: <your_merchant_id>',
