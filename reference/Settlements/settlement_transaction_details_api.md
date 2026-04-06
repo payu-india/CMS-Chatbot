@@ -18,6 +18,8 @@ This API is retrieve detailed information about a specific transaction using the
 | Test Environment       | [https://test.payu.in/settlement/transactionDetails](https://test.payu.in/settlement/transactionDetails) |
 | Production Environment | [https://info.payu.in/settlement/transactionDetails](https://info.payu.in/settlement/transactionDetails) |
 
+**HTTP Method**: POST
+
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
   curl --location 'http://test.payu.in/settlement/transactionDetails?merchantTransactionId=W49OV6KQXR4H' \
@@ -292,14 +294,13 @@ This API is retrieve detailed information about a specific transaction using the
   }
   ```
 
-### Failure scenario
+  ### Failure scenario
 
-  | Code  | Status   | Meaning                         |
-  | ----- | -------- | ------------------------------- |
-  | 4000  | Failure  | Invalid request parameters      |
-  | 4001  | Failure  | Unauthorized / access denied    |
-  | 500   | Failure  | Internal server error           |
-
+  | Code  | Status   | Meaning                       |
+  | ----- | -------- | ----------------------------- |
+  | 4000  | Failure  | Invalid request parameters    |
+  | 4001  | Failure  | Unauthorized / access denied  |
+  | 500   | Failure  | Internal server error         |
 </Accordion>
 
 <Accordion title="Response Parameters" icon="fa-table">
@@ -323,7 +324,6 @@ This API is retrieve detailed information about a specific transaction using the
   | settlementId          | **PayU's internal settlement batch identifier**. This groups multiple transactions that were settled together in the same batch. Format typically includes merchant ID + date + sequence number. |
   | settlementAmount      | **Final amount settled to the merchant** after deducting all applicable fees, taxes, and adjustments. This is the net amount that was actually transferred to the merchant's account.            |
 </Accordion>
-
 
 ## Request Parameters
 
