@@ -1,5 +1,6 @@
 - get-token-api-for-general-apis
 - get_settlement_details_api
 - settlement-details
+- merchant_upcoming_settlement_api
 - release_settlement_api
 - settlement-reconciliation-api
