@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Settlement APIs - Filtered Collection",
+    "description": "Filtered collection containing only Settlement Transaction Details API and Merchant Upcoming and Pending Settlement API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://apitest.payu.in"
+    }
+  ],
+  "paths": {
+    "/treasury/v1/settlement/transactionDetails": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Transaction Details API",
+        "description": "This API retrieves detailed transaction information for settlement reconciliation purposes using your merchant transaction ID.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Bearer token for authentication (required). Format: 'Bearer <token>'",
+            "example": "{{authorizationBearer}}"
+          },
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Your Merchant ID (required). Can be integer or string.",
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Response content type (recommended). Should be 'application/json'.",
+            "example": "application/json"
+          },
+          {
+            "name": "merchantTransactionId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Your unique merchant transaction/reference ID used to look up settlement entries (required). Length: 1-100 characters.",
+            "example": "{{merchantTransactionId}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/settlement/v1/merchantUpcomingSettlement": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Merchant Upcoming And Pending Settlement API",
+        "description": "This API retrieves upcoming and pending settlement information for the merchant. No query parameters or request body required.",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Merchant identifier the integration was registered with (mandatory). Can be string or integer.",
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Response content type (recommended). Should be 'application/json'.",
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
