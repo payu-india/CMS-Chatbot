@@ -6,5 +6,5 @@ excerpt: >-
 api:
   file: settlement_apis_filtered_collection.json
   operationId: get_treasury-v1-settlement-transactiondetails
-hidden: false
+hidden: true
 ---
