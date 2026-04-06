@@ -159,59 +159,34 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 <Accordion title="Sample Response" icon="fa-code">
   ```json
   {
-      "status": 1,
-      "msg": "Upcoming settlements retrieved successfully",
-      "result": {
-          "upcomingSettlements": [
-              {
-                  "expectedSettlementDate": "2023-06-30",
-                  "expectedAmount": "25000.00",
-                  "transactionCount": 50,
-                  "settlementCycle": "T+2",
-                  "transactionDateRange": {
-                      "from": "2023-06-28",
-                      "to": "2023-06-28"
-                  },
-                  "estimatedFees": "500.00",
-                  "estimatedTax": "90.00",
-                  "netExpectedAmount": "24410.00"
-              },
-              {
-                  "expectedSettlementDate": "2023-07-01",
-                  "expectedAmount": "18500.00",
-                  "transactionCount": 37,
-                  "settlementCycle": "T+2",
-                  "transactionDateRange": {
-                      "from": "2023-06-29",
-                      "to": "2023-06-29"
-                  },
-                  "estimatedFees": "370.00",
-                  "estimatedTax": "66.60",
-                  "netExpectedAmount": "18063.40"
-              }
-          ],
-          "pendingSettlements": [
-              {
-                  "originalSettlementDate": "2023-06-29",
-                  "transactionDate": "2023-06-27",
-                  "pendingAmount": "12000.00",
-                  "reason": "Bank holiday",
-                  "reasonCode": "BANK_HOLIDAY",
-                  "expectedClearanceDate": "2023-07-03",
-                  "transactionCount": 24,
-                  "estimatedFees": "240.00",
-                  "estimatedTax": "43.20",
-                  "netPendingAmount": "11716.80"
-              }
-          ],
-          "summary": {
-              "totalUpcomingAmount": "43500.00",
-              "totalPendingAmount": "12000.00",
-              "totalExpectedNet": "42473.80",
-              "nextSettlementDate": "2023-06-30"
-          }
-      }
+ "code": "2000",
+ "message": "Success",
+ "status": 0,
+ "result": {
+  "holdSettlementStatus": 0,
+  "lastSettledAmount": 0,
+  "upcomingSettlementAmount": 0,
+  "upcomingSettlementTime": "2026-03-20 12:00:00",
+  "totalSettlementPendingAmount": 579.00,
+  "currencyType": "INR",
+  "merchantId": 100005,
+  "pendingSettlementBreakdown": {
+   "saleAmount": 2000.00,
+   "adjustmentAmount": 100.00,
+   "refundAmount": -1500.00,
+   "chargebackAmount": 0.00,
+   "refundReversalAmount": 50.00,
+   "chargebackReversalAmount": 25.00,
+   "serviceFee": -30.00,
+   "serviceTax": -5.40,
+   "convenienceFee": -1.00,
+   "convenienceTax": 0.00,
+   "additionalServiceFee": -10.00,
+   "additionalServiceTax": 0.00,
+   "txnCount": 10
   }
+ }
+}
   ```
 </Accordion>
 
@@ -224,48 +199,40 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 
   ### result JSON Field Descriptions
 
-  | Parameter           | Description                                                                                                                                                        |
-  | :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | upcomingSettlements | Array of upcoming settlement schedules. For more information, refer to [upcomingSettlements JSON Field Descriptions](#upcomingSettlements-json-field-descriptions) |
-  | pendingSettlements  | Array of delayed/pending settlements. For more information, refer to [pendingSettlements JSON Field Descriptions](#pendingSettlements-json-field-descriptions)     |
-  | summary             | Overall summary of upcoming and pending settlements. For more information, refer to [summary JSON Field Descriptions](#summary-json-field-descriptions)            |
+ Perfect! Now let me create a comprehensive response parameters table for you:
 
-  #### upcomingSettlements JSON Field Descriptions
+## **Response Parameters**
 
-  | Parameter                 | Description                                  |
-  | :------------------------ | :------------------------------------------- |
-  | expectedSettlementDate    | Expected date for settlement (YYYY-MM-DD)    |
-  | expectedAmount            | Expected gross settlement amount             |
-  | transactionCount          | Number of transactions to be settled         |
-  | settlementCycle           | Settlement cycle (T+1, T+2, etc.)            |
-  | transactionDateRange      | Date range of transactions included          |
-  | transactionDateRange.from | Start date of transaction range (YYYY-MM-DD) |
-  | transactionDateRange.to   | End date of transaction range (YYYY-MM-DD)   |
-  | estimatedFees             | Estimated processing fees to be deducted     |
-  | estimatedTax              | Estimated tax on fees                        |
-  | netExpectedAmount         | Expected net amount after fees and tax       |
+| Field | Description |
+|-----------|----------------|
+| `holdSettlementStatus` | Indicator whether merchant settlements are on hold. Values: `1` = on hold, `0` = not on hold |
+| `lastSettledAmount` | Monetary amount that was settled in the most recent settlement |
+| `upcomingSettlementAmount` | Monetary amount expected to be settled in the next settlement cycle |
+| `upcomingSettlementTime` | Timestamp (IST date-time format) of the next scheduled settlement |
+| `totalSettlementPendingAmount` | Total monetary amount still pending settlement (aggregate outstanding balance) |
+| `currencyType` | Currency code for amounts (e.g., "INR") |
+| `merchantId` | Identifier of the merchant for whom the snapshot is returned |
+| `pendingSettlementBreakdown` | JSON Object providing a component-wise breakdown of the pending/upcoming settlement amount. Numeric amounts may be 0 or omitted; negative values denote deductions/credits. For more information, refer to [pendingSettlementBreakdown JSON Fields Description](#pendingSettlementBreakdown-json-fields-description)  |
 
-  #### pendingSettlements JSON Field Descriptions
+#### pendingSettlementBreakdown JSON Fields Description
 
-  | Parameter              | Description                                                     |
-  | :--------------------- | :-------------------------------------------------------------- |
-  | originalSettlementDate | Originally scheduled settlement date                            |
-  | transactionDate        | Date of transactions that are pending settlement                |
-  | pendingAmount          | Gross amount pending settlement                                 |
-  | reason                 | Human-readable reason for delay                                 |
-  | reasonCode             | System code for delay reason (BANK\_HOLIDAY, TECH\_ISSUE, etc.) |
-  | expectedClearanceDate  | Expected date when settlement will be processed                 |
-  | transactionCount       | Number of transactions pending settlement                       |
-  | estimatedFees          | Estimated fees for pending transactions                         |
-  | estimatedTax           | Estimated tax on fees for pending transactions                  |
-  | netPendingAmount       | Expected net amount for pending settlement                      |
+| Field | Description |
+|-----------|----------------|
+| `saleAmount` | Total transaction (sales) amount |
+| `adjustmentAmount` | Adjustments applied (positive or negative adjustments) |
+| `refundAmount` | Total refunds (usually negative when reducing payable amount) |
+| `chargebackAmount` | Total chargebacks (reductions due to disputes) |
+| `refundReversalAmount` | Amounts from reversed refunds (restored to merchant) |
+| `chargebackReversalAmount` | Amounts from reversed chargebacks |
+| `serviceFee` | Service fees charged (typically negative) |
+| `serviceTax` | Tax on service fee |
+| `convenienceFee` | Convenience fees charged to customer (affect settlement) |
+| `convenienceTax` | Tax on convenience fee |
+| `additionalServiceFee` | Any additional service fees |
+| `additionalServiceTax` | Tax on additional service fee |
+| `txnCount` | Number of transactions contributing to the breakdown |
 
-  #### summary JSON Field Descriptions
+---
 
-  | Parameter           | Description                                    |
-  | :------------------ | :--------------------------------------------- |
-  | totalUpcomingAmount | Total gross amount in upcoming settlements     |
-  | totalPendingAmount  | Total gross amount in pending settlements      |
-  | totalExpectedNet    | Total expected net amount after all deductions |
-  | nextSettlementDate  | Date of the next scheduled settlement          |
+This table structure clearly separates the root-level fields from the nested `pendingSettlementBreakdown` object fields, making it easy to understand the complete response structure. All descriptions are based on the reference document you provided. 📋✨
 </Accordion>
