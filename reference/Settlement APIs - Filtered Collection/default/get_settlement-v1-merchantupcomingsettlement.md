@@ -6,5 +6,5 @@ excerpt: >-
 api:
   file: settlement_apis_filtered_collection.json
   operationId: get_settlement-v1-merchantupcomingsettlement
-hidden: false
+hidden: true
 ---
