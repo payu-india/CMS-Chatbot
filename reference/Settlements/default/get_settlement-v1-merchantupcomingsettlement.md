@@ -1,5 +1,5 @@
 ---
-title: Merchant Upcoming And Pending Settlement API
+title: Merchant Upcoming and Pending Settlement API
 excerpt: >-
   This API retrieves upcoming and pending settlement information for the
   merchant. No query parameters or request body required.
