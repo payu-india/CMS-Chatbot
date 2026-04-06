@@ -159,10 +159,10 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 <Accordion title="Sample Response" icon="fa-code">
   ```json
   {
- "code": "2000",
- "message": "Success",
- "status": 0,
- "result": {
+  "code": "2000",
+  "message": "Success",
+  "status": 0,
+  "result": {
   "holdSettlementStatus": 0,
   "lastSettledAmount": 0,
   "upcomingSettlementAmount": 0,
@@ -185,8 +185,8 @@ Retrieve information about upcoming and pending settlements for a merchant. This
    "additionalServiceTax": 0.00,
    "txnCount": 10
   }
- }
-}
+  }
+  }
   ```
 </Accordion>
 
@@ -198,41 +198,36 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   | result    | Object  | Main response data container in JSON format. For more information, refer to  [result JSON Field Descriptions](#result-json-field-descriptions) |
 
   ### result JSON Field Descriptions
+  | Field                          | Description                                                                                                                                                                                                                                                                                                          |
+  | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `holdSettlementStatus`         | Indicator whether merchant settlements are on hold. Values: `1` = on hold, `0` = not on hold                                                                                                                                                                                                                         |
+  | `lastSettledAmount`            | Monetary amount that was settled in the most recent settlement                                                                                                                                                                                                                                                       |
+  | `upcomingSettlementAmount`     | Monetary amount expected to be settled in the next settlement cycle                                                                                                                                                                                                                                                  |
+  | `upcomingSettlementTime`       | Timestamp (IST date-time format) of the next scheduled settlement                                                                                                                                                                                                                                                    |
+  | `totalSettlementPendingAmount` | Total monetary amount still pending settlement (aggregate outstanding balance)                                                                                                                                                                                                                                       |
+  | `currencyType`                 | Currency code for amounts (e.g., "INR")                                                                                                                                                                                                                                                                              |
+  | `merchantId`                   | Identifier of the merchant for whom the snapshot is returned                                                                                                                                                                                                                                                         |
+  | `pendingSettlementBreakdown`   | JSON Object providing a component-wise breakdown of the pending/upcoming settlement amount. Numeric amounts may be 0 or omitted; negative values denote deductions/credits. For more information, refer to [pendingSettlementBreakdown JSON Fields Description](#pendingSettlementBreakdown-json-fields-description) |
 
- Perfect! Now let me create a comprehensive response parameters table for you:
+  #### pendingSettlementBreakdown JSON Fields Description
 
-## **Response Parameters**
+  | Field                      | Description                                                   |
+  | -------------------------- | ------------------------------------------------------------- |
+  | `saleAmount`               | Total transaction (sales) amount                              |
+  | `adjustmentAmount`         | Adjustments applied (positive or negative adjustments)        |
+  | `refundAmount`             | Total refunds (usually negative when reducing payable amount) |
+  | `chargebackAmount`         | Total chargebacks (reductions due to disputes)                |
+  | `refundReversalAmount`     | Amounts from reversed refunds (restored to merchant)          |
+  | `chargebackReversalAmount` | Amounts from reversed chargebacks                             |
+  | `serviceFee`               | Service fees charged (typically negative)                     |
+  | `serviceTax`               | Tax on service fee                                            |
+  | `convenienceFee`           | Convenience fees charged to customer (affect settlement)      |
+  | `convenienceTax`           | Tax on convenience fee                                        |
+  | `additionalServiceFee`     | Any additional service fees                                   |
+  | `additionalServiceTax`     | Tax on additional service fee                                 |
+  | `txnCount`                 | Number of transactions contributing to the breakdown          |
 
-| Field | Description |
-|-----------|----------------|
-| `holdSettlementStatus` | Indicator whether merchant settlements are on hold. Values: `1` = on hold, `0` = not on hold |
-| `lastSettledAmount` | Monetary amount that was settled in the most recent settlement |
-| `upcomingSettlementAmount` | Monetary amount expected to be settled in the next settlement cycle |
-| `upcomingSettlementTime` | Timestamp (IST date-time format) of the next scheduled settlement |
-| `totalSettlementPendingAmount` | Total monetary amount still pending settlement (aggregate outstanding balance) |
-| `currencyType` | Currency code for amounts (e.g., "INR") |
-| `merchantId` | Identifier of the merchant for whom the snapshot is returned |
-| `pendingSettlementBreakdown` | JSON Object providing a component-wise breakdown of the pending/upcoming settlement amount. Numeric amounts may be 0 or omitted; negative values denote deductions/credits. For more information, refer to [pendingSettlementBreakdown JSON Fields Description](#pendingSettlementBreakdown-json-fields-description)  |
+  ***
 
-#### pendingSettlementBreakdown JSON Fields Description
-
-| Field | Description |
-|-----------|----------------|
-| `saleAmount` | Total transaction (sales) amount |
-| `adjustmentAmount` | Adjustments applied (positive or negative adjustments) |
-| `refundAmount` | Total refunds (usually negative when reducing payable amount) |
-| `chargebackAmount` | Total chargebacks (reductions due to disputes) |
-| `refundReversalAmount` | Amounts from reversed refunds (restored to merchant) |
-| `chargebackReversalAmount` | Amounts from reversed chargebacks |
-| `serviceFee` | Service fees charged (typically negative) |
-| `serviceTax` | Tax on service fee |
-| `convenienceFee` | Convenience fees charged to customer (affect settlement) |
-| `convenienceTax` | Tax on convenience fee |
-| `additionalServiceFee` | Any additional service fees |
-| `additionalServiceTax` | Tax on additional service fee |
-| `txnCount` | Number of transactions contributing to the breakdown |
-
----
-
-This table structure clearly separates the root-level fields from the nested `pendingSettlementBreakdown` object fields, making it easy to understand the complete response structure. All descriptions are based on the reference document you provided. 📋✨
+  This table structure clearly separates the root-level fields from the nested `pendingSettlementBreakdown` object fields, making it easy to understand the complete response structure. All descriptions are based on the reference document you provided. 📋✨
 </Accordion>
