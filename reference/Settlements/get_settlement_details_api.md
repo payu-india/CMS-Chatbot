@@ -30,22 +30,23 @@ metadata:
 next:
   description: ''
 ---
+
 You can use the **Get Settlement Details** API to retrieve settlement details which the bank has to settle for you. The input is the date for which settlement details are required, where the var1 parameter is the date you want to know the settlement status or UTR (Unique Transaction Reference number). This API can be posted with version (1 or 2) in the var5 parameter.
 
 <Callout icon="📮" theme="default">
   **Postman Collection**: Access the **Get Settlement Details API Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi)
 </Callout>
 
 <br />
 
 ## Environment
 
-| Environment            | URL                                                                                                  |
-| :--------------------- | :--------------------------------------------------------------------------------------------------- |
-| Test Environment       | Not applicable for Test environment                                                                  |
-| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2) |
+| Environment            | URL                                                                                                        |
+| :--------------------- | :--------------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://apitest.payu.in/merchant/postservice?form=2](https://apitest.payu.in/merchant/postservice?form=2) |
+| Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2)       |
 
 ## Request parameters
 
@@ -199,7 +200,7 @@ Use the following sample values while trying out the API:
 ### For version 1
 
 ```bash
-curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+curl -X POST "https://apitest.payu.in/merchant/postservice?form=2" \
 -H "accept: application/json" \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8"
@@ -208,15 +209,15 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
 ### For version 2
 
 ```bash
-curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+curl -X POST "https://apitest.payu.in/merchant/postservice?form=2" \
 -H "accept: application/json" \
 -H "Content-Type: application/x-www-form-urlencoded" \
 -d "key=JP***g&command=get_settlement_details&var1=2021-08-10&hash=259ded5457ad8d078b3c06294413680d0b9eb341682a4f0eecad17256388c2e096f37f5077480e3a56000cc0a3585f7cd73a7d2d10d8225a05b3b93cd27fd5f8&var2&var3&var4=L&var5=2"
 ```
 
-> 📘 **Note**
->
-> The dates queried in the above requests using version 1 or version 2 are the same. The second sample request (under Sample Request for Version 2) includes the var5 parameter with the value 2 to indicate that it is for version 2.
+<Callout icon="📘" theme="info">
+  **Note**: The dates queried in the above requests using version 1 or version 2 are the same. The second sample request (under Sample Request for Version 2) includes the var5 parameter with the value 2 to indicate that it is for version 2.
+</Callout>
 
 ## Response parameters description
 
