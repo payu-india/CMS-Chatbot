@@ -1,5 +1,5 @@
 ---
-title: InitiateTransferAPI
+title: Initiate Transfer API
 api:
   file: initiate_transfer.json
   operationId: InitiateTransferAPI
