@@ -6,3 +6,41 @@ metadata:
   robots: index
 ---
 If you're integrating payments for the first time, the first step is choosing the right integration approach based on your requirements.
+
+## Available Integration Options
+
+PayU offers multiple ways to integrate payments, depending on how much control and effort you want.
+
+|                           | **Hosted Checkout**         | **Web Checkout (Custom UI)**              | **APIs / Server-to-Server**                 |
+| ------------------------- | --------------------------- | ----------------------------------------- | ------------------------------------------- |
+| **What it is**            | PayU hosts the payment page | You build the UI, PayU processes payments | Direct API calls, no redirect               |
+| **UI ownership**          | PayU                        | You                                       | You                                         |
+| **PCI compliance burden** | Low — PayU handles it       | Medium                                    | High — card data passes through your server |
+| **Time to integrate**     | Hours                       | Days                                      | Days to weeks                               |
+| **Customization**         | Limited (logo, colors)      | Full                                      | Full                                        |
+| **Best for**              | Most use cases, fast launch | Branded experiences                       | Subscriptions, mobile SDKs, headless setups |
+| **Requires backend?**     | Yes (hash generation only)  | Yes                                       | Yes                                         |
+| **Redirect to PayU?**     | Yes                         | No                                        | No                                          |
+
+## How to Decide
+
+<Accordion title="Start with Hosted Checkout if:" icon="fa-info-circle">
+  * You want to accept payments quickly without building a checkout UI
+  * You do not want to handle raw card data
+  * You are building an MVP, marketplace, or e-commerce store
+</Accordion>
+
+<Accordion title="Consider Merchant Hosted Checkout if:" icon="fa-info-circle">
+  * You need full control over how the payment form looks
+  * You have a strong brand that must stay consistent through checkout
+</Accordion>
+
+<Accordion title="Use APIs or Server-to-Server if:" icon="fa-info-circle">
+  * You're building recurring billing or subscriptions
+  * You need to trigger payments programmatically without user interaction
+  * You're integrating with a mobile SDK or a headless frontend
+</Accordion>
+
+****
+
+* <br />
