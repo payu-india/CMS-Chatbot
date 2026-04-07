@@ -10,10 +10,6 @@ hidden: true
 ---
 This API is retrieve detailed information about a specific transaction using the merchant transaction ID. This API provides comprehensive transaction data including status, amount, settlement details, and associated metadata.
 
-<Callout icon="📘" theme="info">
-  **Note**: This API uses Bearer token for authentication and Bearer token must be generated using **Get Access Token**API. For more information, refer to [Get Access Token ](ref:get-token-api-for-general-apis)API.
-</Callout>
-
 ### Environment
 
 |                        |                                                                                                                |
@@ -22,12 +18,23 @@ This API is retrieve detailed information about a specific transaction using the
 | Production Environment | [https://info.payu.in/settlement/transactionDetails](https://info.payu.in/settlement/transactionDetails)       |
 
 **HTTP Method**: POST
+<Accordion title="Request Parameters" icon="fa-table">
+  ### Request Header
+
+  <HeaderAuthentication />
+
+  ### Request Body
+
+  | Parameter                        | Description                                                                      | Example                       |
+  | -------------------------------- | -------------------------------------------------------------------------------- | ----------------------------- |
+  | mid<br /><code>mandatory</code>  | <code>String</code> Merchant identifier that the integration was registered with | \<MerchantId>                 |
+</Accordion>
+
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
   curl --location 'http://apitest.payu.in/settlement/transactionDetails?merchantTransactionId=W49OV6KQXR4H' \
   --header 'mid: 180012'
-  --header 'Authorization: Bearer <token>'
   ```
   ```python
   import requests
