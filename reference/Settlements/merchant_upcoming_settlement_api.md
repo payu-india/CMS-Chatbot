@@ -18,174 +18,185 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
-  curl --request GET \
-     --url https://test.payu.in/settlement/v1/merchantUpcomingSettlement \
-     --header 'accept: application/json' \
-     --header 'mid: <your_merchant_mid>'
+  curl --location 'https://info.payu.in/settlement/v1/merchantUpcomingSettlement' \
+--header 'Authorization: hmac username="Fa2IFz", algorithm="sha512", headers="date", signature="ca98fa63b2780d2306f721fde8c5667ec11ca7821396c54bbef18681a227f2751b3a80f8254696baae3917bb478c29d60b613c25a95469bb5942cabecc2fe949"' \
+--header 'mid: <MerchantId>' \
+--header 'Date: Tue, 07 Apr 2026 06:14:56 GMT’
   ```
-  ```python
-  import requests
+```python
+import requests
 
-  url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement"
-  headers = {
-      'mid': '<your_merchant_id>',
-      'Accept': 'application/json'
-  }
+url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement"
+headers = {
+    "Authorization": 'hmac username="Fa2IFz", algorithm="sha512", headers="date", signature="ca98fa63b2780d2306f721fde8c5667ec11ca7821396c54bbef18681a227f2751b3a80f8254696baae3917bb478c29d60b613c25a95469bb5942cabecc2fe949"',
+    "mid": "<MerchantId>",
+    "Date": "Tue, 07 Apr 2026 06:14:56 GMT"
+}
 
-  try:
-      response = requests.get(url, headers=headers)
-      print(f"Status Code: {response.status_code}")
-      print(f"Response: {response.text}")
-  except requests.exceptions.RequestException as e:
-      print(f"Error: {e}")
-  ```
-  ```csharp
-  using System;
-  using System.Net.Http;
-  using System.Threading.Tasks;
+response = requests.get(url, headers=headers)
+print(f"Status Code: {response.status_code}")
+print(f"Response: {response.text}")
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
-  class Program
-  {
-      static async Task Main()
-      {
-          var client = new HttpClient();
-          var url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement";
-          
-          client.DefaultRequestHeaders.Add("mid", "<your_merchant_id>");
-          client.DefaultRequestHeaders.Add("Accept", "application/json");
-          
-          try
-          {
-              var response = await client.GetAsync(url);
-              var content = await response.Content.ReadAsStringAsync();
-              Console.WriteLine($"Status Code: {response.StatusCode}");
-              Console.WriteLine($"Response: {content}");
-          }
-          catch (Exception e)
-          {
-              Console.WriteLine($"Error: {e.Message}");
-          }
-      }
-  }
-  ```
-  ```javascript
-  async function getUpcomingSettlements() {
-      const url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement";
-      
-      try {
-          const response = await fetch(url, {
-              method: 'GET',
-              headers: {
-                  'mid': '<your_merchant_id>',
-                  'Accept': 'application/json'
-              }
-          });
-          
-          const data = await response.text();
-          console.log(`Status: ${response.status}`);
-          console.log(`Response: ${data}`);
-      } catch (error) {
-          console.error(`Error: ${error.message}`);
-      }
-  }
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using var client = new HttpClient();
+        
+        string url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement";
+        
+        client.DefaultRequestHeaders.Add("Authorization", "hmac username="Fa2IFz", algorithm="sha512", headers="date", signature="ca98fa63b2780d2306f721fde8c5667ec11ca7821396c54bbef18681a227f2751b3a80f8254696baae3917bb478c29d60b613c25a95469bb5942cabecc2fe949"");
+        client.DefaultRequestHeaders.Add("mid", "<MerchantId>");
+        client.DefaultRequestHeaders.Add("Date", "Tue, 07 Apr 2026 06:14:56 GMT");
+        
+        try
+        {
+            HttpResponseMessage response = await client.GetAsync(url);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Status Code: {(int)response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine($"Request error: {e.Message}");
+        }
+    }
+}
+```
+```javascript
+async function makeRequest() {
+    const url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement";
+    
+    const headers = {
+        "Authorization": 'hmac username="Fa2IFz", algorithm="sha512", headers="date", signature="ca98fa63b2780d2306f721fde8c5667ec11ca7821396c54bbef18681a227f2751b3a80f8254696baae3917bb478c29d60b613c25a95469bb5942cabecc2fe949"',
+        "mid": "<MerchantId>",
+        "Date": "Tue, 07 Apr 2026 06:14:56 GMT"
+    };
+    
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: headers
+        });
+        
+        const responseText = await response.text();
+        
+        console.log(`Status Code: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+    } catch (error) {
+        console.error("Request error:", error);
+    }
+}
 
-  getUpcomingSettlements();
-  ```
-  ```java
-  import java.io.BufferedReader;
-  import java.io.InputStreamReader;
-  import java.net.HttpURLConnection;
-  import java.net.URL;
+makeRequest();
+```
+```java
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
-  public class UpcomingSettlementAPI {
-      public static void main(String[] args) {
-          try {
-              String urlString = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement";
-              URL url = new URL(urlString);
-              HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-              
-              connection.setRequestMethod("GET");
-              connection.setRequestProperty("mid", "<your_merchant_id>");
-              connection.setRequestProperty("Accept", "application/json");
-              
-              int statusCode = connection.getResponseCode();
-              BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-              StringBuilder response = new StringBuilder();
-              String line;
-              
-              while ((line = reader.readLine()) != null) {
-                  response.append(line);
-              }
-              reader.close();
-              
-              System.out.println("Status Code: " + statusCode);
-              System.out.println("Response: " + response.toString());
-          } catch (Exception e) {
-              System.out.println("Error: " + e.getMessage());
-          }
-      }
-  }
-  ```
-  ```php
-  <?php
-  $url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement";
+public class PayURequest {
+    public static void main(String[] args) {
+        String url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement";
+        
+        HttpClient client = HttpClient.newHttpClient();
+        
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Authorization", "hmac username="Fa2IFz", algorithm="sha512", headers="date", signature="ca98fa63b2780d2306f721fde8c5667ec11ca7821396c54bbef18681a227f2751b3a80f8254696baae3917bb478c29d60b613c25a95469bb5942cabecc2fe949"")
+                .header("mid", "<MerchantId>")
+                .header("Date", "Tue, 07 Apr 2026 06:14:56 GMT")
+                .GET()
+                .build();
+        
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            
+            System.out.println("Status Code: " + response.statusCode());
+            System.out.println("Response: " + response.body());
+        } catch (IOException | InterruptedException e) {
+            System.err.println("Request error: " + e.getMessage());
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://info.payu.in/settlement/v1/merchantUpcomingSettlement";
 
-  $headers = [
-      'mid: <your_merchant_id>',
-      'Accept: application/json'
-  ];
+$headers = array(
+    "Authorization: hmac username="Fa2IFz", algorithm="sha512", headers="date", signature="ca98fa63b2780d2306f721fde8c5667ec11ca7821396c54bbef18681a227f2751b3a80f8254696baae3917bb478c29d60b613c25a95469bb5942cabecc2fe949"",
+    "mid: <MerchantId>",
+    "Date: Tue, 07 Apr 2026 06:14:56 GMT"
+);
 
-  $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$curl = curl_init();
 
-  $response = curl_exec($ch);
-  $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_setopt_array($curl, array(
+    CURLOPT_URL => $url,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => $headers,
+    CURLOPT_CUSTOMREQUEST => "GET"
+));
 
-  if (curl_errno($ch)) {
-      echo 'Error: ' . curl_error($ch);
-  } else {
-      echo "Status Code: " . $httpCode . "\n";
-      echo "Response: " . $response;
-  }
+$response = curl_exec($curl);
+$httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-  curl_close($ch);
-  ?>
+if (curl_errno($curl)) {
+    echo "cURL Error: " . curl_error($curl);
+} else {
+    echo "Status Code: " . $httpCode . "
+";
+    echo "Response: " . $response . "
+";
+}
+
+curl_close($curl);
+?>
+```
   ```
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-code">
   ```json
   {
-  "code": "2000",
-  "message": "Success",
-  "status": 0,
-  "result": {
-  "holdSettlementStatus": 0,
-  "lastSettledAmount": 0,
-  "upcomingSettlementAmount": 0,
-  "upcomingSettlementTime": "2026-03-20 12:00:00",
-  "totalSettlementPendingAmount": 579.00,
-  "currencyType": "INR",
-  "merchantId": 100005,
-  "pendingSettlementBreakdown": {
-   "saleAmount": 2000.00,
-   "adjustmentAmount": 100.00,
-   "refundAmount": -1500.00,
-   "chargebackAmount": 0.00,
-   "refundReversalAmount": 50.00,
-   "chargebackReversalAmount": 25.00,
-   "serviceFee": -30.00,
-   "serviceTax": -5.40,
-   "convenienceFee": -1.00,
-   "convenienceTax": 0.00,
-   "additionalServiceFee": -10.00,
-   "additionalServiceTax": 0.00,
-   "txnCount": 10
-  }
-  }
-  }
+    "code": "2000",
+    "message": "Success",
+    "status": 0,
+    "result": {
+        "holdSettlementStatus": 0,
+        "lastSettledAmount": 2197.19,
+        "lastSettlementTime": "2026-04-06 14:22:12",
+        "upcomingSettlementAmount": 235129.81,
+        "upcomingSettlementTime": "2026-04-08 09:15:00",
+        "totalSettlementPendingAmount": 73224295.78,
+        "currencyType": "USD",
+        "merchantId": 8515874,
+        "pendingSettlementBreakdown": {
+            "saleAmount": 77328963.90,
+            "adjustmentAmount": 0.00,
+            "refundAmount": -975745.51,
+            "chargebackAmount": -120622.04,
+            "refundReversalAmount": 0.00,
+            "chargebackReversalAmount": 0.00,
+            "serviceFee": -2778968.71,
+            "serviceTax": -226059.93,
+            "convenienceFee": 0.00,
+            "convenienceTax": 0.00,
+            "additionalServiceFee": -158.58,
+            "additionalServiceTax": -28.54,
+            "txnCount": 53057
+        }
+    }
+}
   ```
 </Accordion>
 
@@ -219,7 +230,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   | `chargebackAmount`         | Total chargebacks (reductions due to disputes)                |
   | `refundReversalAmount`     | Amounts from reversed refunds (restored to merchant)          |
   | `chargebackReversalAmount` | Amounts from reversed chargebacks                             |
-  | `serviceFee`               | Service fees charged                   |
+  | `serviceFee`               | Service fees charged                                          |
   | `serviceTax`               | Tax on service fee                                            |
   | `convenienceFee`           | Convenience fees charged to customer (affect settlement)      |
   | `convenienceTax`           | Tax on convenience fee                                        |
