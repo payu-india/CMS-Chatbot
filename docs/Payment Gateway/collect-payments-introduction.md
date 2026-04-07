@@ -13,6 +13,9 @@ next:
     - slug: payu-payment-gateway-workflow
       title: PayU Payment Gateway Workflow
       type: basic
+    - slug: choose-your-checkout-integration
+      title: Start Here - Choose Your Integration
+      type: basic
 ---
 A **payment gateway** enables businesses to securely accept payments from customers through their website or mobile application. The **PayU Payment Gateway** acts as a secure bridge between your customer, your application, and the banking networks to process transactions safely and reliably.
 
