@@ -1,6 +1,7 @@
 - collect-payments-introduction
 - payu-payment-gateway-workflow
 - choose-your-checkout-integration
+- payu-payment-gateway-quick-start
 - payu-hosted-checkout-overview
 - introduction-web
 - introduction-no-code-payments-integration
@@ -14,4 +15,3 @@
 - cordova-sdk-introduction
 - upi-bolt-sdk-ionic
 - capacitor-mobile-sdks
-- payu-payment-gateway-quick-start
