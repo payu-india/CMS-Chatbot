@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Payment Gateway Overview
 deprecated: false
 hidden: false
 metadata:
