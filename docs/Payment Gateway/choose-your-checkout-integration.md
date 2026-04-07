@@ -28,19 +28,16 @@ PayU offers multiple ways to integrate payments, depending on how much control a
 
 ## How to Decide
 
-<Accordion title="Start with Hosted Checkout if:" icon="fa-info-circle">
-  * You want to accept payments quickly without building a checkout UI
-  * You do not want to handle raw card data
-  * You are building an MVP, marketplace, or e-commerce store
-</Accordion>
-
-<Accordion title="Consider Merchant Hosted Checkout if:" icon="fa-info-circle">
-  * You need full control over how the payment form looks
-  * You have a strong brand that must stay consistent through checkout
-</Accordion>
-
-<Accordion title="Use APIs or Server-to-Server if:" icon="fa-info-circle">
-  * You're building recurring billing or subscriptions
-  * You need to trigger payments programmatically without user interaction
-  * You're integrating with a mobile SDK or a headless frontend
-</Accordion>
+**Start with Hosted Checkout if:**
+- You want to accept payments quickly without building a checkout UI
+- You don't want to handle raw card data
+- You're building an MVP, marketplace, or e-commerce store
+ 
+**Consider Web Checkout if:**
+- You need full control over how the payment form looks
+- You have a strong brand that must stay consistent through checkout
+ 
+**Use APIs / Server-to-Server if:**
+- You're building recurring billing or subscriptions
+- You need to trigger payments programmatically without user interaction
+- You're integrating with a mobile SDK or a headless frontend
