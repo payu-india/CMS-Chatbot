@@ -7,7 +7,7 @@ api:
   file: PayU_OAuth2_Collection.json
   operationId: getAccessToken-1
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
