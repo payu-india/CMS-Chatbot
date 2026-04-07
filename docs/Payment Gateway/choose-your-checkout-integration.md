@@ -1,5 +1,5 @@
 ---
-title: Quick Start - Choose Your Integration
+title: Start Here - Choose Your Integration
 deprecated: false
 hidden: false
 metadata:
