@@ -1,8 +1,20 @@
 ---
-title: PayU Payment Integration Quick Start
+title: Quick Start - Payment Gateway
+excerpt: >-
+  Start PayU payment gateway integration quickly. Follow the fastest path using
+  PayU Hosted Checkout to accept online payments with minimal setup.
 deprecated: false
 hidden: false
 metadata:
+  description: >-
+    Start PayU payment gateway integration quickly. Follow the fastest path
+    using Hosted Checkout to accept online payments with minimal setup.
+  keywords:
+    - PayU quick start
+    - payment gateway integration
+    - PayU integration
+    - online payments
+    - hosted checkout
   robots: index
 ---
 This page helps you **start accepting payments quickly** using the available checkout options.
