@@ -7,6 +7,8 @@ metadata:
 ---
 If you're integrating payments for the first time, the first step is choosing the right integration approach based on your requirements.
 
+***
+
 ## Available Integration Options
 
 PayU offers multiple ways to integrate payments, depending on how much control and effort you want.
@@ -21,6 +23,8 @@ PayU offers multiple ways to integrate payments, depending on how much control a
 | **Best for**              | Most use cases, fast launch | Branded experiences                       | Subscriptions, mobile SDKs, headless setups |
 | **Requires backend?**     | Yes (hash generation only)  | Yes                                       | Yes                                         |
 | **Redirect to PayU?**     | Yes                         | No                                        | No                                          |
+
+***
 
 ## How to Decide
 
@@ -40,7 +44,3 @@ PayU offers multiple ways to integrate payments, depending on how much control a
   * You need to trigger payments programmatically without user interaction
   * You're integrating with a mobile SDK or a headless frontend
 </Accordion>
-
-****
-
-* <br />
