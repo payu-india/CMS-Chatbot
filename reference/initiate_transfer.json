@@ -1,0 +1,276 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Payouts API",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://uatoneapi.payu.in/payout/",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/v2/payment": {
+      "post": {
+        "summary": "InitiateTransferAPI",
+        "description": "",
+        "operationId": "InitiateTransferAPI",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "contentEncoding": "int32"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/x-www-form-urlencoded",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "BODY"
+                ],
+                "type": "object",
+                "properties": {
+                  "BODY": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/BODYOBJECT"
+                      },
+                      {}
+                    ]
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "contentMediaType": "text/plain"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "BODYOBJECT": {
+        "title": "BODYOBJECT",
+        "required": [
+          "purpose",
+          "paymentType",
+          "disableApprovalFlow"
+        ],
+        "type": "object",
+        "properties": {
+          "beneficiaryAccountNumber": {
+            "type": "string",
+            "description": "Indicates beneficiary account number to transfer money. Required for IMPS, NEFT and RTGS paymentType.",
+            "examples": [
+              "012345678912"
+            ]
+          },
+          "beneficiaryIfscCode": {
+            "type": "string",
+            "description": "Indicates IFSC Code of the Beneficiary Bank Account. Required for IMPS, NEFT and RTGS paymentType.",
+            "examples": [
+              "SBIN0005943"
+            ]
+          },
+          "beneficiaryName": {
+            "type": "string",
+            "description": "Indicates name of the Beneficiary of the the beneficiary associated with Bank Account.",
+            "examples": [
+              "Ashish Kumar"
+            ]
+          },
+          "beneficiaryMobile": {
+            "type": "string",
+            "description": "Indicates the beneficiary mobile number."
+          },
+          "beneficiaryEmail": {
+            "type": "string",
+            "description": "Indicates the beneficiary Email Address",
+            "examples": [
+              "ashish@abc.com"
+            ]
+          },
+          "purpose": {
+            "type": "string",
+            "description": "This parameter must include the purpose of doing this transfer."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Indicates amount to transfer to the beneficiary account.",
+            "examples": [
+              "1000"
+            ]
+          },
+          "batchId": {
+            "type": "string",
+            "description": "It can be any string value. Merchants can use this value if they want to process the request in batch and also what status of transfer in batch. This can be unique for a batch or across multiple requests."
+          },
+          "merchantRefId": {
+            "type": "string",
+            "description": "Indicates a unique reference ID at the merchant side to distinguish between multiple transfers."
+          },
+          "paymentType": {
+            "type": "string",
+            "description": "Specify the mode of payment in this field. It can be any of the following: - IMPS - UPI - NEFT - RTGS",
+            "examples": [
+              "UPI"
+            ]
+          },
+          "recipientCardNo": {
+            "type": "string",
+            "description": "The Credit Card Number with which the payment is made by your customer is specified in this field."
+          },
+          "disableApprovalFlow": {
+            "type": "boolean",
+            "description": "If this field is set to True, the approval flow process for the specific payout transaction is skipped or disabled.."
+          },
+          "retry": {
+            "type": "boolean",
+            "description": "Specify the flag as either True or False to indicate whether to retry transfer or not in this field."
+          }
+        },
+        "description": "This field should contain the transfer details in JSON array format."
+      },
+      "BODY": {
+        "title": "BODY",
+        "required": [
+          "purpose",
+          "amount",
+          "batchId",
+          "merchantRefId",
+          "paymentType"
+        ],
+        "type": "object",
+        "properties": {
+          "beneficiaryAccountNumber": {
+            "type": "string",
+            "description": "Indicates beneficiary account number to transfer money. Required for IMPS, NEFT and RTGS paymentType.",
+            "examples": [
+              "012345678912"
+            ]
+          },
+          "beneficiaryIfscCode": {
+            "type": "string",
+            "description": "Indicates IFSC Code of the Beneficiary Bank Account. Required for IMPS, NEFT and RTGS paymentType.",
+            "examples": [
+              "SBIN0005943"
+            ]
+          },
+          "beneficiaryName": {
+            "type": "string",
+            "description": "Indicates name of the Beneficiary of the the beneficiary associated with Bank Account. Required for PHONE",
+            "examples": [
+              "Ashish Kumar"
+            ]
+          },
+          "beneficiaryMobile": {
+            "type": "string",
+            "description": "Indicates the beneficiary mobile number. Required for PHONE paymentType"
+          },
+          "beneficiaryEmail": {
+            "type": "string",
+            "description": "Indicates the beneficiary Email Address",
+            "examples": [
+              "ashish@abc.com"
+            ]
+          },
+          "purpose": {
+            "type": "string",
+            "description": "This parameter must include the purpose of doing this transfer."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Indicates amount to transfer to the beneficiary account.",
+            "examples": [
+              "1000"
+            ]
+          },
+          "batchId": {
+            "type": "string",
+            "description": "It can be any string value. Merchants can use this value if they want to process the request in batch and also what status of transfer in batch. This can be unique for a batch or across multiple requests."
+          },
+          "merchantRefId": {
+            "type": "string",
+            "description": "Indicates a unique reference ID at the merchant side to distinguish between multiple transfers."
+          },
+          "paymentType": {
+            "type": "string",
+            "description": "Specify the mode of payment in this field. It can be any of the following: - IMPS - UPI - NEFT - RTGS - PHONE",
+            "examples": [
+              "PHONE"
+            ]
+          },
+          "recipientCardNo": {
+            "type": "string",
+            "description": "The Credit Card Number with which the payment is made by your customer is specified in this field."
+          },
+          "disableApprovalFlow": {
+            "type": "boolean",
+            "description": "If this field is set to True, the approval flow process for the specific payout transaction is skipped or disabled.."
+          },
+          "retry": {
+            "type": "boolean",
+            "description": "Specify the flag as either True or False to indicate whether to retry transfer or not in this field."
+          }
+        }
+      },
+      "Content-Type": {
+        "title": "Content-Type",
+        "const": "application/json",
+        "type": "string"
+      }
+    },
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ],
+  "tags": []
+}
