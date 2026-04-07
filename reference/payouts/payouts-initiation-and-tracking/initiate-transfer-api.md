@@ -1,5 +1,5 @@
 ---
-title: Initiate Transfer API
+title: '[OLD]Initiate Transfer API'
 api:
   file: payouts-api-16.json
   operationId: InitiateTransferAPI
