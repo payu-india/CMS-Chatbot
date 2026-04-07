@@ -6,5 +6,5 @@ excerpt: >-
 api:
   file: settlement-api-oas31.json
   operationId: getSettlementTransactionDetails
-hidden: false
+hidden: true
 ---
