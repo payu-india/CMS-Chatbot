@@ -6,14 +6,14 @@ hidden: false
 metadata:
   title: Prebuilt Web Checkout or PayU Hosted Checkout Integration
   description: >-
-    Learn what is PayU Hosted Checkout, the PayU India’s prebuilt checkout
-    solution to accept online payments from your customers. This page provides
-    how PayU Hosted Checkout works, customer journey, features and benefits.
+    Understand PayU Hosted Checkout for payment gateway integration. Learn
+    payment flow, key concepts, and how to handle online payments securely.
   keywords:
     - PayU Hosted Checkout
-    - ' Pre-Built Checkout Features'
-    - ' PayU Hosted Checkout Benefits. PayU Hosted Checkout'
-    - PayU India Hosted Checkout
+    - payment gateway integration
+    - payment flow
+    - online payments
+    - PayU integration
   robots: index
 next:
   description: ''
