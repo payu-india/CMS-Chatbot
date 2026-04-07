@@ -46,9 +46,9 @@ These options offer more flexibility but require additional development effort.
 
 ***
 
-## What This Path Looks Like
+## Quick Steps for First Payment
 
-Here’s the fastest path to your first successful payment:
+Below are the quick steps to your first successful payment:
 
 1. Set up your PayU test credentials (Merchant Key and Salt)
 2. Create a basic payment request from your backend
@@ -60,7 +60,7 @@ Here’s the fastest path to your first successful payment:
 
 ## Expected Time
 
-You can complete your **first test payment in approximately 10–15 minutes** using this approach.
+You can complete your **first test payment within minutes** using this approach.
 
 ***
 
@@ -77,15 +77,5 @@ Make sure you:
 👉 Go to: **PayU Hosted Checkout → Quick Start**
 
 This will walk you through creating your first working payment with a minimal setup.
-
-***
-
-## What Next
-
-After completing Quick Start:
-
-* Move to the **Integration Guide** for production-ready implementation
-* Add **response handling and verification**
-* Test different payment scenarios
 
 ***
