@@ -10,39 +10,10 @@ metadata:
 next:
   description: ''
 ---
-## Error References on Field7 and Field8
+The following are possible errors and error codes for a transaction. You need to remember the following while error handling based on payment response:
 
-The PayU error mappings documentation page provides a reference guide for various error codes in the PayU payment system. The page includes:
-
-* [Field Error code structure](#field-error-code-structure): Explains how error codes are formatted and what different components mean
-* **Field7 Error Code Mapping** - Contains error codes like ALT_ID_PROV_ERROR, 3DS_METHOD_POSITIVE, etc., with their descriptions, platform layers, and API layers for the following payment modes:
-  * [Field7 for Card payments](#field7-for-card-payments)
-  * [Field 7 for Net Banking/Wallet payments](#field-7-for-net-bankingwallet-payments)
-
-> :blue_book: Standard error codes vs Field 7 error codes
->
-> The Field7 error codes documented in this section are part of PayU's comprehensive error handling system. These codes provide detailed transaction state information that complements the standard [Error Codes](#error-codes) used across PayU's payment platform.
->
-> While standard error codes (E.g. E501, E502, etc.) indicate specific failure reasons, Field7 values track the transaction state and provide visibility into exactly where in the payment flow an error or status change occurred. For complete error handling, developers should check both:
->
-> 1. **Field7 Values**: To determine the transaction state and processing stage
-> 2. **Error Codes**: To identify specific failure reasons when applicable
->
-> For integration purposes, always implement error handling that accounts for both these complementary systems to provide the best user experience and troubleshooting capabilities.
-
-### Field Error code structure
-
-To understand the error codes, you need to read the Error Code Object sent in the Response structure or stored in database.
-
-1. **Field7 – Execution Leg**: This field is used to understand at which execution stage (or leg) the transaction got declined. It is essentially a forward leg or process leg of an API that identifies the point of transaction failure. Refer to following sub-sections for understanding this field values:
-   * [Field7 for Card payments](#field7-for-card-payments)
-   * [Field 7 for Net Banking/Wallet payments](#field-7-for-net-bankingwallet-payments)
-2. **Field8 – Bank or Wallet's Reason**: This field captures the actual reason for the transaction failure as provided by the bank.  
-   It gives direct feedback or error information from the bank's end.
-3. **Field9 – PayU's Error Translation**: This field contains the PayU-translated version of the error recorded in Field8.  
-   It provides a simplified and standardized interpretation of the error for easier understanding and debugging.
-4. **Error Code**: Represents PayU's error code mapped to the specific issue. It acts as a unique identifier for the error.
-5. **Error Message**: This contains PayU's error interpretation, which elaborates on or describes the error in a user-friendly manner to assist in troubleshooting.
+* The **PayU Error Code** column in the following table corresponds to the value returned in the **error** parameter of the payment response
+* The **error_message / message** column in the following table corresponds to the value returned in the **error_message / message** parameter of the payment response
 
 <Callout icon="📘" theme="info">
   **Note**: The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another.
@@ -729,8 +700,6 @@ To understand the error codes, you need to read the Error Code Object sent in th
 
 ## Other Error Codes from PayU
 
-<br />
-
 <SearchableTable
   headers={['Errors', 'Error_message/Message', 'Error Description', 'Title' ]}
   rows={[
@@ -943,6 +912,40 @@ To understand the error codes, you need to read the Error Code Object sent in th
   ]}
   placeholder="Search"
 />
+
+## Error References on Field7 and Field8
+
+The PayU error mappings documentation page provides a reference guide for various error codes in the PayU payment system. The page includes:
+
+* [Field Error code structure](#field-error-code-structure): Explains how error codes are formatted and what different components mean
+* **Field7 Error Code Mapping** - Contains error codes like ALT_ID_PROV_ERROR, 3DS_METHOD_POSITIVE, etc., with their descriptions, platform layers, and API layers for the following payment modes:
+  * [Field7 for Card payments](#field7-for-card-payments)
+  * [Field 7 for Net Banking/Wallet payments](#field-7-for-net-bankingwallet-payments)
+
+> :blue_book: Standard error codes vs Field 7 error codes
+>
+> The Field7 error codes documented in this section are part of PayU's comprehensive error handling system. These codes provide detailed transaction state information that complements the standard [Error Codes](#error-codes) used across PayU's payment platform.
+>
+> While standard error codes (E.g. E501, E502, etc.) indicate specific failure reasons, Field7 values track the transaction state and provide visibility into exactly where in the payment flow an error or status change occurred. For complete error handling, developers should check both:
+>
+> 1. **Field7 Values**: To determine the transaction state and processing stage
+> 2. **Error Codes**: To identify specific failure reasons when applicable
+>
+> For integration purposes, always implement error handling that accounts for both these complementary systems to provide the best user experience and troubleshooting capabilities.
+
+### Field Error code structure
+
+To understand the error codes, you need to read the Error Code Object sent in the Response structure or stored in database.
+
+1. **Field7 – Execution Leg**: This field is used to understand at which execution stage (or leg) the transaction got declined. It is essentially a forward leg or process leg of an API that identifies the point of transaction failure. Refer to following sub-sections for understanding this field values:
+   * [Field7 for Card payments](#field7-for-card-payments)
+   * [Field 7 for Net Banking/Wallet payments](#field-7-for-net-bankingwallet-payments)
+2. **Field8 – Bank or Wallet's Reason**: This field captures the actual reason for the transaction failure as provided by the bank.  
+   It gives direct feedback or error information from the bank's end.
+3. **Field9 – PayU's Error Translation**: This field contains the PayU-translated version of the error recorded in Field8.  
+   It provides a simplified and standardized interpretation of the error for easier understanding and debugging.
+4. **Error Code**: Represents PayU's error code mapped to the specific issue. It acts as a unique identifier for the error.
+5. **Error Message**: This contains PayU's error interpretation, which elaborates on or describes the error in a user-friendly manner to assist in troubleshooting.
 
 ## Cards
 
@@ -3597,8 +3600,6 @@ The following are the errors associated with cards along with their reasons and 
 ## NetBanking and Wallets
 
 The following are the errors associated with NetBanking and wallets along with their reasons and descriptions.
-
-<br />
 
 <SearchableTable
   headers={['Field', 'Description', 'Expanded Description', 'Platform Layer', 'API Layer']}
