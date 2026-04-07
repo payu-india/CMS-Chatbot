@@ -5,7 +5,7 @@ api:
   file: partner-apis-27.json
   operationId: Getmerchantcredentials
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
