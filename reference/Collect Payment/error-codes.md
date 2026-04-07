@@ -10,10 +10,39 @@ metadata:
 next:
   description: ''
 ---
-The following are possible errors and error codes for a transaction. You need to remember the following while error handling based on payment response:
+## Error References on Field7 and Field8
 
-* The **PayU Error Code** column in the following table corresponds to the value returned in the **error** parameter of the payment response
-* The **error_message / message** column in the following table corresponds to the value returned in the **error_message / message** parameter of the payment response
+The PayU error mappings documentation page provides a reference guide for various error codes in the PayU payment system. The page includes:
+
+* [Field Error code structure](#field-error-code-structure): Explains how error codes are formatted and what different components mean
+* **Field7 Error Code Mapping** - Contains error codes like ALT_ID_PROV_ERROR, 3DS_METHOD_POSITIVE, etc., with their descriptions, platform layers, and API layers for the following payment modes:
+  * [Field7 for Card payments](#field7-for-card-payments)
+  * [Field 7 for Net Banking/Wallet payments](#field-7-for-net-bankingwallet-payments)
+
+> :blue_book: Standard error codes vs Field 7 error codes
+>
+> The Field7 error codes documented in this section are part of PayU's comprehensive error handling system. These codes provide detailed transaction state information that complements the standard [Error Codes](#error-codes) used across PayU's payment platform.
+>
+> While standard error codes (E.g. E501, E502, etc.) indicate specific failure reasons, Field7 values track the transaction state and provide visibility into exactly where in the payment flow an error or status change occurred. For complete error handling, developers should check both:
+>
+> 1. **Field7 Values**: To determine the transaction state and processing stage
+> 2. **Error Codes**: To identify specific failure reasons when applicable
+>
+> For integration purposes, always implement error handling that accounts for both these complementary systems to provide the best user experience and troubleshooting capabilities.
+
+### Field Error code structure
+
+To understand the error codes, you need to read the Error Code Object sent in the Response structure or stored in database.
+
+1. **Field7 – Execution Leg**: This field is used to understand at which execution stage (or leg) the transaction got declined. It is essentially a forward leg or process leg of an API that identifies the point of transaction failure. Refer to following sub-sections for understanding this field values:
+   * [Field7 for Card payments](#field7-for-card-payments)
+   * [Field 7 for Net Banking/Wallet payments](#field-7-for-net-bankingwallet-payments)
+2. **Field8 – Bank or Wallet's Reason**: This field captures the actual reason for the transaction failure as provided by the bank.  
+   It gives direct feedback or error information from the bank's end.
+3. **Field9 – PayU's Error Translation**: This field contains the PayU-translated version of the error recorded in Field8.  
+   It provides a simplified and standardized interpretation of the error for easier understanding and debugging.
+4. **Error Code**: Represents PayU's error code mapped to the specific issue. It acts as a unique identifier for the error.
+5. **Error Message**: This contains PayU's error interpretation, which elaborates on or describes the error in a user-friendly manner to assist in troubleshooting.
 
 <Callout icon="📘" theme="info">
   **Note**: The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another.
@@ -917,7 +946,33 @@ The following are possible errors and error codes for a transaction. You need t
 
 ## Cards
 
-The following are the errors associated with cards AuthN and AuthZ, along with their reasons and descriptions.
+The following are the errors associated with cards along with their reasons and descriptions.
+
+### Field7 for Card payments
+
+<SearchableTable
+  headers={['Field', 'Description', 'Expanded Description', 'Platform Layer', 'API Layer']}
+  rows={[
+    ['ALT_ID_PROV_ERROR', 'Alt Provisioning API Failure', 'Occurs when the alternative ID generation API encounters a technical failure. This typically happens due to network issues, system unavailability, or invalid request parameters. The system cannot generate token or alternate ID for the card details.', 'Network', 'Alt ID Generation'],
+    ['ALT_ID_PROV_NEGATIVE', 'Alt Provisioning Failure', 'Indicates that while the API itself worked correctly, the attempt to provision an alternative ID was unsuccessful. This may be due to invalid card details, issuer restrictions, or the card being ineligible for tokenization.', 'Network', 'Alt ID Generation'],
+    ['3DS_METHOD_POSITIVE', '3DS2 Method response received', 'Confirms successful receipt of the 3DS2 method data from the Access Control Server at the notification URL. This indicates that the 3D Secure authentication flow is proceeding correctly.', 'Authentication', 'Transaction Requested'],
+    ['3DS_METHOD_NEGATIVE', '3DS2 Method no response', 'Indicates that while the 3DS2 method data was sent successfully, no response was received at the notification URL within the expected timeframe. This could be due to network issues, timeout, or browser-related problems.', 'Authentication', 'Transaction Requested'],
+    ['3DS_METHOD_ERROR', '3DS2 Method failure', 'Signifies a technical failure during the 3DS2 method process. This could be due to incorrect configuration, communication errors with the directory server, or invalid parameters.', 'Authentication', 'Transaction Requested'],
+    ['REDIRECT', 'S2S redirect initiated', 'Occurs when a server-to-server interim response is sent to the merchant or customer, indicating that a redirect is required to complete the payment flow. This is a transitional state.', 'Merchant or PayU', 'Merchant S2S Response'],
+    ['AUCPOSITIVE', 'Authentication successful', 'Indicates that cardholder authentication was completed successfully and approved by the issuing bank with a Y status. The customer has been verified via 3D Secure.', 'Authentication', 'Authentication Attempted'],
+    ['AUCNEGATIVE', 'Authentication failed', 'Occurs when authentication fails with status N or U. This may happen when the customer enters incorrect details or the issuer rejects the authentication attempt.', 'Authentication', 'Authentication Attempted'],
+    ['AUCINVALID', 'Authentication internal failure', 'Indicates that the authentication process completed but failed due to an internal system error such as parsing issues or service failure.', 'Authentication', 'Authentication Attempted'],
+    ['AUCERROR', 'Authentication error', 'Occurs when there is a technical error during the authentication call, such as OTP submission failure, timeout, or request issues.', 'Authentication', 'Authentication Attempted'],
+    ['ACS_REDIRECT', 'ACS redirect initiated', 'Indicates that the customer is redirected to the Access Control Server with a challenge request for additional verification as part of the 3D Secure flow.', 'Authentication', 'Bank OTP Page'],
+    ['3DS_CHALLENGE_POSITIVE', 'Challenge successful', 'Occurs when the Access Control Server returns a successful authentication response after the customer completes the challenge step.', 'Authentication', 'Authentication Success'],
+    ['3DS_CHALLENGE_NEGATIVE', 'Challenge failed', 'Indicates that the Access Control Server returned a negative response, typically due to incorrect input or customer cancellation.', 'Authentication', 'Authentication Failed'],
+    ['3DS_CHALLENGE_ERROR', 'Challenge no response', 'Occurs when no response is received from the Access Control Server after the challenge is initiated. This may be due to timeout or user drop-off.', 'Authentication', 'Authentication Failed'],
+    ['AUTHPOSITIVE', 'Authorization successful', 'Indicates that both authentication and authorization were successful. The payment is approved and funds are reserved.', 'Authorization', 'Authorization Success'],
+    ['AUTHNEGATIVE', 'Authorization failed', 'Occurs when authentication succeeds but the authorization request is declined by the issuing bank due to reasons such as insufficient funds or limits.', 'Authorization', 'Authorization Failed'],
+    ['AUTHERROR', 'Authorization error', 'Indicates a technical failure during the authorization process, such as network issues, timeout, or gateway errors.', 'Authorization', 'Authorization Failed']
+  ]}
+  placeholder="Search"
+/>
 
 ### AuthN Errors
 
