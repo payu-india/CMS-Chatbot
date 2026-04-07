@@ -1,0 +1,438 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Settlement Transaction Details API",
+    "description": "API to fetch settlement details for a specific transaction using merchantTransactionId. A single transaction may have multiple settlement records (e.g., capture, refund, chargeback).",
+    "version": "1.0.0",
+    "contact": {
+      "name": "API Support"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://uatekstreasuryservice.lb.classic",
+      "description": "UAT Environment"
+    },
+    {
+      "url": "http://localhost:8090",
+      "description": "Local Development"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/treasury/v1/settlement/transactionDetails": {
+      "get": {
+        "summary": "Get Settlement Transaction Details",
+        "description": "Fetch settlement details for a specific transaction. Returns a list of settlement entries as a single transaction may have multiple records.",
+        "operationId": "getSettlementTransactionDetails",
+        "parameters": [
+          {
+            "name": "merchantTransactionId",
+            "in": "query",
+            "required": true,
+            "description": "Your unique transaction ID (1-100 characters)",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "example": "ORDER123456"
+            }
+          },
+          {
+            "name": "mid",
+            "in": "header",
+            "required": true,
+            "description": "Your Merchant ID (must be positive)",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "example": 12345
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                },
+                "examples": {
+                  "singleCapture": {
+                    "summary": "Single Capture Transaction",
+                    "value": {
+                      "code": "2000",
+                      "message": "Success",
+                      "status": 0,
+                      "result": [
+                        {
+                          "merchantId": 180012,
+                          "merchantTransactionId": "W49OV6KQXR4H",
+                          "payuId": "943323893640",
+                          "transactionType": "capture",
+                          "settlementStatus": "Settled",
+                          "settlementUTR": "TESTUTR001",
+                          "settlementDate": "2025-12-10T15:58:43",
+                          "settlementId": "180012202512101738",
+                          "settlementAmount": 8
+                        }
+                      ]
+                    }
+                  },
+                  "captureRefundChargeback": {
+                    "summary": "Capture + Refund + Chargeback",
+                    "value": {
+                      "code": "2000",
+                      "message": "Success",
+                      "status": 0,
+                      "result": [
+                        {
+                          "merchantId": 180012,
+                          "merchantTransactionId": "W49OV6KQXR4H",
+                          "payuId": "943323893640",
+                          "transactionType": "capture",
+                          "settlementStatus": "Settled",
+                          "settlementUTR": "TESTUTR001",
+                          "settlementDate": "2025-12-10T15:58:43",
+                          "settlementId": "180012202512101738",
+                          "settlementAmount": 8
+                        },
+                        {
+                          "merchantId": 180012,
+                          "merchantTransactionId": "W49OV6KQXR4H",
+                          "payuId": "943323893640",
+                          "transactionType": "refund",
+                          "settlementStatus": "Settled",
+                          "settlementUTR": "TESTUTR001",
+                          "settlementDate": "2025-12-10T15:58:43",
+                          "settlementId": "180012202512101738",
+                          "settlementAmount": -8
+                        },
+                        {
+                          "merchantId": 180012,
+                          "merchantTransactionId": "W49OV6KQXR4H",
+                          "payuId": "943323893640",
+                          "transactionType": "chargeback",
+                          "settlementStatus": "Settled",
+                          "settlementUTR": "TESTUTR001",
+                          "settlementDate": "2025-12-10T15:58:43",
+                          "settlementId": "180012202512101738",
+                          "settlementAmount": -8
+                        }
+                      ]
+                    }
+                  },
+                  "captureChargebackReversal": {
+                    "summary": "Capture + Chargeback + Chargeback Reversal",
+                    "value": {
+                      "code": "2000",
+                      "message": "Success",
+                      "status": 0,
+                      "result": [
+                        {
+                          "merchantId": 180012,
+                          "merchantTransactionId": "W49OV6KQXR4H",
+                          "payuId": "943323893640",
+                          "transactionType": "capture",
+                          "settlementStatus": "Settled",
+                          "settlementUTR": "TESTUTR001",
+                          "settlementDate": "2025-12-10T15:58:43",
+                          "settlementId": "180012202512101738",
+                          "settlementAmount": 8
+                        },
+                        {
+                          "merchantId": 180012,
+                          "merchantTransactionId": "W49OV6KQXR4H",
+                          "payuId": "943323893640",
+                          "transactionType": "chargeback",
+                          "settlementStatus": "Settled",
+                          "settlementUTR": "TESTUTR001",
+                          "settlementDate": "2025-12-10T15:58:43",
+                          "settlementId": "180012202512101738",
+                          "settlementAmount": -8
+                        },
+                        {
+                          "merchantId": 180012,
+                          "merchantTransactionId": "W49OV6KQXR4H",
+                          "payuId": "943323893640",
+                          "transactionType": "chargebackreversal",
+                          "settlementStatus": "Settled",
+                          "settlementUTR": "TESTUTR001",
+                          "settlementDate": "2025-12-10T15:58:43",
+                          "settlementId": "180012202512101738",
+                          "settlementAmount": 8
+                        }
+                      ]
+                    }
+                  },
+                  "noData": {
+                    "summary": "No Data Found",
+                    "value": {
+                      "code": "2000",
+                      "message": "Success",
+                      "status": 0,
+                      "result": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "missingParameter": {
+                    "summary": "Missing Required Parameter",
+                    "value": {
+                      "code": "4000",
+                      "message": "merchantTransactionId is required",
+                      "status": 1,
+                      "result": null
+                    }
+                  },
+                  "invalidMerchantId": {
+                    "summary": "Invalid Merchant ID",
+                    "value": {
+                      "code": "4000",
+                      "message": "merchantId must be positive",
+                      "status": 1,
+                      "traceId": "d3ad489766b57779677d21557b5bfe2f"
+                    }
+                  },
+                  "invalidTransactionIdLength": {
+                    "summary": "Invalid Transaction ID Length",
+                    "value": {
+                      "code": "4000",
+                      "message": "merchantTransactionId must be 1-100 characters",
+                      "status": 1,
+                      "traceId": "42262f1c34c951fb31530ac321ae070a"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing authentication",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "unauthorized": {
+                    "summary": "Unauthorized Access",
+                    "value": {
+                      "code": "4001",
+                      "message": "Unauthorized / access denied",
+                      "status": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "serverError": {
+                    "summary": "Internal Server Error",
+                    "value": {
+                      "code": "500",
+                      "message": "Internal server error",
+                      "status": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Settlement"
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Bearer token for authentication"
+      }
+    },
+    "schemas": {
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Response code",
+            "example": "2000"
+          },
+          "message": {
+            "type": "string",
+            "description": "Response message",
+            "example": "Success"
+          },
+          "status": {
+            "type": "integer",
+            "description": "Status indicator (0 for success)",
+            "example": 0
+          },
+          "result": {
+            "type": "array",
+            "description": "List of settlement entries",
+            "items": {
+              "$ref": "#/components/schemas/SettlementEntry"
+            }
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "status",
+          "result"
+        ]
+      },
+      "SettlementEntry": {
+        "type": "object",
+        "properties": {
+          "merchantId": {
+            "type": "integer",
+            "description": "Your Merchant ID",
+            "example": 180012
+          },
+          "merchantTransactionId": {
+            "type": "string",
+            "description": "Your transaction reference ID",
+            "example": "W49OV6KQXR4H"
+          },
+          "payuId": {
+            "type": "string",
+            "description": "PayU transaction ID",
+            "example": "943323893640"
+          },
+          "transactionType": {
+            "type": "string",
+            "description": "Type of transaction",
+            "enum": [
+              "capture",
+              "refund",
+              "chargeback",
+              "chargebackreversal",
+              "cancel",
+              "refundreversal"
+            ],
+            "example": "capture"
+          },
+          "settlementStatus": {
+            "type": "string",
+            "description": "Settlement status",
+            "enum": [
+              "Settled",
+              "Not Settled"
+            ],
+            "example": "Settled"
+          },
+          "settlementUTR": {
+            "type": "string",
+            "description": "Bank reference number for settlement",
+            "example": "TESTUTR001"
+          },
+          "reconRefNumber": {
+            "type": "string",
+            "description": "Secondary reference number (if applicable)",
+            "example": "RECON123456"
+          },
+          "settlementDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time of settlement",
+            "example": "2025-12-10T15:58:43"
+          },
+          "settlementId": {
+            "type": "string",
+            "description": "Unique settlement identifier",
+            "example": "180012202512101738"
+          },
+          "settlementAmount": {
+            "type": "number",
+            "format": "double",
+            "description": "Amount settled (negative for refunds/chargebacks)",
+            "example": 8
+          }
+        },
+        "required": [
+          "merchantId",
+          "merchantTransactionId",
+          "transactionType",
+          "settlementStatus",
+          "settlementDate",
+          "settlementAmount"
+        ]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Error code",
+            "example": "4000"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message",
+            "example": "merchantTransactionId is required"
+          },
+          "status": {
+            "type": "integer",
+            "description": "Status indicator (1 for error)",
+            "example": 1
+          },
+          "result": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Result (null for errors)",
+            "nullable": true
+          },
+          "traceId": {
+            "type": "string",
+            "description": "Trace ID for debugging",
+            "example": "d3ad489766b57779677d21557b5bfe2f"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "status"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Settlement",
+      "description": "Settlement transaction details operations"
+    }
+  ]
+}
