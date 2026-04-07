@@ -47,7 +47,7 @@ Use this flow to choose your integration.
 * You do not want to handle raw card data
 * You are building an MVP, marketplace, or E-commerce store
 
-**Consider Web Checkout if:**
+**Consider Merchant Hosted Checkout if:**
 
 * You need full control over how the payment form looks
 * You have a strong brand that must stay consistent through checkout
