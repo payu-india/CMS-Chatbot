@@ -94,47 +94,47 @@ The **payment** API is used to initiate/schedule a single transfer to the benefi
 
 > 📘 Version 2.0 API:
 >
-> This page includes Try IT experience for version 2.0. of** Initiate Transfer **API, so you need to pass the **pid** in the header unlike payoutMerchantId with version 1.0 APIs.
+> This page includes Try IT experience for version 2.0. of **Initiate Transfer**API, so you need to pass the **pid** in the header unlike payoutMerchantId with version 1.0 APIs.
 
 <details>
   <summary>Additional information for Request parameters</summary>
 
   <HTMLBlock>{`
-      <table style="width: 100%; border-collapse: collapse;">
-      <thead>
-      <tr>
-        <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-        <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-        <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantRefId<code> optional</code></p>
-      </td>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Indicates a unique reference ID at the merchant side to distinguish between multiple transfers.<br><strong>Max char length</strong>: 40.<br><strong>Notes</strong> :  </p>
-      <ul>
-      <li>Same value will be used by the merchant in the status check of transfer.</li>
-      <li>In case if the merchant reference ID is not passed, an auto generated ID will be used.</li>
-      </ul>
-      </td>
-        <td style="border: 1px solid #ddd; padding: 8px;"></td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentType<br><code>mandatory</code></p>
-      </td>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Specify the any of the following mode of payment in this field:  </p>
-      <ul>
-      <li>IMPS</li>
-      <li>UPI</li>
-      <li>NEFT</li>
-      <li>RTGS</li>
-      </ul>
-      </td>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p>UPI</p>
-      </td>
-      </tr>
-      </tbody>
-      </table>
+        <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantRefId<code> optional</code></p>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Indicates a unique reference ID at the merchant side to distinguish between multiple transfers.<br><strong>Max char length</strong>: 40.<br><strong>Notes</strong> :  </p>
+        <ul>
+        <li>Same value will be used by the merchant in the status check of transfer.</li>
+        <li>In case if the merchant reference ID is not passed, an auto generated ID will be used.</li>
+        </ul>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentType<br><code>mandatory</code></p>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Specify the any of the following mode of payment in this field:  </p>
+        <ul>
+        <li>IMPS</li>
+        <li>UPI</li>
+        <li>NEFT</li>
+        <li>RTGS</li>
+        </ul>
+        </td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>UPI</p>
+        </td>
+        </tr>
+        </tbody>
+        </table>
   `}</HTMLBlock>
 </details>
