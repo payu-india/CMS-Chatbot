@@ -4,6 +4,15 @@ deprecated: false
 hidden: false
 metadata:
   robots: index
+next:
+  description: Refer to the following pages for additional information.
+  pages:
+    - slug: collect-payments-introduction
+      title: Payment Gateway Overview
+      type: basic
+    - slug: payu-payment-gateway-workflow
+      title: Payment Gateway Workflow
+      type: basic
 ---
 If you're integrating payments for the first time, the first step is choosing the right integration approach based on your requirements.
 
