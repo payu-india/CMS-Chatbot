@@ -15,18 +15,24 @@ This API is retrieve detailed information about a specific transaction using the
 | Production Environment | [https://info.payu.in/settlement/transactionDetails](https://info.payu.in/settlement/transactionDetails)       |
 
 **HTTP Method**: POST
+
 <Accordion title="Request Parameters" icon="fa-table">
   ### Request Header
 
   <HeaderAuthentication />
 
-  ### Request Body
+### Query Parameters
 
-  | Parameter                        | Description                                                                      | Example                       |
-  | -------------------------------- | -------------------------------------------------------------------------------- | ----------------------------- |
-  | mid<br /><code>mandatory</code>  | <code>String</code> Merchant identifier that the integration was registered with | \<MerchantId>                 |
+  | Parameter                       | Description                                                                      | Example       |
+  | ------------------------------- | -------------------------------------------------------------------------------- | ------------- |
+  | merchantTransactionId<br /><code>mandatory</code> | <code>String</code> The tramnsaaction ID of the transaction. |
+  
+### Request Body
+
+  | Parameter                       | Description                                                                      | Example       |
+  | ------------------------------- | -------------------------------------------------------------------------------- | ------------- |
+  | mid<br /><code>mandatory</code> | <code>String</code> Merchant identifier that the integration was registered with | \<MerchantId> |
 </Accordion>
-
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
