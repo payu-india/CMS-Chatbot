@@ -13,7 +13,7 @@ If you're integrating payments for the first time, the first step is choosing th
 
 PayU offers multiple ways to integrate payments, depending on how much control and effort you want.
 
-|                           | **Hosted Checkout**         | **Web Checkout (Custom UI)**              | **APIs / Server-to-Server**                 |
+|                           | **Hosted Checkout**         | **Merchant Hosted Checkout (Custom UI)**  | **APIs or Server-to-Server**                |
 | ------------------------- | --------------------------- | ----------------------------------------- | ------------------------------------------- |
 | **What it is**            | PayU hosts the payment page | You build the UI, PayU processes payments | Direct API calls, no redirect               |
 | **UI ownership**          | PayU                        | You                                       | You                                         |
@@ -29,15 +29,18 @@ PayU offers multiple ways to integrate payments, depending on how much control a
 ## How to Decide
 
 **Start with Hosted Checkout if:**
-- You want to accept payments quickly without building a checkout UI
-- You don't want to handle raw card data
-- You're building an MVP, marketplace, or e-commerce store
- 
+
+* You want to accept payments quickly without building a checkout UI
+* You don't want to handle raw card data
+* You're building an MVP, marketplace, or e-commerce store
+
 **Consider Web Checkout if:**
-- You need full control over how the payment form looks
-- You have a strong brand that must stay consistent through checkout
- 
+
+* You need full control over how the payment form looks
+* You have a strong brand that must stay consistent through checkout
+
 **Use APIs / Server-to-Server if:**
-- You're building recurring billing or subscriptions
-- You need to trigger payments programmatically without user interaction
-- You're integrating with a mobile SDK or a headless frontend
+
+* You're building recurring billing or subscriptions
+* You need to trigger payments programmatically without user interaction
+* You're integrating with a mobile SDK or a headless frontend
