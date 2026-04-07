@@ -8,4 +8,4 @@
 - release_settlement_api
 - settlement-reconciliation-api
 - merchant_upcoming_settlement_api
-- settlement-transaction-details-api
+- settlement_transaction_details_api
