@@ -4,6 +4,15 @@ deprecated: false
 hidden: false
 metadata:
   robots: index
+next:
+  description: Refer to the following pages for additional information.
+  pages:
+    - slug: collect-payments-introduction
+      title: Payment Gateway Overview
+      type: basic
+    - slug: choose-your-checkout-integration
+      title: Start Here - Choose Your Integration
+      type: basic
 ---
 The following diagram illustrates how PayU payment gateway works.
 
