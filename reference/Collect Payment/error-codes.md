@@ -920,7 +920,7 @@ The PayU error mappings documentation page provides a reference guide for variou
 * [Field Error code structure](#field-error-code-structure): Explains how error codes are formatted and what different components mean
 * **Field7 Error Code Mapping** - Contains error codes like ALT_ID_PROV_ERROR, 3DS_METHOD_POSITIVE, etc., with their descriptions, platform layers, and API layers for the following payment modes:
   * [Field7 for Card payments](https://docs.payu.in/reference/error-codes#field7-for-card-payments)
-  * [Field 7 for Net Banking/Wallet payments](#field-7-for-net-bankingwallet-payments)
+  * [Field 7 for Net Banking/Wallet payments](https://docs.payu.in/reference/error-codes#netbanking-and-wallets)
 
 > :blue_book: Standard error codes vs Field 7 error codes
 >
