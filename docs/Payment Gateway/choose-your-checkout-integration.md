@@ -39,7 +39,7 @@ PayU offers multiple ways to integrate payments, depending on how much control a
 
 Use this flow to choose your integration.
 
-<Image align="center" alt="Choose your Integration" border={true} src="https://files.readme.io/7d32e3d9af3720fa7bcedc45e3ebc8da9ae443553c6d09be220f10740852393d-PayU_online_payment_integration_guide.png" className="border" />
+<Image align="center" alt="Choose your Integration" border={true} src="https://files.readme.io/b23ab6aa7cdd5bbe299930d2f7740650d0fe2d49f0192767ada4bd7f7fa0c044-Flowchart_for_PayU_integration_choices.png" className="border" />
 
 **Start with Hosted Checkout if:**
 
