@@ -18,7 +18,15 @@ metadata:
 next:
   description: ''
 ---
-Prebuilt Web Checkout or PayU Hosted Checkout is a payment integration method provided by PayU for merchants who want to accept payments on their website. It offers a secure way to collect payments from customers by redirecting them to a PayU-hosted payment page.
+PayU Hosted Checkout is a payment integration method where:
+
+* You redirect users from your website to a **PayU-hosted payment page**
+* PayU handles the entire payment experience, including security and processing
+* After the payment is completed, users are redirected back to your website
+
+This is the **simplest and fastest way** to start accepting payments without building or managing your own payment UI.
+
+This page helps you understand how **Hosted Checkout** works before you start the integration.
 
 ## How it works?
 
@@ -91,10 +99,10 @@ To integrate PayU Hosted Integration on your website or mobile, refer to:
 
 <br />
 
-<Callout icon="📮">
+<Callout icon="📮" theme="default">
   **Postman Collection**: Download the PayU Hosted Checkout Postman Collection from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration)
 </Callout>
 
 <br />
