@@ -1,5 +1,5 @@
 ---
-title: CB -UPI
+title: '[OLD]CB -UPI'
 api:
   file: cb_merchant_hosted_upi.json
   operationId: MerchantHostedCheckout-UPI
