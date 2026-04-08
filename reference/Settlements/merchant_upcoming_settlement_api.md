@@ -21,7 +21,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 
   <HeaderAuthentication />
 
-  ### Request Body
+  ### Other Header Parameters
 
   | Parameter                        | Description                                                                      | Example                       |
   | -------------------------------- | -------------------------------------------------------------------------------- | ----------------------------- |
@@ -175,9 +175,9 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   curl_close($curl);
   ?>
   ```
-  </Accordion>
+</Accordion>
 
-  <Accordion title="Sample Response" icon="fa-code">
+<Accordion title="Sample Response" icon="fa-code">
   ```json
   {
     "code": "2000",
