@@ -21,13 +21,13 @@ This API is retrieve detailed information about a specific transaction using the
 
   <HeaderAuthentication />
 
-### Query Parameters
+  ### Query Parameters
 
-  | Parameter                       | Description                                                                      | Example       |
-  | ------------------------------- | -------------------------------------------------------------------------------- | ------------- |
-  | merchantTransactionId<br /><code>mandatory</code> | <code>String</code> The tramnsaaction ID of the transaction. |
-  
-### Request Body
+  | Parameter                                         | Description                                                  | Example |
+  | ------------------------------------------------- | ------------------------------------------------------------ | ------- |
+  | merchantTransactionId<br /><code>mandatory</code> | <code>String</code> The tramnsaaction ID of the transaction. |         |
+
+  ### Other Header Parameters
 
   | Parameter                       | Description                                                                      | Example       |
   | ------------------------------- | -------------------------------------------------------------------------------- | ------------- |
