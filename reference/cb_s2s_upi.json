@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Merchant Hosted",
+    "title": "CB - S2S UPI",
     "contact": {},
     "version": "1.0"
   },
@@ -390,5 +390,6 @@
       "name": "Test",
       "description": ""
     }
-  ]
+  ],
+  "x-readme": {}
 }
