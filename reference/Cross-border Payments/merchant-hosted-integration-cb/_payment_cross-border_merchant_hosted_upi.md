@@ -3,7 +3,7 @@ title: CB -UPI
 api:
   file: cb_merchant_hosted_upi.json
   operationId: MerchantHostedCheckout-UPI
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
