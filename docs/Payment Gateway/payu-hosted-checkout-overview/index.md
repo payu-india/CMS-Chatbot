@@ -70,43 +70,65 @@ The following is the customer journey using cards as a payment method:
 
 <Cards columns={3}>
   <Card>
-    <i className="fa fa-mouse-pointer" style={{ color: "#00b386", fontSize: "20px", marginBottom: "8px" }}></i>
-    <h4 style={{ margin: "0 0 8px 0" }}>Initiate Payment</h4>
-    Customer clicks <b>Pay Now</b> on your website or app.
+    <div style={{ color: "#000", padding: "8px" }}>
+      <i className="fa fa-mouse-pointer" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Initiate Payment</h4>
+      <p style={{ margin: 0 }}>
+        Customer clicks <b>Pay Now</b> on your website or app.
+      </p>
+    </div>
   </Card>
 
   <Card>
-    <i className="fa fa-external-link-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "8px" }}></i>
-    <h4 style={{ margin: "0 0 8px 0" }}>Redirect to PayU</h4>
-    Customer is redirected to the PayU Hosted Checkout page.
+    <div style={{ color: "#000", padding: "8px" }}>
+      <i className="fa fa-external-link-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Redirect to PayU</h4>
+      <p style={{ margin: 0 }}>
+        Customer is redirected to the PayU Hosted Checkout page.
+      </p>
+    </div>
   </Card>
 
   <Card>
-    <i className="fa fa-credit-card" style={{ color: "#00b386", fontSize: "20px", marginBottom: "8px" }}></i>
-    <h4 style={{ margin: "0 0 8px 0" }}>Enter Payment Details</h4>
-    Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
+    <div style={{ color: "#000", padding: "8px" }}>
+      <i className="fa fa-credit-card" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Enter Payment Details</h4>
+      <p style={{ margin: 0 }}>
+        Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
+      </p>
+    </div>
   </Card>
 
   <Card>
-    <i className="fa fa-shield-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "8px" }}></i>
-    <h4 style={{ margin: "0 0 8px 0" }}>Authenticate Payment</h4>
-    Customer completes authentication (OTP, UPI approval, etc.).
+    <div style={{ color: "#000", padding: "8px" }}>
+      <i className="fa fa-shield-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Authenticate Payment</h4>
+      <p style={{ margin: 0 }}>
+        Customer completes authentication (OTP, UPI approval, etc.).
+      </p>
+    </div>
   </Card>
 
   <Card>
-    <i className="fa fa-university" style={{ color: "#00b386", fontSize: "20px", marginBottom: "8px" }}></i>
-    <h4 style={{ margin: "0 0 8px 0" }}>Payment Processing</h4>
-    PayU processes the transaction with the bank or payment provider.
+    <div style={{ color: "#000", padding: "8px" }}>
+      <i className="fa fa-university" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Processing</h4>
+      <p style={{ margin: 0 }}>
+        PayU processes the transaction with the bank or payment provider.
+      </p>
+    </div>
   </Card>
 
   <Card>
-    <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px", marginBottom: "8px" }}></i>
-    <h4 style={{ margin: "0 0 8px 0" }}>Payment Status</h4>
-    Customer is redirected back to your website with success or failure status.
+    <div style={{ color: "#000", padding: "8px" }}>
+      <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Status</h4>
+      <p style={{ margin: 0 }}>
+        Customer is redirected back to your website with success or failure status.
+      </p>
+    </div>
   </Card>
 </Cards>
-
-<br />
 
 1. The customer clicks **Pay Now** on merchant website after checkout.
 2. The customer is redirected to _PayU Payment _page.
