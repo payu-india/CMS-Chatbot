@@ -115,73 +115,13 @@ curl -X POST 'https://info.payu.in/v2/payments/merchant/downtime' \
   Parameters marked with <sup style={{color: 'red'}}>*</sup> are mandatory.
 </Callout>
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        **from**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `string` | `number` The start timestamp. Refer to the 
-        [Time Format and Validation Rules](/reference/fetch-merchant-downtime-information#time-format-and-validation-rules) section for format and validation information.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **to**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `string` | `number` The end timestamp. Refer to the 
-        [Time Format and Validation Rules](/reference/fetch-merchant-downtime-information#time-format-and-validation-rules)  section for format and validation information.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **categories**
-      </td>
-
-      <td>
-        `object` | `string` Represents the downtime category. If the value is not passed, no category filter is applied. Possible values: <ul><li>`upi`</li> <li>`nb`</li> <li>`cards`</li> <li>`emi`</li></ul> Accepted formats: <ul><li>Array: `["upi", "cards"]`</li> <li>`Comma-separated string: "upi,cards"`</li></ul>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **page**
-      </td>
-
-      <td>
-        `number` The page number used for pagination. Defaults to `1`.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **per_page**
-      </td>
-
-      <td>
-        `number` Items displayed per page. Defaults to 50. The maximum items per page is 100.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| **Parameter**                               | **Description**                                                                                                                                                                                                                                                                                                       |
+| :------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **from**<sup style={{color: 'red'}}>*</sup> | `string` \| `number` The start timestamp. Refer to the time format and validation rules section for format and validation information.                                                                                                                                                                                |
+| **to**<sup style={{color: 'red'}}>*</sup>   | `string` \| `number` The end timestamp. Refer to the time format and validation rules section for format and validation information.                                                                                                                                                                                  |
+| **categories**                              | `object` \| `string` Represents the downtime category. If the value is not passed, no category filter is applied. Possible values: <ul><li>`upi`</li> <li>`nb`</li> <li>`cards`</li> <li>`emi`</li></ul> Accepted formats: <ul><li>Array: `["upi", "cards"]`</li> <li>Comma-separated string: `"upi,cards"`</li></ul> |
+| **page**                                    | `number` The page number used for pagination. Defaults to `1`.                                                                                                                                                                                                                                                        |
+| **per_page**                                | `number` Items displayed per page. Defaults to 50. The maximum items per page is 100.                                                                                                                                                                                                                                 |
 
 ### Time Format and Validation Rules
 
@@ -203,17 +143,17 @@ curl -X POST 'https://info.payu.in/v2/payments/merchant/downtime' \
 
 ## Response Parameters
 
-| **Parameter**   | **Description**                                                                                                                                                   |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **merchant_id** | `number` The unique merchant identifier.                                                                                                                          |
-| **categories**  | `array` The applied category filters.                                                                                                                             |
-| **from**        | `string` The start time of the downtime in the ISO8601 format.                                                                                                    |
-| **to**          | `string` The end time of the downtime in the ISO8601 format.                                                                                                      |
-| **count**       | `number` The total count of matching downtimes.                                                                                                                   |
-| **page**        | `number` The current page number of the received response.                                                                                                        |
-| **per_page**    | `number` The total number of items displayed per page.                                                                                                            |
-| **total_pages** | `number` The total number of pages the response contains.                                                                                                         |
-| **downtimes**   | `array` The array of downtime objects. Parameters are described in the [Downtime Object](/reference/fetch-merchant-downtime-information#downtime-object) section. |
+| **Parameter**   | **Description**                                                                                 |
+| --------------- | ----------------------------------------------------------------------------------------------- |
+| **merchant_id** | `number` The unique merchant identifier.                                                        |
+| **categories**  | `array` The applied category filters.                                                           |
+| **from**        | `string` The start time of the downtime in the ISO8601 format.                                  |
+| **to**          | `string` The end time of the downtime in the ISO8601 format.                                    |
+| **count**       | `number` The total count of matching downtimes.                                                 |
+| **page**        | `number` The current page number of the received response.                                      |
+| **per_page**    | `number` The total number of items displayed per page.                                          |
+| **total_pages** | `number` The total number of pages the response contains.                                       |
+| **downtimes**   | `array` The array of downtime objects. Parameters are described in the Downtime Object section. |
 
 ### Downtime Object
 
@@ -227,7 +167,7 @@ curl -X POST 'https://info.payu.in/v2/payments/merchant/downtime' \
   | **ended\_at**    | `string` The end time of the downtime in the ISO8601 format.                                                                                          |
   | **status**       | `string` The downtime status. Possible values: <ul><li>`ongoing`</li> <li>`recovered`</li></ul>                                                       |
   | **instrument**   | `object` The entity part details.                                                                                                                     |
-  | **summary**      | `array` The downtime summary details. Parameters are described in the <a href="https://docs.payu.in/v2/reference/fetch-merchant-downtime-information#summary-object">Summary Object</a> section. Parameters are described in the Summary Object section. |
+  | **summary**      | `array` The downtime summary details. Parameters are described in the Summary Object section. Parameters are described in the Summary Object section. |
 </Accordion>
 
 #### Summary Object
