@@ -32,43 +32,33 @@ This is the **simplest and fastest way** to start accepting payments without bui
 
 ***
 
-## 🔄 How Payment Flow Works
+## How Payment Flow Works
 
 The payment journey in Hosted Checkout looks like this:
 
-<Accordion title="Step 1: Initiate Payment" icon="fa-info-circle">
-  The user initiates a payment on your website
+<Image align="center" alt="PayU Hosted Checkout Workflow" border={true} src="https://files.readme.io/932f800-payuhosted_wf.png" className="border" />
+
+<Accordion title="Step 1: Initiate Payment" icon="fa-shopping-cart">
+  Customer selects items and initiates the payment on the merchant website.
 </Accordion>
 
-<Accordion title="Step 2: Send Payment Request" icon="fa-info-circle">
-  You send a payment request to PayU
+<Accordion title="Step 2: Redirect to PayU" icon="fa-external-link-alt">
+  Customer is redirected to PayU Checkout to enter payment details.
 </Accordion>
 
-<Accordion title="Step 3: Redirect to PayU" icon="fa-info-circle">
-  The user is redirected to PayU’s payment page
+<Accordion title="Step 3: Send to Bank" icon="fa-paper-plane">
+  PayU sends the payment request with transaction details to the bank or provider.
 </Accordion>
 
-<Accordion title="Step 4: Complete Payment" icon="fa-info-circle">
-  The user selects a payment method and completes the payment
+<Accordion title="Step 4: Process Payment" icon="fa-university">
+  The bank processes the transaction and returns a success or failure status to PayU.
 </Accordion>
 
-<Accordion title="Step 5: Process with Bank" icon="fa-info-circle">
-  PayU communicates with the bank or payment provider
-</Accordion>
-
-<Accordion title="Step 6: Return Payment Response" icon="fa-info-circle">
-  PayU processes the response and redirects the user back to your website
+<Accordion title="Step 5: Return Response" icon="fa-reply">
+  PayU redirects the customer back to the merchant website with the payment result.
 </Accordion>
 
 This flow ensures that sensitive payment data is handled by PayU, reducing your security and compliance overhead.
-
-## How it works?
-
-To use PayU Hosted Checkout, merchants need to integrate the PayU payment gateway into their website. Once integrated, customers can select the payment method they want to use and enter their payment details on the payment form. When they click the **Pay** button, they will be redirected to a PayU-hosted payment page where they will complete the payment process.
-
-Once the payment is processed, the customer will be redirected back to the merchant's website where they can view the payment result.
-
-<Image align="center" alt="PayU Hosted Checkout Workflow" border={true} src="https://files.readme.io/932f800-payuhosted_wf.png" className="border" />
 
 ## Customer journey
 
