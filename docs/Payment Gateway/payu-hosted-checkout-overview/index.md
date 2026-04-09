@@ -62,11 +62,26 @@ This flow ensures that sensitive payment data is handled by PayU, reducing your 
 
 ## Customer journey
 
-The following diagram illustrates the overall customer journey:
+Below diagram depicts the end user experience during a payment using PayU Hosted Checkout:
 
 <Image align="center" src="https://files.readme.io/bc1c758a83c0c601d161a5621e1fe47a6d4c757e847a893b33b05419972e693a-b7b3bc19c28693be346591ec8a2c29ee07fcf47cb088bc6c9a6c34950c2af0dc-payu_hosted_checkout-workflow.png" />
 
-The following sample customer journey is for cards payment mode:
+The following is the customer journey using cards as a payment method:
+
+<Accordion title="Customer initiates payment" icon="fa-info-circle">
+  The customer clicks **Pay Now** on your website or app.
+</Accordion>
+
+<Accordion title="Redirect to Hosted Checkout" icon="fa-info-circle">
+  The customer is redirected from your website to the PayU Hosted Checkout page.
+</Accordion>
+
+<Accordion title="Customer enters payment details" icon="fa-info-circle">
+  On the hosted page, the customer:
+	* Selects a payment method. Here is it Cards (Credit/Debit)
+	* Enters required payment details
+	* Confirms the payment
+</Accordion>
 
 1. The customer clicks **Pay Now** on merchant website after checkout.
 2. The customer is redirected to _PayU Payment _page.
