@@ -68,15 +68,43 @@ Below diagram depicts the end user experience during a payment using PayU Hosted
 
 The following is the customer journey using cards as a payment method:
 
-<Accordion title="Customer initiates payment" icon="fa-info-circle">
+<br />
+
+<Cards columns={3}>
+  <Card title="Initiate Payment" icon="fa-mouse-pointer">
+    Customer clicks <b>Pay Now</b> on your website or app.
+  </Card>
+
+  <Card title="Redirect to PayU" icon="fa-external-link-alt">
+    Customer is redirected to the PayU Hosted Checkout page.
+  </Card>
+
+  <Card title="Enter Payment Details" icon="fa-credit-card">
+    Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
+  </Card>
+
+  <Card title="Authenticate Payment" icon="fa-shield-alt">
+    Customer completes authentication (OTP, UPI approval, etc.).
+  </Card>
+
+  <Card title="Payment Processing" icon="fa-university">
+    PayU processes the transaction with the bank or payment provider.
+  </Card>
+
+  <Card title="Payment Status" icon="fa-check-circle">
+    Customer is redirected back to your website with success or failure status.
+  </Card>
+</Cards>
+
+<Accordion title="Step 1 Customer initiates payment" icon="fa-info-circle">
   The customer clicks **Pay Now** on your website or app.
 </Accordion>
 
-<Accordion title="Redirect to Hosted Checkout" icon="fa-info-circle">
+<Accordion title="Step 2 Redirect to Hosted Checkout" icon="fa-info-circle">
   The customer is redirected from your website to the PayU Hosted Checkout page.
 </Accordion>
 
-<Accordion title="Customer enters payment details" icon="fa-info-circle">
+<Accordion title="Step 3 Customer enters payment details" icon="fa-info-circle">
   On the hosted page, the customer:
 
   * Selects a payment method. Here is it Cards (Credit/Debit)
@@ -84,10 +112,18 @@ The following is the customer journey using cards as a payment method:
   * Confirms the payment
 </Accordion>
 
-<Accordion title="Payment is processed by the gateway" icon="fa-info-circle">
-
+<Accordion title="Step 4 Payment is processed by the gateway" icon="fa-info-circle">
   PayU securely communicates with the bank or payment provider to process the transaction.
+</Accordion>
 
+<Accordion title="Step 5 Transaction outcome is determined" icon="fa-info-circle">
+  The bank responds with a success or failure status.
+</Accordion>
+
+<Accordion title="Step 6 Customer sees final status" icon="fa-info-circle">
+  The customer is:
+	* Redirected back to your website
+	* Shown a success or failure page
 </Accordion>
 
 1. The customer clicks **Pay Now** on merchant website after checkout.
