@@ -84,8 +84,10 @@ The following is the customer journey using cards as a payment method:
   * Confirms the payment
 </Accordion>
 
-<Accordion title="Payment is processed by the gateway" icon="fa-info-circle"><br/>
-  PayU securely communicates with the bank or payment provider to process the transaction.
+<Accordion title="Payment is processed by the gateway" icon="fa-info-circle">
+  <br />
+
+  PayU securely communicates with the bank or payment provider to process the transaction.<br/>
 </Accordion>
 
 1. The customer clicks **Pay Now** on merchant website after checkout.
