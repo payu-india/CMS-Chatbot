@@ -18,6 +18,56 @@ metadata:
 next:
   description: ''
 ---
+This page helps you understand how **PayU Hosted Checkout** works before you begin integration.
+
+## What is PayU Hosted Checkout?
+
+PayU Hosted Checkout is a payment integration method where:
+
+* You redirect users from your website to a **PayU-hosted payment page**
+* PayU handles the entire payment experience, including security and processing
+* After the payment is completed, users are redirected back to your website
+
+This is the **simplest and fastest way** to start accepting payments without building or managing your own payment UI.
+
+***
+
+## 🔄 How Payment Flow Works
+
+The payment journey in Hosted Checkout looks like this:
+
+<Accordion title="Step 1: Initiate Payment" icon="fa-info-circle">
+  The user initiates a payment on your website
+</Accordion>
+
+<Accordion title="Step 2: Send Payment Request" icon="fa-info-circle">
+  You send a payment request to PayU
+</Accordion>
+
+<Accordion title="Step 3: Redirect to PayU" icon="fa-info-circle">
+  The user is redirected to PayU’s payment page
+</Accordion>
+
+<Accordion title="Step 4: Complete Payment" icon="fa-info-circle">
+  The user selects a payment method and completes the payment
+</Accordion>
+
+<Accordion title="Step 5: Process with Bank" icon="fa-info-circle">
+  PayU communicates with the bank or payment provider
+</Accordion>
+
+<Accordion title="Step 6: Return Payment Response" icon="fa-info-circle">
+  PayU processes the response and redirects the user back to your website
+</Accordion>
+
+1. <br />
+2. The user is redirected to PayU’s payment page
+3. The user selects a payment method and completes the payment
+4. PayU communicates with the bank or payment provider
+5. PayU processes the response and redirects the user back to your website
+
+This flow ensures that sensitive payment data is handled by PayU, reducing your security and compliance overhead.
+
 PayU Hosted Checkout is a payment integration method where:
 
 * You redirect users from your website to a **PayU-hosted payment page**
