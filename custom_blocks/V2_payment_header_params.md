@@ -19,7 +19,7 @@ name: V2_payment_header_params
 
 You must hash the request parameters using the following hash logic:
 
-**Hash logic**: sha512(`<Body data>` + '|' + date + '|' + merchant_secret)
+**Hash logic**: ``sha512(`<Body data>` + '|' + date + '|' + merchant_secret)``
 
 Where `<Body data>` contains the request body posted with the request.
 
