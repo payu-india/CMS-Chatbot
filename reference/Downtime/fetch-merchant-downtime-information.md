@@ -2,7 +2,7 @@
 title: Fetch Merchant Downtime Information
 excerpt: Get the merchant downtime information.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
