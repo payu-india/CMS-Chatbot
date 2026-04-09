@@ -68,45 +68,57 @@ Below diagram depicts the end user experience during a payment using PayU Hosted
 
 The following is the customer journey using cards as a payment method:
 
-<HTMLBlock>{`
+<br />
+
 <Cards columns={3}>
   <Card title="Initiate Payment">
-    <i className="fa fa-mouse-pointer" style={{ color: "#00b386", fontSize: "20px" }}></i>
+    <i className="fa fa-mouse-pointer" style={{ color: "#00b386", fontSize: "20px" }} />
+
     <br />
+
     Customer clicks <b>Pay Now</b> on your website or app.
   </Card>
 
   <Card title="Redirect to PayU">
-    <i className="fa fa-external-link-alt" style={{ color: "#00b386", fontSize: "20px" }}></i>
+    <i className="fa fa-external-link-alt" style={{ color: "#00b386", fontSize: "20px" }} />
+
     <br />
+
     Customer is redirected to the PayU Hosted Checkout page.
   </Card>
 
   <Card title="Enter Payment Details">
-    <i className="fa fa-credit-card" style={{ color: "#00b386", fontSize: "20px" }}></i>
+    <i className="fa fa-credit-card" style={{ color: "#00b386", fontSize: "20px" }} />
+
     <br />
+
     Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
   </Card>
 
   <Card title="Authenticate Payment">
-    <i className="fa fa-shield-alt" style={{ color: "#00b386", fontSize: "20px" }}></i>
+    <i className="fa fa-shield-alt" style={{ color: "#00b386", fontSize: "20px" }} />
+
     <br />
+
     Customer completes authentication (OTP, UPI approval, etc.).
   </Card>
 
   <Card title="Payment Processing">
-    <i className="fa fa-university" style={{ color: "#00b386", fontSize: "20px" }}></i>
+    <i className="fa fa-university" style={{ color: "#00b386", fontSize: "20px" }} />
+
     <br />
+
     PayU processes the transaction with the bank or payment provider.
   </Card>
 
   <Card title="Payment Status">
-    <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px" }}></i>
+    <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px" }} />
+
     <br />
+
     Customer is redirected back to your website with success or failure status.
   </Card>
 </Cards>
-`}</HTMLBlock>
 
 <br />
 
