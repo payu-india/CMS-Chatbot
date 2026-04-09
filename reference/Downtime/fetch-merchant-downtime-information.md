@@ -125,20 +125,41 @@ curl -X POST 'https://info.payu.in/v2/payments/merchant/downtime' \
 
 ### Time Format and Validation Rules
 
-<Accordion title="Supported Input Formats for from and to Parameters" icon="fa-info-circle">
+<Accordion title="Supported Input Formats of from and to Parameters" icon="fa-info-circle">
+  | **Format**            | **Example**            |
+  | :-------------------- | :--------------------- |
+  | `YYYY-MM-DD HH:MM:SS` | `2026-03-25 10:30:00`  |
+  | ISO8601 with time     | `2026-03-25T10:30:00Z` |
+  | Unix epoch (number)   | `1715769600`           |
+  | Unix epoch (string)   | "`1715769600`"         |
 
-| **Format**            | **Example**            |
-| :-------------------- | :--------------------- |
-| `YYYY-MM-DD HH:MM:SS` | `2026-03-25 10:30:00`  |
-| ISO8601 with time     | `2026-03-25T10:30:00Z` |
-| Unix epoch (number)   | `1715769600`           |
-| Unix epoch (string)   | "`1715769600`"         |
+  **Validation rules:**
 
-**Validation rules:**
+  * `from` and `to` values must include time granularity (seconds) unless epoch is used.
+  * The `from` value must be before the `to` value.
+  * The `from` value must be within the last 3 months.
+  * The `to` value must not be greater than the current server time.
+</Accordion>
 
-* `from` and `to` values must include time granularity (seconds) unless epoch is used.
-* The `from` value must be before the `to` value.
-* The `from` value must be within the last 3 months.
-* The `to` value must not be greater than the current server time.
+## Response Parameters
 
+| **Parameter**   | **Description**                                                                                 |
+| --------------- | ----------------------------------------------------------------------------------------------- |
+| **merchant_id** | `number` The unique merchant identifier.                                                        |
+| **categories**  | `array` The applied category filters.                                                           |
+| **from**        | `string` The start time of the downtime in the ISO8601 format.                                  |
+| **to**          | `string` The end time of the downtime in the ISO8601 format.                                    |
+| **count**       | `number` The total count of matching downtimes.                                                 |
+| **page**        | `number` The current page number of the received response.                                      |
+| **per_page**    | `number` The total number of items displayed per page.                                          |
+| **total_pages** | `number` The total number of pages the response contains.                                       |
+| **downtimes**   | `array` The array of downtime objects. Parameters are described in the Downtime Object section. |
+| **summary**     | `array` The downtime summary details. Parameters are described in the Summary Object section.   |
+
+### Downtime Object
+
+<Accordion title="My Accordion Title" icon="fa-table">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
 </Accordion>
