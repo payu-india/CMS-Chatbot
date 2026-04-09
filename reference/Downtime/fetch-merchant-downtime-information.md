@@ -1,6 +1,6 @@
 ---
 title: Fetch Merchant Downtime Information
-excerpt: Get the merchant downtime information
+excerpt: Get the merchant downtime information.
 deprecated: false
 hidden: true
 metadata:
@@ -57,15 +57,15 @@ curl -X POST 'https://info.payu.in/v2/payments/merchant/downtime' \
   "total_pages":1,
   "downtimes":[
     {
-      "entity_name":"MEBIGO LABS PRIVATE LIMITED(12965582)-HDFCU SI(283)",
+      "entity_name":"Test Merchant(12345678)-TEST SI(123)",
       "entity_type":"merchant_id-pg_id",
       "method":"upi",
       "started_at":"2026-03-24T18:33:59+05:30",
       "ended_at":"2026-03-24T18:37:59+05:30",
       "status":"recovered",
       "instrument":{
-        "merchant_id":"MEBIGO LABS PRIVATE LIMITED",
-        "pg_id":"HDFCU SI"
+        "merchant_id":"Test Merchant",
+        "pg_id":"TEST SI"
       },
       "summary":{
         "duration_minutes":4.0,
@@ -76,14 +76,14 @@ curl -X POST 'https://info.payu.in/v2/payments/merchant/downtime' \
       }
     },
     {
-      "entity_name":"MEBIGO LABS PRIVATE LIMITED(12965582)-SI",
+      "entity_name":"Test Merchant(12345678)-SI",
       "entity_type":"merchant_id-mode",
       "method":"upi",
       "started_at":"2026-03-24T14:01:59+05:30",
       "ended_at":"2026-03-24T14:17:59+05:30",
       "status":"recovered",
       "instrument":{
-        "merchant_id":"MEBIGO LABS PRIVATE LIMITED",
+        "merchant_id":"Test Merchant",
         "mode":"SI"
       },
       "summary":{
@@ -158,15 +158,15 @@ curl -X POST 'https://info.payu.in/v2/payments/merchant/downtime' \
 ### Downtime Object
 
 <Accordion title="Parameters and Description" icon="fa-table">
-  | **Parameter**    | **Description**                                                                                                                                       |
-  | :--------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | **entity\_name** | `string` The complete entity name with identifiers.                                                                                                   |
-  | **entity\_type** | `string` The entity type. For example `merchant_id-pg_id` and `merchant_id-mode`                                                                      |
-  | **method**       | `string` The payment method or category. For example `upi`                                                                                            |
-  | **started\_at**  | `string` The start time of the downtime in the ISO8601 format.                                                                                        |
-  | **ended\_at**    | `string` The end time of the downtime in the ISO8601 format.                                                                                          |
-  | **status**       | `string` The downtime status. Possible values: <ul><li>`ongoing`</li> <li>`recovered`</li></ul>                                                       |
-  | **instrument**   | `object` The entity part details.                                                                                                                     |
+  | **Parameter**    | **Description**                                                                                                                                                                                                                                          |
+  | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **entity\_name** | `string` The complete entity name with identifiers.                                                                                                                                                                                                      |
+  | **entity\_type** | `string` The entity type. For example `merchant_id-pg_id` and `merchant_id-mode`                                                                                                                                                                         |
+  | **method**       | `string` The payment method or category. For example `upi`                                                                                                                                                                                               |
+  | **started\_at**  | `string` The start time of the downtime in the ISO8601 format.                                                                                                                                                                                           |
+  | **ended\_at**    | `string` The end time of the downtime in the ISO8601 format.                                                                                                                                                                                             |
+  | **status**       | `string` The downtime status. Possible values: <ul><li>`ongoing`</li> <li>`recovered`</li></ul>                                                                                                                                                          |
+  | **instrument**   | `object` The entity part details.                                                                                                                                                                                                                        |
   | **summary**      | `array` The downtime summary details. Parameters are described in the <a href="https://docs.payu.in/v2/reference/fetch-merchant-downtime-information#summary-object">Summary Object</a> section. Parameters are described in the Summary Object section. |
 </Accordion>
 
