@@ -154,12 +154,50 @@ curl -X POST 'https://info.payu.in/v2/payments/merchant/downtime' \
 | **per_page**    | `number` The total number of items displayed per page.                                          |
 | **total_pages** | `number` The total number of pages the response contains.                                       |
 | **downtimes**   | `array` The array of downtime objects. Parameters are described in the Downtime Object section. |
-| **summary**     | `array` The downtime summary details. Parameters are described in the Summary Object section.   |
 
 ### Downtime Object
 
-<Accordion title="My Accordion Title" icon="fa-table">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+<Accordion title="Parameters and Description" icon="fa-table">
+
+| **Parameter**   | **Description**                                                                                                                                       |
+| :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **entity_name** | `string` The complete entity name with identifiers.                                                                                                   |
+| **entity_type** | `string` The entity type. For example `merchant_id-pg_id` and `merchant_id-mode`                                                                      |
+| **method**      | `string` The payment method or category. For example `upi`                                                                                            |
+| **started_at**  | `string` The start time of the downtime in the ISO8601 format.                                                                                        |
+| **ended_at**    | `string` The end time of the downtime in the ISO8601 format.                                                                                          |
+| **status**      | `string` The downtime status. Possible values: <ul><li>`ongoing`</li> <li>`recovered`</li></ul>                                                       |
+| **instrument**  | `object` The entity part details.                                                                                                                     |
+| **summary**     | `array` The downtime summary details. Parameters are described in the Summary Object section. Parameters are described in the Summary Object section. |
+
 </Accordion>
+
+#### Summary Object
+
+<Accordion title="Parameters and Description" icon="fa-table">
+
+| **Parameter**                    | **Description**                                                                                         |
+| :------------------------------- | :------------------------------------------------------------------------------------------------------ |
+| **duration_minutes**             | `number` The duration of downtime in minutes.                                                           |
+| **failed_count**                 | `number` The number of failed transactions during the downtime.                                         |
+| **success_rate_during_downtime** | `number` The success rate percentage during the downtime.                                               |
+| **srt_drop_rel**                 | `number` The relative success rate drop.                                                                |
+| **severity**                     | `string` The severity level: Possible values: <ul><li>`LOW`</li> <li>`MEDIUM`</li> <li>`HIGH`</li></ul> |
+
+</Accordion>
+
+## Error Response Parameters
+
+| **Error**                                      | **Description**                                                                                                                                     | **Solution**                                                                                                                                  |
+| :--------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Invalid JSON: ...`                            | This error occurs when the json is invalid.                                                                                                         | Make sure the json is valid.                                                                                                                  |
+| `Unknown parameters: ...`                      | This error occurs when you pass unknown parameters.                                                                                                 | Make sure to pass valid parameters.                                                                                                           |
+| `merchant_id or mid is required for merchant`  | This error occurs when you do not pass the the merchant ID.                                                                                         | Make sure to pass the merchant ID.                                                                                                            |
+| `merchant_id is invalid`                       | This error occurs when you pass an invalid merchant ID.                                                                                             | Make sure to pass the valid merchant ID.                                                                                                      |
+| `from is required`                             | This error occurs when you do not pass the `from` parameter value.                                                                                  | The `from` is mandatory parameter. Ensure to pass the value.                                                                                  |
+| `to is required`                               | This error occurs when you do not pass the `to` parameter value.                                                                                    | The `to` is mandatory parameter. Ensure to pass the value.                                                                                    |
+| `from must include time as HH:MM:SS (...)`     | This error occurs when the `from` parameter value format is invalid.                                                                                | Make sure to pass the `from` parameter value in the valid format. Refer to the Time Format and Validation Rules section for more information. |
+| `to must not be greater than the current time` | This error occurs when the timestamp of the `to` parameter is a past time.                                                                          | Ensure the `to` parameter timestamp is greater than the current time.                                                                         |
+| `from must be within the last 3 months`        | This error occurs when the timestamp of the `from` parameter is greater than 3 months.                                                              | Make sure the `from` timestamp is less than 3 months.                                                                                         |
+| `from must be before to`                       | This error occurs when the `from` timestamp exceeds the `to` timestamp.                                                                             | Make sure the `from` timestamp is within the `to` timestamp.                                                                                  |
+| `categories must be from: upi, nb, cards, emi` | This error occurs when the category value is other than the following values: <ul><li>`upi`</li> <li>`nb`</li> <li>`cards`</li> <li>`emi`</li></ul> | Make sure the category value is any of the following values: <ul><li>`upi`</li> <li>`nb`</li> <li>`cards`</li> <li>`emi`</li></ul>            |
