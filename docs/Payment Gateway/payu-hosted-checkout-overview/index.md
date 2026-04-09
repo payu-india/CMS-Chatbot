@@ -68,31 +68,47 @@ Below diagram depicts the end user experience during a payment using PayU Hosted
 
 The following is the customer journey using cards as a payment method:
 
-<Cards>
-  <Card title="Step 1: Initiate Payment" icon="fa-mouse-pointer" color="green">
+<HTMLBlock>{`
+<Cards columns={3}>
+  <Card title="Initiate Payment">
+    <i className="fa fa-mouse-pointer" style={{ color: "#00b386", fontSize: "20px" }}></i>
+    <br />
     Customer clicks <b>Pay Now</b> on your website or app.
   </Card>
 
-  <Card title="Step 2: Redirect to PayU" icon="fa-external-link-alt">
+  <Card title="Redirect to PayU">
+    <i className="fa fa-external-link-alt" style={{ color: "#00b386", fontSize: "20px" }}></i>
+    <br />
     Customer is redirected to the PayU Hosted Checkout page.
   </Card>
 
-  <Card title="Step 3: Enter Payment Details" icon="fa-credit-card">
+  <Card title="Enter Payment Details">
+    <i className="fa fa-credit-card" style={{ color: "#00b386", fontSize: "20px" }}></i>
+    <br />
     Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
   </Card>
 
-  <Card title="Step 4: Authenticate Payment" icon="fa-shield-alt">
+  <Card title="Authenticate Payment">
+    <i className="fa fa-shield-alt" style={{ color: "#00b386", fontSize: "20px" }}></i>
+    <br />
     Customer completes authentication (OTP, UPI approval, etc.).
   </Card>
 
-  <Card title="Step 5: Payment Processing" icon="fa-university">
+  <Card title="Payment Processing">
+    <i className="fa fa-university" style={{ color: "#00b386", fontSize: "20px" }}></i>
+    <br />
     PayU processes the transaction with the bank or payment provider.
   </Card>
 
-  <Card title="Step 6: Payment Status" icon="fa-check-circle">
+  <Card title="Payment Status">
+    <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px" }}></i>
+    <br />
     Customer is redirected back to your website with success or failure status.
   </Card>
 </Cards>
+`}</HTMLBlock>
+
+<br />
 
 1. The customer clicks **Pay Now** on merchant website after checkout.
 2. The customer is redirected to _PayU Payment _page.
