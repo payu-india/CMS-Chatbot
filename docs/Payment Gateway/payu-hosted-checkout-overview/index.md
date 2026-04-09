@@ -60,6 +60,8 @@ The payment journey in Hosted Checkout looks like this:
 
 This flow ensures that sensitive payment data is handled by PayU, reducing your security and compliance overhead.
 
+***
+
 ## Customer journey
 
 Below diagram depicts the end user experience during a payment using PayU Hosted Checkout:
@@ -142,6 +144,8 @@ The following is the customer journey using cards as a payment method:
   </Card>
 </Cards>
 
+***
+
 ## Key Concepts
 
 Understanding the following basic concepts will help you navigate the integration more easily:
@@ -208,6 +212,8 @@ Understanding the following basic concepts will help you navigate the integratio
   </Card>
 </Cards>
 
+***
+
 ## Why Use PayU Hosted Checkout
 
 PayU Hosted Checkout helps you accept online payments quickly without building or managing a payment interface.
@@ -221,6 +227,8 @@ PayU Hosted Checkout helps you accept online payments quickly without building o
   * **Improved Conversion Experience:** Leverage optimized checkout flows, saved preferences, and payment recommendations.
   * **Reduced Engineering Overhead:** No need to build or maintain payment UI, validation, or bank integrations.
 </Accordion>
+
+***
 
 ## Capabilities of PayU Hosted Checkout
 
