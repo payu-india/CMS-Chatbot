@@ -109,6 +109,12 @@ curl -X POST 'https://info.payu.in/v2/payments/merchant/downtime' \
 
 ## Request Parameters
 
+<Callout icon="📘" theme="info">
+  **Mandatory Parameters**
+
+  Parameters marked with <sup style={{color: 'red'}}>*</sup> are mandatory.
+</Callout>
+
 | **Parameter**                                            | **Description**                                                                                                                                                                                                                                                            |
 | :------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **from**<sup style={{color: 'red'}}>*</sup>              | `string` \| `number` The start timestamp. Refer to the time format and validation rules section for format and validation information.                                                                                                                                     |
