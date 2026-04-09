@@ -118,46 +118,46 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 <V2_Dev_Plugin />
 
 ```bash
-curl -X POST \
-  https://apitest.payu.in/v2/payments \
-  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
-  -H 'authorization: HMAC test:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
-  -H 'content-type: application/json' \
-  -d '{
-  "accountId": "test",
-  "txnId": "ref_" + Math.random().toString(36).substring(7),
-  "order": {
-    "productInfo": "iPhone 13",
-    "paymentChargeSpecification": {
-      "price": 25000.00,
-      "convenienceFee": "CC:12,AMEX:19"
+curl --location 'https://apitest.payu.in/v2/payments' \
+--header 'date: Thu, 09 Apr 2026 11:29:38 GMT' \
+--header 'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="838a71fe9e3802640b0d0e2f2346d1fab14634cf58c4a78587ba1d55579f2bcfcb1db6bf4db718b7d7775f57e869aca90dfe7944c1eb5520ce055060b83b7870"' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "currency": "INR",
+    "accountId": "PRiQvJ",
+    "txnId": "Txn_98765344",
+    "order": {
+        "productInfo": "string",
+        "userDefinedFields": {
+            "udf1": "12",
+            "udf2": "34",
+            "udf3": "56",
+            "udf4": "78",
+            "udf5": "INVOICE_2345"
+        },
+        "paymentChargeSpecification": {
+            "price": 1000
+        }
     },
-    "userDefinedFields": {
-      "udf1": "value1",
-      "udf2": "value2"
+    "additionalInfo": {
+        "txnFlow": "nonseamless"
+    },
+    "callBackActions": {
+        "successAction": "https://test.payu.in/admin/test_response",
+        "failureAction": "https://test.payu.in/admin/test_response"
+    },
+    "billingDetails": {
+        "firstName": "sartaj",
+        "lastName": "kumar",
+        "address1": "Test Payu Gurgaon",
+        "address2": "",
+        "city": "Bharatpur",
+        "state": "Rajasthan",
+        "country": "India",
+        "zipCode": "321028",
+        "phone": "9876543210",
+        "email": "testv2@example.in"
     }
-  },
-  "billingDetails": {
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john.doe@example.com",
-    "phone": "9876543210",
-    "address": "123 Main Street",
-    "city": "New Delhi",
-    "state": "Delhi",
-    "country": "India",
-    "zipCode": "110001"
-  },
-  "callBackActions": {
-    "successAction": "https://merchant.com/success",
-    "failureAction": "https://merchant.com/failure",
-    "cancelAction": "https://merchant.com/cancel"
-  },
-  "additionalInfo": {
-    "txnFlow": "nonseamless",
-    "createOrder": true,
-    "enforcePaymethod": "CC,NB,UPI"
-  }
 }'
 ```
 
