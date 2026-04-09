@@ -36,18 +36,16 @@ The PAN Card Status Check API allows merchants to verify PAN (Permanent Account 
 ```
 https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 ```
+<Accordion title="Request parameters" icon="fa-table">
 
-### Request parameters
+| Parameter                     | Description                                                   | Example      |
+| ----------------------------- | ------------------------------------------------------------- | ------------ |
+| `pan_number`<br />`mandatory` | The PAN (Permanent Account Number) to be verified             | "CYCPD2784G" |
+| `name`<br />`mandatory`       | The name of the PAN card holder as it appears on the PAN card | "AKASH DEEP" |
+| `dob`<br />`mandatory`        | Date of Birth of the PAN holder in DD/MM/YYYY format          | "15/09/1993" |
+</Accordion>
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| `pan_number`<br/>`mandatory` | The PAN (Permanent Account Number) to be verified | "CYCPD2784G" |
-| `name`<br/>`mandatory` | The name of the PAN card holder as it appears on the PAN card | "AKASH DEEP" |
-| `dob`<br/>`mandatory` | Date of Birth of the PAN holder in DD/MM/YYYY format | "15/09/1993" |
-
-
-### Sample request
-
+<Accordion title="Sample Request" icon="fa-code">
 ```bash
 curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status' \
 --header 'Content-Type: application/json' \
@@ -61,9 +59,8 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
     "dob": "15/09/1993"
 }'
 ```
-
-### Sample response
-
+</Accordion>
+<Accordion title="Sample Response" icon="fa-reply">
 ```json
 {
     "id": 86235,
@@ -85,21 +82,21 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
     "client_name": "SignzyClient"
 }
 ```
+</Accordion>
+<Accordion title="Response Parameters" icon="fa-table">
 
-### Response parameters
-
-| Parameter    | Description                                              | Example                                                                                      |
-|--------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| id           | Unique identifier for the verification request           | `86235`                                                                                      |
-| api_name     | Identifier of the API that was called                    | `"pan_status_check"`                                                                         |
-| identifier   | A unique hash identifier for the verification request    | `"79c0d918a4f4661cb9cb17d96d24ac1cf04b6013d504cc766ac5235380bfc0d5"`                        |
-| response     | Contains the verification results                        | See result table below                                                                       |
-| status       | Overall status of the API call                           | `"success"`                                                                                  |
-| http_status  | HTTP status code of the response                         | `200`                                                                                        |
-| client_id    | Unique identifier of the client making the request       | `"195ab95fa4700eeaaf38b7f5b538d2979f0f281e0a4eaedca1aa675b79b331a2"`                       |
-| created_at   | Timestamp when the verification record was created       | `"2025-04-30T05:51:40.000Z"`                                                                 |
-| updated_at   | Timestamp when the verification record was last updated  | `"2025-04-30T05:51:40.000Z"`                                                                 |
-| client_name  | Name of the client account                               | `"SignzyClient"`                                                                             |
+| Parameter   | Description                                             | Example                                                              |
+| ----------- | ------------------------------------------------------- | -------------------------------------------------------------------- |
+| id          | Unique identifier for the verification request          | `86235`                                                              |
+| api_name    | Identifier of the API that was called                   | `"pan_status_check"`                                                 |
+| identifier  | A unique hash identifier for the verification request   | `"79c0d918a4f4661cb9cb17d96d24ac1cf04b6013d504cc766ac5235380bfc0d5"` |
+| response    | Contains the verification results                       | See result table below                                               |
+| status      | Overall status of the API call                          | `"success"`                                                          |
+| http_status | HTTP status code of the response                        | `200`                                                                |
+| client_id   | Unique identifier of the client making the request      | `"195ab95fa4700eeaaf38b7f5b538d2979f0f281e0a4eaedca1aa675b79b331a2"` |
+| created_at  | Timestamp when the verification record was created      | `"2025-04-30T05:51:40.000Z"`                                         |
+| updated_at  | Timestamp when the verification record was last updated | `"2025-04-30T05:51:40.000Z"`                                         |
+| client_name | Name of the client account                              | `"SignzyClient"`                                                     |
 
 #### Response Result Object
 
@@ -109,7 +106,7 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 | nameMatch     | Indicates if the provided name matches with PAN records (Y/N)      | `"Y"`      |
 | dobMatch      | Indicates if the provided DOB matches with PAN records (Y/N)       | `"Y"`      |
 | seedingStatus | Indicates if the PAN is seeded with additional verifications (Y/N) | `"Y"`      |
-
+</Accordion>
 ## Step 2: Request Payment with PayU
 
 The following parameters (mandatory) must be posted using any of the following seamless integration and refer to the corresponding section of [Web Checkout Integration](doc:introduction-web) documentation for the complete list of parameters to be posted:
@@ -117,7 +114,6 @@ The following parameters (mandatory) must be posted using any of the following s
 * [Merchant Hosted Checkout > Cards](doc:collect-payments-with-cards-seamless)
 * [Server-to-Server > General Integration](doc:integration-with-s2s)
 
-### Request parameters
 
 **Environment**
 
@@ -125,7 +121,7 @@ The following parameters (mandatory) must be posted using any of the following s
 | :------------------------- | :--------------------------------------------------------------------- |
 | **Test Environment**       | \<[https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
-
+<Accordion title="Request Parameters" icon="fa-table">
 | Parameter                                                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Example                           |
 | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | `key`<br />`mandatory`                                                      | `String` Merchant key provided by PayU during onboarding.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | JPg****f                          |
@@ -164,17 +160,18 @@ The following parameters (mandatory) must be posted using any of the following s
 
 #### lrs_service_type parameter values
 
-| **lrs_service_type** | **Txn Amount \<= INR 10 lacs** | **Txn Amount \> INR 10 lacs** |
-|----------------------|-------------------------------|------------------------------|
-| education_loan       | 0                             | 0                            |
-| education_non_loan   | 0                             | 5%                           |
-| medical              | 0                             | 5%                           |
-| travel               | 0                             | 20%                          |
-| others               | 0                             | 20%                          |
-```
+| **lrs_service_type** | **Txn Amount \<= INR 10 lacs** | **Txn Amount > INR 10 lacs** |
+| -------------------- | ------------------------------ | ---------------------------- |
+| education_loan       | 0                              | 0                            |
+| education_non_loan   | 0                              | 5%                           |
+| medical              | 0                              | 5%                           |
+| travel               | 0                              | 20%                          |
+| others               | 0                              | 20%                          |
 
+````
+</Accordion>
 
-### Sample request
+<Accordion title="Sample Request" icon="fa-code">
 
 ```curl
 curl --location 'https://test.payu.in/_payment' \
@@ -218,13 +215,15 @@ curl --location 'https://test.payu.in/_payment' \
 --data-urlencode 'lrs_service_type=travel' \
 --data-urlencode 'lrs_tcs_declaration_under_limit=0'  
 
-```
+````
+</Accordion> 
 
 ## Step 3: Check response from PayU
 
 <ReverseHashing />
 
-### Sample response (parsed)
+<Accordion title="Sample response [Parsed]" icon="fa-reply">
+
 
 * Success scenario
 
@@ -344,6 +343,7 @@ Array
 		[tcs_amount] => 2
 )
 ```
+</Accordion> 
 
 ## Step 4: Verify the Payment
 
