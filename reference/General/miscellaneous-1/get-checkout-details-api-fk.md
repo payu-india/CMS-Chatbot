@@ -1,7 +1,7 @@
 ---
 title: Get Checkout Details API -FK
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
