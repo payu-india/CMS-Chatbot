@@ -26,49 +26,15 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 
 ## Request parameters
 
-<HTMLBlock>{`
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>accountId<br/><code>mandatory</code></td>
-<td><code>String</code> Merchant key provided by PayU. Character limit: 50</td>
-<td><code>"smsplus"</code></td>
-</tr>
-<tr>
-<td>txnId<br/><code>mandatory</code></td>
-<td><code>String</code> Unique transaction ID for the transaction. Character limit: 50</td>
-<td><code>"REF_123456789"</code></td>
-</tr>
-<tr>
-<td>order<br/><code>mandatory</code></td>
-<td><code>Object</code> Order details containing product information and pricing. For more information, refer to<a href="#order-object"> order object</a></td>
-<td><code>{"productInfo": "Product Name", "paymentChargeSpecification": {"price": 1000.00}}</code></td>
-</tr>
-<tr>
-<td>billingDetails<br/><code>mandatory</code></td>
-<td><code>Object</code> Customer billing information. For more information, refer to<a href="#billingdetails-object"> billingDetails object</a></td>
-<td><code>{"firstName": "John", "email": "john@example.com", "phone": "9876543210"}</code></td>
-</tr>
-<tr>
-<td>callBackActions<br/><code>mandatory</code></td>
-<td><code>Object</code> Callback URLs for different payment outcomes. For more information, refer to<a href="#callbackactions-object"> callBackActions object</a></td>
-<td><code>{"successAction": "https://merchant.com/success", "failureAction": "https://merchant.com/failure"}</code></td>
-</tr>
-<tr>
-<td>additionalInfo<br/><code>mandatory</code></td>
-<td><code>Object</code> Additional transaction parameters including flow type. For more information, refer to<a href="#additionalinfo-object"> additionalInfo object</a></td>
-<td><code>{"txnFlow": "non-seamless", "enforcePaymethod": "NB"}</code></td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+| Parameter                                   | Description                                                                                                                                                            | Example        |
+| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| accountId<br /><code>mandatory</code>       | Merchant key provided by PayU. Type: <code>String</code>. Character limit: 50                                                                                          | jBR7XXXXXXXXXX |
+| currency<br /><code>mandatory</code>        | Transaction currency code. Type: <code>String</code>                                                                                                                   | INR            |
+| txnId<br /><code>mandatory</code>           | Unique transaction ID. Type: <code>String</code>. Character limit: 50                                                                                                  | txn_12345      |
+| order<br /><code>mandatory</code>           | Order details containing product information and pricing. Type: <code>Object</code>. See [order object](#order-object) for detailed field descriptions.                |                |
+| billingDetails<br /><code>mandatory</code>  | Customer billing information. Type: <code>Object</code>. See [billingDetails object](#billingdetails-object) for detailed field descriptions.                          |                |
+| callBackActions<br /><code>mandatory</code> | Callback URLs for different payment outcomes. Type: <code>Object</code>. See [callBackActions object](#callbackactions-object) for detailed field descriptions.        |                |
+| additionalInfo<br /><code>mandatory</code>  | Additional transaction parameters including flow type. Type: <code>Object</code>. See [additionalInfo object](#additionalinfo-object) for detailed field descriptions. |                |
 
 ### order Object
 
@@ -118,46 +84,46 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 <V2_Dev_Plugin />
 
 ```bash
-curl --location 'https://apitest.payu.in/v2/payments' \
---header 'date: Thu, 09 Apr 2026 11:29:38 GMT' \
---header 'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="838a71fe9e3802640b0d0e2f2346d1fab14634cf58c4a78587ba1d55579f2bcfcb1db6bf4db718b7d7775f57e869aca90dfe7944c1eb5520ce055060b83b7870"' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "currency": "INR",
-    "accountId": "PRiQvJ",
-    "txnId": "Txn_98765344",
-    "order": {
-        "productInfo": "string",
-        "userDefinedFields": {
-            "udf1": "12",
-            "udf2": "34",
-            "udf3": "56",
-            "udf4": "78",
-            "udf5": "INVOICE_2345"
-        },
-        "paymentChargeSpecification": {
-            "price": 1000
-        }
+curl -X POST \
+  https://apitest.payu.in/v2/payments \
+  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
+  -H 'authorization: HMAC test:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
+  -H 'content-type: application/json' \
+  -d '{
+  "accountId": "test",
+  "txnId": "ref_" + Math.random().toString(36).substring(7),
+  "order": {
+    "productInfo": "iPhone 13",
+    "paymentChargeSpecification": {
+      "price": 25000.00,
+      "convenienceFee": "CC:12,AMEX:19"
     },
-    "additionalInfo": {
-        "txnFlow": "nonseamless"
-    },
-    "callBackActions": {
-        "successAction": "https://test.payu.in/admin/test_response",
-        "failureAction": "https://test.payu.in/admin/test_response"
-    },
-    "billingDetails": {
-        "firstName": "sartaj",
-        "lastName": "kumar",
-        "address1": "Test Payu Gurgaon",
-        "address2": "",
-        "city": "Bharatpur",
-        "state": "Rajasthan",
-        "country": "India",
-        "zipCode": "321028",
-        "phone": "9876543210",
-        "email": "testv2@example.in"
+    "userDefinedFields": {
+      "udf1": "value1",
+      "udf2": "value2"
     }
+  },
+  "billingDetails": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "9876543210",
+    "address": "123 Main Street",
+    "city": "New Delhi",
+    "state": "Delhi",
+    "country": "India",
+    "zipCode": "110001"
+  },
+  "callBackActions": {
+    "successAction": "https://merchant.com/success",
+    "failureAction": "https://merchant.com/failure",
+    "cancelAction": "https://merchant.com/cancel"
+  },
+  "additionalInfo": {
+    "txnFlow": "nonseamless",
+    "createOrder": true,
+    "enforcePaymethod": "CC,NB,UPI"
+  }
 }'
 ```
 
