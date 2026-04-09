@@ -9,59 +9,135 @@ This API retrieves available payment options and eligibility details for a given
 
 ## Environment
 
-| Environment | Base URL |
-|-------------|----------|
-| **Test** | `https://test.payu.in/merchant/postservice.php?form=2` |
+| Environment    | Base URL                                               |
+| -------------- | ------------------------------------------------------ |
+| **Test**       | `https://test.payu.in/merchant/postservice.php?form=2` |
 | **Production** | `https://info.payu.in/merchant/postservice.php?form=2` |
 
 ## Authentication
 
-- **Method**: Form-based POST with hash authentication
-- **Content-Type**: `application/x-www-form-urlencoded`
-- **Required Fields**: 
-  - `key`: Merchant key
-  - `command`: `get_checkout_details`
-  - `var1`: JSON request body
-  - `hash`: SHA512 hash of `key|command|var1|salt`
+**HTTP Method**: Form-based POST with hash authentication
+
+**Content-Type**: `application/x-www-form-urlencoded`
 
 ## Request Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| requestId<br/><code>mandatory</code> | `String` Unique identifier for the request to track the API call. | `"9078698a15d746feadcffbdaf979a198"` |
-| transactionDetails<br/><code>mandatory</code> | `Object` Contains transaction-specific information including amount and charges. | See transactionDetails table below |
-| useCase<br/><code>mandatory</code> | `Object` Configuration flags to control eligibility checks and limit information in response. | See useCase table below |
-| customerDetails<br/><code>mandatory</code> | `Object` Customer information required for eligibility checks. | See customerDetails table below |
-| filters<br/><code>optional</code> | `Object` Filter criteria to specify which payment options to retrieve. | See filters table below |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key<br />`mandatory`
+      </td>
+
+      <td>
+        `String`<br />Your merchant key provided by PayU.
+      </td>
+
+      <td>
+        `JP***g`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        command<br />`mandatory`
+      </td>
+
+      <td>
+        `String`<br />The API command name.
+      </td>
+
+      <td>
+        `si_transaction`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        var1<br />`mandatory`
+      </td>
+
+      <td>
+        `JSON String`<br />JSON object containing the transaction details. For more information, [var1 Object Parameters Description](var1-object-parameters-description.) 
+      </td>
+
+      <td>
+        For more information, [var1 Object Parameters Description](var1-object-parameters-description.)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash<br />`mandatory`
+      </td>
+
+      <td>
+        `String`<br />The hash value generated using the following hash logic:  
+        hash = sha512(key\|command\|var1|\SALT)
+      </td>
+
+      <td>
+        `jbUS07Og8BToVZ`
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+### var1 Object Parameters Description
+
+| Parameter                                      | Description                                                                                   | Example                              |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------ |
+| requestId<br /><code>mandatory</code>          | `String` Unique identifier for the request to track the API call.                             | `"9078698a15d746feadcffbdaf979a198"` |
+| transactionDetails<br /><code>mandatory</code> | `Object` Contains transaction-specific information including amount and charges.              | See transactionDetails table below   |
+| useCase<br /><code>mandatory</code>            | `Object` Configuration flags to control eligibility checks and limit information in response. | See useCase table below              |
+| customerDetails<br /><code>mandatory</code>    | `Object` Customer information required for eligibility checks.                                | See customerDetails table below      |
+| filters<br /><code>optional</code>             | `Object` Filter criteria to specify which payment options to retrieve.                        | See filters table below              |
+| transactionDetails<br /><code>mandatory</code> | SHA512 hash of `key\|command\|var1\|salt`                                                     |                                      |
 
 ### transactionDetails Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| source<br/><code>optional</code> | `String` &#124; `null` Source identifier for the transaction origin. | `null` |
-| amount<br/><code>mandatory</code> | `Number` Transaction amount in smallest currency unit (e.g., paise for INR). | `47990` |
-| pre_authorize<br/><code>optional</code> | `Boolean` &#124; `null` Whether the transaction should be pre-authorized. | `null` |
-| additional_charges<br/><code>optional</code> | `Object` &#124; `null` Additional charges associated with the transaction. | `null` |
+| Parameter                                     | Description                                                                  | Example |
+| --------------------------------------------- | ---------------------------------------------------------------------------- | ------- |
+| source<br /><code>optional</code>             | `String` \| `null` Source identifier for the transaction origin.             | `null`  |
+| amount<br /><code>mandatory</code>            | `Number` Transaction amount in smallest currency unit (e.g., paise for INR). | `47990` |
+| pre_authorize<br /><code>optional</code>      | `Boolean` \| `null` Whether the transaction should be pre-authorized.        | `null`  |
+| additional_charges<br /><code>optional</code> | `Object` \| `null` Additional charges associated with the transaction.       | `null`  |
 
 ### useCase Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| checkNTBCustomerEligibility<br/><code>optional</code> | `Boolean` Whether to check new-to-bank (NTB) customer eligibility. | `false` |
-| checkCustomerEligibility<br/><code>optional</code> | `Boolean` Whether to check general customer eligibility for payment options. | `true` |
-| returnUserLimit<br/><code>optional</code> | `Boolean` Whether to include per-user limit information in the response. When `true`, eligibility and maximumEligibleLimit fields are returned. | `true` |
+| Parameter                                              | Description                                                                                                                                     | Example |
+| ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| checkNTBCustomerEligibility<br /><code>optional</code> | `Boolean` Whether to check new-to-bank (NTB) customer eligibility.                                                                              | `false` |
+| checkCustomerEligibility<br /><code>optional</code>    | `Boolean` Whether to check general customer eligibility for payment options.                                                                    | `true`  |
+| returnUserLimit<br /><code>optional</code>             | `Boolean` Whether to include per-user limit information in the response. When `true`, eligibility and maximumEligibleLimit fields are returned. | `true`  |
 
 ### customerDetails Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| mobile<br/><code>mandatory</code> | `String` Customer's mobile number for eligibility verification. | `"9123412345"` |
+| Parameter                          | Description                                                     | Example        |
+| ---------------------------------- | --------------------------------------------------------------- | -------------- |
+| mobile<br /><code>mandatory</code> | `String` Customer's mobile number for eligibility verification. | `"9123412345"` |
 
 ### filters Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| paymentOptions<br/><code>optional</code> | `Object` Specify which payment options to retrieve (e.g., EMI, cardless options). | `{"emi": {"cardless": "all"}}` |
+| Parameter                                 | Description                                                                       | Example                        |
+| ----------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------ |
+| paymentOptions<br /><code>optional</code> | `Object` Specify which payment options to retrieve (e.g., EMI, cardless options). | `{"emi": {"cardless": "all"}}` |
 
 ## Sample Request
 
@@ -188,30 +264,30 @@ This API retrieves available payment options and eligibility details for a given
 
 ## Response Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| requestId<br/><code>mandatory</code> | `String` Echoes the request identifier from the input. | `"9078698a15d746feadcffbdaf979a198"` |
-| transactionDetails<br/><code>mandatory</code> | `Object` Echoes the transaction details from the request. | Same as request transactionDetails |
-| useCase<br/><code>mandatory</code> | `Object` Echoes the useCase flags from the request. | Same as request useCase |
-| customerDetails<br/><code>mandatory</code> | `Object` Echoes the customer details from the request. | Same as request customerDetails |
-| filters<br/><code>optional</code> | `Object` Echoes the filters from the request if provided. | Same as request filters |
-| details<br/><code>mandatory</code> | `Object` Core checkout details containing available payment options and eligibility information. | See details table below |
-| registeredAmtConvFee<br/><code>optional</code> | `Number` &#124; `null` Registered amount convenience fee if applicable. | `null` |
-| recurringAmtConvFee<br/><code>optional</code> | `Number` &#124; `null` Recurring amount convenience fee if applicable. | `null` |
-| configData<br/><code>optional</code> | `Object` &#124; `null` Additional configuration data if available. | `null` |
-| status<br/><code>mandatory</code> | `Number` Response status code. `1` indicates success. | `1` |
+| Parameter                                       | Description                                                                                      | Example                              |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------ |
+| requestId<br /><code>mandatory</code>           | `String` Echoes the request identifier from the input.                                           | `"9078698a15d746feadcffbdaf979a198"` |
+| transactionDetails<br /><code>mandatory</code>  | `Object` Echoes the transaction details from the request.                                        | Same as request transactionDetails   |
+| useCase<br /><code>mandatory</code>             | `Object` Echoes the useCase flags from the request.                                              | Same as request useCase              |
+| customerDetails<br /><code>mandatory</code>     | `Object` Echoes the customer details from the request.                                           | Same as request customerDetails      |
+| filters<br /><code>optional</code>              | `Object` Echoes the filters from the request if provided.                                        | Same as request filters              |
+| details<br /><code>mandatory</code>             | `Object` Core checkout details containing available payment options and eligibility information. | See details table below              |
+| registeredAmtConvFee<br /><code>optional</code> | `Number` \| `null` Registered amount convenience fee if applicable.                              | `null`                               |
+| recurringAmtConvFee<br /><code>optional</code>  | `Number` \| `null` Recurring amount convenience fee if applicable.                               | `null`                               |
+| configData<br /><code>optional</code>           | `Object` \| `null` Additional configuration data if available.                                   | `null`                               |
+| status<br /><code>mandatory</code>              | `Number` Response status code. `1` indicates success.                                            | `1`                                  |
 
 ### details.paymentOptions Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| emi<br/><code>optional</code> | `Object` Contains EMI payment options and eligibility details. | See EMI structure in sample response |
+| Parameter                      | Description                                                    | Example                              |
+| ------------------------------ | -------------------------------------------------------------- | ------------------------------------ |
+| emi<br /><code>optional</code> | `Object` Contains EMI payment options and eligibility details. | See EMI structure in sample response |
 
 ### EMI Tenure Options (when returnUserLimit = true)
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| tenure<br/><code>mandatory</code> | `Number` EMI tenure in months. `0` indicates pay later option. | `12` |
-| maximumAmount<br/><code>optional</code> | `Number` &#124; `null` Maximum transaction amount allowed for this tenure. | `null` |
-| maximumEligibleLimit<br/><code>mandatory</code> | `Number` Maximum eligible limit for the customer for this tenure option. Only returned when `returnUserLimit` is `true`. | `1000000` |
-| eligibility<br/><code>mandatory</code> | `Object` Customer eligibility status for this tenure option. Only returned when `returnUserLimit` is `true`. | `{"status": true}` |
+| Parameter                                        | Description                                                                                                              | Example            |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------ |
+| tenure<br /><code>mandatory</code>               | `Number` EMI tenure in months. `0` indicates pay later option.                                                           | `12`               |
+| maximumAmount<br /><code>optional</code>         | `Number` \| `null` Maximum transaction amount allowed for this tenure.                                                   | `null`             |
+| maximumEligibleLimit<br /><code>mandatory</code> | `Number` Maximum eligible limit for the customer for this tenure option. Only returned when `returnUserLimit` is `true`. | `1000000`          |
+| eligibility<br /><code>mandatory</code>          | `Object` Customer eligibility status for this tenure option. Only returned when `returnUserLimit` is `true`.             | `{"status": true}` |
