@@ -60,23 +60,7 @@ The payment journey in Hosted Checkout looks like this:
   PayU processes the response and redirects the user back to your website
 </Accordion>
 
-1. <br />
-2. The user is redirected to PayU’s payment page
-3. The user selects a payment method and completes the payment
-4. PayU communicates with the bank or payment provider
-5. PayU processes the response and redirects the user back to your website
-
 This flow ensures that sensitive payment data is handled by PayU, reducing your security and compliance overhead.
-
-PayU Hosted Checkout is a payment integration method where:
-
-* You redirect users from your website to a **PayU-hosted payment page**
-* PayU handles the entire payment experience, including security and processing
-* After the payment is completed, users are redirected back to your website
-
-This is the **simplest and fastest way** to start accepting payments without building or managing your own payment UI.
-
-This page helps you understand how **Hosted Checkout** works before you start the integration.
 
 ## How it works?
 
