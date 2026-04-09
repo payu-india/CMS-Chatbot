@@ -158,7 +158,7 @@ PayU Hosted Checkout helps you accept online payments quickly without building o
 
 ## Capabilities of PayU Hosted Checkout
 
-<Accordion title="My Accordion Title" icon="fa-cogs">
+<Accordion title="Features" icon="fa-cogs">
   * **Prebuilt Payment Page:** A ready-made checkout page hosted by PayU to collect payment details securely.
   * **Redirect-Based Integration:** Simple integration using a redirect flow from your website to PayU.
   * **Secure Payment Handling:** Handles authentication flows such as OTP and bank verification securely.
