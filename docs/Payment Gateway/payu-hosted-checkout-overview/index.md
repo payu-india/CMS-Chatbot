@@ -68,37 +68,53 @@ Below diagram depicts the end user experience during a payment using PayU Hosted
 
 The following is the customer journey using cards as a payment method:
 
-<br />
-
 <Cards columns={3}>
-  <Card title="Initiate Payment">
-    <i className="fa fa-mouse-pointer" style={{ color: "#00b386", fontSize: "20px" }} />
-    Customer clicks <b>Pay Now</b> on your website or app.
+  <Card>
+    <div style={{ textAlign: "center" }}>
+      <i className="fa fa-mouse-pointer" style={{ color: "#00b386", fontSize: "22px", marginBottom: "8px" }}></i>
+      <h4 style={{ margin: "0 0 8px 0" }}>Initiate Payment</h4>
+      Customer clicks <b>Pay Now</b> on your website or app.
+    </div>
   </Card>
 
-  <Card title="Redirect to PayU">
-    <i className="fa fa-external-link-alt" style={{ color: "#00b386", fontSize: "20px" }} />
-    Customer is redirected to the PayU Hosted Checkout page.
+  <Card>
+    <div style={{ textAlign: "center" }}>
+      <i className="fa fa-external-link-alt" style={{ color: "#00b386", fontSize: "22px", marginBottom: "8px" }}></i>
+      <h4 style={{ margin: "0 0 8px 0" }}>Redirect to PayU</h4>
+      Customer is redirected to the PayU Hosted Checkout page.
+    </div>
   </Card>
 
-  <Card title="Enter Payment Details">
-    <i className="fa fa-credit-card" style={{ color: "#00b386", fontSize: "20px" }} />
-    Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
+  <Card>
+    <div style={{ textAlign: "center" }}>
+      <i className="fa fa-credit-card" style={{ color: "#00b386", fontSize: "22px", marginBottom: "8px" }}></i>
+      <h4 style={{ margin: "0 0 8px 0" }}>Enter Payment Details</h4>
+      Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
+    </div>
   </Card>
 
-  <Card title="Authenticate Payment">
-    <i className="fa fa-shield-alt" style={{ color: "#00b386", fontSize: "20px" }} />
-    Customer completes authentication (OTP, UPI approval, etc.).
+  <Card>
+    <div style={{ textAlign: "center" }}>
+      <i className="fa fa-shield-alt" style={{ color: "#00b386", fontSize: "22px", marginBottom: "8px" }}></i>
+      <h4 style={{ margin: "0 0 8px 0" }}>Authenticate Payment</h4>
+      Customer completes authentication (OTP, UPI approval, etc.).
+    </div>
   </Card>
 
-  <Card title="Payment Processing">
-    <i className="fa fa-university" style={{ color: "#00b386", fontSize: "20px" }} />
-    PayU processes the transaction with the bank or payment provider.
+  <Card>
+    <div style={{ textAlign: "center" }}>
+      <i className="fa fa-university" style={{ color: "#00b386", fontSize: "22px", marginBottom: "8px" }}></i>
+      <h4 style={{ margin: "0 0 8px 0" }}>Payment Processing</h4>
+      PayU processes the transaction with the bank or payment provider.
+    </div>
   </Card>
 
-  <Card title="Payment Status">
-    <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px" }} />
-    Customer is redirected back to your website with success or failure status.
+  <Card>
+    <div style={{ textAlign: "center" }}>
+      <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "22px", marginBottom: "8px" }}></i>
+      <h4 style={{ margin: "0 0 8px 0" }}>Payment Status</h4>
+      Customer is redirected back to your website with success or failure status.
+    </div>
   </Card>
 </Cards>
 
