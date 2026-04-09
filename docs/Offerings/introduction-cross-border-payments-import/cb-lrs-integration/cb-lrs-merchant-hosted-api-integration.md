@@ -203,11 +203,11 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"79c0d918a  
-                                                                                                                                                                                4f4661cb9cb  
-                                                                                                                                                                                17d96d24ac1  
-                                                                                                                                                                                cf04b6013d50  
-                                                                                                                                                                                4cc766ac5235  
-                                                                                                                                                                                380bfc0d5"`
+                                                                                                                                                                                        4f4661cb9cb  
+                                                                                                                                                                                        17d96d24ac1  
+                                                                                                                                                                                        cf04b6013d50  
+                                                                                                                                                                                        4cc766ac5235  
+                                                                                                                                                                                        380bfc0d5"`
       </td>
     </tr>
 
@@ -264,12 +264,12 @@ curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
       <td>
         `"195ab95fa  
-                                                                                                                                                                                4700eeaaf38  
-                                                                                                                                                                                b7f5b538d29  
-                                                                                                                                                                                79f0f281e0  
-                                                                                                                                                                                a4eaedca1a  
-                                                                                                                                                                                a675b79b3  
-                                                                                                                                                                                31a2"`
+                                                                                                                                                                                        4700eeaaf38  
+                                                                                                                                                                                        b7f5b538d29  
+                                                                                                                                                                                        79f0f281e0  
+                                                                                                                                                                                        a4eaedca1a  
+                                                                                                                                                                                        a675b79b3  
+                                                                                                                                                                                        31a2"`
       </td>
     </tr>
 
@@ -342,553 +342,42 @@ The following parameters (mandatory) must be posted using any of the following s
 | **Test Environment**       | \<[https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
 | **Production Environment** | \<[https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| `key`<br/>`mandatory` | `String` Merchant key provided by PayU during onboarding. | JPg****f |
+| `txnid`<br/>`mandatory` | `String` The transaction ID is a reference number for a specific order that is generated by the merchant. | ypl938459435 |
+| `amount`<br/>`optional` | `String` The transaction amount. | 100.00 |
+| `productinfo`<br/>`mandatory` | `String` A brief description of the product. | iPhone |
+| `firstname`<br/>`mandatory` | `String` The first name of the customer as on their Permanent Account Number (PAN)<br/><br/>_Note: This should be validated by PAN Status Check API_ | Ashish |
+| `lastname`<br/>`mandatory` | `String` The last name of the customer as on their Permanent Account Number (PAN)<br/><br/>_Note: This should be validated by PAN Status Check API_ | Kumar |
+| `email`<br/>`mandatory` | `String` The email address of the customer. | abc@payu.in |
+| `phone`<br/>`mandatory` | `String` The phone number of the customer. |  |
+| `address1`<br/>`mandatory` | `String` The first line of the billing address.<br/>H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai<br/><br/>*Note*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar |
+| `address2`<br/>`optional` | `String` The second line of the billing address. |  |
+| `city`<br/>`mandatory` | `String` The city where your customer resides as part of the billing address. | Mumbai |
+| `state`<br/>`mandatory` | `String` The state where your customer resides as part of the billing address. | Maharashtra |
+| `country`<br/>`mandatory` | `String` The country where your customer resides. | India |
+| `zipcode`<br/>`mandatory` | `String` Billing address zip code is mandatory for the cardless EMI option.<br/>`Character Limit-20` | 400004 |
+| `pg`<br/>`mandatory for seamless/s2s flow` | `String` It defines the payment category that the merchant wants the customer to see by default on the PayU's payment page. If this field is empty, the system assumes the credit card payment option by default. | CC, NB or UPI |
+| `bankcode`<br/>`mandatory for seamless/s2s flow` | `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. | AMEX |
+| `ccnum`<br/>`mandatory for cards` | `String` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to Card Number Formats and display error message on invalid input. |  |
+| `ccname`<br/>`mandatory for cards` | `String` This parameter must contain the name on card – as entered by the customer for the transaction. |  |
+| `ccvv`<br/>`mandatory for cards` | `String` Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. |  |
+| `ccexpmon`<br/>`mandatory for cards` | `String` This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. |  |
+| `ccexpyr`<br/>`mandatory for cards` | `String` This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits. |  |
+| `surl`<br/>`mandatory` | `String` The success URL, which is the page PayU will redirect to if the transaction is successful. |  |
+| `furl`<br/>`mandatory` | `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed. |  |
+| `udf1`<br/>`mandatory for LRS S2S transaction` | `String` The Permanent Account Number (PAN) of the buyer must be collected in this field. | AELPR****E |
+| `udf3`<br/>`mandatory for LRS S2S transaction` | `String` The date of birth of the buyer must be collected using this field in the DD-MM-YYYY format as on their Permanent Account Number (PAN).<br/><br/>_Note: This should be validated by PAN Status Check API_ | 02-02-1980 |
+| `udf4`<br/>`mandatory for payment aggregators` | `String` This parameter must include end merchant legal entity name. | XYZ Pvt. Ltd. |
+| `udf5`<br/>`mandatory` | `String` The invoice ID or invoice number must be collected using this field. | INV123456 |
+| `buyer_type_business`<br/>`conditional for cross-border transactions` | This parameter is used to identify whether it is a business-to-business transaction. If 1 is posted, it is a B2B transaction.<br/><br/>In case of B2B, no other LRS specific parameters (listed below) need to be sent, as B2B transactions are outside the scope of the regulation. | 0 |
+| `lrs_mandatory_limit_declaration`<br/>`mandatory for LRS S2S transactions` | `String` Mandatory declaration from buyer that they have remitted less than $250,000 USD under Liberalised Remittance Scheme.<br/><br/>**Note**: The limit is as per RBI regulation and needs to be mandatorily collected on the checkout page. | 1 |
+| `lrs_tnc`<br/>`mandatory for LRS S2S transactions` | `String` Mandatory declaration from buyer that they agree to PayU's terms & conditions.<br/><br/>**Note**: The declaration needs to be taken mandatorily from the buyer on the checkout page. | 1 |
+| `lrs_service_type`<br/>`mandatory for LRS S2S transactions` | `String` The LRS service type describes the nature of service & decides the tax amount based on it. For more information, refer to the [lrs_service_type parameter values](#lrs_service_type-parameter-values) table. | travel |
+| `tcs_amount`<br/>`mandatory for LRS S2S transactions` | `String` Amount of TCS (Tax Collected at Source) to be charged.<br/><br/>**Note**: The amount needs to be captured as per guidance in the [lrs_service_type parameter values](#lrs_service_type-parameter-values) table. | 2.00 |
+| `lrs_tcs_declaration_under_limit`<br/>`mandatory for LRS S2S transactions` | `String` Declaration from buyer that they are either under or over INR 1,00,000 based on which TCS will be collected.<br/><br/>Values expected:<br/><br/>**0** (in case of under the limit)<br/>**1** (in case of over the limit)<br/><br/>**Note**: The declaration needs to be taken mandatorily from the buyer on the checkout page. Also, when user declares they are over the limit (i.e. when this param is sent as "1", the "tcs_amount" field to contain amount calculated as per the [lrs_service_type parameter values](#lrs_service_type-parameter-values) table. | 0 / 1 |
 
-      <th>
-        **Description**
-      </th>
-
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        key
-
-        `mandatory`
-      </td>
-
-      <td>
-        `String`Merchant key provided by PayU during onboarding.
-      </td>
-
-      <td>
-         JPg****f
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnid
-        `mandatory`
-      </td>
-
-      <td>
-        `String`The transaction ID is a reference number for a specific order that is generated by the merchant.
-      </td>
-
-      <td>
-        ypl938459435
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount
-      </td>
-
-      <td>
-        `String`The transaction amount.
-      </td>
-
-      <td>
-        100.00
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productinfo
-        `mandatory`
-      </td>
-
-      <td>
-        `String`A brief description of the product.
-      </td>
-
-      <td>
-         iPhone
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstname
-        `mandatory`
-      </td>
-
-      <td>
-        `String` The first name of the customer as on their Permanent Account Number (PAN)
-
-        _Note: This should be validated by PAN Status Check API_
-      </td>
-
-      <td>
-        Ashish
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        lastname
-        `mandatory`
-      </td>
-
-      <td>
-        `String` The last name of the customer as on their Permanent Account Number (PAN)
-
-        _Note: This should be validated by PAN Status Check API_
-      </td>
-
-      <td>
-        Kumar
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email
-        `mandatory`
-      </td>
-
-      <td>
-        `String`The email address of the customer.
-      </td>
-
-      <td>
-         [abc@payu.in](mailto:abc@payu.in)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone
-        `mandatory`
-      </td>
-
-      <td>
-        `String`The phone number of the customer.
-      </td>
-
-      <td>
-         
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        address1
-        `mandatory`
-      </td>
-
-      <td>
-        `String` The first line of the billing address.
-        H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai
-
-        * _Note_*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
-      </td>
-
-      <td>
-        34 Saikripa-Estate, Tilak Nagar
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        address2
-        `optional`
-      </td>
-
-      <td>
-        `String` The second line of the billing address.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        city
-        `mandatory`
-      </td>
-
-      <td>
-        `String` The city where your customer resides as part of the billing address.
-      </td>
-
-      <td>
-        Mumbai
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        state
-        `mandatory`
-      </td>
-
-      <td>
-        `String` The state where your customer resides as part of the billing address,
-      </td>
-
-      <td>
-        Maharashtra
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        country
-        `mandatory`
-      </td>
-
-      <td>
-        `String` The country where your customer resides.
-      </td>
-
-      <td>
-        India
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        zipcode
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Billing address zip code is mandatory for the cardless EMI option.
-        `Character Limit-20
-      </td>
-
-      <td>
-        400004
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        pg
-        `mandatory for seamless/s2s flow`
-      </td>
-
-      <td>
-        `String` It defines the payment category that the merchant wants the customer to see by default on the PayU’s payment page. If this field is empty, the system assumes the credit card payment option by default.
-      </td>
-
-      <td>
-        CC, NB or UPI
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankcode
-        `mandatory for seamless/s2s flow`
-      </td>
-
-      <td>
-        `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it.
-      </td>
-
-      <td>
-        AMEX
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccnum
-        `mandatory for cards`
-      </td>
-
-      <td>
-        `String` Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to Card Number Formats and display error message on invalid input.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccname
-        `mandatory for cards`
-      </td>
-
-      <td>
-        `String` This parameter must contain the name on card – as entered by the customer for the transaction.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccvv
-        `mandatory for cards`
-      </td>
-
-      <td>
-        `String` Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpmon
-        `mandatory for cards`
-      </td>
-
-      <td>
-        `String` This parameter must contain the card’s expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpyr
-        `mandatory for cards`
-      </td>
-
-      <td>
-        `String` This parameter must contain the card’s expiry year – as entered by the customer for the transaction. It must be of four digits.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        surl
-        `mandatory`
-      </td>
-
-      <td>
-        `String` The success URL, which is the page PayU will redirect to if the transaction is successful.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        furl
-        `mandatory`
-      </td>
-
-      <td>
-        `String`The Failure URL, which is the page PayU will redirect to if the transaction is failed.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf1
-        `mandatory for LRS S2S transaction`
-      </td>
-
-      <td>
-        `String` The Permanent Account Number (PAN) of the buyer must be collected in this field.
-      </td>
-
-      <td>
-        AELPR****E
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf3
-        `mandatory for LRS S2S transaction`
-      </td>
-
-      <td>
-        `String` The date of birth of the buyer must be collected using this field in the DD-MM-YYYY format as on their Permanent Account Number (PAN).
-
-        _Note: This should be validated by PAN Status Check API_
-      </td>
-
-      <td>
-        02-02-1980
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf4
-        `mandatory for payment aggregators`
-      </td>
-
-      <td>
-        `String` This parameter must include end merchant legal entity name.
-      </td>
-
-      <td>
-        XYZ Pvt. Ltd.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf5
-        `mandatory`
-      </td>
-
-      <td>
-        `String`The invoice ID or invoice number must be collected using this field.
-      </td>
-
-      <td>
-        INV123456
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        buyer_type_business
-        `conditional for cross-border transactions`
-      </td>
-
-      <td>
-        This parameter is used to identify whether it is a business-to-business transaction.  If 1 is posted, it is a B2B transaction.
-
-        In case of B2B, no other LRS specific parameters (listed below) need to be sent, as B2B transactions are outside the scope of the regulation.
-      </td>
-
-      <td>
-        0
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        lrs_mandatory_limit_declaration
-
-        `mandatory for LRS S3S transactions`
-      </td>
-
-      <td>
-        `String`Mandatory declaration from buyer that they have remitted less than $250,000 USD under Liberalised Remittance Scheme.
-
-        <br />
-
-        **Note**: The limit is as per RBI regulation and needs to be mandatorily collected on the checkout page.
-
-        <br />
-      </td>
-
-      <td>
-        1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        lrs_tnc
-        `mandatory for LRS S2S transactions`
-      </td>
-
-      <td>
-        `String`Mandatory declaration from buyer that they agree to PayU's terms & conditions.
-
-        <br />
-
-        **Note**: The declaration needs to be taken mandatorily from the buyer on the checkout page.
-      </td>
-
-      <td>
-        1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        lrs_service_type
-        `mandatory for LRS S2S transactions`
-      </td>
-
-      <td>
-        `String` The LRS service type describes the nature of service & decides the tax amount based on it. For more information, refer to the [lrs_service_type parameter values](#lrs_service_type-parameter-values)  table.
-      </td>
-
-      <td>
-        travel
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        tcs_amount
-        `mandatory for LRS S2S transactions`
-      </td>
-
-      <td>
-        `String` Amount of TCS (Tax Collected at Source) to be charged.
-
-        **Note**: The amount needs to be captured as per guidance in the [lrs_service_type parameter values](#lrs_service_type-parameter-values)   table.
-      </td>
-
-      <td>
-        2.00
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        lrs_tcs_declaration_under_limit
-
-        `mandatory for LRS S2S transactions`
-      </td>
-
-      <td>
-        `String`Declaration from buyer that they are either under or over INR 1,00,000 based on which TCS will be collected.
-
-        Values expected:
-
-        **0** (in case of under the limit)  
-        **1**   (in case of over the limit
-
-        **Note**: The declaration needs to be taken mandatorily from the buyer on the checkout page. Also, when user declares they are over the limit (i.e. when this param is sent as "1", the "tcs_amount" field to contain amount calculated as per the the [lrs_service_type parameter values](#lrs_service_type-parameter-values)    table.
-      </td>
-
-      <td>
-        0 / 1
-      </td>
-    </tr>
-  </tbody>
-</Table>
 
 #### lrs_service_type parameter values
 
