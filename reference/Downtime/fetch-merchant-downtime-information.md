@@ -115,13 +115,30 @@ curl -X POST 'https://info.payu.in/v2/payments/merchant/downtime' \
   Parameters marked with <sup style={{color: 'red'}}>*</sup> are mandatory.
 </Callout>
 
-| **Parameter**                                            | **Description**                                                                                                                                                                                                                                                            |
-| :------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **from**<sup style={{color: 'red'}}>*</sup>              | `string` \| `number` The start timestamp. Refer to the time format and validation rules section for format and validation information.                                                                                                                                     |
-| **to**<sup style={{color: 'red'}}>*</sup>                | `string` \| `number` The end timestamp. Refer to the time format and validation rules section for format and validation information.                                                                                                                                       |
-| **categories**                                           | `object` \| `string` Represents the downtime category. Possible values: <ul><li>`upi`</li> <li>`nb`</li> <li>`cards`</li> <li>`emi`</li></ul> Accepted formats: <ul><li>Array: `["upi", "cards"]`</li> <li>`Comma-separated string: "upi,cards"`</li></ul>                 |
-| **order**<sup style={{color:'red'}}>*</sup>              | `object` Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. Parameters are described in the [order Object](https://docs.payu.in/v2/reference/generate-upi-qr#order-object) section. |
-| **additionalInfo**<sup style={{color:'red'}}>*</sup>     | `object` Additional information including UPI-specific parameters like VPA. Parameters are described in the [additionalInfo Object](https://docs.payu.in/v2/reference/generate-upi-qr#additionalinfo-object) section.                                                      |
-| **callBackActions**<sup style={{color:'red'}}>*</sup>    | `object` Actions to perform on the payment server in different scenarios. Parameters are described in the [callBackActions Object](https://docs.payu.in/v2/reference/generate-upi-qr#callbackactions-object) section.                                                      |
-| **omniChannelDetails**<sup style={{color:'red'}}>*</sup> | `object` The omnichannel details. Parameters are described in the [omniChannelDetails Object](https://docs.payu.in/v2/reference/generate-upi-qr#omnichanneldetails-object) section.                                                                                        |
-| **billingDetails**<sup style={{color:'red'}}>*</sup>     | `object` Billing details of the customer including name, address, phone number, email, and so on. Parameters are described in the [billingDetails Object](https://docs.payu.in/v2/reference/generate-upi-qr#billingdetails-object) section.                                |
+| **Parameter**                               | **Description**                                                                                                                                                                                                                                                                                                       |
+| :------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **from**<sup style={{color: 'red'}}>*</sup> | `string` \| `number` The start timestamp. Refer to the time format and validation rules section for format and validation information.                                                                                                                                                                                |
+| **to**<sup style={{color: 'red'}}>*</sup>   | `string` \| `number` The end timestamp. Refer to the time format and validation rules section for format and validation information.                                                                                                                                                                                  |
+| **categories**                              | `object` \| `string` Represents the downtime category. If the value is not passed, no category filter is applied. Possible values: <ul><li>`upi`</li> <li>`nb`</li> <li>`cards`</li> <li>`emi`</li></ul> Accepted formats: <ul><li>Array: `["upi", "cards"]`</li> <li>`Comma-separated string: "upi,cards"`</li></ul> |
+| **page**                                    | `number` The page number used for pagination. Defaults to `1`.                                                                                                                                                                                                                                                        |
+| **per_page**                                | `number` Items displayed per page. Defaults to 50. The maximum items per page is 100.                                                                                                                                                                                                                                 |
+
+### Time Format and Validation Rules
+
+<Accordion title="Supported Input Formats for from and to Parameters" icon="fa-info-circle">
+
+| **Format**            | **Example**            |
+| :-------------------- | :--------------------- |
+| `YYYY-MM-DD HH:MM:SS` | `2026-03-25 10:30:00`  |
+| ISO8601 with time     | `2026-03-25T10:30:00Z` |
+| Unix epoch (number)   | `1715769600`           |
+| Unix epoch (string)   | "`1715769600`"         |
+
+**Validation rules:**
+
+* `from` and `to` values must include time granularity (seconds) unless epoch is used.
+* The `from` value must be before the `to` value.
+* The `from` value must be within the last 3 months.
+* The `to` value must not be greater than the current server time.
+
+</Accordion>
