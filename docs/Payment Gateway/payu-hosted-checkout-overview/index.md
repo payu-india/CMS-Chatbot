@@ -142,6 +142,31 @@ The following is the customer journey using cards as a payment method:
   </Card>
 </Cards>
 
+## Why Use PayU Hosted Checkout
+
+PayU Hosted Checkout helps you accept online payments quickly without building or managing a payment interface.
+
+<Accordion title="Benefits" icon="fa-rocket">
+  * **Faster Go-Live**: Integrate and start accepting payments with minimal development effort.
+  * **Built-in Security and Compliance:** Sensitive payment data is handled by PayU, reducing your PCI-DSS compliance burden.
+  * **Multiple Payment Methods:** Accept payments via cards, UPI, netbanking, and wallets through a single integration.
+  * **Easy Payment Method Enablement:** Enable or disable payment options without additional development effort.
+  * **Customizable Checkout Experience:** Align the PayU-hosted payment page with your brand using logos, colors, and language options.
+  * **Improved Conversion Experience:** Leverage optimized checkout flows, saved preferences, and payment recommendations.
+  * **Reduced Engineering Overhead:** No need to build or maintain payment UI, validation, or bank integrations.
+</Accordion>
+
+## Capabilities of PayU Hosted Checkout
+
+<Accordion title="My Accordion Title" icon="fa-cogs">
+  * **Prebuilt Payment Page:** A ready-made checkout page hosted by PayU to collect payment details securely.
+  * **Redirect-Based Integration:** Simple integration using a redirect flow from your website to PayU.
+  * **Secure Payment Handling:** Handles authentication flows such as OTP and bank verification securely.
+  * **Quick Integration Setup:** Integration kits and APIs enable faster implementation with minimal setup.
+  * **Mobile-Optimized Experience:** Supports responsive checkout flows and mobile payment intents (UPI).
+  * **Smart Payment Experience:** Supports features like payment recommendations and saved preferences.
+</Accordion>
+
 ## Features of PayU Hosted Checkout
 
 PayU manages the checkout experience on your website. The features of PayU Hosted Checkout are:
