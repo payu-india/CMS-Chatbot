@@ -142,6 +142,72 @@ The following is the customer journey using cards as a payment method:
   </Card>
 </Cards>
 
+## Key Concepts
+
+Understanding the following basic concepts will help you navigate the integration more easily:
+
+<Cards columns={3}>
+  <Card>
+    <div style={{ color: "#000", padding: "8px" }}>
+      <i className="fa fa-exchange-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Transaction</h4>
+
+      <p style={{ margin: 0 }}>
+        A single payment attempt initiated by the customer on your website.
+      </p>
+    </div>
+  </Card>
+
+  <Card>
+    <div style={{ color: "#000", padding: "8px" }}>
+      <i className="fa fa-paper-plane" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Request</h4>
+
+      <p style={{ margin: 0 }}>
+        The payment data sent from your server to PayU to initiate a transaction.
+      </p>
+    </div>
+  </Card>
+
+  <Card>
+    <div style={{ color: "#000", padding: "8px" }}>
+      <i className="fa fa-reply" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Response</h4>
+
+      <p style={{ margin: 0 }}>
+        The transaction result returned by PayU after payment processing.
+      </p>
+    </div>
+  </Card>
+
+  <Card>
+    <div style={{ color: "#000", padding: "8px" }}>
+      <i className="fa fa-random" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Redirect Flow</h4>
+
+      <p style={{ margin: 0 }}>
+        Customer is redirected to PayU for payment and back to your site after completion.
+      </p>
+    </div>
+  </Card>
+
+  <Card>
+    <div style={{ color: "#000", padding: "8px" }}>
+      <i className="fa fa-server" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>API Flow</h4>
+
+      <p style={{ margin: 0 }}>
+        Server-to-server communication for handling payment verification and status updates.
+      </p>
+    </div>
+  </Card>
+</Cards>
+
 ## Why Use PayU Hosted Checkout
 
 PayU Hosted Checkout helps you accept online payments quickly without building or managing a payment interface.
@@ -167,29 +233,7 @@ PayU Hosted Checkout helps you accept online payments quickly without building o
   * **Smart Payment Experience:** Supports features like payment recommendations and saved preferences.
 </Accordion>
 
-## Features of PayU Hosted Checkout
-
-PayU manages the checkout experience on your website. The features of PayU Hosted Checkout are:
-
-* Enables the customer to select the payment option through the readymade payment page hosted on the PayU server, and accept corresponding payment details. After submitting the details, PayU will take the customer to the desired payment options webpage for further authentication. For configuring payment modes on payment page, refer to [Configure Checkout Payment Methods](https://docs.payu.in/docs/payu-payment-page-customization#configure-checkout-payment-methods-and-settings).
-* Facilitates access to color schemes, customize logo, and display language (some Indian languages supported) though PayU owns this page. For more information, refer to [Change the Language](https://docs.payu.in/docs/payu-payment-page-customization#change-the-language)  and  [Configure Checkout Settings](https://docs.payu.in/docs/payu-payment-page-customization#configure-checkout-payment-methods-and-settings).
-* Enables easy and quick integration so you can integrate with minimal technical knowledge.
-
-Web Checkout provides multiple payment options that can be easily pre-configured by you on-demand, according to your business case. You can execute PayU Hosted Checkout integration efficiently with PayU web payments systems using a PG integration kit provided by PayU.
-
-## Benefits of PayU Hosted Checkout
-
-The following is a list of benefits of PayU Hosted Checkout:
-
-* Simplified payment workflow for your customers while reducing the cost of designing complex payment functionalities within your environment.
-* Going live with new payment modes requires zero development. They can be enabled with a simple switch.
-* Assures the security of your customer payment credentials.
-* PCI-DSS certifications to operate your facility are not mandatory.
-* PayU Hosted Checkout extends cross-functional support at organizational roles within the organization.
-* The Native UI feature of Web Checkout Pro allows you to ensure continuous usability (UX) and brand coherence by customizing the PayU-hosted environment with the business logo and color scheme of your choice, simulating your business website.
-* Offers zero direction OTP authentication flow for cards with Native OTP.
-* Supports specific and generic intent for UPI payments on mobile web
-* Personalized payment experience (using recommendations) and offers.
+<br />
 
 ## Next Steps
 
