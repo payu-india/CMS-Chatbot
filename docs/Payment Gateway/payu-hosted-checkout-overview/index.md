@@ -69,7 +69,7 @@ Below diagram depicts the end user experience during a payment using PayU Hosted
 The following is the customer journey using cards as a payment method:
 
 <Cards>
-  <Card title="Step 1: Initiate Payment" icon="fa-mouse-pointer">
+  <Card title="Step 1: Initiate Payment" icon="fa-mouse-pointer" color="green">
     Customer clicks <b>Pay Now</b> on your website or app.
   </Card>
 
@@ -80,19 +80,18 @@ The following is the customer journey using cards as a payment method:
   <Card title="Step 3: Enter Payment Details" icon="fa-credit-card">
     Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
   </Card>
-  
+
   <Card title="Step 4: Authenticate Payment" icon="fa-shield-alt">
     Customer completes authentication (OTP, UPI approval, etc.).
   </Card>
-  
+
   <Card title="Step 5: Payment Processing" icon="fa-university">
     PayU processes the transaction with the bank or payment provider.
   </Card>
-  
+
   <Card title="Step 6: Payment Status" icon="fa-check-circle">
     Customer is redirected back to your website with success or failure status.
   </Card>
-
 </Cards>
 
 1. The customer clicks **Pay Now** on merchant website after checkout.
