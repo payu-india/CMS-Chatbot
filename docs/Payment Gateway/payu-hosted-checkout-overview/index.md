@@ -71,8 +71,10 @@ The following is the customer journey using cards as a payment method:
 <Cards columns={3}>
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-mouse-pointer" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+      <i className="fa fa-mouse-pointer" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
       <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Initiate Payment</h4>
+
       <p style={{ margin: 0 }}>
         Customer clicks <b>Pay Now</b> on your website or app.
       </p>
@@ -81,8 +83,10 @@ The following is the customer journey using cards as a payment method:
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-external-link-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+      <i className="fa fa-external-link-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
       <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Redirect to PayU</h4>
+
       <p style={{ margin: 0 }}>
         Customer is redirected to the PayU Hosted Checkout page.
       </p>
@@ -91,8 +95,10 @@ The following is the customer journey using cards as a payment method:
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-credit-card" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+      <i className="fa fa-credit-card" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
       <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Enter Payment Details</h4>
+
       <p style={{ margin: 0 }}>
         Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
       </p>
@@ -101,8 +107,10 @@ The following is the customer journey using cards as a payment method:
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-shield-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+      <i className="fa fa-shield-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
       <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Authenticate Payment</h4>
+
       <p style={{ margin: 0 }}>
         Customer completes authentication (OTP, UPI approval, etc.).
       </p>
@@ -111,8 +119,10 @@ The following is the customer journey using cards as a payment method:
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-university" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+      <i className="fa fa-university" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
       <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Processing</h4>
+
       <p style={{ margin: 0 }}>
         PayU processes the transaction with the bank or payment provider.
       </p>
@@ -121,35 +131,16 @@ The following is the customer journey using cards as a payment method:
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+      <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
       <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Status</h4>
+
       <p style={{ margin: 0 }}>
         Customer is redirected back to your website with success or failure status.
       </p>
     </div>
   </Card>
 </Cards>
-
-1. The customer clicks **Pay Now** on merchant website after checkout.
-2. The customer is redirected to _PayU Payment _page.
-
-<Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Payment Modes" border={true} width="622px" src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" className="border" />
-
-3. The customer chooses a payment mode from the _PayU Payment_ page. For example, **Cards (Debit/Credit)**.
-4. The card details are provided by the customer and clicks **Proceed**.
-
-<Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Card Details page" border={true} width="622px" src="https://files.readme.io/fd09cbd284ffe7fb3b60d03e2acd8a5a51d850dd1795f1eca9879893b3569603-Screenshot_2024-09-06_at_11.56.40_AM.png" className="border" />
-
-A consent message is displayed whether the card the details can be stored.
-
-<Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Save Card Confirmation" width="622px" src="https://files.readme.io/caa8481-Screenshot_2023-10-05_at_10.37.33_AM.png" />
-
-5. Customer clicks **Save and Continue**.
-6. The OTP page is displayed where the customer enters OTP sent to the them.
-
-<Image align="center" width="422px" src="https://files.readme.io/289fa82-Screenshot_2023-10-05_at_10.37.42_AM.png" />
-
-6. PayU redirects back to the merchant website based on the success URL (surl) or failure URL (furl) specified.
 
 ## Features of PayU Hosted Checkout
 
