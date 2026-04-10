@@ -1,6 +1,9 @@
 ---
 title: Fetch Merchant Downtime Information
-excerpt: Get the merchant downtime information.
+excerpt: >-
+  Retrieve merchant-specific downtime information using the PayU API. Fetch
+  real-time and historical downtime details for associated payment entities with
+  customizable date ranges and filters.
 deprecated: false
 hidden: false
 metadata:
