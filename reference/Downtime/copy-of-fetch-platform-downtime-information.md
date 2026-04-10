@@ -1,35 +1,35 @@
 ---
-title: Copy of Fetch Platform Downtime Information
+title: Fetch Scheduled Maintenance Activities Information
 excerpt: >-
-  Retrieve platform-level downtime information using the PayU API. Fetch
-  real-time and historical downtime data across all payment entities with
-  flexible date range and filtering options.
+  Retrieve scheduled maintenance activity details using the PayU API. Access
+  upcoming and past maintenance schedules across payment systems with
+  customizable date ranges and filters.
 deprecated: false
 hidden: true
 metadata:
-  title: Platform Downtime API | PayU Developer Documentation
+  title: Scheduled Maintenance API | PayU Developer Documentation
   description: >-
     Retrieve platform-level downtime information using the PayU API. Fetch
     real-time and historical downtime data across all payment entities with
     flexible date range and filtering options.
   keywords:
-    - PayU platform downtime API
-    - platform downtime API
-    - fetch platform downtime information
-    - payment gateway platform downtime
-    - PayU API platform status
-    - payment system downtime API
-    - platform outage monitoring API
-    - payment infrastructure downtime
-    - API for platform availability
-    - payment service outage data
+    - PayU maintenance API
+    - scheduled maintenance API
+    - fetch maintenance activities
+    - payment gateway maintenance schedule
+    - PayU API maintenance updates
+    - platform maintenance API
+    - payment system maintenance data
+    - API for maintenance tracking
+    - scheduled downtime API
+    - payment service maintenance status
     - PayU developer API
-    - downtime tracking API
-    - transaction platform downtime
-    - payment network status
+    - maintenance notification API
+    - transaction maintenance data
+    - payment infrastructure maintenance
   robots: noindex
 ---
-Use this endpoint to retrieve platform-level downtime information. The response includes downtime details for platform entities (entities without merchant association).
+Use this endpoint to retrieve scheduled maintenance activity information. The response includes details of maintenance activities that overlap with the given time range.
 
 <Cards>
   <Card title="Method">
@@ -169,15 +169,15 @@ curl -X POST 'https://info.payu.in/v2/payments/platform/downtime' \
 ### Downtime Object
 
 <Accordion title="Parameters and Description" icon="fa-table">
-  | **Parameter**    | **Description**                                                                                                                                                                                                                                          |
-  | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | **entity\_name** | `string` The complete entity name with identifiers.                                                                                                                                                                                                      |
-  | **entity\_type** | `string` The entity type. For example `merchant_id-pg_id`, `merchant_id-mode`, and `bank`                                                                                                                                                                         |
-  | **method**       | `string` The payment method or category. For example `upi`                                                                                                                                                                                               |
-  | **started\_at**  | `string` The start time of the downtime in the ISO8601 format.                                                                                                                                                                                           |
-  | **ended\_at**    | `string` The end time of the downtime in the ISO8601 format.                                                                                                                                                                                             |
-  | **status**       | `string` The downtime status. Possible values: <ul><li>`ongoing`</li> <li>`recovered`</li></ul>                                                                                                                                                          |
-  | **instrument**   | `object` The entity part details.                                                                                                                                                                                                                        |
+  | **Parameter**    | **Description**                                                                                         |
+  | :--------------- | :------------------------------------------------------------------------------------------------------ |
+  | **entity\_name** | `string` The complete entity name with identifiers.                                                     |
+  | **entity\_type** | `string` The entity type. For example `merchant_id-pg_id`, `merchant_id-mode`, and `bank`               |
+  | **method**       | `string` The payment method or category. For example `upi`                                              |
+  | **started\_at**  | `string` The start time of the downtime in the ISO8601 format.                                          |
+  | **ended\_at**    | `string` The end time of the downtime in the ISO8601 format.                                            |
+  | **status**       | `string` The downtime status. Possible values: <ul><li>`ongoing`</li> <li>`recovered`</li></ul>         |
+  | **instrument**   | `object` The entity part details.                                                                       |
   | **severity**     | `string` The severity level: Possible values: <ul><li>`LOW`</li> <li>`MEDIUM`</li> <li>`HIGH`</li></ul> |
 </Accordion>
 
