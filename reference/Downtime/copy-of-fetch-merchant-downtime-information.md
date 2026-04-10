@@ -2,7 +2,7 @@
 title: Fetch Platform Downtime Information
 excerpt: Get the platform-level downtime information.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
