@@ -95,8 +95,8 @@ curl -X POST 'https://info.payu.in/v2/payments/platform/maintenance' \
     },
     {
       "id":"d65cb551-c544-4b5b-9bcb-9b535a7e6c1d",
-      "activity_name":"AIRTEL UPI",
-      "description":"Scheduled Maintenance Activity for Airtel UPI",
+      "activity_name":"TEST UPI",
+      "description":"Scheduled Maintenance Activity for TEST UPI",
       "activity_status":"completed",
       "activity_date":"2026-03-16T22:00:00+05:30",
       "activity_end_time":"2026-03-17T06:00:00+05:30",
@@ -107,7 +107,7 @@ curl -X POST 'https://info.payu.in/v2/payments/platform/maintenance' \
       ],
       "impacted_entities":[
         {
-          "entity_name":"AIRTEL UPI(389)",
+          "entity_name":"TEST UPI(123)",
           "entity_type":"pg_id",
           "entity_category":"upi"
         }
@@ -116,7 +116,7 @@ curl -X POST 'https://info.payu.in/v2/payments/platform/maintenance' \
     {
       "id":"aff33ad9-1d4e-4518-9154-9ede65258bca",
       "activity_name":"Scheduled Maintenance Activity",
-      "description":"HDFC UPI maintenance",
+      "description":"TEST2 UPI maintenance",
       "activity_status":"completed",
       "activity_date":"2026-03-15T00:01:00+05:30",
       "activity_end_time":"2026-03-15T01:00:00+05:30",
@@ -190,30 +190,28 @@ curl -X POST 'https://info.payu.in/v2/payments/platform/maintenance' \
 ### Scheduled Maintenance Object
 
 <Accordion title="Parameters and Description" icon="fa-table">
-  | **Parameter**    | **Description**                                                                                         |
-  | :--------------- | :------------------------------------------------------------------------------------------------------ |
-  | **id** | `string` The unique identifier (UUID) of the scheduled maintenance. |
-  | **activity_name** | `string` The Name of the maintenance activity. |
-  | **description** | `string` The detailed description of the activity. |
-  | **activity_status** | `string` The activity status. Possible values: <ul><li>`scheduled`: Activity is planned but not yet started</li> <li>`active`: Activity is currently in progress</li> <li>`completed`: Activity has been completed</li> <li>`extended`: Activity has been extended beyond original end time</li></ul> |
-  | **activity_date** | `string` The scheduled start date of the activity in the ISO8601 format. |
-  | **activity_end_time** | `string` The scheduled end time of the activity in the ISO8601 format. |
-  | **window_end_at** | `string` The maintenance window end time in the ISO8601 format. |
-  | **downtime_duration_minutes**     | `array` The manually added impact entries. |
-  | **manual_impact_entries**     | `array` The expected downtime duration in minutes. |
-  | **impacted_entities**     | `array` The array of impacted entity objects. Parameters are described in the Impacted Entity Object section. |
+  | **Parameter**                   | **Description**                                                                                                                                                                                                                                                                                       |
+  | :------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **id**                          | `string` The unique identifier (UUID) of the scheduled maintenance.                                                                                                                                                                                                                                   |
+  | **activity\_name**              | `string` The Name of the maintenance activity.                                                                                                                                                                                                                                                        |
+  | **description**                 | `string` The detailed description of the activity.                                                                                                                                                                                                                                                    |
+  | **activity\_status**            | `string` The activity status. Possible values: <ul><li>`scheduled`: Activity is planned but not yet started</li> <li>`active`: Activity is currently in progress</li> <li>`completed`: Activity has been completed</li> <li>`extended`: Activity has been extended beyond original end time</li></ul> |
+  | **activity\_date**              | `string` The scheduled start date of the activity in the ISO8601 format.                                                                                                                                                                                                                              |
+  | **activity\_end\_time**         | `string` The scheduled end time of the activity in the ISO8601 format.                                                                                                                                                                                                                                |
+  | **window\_end\_at**             | `string` The maintenance window end time in the ISO8601 format.                                                                                                                                                                                                                                       |
+  | **downtime\_duration\_minutes** | `array` The manually added impact entries.                                                                                                                                                                                                                                                            |
+  | **manual\_impact\_entries**     | `array` The expected downtime duration in minutes.                                                                                                                                                                                                                                                    |
+  | **impacted\_entities**          | `array` The array of impacted entity objects. Parameters are described in the Impacted Entity Object section.                                                                                                                                                                                         |
 </Accordion>
 
 #### Impacted Entity Object
 
 <Accordion title="Parameters and Description" icon="fa-info-circle">
-
-| **Parameter**       | **Description**                                                                                                       |
-| :------------------ | :-------------------------------------------------------------------------------------------------------------------- |
-| **entity_name**     | `string` The name of the impacted entity.                                                                             |
-| **entity_type**     | `string` The type of entity. For example,  `pg_id`, `ibibo_code`, `issuing_bank`.                                     |
-| **entity_category** | `string` The entity category. Possible values: <ul><li>`upi`</li> <li>`nb`</li> <li>`cards`</li> <li>`null`</li></ul> |
-
+  | **Parameter**        | **Description**                                                                                                       |
+  | :------------------- | :-------------------------------------------------------------------------------------------------------------------- |
+  | **entity\_name**     | `string` The name of the impacted entity.                                                                             |
+  | **entity\_type**     | `string` The type of entity. For example,  `pg_id`, `ibibo_code`, `issuing_bank`.                                     |
+  | **entity\_category** | `string` The entity category. Possible values: <ul><li>`upi`</li> <li>`nb`</li> <li>`cards`</li> <li>`null`</li></ul> |
 </Accordion>
 
 ## Error Response Parameters
