@@ -1,6 +1,6 @@
 ---
-title: Copy of Fetch Merchant Downtime Information
-excerpt: Get the merchant downtime information.
+title: Fetch Platform Downtime Information
+excerpt: Get the platform-level downtime information.
 deprecated: false
 hidden: false
 metadata:
