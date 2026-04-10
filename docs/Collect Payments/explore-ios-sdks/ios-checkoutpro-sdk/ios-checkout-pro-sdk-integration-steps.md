@@ -1061,8 +1061,8 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     Currently, PayU supports only PhonePe and GooglePay through Intent. Add the query schemes in the`info.plist`:
 
     ```Text Info.plist Code for Intent
-    	<key>LSApplicationQueriesSchemes</key>
-  <array>
+<key>LSApplicationQueriesSchemes</key>
+    <array>
       <string>tez</string>
       <string>phonepe</string>
       <string>paytm</string>
@@ -1096,7 +1096,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       <string>kmb</string>  
       <string>fi</string>   
       <string>idfcfirstbank</string>
-  </array>
+    </array>
     ```
 
     # Sample Responses
