@@ -64,7 +64,7 @@ This API retrieves available payment options and eligibility details for a given
       </td>
 
       <td>
-        `si_transaction`
+        `get_checkout`
       </td>
     </tr>
 
