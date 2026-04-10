@@ -5,7 +5,7 @@ excerpt: >-
   upcoming and past maintenance schedules across payment systems with
   customizable date ranges and filters.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Scheduled Maintenance API | PayU Developer Documentation
   description: >-
