@@ -29,7 +29,7 @@ metadata:
     - payment network status
   robots: index
 ---
-Use this endpoint to retrieve merchant-specific downtime information. The response includes downtime details for entities associated with the specified merchant.
+Use this endpoint to retrieve platform-level downtime information. The response includes downtime details for platform entities (entities without merchant association).
 
 <Cards>
   <Card title="Method">
@@ -37,17 +37,15 @@ Use this endpoint to retrieve merchant-specific downtime information. The respon
   </Card>
 
   <Card title="Endpoint">
-    /v2/payments/merchant/downtime
+    /v2/payments/platform/downtime
   </Card>
 </Cards>
 
 ## Environment
 
-<br />
-
-| **Environment** | **URL**                          |
-| :-------------- | :------------------------------- |
-| **Production**  | https://info.payu.in/v2/payments |
+| **Environment** | **URL**                                                              |
+| :-------------- | :------------------------------------------------------------------- |
+| **Production**  | [https://info.payu.in/v2/payments](https://info.payu.in/v2/payments) |
 
 ## Sample Request
 
