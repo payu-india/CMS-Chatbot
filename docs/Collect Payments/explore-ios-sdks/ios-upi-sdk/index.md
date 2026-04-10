@@ -274,8 +274,8 @@ Hassle-free integration
     5. Add the query schemes in the `info.plist` file:
 
     ```xml XML
-  <key>LSApplicationQueriesSchemes</key>
-  <array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
       <string>tez</string>
       <string>phonepe</string>
       <string>paytm</string>
@@ -309,9 +309,13 @@ Hassle-free integration
       <string>kmb</string>  
       <string>fi</string>   
       <string>idfcfirstbank</string>
-  </array>
+    </array>
     ```
+<Callout icon="📘" theme="info">
+      **Note**: These schemes allow the SDK to detect installed UPI apps on the user’s device.
 
+      Some of the listed schemes may not be actively used at the moment, but they are included to maintain compatibility and to support additional UPI apps in future updates.
+    </Callout>
     ***
 
     <Accordion title="Make Payment through UPICore" icon="fa-code">
