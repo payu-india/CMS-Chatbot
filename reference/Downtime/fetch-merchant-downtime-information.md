@@ -8,6 +8,21 @@ deprecated: false
 hidden: false
 metadata:
   title: Fetch Merchant Downtime Information | PayU API Documentation
+  keywords:
+    - PayU downtime API
+    - merchant downtime API
+    - fetch downtime information
+    - payment gateway downtime status
+    - PayU API downtime
+    - merchant downtime details
+    - payment system downtime tracking
+    - API for downtime monitoring
+    - UPI downtime API
+    - payment service availability API
+    - PayU developer API
+    - downtime reporting API
+    - transaction downtime data
+    - payment infrastructure status
   robots: index
 ---
 Use this endpoint to retrieve merchant-specific downtime information. The response includes downtime details for entities associated with the specified merchant.
