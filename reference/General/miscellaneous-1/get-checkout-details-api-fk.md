@@ -22,7 +22,7 @@ This API retrieves available payment options and eligibility details for a given
 
 ## Request Parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -74,11 +74,11 @@ This API retrieves available payment options and eligibility details for a given
       </td>
 
       <td>
-        `JSON String`<br />JSON object containing the transaction details. For more information, [var1 Object Parameters Description](var1-object-parameters-description.) 
+        `JSON String`<br />JSON object containing the transaction details. For more information, [var1 Object Parameters Description](#var1-object-parameters-description.)
       </td>
 
       <td>
-        For more information, [var1 Object Parameters Description](var1-object-parameters-description.)
+        For more information, [var1 Object Parameters Description](#var1-object-parameters-description.)
       </td>
     </tr>
 
@@ -89,7 +89,7 @@ This API retrieves available payment options and eligibility details for a given
 
       <td>
         `String`<br />The hash value generated using the following hash logic:  
-        hash = sha512(key\|command\|var1|\SALT)
+        hash = sha512(key|command|var1|\SALT)
       </td>
 
       <td>
