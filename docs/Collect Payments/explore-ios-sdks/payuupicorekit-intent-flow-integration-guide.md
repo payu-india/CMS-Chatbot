@@ -1,5 +1,5 @@
 ---
-title: PayUUPICoreKit Intent Flow Integration Guide
+title: PayUUPICoreKit Intent Flow
 excerpt: >-
   This document provides step-by-step instructions for integrating the
   PayUUPICore SDK into your iOS application for Intent transactions.
