@@ -8,7 +8,7 @@ hidden: true
 metadata:
   robots: index
 ---
-## Integration Steps 
+## Integration Steps
 
 <Accordion title="1. Add SDK Dependency" icon="download">
   <Accordion title="Using CocoaPods" icon="fa-code">
@@ -291,4 +291,26 @@ metadata:
   * Verify transaction from backend
 </Accordion>
 
+## Supported Intent Apps
 
+| APPs       | Intent    | Mandate       |
+| ---------- | --------- | ------------- |
+| gpay       | Supported | Supported     |
+| phonepe    | Supported | Supported     |
+| paytm      | Supported | Supported     |
+| bhim       | Supported | Supported     |
+| cred       | Supported | Not Supported |
+| amazonPay  | Supported | Not Supported |
+| navi       | Supported | Supported     |
+| popclub    | Supported | Not Supported |
+| mobikwik   | Supported | Not Supported |
+| superMoney | Supported | Supported     |
+| airtel     | Supported | Not Supported |
+| payzapp    | Supported | Not Supported |
+| freecharge | Supported | Supported     |
+
+## Additional Resources
+
+For Collect transactions, and for complete details on integration steps and parameter definitions, please refer to the official documentation:
+
+**[PayU iOS UPI SDK Documentation](https://devguide.payu.in/)**
