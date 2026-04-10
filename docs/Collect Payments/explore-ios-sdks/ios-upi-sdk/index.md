@@ -54,7 +54,7 @@ Make intent Payments on iOS just like Android. The PSP app (PhonePe/Google Pay e
 Hassle-free integration
 
 <Accordion title="SDK Integration Steps" icon="fa-code">
-  The iOS Native OTP Assist SDK integration involves the following steps:
+  The iOS UPI SDK integration involves the following steps:
 
   <Accordion title="Step 1: Integrate Cocapods" icon="fa-code">
     Add the following lines to your Podfile:
@@ -274,12 +274,42 @@ Hassle-free integration
     5. Add the query schemes in the `info.plist` file:
 
     ```xml XML
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-    <string>phonepe</string>
-    <string>tez</string>
-    <string>paytm</string>
-    </array>
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
+      <string>tez</string>
+      <string>phonepe</string>
+      <string>paytm</string>
+      <string>paytmmp</string>
+      <string>bhim</string>
+      <string>credpay</string>
+      <string>mobikwik</string>
+      <string>navipay</string>
+      <string>super</string>
+      <string>popclubapp</string>
+      <string>amazonpay</string>
+      <string>myairtel</string>
+      <string>payzapp</string>
+      <string>upi</string>
+      <string>freecharge</string>
+      <string>in.fampay.app</string>
+      <string>kiwi</string>
+      <string>jupiter</string>
+      <string>omnicard</string>
+      <string>slice-upi</string>
+      <string>imobile</string>
+      <string>icici</string>   
+      <string>axismobile</string> 
+      <string>yono</string>
+      <string>slicepay</string>
+      <string>indusmobile</string>
+      <string>shriramone</string>
+      <string>bobupi</string>
+      <string>indusmobile</string>
+      <string>whatsapp</string>
+      <string>kmb</string>  
+      <string>fi</string>   
+      <string>idfcfirstbank</string>
+  </array>
     ```
 
     ***
