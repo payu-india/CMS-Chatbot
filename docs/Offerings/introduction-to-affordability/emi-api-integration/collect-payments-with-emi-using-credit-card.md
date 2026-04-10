@@ -70,7 +70,7 @@ When your customer wants to opt for the EMI option with credit cards, you can us
 
 ## Step 1: Check the card EMI eligibility
 
-After collecting the customer’s card and the amount to be paid, check the EMI eligibility based on the card BIN from the customer’s credit card number using the **eligibleBINsforEMI** API. For more information on how to use **eligibleBINsforEMI** API, refer to <Anchor label="Eligible BINs for EMI API" target="_blank" href="ref:eligible_bins_for_emi_api">Eligible BINs for EMI API</Anchor>
+After collecting the customer’s card and the amount to be paid, check the EMI eligibility based on the card BIN from the customer’s credit card number using the **eligibleBINsforEMI** API. For more information on how to use **eligibleBINsforEMI** API, refer to [Eligible BINs for EMI API v1.0](ref:eligiblebinsforemi).
 
 ## Step 2: Calculate the EMI interest
 
