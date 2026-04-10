@@ -9,10 +9,10 @@ The Get Checkout Details (get_checkout_details) API is a generic API using which
 
 **Environment**
 
-|                        |                                                                                                      |
-| :--------------------- | :--------------------------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in-merchant/postservice?form=2](https://test.payu.in-merchant/postservice?form=2) |
-| Production Environment | [https://info.payu.in-merchant/postservice?form=2](https://info.payu.in-merchant/postservice?form=2) |
+|                        |                                                  |
+| :--------------------- | :----------------------------------------------- |
+| Test Environment       | https://test.payu.in/merchant/postservice?form=2 |
+| Production Environment | https://info.payu.in/merchant/postservice?form=2 |
 
 ## Request parameters
 
