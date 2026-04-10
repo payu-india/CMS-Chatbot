@@ -1,5 +1,5 @@
 ---
-title: Get Checkout Details API -FK
+title: 'Get Checkout Details API '
 deprecated: false
 hidden: true
 metadata:
