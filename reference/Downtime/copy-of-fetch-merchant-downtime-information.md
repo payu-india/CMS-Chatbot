@@ -1,9 +1,32 @@
 ---
 title: Fetch Platform Downtime Information
-excerpt: Get the platform-level downtime information.
+excerpt: >-
+  Retrieve platform-level downtime information using the PayU API. Fetch
+  real-time and historical downtime data across all payment entities with
+  flexible date range and filtering options.
 deprecated: false
 hidden: true
 metadata:
+  title: Platform Downtime API | PayU Developer Documentation
+  description: >-
+    Retrieve platform-level downtime information using the PayU API. Fetch
+    real-time and historical downtime data across all payment entities with
+    flexible date range and filtering options.
+  keywords:
+    - PayU platform downtime API
+    - platform downtime API
+    - fetch platform downtime information
+    - payment gateway platform downtime
+    - PayU API platform status
+    - payment system downtime API
+    - platform outage monitoring API
+    - payment infrastructure downtime
+    - API for platform availability
+    - payment service outage data
+    - PayU developer API
+    - downtime tracking API
+    - transaction platform downtime
+    - payment network status
   robots: index
 ---
 Use this endpoint to retrieve merchant-specific downtime information. The response includes downtime details for entities associated with the specified merchant.
