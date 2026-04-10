@@ -1098,6 +1098,11 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       <string>idfcfirstbank</string>
     </array>
     ```
+    <Callout icon="📘" theme="info">
+  **Note**: These schemes allow the SDK to detect installed UPI apps on the user’s device.
+
+Some of the listed schemes may not be actively used at the moment, but they are included to maintain compatibility and to support additional UPI apps in future updates.
+</Callout>
 
     # Sample Responses
 
