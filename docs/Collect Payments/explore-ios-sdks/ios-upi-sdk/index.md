@@ -81,36 +81,7 @@ Hassle-free integration
     ***
   </Accordion>
 
-  <Accordion title="Step 2: Integrate UPICore" icon="fa-code">
-    You can integrate UPICollet and UPIIntent with your own UI using UPICore.
-
-    #### Cocoapods integration
-
-    Add the following lines into your Podfile:
-
-    ```
-    // make sure to add below-mentioned line to use dynamic frameworks
-    use_frameworks!
-
-    // Add this to include our SDK
-    pod 'PayUIndia-UPICore'
-    ```
-
-    #### Swift Package Manager Integration
-
-    You can integrate PayUIndia-UPIKit, `PayUIndia-UPICoreKit` with your app or SDK in two ways:
-
-    Using the Xcode – Go to File-> Add Package-> [https://github.com/payu-intrepos/payu-upi-ios-sdk](https://github.com/payu-intrepos/payu-upi-ios-sdk)
-    Using `Package.Swift`, add the following line in `Package.swift `dependencies:
-
-    ```
-    .package(name: "PayUIndia-UPICore", url: "https://github.com/payu-intrepos/payu-upi-ios-sdk", from: "11.2.1")
-    ```
-
-    ***
-  </Accordion>
-
-  <Accordion title="Step 3: Make UPI Payments" icon="fa-code">
+  <Accordion title="Step 2: Make UPI Payments" icon="fa-code">
     #### Configure Mandatory Payment Parameters
 
     1. Set environment to test or production. You can also set the debugging level to get logs from the SDK.
@@ -248,7 +219,7 @@ Hassle-free integration
     ***
   </Accordion>
 
-  <Accordion title="Step 4: Process Payment" icon="fa-code">
+  <Accordion title="Step 3: Process Payment" icon="fa-code">
     With the PayUUPIPaymentOptions object received in Step 5 of Fetch Hashes, you can populate relevant UPI options on your checkout screen. As stated at the beginning of this section, you have the following options to make a payment:
 
     * Intent
