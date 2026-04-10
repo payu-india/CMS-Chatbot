@@ -7,6 +7,7 @@ excerpt: >-
 deprecated: false
 hidden: false
 metadata:
+  title: Fetch Merchant Downtime Information | PayU API Documentation
   robots: index
 ---
 Use this endpoint to retrieve merchant-specific downtime information. The response includes downtime details for entities associated with the specified merchant.
