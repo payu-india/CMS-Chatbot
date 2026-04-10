@@ -24,9 +24,9 @@ This page helps you understand how **PayU Hosted Checkout** works before you beg
 
 PayU Hosted Checkout is a payment integration method where:
 
-* You redirect users from your website to a **PayU-hosted payment page**
+* You redirect customers from your website to a **PayU-hosted payment page**
 * PayU handles the entire payment experience, including security and processing
-* After the payment is completed, users are redirected back to your website
+* After the payment is completed, customers are redirected back to your website
 
 This is the **simplest and fastest way** to start accepting payments without building or managing your own payment UI.
 
@@ -64,7 +64,7 @@ This flow ensures that sensitive payment data is handled by PayU, reducing your 
 
 ## Customer journey
 
-Below diagram depicts the end user experience during a payment using PayU Hosted Checkout:
+Below diagram depicts the customer experience during a payment using PayU Hosted Checkout:
 
 <Image align="center" src="https://files.readme.io/bc1c758a83c0c601d161a5621e1fe47a6d4c757e847a893b33b05419972e693a-b7b3bc19c28693be346591ec8a2c29ee07fcf47cb088bc6c9a6c34950c2af0dc-payu_hosted_checkout-workflow.png" />
 
@@ -241,22 +241,44 @@ PayU Hosted Checkout helps you accept online payments quickly without building o
   * **Smart Payment Experience:** Supports features like payment recommendations and saved preferences.
 </Accordion>
 
+## Supported Payment Methods
+
+PayU Hosted Checkout supports multiple payment methods commonly used in India:
+
+* Credit Cards
+* Debit Cards
+* UPI
+* NetBanking
+* Wallets
+
+This allows you to offer a wide range of payment options without additional integrations.
+
+## What Happens After Payment
+
+Once the payment is completed:
+
+* PayU determines whether the transaction is successful or failed
+* The customer is redirected back to your website (success or failure page)
+* A payment response is sent with transaction details
+
+<Callout icon="⚠️">
+  **Important: Backend Verification**
+
+  Even after redirection:
+
+  * You should always verify the transaction on your backend
+  * This ensures the payment status is authentic and prevents tampering
+</Callout>
+
 <br />
 
 ## Next Steps
 
-To integrate PayU Hosted Integration on your website or mobile, refer to:
+Now that you understand how PayU Hosted Checkout works:
 
-* [Web Integration - PayU Hosted](https://docs.payu.in/docs/prebuilt-checkout-page-integration) using the **Collect Payment **API (**_payment** API),
-
-* [Integrate WebView for Mobile Apps](https://docs.payu.in/docs/webview-for-mobile-apps) by embedding PayU's Hosted Checkout experience inside a WebView container within your mobile app.
+* 👉 Go to Start Here to understand when and how to use this integration
+* 👉 Go to Quick Start to make your first test payment
 
 <br />
-
-<Callout icon="📮" theme="default">
-  **Postman Collection**: Download the PayU Hosted Checkout Postman Collection from the following location:
-
-  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration)
-</Callout>
 
 <br />
