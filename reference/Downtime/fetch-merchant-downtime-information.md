@@ -20,7 +20,11 @@ Use this endpoint to retrieve merchant-specific downtime information. The respon
 
 ## Environment
 
-<V2_payment_envrionment />
+<br />
+
+| **Environment** | **URL**                          |
+| :-------------- | :------------------------------- |
+| **Production**  | https://info.payu.in/v2/payments |
 
 ## Sample Request
 
