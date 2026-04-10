@@ -5,7 +5,7 @@ excerpt: >-
   real-time and historical downtime data across all payment entities with
   flexible date range and filtering options.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Platform Downtime API | PayU Developer Documentation
   description: >-
