@@ -280,5 +280,3 @@ Now that you understand how PayU Hosted Checkout works:
 * 👉 Go to Quick Start to make your first test payment
 
 <br />
-
-<br />
