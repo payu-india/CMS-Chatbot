@@ -10,7 +10,7 @@ metadata:
 ---
 ## Integration Steps
 
-<Accordion title="1. Add SDK Dependency" icon="download">
+<Accordion title="1. Add SDK Dependency" icon="fa-code">
   <Accordion title="Using CocoaPods" icon="fa-code">
     ```
     //Add the following to your Podfile:
@@ -26,7 +26,7 @@ metadata:
     ```
   </Accordion>
 
-  <Accordion title="Using Swift Package Manager - Xcode" icon="fa-apple">
+  <Accordion title="Using Swift Package Manager - Xcode" icon="fa-code">
     **Steps:**
 
     1. Go to **File → Add Package Dependencies**
@@ -45,7 +45,7 @@ metadata:
   </Accordion>
 </Accordion>
 
-<Accordion title="2. Configure Supported UPI Apps" icon="fa-mobile">
+<Accordion title="2. Configure Supported UPI Apps" icon="fa-code">
   ```xml
   <!-- Add the following schemes to your Info.plist to allow the SDK to detect installed UPI apps -->
 
@@ -90,7 +90,7 @@ metadata:
   **Note:** These schemes allow the SDK to detect installed UPI apps on the user's device. Some schemes may not be actively used but are included for compatibility and future updates.
 </Accordion>
 
-<Accordion title="3. Initialize SDK" icon="fa-gear">
+<Accordion title="3. Initialize SDK" icon="fa-code">
   ```swift
   // Initialize the SDK before starting the payment
 
@@ -99,7 +99,7 @@ metadata:
   ```
 </Accordion>
 
-<Accordion title="4. Fetch Installed UPI Apps" icon="fa-list">
+<Accordion title="4. Fetch Installed UPI Apps" icon="fa-code">
   ```swift
   // Fetch supported apps installed on the device
 
@@ -128,7 +128,7 @@ metadata:
   ```
 </Accordion>
 
-<Accordion title="5. Start UPI Payment" icon="fa-credit-card">
+<Accordion title="5. Start UPI Payment" icon="fa-code">
   ```swift
   func startUPIPayment(from viewController: UIViewController, selectedApp: PayUUPIApp) {
       PayUUPICore.shared.paymentCompletion = { response in
@@ -178,7 +178,7 @@ metadata:
   ```
 </Accordion>
 
-<Accordion title="7. Recurring (SI) Payment Parameters (Optional)" icon="fa-repeat">
+<Accordion title="7. Recurring (SI) Payment Parameters (Optional)" icon="fa-code">
   ```swift
   // For UPI Autopay / Subscription payments
 
@@ -207,7 +207,7 @@ metadata:
   * `billingRule`
 </Accordion>
 
-<Accordion title="8. TPV Payment Parameters (Optional)" icon="fa-bank">
+<Accordion title="8. TPV Payment Parameters (Optional)" icon="fa-code">
   ```swift
   // For UPI TPV payments
 
@@ -228,7 +228,7 @@ metadata:
   * `verficationMode`
 </Accordion>
 
-<Accordion title="9. Hash Generation" icon="fa-lock">
+<Accordion title="9. Hash Generation" icon="fa-code">
   **⚠️ Important:** Hash must be generated on the backend using your merchant salt.
 
   <Accordion title="Normal Transaction Hash" icon="fa-hashtag">
@@ -237,7 +237,7 @@ metadata:
     ```
   </Accordion>
 
-  <Accordion title="SI Transaction Hash" icon="fa-repeat">
+  <Accordion title="SI Transaction Hash" icon="fa-code">
     For subscription payments, `siDetails` must be included.
 
     ```
@@ -276,7 +276,7 @@ metadata:
   **Note:** The SI and TPV details must exactly match the values provided in the payment request, without any added spaces or line breaks.
 </Accordion>
 
-<Accordion title="10. Payment Response" icon="fa-check-circle">
+<Accordion title="10. Payment Response" icon="fa-code">
   ```swift
   // Payment result is returned through:
 
