@@ -104,7 +104,7 @@ Hassle-free integration
     Using `Package.Swift`, add the following line in `Package.swift `dependencies:
 
     ```
-    .package(name: "PayUIndia-UPICore", url: "https://github.com/payu-intrepos/payu-upi-ios-sdk", from: "6.1.0")
+    .package(name: "PayUIndia-UPICore", url: "https://github.com/payu-intrepos/payu-upi-ios-sdk", from: "11.2.1")
     ```
 
     ***
