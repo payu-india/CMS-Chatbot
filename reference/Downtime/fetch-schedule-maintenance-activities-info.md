@@ -37,7 +37,7 @@ Use this endpoint to retrieve scheduled maintenance activity information. The re
   </Card>
 
   <Card title="Endpoint">
-    /v2/payments/platform/downtime
+    /v2/payments/platform/maintenance
   </Card>
 </Cards>
 
@@ -50,16 +50,13 @@ Use this endpoint to retrieve scheduled maintenance activity information. The re
 ## Sample Request
 
 ```curl
-curl -X POST 'https://info.payu.in/v2/payments/platform/downtime' \
+curl -X POST 'https://info.payu.in/v2/payments/platform/maintenance' \
   -H 'Content-Type: application/json' \
   -H "date: {{date}}" \
   -H "authorization: {{authorization}}" \
   -d '{
-  "from":"2026-03-22 00:00:00",
-  "to":"2026-03-24 23:59:59",
-  "categories":[
-    "upi"
-  ],
+  "from":"2026-03-01 00:00:00",
+  "to":"2026-03-31 23:59:59",
   "page":2,
   "per_page":25
 }'
@@ -69,41 +66,68 @@ curl -X POST 'https://info.payu.in/v2/payments/platform/downtime' \
 
 ```json Success Response
 {
-  "downtime_type":"platform",
-  "categories":[
-    "upi",
-    "nb"
-  ],
   "from":"2026-02-20T00:00:00+05:30",
   "to":"2026-03-25T02:59:59+05:30",
-  "count":2,
+  "count":20,
   "page":1,
   "per_page":50,
   "total_pages":1,
-  "downtimes":[
+  "scheduled_maintenances":[
     {
-      "entity_name":"TEST UPI(123)",
-      "entity_type":"pg_id",
-      "method":"upi",
-      "started_at":"2026-03-25T02:52:00+05:30",
-      "ended_at":"2026-03-25T02:56:00+05:30",
-      "status":"recovered",
-      "instrument":{
-        "pg_id":"TEST UPI"
-      },
-      "severity":"LOW"
+      "id":"2af74f94-9005-4e15-9d74-2e0a01c91b87",
+      "activity_name":"SBI NB",
+      "description":"Impact:- SBI NB txns will be impacted during an activity.",
+      "activity_status":"completed",
+      "activity_date":"2026-03-20T01:45:00+05:30",
+      "activity_end_time":"2026-03-20T03:15:00+05:30",
+      "window_end_at":"2026-03-20T03:15:00+05:30",
+      "downtime_duration_minutes":90,
+      "manual_impact_entries":[
+        
+      ],
+      "impacted_entities":[
+        {
+          "entity_name":"SBINB",
+          "entity_type":"ibibo_code",
+          "entity_category":"nb"
+        }
+      ]
     },
     {
-      "entity_name":"@ybl",
-      "entity_type":"vpa_handle",
-      "method":"upi",
-      "started_at":"2026-03-25T01:02:00+05:30",
-      "ended_at":"2026-03-25T01:16:00+05:30",
-      "status":"recovered",
-      "instrument":{
-        "vpa_handle":"@ybl"
-      },
-      "severity":"LOW"
+      "id":"d65cb551-c544-4b5b-9bcb-9b535a7e6c1d",
+      "activity_name":"AIRTEL UPI",
+      "description":"Scheduled Maintenance Activity for Airtel UPI",
+      "activity_status":"completed",
+      "activity_date":"2026-03-16T22:00:00+05:30",
+      "activity_end_time":"2026-03-17T06:00:00+05:30",
+      "window_end_at":"2026-03-17T06:00:00+05:30",
+      "downtime_duration_minutes":480,
+      "manual_impact_entries":[
+        
+      ],
+      "impacted_entities":[
+        {
+          "entity_name":"AIRTEL UPI(389)",
+          "entity_type":"pg_id",
+          "entity_category":"upi"
+        }
+      ]
+    },
+    {
+      "id":"aff33ad9-1d4e-4518-9154-9ede65258bca",
+      "activity_name":"Scheduled Maintenance Activity",
+      "description":"HDFC UPI maintenance",
+      "activity_status":"completed",
+      "activity_date":"2026-03-15T00:01:00+05:30",
+      "activity_end_time":"2026-03-15T01:00:00+05:30",
+      "window_end_at":"2026-03-15T01:00:00+05:30",
+      "downtime_duration_minutes":59,
+      "manual_impact_entries":[
+        "hdfcupi"
+      ],
+      "impacted_entities":[
+        
+      ]
     }
   ]
 }
@@ -126,13 +150,12 @@ curl -X POST 'https://info.payu.in/v2/payments/platform/downtime' \
   Parameters marked with <sup style={{color: 'red'}}>*</sup> are mandatory.
 </Callout>
 
-| **Parameter**                               | **Description**                                                                                                                                                                                                                                                                                                      |
-| :------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **from**<sup style={{color: 'red'}}>*</sup> | `string` \| `number` The start timestamp. Refer to the [Time Format and Validation Rules section](/reference/fetch-merchant-downtime-information#time-format-and-validation-rules) for format and validation information.                                                                                            |
-| **to**<sup style={{color: 'red'}}>*</sup>   | `string` \| `number` The end timestamp. Refer to the [Time Format and Validation Rules section](/reference/fetch-merchant-downtime-information#time-format-and-validation-rules)  for format and validation information.                                                                                             |
-| **categories**                              | `array` \| `string` Represents the downtime category. If the value is not passed, no category filter is applied. Possible values: <ul><li>`upi`</li> <li>`nb`</li> <li>`cards`</li> <li>`emi`</li></ul> Accepted formats: <ul><li>Array: `["upi", "cards"]`</li> <li>Comma-separated string: `"upi,cards"`</li></ul> |
-| **page**                                    | `number` The page number used for pagination. Defaults to `1`.                                                                                                                                                                                                                                                       |
-| **per_page**                                | `number` Items displayed per page. Defaults to `50`. The maximum items per page is `100`.                                                                                                                                                                                                                            |
+| **Parameter**                               | **Description**                                                                                                                                                                                                           |
+| :------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **from**<sup style={{color: 'red'}}>*</sup> | `string` \| `number` The start timestamp. Refer to the [Time Format and Validation Rules section](/reference/fetch-merchant-downtime-information#time-format-and-validation-rules) for format and validation information. |
+| **to**<sup style={{color: 'red'}}>*</sup>   | `string` \| `number` The end timestamp. Refer to the [Time Format and Validation Rules section](/reference/fetch-merchant-downtime-information#time-format-and-validation-rules)  for format and validation information.  |
+| **page**                                    | `number` The page number used for pagination. Defaults to `1`.                                                                                                                                                            |
+| **per_page**                                | `number` Items displayed per page. Defaults to `50`. The maximum items per page is `100`.                                                                                                                                 |
 
 ### Time Format and Validation Rules
 
@@ -154,43 +177,54 @@ curl -X POST 'https://info.payu.in/v2/payments/platform/downtime' \
 
 ## Response Parameters
 
-| **Parameter**     | **Description**                                                                                                                                                   |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **downtime_type** | `number` The downtime type. Here it is `platform` always.                                                                                                         |
-| **categories**    | `array` The applied category filters.                                                                                                                             |
-| **from**          | `string` The start time of the downtime in the ISO8601 format.                                                                                                    |
-| **to**            | `string` The end time of the downtime in the ISO8601 format.                                                                                                      |
-| **count**         | `number` The total count of matching downtimes.                                                                                                                   |
-| **page**          | `number` The current page number of the received response.                                                                                                        |
-| **per_page**      | `number` The total number of items displayed per page.                                                                                                            |
-| **total_pages**   | `number` The total number of pages the response contains.                                                                                                         |
-| **downtimes**     | `array` The array of downtime objects. Parameters are described in the [Downtime Object](/reference/fetch-merchant-downtime-information#downtime-object) section. |
+| **Parameter**              | **Description**                                                                                                                                                               |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **from**                   | `string` The start time of the downtime in the ISO8601 format.                                                                                                                |
+| **to**                     | `string` The end time of the downtime in the ISO8601 format.                                                                                                                  |
+| **count**                  | `number` The total count of matching downtimes.                                                                                                                               |
+| **page**                   | `number` The current page number of the received response.                                                                                                                    |
+| **per_page**               | `number` The total number of items displayed per page.                                                                                                                        |
+| **total_pages**            | `number` The total number of pages the response contains.                                                                                                                     |
+| **scheduled_maintenances** | `array` The array of maintenance activity objects. Parameters are described in the [Downtime Object](/reference/fetch-merchant-downtime-information#downtime-object) section. |
 
-### Downtime Object
+### Scheduled Maintenance Object
 
 <Accordion title="Parameters and Description" icon="fa-table">
   | **Parameter**    | **Description**                                                                                         |
   | :--------------- | :------------------------------------------------------------------------------------------------------ |
-  | **entity\_name** | `string` The complete entity name with identifiers.                                                     |
-  | **entity\_type** | `string` The entity type. For example `merchant_id-pg_id`, `merchant_id-mode`, and `bank`               |
-  | **method**       | `string` The payment method or category. For example `upi`                                              |
-  | **started\_at**  | `string` The start time of the downtime in the ISO8601 format.                                          |
-  | **ended\_at**    | `string` The end time of the downtime in the ISO8601 format.                                            |
-  | **status**       | `string` The downtime status. Possible values: <ul><li>`ongoing`</li> <li>`recovered`</li></ul>         |
-  | **instrument**   | `object` The entity part details.                                                                       |
-  | **severity**     | `string` The severity level: Possible values: <ul><li>`LOW`</li> <li>`MEDIUM`</li> <li>`HIGH`</li></ul> |
+  | **id** | `string` The unique identifier (UUID) of the scheduled maintenance. |
+  | **activity_name** | `string` The Name of the maintenance activity. |
+  | **description** | `string` The detailed description of the activity. |
+  | **activity_status** | `string` The activity status. Possible values: <ul><li>`scheduled`: Activity is planned but not yet started</li> <li>`active`: Activity is currently in progress</li> <li>`completed`: Activity has been completed</li> <li>`extended`: Activity has been extended beyond original end time</li></ul> |
+  | **activity_date** | `string` The scheduled start date of the activity in the ISO8601 format. |
+  | **activity_end_time** | `string` The scheduled end time of the activity in the ISO8601 format. |
+  | **window_end_at** | `string` The maintenance window end time in the ISO8601 format. |
+  | **downtime_duration_minutes**     | `array` The manually added impact entries. |
+  | **manual_impact_entries**     | `array` The expected downtime duration in minutes. |
+  | **impacted_entities**     | `array` The array of impacted entity objects. Parameters are described in the Impacted Entity Object section. |
+</Accordion>
+
+#### Impacted Entity Object
+
+<Accordion title="Parameters and Description" icon="fa-info-circle">
+
+| **Parameter**       | **Description**                                                                                                       |
+| :------------------ | :-------------------------------------------------------------------------------------------------------------------- |
+| **entity_name**     | `string` The name of the impacted entity.                                                                             |
+| **entity_type**     | `string` The type of entity. For example,  `pg_id`, `ibibo_code`, `issuing_bank`.                                     |
+| **entity_category** | `string` The entity category. Possible values: <ul><li>`upi`</li> <li>`nb`</li> <li>`cards`</li> <li>`null`</li></ul> |
+
 </Accordion>
 
 ## Error Response Parameters
 
-| **Error**                                      | **Description**                                                                                                                                     | **Solution**                                                                                                                                  |
-| :--------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Invalid JSON: ...`                            | This error occurs when the json is invalid.                                                                                                         | Make sure the json is valid.                                                                                                                  |
-| `Unknown parameters: ...`                      | This error occurs when you pass unknown parameters.                                                                                                 | Make sure to pass valid parameters.                                                                                                           |
-| `from is required`                             | This error occurs when you do not pass the `from` parameter value.                                                                                  | The `from` is mandatory parameter. Ensure to pass the value.                                                                                  |
-| `to is required`                               | This error occurs when you do not pass the `to` parameter value.                                                                                    | The `to` is mandatory parameter. Ensure to pass the value.                                                                                    |
-| `from must include time as HH:MM:SS (...)`     | This error occurs when the `from` parameter value format is invalid.                                                                                | Make sure to pass the `from` parameter value in the valid format. Refer to the Time Format and Validation Rules section for more information. |
-| `to must not be greater than the current time` | This error occurs when the timestamp of the `to` parameter is a past time.                                                                          | Ensure the `to` parameter timestamp is greater than the current time.                                                                         |
-| `from must be within the last 3 months`        | This error occurs when the timestamp of the `from` parameter is greater than 3 months.                                                              | Make sure the `from` timestamp is less than 3 months.                                                                                         |
-| `from must be before to`                       | This error occurs when the `from` timestamp exceeds the `to` timestamp.                                                                             | Make sure the `from` timestamp is within the `to` timestamp.                                                                                  |
-| `categories must be from: upi, nb, cards, emi` | This error occurs when the category value is other than the following values: <ul><li>`upi`</li> <li>`nb`</li> <li>`cards`</li> <li>`emi`</li></ul> | Make sure the category value is any of the following values: <ul><li>`upi`</li> <li>`nb`</li> <li>`cards`</li> <li>`emi`</li></ul>            |
+| **Error**                                      | **Description**                                                                                           | **Solution**                                                                                                                                  |
+| :--------------------------------------------- | :-------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Invalid JSON: ...`                            | This error occurs when the json is invalid.                                                               | Make sure the json is valid.                                                                                                                  |
+| `Unknown parameters: ...`                      | This error occurs when you pass unknown parameters.                                                       | Make sure to pass valid parameters.                                                                                                           |
+| `from is required`                             | This error occurs when you do not pass the `from` parameter value.                                        | The `from` is mandatory parameter. Ensure to pass the value.                                                                                  |
+| `to is required`                               | This error occurs when you do not pass the `to` parameter value.                                          | The `to` is mandatory parameter. Ensure to pass the value.                                                                                    |
+| `from must include time as HH:MM:SS (...)`     | This error occurs when the `from` parameter value format is invalid.                                      | Make sure to pass the `from` parameter value in the valid format. Refer to the Time Format and Validation Rules section for more information. |
+| `to must not be greater than 1 month from now` | This error occurs when the timestamp of the `to` parameter is greater than 1 month from the current time. | Ensure the `to` parameter timestamp is less than 1 month from the current time.                                                               |
+| `from must be within the last 3 months`        | This error occurs when the timestamp of the `from` parameter is greater than 3 months.                    | Make sure the `from` timestamp is less than 3 months.                                                                                         |
+| `from must be before to`                       | This error occurs when the `from` timestamp exceeds the `to` timestamp.                                   | Make sure the `from` timestamp is within the `to` timestamp.                                                                                  |
