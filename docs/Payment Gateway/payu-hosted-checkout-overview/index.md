@@ -6,7 +6,7 @@ excerpt: >-
 deprecated: false
 hidden: false
 metadata:
-  title: Prebuilt Web Checkout or PayU Hosted Checkout Integration
+  title: PayU Hosted Checkout Overview | Payment Gateway Integration
   description: >-
     Understand PayU Hosted Checkout for payment gateway integration. Learn
     payment flow, key concepts, and how to handle online payments securely.
