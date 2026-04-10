@@ -424,7 +424,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     For UPI One Time Mandate (OTM) payments, use the following parameters:
 
     ```Text Swift
-  let siInfo = PayUSIParams(paymentStartDate: self.siStartDate,
+    let siInfo = PayUSIParams(paymentStartDate: self.siStartDate,
                             paymentEndDate: self.siEndDate,
                            isPreAuthTxn: true)
                 
@@ -1062,13 +1062,41 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     ```Text Info.plist Code for Intent
     	<key>LSApplicationQueriesSchemes</key>
-    	<array>
-    		<string>phonepe</string>
-    		<string>tez</string>
-    		<string>paytm</string>
-    		<string>bhim</string>
-    		<string>credpay</string>
-    	</array>
+  <array>
+      <string>tez</string>
+      <string>phonepe</string>
+      <string>paytm</string>
+      <string>paytmmp</string>
+      <string>bhim</string>
+      <string>credpay</string>
+      <string>mobikwik</string>
+      <string>navipay</string>
+      <string>super</string>
+      <string>popclubapp</string>
+      <string>amazonpay</string>
+      <string>myairtel</string>
+      <string>payzapp</string>
+      <string>upi</string>
+      <string>freecharge</string>
+      <string>in.fampay.app</string>
+      <string>kiwi</string>
+      <string>jupiter</string>
+      <string>omnicard</string>
+      <string>slice-upi</string>
+      <string>imobile</string>
+      <string>icici</string>   
+      <string>axismobile</string> 
+      <string>yono</string>
+      <string>slicepay</string>
+      <string>indusmobile</string>
+      <string>shriramone</string>
+      <string>bobupi</string>
+      <string>indusmobile</string>
+      <string>whatsapp</string>
+      <string>kmb</string>  
+      <string>fi</string>   
+      <string>idfcfirstbank</string>
+  </array>
     ```
 
     # Sample Responses
