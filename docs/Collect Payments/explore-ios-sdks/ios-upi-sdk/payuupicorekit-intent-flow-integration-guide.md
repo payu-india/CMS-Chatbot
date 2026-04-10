@@ -313,6 +313,6 @@ metadata:
 
 For Collect transactions, and for complete details on integration steps and parameter definitions, please refer to the official documentation:
 
-**<Anchor label="PayU iOS UPI SDK Documentation" target="_blank" href="https://docs.payu.in/update/docs/ios-upi-sdk">PayU iOS UPI SDK Documentation</Anchor>**
+**<Anchor label="PayU iOS UPI SDK Documentation" target="_blank" href="https://docs.payu.in/docs/ios-upi-sdk">PayU iOS UPI SDK Documentation</Anchor>**
 
 <br />
