@@ -47,13 +47,12 @@ The Get Checkout Details (get_checkout_details) API is a generic API using which
 
 ## Sample request
 
-```cUrl
+```curl
 curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
---form 'key="0d5aDh"' \
+--form 'key="z80b5Q"' \
 --form 'command="get_checkout_details"' \
---form 'var1="{\"requestId\":\"413088215\",\"transactionDetails\":{\"amount\":15001.0},\"customerDetails\":{\"mobile\":\"9910522063\"},\"filters\":{\"paymentOptions\":{\"emi\":{\"cardless\":\"all\"},\"bnpl\":\"all\"}},\"useCase\":{\"checkCustomerEligibility\":true,\"checkNTBCustomerEligibility\":true}}"' \
---form 'hash="5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a"'
-
+--form 'var1="{\"requestId\":\"asdfasd11fa\",\"transactionDetails\":{\"amount\":4999},\"customerDetails\":{\"mobile\":\"9368252248\"},\"filters\":{\"paymentOptions\":{\"emi\":{\"cardless\":\"all\"},\"bnpl\":\"all\"}},\"useCase\":{\"checkCustomerEligibility\":true,\"checkNTBCustomerEligibility\":true}}"' \
+--form 'hash="sha512(key|command|var1|salt)"'
 ```
 
 ## Sample response
