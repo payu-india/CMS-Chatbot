@@ -15,7 +15,7 @@ Use this approach if you want to:
 
 Know More about PayU Hosted Checkout and how the payment flow works.
 
-<Callout icon="📘">
+<Callout icon="📘" theme="info">
   **Other Integration Options:**
 
   Consider other integrations if you need:
@@ -43,3 +43,7 @@ Below is the overview of the PayU Hosted Checkout integration:
 3. Redirect user to PayU
 4. Handle success/failure response (reverse hashing)
 5. Verify the Payment
+
+## Next Steps
+
+Go to Quick Start Guide to create a first payment.
