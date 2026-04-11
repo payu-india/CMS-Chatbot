@@ -3,6 +3,10 @@ title: Start Here
 deprecated: false
 hidden: false
 metadata:
+  title: 'PayU Hosted Checkout Integration: Start Here Guide for Developers'
+  description: >-
+    Get started with PayU Hosted Checkout integration. Learn when to use it, how
+    it works, and follow the right steps to begin accepting payments quickly.
   robots: index
 ---
 ## When to Use PayU Hosted Checkout
