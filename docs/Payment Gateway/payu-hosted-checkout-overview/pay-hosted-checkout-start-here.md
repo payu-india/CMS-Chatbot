@@ -10,6 +10,14 @@ metadata:
   description: >-
     Get started with PayU Hosted Checkout integration. Learn when to use it, how
     it works, and follow the right steps to begin accepting payments quickly.
+  keywords:
+    - PayU Hosted Checkout
+    - PayU payment gateway integration
+    - PayU hosted checkout integration guide
+    - PayU start here
+    - PayU payment integration India
+    - PayU redirect payment flow
+    - PayU checkout integration
   robots: index
 ---
 ## When to Use PayU Hosted Checkout
