@@ -1,5 +1,5 @@
 ---
-title: PayU Hosted Checkout Overview
+title: PayU Hosted Checkout
 excerpt: >-
   Understand PayU Hosted Checkout for payment gateway integration. Learn payment
   flow, key concepts, and how to handle online payments securely.
