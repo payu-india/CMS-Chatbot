@@ -138,7 +138,7 @@ Follow the below steps to make your test payment:
     ```
   </Accordion>
   
-
+<br/>
 <Callout icon="📘" theme="info">
   **Checklist:**
 
@@ -148,7 +148,7 @@ Follow the below steps to make your test payment:
     Incorrect order
 </Callout>
 </Accordion>
-
+<br/>
 <Accordion title="Step 3: Create an HTML File" icon="fa-info-circle">
   Now that you have all the parameters and the hash value, the next step is to create an HTML file using the below code.
 
