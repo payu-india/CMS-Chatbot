@@ -110,39 +110,36 @@ Follow the below steps to make your test payment:
     * No Extra Spaces or Hidden Characters. They will break the hash.
     * Encode the string using UTF-8 before hashing.
   </Callout>
+  
+<br/>
 
-<Accordion title="Step 2.1 Generate SHA-512 Hash using Node " icon="fa-info-circle">
+  <Accordion title="Step 2.1 Generate SHA-512 Hash using Node " icon="fa-info-circle">
+    ```node Node.js
+    const crypto = require("crypto");
 
-```node Node.js
-const crypto = require("crypto");
+    const hashString = "YOUR_KEY|txn_123456|10.00|Test Product|Test|test@example.com|||||||||||YOUR_SALT";
 
-const hashString = "YOUR_KEY|txn_123456|10.00|Test Product|Test|test@example.com|||||||||||YOUR_SALT";
+    const hash = crypto
+      .createHash("sha512")
+      .update(hashString, "utf8")
+      .digest("hex");
 
-const hash = crypto
-  .createHash("sha512")
-  .update(hashString, "utf8")
-  .digest("hex");
+    console.log(hash);
+    ```
+  </Accordion>
 
-console.log(hash);
-```
+  <Accordion title="Step 2.2 Debug Your Hash (Highly Recommended)" icon="fa-info-circle">
+    Before using the hash, print the exact string using the following JS code:
 
-</Accordion>
+    ```javascript
+    console.log(JSON.stringify(hashString));
+    ```
+  </Accordion>
 
-<Accordion title="Step 2.2 Debug Your Hash (Highly Recommended)" icon="fa-info-circle">
+  Checklist:
 
-Before using the hash, print the exact string using the following JS code:
-
-```javascript
-console.log(JSON.stringify(hashString));
-```
-
-</Accordion>
-
-Checklist:
-
-* [ ] Extra spaces: Example `"Test "`
-* [ ] Newline characters → `\n`
-* [ ] Missing pipes `(|)`
-  Incorrect order
-
+  * [ ] Extra spaces: Example `"Test "`
+  * [ ] Newline characters → `\n`
+  * [ ] Missing pipes `(|)`
+    Incorrect order
 </Accordion>
