@@ -176,15 +176,13 @@ Follow the below steps to make your test payment:
     </body>
     </html>
   ```
-
-  Replace:
+<br/>
+  **Replace:**
 
   * `YOUR_KEY` with test key.
   * `GENERATED_HASH` with the generated hash.
 </Accordion>
-
-<br />
-
+<br/>
 <Accordion title="Step 4: Complete the Test Payment" icon="fa-info-circle">
   To complete the test payment:
 
