@@ -145,3 +145,35 @@ Follow the below steps to make your test payment:
   * [ ] Missing pipes `(|)`
     Incorrect order
 </Accordion>
+
+<Accordion title="Step 3: Create an HTML File" icon="fa-info-circle">
+  
+Now that you have all the parameters and the hash value, the next step is to create an HTML file using the below code.
+  
+```html
+<!doctype html>
+<html>
+  <body onload="document.forms.payu.submit()">
+    <form name="payu" method="post" action="https://test.payu.in/_payment">
+      
+      <input type="hidden" name="key" value="YOUR_KEY" />
+      <input type="hidden" name="txnid" value="txn_123456" />
+      <input type="hidden" name="amount" value="10.00" />
+      <input type="hidden" name="productinfo" value="Test Product" />
+      <input type="hidden" name="firstname" value="Test" />
+      <input type="hidden" name="email" value="test@example.com" />
+      <input type="hidden" name="phone" value="9999999999" />
+
+      <input type="hidden" name="surl" value="https://yourwebsite.com/success" />
+      <input type="hidden" name="furl" value="https://yourwebsite.com/failure" />
+
+      <input type="hidden" name="hash" value="GENERATED_HASH" />
+
+      <input type="submit" value="Pay Now" />
+    </form>
+  </body>
+  </html>
+```
+
+
+</Accordion>
