@@ -137,18 +137,24 @@ Follow the below steps to make your test payment:
     console.log(JSON.stringify(hashString));
     ```
   </Accordion>
-  
-<br/>
-<Callout icon="📘" theme="info">
-  **Checklist:**
 
-  * [ ] Extra spaces: Example `"Test "`
-  * [ ] Newline characters
-  * [ ] Missing pipes `(|)`
-    Incorrect order
-</Callout>
+  <br />
+
+  <Callout icon="📘" theme="info">
+    **Look For:**
+
+    * [ ] Extra spaces: Example `"Test "`
+    * [ ] Newline characters
+    * [ ] Missing pipes `(|)`
+    * [ ] Incorrect order
+    
+These may break the hash.
+
+  </Callout>
 </Accordion>
-<br/>
+
+<br />
+
 <Accordion title="Step 3: Create an HTML File" icon="fa-info-circle">
   Now that you have all the parameters and the hash value, the next step is to create an HTML file using the below code.
 
@@ -176,13 +182,17 @@ Follow the below steps to make your test payment:
     </body>
     </html>
   ```
-<br/>
+
+  <br />
+
   **Replace:**
 
   * `YOUR_KEY` with test key.
   * `GENERATED_HASH` with the generated hash.
 </Accordion>
-<br/>
+
+<br />
+
 <Accordion title="Step 4: Complete the Test Payment" icon="fa-info-circle">
   To complete the test payment:
 
