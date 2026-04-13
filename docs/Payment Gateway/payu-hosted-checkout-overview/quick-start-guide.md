@@ -74,7 +74,8 @@ Follow the below steps to make your test payment:
   | **phone**       | `string` The email address of the customer. For example, `aarav@testmail.com`                                                                                                                                        |
   | **surl**        | `string` The success URL to which PayU redirects the user after a successful transaction. <a href="https://test-payment-middleware.payu.in/simulatorResponse" title="Example surl">Success URL Example</a>           |
   | **furl**        | `string` The failure URL to which PayU redirects the user after a failure transaction. For example, <a href="https://test-payment-middleware.payu.in/simulatorResponse" title="Example surl">Success URL Example</a> |
-  | **salt**        | `string` The salt provided by PayU during onboarding.                                                                                                                                                                |
+  | **salt**        | `string` The salt provided by PayU during onboarding. |
+<br/>
 
   <Callout icon="📘" theme="info">
     **Handy Tips**
@@ -147,9 +148,8 @@ Follow the below steps to make your test payment:
     * [ ] Newline characters
     * [ ] Missing pipes `(|)`
     * [ ] Incorrect order
-    
-These may break the hash.
 
+    These may break the hash.
   </Callout>
 </Accordion>
 
