@@ -174,6 +174,22 @@ Now that you have all the parameters and the hash value, the next step is to cre
   </body>
   </html>
 ```
+Replace:
+  
+* `YOUR_KEY` with test key.
+* `GENERATED_HASH` with the generated hash.
+</Accordion>
+
+<br/>
+
+<Accordion title="Step 4: Complete the Test Payment" icon="fa-info-circle">
+  
+To complete the test payment:
+1. Open payment.html in your browser
+2. The form will auto-submit to PayU and redirected to a payment page.
+3. Choose any payment method and provide the <a href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets" title="Access Test Credentials">test credentials</a>.
+4. Complete the payment.
+
 
 
 </Accordion>
