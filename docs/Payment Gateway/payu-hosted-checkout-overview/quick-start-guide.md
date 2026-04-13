@@ -110,8 +110,8 @@ Follow the below steps to make your test payment:
     * No Extra Spaces or Hidden Characters. They will break the hash.
     * Encode the string using UTF-8 before hashing.
   </Callout>
-  
-<br/>
+
+  <br />
 
   <Accordion title="Step 2.1 Generate SHA-512 Hash using Node " icon="fa-info-circle">
     ```node Node.js
@@ -127,6 +127,8 @@ Follow the below steps to make your test payment:
     console.log(hash);
     ```
   </Accordion>
+  
+<br/>
 
   <Accordion title="Step 2.2 Debug Your Hash (Highly Recommended)" icon="fa-info-circle">
     Before using the hash, print the exact string using the following JS code:
