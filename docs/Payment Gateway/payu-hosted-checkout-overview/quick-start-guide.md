@@ -48,10 +48,10 @@ Below is the overview of the PayU Hosted Checkout integration:
 
 Follow the below steps to make your test payment:
 
-| **Environment**            | **URL**                         |
-| :------------------------- | :------------------------------ |
-| **Test Environment**       | https://test.payu.in/_payment   |
-| **Production Environment** | https://secure.payu.in/_payment |
+| **Environment**            | **URL**                                                            |
+| :------------------------- | :----------------------------------------------------------------- |
+| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
 <Accordion title="Step 1: Prepare Request Parameters" icon="fa-info-circle">
   Define these required parameters:
@@ -92,7 +92,7 @@ Follow the below steps to make your test payment:
 </Accordion>
 
 <Accordion title="Step 2: Generate SHA-512 Hash (Critical Step)" icon="fa-info-circle">
-  Hash generation is required to **secure your payment request**. If the hash is incorrect, PayU will reject the transaction with an `Invalid Hash` error.
+  Hash generation is required to **secure your payment request**. If the hash is incorrect, PayU will reject the transaction with an `Invalid Hash` error. Know more about Hashing.
 
   Create a hash value of the mandatory parameters mentioned in the step 1 using the following logic.
 
@@ -203,3 +203,20 @@ Follow the below steps to make your test payment:
   3. Choose any payment method and provide the <a href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets" title="Access Test Credentials">test credentials</a>.
   4. Complete the payment.
 </Accordion>
+
+<Accordion title="Errors and Troubleshooting" icon="fa-info-circle">
+  
+**Invalid Hash**
+	- Check parameter order  
+	- Ensure no extra spaces  
+	- Use UTF-8 encoding  
+
+**Payment Page Not Loading**
+	- Verify endpoint URL  
+	- Ensure form uses POST 
+
+Refer to the Erors and Troubleshooting page for more information about errors and fixes.
+
+</Accordion>
+
+<br />
