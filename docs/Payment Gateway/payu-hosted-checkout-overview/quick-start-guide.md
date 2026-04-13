@@ -219,6 +219,14 @@ Follow the below steps to make your test payment:
   Refer to the Erors and Troubleshooting page for more information about errors and fixes.
 </Accordion>
 
+## What is Next?
+
+After you complete the test payment:
+
+* Handle payment response
+* Verify transaction status
+* Move to production
+
 ## Next Steps
 
 Now that you have created your first test payment go to the
