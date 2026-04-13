@@ -48,6 +48,11 @@ Below is the overview of the PayU Hosted Checkout integration:
 
 Follow the below steps to make your test payment:
 
+| **Environment**            | **URL**                         |
+| :------------------------- | :------------------------------ |
+| **Test Environment**       | https://test.payu.in/_payment   |
+| **Production Environment** | https://secure.payu.in/_payment |
+
 <Accordion title="Step 1: Prepare Request Parameters" icon="fa-info-circle">
   Define these required parameters:
 
@@ -112,8 +117,8 @@ Follow the below steps to make your test payment:
     * No Extra Spaces or Hidden Characters. They will break the hash.
     * Encode the string using UTF-8 before hashing.
   </Callout>
-  
-<Callout icon="📘" theme="info">
+
+  <Callout icon="📘" theme="info">
     **Look For:**
 
     * [ ] Extra spaces: Example `"Test "`
@@ -152,7 +157,6 @@ Follow the below steps to make your test payment:
   </Accordion>
 
   <br />
-
 </Accordion>
 
 <br />
