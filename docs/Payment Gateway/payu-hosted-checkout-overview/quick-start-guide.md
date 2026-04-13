@@ -190,6 +190,4 @@ To complete the test payment:
 3. Choose any payment method and provide the <a href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets" title="Access Test Credentials">test credentials</a>.
 4. Complete the payment.
 
-
-
 </Accordion>
