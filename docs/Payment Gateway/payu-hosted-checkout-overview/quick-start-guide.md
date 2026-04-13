@@ -159,8 +159,6 @@ Follow the below steps to make your test payment:
   <br />
 </Accordion>
 
-<br />
-
 <Accordion title="Step 3: Create an HTML File" icon="fa-info-circle">
   Now that you have all the parameters and the hash value, the next step is to create an HTML file using the below code.
 
@@ -196,8 +194,6 @@ Follow the below steps to make your test payment:
   * `YOUR_KEY` with test key.
   * `GENERATED_HASH` with the generated hash.
 </Accordion>
-
-<br />
 
 <Accordion title="Step 4: Complete the Test Payment" icon="fa-info-circle">
   To complete the test payment:
