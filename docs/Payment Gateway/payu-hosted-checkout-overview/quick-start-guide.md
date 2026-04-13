@@ -74,6 +74,47 @@ Follow the below steps to make your test payment:
   | **phone**       | `string` The email address of the customer. For example, `aarav@testmail.com`                                                                                                                                                |
   | **surl**        | `string` The success URL to which PayU redirects the user after a successful transaction. <a href="https://test-payment-middleware.payu.in/simulatorResponse" title="Example surl">Success URL Example</a>                   |
   | **furl**        | `string` The failure URL to which PayU redirects the user after a failure transaction. For example, <a href="https://test-payment-middleware.payu.in/simulatorResponse" title="Example surl">Success URL Example</a> |
+  | **salt**        | `string` The salt provided by PayU during onboarding. |
+
+<Callout icon="📘" theme="info">
+  **Handy Tips**
+
+  * `txnid` must be unique
+  * No extra spaces in values
+</Callout>
+
 </Accordion>
 
 <br />
+
+<Accordion title="Step 2: Generate SHA-512 Hash (Critical Step)" icon="fa-info-circle">
+
+Hash generation is required to **secure your payment request**. If the hash is incorrect, PayU will reject the transaction with an `Invalid Hash` error.
+
+Create a hash value of the mandatory parameters mentioned in the step 1 using the following logic.
+
+```Text Logic
+key|txnid|amount|productinfo|firstname|email|||||||||||salt
+```
+```Text Example
+YOUR_KEY|txn_123456|10.00|Test Product|Test|test@example.com|||||||||||YOUR_SALT
+```
+```Text Hash Value
+ae3eeea5587856fa0540bdfb85a18b461d0457fbe230ea033dbd1a9a8f08e504e1fc1268da9df50ef0083a9f1a760cb82d2d3fb6bddc7e463b28cba5907a74fe
+```
+
+<Callout icon="⚠️">
+  **Critical Rules**
+
+  Follow these rules to create a correct hash value:
+
+  * Do not change the parameter order
+  * Do not skip pipes (|). Even if fields are empty, you must include separators.
+  * Keep the empty fields. Fields like `udf1`– `udf5` are optional, but their positions should remain empty even if you are not passing any values.
+  * No Extra Spaces or Hidden Characters. They will break the hash.
+  * Encode the string using UTF-8 before hashing.
+</Callout>
+
+<br />
+
+</Accordion>
