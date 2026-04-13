@@ -205,18 +205,22 @@ Follow the below steps to make your test payment:
 </Accordion>
 
 <Accordion title="Errors and Troubleshooting" icon="fa-info-circle">
-  
-**Invalid Hash**
-	- Check parameter order  
-	- Ensure no extra spaces  
-	- Use UTF-8 encoding  
+  **Invalid Hash**
 
-**Payment Page Not Loading**
-	- Verify endpoint URL  
-	- Ensure form uses POST 
+  * Check parameter order
+  * Ensure no extra spaces
+  * Use UTF-8 encoding
 
-Refer to the Erors and Troubleshooting page for more information about errors and fixes.
+  **Payment Page Not Loading**
 
+  * Verify endpoint URL
+  * Ensure form uses POST
+
+  Refer to the Erors and Troubleshooting page for more information about errors and fixes.
 </Accordion>
 
-<br />
+## Next Steps
+
+Now that you have created your first test payment go to the
+
+* Integration Guide for the detailed steps and different language bindings.
