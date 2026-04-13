@@ -127,8 +127,8 @@ Follow the below steps to make your test payment:
     console.log(hash);
     ```
   </Accordion>
-  
-<br/>
+
+  <br />
 
   <Accordion title="Step 2.2 Debug Your Hash (Highly Recommended)" icon="fa-info-circle">
     Before using the hash, print the exact string using the following JS code:
@@ -137,57 +137,59 @@ Follow the below steps to make your test payment:
     console.log(JSON.stringify(hashString));
     ```
   </Accordion>
+  
 
-  Checklist:
+<Callout icon="📘" theme="info">
+  **Checklist:**
 
   * [ ] Extra spaces: Example `"Test "`
-  * [ ] Newline characters → `\n`
+  * [ ] Newline characters
   * [ ] Missing pipes `(|)`
     Incorrect order
+</Callout>
 </Accordion>
 
 <Accordion title="Step 3: Create an HTML File" icon="fa-info-circle">
-  
-Now that you have all the parameters and the hash value, the next step is to create an HTML file using the below code.
-  
-```html
-<!doctype html>
-<html>
-  <body onload="document.forms.payu.submit()">
-    <form name="payu" method="post" action="https://test.payu.in/_payment">
-      
-      <input type="hidden" name="key" value="YOUR_KEY" />
-      <input type="hidden" name="txnid" value="txn_123456" />
-      <input type="hidden" name="amount" value="10.00" />
-      <input type="hidden" name="productinfo" value="Test Product" />
-      <input type="hidden" name="firstname" value="Test" />
-      <input type="hidden" name="email" value="test@example.com" />
-      <input type="hidden" name="phone" value="9999999999" />
+  Now that you have all the parameters and the hash value, the next step is to create an HTML file using the below code.
 
-      <input type="hidden" name="surl" value="https://yourwebsite.com/success" />
-      <input type="hidden" name="furl" value="https://yourwebsite.com/failure" />
+  ```html
+  <!doctype html>
+  <html>
+    <body onload="document.forms.payu.submit()">
+      <form name="payu" method="post" action="https://test.payu.in/_payment">
+        
+        <input type="hidden" name="key" value="YOUR_KEY" />
+        <input type="hidden" name="txnid" value="txn_123456" />
+        <input type="hidden" name="amount" value="10.00" />
+        <input type="hidden" name="productinfo" value="Test Product" />
+        <input type="hidden" name="firstname" value="Test" />
+        <input type="hidden" name="email" value="test@example.com" />
+        <input type="hidden" name="phone" value="9999999999" />
 
-      <input type="hidden" name="hash" value="GENERATED_HASH" />
+        <input type="hidden" name="surl" value="https://yourwebsite.com/success" />
+        <input type="hidden" name="furl" value="https://yourwebsite.com/failure" />
 
-      <input type="submit" value="Pay Now" />
-    </form>
-  </body>
-  </html>
-```
-Replace:
-  
-* `YOUR_KEY` with test key.
-* `GENERATED_HASH` with the generated hash.
+        <input type="hidden" name="hash" value="GENERATED_HASH" />
+
+        <input type="submit" value="Pay Now" />
+      </form>
+    </body>
+    </html>
+  ```
+
+  Replace:
+
+  * `YOUR_KEY` with test key.
+  * `GENERATED_HASH` with the generated hash.
 </Accordion>
 
-<br/>
+<br />
 
 <Accordion title="Step 4: Complete the Test Payment" icon="fa-info-circle">
-  
-To complete the test payment:
-1. Open payment.html in your browser
-2. The form will auto-submit to PayU and redirected to a payment page.
-3. Choose any payment method and provide the <a href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets" title="Access Test Credentials">test credentials</a>.
-4. Complete the payment.
+  To complete the test payment:
 
+  1. Open payment.html in your browser
+  2. The form will auto-submit to PayU and redirected to a payment page.
+  3. Choose any payment method and provide the <a href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets" title="Access Test Credentials">test credentials</a>.
+  4. Complete the payment.
 </Accordion>
