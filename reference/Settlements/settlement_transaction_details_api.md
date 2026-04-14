@@ -211,7 +211,7 @@ This API is retrieve detailed information about a specific transaction using the
 
   ```json
   {
-      "message": Internal server error 
+      "message": "Internal server error" 
   }
   ```
 </Accordion>
