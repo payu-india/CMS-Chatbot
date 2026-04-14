@@ -20,7 +20,7 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
       title: "1. Build Integration",
       text: (
         <p style={{ margin: 0 }}>
-          Integrate PayU Hosted Checkout.
+          <a href="/docs/prebuilt-checkout-payu-hosted">Run a simple code to integrate PayU Hosted Checkout</a>.
         </p>
       ),
     },
