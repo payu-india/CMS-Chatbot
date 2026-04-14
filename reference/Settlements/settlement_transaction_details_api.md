@@ -170,39 +170,50 @@ This API is retrieve detailed information about a specific transaction using the
   }
   ```
 
-### Failure scenario
-#### Invalid request parameters(4000) 
-* Invalid request parameter
-```json
-{
-    "message": ""Please provide valid merchantId." 
-}
-```
-* Request parameter not in character range
-```json
-{
-    "message": "Invalid Transaction ID: Must not exceed 50 characters."
-}
-```
-* Request parameter value is missing 
-```json
-{
-    "message":"Merchant Transaction ID is required."
-}
-```
-#### Unauthorized / access denied (4001)
-```json
-{
-    "message": "Unauthorized",
-    "request_id": "24e2161272fd9871da37142d5df48100"
-}
-```
-#### Internal server error (500)
-```json
-{
-    "message": Internal server error 
-}
-```
+  ### Failure scenario
+
+  #### Invalid request parameters(4000) 
+
+  * Invalid request parameter
+
+  ```json
+  {
+      "message": "Please provide valid merchantId." 
+  }
+  ```
+
+  * Request parameter not wthin character limit
+
+  ```json
+  {
+      "message": "Invalid Transaction ID: Must not exceed 50 characters."
+  }
+  ```
+
+  * Request parameter value is missing
+
+  ```json
+  {
+      "message":"Merchant Transaction ID is required."
+  }
+  ```
+
+  #### Unauthorized / access denied (4001)
+
+  ```json
+  {
+      "message": "Unauthorized",
+      "request_id": "24e2161272fd9871da37142d5df48100"
+  }
+  ```
+
+  #### Internal server error (500)
+
+  ```json
+  {
+      "message": Internal server error 
+  }
+  ```
 </Accordion>
 
 <Accordion title="Response Parameters" icon="fa-table">
