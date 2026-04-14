@@ -99,23 +99,35 @@ curl -X GET "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-
 
 ```json
 {
-  "status": 1,
-  "message": "Settlement details retrieved successfully",
-  "result": {
-    "page": 1,
-    "pageSize": 5000,
-    "totalRecords": 2,
-    "data": [
-      {
-        "txnid": "TXN123456",
-        "amount": "100.00",
-        "status": "success",
-        "utr": "UTR123456789",
-        "settled_at": "2023-09-26T10:30:00Z"
-      }
-    ]
-  }
-}
+    "rows": 20000,
+    "message": "20000 settled on 2024-04-08 ",
+    "status": 1,
+    "result": [
+        {
+            "payuid": "19580843982",
+            "txnid": "PZT24040523596DQOT01",
+            "txndate": "2024-04-05 23:59:49",
+            "mode": "CC",
+            "amount": "218.00",
+            "requestid": "13785835411",
+            "requestdate": "2024-04-06 00:00:08",
+            "requestaction": "capture",
+            "requestamount": "218.00",
+            "mer_utr": "UTIBR72024040800086935",
+            "mer_service_fee": "3.16000",
+            "mer_service_tax": "0.57000",
+            "mer_net_amount": "214.27",
+            "bank_name": "CC",
+            "issuing_bank": "SBI",
+            "merchant_subvention_amount": 0.0,
+            "cgst": "0.00000",
+            "igst": "0.57000",
+            "sgst": "0.00000",
+            "PG_TYPE": "AxisCYBER",
+            "Card Type": "domestic",
+            "token": null
+        }
+]
 ```
 
 ### Version 1 with type=G
@@ -176,26 +188,89 @@ curl -X GET "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-
 
 ```json
 {
-  "status": 1,
-  "message": "Settlement details retrieved successfully",
-  "result": {
-    "page": 1,
-    "pageSize": 5000,
-    "totalRecords": 2,
-    "data": [
-      {
-        "txnid": "TXN123456",
-        "amount": "100.00",
-        "payu_fee": "2.50",
-        "payu_fee_tax": "0.45",
-        "net_amount": "97.05",
-        "status": "success",
-        "utr": "UTR123456789",
-        "settled_at": "2023-09-26T10:30:00Z"
-      }
-    ]
-  }
-}
+    "rows": 50002,
+    "message": "50002 transaction settledOn 2024-04-08",
+    "status": 1,
+    "result": [
+        {
+            "payuid": "19588035480",
+            "txnId": "PZT2404062056KJOM701",
+            "txndate": "2024-04-06 20:56:50",
+            "mode": "UPI",
+            "amount": "188.00",
+            "requestid": "13791685328",
+            "requestdate": "2024-04-06 20:57:19",
+            "requestaction": "capture",
+            "requestamount": "188.00",
+            "mer_utr": "UTIBR72024040800086935",
+            "mer_service_fee": "0.00000",
+            "mer_service_tax": "0.00000",
+            "mer_net_amount": "188.0",
+            "bank_name": "INTENT",
+            "issuing_bank": null,
+            "merchant_subvention_amount": 0.0,
+            "cgst": "0.00000",
+            "igst": "0.00000",
+            "sgst": "0.00000",
+            "PG_TYPE": "AIRTEL UPI ",
+            "Card Type": null,
+            "token": null,
+            "PG": "AIRTEL UPI ",
+            "SettlementType": "regular",
+            "Scheme": "INTENT",
+            "FeeType": "tdrFee",
+            "InstantSettlementTDR": "0.00",
+            "InstantSettlementTDRTax": "0.00",
+            "InstantSettlementTdrType": "",
+            "InstantRefundTDR": "0.00",
+            "InstantRefundTDRTax": "0.00",
+            "InstantRefundTdrType": "",
+            "perDayServiceFee": "0.0",
+            "perDayServiceTax": "0.0",
+            "pricingDays": 1,
+            "offerServiceFee": "0.00",
+            "offerServiceTax": "0.00"
+        },
+       {
+            "payuid": "ADJ_821142",
+            "txnid": "ADJ_821142",
+            "txndate": "2024-04-08 02:01:35",
+            "mode": "Adjustmentdebit",
+            "amount": "-23868.77",
+            "requestid": "ADJ_821142",
+            "requestdate": "2024-04-08 02:01:35",
+            "requestaction": "debit",
+            "requestamount": "-23868.77",
+            "mer_utr": "UTIBR72024040800086935",
+            "mer_service_fee": "-20227.77",
+            "mer_service_tax": "-3641.00",
+            "mer_net_amount": "-23868.77",
+            "bank_name": "",
+            "issuing_bank": "",
+            "merchant_subvention_amount": "",
+            "cgst": 0,
+            "sgst": 0,
+            "igst": 0,
+            "PG_TYPE": "PayU",
+            "Card Type": "",
+            "token": "",
+            "SettlementType": "",
+            "PG": "",
+            "Scheme": "",
+            "FeeType": "",
+            "InstantSettlementTDR": "",
+            "InstantSettlementTDRTax": "",
+            "InstantSettlementTdrType": "",
+            "InstantRefundTDR": "",
+            "InstantRefundTDRTax": "",
+            "InstantRefundTdrType": "",
+            "perDayServiceFee": "0.00",
+            "perDayServiceTax": "0.00",
+            "pricingDays": 1,
+            "offerServiceFee": "0.0",
+            "offerServiceTax": "0.0"
+        }
+]
 ```
 
 ### Failure Scenario
