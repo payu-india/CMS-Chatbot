@@ -263,7 +263,7 @@ Once the payment is completed:
 * The customer is redirected back to your website (success or failure page)
 * A payment response is sent with transaction details
 
-<Callout icon="⚠️">
+<Callout icon="⚠️" theme="warn">
   **Important: Backend Verification**
 
   Even after redirection:
@@ -278,7 +278,7 @@ Once the payment is completed:
 
 Now that you understand how PayU Hosted Checkout works:
 
-* 👉 Go to Start Here to understand when and how to use this integration
-* 👉 Go to Quick Start to make your first test payment
+* Go to Start Here to understand when and how to use this integration
+* Go to Quick Start to make your first test payment
 
 <br />
