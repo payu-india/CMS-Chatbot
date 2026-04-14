@@ -31,7 +31,7 @@ This API is retrieve detailed information about a specific transaction using the
 
   | Parameter                       | Description                                                                      | Example       |
   | ------------------------------- | -------------------------------------------------------------------------------- | ------------- |
-  | mid<br /><code>mandatory</code> | <code>String</code> Merchant identifier that the integration was registered with | \<MerchantId> |
+  | mid<br /><code>mandatory</code> | <code>String</code> Merchant identifier that the integration was registered with | 875546 |
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
