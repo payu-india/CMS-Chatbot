@@ -23,9 +23,9 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 
   ### Other Header Parameters
 
-  | Parameter                        | Description                                                                      | Example                       |
-  | -------------------------------- | -------------------------------------------------------------------------------- | ----------------------------- |
-  | mid<br /><code>mandatory</code>  | <code>String</code> Merchant identifier that the integration was registered with | \ 12202                 |
+  | Parameter                       | Description                                                                      | Example |
+  | ------------------------------- | -------------------------------------------------------------------------------- | ------- |
+  | mid<br /><code>mandatory</code> | <code>String</code> Merchant identifier that the integration was registered with |  12202 |
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
