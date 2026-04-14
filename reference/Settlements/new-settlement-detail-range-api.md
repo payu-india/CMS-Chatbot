@@ -56,20 +56,19 @@ Settlement Details Range API provides transaction level data for a given date or
 
 ### Query Parameters
 
-| Parameter | Description | Example |
-|---|---|---|
-| dateFrom<br/><code>mandatory</code> | Start date in YYYY-MM-DD format. Type: <code>string</code> | 2023-09-26 |
-| dateTo<br/><code>optional</code> | End date in YYYY-MM-DD format. If not provided, defaults to dateFrom. Max range: 3 days. Type: <code>string</code> | 2023-09-28 |
-| pageSize<br/><code>optional</code> | Number of records per page. Default: 100, Max: 50000. Type: <code>integer</code> | 500 |
-| page<br/><code>optional</code> | Page number for pagination. Default: 1. Type: <code>integer</code> | 1 |
-
+| Parameter                            | Description                                                                                                        | Example    |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ---------- |
+| dateFrom<br /><code>mandatory</code> | Start date in YYYY-MM-DD format. Type: <code>string</code>                                                         | 2023-09-26 |
+| dateTo<br /><code>optional</code>    | End date in YYYY-MM-DD format. If not provided, defaults to dateFrom. Max range: 3 days. Type: <code>string</code> | 2023-09-28 |
+| pageSize<br /><code>optional</code>  | Number of records per page. Default: 100, Max: 50000. Type: <code>integer</code>                                   | 500        |
+| page<br /><code>optional</code>      | Page number for pagination. Default: 1. Type: <code>integer</code>                                                 | 1          |
 
 ## Sample Request
 
 ```bash
-curl -X GET "https://apitest.payu.in/settlement/range?dateFrom=2023-09-26&dateTo=2023-09-28&page=1&pageSize=500" \
-  -H "Authorization: Bearer <sha512_signature>" \
-  -H "Date: 2023-09-26T10:30:00Z"
+curl --location 'https://apitest.payu.in/settlement/range?dateFrom=2023-09-26&dateTo=2023-09-28&page=1&pageSize=500' \
+--header 'Authorization: {{authorization}}' \
+--header 'Date: {{date}}'
 ```
 
 ## Sample Response
@@ -125,6 +124,7 @@ curl -X GET "https://apitest.payu.in/settlement/range?dateFrom=2023-09-26&dateTo
 ```
 
 ### Failure Scenarios
+
 #### Exceeds Date Range Limit
 
 ```json
@@ -147,32 +147,32 @@ curl -X GET "https://apitest.payu.in/settlement/range?dateFrom=2023-09-26&dateTo
 
 ## Response Parameters
 
-### UTR-Level Settlement Components 
+### UTR-Level Settlement Components
 
-| Parameter | Description | Example |
-|---|---|---|
-| utr<br/><code>mandatory</code> | Unique Transaction Reference. Type: <code>string</code> | UTR123456789 |
-| transactionAmount<br/><code>mandatory</code> | Total transaction amount for this UTR. Type: <code>decimal</code> | 1000.00 |
-| adjustmentAmount<br/><code>optional</code> | Total adjustment amount for this UTR. Type: <code>decimal</code> | -50.00 |
-| refundAmount<br/><code>optional</code> | Total refund amount for this UTR. Type: <code>decimal</code> | 100.00 |
-| chargebackAmount<br/><code>optional</code> | Total chargeback amount for this UTR. Type: <code>decimal</code> | 25.00 |
-| refundReversalAmount<br/><code>optional</code> | Total refund reversal amount for this UTR. Type: <code>decimal</code> | 10.00 |
-| chargebackReversalAmount<br/><code>optional</code> | Total chargeback reversal amount for this UTR. Type: <code>decimal</code> | 5.00 |
-| serviceFee<br/><code>mandatory</code> | Service fee charged for this UTR. Type: <code>decimal</code> | 20.00 |
-| serviceTax<br/><code>mandatory</code> | Service tax on the fee for this UTR. Type: <code>decimal</code> | 3.60 |
-| additionalServiceFee<br/><code>optional</code> | Additional service fee for this UTR. Type: <code>decimal</code> | 5.00 |
-| additionalServiceTax<br/><code>optional</code> | Additional service tax for this UTR. Type: <code>decimal</code> | 0.90 |
-| numberOfTransactions<br/><code>mandatory</code> | Total number of transactions in this UTR. Type: <code>integer</code> | 15 |
+| Parameter                                           | Description                                                               | Example      |
+| --------------------------------------------------- | ------------------------------------------------------------------------- | ------------ |
+| utr<br /><code>mandatory</code>                     | Unique Transaction Reference. Type: <code>string</code>                   | UTR123456789 |
+| transactionAmount<br /><code>mandatory</code>       | Total transaction amount for this UTR. Type: <code>decimal</code>         | 1000.00      |
+| adjustmentAmount<br /><code>optional</code>         | Total adjustment amount for this UTR. Type: <code>decimal</code>          | -50.00       |
+| refundAmount<br /><code>optional</code>             | Total refund amount for this UTR. Type: <code>decimal</code>              | 100.00       |
+| chargebackAmount<br /><code>optional</code>         | Total chargeback amount for this UTR. Type: <code>decimal</code>          | 25.00        |
+| refundReversalAmount<br /><code>optional</code>     | Total refund reversal amount for this UTR. Type: <code>decimal</code>     | 10.00        |
+| chargebackReversalAmount<br /><code>optional</code> | Total chargeback reversal amount for this UTR. Type: <code>decimal</code> | 5.00         |
+| serviceFee<br /><code>mandatory</code>              | Service fee charged for this UTR. Type: <code>decimal</code>              | 20.00        |
+| serviceTax<br /><code>mandatory</code>              | Service tax on the fee for this UTR. Type: <code>decimal</code>           | 3.60         |
+| additionalServiceFee<br /><code>optional</code>     | Additional service fee for this UTR. Type: <code>decimal</code>           | 5.00         |
+| additionalServiceTax<br /><code>optional</code>     | Additional service tax for this UTR. Type: <code>decimal</code>           | 0.90         |
+| numberOfTransactions<br /><code>mandatory</code>    | Total number of transactions in this UTR. Type: <code>integer</code>      | 15           |
 
 ### Transaction-Level Data
 
-| Parameter | Description | Example |
-|---|---|---|
-| txnid<br/><code>mandatory</code> | Transaction ID. Type: <code>string</code> | TXN123456 |
-| amount<br/><code>mandatory</code> | Individual transaction amount. Type: <code>decimal</code> | 100.00 |
-| additionalTdrFee<br/><code>optional</code> | Additional TDR fee for this transaction. Type: <code>decimal</code> | 1.50 |
-| additionalTdrTax<br/><code>optional</code> | Additional TDR tax for this transaction. Type: <code>decimal</code> | 0.27 |
-| totalProcessingFee<br/><code>mandatory</code> | Total processing fee for this transaction. Type: <code>decimal</code> | 2.00 |
-| totalServiceTax<br/><code>mandatory</code> | Total service tax for this transaction. Type: <code>decimal</code> | 0.36 |
-| status<br/><code>mandatory</code> | Transaction status. Type: <code>string</code> | success |
-| settled_at<br/><code>mandatory</code> | Settlement timestamp. Type: <code>string</code> | 2023-09-26T10:30:00Z |
+| Parameter                                      | Description                                                           | Example              |
+| ---------------------------------------------- | --------------------------------------------------------------------- | -------------------- |
+| txnid<br /><code>mandatory</code>              | Transaction ID. Type: <code>string</code>                             | TXN123456            |
+| amount<br /><code>mandatory</code>             | Individual transaction amount. Type: <code>decimal</code>             | 100.00               |
+| additionalTdrFee<br /><code>optional</code>    | Additional TDR fee for this transaction. Type: <code>decimal</code>   | 1.50                 |
+| additionalTdrTax<br /><code>optional</code>    | Additional TDR tax for this transaction. Type: <code>decimal</code>   | 0.27                 |
+| totalProcessingFee<br /><code>mandatory</code> | Total processing fee for this transaction. Type: <code>decimal</code> | 2.00                 |
+| totalServiceTax<br /><code>mandatory</code>    | Total service tax for this transaction. Type: <code>decimal</code>    | 0.36                 |
+| status<br /><code>mandatory</code>             | Transaction status. Type: <code>string</code>                         | success              |
+| settled_at<br /><code>mandatory</code>         | Settlement timestamp. Type: <code>string</code>                       | 2023-09-26T10:30:00Z |
