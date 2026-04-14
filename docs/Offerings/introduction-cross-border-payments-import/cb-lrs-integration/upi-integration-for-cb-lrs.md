@@ -16,6 +16,7 @@ metadata:
     - UPI Integration for CB LRS
   robots: index
 ---
+
 This section explains how to integrate UPI Intent payments for cross-border transactions under LRS (Liberalised Remittance Scheme) using the Server-to-Server (S2S) flow.
 
 <Cards columns={3}>
@@ -27,24 +28,12 @@ This section explains how to integrate UPI Intent payments for cross-border tran
     Initiate the UPI Intent payment request with LRS parameters
   </Card>
 
-  <Card title="3. Check Response from PayU" href="#step-3-check-response-from-payu">
-    Verify the response hash and transaction status
-  </Card>
-
-  <Card title="4. Invoke UPI Intent on Customer's Device" href="#step-4-invoke-upi-intent-on-customers-device">
+  <Card title="3. Invoke UPI Intent on Customer's Device" href="#step-3-invoke-upi-intent-on-customers-device">
     Trigger the UPI Intent on the customer's mobile device
   </Card>
 
-  <Card title="5. Verify the Payment" href="#step-5-verify-the-payment">
+  <Card title="4. Verify the Payment" href="#step-4-verify-the-payment">
     Verify the payment status using webhooks
-  </Card>
-
-  <Card title="6. Update Invoice ID (Conditional)" href="#step-6-update-invoice-id-conditional">
-    Update the invoice ID associated with the transaction
-  </Card>
-
-  <Card title="7. Upload the Invoices (Conditional)" href="#step-7-upload-the-invoices-conditional">
-    Upload invoice documents related to the completed transaction
   </Card>
 </Cards>
 
@@ -160,48 +149,48 @@ Post the payment parameters to PayU's `_payment` API endpoint to initiate a UPI 
 <Accordion title="Request Parameters" icon="fa-table">
   ### Standard Parameters
 
-  | Parameter                                                                  | Description                                                                                                                                                                                                                                                                                                                                                        | Example                                                                                        |
-  | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
-  | key<br />`mandatory`                                                       | `String` The merchant key provided by PayU must be included. **Reference**: For more information on how to generate the Key and Salt, refer to any of the following: **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard) **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt) |                                                                                                |
-  | txnid<br />`mandatory`                                                     | `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,&, ').                                                                                                                                                                    | 1234\_abcdedf                                                                                  |
-  | amount<br />`mandatory`                                                    | `String` (rounded to two decimal places) This parameter must contain the amount for which QR needs to be generated. The amount should be greater than or equal to Rs.1.00.                                                                                                                                                                                         | 1000                                                                                           |
-  | phone<br />`mandatory`                                                     | `String` This parameter must contain the customer phone number (10 characters).                                                                                                                                                                                                                                                                                    | 9876786756                                                                                     |
-  | productinfo<br />`mandatory`                                               | `String` (alphanumeric) Name or brief description of the goods/services being sold. In case of physical goods, please include name / description of all products. (max. 100 characters).                                                                                                                                                                           | iPhone 12                                                                                      |
-  | firstname<br />`mandatory`                                                 | `String` The first name of the customer as on their Permanent Account Number (PAN). This should be validated by PAN Status Check API (max. 60 characters).                                                                                                                                                                                                         | Sundar                                                                                         |
-  | lastname<br />`mandatory`                                                  | `String` The last name of the customer as on their Permanent Account Number (PAN). This should be validated by PAN Status Check API (max. 20 characters).                                                                                                                                                                                                          | Teja                                                                                           |
-  | email<br />`mandatory`                                                     | `String` This parameter must contain the customer email ID.                                                                                                                                                                                                                                                                                                        | [hello@payu.in](mailto:hello@payu.in)                                                          |
-  | pg<br />`mandatory`                                                        | `String` The payment method is specified in this field. For UPI INTENT, specify the parameter value as **UPI**.                                                                                                                                                                                                                                                    | UPI                                                                                            |
-  | bankcode<br />`mandatory`                                                  | `String` Each payment option is identified with a unique bank code at PayU. For UPI Intent, specify the value as **INTENT**.                                                                                                                                                                                                                                       | INTENT                                                                                         |
-  | surl<br />`mandatory`                                                      | `String` Success URL(surl) – It must contain the URL on which PayU will redirect the final response if the transaction is successful.                                                                                                                                                                                                                              | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
-  | furl<br />`mandatory`                                                      | `String` Failure URL (furl) – It must contain the URL on which PayU will redirect the final response in case of failure.                                                                                                                                                                                                                                           | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
-  | address1<br />`mandatory`                                                  | `String` This parameter must contain the first line of customer address (up to 100 characters).                                                                                                                                                                                                                                                                    | PayU, Bestech Business Tower, Gurgaon                                                          |
-  | address2<br />`optional`                                                   | `String` This parameter must contain the second line of the customer address (up to 100 characters).                                                                                                                                                                                                                                                               | Sohna Road                                                                                     |
-  | city<br />`mandatory`                                                      | `String` This parameter must contain the customer city (max. 50 characters).                                                                                                                                                                                                                                                                                       | Gurgaon                                                                                        |
-  | country<br />`mandatory`                                                   | `String` This parameter must contain the customer's country that is part of the address (max. 50 characters).                                                                                                                                                                                                                                                      | India                                                                                          |
-  | state<br />`mandatory`                                                     | `String` This parameter must contain the customer state that is part of the address (max 50 characters).                                                                                                                                                                                                                                                           | Haryana                                                                                        |
-  | zipcode<br />`mandatory`                                                   | `Numeric` This parameter must contain the customer's PIN code (6 digits).                                                                                                                                                                                                                                                                                          | 122018                                                                                         |
-  | udf1<br />`mandatory for LRS`                                              | `String` The Permanent Account Number (PAN) of the buyer must be collected in this field.                                                                                                                                                                                                                                                                          | AELPR\*\*\*\*E                                                                                 |
-  | udf2<br />`optional`                                                       | `String` This parameter can include any custom information in request (up to 255 characters.).                                                                                                                                                                                                                                                                     |                                                                                                |
-  | udf3<br />`mandatory for LRS`                                              | `String` Date of Birth (DOB) of buyer in DD-MM-YYYY format as on their PAN. This should be validated by PAN Status Check API.                                                                                                                                                                                                                                      | 02-02-1980                                                                                     |
-  | udf4<br />`mandatory for payment aggregators`                              | `String` End merchant legal entity name. For UPI, this field should not be passed. (up to 255 characters.)                                                                                                                                                                                                                                                         |                                                                                                |
-  | udf5<br />`mandatory`                                                      | `String` Contains invoice ID for the transaction. Invoice ID / number should be the ID present on the invoice issued to the customer. (up to 255 characters.)                                                                                                                                                                                                      | INV123456                                                                                      |
-  | udf\_params<br />`optional`                                                | `String JSON` UDF7 value to capture "Import or Export Code" of the buyer. UDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports). *Note*: This must be included in hash if posted.                                                                                                                                               | \{"udf7":"0100000029","udf8":"99953729071"}                                                    |
-  | hash<br />`mandatory`                                                      | `String` Crucial security parameter using SHA512 hash encryption. For more information, refer to [Generate Hash](doc:hashing-request-and-response)                                                                                                                                                                                                                 |                                                                                                |
-  | txn\_s2s\_flow<br />`mandatory`                                            | `Numeric` This parameter must be passed with the value as 4                                                                                                                                                                                                                                                                                                        | 4                                                                                              |
-  | s2s\_client\_ip<br />`mandatory`                                           | `String` This parameter must have the source IP of the user's device.                                                                                                                                                                                                                                                                                              |                                                                                                |
-  | s2s\_device\_info<br />`mandatory`                                         | `String` This parameter must have the user agent of device.                                                                                                                                                                                                                                                                                                        |                                                                                                |
-  | upiAppName<br />`mandatory`                                                | `String` For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum's expected for major apps: phonepe, googlepay, paytm, bhim, cred, amazonpay, whatsapp, genericintent – For any other app apart from above                                                                | phonepe                                                                                        |
+  | Parameter                                     | Description                                                                                                                                                                                                                                                                                                                                                        | Example                                                                                        |
+  | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+  | key<br />`mandatory`                          | `String` The merchant key provided by PayU must be included. **Reference**: For more information on how to generate the Key and Salt, refer to any of the following: **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard) **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt) |                                                                                                |
+  | txnid<br />`mandatory`                        | `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,&, ').                                                                                                                                                                    | 1234\_abcdedf                                                                                  |
+  | amount<br />`mandatory`                       | `String` (rounded to two decimal places) This parameter must contain the amount for which QR needs to be generated. The amount should be greater than or equal to Rs.1.00.                                                                                                                                                                                         | 1000                                                                                           |
+  | phone<br />`mandatory`                        | `String` This parameter must contain the customer phone number (10 characters).                                                                                                                                                                                                                                                                                    | 9876786756                                                                                     |
+  | productinfo<br />`mandatory`                  | `String` (alphanumeric) Name or brief description of the goods/services being sold. In case of physical goods, please include name / description of all products. (max. 100 characters).                                                                                                                                                                           | iPhone 12                                                                                      |
+  | firstname<br />`mandatory`                    | `String` The first name of the customer as on their Permanent Account Number (PAN). This should be validated by PAN Status Check API (max. 60 characters).                                                                                                                                                                                                         | Sundar                                                                                         |
+  | lastname<br />`mandatory`                     | `String` The last name of the customer as on their Permanent Account Number (PAN). This should be validated by PAN Status Check API (max. 20 characters).                                                                                                                                                                                                          | Teja                                                                                           |
+  | email<br />`mandatory`                        | `String` This parameter must contain the customer email ID.                                                                                                                                                                                                                                                                                                        | [hello@payu.in](mailto:hello@payu.in)                                                          |
+  | pg<br />`mandatory`                           | `String` The payment method is specified in this field. For UPI INTENT, specify the parameter value as **UPI**.                                                                                                                                                                                                                                                    | UPI                                                                                            |
+  | bankcode<br />`mandatory`                     | `String` Each payment option is identified with a unique bank code at PayU. For UPI Intent, specify the value as **INTENT**.                                                                                                                                                                                                                                       | INTENT                                                                                         |
+  | surl<br />`mandatory`                         | `String` Success URL(surl) – It must contain the URL on which PayU will redirect the final response if the transaction is successful.                                                                                                                                                                                                                              | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
+  | furl<br />`mandatory`                         | `String` Failure URL (furl) – It must contain the URL on which PayU will redirect the final response in case of failure.                                                                                                                                                                                                                                           | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
+  | address1<br />`mandatory`                     | `String` This parameter must contain the first line of customer address (up to 100 characters).                                                                                                                                                                                                                                                                    | PayU, Bestech Business Tower, Gurgaon                                                          |
+  | address2<br />`optional`                      | `String` This parameter must contain the second line of the customer address (up to 100 characters).                                                                                                                                                                                                                                                               | Sohna Road                                                                                     |
+  | city<br />`mandatory`                         | `String` This parameter must contain the customer city (max. 50 characters).                                                                                                                                                                                                                                                                                       | Gurgaon                                                                                        |
+  | country<br />`mandatory`                      | `String` This parameter must contain the customer's country that is part of the address (max. 50 characters).                                                                                                                                                                                                                                                      | India                                                                                          |
+  | state<br />`mandatory`                        | `String` This parameter must contain the customer state that is part of the address (max 50 characters).                                                                                                                                                                                                                                                           | Haryana                                                                                        |
+  | zipcode<br />`mandatory`                      | `Numeric` This parameter must contain the customer's PIN code (6 digits).                                                                                                                                                                                                                                                                                          | 122018                                                                                         |
+  | udf1<br />`mandatory for LRS`                 | `String` The Permanent Account Number (PAN) of the buyer must be collected in this field.                                                                                                                                                                                                                                                                          | AELPR\*\*\*\*E                                                                                 |
+  | udf2<br />`optional`                          | `String` This parameter can include any custom information in request (up to 255 characters.).                                                                                                                                                                                                                                                                     |                                                                                                |
+  | udf3<br />`mandatory for LRS`                 | `String` Date of Birth (DOB) of buyer in DD-MM-YYYY format as on their PAN. This should be validated by PAN Status Check API.                                                                                                                                                                                                                                      | 02-02-1980                                                                                     |
+  | udf4<br />`mandatory for payment aggregators` | `String` End merchant legal entity name. For UPI, this field should not be passed. (up to 255 characters.)                                                                                                                                                                                                                                                         |                                                                                                |
+  | udf5<br />`mandatory`                         | `String` Contains invoice ID for the transaction. Invoice ID / number should be the ID present on the invoice issued to the customer. (up to 255 characters.)                                                                                                                                                                                                      | INV123456                                                                                      |
+  | udf\_params<br />`optional`                   | `String JSON` UDF7 value to capture "Import or Export Code" of the buyer. UDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports). *Note*: This must be included in hash if posted.                                                                                                                                               | \{"udf7":"0100000029","udf8":"99953729071"}                                                    |
+  | hash<br />`mandatory`                         | `String` Crucial security parameter using SHA512 hash encryption. For more information, refer to [Generate Hash](doc:hashing-request-and-response)                                                                                                                                                                                                                 |                                                                                                |
+  | txn\_s2s\_flow<br />`mandatory`               | `Numeric` This parameter must be passed with the value as 4                                                                                                                                                                                                                                                                                                        | 4                                                                                              |
+  | s2s\_client\_ip<br />`mandatory`              | `String` This parameter must have the source IP of the user's device.                                                                                                                                                                                                                                                                                              |                                                                                                |
+  | s2s\_device\_info<br />`mandatory`            | `String` This parameter must have the user agent of device.                                                                                                                                                                                                                                                                                                        |                                                                                                |
+  | upiAppName<br />`mandatory`                   | `String` For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum's expected for major apps: phonepe, googlepay, paytm, bhim, cred, amazonpay, whatsapp, genericintent – For any other app apart from above                                                                | phonepe                                                                                        |
 
   ### LRS-Specific Parameters
 
-  | Parameter                                                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Example  |
-  | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-  | `buyer_type_business`<br />`conditional for cross-border transactions`      | This parameter is used to identify whether it is a business-to-business transaction. If 1 is posted, it is a B2B transaction.<br /><br />In case of B2B, no other LRS specific parameters (listed below) need to be sent, as B2B transactions are outside the scope of the regulation.                                                                                                                                                                                                                                                                                                 | 0        |
-  | `lrs_mandatory_limit_declaration`<br />`mandatory for LRS S2S transactions` | `String` Mandatory declaration from buyer that they have remitted less than $250,000 USD under Liberalised Remittance Scheme.<br /><br />**Note**: The limit is as per RBI regulation and needs to be mandatorily collected on the checkout page.                                                                                                                                                                                                                                                                                                                                      | 1        |
-  | `lrs_tnc`<br />`mandatory for LRS S2S transactions`                         | `String` Mandatory declaration from buyer that they agree to PayU's terms & conditions.<br /><br />**Note**: The declaration needs to be taken mandatorily from the buyer on the checkout page.                                                                                                                                                                                                                                                                                                                                                                                        | 1        |
-  | `lrs_service_type`<br />`mandatory for LRS S2S transactions`                | `String` The LRS service type describes the nature of service & decides the tax amount based on it. For more information, refer to the [lrs\_service\_type parameter values](#lrs_service_type-parameter-values) table.                                                                                                                                                                                                                                                                                                                                                                | travel   |
-  | `tcs_amount`<br />`mandatory for LRS S2S transactions`                      | `String` Amount of TCS (Tax Collected at Source) to be charged.<br /><br />**Note**: The amount needs to be captured as per guidance in the [lrs\_service\_type parameter values](#lrs_service_type-parameter-values) table.                                                                                                                                                                                                                                                                                                                                                           | 2.00     |
-  | `lrs_tcs_declaration_under_limit`<br />`mandatory for LRS S2S transactions` | `String` Declaration from buyer that they are either under or over INR 1,00,000 based on which TCS will be collected.<br /><br />Values expected:<br /><br />**0** (in case of under the limit)<br />**1** (in case of over the limit)<br /><br />**Note**: The declaration needs to be taken mandatorily from the buyer on the checkout page. Also, when user declares they are over the limit (i.e. when this param is sent as "1", the "tcs\_amount" field to contain amount calculated as per the [lrs\_service\_type parameter values](#lrs_service_type-parameter-values) table. | 0 / 1    |
+  | Parameter                                                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Example |
+  | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+  | `buyer_type_business`<br />`conditional for cross-border transactions`      | This parameter is used to identify whether it is a business-to-business transaction. If 1 is posted, it is a B2B transaction.<br /><br />In case of B2B, no other LRS specific parameters (listed below) need to be sent, as B2B transactions are outside the scope of the regulation.                                                                                                                                                                                                                                                                                                 | 0       |
+  | `lrs_mandatory_limit_declaration`<br />`mandatory for LRS S2S transactions` | `String` Mandatory declaration from buyer that they have remitted less than $250,000 USD under Liberalised Remittance Scheme.<br /><br />**Note**: The limit is as per RBI regulation and needs to be mandatorily collected on the checkout page.                                                                                                                                                                                                                                                                                                                                      | 1       |
+  | `lrs_tnc`<br />`mandatory for LRS S2S transactions`                         | `String` Mandatory declaration from buyer that they agree to PayU's terms & conditions.<br /><br />**Note**: The declaration needs to be taken mandatorily from the buyer on the checkout page.                                                                                                                                                                                                                                                                                                                                                                                        | 1       |
+  | `lrs_service_type`<br />`mandatory for LRS S2S transactions`                | `String` The LRS service type describes the nature of service & decides the tax amount based on it. For more information, refer to the [lrs\_service\_type parameter values](#lrs_service_type-parameter-values) table.                                                                                                                                                                                                                                                                                                                                                                | travel  |
+  | `tcs_amount`<br />`mandatory for LRS S2S transactions`                      | `String` Amount of TCS (Tax Collected at Source) to be charged.<br /><br />**Note**: The amount needs to be captured as per guidance in the [lrs\_service\_type parameter values](#lrs_service_type-parameter-values) table.                                                                                                                                                                                                                                                                                                                                                           | 2.00    |
+  | `lrs_tcs_declaration_under_limit`<br />`mandatory for LRS S2S transactions` | `String` Declaration from buyer that they are either under or over INR 1,00,000 based on which TCS will be collected.<br /><br />Values expected:<br /><br />**0** (in case of under the limit)<br />**1** (in case of over the limit)<br /><br />**Note**: The declaration needs to be taken mandatorily from the buyer on the checkout page. Also, when user declares they are over the limit (i.e. when this param is sent as "1", the "tcs\_amount" field to contain amount calculated as per the [lrs\_service\_type parameter values](#lrs_service_type-parameter-values) table. | 0 / 1   |
 
   #### lrs\_service\_type parameter values
 
@@ -295,129 +284,7 @@ Post the payment parameters to PayU's `_payment` API endpoint to initiate a UPI 
 
 ***
 
-## Step 3: Check Response from PayU
-
-<ReverseHashing />
-
-<Accordion title="Sample response [Parsed]" icon="fa-reply">
-  * Success scenario
-
-  ```
-  Array
-  (
-      [mihpayid] => 403993715524069222
-      [mode] => UPI
-      [status] => success
-      [unmappedstatus] => captured
-      [key] => JF***g
-      [txnid] => EaE4ZO3vU4iPsp
-      [amount] => 100.00
-      [cardCategory] => domestic
-      [discount] => 0.00
-      [net_amount_debit] => 102
-      [addedon] => 2021-09-08 19:37:19
-      [productinfo] => iPhone
-      [firstname] => Ashish
-      [lastname] => Kumar
-      [address1] => 308,third floor
-      [address2] => testing
-      [city] => Gurugram
-      [state] => Haryana
-      [country] => India
-      [zipcode] => 122018
-      [email] => test@gmail.com
-      [phone] => 9876543210
-      [udf1] => CYCPD2784G
-      [udf2] => 
-      [udf3] => 02-02-1980
-      [udf4] => 
-      [udf5] => INV123456
-      [udf6] => 
-      [udf7] => 
-      [udf8] => 
-      [udf9] => 
-      [udf10] => 
-      [hash] => ed99957adb08fea56c907b88e8d158a79c3562c67f96c298461509826f77a7ae9e88b2a176b3234c25f50bcd451271728719656f3bb59c13a52bebabc468615a
-      [field1] => 0608273386032718000015
-      [field2] => 986987
-      [field3] => 100.00
-      [field4] => 403993715524069222
-      [field5] => 100
-      [field6] => 02
-      [field7] => AUTHPOSITIVE
-      [field8] => 
-      [field9] => Transaction is Successful
-      [payment_source] => payu
-      [PG_TYPE] => UPI-PG
-      [bank_ref_num] => 0608273386032718000015
-      [bankcode] => INTENT
-      [error] => E000
-      [error_Message] => No Error
-      [tcs_amount] => 2
-  )
-  ```
-
-  * Failure scenario
-
-  ```
-  Array
-  (
-      [mihpayid] => 20869277619
-      [mode] => UPI
-      [status] => failure
-      [unmappedstatus] => failed
-      [key] => L43t1c
-      [txnid] => 26ba7cd6a67b0a010542
-      [amount] => 100.00
-      [cardCategory] => domestic
-      [discount] => 0.00
-      [net_amount_debit] => 0.00
-      [addedon] => 2024-09-05 17:46:10
-      [productinfo] => Product Info
-      [firstname] => Payu-Admin
-      [lastname] => 
-      [address1] => 
-      [address2] => 
-      [city] => 
-      [state] => 
-      [country] => 
-      [zipcode] => 
-      [email] => test@example.com
-      [phone] => 1234567890
-      [udf1] => CYCPD2784G
-      [udf2] => 
-      [udf3] => 02-02-1980
-      [udf4] => 
-      [udf5] => INV123456
-      [udf6] => 
-      [udf7] => 
-      [udf8] => 
-      [udf9] => 
-      [udf10] => 
-      [hash] => ac7720e4bc33e5494bec6d37302e522171175a987f9d47286bfd29e8a7fc794f56433fcacf0bc120db781c4dc1d05a4857d71e83f00f6ed6aa9c97a1938b9467
-      [field1] => 
-      [field2] => 
-      [field3] => 
-      [field4] => 
-      [field5] => 05
-      [field6] => 
-      [field7] => AUTHNEGATIVE
-      [field8] => 
-      [field9] => Transaction failed
-      [payment_source] => payu
-      [PG_TYPE] => UPI-PG
-      [bank_ref_num] => 2409052690
-      [bankcode] => INTENT
-      [error] => E1903
-      [error_Message] => Transaction failed
-      [tcs_amount] => 2
-  )
-  ```
-</Accordion>
-
-***
-
-## Step 4: Invoke UPI Intent on Customer's Device
+## Step 3: Invoke UPI Intent on Customer's Device
 
 <Accordion title="Implementation" icon="fa-monitor">
   You need to invoke intent in the customer's mobile device using the merchant VPA URL. Make sure that only this merchant VPA is embedded in the intent call since this helps to track the status of the transaction.
@@ -450,11 +317,11 @@ Post the payment parameters to PayU's `_payment` API endpoint to initiate a UPI 
 >
 > * Every time there is a change, you need to incorporate the changes to avoid breaking the transactions.
 > * The **tid** value which is passed in the intent URI acts as a validation check at NPCI's end which do not allow duplicate transaction.
-> * The tr value not necessary and it is a payU\_id. It can be any reference id for PayU's internal reconciliation.
+> * The tr value not necessary and it is a payU_id. It can be any reference id for PayU's internal reconciliation.
 
 ***
 
-## Step 5: Verify the Payment
+## Step 4: Verify the Payment
 
 Use the webhooks to verify the payment. The following is the sample webhook payload in response. For more information, refer to [Webhook Events and Sample Payloads](doc:webhook-events-and-sample-payloads).
 
@@ -462,18 +329,3 @@ Verify the transaction details using the Verification APIs. For API reference, r
 
 ***
 
-## Step 6: Update Invoice ID [Conditional]
-
-<Update_Invoice_ID />
-
-***
-
-## Step 7: Upload the Invoices [Conditional]
-
-<Upload_Invoices />
-
-***
-
-## Error Handling
-
-If any error message is displayed with an error code, refer to [Error Codes](ref:error-codes) to understand the reason. For error codes during various transaction stages, refer to [Transaction Stages - Error References](ref:transaction-stages-error-references-on-field7-field8).
