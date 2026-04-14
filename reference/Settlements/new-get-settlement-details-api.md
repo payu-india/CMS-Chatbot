@@ -27,12 +27,6 @@ metadata:
 
 You can use the **Get Settlement Details** API to retrieve settlement details which the bank has to settle for you. The input is the date for which settlement details are required, where the var1 parameter is the date you want to know the settlement status or UTR (Unique Transaction Reference number). This API can be posted with version (1 or 2) in the var5 parameter.
 
-<Callout icon="📮" theme="default">
-  **Postman Collection**: Access the **Get Settlement Details API Postman Collection** from the following location:
-
-  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi)
-</Callout>
-
 <br />
 
 ## Environment
