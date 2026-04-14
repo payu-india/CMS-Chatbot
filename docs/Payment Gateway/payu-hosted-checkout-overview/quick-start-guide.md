@@ -1,5 +1,5 @@
 ---
-title: Quick Start Guide
+title: Quick Start Guide - PayU Hosted Checkout (HTML Integration)
 deprecated: false
 hidden: false
 metadata:
