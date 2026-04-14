@@ -179,7 +179,8 @@ This API is retrieve detailed information about a specific transaction using the
   ```json
   {
       "message": "Please provide valid merchantId." 
-  }
+      "request_id": "24e2161272fd9871da37142d5df48100"  
+}
   ```
 
   * Request parameter not wthin character limit
@@ -187,7 +188,8 @@ This API is retrieve detailed information about a specific transaction using the
   ```json
   {
       "message": "Invalid Transaction ID: Must not exceed 50 characters."
-  }
+      "request_id": "24e2161272fd9871da37142d5df48100"    
+}
   ```
 
   * Request parameter value is missing
@@ -195,6 +197,7 @@ This API is retrieve detailed information about a specific transaction using the
   ```json
   {
       "message":"Merchant Transaction ID is required."
+      "request_id": "24e2161272fd9871da37142d5df48100"  
   }
   ```
 
@@ -212,6 +215,7 @@ This API is retrieve detailed information about a specific transaction using the
   ```json
   {
       "message": "Internal server error" 
+      "request_id": "24e2161272fd9871da37142d5df48100"  
   }
   ```
 </Accordion>
