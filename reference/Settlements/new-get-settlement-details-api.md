@@ -27,12 +27,6 @@ metadata:
 
 You can use the **Get Settlement Details** API to retrieve settlement details which the bank has to settle for you. The input is the date for which settlement details are required, where the var1 parameter is the date you want to know the settlement status or UTR (Unique Transaction Reference number). This API can be posted with version (1 or 2) in the var5 parameter.
 
-<Callout icon="📮" theme="default">
-  **Postman Collection**: Access the **Get Settlement Details API Postman Collection** from the following location:
-
-  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/bbccd36/getsettlementdetailsapi)
-</Callout>
-
 <br />
 
 ## Environment
@@ -50,12 +44,12 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
 ### Query Parameters
 
-| Parameter                             | Description                                                                                           | Example    |
-| ------------------------------------- | ----------------------------------------------------------------------------------------------------- | ---------- |
-| settledOn<br /><code>mandatory</code> | <code>String</code> Settlement date in YYYY-MM-DD format or UTR (Unique Transaction Reference).  | 2023-09-26 |
+| Parameter                             | Description                                                                                     | Example    |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------- |
+| settledOn<br /><code>mandatory</code> | <code>String</code> Settlement date in YYYY-MM-DD format or UTR (Unique Transaction Reference). | 2023-09-26 |
 | type<br /><code>optional</code>       | <code>String</code> Settlement type. Allowed values: "G" or blank.                              | G          |
-| isVersion<br /><code>mandatory</code> | <code>Integer</code> API version (1 or 2). Version 2 returns enriched fields.                     | 2          |
-| page<br /><code>mandatory</code>      | <code>Integer</code> Page number for pagination.                                                  | 1          |
+| isVersion<br /><code>mandatory</code> | <code>Integer</code> API version (1 or 2). Version 2 returns enriched fields.                   | 2          |
+| page<br /><code>mandatory</code>      | <code>Integer</code> Page number for pagination.                                                | 1          |
 | pageSize<br /><code>mandatory</code>  | <code>Integer</code> Number of records per page. Min: 2000, Max: 50000.                         | 5000       |
 
 ## Sample Request
