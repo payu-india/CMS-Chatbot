@@ -62,6 +62,12 @@ curl -X GET "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-
   -H "Date: 2023-09-26T10:30:00Z"
 ```
 
+### Version 1 with type=G
+
+```
+curl --location 'http://127.0.0.1:8090/treasury/int/payu/settlement/settlementDetails?settledOn=2024-04-08&type=G&page=1&pageSize=30000' \
+```
+
 ### Version 2 for a Detailed Response
 
 ```bash
@@ -109,6 +115,62 @@ curl -X GET "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-
   }
 }
 ```
+
+#### Version 1 with type=G
+
+```
+{
+    "rows": 30000,
+    "message": "30000 transaction settledOn 2024-04-08",
+    "status": 1,
+    "result": [
+        {
+            "txn_addedon": "2024-04-05 23:59:49",
+            "settlement_addedon": "2024-04-06 00:11:12",
+            "settledon": "2024-04-08 12:45:07",
+            "settlementId": "202404071115",
+            "time_zone": "UTC + 05:30",
+            "merchant_id": 135670,
+            "merchantName": "Flipkart Payments",
+            "PSP": "PayU India",
+            "action": "capture",
+            "txnid": "PZT24040523596DQOT01",
+            "payu_id": "19580843982",
+            "request_id": "13785835411",
+            "settlementUTR": "UTIBR72024040800086935",
+            "pg_label": "AxisCYBER",
+            "card_bin": 0,
+            "Scheme": "VISA",
+            "mode": "CC",
+            "ibibo_code": "CC",
+            "auth_code": "7123418019786142605964",
+            "bank_ref_no": "7123418019786142605964",
+            "transaction_currency": "INR",
+            "settlement_currency": "INR",
+            "fx_rate": "20.00",
+            "additional_service_fee": "0.00",
+            "additional_service_tax": "0.00",
+            "discount": "0.00",
+            "udf2": "",
+            "total_service_tax": "0.00000",
+            "total_processing_fee": "0.00000",
+            "transaction_amount": 218.0,
+            "payu_fee": "-3.16",
+            "payu_fee_tax": "-0.57",
+            "net_amount": 214.27,
+            "ib_title": "SBI",
+            "token": null,
+            "bank_arn": null,
+            "legal_entity": 202437,
+            "company_name": "Flipkart Internet Pvt Ltd.",
+            "merchant_key": "BmzsVc",
+            "PG_TYPE": "AxisCYBER",
+            "Card Type": "domestic"
+        }
+]
+```
+
+<br />
 
 #### Version 2
 
