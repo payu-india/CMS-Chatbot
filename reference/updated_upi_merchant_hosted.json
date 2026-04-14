@@ -19,19 +19,27 @@
           "Test",
           "TPV"
         ],
-        "summary": "MerchantHostedCheckout-UPI",
+        "summary": "Merchant Hosted Checkout - UPI",
         "description": "",
         "operationId": "MerchantHostedCheckout-UPI",
         "parameters": [
           {
-            "name": "Content-Type",
+            "name": "content-type",
             "in": "header",
-            "description": "",
+            "description": "The content type of the request body.",
             "required": true,
             "style": "simple",
             "schema": {
-              "const": "application/x-www-form-urlencoded",
-              "type": "string"
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/content-type"
+                },
+                {
+                  "examples": [
+                    "application/x-www-form-urlencoded"
+                  ]
+                }
+              ]
             }
           }
         ],
@@ -57,9 +65,14 @@
                 "type": "object",
                 "properties": {
                   "key": {
-                    "type": "string",
-                    "description": "Merchant key provided by PayU during onboarding.",
-                    "default": "JPM7Fg"
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/key"
+                      },
+                      {
+                        "description": "Merchant key provided by PayU during onboarding."
+                      }
+                    ]
                   },
                   "txnid": {
                     "type": "string",
@@ -83,11 +96,17 @@
                   },
                   "surl": {
                     "type": "string",
-                    "description": "The success URL, which is the page PayU will redirect to if the transaction is successful."
+                    "description": "The success URL — the page PayU will redirect to if the transaction is successful.",
+                    "examples": [
+                      "https://apiplayground-response.herokuapp.com/"
+                    ]
                   },
                   "furl": {
                     "type": "string",
-                    "description": "The Failure URL, which is the page PayU will redirect to if the transaction is failed."
+                    "description": "The Failure URL — the page PayU will redirect to if the transaction fails.",
+                    "examples": [
+                      "https://apiplayground-response.herokuapp.com/"
+                    ]
                   },
                   "email": {
                     "type": "string",
@@ -96,16 +115,29 @@
                   "pg": {
                     "const": "UPI",
                     "type": "string",
-                    "description": "The pg parameter determines which payment tabs will be displayed on the PayU page. For UPI, use UPI."
+                    "description": "The payment gateway parameter determines which payment tabs will be displayed on the PayU page. For UPI, use \"UPI\".",
+                    "examples": [
+                      "UPI"
+                    ]
                   },
                   "bankcode": {
                     "const": "UPI",
                     "type": "string",
-                    "description": "Each payment option is identified with a unique bank code at PayU. For UPI payments, use UPI as the bankcode value."
+                    "description": "Each payment option is identified with a unique bank code at PayU. For UPI payments, use \"UPI\" as the bankcode value.",
+                    "examples": [
+                      "UPI"
+                    ]
+                  },
+                  "vpa": {
+                    "type": "string",
+                    "description": "Payment Handle or Virtual Payment Address for UPI transactions.",
+                    "examples": [
+                      "anything@payu"
+                    ]
                   },
                   "hash": {
                     "type": "string",
-                    "description": "It is used to avoid the possibility of transaction tampering. Hash formula: sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||"
+                    "description": "It is used to avoid the possibility of transaction tampering. Hash formula: sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)"
                   },
                   "phone": {
                     "type": "number",
@@ -118,38 +150,30 @@
                   },
                   "curl": {
                     "type": "string",
-                    "description": "The Cancel URL, which is the page PayU will redirect to if the transaction is cancelled by customer.",
+                    "description": "The Cancel URL, which is the page PayU will redirect to if the transaction is cancelled by the customer.",
                     "examples": [
                       "https://apiplayground-response.herokuapp.com/"
                     ]
                   },
                   "udf1": {
                     "type": "string",
-                    "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+                    "description": "User-defined field used to store any information corresponding to a particular transaction."
                   },
                   "udf2": {
                     "type": "string",
-                    "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+                    "description": "User-defined field used to store any information corresponding to a particular transaction."
                   },
                   "udf3": {
                     "type": "string",
-                    "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+                    "description": "User-defined field used to store any information corresponding to a particular transaction."
                   },
                   "udf4": {
                     "type": "string",
-                    "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+                    "description": "User-defined field used to store any information corresponding to a particular transaction."
                   },
                   "udf5": {
                     "type": "string",
-                    "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
-                  },
-                  "vpa": {
-                    "type": "string",
-                    "description": "Payment Handle or Virtual Payment Address for UPI transactions",
-                    "const": "anything@payu",
-                    "examples": [
-                      "anything@payu"
-                    ]
+                    "description": "User-defined field used to store any information corresponding to a particular transaction."
                   }
                 },
                 "contentMediaType": "application/x-www-form-urlencoded"
@@ -285,12 +309,12 @@
       },
       "key": {
         "title": "key",
+        "const": "JPM7Fg",
         "type": "string",
         "description": "The merchant key provided by PayU must be included.",
         "examples": [
           "JPM7Fg"
-        ],
-        "default": "JPM7Fg"
+        ]
       },
       "beneficiarydetail": {
         "title": "beneficiarydetail",
@@ -339,39 +363,6 @@
             ]
           }
         }
-      },
-      "pg": {
-        "title": "pg",
-        "const": "UPI",
-        "type": "string",
-        "description": "The pg parameter determines which payment tabs will be displayed on the PayU page. For UPI, use UPI.",
-        "examples": [
-          "UPI"
-        ]
-      },
-      "bankcode": {
-        "title": "bankcode",
-        "const": "UPI",
-        "type": "string",
-        "description": "Each payment option is identified with a unique bank code at PayU. For UPI payments, use UPI as the bankcode value."
-      },
-      "furl": {
-        "title": "furl",
-        "const": "https://test-payment-middleware.payu.in/simulatorResponse",
-        "type": "string",
-        "description": "The Failure URL, which is the page PayU will redirect to if the transaction is failed."
-      },
-      "key1": {
-        "title": "key1",
-        "const": "JPM7Fg",
-        "type": "string",
-        "description": "Merchant key provided by PayU during onboarding."
-      },
-      "surl": {
-        "title": "surl",
-        "const": "https://test-payment-middleware.payu.in/simulatorResponse",
-        "type": "string",
-        "description": "The success URL, which is the page PayU will redirect to if the transaction is successful."
       }
     }
   },
