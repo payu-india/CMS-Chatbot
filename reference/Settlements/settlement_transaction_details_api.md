@@ -23,20 +23,20 @@ This API is retrieve detailed information about a specific transaction using the
 
   ### Query Parameters
 
-  | Parameter                                         | Description                                                  | Example |
-  | ------------------------------------------------- | ------------------------------------------------------------ | ------- |
-  | merchantTransactionId<br /><code>mandatory</code> | <code>String</code> The tramnsaaction ID of the transaction. |     ZTDUPI2602754D96F47B    |
+  | Parameter                                         | Description                                                  | Example              |
+  | ------------------------------------------------- | ------------------------------------------------------------ | -------------------- |
+  | merchantTransactionId<br /><code>mandatory</code> | <code>String</code> The tramnsaaction ID of the transaction. | ZTDUPI2602754D96F47B |
 
   ### Other Header Parameters
 
-  | Parameter                       | Description                                                                      | Example       |
-  | ------------------------------- | -------------------------------------------------------------------------------- | ------------- |
-  | mid<br /><code>mandatory</code> | <code>String</code> Merchant identifier that the integration was registered with | 875546 |
+  | Parameter                       | Description                                                                      | Example |
+  | ------------------------------- | -------------------------------------------------------------------------------- | ------- |
+  | mid<br /><code>mandatory</code> | <code>String</code> Merchant identifier that the integration was registered with | 875546  |
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
-  curl --location 'https://info.payu.in/settlement/transactionDetails?merchantTransactionId=ZTDUPI2602754D96F47B' \
+  curl --location 'https://test.payu.in/settlement/transactionDetails?merchantTransactionId=ZTDUPI2602754D96F47B' \
   --header 'mid: 8759546' \
   --header 'Authorization: {{authorization}}' \
   --header 'Date: {{date}}'
