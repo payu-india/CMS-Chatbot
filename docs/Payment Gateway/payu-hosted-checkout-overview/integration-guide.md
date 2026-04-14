@@ -7,37 +7,34 @@ metadata:
 ---
 Follow these steps to integrate the PayU Hosted Checkout on your website.
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Payment Flow**
 
   Before you start integrating, it’s important to understand how PayU Hosted Checkout payment flow and customer journey works.
 </Callout>
 
-// Default preview for ReadMe CMS (component must appear after exports).
-// If the ReadMe editor ever complains, you can collapse this back to one line,
-// but the multiline form below is easier to read and copy.
-
 <HoverCardGrid
-  columns={3}
+  columns={2}
   items={[
     {
-      title: '1. Build Integration',
-      href: '#',
-      icon: 'fa-code',
-      text: 'New to our platform? Follow this guide to get started.',
+      title: "Checkout Integrations",
+      text: `
+- [**PayU Hosted**](/docs/prebuilt-checkout-payu-hosted)
+- [**Merchant Hosted**](/docs/custom-checkout-merchant-hosted)
+- [**CommercePro**](/docs/checkout-express)
+- [**Checkout Plus**](/docs/checkout-plus-integration)
+      `,
     },
     {
-      title: '2. Test Integration',
-      href: '#',
-      icon: 'fa-test',
-      text: 'Explore our interactive API reference.',
-    },
-    {
-      title: '3. Production Checklist',
-      href: '#',
-      icon: 'fa-list',
-      target: '_blank',
-      text: 'Join our community or check out our FAQ.',
+      title: "Server-side Integrations",
+      text: `
+- **GO SDK** – /docs/go-sdk
+- **JAVA SDK** – /docs/java-sdk
+- **PHP SDK** – /docs/php-sdk
+- **NodeJS SDK** – /docs/node-js-sdk
+      `,
     },
   ]}
 />
+
+<br />
