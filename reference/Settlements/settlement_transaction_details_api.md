@@ -36,7 +36,7 @@ This API is retrieve detailed information about a specific transaction using the
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
-  curl --location 'https://test.payu.in/settlement/transactionDetails?merchantTransactionId=ZTDUPI2602754D96F47B' \
+  curl --location 'https://apitest.payu.in/settlement/transactionDetails?merchantTransactionId=ZTDUPI2602754D96F47B' \
   --header 'mid: 8759546' \
   --header 'Authorization: {{authorization}}' \
   --header 'Date: {{date}}'
