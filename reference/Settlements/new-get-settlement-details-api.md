@@ -27,14 +27,14 @@ metadata:
 
 You can use the **Get Settlement Details** API to retrieve settlement details which the bank has to settle for you. The input is the date for which settlement details are required, where the var1 parameter is the date you want to know the settlement status or UTR (Unique Transaction Reference number). This API can be posted with version (1 or 2) in the var5 parameter.
 
-<br />
-
 ## Environment
 
 | Environment            | URL                                                                                                        |
 | :--------------------- | :--------------------------------------------------------------------------------------------------------- |
 | Test Environment       | [https://apitest.payu.in/merchant/postservice?form=2](https://apitest.payu.in/merchant/postservice?form=2) |
 | Production Environment | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2)       |
+
+**HTTP Method**: POST
 
 ## Request Parameters
 
@@ -57,7 +57,7 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 ### Version 1 for Standard Response
 
 ```curl
-curl -X GET "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-09-26&isVersion=1&page=1&pageSize=5000" \
+curl -X POST  "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-09-26&isVersion=1&page=1&pageSize=5000" \
   --header 'Authorization: {{authorization}}' \
   --header 'Date: {{date}}'
 ```
@@ -65,7 +65,7 @@ curl -X GET "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-
 ### Version 1 with type=G
 
 ```curl
-curl --location "https://apitest.payu.in/merchant/postservice?form=2?settledOn=2024-04-08&type=G&page=1&pageSize=30000" \
+curl -X POST  "https://apitest.payu.in/merchant/postservice?form=2?settledOn=2024-04-08&type=G&page=1&pageSize=30000" \
   --header 'Authorization: {{authorization}}' \
   --header 'Date: {{date}}'
 ```
@@ -73,58 +73,58 @@ curl --location "https://apitest.payu.in/merchant/postservice?form=2?settledOn=2
 ### Version 2 for a Detailed Response
 
 ```curl
-curl -X GET "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-09-26&type=G&isVersion=2&page=1&pageSize=5000" \
+curl -X POST  "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-09-26&type=G&isVersion=2&page=1&pageSize=5000" \
   --header 'Authorization: {{authorization}}' \
   --header 'Date: {{date}}'
 ```
 
 ## Response Parameters
+
 result JSON Fields Description
 
-| Field | Description | Example |
-|---|---|---|
-| txn_addedon | Timestamp when the transaction was added to the system. <code>string</code> | 2024-04-05 23:59:49 |
-| settlement_addedon | Timestamp when the settlement was initiated. <code>string</code> | 2024-04-06 00:11:12 |
-| settledon | Timestamp when the settlement was completed. <code>string</code> | 2024-04-08 12:45:07 |
-| settlementId | Unique identifier for the settlement batch. <code>string</code> | 202404071115 |
-| time_zone | Timezone used for the transaction timestamps. <code>string</code> | UTC + 05:30 |
-| merchant_id | Unique identifier for the merchant account. <code>integer</code> | 135670 |
-| merchantName | Display name of the merchant. <code>string</code> | Flipkart Payments |
-| PSP | Payment Service Provider name. <code>string</code> | PayU India |
-| action | Action performed on the transaction (capture, refund, etc.). <code>string</code> | capture |
-| txnid | Unique transaction identifier provided by merchant. <code>string</code> | PZT24040523596DQOT01 |
-| payu_id | PayU internal transaction identifier. <code>string</code> | 19580843982 |
-| request_id | Unique request identifier for tracking. <code>string</code> | 13785835411 |
-| settlementUTR | Unique Transaction Reference number for settlement. <code>string</code> | UTIBR72024040800086935 |
-| pg_label | Payment gateway label/identifier. <code>string</code> | AxisCYBER |
-| card_bin | Bank Identification Number of the card. <code>integer</code> | 0 |
-| Scheme | Card scheme (VISA, MasterCard, etc.). <code>string</code> | VISA |
-| mode | Payment mode (CC for Credit Card, DC for Debit Card, etc.). <code>string</code> | CC |
-| ibibo_code | Internal payment method code. <code>string</code> | CC |
-| auth_code | Authorization code from the bank. <code>string</code> | 7123418019786142605964 |
-| bank_ref_no | Bank reference number for the transaction. <code>string</code> | 7123418019786142605964 |
-| transaction_currency | Currency code for the transaction. <code>string</code> | INR |
-| settlement_currency | Currency code for the settlement. <code>string</code> | INR |
-| fx_rate | Foreign exchange rate applied. <code>string</code> | 20.00 |
-| additional_service_fee | Additional service charges applied. <code>string</code> | 0.00 |
-| additional_service_tax | Tax on additional services. <code>string</code> | 0.00 |
-| discount | Discount amount applied to the transaction. <code>string</code> | 0.00 |
-| udf2 | User defined field 2 for custom data. <code>string</code> |  |
-| total_service_tax | Total service tax amount. <code>string</code> | 0.00000 |
-| total_processing_fee | Total processing fee charged. <code>string</code> | 0.00000 |
-| transaction_amount | Original transaction amount. <code>decimal</code> | 218.0 |
-| payu_fee | PayU processing fee (negative indicates deduction). <code>string</code> | -3.16 |
-| payu_fee_tax | Tax on PayU processing fee. <code>string</code> | -0.57 |
-| net_amount | Final amount after deducting fees and taxes. <code>decimal</code> | 214.27 |
-| ib_title | Issuing bank title/name. <code>string</code> | SBI |
-| token | Token for saved card details. <code>string</code> | null |
-| bank_arn | Bank Acquirer Reference Number. <code>string</code> | null |
-| legal_entity | Legal entity identifier for the merchant. <code>integer</code> | 202437 |
-| company_name | Legal company name of the merchant. <code>string</code> | Flipkart Internet Pvt Ltd. |
-| merchant_key | Merchant's secret key identifier. <code>string</code> | BmzsVc |
-| PG_TYPE | Payment gateway type/processor. <code>string</code> | AxisCYBER |
-| Card Type | Type of card used (domestic/international). <code>string</code> | domestic |
-
+| Field                  | Description                                                                      | Example                    |
+| ---------------------- | -------------------------------------------------------------------------------- | -------------------------- |
+| txn_addedon            | Timestamp when the transaction was added to the system. <code>string</code>      | 2024-04-05 23:59:49        |
+| settlement_addedon     | Timestamp when the settlement was initiated. <code>string</code>                 | 2024-04-06 00:11:12        |
+| settledon              | Timestamp when the settlement was completed. <code>string</code>                 | 2024-04-08 12:45:07        |
+| settlementId           | Unique identifier for the settlement batch. <code>string</code>                  | 202404071115               |
+| time_zone              | Timezone used for the transaction timestamps. <code>string</code>                | UTC + 05:30                |
+| merchant_id            | Unique identifier for the merchant account. <code>integer</code>                 | 135670                     |
+| merchantName           | Display name of the merchant. <code>string</code>                                | Flipkart Payments          |
+| PSP                    | Payment Service Provider name. <code>string</code>                               | PayU India                 |
+| action                 | Action performed on the transaction (capture, refund, etc.). <code>string</code> | capture                    |
+| txnid                  | Unique transaction identifier provided by merchant. <code>string</code>          | PZT24040523596DQOT01       |
+| payu_id                | PayU internal transaction identifier. <code>string</code>                        | 19580843982                |
+| request_id             | Unique request identifier for tracking. <code>string</code>                      | 13785835411                |
+| settlementUTR          | Unique Transaction Reference number for settlement. <code>string</code>          | UTIBR72024040800086935     |
+| pg_label               | Payment gateway label/identifier. <code>string</code>                            | AxisCYBER                  |
+| card_bin               | Bank Identification Number of the card. <code>integer</code>                     | 0                          |
+| Scheme                 | Card scheme (VISA, MasterCard, etc.). <code>string</code>                        | VISA                       |
+| mode                   | Payment mode (CC for Credit Card, DC for Debit Card, etc.). <code>string</code>  | CC                         |
+| ibibo_code             | Internal payment method code. <code>string</code>                                | CC                         |
+| auth_code              | Authorization code from the bank. <code>string</code>                            | 7123418019786142605964     |
+| bank_ref_no            | Bank reference number for the transaction. <code>string</code>                   | 7123418019786142605964     |
+| transaction_currency   | Currency code for the transaction. <code>string</code>                           | INR                        |
+| settlement_currency    | Currency code for the settlement. <code>string</code>                            | INR                        |
+| fx_rate                | Foreign exchange rate applied. <code>string</code>                               | 20.00                      |
+| additional_service_fee | Additional service charges applied. <code>string</code>                          | 0.00                       |
+| additional_service_tax | Tax on additional services. <code>string</code>                                  | 0.00                       |
+| discount               | Discount amount applied to the transaction. <code>string</code>                  | 0.00                       |
+| udf2                   | User defined field 2 for custom data. <code>string</code>                        |                            |
+| total_service_tax      | Total service tax amount. <code>string</code>                                    | 0.00000                    |
+| total_processing_fee   | Total processing fee charged. <code>string</code>                                | 0.00000                    |
+| transaction_amount     | Original transaction amount. <code>decimal</code>                                | 218.0                      |
+| payu_fee               | PayU processing fee (negative indicates deduction). <code>string</code>          | -3.16                      |
+| payu_fee_tax           | Tax on PayU processing fee. <code>string</code>                                  | -0.57                      |
+| net_amount             | Final amount after deducting fees and taxes. <code>decimal</code>                | 214.27                     |
+| ib_title               | Issuing bank title/name. <code>string</code>                                     | SBI                        |
+| token                  | Token for saved card details. <code>string</code>                                | null                       |
+| bank_arn               | Bank Acquirer Reference Number. <code>string</code>                              | null                       |
+| legal_entity           | Legal entity identifier for the merchant. <code>integer</code>                   | 202437                     |
+| company_name           | Legal company name of the merchant. <code>string</code>                          | Flipkart Internet Pvt Ltd. |
+| merchant_key           | Merchant's secret key identifier. <code>string</code>                            | BmzsVc                     |
+| PG_TYPE                | Payment gateway type/processor. <code>string</code>                              | AxisCYBER                  |
+| Card Type              | Type of card used (domestic/international). <code>string</code>                  | domestic                   |
 
 ## Sample Response
 
