@@ -65,7 +65,9 @@ curl -X GET "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-
 ### Version 1 with type=G
 
 ```curl
-curl --location 'http://127.0.0.1:8090/treasury/int/payu/settlement/settlementDetails?settledOn=2024-04-08&type=G&page=1&pageSize=30000' \
+curl --location "https://apitest.payu.in/merchant/postservice?form=2?settledOn=2024-04-08&type=G&page=1&pageSize=30000" \
+  -H "Authorization: Bearer <sha512_signature>" \
+  -H "Date: 2023-09-26T10:30:00Z"
 ```
 
 ### Version 2 for a Detailed Response
