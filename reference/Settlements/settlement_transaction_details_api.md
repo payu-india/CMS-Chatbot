@@ -176,33 +176,33 @@ This API is retrieve detailed information about a specific transaction using the
 
   * Invalid request parameter
 
-```json 
-{
-  "status": 0,
-  "message": "Please provide valid merchantId",
-  "result": null
-} 
-```
+  ```json
+  {
+    "status": 0,
+    "message": "Please provide valid merchantId",
+    "result": null
+  } 
+  ```
 
   * Request parameter not wthin character limit
 
-```json
-{
-  "status": 0,
-  "message": "Invalid Transaction ID: Must not exceed 50 characters."
-  "result": null
-} 
-```
+  ```json
+  {
+    "status": 0,
+    "message": "Invalid Transaction ID: Must not exceed 50 characters."
+    "result": null
+  } 
+  ```
 
   * Request parameter value is missing
 
-```json
- {
-  "status": 0,
-  "message":"Merchant Transaction ID is required."
-  "result": null
-} 
-```
+  ```json
+   {
+    "status": 0,
+    "message":"Merchant Transaction ID is required."
+    "result": null
+  } 
+  ```
 
   #### Unauthorized / access denied (4001)
 
@@ -211,15 +211,6 @@ This API is retrieve detailed information about a specific transaction using the
     "status": 0,
     "message": "Unauthorized",
     "result": null
-  }
-  ```
-
-  #### Internal server error (500)
-
-  ```json
-  {
-      "message": "Internal server error" 
-      "request_id": "24e2161272fd9871da37142d5df48100"  
   }
   ```
 </Accordion>
