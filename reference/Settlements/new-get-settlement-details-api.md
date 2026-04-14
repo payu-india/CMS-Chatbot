@@ -56,7 +56,7 @@ You can use the **Get Settlement Details** API to retrieve settlement details wh
 
 ### Version 1 for Standard Response
 
-```bash
+```curl
 curl -X GET "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-09-26&isVersion=1&page=1&pageSize=5000" \
   -H "Authorization: Bearer <sha512_signature>" \
   -H "Date: 2023-09-26T10:30:00Z"
@@ -64,13 +64,13 @@ curl -X GET "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-
 
 ### Version 1 with type=G
 
-```
+```curl
 curl --location 'http://127.0.0.1:8090/treasury/int/payu/settlement/settlementDetails?settledOn=2024-04-08&type=G&page=1&pageSize=30000' \
 ```
 
 ### Version 2 for a Detailed Response
 
-```bash
+```curl
 curl -X GET "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-09-26&type=G&isVersion=2&page=1&pageSize=5000" \
   -H "Authorization: Bearer <sha512_signature>" \
   -H "Date: 2023-09-26T10:30:00Z"
@@ -116,9 +116,9 @@ curl -X GET "https://apitest.payu.in/merchant/postservice?form=2&settledOn=2023-
 }
 ```
 
-#### Version 1 with type=G
+### Version 1 with type=G
 
-```
+```json
 {
     "rows": 30000,
     "message": "30000 transaction settledOn 2024-04-08",
