@@ -3735,8 +3735,6 @@ The following are the errors associated with NetBanking and wallets along with t
 
 ## UPI Error Codes
 
-<br />
-
 <SearchableTable
   headers={['Mode', 'Error Code', 'Reason']}
   rows={[
@@ -3808,7 +3806,7 @@ The following are the errors associated with NetBanking and wallets along with t
     ['UPI','E4041','Transaction failed due to internal exception at server/cbs end at customer\'s bank'],
     ['UPICC','E4041','Transaction failed due to internal exception at server/cbs end at customer\'s bank'],
     ['UPI','E4045','Transaction failed due to debit processing issue in pool account of the customer bank'],
-    ['UPI','E408','Transaction ID you\'ve generated isn\'t valid'],
+    ['UPI','E408','Transaction ID you have generated is not valid'],
     ['UPICC','E4101','Transaction failed due to technical issue at Issuer/Acquirer end'],
     ['UPI','E4101','Transaction failed due to technical issue at Issuer/Acquirer end'],
     ['UPI','E4102','Transaction failed due to customer not notified of the transaction'],
@@ -3817,7 +3815,7 @@ The following are the errors associated with NetBanking and wallets along with t
     ['UPI','E4109','Transaction failed as mandate is already honoured'],
     ['UPI','E4110','Transaction failed as mandate is revoked by the user'],
     ['UPI','E4111','Transaction failed as mandate is expired'],
-    ['UPI','E4114','Transaction failed as umn details doesn\'t exist at customer\'s end'],
+    ['UPI','E4114','Transaction failed as umn details does not exist at customer\'s end'],
     ['UPI','E4115','Transaction failed as mandate request limit is breached'],
     ['UPI','E4116','Transaction failed as mandate amount is higher than allowed by customer\'s application'],
     ['UPI','E4118','Transaction failed due to duplicate mandate request'],
