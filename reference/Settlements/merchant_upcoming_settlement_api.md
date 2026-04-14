@@ -32,7 +32,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
 curl --location 'https://test.payu.in/settlement/v1/merchantUpcomingSettlement' \
---header 'mid: 12' \
+--header 'mid: 12202' \
 --header 'Authorization: {{authorization}}' \
 --header 'Date: {{date}}'
 
