@@ -31,10 +31,11 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 
 <Accordion title="Sample Request" icon="fa-code">
   ```curl
-  curl --location 'https://test.payu.in/settlement/v1/merchantUpcomingSettlement' \
-  --header 'Authorization: hmac username="Fa2IFz", algorithm="sha512", headers="date", signature="ca98fa63b2780d2306f721fde8c5667ec11ca7821396c54bbef18681a227f2751b3a80f8254696baae3917bb478c29d60b613c25a95469bb5942cabecc2fe949"' \
-  --header 'mid: <MerchantId>' \
-  --header 'Date: Tue, 07 Apr 2026 06:14:56 GMT’
+curl --location 'https://test.payu.in/settlement/v1/merchantUpcomingSettlement' \
+--header 'mid: 12' \
+--header 'Authorization: {{authorization}}' \
+--header 'Date: {{date}}'
+
   ```
 </Accordion>
 
