@@ -27,7 +27,7 @@ name: HeaderAuthentication
 
 <Accordion title="Sample authorization header code" icon="fa-info-circle">
   ```
-  var merchant_key = 'smsplus';
+  var merchant_key = '<merchant_key>';
   var merchant_secret = '<merchant_salt>';
 
   // date
