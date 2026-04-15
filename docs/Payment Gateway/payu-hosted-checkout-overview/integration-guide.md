@@ -20,11 +20,12 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
       title: "",
       text: (
         <div style={{ color: "#000", padding: "8px" }}>
-          <i className="fa fa-code" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
-
-          <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>
-            1. Build Integration
-          </h4>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+            <i className="fa fa-code" style={{ color: "#00b386", fontSize: "18px" }} />
+            <h4 style={{ margin: 0, fontWeight: "600" }}>
+              1. Build Integration
+            </h4>
+          </div>
 
           <p style={{ margin: 0 }}>
             <a href="/docs/prebuilt-checkout-payu-hosted">
@@ -38,11 +39,12 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
       title: "",
       text: (
         <div style={{ color: "#000", padding: "8px" }}>
-          <i className="fa fa-flask" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
-
-          <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>
-            2. Test Integration
-          </h4>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+            <i className="fa fa-flask" style={{ color: "#00b386", fontSize: "18px" }} />
+            <h4 style={{ margin: 0, fontWeight: "600" }}>
+              2. Test Integration
+            </h4>
+          </div>
 
           <p style={{ margin: 0 }}>
             <a href="/docs/prebuilt-checkout-payu-hosted">
@@ -56,11 +58,12 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
       title: "",
       text: (
         <div style={{ color: "#000", padding: "8px" }}>
-          <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
-
-          <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>
-            3. Production Checklist
-          </h4>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+            <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "18px" }} />
+            <h4 style={{ margin: 0, fontWeight: "600" }}>
+              3. Production Checklist
+            </h4>
+          </div>
 
           <p style={{ margin: 0 }}>
             <a href="/docs/prebuilt-checkout-payu-hosted">
