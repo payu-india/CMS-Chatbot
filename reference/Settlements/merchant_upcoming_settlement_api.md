@@ -14,7 +14,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 | Test Environment       | [https://test.payu.in/settlement/v1/merchantUpcomingSettlement](https://test.payu.in/settlement/v1/merchantUpcomingSettlement) |
 | Production Environment | [https://info.payu.in/settlement/v1/merchantUpcomingSettlement](https://info.payu.in/settlement/v1/merchantUpcomingSettlement) |
 
-**HTTP Method**: POST
+**HTTP Method**: GET
 
 <Accordion title="Request Parameters" icon="fa-table">
   ### Request Header
@@ -25,7 +25,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 
   | Parameter                       | Description                                                                      | Example |
   | ------------------------------- | -------------------------------------------------------------------------------- | ------- |
-  | mid<br /><code>mandatory</code> | <code>String</code> Merchant identifier that the integration was registered with |  12202 |
+  | mid<br /><code>mandatory</code> | <code>String</code> Merchant identifier that the integration was registered with | 12202   |
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
@@ -39,6 +39,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-code">
+**Success Scenario**
   ```json
   {
     "code": "2000",
@@ -71,6 +72,14 @@ Retrieve information about upcoming and pending settlements for a merchant. This
     }
   }
   ```
+**No merchant found with ID**
+```json
+{
+  "code": "4000",
+  "message": "no Merchant found for id: <INVALID_ID> in settlement",
+  "status": 1
+}
+```
 </Accordion>
 
 <Accordion title="Response Parameters" icon="fa-table">
