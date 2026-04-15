@@ -5,6 +5,13 @@ hidden: true
 metadata:
   robots: index
 ---
+---
+title: ' Merchant Upcoming and Pending Settlement API'
+deprecated: false
+hidden: true
+metadata:
+  robots: index
+---
 Retrieve information about upcoming and pending settlements for a merchant. This API provides visibility into future settlements, helping merchants with cash flow planning and financial forecasting.
 
 **Environment**
@@ -85,8 +92,9 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 <Accordion title="Response Parameters" icon="fa-table">
   | Parameter | Type    | Description                                                                                                                                    |
   | --------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-  | status    | Integer | Response status (1 = success, 0 = failure)                                                                                                     |
-  | msg       | String  | Response message                                                                                                                               |
+  | code      | String  | Business result code; success is typically `2000`                                                                                              |
+  | message   | String  | Short response text, e.g., `Success`                                                                                                           |
+  | status    | Integer | Application status: `0` = success                                                                                                              |
   | result    | Object  | Main response data container in JSON format. For more information, refer to  [result JSON Field Descriptions](#result-json-field-descriptions) |
 
   ### result JSON Field Descriptions
@@ -95,6 +103,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | `holdSettlementStatus`         | Indicator whether merchant settlements are on hold. Values: `1` = on hold, `0` = not on hold                                                                                                                                                                                                                         |
   | `lastSettledAmount`            | Monetary amount that was settled in the most recent settlement                                                                                                                                                                                                                                                       |
+  | `lastSettlementTime`           | Timestamp of the last settlement in IST date-time format                                                                                                                                                                                                                                                             |
   | `upcomingSettlementAmount`     | Monetary amount expected to be settled in the next settlement cycle                                                                                                                                                                                                                                                  |
   | `upcomingSettlementTime`       | Timestamp (IST date-time format) of the next scheduled settlement                                                                                                                                                                                                                                                    |
   | `totalSettlementPendingAmount` | Total monetary amount still pending settlement (aggregate outstanding balance)                                                                                                                                                                                                                                       |
