@@ -79,7 +79,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
     }
   }
   ```
-**No merchant found with ID**
+**No merchant found for ID**
 ```json
 {
   "code": "4000",
