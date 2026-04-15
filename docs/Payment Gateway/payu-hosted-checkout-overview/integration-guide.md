@@ -17,26 +17,41 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
   columns={2}
   items={[
     {
+      icon: (
+        <i className="fa fa-code" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+      ),
       title: "1. Build Integration",
       text: (
         <p style={{ margin: 0 }}>
-          <a href="/docs/prebuilt-checkout-payu-hosted">Follow these steps to build your test integration for PayU Hosted Checkout.</a>
+          <a href="/docs/prebuilt-checkout-payu-hosted">
+            Follow these steps to build your test integration for PayU Hosted Checkout.
+          </a>
         </p>
       ),
     },
     {
+      icon: (
+        <i className="fa fa-flask" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+      ),
       title: "2. Test Integration",
       text: (
         <p style={{ margin: 0 }}>
-          <a href="/docs/prebuilt-checkout-payu-hosted">TValidate your PayU Hosted Checkout integration by testing transactions in the sandbox environment.</a>
+          <a href="/docs/prebuilt-checkout-payu-hosted">
+            Validate your PayU Hosted Checkout integration by testing transactions in the sandbox environment.
+          </a>
         </p>
       ),
     },
     {
+      icon: (
+        <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+      ),
       title: "3. Production Checklist",
       text: (
         <p style={{ margin: 0 }}>
-          <a href="/docs/prebuilt-checkout-payu-hosted">Follow this checklist to ensure your integration is ready before going live.</a>
+          <a href="/docs/prebuilt-checkout-payu-hosted">
+            Follow this checklist to ensure your integration is ready before going live.
+          </a>
         </p>
       ),
     },
