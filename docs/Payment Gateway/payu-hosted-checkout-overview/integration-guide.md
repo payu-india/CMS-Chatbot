@@ -48,7 +48,7 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
 
           <p style={{ margin: 0 }}>
             <a href="/docs/prebuilt-checkout-payu-hosted">
-              Validate your PayU Hosted Checkout integration by testing transactions in the sandbox environment.
+              Test your integration in the sandbox before going live.
             </a>
           </p>
         </div>
