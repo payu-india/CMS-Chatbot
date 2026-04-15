@@ -18,7 +18,10 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
   items={[
     {
       icon: (
-        <i className="fa fa-code" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+        <i
+          className="fa-solid fa-code"
+          style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}
+        />
       ),
       title: "1. Build Integration",
       text: (
@@ -31,7 +34,10 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
     },
     {
       icon: (
-        <i className="fa fa-flask" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+        <i
+          className="fa-solid fa-flask"
+          style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}
+        />
       ),
       title: "2. Test Integration",
       text: (
@@ -44,7 +50,10 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
     },
     {
       icon: (
-        <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+        <i
+          className="fa-solid fa-circle-check"
+          style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}
+        />
       ),
       title: "3. Production Checklist",
       text: (
