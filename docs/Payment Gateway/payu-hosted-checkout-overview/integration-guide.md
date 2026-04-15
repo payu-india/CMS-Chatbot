@@ -76,6 +76,10 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
   ]}
 />
 
+## Prerequisites
+
+Go through the <Anchor label="prerequisites" target="_blank" href="https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/payu-hosted-checkout-quick-start#prerequisites">prerequisites</Anchor> before you proceed with the integration.
+
 ## 1. Build Integration
 
 <br />
