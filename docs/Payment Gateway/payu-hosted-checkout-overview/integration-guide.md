@@ -17,42 +17,51 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
   columns={2}
   items={[
     {
-      title: "1. Build Integration",
+      title: "",
       text: (
-        <>
-          <i className="fa-solid fa-code" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px", display: "block" }} />
-          <p style={{ margin: 0 }}>
+        <div style={{ textAlign: "left" }}>
+          <i className="fa-solid fa-code" style={{ color: "#00b386", fontSize: "22px", marginBottom: "8px", display: "block" }} />
+          
+          <strong>1. Build Integration</strong>
+
+          <p style={{ margin: "6px 0 0 0" }}>
             <a href="/docs/prebuilt-checkout-payu-hosted">
               Follow these steps to build your test integration for PayU Hosted Checkout.
             </a>
           </p>
-        </>
+        </div>
       ),
     },
     {
-      title: "2. Test Integration",
+      title: "",
       text: (
-        <>
-          <i className="fa-solid fa-flask" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px", display: "block" }} />
-          <p style={{ margin: 0 }}>
+        <div>
+          <i className="fa-solid fa-flask" style={{ color: "#00b386", fontSize: "22px", marginBottom: "8px", display: "block" }} />
+          
+          <strong>2. Test Integration</strong>
+
+          <p style={{ margin: "6px 0 0 0" }}>
             <a href="/docs/prebuilt-checkout-payu-hosted">
               Validate your PayU Hosted Checkout integration by testing transactions in the sandbox environment.
             </a>
           </p>
-        </>
+        </div>
       ),
     },
     {
-      title: "3. Production Checklist",
+      title: "",
       text: (
-        <>
-          <i className="fa-solid fa-circle-check" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px", display: "block" }} />
-          <p style={{ margin: 0 }}>
+        <div>
+          <i className="fa-solid fa-circle-check" style={{ color: "#00b386", fontSize: "22px", marginBottom: "8px", display: "block" }} />
+          
+          <strong>3. Production Checklist</strong>
+
+          <p style={{ margin: "6px 0 0 0" }}>
             <a href="/docs/prebuilt-checkout-payu-hosted">
               Follow this checklist to ensure your integration is ready before going live.
             </a>
           </p>
-        </>
+        </div>
       ),
     },
   ]}
