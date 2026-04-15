@@ -12,6 +12,7 @@ hidden: true
 metadata:
   robots: index
 ---
+
 Retrieve information about upcoming and pending settlements for a merchant. This API provides visibility into future settlements, helping merchants with cash flow planning and financial forecasting.
 
 **Environment**
@@ -46,7 +47,8 @@ Retrieve information about upcoming and pending settlements for a merchant. This
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-code">
-**Success Scenario**
+  **Success Scenario**
+
   ```json
   {
     "code": "2000",
@@ -79,14 +81,16 @@ Retrieve information about upcoming and pending settlements for a merchant. This
     }
   }
   ```
-**No merchant found for ID**
-```json
-{
-  "code": "4000",
-  "message": "no Merchant found for id: <INVALID_ID> in settlement",
-  "status": 1
-}
-```
+
+  **No merchant found for ID**
+
+  ```json
+  {
+    "code": "4000",
+    "message": "no Merchant found for id: <INVALID_ID> in settlement",
+    "status": 1
+  }
+  ```
 </Accordion>
 
 <Accordion title="Response Parameters" icon="fa-table">
@@ -94,7 +98,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   | --------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
   | code      | String  | Business result code; success is typically `2000`                                                                                              |
   | message   | String  | Short response text, e.g., `Success`                                                                                                           |
-  | status    | Integer | Application status: `0` = success                                                                                                              |
+  | status    | Integer | Application status: <br/>`1` = Success <br/> '0'= Failure                                                                                                              |
   | result    | Object  | Main response data container in JSON format. For more information, refer to  [result JSON Field Descriptions](#result-json-field-descriptions) |
 
   ### result JSON Field Descriptions
