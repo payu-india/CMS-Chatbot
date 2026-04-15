@@ -76,4 +76,6 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
   ]}
 />
 
+## 1. Build Integration
+
 <br />
