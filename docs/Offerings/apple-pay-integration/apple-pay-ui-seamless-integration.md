@@ -1,7 +1,7 @@
 ---
 title: Apple Pay UI - Seamless Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -656,4 +656,3 @@ document.getElementById("apple-pay-button").addEventListener("click", async () =
   }
 });
 ```
-
