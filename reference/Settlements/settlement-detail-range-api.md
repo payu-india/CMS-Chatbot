@@ -4,7 +4,7 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: Settlement Detail Range API
+  title: '[OLD]Settlement Detail Range API'
   description: ''
   keywords:
     - Settlement Detail Range API
