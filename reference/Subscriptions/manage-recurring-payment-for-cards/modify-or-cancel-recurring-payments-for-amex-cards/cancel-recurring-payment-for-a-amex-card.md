@@ -329,17 +329,17 @@ curl --location 'https://secure.payu.in/_payment' \
 ```
 Array
 (
-    [mihpayid] => 25630320296
-    [mode] => CC -- CC/DC
+    [mihpayid] => 28191285790
+    [mode] => DC
     [status] => success
-    [unmappedstatus] => captured
+    [unmappedstatus] => cancelled
     [key] => BmTY3G
-    [txnid] => 7932bf4b5a36b0536953
+    [txnid] => bab0b573ae32cf4677ee
     [amount] => 1.00
     [cardCategory] => domestic
     [discount] => 0.00
     [net_amount_debit] => 1
-    [addedon] => 2025-10-16 12:43:50
+    [addedon] => 2026-04-15 21:50:44
     [productinfo] => Product Info
     [firstname] => Payu-Admin
     [lastname] => 
@@ -363,22 +363,22 @@ Array
     [udf10] => 
     [hash] => {{hash_value}}
     [field1] => 
-    [field2] => 3PRFM70FA6NQ1
+    [field2] => 
     [field3] => 
-    [field4] => 25630320296auth
+    [field4] => 
     [field5] => 
-    [field6] => 
-    [field7] => 3DS_CHALLENGE_POSITIVE
-    [field8] => 
-    [field9] => Authorization done using Billdesk-AmexSiHub
+    [field6] => 05
+    [field7] => AUTHPOSITIVE
+    [field8] => SUCCESS
+    [field9] => Transaction is Successful
     [payment_source] => payu
-    [meCode] => {"MID":"83********","Key":"2a9a2**********778a4ffc31b52bf91"}
-    [PG_TYPE] => CC-PG
-    [bank_ref_num] => 000072430663426
-    [bankcode] => CC --- RUPAYCC/RUPAY
+    [meCode] => {"MID":"hdfc_89052104","TKey":"u2+JwlMyPmC+VkPEeAqBmiinElUkgQw0TeOYOjujBQOG+uVlXBphmVAzXcUgejbxdCwUSNBv72SdwUUQDcQQ4k9XZShrpgOL29fqAyY5GyPQ/iLmyWd9Z6lJeU8fnl+9ZTuz3+cy/SLSTOpLACc/anStKOaMY9DjvwEdkAZACu2wgxvwvS8ORFvQhXuJI9CRmDxAQP/CYOj469P7PFVzN8MlUaBxTt1104zOEjE4M/2Tw7w+541attHFZQgSEhQLRVB7ANgwRmV3GZR4xlgYd0DtgJcNplJAO+AWUN0VkQku/2g2vd/XFCFJFj0NrzleIzI9FXe9r6I9N/p5nf+muw=="}
+    [PG_TYPE] => DC-PG
+    [bank_ref_num] => 7762700774896643105912
+    [bankcode] => RUPAY
     [error] => E000
     [error_Message] => No Error
-    [cardnum] => XXXXXXXXXXXX1005
+    [cardnum] => XXXXXXXXXXXX2656
     [cardhash] => This field is no longer supported in postback params.
 )
 ```
