@@ -1,5 +1,5 @@
 ---
-title: APIs for TWID Integration
+title: APIs for Rewards Integration
 deprecated: false
 hidden: true
 metadata:
