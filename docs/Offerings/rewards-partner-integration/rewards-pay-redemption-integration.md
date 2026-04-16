@@ -8,6 +8,15 @@ metadata:
   robots: index
 ---
 ---
+title: Rewards Pay Redemption Integration
+deprecated: false
+hidden: true
+link:
+  new_tab: false
+metadata:
+  robots: index
+---
+---
 title: Twid Seamless Card Transaction Integration
 excerpt: ''
 deprecated: false
@@ -16,7 +25,7 @@ metadata:
   robots: index
 ---
 
-Integrate TWID pay to enable customers to redeem their TWID loyalty points during checkout. Follow these sequential steps to implement a complete TWID pay solution.
+Integrate TWID pay to enable customers to redeem their TWID or Zillion loyalty points during checkout. Follow these sequential steps to implement a complete TWID pay solution.
 
 This section describes the complete integration workflow for TWID Rewards Seamless Transactions. This integration involves the following steps:
 
@@ -378,6 +387,45 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
 
 #### Cards
 
+<Accordion title="Sample JSON for Burn Points with Card (Zillion)" icon="fa-code">
+  ```JSON
+  {
+    "key": "KOEfPI",
+    "txnid": "ram1234",
+    "productinfo": "Product Info",
+    "amount": "100",
+    "email": "test@example.com",
+    "firstname": "Payu-Admin",
+    "lastname": "",
+    "phone": "880**08522",
+    "surl": "https://pp56admin.payu.in/test_response",
+    "furl": "https://pp56admin.payu.in/test_response",
+    "pg": "SPLITPAY",
+    "bankcode": "ZRD",
+    "txn_s2s_flow": "4",
+    "splitInfo": {
+      "childPaymentInstruments": [
+        {
+          "name": "CC",
+          "bankCode": "CC",
+          "cardNumber": "5123456789012346",
+          "cvv": "345",
+          "validThrough": "07/25",
+          "ownerName": "Payu",
+          "transactionAmount": "99"
+        },
+        {
+          "name": "RD",
+          "bankCode": "ZLS",
+          "transactionAmount": "1"
+        }
+      ]
+    },
+    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
+  }
+  ```
+</Accordion>
+
 <Accordion title="Sample JSON for Spend Points along with Card (Partly)" icon="fa-code">
   ```JSON
   "splitInfo": {
@@ -440,6 +488,42 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
 </Accordion>
 
 #### UPI
+
+<Accordion title="Sample JSON for Burn Points with UPI (Zillion)" icon="fa-code">
+  ```json
+  {
+    "key": "KOEfPI",
+    "txnid": "ram1234",
+    "productinfo": "Product Info",
+    "amount": "100",
+    "email": "test@example.com",
+    "firstname": "Payu-Admin",
+    "lastname": "",
+    "phone": "9999999999",
+    "surl": "https://pp56admin.payu.in/test_response",
+    "furl": "https://pp56admin.payu.in/test_response",
+    "pg": "SPLITPAY",
+    "bankcode": "ZRD",
+    "txn_s2s_flow": "4",
+    "splitInfo": {
+      "childPaymentInstruments": [
+        {
+          "name": "UPI",
+          "bankCode": "UPI",
+          "vpa": "kk@okaxis",
+          "transactionAmount": "99"
+        },
+        {
+          "name": "RD",
+          "bankCode": "ZLS",
+          "transactionAmount": "1"
+        }
+      ]
+    },
+    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
+  }
+  ```
+</Accordion>
 
 <Accordion title="Sample JSON for Spend Points along with UPI" icon="fa-code">
   ```json
