@@ -9,10 +9,11 @@ The following APIs used for TWID Integration:
 
 **Spend Rewards or Fetch Rewards Balance**
 
-* [Fetch Balance All API](https://docs.payu.in/reference/fetch-balance-all-api-twid)
-* [Collect Payment with Rewards](_payment-merchant-hosted-rewards) (using **_payment** API)
+* [Fetch Balance All API](https://docs.payu.in/reference/rewards-fetch-balance-all-api)
+* [Collect Payment with Rewards API](https://docs.payu.in/reference/_payment-merchant-hosted-rewards)
 
 **Refunds**
 
-* [Refund API](https://docs.payu.in/reference/refund-api-twid)
-* [Refund Status API](https://docs.payu.in/reference/refund-status-api)
+* [Refund API - Rewards](https://docs.payu.in/reference/rewards-refund-api)
+* [Refund Status API - Rewards](https://docs.payu.in/reference/rewards-refund-status-api)
+
