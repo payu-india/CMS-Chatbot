@@ -1,5 +1,5 @@
 ---
-title: TWID Refund Integration
+title: Rewards Refund Integration
 deprecated: false
 hidden: true
 metadata:
