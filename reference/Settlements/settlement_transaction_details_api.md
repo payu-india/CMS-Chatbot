@@ -178,7 +178,7 @@ This API is retrieve detailed information about a specific transaction using the
 
   ```json
   {
-    "status": 0,
+    "status": 1,
     "message": "Please provide valid merchantId",
     "result": null
   } 
@@ -188,7 +188,7 @@ This API is retrieve detailed information about a specific transaction using the
 
   ```json
   {
-    "status": 0,
+    "status": 1,
     "message": "Invalid Transaction ID: Must not exceed 50 characters."
     "result": null
   } 
@@ -198,7 +198,7 @@ This API is retrieve detailed information about a specific transaction using the
 
   ```json
    {
-    "status": 0,
+    "status": 1,
     "message":"Merchant Transaction ID is required."
     "result": null
   } 
@@ -208,7 +208,7 @@ This API is retrieve detailed information about a specific transaction using the
 
   ```json
   {
-    "status": 0,
+    "status": 1,
     "message": "Unauthorized",
     "result": null
   }
