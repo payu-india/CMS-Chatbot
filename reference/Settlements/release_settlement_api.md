@@ -20,10 +20,10 @@ HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                  |
-| :--------------------- | :------------------------------- |
-| Test Environment       | &lt;https://test.payu.in/merchant/&gt; |
-| Production Environment | &lt;https://info.payu.in/merchant/&gt; |
+|                        |                                                                     |
+| :--------------------- | :------------------------------------------------------------------ |
+| Test Environment       | \<[https://test.payu.in/merchant/](https://test.payu.in/merchant/)> |
+| Production Environment | \<[https://info.payu.in/merchant/](https://info.payu.in/merchant/)> |
 
 ## Request parameters
 
@@ -123,44 +123,44 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"
 
 ### Success Scenario
 
-- Successful Transaction
+* Successful Transaction
 
 Sample Success Response for Release Settlement
 
-```plaintext
-{"status":1,"msg":"Release request is accepted"}
+```json
+{"status":0,"msg":"Release request is accepted"}
 ```
 
 ## Failure Scenarios
 
-- Failure Response when PayU ID is empty
+* Failure Response when PayU ID is empty
 
 Failure Response when PayUID is empty
 
-```plaintext
-{"status":0,"msg":"payuId is empty"}
+```json
+{"status":1,"msg":"payuId is empty"}
 ```
 
-- Failure response when child merchant ID is empty
+* Failure response when child merchant ID is empty
 
 Failure response when child merchant ID is empty
 
-```plaintext
-{"status":0,"msg":"Mid passed is empty"}
+```json
+{"status":1,"msg":"Mid passed is empty"}
 ```
 
-- Failure Response when child merchant ID and PayU ID do not match
+* Failure Response when child merchant ID and PayU ID do not match
 
 Failure Response when child merchant ID and PayU ID do not match
 
-```plaintext
-{"status":0,"msg":"Invalid childMid and payuId"}
+```json
+{"status":1,"msg":"Invalid childMid and payuId"}
 ```
 
-- Failure response when attempting to release an already released sub-payment
+* Failure response when attempting to release an already released sub-payment
 
 Failure response when attempt to release an already released sub- payment
 
-```plaintext
-{"status":0,"msg":"Release request is already accepted"}
+```json
+{"status":1,"msg":"Release request is already accepted"}
 ```
