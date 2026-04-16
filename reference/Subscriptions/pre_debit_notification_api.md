@@ -208,20 +208,22 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
   ```
 </Accordion>
 
-<Accordion title="Response Scenarios and Error Codes" icon="fa-code">
-| Scenario                                        | Status  | Action              | Message                                                              |
-| ----------------------------------------------- | ------- | ------------------- | -------------------------------------------------------------------- |
-| **Success Cases**                               |         |                     |                                                                      |
-| Successful Pre-debit                            | `1`     | `MANDATE_PRE_DEBIT` | `Request Processed Successfully`                                     |
-| **Failure Scenarios**                           |         |                     |                                                                      |
-| Invalid `mandateSeqNo`                          | `0`     | `MANDATE_PRE_DEBIT` | `Invalid value for mandateSeqNo`                                     |
-| Pre-debit already sent for sequence             | `E9254` | `MANDATE_PRE_DEBIT` | `Predebit notification already sent for the mandate sequence no.:2`  |
-| Execution already exists for sequence           | `E9256` | `MANDATE_PRE_DEBIT` | `Execution already sent for the mandate sequence no.:2`              |
-| Debit date exceeds 30 days                      | `E9260` | `MANDATE_PRE_DEBIT` | `Predebit notification can only be sent for a maximum 30 days in advance.` |
-| Pre-debit sent for past/incorrect period        | `E9263` | `MANDATE_PRE_DEBIT` | `Predebit for calculated sequence sent during incorrect period`      |
-| Mandate Revoked                                 | `QC`    | `MANDATE_PRE_DEBIT` | `MANDATE HAS BEEN REVOKED`                                           |
-| Mandate Not Active                              | `0`     | `MANDATE_PRE_DEBIT` | `Mandate is not active`                                              |
+## Error Codes
+<Accordion title="Response in various scenarios" icon="fa-code">
+  | Scenario                 | Response Payload                                                                                                                       |
+  | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Success Cases**        |                                                                                                                                        |
+  | Successful Pre-debit     | `{"status":1,"action":"MANDATE_PRE_DEBIT","message":"Request Processed Successfully"}`                                                 |
+  | *Failure Scenarios*\*    |                                                                                                                                        |
+  | Invalid mandateSeqNo     | `{"status":0,"message":"Invalid value for mandateSeqNo","action":"MANDATE_PRE_DEBIT"}`                                                 |
+  | Duplicate Pre-debit      | `{"status":"E9254","action":"MANDATE_PRE_DEBIT","message":"Predebit notification already sent for the mandate sequence no.:2"}`        |
+  | Execution Already Exists | `{"status":"E9256","action":"MANDATE_PRE_DEBIT","message":"Execution already sent for the mandate sequence no.:2"}`                    |
+  | Too Far in Advance       | `{"status":"E9260","action":"MANDATE_PRE_DEBIT","message":"Predebit notification can only be sent for a maximum 30 days in advance."}` |
+  | Incorrect Time Period    | `{"status":"E9263","action":"MANDATE_PRE_DEBIT","message":"Predebit for calculated sequence sent during incorrect period"}`            |
+  | Mandate Revoked          | `{"status":"QC","action":"MANDATE_PRE_DEBIT","message":"MANDATE HAS BEEN REVOKED"}`                                                    |
+  | Mandate Not Active       | `{"status":0,"action":"MANDATE_PRE_DEBIT","message":"Mandate is not active"}`                                                          |
 </Accordion>
+
 ## Request parameters
 
 <Accordion title="Reference information" icon="fa-book">
