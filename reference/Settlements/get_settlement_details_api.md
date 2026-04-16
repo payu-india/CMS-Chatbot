@@ -1,8 +1,8 @@
 ---
-title: Get Settlement Details API
+title: '[DEPRECATED]Get Settlement Details API'
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
