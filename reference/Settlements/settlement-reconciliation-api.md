@@ -1,8 +1,8 @@
 ---
-title: Settlement Reconciliation API
+title: '[DEPRECTATED]Settlement Reconciliation API'
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
