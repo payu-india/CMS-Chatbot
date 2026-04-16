@@ -5,15 +5,21 @@ hidden: true
 metadata:
   robots: index
 ---
+---
+title: Fetch Balance API - TWID
+deprecated: false
+hidden: true
+metadata:
+  robots: index
+---
 This API is used to fetch the user's reward point balance and its corresponding monetary savings for a specific loyalty provider.
 
 ## Environment
 
-<br />
-
-|            |                                      |
-| :--------- | :----------------------------------- |
-| Production | \{\{loyalty-service-url}}/v1/balance |
+|            |                                                  |
+| :--------- | :----------------------------------------------- |
+| Test       | https://apitest.payu.in/loyalty-points/v1/balance |
+| Production | https://api.payu.in/loyalty-points/v1/balance     |
 
 HTTP method: **POST**
 
@@ -77,7 +83,7 @@ HTTP method: **POST**
 ### Non-seamless Integration
 
 ```bash
-curl -X POST "{{loyalty-service-url}}/v1/balance" \
+curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance" \
   -H "Content-Type: application/json" \
   -H "mid: YOUR_MERCHANT_ID" \
   -d '{
@@ -91,7 +97,7 @@ curl -X POST "{{loyalty-service-url}}/v1/balance" \
 ### Seamless Integration
 
 ```bash
-curl -X POST "{{loyalty-service-url}}/v1/balance" \
+curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance" \
   -H "Content-Type: application/json" \
   -H "Date: Wed, 08 Sep 2025 13:22:43 GMT" \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\"" \
