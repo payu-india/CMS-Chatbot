@@ -1,5 +1,5 @@
 ---
-title: Fetch Balance API - TWID
+title: Fetch Balance API
 deprecated: false
 hidden: true
 metadata:
