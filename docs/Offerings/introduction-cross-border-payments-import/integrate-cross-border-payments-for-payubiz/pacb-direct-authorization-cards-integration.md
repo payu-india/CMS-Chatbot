@@ -80,11 +80,6 @@ Post the payment parameters along with 3DS authentication data to PayU's `_payme
   | firstname<br />`mandatory`   | `String`<br />The first name of the customer. Character Limit: 60                                                      | `Ashish`               |
   | email<br />`mandatory`       | `String`<br />The email address of the customer. Character Limit: 50                                                   | `test@gmail.com`       |
   | phone<br />`mandatory`       | `String`<br />The phone number of the customer.                                                                        | `9876543210`           |
-
-  ### Card Parameters
-
-  | Parameter                 | Description                                                                                           | Example            |
-  | ------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------ |
   | pg<br />`mandatory`       | `String`<br />Payment gateway type. For cards, use `CC`.                                              | `CC`               |
   | bankcode<br />`mandatory` | `String`<br />Bank code for the payment option. Use `CC` for credit cards, `DC` for debit cards.      | `CC`               |
   | ccnum<br />`mandatory`    | `String`<br />13-19 digit card number (15 for AMEX, 13-19 for Maestro). Validate with LUHN algorithm. | `5123456789012346` |
@@ -92,38 +87,18 @@ Post the payment parameters along with 3DS authentication data to PayU's `_payme
   | ccname<br />`mandatory`   | `String`<br />Cardholder name as entered by the customer.                                             | `Ashish Kumar`     |
   | ccexpmon<br />`mandatory` | `String`<br />Card expiry month in MM format (01-12).                                                 | `10`               |
   | ccexpyr<br />`mandatory`  | `String`<br />Card expiry year in YYYY format.                                                        | `2027`             |
-
-  ### PACB Mandatory Address Parameters
-
-  | Parameter                 | Description                                                                                                                  | Example         |
-  | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------- |
   | address1<br />`mandatory` | `varchar`<br />The customer's primary billing address line. Required for billing and fraud prevention. Character limit: 255. | 123 Main Street |
   | city<br />`mandatory`     | `varchar`<br />The customer's billing city. Character limit: 50.                                                             | New Delhi       |
   | state<br />`mandatory`    | `varchar`<br />The customer's billing state or province. Character limit: 50.                                                | Delhi           |
   | country<br />`mandatory`  | `varchar`<br />The customer's billing country code. Use ISO 3166-1 alpha-2 country codes. Character limit: 2.                | IN              |
   | zipcode<br />`mandatory`  | `varchar`<br />The customer's billing postal/zip code. Character limit: 6 digit (India Zipcode)                              | 110001          |
-
-  ### Direct Authorization Specific Parameters
-
-  | Parameter                             | Description                                                                                                                                                             | Example                                            |
-  | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
   | txn\_s2s\_flow<br />`mandatory`       | `String`<br />**Must be set to "3"** for Direct Authorization flow. This indicates that the transaction has been pre-authenticated via external MPI/3DS.                | `3`                                                |
   | authentication\_info<br />`mandatory` | `JSON`<br />Contains the 3DS authentication information from your MPI/3DS Server. See [authentication\_info JSON Structure](#authentication_info-json-structure) below. | `{"eci":"05","cavv":"..."}`                        |
   | threeDS2RequestData<br />`mandatory`  | `JSON`<br />Contains the 3DS version and device channel.                                                                                                                | `{"threeDSVersion":"2.2.0","deviceChannel":"BRW"}` |
   | s2s\_client\_ip<br />`mandatory`      | `String`<br />Client IP captured by merchant. Required for fraud detection.                                                                                             | `10.200.12.12`                                     |
   | s2s\_device\_info<br />`mandatory`    | `String`<br />User Agent captured by merchant in S2S flow.                                                                                                              | `Mozilla/5.0...`                                   |
-
-  ### URL Parameters
-
-  | Parameter             | Description                                                                                  | Example                       |
-  | --------------------- | -------------------------------------------------------------------------------------------- | ----------------------------- |
   | surl<br />`mandatory` | `String`<br />The Success URL - page PayU will redirect to if the transaction is successful. | `https://example.com/success` |
   | furl<br />`mandatory` | `String`<br />The Failure URL - page PayU will redirect to if the transaction fails.         | `https://example.com/failure` |
-
-  ### PACB UDF Parameters
-
-  | Parameter                                                     | Description                                                                                                                                                              | Example                                      |
-  | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
   | udf1<br />`optional but recommended for higher approval rate` | `String`<br />The Permanent Account Number (PAN - primary taxation ID in India) of the buyer. Character limit: 10                                                        | ABCDE1234K                                   |
   | udf2<br />`optional`                                          | `String`<br />User-defined field for storing transaction-specific data. Character limit: 255.                                                                            | Additional data                              |
   | udf3<br />`optional but recommended for higher approval rate` | `String`<br />Date of Birth (DOB) of buyer in DD-MM-YYYY format.                                                                                                         | 02-02-1980                                   |
