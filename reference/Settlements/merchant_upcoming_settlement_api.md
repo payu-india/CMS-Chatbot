@@ -98,7 +98,7 @@ Retrieve information about upcoming and pending settlements for a merchant. This
   | --------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
   | code      | String  | Business result code; success is typically `2000`                                                                                              |
   | message   | String  | Short response text, e.g., `Success`                                                                                                           |
-  | status    | Integer | Application status: <br/>`1` = Success <br/> '0'= Failure                                                                                                              |
+  | status    | Integer | Application status: <br />`0` = Success <br /> '1'= Failure                                                                                    |
   | result    | Object  | Main response data container in JSON format. For more information, refer to  [result JSON Field Descriptions](#result-json-field-descriptions) |
 
   ### result JSON Field Descriptions
