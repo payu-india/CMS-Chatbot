@@ -238,7 +238,6 @@ Post the payment parameters along with 3DS authentication data to PayU's `_payme
   --data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
   --data-urlencode 'hash=YOUR_CALCULATED_HASH'
   ```
-
   ```python
   import requests
   import json
@@ -332,7 +331,6 @@ Post the payment parameters along with 3DS authentication data to PayU's `_payme
   print("Status Code:", response.status_code)
   print("Response:", response.text)
   ```
-
   ```java
   import java.io.IOException;
   import java.net.URI;
@@ -416,7 +414,6 @@ Post the payment parameters along with 3DS authentication data to PayU's `_payme
       }
   }
   ```
-
   ```php
   <?php
 
