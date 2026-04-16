@@ -350,7 +350,7 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
   | email<br />`mandatory`                | `String` The email address of the customer.                                                                                                                                                                                                                                                        |                                                                                                    |   |
   | phone<br />`mandatory`                | `String` The phone number of the customer.                                                                                                                                                                                                                                                         |                                                                                                    |   |
   | pg<br />`mandatory`                   | `String` The pg parameter must contain `SPLITPAY` for TWID Rewards.                                                                                                                                                                                                                                | SPLITPAY                                                                                           |   |
-  | bankcode<br />`mandatory`             | `String` The bankcode parameter must contain `TWIDX` for TWID Rewards                                                                                                                                                                                                                              | TWIDX                                                                                              |   |
+  | bankcode<br />`mandatory`             | `String` The bankcode parameter must contain any of the following based on the Reward partner: <ul><li>TWIDX for TWID Rewards</li><li>ZRD for Zillon </li></ul>-                                                                                                                                                                                                                             | TWIDX                                                                                              |   |
   | splitInfo                             | `JSON` This parameter must contain the TWID split information. For more information, refer to [splitInfo JSON Object Fields Description](#splitinfo-json-object-fields-description). The sample JSON for Spend/Burn or Earn Points with payment methods: <br />-[Cards](#cards) <br />-[UPI](#upi) | Refer to to [splitInfo JSON Object Fields Description](#splitinfo-json-object-fields-description). |   |
   | furl<br />`mandatory`                 | `String` The success URL, which is the page PayU will redirect to if the transaction is successful.                                                                                                                                                                                                |                                                                                                    |   |
   | surl<br />`mandatory`                 | `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                                                                                    |                                                                                                    |   |
@@ -387,84 +387,90 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
 
 #### Cards
 
-<Accordion title="Sample JSON for Burn Points with Card (Zillion)" icon="fa-code">
-  ```JSON
-  {
-    "key": "KOEfPI",
-    "txnid": "ram1234",
-    "productinfo": "Product Info",
-    "amount": "100",
-    "email": "test@example.com",
-    "firstname": "Payu-Admin",
-    "lastname": "",
-    "phone": "880**08522",
-    "surl": "https://pp56admin.payu.in/test_response",
-    "furl": "https://pp56admin.payu.in/test_response",
-    "pg": "SPLITPAY",
-    "bankcode": "ZRD",
-    "txn_s2s_flow": "4",
-    "splitInfo": {
-      "childPaymentInstruments": [
-        {
-          "name": "CC",
-          "bankCode": "CC",
-          "cardNumber": "5123456789012346",
-          "cvv": "345",
-          "validThrough": "07/25",
-          "ownerName": "Payu",
-          "transactionAmount": "99"
-        },
-        {
-          "name": "RD",
-          "bankCode": "ZLS",
-          "transactionAmount": "1"
-        }
-      ]
-    },
-    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-  }
+<Accordion title="Sample request for Spend Points with Card (Zillion)" icon="fa-code">
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "key": "KOEfPI",
+      "txnid": "ram1234",
+      "productinfo": "Product Info",
+      "amount": "100",
+      "email": "test@example.com",
+      "firstname": "Payu-Admin",
+      "lastname": "",
+      "phone": "880**08522",
+      "surl": "https://pp56admin.payu.in/test_response",
+      "furl": "https://pp56admin.payu.in/test_response",
+      "pg": "SPLITPAY",
+      "bankcode": "ZRD",
+      "txn_s2s_flow": "4",
+      "splitInfo": {
+        "childPaymentInstruments": [
+          {
+            "name": "CC",
+            "bankCode": "CC",
+            "cardNumber": "5123456789012346",
+            "cvv": "345",
+            "validThrough": "07/25",
+            "ownerName": "Payu",
+            "transactionAmount": "99"
+          },
+          {
+            "name": "RD",
+            "bankCode": "ZLS",
+            "transactionAmount": "1"
+          }
+        ]
+      },
+      "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
+    }'
   ```
 </Accordion>
 
-<Accordion title="Sample JSON for Burn Points with Card (TWID)" icon="fa-code">
-  ```JSON
-  {
-    "key": "KOEfPI",
-    "txnid": "ram1234",
-    "productinfo": "Product Info",
-    "amount": "100",
-    "email": "test@example.com",
-    "firstname": "Payu-Admin",
-    "lastname": "",
-    "phone": "880**08522",
-    "surl": "https://pp56admin.payu.in/test_response",
-    "furl": "https://pp56admin.payu.in/test_response",
-    "pg": "SPLITPAY",
-    "bankcode": "TWIDX",
-    "txn_s2s_flow": "4",
-    "splitInfo": {
-      "childPaymentInstruments": [
-        {
-          "name": "CC",
-          "bankCode": "CC",
-          "cardNumber": "5123456789012346",
-          "cvv": "345",
-          "validThrough": "07/25",
-          "ownerName": "Payu",
-          "transactionAmount": "412"
-        },
-        {
-          "name": "RD",
-          "bankCode": "TWIDLS",
-          "transactionAmount": "100",
-          "rewardId": 269434,
-          "cardBin": "512345",
-          "cardLastFour": "2346"
-        }
-      ]
-    },
-    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-  }
+<Accordion title="Sample request for Spend Points with Card (TWID)" icon="fa-code">
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "key": "KOEfPI",
+      "txnid": "ram1234",
+      "productinfo": "Product Info",
+      "amount": "100",
+      "email": "test@example.com",
+      "firstname": "Payu-Admin",
+      "lastname": "",
+      "phone": "880**08522",
+      "surl": "https://pp56admin.payu.in/test_response",
+      "furl": "https://pp56admin.payu.in/test_response",
+      "pg": "SPLITPAY",
+      "bankcode": "TWIDX",
+      "txn_s2s_flow": "4",
+      "splitInfo": {
+        "childPaymentInstruments": [
+          {
+            "name": "CC",
+            "bankCode": "CC",
+            "cardNumber": "5123456789012346",
+            "cvv": "345",
+            "validThrough": "07/25",
+            "ownerName": "Payu",
+            "transactionAmount": "412"
+          },
+          {
+            "name": "RD",
+            "bankCode": "TWIDLS",
+            "transactionAmount": "100",
+            "rewardId": 269434,
+            "cardBin": "512345",
+            "cardLastFour": "2346"
+          }
+        ]
+      },
+      "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
+    }'
   ```
 </Accordion>
 
@@ -531,78 +537,84 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
 
 #### UPI
 
-<Accordion title="Sample JSON for Burn Points with UPI (Zillion)" icon="fa-code">
-  ```json
-  {
-    "key": "KOEfPI",
-    "txnid": "ram1234",
-    "productinfo": "Product Info",
-    "amount": "100",
-    "email": "test@example.com",
-    "firstname": "Payu-Admin",
-    "lastname": "",
-    "phone": "9999999999",
-    "surl": "https://pp56admin.payu.in/test_response",
-    "furl": "https://pp56admin.payu.in/test_response",
-    "pg": "SPLITPAY",
-    "bankcode": "ZRD",
-    "txn_s2s_flow": "4",
-    "splitInfo": {
-      "childPaymentInstruments": [
-        {
-          "name": "UPI",
-          "bankCode": "UPI",
-          "vpa": "kk@okaxis",
-          "transactionAmount": "99"
-        },
-        {
-          "name": "RD",
-          "bankCode": "ZLS",
-          "transactionAmount": "1"
-        }
-      ]
-    },
-    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-  }
+<Accordion title="Sample request for Spend Points with UPI (Zillion)" icon="fa-code">
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "key": "KOEfPI",
+      "txnid": "ram1234",
+      "productinfo": "Product Info",
+      "amount": "100",
+      "email": "test@example.com",
+      "firstname": "Payu-Admin",
+      "lastname": "",
+      "phone": "9999999999",
+      "surl": "https://pp56admin.payu.in/test_response",
+      "furl": "https://pp56admin.payu.in/test_response",
+      "pg": "SPLITPAY",
+      "bankcode": "ZRD",
+      "txn_s2s_flow": "4",
+      "splitInfo": {
+        "childPaymentInstruments": [
+          {
+            "name": "UPI",
+            "bankCode": "UPI",
+            "vpa": "kk@okaxis",
+            "transactionAmount": "99"
+          },
+          {
+            "name": "RD",
+            "bankCode": "ZLS",
+            "transactionAmount": "1"
+          }
+        ]
+      },
+      "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
+    }'
   ```
 </Accordion>
 
-<Accordion title="Sample JSON for Burn Points with UPI (TWID)" icon="fa-code">
-  ```json
-  {
-    "key": "KOEfPI",
-    "txnid": "ram1234",
-    "productinfo": "Product Info",
-    "amount": "100",
-    "email": "test@example.com",
-    "firstname": "Payu-Admin",
-    "lastname": "",
-    "phone": "9999999999",
-    "surl": "https://pp56admin.payu.in/test_response",
-    "furl": "https://pp56admin.payu.in/test_response",
-    "pg": "SPLITPAY",
-    "bankcode": "TWIDX",
-    "txn_s2s_flow": "4",
-    "splitInfo": {
-      "childPaymentInstruments": [
-        {
-          "name": "UPI",
-          "bankCode": "UPI",
-          "vpa": "kk@okaxis",
-          "transactionAmount": "412"
-        },
-        {
-          "name": "RD",
-          "bankCode": "TWIDLS",
-          "transactionAmount": "100",
-          "rewardId": 269434,
-          "cardBin": "512345",
-          "cardLastFour": "2346"
-        }
-      ]
-    },
-    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-  }
+<Accordion title="Sample request for Spend Points with UPI (TWID)" icon="fa-code">
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "key": "KOEfPI",
+      "txnid": "ram1234",
+      "productinfo": "Product Info",
+      "amount": "100",
+      "email": "test@example.com",
+      "firstname": "Payu-Admin",
+      "lastname": "",
+      "phone": "9999999999",
+      "surl": "https://pp56admin.payu.in/test_response",
+      "furl": "https://pp56admin.payu.in/test_response",
+      "pg": "SPLITPAY",
+      "bankcode": "TWIDX",
+      "txn_s2s_flow": "4",
+      "splitInfo": {
+        "childPaymentInstruments": [
+          {
+            "name": "UPI",
+            "bankCode": "UPI",
+            "vpa": "kk@okaxis",
+            "transactionAmount": "412"
+          },
+          {
+            "name": "RD",
+            "bankCode": "TWIDLS",
+            "transactionAmount": "100",
+            "rewardId": 269434,
+            "cardBin": "512345",
+            "cardLastFour": "2346"
+          }
+        ]
+      },
+      "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
+    }'
   ```
 </Accordion>
 
