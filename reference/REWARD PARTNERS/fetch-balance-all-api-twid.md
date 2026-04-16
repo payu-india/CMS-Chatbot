@@ -6,21 +6,12 @@ metadata:
   robots: index
 ---
 ---
-title: Fetch Balance All API 
-deprecated: false
-hidden: true
-metadata:
-  robots: index
----
----
-title: Fetch Balance All API 
+title: Fetch Balance All API - TWID
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
-The **Fetch Balance All** API retrieves balance information from multiple specified loyalty providers.
 
 ## Environment
 
@@ -112,7 +103,7 @@ HTTP Method: **POST**
 ### Non-seamless integration
 
 ```curl
-curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance/all" \
+curl -X POST "{{loyalty-service-url}}/v1/balance/all" \
   -H "Content-Type: application/json" \
   -H "mid: YOUR_MERCHANT_ID" \
   -d '{
@@ -125,7 +116,7 @@ curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance/all" \
 import requests
 import json
 
-url = "https://apitest.payu.in/loyalty-points/v1/balance/all"
+url = "{{loyalty-service-url}}/v1/balance/all"
 
 headers = {
   "Content-Type": "application/json",
@@ -154,7 +145,7 @@ class Program
     static async Task Main(string[] args)
     {
         var client = new HttpClient();
-        var url = "https://apitest.payu.in/loyalty-points/v1/balance/all";
+        var url = "{{loyalty-service-url}}/v1/balance/all";
         
         client.DefaultRequestHeaders.Add("Content-Type", "application/json");
         client.DefaultRequestHeaders.Add("mid", "YOUR_MERCHANT_ID");
@@ -178,7 +169,7 @@ class Program
 ```
 
 ```javascript
-const url = "https://apitest.payu.in/loyalty-points/v1/balance/all";
+const url = "{{loyalty-service-url}}/v1/balance/all";
 
 const headers = {
   "Content-Type": "application/json",
@@ -221,7 +212,7 @@ import java.util.List;
 
 public class ApiRequest {
     public static void main(String[] args) throws Exception {
-        URL url = new URL("https://apitest.payu.in/loyalty-points/v1/balance/all");
+        URL url = new URL("{{loyalty-service-url}}/v1/balance/all");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
@@ -255,7 +246,7 @@ public class ApiRequest {
 ```php
 <?php
 
-$url = "https://apitest.payu.in/loyalty-points/v1/balance/all";
+$url = "{{loyalty-service-url}}/v1/balance/all";
 
 $headers = [
   "Content-Type" => "application/json",
@@ -288,7 +279,7 @@ echo "Response: " . $response . "\n";
 ### Seamless integration
 
 ```curl
-curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance/all" \
+curl -X POST "{{loyalty-service-url}}/v1/balance/all" \
   -H "Content-Type: application/json" \
   -H "Date: Wed, 08 Sep 2025 13:22:43 GMT" \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\"" \
@@ -302,7 +293,7 @@ curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance/all" \
 import requests
 import json
 
-url = "https://apitest.payu.in/loyalty-points/v1/balance/all"
+url = "{{loyalty-service-url}}/v1/balance/all"
 
 headers = {
   "Content-Type": "application/json",
@@ -332,7 +323,7 @@ class Program
     static async Task Main(string[] args)
     {
         var client = new HttpClient();
-        var url = "https://apitest.payu.in/loyalty-points/v1/balance/all";
+        var url = "{{loyalty-service-url}}/v1/balance/all";
         
         client.DefaultRequestHeaders.Add("Content-Type", "application/json");
         client.DefaultRequestHeaders.Add("Date", "Wed, 08 Sep 2025 13:22:43 GMT");
@@ -356,7 +347,7 @@ class Program
 }
 ```
 ```javascript
-const url = "https://apitest.payu.in/loyalty-points/v1/balance/all";
+const url = "{{loyalty-service-url}}/v1/balance/all";
 
 const headers = {
   "Content-Type": "application/json",
@@ -399,7 +390,7 @@ import java.util.List;
 
 public class ApiRequest {
     public static void main(String[] args) throws Exception {
-        URL url = new URL("https://apitest.payu.in/loyalty-points/v1/balance/all");
+        URL url = new URL("{{loyalty-service-url}}/v1/balance/all");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
@@ -434,7 +425,7 @@ public class ApiRequest {
 ```php
 <?php
 
-$url = "https://apitest.payu.in/loyalty-points/v1/balance/all";
+$url = "{{loyalty-service-url}}/v1/balance/all";
 
 $headers = [
   "Content-Type" => "application/json",
