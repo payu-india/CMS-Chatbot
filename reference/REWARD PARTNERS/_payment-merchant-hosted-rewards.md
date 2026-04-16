@@ -1,7 +1,7 @@
 ---
 title: '_payment Merchant Hosted Rewards '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
