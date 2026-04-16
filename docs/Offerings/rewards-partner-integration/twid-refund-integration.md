@@ -5,15 +5,23 @@ hidden: true
 metadata:
   robots: index
 ---
+---
+title: TWID Refund Integration
+deprecated: false
+hidden: true
+metadata:
+  robots: index
+---
 The **Refund** API is used to initiate refund and **Refund Status** API used to check the status of refund for TWID API integration. This section describes the steps to integrate TWID Refund integration.
 
 ## Step 1: Initiate the refund
 
 #### Environment
 
-|            |                                     |
-| :--------- | :---------------------------------- |
-| Production | \{\{loyalty-service-url}}/refund/v1 |
+|            |                                                      |
+| :--------- | :--------------------------------------------------- |
+| Test       | https://apitest.payu.in/loyalty-points/refund/v1     |
+| Production | https://api.payu.in/loyalty-points/refund/v1         |
 
 ### Request parameters
 
@@ -127,7 +135,7 @@ The **Refund** API is used to initiate refund and **Refund Status** API used to 
 **Non-seamless integration**
 
 ```bash
-curl -X POST "{{loyalty-service-url}}/refund/v1" \
+curl -X POST "https://apitest.payu.in/loyalty-points/refund/v1" \
   -H "Content-Type: application/json" \
   -H "mid: YOUR_MERCHANT_ID" \
   -d '{
@@ -141,7 +149,7 @@ curl -X POST "{{loyalty-service-url}}/refund/v1" \
 **Seamless integration**
 
 ```bash
-curl -X POST "{{loyalty-service-url}}/refund/v1" \
+curl -X POST "https://apitest.payu.in/loyalty-points/refund/v1" \
   -H "Content-Type: application/json" \
   -H "Date: Wed, 08 Sep 2025 13:22:43 GMT" \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\"" \
@@ -195,9 +203,10 @@ Use the **loyaltyRefundId** parameter value and check the status of the refund.
 
 #### Environment
 
-|            |                                                        |
-| :--------- | :----------------------------------------------------- |
-| Production | \{\{loyalty-service-url}}/refund/v1/\{loyaltyRefundId} |
+|            |                                                                     |
+| :--------- | :------------------------------------------------------------------ |
+| Test       | https://apitest.payu.in/loyalty-points/refund/v1/\{loyaltyRefundId} |
+| Production | https://api.payu.in/loyalty-points/refund/v1/\{loyaltyRefundId}     |
 
 ### Request parameters
 
@@ -296,7 +305,7 @@ Use the **loyaltyRefundId** parameter value and check the status of the refund.
 _**Non-seamless integration**_
 
 ```bash
-curl -X GET "\{\{loyalty-service-url}}/refund/v1/1213" \
+curl -X GET "https://apitest.payu.in/loyalty-points/refund/v1/1213" \
   -H "Content-Type: application/json" \
   -H "mid: YOUR_MERCHANT_ID"
 ```
@@ -304,7 +313,7 @@ curl -X GET "\{\{loyalty-service-url}}/refund/v1/1213" \
 _**Seamless integration**_
 
 ```bash
-curl -X GET "\{\{loyalty-service-url}}/refund/v1/1213" \
+curl -X GET "https://apitest.payu.in/loyalty-points/refund/v1/1213" \
   -H "Content-Type: application/json" \
   -H "Date: Wed, 08 Sep 2025 13:22:43 GMT" \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\""
