@@ -12,14 +12,15 @@ hidden: false
 metadata:
   robots: index
 ---
+
 The **Collect Payment using Rewards** API is used to initiate a payment transaction that combines reward points (TWID/Zillion) with other payment methods like Cards or UPI.
 
 ## Environment
 
-|            |                                          |
-| :--------- | :--------------------------------------- |
-| Test       | https://test.payu.in/_payment            |
-| Production | https://secure.payu.in/_payment          |
+|            |                                                                    |
+| :--------- | :----------------------------------------------------------------- |
+| Test       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
+| Production | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
 HTTP Method: **POST**
 
@@ -732,38 +733,38 @@ curl -X POST "https://test.payu.in/_payment" \
 
 ## Response parameters
 
-| Parameter      | Description                                                                                    | Example            |
-| -------------- | ---------------------------------------------------------------------------------------------- | ------------------ |
-| mihpayid       | `String` - Unique reference number created for each transaction at PayU                        | 999091000010475    |
-| mode           | `String` - Payment mode used for the transaction                                               | SPLITPAY           |
-| status         | `String` - Transaction status: `success`, `failure`, or `pending`                              | success            |
-| unmappedstatus | `String` - Internal transaction status                                                         | success            |
-| txnid          | `String` - Transaction ID provided by merchant                                                 | ram1234            |
-| amount         | `String` - Transaction amount                                                                  | 100                |
-| bankcode       | `String` - Bank code used for the transaction                                                  | ZRD                |
-| error          | `String` - Error code                                                                          | E000               |
-| error_Message  | `String` - Error message description                                                           | No Error           |
-| splitPayInfo   | `Object` - Contains details of split payment instruments and their respective amounts. For field descriptions, refer to [splitPayInfo Fields](#splitpayinfo-fields). | See sample below   |
+| Parameter      | Description                                                                                                                                                          | Example          |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| mihpayid       | `String` - Unique reference number created for each transaction at PayU                                                                                              | 999091000010475  |
+| mode           | `String` - Payment mode used for the transaction                                                                                                                     | SPLITPAY         |
+| status         | `String` - Transaction status: `success`, `failure`, or `pending`                                                                                                    | success          |
+| unmappedstatus | `String` - Internal transaction status                                                                                                                               | success          |
+| txnid          | `String` - Transaction ID provided by merchant                                                                                                                       | ram1234          |
+| amount         | `String` - Transaction amount                                                                                                                                        | 100              |
+| bankcode       | `String` - Bank code used for the transaction                                                                                                                        | ZRD              |
+| error          | `String` - Error code                                                                                                                                                | E000             |
+| error_Message  | `String` - Error message description                                                                                                                                 | No Error         |
+| splitPayInfo   | `Object` - Contains details of split payment instruments and their respective amounts. For field descriptions, refer to [splitPayInfo Fields](#splitpayinfo-fields). | See sample below |
 
 ### splitPayInfo Fields
 
 The `splitPayInfo` object contains the details of each payment instrument used in the split payment transaction. It includes separate objects for each payment method (e.g., `cc` for Cards, `upi` for UPI, `rd` for Rewards).
 
-| Field             | Description                                                                                           | Example      |
-| ----------------- | ----------------------------------------------------------------------------------------------------- | ------------ |
-| cc                | `Object` - Card payment instrument details (present when card is used)                                |              |
-| cc.name           | `String` - Name of the payment method                                                                 | CC           |
-| cc.bankCode       | `String` - Bank code identifier for the card                                                          | CC           |
-| cc.transactionAmount | `String` - Amount processed via card                                                               | 412          |
-| upi               | `Object` - UPI payment instrument details (present when UPI is used)                                  |              |
-| upi.name          | `String` - Name of the payment method                                                                 | UPI          |
-| upi.bankCode      | `String` - Bank code identifier for UPI                                                               | UPI          |
-| upi.vpa           | `String` - Virtual Payment Address used for the transaction                                           | kk@okaxis    |
-| upi.transactionAmount | `String` - Amount processed via UPI                                                               | 99           |
-| rd                | `Object` - Reward payment instrument details                                                          |              |
-| rd.name           | `String` - Name of the payment method                                                                 | RD           |
-| rd.bankCode       | `String` - Bank code identifier for rewards (`TWIDLS` for TWID, `ZLS` for Zillion)                    | TWIDLS       |
-| rd.transactionAmount | `String` - Amount redeemed via reward points                                                       | 100          |
+| Field                 | Description                                                                        | Example   |
+| --------------------- | ---------------------------------------------------------------------------------- | --------- |
+| cc                    | `Object` - Card payment instrument details (present when card is used)             |           |
+| cc.name               | `String` - Name of the payment method                                              | CC        |
+| cc.bankCode           | `String` - Bank code identifier for the card                                       | CC        |
+| cc.transactionAmount  | `String` - Amount processed via card                                               | 412       |
+| upi                   | `Object` - UPI payment instrument details (present when UPI is used)               |           |
+| upi.name              | `String` - Name of the payment method                                              | UPI       |
+| upi.bankCode          | `String` - Bank code identifier for UPI                                            | UPI       |
+| upi.vpa               | `String` - Virtual Payment Address used for the transaction                        | kk@okaxis |
+| upi.transactionAmount | `String` - Amount processed via UPI                                                | 99        |
+| rd                    | `Object` - Reward payment instrument details                                       |           |
+| rd.name               | `String` - Name of the payment method                                              | RD        |
+| rd.bankCode           | `String` - Bank code identifier for rewards (`TWIDLS` for TWID, `ZLS` for Zillion) | TWIDLS    |
+| rd.transactionAmount  | `String` - Amount redeemed via reward points                                       | 100       |
 
 ## Sample response
 
@@ -866,18 +867,3 @@ The `splitPayInfo` object contains the details of each payment instrument used i
   "error_Message": "Authorization failed at Bank"
 }
 ```
-
-## Reward Provider Codes
-
-| Provider | Top-level bankcode | splitInfo bankCode |
-| -------- | ------------------ | ------------------ |
-| TWID     | TWIDX              | TWIDLS             |
-| Zillion  | ZRD                | ZLS                |
-
-<Callout icon="📘" theme="info">
-  **Notes:**
-
-  * For TWID transactions, the `splitInfo` must include `rewardId`, `cardBin`, and `cardLastFour` fields
-  * For Zillion transactions, only `name`, `bankCode`, and `transactionAmount` are required in the RD instrument
-  * The `transactionAmount` in each child instrument should sum up to the total `amount`
-</Callout>
