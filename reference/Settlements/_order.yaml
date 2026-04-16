@@ -1,7 +1,7 @@
 - get-token-api-for-general-apis
 - get_settlement_details_api
 - new-get-settlement-details-api
-- settlement-detail-range-api
+- old-settlement-detail-range-api
 - new-settlement-detail-range-api
 - old_settlement_transaction_details_api
 - old_merchant_upcoming_settlement_api
