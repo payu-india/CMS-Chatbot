@@ -1,0 +1,775 @@
+---
+title: 'PACB Cards Subscription Integration with Direct Authorization '
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
+---
+title: 'Direct Authorization Cards Subscription Integration'
+deprecated: false
+hidden: false
+metadata:
+  title: Direct Authorization Cards Subscription Integration for PACB
+  description: 'Integrate Direct Authorization flow for cross-border card subscription payments using pre-authenticated 3DS transactions with recurring payment setup'
+  robots: index
+---
+
+This section explains how to integrate Direct Authorization for cross-border card subscription payments using the Server-to-Server (S2S) flow. Direct Authorization is used when merchants have already completed 3DS authentication through their own MPI (Merchant Plug-In) or 3DS Server and want to submit the authorization request directly to PayU with pre-authenticated transaction data along with subscription (Standing Instruction) setup.
+
+<Callout icon="📘" theme="info">
+  **When to use Direct Authorization with Subscriptions:** Use this flow when you have your own MPI/3DS Server and have already authenticated the cardholder, and want to set up a recurring payment subscription. This bypasses PayU's authentication flow and directly authorizes the pre-authenticated transaction while registering the card for future recurring payments.
+</Callout>
+
+<Cards columns={2}>
+  <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
+    Post the required parameters including 3DS authentication data and subscription details to PayU
+  </Card>
+
+  <Card title="2. Check Response from PayU" href="#step-2-check-response-from-payu">
+    Check and handle the authorization response received from PayU
+  </Card>
+
+  <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
+    Verify the payment status and ensure transaction completion
+  </Card>
+
+  <Card title="4. Update Invoice ID (Conditional)" href="#step-4-update-invoice-id-conditional">
+    Update the invoice ID associated with the transaction
+  </Card>
+
+  <Card title="5. Upload the Invoices / Shipping Document (Conditional)" href="#step-5-upload-the-invoices-optional">
+    Upload invoice documents related to the completed transaction
+  </Card>
+</Cards>
+
+***
+
+## Step 1: Post Parameters to PayU
+
+Post the payment parameters along with 3DS authentication data and subscription details to PayU's `_payment` API endpoint. The key differences from standard S2S flow are:
+
+* `txn_s2s_flow` must be set to **3** (Direct Authorization)
+* `authentication_info` must contain the 3DS authentication data from your MPI/3DS Server
+* `threeDS2RequestData` must contain the 3DS version and device channel information
+* `si` must be set to **1** to indicate subscription consent
+* `si_details` must contain the subscription billing details
+
+<Callout icon="📘" theme="info">
+  **Reference:** For more information on the standard Direct Authorization flow, refer to <Anchor label="Direct Authorization Integration" target="_blank" href="doc:integrate-with-direct-authorization-s2s">Direct Authorization Integration</Anchor>.
+</Callout>
+
+<Accordion title="Environment" icon="fa-server">
+  | Environment | URL                               |
+  | ----------- | --------------------------------- |
+  | Test        | `https://test.payu.in/_payment`   |
+  | Production  | `https://secure.payu.in/_payment` |
+
+  **HTTP Method**: POST
+
+  **Content Type**: application/x-www-form-urlencoded
+</Accordion>
+
+<Accordion title="Request Parameters" icon="fa-table">
+
+  | Parameter                                                         | Description                                                                                                                                                                                                                                                                                         | Example                                                    |                               |
+  | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ----------------------------- |
+  | key<br />`mandatory`                                              | `String`<br />Merchant key provided by PayU during onboarding.                                                                                                                                                                                                                                      | `JPM7Fg`                                                   |                               |
+  | txnid<br />`mandatory`                                            | `String`<br />The transaction ID is a reference number for a specific order generated by the merchant. Must be unique.                                                                                                                                                                              | `PACB_DA_SUB_12345`                                        |                               |
+  | amount<br />`mandatory`                                           | `String`<br />The payment amount for the transaction.                                                                                                                                                                                                                                               | `100.00`                                                   |                               |
+  | productinfo<br />`mandatory`                                      | `String`<br />Name or brief description of the goods/services being sold. Character Limit: 100                                                                                                                                                                                                      | `Cross-border Subscription`                                |                               |
+  | firstname<br />`mandatory`                                        | `String`<br />The first name of the customer. Character Limit: 60                                                                                                                                                                                                                                   | `Ashish`                                                   |                               |
+  | email<br />`mandatory`                                            | `String`<br />The email address of the customer. Character Limit: 50                                                                                                                                                                                                                                | `test@gmail.com`                                           |                               |
+  | phone<br />`mandatory`                                            | `String`<br />The phone number of the customer.                                                                                                                                                                                                                                                     | `9876543210`                                               |                               |
+  | pg<br />`mandatory`                                               | `String`<br />Payment gateway type. For cards, use `CC`.                                                                                                                                                                                                                                            | `CC`                                                       |                               |
+  | bankcode<br />`mandatory`                                         | `String`<br />Bank code for the payment option. Use `CC` for credit cards, `DC` for debit cards.                                                                                                                                                                                                    | `CC`                                                       |                               |
+  | ccnum<br />`mandatory`                                            | `String`<br />13-19 digit card number (15 for AMEX, 13-19 for Maestro). Validate with LUHN algorithm.                                                                                                                                                                                               | `5123456789012346`                                         |                               |
+  | ccvv<br />`mandatory`                                             | `String`<br />3-digit CVV (4 digits for AMEX).                                                                                                                                                                                                                                                      | `123`                                                      |                               |
+  | ccname<br />`mandatory`                                           | `String`<br />Cardholder name as entered by the customer.                                                                                                                                                                                                                                           | `Ashish Kumar`                                             |                               |
+  | ccexpmon<br />`mandatory`                                         | `String`<br />Card expiry month in MM format (01-12).                                                                                                                                                                                                                                               | `10`                                                       |                               |
+  | ccexpyr<br />`mandatory`                                          | `String`<br />Card expiry year in YYYY format.                                                                                                                                                                                                                                                      | `2027`                                                     |                               |
+  | address1<br />`optional but recommended for higher approval rate` | `varchar`<br />The customer's primary billing address line. Required for billing and fraud prevention. Character limit: 255.                                                                                                                                                                        | 123 Main Street                                            |                               |
+  | city<br />`optional but recommended for higher approval rate`     | `varchar`<br />The customer's billing city. Character limit: 50.                                                                                                                                                                                                                                    | New Delhi                                                  |                               |
+  | state<br />`optional but recommended for higher approval rate`    | `varchar`<br />The customer's billing state or province. Character limit: 50.                                                                                                                                                                                                                       | Delhi                                                      |                               |
+  | country<br />`optional but recommended for higher approval rate`  | `varchar`<br />The customer's billing country code. Use ISO 3166-1 alpha-2 country codes. Character limit: 2.                                                                                                                                                                                       | IN                                                         |                               |
+  | zipcode<br />`mandatory`                                          | `varchar`<br />The customer's billing postal/zip code. Character limit: 6 digit (India Zipcode)                                                                                                                                                                                                     | 110001                                                     |                               |
+  | txn\_s2s\_flow<br />`mandatory`                                   | `String`<br />**Must be set to "3"** for Direct Authorization flow. This indicates that the transaction has been pre-authenticated via external MPI/3DS.                                                                                                                                            | `3`                                                        |                               |
+  | authentication\_info<br />`mandatory`                             | `JSON`<br />Contains the 3DS authentication information from your MPI/3DS Server. Refer to [authentication\_info JSON Structure](#authentication_info-json-structure) below.                                                                                                                        |                                                            |                               |
+  | threeDS2RequestData<br />`mandatory`                              | `JSON`<br />Contains the 3DS version and device channel.                                                                                                                                                                                                                                            | `{"threeDSVersion":"2.2.0",`<br />"deviceChannel":"BRW"}\` |                               |
+  | s2s\_client\_ip<br />`mandatory`                                  | `String`<br />Client IP captured by merchant. Required for fraud detection.                                                                                                                                                                                                                         | `10.200.12.12`                                             |                               |
+  | s2s\_device\_info<br />`mandatory`                                | `String`<br />User Agent captured by merchant in S2S flow.                                                                                                                                                                                                                                          | `Mozilla/5.0...`                                           |                               |
+  | surl<br />`mandatory`                                             | `String`<br />The Success URL - page PayU will redirect to if the transaction is successful.<br /> **Note**:This parameter is mandatory technically, but there is no redirection actually happens with s2s\_flow=3, so you can pass dummy callback values, it will be working as s2s response only. |                                                            | `https://example.com/success` |
+  | furl<br />`mandatory`                                             | `String`<br />The Failure URL - page PayU will redirect to if the transaction fails. <br /> **Note**:This parameter is mandatory technically, but there is no redirection actually happens with s2s\_flow=3, so you can pass dummy callback values, it will be working as s2s response only.        | `https://example.com/failure`                              |                               |
+  | si<br />`mandatory`                       | This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain **1** for a successful consent. Without this parameter sent as 1, subscription cannot be set up.<br />**Notes**: You can modify or cancel existing recurring payment registration as described in [Manage Recurring Payment for Cards](http://docs.payu.in/reference/manage-recurring-payment-for-cards).                                                                                                                                                                              | `1`                                                                                                                                |
+  | si\_details<br />`mandatory`              | This parameter represents mandatory details which need to be passed during registration transaction from merchant system to PayU.<br />**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers (for more details refer – [RBI Notification](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)).<br />This is a JSON object and it includes a set of fields. For more information, refer to [SI Parameter JSON Details](http://docs.payu.in/reference/si-parameter-json-details). | See si\_details JSON Structure below                                                                                               |
+  | api\_version<br />`optional`              | `String`<br />The API version for subscription transactions.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | `7`                                                                                                                                |
+  | store\_card\_token<br />`conditional`     | `varchar`<br />This must include the Network token generated at your end.<br />This parameter is required if you are using the stored card token to register the mandate.                                                                                                                                                                                                                                                                                                                                                                                                                            | `1234 4567 2456 3566`                                                                                                              |
+  | storecard\_token\_type<br />`conditional` | `integer`<br />This parameter is used to specify the store card token type. It must include any of the following values:<br />- **0**: If PayU token is used.<br />- **1**: If Network token is used.<br />- **2**: If Issuer token is used.<br />This parameter is required if you are using the stored card token to register the mandate.                                                                                                                                                                                                                                                          | `1`                                                                                                                                |
+  | additional\_info<br />`conditional`       | `varchar`<br />This parameter will contain the additional information in the following JSON format: `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}`<br />This parameter is required if you are using the stored card token to register the mandate, where network or issuer token is used.                                                                                                                                                                                                                                                              | `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}`                                      |
+  | free\_trial<br />`conditional`            | This is mandatory only if the merchant wants to support free trial use case with card and net banking together that too on PayU Hosted Checkout integration.<br />In this case, PayU adjusts the transaction amount as INR 2.00 for cards. INR 0.00 for Net Banking and UPI registration irrespective of what amount is passed against the amount field in the request.<br />This parameter has no significance in the case of seamless flow.                                                                                                                                                         | `1`    |
+  | udf1<br />`optional but recommended for higher approval rate`     | `String`<br />The Permanent Account Number (PAN - primary taxation ID in India) of the buyer. Character limit: 10                                                                                                                                                                                   | ABCDE1234K                                                 |                               |
+  | udf2<br />`optional`                                              | `String`<br />User-defined field for storing transaction-specific data. Character limit: 255.                                                                                                                                                                                                       | Additional data                                            |                               |
+  | udf3<br />`optional but recommended for higher approval rate`     | `String`<br />Date of Birth (DOB) of buyer in DD-MM-YYYY format.                                                                                                                                                                                                                                    | 02-02-1980                                                 |                               |
+  | udf4<br />`mandatory for payment aggregators`                     | `String`<br />End merchant legal entity name. Character limit: 255.                                                                                                                                                                                                                                 | XYZ Pvt. Ltd.                                              |                               |
+  | udf5<br />`mandatory`                                             | `String`<br />Contains invoice ID for the transaction. Invoice ID should be the ID present on the invoice issued to the customer. Character limit: 255.                                                                                                                                             | INV123456                                                  |                               |
+  | buyer\_type\_business<br />`optional for B2B transactions`        | `Binary`<br />Send as "1" if the buyer is a business. Default is "0".<br />**Note**: This will be included in hash if posted.                                                                                                                                                                       | 1                                                          |                               |
+  | udf\_params<br />`optional`                                       | `String JSON`<br />UDF7 value to capture "Import or Export Code" of the buyer. UDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports).                                                                                                                            | `{"udf7":"0100000029",`<br /> `"udf8":"99953729071"}`      |                               |
+  | hash<br />`mandatory`                                             | `String`<br />SHA-512 hash calculated by the merchant. See Hash Generation section below.                                                                                                                                                                                                           | Your Generated Hash                                        |                               |
+
+  <br />
+##### si_details JSON Structure
+  <Accordion title="si_details JSON Structure" icon="fa-code">
+    The `si_details` parameter must contain the subscription billing details in the following JSON format:
+
+    ```json
+    {
+      "billingAmount": "100.00",
+      "billingCurrency": "INR",
+      "billingCycle": "MONTHLY",
+      "billingInterval": 1,
+      "paymentStartDate": "2025-01-15",
+      "paymentEndDate": "2027-12-01"
+    }
+    ```
+
+    | Field            | Description                                                                                                                                                                                   | Required |
+    | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+    | billingAmount    | The maximum amount that can be debited for each recurring payment. This is typically the subscription amount.                                                                                  | Yes      |
+    | billingCurrency  | Currency code for the billing amount. Use `INR` for Indian Rupees.                                                                                                                             | Yes      |
+    | billingCycle     | Frequency of the recurring payment. Possible values: `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ADHOC`.                                                                                          | Yes      |
+    | billingInterval  | The interval between billing cycles. For example, if billingCycle is MONTHLY and billingInterval is 2, the customer will be billed every 2 months.                                            | Yes      |
+    | paymentStartDate | The date from which the recurring payments will start. Format: `YYYY-MM-DD`.                                                                                                                   | Yes      |
+    | paymentEndDate   | The date until which the recurring payments will continue. Format: `YYYY-MM-DD`.                                                                                                               | Yes      |
+  </Accordion>
+#### authentication_info JSON Structure
+  <Accordion title="authentication_info JSON Structure" icon="fa-code">
+    The `authentication_info` parameter must contain the 3DS authentication data received from your MPI/3DS Server in the following JSON format:
+
+    ```json
+    {
+      "eci": "05",
+      "cavv": "AAABAWFlmQAAAABjRWWZEEFgFz+=",
+      "flowType": "Frictionless",
+      "threeDSTransID": "67b4c71f-19bf-4d97-bd09-4e3687dc9e42",
+      "threeDSServerTransID": "eea30d14-71cf-41af-b961-f95b7d67dc93",
+      "threeDSTransStatus": "Y",
+      "threeDSTransStatusReason": "01",
+      "acquirer_bin": "401200",
+      "additionalinfo": {
+        "authudf2": "custom_auth_data"
+      }
+    }
+    ```
+
+    | Field                    | Description                                                                                                                                        | Required |
+    | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+    | eci                      | Electronic Commerce Indicator. Values: `05`/`02` (Authenticated), `06`/`01` (Attempted), `07`/`00` (Not Authenticated)                             | Yes      |
+    | cavv                     | Cardholder Authentication Verification Value from 3DS Server                                                                                       | Yes      |
+    | flowType                 | Authentication flow type: `Frictionless` or `Challenge`                                                                                            | Yes      |
+    | threeDSTransID           | 3DS Transaction ID                                                                                                                                 | Yes      |
+    | threeDSServerTransID     | 3DS Server Transaction ID                                                                                                                          | Yes      |
+    | threeDSTransStatus       | Transaction status: `Y` (Authenticated), `A` (Attempted), `N` (Not Authenticated), `U` (Technical Error), `R` (Rejected), `C` (Challenge Required) | Yes      |
+    | threeDSTransStatusReason | Status reason code (01-99)                                                                                                                         | No       |
+    | acquirer\_bin            | Acquirer BIN                                                                                                                                       | No       |
+    | additionalinfo           | Additional authentication data as key-value pairs                                                                                                  | No       |
+  </Accordion>
+
+  <Accordion title="threeDS2RequestData JSON Structure" icon="fa-code">
+    The `threeDS2RequestData` parameter contains the 3DS version and device channel:
+
+    ```json
+    {
+      "threeDSVersion": "2.2.0",
+      "deviceChannel": "BRW"
+    }
+    ```
+
+    | Field          | Description                            | Values                               |
+    | -------------- | -------------------------------------- | ------------------------------------ |
+    | threeDSVersion | 3DS Protocol version                   | `2.1.0`, `2.2.0`                     |
+    | deviceChannel  | Device channel used for authentication | `BRW` (Browser), `APP` (Application) |
+  </Accordion>
+
+  <Accordion title="ECI Values Reference" icon="fa-info-circle">
+    | Network    | Authenticated | Attempted | Not Authenticated |
+    | ---------- | ------------- | --------- | ----------------- |
+    | Visa       | 05            | 06        | 07                |
+    | Mastercard | 02            | 01        | 00                |
+    | AMEX       | 05            | 06        | 07                |
+  </Accordion>
+
+  <Accordion title="Hash Generation" icon="fa-lock">
+    <PACB_Hashing />
+
+    For Direct Authorization with PACB and Subscriptions, the hash is calculated using the following formula:
+
+    **Standard formula with si_details:**
+
+    ```
+    sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||||si_details|salt)
+    ```
+
+    **With buyer\_type\_business:**
+
+    ```
+    sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||||si_details|salt|buyer_type_business)
+    ```
+
+    **With udf\_params and buyer\_type\_business:**
+
+    ```
+    sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|si_details|salt|udf_params|buyer_type_business)
+    ```
+
+    <Callout icon="📘" theme="info">
+      **Reference:** PayU recommends you to use PayU Hash Verification Tool to verify the hashing. For more information, refer to [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
+    </Callout>
+  </Accordion>
+</Accordion>
+
+<Accordion title="Sample Request" icon="fa-code">
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  --data-urlencode 'key=JPM7Fg' \
+  --data-urlencode 'txnid=PACB_DA_SUB_20240101_12345' \
+  --data-urlencode 'amount=100.00' \
+  --data-urlencode 'firstname=Ashish' \
+  --data-urlencode 'lastname=Kumar' \
+  --data-urlencode 'email=test@payu.in' \
+  --data-urlencode 'phone=9876543210' \
+  --data-urlencode 'productinfo=Cross-border Subscription' \
+  --data-urlencode 'address1=123 Main Street' \
+  --data-urlencode 'city=New Delhi' \
+  --data-urlencode 'state=Delhi' \
+  --data-urlencode 'country=IN' \
+  --data-urlencode 'zipcode=110001' \
+  --data-urlencode 'surl=https://example.com/success' \
+  --data-urlencode 'furl=https://example.com/failure' \
+  --data-urlencode 'pg=CC' \
+  --data-urlencode 'bankcode=CC' \
+  --data-urlencode 'ccnum=5123456789012346' \
+  --data-urlencode 'ccname=Ashish Kumar' \
+  --data-urlencode 'ccvv=123' \
+  --data-urlencode 'ccexpmon=10' \
+  --data-urlencode 'ccexpyr=2027' \
+  --data-urlencode 'txn_s2s_flow=3' \
+  --data-urlencode 'authentication_info={"eci":"05","cavv":"AAABAWFlmQAAAABjRWWZEEFgFz+=","flowType":"Frictionless","threeDSTransID":"67b4c71f-19bf-4d97-bd09-4e3687dc9e42","threeDSServerTransID":"eea30d14-71cf-41af-b961-f95b7d67dc93","threeDSTransStatus":"Y","threeDSTransStatusReason":"01","acquirer_bin":"401200"}' \
+  --data-urlencode 'threeDS2RequestData={"threeDSVersion":"2.2.0","deviceChannel":"BRW"}' \
+  --data-urlencode 's2s_client_ip=10.200.12.12' \
+  --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' \
+  --data-urlencode 'si=1' \
+  --data-urlencode 'si_details={"billingAmount":"100.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-01-15","paymentEndDate":"2027-12-01"}' \
+  --data-urlencode 'api_version=7' \
+  --data-urlencode 'udf1=ABCDE1234K' \
+  --data-urlencode 'udf2=' \
+  --data-urlencode 'udf3=02-02-1980' \
+  --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+  --data-urlencode 'udf5=INV123456' \
+  --data-urlencode 'buyer_type_business=1' \
+  --data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
+  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
+  ```
+  ```python
+  import requests
+  import json
+  import hashlib
+
+  url = "https://test.payu.in/_payment"
+
+  headers = {
+      "accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+  }
+
+  # 3DS Authentication Info from your MPI/3DS Server
+  authentication_info = {
+      "eci": "05",
+      "cavv": "AAABAWFlmQAAAABjRWWZEEFgFz+=",
+      "flowType": "Frictionless",
+      "threeDSTransID": "67b4c71f-19bf-4d97-bd09-4e3687dc9e42",
+      "threeDSServerTransID": "eea30d14-71cf-41af-b961-f95b7d67dc93",
+      "threeDSTransStatus": "Y",
+      "threeDSTransStatusReason": "01",
+      "acquirer_bin": "401200"
+  }
+
+  # 3DS2 Request Data
+  three_ds2_request_data = {
+      "threeDSVersion": "2.2.0",
+      "deviceChannel": "BRW"
+  }
+
+  # Subscription Details (Standing Instruction)
+  si_details = {
+      "billingAmount": "100.00",
+      "billingCurrency": "INR",
+      "billingCycle": "MONTHLY",
+      "billingInterval": 1,
+      "paymentStartDate": "2025-01-15",
+      "paymentEndDate": "2027-12-01"
+  }
+
+  # UDF Params for IEC and Airway Bill
+  udf_params = {
+      "udf7": "0100000029",
+      "udf8": "99953729071"
+  }
+
+  # Calculate hash
+  key = "JPM7Fg"
+  salt = "YOUR_SALT"
+  txnid = "PACB_DA_SUB_20240101_12345"
+  amount = "100.00"
+  productinfo = "Cross-border Subscription"
+  firstname = "Ashish"
+  email = "test@payu.in"
+  udf1 = "ABCDE1234K"
+  udf5 = "INV123456"
+  si_details_str = json.dumps(si_details)
+
+  hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}||02-02-1980|XYZ Pvt. Ltd.|{udf5}|||||{si_details_str}|{salt}|1"
+  hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
+
+  data = {
+      "key": key,
+      "txnid": txnid,
+      "amount": amount,
+      "firstname": firstname,
+      "lastname": "Kumar",
+      "email": email,
+      "phone": "9876543210",
+      "productinfo": productinfo,
+      "address1": "123 Main Street",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "country": "IN",
+      "zipcode": "110001",
+      "surl": "https://example.com/success",
+      "furl": "https://example.com/failure",
+      "pg": "CC",
+      "bankcode": "CC",
+      "ccnum": "5123456789012346",
+      "ccname": "Ashish Kumar",
+      "ccvv": "123",
+      "ccexpmon": "10",
+      "ccexpyr": "2027",
+      "txn_s2s_flow": "3",
+      "authentication_info": json.dumps(authentication_info),
+      "threeDS2RequestData": json.dumps(three_ds2_request_data),
+      "s2s_client_ip": "10.200.12.12",
+      "s2s_device_info": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+      "si": "1",
+      "si_details": json.dumps(si_details),
+      "api_version": "7",
+      "udf1": udf1,
+      "udf2": "",
+      "udf3": "02-02-1980",
+      "udf4": "XYZ Pvt. Ltd.",
+      "udf5": udf5,
+      "buyer_type_business": "1",
+      "udf_params": json.dumps(udf_params),
+      "hash": hash_value
+  }
+
+  response = requests.post(url, headers=headers, data=data)
+
+  print("Status Code:", response.status_code)
+  print("Response:", response.text)
+  ```
+  ```java
+  import java.io.IOException;
+  import java.net.URI;
+  import java.net.URLEncoder;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.nio.charset.StandardCharsets;
+  import java.security.MessageDigest;
+  import java.util.LinkedHashMap;
+  import java.util.Map;
+  import java.util.stream.Collectors;
+
+  public class PACBDirectAuthSubscriptionPayment {
+      public static void main(String[] args) throws Exception {
+          String url = "https://test.payu.in/_payment";
+          
+          // Authentication Info JSON from MPI/3DS Server
+          String authenticationInfo = "{\"eci\":\"05\",\"cavv\":\"AAABAWFlmQAAAABjRWWZEEFgFz+=\",\"flowType\":\"Frictionless\",\"threeDSTransID\":\"67b4c71f-19bf-4d97-bd09-4e3687dc9e42\",\"threeDSServerTransID\":\"eea30d14-71cf-41af-b961-f95b7d67dc93\",\"threeDSTransStatus\":\"Y\",\"threeDSTransStatusReason\":\"01\",\"acquirer_bin\":\"401200\"}";
+          
+          // 3DS2 Request Data JSON
+          String threeDS2RequestData = "{\"threeDSVersion\":\"2.2.0\",\"deviceChannel\":\"BRW\"}";
+          
+          // Subscription Details (Standing Instruction)
+          String siDetails = "{\"billingAmount\":\"100.00\",\"billingCurrency\":\"INR\",\"billingCycle\":\"MONTHLY\",\"billingInterval\":1,\"paymentStartDate\":\"2025-01-15\",\"paymentEndDate\":\"2027-12-01\"}";
+          
+          // UDF Params
+          String udfParams = "{\"udf7\":\"0100000029\",\"udf8\":\"99953729071\"}";
+          
+          Map<String, String> formData = new LinkedHashMap<>();
+          formData.put("key", "JPM7Fg");
+          formData.put("txnid", "PACB_DA_SUB_20240101_12345");
+          formData.put("amount", "100.00");
+          formData.put("firstname", "Ashish");
+          formData.put("lastname", "Kumar");
+          formData.put("email", "test@payu.in");
+          formData.put("phone", "9876543210");
+          formData.put("productinfo", "Cross-border Subscription");
+          formData.put("address1", "123 Main Street");
+          formData.put("city", "New Delhi");
+          formData.put("state", "Delhi");
+          formData.put("country", "IN");
+          formData.put("zipcode", "110001");
+          formData.put("surl", "https://example.com/success");
+          formData.put("furl", "https://example.com/failure");
+          formData.put("pg", "CC");
+          formData.put("bankcode", "CC");
+          formData.put("ccnum", "5123456789012346");
+          formData.put("ccname", "Ashish Kumar");
+          formData.put("ccvv", "123");
+          formData.put("ccexpmon", "10");
+          formData.put("ccexpyr", "2027");
+          formData.put("txn_s2s_flow", "3");
+          formData.put("authentication_info", authenticationInfo);
+          formData.put("threeDS2RequestData", threeDS2RequestData);
+          formData.put("s2s_client_ip", "10.200.12.12");
+          formData.put("s2s_device_info", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
+          formData.put("si", "1");
+          formData.put("si_details", siDetails);
+          formData.put("api_version", "7");
+          formData.put("udf1", "ABCDE1234K");
+          formData.put("udf3", "02-02-1980");
+          formData.put("udf4", "XYZ Pvt. Ltd.");
+          formData.put("udf5", "INV123456");
+          formData.put("buyer_type_business", "1");
+          formData.put("udf_params", udfParams);
+          formData.put("hash", "YOUR_CALCULATED_HASH");
+          
+          String formBody = formData.entrySet()
+              .stream()
+              .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" + 
+                        URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+              .collect(Collectors.joining("&"));
+          
+          HttpClient client = HttpClient.newHttpClient();
+          HttpRequest request = HttpRequest.newBuilder()
+              .uri(URI.create(url))
+              .header("accept", "application/json")
+              .header("Content-Type", "application/x-www-form-urlencoded")
+              .POST(HttpRequest.BodyPublishers.ofString(formBody))
+              .build();
+          
+          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+          
+          System.out.println("Status Code: " + response.statusCode());
+          System.out.println("Response: " + response.body());
+      }
+  }
+  ```
+  ```php
+  <?php
+
+  $url = "https://test.payu.in/_payment";
+
+  // Authentication Info from MPI/3DS Server
+  $authenticationInfo = json_encode([
+      "eci" => "05",
+      "cavv" => "AAABAWFlmQAAAABjRWWZEEFgFz+=",
+      "flowType" => "Frictionless",
+      "threeDSTransID" => "67b4c71f-19bf-4d97-bd09-4e3687dc9e42",
+      "threeDSServerTransID" => "eea30d14-71cf-41af-b961-f95b7d67dc93",
+      "threeDSTransStatus" => "Y",
+      "threeDSTransStatusReason" => "01",
+      "acquirer_bin" => "401200"
+  ]);
+
+  // 3DS2 Request Data
+  $threeDS2RequestData = json_encode([
+      "threeDSVersion" => "2.2.0",
+      "deviceChannel" => "BRW"
+  ]);
+
+  // Subscription Details (Standing Instruction)
+  $siDetails = json_encode([
+      "billingAmount" => "100.00",
+      "billingCurrency" => "INR",
+      "billingCycle" => "MONTHLY",
+      "billingInterval" => 1,
+      "paymentStartDate" => "2025-01-15",
+      "paymentEndDate" => "2027-12-01"
+  ]);
+
+  // UDF Params
+  $udfParams = json_encode([
+      "udf7" => "0100000029",
+      "udf8" => "99953729071"
+  ]);
+
+  // Calculate hash
+  $key = "JPM7Fg";
+  $salt = "YOUR_SALT";
+  $txnid = "PACB_DA_SUB_20240101_12345";
+  $amount = "100.00";
+  $productinfo = "Cross-border Subscription";
+  $firstname = "Ashish";
+  $email = "test@payu.in";
+  $udf1 = "ABCDE1234K";
+  $udf5 = "INV123456";
+
+  $hashString = "$key|$txnid|$amount|$productinfo|$firstname|$email|$udf1||02-02-1980|XYZ Pvt. Ltd.|$udf5|||||$siDetails|$salt|1";
+  $hash = hash('sha512', $hashString);
+
+  $data = array(
+      'key' => $key,
+      'txnid' => $txnid,
+      'amount' => $amount,
+      'firstname' => $firstname,
+      'lastname' => 'Kumar',
+      'email' => $email,
+      'phone' => '9876543210',
+      'productinfo' => $productinfo,
+      'address1' => '123 Main Street',
+      'city' => 'New Delhi',
+      'state' => 'Delhi',
+      'country' => 'IN',
+      'zipcode' => '110001',
+      'surl' => 'https://example.com/success',
+      'furl' => 'https://example.com/failure',
+      'pg' => 'CC',
+      'bankcode' => 'CC',
+      'ccnum' => '5123456789012346',
+      'ccname' => 'Ashish Kumar',
+      'ccvv' => '123',
+      'ccexpmon' => '10',
+      'ccexpyr' => '2027',
+      'txn_s2s_flow' => '3',
+      'authentication_info' => $authenticationInfo,
+      'threeDS2RequestData' => $threeDS2RequestData,
+      's2s_client_ip' => '10.200.12.12',
+      's2s_device_info' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+      'si' => '1',
+      'si_details' => $siDetails,
+      'api_version' => '7',
+      'udf1' => $udf1,
+      'udf2' => '',
+      'udf3' => '02-02-1980',
+      'udf4' => 'XYZ Pvt. Ltd.',
+      'udf5' => $udf5,
+      'buyer_type_business' => '1',
+      'udf_params' => $udfParams,
+      'hash' => $hash
+  );
+
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'accept: application/json',
+      'Content-Type: application/x-www-form-urlencoded'
+  ));
+
+  $response = curl_exec($ch);
+  $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  curl_close($ch);
+
+  echo "Status Code: " . $httpCode . "\n";
+  echo "Response: " . $response . "\n";
+  ?>
+  ```
+</Accordion>
+
+<Accordion title="Response Parameters" icon="fa-table">
+  The Direct Authorization response is returned as a base64 encoded JSON string. After decoding, the response contains the following parameters:
+
+  | Parameter              | Description                                                                                         | Example                     |
+  | ---------------------- | --------------------------------------------------------------------------------------------------- | --------------------------- |
+  | status                 | `String`<br />Overall API status: `success` or `failure`                                            | `success`                   |
+  | result.mihpayid        | `String`<br />PayU's unique transaction ID                                                          | `16313939584`               |
+  | result.mode            | `String`<br />Payment mode used (`CC` for credit card)                                              | `CC`                        |
+  | result.status          | `String`<br />Transaction status: `success`, `failure`, or `pending`                                | `success`                   |
+  | result.txnid           | `String`<br />Merchant's transaction ID                                                             | `PACB_DA_SUB_20240101_12345`|
+  | result.amount          | `String`<br />Transaction amount                                                                    | `100.00`                    |
+  | result.payment\_source | `String`<br />Identifies the payment source. Will be `sist` for Subscription with Direct Auth       | `sist`                      |
+  | result.bank\_ref\_no   | `String`<br />Bank reference number for the transaction                                             | `221130127055`              |
+  | result.bankcode        | `String`<br />Bank code (card network)                                                              | `MAST`                      |
+  | result.error           | `String`<br />Error code. `E000` indicates no error                                                 | `E000`                      |
+  | result.error\_Message  | `String`<br />Error message description                                                             | `No Error`                  |
+  | result.unmappedstatus  | `String`<br />Detailed transaction status: `captured`, `auth`, `failed`                             | `captured`                  |
+  | result.card\_no        | `String`<br />Masked card number                                                                    | `XXXXXXXXXXXX2346`          |
+  | result.cardToken       | `String`<br />Token for the stored card (used for subsequent recurring payments)                    | `6a3b14bce0ae8634d70be`     |
+  | result.hash            | `String`<br />Response hash for verification                                                        | SHA-512 hash                |
+  | result.field7          | `String`<br />Authorization status                                                                  | `AUTHPOSITIVE`              |
+  | result.field8          | `String`<br />Bank response                                                                         | `APPROVED`                  |
+  | result.field9          | `String`<br />Transaction message                                                                   | `Transaction is Successful` |
+
+  ### Subscription Response Validation
+
+  For a successful subscription setup, ensure the following conditions are met in the response:
+
+  | Response Parameter | Expected Value                   | Description                                                                     |
+  | ------------------ | -------------------------------- | ------------------------------------------------------------------------------- |
+  | status             | success                          | Indicates that the transaction is successful                                    |
+  | cardToken          | \<card_token> sent by PayU       | Indicates that card details are saved correctly in PayU Database                |
+  | payment_source     | sist                             | Indicates that card details have been marked correctly for Standing Instruction |
+  | mihpayid           | \<mihpayid number> sent by PayU  | Indicates PayU's transaction acknowledgment for a Consent transaction           |
+
+  <Callout icon="📘" theme="info">
+    **Notes**:
+
+    * If any of the above four checks are not satisfied, that means the transaction has not been correctly authorized for Standing Instruction. The merchant must not consider this transaction eligible for the Recurring platform.
+    * Registration transaction must be successful in making it eligible for the Recurring platform.
+  </Callout>
+</Accordion>
+
+<Accordion title="Sample Response" icon="fa-code">
+  The Direct Authorization response is base64 encoded. After decoding:
+
+  ```json
+  {
+    "status": "success",
+    "result": {
+      "mihpayid": "16313939584",
+      "mode": "CC",
+      "status": "success",
+      "key": "JPM7Fg",
+      "txnid": "PACB_DA_SUB_20240101_12345",
+      "amount": "100.00",
+      "addedon": "2024-01-01 12:00:00",
+      "productinfo": "Cross-border Subscription",
+      "firstname": "Ashish",
+      "lastname": "Kumar",
+      "address1": "123 Main Street",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "country": "IN",
+      "zipcode": "110001",
+      "email": "test@payu.in",
+      "phone": "9876543210",
+      "udf1": "ABCDE1234K",
+      "udf2": "",
+      "udf3": "02-02-1980",
+      "udf4": "XYZ Pvt. Ltd.",
+      "udf5": "INV123456",
+      "card_no": "XXXXXXXXXXXX2346",
+      "cardToken": "6a3b14bce0ae8634d70be",
+      "card_token": "6a3b14bce0ae8634d70be",
+      "field6": "000",
+      "field7": "AUTHPOSITIVE",
+      "field8": "APPROVED",
+      "field9": "Transaction is Successful",
+      "payment_source": "sist",
+      "PG_TYPE": "CC-PG",
+      "error": "E000",
+      "error_Message": "No Error",
+      "net_amount_debit": "100",
+      "unmappedstatus": "captured",
+      "hash": "3f8fcdd67642b442db04201c1f53fbe6e7c249115fd718d7ccf58b78fea9039bfaafaf1c32ffa43865d95a85a083295c8286b0af476cc5fa98bc51244629a9d2",
+      "bank_ref_no": "240101127055",
+      "bank_ref_num": "240101127055",
+      "bankcode": "MAST"
+    }
+  }
+  ```
+</Accordion>
+
+***
+
+## Step 2: Check Response from PayU
+
+PayU marks the transaction status based on the response received from the bank. For Direct Authorization, the response is returned directly as a base64 encoded JSON string (not via redirect).
+
+### Decoding the Response
+
+The authorization response is base64 encoded. Decode it to get the JSON response:
+
+```python
+import base64
+import json
+
+response_text = "base64_encoded_response_string"
+decoded = base64.b64decode(response_text).decode('utf-8')
+data = json.loads(decoded)
+
+print(f"Status: {data['result']['status']}")
+print(f"PayU ID: {data['result']['mihpayid']}")
+print(f"Card Token: {data['result']['cardToken']}")
+print(f"Payment Source: {data['result']['payment_source']}")
+```
+
+### Verify Response Hash
+
+<Callout icon="⚠️" theme="warning">
+  **Important:** Always verify the response hash before accepting or rejecting the transaction to ensure the response authenticity.
+</Callout>
+
+The reverse hash formula for verification:
+
+```
+sha512(salt|status||||||udf10|udf9|udf8|udf7|udf6|udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+```
+
+<Callout icon="📘" theme="info">
+  **Note:** For Direct Authorization with Subscriptions, the `payment_source` field will be `sist` indicating Standing Instruction registration.
+</Callout>
+
+***
+
+## Step 3: Verify the Payment
+
+<PACB_Verify_Payment />
+
+***
+
+## Error Handling
+
+If any error message is displayed with an error code, refer to [Error Codes](ref:error-codes) to understand the reason. For error codes during various transaction stages, refer to [Transaction Stages - Error References](ref:transaction-stages-error-references-on-field7-field8).
+
+### Common Direct Authorization Errors
+
+| Error Code | Description                    | Resolution                                        |
+| ---------- | ------------------------------ | ------------------------------------------------- |
+| E000       | No Error                       | Transaction successful                            |
+| E001       | Invalid authentication_info    | Verify the JSON structure and all required fields |
+| E002       | Invalid ECI value              | Check ECI value matches the card network          |
+| E003       | CAVV validation failed         | Ensure CAVV from MPI is correct                   |
+| E004       | 3DS transaction status invalid | Verify threeDSTransStatus is Y or A               |
+
+### Common Subscription Errors
+
+| Error Code | Description                    | Resolution                                                    |
+| ---------- | ------------------------------ | ------------------------------------------------------------- |
+| E101       | Invalid si_details format      | Verify the JSON structure of si_details                       |
+| E102       | Missing billing parameters     | Ensure all required fields in si_details are provided         |
+| E103       | Invalid billing cycle          | Use valid values: DAILY, WEEKLY, MONTHLY, YEARLY, ADHOC       |
+| E104       | Invalid date format            | Ensure dates are in YYYY-MM-DD format                         |
+
+> 📘 **Reference**
+>
+> For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+
+***
+
+## Step 4: Update Invoice ID [Conditional]
+
+<Update_Invoice_ID />
+
+***
+
+## Step 5: Upload the Invoices [Optional]
+
+<Upload_Invoices />
+
+***
+
+## Webhook for Getting Transaction Details
+
+You can expose a webhook by requesting the PayU Integration team to configure the same against the **ws_online_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method.
+
+If the mandate is not confirmed by the customer or the mandate is confirmed by the customer, but the mandate registration is rejected from the banks, the status is communicated as a "failure" over webhook. For more information, refer to [Set up WebHook to Receive Cancellation or Modification Update from the Issuer Bank](ref:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank).
+
+***
+
+<br />
