@@ -12,6 +12,7 @@ hidden: false
 metadata:
   robots: index
 ---
+
 The **Enquire Transaction** API allows the merchant to verify the status of a specific loyalty transaction either using the `loyaltyTxnId` or `payuTxnId` parameter. Both parameters are optional but at least one must be provided. The use cases for this API are:
 
 * Reconciliation or to confirm the final status of loyalty transactions
@@ -19,10 +20,10 @@ The **Enquire Transaction** API allows the merchant to verify the status of a sp
 
 ## Environment
 
-|            |                                                    |
-| :--------- | :------------------------------------------------- |
-| Production | https://api.payu.in/loyalty-points/payment/v1/enquiry |
-| Test       | https://apitest.payu.in/loyalty-points/payment/v1/enquiry |
+|            |                                                                                                                        |
+| :--------- | :--------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://api.payu.in/loyalty-points/payment/v1/enquiry](https://api.payu.in/loyalty-points/payment/v1/enquiry)         |
+| Test       | [https://apitest.payu.in/loyalty-points/payment/v1/enquiry](https://apitest.payu.in/loyalty-points/payment/v1/enquiry) |
 
 HTTP Method: **POST**
 
@@ -93,7 +94,7 @@ HTTP Method: **POST**
 ### Non-seamless integration
 
 ```curl
-curl -X POST "{{loyalty-service-url}}/payment/v1/enquiry" \
+curl -X POST "https://apitest.payu.in/loyalty-points/payment/v1/enquiry" \
   -H "Content-Type: application/json" \
   -H "mid: YOUR_MERCHANT_ID" \
   -d '{
@@ -105,7 +106,7 @@ curl -X POST "{{loyalty-service-url}}/payment/v1/enquiry" \
 import requests
 import json
 
-url = "{{loyalty-service-url}}/payment/v1/enquiry"
+url = "https://apitest.payu.in/loyalty-points/payment/v1/enquiry"
 
 headers = {
   "Content-Type": "application/json",
@@ -133,7 +134,7 @@ class Program
     static async Task Main(string[] args)
     {
         var client = new HttpClient();
-        var url = "{{loyalty-service-url}}/payment/v1/enquiry";
+        var url = "https://apitest.payu.in/loyalty-points/payment/v1/enquiry";
         
         client.DefaultRequestHeaders.Add("Content-Type", "application/json");
         client.DefaultRequestHeaders.Add("mid", "YOUR_MERCHANT_ID");
@@ -155,7 +156,7 @@ class Program
 }
 ```
 ```javascript
-const url = "{{loyalty-service-url}}/payment/v1/enquiry";
+const url = "https://apitest.payu.in/loyalty-points/payment/v1/enquiry";
 
 const headers = {
   "Content-Type": "application/json",
@@ -194,7 +195,7 @@ import com.google.gson.Gson;
 
 public class ApiRequest {
     public static void main(String[] args) throws Exception {
-        URL url = new URL("{{loyalty-service-url}}/payment/v1/enquiry");
+        URL url = new URL("https://apitest.payu.in/loyalty-points/payment/v1/enquiry");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
@@ -228,7 +229,7 @@ public class ApiRequest {
 ```php
 <?php
 
-$url = "{{loyalty-service-url}}/payment/v1/enquiry";
+$url = "https://apitest.payu.in/loyalty-points/payment/v1/enquiry";
 
 $headers = [
   "Content-Type" => "application/json",
@@ -260,7 +261,7 @@ echo "Response: " . $response . "\n";
 ### Seamless integration
 
 ```curl
-curl -X POST "{{loyalty-service-url}}/payment/v1/enquiry" \
+curl -X POST "https://apitest.payu.in/loyalty-points/payment/v1/enquiry" \
   -H "Content-Type: application/json" \
   -H "Date: Wed, 08 Sep 2025 13:22:43 GMT" \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\"" \
@@ -273,7 +274,7 @@ curl -X POST "{{loyalty-service-url}}/payment/v1/enquiry" \
 import requests
 import json
 
-url = "{{loyalty-service-url}}/payment/v1/enquiry"
+url = "https://apitest.payu.in/loyalty-points/payment/v1/enquiry"
 
 headers = {
   "Content-Type": "application/json",
@@ -302,7 +303,7 @@ class Program
     static async Task Main(string[] args)
     {
         var client = new HttpClient();
-        var url = "{{loyalty-service-url}}/payment/v1/enquiry";
+        var url = "https://apitest.payu.in/loyalty-points/payment/v1/enquiry";
         
         client.DefaultRequestHeaders.Add("Content-Type", "application/json");
         client.DefaultRequestHeaders.Add("Date", "Wed, 08 Sep 2025 13:22:43 GMT");
@@ -325,7 +326,7 @@ class Program
 }
 ```
 ```javascript
-const url = "{{loyalty-service-url}}/payment/v1/enquiry";
+const url = "https://apitest.payu.in/loyalty-points/payment/v1/enquiry";
 
 const headers = {
   "Content-Type": "application/json",
@@ -365,7 +366,7 @@ import com.google.gson.Gson;
 
 public class ApiRequest {
     public static void main(String[] args) throws Exception {
-        URL url = new URL("{{loyalty-service-url}}/payment/v1/enquiry");
+        URL url = new URL("https://apitest.payu.in/loyalty-points/payment/v1/enquiry");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
@@ -400,7 +401,7 @@ public class ApiRequest {
 ```php
 <?php
 
-$url = "{{loyalty-service-url}}/payment/v1/enquiry";
+$url = "https://apitest.payu.in/loyalty-points/payment/v1/enquiry";
 
 $headers = [
   "Content-Type" => "application/json",
@@ -432,7 +433,7 @@ echo "Response: " . $response . "\n";
 
 ## Response parameters
 
-<Table>
+<Table align={["left","left","left"]}>
   <thead>
     <tr>
       <th>
@@ -489,10 +490,10 @@ echo "Response: " . $response . "\n";
 
       <td>
         `"1821b1e2-
-        34dd-
-        47e3-
-        9b54-
-        b56b9d352a6b"`
+                34dd-
+                47e3-
+                9b54-
+                b56b9d352a6b"`
       </td>
     </tr>
 
@@ -563,10 +564,10 @@ echo "Response: " . $response . "\n";
 
       <td>
         `"fdcd69afce1ac4910d89772
-        7f9c2beb372b9569df7fcad37
-        4be52ab1d6ee6588771783e0e1
-        574c49dc40d65d8bca5baf4787
-        f2515d4cba6ebf1dc1d859f98c8f"`
+                7f9c2beb372b9569df7fcad37
+                4be52ab1d6ee6588771783e0e1
+                574c49dc40d65d8bca5baf4787
+                f2515d4cba6ebf1dc1d859f98c8f"`
       </td>
     </tr>
 
