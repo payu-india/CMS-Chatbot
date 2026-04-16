@@ -12,13 +12,9 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: Refund Status API
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
+
+***
+
 The **Refund Status** API is used to fetch the status of a previously initiated refund.
 
 ### Response States
@@ -29,10 +25,10 @@ The **Refund Status** API is used to fetch the status of a previously initiated 
 
 ## Environment
 
-|            |                                                                  |
-| :--------- | :--------------------------------------------------------------- |
-| Production | https://api.payu.in/loyalty-points/refund/v1/\{loyaltyRefundId} |
-| Test       | https://apitest.payu.in/loyalty-points/refund/v1/\{loyaltyRefundId} |
+|            |                                                                                                                                            |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://api.payu.in/loyalty-points/refund/v1/\{loyaltyRefundId}](https://api.payu.in/loyalty-points/refund/v1/\{loyaltyRefundId})         |
+| Test       | [https://apitest.payu.in/loyalty-points/refund/v1/\{loyaltyRefundId}](https://apitest.payu.in/loyalty-points/refund/v1/\{loyaltyRefundId}) |
 
 HTTP Method: **GET**
 
