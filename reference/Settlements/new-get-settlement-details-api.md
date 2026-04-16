@@ -82,7 +82,7 @@ curl -X POST  "https://apitest.payu.in/merchant/postservice?form=2&settledOn=202
 
 | Parameter | Description                                                                                                                                      |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| status    | Response status and it returns either 1 or 0, where 1=Success and 0=Failure.                                                                     |
+| status    | Response status and it returns either 1 or 0, where 0=Success and 1=Failure.                                                                     |
 | msg       | Response message                                                                                                                                 |
 | result    | Main response data container in a JSON format. For more information, refer to [result JSON Fields Description](#result-json-fields-descriptions) |
 
