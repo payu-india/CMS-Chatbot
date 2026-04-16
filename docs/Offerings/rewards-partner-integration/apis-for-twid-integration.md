@@ -7,11 +7,10 @@ metadata:
 ---
 The following APIs used for TWID Integration:
 
-<br />
-
-**Info**
+**Spend or Fetch Balance**
 
 * [Fetch Balance All API](https://docs.payu.in/reference/fetch-balance-all-api-twid)
+* Spend with Rewards
 * [Enquire Transaction API ](https://docs.payu.in/reference/enquire-transaction-api-twid)
 
 **Refunds**
