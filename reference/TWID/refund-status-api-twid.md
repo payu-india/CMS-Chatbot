@@ -8,6 +8,13 @@ metadata:
 ---
 title: Refund Status API
 deprecated: false
+hidden: true
+metadata:
+  robots: index
+---
+---
+title: Refund Status API
+deprecated: false
 hidden: false
 metadata:
   robots: index
@@ -84,7 +91,7 @@ HTTP Method: **GET**
 ### Non-seamless integration
 
 ```curl
-curl -X GET "{{loyalty-service-url}}/refund/v1/1213" \
+curl -X GET "https://apitest.payu.in/loyalty-points/refund/v1/1213" \
   -H "Content-Type: application/json" \
   -H "mid: YOUR_MERCHANT_ID"
 ```
@@ -92,7 +99,7 @@ curl -X GET "{{loyalty-service-url}}/refund/v1/1213" \
 import requests
 import json
 
-url = "{{loyalty-service-url}}/refund/v1/1213"
+url = "https://apitest.payu.in/loyalty-points/refund/v1/1213"
 
 headers = {
   "Content-Type": "application/json",
@@ -113,7 +120,7 @@ class Program
     static async Task Main(string[] args)
     {
         var client = new HttpClient();
-        var url = "{{loyalty-service-url}}/refund/v1/1213";
+        var url = "https://apitest.payu.in/loyalty-points/refund/v1/1213";
         
         client.DefaultRequestHeaders.Add("Content-Type", "application/json");
         client.DefaultRequestHeaders.Add("mid", "YOUR_MERCHANT_ID");
@@ -127,7 +134,7 @@ class Program
 }
 ```
 ```javascript
-const url = "{{loyalty-service-url}}/refund/v1/1213";
+const url = "https://apitest.payu.in/loyalty-points/refund/v1/1213";
 
 const headers = {
   "Content-Type": "application/json",
@@ -159,7 +166,7 @@ import java.nio.charset.StandardCharsets;
 
 public class ApiRequest {
     public static void main(String[] args) throws Exception {
-        URL url = new URL("{{loyalty-service-url}}/refund/v1/1213");
+        URL url = new URL("https://apitest.payu.in/loyalty-points/refund/v1/1213");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         
@@ -184,7 +191,7 @@ public class ApiRequest {
 ```php
 <?php
 
-$url = "{{loyalty-service-url}}/refund/v1/1213";
+$url = "https://apitest.payu.in/loyalty-points/refund/v1/1213";
 
 $headers = [
   "Content-Type" => "application/json",
@@ -210,7 +217,7 @@ echo "Response: " . $response . "\n";
 ### Seamless integration
 
 ```curl
-curl -X GET "{{loyalty-service-url}}/refund/v1/1213" \
+curl -X GET "https://apitest.payu.in/loyalty-points/refund/v1/1213" \
   -H "Content-Type: application/json" \
   -H "Date: Wed, 08 Sep 2025 13:22:43 GMT" \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\""
@@ -219,7 +226,7 @@ curl -X GET "{{loyalty-service-url}}/refund/v1/1213" \
 import requests
 import json
 
-url = "{{loyalty-service-url}}/refund/v1/1213"
+url = "https://apitest.payu.in/loyalty-points/refund/v1/1213"
 
 headers = {
   "Content-Type": "application/json",
@@ -241,7 +248,7 @@ class Program
     static async Task Main(string[] args)
     {
         var client = new HttpClient();
-        var url = "{{loyalty-service-url}}/refund/v1/1213";
+        var url = "https://apitest.payu.in/loyalty-points/refund/v1/1213";
         
         client.DefaultRequestHeaders.Add("Content-Type", "application/json");
         client.DefaultRequestHeaders.Add("Date", "Wed, 08 Sep 2025 13:22:43 GMT");
@@ -256,7 +263,7 @@ class Program
 }
 ```
 ```javascript
-const url = "{{loyalty-service-url}}/refund/v1/1213";
+const url = "https://apitest.payu.in/loyalty-points/refund/v1/1213";
 
 const headers = {
   "Content-Type": "application/json",
@@ -289,7 +296,7 @@ import java.nio.charset.StandardCharsets;
 
 public class ApiRequest {
     public static void main(String[] args) throws Exception {
-        URL url = new URL("{{loyalty-service-url}}/refund/v1/1213");
+        URL url = new URL("https://apitest.payu.in/loyalty-points/refund/v1/1213");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         
@@ -315,7 +322,7 @@ public class ApiRequest {
 ```php
 <?php
 
-$url = "{{loyalty-service-url}}/refund/v1/1213";
+$url = "https://apitest.payu.in/loyalty-points/refund/v1/1213";
 
 $headers = [
   "Content-Type" => "application/json",
