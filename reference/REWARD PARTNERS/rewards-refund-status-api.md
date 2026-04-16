@@ -1,5 +1,5 @@
 ---
-title: Refund Status API
+title: Refund Status API - Rewards
 deprecated: false
 hidden: true
 metadata:
