@@ -12,21 +12,15 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: Redeem TWID Points API
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
+
 The **Redeem TWID Points** API is used to redeem or finalize TWID points that have previously been put on hold via the `Create Payment` API.
 
 ## Environment
 
-|            |                                                    |
-| :--------- | :------------------------------------------------- |
-| Production | https://api.payu.in/loyalty-points/payment/v1/continue |
-| Test       | https://apitest.payu.in/loyalty-points/payment/v1/continue |
+|            |                                                                                                                          |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------- |
+| Production | [https://api.payu.in/loyalty-points/payment/v1/continue](https://api.payu.in/loyalty-points/payment/v1/continue)         |
+| Test       | [https://apitest.payu.in/loyalty-points/payment/v1/continue](https://apitest.payu.in/loyalty-points/payment/v1/continue) |
 
 HTTP Method: **POST**
 
@@ -91,6 +85,7 @@ HTTP Method: **POST**
   </tbody>
 </Table>
 `}</HTMLBlock>
+
 ## Sample Request
 
 ### Non-seamless Integration
@@ -433,7 +428,6 @@ echo "Response: " . $response . "\n";
 ?>
 ```
 
-
 ## Response Parameters
 
 | Parameter          | Description                                                                           | Example                                       |
@@ -445,7 +439,6 @@ echo "Response: " . $response . "\n";
 | issueCode          | `String` - Error code (for failure responses)                                         | `"LS404-401"`                                 |
 | errorMessage       | `String` - Error description (for failure responses)                                  | `"Transaction details not present in the DB"` |
 | errorType          | `String` - Type of error (for failure responses)                                      | `"VALIDATION_EXCEPTION"`                      |
-
 
 ## Sample response
 
