@@ -1,7 +1,7 @@
 ---
-title: '[NEW]Settlement Detail Range API'
+title: Settlement Detail Range API
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Settlement Detail Range API
   keywords:
