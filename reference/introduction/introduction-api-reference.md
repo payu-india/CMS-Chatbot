@@ -57,7 +57,7 @@ PayU recommends you to follow these so that you will integrate easily:
 > * The example listed (like a cookie) in each parameter field is  for reference purposed only, so it is suggested to type the values similar to the listed example.
 > * Use only the the test card numbers, test UPI handle, test wallet, etc. in [API Reference,](/reference/) refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/e146999-api-reference-instructions.png" />
+<Image align="center" border={true} src="https://files.readme.io/e146999-api-reference-instructions.png" className="border" />
 
 ## List of PayU India APIs
 
@@ -83,9 +83,7 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        *
-          [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-
+        * [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
       </td>
     </tr>
 
@@ -95,9 +93,7 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        *
-          [Check Transaction APIs](ref:check-transaction-apis)
-
+        * [Check Transaction APIs](ref:check-transaction-apis)
       </td>
     </tr>
 
@@ -107,9 +103,7 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        *
-          [Create Payment Link API](ref:create-payment-links)
-
+        * [Create Payment Link API](ref:create-payment-links)
       </td>
     </tr>
 
@@ -119,9 +113,7 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        *
-          [Payment Consent Transaction using PayU Hosted Checkout](ref:payment-consent-transaction-payu-hosted)
-
+        * [Payment Consent Transaction using PayU Hosted Checkout](ref:payment-consent-transaction-payu-hosted)
       </td>
     </tr>
 
@@ -131,9 +123,7 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        *
-          [Associating Plan in Defined Subscription API](ref:associating-plan-in-defined-subscription-interface)
-
+        * [Associating Plan in Defined Subscription API](ref:associating-plan-in-defined-subscription-interface)
       </td>
     </tr>
 
@@ -143,9 +133,7 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        *
-          [Fetch Offers API](ref:fetch-offers-api)
-
+        * [Fetch Offers API](ref:fetch-offers-api)
       </td>
     </tr>
 
@@ -155,15 +143,11 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        *
-          [Model 2-Zero Code Change](ref:model-2-zero-code-change-for-vault-integration)
+        * [Model 2-Zero Code Change](ref:model-2-zero-code-change-for-vault-integration)
 
-            * 
-          [Get User Cards API](ref:get_user_cards_api)
+            *[Get User Cards API](ref:get_user_cards_api)
 
-            * 
-          [Process Transaction with a Saved Card](ref:process-transaction-with-a-saved-card)
-
+            *[Process Transaction with a Saved Card](ref:process-transaction-with-a-saved-card)
       </td>
     </tr>
 
@@ -173,9 +157,7 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        *
-          [Get Token API](ref:get_token_api)
-
+        * [Get Token API](ref:get_token_api)
       </td>
     </tr>
 
@@ -185,9 +167,7 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        *
-          [Split During Transaction using _payment](ref:split-during-transaction-using-_payment)
-
+        * [Split During Transaction using _payment](ref:split-during-transaction-using-_payment)
       </td>
     </tr>
 
@@ -197,9 +177,7 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        *
-          [Fetch Balance API](https://docs.payu.in/reference/fetch-balance-api)
-
+        * [Fetch Balance API](https://docs.payu.in/reference/fetch-balance-api)
       </td>
     </tr>
 
@@ -209,9 +187,7 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        *
-          [Invoice Upload API](ref:invoice_upload_api)
-
+        * [Invoice Upload API](ref:invoice_upload_api)
       </td>
     </tr>
 
@@ -221,21 +197,30 @@ The API Reference is categorized into following:
       </td>
 
       <td>
-        *
-          [Pre-Authorize Payment](ref:pre_authorize_payment)
-
+        * [Pre-Authorize Payment](ref:pre_authorize_payment)
       </td>
     </tr>
 
     <tr>
       <td>
-        **Payouts APIS**
+        **Payouts APIs**
       </td>
 
       <td>
-        *
-          [Generate Token using Merchant's Credentials API](ref:generate-token-using-merchants-credentials-api)
+        * [Generate Token using Merchant's Credentials API](ref:generate-token-using-merchants-credentials-api)
+      </td>
+    </tr>
 
+    <tr>
+      <td>
+        **Settlement APIs**
+      </td>
+
+      <td>
+        * [Settlement Transaction Details API](https://docs.payu.in/reference/settlement_transaction_details_api)
+        * [Settlement Detail Range API](https://docs.payu.in/reference/settlement-detail-range-api)
+        * [Merchant Upcoming and Pending Settlement API](https://docs.payu.in/reference/merchant_upcoming_settlement_api)
+        * [Release Settlement API](https://docs.payu.in/reference/release_settlement_api)
       </td>
     </tr>
   </tbody>
