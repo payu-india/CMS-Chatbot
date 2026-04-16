@@ -12,21 +12,17 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: Refund API - TWID
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
+
+***
+
 The **Refund** API is used to initiate a refund request for a loyalty-based transaction.
 
 ## Environment
 
-|            |                                          |
-| :--------- | :--------------------------------------- |
-| Production | https://api.payu.in/loyalty-points/refund/v1 |
-| Test       | https://apitest.payu.in/loyalty-points/refund/v1 |
+|            |                                                                                                      |
+| :--------- | :--------------------------------------------------------------------------------------------------- |
+| Production | [https://api.payu.in/loyalty-points/refund/v1](https://api.payu.in/loyalty-points/refund/v1)         |
+| Test       | [https://apitest.payu.in/loyalty-points/refund/v1](https://apitest.payu.in/loyalty-points/refund/v1) |
 
 ## Request header
 
