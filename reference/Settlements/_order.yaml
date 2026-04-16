@@ -1,5 +1,6 @@
 - settlement_transaction_details_api
 - settlement-detail-range-api
+- merchant_upcoming_settlement_api
 - get-token-api-for-general-apis
 - get_settlement_details_api
 - new-get-settlement-details-api
@@ -8,4 +9,3 @@
 - old_merchant_upcoming_settlement_api
 - release_settlement_api
 - settlement-reconciliation-api
-- merchant_upcoming_settlement_api
