@@ -187,14 +187,15 @@ curl --location 'https://apitest.payu.in/settlement/range?dateFrom=2025-08-26&da
 
 ## Response Parameters
 
-| Parameter | Description                                                                                                                                      |
-  | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | status    | Response status and it returns either 1 or 0, where 1=Success and 0=Failure.                                                                     |
-  | msg       | Response message                                                                                                                                 |
-  | data    | Main response data container in a JSON format. For more information, refer to [data JSON Fields Description](#data-json-fields-descriptions) |
+| Parameter | Description                                                                                                                                  |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| status    | Response status and it returns either 1 or 0, where 0=Success and 1=Failure.                                                                 |
+| msg       | Response message                                                                                                                             |
+| data      | Main response data container in a JSON format. For more information, refer to [data JSON Fields Description](#data-json-fields-descriptions) |
 
 ### data JSON Fields description
-| Field                | Description                                                                                                                                        | Example                    |
+
+| Field                    | Description                                                                                                                                        | Example                    |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | settlementId             | Unique identifier for the settlement batch. <code>string</code>                                                                                    | 12127298202508260245       |
 | settlementCompletedDate  | Date and time when settlement was completed. <code>string</code>                                                                                   | 2025-08-26 02:51:22.000000 |
