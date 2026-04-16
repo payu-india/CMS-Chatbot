@@ -1,5 +1,5 @@
 ---
-title: Refund API - TWID
+title: Refund API - Rewards
 deprecated: false
 hidden: true
 metadata:
