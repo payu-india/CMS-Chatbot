@@ -25,7 +25,7 @@ metadata:
   robots: index
 ---
 
-Integrate TWID pay to enable customers to redeem their TWID or Zillion loyalty points during checkout. Follow these sequential steps to implement a complete TWID pay solution.
+Integrate TWID pay to enable customers to redeem their TWID or Zillion loyalty points during checkout. Follow these sequential steps to implement a complete TWID or Zillon pay solution.
 
 This section describes the complete integration workflow for TWID Rewards Seamless Transactions. This integration involves the following steps:
 
