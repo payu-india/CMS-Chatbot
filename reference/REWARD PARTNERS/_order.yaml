@@ -4,5 +4,5 @@
 - hold-twid-points-api
 - redeem-twid-points-api
 - enquire-transaction-api-twid
-- refund-api-twid
+- rewards-refund-api
 - refund-status-api-twid
