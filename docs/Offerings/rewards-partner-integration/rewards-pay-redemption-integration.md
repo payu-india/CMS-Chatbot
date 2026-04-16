@@ -25,7 +25,7 @@ metadata:
   robots: index
 ---
 
-Integrate TWID pay to enable customers to redeem their TWID or Zillion loyalty points during checkout. Follow these sequential steps to implement a complete TWID or Zillon pay solution.
+Integrate TWID pay to enable customers to redeem their TWID loyalty points during checkout. Follow these sequential steps to implement a complete TWID pay solution.
 
 This section describes the complete integration workflow for TWID Rewards Seamless Transactions. This integration involves the following steps:
 
@@ -426,6 +426,48 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
   ```
 </Accordion>
 
+<Accordion title="Sample JSON for Burn Points with Card (TWID)" icon="fa-code">
+  ```JSON
+  {
+    "key": "KOEfPI",
+    "txnid": "ram1234",
+    "productinfo": "Product Info",
+    "amount": "100",
+    "email": "test@example.com",
+    "firstname": "Payu-Admin",
+    "lastname": "",
+    "phone": "880**08522",
+    "surl": "https://pp56admin.payu.in/test_response",
+    "furl": "https://pp56admin.payu.in/test_response",
+    "pg": "SPLITPAY",
+    "bankcode": "TWIDX",
+    "txn_s2s_flow": "4",
+    "splitInfo": {
+      "childPaymentInstruments": [
+        {
+          "name": "CC",
+          "bankCode": "CC",
+          "cardNumber": "5123456789012346",
+          "cvv": "345",
+          "validThrough": "07/25",
+          "ownerName": "Payu",
+          "transactionAmount": "412"
+        },
+        {
+          "name": "RD",
+          "bankCode": "TWIDLS",
+          "transactionAmount": "100",
+          "rewardId": 269434,
+          "cardBin": "512345",
+          "cardLastFour": "2346"
+        }
+      ]
+    },
+    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
+  }
+  ```
+</Accordion>
+
 <Accordion title="Sample JSON for Spend Points along with Card (Partly)" icon="fa-code">
   ```JSON
   "splitInfo": {
@@ -517,6 +559,45 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
           "name": "RD",
           "bankCode": "ZLS",
           "transactionAmount": "1"
+        }
+      ]
+    },
+    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
+  }
+  ```
+</Accordion>
+
+<Accordion title="Sample JSON for Burn Points with UPI (TWID)" icon="fa-code">
+  ```json
+  {
+    "key": "KOEfPI",
+    "txnid": "ram1234",
+    "productinfo": "Product Info",
+    "amount": "100",
+    "email": "test@example.com",
+    "firstname": "Payu-Admin",
+    "lastname": "",
+    "phone": "9999999999",
+    "surl": "https://pp56admin.payu.in/test_response",
+    "furl": "https://pp56admin.payu.in/test_response",
+    "pg": "SPLITPAY",
+    "bankcode": "TWIDX",
+    "txn_s2s_flow": "4",
+    "splitInfo": {
+      "childPaymentInstruments": [
+        {
+          "name": "UPI",
+          "bankCode": "UPI",
+          "vpa": "kk@okaxis",
+          "transactionAmount": "412"
+        },
+        {
+          "name": "RD",
+          "bankCode": "TWIDLS",
+          "transactionAmount": "100",
+          "rewardId": 269434,
+          "cardBin": "512345",
+          "cardLastFour": "2346"
         }
       ]
     },
@@ -1263,7 +1344,7 @@ The authorization request is the final step of transaction processing. This agai
 <ReverseHashing />
 
 <Accordion title="Sample response (parsed)" icon="fa-code">
-  * Success scenario
+  * Success scenario (Zillion + UPI)
 
   ```
   {
@@ -1325,6 +1406,138 @@ The authorization request is the final step of transaction processing. This agai
       "name": "RD",
       "bankCode": "ZLS",
       "transactionAmount": "1"
+    }
+  }
+  }
+  ```
+
+  * Success scenario (Zillion + Cards)
+
+  ```
+  {
+  "mihpayid": "999091000010471",
+  "mode": "SPLITPAY",
+  "status": "success",
+  "unmappedstatus": "success",
+  "key": "KOEfPI",
+  "txnid": " ram1234",
+  "amount": "100",
+  "discount": "0.00",
+  "net_amount_debit": "100",
+  "addedon": "2025-01-10 14:54:13",
+  "productinfo": "Product Info",
+  "firstname": "Payu-Admin",
+  "lastname": "",
+  "address1": "",
+  "address2": "",
+  "city": "",
+  "state": "",
+  "country": "",
+  "zipcode": "",
+  "email": "test@example.com",
+  "phone": "8800108522",
+  "udf1": "",
+  "udf2": "",
+  "udf3": "",
+  "udf4": "",
+  "udf5": "",
+  "udf6": "",
+  "udf7": "",
+  "udf8": "",
+  "udf9": "",
+  "udf10": "",
+  "hash": "29efcd4f7a8a9a60a61481d70e21baf5ba6e7a472716d9b99bd911ef5390240411107b959e5bc8cdabc31463d150d4e02578349afa20529b18e271f60dd6db59",
+  "field1": "",
+  "field2": "",
+  "field3": "",
+  "field4": "",
+  "field5": "",
+  "field6": "",
+  "field7": "",
+  "field8": "",
+  "field9": "",
+  "payment_source": "payuS2S",
+  "PG_TYPE": "SPLITPAY-PG",
+  "bank_ref_num": "1254",
+  "error": "E000",
+  "bankcode": "ZRD",
+  "error_Message": "No Error",
+  "splitPayInfo": {
+    "cc": {
+      "name": "CC",
+      "bankCode": "CC",
+      "transactionAmount": "99"
+    },
+    "rd": {
+      "name": "RD",
+      "bankCode": "ZLS",
+      "transactionAmount": "1"
+    }
+  }
+  }
+  ```
+
+  * Success scenario (TWID + Cards)
+
+  ```
+  {
+  "mihpayid": "999091000010480",
+  "mode": "SPLITPAY",
+  "status": "success",
+  "unmappedstatus": "success",
+  "key": "KOEfPI",
+  "txnid": "ram1234",
+  "amount": "512",
+  "discount": "0.00",
+  "net_amount_debit": "512",
+  "addedon": "2025-01-10 15:00:00",
+  "productinfo": "Product Info",
+  "firstname": "Payu-Admin",
+  "lastname": "",
+  "address1": "",
+  "address2": "",
+  "city": "",
+  "state": "",
+  "country": "",
+  "zipcode": "",
+  "email": "test@example.com",
+  "phone": "8800108522",
+  "udf1": "",
+  "udf2": "",
+  "udf3": "",
+  "udf4": "",
+  "udf5": "",
+  "udf6": "",
+  "udf7": "",
+  "udf8": "",
+  "udf9": "",
+  "udf10": "",
+  "hash": "29efcd4f7a8a9a60a61481d70e21baf5ba6e7a472716d9b99bd911ef5390240411107b959e5bc8cdabc31463d150d4e02578349afa20529b18e271f60dd6db59",
+  "field1": "",
+  "field2": "",
+  "field3": "",
+  "field4": "",
+  "field5": "",
+  "field6": "",
+  "field7": "",
+  "field8": "",
+  "field9": "",
+  "payment_source": "payuS2S",
+  "PG_TYPE": "SPLITPAY-PG",
+  "bank_ref_num": "1255",
+  "error": "E000",
+  "bankcode": "TWIDX",
+  "error_Message": "No Error",
+  "splitPayInfo": {
+    "cc": {
+      "name": "CC",
+      "bankCode": "CC",
+      "transactionAmount": "412"
+    },
+    "rd": {
+      "name": "RD",
+      "bankCode": "TWIDLS",
+      "transactionAmount": "100"
     }
   }
   }
