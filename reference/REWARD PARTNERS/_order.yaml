@@ -1,8 +1,8 @@
 - rewards-fetch-balance-all-api
 - _payment-merchant-hosted-rewards
+- rewards-refund-api
 - fetch-balance-api-twid
 - hold-twid-points-api
 - redeem-twid-points-api
 - enquire-transaction-api-twid
-- rewards-refund-api
 - rewards-refund-status-api
