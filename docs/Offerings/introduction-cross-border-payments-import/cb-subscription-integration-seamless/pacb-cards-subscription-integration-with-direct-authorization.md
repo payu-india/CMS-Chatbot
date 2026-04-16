@@ -701,6 +701,26 @@ print(f"PayU ID: {data['result']['mihpayid']}")
 print(f"Card Token: {data['result']['cardToken']}")
 print(f"Payment Source: {data['result']['payment_source']}")
 ```
+### Check for Subscription-related parameters in response
+In the case of Cards, you must ensure that the payment response from PayU has the expected values as described in the following table so that they successfully registered for a recurring plan or subscription for the customer:
+
+| Response Parameter | Expected Value                   | Description                                                                     |
+| ------------------ | -------------------------------- | ------------------------------------------------------------------------------- |
+| status             | success                          | This indicates that the transaction is successful                               |
+| cardToken          | \<card_token> sent by PayU       | Indicates that card details are saved correctly in PayUBiz Database             |
+| payment_source     | sist                             | Indicates that card details have been marked correctly for Standing Instruction |
+| mihpayid           | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction           |
+
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * If any of the above four checks are not satisfied, that means the transaction has not been correctly authorized for Standing Instruction. The merchant must not consider this transaction eligible for the Recurring platform.
+  * Registration transaction must be successful in making it eligible for the Recurring platform.
+</Callout>
+
+At this step, if the status of the consent transaction is returned as success along with the other three conditions explained above, you can consider that the subscription setup is completed successfully.
+
+The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
 
 ### Verify Response Hash
 
