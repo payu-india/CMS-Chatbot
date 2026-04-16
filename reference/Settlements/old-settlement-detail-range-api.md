@@ -1,8 +1,8 @@
 ---
-title: Settlement Detail Range API
+title: '[OLD]Settlement Detail Range API'
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: '[OLD]Settlement Detail Range API'
   description: ''
