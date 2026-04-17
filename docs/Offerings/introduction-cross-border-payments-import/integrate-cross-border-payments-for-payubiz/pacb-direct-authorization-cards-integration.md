@@ -538,9 +538,14 @@ Post the payment parameters along with 3DS authentication data to PayU's `_payme
   | result.field8          | `String`<br />Bank response                                                                | `APPROVED`                  |
   | result.field9          | `String`<br />Transaction message                                                          | `Transaction is Successful` |
 </Accordion>
+***
+## Step 2: Check Response from PayU
+
+PayU marks the transaction status based on the response received from the bank. For Direct Authorization, the response is returned directly as a base64 encoded JSON string (not via redirect).
 
 <Accordion title="Sample Response" icon="fa-code">
-#### Success scenario
+  #### Success scenario
+
   The Direct Authorization response is base64 encoded. After decoding:
 
   ```json
@@ -591,7 +596,7 @@ Post the payment parameters along with 3DS authentication data to PayU's `_payme
   **Transaction captured but tokenization, but amount will be debited**
 
   ```json
- {
+  {
   "metaData": {
     "message": "No Error",
     "referenceId": "0b76e6f43781101972cf69b8e6e95489",
@@ -667,22 +672,15 @@ Post the payment parameters along with 3DS authentication data to PayU's `_payme
     "cardType": "MAST",
     "isDomestic": true
   }
-}
-``` 
-### Failure scenario
+  }
+  ```
+
+  ### Failure scenario
 
   **Transaction declined due to either incorrect cvv/expiry or card validation failure**
 
   ```json
- {
-  "metaData": {
-    "message": "Transaction declined due to either incorrect cvv/expiry or card validation failure",
-    "referenceId": "e68d03c5d758a58a3d314a5e150c5460",
-    "statusCode": "E1632",
-    "txnId": "J4HKQFNCV37V8GZ2",
-    "unmappedStatus": "failure"
-  },
-  "result": {
+Array {
     "mihpayid": "28192699814",
     "mode": "DC",
     "status": "failure",
@@ -742,22 +740,9 @@ Post the payment parameters along with 3DS authentication data to PayU's `_payme
     "curl": "https://admin.payu.in/test_response",
     "furl": "https://admin.payu.in/test_response",
     "card_hash": "4450a1d65a7c323a3111c7b9c6024b18678ef4b916b2c7f3eda24b1f7ae4276d"
-  },
-  "binData": {
-    "pureS2SSupported": false,
-    "issuingBank": "FEDE",
-    "category": "debitcard",
-    "cardType": "VISA",
-    "isDomestic": true
   }
-}
   ```
 </Accordion>
-***
-
-## Step 2: Check Response from PayU
-
-PayU marks the transaction status based on the response received from the bank. For Direct Authorization, the response is returned directly as a base64 encoded JSON string (not via redirect).
 
 ### Decoding the Response
 
