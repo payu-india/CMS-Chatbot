@@ -21,8 +21,9 @@ This section explains how to integrate Direct Authorization for cross-border car
   **When to use Direct Authorization with Subscriptions:** Use this flow when you have your own MPI/3DS Server and have already authenticated the cardholder, and want to set up a recurring payment subscription. This bypasses PayU's authentication flow and directly authorizes the pre-authenticated transaction while registering the card for future recurring payments.
 </Callout>
 
+**Payment Consent Flow**
 <Cards columns={2}>
-**Consent Flow**
+
   <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
     Post the required parameters including 3DS authentication data and subscription details to PayU
   </Card>
@@ -34,12 +35,24 @@ This section explains how to integrate Direct Authorization for cross-border car
   <Card title="3. Verify Mandate Registration" href="#step-3-verify-mandate-registration">
     Verify the payment status and ensure transaction completion
   </Card>
-**Recurring Flow**
+
+  **Recurring Flow**
 </Cards>
 
+**Recurring Payments Flow**
+
+<Cards columns={2}>
+  <Card title="1. Pre-Debit SI Notification" href="#step-1-pre-debit-si-notification">
+    Send pre-debit notifications for upcoming recurring debits.
+  </Card>
+
+  <Card title="2. Recurring Payment Transaction" href="#step-2-recurring-payment-transaction">
+    Execute recurring payment transactions using the registered mandate.
+  </Card>
+</Cards>
 ***
 
-## Consent Flow
+## Payment Consent Flow
 
 ### Step 1: Post Parameters to PayU
 
