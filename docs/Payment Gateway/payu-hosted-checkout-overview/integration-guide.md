@@ -100,7 +100,7 @@ You need to collect and structure the required payment details before initiating
 
 These include the following parameters:
 
-<Accordion title="Parameters and Description" icon="fa-sliders">
+<Accordion title="Parameters and Description" icon="fa-list-alt">
   Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
   ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
   occaecat cupidatat non proident!
