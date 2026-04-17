@@ -1,5 +1,5 @@
 ---
-title: UPI Autopay Integration
+title: '[DEPRECATED]UPI Autopay Integration'
 excerpt: ''
 deprecated: false
 hidden: true
