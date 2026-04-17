@@ -7,6 +7,12 @@ metadata:
 ---
 Follow these steps to integrate the PayU Hosted Checkout on your website.
 
+<Callout icon="👍">
+  **Payment Flow**
+
+
+</Callout>
+
 <HoverCardGrid
   columns={2}
   items={[
