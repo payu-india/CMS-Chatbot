@@ -519,123 +519,60 @@ Before implementing, familiarize yourself with the required parameters.
 
 The API returns a JSON response. For S2S4 flow, you'll receive an OTP enrollment response if the card requires OTP authentication.
 
-<Accordion title="Success Response " icon="fa-info-circle">
-#### Success scenario
+<Accordion title="Sample Response" icon="fa-code">
+  #### Success scenario
+
+  The Direct Authorization response is base64 encoded. After decoding:
+
   ```json
   {
-    "metaData": {
-      "message": null,
-      "referenceId": "5a3e7cb9884e003dce1f28f965478a9a12fb9244fc15be91b0b3de48763a12e7",
-      "statusCode": null,
-      "txnId": "payuTestMandate12345",
-      "txnStatus": "Enrolled",
-      "unmappedStatus": "pending",
-      "resendOtp": {
-        "isSupported": true,
-        "attemptsLeft": 2
-      },
-      "submitOtp": {
-        "attemptsLeft": 3
-      }
-    },
+    "status": "success",
     "result": {
-      "otpPostUrl": "https://test.payu.in/ResponseHandler.php",
-      "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0i..."
-    },
-    "binData": {
-      "pureS2SSupported": true,
-      "issuingBank": "AXIS",
-      "category": "creditcard",
-      "cardType": "MAST",
-      "isDomestic": true
+      "mihpayid": "16313939584",
+      "mode": "CC",
+      "status": "success",
+      "key": "JPM7Fg",
+      "txnid": "PACB_DA_20240101_12345",
+      "amount": "100.00",
+      "addedon": "2024-01-01 12:00:00",
+      "productinfo": "Cross-border Product Purchase",
+      "firstname": "Ashish",
+      "lastname": "Kumar",
+      "address1": "123 Main Street",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "country": "IN",
+      "zipcode": "110001",
+      "email": "test@payu.in",
+      "phone": "9876543210",
+      "udf1": "ABCDE1234K",
+      "udf2": "",
+      "udf3": "02-02-1980",
+      "udf4": "XYZ Pvt. Ltd.",
+      "udf5": "INV123456",
+      "card_no": "XXXXXXXXXXXX2346",
+      "field6": "000",
+      "field7": "AUTHPOSITIVE",
+      "field8": "APPROVED",
+      "field9": "Transaction is Successful",
+      "payment_source": "dirAuthS2S",
+      "PG_TYPE": "CC-PG",
+      "error": "E000",
+      "error_Message": "No Error",
+      "net_amount_debit": "100",
+      "unmappedstatus": "captured",
+      "hash": "3f8fcdd67642b442db04201c1f53fbe6e7c249115fd718d7ccf58b78fea9039bfaafaf1c32ffa43865d95a85a083295c8286b0af476cc5fa98bc51244629a9d2",
+      "bank_ref_no": "240101127055",
+      "bank_ref_num": "240101127055",
+      "bankcode": "MAST"
     }
   }
   ```
-#### Failure scenario
 
-**Transaction declined due to either incorrect cvv/expiry or card validation**
-```json
-{
-  "metaData": {
-    "message": "Transaction declined due to either incorrect cvv/expiry or card validation failure",
-    "referenceId": "e68d03c5d758a58a3d314a5e150c5460",
-    "statusCode": "E1632",
-    "txnId": "J4HKQFNCV37V8GZ2",
-    "unmappedStatus": "failure"
-  },
-  "result": {
-    "mihpayid": "28192699814",
-    "mode": "DC",
-    "status": "failure",
-    "key": "Fa2IFz",
-    "txnid": "J4HKQFNCV37V8GZ2",
-    "amount": "1.00",
-    "addedon": "2026-04-16 00:05:43",
-    "productinfo": "AD04725400032CIN",
-    "firstname": "Anderson",
-    "lastname": "Alex",
-    "address1": "Jaipur Golden Hospital Rd",
-    "address2": "",
-    "city": "Delhi",
-    "state": "DL",
-    "country": "IN",
-    "zipcode": "XXXXXX",
-    "email": "_emailid_",
-    "phone": "##########",
-    "udf1": "",
-    "udf2": "AdobePayU_India:2506306:visapremiumdebit",
-    "udf3": "eyIwIjoiNTk3YjRhYzEtYWFiMy00NTJhLWE2NDQtODY4YTQ3ZmI5MWJlIiwiMSI6IiwsYWRob2MsLG1heCIsIjIiOiJBZG9iZSBJbmMgUHVyY2hhc2UifQ==",
-    "udf4": "",
-    "udf5": "AD04725400032CIN",
-    "udf6": "",
-    "udf7": "",
-    "udf8": "",
-    "udf9": "",
-    "udf10": "",
-    "card_token": "a71073543f334ebcb0a6",
-    "card_no": "XXXXXXXXXXXX0825",
-    "field0": "",
-    "field1": "7762781447786003305914",
-    "field2": "",
-    "field3": "",
-    "field4": "",
-    "field5": "N7",
-    "field6": "05",
-    "field7": "AUTHNEGATIVE",
-    "field8": "N7 | Negative online CAM, dCVV, iCVV, CVV, or CAVV results or Offline | Decline - Invalid Card Verification Number (CVN).",
-    "field9": "Transaction declined due to either incorrect cvv/expiry or card validation failure",
-    "payment_source": "dirAuthS2S",
-    "cardToken": "a71073543f334ebcb0a6",
-    "authenticationMethod": "",
-    "PG_TYPE": "DC-PG",
-    "error": "E1632",
-    "error_Message": "Transaction declined due to either incorrect cvv/expiry or card validation failure",
-    "net_amount_debit": "0",
-    "discount": "0.00",
-    "offer_key": "",
-    "offer_availed": "",
-    "unmappedstatus": "failed",
-    "hash": "b2de8ada51ad044dfe1ef46e9425a2adabb6f04407ff63905ceb9dc5ed63bc12d7e167b73b5e1019fbd6cd75e71bdfb8de6583af33d88ea44018972f01a87c5d",
-    "bank_ref_no": "7762781447786003305914",
-    "bank_ref_num": "7762781447786003305914",
-    "bankcode": "VISA",
-    "surl": "https://admin.payu.in/test_response",
-    "curl": "https://admin.payu.in/test_response",
-    "furl": "https://admin.payu.in/test_response",
-    "card_hash": "4450a1d65a7c323a3111c7b9c6024b18678ef4b916b2c7f3eda24b1f7ae4276d"
-  },
-  "binData": {
-    "pureS2SSupported": false,
-    "issuingBank": "FEDE",
-    "category": "debitcard",
-    "cardType": "VISA",
-    "isDomestic": true
-  }
-}
-```
-**Failed to tokenize**
-```json
-{
+  **Transaction captured but tokenization, but amount will be debited**
+
+  ```json
+  {
   "metaData": {
     "message": "No Error",
     "referenceId": "0b76e6f43781101972cf69b8e6e95489",
@@ -711,9 +648,94 @@ The API returns a JSON response. For S2S4 flow, you'll receive an OTP enrollment
     "cardType": "MAST",
     "isDomestic": true
   }
-}
-```
+  }
+  ```
+
+  ### Failure scenario
+
+  **Transaction declined due to either incorrect cvv/expiry or card validation failure**
+
+  ```json
+  {
+  "metaData": {
+    "message": "Transaction declined due to either incorrect cvv/expiry or card validation failure",
+    "referenceId": "e68d03c5d758a58a3d314a5e150c5460",
+    "statusCode": "E1632",
+    "txnId": "J4HKQFNCV37V8GZ2",
+    "unmappedStatus": "failure"
+  },
+  "result": {
+    "mihpayid": "28192699814",
+    "mode": "DC",
+    "status": "failure",
+    "key": "Fa2IFz",
+    "txnid": "J4HKQFNCV37V8GZ2",
+    "amount": "1.00",
+    "addedon": "2026-04-16 00:05:43",
+    "productinfo": "AD04725400032CIN",
+    "firstname": "Anderson",
+    "lastname": "Alex",
+    "address1": "Jaipur Golden Hospital Rd",
+    "address2": "",
+    "city": "Delhi",
+    "state": "DL",
+    "country": "IN",
+    "zipcode": "XXXXXX",
+    "email": "_emailid_",
+    "phone": "##########",
+    "udf1": "",
+    "udf2": "AdobePayU_India:2506306:visapremiumdebit",
+    "udf3": "eyIwIjoiNTk3YjRhYzEtYWFiMy00NTJhLWE2NDQtODY4YTQ3ZmI5MWJlIiwiMSI6IiwsYWRob2MsLG1heCIsIjIiOiJBZG9iZSBJbmMgUHVyY2hhc2UifQ==",
+    "udf4": "",
+    "udf5": "AD04725400032CIN",
+    "udf6": "",
+    "udf7": "",
+    "udf8": "",
+    "udf9": "",
+    "udf10": "",
+    "card_token": "a71073543f334ebcb0a6",
+    "card_no": "XXXXXXXXXXXX0825",
+    "field0": "",
+    "field1": "7762781447786003305914",
+    "field2": "",
+    "field3": "",
+    "field4": "",
+    "field5": "N7",
+    "field6": "05",
+    "field7": "AUTHNEGATIVE",
+    "field8": "N7 | Negative online CAM, dCVV, iCVV, CVV, or CAVV results or Offline | Decline - Invalid Card Verification Number (CVN).",
+    "field9": "Transaction declined due to either incorrect cvv/expiry or card validation failure",
+    "payment_source": "dirAuthS2S",
+    "cardToken": "a71073543f334ebcb0a6",
+    "authenticationMethod": "",
+    "PG_TYPE": "DC-PG",
+    "error": "E1632",
+    "error_Message": "Transaction declined due to either incorrect cvv/expiry or card validation failure",
+    "net_amount_debit": "0",
+    "discount": "0.00",
+    "offer_key": "",
+    "offer_availed": "",
+    "unmappedstatus": "failed",
+    "hash": "b2de8ada51ad044dfe1ef46e9425a2adabb6f04407ff63905ceb9dc5ed63bc12d7e167b73b5e1019fbd6cd75e71bdfb8de6583af33d88ea44018972f01a87c5d",
+    "bank_ref_no": "7762781447786003305914",
+    "bank_ref_num": "7762781447786003305914",
+    "bankcode": "VISA",
+    "surl": "https://admin.payu.in/test_response",
+    "curl": "https://admin.payu.in/test_response",
+    "furl": "https://admin.payu.in/test_response",
+    "card_hash": "4450a1d65a7c323a3111c7b9c6024b18678ef4b916b2c7f3eda24b1f7ae4276d"
+  },
+  "binData": {
+    "pureS2SSupported": false,
+    "issuingBank": "FEDE",
+    "category": "debitcard",
+    "cardType": "VISA",
+    "isDomestic": true
+  }
+  }
+  ```
 </Accordion>
+
 
 #### Response Handling Logic
 
