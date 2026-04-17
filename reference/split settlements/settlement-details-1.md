@@ -12,5 +12,6 @@ next:
 ---
 The following APIs are used for releasing the settlement or get settlement details for a given date range:
 
-* [Release Settlement API](ref:release_settlement_api) is used to release the settlement of all the blocked child transactions in the aggregator workflow\.For more information, refer to Release Payment API.
-* [Settlement Reconciliation API](ref:settlement-reconciliation-api) is used to get settlement detail for a given date range. For more information, refer to Settlement Reconciliation API.
+* [Settlement Detail Range API](https://docs.payu.in/reference/settlement-detail-range-api)
+* [Transaction Details API](https://docs.payu.in/reference/settlement_transaction_details_api)
+* [Merchant Upcoming and Pending Settlement API](https://docs.payu.in/reference/merchant_upcoming_settlement_api)
