@@ -76,10 +76,32 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
   ]}
 />
 
+## What You Are Building
+
+In this step, you are:
+
+* Creating a **payment request** on your backend
+* Securing it using a **hash**
+* Sending the user to  the **PayU Hosted Checkout** to complete the payment
+
+This is the core of the integration. Everything else builds on top of this.
+
 ## Prerequisites
 
 Go through the <Anchor label="prerequisites" target="_blank" href="https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/payu-hosted-checkout-quick-start#prerequisites">prerequisites</Anchor> before you proceed with the integration.
 
 ## 1. Build Integration
 
-<br />
+Perform the following steps to build your integration:
+
+### Step 1.1 Prepare Payment Request Parameters
+
+You need to collect and structure the required payment details before initiating a transaction.
+
+These include the following parameters:
+
+<Accordion title="Parameters and Description" icon="fa-sliders">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
