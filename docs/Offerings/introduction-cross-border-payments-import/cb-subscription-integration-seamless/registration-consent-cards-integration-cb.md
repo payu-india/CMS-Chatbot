@@ -520,6 +520,7 @@ Before implementing, familiarize yourself with the required parameters.
 The API returns a JSON response. For S2S4 flow, you'll receive an OTP enrollment response if the card requires OTP authentication.
 
 <Accordion title="Success Response " icon="fa-info-circle">
+#### Success scenario
   ```json
   {
     "metaData": {
@@ -550,6 +551,168 @@ The API returns a JSON response. For S2S4 flow, you'll receive an OTP enrollment
     }
   }
   ```
+#### Failure scenario
+
+**Transaction declined due to either incorrect cvv/expiry or card validation**
+```json
+{
+  "metaData": {
+    "message": "Transaction declined due to either incorrect cvv/expiry or card validation failure",
+    "referenceId": "e68d03c5d758a58a3d314a5e150c5460",
+    "statusCode": "E1632",
+    "txnId": "J4HKQFNCV37V8GZ2",
+    "unmappedStatus": "failure"
+  },
+  "result": {
+    "mihpayid": "28192699814",
+    "mode": "DC",
+    "status": "failure",
+    "key": "Fa2IFz",
+    "txnid": "J4HKQFNCV37V8GZ2",
+    "amount": "1.00",
+    "addedon": "2026-04-16 00:05:43",
+    "productinfo": "AD04725400032CIN",
+    "firstname": "Anderson",
+    "lastname": "Alex",
+    "address1": "Jaipur Golden Hospital Rd",
+    "address2": "",
+    "city": "Delhi",
+    "state": "DL",
+    "country": "IN",
+    "zipcode": "XXXXXX",
+    "email": "_emailid_",
+    "phone": "##########",
+    "udf1": "",
+    "udf2": "AdobePayU_India:2506306:visapremiumdebit",
+    "udf3": "eyIwIjoiNTk3YjRhYzEtYWFiMy00NTJhLWE2NDQtODY4YTQ3ZmI5MWJlIiwiMSI6IiwsYWRob2MsLG1heCIsIjIiOiJBZG9iZSBJbmMgUHVyY2hhc2UifQ==",
+    "udf4": "",
+    "udf5": "AD04725400032CIN",
+    "udf6": "",
+    "udf7": "",
+    "udf8": "",
+    "udf9": "",
+    "udf10": "",
+    "card_token": "a71073543f334ebcb0a6",
+    "card_no": "XXXXXXXXXXXX0825",
+    "field0": "",
+    "field1": "7762781447786003305914",
+    "field2": "",
+    "field3": "",
+    "field4": "",
+    "field5": "N7",
+    "field6": "05",
+    "field7": "AUTHNEGATIVE",
+    "field8": "N7 | Negative online CAM, dCVV, iCVV, CVV, or CAVV results or Offline | Decline - Invalid Card Verification Number (CVN).",
+    "field9": "Transaction declined due to either incorrect cvv/expiry or card validation failure",
+    "payment_source": "dirAuthS2S",
+    "cardToken": "a71073543f334ebcb0a6",
+    "authenticationMethod": "",
+    "PG_TYPE": "DC-PG",
+    "error": "E1632",
+    "error_Message": "Transaction declined due to either incorrect cvv/expiry or card validation failure",
+    "net_amount_debit": "0",
+    "discount": "0.00",
+    "offer_key": "",
+    "offer_availed": "",
+    "unmappedstatus": "failed",
+    "hash": "b2de8ada51ad044dfe1ef46e9425a2adabb6f04407ff63905ceb9dc5ed63bc12d7e167b73b5e1019fbd6cd75e71bdfb8de6583af33d88ea44018972f01a87c5d",
+    "bank_ref_no": "7762781447786003305914",
+    "bank_ref_num": "7762781447786003305914",
+    "bankcode": "VISA",
+    "surl": "https://admin.payu.in/test_response",
+    "curl": "https://admin.payu.in/test_response",
+    "furl": "https://admin.payu.in/test_response",
+    "card_hash": "4450a1d65a7c323a3111c7b9c6024b18678ef4b916b2c7f3eda24b1f7ae4276d"
+  },
+  "binData": {
+    "pureS2SSupported": false,
+    "issuingBank": "FEDE",
+    "category": "debitcard",
+    "cardType": "VISA",
+    "isDomestic": true
+  }
+}
+```
+**Failed to tokenize**
+```json
+{
+  "metaData": {
+    "message": "No Error",
+    "referenceId": "0b76e6f43781101972cf69b8e6e95489",
+    "statusCode": "E000",
+    "txnId": "HCGBF2SFBMS8QNW2",
+    "unmappedStatus": "success"
+  },
+  "result": {
+    "mihpayid": "28192801355",
+    "mode": "CC",
+    "status": "success",
+    "key": "Fa2IFz",
+    "txnid": "HCGBF2SFBMS8QNW2",
+    "amount": "1516.30",
+    "addedon": "2026-04-16 00:23:53",
+    "productinfo": "Direct Authorization",
+    "firstname": "Jaleel",
+    "lastname": "Yousuf",
+    "address1": "7 253 chakkamdam kochi kerala india",
+    "address2": "",
+    "city": "Kochi",
+    "state": "KL",
+    "country": "IN",
+    "zipcode": "XXXXXX",
+    "email": "",
+    "phone": "",
+    "udf1": "",
+    "udf2": "AdobePayU_India:2506306:mcsuperpremiumcredit",
+    "udf3": "",
+    "udf4": "",
+    "udf5": "BL_mobilenum_",
+    "udf6": "",
+    "udf7": "",
+    "udf8": "",
+    "udf9": "",
+    "udf10": "",
+    "card_token": "",
+    "card_no": "XXXXXXXXXXXX3004",
+    "field0": "f64a03dc002349ce89aaddb14625bb41",
+    "field1": "",
+    "field2": "482380",
+    "field3": "",
+    "field4": "",
+    "field5": "",
+    "field6": "00",
+    "field7": "AUTHPOSITIVE",
+    "field8": "Transaction successful",
+    "field9": "Transaction is Successful",
+    "payment_source": "dirAuthS2S",
+    "cardToken": "",
+    "authenticationMethod": "",
+    "PG_TYPE": "CC-PG",
+    "error": "E000",
+    "error_Message": "No Error",
+    "net_amount_debit": "1516.3",
+    "discount": "0.00",
+    "offer_key": "",
+    "offer_availed": "",
+    "unmappedstatus": "captured",
+    "hash": "90d6c2415e0fcf00e201ddc97000654c9182d60fef0efcdb068d5503b76eb1bda1eb15bb7c1bd960b50e6f205cc16e9a21ee8dae4606a2559c4e8a48d5561f3e",
+    "bank_ref_no": "610600388883",
+    "bank_ref_num": "610600388883",
+    "bankcode": "CC",
+    "surl": "https://admin.payu.in/test_response",
+    "curl": "https://admin.payu.in/test_response",
+    "furl": "https://admin.payu.in/test_response",
+    "card_hash": "32dc03f83963f2af4a693fdd4a1dc60b40c98aaec8e0c356937194e040d6dfad"
+  },
+  "binData": {
+    "pureS2SSupported": true,
+    "issuingBank": "ICICI",
+    "category": "creditcard",
+    "cardType": "MAST",
+    "isDomestic": true
+  }
+}
+```
 </Accordion>
 
 #### Response Handling Logic
