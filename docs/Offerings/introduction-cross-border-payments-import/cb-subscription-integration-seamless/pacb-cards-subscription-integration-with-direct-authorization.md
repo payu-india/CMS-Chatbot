@@ -641,6 +641,10 @@ Post the payment parameters along with 3DS authentication data and subscription 
   </Callout>
 </Accordion>
 
+### Step 2: Check Response from PayU
+
+PayU marks the transaction status based on the response received from the bank. For Direct Authorization, the response is returned directly as a base64 encoded JSON string (not via redirect).
+
 <Accordion title="Sample Response" icon="fa-code">
   ### Success scenario
 
@@ -710,6 +714,71 @@ Post the payment parameters along with 3DS authentication data and subscription 
      "IsStandingInstructionSet": "1"
    }
   ```
+  **Transaction captured but tokenization or subscription creation was not successful, but amount will be debited**
+
+  ```json
+  {
+      "mihpayid": "28192801355",
+      "mode": "CC",
+      "status": "success",
+      "key": "Fa2IFz",
+      "txnid": "HCGBF2SFBMS8QNW2",
+      "amount": "1516.30",
+      "addedon": "2026-04-16 00:23:53",
+      "productinfo": "Direct Authorization",
+      "firstname": "Jaleel",
+      "lastname": "Yousuf",
+      "address1": "7 253 chakkamdam kochi kerala india",
+      "address2": "",
+      "city": "Kochi",
+      "state": "KL",
+      "country": "IN",
+      "zipcode": "XXXXXX",
+      "email": "",
+      "phone": "",
+      "udf1": "",
+      "udf2": "AdobePayU_India:2506306:mcsuperpremiumcredit",
+      "udf3": "",
+      "udf4": "",
+      "udf5": "BL_mobilenum_",
+      "udf6": "",
+      "udf7": "",
+      "udf8": "",
+      "udf9": "",
+      "udf10": "",
+      "card_token": "",
+      "card_no": "XXXXXXXXXXXX3004",
+      "field0": "f64a03dc002349ce89aaddb14625bb41",
+      "field1": "",
+      "field2": "482380",
+      "field3": "",
+      "field4": "",
+      "field5": "",
+      "field6": "00",
+      "field7": "AUTHPOSITIVE",
+      "field8": "Transaction successful",
+      "field9": "Transaction is Successful",
+      "payment_source": "dirAuthS2S",
+      "cardToken": "",
+      "authenticationMethod": "",
+      "PG_TYPE": "CC-PG",
+      "error": "E000",
+      "error_Message": "No Error",
+      "net_amount_debit": "1516.3",
+      "discount": "0.00",
+      "offer_key": "",
+      "offer_availed": "",
+      "unmappedstatus": "captured",
+      "hash": "90d6c2415e0fcf00e201ddc97000654c9182d60fef0efcdb068d5503b76eb1bda1eb15bb7c1bd960b50e6f205cc16e9a21ee8dae4606a2559c4e8a48d5561f3e",
+      "bank_ref_no": "610600388883",
+      "bank_ref_num": "610600388883",
+      "bankcode": "CC",
+      "surl": "https://admin.payu.in/test_response",
+      "curl": "https://admin.payu.in/test_response",
+      "furl": "https://admin.payu.in/test_response",
+      "card_hash": "32dc03f83963f2af4a693fdd4a1dc60b40c98aaec8e0c356937194e040d6dfad"
+    }
+  ```
 
   ### Failure scenario
 
@@ -778,79 +847,7 @@ Post the payment parameters along with 3DS authentication data and subscription 
       "card_hash": "4450a1d65a7c323a3111c7b9c6024b18678ef4b916b2c7f3eda24b1f7ae4276d"
     }
   ```
-
-  *Ttransaction captured but tokenization or subscription creation was not successful, but amount will be debited**
-
-  ```json
-  {
-      "mihpayid": "28192801355",
-      "mode": "CC",
-      "status": "success",
-      "key": "Fa2IFz",
-      "txnid": "HCGBF2SFBMS8QNW2",
-      "amount": "1516.30",
-      "addedon": "2026-04-16 00:23:53",
-      "productinfo": "Direct Authorization",
-      "firstname": "Jaleel",
-      "lastname": "Yousuf",
-      "address1": "7 253 chakkamdam kochi kerala india",
-      "address2": "",
-      "city": "Kochi",
-      "state": "KL",
-      "country": "IN",
-      "zipcode": "XXXXXX",
-      "email": "",
-      "phone": "",
-      "udf1": "",
-      "udf2": "AdobePayU_India:2506306:mcsuperpremiumcredit",
-      "udf3": "",
-      "udf4": "",
-      "udf5": "BL_mobilenum_",
-      "udf6": "",
-      "udf7": "",
-      "udf8": "",
-      "udf9": "",
-      "udf10": "",
-      "card_token": "",
-      "card_no": "XXXXXXXXXXXX3004",
-      "field0": "f64a03dc002349ce89aaddb14625bb41",
-      "field1": "",
-      "field2": "482380",
-      "field3": "",
-      "field4": "",
-      "field5": "",
-      "field6": "00",
-      "field7": "AUTHPOSITIVE",
-      "field8": "Transaction successful",
-      "field9": "Transaction is Successful",
-      "payment_source": "dirAuthS2S",
-      "cardToken": "",
-      "authenticationMethod": "",
-      "PG_TYPE": "CC-PG",
-      "error": "E000",
-      "error_Message": "No Error",
-      "net_amount_debit": "1516.3",
-      "discount": "0.00",
-      "offer_key": "",
-      "offer_availed": "",
-      "unmappedstatus": "captured",
-      "hash": "90d6c2415e0fcf00e201ddc97000654c9182d60fef0efcdb068d5503b76eb1bda1eb15bb7c1bd960b50e6f205cc16e9a21ee8dae4606a2559c4e8a48d5561f3e",
-      "bank_ref_no": "610600388883",
-      "bank_ref_num": "610600388883",
-      "bankcode": "CC",
-      "surl": "https://admin.payu.in/test_response",
-      "curl": "https://admin.payu.in/test_response",
-      "furl": "https://admin.payu.in/test_response",
-      "card_hash": "32dc03f83963f2af4a693fdd4a1dc60b40c98aaec8e0c356937194e040d6dfad"
-    }
-  ```
 </Accordion>
-
-***
-
-### Step 2: Check Response from PayU
-
-PayU marks the transaction status based on the response received from the bank. For Direct Authorization, the response is returned directly as a base64 encoded JSON string (not via redirect).
 
 #### Decoding the Response
 
