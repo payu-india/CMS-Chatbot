@@ -1,5 +1,5 @@
 ---
-title: 'PACB Cards Subscription Integration with Direct Authorization '
+title: '[S2S]PACB Cards Subscription Integration with Direct Authorization '
 deprecated: false
 hidden: true
 metadata:
