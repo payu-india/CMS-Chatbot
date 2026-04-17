@@ -22,6 +22,7 @@ This section explains how to integrate Direct Authorization for cross-border car
 </Callout>
 
 <Cards columns={2}>
+**Consent Flow**
   <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
     Post the required parameters including 3DS authentication data and subscription details to PayU
   </Card>
@@ -33,12 +34,14 @@ This section explains how to integrate Direct Authorization for cross-border car
   <Card title="3. Verify Mandate Registration" href="#step-3-verify-mandate-registration">
     Verify the payment status and ensure transaction completion
   </Card>
-
+**Recurring Flow**
 </Cards>
 
 ***
 
-## Step 1: Post Parameters to PayU
+## Consent Flow
+
+### Step 1: Post Parameters to PayU
 
 Post the payment parameters along with 3DS authentication data and subscription details to PayU's `_payment` API endpoint. The key differences from standard S2S flow are:
 
@@ -827,11 +830,11 @@ Post the payment parameters along with 3DS authentication data and subscription 
 
 ***
 
-## Step 2: Check Response from PayU
+### Step 2: Check Response from PayU
 
 PayU marks the transaction status based on the response received from the bank. For Direct Authorization, the response is returned directly as a base64 encoded JSON string (not via redirect).
 
-### Decoding the Response
+#### Decoding the Response
 
 The authorization response is base64 encoded. Decode it to get the JSON response:
 
@@ -849,7 +852,7 @@ print(f"Card Token: {data['result']['cardToken']}")
 print(f"Payment Source: {data['result']['payment_source']}")
 ```
 
-### Check for Subscription-related parameters in response
+#### Check for Subscription-related parameters in response
 
 In the case of Cards, you must ensure that the payment response from PayU has the expected values as described in the following table so that they successfully registered for a recurring plan or subscription for the customer:
 
@@ -871,7 +874,7 @@ At this step, if the status of the consent transaction is returned as success al
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
 
-### Verify Response Hash
+#### Verify Response Hash
 
 <Callout icon="⚠️" theme="warning">
   **Important:** Always verify the response hash before accepting or rejecting the transaction to ensure the response authenticity.
