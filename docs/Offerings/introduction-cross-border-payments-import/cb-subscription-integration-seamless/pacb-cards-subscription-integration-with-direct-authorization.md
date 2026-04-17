@@ -31,6 +31,7 @@ This section explains how to integrate Direct Authorization for cross-border car
   <Card title="2. Check Response from PayU" href="#step-2-check-response-from-payu">
     Check and handle the authorization response received from PayU
   </Card>
+
   <Card title="3. Configure Webhooks" href="#step-3-configure-webhooks">
     Verify the payment status and ensure transaction completion
   </Card>
@@ -778,7 +779,7 @@ Post the payment parameters along with 3DS authentication data and subscription 
     }
   ```
 
-  **transaction captured but tokenization or subscription creation was not successful, but amount will be debited**
+  *Ttransaction captured but tokenization or subscription creation was not successful, but amount will be debited**
 
   ```json
   {
@@ -908,6 +909,7 @@ sha512(salt|status||||||udf10|udf9|udf8|udf7|udf6|udf5|udf4|udf3|udf2|udf1|email
 </Callout>
 
 ***
+
 ### Step 3: Configure Webhooks
 
 <Accordion title="Configure Webhooks" icon="fa-info-circle">
