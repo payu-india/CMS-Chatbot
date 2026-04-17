@@ -22,8 +22,8 @@ This section explains how to integrate Direct Authorization for cross-border car
 </Callout>
 
 **Payment Consent Flow**
-<Cards columns={2}>
 
+<Cards columns={2}>
   <Card title="1. Post Parameters to PayU" href="#step-1-post-parameters-to-payu">
     Post the required parameters including 3DS authentication data and subscription details to PayU
   </Card>
@@ -31,8 +31,11 @@ This section explains how to integrate Direct Authorization for cross-border car
   <Card title="2. Check Response from PayU" href="#step-2-check-response-from-payu">
     Check and handle the authorization response received from PayU
   </Card>
+  <Card title="3. Configure Webhooks" href="#step-3-configure-webhooks">
+    Verify the payment status and ensure transaction completion
+  </Card>
 
-  <Card title="3. Verify Mandate Registration" href="#step-3-verify-mandate-registration">
+  <Card title="4. Verify Mandate Registration" href="#step-4-verify-mandate-registration">
     Verify the payment status and ensure transaction completion
   </Card>
 
@@ -50,6 +53,7 @@ This section explains how to integrate Direct Authorization for cross-border car
     Execute recurring payment transactions using the registered mandate.
   </Card>
 </Cards>
+
 ***
 
 ## Payment Consent Flow
@@ -904,8 +908,44 @@ sha512(salt|status||||||udf10|udf9|udf8|udf7|udf6|udf5|udf4|udf3|udf2|udf1|email
 </Callout>
 
 ***
+### Step 3: Configure Webhooks
 
-### Step 3: Verify Mandate Registration
+<Accordion title="Configure Webhooks" icon="fa-info-circle">
+  Configure webhooks to receive real-time transaction status updates. PayU will send POST requests to your webhook URL.
+
+  #### Webhook Payload Example
+
+  ```text
+  status=success&mihpayid=403993715525316543&txnid=payuTestMandate12345&amount=100.00&productinfo=Subscription Plan&firstname=Ashish&email=test@payu.in&phone=9988776655&hash=generated_hash&payment_source=sist&cardToken=stored_token_value
+  ```
+
+  #### Webhook Validation
+
+  Always validate the webhook hash before processing:
+
+  ```php
+  function validateWebhookHash($response, $salt) {
+      $hashString = '';
+      $hashSequence = "status|mihpayid|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||||||";
+      $hashVarsSeq = explode('|', $hashSequence);
+      
+      foreach($hashVarsSeq as $hashVar) {
+          $hashString .= isset($response[$hashVar]) ? $response[$hashVar] : '';
+          $hashString .= '|';
+      }
+      $hashString .= $salt;
+      
+      $calculatedHash = strtolower(hash('sha512', $hashString));
+      $receivedHash = strtolower($response['hash']);
+      
+      return $calculatedHash === $receivedHash;
+  }
+  ```
+
+  For detailed webhook handling, refer to [S2S Webhook Handling](doc:s2s-webhook-handling).
+</Accordion>
+
+### Step 4: Verify Mandate Registration
 
 After successful registration, verify the mandate status:
 
