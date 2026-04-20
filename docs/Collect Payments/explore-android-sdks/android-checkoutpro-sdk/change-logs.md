@@ -28,6 +28,26 @@ next:
   <tbody>
     <tr>
       <td style={{ textAlign: "left" }}>
+        3.3.7
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * PSP apps external launch support for UPI transactions like Groww and Kotak
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        3.3.6
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        * Screen protection compliance policy fixes and configuration updates
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
         3.3.3
       </td>
 
