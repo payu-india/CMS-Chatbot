@@ -212,24 +212,23 @@ This section includes the following advanced integrations with React Native Chec
 
     <Accordion title="Advanced Card Payment Enforcement" icon="fa-code">
       <Accordion title="Card Type Enforcement (CC/DC Only)" icon="fa-credit-card">
-  Enforce payment based on card type - Credit Card (CC) or Debit Card (DC):
+        Enforce payment based on card type - Credit Card (CC) or Debit Card (DC):
 
-  ```javascript
-  var enforcePaymentList = [{"payment_type": "CARD", "card_type": "DC"}, {"payment_type": "CARD", "card_type": "CC"}];
-  ```
-  
-  This configuration allows all debit cards and all credit cards, regardless of the card scheme.
-</Accordion>
+        ```javascript
+        var enforcePaymentList = [{"payment_type": "CARD", "card_type": "DC"}, {"payment_type": "CARD", "card_type": "CC"}];
+        ```
 
-<Accordion title="Card Scheme Enforcement (VISA, MASTERCARD, AMEX, etc.)" icon="fa-code">
-  Enforce payment based on specific card schemes along with card type:
+        This configuration allows all debit cards and all credit cards, regardless of the card scheme.
+      </Accordion>
 
-  ```javascript
-  var enforcePaymentList = [{"payment_type": "CARD", "card_type": "DC", "card_scheme": "VISA"}, {"payment_type": "CARD", "card_type": "CC", "card_scheme": "MAST"}];
-  ```
-  
-  This configuration allows only VISA debit cards and MASTERCARD credit cards.
-</Accordion>
+      <Accordion title="Card Scheme Enforcement (VISA, MASTERCARD, AMEX, etc.)" icon="fa-code">
+        Enforce payment based on specific card schemes along with card type:
+
+        ```javascript
+        var enforcePaymentList = [{"payment_type": "CARD", "card_type": "DC", "card_scheme": "VISA"}, {"payment_type": "CARD", "card_type": "CC", "card_scheme": "MAST"}];
+        ```
+
+      </Accordion>
     </Accordion>
   </Accordion>
 
