@@ -208,18 +208,30 @@ This section includes the following advanced integrations with React Native Chec
     ```
     var enforcePaymentList = [  
     {"payment_type": "CARD"},  {"payment_type": "NB"}, {"payment_type": "EMI"}, {payment_type": "WALLET"}, {"payment_type": "UPI"},{"payment_type": "BNPL"},{"payment_type": "NEFTRTGS"}];
-                                                                                 ```
-
-  <Accordion title="Advanced Card Payment Enforcement" icon="fa-code">
-For CARD payment type, you can add additional properties to enforce specific card types and schemes:
-
     ```
-    var enforcePaymentList = var enforcePaymentList = [{"payment_type": "CARD", "card_type": "CC", "card_scheme": "AMEX"}, {"payment_type": "CARD", "card_type": "DC", "card_scheme": "VISA"}, {"payment_type": "CARD", "card_type": "CC", "card_scheme": "MAST"}];;
-    ```
-    </Accordion>
 
-    </Accordion>
+    <Accordion title="Advanced Card Payment Enforcement" icon="fa-code">
+      <Accordion title="Card Type Enforcement (CC/DC Only)" icon="fa-credit-card">
+  Enforce payment based on card type - Credit Card (CC) or Debit Card (DC):
 
+  ```javascript
+  var enforcePaymentList = [{"payment_type": "CARD", "card_type": "DC"}, {"payment_type": "CARD", "card_type": "CC"}];
+  ```
+  
+  This configuration allows all debit cards and all credit cards, regardless of the card scheme.
+</Accordion>
+
+<Accordion title="Card Scheme Enforcement (VISA, MASTERCARD, AMEX, etc.)" icon="fa-code">
+  Enforce payment based on specific card schemes along with card type:
+
+  ```javascript
+  var enforcePaymentList = [{"payment_type": "CARD", "card_type": "DC", "card_scheme": "VISA"}, {"payment_type": "CARD", "card_type": "CC", "card_scheme": "MAST"}];
+  ```
+  
+  This configuration allows only VISA debit cards and MASTERCARD credit cards.
+</Accordion>
+    </Accordion>
+  </Accordion>
 
   <Accordion title="Step 2: Add in PayU Checkout config" icon="fa-code">
     ```
