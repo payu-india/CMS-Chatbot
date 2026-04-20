@@ -208,8 +208,18 @@ This section includes the following advanced integrations with React Native Chec
     ```
     var enforcePaymentList = [  
     {"payment_type": "CARD"},  {"payment_type": "NB"}, {"payment_type": "EMI"}, {payment_type": "WALLET"}, {"payment_type": "UPI"},{"payment_type": "BNPL"},{"payment_type": "NEFTRTGS"}];
+                                                                                 ```
+
+  <Accordion title="Advanced Card Payment Enforcement" icon="fa-code">
+For CARD payment type, you can add additional properties to enforce specific card types and schemes:
+
     ```
-  </Accordion>
+    var enforcePaymentList = var enforcePaymentList = [{"payment_type": "CARD", "card_type": "CC", "card_scheme": "AMEX"}, {"payment_type": "CARD", "card_type": "DC", "card_scheme": "VISA"}, {"payment_type": "CARD", "card_type": "CC", "card_scheme": "MAST"}];;
+    ```
+    </Accordion>
+
+    </Accordion>
+
 
   <Accordion title="Step 2: Add in PayU Checkout config" icon="fa-code">
     ```
