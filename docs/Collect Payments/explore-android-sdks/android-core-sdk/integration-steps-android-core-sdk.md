@@ -28,7 +28,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 > PayU has moved to Maven Central, Please update your existing dependency using the following configuration:
 >
 > ```Text build.gradle
-> api 'in.payu:payu-sdk:7.12.2'
+> api 'in.payu:payu-sdk:7.12.3'
 > ```
 
 ## Step 3: Build the Payment Parameters
