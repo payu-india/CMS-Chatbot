@@ -228,7 +228,21 @@ This section includes the following advanced integrations with React Native Chec
         var enforcePaymentList = [{"payment_type": "CARD", "card_type": "DC", "card_scheme": "VISA"}, {"payment_type": "CARD", "card_type": "CC", "card_scheme": "MAST"}];
         ```
       </Accordion>
-    </Accordion>
+      </Accordion>
+<Accordion title="Enforce Specific Bank/Wallet Provider" icon="fa-code">
+  You can enforce specific banks for Net Banking (NB) and specific wallet providers for Wallet payments using the `enforce_ibiboCode` parameter:
+
+  **Net Banking - Specific Bank:**
+  ```javascript
+  var enforcePaymentList = [{"payment_type": "NB", "enforce_ibiboCode": "AXIS"}];
+  ```
+
+**Wallet - Specific Provider:**
+
+```javascript
+var enforcePaymentList = [{"payment_type": "WALLET", "enforce_ibiboCode": "PAYTM"}];
+```
+</Accordion>
   </Accordion>
 
   <Accordion title="Step 2: Add in PayU Checkout config" icon="fa-code">
