@@ -101,11 +101,11 @@ You need to collect and structure the required payment details before initiating
 These include the following parameters:
 
 <Accordion title="Parameters and Description" icon="fa-list-alt">
+  <Callout icon="📘" theme="info">
+    **Mandatory Parameters**
+    Parameters marked with <span style={{color: 'red'}}>*</span> are mandatory.
+  </Callout>
 
-<Callout icon="📘" theme="info">
-  **Mandatory Parameters**
-
-
-</Callout>
+<br />
 
 </Accordion>
