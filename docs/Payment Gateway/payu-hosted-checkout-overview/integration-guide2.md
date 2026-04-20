@@ -360,7 +360,7 @@ These include the following parameters:
   </Table>
 </Accordion>
 
-<Accordion title="My Accordion Title" icon="fa-shield">
+<Accordion title="My Accordion Title" icon="fa-key">
   Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
   ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
   occaecat cupidatat non proident!
