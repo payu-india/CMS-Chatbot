@@ -4,6 +4,7 @@
 - integrate-with-decoupled-flow-s2s
 - integrate-with-direct-authorization-s2s
 - upi-collection-s2s
+- upi-credit-card-integration-s2s
 - upi-intent-server-to-server
 - upi-omnichannel-integration
 - upi-integrations-s2s
