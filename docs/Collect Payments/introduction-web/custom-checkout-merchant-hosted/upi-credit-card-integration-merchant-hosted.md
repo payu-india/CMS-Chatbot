@@ -1,5 +1,5 @@
 ---
-title: UPI Credit Card Integration - Merchant Hosted
+title: UPI Credit Card Integration - S2S
 deprecated: false
 hidden: true
 metadata:
