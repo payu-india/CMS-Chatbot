@@ -302,13 +302,13 @@ This section describes how to integrate the following advanced features with Flu
   You can enforce specific banks for Net Banking (NB) and specific wallet providers for Wallet payments using the `enforce_ibiboCode` parameter:
 
   **Net Banking - Specific Bank:**
-  ```javascript
+  ```Text Dart
   var enforcePaymentList = [{"payment_type": "NB", "enforce_ibiboCode": "AXIS"}];
   ```
 
 **Wallet - Specific Provider:**
 
-```javascript
+```Text Dart
 var enforcePaymentList = [{"payment_type": "WALLET", "enforce_ibiboCode": "PAYTM"}];
 ```
 </Accordion>
