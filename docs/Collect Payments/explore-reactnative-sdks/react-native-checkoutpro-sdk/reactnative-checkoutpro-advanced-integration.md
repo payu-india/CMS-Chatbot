@@ -211,7 +211,7 @@ This section includes the following advanced integrations with React Native Chec
     ```
 
     <Accordion title="Advanced Card Payment Enforcement" icon="fa-code">
-      <Accordion title="Card Type Enforcement (CC/DC Only)" icon="fa-credit-card">
+      <Accordion title="Card Type Enforcement (CC/DC Only)" icon="fa-code">
         Enforce payment based on card type - Credit Card (CC) or Debit Card (DC):
 
         ```javascript
@@ -227,7 +227,6 @@ This section includes the following advanced integrations with React Native Chec
         ```javascript
         var enforcePaymentList = [{"payment_type": "CARD", "card_type": "DC", "card_scheme": "VISA"}, {"payment_type": "CARD", "card_type": "CC", "card_scheme": "MAST"}];
         ```
-
       </Accordion>
     </Accordion>
   </Accordion>
