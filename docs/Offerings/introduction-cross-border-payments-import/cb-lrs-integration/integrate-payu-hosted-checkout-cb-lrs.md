@@ -200,7 +200,7 @@ The following parameters (mandatory) must be posted using any of the following s
     <tr>
       <td>
         address2
-        `mandatory`
+        `optional`
       </td>
 
       <td>
