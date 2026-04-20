@@ -30,8 +30,6 @@ next:
 
 UPICC (UPI Credit Card) allows customers to make payments using their credit card linked to UPI apps. This guide covers how to integrate UPICC payments using PayU's Server-to-Server integration.
 
-## Overview
-
 UPICC enables merchants to accept credit card payments through UPI apps. When a customer pays using UPICC, the payment is processed through their credit card linked to a UPI handle, allowing for a seamless payment experience.
 
 ### Key Differences: UPI vs UPICC
@@ -216,24 +214,57 @@ For detailed information on convenience fee handling, refer to [UPI Convenience 
 | E907       | Wrong payment method selected                     | Invalid payment method     | Check if UPICC is enabled on MID         |
 | -          | Integration exception                             | UPICC-INTCC not configured | Contact PayU to enable UPICC on your MID |
 
-### Validation Errors
+## Enforce Payment Method
 
-If `mode=UPICC` and `bankcode=INTCC` is not enabled on the MID, or if the PG codes are not configured, PayU returns an integration exception similar to UPI-Intent transactions.
+#### Enforce UPICC Only
 
-## Best Practices
+```curl
+curl --location 'https://secure.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=JPM****f' \
+--data-urlencode 'txnid=enforce_upicc_123' \
+--data-urlencode 'amount=100.00' \
+--data-urlencode 'productinfo=Order #123' \
+--data-urlencode 'firstname=John' \
+--data-urlencode 'email=john@example.com' \
+--data-urlencode 'phone=9876543210' \
+--data-urlencode 'enforce_pay_method=upicc' \
+--data-urlencode 'surl=https://merchant.com/success' \
+--data-urlencode 'furl=https://merchant.com/failure' \
+--data-urlencode 'hash=<calculated_hash>'
+```
 
-1. **VPA Validation**: If `upirefidvalidation` flag is true for your merchant account, PayU makes a bank call for UPICC transactions to generate the intent link.
+#### Enforce Multiple Methods Including UPICC
 
-2. **Mode Handling**: Always check the final `mode` in the payment response, as it may change from UPICC to UPI/UPIPPI/UPICL based on the customer's actual payment source.
+```curl
+--data-urlencode 'enforce_pay_method=netbanking|creditcard|debitcard|upicc'
+```
 
-3. **Convenience Fee**: If convenience fee is configured, ensure your system handles the additional amount in the transaction response.
+### Get Checkout Details Response
 
-4. **Error Handling**: Implement proper error handling for cases where UPICC is not enabled or configured.
+When UPICC is enabled, the `getCheckoutDetails` API returns a `upicc` block similar to the `upi` block:
 
-## Related Documentation
-
-* [UPI Intent with S2S Integration](doc:upi-intent-server-to-server)
-* [UPI Convenience Fee Integration](doc:upi-convenience-fee-integration)
-* [UPICC Enforce Feature](doc:upicc-enforce-feature)
-* [Verify Payment API](ref:verify_payment_api)
-* [Error Codes](ref:error-codes)
+```json
+{
+  "paymentMethods": {
+    "upicc": {
+      "INTENT": {
+        "timeout": "300",
+        "sleepTime": "45",
+        "upiPushDisabled": "0",
+        "pushServiceUrl": "https://nimble.payu.in/upi/secureVerify",
+        "upiServicePollInterval": "5",
+        "intent": true,
+        "amount": "100.00"
+      }
+    }
+  },
+  "unfilteredPaymentMethods": {
+    "upi": {
+      "INTENT": { ... },
+      "TEZ": { ... },
+      "TEZOMNI": { ... }
+    }
+  }
+}
+```
