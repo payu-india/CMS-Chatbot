@@ -231,14 +231,14 @@ This section describes how to integrate the following advanced features with Flu
   ```
 </Accordion>
 
-  <Accordion title="Customize UPI Apps Order" icon="fa-code">
+<Accordion title="Customize UPI Apps Order" icon="fa-code">
   You can customize the display order of UPI payment apps. Define the sequence using a pipe-separated format to rearrange how UPI apps appear to users.
 
   ```Text Dart
   var payUCheckoutProConfig = {
   PayUCheckoutProConfigKeys.upiAppsOrder: "phonepe|paytm|gpay"
   }
-  ````
+  ```
 </Accordion>
 
 <Accordion title="Custom Note integration" icon="fa-code">
@@ -272,11 +272,32 @@ This section describes how to integrate the following advanced features with Flu
   2. Add in PayU Checkout Config
 
   <Accordion title="Step 1: Create an enforced payment list" icon="fa-code">
-    Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each enforce payment, payment\_type and enforce\_ibiboCode needs to be passed.
+    For each enforce payment, payment_type needs to be passed.
 
     ```Text Dart
-    var enforcePaymentList = [       {"payment_type": "CARD", "enforce_ibiboCode": "UTIBENCC"},  ];
+    var enforcePaymentList = [  
+    {"payment_type": "CARD"},  {"payment_type": "NB"}, {"payment_type": "EMI"}, {payment_type": "WALLET"}, {"payment_type": "UPI"},{"payment_type": "BNPL"},{"payment_type": "NEFTRTGS"}];
     ```
+
+    <Accordion title="Advanced Card Payment Enforcement" icon="fa-code">
+      <Accordion title="Card Type Enforcement (CC/DC Only)" icon="fa-code">
+        Enforce payment based on card type - Credit Card (CC) or Debit Card (DC):
+
+        ```Text Dart
+        var enforcePaymentList = [{"payment_type": "CARD", "card_type": "DC"}, {"payment_type": "CARD", "card_type": "CC"}];
+        ```
+
+        This configuration allows all debit cards and all credit cards, regardless of the card scheme.
+      </Accordion>
+
+      <Accordion title="Card Scheme Enforcement (VISA, MASTERCARD, AMEX, etc.)" icon="fa-code">
+        Enforce payment based on specific card schemes along with card type:
+
+        ```Text Dart
+        var enforcePaymentList = [{"payment_type": "CARD", "card_type": "DC", "card_scheme": "VISA"}, {"payment_type": "CARD", "card_type": "CC", "card_scheme": "MAST"}];
+        ```
+      </Accordion>
+    </Accordion>
   </Accordion>
 
   <Accordion title="Step 2: Add in PayU Checkout config" icon="fa-code">
