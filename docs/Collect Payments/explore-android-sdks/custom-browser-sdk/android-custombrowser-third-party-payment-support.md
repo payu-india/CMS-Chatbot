@@ -22,6 +22,7 @@ metadata:
 next:
   description: ''
 ---
+
 If you want to make payments by any third-party payment application, such as GooglePay, PhonePe, Samsung Pay, etc, you have to include the changes as described in this section.
 
 ## Google Pay
@@ -37,7 +38,7 @@ If you want to make payments by any third-party payment application, such as Goo
   Add the following dependency in the application's build.gradle.
 
   ```gradle
-  implementation 'in.payu:payu-gpay:4.0.0'
+  implementation 'in.payu:payu-gpay:4.0.2'
   ```
 </Accordion>
 
@@ -66,6 +67,6 @@ If you want to make payments by any third-party payment application, such as Goo
   Add the following dependency in your application's build.gradle:
 
   ```gradle
-  implementation 'in.payu:phonepe-intent:1.8.7'
+  implementation 'in.payu:phonepe-intent:1.8.9'
   ```
 </Accordion>
