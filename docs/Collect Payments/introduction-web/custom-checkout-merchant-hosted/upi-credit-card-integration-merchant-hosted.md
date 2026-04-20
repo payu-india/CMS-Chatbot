@@ -60,14 +60,7 @@ Before integrating UPICC:
 
 The UPICC Intent flow is similar to UPI Intent but uses different PG and bankcode values:
 
-```mermaid
-flowchart TD
-    A[Customer selects UPICC] --> B[Merchant calls payment API<br/>pg=UPICC, bankcode=INTCC]
-    B --> C[PayU returns Intent URI]
-    C --> D[Customer completes payment<br/>in UPI app]
-    D --> E[PayU sends callback]
-    E --> F[Merchant verifies payment]
-```
+<Image align="center" src="https://files.readme.io/abb1b607611a7ba2e7f4bcfc0aa5f897f7beceee9f87153505ce44c183adab9c-upicc-swimlane-diagram.png" />
 
 ## Integration Steps
 
