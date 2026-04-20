@@ -27,33 +27,21 @@ next:
   description: ''
 ---
 
-This guide explains how to implement and handle convenience fees for UPI-based payment modes including UPICC (UPI Credit Card), UPIPPI (UPI Prepaid Payment Instrument), and UPICL (UPI Credit Line).
-
-## Overview
+This section describes how to implement and handle convenience fees for UPI-based payment modes including UPICC (UPI Credit Card), UPIPPI (UPI Prepaid Payment Instrument), and UPICL (UPI Credit Line).
 
 NPCI has built a solution to support convenience fees for UPI instruments where charges are applicable. This solution allows merchants to accept transactions via UPICC, PPI, and Credit Line where the customer's payment amount gets updated while authorizing, and the merchant receives the transaction with the updated amount.
 
 ### Supported Payment Modes
 
-| Mode | Description | Ibibo Code |
-|------|-------------|------------|
-| UPICC | UPI Credit Card | INTCC |
-| UPIPPI | UPI Prepaid Payment Instrument | INTPPI |
-| UPICL | UPI Credit Line | INTCL |
+| Mode   | Description                    | Ibibo Code |
+| ------ | ------------------------------ | ---------- |
+| UPICC  | UPI Credit Card                | INTCC      |
+| UPIPPI | UPI Prepaid Payment Instrument | INTPPI     |
+| UPICL  | UPI Credit Line                | INTCL      |
 
 ## How It Works
 
-### Flow Overview
-
-```text
-1. Merchant initiates UPI Intent transaction with convenience fee configured
-2. PayU calculates convenience fee based on merchant configuration
-3. PayU adds split tag to intent string with CCONFEE and PCONFEE values
-4. Customer scans QR or opens UPI app
-5. PSP app displays updated amount based on payment source selected
-6. Customer authorizes payment with updated amount
-7. PayU validates the payment amount and processes transaction
-```
+<Image align="center" src="https://files.readme.io/ada489770af12f7d7df3c9fb363573c4e5feffed4944f243bc46304656df51fc-upi-conv-fee-swimlane-diagram.png" />
 
 ### Split Tag in Intent String
 
@@ -65,10 +53,10 @@ upi://pay?pa=merchant@icici&pn=Merchant&tr=675879299&tid=PPPL675879299&am=100.00
 
 #### Split Tag Components
 
-| Tag | Description | Applicable For |
-|-----|-------------|----------------|
+| Tag       | Description                             | Applicable For        |
+| --------- | --------------------------------------- | --------------------- |
 | `CCONFEE` | Credit Card/Credit Line Convenience Fee | UPICC, UPICL payments |
-| `PCONFEE` | PPI Convenience Fee | UPIPPI payments |
+| `PCONFEE` | PPI Convenience Fee                     | UPIPPI payments       |
 
 ## Convenience Fee Calculation
 
@@ -76,11 +64,11 @@ upi://pay?pa=merchant@icici&pn=Merchant&tr=675879299&tid=PPPL675879299&am=100.00
 
 The convenience fee is calculated based on the transaction amount and configured rates:
 
-| Mode | Rate Structure | Example Calculation (Amount: ₹100) |
-|------|----------------|-----------------------------------|
-| UPICC | 1.8% + GST (18%) | 100 × 1.8% = 1.80 + (1.80 × 18%) = **₹2.13** |
+| Mode   | Rate Structure   | Example Calculation (Amount: ₹100)           |
+| ------ | ---------------- | -------------------------------------------- |
+| UPICC  | 1.8% + GST (18%) | 100 × 1.8% = 1.80 + (1.80 × 18%) = **₹2.13** |
 | UPIPPI | 1.5% + GST (18%) | 100 × 1.5% = 1.50 + (1.50 × 18%) = **₹1.77** |
-| UPICL | 1.8% + GST (18%) | 100 × 1.8% = 1.80 + (1.80 × 18%) = **₹2.13** |
+| UPICL  | 1.8% + GST (18%) | 100 × 1.8% = 1.80 + (1.80 × 18%) = **₹2.13** |
 
 <Callout icon="📘" theme="info">
   **Note**: The actual rates may vary based on your merchant agreement. Contact your PayU Key Account Manager for your specific rate structure.
@@ -111,9 +99,9 @@ CCONFEE = (100 × 0.018) + (100 × 0.018 × 0.18)
 
 Contact your PayU Key Account Manager to configure convenience fee for UPI modes:
 
-- UPICC (Credit Card)
-- UPIPPI (PPI)
-- UPICL (Credit Line)
+* UPICC (Credit Card)
+* UPIPPI (PPI)
+* UPICL (Credit Line)
 
 Configuration is done at the merchant level through the PayU admin panel.
 
@@ -183,10 +171,10 @@ When payment completes, PayU sends a callback with the final amount including co
 
 PayU stores convenience fee values in the `txn_info` table with the following keys:
 
-| Key | Description | Usage |
-|-----|-------------|-------|
+| Key       | Description                    | Usage                                      |
+| --------- | ------------------------------ | ------------------------------------------ |
 | `CCONFEE` | Convenience fee for CC/CL mode | Stored when intent generated with conv fee |
-| `PCONFEE` | Convenience fee for PPI mode | Stored when intent generated with conv fee |
+| `PCONFEE` | Convenience fee for PPI mode   | Stored when intent generated with conv fee |
 
 These values are used for validation when payment authorization is received from the bank.
 
@@ -230,12 +218,12 @@ PayU calculates convenience fee using the `getAllowedIbiboCodesByCategory` funct
 
 ### Payment Response with Convenience Fee
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| `amount` | Total amount paid (including convenience fee) | `102.13` |
-| `transaction_fee` | Original transaction amount | `100.00` |
-| `additional_charges` | Convenience fee charged | `2.13` |
-| `mode` | Payment mode used | `UPICC` |
+| Parameter            | Description                                   | Example  |
+| -------------------- | --------------------------------------------- | -------- |
+| `amount`             | Total amount paid (including convenience fee) | `102.13` |
+| `transaction_fee`    | Original transaction amount                   | `100.00` |
+| `additional_charges` | Convenience fee charged                       | `2.13`   |
+| `mode`               | Payment mode used                             | `UPICC`  |
 
 ### Verify Payment Response
 
@@ -281,11 +269,11 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 
 ### Common Errors
 
-| Error Code | Error Message | Cause | Resolution |
-|------------|---------------|-------|------------|
-| E1657 | Surcharge amount not permitted | Convenience fee exceeds allowed limit | Contact PayU support |
-| E9209 | Unacceptable Transaction Fee | Fee mismatch | Verify convenience fee calculation |
-| - | Amount mismatch | Received amount differs from expected | Check if customer paid correct amount |
+| Error Code | Error Message                  | Cause                                 | Resolution                            |
+| ---------- | ------------------------------ | ------------------------------------- | ------------------------------------- |
+| E1657      | Surcharge amount not permitted | Convenience fee exceeds allowed limit | Contact PayU support                  |
+| E9209      | Unacceptable Transaction Fee   | Fee mismatch                          | Verify convenience fee calculation    |
+| -          | Amount mismatch                | Received amount differs from expected | Check if customer paid correct amount |
 
 ## Best Practices
 
@@ -338,10 +326,4 @@ public BigDecimal calculateExpectedAmount(String mode, BigDecimal txnAmount,
 }
 ```
 
-## Related Documentation
-
-- [UPICC Integration](doc:upicc-integration)
-- [Collect Additional Charges](doc:collect-additional-charges)
-- [UPI Intent with S2S Integration](doc:upi-intent-server-to-server)
-- [Verify Payment API](ref:verify_payment_api)
-- [Webhooks](doc:webhooks)
+<br />
