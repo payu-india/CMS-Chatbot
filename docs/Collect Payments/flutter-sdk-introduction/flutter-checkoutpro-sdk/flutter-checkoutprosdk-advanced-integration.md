@@ -297,21 +297,23 @@ This section describes how to integrate the following advanced features with Flu
         var enforcePaymentList = [{"payment_type": "CARD", "card_type": "DC", "card_scheme": "VISA"}, {"payment_type": "CARD", "card_type": "CC", "card_scheme": "MAST"}];
         ```
       </Accordion>
-      </Accordion>
-<Accordion title="Enforce Specific Bank/Wallet Provider" icon="fa-code">
-  You can enforce specific banks for Net Banking (NB) and specific wallet providers for Wallet payments using the `enforce_ibiboCode` parameter:
+    </Accordion>
+<br/>
+    <Accordion title="Enforce Specific Bank/Wallet Provider" icon="fa-code">
+      You can enforce specific banks for Net Banking (NB) and specific wallet providers for Wallet payments using the `enforce_ibiboCode` parameter:
 
-  **Net Banking - Specific Bank:**
-  ```Text Dart
-  var enforcePaymentList = [{"payment_type": "NB", "enforce_ibiboCode": "AXIS"}];
-  ```
+      **Net Banking - Specific Bank:**
 
-**Wallet - Specific Provider:**
+      ```Text Dart
+      var enforcePaymentList = [{"payment_type": "NB", "enforce_ibiboCode": "AXIS"}];
+      ```
 
-```Text Dart
-var enforcePaymentList = [{"payment_type": "WALLET", "enforce_ibiboCode": "PAYTM"}];
-```
-</Accordion>
+      **Wallet - Specific Provider:**
+
+      ```Text Dart
+      var enforcePaymentList = [{"payment_type": "WALLET", "enforce_ibiboCode": "PAYTM"}];
+      ```
+    </Accordion>
   </Accordion>
 
   <Accordion title="Step 2: Add in PayU Checkout config" icon="fa-code">
