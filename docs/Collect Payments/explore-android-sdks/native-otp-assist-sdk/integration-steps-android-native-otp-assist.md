@@ -79,7 +79,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   Include the SDK in your application's build.gradle:
 
   ```gradle
-  implementation 'in.payu:native-otp-assist:1.6.4'
+  implementation 'in.payu:native-otp-assist:1.6.5'
   ```
 </Accordion>
 
