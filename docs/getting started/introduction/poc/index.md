@@ -164,10 +164,10 @@ Accelerate your integration workflow with our net banking Postman collection for
                 }
                 </style>
 
-                <button onclick="window.open('https://timely-dolphin-49e294.netlify.app/', '_blank')" 
+                <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
                         class="tooltip-btn" 
                         data-tooltip="Click to generate hash.">
-                    Generate Forward Hash
+                    Generate Hash
                 </button>
 `}</HTMLBlock>
 
