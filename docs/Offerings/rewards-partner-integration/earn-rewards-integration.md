@@ -93,8 +93,6 @@ Use the following bankcode values to identify the reward provider in both the to
 >
 > **Earn** is supported for both **TWID and Zillion**. Pass the reward instrument inside `earnPaymentInstruments` (with `transactionAmount: "0"`) when the customer is paying via Card/UPI and accruing reward points on that transaction.
 
-#### Field Descriptions
-
 <Accordion title="Field Descriptions in childPaymentInstruments" icon="fa-table">
   | Field                                    | Description                                                                                                                                                                                                                 | Example          |
   | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
