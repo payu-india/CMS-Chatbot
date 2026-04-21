@@ -1,5 +1,4 @@
 ---
-title: Get Single Payment Link API
 api:
   file: partner-apis-6.json
   operationId: ReadInvoiceAPI
@@ -22,24 +21,25 @@ The invoice number in the request header must be included as a query parameter i
 
 ### Environment
 
-|                            |                                                           |
-| :------------------------- | :-------------------------------------------------------- |
-| **Test Environment**       | \<[https://uatoneapi.payu.in](https://uatoneapi.payu.in)> |
-| **Production Environment** | \<[https://oneapi.payu.in](https://oneapi.payu.in)>       |
+|                            |                                                             |
+| :------------------------- | :---------------------------------------------------------- |
+| **Test Environment**       | \<[https://uat-partner.payu.in](https://uatoneapi.payu.in)> |
+| **Production Environment** | \<[https://oneapi.payu.in](https://partner.payu.in)>        |
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
-curl --location -g '{{payu_base_url}}/payment-links/{{invoice_number}}' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer {{access_token}}' \
---header 'merchantId: 4825038'
- ```
+  curl --location -g '{{payu_base_url}}/payment-links/{{invoice_number}}' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Bearer {{access_token}}' \
+  --header 'merchantId: 4825038'
+  ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-info-circle">
   **Success scenario**
+
   ```json
-{
+  {
   "status": 0,
   "message": null,
   "result": {
@@ -83,18 +83,20 @@ curl --location -g '{{payu_base_url}}/payment-links/{{invoice_number}}' \
   },
   "errorCode": null,
   "guid": null
-}
-```
-**Failure scenario**
-```json
-{
-  "status": -1,
-  "message": "paymentLink not found",
-  "result": null,
-  "errorCode": null,
-  "guid": null
-}
-```
+  }
+  ```
+
+  **Failure scenario**
+
+  ```json
+  {
+    "status": -1,
+    "message": "paymentLink not found",
+    "result": null,
+    "errorCode": null,
+    "guid": null
+  }
+  ```
 </Accordion>
 
 <br />
