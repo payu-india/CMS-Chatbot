@@ -14,10 +14,10 @@ This API is used to create a payment link for your customer with Partner Integra
 
 ### Environment
 
-|                            |                                                              |
-| :------------------------- | :----------------------------------------------------------- |
-| **Test Environment**       | \<[https://test-partner.payu.in](https://uatoneapi.payu.in)> |
-| **Production Environment** | \<[https://partner.payu.in](https://oneapi.payu.in)>         |
+|                            |                                                                |
+| :------------------------- | :------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test-partner.payu.in](https://uat-partner.payu.in)> |
+| **Production Environment** | \<[https://partner.payu.in](https://oneapi.payu.in)>           |
 
 <details>
   <summary>Sample request</summary>
