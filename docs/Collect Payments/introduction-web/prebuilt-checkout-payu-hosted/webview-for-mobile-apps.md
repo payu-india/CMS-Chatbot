@@ -604,4 +604,14 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 
 ## Webview Flutter Integration on Android/IOS
 
-<br />
+<Accordion title="Add below dependencies in pubspec.yaml file" icon="fa-code">
+
+  ```Dependencies
+   
+ dependencies:
+ flutter:
+ sdk: flutter
+ url_launcher: ^6.3.1
+ webview_flutter: ^4.13.0
+  ```
+</Accordion>
