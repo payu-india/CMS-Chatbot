@@ -1,5 +1,4 @@
 ---
-title: Update Payment Link API
 excerpt: ''
 api:
   file: partner-apis-6.json
@@ -21,7 +20,7 @@ This API is used to update a payment link’s status and expiry date.
 
 ### Environment
 
-|                            |                                                           |
-| :------------------------- | :-------------------------------------------------------- |
-| **Test Environment**       | \<[https://uatoneapi.payu.in](https://uatoneapi.payu.in)> |
-| **Production Environment** | \<[https://oneapi.payu.in](https://oneapi.payu.in)>       |
+|                            |                                                             |
+| :------------------------- | :---------------------------------------------------------- |
+| **Test Environment**       | \<[https://uat-partner.payu.in](https://uatoneapi.payu.in)> |
+| **Production Environment** | \<[https://partner.payu.in](https://oneapi.payu.in)>        |
