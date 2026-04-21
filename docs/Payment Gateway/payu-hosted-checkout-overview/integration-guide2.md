@@ -364,8 +364,25 @@ These include the following parameters:
 
 To ensure the payment request is secure, you must generate a hash using your transaction details and merchant credentials. This hash is used to verify that the request has not been altered.
 
-The hash is created by concatenating the following parameters in a specific order:
+The hash is created by concatenating the following parameters in a specific order. Refer to the Step 1.1 Prepare Payment Request Parameters for the parameter description and example values.
 
-* <br />
+* `key`
+* `txnid`
+* `amount`
+* `productinfo`
+* `firstname`
+* `email`
+* `salt`
+
+```Text Logic
+key|txnid|amount|productinfo|firstname|email|||||||||||salt
+```
+```Text Example Values
+YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||salt_value
+```
+
+<br />
+
+<br />
 
 </Accordion>
