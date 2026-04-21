@@ -134,7 +134,7 @@ Follow the below steps to make your test payment:
   k0g8AB|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||LTVABCEFGHIJMEtrSi3MEWjUq64FAvjm
   ```
   ```Example Hash Value
-  ae3eeea5587856fa0540bdfb85a18b461d0457fbe230ea033dbd1a9a8f08e504e1fc1268da9df50ef0083a9f1a760cb82d2d3fb6bddc7e463b28cba5907a74fe
+  34ceb1e2074133863e2e51d2925245bc0b8fcd0de2643cd12f052925e991ab4758822ae65ba9cfbeeb12fc5d74235d9db45f1dfcb864c9b645d8010f749e6b7e
   ```
 
   <Callout icon="⚠️" theme="warn">
