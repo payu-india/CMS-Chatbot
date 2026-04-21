@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PayU Hosted Checkout – Hash Generator</title>
+  <style>
+    /* PayU Integration Lab theme – green & grey */
+    * { box-sizing: border-box; }
+    html { overflow-x: hidden; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f2f5;
+      color: #2d3748;
+      line-height: 1.5;
+      min-width: 0;
+    }
+    .header {
+      background: linear-gradient(135deg, #234e52 0%, #285e61 50%, #2c7a7b 100%);
+      color: #fff;
+      padding: 28px 24px 32px;
+      margin-bottom: 24px;
+    }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px 24px; min-width: 0; }
+    .header .container {
+      padding: 0 24px;
+      margin-bottom: 0;
+      max-width: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .header-logo {
+      flex-shrink: 0;
+      display: block;
+      height: 36px;
+      width: auto;
+      margin-top: 0;
+    }
+    .header-logo img,
+    .header-logo svg {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+    .header-title-wrap { min-width: 0; }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 6px;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      min-width: 0;
+      overflow-wrap: break-word;
+      overflow: visible;
+    }
+    .card h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 0 0 14px;
+      color: #2d3748;
+    }
+    .formula {
+      font-family: ui-monospace, 'SF Mono', Monaco, monospace;
+      font-size: 0.8rem;
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
+      border: 1px solid #4a5568;
+    }
+    .intro {
+      font-size: 0.9rem;
+      color: #4a5568;
+      margin: 0 0 18px;
+    }
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      min-width: 0;
+    }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      overflow: visible;
+    }
+    .field.full { grid-column: 1 / -1; }
+    label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #4a5568;
+    }
+    .field-label-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: nowrap;
+      max-width: 100%;
+    }
+    .info-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #a0aec0;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: help;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .info-icon:hover { background: #718096; }
+    .info-icon .tooltip-text {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 100%;
+      margin-top: 6px;
+      padding: 8px 10px;
+      background: #2d3748;
+      color: #e2e8f0;
+      font-size: 0.75rem;
+      font-weight: normal;
+      line-height: 1.4;
+      white-space: normal;
+      width: 220px;
+      max-width: 90vw;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.15s ease, visibility 0.15s ease;
+      z-index: 10;
+      pointer-events: none;
+      text-align: left;
+    }
+    .info-icon .tooltip-text::before {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -4px;
+      border: 4px solid transparent;
+      border-bottom-color: #2d3748;
+    }
+    .info-icon:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    input[type="text"],
+    input[type="password"] {
+      padding: 9px 12px;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      background: #fff;
+      color: #2d3748;
+      max-width: 100%;
+      min-width: 0;
+    }
+    input:focus {
+      outline: none;
+      border-color: #38a169;
+      box-shadow: 0 0 0 2px rgba(56, 161, 105, 0.25);
+    }
+    input.input-invalid {
+      border-color: #e53e3e;
+      box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.2);
+    }
+    input.input-invalid:focus {
+      border-color: #e53e3e;
+      box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.25);
+    }
+    .field-error {
+      display: block;
+      font-size: 0.75rem;
+      color: #c53030;
+      margin-top: 4px;
+      min-height: 1.2em;
+    }
+    .field-error:empty { display: none; }
+    .btn {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    .btn-primary {
+      background: #38a169;
+      color: #fff;
+    }
+    .btn-primary:hover { background: #2f855a; }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #4a5568;
+    }
+    .btn-secondary:hover { background: #cbd5e0; }
+    .output-section { margin-top: 20px; }
+    .output-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #4a5568;
+      margin-bottom: 6px;
+    }
+    .output-hash-wrap {
+      position: relative;
+      margin-top: 6px;
+    }
+    .output-hash-wrap .copy-btn-wrap {
+      top: 8px;
+      right: 8px;
+    }
+    .output-hash-wrap .output-hash {
+      padding-top: 40px;
+    }
+    .output-hash {
+      font-family: ui-monospace, 'SF Mono', Monaco, monospace;
+      font-size: 0.85rem;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
+      padding: 12px 14px;
+      background: #f0fff4;
+      border: 1px solid #9ae6b4;
+      border-radius: 8px;
+      color: #276749;
+    }
+    .output-string {
+      font-family: ui-monospace, 'SF Mono', Monaco, monospace;
+      font-size: 0.75rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+      overflow-wrap: break-word;
+      max-width: 100%;
+      padding: 10px 12px;
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      margin-top: 10px;
+      color: #4a5568;
+    }
+    .error {
+      background: #fff5f5;
+      border: 1px solid #feb2b2;
+      color: #c53030;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin-top: 12px;
+    }
+    .note {
+      font-size: 0.85rem;
+      color: #744210;
+      margin-top: 16px;
+      padding: 12px 14px;
+      background: #fffff0;
+      border: 1px solid #ecc94b;
+      border-radius: 8px;
+    }
+    .note strong { color: #744210; }
+    details { margin-top: 12px; }
+    summary {
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: #4a5568;
+    }
+    .output-string-wrap {
+      position: relative;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background: #f7fafc;
+      margin-top: 8px;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .output-string-wrap .output-string {
+      margin-top: 0;
+      border: none;
+      border-radius: 0 0 8px 8px;
+      padding-top: 36px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .copy-btn-wrap {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+    .copy-btn {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      background: #fff;
+      color: #4a5568;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: #edf2f7; color: #2d3748; }
+    .copy-btn.copied { background: #c6f6d5; border-color: #9ae6b4; color: #276749; }
+    .links {
+      margin-top: 24px;
+      font-size: 0.9rem;
+      color: #4a5568;
+    }
+    .links a {
+      color: #2f855a;
+      text-decoration: none;
+    }
+    .links a:hover { text-decoration: underline; color: #276749; }
+    .salt-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+    .salt-wrap input[type="text"],
+    .salt-wrap input[type="password"] {
+      flex: 1 1 200px;
+      min-width: 0;
+      max-width: 100%;
+    }
+    .show-salt-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: normal;
+      color: #4a5568;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .salt-hint {
+      font-size: 0.8rem;
+      color: #718096;
+      margin: 8px 0 0;
+      max-width: 100%;
+      word-break: break-word;
+    }
+    .salt-hint code { background: #edf2f7; padding: 1px 4px; border-radius: 3px; }
+    .mode-select {
+      width: 100%;
+      max-width: 100%;
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      background: #fff;
+      color: #2d3748;
+    }
+    .mode-select:focus {
+      outline: none;
+      border-color: #38a169;
+      box-shadow: 0 0 0 2px rgba(56, 161, 105, 0.25);
+    }
+    .mode-panel { display: none; }
+    .mode-panel.active { display: block; }
+    .troubleshoot {
+      margin-top: 20px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background: #f7fafc;
+    }
+    .troubleshoot-summary {
+      padding: 12px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #2d3748;
+      cursor: pointer;
+    }
+    .troubleshoot-summary:hover { background: #edf2f7; }
+    .troubleshoot-content { padding: 0 14px 14px; }
+    .troubleshoot-list {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 0.85rem;
+      color: #4a5568;
+      line-height: 1.6;
+    }
+    .troubleshoot-list li { margin-bottom: 8px; }
+    .troubleshoot-list li:last-child { margin-bottom: 0; }
+    .troubleshoot-list code { background: #e2e8f0; padding: 1px 4px; border-radius: 3px; font-size: 0.8em; }
+    @media (max-width: 480px) {
+      .container { padding-left: 16px; padding-right: 16px; }
+      .card { padding: 16px; }
+      .salt-wrap { flex-direction: column; align-items: stretch; }
+      .salt-wrap input[type="text"],
+      .salt-wrap input[type="password"] { flex: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="https://payu.in" target="_blank" rel="noopener noreferrer" class="header-logo" aria-label="PayU">
+        <img src="https://files.readme.io/075e203a7afeed9abd59397d42dc95f5be59e5b6dd330ca9a5dbb32a0b45404b-logo.png" alt="PayU" />
+      </a>
+      <div class="header-title-wrap">
+        <h1>PayU Integration Lab</h1>
+        <p class="subtitle">Hash generator &amp; verification (forward + reverse per PayU docs)</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2 id="card-heading">PayU hash tools</h2>
+      <div class="field full" style="margin-bottom: 16px;">
+        <label for="hash-mode" class="field-label-wrap">Hash logic <span class="info-icon" aria-label="Help"><span class="tooltip-text">Choose the scenario that matches your integration. Fields below update for the selected formula. Ref: PayU docs – Generate Hash (PayU Hosted) and response verification.</span>i</span></label>
+        <select id="hash-mode" class="mode-select" aria-label="Select hash logic">
+          <option value="forward-udf">Payment request – Hosted checkout (udf1–udf5 + salt)</option>
+          <option value="forward-v19">Payment request – _payment API v19 (api_version=19)</option>
+          <option value="reverse-normal">Response verification – Regular reverse hash</option>
+          <option value="reverse-add-charges">Response verification – Additional charges</option>
+          <option value="reverse-split">Response verification – Split (splitInfo)</option>
+          <option value="reverse-split-add">Response verification – Split + additional charges</option>
+        </select>
+      </div>
+      <p class="formula" id="formula-text">sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)</p>
+      <p class="intro" id="intro-text">
+        Enter the same values you use in your payment request. Leave UDFs empty if not used. Hash is computed in the browser; use server-side hashing in production.
+      </p>
+
+      <div class="mode-panel active" data-mode="forward-udf" id="panel-forward-udf">
+      <div class="grid" id="form-grid">
+        <div class="field">
+          <label for="key" class="field-label-wrap">Merchant key <span class="info-icon" aria-label="Help"><span class="tooltip-text">Your PayU merchant key (test or production). Find it in the PayU Dashboard under API Keys.</span>i</span></label>
+          <input type="text" id="key" placeholder="e.g. gtKFFx" autocomplete="off" />
+          <span class="field-error" id="error-key" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="txnid" class="field-label-wrap">Transaction ID (txnid) <span class="info-icon" aria-label="Help"><span class="tooltip-text">Unique transaction ID for this payment. Must be unique per transaction (e.g. order ID or UUID).</span>i</span></label>
+          <input type="text" id="txnid" placeholder="Unique txn id" autocomplete="off" />
+          <span class="field-error" id="error-txnid" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="amount" class="field-label-wrap">Amount <span class="info-icon" aria-label="Help"><span class="tooltip-text">Transaction amount in decimal format (e.g. 10.00 or 99.50). Use the same value you send in the payment request.</span>i</span></label>
+          <input type="text" id="amount" placeholder="e.g. 10.00" autocomplete="off" />
+          <span class="field-error" id="error-amount" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="productinfo" class="field-label-wrap">Product info <span class="info-icon" aria-label="Help"><span class="tooltip-text">Short description of the product or payment (e.g. &quot;Order #12345&quot; or &quot;Groceries&quot;).</span>i</span></label>
+          <input type="text" id="productinfo" placeholder="Product info" autocomplete="off" />
+          <span class="field-error" id="error-productinfo" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="firstname" class="field-label-wrap">First name <span class="info-icon" aria-label="Help"><span class="tooltip-text">Customer&#8217;s first name as you send it in the payment request.</span>i</span></label>
+          <input type="text" id="firstname" placeholder="Customer first name" autocomplete="off" />
+          <span class="field-error" id="error-firstname" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="email" class="field-label-wrap">Email <span class="info-icon" aria-label="Help"><span class="tooltip-text">Customer&#8217;s email address. Must match the value sent in the payment request.</span>i</span></label>
+          <input type="text" id="email" placeholder="Customer email" autocomplete="off" />
+          <span class="field-error" id="error-email" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="udf1" class="field-label-wrap">UDF1 (optional) <span class="info-icon" aria-label="Help"><span class="tooltip-text">User-defined field 1. Optional; leave empty if not used. Order (udf1–udf5) must match your request.</span>i</span></label>
+          <input type="text" id="udf1" placeholder="Optional" autocomplete="off" />
+          <span class="field-error" id="error-udf1" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="udf2" class="field-label-wrap">UDF2 (optional) <span class="info-icon" aria-label="Help"><span class="tooltip-text">User-defined field 2. Optional; leave empty if not used.</span>i</span></label>
+          <input type="text" id="udf2" placeholder="Optional" autocomplete="off" />
+          <span class="field-error" id="error-udf2" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="udf3" class="field-label-wrap">UDF3 (optional) <span class="info-icon" aria-label="Help"><span class="tooltip-text">User-defined field 3. Optional; leave empty if not used.</span>i</span></label>
+          <input type="text" id="udf3" placeholder="Optional" autocomplete="off" />
+          <span class="field-error" id="error-udf3" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="udf4" class="field-label-wrap">UDF4 (optional) <span class="info-icon" aria-label="Help"><span class="tooltip-text">User-defined field 4. Optional; leave empty if not used.</span>i</span></label>
+          <input type="text" id="udf4" placeholder="Optional" autocomplete="off" />
+          <span class="field-error" id="error-udf4" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="udf5" class="field-label-wrap">UDF5 (optional) <span class="info-icon" aria-label="Help"><span class="tooltip-text">User-defined field 5. Optional; leave empty if not used.</span>i</span></label>
+          <input type="text" id="udf5" placeholder="Optional" autocomplete="off" />
+          <span class="field-error" id="error-udf5" role="alert"></span>
+        </div>
+        <div class="field full">
+          <label for="salt" class="field-label-wrap">SALT (required – never send in request) <span class="info-icon" aria-label="Help"><span class="tooltip-text">Your PayU merchant salt (test or production). Find it in the PayU Dashboard. Never send salt in the payment request; use it only to generate the hash server-side.</span>i</span></label>
+          <div class="salt-wrap">
+            <input type="password" id="salt" placeholder="Your merchant salt" autocomplete="off" />
+            <label class="show-salt-label"><input type="checkbox" id="show-salt" aria-label="Show SALT" /> Show SALT</label>
+          </div>
+          <span class="field-error" id="error-salt" role="alert"></span>
+          <p class="salt-hint">If you get an error despite entering SALT, tick "Show SALT" or open this page via a local server (e.g. <code>python -m http.server 8080</code>) instead of file://.</p>
+        </div>
+      </div>
+      </div>
+
+      <div class="mode-panel" data-mode="forward-v19" id="panel-forward-v19">
+        <div class="grid">
+          <div class="field"><label for="v19_key" class="field-label-wrap">Merchant key</label><input type="text" id="v19_key" autocomplete="off" /><span class="field-error" id="error-v19_key" role="alert"></span></div>
+          <div class="field"><label for="v19_txnid" class="field-label-wrap">Transaction ID</label><input type="text" id="v19_txnid" autocomplete="off" /><span class="field-error" id="error-v19_txnid" role="alert"></span></div>
+          <div class="field"><label for="v19_amount" class="field-label-wrap">Amount</label><input type="text" id="v19_amount" autocomplete="off" /><span class="field-error" id="error-v19_amount" role="alert"></span></div>
+          <div class="field"><label for="v19_productinfo" class="field-label-wrap">Product info</label><input type="text" id="v19_productinfo" autocomplete="off" /><span class="field-error" id="error-v19_productinfo" role="alert"></span></div>
+          <div class="field"><label for="v19_firstname" class="field-label-wrap">First name</label><input type="text" id="v19_firstname" autocomplete="off" /><span class="field-error" id="error-v19_firstname" role="alert"></span></div>
+          <div class="field"><label for="v19_email" class="field-label-wrap">Email</label><input type="text" id="v19_email" autocomplete="off" /><span class="field-error" id="error-v19_email" role="alert"></span></div>
+          <div class="field"><label for="v19_udf1" class="field-label-wrap">UDF1</label><input type="text" id="v19_udf1" autocomplete="off" /><span class="field-error" id="error-v19_udf1" role="alert"></span></div>
+          <div class="field"><label for="v19_udf2" class="field-label-wrap">UDF2</label><input type="text" id="v19_udf2" autocomplete="off" /><span class="field-error" id="error-v19_udf2" role="alert"></span></div>
+          <div class="field"><label for="v19_udf3" class="field-label-wrap">UDF3</label><input type="text" id="v19_udf3" autocomplete="off" /><span class="field-error" id="error-v19_udf3" role="alert"></span></div>
+          <div class="field"><label for="v19_udf4" class="field-label-wrap">UDF4</label><input type="text" id="v19_udf4" autocomplete="off" /><span class="field-error" id="error-v19_udf4" role="alert"></span></div>
+          <div class="field"><label for="v19_udf5" class="field-label-wrap">UDF5</label><input type="text" id="v19_udf5" autocomplete="off" /><span class="field-error" id="error-v19_udf5" role="alert"></span></div>
+          <div class="field"><label for="v19_udf6" class="field-label-wrap">UDF6</label><input type="text" id="v19_udf6" autocomplete="off" /><span class="field-error" id="error-v19_udf6" role="alert"></span></div>
+          <div class="field"><label for="v19_udf7" class="field-label-wrap">UDF7</label><input type="text" id="v19_udf7" autocomplete="off" /><span class="field-error" id="error-v19_udf7" role="alert"></span></div>
+          <div class="field"><label for="v19_udf8" class="field-label-wrap">UDF8</label><input type="text" id="v19_udf8" autocomplete="off" /><span class="field-error" id="error-v19_udf8" role="alert"></span></div>
+          <div class="field"><label for="v19_udf9" class="field-label-wrap">UDF9</label><input type="text" id="v19_udf9" autocomplete="off" /><span class="field-error" id="error-v19_udf9" role="alert"></span></div>
+          <div class="field"><label for="v19_udf10" class="field-label-wrap">UDF10</label><input type="text" id="v19_udf10" autocomplete="off" /><span class="field-error" id="error-v19_udf10" role="alert"></span></div>
+          <div class="field"><label for="v19_user_token" class="field-label-wrap">user_token</label><input type="text" id="v19_user_token" autocomplete="off" /><span class="field-error" id="error-v19_user_token" role="alert"></span></div>
+          <div class="field"><label for="v19_offer_key" class="field-label-wrap">offer_key</label><input type="text" id="v19_offer_key" autocomplete="off" /><span class="field-error" id="error-v19_offer_key" role="alert"></span></div>
+          <div class="field"><label for="v19_offer_auto_apply" class="field-label-wrap">offer_auto_apply</label><input type="text" id="v19_offer_auto_apply" autocomplete="off" /><span class="field-error" id="error-v19_offer_auto_apply" role="alert"></span></div>
+          <div class="field full"><label for="v19_cart_details" class="field-label-wrap">cart_details</label><input type="text" id="v19_cart_details" autocomplete="off" /><span class="field-error" id="error-v19_cart_details" role="alert"></span></div>
+          <div class="field"><label for="v19_extra_charges" class="field-label-wrap">extra_charges</label><input type="text" id="v19_extra_charges" autocomplete="off" /><span class="field-error" id="error-v19_extra_charges" role="alert"></span></div>
+          <div class="field"><label for="v19_phone" class="field-label-wrap">phone</label><input type="text" id="v19_phone" autocomplete="off" /><span class="field-error" id="error-v19_phone" role="alert"></span></div>
+          <div class="field full">
+            <label for="v19_salt" class="field-label-wrap">SALT</label>
+            <div class="salt-wrap"><input type="password" id="v19_salt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-v19-salt" aria-label="Show SALT" /> Show SALT</label></div>
+            <span class="field-error" id="error-v19_salt" role="alert"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mode-panel" data-mode="reverse-normal" id="panel-reverse-normal">
+        <div class="grid">
+          <div class="field"><label for="rev1_salt" class="field-label-wrap">SALT</label><div class="salt-wrap"><input type="password" id="rev1_salt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-rev1-salt" /> Show SALT</label></div><span class="field-error" id="error-rev1_salt" role="alert"></span></div>
+          <div class="field"><label for="rev1_status" class="field-label-wrap">status</label><input type="text" id="rev1_status" placeholder="e.g. success" autocomplete="off" /><span class="field-error" id="error-rev1_status" role="alert"></span></div>
+          <div class="field"><label for="rev1_udf5" class="field-label-wrap">UDF5</label><input type="text" id="rev1_udf5" autocomplete="off" /><span class="field-error" id="error-rev1_udf5" role="alert"></span></div>
+          <div class="field"><label for="rev1_udf4" class="field-label-wrap">UDF4</label><input type="text" id="rev1_udf4" autocomplete="off" /><span class="field-error" id="error-rev1_udf4" role="alert"></span></div>
+          <div class="field"><label for="rev1_udf3" class="field-label-wrap">UDF3</label><input type="text" id="rev1_udf3" autocomplete="off" /><span class="field-error" id="error-rev1_udf3" role="alert"></span></div>
+          <div class="field"><label for="rev1_udf2" class="field-label-wrap">UDF2</label><input type="text" id="rev1_udf2" autocomplete="off" /><span class="field-error" id="error-rev1_udf2" role="alert"></span></div>
+          <div class="field"><label for="rev1_udf1" class="field-label-wrap">UDF1</label><input type="text" id="rev1_udf1" autocomplete="off" /><span class="field-error" id="error-rev1_udf1" role="alert"></span></div>
+          <div class="field"><label for="rev1_email" class="field-label-wrap">Email</label><input type="text" id="rev1_email" autocomplete="off" /><span class="field-error" id="error-rev1_email" role="alert"></span></div>
+          <div class="field"><label for="rev1_firstname" class="field-label-wrap">First name</label><input type="text" id="rev1_firstname" autocomplete="off" /><span class="field-error" id="error-rev1_firstname" role="alert"></span></div>
+          <div class="field"><label for="rev1_productinfo" class="field-label-wrap">Product info</label><input type="text" id="rev1_productinfo" autocomplete="off" /><span class="field-error" id="error-rev1_productinfo" role="alert"></span></div>
+          <div class="field"><label for="rev1_amount" class="field-label-wrap">Amount</label><input type="text" id="rev1_amount" autocomplete="off" /><span class="field-error" id="error-rev1_amount" role="alert"></span></div>
+          <div class="field"><label for="rev1_txnid" class="field-label-wrap">Transaction ID</label><input type="text" id="rev1_txnid" autocomplete="off" /><span class="field-error" id="error-rev1_txnid" role="alert"></span></div>
+          <div class="field full"><label for="rev1_key" class="field-label-wrap">Merchant key</label><input type="text" id="rev1_key" autocomplete="off" /><span class="field-error" id="error-rev1_key" role="alert"></span></div>
+        </div>
+      </div>
+
+      <div class="mode-panel" data-mode="reverse-add-charges" id="panel-reverse-add">
+        <div class="grid">
+          <div class="field full"><label for="rev2_additional_charges" class="field-label-wrap">additional_charges</label><input type="text" id="rev2_additional_charges" autocomplete="off" /><span class="field-error" id="error-rev2_additional_charges" role="alert"></span></div>
+          <div class="field"><label for="rev2_salt" class="field-label-wrap">SALT</label><div class="salt-wrap"><input type="password" id="rev2_salt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-rev2-salt" /> Show SALT</label></div><span class="field-error" id="error-rev2_salt" role="alert"></span></div>
+          <div class="field"><label for="rev2_status" class="field-label-wrap">status</label><input type="text" id="rev2_status" autocomplete="off" /><span class="field-error" id="error-rev2_status" role="alert"></span></div>
+          <div class="field"><label for="rev2_udf5" class="field-label-wrap">UDF5</label><input type="text" id="rev2_udf5" autocomplete="off" /><span class="field-error" id="error-rev2_udf5" role="alert"></span></div>
+          <div class="field"><label for="rev2_udf4" class="field-label-wrap">UDF4</label><input type="text" id="rev2_udf4" autocomplete="off" /><span class="field-error" id="error-rev2_udf4" role="alert"></span></div>
+          <div class="field"><label for="rev2_udf3" class="field-label-wrap">UDF3</label><input type="text" id="rev2_udf3" autocomplete="off" /><span class="field-error" id="error-rev2_udf3" role="alert"></span></div>
+          <div class="field"><label for="rev2_udf2" class="field-label-wrap">UDF2</label><input type="text" id="rev2_udf2" autocomplete="off" /><span class="field-error" id="error-rev2_udf2" role="alert"></span></div>
+          <div class="field"><label for="rev2_udf1" class="field-label-wrap">UDF1</label><input type="text" id="rev2_udf1" autocomplete="off" /><span class="field-error" id="error-rev2_udf1" role="alert"></span></div>
+          <div class="field"><label for="rev2_email" class="field-label-wrap">Email</label><input type="text" id="rev2_email" autocomplete="off" /><span class="field-error" id="error-rev2_email" role="alert"></span></div>
+          <div class="field"><label for="rev2_firstname" class="field-label-wrap">First name</label><input type="text" id="rev2_firstname" autocomplete="off" /><span class="field-error" id="error-rev2_firstname" role="alert"></span></div>
+          <div class="field"><label for="rev2_productinfo" class="field-label-wrap">Product info</label><input type="text" id="rev2_productinfo" autocomplete="off" /><span class="field-error" id="error-rev2_productinfo" role="alert"></span></div>
+          <div class="field"><label for="rev2_amount" class="field-label-wrap">Amount</label><input type="text" id="rev2_amount" autocomplete="off" /><span class="field-error" id="error-rev2_amount" role="alert"></span></div>
+          <div class="field"><label for="rev2_txnid" class="field-label-wrap">Transaction ID</label><input type="text" id="rev2_txnid" autocomplete="off" /><span class="field-error" id="error-rev2_txnid" role="alert"></span></div>
+          <div class="field full"><label for="rev2_key" class="field-label-wrap">Merchant key</label><input type="text" id="rev2_key" autocomplete="off" /><span class="field-error" id="error-rev2_key" role="alert"></span></div>
+        </div>
+      </div>
+
+      <div class="mode-panel" data-mode="reverse-split" id="panel-reverse-split">
+        <div class="grid">
+          <div class="field"><label for="rev3_salt" class="field-label-wrap">SALT</label><div class="salt-wrap"><input type="password" id="rev3_salt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-rev3-salt" /> Show SALT</label></div><span class="field-error" id="error-rev3_salt" role="alert"></span></div>
+          <div class="field"><label for="rev3_status" class="field-label-wrap">status</label><input type="text" id="rev3_status" autocomplete="off" /><span class="field-error" id="error-rev3_status" role="alert"></span></div>
+          <div class="field full"><label for="rev3_splitInfo" class="field-label-wrap">splitInfo</label><input type="text" id="rev3_splitInfo" autocomplete="off" /><span class="field-error" id="error-rev3_splitInfo" role="alert"></span></div>
+          <div class="field"><label for="rev3_udf5" class="field-label-wrap">UDF5</label><input type="text" id="rev3_udf5" autocomplete="off" /><span class="field-error" id="error-rev3_udf5" role="alert"></span></div>
+          <div class="field"><label for="rev3_udf4" class="field-label-wrap">UDF4</label><input type="text" id="rev3_udf4" autocomplete="off" /><span class="field-error" id="error-rev3_udf4" role="alert"></span></div>
+          <div class="field"><label for="rev3_udf3" class="field-label-wrap">UDF3</label><input type="text" id="rev3_udf3" autocomplete="off" /><span class="field-error" id="error-rev3_udf3" role="alert"></span></div>
+          <div class="field"><label for="rev3_udf2" class="field-label-wrap">UDF2</label><input type="text" id="rev3_udf2" autocomplete="off" /><span class="field-error" id="error-rev3_udf2" role="alert"></span></div>
+          <div class="field"><label for="rev3_udf1" class="field-label-wrap">UDF1</label><input type="text" id="rev3_udf1" autocomplete="off" /><span class="field-error" id="error-rev3_udf1" role="alert"></span></div>
+          <div class="field"><label for="rev3_email" class="field-label-wrap">Email</label><input type="text" id="rev3_email" autocomplete="off" /><span class="field-error" id="error-rev3_email" role="alert"></span></div>
+          <div class="field"><label for="rev3_firstname" class="field-label-wrap">First name</label><input type="text" id="rev3_firstname" autocomplete="off" /><span class="field-error" id="error-rev3_firstname" role="alert"></span></div>
+          <div class="field"><label for="rev3_productinfo" class="field-label-wrap">Product info</label><input type="text" id="rev3_productinfo" autocomplete="off" /><span class="field-error" id="error-rev3_productinfo" role="alert"></span></div>
+          <div class="field"><label for="rev3_amount" class="field-label-wrap">Amount</label><input type="text" id="rev3_amount" autocomplete="off" /><span class="field-error" id="error-rev3_amount" role="alert"></span></div>
+          <div class="field"><label for="rev3_txnid" class="field-label-wrap">Transaction ID</label><input type="text" id="rev3_txnid" autocomplete="off" /><span class="field-error" id="error-rev3_txnid" role="alert"></span></div>
+          <div class="field full"><label for="rev3_key" class="field-label-wrap">Merchant key</label><input type="text" id="rev3_key" autocomplete="off" /><span class="field-error" id="error-rev3_key" role="alert"></span></div>
+        </div>
+      </div>
+
+      <div class="mode-panel" data-mode="reverse-split-add" id="panel-reverse-split-add">
+        <div class="grid">
+          <div class="field full"><label for="rev4_additional_charges" class="field-label-wrap">additional_charges</label><input type="text" id="rev4_additional_charges" autocomplete="off" /><span class="field-error" id="error-rev4_additional_charges" role="alert"></span></div>
+          <div class="field"><label for="rev4_salt" class="field-label-wrap">SALT</label><div class="salt-wrap"><input type="password" id="rev4_salt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-rev4-salt" /> Show SALT</label></div><span class="field-error" id="error-rev4_salt" role="alert"></span></div>
+          <div class="field"><label for="rev4_status" class="field-label-wrap">status</label><input type="text" id="rev4_status" autocomplete="off" /><span class="field-error" id="error-rev4_status" role="alert"></span></div>
+          <div class="field full"><label for="rev4_splitInfo" class="field-label-wrap">splitInfo</label><input type="text" id="rev4_splitInfo" autocomplete="off" /><span class="field-error" id="error-rev4_splitInfo" role="alert"></span></div>
+          <div class="field"><label for="rev4_udf5" class="field-label-wrap">UDF5</label><input type="text" id="rev4_udf5" autocomplete="off" /><span class="field-error" id="error-rev4_udf5" role="alert"></span></div>
+          <div class="field"><label for="rev4_udf4" class="field-label-wrap">UDF4</label><input type="text" id="rev4_udf4" autocomplete="off" /><span class="field-error" id="error-rev4_udf4" role="alert"></span></div>
+          <div class="field"><label for="rev4_udf3" class="field-label-wrap">UDF3</label><input type="text" id="rev4_udf3" autocomplete="off" /><span class="field-error" id="error-rev4_udf3" role="alert"></span></div>
+          <div class="field"><label for="rev4_udf2" class="field-label-wrap">UDF2</label><input type="text" id="rev4_udf2" autocomplete="off" /><span class="field-error" id="error-rev4_udf2" role="alert"></span></div>
+          <div class="field"><label for="rev4_udf1" class="field-label-wrap">UDF1</label><input type="text" id="rev4_udf1" autocomplete="off" /><span class="field-error" id="error-rev4_udf1" role="alert"></span></div>
+          <div class="field"><label for="rev4_email" class="field-label-wrap">Email</label><input type="text" id="rev4_email" autocomplete="off" /><span class="field-error" id="error-rev4_email" role="alert"></span></div>
+          <div class="field"><label for="rev4_firstname" class="field-label-wrap">First name</label><input type="text" id="rev4_firstname" autocomplete="off" /><span class="field-error" id="error-rev4_firstname" role="alert"></span></div>
+          <div class="field"><label for="rev4_productinfo" class="field-label-wrap">Product info</label><input type="text" id="rev4_productinfo" autocomplete="off" /><span class="field-error" id="error-rev4_productinfo" role="alert"></span></div>
+          <div class="field"><label for="rev4_amount" class="field-label-wrap">Amount</label><input type="text" id="rev4_amount" autocomplete="off" /><span class="field-error" id="error-rev4_amount" role="alert"></span></div>
+          <div class="field"><label for="rev4_txnid" class="field-label-wrap">Transaction ID</label><input type="text" id="rev4_txnid" autocomplete="off" /><span class="field-error" id="error-rev4_txnid" role="alert"></span></div>
+          <div class="field full"><label for="rev4_key" class="field-label-wrap">Merchant key</label><input type="text" id="rev4_key" autocomplete="off" /><span class="field-error" id="error-rev4_key" role="alert"></span></div>
+        </div>
+      </div>
+
+      <div style="margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <button type="button" class="btn btn-primary" id="btn-generate">Generate hash</button>
+        <button type="button" class="btn btn-secondary" id="btn-clear">Clear fields</button>
+      </div>
+
+      <div id="error" class="error" style="display: none;"></div>
+
+      <div id="output" class="output-section" style="display: none;">
+        <div class="output-label">Generated hash (SHA-512 hex)</div>
+        <div class="output-hash-wrap">
+          <div class="copy-btn-wrap">
+            <button type="button" class="copy-btn" id="btn-copy-hash" aria-label="Copy generated hash">Copy</button>
+          </div>
+          <div class="output-hash" id="hash-value"></div>
+        </div>
+        <details>
+          <summary>Show concatenated string (for debugging)</summary>
+          <div class="output-string-wrap">
+            <div class="copy-btn-wrap">
+              <button type="button" class="copy-btn" id="btn-copy-hash-string" aria-label="Copy concatenated string">Copy</button>
+            </div>
+            <pre class="output-string" id="hash-string"></pre>
+          </div>
+        </details>
+      </div>
+
+      <p class="note">
+        <strong>Security:</strong> Generate and verify hashes on your server in production. Do not pass salt in the payment request. Reverse-hash modes use salt only to recompute the expected hash—never expose salt in client-side code in production. This tool is for documentation and debugging only.
+      </p>
+
+      <details class="troubleshoot">
+        <summary class="troubleshoot-summary">Common errors &amp; troubleshooting</summary>
+        <div class="troubleshoot-content">
+          <ul class="troubleshoot-list">
+            <li><strong>Amount is required / invalid decimal</strong> — Enter a numeric value (e.g. <code>10</code> or <code>10.00</code>). Remove spaces, commas, or currency symbols. Use a dot for decimals.</li>
+            <li><strong>Merchant key / SALT is required</strong> — Get key and salt from PayU Dashboard (API Keys). Use test key/salt for testing. Never send SALT in the payment request.</li>
+            <li><strong>SALT error despite entering value</strong> — Some browsers don’t expose password fields to script when the page is opened via <code>file://</code>. Tick “Show SALT” or serve the page from a local server (e.g. <code>python -m http.server 8080</code>).</li>
+            <li><strong>Email is required / invalid email</strong> — Enter a valid email (e.g. <code>user@example.com</code>). Must match the value you send in the payment request.</li>
+            <li><strong>Transaction ID is required</strong> — Use a unique ID per transaction (e.g. order ID or UUID). Same value must be sent in the payment request.</li>
+            <li><strong>Hash mismatch on PayU</strong> — Ensure (1) you use the correct key and salt for the environment (test vs production), (2) parameter order matches: <code>key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt</code>, (3) no extra spaces; trim values the same way on your server, (4) amount format matches (e.g. <code>10.00</code> not <code>10.00 INR</code>).</li>
+            <li><strong>Wrong merchant / key mix-up</strong> — Do not use Merchant ID (MID) in place of Merchant Key. Do not swap key and salt. Check PayU Dashboard for the correct key and salt.</li>
+            <li><strong>Wrong hash formula</strong> — Use the <strong>Hash logic</strong> dropdown to match your flow (payment request vs response; split / additional charges). Formulas follow <a href="https://docs.payu.in/docs/generate-hash-payu-hosted" target="_blank" rel="noopener noreferrer">PayU – Generate Hash (PayU Hosted)</a>. For v19, confirm <code>api_version=19</code> with PayU if your string differs.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <div class="links">
+      <a href="https://payu-hashverificationtool.onrender.com/" target="_blank" rel="noopener noreferrer">PayU Hash Verification Tool</a> (verify callback/response hash – reverse hashing)
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var MODE_META = {
+        'forward-udf': {
+          formula: 'sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)',
+          intro: 'Payment request – hosted checkout. Leave UDFs empty if not used. Hash in browser for debugging only; generate on server in production.',
+          ids: ['key', 'txnid', 'amount', 'productinfo', 'firstname', 'email', 'udf1', 'udf2', 'udf3', 'udf4', 'udf5', 'salt']
+        },
+        'forward-v19': {
+          formula: 'sha512(key|txnid|amount|productinfo|firstname|email|udf1|…|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone||||||SALT)',
+          intro: '_payment API with api_version=19 (see PayU docs). Optional fields may be empty; salt appended with six pipes as in standard request hash.',
+          ids: ['v19_key', 'v19_txnid', 'v19_amount', 'v19_productinfo', 'v19_firstname', 'v19_email', 'v19_udf1', 'v19_udf2', 'v19_udf3', 'v19_udf4', 'v19_udf5', 'v19_udf6', 'v19_udf7', 'v19_udf8', 'v19_udf9', 'v19_udf10', 'v19_user_token', 'v19_offer_key', 'v19_offer_auto_apply', 'v19_cart_details', 'v19_extra_charges', 'v19_phone', 'v19_salt']
+        },
+        'reverse-normal': {
+          formula: 'sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)',
+          intro: 'Verify PayU callback/response hash – regular integration. Use values from the response; compare computed hash to hash sent by PayU.',
+          ids: ['rev1_salt', 'rev1_status', 'rev1_udf5', 'rev1_udf4', 'rev1_udf3', 'rev1_udf2', 'rev1_udf1', 'rev1_email', 'rev1_firstname', 'rev1_productinfo', 'rev1_amount', 'rev1_txnid', 'rev1_key']
+        },
+        'reverse-add-charges': {
+          formula: 'sha512(additional_charges|SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)',
+          intro: 'Response verification when additional charges apply.',
+          ids: ['rev2_additional_charges', 'rev2_salt', 'rev2_status', 'rev2_udf5', 'rev2_udf4', 'rev2_udf3', 'rev2_udf2', 'rev2_udf1', 'rev2_email', 'rev2_firstname', 'rev2_productinfo', 'rev2_amount', 'rev2_txnid', 'rev2_key']
+        },
+        'reverse-split': {
+          formula: 'sha512(SALT|status|splitInfo||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)',
+          intro: 'Response verification for split settlements (splitInfo).',
+          ids: ['rev3_salt', 'rev3_status', 'rev3_splitInfo', 'rev3_udf5', 'rev3_udf4', 'rev3_udf3', 'rev3_udf2', 'rev3_udf1', 'rev3_email', 'rev3_firstname', 'rev3_productinfo', 'rev3_amount', 'rev3_txnid', 'rev3_key']
+        },
+        'reverse-split-add': {
+          formula: 'sha512(additional_charges|SALT|status|splitInfo||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)',
+          intro: 'Response verification when both additional charges and split apply.',
+          ids: ['rev4_additional_charges', 'rev4_salt', 'rev4_status', 'rev4_splitInfo', 'rev4_udf5', 'rev4_udf4', 'rev4_udf3', 'rev4_udf2', 'rev4_udf1', 'rev4_email', 'rev4_firstname', 'rev4_productinfo', 'rev4_amount', 'rev4_txnid', 'rev4_key']
+        }
+      };
+
+      var ALL_FIELD_IDS = [];
+      for (var mk in MODE_META) {
+        if (Object.prototype.hasOwnProperty.call(MODE_META, mk)) {
+          ALL_FIELD_IDS = ALL_FIELD_IDS.concat(MODE_META[mk].ids);
+        }
+      }
+
+      function getCurrentMode() {
+        var sel = document.getElementById('hash-mode');
+        return sel ? sel.value : 'forward-udf';
+      }
+
+      function empty(s) {
+        return s == null ? '' : String(s).trim();
+      }
+
+      function getVal(id) {
+        var el = document.getElementById(id);
+        return el ? empty(el.value) : '';
+      }
+
+      function getValues(mode) {
+        var ids = MODE_META[mode].ids;
+        var o = {};
+        for (var i = 0; i < ids.length; i++) {
+          o[ids[i]] = getVal(ids[i]);
+        }
+        return o;
+      }
+
+      function buildHashString(mode, v) {
+        var e = empty;
+        if (mode === 'forward-udf') {
+          return e(v.key) + '|' + e(v.txnid) + '|' + e(v.amount) + '|' +
+            e(v.productinfo) + '|' + e(v.firstname) + '|' + e(v.email) + '|' +
+            e(v.udf1) + '|' + e(v.udf2) + '|' + e(v.udf3) + '|' + e(v.udf4) + '|' + e(v.udf5) + '||||||' + e(v.salt);
+        }
+        if (mode === 'forward-v19') {
+          return e(v.v19_key) + '|' + e(v.v19_txnid) + '|' + e(v.v19_amount) + '|' + e(v.v19_productinfo) + '|' + e(v.v19_firstname) + '|' + e(v.v19_email) + '|' +
+            e(v.v19_udf1) + '|' + e(v.v19_udf2) + '|' + e(v.v19_udf3) + '|' + e(v.v19_udf4) + '|' + e(v.v19_udf5) + '|' + e(v.v19_udf6) + '|' + e(v.v19_udf7) + '|' + e(v.v19_udf8) + '|' + e(v.v19_udf9) + '|' + e(v.v19_udf10) + '|' +
+            e(v.v19_user_token) + '|' + e(v.v19_offer_key) + '|' + e(v.v19_offer_auto_apply) + '|' + e(v.v19_cart_details) + '|' + e(v.v19_extra_charges) + '|' + e(v.v19_phone) + '||||||' + e(v.v19_salt);
+        }
+        if (mode === 'reverse-normal') {
+          return e(v.rev1_salt) + '|' + e(v.rev1_status) + '||||||' + e(v.rev1_udf5) + '|' + e(v.rev1_udf4) + '|' + e(v.rev1_udf3) + '|' + e(v.rev1_udf2) + '|' + e(v.rev1_udf1) + '|' +
+            e(v.rev1_email) + '|' + e(v.rev1_firstname) + '|' + e(v.rev1_productinfo) + '|' + e(v.rev1_amount) + '|' + e(v.rev1_txnid) + '|' + e(v.rev1_key);
+        }
+        if (mode === 'reverse-add-charges') {
+          return e(v.rev2_additional_charges) + '|' + e(v.rev2_salt) + '|' + e(v.rev2_status) + '||||||' + e(v.rev2_udf5) + '|' + e(v.rev2_udf4) + '|' + e(v.rev2_udf3) + '|' + e(v.rev2_udf2) + '|' + e(v.rev2_udf1) + '|' +
+            e(v.rev2_email) + '|' + e(v.rev2_firstname) + '|' + e(v.rev2_productinfo) + '|' + e(v.rev2_amount) + '|' + e(v.rev2_txnid) + '|' + e(v.rev2_key);
+        }
+        if (mode === 'reverse-split') {
+          return e(v.rev3_salt) + '|' + e(v.rev3_status) + '|' + e(v.rev3_splitInfo) + '||||||' + e(v.rev3_udf5) + '|' + e(v.rev3_udf4) + '|' + e(v.rev3_udf3) + '|' + e(v.rev3_udf2) + '|' + e(v.rev3_udf1) + '|' +
+            e(v.rev3_email) + '|' + e(v.rev3_firstname) + '|' + e(v.rev3_productinfo) + '|' + e(v.rev3_amount) + '|' + e(v.rev3_txnid) + '|' + e(v.rev3_key);
+        }
+        if (mode === 'reverse-split-add') {
+          return e(v.rev4_additional_charges) + '|' + e(v.rev4_salt) + '|' + e(v.rev4_status) + '|' + e(v.rev4_splitInfo) + '||||||' + e(v.rev4_udf5) + '|' + e(v.rev4_udf4) + '|' + e(v.rev4_udf3) + '|' + e(v.rev4_udf2) + '|' + e(v.rev4_udf1) + '|' +
+            e(v.rev4_email) + '|' + e(v.rev4_firstname) + '|' + e(v.rev4_productinfo) + '|' + e(v.rev4_amount) + '|' + e(v.rev4_txnid) + '|' + e(v.rev4_key);
+        }
+        return '';
+      }
+
+      function bufferToHex(buffer) {
+        var arr = Array.from(new Uint8Array(buffer));
+        return arr.map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+      }
+
+      function sha512Hex(str) {
+        var data = new TextEncoder().encode(str);
+        return crypto.subtle.digest('SHA-512', data).then(function (buf) {
+          return bufferToHex(buf);
+        });
+      }
+
+      function showError(msg) {
+        var el = document.getElementById('error');
+        if (el) {
+          el.textContent = msg;
+          el.style.display = msg ? 'block' : 'none';
+        }
+      }
+
+      function setFieldError(fieldId, msg) {
+        var errEl = document.getElementById('error-' + fieldId);
+        var inputEl = document.getElementById(fieldId);
+        if (errEl) {
+          errEl.textContent = msg || '';
+        }
+        if (inputEl) {
+          if (msg) {
+            inputEl.classList.add('input-invalid');
+          } else {
+            inputEl.classList.remove('input-invalid');
+          }
+        }
+      }
+
+      function clearAllFieldErrors() {
+        ALL_FIELD_IDS.forEach(function (id) {
+          setFieldError(id, '');
+        });
+      }
+
+      function saltErrorMsg() {
+        return 'SALT is required. If you entered a value, try "Show SALT" or open this page via a local server instead of file://.';
+      }
+
+      function validateEmailField(errors, fieldId, email) {
+        if (!email) {
+          errors[fieldId] = 'Email is required.';
+        } else {
+          var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRe.test(email)) {
+            errors[fieldId] = 'Enter a valid email address (e.g. user@example.com).';
+          }
+        }
+      }
+
+      function validateAmountField(errors, fieldId, amount) {
+        if (!amount) {
+          errors[fieldId] = 'Amount is required.';
+        } else {
+          var amountNum = parseFloat(amount);
+          if (isNaN(amountNum) || amountNum < 0) {
+            errors[fieldId] = 'Enter a valid decimal amount (e.g. 10 or 10.00). Must be a number ≥ 0.';
+          }
+        }
+      }
+
+      function validate(mode, values) {
+        var errors = {};
+        if (mode === 'forward-udf') {
+          if (!values.key) errors.key = 'Merchant key is required.';
+          if (!values.txnid) errors.txnid = 'Transaction ID is required.';
+          validateAmountField(errors, 'amount', values.amount);
+          if (!values.productinfo) errors.productinfo = 'Product info is required.';
+          if (!values.firstname) errors.firstname = 'First name is required.';
+          validateEmailField(errors, 'email', values.email);
+          if (!values.salt) errors.salt = saltErrorMsg();
+        } else if (mode === 'forward-v19') {
+          if (!values.v19_key) errors.v19_key = 'Merchant key is required.';
+          if (!values.v19_txnid) errors.v19_txnid = 'Transaction ID is required.';
+          validateAmountField(errors, 'v19_amount', values.v19_amount);
+          if (!values.v19_productinfo) errors.v19_productinfo = 'Product info is required.';
+          if (!values.v19_firstname) errors.v19_firstname = 'First name is required.';
+          validateEmailField(errors, 'v19_email', values.v19_email);
+          if (!values.v19_salt) errors.v19_salt = saltErrorMsg();
+        } else if (mode === 'reverse-normal') {
+          if (!values.rev1_salt) errors.rev1_salt = saltErrorMsg();
+          if (!values.rev1_status) errors.rev1_status = 'status is required.';
+          validateEmailField(errors, 'rev1_email', values.rev1_email);
+          if (!values.rev1_firstname) errors.rev1_firstname = 'First name is required.';
+          if (!values.rev1_productinfo) errors.rev1_productinfo = 'Product info is required.';
+          validateAmountField(errors, 'rev1_amount', values.rev1_amount);
+          if (!values.rev1_txnid) errors.rev1_txnid = 'Transaction ID is required.';
+          if (!values.rev1_key) errors.rev1_key = 'Merchant key is required.';
+        } else if (mode === 'reverse-add-charges') {
+          if (!values.rev2_additional_charges) errors.rev2_additional_charges = 'additional_charges is required.';
+          if (!values.rev2_salt) errors.rev2_salt = saltErrorMsg();
+          if (!values.rev2_status) errors.rev2_status = 'status is required.';
+          validateEmailField(errors, 'rev2_email', values.rev2_email);
+          if (!values.rev2_firstname) errors.rev2_firstname = 'First name is required.';
+          if (!values.rev2_productinfo) errors.rev2_productinfo = 'Product info is required.';
+          validateAmountField(errors, 'rev2_amount', values.rev2_amount);
+          if (!values.rev2_txnid) errors.rev2_txnid = 'Transaction ID is required.';
+          if (!values.rev2_key) errors.rev2_key = 'Merchant key is required.';
+        } else if (mode === 'reverse-split') {
+          if (!values.rev3_salt) errors.rev3_salt = saltErrorMsg();
+          if (!values.rev3_status) errors.rev3_status = 'status is required.';
+          if (!values.rev3_splitInfo) errors.rev3_splitInfo = 'splitInfo is required.';
+          validateEmailField(errors, 'rev3_email', values.rev3_email);
+          if (!values.rev3_firstname) errors.rev3_firstname = 'First name is required.';
+          if (!values.rev3_productinfo) errors.rev3_productinfo = 'Product info is required.';
+          validateAmountField(errors, 'rev3_amount', values.rev3_amount);
+          if (!values.rev3_txnid) errors.rev3_txnid = 'Transaction ID is required.';
+          if (!values.rev3_key) errors.rev3_key = 'Merchant key is required.';
+        } else if (mode === 'reverse-split-add') {
+          if (!values.rev4_additional_charges) errors.rev4_additional_charges = 'additional_charges is required.';
+          if (!values.rev4_salt) errors.rev4_salt = saltErrorMsg();
+          if (!values.rev4_status) errors.rev4_status = 'status is required.';
+          if (!values.rev4_splitInfo) errors.rev4_splitInfo = 'splitInfo is required.';
+          validateEmailField(errors, 'rev4_email', values.rev4_email);
+          if (!values.rev4_firstname) errors.rev4_firstname = 'First name is required.';
+          if (!values.rev4_productinfo) errors.rev4_productinfo = 'Product info is required.';
+          validateAmountField(errors, 'rev4_amount', values.rev4_amount);
+          if (!values.rev4_txnid) errors.rev4_txnid = 'Transaction ID is required.';
+          if (!values.rev4_key) errors.rev4_key = 'Merchant key is required.';
+        }
+        return errors;
+      }
+
+      function showFieldErrors(mode, errors) {
+        var ids = MODE_META[mode].ids;
+        ids.forEach(function (id) {
+          setFieldError(id, errors[id] || '');
+        });
+      }
+
+      function switchMode(mode) {
+        var panels = document.querySelectorAll('.mode-panel');
+        for (var i = 0; i < panels.length; i++) {
+          panels[i].classList.remove('active');
+          if (panels[i].getAttribute('data-mode') === mode) {
+            panels[i].classList.add('active');
+          }
+        }
+        var meta = MODE_META[mode];
+        if (meta) {
+          var ft = document.getElementById('formula-text');
+          var it = document.getElementById('intro-text');
+          if (ft) ft.textContent = meta.formula;
+          if (it) it.textContent = meta.intro;
+        }
+      }
+
+      function showOutput(hash, hashStr) {
+        var out = document.getElementById('output');
+        var hashEl = document.getElementById('hash-value');
+        var strEl = document.getElementById('hash-string');
+        if (out) out.style.display = 'block';
+        if (hashEl) hashEl.textContent = hash;
+        if (strEl) strEl.textContent = hashStr;
+      }
+
+      document.getElementById('btn-generate').addEventListener('click', function () {
+        var btn = this;
+        var mode = getCurrentMode();
+        showError('');
+        clearAllFieldErrors();
+        document.getElementById('output').style.display = 'none';
+
+        var values = getValues(mode);
+        var errors = validate(mode, values);
+
+        if (Object.keys(errors).length > 0) {
+          showFieldErrors(mode, errors);
+          var ids = MODE_META[mode].ids;
+          var firstId = ids.filter(function (id) { return errors[id]; })[0];
+          if (firstId) {
+            var firstEl = document.getElementById(firstId);
+            if (firstEl) firstEl.focus();
+          }
+          return;
+        }
+
+        var hashStr = buildHashString(mode, values);
+
+        btn.disabled = true;
+        sha512Hex(hashStr).then(function (hash) {
+          showOutput(hash, hashStr);
+          btn.disabled = false;
+        }).catch(function (e) {
+          showError(e && e.message ? e.message : 'Hash generation failed.');
+          btn.disabled = false;
+        });
+      });
+
+      document.getElementById('btn-clear').addEventListener('click', function () {
+        ALL_FIELD_IDS.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.value = '';
+        });
+        showError('');
+        clearAllFieldErrors();
+        document.getElementById('output').style.display = 'none';
+      });
+
+      ALL_FIELD_IDS.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', function () { setFieldError(id, ''); });
+          el.addEventListener('blur', function () {
+            var mode = getCurrentMode();
+            if (MODE_META[mode].ids.indexOf(id) === -1) return;
+            var values = getValues(mode);
+            var err = validate(mode, values)[id];
+            setFieldError(id, err || '');
+          });
+        }
+      });
+
+      function bindShowSalt(checkboxId, inputId) {
+        var cb = document.getElementById(checkboxId);
+        var inp = document.getElementById(inputId);
+        if (cb && inp) {
+          cb.addEventListener('change', function () {
+            inp.type = cb.checked ? 'text' : 'password';
+          });
+        }
+      }
+      bindShowSalt('show-salt', 'salt');
+      bindShowSalt('show-v19-salt', 'v19_salt');
+      bindShowSalt('show-rev1-salt', 'rev1_salt');
+      bindShowSalt('show-rev2-salt', 'rev2_salt');
+      bindShowSalt('show-rev3-salt', 'rev3_salt');
+      bindShowSalt('show-rev4-salt', 'rev4_salt');
+
+      var hashModeSel = document.getElementById('hash-mode');
+      if (hashModeSel) {
+        hashModeSel.addEventListener('change', function () {
+          switchMode(hashModeSel.value);
+          clearAllFieldErrors();
+          document.getElementById('output').style.display = 'none';
+        });
+        switchMode(hashModeSel.value);
+      }
+
+      function copyToClipboard(text, btn) {
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(function () {
+              btn.textContent = 'Copy';
+              btn.classList.remove('copied');
+            }, 2000);
+          }).catch(function () { btn.textContent = 'Copy failed'; });
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'absolute';
+          ta.style.left = '-9999px';
+          document.body.appendChild(ta);
+          ta.select();
+          try {
+            document.execCommand('copy');
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(function () {
+              btn.textContent = 'Copy';
+              btn.classList.remove('copied');
+            }, 2000);
+          } catch (e) { btn.textContent = 'Copy failed'; }
+          document.body.removeChild(ta);
+        }
+      }
+
+      var copyHashBtn = document.getElementById('btn-copy-hash');
+      var hashValueEl = document.getElementById('hash-value');
+      if (copyHashBtn && hashValueEl) {
+        copyHashBtn.addEventListener('click', function () {
+          copyToClipboard(hashValueEl.textContent || '', copyHashBtn);
+        });
+      }
+
+      var copyStrBtn = document.getElementById('btn-copy-hash-string');
+      var hashStringPre = document.getElementById('hash-string');
+      if (copyStrBtn && hashStringPre) {
+        copyStrBtn.addEventListener('click', function () {
+          copyToClipboard(hashStringPre.textContent || '', copyStrBtn);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
