@@ -614,3 +614,10 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
  webview_flutter: ^4.13.0
   ```
 </Accordion>
+
+<Accordion title="Import necessary packages" icon="fa-code">
+  ```Packages
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+  ```
+</Accordion>
