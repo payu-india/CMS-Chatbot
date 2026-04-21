@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
- Rewards is a loyalty points integration solution that leverages India's largest reward points network and integrates seamlessly with the PayU payment platform. PayU currently partners with TWID and Zillion for rewards integration. It connects merchants to over 300 million users and allows them to earn and redeem reward points from over 20 leading issuers in a unified, frictionless checkout experience.
+Rewards is a loyalty points integration solution that leverages India's largest reward points network and integrates seamlessly with the PayU payment platform. PayU currently partners with TWID and Zillion for rewards integration. It connects merchants to over 300 million users and allows them to earn and redeem reward points from over 20 leading issuers in a unified, frictionless checkout experience.
 
 ## Product Ecosystem
 
@@ -59,9 +59,10 @@ metadata:
 
 ## Next Steps
 
-Integrate TWID Rewards using the step-by-step in each of the following integration:
+Integrate Rewards using the step-by-step in each of the following integration:
 
-* [TWID Pay Redemption Integration](https://docs.payu.in/docs/twid-pay-redemption-integration)
-* [TWID Refund Integration](https://docs.payu.in/docs/twid-refund-integration)
+* [Rewards Pay Redemption Integration](doc:rewards-pay-redemption-integration)
+* [Earn Rewards Integration](doc:earn-rewards-integration)
+* [Rewards Refund Integration](doc:rewards-refund-integration)
 
 <br />
