@@ -361,102 +361,100 @@ These include the following parameters:
 </Accordion>
 
 <Accordion title="Step 2: Generate Secure Hash" icon="fa-key">
+  To ensure the payment request is secure, you must generate a hash using your transaction details and merchant credentials. This hash is used to verify that the request has not been altered. Know more about hash generation.<br/>
 
-To ensure the payment request is secure, you must generate a hash using your transaction details and merchant credentials. This hash is used to verify that the request has not been altered. Know more about hash generation.
+  The hash is created by concatenating the following parameters in a specific order. Refer to the Step 1.1 Prepare Payment Request Parameters for the parameter description and example values.
 
-The hash is created by concatenating the following parameters in a specific order. Refer to the Step 1.1 Prepare Payment Request Parameters for the parameter description and example values.
+  * `key`
+  * `txnid`
+  * `amount`
+  * `productinfo`
+  * `firstname`
+  * `email`
+  * `salt`
 
-* `key`
-* `txnid`
-* `amount`
-* `productinfo`
-* `firstname`
-* `email`
-* `salt`
+  ```Text Logic
+  key|txnid|amount|productinfo|firstname|email|||||||||||salt
+  ```
+  ```Text Example Values
+  YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||salt_value
+  ```
 
-```Text Logic
-key|txnid|amount|productinfo|firstname|email|||||||||||salt
-```
-```Text Example Values
-YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||salt_value
-```
+  <Callout icon="🚧" theme="warn">
+    **Watch Out!**
 
-<Callout icon="🚧">
-  **Watch Out!**
+    Replace the key and salt values with your test values obtained from the dashboard. Know more about generating test values.
+  </Callout>
 
-  Replace the key and salt values with your test values obtained from the dashboard. Know more about generating test values.
-</Callout>
+  You then generate a **SHA-512 hash** of this string.
 
-You then generate a **SHA-512 hash** of this string.
+  <HTMLBlock>{`
+  			<p>You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
+  								<style>
+                  .tooltip-btn {
+                      position: relative;
+                      background-color: #4CAF50;
+                      color: white;
+                      padding: 10px 20px;
+                      border: none;
+                      border-radius: 5px;
+                      cursor: pointer;
+                      font-weight: bold; /* Added this line */
+                  }
+                  .tooltip-btn:hover::after {
+                      content: attr(data-tooltip);
+                      position: absolute;
+                      bottom: 125%;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      background-color: #333;
+                      color: white;
+                      padding: 5px 10px;
+                      border-radius: 4px;
+                      white-space: nowrap;
+                      font-size: 12px;
+                      z-index: 1;
+                  }
+                  </style>
 
-<HTMLBlock>{`
-			<p>You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
-								<style>
-                .tooltip-btn {
-                    position: relative;
-                    background-color: #4CAF50;
-                    color: white;
-                    padding: 10px 20px;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-weight: bold; /* Added this line */
-                }
-                .tooltip-btn:hover::after {
-                    content: attr(data-tooltip);
-                    position: absolute;
-                    bottom: 125%;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background-color: #333;
-                    color: white;
-                    padding: 5px 10px;
-                    border-radius: 4px;
-                    white-space: nowrap;
-                    font-size: 12px;
-                    z-index: 1;
-                }
-                </style>
+                  <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
+                          class="tooltip-btn" 
+                          data-tooltip="Click to generate hash.">
+                      Generate Hash
+                  </button>
+  `}</HTMLBlock>
 
-                <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
-                        class="tooltip-btn" 
-                        data-tooltip="Click to generate hash.">
-                    Generate Hash
-                </button>
-`}</HTMLBlock>
+  **Backend Developer:**
 
-**Backend Developer:**
+  * Generate the hash on your server using SHA-512
+  * Follow the **exact parameter order**
+  * Include all `|` separators (even for empty fields)
+  * Use **UTF-8 encoding**
+  * Keep your **salt secure (never expose it)**
 
-* Generate the hash on your server using SHA-512
-* Follow the **exact parameter order**
-* Include all `|` separators (even for empty fields)
-* Use **UTF-8 encoding**
-* Keep your **salt secure (never expose it)**
+  **Frontend Developer:**
 
-**Frontend Developer:**
+  * No action required
+  * Do not attempt to generate hash on client side
 
-* No action required
-* Do not attempt to generate hash on client side
+  **What this means:**
 
-**What this means:**
+  You are creating a **secure signature** that PayU uses to validate your payment request.
 
-You are creating a **secure signature** that PayU uses to validate your payment request.
+  **Common Mistake**
 
-**Common Mistake**
+  These are the common mistakes while concatenating params in the hash logic.
 
-These are the common mistakes while concatenating params in the hash logic.
+  * Missing `|` separators for empty fields
+  * Incorrect parameter order
+  * Extra spaces or hidden characters
 
-* Missing `|` separators for empty fields
-* Incorrect parameter order
-* Extra spaces or hidden characters
+  <Callout icon="🚧" theme="warn">
+    **Important**
 
-<Callout icon="🚧">
-  **Important**
+    * Hash must always be generated on the **backend**
+    * Any mismatch will result in `Invalid Hash` errors
+  </Callout>
 
-  * Hash must always be generated on the **backend**
-  * Any mismatch will result in `Invalid Hash` errors
-</Callout>
-
-Refer to the **Generate Hash (Detailed Guide)** for complete implementation details.
-
+  Refer to the **Generate Hash (Detailed Guide)** for complete implementation details.
 </Accordion>
