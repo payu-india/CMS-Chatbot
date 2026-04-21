@@ -131,10 +131,7 @@ Follow the below steps to make your test payment:
   key|txnid|amount|productinfo|firstname|email|||||||||||salt
   ```
   ```Example Values
-  k0g8AB|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||LTVABCEFGHIJMEtrSi3MEWjUq64FAvjm
-  ```
-  ```Example Hash Value
-  34ceb1e2074133863e2e51d2925245bc0b8fcd0de2643cd12f052925e991ab4758822ae65ba9cfbeeb12fc5d74235d9db45f1dfcb864c9b645d8010f749e6b7e
+  YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||salt_value
   ```
 
   <Callout icon="⚠️" theme="warn">
