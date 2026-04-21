@@ -468,11 +468,13 @@ Use the following bankcode values to identify the reward provider in both the to
 
 #### splitInfo JSON Object Fields Description
 
-> 📘 Important:
+> 📘 Important Notes:
 >
 > A complete payment cannot be settled by Rewards (TWID or Zillion) alone — Rewards must always be combined with a **Card** or **UPI** instrument inside `childPaymentInstruments`. The sum of `transactionAmount` across all child instruments must equal the order `amount`.
 >
 > **Earn** is supported for both **TWID and Zillion**. Pass the reward instrument inside `earnPaymentInstruments` (with `transactionAmount: "0"`) when the customer is paying via Card/UPI and accruing reward points on that transaction.
+> You can spend Zillion rewards without combination of Cards or UPI, but not with TWID rewards. For example, if the transaction amount Rs.10, you can spend 100 Zillion points (assuming 100 Zillion points is worth Rs.10), but you cannot do that with TWID points. This example with TWID points, you must spend al teast Rs.0.5 (50 paisa) and 995 TWID points (assuming 100 TWID points is worth Rs.10).
+
 <Accordion title="Sample JSON for Spend Points along with Card (Partly)" icon="fa-code">
   ```json
   "splitInfo": {
