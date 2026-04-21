@@ -46,95 +46,95 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
 
 <Accordion title="Request parameters" icon="fa-table">
   <HTMLBlock>{`
-                                          <style>
-                                          /* Target only the second column in the table */
-                                          .markdown-body table td:nth-child(2) {
-                                            word-break: break-word !important;
-                                          }
+                                            <style>
+                                            /* Target only the second column in the table */
+                                            .markdown-body table td:nth-child(2) {
+                                              word-break: break-word !important;
+                                            }
 
-                                          /* Keep the first column from breaking unnecessarily */
-                                          .markdown-body table td:nth-child(1) {
-                                            word-break: normal;
-                                            white-space: nowrap;
-                                          }
-                                          </style>
-                                          <Table align={["left","left","left"]}>
-                                            <thead>
-                                              <tr>
-                                                <th style={{ textAlign: "left" }}>
-                                                  Parameter
-                                                </th>
-                                                <th style={{ textAlign: "left" }}>
-                                                  Description
-                                                </th>
-                                                <th style={{ textAlign: "left" }}>
-                                                  Example
-                                                </th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr>
-                                                <td style={{ textAlign: "left" }}>
-                                                  loyaltyProviders <br/>
-                                                  <code>mandatory</code>
-                                                </td>
-                                                <td style={{ textAlign: "left" }}>
-                                                  <code>Array</code> Array of loyalty provider names to fetch rewards from
-                                                </td>
-                                                <td style={{ textAlign: "left" }}>
-                                                  ["TWID", "ZILLION"]
-                                                </td>
-                                              </tr>
-                                              <tr>
-                                                <td style={{ textAlign: "left" }}>
-                                                  mobileNumber <br/>
-                                                  <code>mandatory</code>
-                                                </td>
-                                                <td style={{ textAlign: "left" }}>
-                                                  <code>Number</code> User's mobile number (masked for privacy)
-                                                </td>
-                                                <td style={{ textAlign: "left" }}>
-                                                  88001085**
-                                                </td>
-                                              </tr>
-                                              <tr>
-                                                <td style={{ textAlign: "left" }}>
-                                                  orderAmount <br/>
-                                                  <code>mandatory</code>
-                                                </td>
-                                                <td style={{ textAlign: "left" }}>
-                                                  <code>Number</code> Order amount for which reward points are applicable
-                                                </td>
-                                                <td style={{ textAlign: "left" }}>
-                                                  1000
-                                                </td>
-                                              </tr>
-                                              <tr>
-                                                <td style={{ textAlign: "left" }}>
-                                                  merchantTxnId <br/>
-                                                  <code>optional</code>
-                                                </td>
-                                                <td style={{ textAlign: "left" }}>
-                                                  <code>String</code> Merchant-generated transaction reference identifier for tracking the balance lookup against the order.
-                                                </td>
-                                                <td style={{ textAlign: "left" }}>
-                                                  123merchantTxnId
-                                                </td>
-                                              </tr>
-                                              <tr>
-                                                <td style={{ textAlign: "left" }}>
-                                                  fetchRevisedEarn <br/>
-                                                  <code>optional</code>
-                                                </td>
-                                                <td style={{ textAlign: "left" }}>
-                                                  <code>Boolean</code> When set to <code>true</code>, the response includes the revised earn configuration (<code>revisedEarnConfig</code>) for each reward.
-                                                </td>
-                                                <td style={{ textAlign: "left" }}>
-                                                  true
-                                                </td>
-                                              </tr>
-                                            </tbody>
-                                          </Table>
+                                            /* Keep the first column from breaking unnecessarily */
+                                            .markdown-body table td:nth-child(1) {
+                                              word-break: normal;
+                                              white-space: nowrap;
+                                            }
+                                            </style>
+                                            <Table align={["left","left","left"]}>
+                                              <thead>
+                                                <tr>
+                                                  <th style={{ textAlign: "left" }}>
+                                                    Parameter
+                                                  </th>
+                                                  <th style={{ textAlign: "left" }}>
+                                                    Description
+                                                  </th>
+                                                  <th style={{ textAlign: "left" }}>
+                                                    Example
+                                                  </th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    loyaltyProviders <br/>
+                                                    <code>mandatory</code>
+                                                  </td>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    <code>Array</code> Array of loyalty provider names to fetch rewards from
+                                                  </td>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    ["TWID", "ZILLION"]
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    mobileNumber <br/>
+                                                    <code>mandatory</code>
+                                                  </td>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    <code>Number</code> User's mobile number (masked for privacy)
+                                                  </td>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    88001085**
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    orderAmount <br/>
+                                                    <code>mandatory</code>
+                                                  </td>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    <code>Number</code> Order amount for which reward points are applicable
+                                                  </td>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    1000
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    merchantTxnId <br/>
+                                                    <code>optional</code>
+                                                  </td>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    <code>String</code> Merchant-generated transaction reference identifier for tracking the balance lookup against the order.
+                                                  </td>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    123merchantTxnId
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    fetchRevisedEarn <br/>
+                                                    <code>optional</code>
+                                                  </td>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    <code>Boolean</code> When set to <code>true</code>, the response includes the revised earn configuration (<code>revisedEarnConfig</code>) for each reward.
+                                                  </td>
+                                                  <td style={{ textAlign: "left" }}>
+                                                    true
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </Table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -596,102 +596,6 @@ Use the following bankcode values to identify the reward provider in both the to
   ```
 </Accordion>
 
-<Accordion title="Sample request for Earn Points with Card (TWID)" icon="fa-code">
-  ```curl
-  curl -X POST "https://test.payu.in/_payment" \
-    -H "accept: application/json" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "key": "KOEfPI",
-      "txnid": "ram1234",
-      "productinfo": "Product Info",
-      "amount": "1000",
-      "email": "test@example.com",
-      "firstname": "Payu-Admin",
-      "lastname": "",
-      "phone": "9304204920",
-      "surl": "https://pp1admin.payu.in/test_response",
-      "furl": "https://pp1admin.payu.in/test_response",
-      "pg": "SPLITPAY",
-      "bankcode": "TWIDX",
-      "txn_s2s_flow": "4",
-      "splitInfo": {
-        "childPaymentInstruments": [
-          {
-            "bankCode": "CC",
-            "name": "CC",
-            "cardNumber": "5123456789012346",
-            "cvv": "345",
-            "validThrough": "12/26",
-            "ownerName": "Payu",
-            "transactionAmount": "1000.00"
-          }
-        ],
-        "earnPaymentInstruments": [
-          {
-            "name": "RD",
-            "bankCode": "TWIDLS",
-            "transactionAmount": "0",
-            "rewardId": 270940,
-            "rewardName": "Woodland",
-            "cardBin": "524216",
-            "cardLastFour": "0009"
-          }
-        ],
-        "totalAmount": "1000.00",
-        "consent": false
-      },
-      "hash": "e0241876845d20e42336426cf135651d5241503b51e525dffd17f88d1e694f7718a89e33cec6f21971097faad7dca5442910498c298de249b23ea3b12a75ed0c"
-    }'
-  ```
-</Accordion>
-
-<Accordion title="Sample request for Earn Points with Card (Zillion)" icon="fa-code">
-  ```curl
-  curl -X POST "https://test.payu.in/_payment" \
-    -H "accept: application/json" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "key": "KOEfPI",
-      "txnid": "ram1234",
-      "productinfo": "Product Info",
-      "amount": "1000",
-      "email": "test@example.com",
-      "firstname": "Payu-Admin",
-      "lastname": "",
-      "phone": "9304204920",
-      "surl": "https://pp1admin.payu.in/test_response",
-      "furl": "https://pp1admin.payu.in/test_response",
-      "pg": "SPLITPAY",
-      "bankcode": "ZRD",
-      "txn_s2s_flow": "4",
-      "splitInfo": {
-        "childPaymentInstruments": [
-          {
-            "bankCode": "CC",
-            "name": "CC",
-            "cardNumber": "5123456789012346",
-            "cvv": "345",
-            "validThrough": "12/26",
-            "ownerName": "Payu",
-            "transactionAmount": "1000.00"
-          }
-        ],
-        "earnPaymentInstruments": [
-          {
-            "name": "RD",
-            "bankCode": "ZLS",
-            "transactionAmount": "0",
-            "rewardId": 270940
-          }
-        ],
-        "totalAmount": "1000.00",
-        "consent": false
-      },
-      "hash": "e0241876845d20e42336426cf135651d5241503b51e525dffd17f88d1e694f7718a89e33cec6f21971097faad7dca5442910498c298de249b23ea3b12a75ed0c"
-    }'
-  ```
-</Accordion>
 
 <Accordion title="Sample JSON for Spend Points along with Card (Partly)" icon="fa-code">
   ```JSON
@@ -723,36 +627,6 @@ Use the following bankcode values to identify the reward provider in both the to
   ```
 </Accordion>
 
-<Accordion title="Sample JSON for Earn Points with Card" icon="fa-code">
-  ```json
-  {
-      "childPaymentInstruments": [
-          {
-              "bankCode": "CC",
-              "name": "CC",
-              "cardNumber": "5123456789012346",
-              "cvv": "345",
-              "validThrough": "12/26",
-              "ownerName": "Payu",
-              "transactionAmount": "1000.00"
-          }
-      ],
-      "earnPaymentInstruments": [
-          {
-              "name": "RD",
-              "bankCode": "TWIDLS",
-              "transactionAmount": "0",
-              "rewardId": 270940,
-              "rewardName": "Woodland",
-              "cardBin": "524216",
-              "cardLastFour": "0009"
-          }
-      ],
-      "totalAmount": "1000.00",
-      "consent": false
-  }
-  ```
-</Accordion>
 
 #### UPI
 
@@ -837,94 +711,6 @@ Use the following bankcode values to identify the reward provider in both the to
   ```
 </Accordion>
 
-<Accordion title="Sample request for Earn Points with UPI (TWID)" icon="fa-code">
-  ```curl
-  curl -X POST "https://test.payu.in/_payment" \
-    -H "accept: application/json" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "key": "KOEfPI",
-      "txnid": "ram1234",
-      "productinfo": "Product Info",
-      "amount": "1000",
-      "email": "test@example.com",
-      "firstname": "Payu-Admin",
-      "lastname": "",
-      "phone": "9304204920",
-      "surl": "https://pp1admin.payu.in/test_response",
-      "furl": "https://pp1admin.payu.in/test_response",
-      "pg": "SPLITPAY",
-      "bankcode": "TWIDX",
-      "txn_s2s_flow": "4",
-      "splitInfo": {
-        "childPaymentInstruments": [
-          {
-            "name": "UPI",
-            "bankCode": "UPI",
-            "vpa": "kk@okaxis",
-            "transactionAmount": "1000"
-          }
-        ],
-        "earnPaymentInstruments": [
-          {
-            "name": "RD",
-            "bankCode": "TWIDLS",
-            "transactionAmount": "0",
-            "rewardId": 270940,
-            "rewardName": "Woodland"
-          }
-        ],
-        "totalAmount": "1000.00",
-        "consent": false
-      },
-      "hash": "f158a418e38993aa4d1d72d056ebf08047d77a8a14f219ef619f6612e9a6ff8f6147ad035c97c012b74f15ebd08eaea423dd7438654f91d7aca1f10d4f406800"
-    }'
-  ```
-</Accordion>
-
-<Accordion title="Sample request for Earn Points with UPI (Zillion)" icon="fa-code">
-  ```curl
-  curl -X POST "https://test.payu.in/_payment" \
-    -H "accept: application/json" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "key": "KOEfPI",
-      "txnid": "ram1234",
-      "productinfo": "Product Info",
-      "amount": "1000",
-      "email": "test@example.com",
-      "firstname": "Payu-Admin",
-      "lastname": "",
-      "phone": "9304204920",
-      "surl": "https://pp1admin.payu.in/test_response",
-      "furl": "https://pp1admin.payu.in/test_response",
-      "pg": "SPLITPAY",
-      "bankcode": "ZRD",
-      "txn_s2s_flow": "4",
-      "splitInfo": {
-        "childPaymentInstruments": [
-          {
-            "name": "UPI",
-            "bankCode": "UPI",
-            "vpa": "kk@okaxis",
-            "transactionAmount": "1000"
-          }
-        ],
-        "earnPaymentInstruments": [
-          {
-            "name": "RD",
-            "bankCode": "ZLS",
-            "transactionAmount": "0",
-            "rewardId": 270940
-          }
-        ],
-        "totalAmount": "1000.00",
-        "consent": false
-      },
-      "hash": "f158a418e38993aa4d1d72d056ebf08047d77a8a14f219ef619f6612e9a6ff8f6147ad035c97c012b74f15ebd08eaea423dd7438654f91d7aca1f10d4f406800"
-    }'
-  ```
-</Accordion>
 
 <Accordion title="Sample JSON for Spend Points along with UPI" icon="fa-code">
   ```json
@@ -951,421 +737,6 @@ Use the following bankcode values to identify the reward provider in both the to
   ```
 </Accordion>
 
-<Accordion title="Sample JSON for Earn Points with UPI (Partly)" icon="fa-code">
-  ```json
-  {
-    "childPaymentInstruments": [
-      {
-        "name": "UPI",
-        "bankCode": "UPI",
-        "vpa": "kk@okaxis",
-        "transactionAmount": "1000"
-      }
-    ],
-    "earnPaymentInstruments": [
-      {
-        "name": "RD",
-        "bankCode": "TWIDLS",
-        "transactionAmount": "0",
-        "rewardId": 270940,
-        "rewardName": "Woodland"
-      }
-    ],
-    "totalAmount": "1000.00",
-    "consent": false
-  }
-  ```
-</Accordion>
-
-<Accordion title="Sample request" icon="fa-code">
-  ```curl
-  curl -X POST "https://test.payu.in/_payment" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "key": "KOEfPI",
-      "txnid": "ram1234",
-      "productinfo": "Product Info",
-      "amount": "100",
-      "email": "test@example.com",
-      "firstname": "Payu-Admin",
-      "lastname": "",
-      "phone": "880**08522",
-      "surl": "https://pp56admin.payu.in/test_response",
-      "furl": "https://pp56admin.payu.in/test_response",
-      "pg": "SPLITPAY",
-      "bankcode": "TWIDX",
-      "txn_s2s_flow": "4",
-      "splitInfo": {
-          "childPaymentInstruments": [
-              {
-                  "name": "CC",
-                  "bankCode": "CC",
-                  "cardNumber": "5123456789012346",
-                  "cvv": "345",
-                  "validThrough": "07/25",
-                  "ownerName": "Payu",
-                  "transactionAmount": "512"
-              }
-          ],
-          "earnPaymentInstruments": [
-              {
-                  "name": "RD",
-                  "bankCode": "TWIDLS",
-                  "transactionAmount": "0",
-                  "rewardId": 269431,
-                  "cardBin": "480855",
-                  "cardLastFour": "0000"
-              }
-          ]
-      },
-      "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-  }'
-  ```
-  ```python
-  import requests
-  import json
-
-  url = "https://test.payu.in/_payment"
-
-  data = {
-      "key": "KOEfPI",
-      "txnid": "ram1234",
-      "productinfo": "Product Info",
-      "amount": "100",
-      "email": "test@example.com",
-      "firstname": "Payu-Admin",
-      "lastname": "",
-      "phone": "880**08522",
-      "surl": "https://pp56admin.payu.in/test_response",
-      "furl": "https://pp56admin.payu.in/test_response",
-      "pg": "SPLITPAY",
-      "bankcode": "TWIDX",
-      "txn_s2s_flow": "4",
-      "splitInfo": {
-          "childPaymentInstruments": [
-              {
-                  "name": "CC",
-                  "bankCode": "CC",
-                  "cardNumber": "5123456789012346",
-                  "cvv": "345",
-                  "validThrough": "07/25",
-                  "ownerName": "Payu",
-                  "transactionAmount": "512"
-              }
-          ],
-          "earnPaymentInstruments": [
-              {
-                  "name": "RD",
-                  "bankCode": "TWIDLS",
-                  "transactionAmount": "0",
-                  "rewardId": 269431,
-                  "cardBin": "480855",
-                  "cardLastFour": "0000"
-              }
-          ]
-      },
-      "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-  }
-
-  headers = {
-      "Content-Type": "application/json"
-  }
-
-  try:
-      response = requests.post(url, headers=headers, json=data)
-      print(f"Status Code: {response.status_code}")
-      print(f"Response: {response.text}")
-  except requests.exceptions.RequestException as e:
-      print(f"Error: {e}")
-  ```
-  ```csharp
-  using System;
-  using System.Net.Http;
-  using System.Text;
-  using System.Threading.Tasks;
-  using Newtonsoft.Json;
-
-  class Program
-  {
-      static async Task Main(string[] args)
-      {
-          string url = "https://test.payu.in/_payment";
-          
-          var data = new
-          {
-              key = "KOEfPI",
-              txnid = "ram1234",
-              productinfo = "Product Info",
-              amount = "100",
-              email = "test@example.com",
-              firstname = "Payu-Admin",
-              lastname = "",
-              phone = "880**08522",
-              surl = "https://pp56admin.payu.in/test_response",
-              furl = "https://pp56admin.payu.in/test_response",
-              pg = "SPLITPAY",
-              bankcode = "TWIDX",
-              txn_s2s_flow = "4",
-              splitInfo = new
-              {
-                  childPaymentInstruments = new[]
-                  {
-                      new
-                      {
-                          name = "CC",
-                          bankCode = "CC",
-                          cardNumber = "5123456789012346",
-                          cvv = "345",
-                          validThrough = "07/25",
-                          ownerName = "Payu",
-                          transactionAmount = "512"
-                      }
-                  },
-                  earnPaymentInstruments = new[]
-                  {
-                      new
-                      {
-                          name = "RD",
-                          bankCode = "TWIDLS",
-                          transactionAmount = "0",
-                          rewardId = 269431,
-                          cardBin = "480855",
-                          cardLastFour = "0000"
-                      }
-                  }
-              },
-              hash = "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-          };
-
-          using (var client = new HttpClient())
-          {
-              try
-              {
-                  string jsonData = JsonConvert.SerializeObject(data);
-                  var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                  
-                  HttpResponseMessage response = await client.PostAsync(url, content);
-                  string responseContent = await response.Content.ReadAsStringAsync();
-                  
-                  Console.WriteLine($"Status Code: {response.StatusCode}");
-                  Console.WriteLine($"Response: {responseContent}");
-              }
-              catch (Exception ex)
-              {
-                  Console.WriteLine($"Error: {ex.Message}");
-              }
-          }
-      }
-  }
-  ```
-
-  ```javascript
-  async function makePayment() {
-      const url = "https://test.payu.in/_payment";
-      
-      const data = {
-          key: "KOEfPI",
-          txnid: "ram1234",
-          productinfo: "Product Info",
-          amount: "100",
-          email: "test@example.com",
-          firstname: "Payu-Admin",
-          lastname: "",
-          phone: "880**08522",
-          surl: "https://pp56admin.payu.in/test_response",
-          furl: "https://pp56admin.payu.in/test_response",
-          pg: "SPLITPAY",
-          bankcode: "TWIDX",
-          txn_s2s_flow: "4",
-          splitInfo: {
-              childPaymentInstruments: [
-                  {
-                      name: "CC",
-                      bankCode: "CC",
-                      cardNumber: "5123456789012346",
-                      cvv: "345",
-                      validThrough: "07/25",
-                      ownerName: "Payu",
-                      transactionAmount: "512"
-                  }
-              ],
-              earnPaymentInstruments: [
-                  {
-                      name: "RD",
-                      bankCode: "TWIDLS",
-                      transactionAmount: "0",
-                      rewardId: 269431,
-                      cardBin: "480855",
-                      cardLastFour: "0000"
-                  }
-              ]
-          },
-          hash: "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-      };
-
-      try {
-          const response = await fetch(url, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data)
-          });
-          
-          const responseText = await response.text();
-          console.log(`Status Code: ${response.status}`);
-          console.log(`Response: ${responseText}`);
-      } catch (error) {
-          console.log(`Error: ${error.message}`);
-      }
-  }
-
-  makePayment();
-  ```
-  ```java
-  import java.io.IOException;
-  import java.net.URI;
-  import java.net.http.HttpClient;
-  import java.net.http.HttpRequest;
-  import java.net.http.HttpResponse;
-  import com.google.gson.Gson;
-  import com.google.gson.GsonBuilder;
-  import java.util.HashMap;
-  import java.util.Map;
-  import java.util.List;
-  import java.util.Arrays;
-
-  public class PaymentRequest {
-      public static void main(String[] args) {
-          String url = "https://test.payu.in/_payment";
-          
-          Map<String, Object> childInstrument = new HashMap<>();
-          childInstrument.put("name", "CC");
-          childInstrument.put("bankCode", "CC");
-          childInstrument.put("cardNumber", "5123456789012346");
-          childInstrument.put("cvv", "345");
-          childInstrument.put("validThrough", "07/25");
-          childInstrument.put("ownerName", "Payu");
-          childInstrument.put("transactionAmount", "512");
-          
-          Map<String, Object> earnInstrument = new HashMap<>();
-          earnInstrument.put("name", "RD");
-          earnInstrument.put("bankCode", "TWIDLS");
-          earnInstrument.put("transactionAmount", "0");
-          earnInstrument.put("rewardId", 269431);
-          earnInstrument.put("cardBin", "480855");
-          earnInstrument.put("cardLastFour", "0000");
-          
-          Map<String, Object> splitInfo = new HashMap<>();
-          splitInfo.put("childPaymentInstruments", Arrays.asList(childInstrument));
-          splitInfo.put("earnPaymentInstruments", Arrays.asList(earnInstrument));
-          
-          Map<String, Object> data = new HashMap<>();
-          data.put("key", "KOEfPI");
-          data.put("txnid", "ram1234");
-          data.put("productinfo", "Product Info");
-          data.put("amount", "100");
-          data.put("email", "test@example.com");
-          data.put("firstname", "Payu-Admin");
-          data.put("lastname", "");
-          data.put("phone", "880**08522");
-          data.put("surl", "https://pp56admin.payu.in/test_response");
-          data.put("furl", "https://pp56admin.payu.in/test_response");
-          data.put("pg", "SPLITPAY");
-          data.put("bankcode", "TWIDX");
-          data.put("txn_s2s_flow", "4");
-          data.put("splitInfo", splitInfo);
-          data.put("hash", "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741");
-          
-          Gson gson = new GsonBuilder().create();
-          String jsonData = gson.toJson(data);
-          
-          HttpClient client = HttpClient.newHttpClient();
-          HttpRequest request = HttpRequest.newBuilder()
-                  .uri(URI.create(url))
-                  .header("Content-Type", "application/json")
-                  .POST(HttpRequest.BodyPublishers.ofString(jsonData))
-                  .build();
-          
-          try {
-              HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-              System.out.println("Status Code: " + response.statusCode());
-              System.out.println("Response: " + response.body());
-          } catch (IOException | InterruptedException e) {
-              System.out.println("Error: " + e.getMessage());
-          }
-      }
-  }
-  ```
-  ```php
-  <?php
-  $url = "https://test.payu.in/_payment";
-
-  $data = array(
-      "key" => "KOEfPI",
-      "txnid" => "ram1234",
-      "productinfo" => "Product Info",
-      "amount" => "100",
-      "email" => "test@example.com",
-      "firstname" => "Payu-Admin",
-      "lastname" => "",
-      "phone" => "880**08522",
-      "surl" => "https://pp56admin.payu.in/test_response",
-      "furl" => "https://pp56admin.payu.in/test_response",
-      "pg" => "SPLITPAY",
-      "bankcode" => "TWIDX",
-      "txn_s2s_flow" => "4",
-      "splitInfo" => array(
-          "childPaymentInstruments" => array(
-              array(
-                  "name" => "CC",
-                  "bankCode" => "CC",
-                  "cardNumber" => "5123456789012346",
-                  "cvv" => "345",
-                  "validThrough" => "07/25",
-                  "ownerName" => "Payu",
-                  "transactionAmount" => "512"
-              )
-          ),
-          "earnPaymentInstruments" => array(
-              array(
-                  "name" => "RD",
-                  "bankCode" => "TWIDLS",
-                  "transactionAmount" => "0",
-                  "rewardId" => 269431,
-                  "cardBin" => "480855",
-                  "cardLastFour" => "0000"
-              )
-          )
-      ),
-      "hash" => "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-  );
-
-  $options = array(
-      'http' => array(
-          'header' => "Content-Type: application/json\r\n",
-          'method' => 'POST',
-          'content' => json_encode($data)
-      )
-  );
-
-  $context = stream_context_create($options);
-
-  try {
-      $result = file_get_contents($url, false, $context);
-      if ($result === FALSE) {
-          echo "Error: Failed to make request\n";
-      } else {
-          $http_response_header_status = $http_response_header[0];
-          echo "Status: " . $http_response_header_status . "\n";
-          echo "Response: " . $result . "\n";
-      }
-  } catch (Exception $e) {
-      echo "Error: " . $e->getMessage() . "\n";
-  }
-  ?>
-  ```
-</Accordion>
 
 ## Step 3: Check response from PayU
 
@@ -1374,7 +745,6 @@ Use the following bankcode values to identify the reward provider in both the to
 ### Sample Success response (parsed)
 
 <Accordion title="Success scenario (Zillion + UPI)" icon="fa-code">
-
   ```json
   {
   "mihpayid": "999091000010475",
@@ -1440,6 +810,7 @@ Use the following bankcode values to identify the reward provider in both the to
   }
   ```
 </Accordion>
+
 <Accordion title="Success scenario (Zillion + Cards)" icon="fa-code">
   ```json
   {
@@ -1505,71 +876,73 @@ Use the following bankcode values to identify the reward provider in both the to
   }
   ```
 </Accordion>
+
 <Accordion title="Success scenario (TWID + Cards)" icon="fa-code">
- ```json
-  {
-  "mihpayid": "999091000010480",
-  "mode": "SPLITPAY",
-  "status": "success",
-  "unmappedstatus": "success",
-  "key": "KOEfPI",
-  "txnid": "ram1234",
-  "amount": "512",
-  "discount": "0.00",
-  "net_amount_debit": "512",
-  "addedon": "2025-01-10 15:00:00",
-  "productinfo": "Product Info",
-  "firstname": "Payu-Admin",
-  "lastname": "",
-  "address1": "",
-  "address2": "",
-  "city": "",
-  "state": "",
-  "country": "",
-  "zipcode": "",
-  "email": "test@example.com",
-  "phone": "8800108522",
-  "udf1": "",
-  "udf2": "",
-  "udf3": "",
-  "udf4": "",
-  "udf5": "",
-  "udf6": "",
-  "udf7": "",
-  "udf8": "",
-  "udf9": "",
-  "udf10": "",
-  "hash": "29efcd4f7a8a9a60a61481d70e21baf5ba6e7a472716d9b99bd911ef5390240411107b959e5bc8cdabc31463d150d4e02578349afa20529b18e271f60dd6db59",
-  "field1": "",
-  "field2": "",
-  "field3": "",
-  "field4": "",
-  "field5": "",
-  "field6": "",
-  "field7": "",
-  "field8": "",
-  "field9": "",
-  "payment_source": "payuS2S",
-  "PG_TYPE": "SPLITPAY-PG",
-  "bank_ref_num": "1255",
-  "error": "E000",
-  "bankcode": "TWIDX",
-  "error_Message": "No Error",
-  "splitPayInfo": {
-    "cc": {
-      "name": "CC",
-      "bankCode": "CC",
-      "transactionAmount": "412"
-    },
-    "rd": {
-      "name": "RD",
-      "bankCode": "TWIDLS",
-      "transactionAmount": "100"
-    }
-  }
-  }
+  ```json
+   {
+   "mihpayid": "999091000010480",
+   "mode": "SPLITPAY",
+   "status": "success",
+   "unmappedstatus": "success",
+   "key": "KOEfPI",
+   "txnid": "ram1234",
+   "amount": "512",
+   "discount": "0.00",
+   "net_amount_debit": "512",
+   "addedon": "2025-01-10 15:00:00",
+   "productinfo": "Product Info",
+   "firstname": "Payu-Admin",
+   "lastname": "",
+   "address1": "",
+   "address2": "",
+   "city": "",
+   "state": "",
+   "country": "",
+   "zipcode": "",
+   "email": "test@example.com",
+   "phone": "8800108522",
+   "udf1": "",
+   "udf2": "",
+   "udf3": "",
+   "udf4": "",
+   "udf5": "",
+   "udf6": "",
+   "udf7": "",
+   "udf8": "",
+   "udf9": "",
+   "udf10": "",
+   "hash": "29efcd4f7a8a9a60a61481d70e21baf5ba6e7a472716d9b99bd911ef5390240411107b959e5bc8cdabc31463d150d4e02578349afa20529b18e271f60dd6db59",
+   "field1": "",
+   "field2": "",
+   "field3": "",
+   "field4": "",
+   "field5": "",
+   "field6": "",
+   "field7": "",
+   "field8": "",
+   "field9": "",
+   "payment_source": "payuS2S",
+   "PG_TYPE": "SPLITPAY-PG",
+   "bank_ref_num": "1255",
+   "error": "E000",
+   "bankcode": "TWIDX",
+   "error_Message": "No Error",
+   "splitPayInfo": {
+     "cc": {
+       "name": "CC",
+       "bankCode": "CC",
+       "transactionAmount": "412"
+     },
+     "rd": {
+       "name": "RD",
+       "bankCode": "TWIDLS",
+       "transactionAmount": "100"
+     }
+   }
+   }
   ```
 </Accordion>
+
 <Accordion title="Success scenario (TWID + UPI)" icon="fa-code">
   ```json
   {
@@ -1636,7 +1009,9 @@ Use the following bankcode values to identify the reward provider in both the to
   }
   ```
 </Accordion>
+
 ### Failure scenarios
+
 <Accordion title="Failure scenario" icon="fa-code">
   ```json
   Array
@@ -1695,7 +1070,6 @@ Use the following bankcode values to identify the reward provider in both the to
   )
   ```
 </Accordion>
-
 
 ## Step 4: Verify the Payment
 
