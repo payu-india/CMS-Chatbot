@@ -88,6 +88,7 @@ Follow the below steps to make your test payment:
   phone=9999999999
   surl=https://yourwebsite.com/success
   furl=https://yourwebsite.com/failure
+  salt={{salt_value}}
   ```
 
   | **Parameters**  | **Description**                                                                                                                                                                                                      |
@@ -118,13 +119,13 @@ Follow the below steps to make your test payment:
 
   Create a hash value of the mandatory parameters mentioned in the step 1 using the following logic.
 
-  ```Text Logic
+  ```Hash Logic
   key|txnid|amount|productinfo|firstname|email|||||||||||salt
   ```
-  ```Text Example
+  ```Example Values
   YOUR_KEY|txn_123456|10.00|Test Product|Test|test@example.com|||||||||||YOUR_SALT
   ```
-  ```Text Hash Value
+  ```Example Hash Value
   ae3eeea5587856fa0540bdfb85a18b461d0457fbe230ea033dbd1a9a8f08e504e1fc1268da9df50ef0083a9f1a760cb82d2d3fb6bddc7e463b28cba5907a74fe
   ```
 
