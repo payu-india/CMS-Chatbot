@@ -29,7 +29,7 @@ next:
   description: ''
 ---
 
-NPCI has announced that the UPI Collect flow will be sunset effective **28 February 2026**. After this date, customers will no longer be able to initiate payments or register UPI mandates by manually entering a Virtual Payment Address (VPA), UPI ID, or mobile number.
+NPCI has announced that the UPI Collect flow will be deprecated effective **28 February 2026**. After this date, customers will no longer be able to initiate payments or register UPI mandates by manually entering a Virtual Payment Address (VPA), UPI ID, or mobile number.
 
 ## Key Changes
 
