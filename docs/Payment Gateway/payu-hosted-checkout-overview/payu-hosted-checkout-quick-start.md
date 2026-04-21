@@ -117,7 +117,14 @@ Follow the below steps to make your test payment:
 <Accordion title="Step 2: Generate SHA-512 Hash (Critical Step)" icon="fa-info-circle">
   Hash generation is required to **secure your payment request**. If the hash is incorrect, PayU will reject the transaction with an `Invalid Hash` error. Know more about Hashing.
 
-  Create a hash value of the mandatory parameters mentioned in the step 1 using the following logic.
+  Create a hash value by by concatenating the following parameters in a specific order.
+  * `key`
+  * `txnid`
+  * `amount`
+  * `productinfo`
+  * `firstname`
+  * `email`
+  * `salt`
 
   ```Hash Logic
   key|txnid|amount|productinfo|firstname|email|||||||||||salt
