@@ -13,7 +13,7 @@ This section describes how to set up a Payment Consent or Registration transacti
 **Payment Consent Flow**
 
 <Cards columns={2}>
-  <Card title="1. Payment Consent Transaction" href="##step-1-payment-consent-transaction-using-payu-hosted-checkout">
+  <Card title="1. Payment Consent Transaction using PayU Hosted Chackout" href="#step-1-payment-consent-transaction-using-payu-hosted-checkout">
     Send the ENACH consent transaction request with S2S parameters.
   </Card>
 
