@@ -362,7 +362,7 @@ These include the following parameters:
 
 <Accordion title="Step 2: Generate Secure Hash" icon="fa-key">
 
-To ensure the payment request is secure, you must generate a hash using your transaction details and merchant credentials. This hash is used to verify that the request has not been altered.
+To ensure the payment request is secure, you must generate a hash using your transaction details and merchant credentials. This hash is used to verify that the request has not been altered. Know more about hash generation.
 
 The hash is created by concatenating the following parameters in a specific order. Refer to the Step 1.1 Prepare Payment Request Parameters for the parameter description and example values.
 
@@ -381,8 +381,46 @@ key|txnid|amount|productinfo|firstname|email|||||||||||salt
 YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||salt_value
 ```
 
-<br />
+<Callout icon="🚧">
+  **Watch Out!**
 
-<br />
+  Replace the key and salt values with your test values obtained from the dashboard. Know more about generating test values.
+</Callout>
+
+<HTMLBlock>{`
+			<p>Use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
+								<style>
+                .tooltip-btn {
+                    position: relative;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold; /* Added this line */
+                }
+                .tooltip-btn:hover::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: 125%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    z-index: 1;
+                }
+                </style>
+
+                <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
+                        class="tooltip-btn" 
+                        data-tooltip="Click to generate hash.">
+                    Generate Hash
+                </button>
+`}</HTMLBlock>
 
 </Accordion>
