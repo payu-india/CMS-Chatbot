@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://partner.payu.in",
+      "url": "https://uat-partner.payu.in",
       "description": "PayU UAT API server"
     }
   ],
