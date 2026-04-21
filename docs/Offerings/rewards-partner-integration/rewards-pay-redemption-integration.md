@@ -46,95 +46,95 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
 
 <Accordion title="Request parameters" icon="fa-table">
   <HTMLBlock>{`
-                                        <style>
-                                        /* Target only the second column in the table */
-                                        .markdown-body table td:nth-child(2) {
-                                          word-break: break-word !important;
-                                        }
+                                          <style>
+                                          /* Target only the second column in the table */
+                                          .markdown-body table td:nth-child(2) {
+                                            word-break: break-word !important;
+                                          }
 
-                                        /* Keep the first column from breaking unnecessarily */
-                                        .markdown-body table td:nth-child(1) {
-                                          word-break: normal;
-                                          white-space: nowrap;
-                                        }
-                                        </style>
-                                        <Table align={["left","left","left"]}>
-                                          <thead>
-                                            <tr>
-                                              <th style={{ textAlign: "left" }}>
-                                                Parameter
-                                              </th>
-                                              <th style={{ textAlign: "left" }}>
-                                                Description
-                                              </th>
-                                              <th style={{ textAlign: "left" }}>
-                                                Example
-                                              </th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            <tr>
-                                              <td style={{ textAlign: "left" }}>
-                                                loyaltyProviders <br/>
-                                                <code>mandatory</code>
-                                              </td>
-                                              <td style={{ textAlign: "left" }}>
-                                                <code>Array</code> Array of loyalty provider names to fetch rewards from
-                                              </td>
-                                              <td style={{ textAlign: "left" }}>
-                                                ["TWID", "ZILLION"]
-                                              </td>
-                                            </tr>
-                                            <tr>
-                                              <td style={{ textAlign: "left" }}>
-                                                mobileNumber <br/>
-                                                <code>mandatory</code>
-                                              </td>
-                                              <td style={{ textAlign: "left" }}>
-                                                <code>Number</code> User's mobile number (masked for privacy)
-                                              </td>
-                                              <td style={{ textAlign: "left" }}>
-                                                88001085**
-                                              </td>
-                                            </tr>
-                                            <tr>
-                                              <td style={{ textAlign: "left" }}>
-                                                orderAmount <br/>
-                                                <code>mandatory</code>
-                                              </td>
-                                              <td style={{ textAlign: "left" }}>
-                                                <code>Number</code> Order amount for which reward points are applicable
-                                              </td>
-                                              <td style={{ textAlign: "left" }}>
-                                                1000
-                                              </td>
-                                            </tr>
-                                            <tr>
-                                              <td style={{ textAlign: "left" }}>
-                                                merchantTxnId <br/>
-                                                <code>optional</code>
-                                              </td>
-                                              <td style={{ textAlign: "left" }}>
-                                                <code>String</code> Merchant-generated transaction reference identifier for tracking the balance lookup against the order.
-                                              </td>
-                                              <td style={{ textAlign: "left" }}>
-                                                123merchantTxnId
-                                              </td>
-                                            </tr>
-                                            <tr>
-                                              <td style={{ textAlign: "left" }}>
-                                                fetchRevisedEarn <br/>
-                                                <code>optional</code>
-                                              </td>
-                                              <td style={{ textAlign: "left" }}>
-                                                <code>Boolean</code> When set to <code>true</code>, the response includes the revised earn configuration (<code>revisedEarnConfig</code>) for each reward.
-                                              </td>
-                                              <td style={{ textAlign: "left" }}>
-                                                true
-                                              </td>
-                                            </tr>
-                                          </tbody>
-                                        </Table>
+                                          /* Keep the first column from breaking unnecessarily */
+                                          .markdown-body table td:nth-child(1) {
+                                            word-break: normal;
+                                            white-space: nowrap;
+                                          }
+                                          </style>
+                                          <Table align={["left","left","left"]}>
+                                            <thead>
+                                              <tr>
+                                                <th style={{ textAlign: "left" }}>
+                                                  Parameter
+                                                </th>
+                                                <th style={{ textAlign: "left" }}>
+                                                  Description
+                                                </th>
+                                                <th style={{ textAlign: "left" }}>
+                                                  Example
+                                                </th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td style={{ textAlign: "left" }}>
+                                                  loyaltyProviders <br/>
+                                                  <code>mandatory</code>
+                                                </td>
+                                                <td style={{ textAlign: "left" }}>
+                                                  <code>Array</code> Array of loyalty provider names to fetch rewards from
+                                                </td>
+                                                <td style={{ textAlign: "left" }}>
+                                                  ["TWID", "ZILLION"]
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <td style={{ textAlign: "left" }}>
+                                                  mobileNumber <br/>
+                                                  <code>mandatory</code>
+                                                </td>
+                                                <td style={{ textAlign: "left" }}>
+                                                  <code>Number</code> User's mobile number (masked for privacy)
+                                                </td>
+                                                <td style={{ textAlign: "left" }}>
+                                                  88001085**
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <td style={{ textAlign: "left" }}>
+                                                  orderAmount <br/>
+                                                  <code>mandatory</code>
+                                                </td>
+                                                <td style={{ textAlign: "left" }}>
+                                                  <code>Number</code> Order amount for which reward points are applicable
+                                                </td>
+                                                <td style={{ textAlign: "left" }}>
+                                                  1000
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <td style={{ textAlign: "left" }}>
+                                                  merchantTxnId <br/>
+                                                  <code>optional</code>
+                                                </td>
+                                                <td style={{ textAlign: "left" }}>
+                                                  <code>String</code> Merchant-generated transaction reference identifier for tracking the balance lookup against the order.
+                                                </td>
+                                                <td style={{ textAlign: "left" }}>
+                                                  123merchantTxnId
+                                                </td>
+                                              </tr>
+                                              <tr>
+                                                <td style={{ textAlign: "left" }}>
+                                                  fetchRevisedEarn <br/>
+                                                  <code>optional</code>
+                                                </td>
+                                                <td style={{ textAlign: "left" }}>
+                                                  <code>Boolean</code> When set to <code>true</code>, the response includes the revised earn configuration (<code>revisedEarnConfig</code>) for each reward.
+                                                </td>
+                                                <td style={{ textAlign: "left" }}>
+                                                  true
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </Table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -1371,10 +1371,11 @@ Use the following bankcode values to identify the reward provider in both the to
 
 <ReverseHashing />
 
-<Accordion title="Sample response (parsed)" icon="fa-code">
-  * Success scenario (Zillion + UPI)
+### Sample Success response (parsed)
 
-  ```
+<Accordion title="Success scenario (Zillion + UPI)" icon="fa-code">
+
+  ```json
   {
   "mihpayid": "999091000010475",
   "mode": "SPLITPAY",
@@ -1438,10 +1439,9 @@ Use the following bankcode values to identify the reward provider in both the to
   }
   }
   ```
-
-  * Success scenario (Zillion + Cards)
-
-  ```
+</Accordion>
+<Accordion title="Success scenario (Zillion + Cards)" icon="fa-code">
+  ```json
   {
   "mihpayid": "999091000010471",
   "mode": "SPLITPAY",
@@ -1504,10 +1504,9 @@ Use the following bankcode values to identify the reward provider in both the to
   }
   }
   ```
-
-  * Success scenario (TWID + Cards)
-
-  ```
+</Accordion>
+<Accordion title="Success scenario (TWID + Cards)" icon="fa-code">
+ ```json
   {
   "mihpayid": "999091000010480",
   "mode": "SPLITPAY",
@@ -1570,10 +1569,9 @@ Use the following bankcode values to identify the reward provider in both the to
   }
   }
   ```
-
-  * Success scenario (TWID + UPI)
-
-  ```
+</Accordion>
+<Accordion title="Success scenario (TWID + UPI)" icon="fa-code">
+  ```json
   {
   "mihpayid": "999091000010482",
   "mode": "SPLITPAY",
@@ -1637,10 +1635,10 @@ Use the following bankcode values to identify the reward provider in both the to
   }
   }
   ```
-
-  * Failure scenario
-
-  ```
+</Accordion>
+### Failure scenarios
+<Accordion title="Failure scenario" icon="fa-code">
+  ```json
   Array
   (
       [mihpayid] => 20869277619
@@ -1696,88 +1694,8 @@ Use the following bankcode values to identify the reward provider in both the to
       [cardhash] => This field is no longer supported in postback params.
   )
   ```
-
-  <br />
 </Accordion>
 
-<Accordion title="Raw _payment API response (Card / UPI)" icon="fa-code">
-  In the **decoupled (txn\_s2s\_flow = 4)** integration, the immediate response from the `_payment` endpoint is a JSON payload containing a `referenceId`, `metaData`, optional `binData`, and a base64-encoded `result.acsTemplate`. The merchant must base64-decode the `acsTemplate` to obtain an HTML form that auto-submits to the bank/UPI redirect page where the customer completes authentication. The `parsed` postback shown above is what PayU posts back to your `surl` / `furl` after the customer finishes the authentication step.
-
-  * Raw `_payment` response (Card)
-
-  ```json
-  {
-    "referenceId": "29b2d115825c53d10a56d64fd359c816",
-    "order": 1,
-    "metaData": {
-      "referenceId": "29b2d115825c53d10a56d64fd359c816",
-      "txnId": "6e5cc585-6d9f-47e5-909c-78268bafec7b",
-      "txnStatus": "Enrolled",
-      "unmappedStatus": "pending",
-      "type": "otp",
-      "expiryTimeout": 180,
-      "cancelUrl": "https://pp1api.payu.in/split-payment/transaction/v1/af6221f5e6baa4cae60c86eff057b234/cancel/29b2d115825c53d10a56d64fd359c816",
-      "isSplitTransaction": true
-    },
-    "binData": {
-      "pureS2SSupported": false,
-      "issuingBank": "ICICI",
-      "category": "creditcard",
-      "cardType": "VISA",
-      "isDomestic": true
-    },
-    "result": {
-      "otpPostUrl": "",
-      "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vcHAxc2VjdXJlLnBheXUuaW4vLi4uLi9DcmVxIiBtZXRob2Q9InBvc3QiPjwvZm9ybT4="
-    },
-    "mode": "CC"
-  }
-  ```
-
-  * Raw `_payment` response (UPI)
-
-  ```json
-  {
-    "referenceId": "3d6cd50a233c2016644af4a0be40fa12",
-    "order": 1,
-    "metaData": {
-      "referenceId": "3d6cd50a233c2016644af4a0be40fa12",
-      "txnId": "6e557dba-955d-4ee9-b49e-7b5b186e71e5",
-      "txnStatus": "pending",
-      "unmappedStatus": "pending",
-      "type": "otp",
-      "expiryTimeout": 180,
-      "cancelUrl": "https://pp1api.payu.in/split-payment/transaction/v1/9c5c73a100f323c2c2b5a3568cd3176f/cancel/3d6cd50a233c2016644af4a0be40fa12",
-      "isSplitTransaction": true
-    },
-    "result": {
-      "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vcHAxYXBpLnBheXUuaW4vcHVibGljLy8vM2Q2Y2Q1MGEyMzNjMjAxNjY0NGFmNGEwYmU0MGZhMTIvdXBpTG9hZGVyIiBtZXRob2Q9ImdldCI+PC9mb3JtPg=="
-    },
-    "mode": "UPI"
-  }
-  ```
-
-  #### Raw response field reference
-
-  | Field                       | Description                                                                                                               | Example                              |
-  | --------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-  | referenceId                 | `String` Unique reference for this leg of the split transaction.                                                          | 29b2d115825c53d10a56d64fd359c816     |
-  | order                       | `Number` Sequence of the leg within the split transaction.                                                                | 1                                    |
-  | metaData.txnId              | `String` PayU internal transaction id.                                                                                    | 6e5cc585-6d9f-47e5-909c-78268bafec7b |
-  | metaData.txnStatus          | `String` Status of the leg (e.g. `Enrolled`, `pending`).                                                                  | Enrolled                             |
-  | metaData.unmappedStatus     | `String` Unmapped (raw) status of the leg.                                                                                | pending                              |
-  | metaData.type               | `String` Type of authentication challenge (e.g. `otp`).                                                                   | otp                                  |
-  | metaData.expiryTimeout      | `Number` Expiry, in seconds, for the authentication step.                                                                 | 180                                  |
-  | metaData.cancelUrl          | `String` URL the merchant can call to cancel the split-payment leg before the customer completes authentication.          | https\://...                         |
-  | metaData.isSplitTransaction | `Boolean` Always `true` for `SPLITPAY` flows.                                                                             | true                                 |
-  | binData.issuingBank         | `String` Issuing bank for the card (Card flow only).                                                                      | ICICI                                |
-  | binData.category            | `String` Card category (Card flow only).                                                                                  | creditcard                           |
-  | binData.cardType            | `String` Card network (Card flow only).                                                                                   | VISA                                 |
-  | binData.isDomestic          | `Boolean` Whether the card is domestic (Card flow only).                                                                  | true                                 |
-  | result.acsTemplate          | `String (Base64)` Base64-encoded HTML form. Decode and render in the browser to redirect the customer for authentication. | PGh0bWw+PGJvZHk+...                  |
-  | result.otpPostUrl           | `String` URL to which the OTP must be POSTed (when applicable).                                                           |                                      |
-  | mode                        | `String` Payment instrument used for this leg: `CC` for Card, `UPI` for UPI.                                              | CC                                   |
-</Accordion>
 
 ## Step 4: Verify the Payment
 
