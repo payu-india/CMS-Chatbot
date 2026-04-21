@@ -381,9 +381,9 @@ To ensure the payment request is secure, you must generate a hash using your tra
   ```Text Example Values
   YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||salt_value
   ```
-  ```php
+  ````php
   <?php
-function generateHash($params, $salt) {
+  function generateHash($params, $salt) {
     // Extract parameters or use empty string if not provided
     $key = $params['key'];
     $txnid = $params['txnid'];
@@ -404,10 +404,10 @@ function generateHash($params, $salt) {
     
     // Generate hash and convert to lowercase
     return strtolower(hash('sha512', $hashString));
-}
+  }
 
-// Example usage
-$params = [
+  // Example usage
+  $params = [
     'key' => 'yourKey',
     'txnid' => 'yourTxnId',
     'amount' => 'yourAmount',
@@ -416,20 +416,21 @@ $params = [
     'email' => 'yourEmail',
     'udf1' => 'optional_value1'
     // udf2, udf3, udf4, udf5 not provided - will be empty strings
-];
-$salt = 'yourSalt';
+  ];
+  $salt = 'yourSalt';
 
-$hash = generateHash($params, $salt);
-echo 'Generated Hash: ' . $hash;
-?>
+  $hash = generateHash($params, $salt);
+  echo 'Generated Hash: ' . $hash;
+  ?>
+  ```
   ```java
   import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
+  import java.security.MessageDigest;
+  import java.security.NoSuchAlgorithmException;
+  import java.util.HashMap;
+  import java.util.Map;
 
-public class ImprovedHashGenerator {
+  public class ImprovedHashGenerator {
 
     public static String generateHash(Map<String, String> params, String salt) {
         // Extract parameters or use empty string if not provided
@@ -485,6 +486,7 @@ public class ImprovedHashGenerator {
         System.out.println("Generated Hash: " + hash);
     }
   }
+  ```
   ```C#
   using System;
   using System.Collections.Generic;
@@ -551,10 +553,11 @@ public class ImprovedHashGenerator {
         Console.WriteLine("Generated Hash: " + hash);
     }
   }
+  ```
   ```Phython
   import hashlib
 
-def generate_hash(params, salt):
+  def generate_hash(params, salt):
     # Extract parameters or use empty string if not provided
     key = params['key']
     txnid = params['txnid']
@@ -574,8 +577,8 @@ def generate_hash(params, salt):
     # Generate SHA-512 hash
     return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
 
-# Example usage
-params = {
+  # Example usage
+  params = {
     'key': 'yourKey',
     'txnid': 'yourTxnId',
     'amount': 'yourAmount',
@@ -584,15 +587,16 @@ params = {
     'email': 'yourEmail',
     'udf1': 'optional_value1'
     # udf2, udf3, udf4, udf5 not provided - will default to empty strings
-}
-salt = 'yourSalt'
+  }
+  salt = 'yourSalt'
 
-hash_value = generate_hash(params, salt)
+  hash_value = generate_hash(params, salt)
   print("Generated Hash:", hash_value)
+  ```
   ```JavaScript
   const crypto = require('crypto');
 
-function generateHash(params, salt) {
+  function generateHash(params, salt) {
     // Extract parameters or use empty string if not provided
     const key = params.key;
     const txnid = params.txnid;
@@ -611,10 +615,10 @@ function generateHash(params, salt) {
     
     // Generate SHA-512 hash
     return crypto.createHash('sha512').update(hashString).digest('hex');
-}
+  }
 
-// Example usage
-const params = {
+  // Example usage
+  const params = {
     key: 'yourKey',
     txnid: 'yourTxnId',
     amount: 'yourAmount',
@@ -623,12 +627,13 @@ const params = {
     email: 'yourEmail',
     udf1: 'optional_value1'
     // udf2, udf3, udf4, udf5 not provided - will default to empty strings
-};
-const salt = 'yourSalt';
+  };
+  const salt = 'yourSalt';
 
-const hash = generateHash(params, salt);
+  const hash = generateHash(params, salt);
   console.log("Generated Hash:", hash);
-  ```
+  ````
+
   <Callout icon="🚧" theme="warn">
     **Watch Out!**
 
@@ -636,39 +641,39 @@ const hash = generateHash(params, salt);
   </Callout>
 
   <HTMLBlock>{`
-                  			<p>You then generate a SHA-512 hash of this string. You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
-                  								<style>
-                                  .tooltip-btn {
-                                      position: relative;
-                                      background-color: #4CAF50;
-                                      color: white;
-                                      padding: 10px 20px;
-                                      border: none;
-                                      border-radius: 5px;
-                                      cursor: pointer;
-                                      font-weight: bold; /* Added this line */
-                                  }
-                                  .tooltip-btn:hover::after {
-                                      content: attr(data-tooltip);
-                                      position: absolute;
-                                      bottom: 125%;
-                                      left: 50%;
-                                      transform: translateX(-50%);
-                                      background-color: #333;
-                                      color: white;
-                                      padding: 5px 10px;
-                                      border-radius: 4px;
-                                      white-space: nowrap;
-                                      font-size: 12px;
-                                      z-index: 1;
-                                  }
-                                  </style>
+                    			<p>You then generate a SHA-512 hash of this string. You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
+                    								<style>
+                                    .tooltip-btn {
+                                        position: relative;
+                                        background-color: #4CAF50;
+                                        color: white;
+                                        padding: 10px 20px;
+                                        border: none;
+                                        border-radius: 5px;
+                                        cursor: pointer;
+                                        font-weight: bold; /* Added this line */
+                                    }
+                                    .tooltip-btn:hover::after {
+                                        content: attr(data-tooltip);
+                                        position: absolute;
+                                        bottom: 125%;
+                                        left: 50%;
+                                        transform: translateX(-50%);
+                                        background-color: #333;
+                                        color: white;
+                                        padding: 5px 10px;
+                                        border-radius: 4px;
+                                        white-space: nowrap;
+                                        font-size: 12px;
+                                        z-index: 1;
+                                    }
+                                    </style>
 
-                                  <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
-                                          class="tooltip-btn" 
-                                          data-tooltip="Click to generate hash.">
-                                      Generate Hash
-                                  </button>
+                                    <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
+                                            class="tooltip-btn" 
+                                            data-tooltip="Click to generate hash.">
+                                        Generate Hash
+                                    </button>
   `}</HTMLBlock>
 
   <br />
