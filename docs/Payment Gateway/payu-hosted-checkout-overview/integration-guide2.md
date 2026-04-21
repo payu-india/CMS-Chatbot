@@ -360,8 +360,12 @@ These include the following parameters:
   </Table>
 </Accordion>
 
-<Accordion title="My Accordion Title" icon="fa-key">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+<Accordion title="Step 2: Generate Secure Hash" icon="fa-key">
+
+To ensure the payment request is secure, you must generate a hash using your transaction details and merchant credentials. This hash is used to verify that the request has not been altered.
+
+The hash is created by concatenating the following parameters in a specific order:
+
+<br />
+
 </Accordion>
