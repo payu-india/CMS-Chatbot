@@ -82,7 +82,7 @@ Follow the below steps to make your test payment:
   key=YOUR_KEY
   txnid=txn_123456
   amount=10.00
-  productinfo=Test Product
+  productinfo=TestProduct
   firstname=Test
   email=test@example.com
   phone=9999999999
@@ -118,6 +118,7 @@ Follow the below steps to make your test payment:
   Hash generation is required to **secure your payment request**. If the hash is incorrect, PayU will reject the transaction with an `Invalid Hash` error. Know more about Hashing.
 
   Create a hash value by by concatenating the following parameters in a specific order.
+
   * `key`
   * `txnid`
   * `amount`
@@ -130,7 +131,7 @@ Follow the below steps to make your test payment:
   key|txnid|amount|productinfo|firstname|email|||||||||||salt
   ```
   ```Example Values
-  YOUR_KEY|txn_123456|10.00|Test Product|Test|test@example.com|||||||||||YOUR_SALT
+  YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||YOUR_SALT
   ```
   ```Example Hash Value
   ae3eeea5587856fa0540bdfb85a18b461d0457fbe230ea033dbd1a9a8f08e504e1fc1268da9df50ef0083a9f1a760cb82d2d3fb6bddc7e463b28cba5907a74fe
