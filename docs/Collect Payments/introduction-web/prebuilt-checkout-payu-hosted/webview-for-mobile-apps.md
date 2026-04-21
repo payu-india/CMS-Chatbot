@@ -47,7 +47,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 * **Security**: Server-side hash generation for transaction authentication
 * **UPI Intent Support**: Seamless integration with popular payment apps
 
-## Configure Webview and Chrome Custom Tab for Android
+## Configure Native Webview and Chrome Custom Tab for Android
 
 <Accordion title="Add WebView configurations" icon="fa-code">
   To open the PayU checkout page in a WebView, add the following configurations in your Android project to allow JavaScript, DOM, and other features.
@@ -392,7 +392,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
      ```
 </Accordion>
 
-## Webview Integration on iOS
+## Webview Native Integration on iOS
 
 <Accordion title="Create postData for Payment" icon="fa-code">
   Build a string with the payment parameters and pass it as postData. See Collect Payment API to learn more about the payment parameters.
