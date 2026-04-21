@@ -387,8 +387,10 @@ YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||salt_value
   Replace the key and salt values with your test values obtained from the dashboard. Know more about generating test values.
 </Callout>
 
+You then generate a **SHA-512 hash** of this string.
+
 <HTMLBlock>{`
-			<p>Use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
+			<p>You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
 								<style>
                 .tooltip-btn {
                     position: relative;
@@ -422,5 +424,39 @@ YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||salt_value
                     Generate Hash
                 </button>
 `}</HTMLBlock>
+
+**Backend Developer:**
+
+* Generate the hash on your server using SHA-512
+* Follow the **exact parameter order**
+* Include all `|` separators (even for empty fields)
+* Use **UTF-8 encoding**
+* Keep your **salt secure (never expose it)**
+
+**Frontend Developer:**
+
+* No action required
+* Do not attempt to generate hash on client side
+
+**What this means:**
+
+You are creating a **secure signature** that PayU uses to validate your payment request.
+
+**Common Mistake**
+
+These are the common mistakes while concatenating params in the hash logic.
+
+* Missing `|` separators for empty fields
+* Incorrect parameter order
+* Extra spaces or hidden characters
+
+<Callout icon="🚧">
+  **Important**
+
+  * Hash must always be generated on the **backend**
+  * Any mismatch will result in `Invalid Hash` errors
+</Callout>
+
+Refer to the **Generate Hash (Detailed Guide)** for complete implementation details.
 
 </Accordion>
