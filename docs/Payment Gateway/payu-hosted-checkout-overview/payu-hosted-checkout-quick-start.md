@@ -76,7 +76,7 @@ Follow the below steps to make your test payment:
 | **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
 
 <Accordion title="Step 1: Prepare Request Parameters" icon="fa-info-circle">
-  Define these required parameters:
+  Define these mandatory parameters. You can also send optional parameters in the request. Refer to the detailed integration guide for more parameters and their descriptions.
 
   ```Mandatory Parameters
   key=YOUR_KEY
