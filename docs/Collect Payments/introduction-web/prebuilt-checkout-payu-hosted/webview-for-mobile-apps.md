@@ -607,7 +607,6 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 <Accordion title="Add below dependencies in pubspec.yaml file" icon="fa-code">
 
   ```Dependencies
-   
  dependencies:
  flutter:
  sdk: flutter
