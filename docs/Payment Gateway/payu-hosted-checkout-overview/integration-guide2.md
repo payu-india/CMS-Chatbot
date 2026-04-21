@@ -366,6 +366,6 @@ To ensure the payment request is secure, you must generate a hash using your tra
 
 The hash is created by concatenating the following parameters in a specific order:
 
-<br />
+* <br />
 
 </Accordion>
