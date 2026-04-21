@@ -2501,7 +2501,7 @@
         "tags": [
           "Read Invoice API"
         ],
-        "summary": "Read Invoice API",
+        "summary": "Get Single Payment Link API",
         "description": "Test Environment: [https://uatoneapi.payu.in/payment-links](https://uatoneapi.payu.in/payment-links) \n\nProduction Environment: [https://oneapi.payu.in/payment-links](https://oneapi.payu.in/payment-links)",
         "operationId": "ReadInvoiceAPI",
         "parameters": [
