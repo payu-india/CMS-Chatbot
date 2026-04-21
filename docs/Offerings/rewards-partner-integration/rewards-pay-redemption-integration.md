@@ -54,95 +54,95 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
 
 <Accordion title="Request parameters" icon="fa-table">
   <HTMLBlock>{`
-                                  <style>
-                                  /* Target only the second column in the table */
-                                  .markdown-body table td:nth-child(2) {
-                                    word-break: break-word !important;
-                                  }
+                                    <style>
+                                    /* Target only the second column in the table */
+                                    .markdown-body table td:nth-child(2) {
+                                      word-break: break-word !important;
+                                    }
 
-                                  /* Keep the first column from breaking unnecessarily */
-                                  .markdown-body table td:nth-child(1) {
-                                    word-break: normal;
-                                    white-space: nowrap;
-                                  }
-                                  </style>
-                                  <Table align={["left","left","left"]}>
-                                    <thead>
-                                      <tr>
-                                        <th style={{ textAlign: "left" }}>
-                                          Parameter
-                                        </th>
-                                        <th style={{ textAlign: "left" }}>
-                                          Description
-                                        </th>
-                                        <th style={{ textAlign: "left" }}>
-                                          Example
-                                        </th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <td style={{ textAlign: "left" }}>
-                                          loyaltyProviders <br/>
-                                          <code>mandatory</code>
-                                        </td>
-                                        <td style={{ textAlign: "left" }}>
-                                          <code>Array</code> Array of loyalty provider names to fetch rewards from
-                                        </td>
-                                        <td style={{ textAlign: "left" }}>
-                                          ["TWID", "ZILLION"]
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td style={{ textAlign: "left" }}>
-                                          mobileNumber <br/>
-                                          <code>mandatory</code>
-                                        </td>
-                                        <td style={{ textAlign: "left" }}>
-                                          <code>Number</code> User's mobile number (masked for privacy)
-                                        </td>
-                                        <td style={{ textAlign: "left" }}>
-                                          88001085**
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td style={{ textAlign: "left" }}>
-                                          orderAmount <br/>
-                                          <code>mandatory</code>
-                                        </td>
-                                        <td style={{ textAlign: "left" }}>
-                                          <code>Number</code> Order amount for which reward points are applicable
-                                        </td>
-                                        <td style={{ textAlign: "left" }}>
-                                          1000
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td style={{ textAlign: "left" }}>
-                                          merchantTxnId <br/>
-                                          <code>optional</code>
-                                        </td>
-                                        <td style={{ textAlign: "left" }}>
-                                          <code>String</code> Merchant-generated transaction reference identifier for tracking the balance lookup against the order.
-                                        </td>
-                                        <td style={{ textAlign: "left" }}>
-                                          123merchantTxnId
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td style={{ textAlign: "left" }}>
-                                          fetchRevisedEarn <br/>
-                                          <code>optional</code>
-                                        </td>
-                                        <td style={{ textAlign: "left" }}>
-                                          <code>Boolean</code> When set to <code>true</code>, the response includes the revised earn configuration (<code>revisedEarnConfig</code>) for each reward.
-                                        </td>
-                                        <td style={{ textAlign: "left" }}>
-                                          true
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </Table>
+                                    /* Keep the first column from breaking unnecessarily */
+                                    .markdown-body table td:nth-child(1) {
+                                      word-break: normal;
+                                      white-space: nowrap;
+                                    }
+                                    </style>
+                                    <Table align={["left","left","left"]}>
+                                      <thead>
+                                        <tr>
+                                          <th style={{ textAlign: "left" }}>
+                                            Parameter
+                                          </th>
+                                          <th style={{ textAlign: "left" }}>
+                                            Description
+                                          </th>
+                                          <th style={{ textAlign: "left" }}>
+                                            Example
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td style={{ textAlign: "left" }}>
+                                            loyaltyProviders <br/>
+                                            <code>mandatory</code>
+                                          </td>
+                                          <td style={{ textAlign: "left" }}>
+                                            <code>Array</code> Array of loyalty provider names to fetch rewards from
+                                          </td>
+                                          <td style={{ textAlign: "left" }}>
+                                            ["TWID", "ZILLION"]
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style={{ textAlign: "left" }}>
+                                            mobileNumber <br/>
+                                            <code>mandatory</code>
+                                          </td>
+                                          <td style={{ textAlign: "left" }}>
+                                            <code>Number</code> User's mobile number (masked for privacy)
+                                          </td>
+                                          <td style={{ textAlign: "left" }}>
+                                            88001085**
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style={{ textAlign: "left" }}>
+                                            orderAmount <br/>
+                                            <code>mandatory</code>
+                                          </td>
+                                          <td style={{ textAlign: "left" }}>
+                                            <code>Number</code> Order amount for which reward points are applicable
+                                          </td>
+                                          <td style={{ textAlign: "left" }}>
+                                            1000
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style={{ textAlign: "left" }}>
+                                            merchantTxnId <br/>
+                                            <code>optional</code>
+                                          </td>
+                                          <td style={{ textAlign: "left" }}>
+                                            <code>String</code> Merchant-generated transaction reference identifier for tracking the balance lookup against the order.
+                                          </td>
+                                          <td style={{ textAlign: "left" }}>
+                                            123merchantTxnId
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style={{ textAlign: "left" }}>
+                                            fetchRevisedEarn <br/>
+                                            <code>optional</code>
+                                          </td>
+                                          <td style={{ textAlign: "left" }}>
+                                            <code>Boolean</code> When set to <code>true</code>, the response includes the revised earn configuration (<code>revisedEarnConfig</code>) for each reward.
+                                          </td>
+                                          <td style={{ textAlign: "left" }}>
+                                            true
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </Table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -425,32 +425,32 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
 ## Step 2: Initiate Payment with PayU
 
 <Accordion title="Request parameters" icon="fa-table">
-  | Parameter                             | Description                                                                                                                                                                                                                                                                                        | Example                                                                                            |   |
-  | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | - |
-  | key<br />`mandatory`                  | `String` Merchant key provided by PayU during onboarding.                                                                                                                                                                                                                                          |                                                                                                    |   |
-  | txnid<br />`mandatory`                | `String` The transaction ID is a reference number for a specific order that is generated by the merchant.                                                                                                                                                                                          |                                                                                                    |   |
-  | amount<br />`mandatory`               | `String` The payment amount for the transaction.                                                                                                                                                                                                                                                   |                                                                                                    |   |
-  | productinfo<br />`mandatory`          | `String` A brief description of the product.                                                                                                                                                                                                                                                       |                                                                                                    |   |
-  | firstname<br />`mandatory`            | `String` The first name of the customer.                                                                                                                                                                                                                                                           | Ashish                                                                                             |   |
-  | email<br />`mandatory`                | `String` The email address of the customer.                                                                                                                                                                                                                                                        |                                                                                                    |   |
-  | phone<br />`mandatory`                | `String` The phone number of the customer.                                                                                                                                                                                                                                                         |                                                                                                    |   |
-  | pg<br />`mandatory`                   | `String` The pg parameter must contain `SPLITPAY` for Rewards transactions.                                                                                                                                                                                                                        | SPLITPAY                                                                                           |   |
-  | bankcode<br />`mandatory`             | `String` The bankcode parameter identifies the reward provider used at the parent transaction level. Use `TWIDX` for **TWID** Rewards or `ZRD` for **Zillion** Rewards. For more information, refer to [Reward Provider Codes](#reward-provider-codes).                                            | TWIDX                                                                                              |   |
-  | splitInfo                             | `JSON` This parameter must contain the TWID split information. For more information, refer to [splitInfo JSON Object Fields Description](#splitinfo-json-object-fields-description). The sample JSON for Spend/Burn or Earn Points with payment methods: <br />-[Cards](#cards) <br />-[UPI](#upi) | Refer to to [splitInfo JSON Object Fields Description](#splitinfo-json-object-fields-description). |   |
-  | furl<br />`mandatory`                 | `String` The success URL, which is the page PayU will redirect to if the transaction is successful.                                                                                                                                                                                                |                                                                                                    |   |
-  | surl<br />`mandatory`                 | `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                                                                                    |                                                                                                    |   |
-  | hash<br />`mandatory`                 | `String` It is the hash calculated by the merchant. The hash calculation logic is: \`sha512(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|                                                                                | SALT)\`                                                                                            |   |
-  | address1<br />`optional`              | `String` The first line of the billing address. **For Fraud Detection**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.                                                                     |                                                                                                    |   |
-  | address2<br />`optional`              | `String` The second line of the billing address.                                                                                                                                                                                                                                                   |                                                                                                    |   |
-  | city<br />`optional`                  | `String` The city where your customer resides as part of the billing address.                                                                                                                                                                                                                      |                                                                                                    |   |
-  | state<br />`optional`                 | `String` The state where your customer resides as part of the billing address.                                                                                                                                                                                                                     |                                                                                                    |   |
-  | country<br />`optional`               | `String` The country where your customer resides.                                                                                                                                                                                                                                                  |                                                                                                    |   |
-  | zipcode<br />`optional`               | `String` Billing address zip code is mandatory for the cardless EMI option. `Character Limit`-20                                                                                                                                                                                                   |                                                                                                    |   |
-  | udf1<br />`optional`                  | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.                                                                                                |                                                                                                    |   |
-  | udf2<br />`optional`                  | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.                                                                                                |                                                                                                    |   |
-  | udf3<br />`optional`                  | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.                                                                                                                                                                                    |                                                                                                    |   |
-  | udf4<br />`optional`                  | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.                                                                                                                                                                                    |                                                                                                    |   |
-  | udf5<br />`optional`                  | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.                                                                                                                                                                                    |                                                                                                    |   |
+  | Parameter                    | Description                                                                                                                                                                                                                                                                                        | Example                                                                                            |   |
+  | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | - |
+  | key<br />`mandatory`         | `String` Merchant key provided by PayU during onboarding.                                                                                                                                                                                                                                          |                                                                                                    |   |
+  | txnid<br />`mandatory`       | `String` The transaction ID is a reference number for a specific order that is generated by the merchant.                                                                                                                                                                                          |                                                                                                    |   |
+  | amount<br />`mandatory`      | `String` The payment amount for the transaction.                                                                                                                                                                                                                                                   |                                                                                                    |   |
+  | productinfo<br />`mandatory` | `String` A brief description of the product.                                                                                                                                                                                                                                                       |                                                                                                    |   |
+  | firstname<br />`mandatory`   | `String` The first name of the customer.                                                                                                                                                                                                                                                           | Ashish                                                                                             |   |
+  | email<br />`mandatory`       | `String` The email address of the customer.                                                                                                                                                                                                                                                        |                                                                                                    |   |
+  | phone<br />`mandatory`       | `String` The phone number of the customer.                                                                                                                                                                                                                                                         |                                                                                                    |   |
+  | pg<br />`mandatory`          | `String` The pg parameter must contain `SPLITPAY` for Rewards transactions.                                                                                                                                                                                                                        | SPLITPAY                                                                                           |   |
+  | bankcode<br />`mandatory`    | `String` The bankcode parameter identifies the reward provider used at the parent transaction level. Use `TWIDX` for **TWID** Rewards or `ZRD` for **Zillion** Rewards. For more information, refer to [Reward Provider Codes](#reward-provider-codes).                                            | TWIDX                                                                                              |   |
+  | splitInfo                    | `JSON` This parameter must contain the TWID split information. For more information, refer to [splitInfo JSON Object Fields Description](#splitinfo-json-object-fields-description). The sample JSON for Spend/Burn or Earn Points with payment methods: <br />-[Cards](#cards) <br />-[UPI](#upi) | Refer to to [splitInfo JSON Object Fields Description](#splitinfo-json-object-fields-description). |   |
+  | furl<br />`mandatory`        | `String` The success URL, which is the page PayU will redirect to if the transaction is successful.                                                                                                                                                                                                |                                                                                                    |   |
+  | surl<br />`mandatory`        | `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                                                                                    |                                                                                                    |   |
+  | hash<br />`mandatory`        | `String` It is the hash calculated by the merchant. The hash calculation logic is: \`sha512(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|                                                                                | SALT)\`                                                                                            |   |
+  | address1<br />`optional`     | `String` The first line of the billing address. **For Fraud Detection**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.                                                                     |                                                                                                    |   |
+  | address2<br />`optional`     | `String` The second line of the billing address.                                                                                                                                                                                                                                                   |                                                                                                    |   |
+  | city<br />`optional`         | `String` The city where your customer resides as part of the billing address.                                                                                                                                                                                                                      |                                                                                                    |   |
+  | state<br />`optional`        | `String` The state where your customer resides as part of the billing address.                                                                                                                                                                                                                     |                                                                                                    |   |
+  | country<br />`optional`      | `String` The country where your customer resides.                                                                                                                                                                                                                                                  |                                                                                                    |   |
+  | zipcode<br />`optional`      | `String` Billing address zip code is mandatory for the cardless EMI option. `Character Limit`-20                                                                                                                                                                                                   |                                                                                                    |   |
+  | udf1<br />`optional`         | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.                                                                                                |                                                                                                    |   |
+  | udf2<br />`optional`         | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.                                                                                                |                                                                                                    |   |
+  | udf3<br />`optional`         | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.                                                                                                                                                                                    |                                                                                                    |   |
+  | udf4<br />`optional`         | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.                                                                                                                                                                                    |                                                                                                    |   |
+  | udf5<br />`optional`         | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.                                                                                                                                                                                    |                                                                                                    |   |
 
   <Accordion title="Understanding Hashing and sample code" icon="fa-code">
     <HashingRequestParameters />
@@ -474,13 +474,46 @@ Use the following bankcode values to identify the reward provider in both the to
 >
 > The `bankcode` (parent) signals the reward provider being used for the transaction, while the `bankCode` inside the `RD` instrument inside `splitInfo` is the child code that PayU uses to settle the reward leg of the split payment.
 
-### splitInfo JSON Object Fields Description
+#### splitInfo JSON Object Fields Description
 
 > 📘 Important:
 >
 > A complete payment cannot be settled by Rewards (TWID or Zillion) alone — Rewards must always be combined with a **Card** or **UPI** instrument inside `childPaymentInstruments`. The sum of `transactionAmount` across all child instruments must equal the order `amount`.
 >
 > **Earn** is supported for both **TWID and Zillion**. Pass the reward instrument inside `earnPaymentInstruments` (with `transactionAmount: "0"`) when the customer is paying via Card/UPI and accruing reward points on that transaction.
+
+#### Field Descriptions
+
+<Accordion title="Field Descriptions in childPaymentInstruments" icon="fa-table">
+  | Field                                    | Description                                                                                                                                                                                                                 | Example          |
+  | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+  | name                                     | The name of the payment method. Use any of the following as required:<br />**CC** for Cards<br />**RD** for Rewards (TWID or Zillion)<br />**UPI** for UPI                                                                  | CC               |
+  | bankCode                                 | The bank code identifier for the payment instrument. Use `CC` for Cards, `UPI` for UPI, `TWIDLS` for **TWID** Rewards or `ZLS` for **Zillion** Rewards.                                                                     | CC               |
+  | cardNumber<br /> `mandatory for cards`   | The credit/debit card number for the transaction.                                                                                                                                                                           | 5123456789012346 |
+  | cvv<br /> `mandatory for cards`          | The Card Verification Value (CVV) for card validation.                                                                                                                                                                      | 345              |
+  | validThrough<br /> `mandatory for cards` | The card expiry date in MM/YY format.                                                                                                                                                                                       | 07/25            |
+  | ownerName                                | The name of the card holder or account owner.                                                                                                                                                                               | Payu             |
+  | vpa<br /> `mandatory for UPI`            | The Virtual Payment Address (VPA) used for the UPI transaction.                                                                                                                                                             | kk\@okaxis       |
+  | rewardId<br /> `mandatory for TWID`      | The unique reward identifier returned in the `rewardId` field of the Fetch Balance response.                                                                                                                                | 271508           |
+  | rewardName<br /> `mandatory for TWID`    | `String` Brand name of the reward program. Pass the value received as `issuerDetailDTO.brandName` in the Fetch Balance response (for example, `Woodland`, `HDFC Bank`). **Mandatory for TWID, not applicable for Zillion.** | Woodland         |
+  | cardBin<br /> `mandatory for TWID`       | The TWID Rewards card BIN (first 6 digits of the underlying card).                                                                                                                                                          | 524216           |
+  | cardLastFour<br /> `mandatory for TWID`  | The last four digits of the TWID Rewards card.                                                                                                                                                                              | 0009             |
+  | transactionAmount                        | The amount to be processed in the transaction for the given payment instrument.                                                                                                                                             | 512              |
+</Accordion>
+
+<Accordion title="Field Descriptions in earnPaymentInstruments" icon="fa-table">
+  Use the `earnPaymentInstruments` array when the customer is paying via Card or UPI and accruing reward points on the same transaction. Earn is supported for both **TWID** and **Zillion**.
+
+  | Field                                   | Description                                                                                                                                                                                                                 | Example  |
+  | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+  | name                                    | The name of the payment instrument. Use **RD** for the reward instrument.                                                                                                                                                   | RD       |
+  | bankCode                                | The bank code identifier for the reward instrument. Use `TWIDLS` for **TWID** Rewards or `ZLS` for **Zillion** Rewards.                                                                                                     | TWIDLS   |
+  | transactionAmount                       | The amount processed against the reward instrument. For Earn requests this is typically `"0"`, since reward points are accrued (not redeemed).                                                                              | 0        |
+  | rewardId<br /> `mandatory for TWID`     | The unique reward identifier returned in the `rewardId` field of the Fetch Balance response.                                                                                                                                | 270940   |
+  | rewardName<br /> `mandatory for TWID`   | `String` Brand name of the reward program. Pass the value received as `issuerDetailDTO.brandName` in the Fetch Balance response (for example, `Woodland`, `HDFC Bank`). **Mandatory for TWID, not applicable for Zillion.** | Woodland |
+  | cardBin<br /> `mandatory for TWID`      | The TWID Rewards card BIN (first 6 digits of the underlying card).                                                                                                                                                          | 524216   |
+  | cardLastFour<br /> `mandatory for TWID` | The last four digits of the TWID Rewards card.                                                                                                                                                                              | 0009     |
+</Accordion>
 
 #### Cards
 
@@ -952,39 +985,6 @@ Use the following bankcode values to identify the reward provider in both the to
   ```
 </Accordion>
 
-#### Field Descriptions
-
-<Accordion title="Field Descriptions in childPaymentInstruments" icon="fa-table">
-  | Field                                    | Description                                                                                                                                                                                                                 | Example          |
-  | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-  | name                                     | The name of the payment method. Use any of the following as required:<br />**CC** for Cards<br />**RD** for Rewards (TWID or Zillion)<br />**UPI** for UPI                                                                  | CC               |
-  | bankCode                                 | The bank code identifier for the payment instrument. Use `CC` for Cards, `UPI` for UPI, `TWIDLS` for **TWID** Rewards or `ZLS` for **Zillion** Rewards.                                                                     | CC               |
-  | cardNumber<br /> `mandatory for cards`   | The credit/debit card number for the transaction.                                                                                                                                                                           | 5123456789012346 |
-  | cvv<br /> `mandatory for cards`          | The Card Verification Value (CVV) for card validation.                                                                                                                                                                      | 345              |
-  | validThrough<br /> `mandatory for cards` | The card expiry date in MM/YY format.                                                                                                                                                                                       | 07/25            |
-  | ownerName                                | The name of the card holder or account owner.                                                                                                                                                                               | Payu             |
-  | vpa<br /> `mandatory for UPI`            | The Virtual Payment Address (VPA) used for the UPI transaction.                                                                                                                                                             | kk\@okaxis       |
-  | rewardId<br /> `mandatory for TWID`      | The unique reward identifier returned in the `rewardId` field of the Fetch Balance response.                                                                                                                                | 271508           |
-  | rewardName<br /> `mandatory for TWID`    | `String` Brand name of the reward program. Pass the value received as `issuerDetailDTO.brandName` in the Fetch Balance response (for example, `Woodland`, `HDFC Bank`). **Mandatory for TWID, not applicable for Zillion.** | Woodland         |
-  | cardBin<br /> `mandatory for TWID`       | The TWID Rewards card BIN (first 6 digits of the underlying card).                                                                                                                                                          | 524216           |
-  | cardLastFour<br /> `mandatory for TWID`  | The last four digits of the TWID Rewards card.                                                                                                                                                                              | 0009             |
-  | transactionAmount                        | The amount to be processed in the transaction for the given payment instrument.                                                                                                                                             | 512              |
-</Accordion>
-
-<Accordion title="Field Descriptions in earnPaymentInstruments" icon="fa-table">
-  Use the `earnPaymentInstruments` array when the customer is paying via Card or UPI and accruing reward points on the same transaction. Earn is supported for both **TWID** and **Zillion**.
-
-  | Field                                   | Description                                                                                                                                                                                                                 | Example  |
-  | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-  | name                                    | The name of the payment instrument. Use **RD** for the reward instrument.                                                                                                                                                   | RD       |
-  | bankCode                                | The bank code identifier for the reward instrument. Use `TWIDLS` for **TWID** Rewards or `ZLS` for **Zillion** Rewards.                                                                                                     | TWIDLS   |
-  | transactionAmount                       | The amount processed against the reward instrument. For Earn requests this is typically `"0"`, since reward points are accrued (not redeemed).                                                                              | 0        |
-  | rewardId<br /> `mandatory for TWID`     | The unique reward identifier returned in the `rewardId` field of the Fetch Balance response.                                                                                                                                | 270940   |
-  | rewardName<br /> `mandatory for TWID`   | `String` Brand name of the reward program. Pass the value received as `issuerDetailDTO.brandName` in the Fetch Balance response (for example, `Woodland`, `HDFC Bank`). **Mandatory for TWID, not applicable for Zillion.** | Woodland |
-  | cardBin<br /> `mandatory for TWID`      | The TWID Rewards card BIN (first 6 digits of the underlying card).                                                                                                                                                          | 524216   |
-  | cardLastFour<br /> `mandatory for TWID` | The last four digits of the TWID Rewards card.                                                                                                                                                                              | 0009     |
-</Accordion>
-
 <Accordion title="Sample request" icon="fa-code">
   ```curl
   curl -X POST "https://test.payu.in/_payment" \
@@ -1386,121 +1386,121 @@ Basis a successful response of the authentication API, you need to redirect the 
 
 <Accordion title="Request parameters" icon="fa-code">
   <HTMLBlock>{`
-                                               <style>
-                                               /* Target only the second column in the table */
-                                               .markdown-body table td:nth-child(2) {
-                                                 word-break: break-word !important;
-                                               }
-                                               
-                                               /* Keep the first column from breaking unnecessarily */
-                                               .markdown-body table td:nth-child(1) {
-                                                 word-break: normal;
-                                                 white-space: nowrap;
-                                               }
-                                               </style>
-                                               <table style="width: 100%; border-collapse: collapse;">
-                                               <thead>
-                                               <tr>
-                                                 <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-                                                 <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-                                               </tr>
-                                               </thead>
-                                               <tbody>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>rawBankData<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the raw response that is received from bank after authentication. The response is urlencoded and in query string format.</p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the reference id being returned for the transaction</p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>bankData<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code> This parameter contains the JSON string that is to be used for authorization call.This parameter is received in case of successful OTP submission of decoupled transactions. The postToBank contains messageDigest and pares that is to be posted back for authorization. For more information on the fields in this JSON, refer to bankData <a href="#bankdata-json-fields-description">JSON Fields Description</a>.</p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>authenticationStatus<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the authentication status of the transaction</p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the calculated hash of the data that is posted to the merchant. For security purpose it is recommended to validate the hash value before consuming the response. The hash calculation logic is:<br><code>sha512(authenticationStatus\|bankData\|rawBankData\|referenceId\|salt)</code></p>
-                                               </td>
-                                               </tr>
-                                               </tbody>
-                                               </table>
+                                                 <style>
+                                                 /* Target only the second column in the table */
+                                                 .markdown-body table td:nth-child(2) {
+                                                   word-break: break-word !important;
+                                                 }
+                                                 
+                                                 /* Keep the first column from breaking unnecessarily */
+                                                 .markdown-body table td:nth-child(1) {
+                                                   word-break: normal;
+                                                   white-space: nowrap;
+                                                 }
+                                                 </style>
+                                                 <table style="width: 100%; border-collapse: collapse;">
+                                                 <thead>
+                                                 <tr>
+                                                   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+                                                   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                                                 </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>rawBankData<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the raw response that is received from bank after authentication. The response is urlencoded and in query string format.</p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the reference id being returned for the transaction</p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>bankData<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code> This parameter contains the JSON string that is to be used for authorization call.This parameter is received in case of successful OTP submission of decoupled transactions. The postToBank contains messageDigest and pares that is to be posted back for authorization. For more information on the fields in this JSON, refer to bankData <a href="#bankdata-json-fields-description">JSON Fields Description</a>.</p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>authenticationStatus<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the authentication status of the transaction</p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter contains the calculated hash of the data that is posted to the merchant. For security purpose it is recommended to validate the hash value before consuming the response. The hash calculation logic is:<br><code>sha512(authenticationStatus\|bankData\|rawBankData\|referenceId\|salt)</code></p>
+                                                 </td>
+                                                 </tr>
+                                                 </tbody>
+                                                 </table>
   `}</HTMLBlock>
 
   #### bankData JSON fields description
 
   <HTMLBlock>{`
-                                               <table style="width: 100%; border-collapse: collapse;">
-                                               <thead>
-                                               <tr>
-                                                 <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-                                                 <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-                                                 <th style="border: 1px solid #ddd; padding: 8px;"><strong>Applicable for EMV 3DS</strong></th>
-                                               </tr>
-                                               </thead>
-                                               <tbody>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>cres<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field contains the Base64 encoded value received from ACS as part of the authentication response.</p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the reference id for the transaction</p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>messageDigest<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the MD value being returned by the bank.</p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>pares<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the pares being returned by the bank</p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the data that is being used for the gateways that do not return pares.</p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>authorizationUrl<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This integration document assumes that you have opt-ed out for the particular configuration.<br>The authorization URL in legacy integrations are present basis the config at PayU. Please reach out to <a href="mailto:integration@payu.in">integration@payu.in</a> to know more about.</p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"></td>
-                                               </tr>
-                                               </tbody>
-                                               </table>
+                                                 <table style="width: 100%; border-collapse: collapse;">
+                                                 <thead>
+                                                 <tr>
+                                                   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+                                                   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                                                   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Applicable for EMV 3DS</strong></th>
+                                                 </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>cres<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This field contains the Base64 encoded value received from ACS as part of the authentication response.</p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>Yes</p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the reference id for the transaction</p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>messageDigest<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the MD value being returned by the bank.</p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>pares<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the pares being returned by the bank</p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field is returned in case of decoupled flow. This field contains the data that is being used for the gateways that do not return pares.</p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p> </p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>authorizationUrl<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This integration document assumes that you have opt-ed out for the particular configuration.<br>The authorization URL in legacy integrations are present basis the config at PayU. Please reach out to <a href="mailto:integration@payu.in">integration@payu.in</a> to know more about.</p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"></td>
+                                                 </tr>
+                                                 </tbody>
+                                                 </table>
   `}</HTMLBlock>
 </Accordion>
 
@@ -1547,58 +1547,58 @@ The authorization request is the final step of transaction processing. This agai
   | Production | [https://secure.payu.in/AuthorizeTransaction.php](https://secure.payu.in/AuthorizeTransaction.php) |
 
   <HTMLBlock>{`
-                                               <style>
-                                               /* Target only the second column in the table */
-                                               .markdown-body table td:nth-child(2) {
-                                                 word-break: break-word !important;
-                                               }
-                                               
-                                               /* Keep the first column from breaking unnecessarily */
-                                               .markdown-body table td:nth-child(1) {
-                                                 word-break: normal;
-                                                 white-space: nowrap;
-                                               }
-                                               </style>
-                                               <table style="width: 100%; border-collapse: collapse;">
-                                               <thead>
-                                               <tr>
-                                                 <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-                                                 <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-                                               </tr>
-                                               </thead>
-                                               <tbody>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key is provided by PayU and acts as a unique identifier for a specific merchant account in PayU's database.</p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>txnid<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The transaction ID is the order reference number generated by the merchant to track a particular order. It can be used only once and PayU's system does not accept a duplicate Transaction ID.</p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It should contain the payment amount of the particular transaction. The amount must be greater than Rs. 8000 for the cardless EMI option.</p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. The hash must in the following structure:<br> <code>valueOf(key)\| valueOf(txnid) \| valueOf(amount) \|valueOf(authentication_info) \| valueOf(salt)</code></p>
-                                               </td>
-                                               </tr>
-                                               <tr>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p>authentication_info<br><code>mandatory</code></p>
-                                               </td>
-                                                 <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code> The JSON value received in the bankData on the Term URL or pass the fields as in the <a href="#example-for-authentication_info-json">JSON example</a>.</p>
-                                               </td>
-                                               </tr>
-                                               </tbody>
-                                               </table>
+                                                 <style>
+                                                 /* Target only the second column in the table */
+                                                 .markdown-body table td:nth-child(2) {
+                                                   word-break: break-word !important;
+                                                 }
+                                                 
+                                                 /* Keep the first column from breaking unnecessarily */
+                                                 .markdown-body table td:nth-child(1) {
+                                                   word-break: normal;
+                                                   white-space: nowrap;
+                                                 }
+                                                 </style>
+                                                 <table style="width: 100%; border-collapse: collapse;">
+                                                 <thead>
+                                                 <tr>
+                                                   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+                                                   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+                                                 </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key is provided by PayU and acts as a unique identifier for a specific merchant account in PayU's database.</p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>txnid<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The transaction ID is the order reference number generated by the merchant to track a particular order. It can be used only once and PayU's system does not accept a duplicate Transaction ID.</p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It should contain the payment amount of the particular transaction. The amount must be greater than Rs. 8000 for the cardless EMI option.</p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. The hash must in the following structure:<br> <code>valueOf(key)\| valueOf(txnid) \| valueOf(amount) \|valueOf(authentication_info) \| valueOf(salt)</code></p>
+                                                 </td>
+                                                 </tr>
+                                                 <tr>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p>authentication_info<br><code>mandatory</code></p>
+                                                 </td>
+                                                   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>JSON</code> The JSON value received in the bankData on the Term URL or pass the fields as in the <a href="#example-for-authentication_info-json">JSON example</a>.</p>
+                                                 </td>
+                                                 </tr>
+                                                 </tbody>
+                                                 </table>
   `}</HTMLBlock>
 
   #### Example for authentication\_info JSON
