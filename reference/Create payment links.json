@@ -14,7 +14,7 @@
   "paths": {
     "/partners/payment-links": {
       "post": {
-        "summary": "Create payment link",
+        "summary": "Create Payment Link - Partner Integration",
         "description": "Create a new payment link with specified parameters",
         "security": [
           {
