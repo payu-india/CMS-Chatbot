@@ -599,3 +599,9 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 
   ```
 </Accordion>
+
+<br />
+
+## Webview Flutter Integration on Android/IOS
+
+<br />
