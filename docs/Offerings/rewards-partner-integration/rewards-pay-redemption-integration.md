@@ -21,7 +21,7 @@ Integrate TWID or Zillion rewards  to enable customers to redeem their TWID or Z
 
 This section describes the complete integration workflow for TWID Rewards Seamless Transactions. This integration involves the following steps:
 
-<Cards columns={3}>
+<Cards columns={2}>
   <Card title="1. Fetch All Balance" href="#step-1-fetch-all-balance">
     Call loyalty-service to get usable reward balances for the customer before initiating payment
   </Card>
@@ -46,95 +46,95 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
 
 <Accordion title="Request parameters" icon="fa-table">
   <HTMLBlock>{`
-                                      <style>
-                                      /* Target only the second column in the table */
-                                      .markdown-body table td:nth-child(2) {
-                                        word-break: break-word !important;
-                                      }
+                                        <style>
+                                        /* Target only the second column in the table */
+                                        .markdown-body table td:nth-child(2) {
+                                          word-break: break-word !important;
+                                        }
 
-                                      /* Keep the first column from breaking unnecessarily */
-                                      .markdown-body table td:nth-child(1) {
-                                        word-break: normal;
-                                        white-space: nowrap;
-                                      }
-                                      </style>
-                                      <Table align={["left","left","left"]}>
-                                        <thead>
-                                          <tr>
-                                            <th style={{ textAlign: "left" }}>
-                                              Parameter
-                                            </th>
-                                            <th style={{ textAlign: "left" }}>
-                                              Description
-                                            </th>
-                                            <th style={{ textAlign: "left" }}>
-                                              Example
-                                            </th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <td style={{ textAlign: "left" }}>
-                                              loyaltyProviders <br/>
-                                              <code>mandatory</code>
-                                            </td>
-                                            <td style={{ textAlign: "left" }}>
-                                              <code>Array</code> Array of loyalty provider names to fetch rewards from
-                                            </td>
-                                            <td style={{ textAlign: "left" }}>
-                                              ["TWID", "ZILLION"]
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td style={{ textAlign: "left" }}>
-                                              mobileNumber <br/>
-                                              <code>mandatory</code>
-                                            </td>
-                                            <td style={{ textAlign: "left" }}>
-                                              <code>Number</code> User's mobile number (masked for privacy)
-                                            </td>
-                                            <td style={{ textAlign: "left" }}>
-                                              88001085**
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td style={{ textAlign: "left" }}>
-                                              orderAmount <br/>
-                                              <code>mandatory</code>
-                                            </td>
-                                            <td style={{ textAlign: "left" }}>
-                                              <code>Number</code> Order amount for which reward points are applicable
-                                            </td>
-                                            <td style={{ textAlign: "left" }}>
-                                              1000
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td style={{ textAlign: "left" }}>
-                                              merchantTxnId <br/>
-                                              <code>optional</code>
-                                            </td>
-                                            <td style={{ textAlign: "left" }}>
-                                              <code>String</code> Merchant-generated transaction reference identifier for tracking the balance lookup against the order.
-                                            </td>
-                                            <td style={{ textAlign: "left" }}>
-                                              123merchantTxnId
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td style={{ textAlign: "left" }}>
-                                              fetchRevisedEarn <br/>
-                                              <code>optional</code>
-                                            </td>
-                                            <td style={{ textAlign: "left" }}>
-                                              <code>Boolean</code> When set to <code>true</code>, the response includes the revised earn configuration (<code>revisedEarnConfig</code>) for each reward.
-                                            </td>
-                                            <td style={{ textAlign: "left" }}>
-                                              true
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </Table>
+                                        /* Keep the first column from breaking unnecessarily */
+                                        .markdown-body table td:nth-child(1) {
+                                          word-break: normal;
+                                          white-space: nowrap;
+                                        }
+                                        </style>
+                                        <Table align={["left","left","left"]}>
+                                          <thead>
+                                            <tr>
+                                              <th style={{ textAlign: "left" }}>
+                                                Parameter
+                                              </th>
+                                              <th style={{ textAlign: "left" }}>
+                                                Description
+                                              </th>
+                                              <th style={{ textAlign: "left" }}>
+                                                Example
+                                              </th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td style={{ textAlign: "left" }}>
+                                                loyaltyProviders <br/>
+                                                <code>mandatory</code>
+                                              </td>
+                                              <td style={{ textAlign: "left" }}>
+                                                <code>Array</code> Array of loyalty provider names to fetch rewards from
+                                              </td>
+                                              <td style={{ textAlign: "left" }}>
+                                                ["TWID", "ZILLION"]
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td style={{ textAlign: "left" }}>
+                                                mobileNumber <br/>
+                                                <code>mandatory</code>
+                                              </td>
+                                              <td style={{ textAlign: "left" }}>
+                                                <code>Number</code> User's mobile number (masked for privacy)
+                                              </td>
+                                              <td style={{ textAlign: "left" }}>
+                                                88001085**
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td style={{ textAlign: "left" }}>
+                                                orderAmount <br/>
+                                                <code>mandatory</code>
+                                              </td>
+                                              <td style={{ textAlign: "left" }}>
+                                                <code>Number</code> Order amount for which reward points are applicable
+                                              </td>
+                                              <td style={{ textAlign: "left" }}>
+                                                1000
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td style={{ textAlign: "left" }}>
+                                                merchantTxnId <br/>
+                                                <code>optional</code>
+                                              </td>
+                                              <td style={{ textAlign: "left" }}>
+                                                <code>String</code> Merchant-generated transaction reference identifier for tracking the balance lookup against the order.
+                                              </td>
+                                              <td style={{ textAlign: "left" }}>
+                                                123merchantTxnId
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td style={{ textAlign: "left" }}>
+                                                fetchRevisedEarn <br/>
+                                                <code>optional</code>
+                                              </td>
+                                              <td style={{ textAlign: "left" }}>
+                                                <code>Boolean</code> When set to <code>true</code>, the response includes the revised earn configuration (<code>revisedEarnConfig</code>) for each reward.
+                                              </td>
+                                              <td style={{ textAlign: "left" }}>
+                                                true
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                        </Table>
   `}</HTMLBlock>
 </Accordion>
 
