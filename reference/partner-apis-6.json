@@ -2661,7 +2661,7 @@
         "tags": [
           "Update Invoice API"
         ],
-        "summary": "update_invoice",
+        "summary": "Update Payment Link API",
         "description": "Test Environment: [https://uatoneapi.payu.in/payment-links](https://uatoneapi.payu.in/payment-links) \n\nProduction Environment: [https://oneapi.payu.in/payment-links](https://oneapi.payu.in/payment-links)",
         "operationId": "update_invoice",
         "parameters": [
