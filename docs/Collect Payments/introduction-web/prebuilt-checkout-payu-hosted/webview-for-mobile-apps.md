@@ -701,3 +701,20 @@ import 'package:url_launcher/url_launcher.dart';
       )
   ```
 </Accordion>
+
+<Accordion title="Add the PSP apps package Name inside the manifest file" icon="fa-code">
+  Please add the below line of code from the manifest file, outside of the application tag.
+
+  ```
+  <queries>
+      <intent>
+         <action android:name="android.intent.action.VIEW" />
+         <category android:name="android.intent.category.BROWSABLE" />
+           <data
+              android:host="pay"
+              android:scheme="upi" />
+      </intent>
+  </queries>
+
+  ```
+</Accordion>
