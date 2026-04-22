@@ -621,7 +621,13 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
   ```
 </Accordion>
+<Accordion title="Create postData for Payment" icon="fa-code">
+  Build a string with the payment parameters and pass it as postData. See Collect Payment API to learn more about the payment parameters.
 
+  ```plaintext
+   
+  "key=xxxxxx&txnid=1686124341291&amount=1.0&firstname=John&productinfo=PayU&email=testUser@gmail.com&phone=7879311111&surl=https://payu.herokuapp.com/success&furl=https://payu.herokuapp.com/failure&hash=8e083ea3ec9c8d50ea9c77e157e95f91701f720c7a67f6b26bafd9c4bfd879b1c38e807285de77807ad9d5281ad56c7bf0faeb2b45a8b2f80f635a242a0fa054"
+</Accordion>
 <Accordion title="Set up WebView with UPI launch capability" icon="fa-code">
   ```Packages
       ..setNavigationDelegate(
