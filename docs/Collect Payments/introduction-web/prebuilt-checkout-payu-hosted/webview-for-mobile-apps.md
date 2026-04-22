@@ -621,3 +621,22 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
   ```
 </Accordion>
+
+<Accordion title="Set up WebView with UPI launch capability" icon="fa-code">
+  ```Packages
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onNavigationRequest: (NavigationRequest request) async {
+            debugPrint("request_url: ${request.url}");
+            final url = request.url;
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+              final ok = await _launchUpiIntent(url);
+              debugPrint("UPI launch result: $ok");
+              return NavigationDecision.prevent;
+            }
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+  ```
+</Accordion>
