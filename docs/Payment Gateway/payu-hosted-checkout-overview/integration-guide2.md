@@ -640,39 +640,39 @@ To ensure the payment request is secure, you must generate a hash using your tra
   </Callout>
 
   <HTMLBlock>{`
-                                                      			<p>You then generate a SHA-512 hash of this string. You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
-                                                      								<style>
-                                                                      .tooltip-btn {
-                                                                          position: relative;
-                                                                          background-color: #4CAF50;
-                                                                          color: white;
-                                                                          padding: 10px 20px;
-                                                                          border: none;
-                                                                          border-radius: 5px;
-                                                                          cursor: pointer;
-                                                                          font-weight: bold; /* Added this line */
-                                                                      }
-                                                                      .tooltip-btn:hover::after {
-                                                                          content: attr(data-tooltip);
-                                                                          position: absolute;
-                                                                          bottom: 125%;
-                                                                          left: 50%;
-                                                                          transform: translateX(-50%);
-                                                                          background-color: #333;
-                                                                          color: white;
-                                                                          padding: 5px 10px;
-                                                                          border-radius: 4px;
-                                                                          white-space: nowrap;
-                                                                          font-size: 12px;
-                                                                          z-index: 1;
-                                                                      }
-                                                                      </style>
+                                                        			<p>You then generate a SHA-512 hash of this string. You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
+                                                        								<style>
+                                                                        .tooltip-btn {
+                                                                            position: relative;
+                                                                            background-color: #4CAF50;
+                                                                            color: white;
+                                                                            padding: 10px 20px;
+                                                                            border: none;
+                                                                            border-radius: 5px;
+                                                                            cursor: pointer;
+                                                                            font-weight: bold; /* Added this line */
+                                                                        }
+                                                                        .tooltip-btn:hover::after {
+                                                                            content: attr(data-tooltip);
+                                                                            position: absolute;
+                                                                            bottom: 125%;
+                                                                            left: 50%;
+                                                                            transform: translateX(-50%);
+                                                                            background-color: #333;
+                                                                            color: white;
+                                                                            padding: 5px 10px;
+                                                                            border-radius: 4px;
+                                                                            white-space: nowrap;
+                                                                            font-size: 12px;
+                                                                            z-index: 1;
+                                                                        }
+                                                                        </style>
 
-                                                                      <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
-                                                                              class="tooltip-btn" 
-                                                                              data-tooltip="Click to generate hash.">
-                                                                          Generate Hash
-                                                                      </button>
+                                                                        <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
+                                                                                class="tooltip-btn" 
+                                                                                data-tooltip="Click to generate hash.">
+                                                                            Generate Hash
+                                                                        </button>
   `}</HTMLBlock>
 
   <br />
@@ -1115,31 +1115,29 @@ Now that you have created the hash value combine the below into a request that w
 
     Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.
   </Callout>
-          
+
   **If you are a Backend Developer:**
 
   * Return all required fields + hash to frontend
   * Ensure correct environment URL (test vs production)
-  * Include all `|` separators (even for empty fields)
-  * Use **UTF-8 encoding**
-  * Keep your **salt secure (never expose it)**
 
   **If you are a Frontend Developer:**
 
-  * No action required
-  * Do not attempt to generate hash on client side
+  * Create an HTML form or request payload using backend data
+  * Auto-submit form or trigger POST request
 
   **What this means:**
 
-  You are creating a **secure signature** that PayU uses to validate your payment request.<br />
-
+  * You are packaging all required data into a format PayU understands.
+  * You are handing over the payment process to PayU.<br />
+          
   **Common Mistake**
 
-  These are the common mistakes while concatenating params in the hash logic.
+  These are the common mistakes while creating a payment request.
 
-  * Missing `|` separators for empty fields
+  * Missing mandatory fields like `email`, `amount`, or `productinfo`
   * Incorrect parameter order
-  * Extra spaces or hidden characters        
+  * Extra spaces or hidden characters
 </Accordion>
 
 <br />
