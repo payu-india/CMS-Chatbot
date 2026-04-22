@@ -675,8 +675,8 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
     </tbody>
   </Table>
 </Accordion>
-<Accordion title="Add Method channel code in MainActivity" icon=""fa-code>
-  ```Packages
+<Accordion title="Add Method channel code in MainActivity" icon="fa-code">
+  ```Code
 class MainActivity : FlutterActivity() {
     private val channelName = "com.example.flutterwebview/upi"
 
@@ -715,9 +715,7 @@ class MainActivity : FlutterActivity() {
             }
   }
 ```
-
-
-  </Accordion>
+</Accordion>
 
 <Accordion title="Use _launchUpiIntent method to handle UPI Deeplink" icon="fa-code">
   ```Packages
