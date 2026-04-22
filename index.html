@@ -440,12 +440,28 @@
       <div class="field full" style="margin-bottom: 16px;">
         <label for="hash-mode" class="field-label-wrap">Hash logic <span class="info-icon" aria-label="Help"><span class="tooltip-text">Choose the scenario that matches your integration. Fields below update for the selected formula. Ref: PayU docs – Generate Hash (PayU Hosted) and response verification.</span>i</span></label>
         <select id="hash-mode" class="mode-select" aria-label="Select hash logic">
-          <option value="forward-udf">Payment request – Hosted checkout (udf1–udf5 + salt)</option>
-          <option value="forward-v19">Payment request – _payment API v19 (api_version=19)</option>
-          <option value="reverse-normal">Response verification – Regular reverse hash</option>
-          <option value="reverse-add-charges">Response verification – Additional charges</option>
-          <option value="reverse-split">Response verification – Split (splitInfo)</option>
-          <option value="reverse-split-add">Response verification – Split + additional charges</option>
+          <optgroup label="Payment request (forward hash)">
+            <option value="forward-udf">Hosted checkout (udf1–udf5 + salt)</option>
+            <option value="forward-v19">_payment API v19 (api_version=19)</option>
+            <option value="forward-si-details">Subscriptions / SI registration (si_details)</option>
+            <option value="forward-beneficiary-tpv">TPV – NEFT / Net banking / UPI (beneficiarydetail)</option>
+            <option value="forward-split-request">Split settlement request (splitRequest)</option>
+          </optgroup>
+          <optgroup label="Response verification (reverse hash)">
+            <option value="reverse-normal">Regular reverse hash</option>
+            <option value="reverse-add-charges">Additional charges</option>
+            <option value="reverse-split">Split (splitInfo)</option>
+            <option value="reverse-split-add">Split + additional charges</option>
+            <option value="reverse-si-details">TPV autopay / subscription (si_details)</option>
+            <option value="reverse-beneficiary">TPV (beneficiarydetail)</option>
+          </optgroup>
+          <optgroup label="General APIs">
+            <option value="forward-api-command">Generic API command (key|command|var1|salt)</option>
+          </optgroup>
+          <optgroup label="Webhooks &amp; callbacks">
+            <option value="webhook-subscription">Subscriptions webhook (status|authpayuId|…|salt)</option>
+            <option value="callback-pg-load-clw">Closed-loop wallet PG load callback</option>
+          </optgroup>
         </select>
       </div>
       <p class="formula" id="formula-text">sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)</p>
@@ -630,6 +646,160 @@
         </div>
       </div>
 
+      <div class="mode-panel" data-mode="forward-si-details" id="panel-forward-si-details">
+        <div class="grid">
+          <div class="field"><label for="si_key" class="field-label-wrap">Merchant key</label><input type="text" id="si_key" autocomplete="off" /><span class="field-error" id="error-si_key" role="alert"></span></div>
+          <div class="field"><label for="si_txnid" class="field-label-wrap">Transaction ID</label><input type="text" id="si_txnid" autocomplete="off" /><span class="field-error" id="error-si_txnid" role="alert"></span></div>
+          <div class="field"><label for="si_amount" class="field-label-wrap">Amount</label><input type="text" id="si_amount" autocomplete="off" /><span class="field-error" id="error-si_amount" role="alert"></span></div>
+          <div class="field"><label for="si_productinfo" class="field-label-wrap">Product info</label><input type="text" id="si_productinfo" autocomplete="off" /><span class="field-error" id="error-si_productinfo" role="alert"></span></div>
+          <div class="field"><label for="si_firstname" class="field-label-wrap">First name</label><input type="text" id="si_firstname" autocomplete="off" /><span class="field-error" id="error-si_firstname" role="alert"></span></div>
+          <div class="field"><label for="si_email" class="field-label-wrap">Email</label><input type="text" id="si_email" autocomplete="off" /><span class="field-error" id="error-si_email" role="alert"></span></div>
+          <div class="field"><label for="si_udf1" class="field-label-wrap">UDF1</label><input type="text" id="si_udf1" autocomplete="off" /><span class="field-error" id="error-si_udf1" role="alert"></span></div>
+          <div class="field"><label for="si_udf2" class="field-label-wrap">UDF2</label><input type="text" id="si_udf2" autocomplete="off" /><span class="field-error" id="error-si_udf2" role="alert"></span></div>
+          <div class="field"><label for="si_udf3" class="field-label-wrap">UDF3</label><input type="text" id="si_udf3" autocomplete="off" /><span class="field-error" id="error-si_udf3" role="alert"></span></div>
+          <div class="field"><label for="si_udf4" class="field-label-wrap">UDF4</label><input type="text" id="si_udf4" autocomplete="off" /><span class="field-error" id="error-si_udf4" role="alert"></span></div>
+          <div class="field"><label for="si_udf5" class="field-label-wrap">UDF5</label><input type="text" id="si_udf5" autocomplete="off" /><span class="field-error" id="error-si_udf5" role="alert"></span></div>
+          <div class="field full"><label for="si_si_details" class="field-label-wrap">si_details (JSON)</label><input type="text" id="si_si_details" placeholder='{"billingAmount":"100.00","billingCurrency":"INR","billingCycle":"adhoc","billingInterval":1,"paymentStartDate":"2024-01-01","paymentEndDate":"2099-12-31"}' autocomplete="off" /><span class="field-error" id="error-si_si_details" role="alert"></span></div>
+          <div class="field full">
+            <label for="si_salt" class="field-label-wrap">SALT</label>
+            <div class="salt-wrap"><input type="password" id="si_salt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-si-salt" /> Show SALT</label></div>
+            <span class="field-error" id="error-si_salt" role="alert"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mode-panel" data-mode="forward-beneficiary-tpv" id="panel-forward-beneficiary-tpv">
+        <div class="grid">
+          <div class="field"><label for="tpv_key" class="field-label-wrap">Merchant key</label><input type="text" id="tpv_key" autocomplete="off" /><span class="field-error" id="error-tpv_key" role="alert"></span></div>
+          <div class="field"><label for="tpv_txnid" class="field-label-wrap">Transaction ID</label><input type="text" id="tpv_txnid" autocomplete="off" /><span class="field-error" id="error-tpv_txnid" role="alert"></span></div>
+          <div class="field"><label for="tpv_amount" class="field-label-wrap">Amount</label><input type="text" id="tpv_amount" autocomplete="off" /><span class="field-error" id="error-tpv_amount" role="alert"></span></div>
+          <div class="field"><label for="tpv_productinfo" class="field-label-wrap">Product info</label><input type="text" id="tpv_productinfo" autocomplete="off" /><span class="field-error" id="error-tpv_productinfo" role="alert"></span></div>
+          <div class="field"><label for="tpv_firstname" class="field-label-wrap">First name</label><input type="text" id="tpv_firstname" autocomplete="off" /><span class="field-error" id="error-tpv_firstname" role="alert"></span></div>
+          <div class="field"><label for="tpv_email" class="field-label-wrap">Email</label><input type="text" id="tpv_email" autocomplete="off" /><span class="field-error" id="error-tpv_email" role="alert"></span></div>
+          <div class="field"><label for="tpv_udf1" class="field-label-wrap">UDF1</label><input type="text" id="tpv_udf1" autocomplete="off" /><span class="field-error" id="error-tpv_udf1" role="alert"></span></div>
+          <div class="field"><label for="tpv_udf2" class="field-label-wrap">UDF2</label><input type="text" id="tpv_udf2" autocomplete="off" /><span class="field-error" id="error-tpv_udf2" role="alert"></span></div>
+          <div class="field"><label for="tpv_udf3" class="field-label-wrap">UDF3</label><input type="text" id="tpv_udf3" autocomplete="off" /><span class="field-error" id="error-tpv_udf3" role="alert"></span></div>
+          <div class="field"><label for="tpv_udf4" class="field-label-wrap">UDF4</label><input type="text" id="tpv_udf4" autocomplete="off" /><span class="field-error" id="error-tpv_udf4" role="alert"></span></div>
+          <div class="field"><label for="tpv_udf5" class="field-label-wrap">UDF5</label><input type="text" id="tpv_udf5" autocomplete="off" /><span class="field-error" id="error-tpv_udf5" role="alert"></span></div>
+          <div class="field full"><label for="tpv_beneficiarydetail" class="field-label-wrap">beneficiarydetail (JSON)</label><input type="text" id="tpv_beneficiarydetail" placeholder='{"beneficiaryAccountNumber":"123456789","beneficiaryIFSC":"HDFC0000001","beneficiaryName":"John"}' autocomplete="off" /><span class="field-error" id="error-tpv_beneficiarydetail" role="alert"></span></div>
+          <div class="field full">
+            <label for="tpv_salt" class="field-label-wrap">SALT</label>
+            <div class="salt-wrap"><input type="password" id="tpv_salt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-tpv-salt" /> Show SALT</label></div>
+            <span class="field-error" id="error-tpv_salt" role="alert"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mode-panel" data-mode="forward-split-request" id="panel-forward-split-request">
+        <div class="grid">
+          <div class="field"><label for="sr_key" class="field-label-wrap">Merchant key</label><input type="text" id="sr_key" autocomplete="off" /><span class="field-error" id="error-sr_key" role="alert"></span></div>
+          <div class="field"><label for="sr_txnid" class="field-label-wrap">Transaction ID</label><input type="text" id="sr_txnid" autocomplete="off" /><span class="field-error" id="error-sr_txnid" role="alert"></span></div>
+          <div class="field"><label for="sr_amount" class="field-label-wrap">Amount</label><input type="text" id="sr_amount" autocomplete="off" /><span class="field-error" id="error-sr_amount" role="alert"></span></div>
+          <div class="field"><label for="sr_productinfo" class="field-label-wrap">Product info</label><input type="text" id="sr_productinfo" autocomplete="off" /><span class="field-error" id="error-sr_productinfo" role="alert"></span></div>
+          <div class="field"><label for="sr_firstname" class="field-label-wrap">First name</label><input type="text" id="sr_firstname" autocomplete="off" /><span class="field-error" id="error-sr_firstname" role="alert"></span></div>
+          <div class="field"><label for="sr_email" class="field-label-wrap">Email</label><input type="text" id="sr_email" autocomplete="off" /><span class="field-error" id="error-sr_email" role="alert"></span></div>
+          <div class="field"><label for="sr_udf1" class="field-label-wrap">UDF1</label><input type="text" id="sr_udf1" autocomplete="off" /><span class="field-error" id="error-sr_udf1" role="alert"></span></div>
+          <div class="field"><label for="sr_udf2" class="field-label-wrap">UDF2</label><input type="text" id="sr_udf2" autocomplete="off" /><span class="field-error" id="error-sr_udf2" role="alert"></span></div>
+          <div class="field"><label for="sr_udf3" class="field-label-wrap">UDF3</label><input type="text" id="sr_udf3" autocomplete="off" /><span class="field-error" id="error-sr_udf3" role="alert"></span></div>
+          <div class="field"><label for="sr_udf4" class="field-label-wrap">UDF4</label><input type="text" id="sr_udf4" autocomplete="off" /><span class="field-error" id="error-sr_udf4" role="alert"></span></div>
+          <div class="field"><label for="sr_udf5" class="field-label-wrap">UDF5</label><input type="text" id="sr_udf5" autocomplete="off" /><span class="field-error" id="error-sr_udf5" role="alert"></span></div>
+          <div class="field">
+            <label for="sr_salt" class="field-label-wrap">SALT</label>
+            <div class="salt-wrap"><input type="password" id="sr_salt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-sr-salt" /> Show SALT</label></div>
+            <span class="field-error" id="error-sr_salt" role="alert"></span>
+          </div>
+          <div class="field full"><label for="sr_splitRequest" class="field-label-wrap">splitRequest (JSON)</label><input type="text" id="sr_splitRequest" placeholder='{"account123":{"amount":60,"merchantCommission":1},"account456":{"amount":40,"merchantCommission":1}}' autocomplete="off" /><span class="field-error" id="error-sr_splitRequest" role="alert"></span></div>
+        </div>
+      </div>
+
+      <div class="mode-panel" data-mode="forward-api-command" id="panel-forward-api-command">
+        <div class="grid">
+          <div class="field"><label for="ac_key" class="field-label-wrap">Merchant key</label><input type="text" id="ac_key" autocomplete="off" /><span class="field-error" id="error-ac_key" role="alert"></span></div>
+          <div class="field"><label for="ac_command" class="field-label-wrap">command <span class="info-icon" aria-label="Help"><span class="tooltip-text">API command, e.g. verify_payment, refund_transaction, cancel_refund_transaction, check_action_status, split_refund_transaction, udf_update, si_transaction, pre_debit_SI, check_balance, get_bin_info, validateVPA.</span>i</span></label><input type="text" id="ac_command" placeholder="e.g. verify_payment" autocomplete="off" /><span class="field-error" id="error-ac_command" role="alert"></span></div>
+          <div class="field full"><label for="ac_var1" class="field-label-wrap">var1 <span class="info-icon" aria-label="Help"><span class="tooltip-text">The value of var1 for the chosen command. For most commands it is a single string (e.g. txnid); for pre_debit_SI / si_transaction / split APIs it is the raw JSON string posted as var1.</span>i</span></label><input type="text" id="ac_var1" placeholder="txnid or raw JSON" autocomplete="off" /><span class="field-error" id="error-ac_var1" role="alert"></span></div>
+          <div class="field full">
+            <label for="ac_salt" class="field-label-wrap">SALT</label>
+            <div class="salt-wrap"><input type="password" id="ac_salt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-ac-salt" /> Show SALT</label></div>
+            <span class="field-error" id="error-ac_salt" role="alert"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mode-panel" data-mode="reverse-si-details" id="panel-reverse-si-details">
+        <div class="grid">
+          <div class="field"><label for="rsi_salt" class="field-label-wrap">SALT</label><div class="salt-wrap"><input type="password" id="rsi_salt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-rsi-salt" /> Show SALT</label></div><span class="field-error" id="error-rsi_salt" role="alert"></span></div>
+          <div class="field full"><label for="rsi_si_details" class="field-label-wrap">si_details (JSON)</label><input type="text" id="rsi_si_details" autocomplete="off" /><span class="field-error" id="error-rsi_si_details" role="alert"></span></div>
+          <div class="field"><label for="rsi_status" class="field-label-wrap">status</label><input type="text" id="rsi_status" autocomplete="off" /><span class="field-error" id="error-rsi_status" role="alert"></span></div>
+          <div class="field"><label for="rsi_udf3" class="field-label-wrap">UDF3</label><input type="text" id="rsi_udf3" autocomplete="off" /><span class="field-error" id="error-rsi_udf3" role="alert"></span></div>
+          <div class="field"><label for="rsi_udf2" class="field-label-wrap">UDF2</label><input type="text" id="rsi_udf2" autocomplete="off" /><span class="field-error" id="error-rsi_udf2" role="alert"></span></div>
+          <div class="field"><label for="rsi_udf1" class="field-label-wrap">UDF1</label><input type="text" id="rsi_udf1" autocomplete="off" /><span class="field-error" id="error-rsi_udf1" role="alert"></span></div>
+          <div class="field"><label for="rsi_email" class="field-label-wrap">Email</label><input type="text" id="rsi_email" autocomplete="off" /><span class="field-error" id="error-rsi_email" role="alert"></span></div>
+          <div class="field"><label for="rsi_firstname" class="field-label-wrap">First name</label><input type="text" id="rsi_firstname" autocomplete="off" /><span class="field-error" id="error-rsi_firstname" role="alert"></span></div>
+          <div class="field"><label for="rsi_productinfo" class="field-label-wrap">Product info</label><input type="text" id="rsi_productinfo" autocomplete="off" /><span class="field-error" id="error-rsi_productinfo" role="alert"></span></div>
+          <div class="field"><label for="rsi_amount" class="field-label-wrap">Amount</label><input type="text" id="rsi_amount" autocomplete="off" /><span class="field-error" id="error-rsi_amount" role="alert"></span></div>
+          <div class="field"><label for="rsi_txnid" class="field-label-wrap">Transaction ID</label><input type="text" id="rsi_txnid" autocomplete="off" /><span class="field-error" id="error-rsi_txnid" role="alert"></span></div>
+          <div class="field full"><label for="rsi_key" class="field-label-wrap">Merchant key</label><input type="text" id="rsi_key" autocomplete="off" /><span class="field-error" id="error-rsi_key" role="alert"></span></div>
+        </div>
+      </div>
+
+      <div class="mode-panel" data-mode="reverse-beneficiary" id="panel-reverse-beneficiary">
+        <div class="grid">
+          <div class="field"><label for="rbn_salt" class="field-label-wrap">SALT</label><div class="salt-wrap"><input type="password" id="rbn_salt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-rbn-salt" /> Show SALT</label></div><span class="field-error" id="error-rbn_salt" role="alert"></span></div>
+          <div class="field full"><label for="rbn_beneficiarydetail" class="field-label-wrap">beneficiarydetail (JSON)</label><input type="text" id="rbn_beneficiarydetail" autocomplete="off" /><span class="field-error" id="error-rbn_beneficiarydetail" role="alert"></span></div>
+          <div class="field"><label for="rbn_status" class="field-label-wrap">status</label><input type="text" id="rbn_status" autocomplete="off" /><span class="field-error" id="error-rbn_status" role="alert"></span></div>
+          <div class="field"><label for="rbn_udf3" class="field-label-wrap">UDF3</label><input type="text" id="rbn_udf3" autocomplete="off" /><span class="field-error" id="error-rbn_udf3" role="alert"></span></div>
+          <div class="field"><label for="rbn_udf2" class="field-label-wrap">UDF2</label><input type="text" id="rbn_udf2" autocomplete="off" /><span class="field-error" id="error-rbn_udf2" role="alert"></span></div>
+          <div class="field"><label for="rbn_udf1" class="field-label-wrap">UDF1</label><input type="text" id="rbn_udf1" autocomplete="off" /><span class="field-error" id="error-rbn_udf1" role="alert"></span></div>
+          <div class="field"><label for="rbn_email" class="field-label-wrap">Email</label><input type="text" id="rbn_email" autocomplete="off" /><span class="field-error" id="error-rbn_email" role="alert"></span></div>
+          <div class="field"><label for="rbn_firstname" class="field-label-wrap">First name</label><input type="text" id="rbn_firstname" autocomplete="off" /><span class="field-error" id="error-rbn_firstname" role="alert"></span></div>
+          <div class="field"><label for="rbn_productinfo" class="field-label-wrap">Product info</label><input type="text" id="rbn_productinfo" autocomplete="off" /><span class="field-error" id="error-rbn_productinfo" role="alert"></span></div>
+          <div class="field"><label for="rbn_amount" class="field-label-wrap">Amount</label><input type="text" id="rbn_amount" autocomplete="off" /><span class="field-error" id="error-rbn_amount" role="alert"></span></div>
+          <div class="field"><label for="rbn_txnid" class="field-label-wrap">Transaction ID</label><input type="text" id="rbn_txnid" autocomplete="off" /><span class="field-error" id="error-rbn_txnid" role="alert"></span></div>
+          <div class="field full"><label for="rbn_key" class="field-label-wrap">Merchant key</label><input type="text" id="rbn_key" autocomplete="off" /><span class="field-error" id="error-rbn_key" role="alert"></span></div>
+        </div>
+      </div>
+
+      <div class="mode-panel" data-mode="webhook-subscription" id="panel-webhook-subscription">
+        <div class="grid">
+          <div class="field"><label for="wb_status" class="field-label-wrap">status</label><input type="text" id="wb_status" autocomplete="off" /><span class="field-error" id="error-wb_status" role="alert"></span></div>
+          <div class="field"><label for="wb_authpayuId" class="field-label-wrap">authpayuId</label><input type="text" id="wb_authpayuId" autocomplete="off" /><span class="field-error" id="error-wb_authpayuId" role="alert"></span></div>
+          <div class="field"><label for="wb_notificationType" class="field-label-wrap">notificationType</label><input type="text" id="wb_notificationType" autocomplete="off" /><span class="field-error" id="error-wb_notificationType" role="alert"></span></div>
+          <div class="field"><label for="wb_billingAmount" class="field-label-wrap">billingAmount</label><input type="text" id="wb_billingAmount" autocomplete="off" /><span class="field-error" id="error-wb_billingAmount" role="alert"></span></div>
+          <div class="field"><label for="wb_paymentStartDate" class="field-label-wrap">paymentStartDate</label><input type="text" id="wb_paymentStartDate" autocomplete="off" /><span class="field-error" id="error-wb_paymentStartDate" role="alert"></span></div>
+          <div class="field"><label for="wb_paymentEndDate" class="field-label-wrap">paymentEndDate</label><input type="text" id="wb_paymentEndDate" autocomplete="off" /><span class="field-error" id="error-wb_paymentEndDate" role="alert"></span></div>
+          <div class="field"><label for="wb_message" class="field-label-wrap">message</label><input type="text" id="wb_message" autocomplete="off" /><span class="field-error" id="error-wb_message" role="alert"></span></div>
+          <div class="field"><label for="wb_eventDate" class="field-label-wrap">eventDate</label><input type="text" id="wb_eventDate" autocomplete="off" /><span class="field-error" id="error-wb_eventDate" role="alert"></span></div>
+          <div class="field"><label for="wb_key" class="field-label-wrap">Merchant key</label><input type="text" id="wb_key" autocomplete="off" /><span class="field-error" id="error-wb_key" role="alert"></span></div>
+          <div class="field"><label for="wb_udf1" class="field-label-wrap">UDF1</label><input type="text" id="wb_udf1" autocomplete="off" /><span class="field-error" id="error-wb_udf1" role="alert"></span></div>
+          <div class="field"><label for="wb_udf2" class="field-label-wrap">UDF2</label><input type="text" id="wb_udf2" autocomplete="off" /><span class="field-error" id="error-wb_udf2" role="alert"></span></div>
+          <div class="field"><label for="wb_udf3" class="field-label-wrap">UDF3</label><input type="text" id="wb_udf3" autocomplete="off" /><span class="field-error" id="error-wb_udf3" role="alert"></span></div>
+          <div class="field"><label for="wb_udf4" class="field-label-wrap">UDF4</label><input type="text" id="wb_udf4" autocomplete="off" /><span class="field-error" id="error-wb_udf4" role="alert"></span></div>
+          <div class="field"><label for="wb_udf5" class="field-label-wrap">UDF5</label><input type="text" id="wb_udf5" autocomplete="off" /><span class="field-error" id="error-wb_udf5" role="alert"></span></div>
+          <div class="field full">
+            <label for="wb_salt" class="field-label-wrap">SALT</label>
+            <div class="salt-wrap"><input type="password" id="wb_salt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-wb-salt" /> Show SALT</label></div>
+            <span class="field-error" id="error-wb_salt" role="alert"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mode-panel" data-mode="callback-pg-load-clw" id="panel-callback-pg-load-clw">
+        <div class="grid">
+          <div class="field"><label for="cb_merchantCode" class="field-label-wrap">merchantCode</label><input type="text" id="cb_merchantCode" autocomplete="off" /><span class="field-error" id="error-cb_merchantCode" role="alert"></span></div>
+          <div class="field"><label for="cb_clientTxnId" class="field-label-wrap">clientTxnId</label><input type="text" id="cb_clientTxnId" autocomplete="off" /><span class="field-error" id="error-cb_clientTxnId" role="alert"></span></div>
+          <div class="field"><label for="cb_loadAmount" class="field-label-wrap">loadAmount</label><input type="text" id="cb_loadAmount" autocomplete="off" /><span class="field-error" id="error-cb_loadAmount" role="alert"></span></div>
+          <div class="field"><label for="cb_accosaRefNo" class="field-label-wrap">accosaRefNo</label><input type="text" id="cb_accosaRefNo" autocomplete="off" /><span class="field-error" id="error-cb_accosaRefNo" role="alert"></span></div>
+          <div class="field"><label for="cb_accosaTransactionId" class="field-label-wrap">accosaTransactionId</label><input type="text" id="cb_accosaTransactionId" autocomplete="off" /><span class="field-error" id="error-cb_accosaTransactionId" role="alert"></span></div>
+          <div class="field"><label for="cb_responseCode" class="field-label-wrap">responseCode</label><input type="text" id="cb_responseCode" autocomplete="off" /><span class="field-error" id="error-cb_responseCode" role="alert"></span></div>
+          <div class="field"><label for="cb_responseMessage" class="field-label-wrap">responseMessage</label><input type="text" id="cb_responseMessage" autocomplete="off" /><span class="field-error" id="error-cb_responseMessage" role="alert"></span></div>
+          <div class="field full">
+            <label for="cb_merchantSalt" class="field-label-wrap">merchantSalt</label>
+            <div class="salt-wrap"><input type="password" id="cb_merchantSalt" autocomplete="off" /><label class="show-salt-label"><input type="checkbox" id="show-cb-salt" /> Show SALT</label></div>
+            <span class="field-error" id="error-cb_merchantSalt" role="alert"></span>
+          </div>
+        </div>
+      </div>
+
       <div style="margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap;">
         <button type="button" class="btn btn-primary" id="btn-generate">Generate hash</button>
         <button type="button" class="btn btn-secondary" id="btn-clear">Clear fields</button>
@@ -671,7 +841,7 @@
             <li><strong>Transaction ID is required</strong> — Use a unique ID per transaction (e.g. order ID or UUID). Same value must be sent in the payment request.</li>
             <li><strong>Hash mismatch on PayU</strong> — Ensure (1) you use the correct key and salt for the environment (test vs production), (2) parameter order matches: <code>key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt</code>, (3) no extra spaces; trim values the same way on your server, (4) amount format matches (e.g. <code>10.00</code> not <code>10.00 INR</code>).</li>
             <li><strong>Wrong merchant / key mix-up</strong> — Do not use Merchant ID (MID) in place of Merchant Key. Do not swap key and salt. Check PayU Dashboard for the correct key and salt.</li>
-            <li><strong>Wrong hash formula</strong> — Use the <strong>Hash logic</strong> dropdown to match your flow (payment request vs response; split / additional charges). Formulas follow <a href="https://docs.payu.in/docs/generate-hash-payu-hosted" target="_blank" rel="noopener noreferrer">PayU – Generate Hash (PayU Hosted)</a>. For v19, confirm <code>api_version=19</code> with PayU if your string differs.</li>
+            <li><strong>Wrong hash formula</strong> — Use the <strong>Hash logic</strong> dropdown to match your flow (payment request vs response; SI / TPV / split / additional charges; webhooks; general APIs). Formulas follow <a href="https://docs.payu.in/docs/generate-hash-payu-hosted" target="_blank" rel="noopener noreferrer">PayU – Generate Hash (PayU Hosted)</a> and <a href="https://docs.payu.in/reference/authentication-with-payu-apis" target="_blank" rel="noopener noreferrer">Authentication with PayU APIs</a>. For v19, confirm <code>api_version=19</code> with PayU if your string differs.</li>
           </ul>
         </div>
       </details>
@@ -714,6 +884,46 @@
           formula: 'sha512(additional_charges|SALT|status|splitInfo||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)',
           intro: 'Response verification when both additional charges and split apply.',
           ids: ['rev4_additional_charges', 'rev4_salt', 'rev4_status', 'rev4_splitInfo', 'rev4_udf5', 'rev4_udf4', 'rev4_udf3', 'rev4_udf2', 'rev4_udf1', 'rev4_email', 'rev4_firstname', 'rev4_productinfo', 'rev4_amount', 'rev4_txnid', 'rev4_key']
+        },
+        'forward-si-details': {
+          formula: 'sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)',
+          intro: 'Subscriptions / SI registration. Use this for cards SI, NB SI, UPI autopay registration, and Flipkart Supercoins Pay where si_details is posted with the payment request.',
+          ids: ['si_key', 'si_txnid', 'si_amount', 'si_productinfo', 'si_firstname', 'si_email', 'si_udf1', 'si_udf2', 'si_udf3', 'si_udf4', 'si_udf5', 'si_si_details', 'si_salt']
+        },
+        'forward-beneficiary-tpv': {
+          formula: 'sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)',
+          intro: 'TPV (Third-Party Validation) — NEFT/RTGS, Net Banking, and UPI integrations where beneficiarydetail is posted with the payment request.',
+          ids: ['tpv_key', 'tpv_txnid', 'tpv_amount', 'tpv_productinfo', 'tpv_firstname', 'tpv_email', 'tpv_udf1', 'tpv_udf2', 'tpv_udf3', 'tpv_udf4', 'tpv_udf5', 'tpv_beneficiarydetail', 'tpv_salt']
+        },
+        'forward-split-request': {
+          formula: 'sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|splitRequest)',
+          intro: 'Split settlement payment request (splitRequest JSON appended after salt).',
+          ids: ['sr_key', 'sr_txnid', 'sr_amount', 'sr_productinfo', 'sr_firstname', 'sr_email', 'sr_udf1', 'sr_udf2', 'sr_udf3', 'sr_udf4', 'sr_udf5', 'sr_salt', 'sr_splitRequest']
+        },
+        'forward-api-command': {
+          formula: 'sha512(key|command|var1|salt)',
+          intro: 'Generic PayU API hash — used by verify_payment, refund_transaction, cancel_refund_transaction, check_action_status, split_refund_transaction, udf_update, si_transaction, pre_debit_SI, check_balance, get_bin_info, validateVPA, TPV settlement APIs, and many more.',
+          ids: ['ac_key', 'ac_command', 'ac_var1', 'ac_salt']
+        },
+        'reverse-si-details': {
+          formula: 'sha512(SALT|si_details|status||||||udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)',
+          intro: 'Response verification for subscriptions and TPV autopay responses (si_details appears after salt; only udf1–udf3 are used).',
+          ids: ['rsi_salt', 'rsi_si_details', 'rsi_status', 'rsi_udf3', 'rsi_udf2', 'rsi_udf1', 'rsi_email', 'rsi_firstname', 'rsi_productinfo', 'rsi_amount', 'rsi_txnid', 'rsi_key']
+        },
+        'reverse-beneficiary': {
+          formula: 'sha512(SALT|beneficiarydetail|status||||||udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)',
+          intro: 'Response verification for TPV responses (beneficiarydetail appears after salt; only udf1–udf3 are used).',
+          ids: ['rbn_salt', 'rbn_beneficiarydetail', 'rbn_status', 'rbn_udf3', 'rbn_udf2', 'rbn_udf1', 'rbn_email', 'rbn_firstname', 'rbn_productinfo', 'rbn_amount', 'rbn_txnid', 'rbn_key']
+        },
+        'webhook-subscription': {
+          formula: 'sha512(status|authpayuId|notificationType|billingAmount|paymentStartDate|paymentEndDate|message|eventDate|key|udf1|udf2|udf3|udf4|udf5|salt)',
+          intro: 'Verify subscription webhooks (cancellation / modification notifications from the issuer bank).',
+          ids: ['wb_status', 'wb_authpayuId', 'wb_notificationType', 'wb_billingAmount', 'wb_paymentStartDate', 'wb_paymentEndDate', 'wb_message', 'wb_eventDate', 'wb_key', 'wb_udf1', 'wb_udf2', 'wb_udf3', 'wb_udf4', 'wb_udf5', 'wb_salt']
+        },
+        'callback-pg-load-clw': {
+          formula: 'sha512(merchantCode|clientTxnId|loadAmount|accosaRefNo|accosaTransactionId|responseCode|responseMessage|merchantSalt)',
+          intro: 'Closed-loop wallet PG Load API callback checksum. Verify the Checksum header PayU posts back to your load-callback endpoint.',
+          ids: ['cb_merchantCode', 'cb_clientTxnId', 'cb_loadAmount', 'cb_accosaRefNo', 'cb_accosaTransactionId', 'cb_responseCode', 'cb_responseMessage', 'cb_merchantSalt']
         }
       };
 
@@ -774,6 +984,38 @@
         if (mode === 'reverse-split-add') {
           return e(v.rev4_additional_charges) + '|' + e(v.rev4_salt) + '|' + e(v.rev4_status) + '|' + e(v.rev4_splitInfo) + '||||||' + e(v.rev4_udf5) + '|' + e(v.rev4_udf4) + '|' + e(v.rev4_udf3) + '|' + e(v.rev4_udf2) + '|' + e(v.rev4_udf1) + '|' +
             e(v.rev4_email) + '|' + e(v.rev4_firstname) + '|' + e(v.rev4_productinfo) + '|' + e(v.rev4_amount) + '|' + e(v.rev4_txnid) + '|' + e(v.rev4_key);
+        }
+        if (mode === 'forward-si-details') {
+          return e(v.si_key) + '|' + e(v.si_txnid) + '|' + e(v.si_amount) + '|' + e(v.si_productinfo) + '|' + e(v.si_firstname) + '|' + e(v.si_email) + '|' +
+            e(v.si_udf1) + '|' + e(v.si_udf2) + '|' + e(v.si_udf3) + '|' + e(v.si_udf4) + '|' + e(v.si_udf5) + '||||||' + e(v.si_si_details) + '|' + e(v.si_salt);
+        }
+        if (mode === 'forward-beneficiary-tpv') {
+          return e(v.tpv_key) + '|' + e(v.tpv_txnid) + '|' + e(v.tpv_amount) + '|' + e(v.tpv_productinfo) + '|' + e(v.tpv_firstname) + '|' + e(v.tpv_email) + '|' +
+            e(v.tpv_udf1) + '|' + e(v.tpv_udf2) + '|' + e(v.tpv_udf3) + '|' + e(v.tpv_udf4) + '|' + e(v.tpv_udf5) + '||||||' + e(v.tpv_beneficiarydetail) + '|' + e(v.tpv_salt);
+        }
+        if (mode === 'forward-split-request') {
+          return e(v.sr_key) + '|' + e(v.sr_txnid) + '|' + e(v.sr_amount) + '|' + e(v.sr_productinfo) + '|' + e(v.sr_firstname) + '|' + e(v.sr_email) + '|' +
+            e(v.sr_udf1) + '|' + e(v.sr_udf2) + '|' + e(v.sr_udf3) + '|' + e(v.sr_udf4) + '|' + e(v.sr_udf5) + '||||||' + e(v.sr_salt) + '|' + e(v.sr_splitRequest);
+        }
+        if (mode === 'forward-api-command') {
+          return e(v.ac_key) + '|' + e(v.ac_command) + '|' + e(v.ac_var1) + '|' + e(v.ac_salt);
+        }
+        if (mode === 'reverse-si-details') {
+          return e(v.rsi_salt) + '|' + e(v.rsi_si_details) + '|' + e(v.rsi_status) + '||||||' + e(v.rsi_udf3) + '|' + e(v.rsi_udf2) + '|' + e(v.rsi_udf1) + '|' +
+            e(v.rsi_email) + '|' + e(v.rsi_firstname) + '|' + e(v.rsi_productinfo) + '|' + e(v.rsi_amount) + '|' + e(v.rsi_txnid) + '|' + e(v.rsi_key);
+        }
+        if (mode === 'reverse-beneficiary') {
+          return e(v.rbn_salt) + '|' + e(v.rbn_beneficiarydetail) + '|' + e(v.rbn_status) + '||||||' + e(v.rbn_udf3) + '|' + e(v.rbn_udf2) + '|' + e(v.rbn_udf1) + '|' +
+            e(v.rbn_email) + '|' + e(v.rbn_firstname) + '|' + e(v.rbn_productinfo) + '|' + e(v.rbn_amount) + '|' + e(v.rbn_txnid) + '|' + e(v.rbn_key);
+        }
+        if (mode === 'webhook-subscription') {
+          return e(v.wb_status) + '|' + e(v.wb_authpayuId) + '|' + e(v.wb_notificationType) + '|' + e(v.wb_billingAmount) + '|' +
+            e(v.wb_paymentStartDate) + '|' + e(v.wb_paymentEndDate) + '|' + e(v.wb_message) + '|' + e(v.wb_eventDate) + '|' +
+            e(v.wb_key) + '|' + e(v.wb_udf1) + '|' + e(v.wb_udf2) + '|' + e(v.wb_udf3) + '|' + e(v.wb_udf4) + '|' + e(v.wb_udf5) + '|' + e(v.wb_salt);
+        }
+        if (mode === 'callback-pg-load-clw') {
+          return e(v.cb_merchantCode) + '|' + e(v.cb_clientTxnId) + '|' + e(v.cb_loadAmount) + '|' + e(v.cb_accosaRefNo) + '|' +
+            e(v.cb_accosaTransactionId) + '|' + e(v.cb_responseCode) + '|' + e(v.cb_responseMessage) + '|' + e(v.cb_merchantSalt);
         }
         return '';
       }
@@ -903,6 +1145,70 @@
           validateAmountField(errors, 'rev4_amount', values.rev4_amount);
           if (!values.rev4_txnid) errors.rev4_txnid = 'Transaction ID is required.';
           if (!values.rev4_key) errors.rev4_key = 'Merchant key is required.';
+        } else if (mode === 'forward-si-details') {
+          if (!values.si_key) errors.si_key = 'Merchant key is required.';
+          if (!values.si_txnid) errors.si_txnid = 'Transaction ID is required.';
+          validateAmountField(errors, 'si_amount', values.si_amount);
+          if (!values.si_productinfo) errors.si_productinfo = 'Product info is required.';
+          if (!values.si_firstname) errors.si_firstname = 'First name is required.';
+          validateEmailField(errors, 'si_email', values.si_email);
+          if (!values.si_si_details) errors.si_si_details = 'si_details is required.';
+          if (!values.si_salt) errors.si_salt = saltErrorMsg();
+        } else if (mode === 'forward-beneficiary-tpv') {
+          if (!values.tpv_key) errors.tpv_key = 'Merchant key is required.';
+          if (!values.tpv_txnid) errors.tpv_txnid = 'Transaction ID is required.';
+          validateAmountField(errors, 'tpv_amount', values.tpv_amount);
+          if (!values.tpv_productinfo) errors.tpv_productinfo = 'Product info is required.';
+          if (!values.tpv_firstname) errors.tpv_firstname = 'First name is required.';
+          validateEmailField(errors, 'tpv_email', values.tpv_email);
+          if (!values.tpv_beneficiarydetail) errors.tpv_beneficiarydetail = 'beneficiarydetail is required.';
+          if (!values.tpv_salt) errors.tpv_salt = saltErrorMsg();
+        } else if (mode === 'forward-split-request') {
+          if (!values.sr_key) errors.sr_key = 'Merchant key is required.';
+          if (!values.sr_txnid) errors.sr_txnid = 'Transaction ID is required.';
+          validateAmountField(errors, 'sr_amount', values.sr_amount);
+          if (!values.sr_productinfo) errors.sr_productinfo = 'Product info is required.';
+          if (!values.sr_firstname) errors.sr_firstname = 'First name is required.';
+          validateEmailField(errors, 'sr_email', values.sr_email);
+          if (!values.sr_salt) errors.sr_salt = saltErrorMsg();
+          if (!values.sr_splitRequest) errors.sr_splitRequest = 'splitRequest is required.';
+        } else if (mode === 'forward-api-command') {
+          if (!values.ac_key) errors.ac_key = 'Merchant key is required.';
+          if (!values.ac_command) errors.ac_command = 'command is required.';
+          if (!values.ac_var1) errors.ac_var1 = 'var1 is required.';
+          if (!values.ac_salt) errors.ac_salt = saltErrorMsg();
+        } else if (mode === 'reverse-si-details') {
+          if (!values.rsi_salt) errors.rsi_salt = saltErrorMsg();
+          if (!values.rsi_si_details) errors.rsi_si_details = 'si_details is required.';
+          if (!values.rsi_status) errors.rsi_status = 'status is required.';
+          validateEmailField(errors, 'rsi_email', values.rsi_email);
+          if (!values.rsi_firstname) errors.rsi_firstname = 'First name is required.';
+          if (!values.rsi_productinfo) errors.rsi_productinfo = 'Product info is required.';
+          validateAmountField(errors, 'rsi_amount', values.rsi_amount);
+          if (!values.rsi_txnid) errors.rsi_txnid = 'Transaction ID is required.';
+          if (!values.rsi_key) errors.rsi_key = 'Merchant key is required.';
+        } else if (mode === 'reverse-beneficiary') {
+          if (!values.rbn_salt) errors.rbn_salt = saltErrorMsg();
+          if (!values.rbn_beneficiarydetail) errors.rbn_beneficiarydetail = 'beneficiarydetail is required.';
+          if (!values.rbn_status) errors.rbn_status = 'status is required.';
+          validateEmailField(errors, 'rbn_email', values.rbn_email);
+          if (!values.rbn_firstname) errors.rbn_firstname = 'First name is required.';
+          if (!values.rbn_productinfo) errors.rbn_productinfo = 'Product info is required.';
+          validateAmountField(errors, 'rbn_amount', values.rbn_amount);
+          if (!values.rbn_txnid) errors.rbn_txnid = 'Transaction ID is required.';
+          if (!values.rbn_key) errors.rbn_key = 'Merchant key is required.';
+        } else if (mode === 'webhook-subscription') {
+          if (!values.wb_status) errors.wb_status = 'status is required.';
+          if (!values.wb_authpayuId) errors.wb_authpayuId = 'authpayuId is required.';
+          if (!values.wb_notificationType) errors.wb_notificationType = 'notificationType is required.';
+          if (!values.wb_key) errors.wb_key = 'Merchant key is required.';
+          if (!values.wb_salt) errors.wb_salt = saltErrorMsg();
+        } else if (mode === 'callback-pg-load-clw') {
+          if (!values.cb_merchantCode) errors.cb_merchantCode = 'merchantCode is required.';
+          if (!values.cb_clientTxnId) errors.cb_clientTxnId = 'clientTxnId is required.';
+          if (!values.cb_loadAmount) errors.cb_loadAmount = 'loadAmount is required.';
+          if (!values.cb_responseCode) errors.cb_responseCode = 'responseCode is required.';
+          if (!values.cb_merchantSalt) errors.cb_merchantSalt = saltErrorMsg();
         }
         return errors;
       }
@@ -1012,6 +1318,14 @@
       bindShowSalt('show-rev2-salt', 'rev2_salt');
       bindShowSalt('show-rev3-salt', 'rev3_salt');
       bindShowSalt('show-rev4-salt', 'rev4_salt');
+      bindShowSalt('show-si-salt', 'si_salt');
+      bindShowSalt('show-tpv-salt', 'tpv_salt');
+      bindShowSalt('show-sr-salt', 'sr_salt');
+      bindShowSalt('show-ac-salt', 'ac_salt');
+      bindShowSalt('show-rsi-salt', 'rsi_salt');
+      bindShowSalt('show-rbn-salt', 'rbn_salt');
+      bindShowSalt('show-wb-salt', 'wb_salt');
+      bindShowSalt('show-cb-salt', 'cb_merchantSalt');
 
       var hashModeSel = document.getElementById('hash-mode');
       if (hashModeSel) {
