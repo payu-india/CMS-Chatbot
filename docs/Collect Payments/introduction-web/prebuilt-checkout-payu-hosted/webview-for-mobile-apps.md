@@ -641,7 +641,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 <Accordion title="Load PayU Checkout form in WebView" icon="fa-code">
   ```dart
-   ..loadRequest(Uri.parse("URL"));
+   ..loadRequest(Uri.parse("URL",method:"postdata"));
   ```
 
   Pass the postData to load the PayU checkout form with the transaction data using *postUrl*() method.
