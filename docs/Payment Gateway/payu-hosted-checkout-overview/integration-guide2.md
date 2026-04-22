@@ -720,7 +720,87 @@ Now that you have created the hash value combine the below into a request that w
 * Generated hash
 
 <Accordion title="POST the HTML Form (server renders)" icon="fa-paper-plane">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+
+**Sample Payloads in HTML and Other Language Bindings**
+
+```html
+<!doctype html>
+<html>
+  <body onload="document.forms.payu.submit()">
+    <form name="payu" method="post" action="https://test.payu.in/_payment">
+      <input type="hidden" name="key" value="JP***g">
+      <input type="hidden" name="txnid" value="t6svtqtjRdl4ws">
+      <input type="hidden" name="amount" value="499.00">
+      <input type="hidden" name="productinfo" value="Pro Plan">
+      <input type="hidden" name="firstname" value="Aditi">
+      <input type="hidden" name="email" value="test@example.com">
+      <input type="hidden" name="phone" value="9999999999">
+      <input type="hidden" name="surl" value="https://yourapp.com/payu/success">
+      <input type="hidden" name="furl" value="https://yourapp.com/payu/failure">
+      <input type="hidden" name="hash" value="sha512(...hash sequence...)">
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
+```
+```curl
+curl -X POST "https://test.payu.in/_payment" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=JP***g" \
+  -d "txnid=PQI6MqpYrjEefU" \
+  -d "amount=10.00" \
+  -d "firstname=PayU User" \
+  -d "email=test@gmail.com" \
+  -d "phone=9876543210" \
+  -d "productinfo=iPhone" \
+  -d "surl=https://apiplayground-response.herokuapp.com/" \
+  -d "furl=https://apiplayground-response.herokuapp.com/" \
+  -d "hash={{hash_value}}"
+```
+```python
+import requests
+
+def make_payu_request():
+try:
+    url = "https://test.payu.in/_payment"
+    
+    headers = {
+        'accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+    
+    data = {
+        'key': 'JP***g',
+        'txnid': 'PQI6MqpYrjEefU',
+        'amount': '10.00',
+        'firstname': 'PayU User',
+        'email': 'test@gmail.com',
+        'phone': '9876543210',
+        'productinfo': 'iPhone',
+        'surl': 'https://apiplayground-response.herokuapp.com/',
+        'furl': 'https://apiplayground-response.herokuapp.com/',
+        'hash': '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
+    }
+    
+    response = requests.post(url, headers=headers, data=data)
+    
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+    
+    return {
+        'status_code': response.status_code,
+        'response': response.text
+    }
+    
+except requests.exceptions.RequestException as e:
+    print(f"Error occurred: {e}")
+    return None
+
+# Execute the request
+result = make_payu_request()
+```
+
+<br />
+
 </Accordion>
