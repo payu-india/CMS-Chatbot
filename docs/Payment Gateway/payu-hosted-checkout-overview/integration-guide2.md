@@ -640,39 +640,39 @@ To ensure the payment request is secure, you must generate a hash using your tra
   </Callout>
 
   <HTMLBlock>{`
-                                            			<p>You then generate a SHA-512 hash of this string. You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
-                                            								<style>
-                                                            .tooltip-btn {
-                                                                position: relative;
-                                                                background-color: #4CAF50;
-                                                                color: white;
-                                                                padding: 10px 20px;
-                                                                border: none;
-                                                                border-radius: 5px;
-                                                                cursor: pointer;
-                                                                font-weight: bold; /* Added this line */
-                                                            }
-                                                            .tooltip-btn:hover::after {
-                                                                content: attr(data-tooltip);
-                                                                position: absolute;
-                                                                bottom: 125%;
-                                                                left: 50%;
-                                                                transform: translateX(-50%);
-                                                                background-color: #333;
-                                                                color: white;
-                                                                padding: 5px 10px;
-                                                                border-radius: 4px;
-                                                                white-space: nowrap;
-                                                                font-size: 12px;
-                                                                z-index: 1;
-                                                            }
-                                                            </style>
+                                              			<p>You then generate a SHA-512 hash of this string. You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
+                                              								<style>
+                                                              .tooltip-btn {
+                                                                  position: relative;
+                                                                  background-color: #4CAF50;
+                                                                  color: white;
+                                                                  padding: 10px 20px;
+                                                                  border: none;
+                                                                  border-radius: 5px;
+                                                                  cursor: pointer;
+                                                                  font-weight: bold; /* Added this line */
+                                                              }
+                                                              .tooltip-btn:hover::after {
+                                                                  content: attr(data-tooltip);
+                                                                  position: absolute;
+                                                                  bottom: 125%;
+                                                                  left: 50%;
+                                                                  transform: translateX(-50%);
+                                                                  background-color: #333;
+                                                                  color: white;
+                                                                  padding: 5px 10px;
+                                                                  border-radius: 4px;
+                                                                  white-space: nowrap;
+                                                                  font-size: 12px;
+                                                                  z-index: 1;
+                                                              }
+                                                              </style>
 
-                                                            <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
-                                                                    class="tooltip-btn" 
-                                                                    data-tooltip="Click to generate hash.">
-                                                                Generate Hash
-                                                            </button>
+                                                              <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
+                                                                      class="tooltip-btn" 
+                                                                      data-tooltip="Click to generate hash.">
+                                                                  Generate Hash
+                                                              </button>
   `}</HTMLBlock>
 
   <br />
@@ -720,7 +720,7 @@ Now that you have created the hash value combine the below into a request that w
 * Generated hash
 
 <Accordion title="POST the HTML Form (server renders)" icon="fa-paper-plane">
-  **Sample Payloads in HTML and Other Language Bindings**
+  **Sample Payloads in HTML and Other Language Bindings**<br/>
 
   ```html
   <!doctype html>
@@ -840,10 +840,10 @@ Now that you have created the hash value combine the below into a request that w
     console.error(`Error occurred: ${error.message}`);
     return null;
   }
-}
+  }
 
-// Execute the request
-makePayURequest()
+  // Execute the request
+  makePayURequest()
   .then(result => {
     if (result) {
       console.log("Request completed successfully");
@@ -855,10 +855,10 @@ makePayURequest()
   ```
   ```Java
   import java.io.*;
-import java.net.*;
-import java.nio.charset.StandardCharsets;
+  import java.net.*;
+  import java.nio.charset.StandardCharsets;
 
-public class PayURequest {
+  public class PayURequest {
 
   public static void main(String[] args) {
     makePayURequest();
@@ -922,11 +922,11 @@ public class PayURequest {
       e.printStackTrace();
     }
   }
-}        
+  }        
   ```
   ```PHP
   <?php
-function makePayURequest() {
+  function makePayURequest() {
   try {
     $url = "https://test.payu.in/_payment";
 
@@ -985,131 +985,132 @@ function makePayURequest() {
     echo "Error occurred: " . $e->getMessage() . "\n";
     return null;
   }
-}
-  
-// Execute the request
-$result = makePayURequest();
-?>
-```          
-```Perl          
-#!/usr/bin/perl
-use strict;
-use warnings;
-use LWP::UserAgent;
-use HTTP::Request::Common qw(POST);
-use URI::Escape;
+  }
 
-sub make_payu_request {
-    my $ua = LWP::UserAgent->new;
-    $ua->timeout(30);
-    
-    my $url = "https://test.payu.in/_payment";
-    
-    my %form_data = (
-        'key' => 'JP***g',
-        'txnid' => 'PQI6MqpYrjEefU',
-        'amount' => '10.00',
-        'firstname' => 'PayU User',
-        'email' => 'test@gmail.com',
-        'phone' => '9876543210',
-        'productinfo' => 'iPhone',
-        'surl' => 'https://apiplayground-response.herokuapp.com/',
-        'furl' => 'https://apiplayground-response.herokuapp.com/',
-        'hash' => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
-    );
-    
-    my $request = POST $url, 
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%form_data;
-    
-    my $response = $ua->request($request);
-    
-    if ($response->is_success) {
-        print "Status Code: " . $response->code . "
-";
-        print "Response: " . $response->decoded_content . "
-";
-        
-        return {
-            'status_code' => $response->code,
-            'response' => $response->decoded_content
-        };
-    } else {
-        print "Error occurred: " . $response->status_line . "
-";
-        print "Status Code: " . $response->code . "
-";
-        print "Error Response: " . $response->decoded_content . "
-" if $response->decoded_content;
-        return undef;
-    }
-}
+  // Execute the request
+  $result = makePayURequest();
+  ?>
+  ```
+  ```Perl
+  #!/usr/bin/perl
+  use strict;
+  use warnings;
+  use LWP::UserAgent;
+  use HTTP::Request::Common qw(POST);
+  use URI::Escape;
 
-# Execute the request
-my $result = make_payu_request();
-if ($result) {
-    print "Request completed successfully
-";
-} else {
-    print "Request failed
-";
-}          
-```          
-```C#          
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
+  sub make_payu_request {
+      my $ua = LWP::UserAgent->new;
+      $ua->timeout(30);
+      
+      my $url = "https://test.payu.in/_payment";
+      
+      my %form_data = (
+          'key' => 'JP***g',
+          'txnid' => 'PQI6MqpYrjEefU',
+          'amount' => '10.00',
+          'firstname' => 'PayU User',
+          'email' => 'test@gmail.com',
+          'phone' => '9876543210',
+          'productinfo' => 'iPhone',
+          'surl' => 'https://apiplayground-response.herokuapp.com/',
+          'furl' => 'https://apiplayground-response.herokuapp.com/',
+          'hash' => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
+      );
+      
+      my $request = POST $url, 
+          'accept' => 'application/json',
+          'Content-Type' => 'application/x-www-form-urlencoded',
+          Content => \%form_data;
+      
+      my $response = $ua->request($request);
+      
+      if ($response->is_success) {
+          print "Status Code: " . $response->code . "
+  ";
+          print "Response: " . $response->decoded_content . "
+  ";
+          
+          return {
+              'status_code' => $response->code,
+              'response' => $response->decoded_content
+          };
+      } else {
+          print "Error occurred: " . $response->status_line . "
+  ";
+          print "Status Code: " . $response->code . "
+  ";
+          print "Error Response: " . $response->decoded_content . "
+  " if $response->decoded_content;
+          return undef;
+      }
+  }
 
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        await MakePayURequest();
-    }
-    
-    static async Task MakePayURequest()
-    {
-        try
-        {
-            using (var client = new HttpClient())
-            {
-                var url = "https://test.payu.in/_payment";
-                
-                client.DefaultRequestHeaders.Add("accept", "application/json");
-                
-                var formParams = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("key", "JP***g"),
-                    new KeyValuePair<string, string>("txnid", "PQI6MqpYrjEefU"),
-                    new KeyValuePair<string, string>("amount", "10.00"),
-                    new KeyValuePair<string, string>("firstname", "PayU User"),
-                    new KeyValuePair<string, string>("email", "test@gmail.com"),
-                    new KeyValuePair<string, string>("phone", "9876543210"),
-                    new KeyValuePair<string, string>("productinfo", "iPhone"),
-                    new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
-                    new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
-                    new KeyValuePair<string, string>("hash", "05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072")
-                };
-                
-                var formContent = new FormUrlEncodedContent(formParams);
-                
-                var response = await client.PostAsync(url, formContent);
-                var responseContent = await response.Content.ReadAsStringAsync();
-                
-                Console.WriteLine($"Status Code: {(int)response.StatusCode}");
-                Console.WriteLine($"Response: {responseContent}");
-            }
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine($"Error occurred: {e.Message}");
-        }
-    }
-}          
-```          
-<br />
+  # Execute the request
+  my $result = make_payu_request();
+  if ($result) {
+      print "Request completed successfully
+  ";
+  } else {
+      print "Request failed
+  ";
+  }          
+  ```
+  ```C#
+  using System;
+  using System.Collections.Generic;
+  using System.Net.Http;
+  using System.Threading.Tasks;
+
+  class Program
+  {
+      static async Task Main(string[] args)
+      {
+          await MakePayURequest();
+      }
+      
+      static async Task MakePayURequest()
+      {
+          try
+          {
+              using (var client = new HttpClient())
+              {
+                  var url = "https://test.payu.in/_payment";
+                  
+                  client.DefaultRequestHeaders.Add("accept", "application/json");
+                  
+                  var formParams = new List<KeyValuePair<string, string>>
+                  {
+                      new KeyValuePair<string, string>("key", "JP***g"),
+                      new KeyValuePair<string, string>("txnid", "PQI6MqpYrjEefU"),
+                      new KeyValuePair<string, string>("amount", "10.00"),
+                      new KeyValuePair<string, string>("firstname", "PayU User"),
+                      new KeyValuePair<string, string>("email", "test@gmail.com"),
+                      new KeyValuePair<string, string>("phone", "9876543210"),
+                      new KeyValuePair<string, string>("productinfo", "iPhone"),
+                      new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
+                      new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
+                      new KeyValuePair<string, string>("hash", "05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072")
+                  };
+                  
+                  var formContent = new FormUrlEncodedContent(formParams);
+                  
+                  var response = await client.PostAsync(url, formContent);
+                  var responseContent = await response.Content.ReadAsStringAsync();
+                  
+                  Console.WriteLine($"Status Code: {(int)response.StatusCode}");
+                  Console.WriteLine($"Response: {responseContent}");
+              }
+          }
+          catch (HttpRequestException e)
+          {
+              Console.WriteLine($"Error occurred: {e.Message}");
+          }
+      }
+  }          
+  ```
+
+  <br />
 </Accordion>
 
 <br />
