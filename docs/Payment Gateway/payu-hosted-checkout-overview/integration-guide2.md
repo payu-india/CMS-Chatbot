@@ -640,39 +640,39 @@ To ensure the payment request is secure, you must generate a hash using your tra
   </Callout>
 
   <HTMLBlock>{`
-                                                  			<p>You then generate a SHA-512 hash of this string. You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
-                                                  								<style>
-                                                                  .tooltip-btn {
-                                                                      position: relative;
-                                                                      background-color: #4CAF50;
-                                                                      color: white;
-                                                                      padding: 10px 20px;
-                                                                      border: none;
-                                                                      border-radius: 5px;
-                                                                      cursor: pointer;
-                                                                      font-weight: bold; /* Added this line */
-                                                                  }
-                                                                  .tooltip-btn:hover::after {
-                                                                      content: attr(data-tooltip);
-                                                                      position: absolute;
-                                                                      bottom: 125%;
-                                                                      left: 50%;
-                                                                      transform: translateX(-50%);
-                                                                      background-color: #333;
-                                                                      color: white;
-                                                                      padding: 5px 10px;
-                                                                      border-radius: 4px;
-                                                                      white-space: nowrap;
-                                                                      font-size: 12px;
-                                                                      z-index: 1;
-                                                                  }
-                                                                  </style>
+                                                    			<p>You then generate a SHA-512 hash of this string. You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
+                                                    								<style>
+                                                                    .tooltip-btn {
+                                                                        position: relative;
+                                                                        background-color: #4CAF50;
+                                                                        color: white;
+                                                                        padding: 10px 20px;
+                                                                        border: none;
+                                                                        border-radius: 5px;
+                                                                        cursor: pointer;
+                                                                        font-weight: bold; /* Added this line */
+                                                                    }
+                                                                    .tooltip-btn:hover::after {
+                                                                        content: attr(data-tooltip);
+                                                                        position: absolute;
+                                                                        bottom: 125%;
+                                                                        left: 50%;
+                                                                        transform: translateX(-50%);
+                                                                        background-color: #333;
+                                                                        color: white;
+                                                                        padding: 5px 10px;
+                                                                        border-radius: 4px;
+                                                                        white-space: nowrap;
+                                                                        font-size: 12px;
+                                                                        z-index: 1;
+                                                                    }
+                                                                    </style>
 
-                                                                  <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
-                                                                          class="tooltip-btn" 
-                                                                          data-tooltip="Click to generate hash.">
-                                                                      Generate Hash
-                                                                  </button>
+                                                                    <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
+                                                                            class="tooltip-btn" 
+                                                                            data-tooltip="Click to generate hash.">
+                                                                        Generate Hash
+                                                                    </button>
   `}</HTMLBlock>
 
   <br />
@@ -1113,8 +1113,7 @@ Now that you have created the hash value combine the below into a request that w
   <Callout icon="🚧" theme="warn">
     **Important**
 
-    * Hash must always be generated on the **backend**
-    * Any mismatch will result in `Invalid Hash` errors
+    Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.
   </Callout>
 </Accordion>
 
@@ -1128,118 +1127,8 @@ Now that you have created the hash value combine the below into a request that w
 
 <br />
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
-  ```csharp
-  using System;
-  using System.Collections.Generic;
-  using System.Net.Http;
-  using System.Threading.Tasks;
-
-  class Program
-  {
-      static async Task Main(string[] args)
-      {
-          await MakePayURequest();
-      }
-      
-      static async Task MakePayURequest()
-      {
-          try
-          {
-              using (var client = new HttpClient())
-              {
-                  var url = "https://test.payu.in/_payment";
-                  
-                  client.DefaultRequestHeaders.Add("accept", "application/json");
-                  
-                  var formParams = new List<KeyValuePair<string, string>>
-                  {
-                      new KeyValuePair<string, string>("key", "JP***g"),
-                      new KeyValuePair<string, string>("txnid", "PQI6MqpYrjEefU"),
-                      new KeyValuePair<string, string>("amount", "10.00"),
-                      new KeyValuePair<string, string>("firstname", "PayU User"),
-                      new KeyValuePair<string, string>("email", "test@gmail.com"),
-                      new KeyValuePair<string, string>("phone", "9876543210"),
-                      new KeyValuePair<string, string>("productinfo", "iPhone"),
-                      new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
-                      new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
-                      new KeyValuePair<string, string>("hash", "05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072")
-                  };
-                  
-                  var formContent = new FormUrlEncodedContent(formParams);
-                  
-                  var response = await client.PostAsync(url, formContent);
-                  var responseContent = await response.Content.ReadAsStringAsync();
-                  
-                  Console.WriteLine($"Status Code: {(int)response.StatusCode}");
-                  Console.WriteLine($"Response: {responseContent}");
-              }
-          }
-          catch (HttpRequestException e)
-          {
-              Console.WriteLine($"Error occurred: {e.Message}");
-          }
-      }
-  }
-  ```
-</Accordion>
-
 <br />
 
 <br />
-
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        await MakePayURequest();
-    }
-    
-    static async Task MakePayURequest()
-    {
-        try
-        {
-            using (var client = new HttpClient())
-            {
-                var url = "https://test.payu.in/_payment";
-                
-                client.DefaultRequestHeaders.Add("accept", "application/json");
-                
-                var formParams = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("key", "JP***g"),
-                    new KeyValuePair<string, string>("txnid", "PQI6MqpYrjEefU"),
-                    new KeyValuePair<string, string>("amount", "10.00"),
-                    new KeyValuePair<string, string>("firstname", "PayU User"),
-                    new KeyValuePair<string, string>("email", "test@gmail.com"),
-                    new KeyValuePair<string, string>("phone", "9876543210"),
-                    new KeyValuePair<string, string>("productinfo", "iPhone"),
-                    new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
-                    new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
-                    new KeyValuePair<string, string>("hash", "05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072")
-                };
-                
-                var formContent = new FormUrlEncodedContent(formParams);
-                
-                var response = await client.PostAsync(url, formContent);
-                var responseContent = await response.Content.ReadAsStringAsync();
-                
-                Console.WriteLine($"Status Code: {(int)response.StatusCode}");
-                Console.WriteLine($"Response: {responseContent}");
-            }
-        }
-        catch (HttpRequestException e)
-        {
-            Console.WriteLine($"Error occurred: {e.Message}");
-        }
-    }
-}
-```
 
 <br />
