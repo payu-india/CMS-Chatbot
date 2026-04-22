@@ -554,7 +554,7 @@ To ensure the payment request is secure, you must generate a hash using your tra
     }
   }
   ```
-  ```Phython
+  ````Phython
   import hashlib
 
   def generate_hash(params, salt):
@@ -640,44 +640,44 @@ To ensure the payment request is secure, you must generate a hash using your tra
   </Callout>
 
   <HTMLBlock>{`
-                                        			<p>You then generate a SHA-512 hash of this string. You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
-                                        								<style>
-                                                        .tooltip-btn {
-                                                            position: relative;
-                                                            background-color: #4CAF50;
-                                                            color: white;
-                                                            padding: 10px 20px;
-                                                            border: none;
-                                                            border-radius: 5px;
-                                                            cursor: pointer;
-                                                            font-weight: bold; /* Added this line */
-                                                        }
-                                                        .tooltip-btn:hover::after {
-                                                            content: attr(data-tooltip);
-                                                            position: absolute;
-                                                            bottom: 125%;
-                                                            left: 50%;
-                                                            transform: translateX(-50%);
-                                                            background-color: #333;
-                                                            color: white;
-                                                            padding: 5px 10px;
-                                                            border-radius: 4px;
-                                                            white-space: nowrap;
-                                                            font-size: 12px;
-                                                            z-index: 1;
-                                                        }
-                                                        </style>
+                                          			<p>You then generate a SHA-512 hash of this string. You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
+                                          								<style>
+                                                          .tooltip-btn {
+                                                              position: relative;
+                                                              background-color: #4CAF50;
+                                                              color: white;
+                                                              padding: 10px 20px;
+                                                              border: none;
+                                                              border-radius: 5px;
+                                                              cursor: pointer;
+                                                              font-weight: bold; /* Added this line */
+                                                          }
+                                                          .tooltip-btn:hover::after {
+                                                              content: attr(data-tooltip);
+                                                              position: absolute;
+                                                              bottom: 125%;
+                                                              left: 50%;
+                                                              transform: translateX(-50%);
+                                                              background-color: #333;
+                                                              color: white;
+                                                              padding: 5px 10px;
+                                                              border-radius: 4px;
+                                                              white-space: nowrap;
+                                                              font-size: 12px;
+                                                              z-index: 1;
+                                                          }
+                                                          </style>
 
-                                                        <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
-                                                                class="tooltip-btn" 
-                                                                data-tooltip="Click to generate hash.">
-                                                            Generate Hash
-                                                        </button>
+                                                          <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
+                                                                  class="tooltip-btn" 
+                                                                  data-tooltip="Click to generate hash.">
+                                                              Generate Hash
+                                                          </button>
   `}</HTMLBlock>
 
   <br />
 
-  **Backend Developer:**
+  **If you are a Backend Developer:**
 
   * Generate the hash on your server using SHA-512
   * Follow the **exact parameter order**
@@ -685,7 +685,7 @@ To ensure the payment request is secure, you must generate a hash using your tra
   * Use **UTF-8 encoding**
   * Keep your **salt secure (never expose it)**
 
-  **Frontend Developer:**
+  **If you are a Frontend Developer:**
 
   * No action required
   * Do not attempt to generate hash on client side
@@ -694,7 +694,7 @@ To ensure the payment request is secure, you must generate a hash using your tra
 
   You are creating a **secure signature** that PayU uses to validate your payment request.<br />
 
-  **Common Mistake**
+  **Common Mistakes**
 
   These are the common mistakes while concatenating params in the hash logic.
 
@@ -711,3 +711,5 @@ To ensure the payment request is secure, you must generate a hash using your tra
 
   Refer to the **Generate Hash (Detailed Guide)** for complete implementation details.
 </Accordion>
+
+<br />
