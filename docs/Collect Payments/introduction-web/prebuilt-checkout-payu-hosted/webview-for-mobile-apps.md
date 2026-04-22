@@ -605,24 +605,21 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 ## Webview Flutter Integration on Android/IOS
 
 <Accordion title="Add below dependencies in pubspec.yaml file" icon="fa-code">
-
   ```Dependencies
- dependencies:
- flutter:
- sdk: flutter
- url_launcher: ^6.3.1
- webview_flutter: ^4.13.0
+  dependencies:
+  flutter:
+  sdk: flutter
+  url_launcher: ^6.3.1
+  webview_flutter: ^4.13.0
   ```
 </Accordion>
 
 <Accordion title="Import necessary packages" icon="fa-code">
   ```Packages
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
+  import 'package:webview_flutter/webview_flutter.dart';
+  import 'package:url_launcher/url_launcher.dart';
   ```
 </Accordion>
-
-<br />
 
 <Accordion title="Create postData for Payment" icon="fa-code">
   for Payment
@@ -636,8 +633,6 @@ import 'package:url_launcher/url_launcher.dart';
 
   **Note:** We recommend that you compute the hash at your server so to prevent cyber attackers from tampering your requests.
 </Accordion>
-
-<br />
 
 <Accordion title="Load PayU Checkout form in WebView" icon="fa-code">
   ```dart
@@ -681,8 +676,6 @@ import 'package:url_launcher/url_launcher.dart';
   </Table>
 </Accordion>
 
-
-
 <Accordion title="Set up WebView with UPI launch capability" icon="fa-code">
   ```Packages
       ..setNavigationDelegate(
@@ -719,32 +712,32 @@ import 'package:url_launcher/url_launcher.dart';
   ```
 </Accordion>
 
-  <Accordion title="For iOS Add LSApplicationQueriesSchemes" icon="fa-code">
-    To allow your application to support UPI intent, you must add the PSP applications for which you want to enable UPI intents to the **LSApplicationQueriesSchemes** in the info.plist file of your project.
+<Accordion title="For iOS Add LSApplicationQueriesSchemes" icon="fa-code">
+  To allow your application to support UPI intent, you must add the PSP applications for which you want to enable UPI intents to the **LSApplicationQueriesSchemes** in the info.plist file of your project.
 
-    ```plaintext
-    <key>LSApplicationQueriesSchemes</key> 
-    <array> 
-    		<string>phonepe</string>
-    		<string>bhim</string>
-    		<string>tez</string>
-    		<string>paytm</string>
-    		<string>gpay</string>
-    		<string>credpay</string>
-    		<string>icici</string>
-    		<string>myairtel</string>
-    		<string>payzapp</string>
-    		<string>axismobile</string>
-    		<string>freecharge</string>
-        <string>slice-upi</string>
-    		<string>olamoney</string>
-    		<string>sbiyono</string>
-        <string>kmb</string>
-        <string>navipay</string>
-    </array> 
-    ```
+  ```plaintext
+  <key>LSApplicationQueriesSchemes</key> 
+  <array> 
+  		<string>phonepe</string>
+  		<string>bhim</string>
+  		<string>tez</string>
+  		<string>paytm</string>
+  		<string>gpay</string>
+  		<string>credpay</string>
+  		<string>icici</string>
+  		<string>myairtel</string>
+  		<string>payzapp</string>
+  		<string>axismobile</string>
+  		<string>freecharge</string>
+      <string>slice-upi</string>
+  		<string>olamoney</string>
+  		<string>sbiyono</string>
+      <string>kmb</string>
+      <string>navipay</string>
+  </array> 
+  ```
 
-    Each string in the array is the name of the PSP apps (in lowercase) for which you want to enable the UPI intent.
+  Each string in the array is the name of the PSP apps (in lowercase) for which you want to enable the UPI intent.
 
-    Note:- If a new app is onboarded during checkout the corresponding PSP (Payment Service Provider) scheme must be added to the Info.plist file to support the new app intent.
-  </Accordion>
+  Note:- If a new app is onboarded during checkout the corresponding PSP (Payment Service Provider) scheme must be added to the Info.plist file to support the new app intent.
+</Accordion>
