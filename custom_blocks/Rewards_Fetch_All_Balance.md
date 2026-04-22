@@ -18,7 +18,7 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
   | fetchRevisedEarn<br />`optional`  | `Boolean` When set to `true`, the response includes the revised earn configuration (`revisedEarnConfig`) for each reward. | true                 |
 </Accordion>
 
-<Accordion title="Sample request" icon="fa-code">
+<Accordion title="Sample request for both TWID & Zillon" icon="fa-code">
   ```curl
   curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance/all" \
     -H "Content-Type: application/json" \
@@ -288,7 +288,29 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
     ]
   }
   ```
+</Accordion>
 
+<Accordion title="Sample request for Zillon only" icon="fa-code">
+  ```curl
+  curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance/all" \
+    -H "Content-Type: application/json" \
+    -H "mid: YOUR_MERCHANT_ID" \
+    -d '{
+{
+  "payuMerchantKey": "travelibibo",
+  "payuMerchantId": "3",
+  "name": "Earn onlhyp",
+  "category": "Bobby Shop",
+  "companyName": "BobbySharmaCorp",
+  "alias": "alias",
+  "email": "test123@gmail.com",
+  "phone": "9999999999",
+  "active": 1,
+  "loyaltyProvider": "ZILLION"
+}`
+```
+</Accordion>
+<Accordion title="Sample respone for Zillion only" icon="fa-code">
   **Sample responses with various cases**
 
   | Modal                   | Sample JSON                                                                                                                                                                                                                               |
