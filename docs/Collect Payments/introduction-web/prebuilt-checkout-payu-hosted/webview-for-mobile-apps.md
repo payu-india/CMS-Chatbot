@@ -675,6 +675,50 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
     </tbody>
   </Table>
 </Accordion>
+<Accordion title="Add Method channel code in MainActivity" icon=""fa-code>
+  ```Packages
+class MainActivity : FlutterActivity() {
+    private val channelName = "com.example.flutterwebview/upi"
+
+    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+        super.configureFlutterEngine(flutterEngine)
+
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channelName)
+            .setMethodCallHandler { call, result ->
+                when (call.method) {
+                    "launchUpi" -> {
+                        val url = call.argument<String>("url")
+                        if (url.isNullOrBlank()) {
+                            result.error("INVALID_URL", "UPI url was null or empty", null)
+                            return@setMethodCallHandler
+                        }
+                        try {
+                            val viewIntent = Intent(Intent.ACTION_VIEW).apply {
+                                data = Uri.parse(url)
+                            }
+                            val chooser = Intent.createChooser(viewIntent, "Pay with")
+                            chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(chooser)
+                            result.success(true)
+                        } catch (e: ActivityNotFoundException) {
+                            result.error(
+                                "NO_UPI_APP",
+                                "No UPI app is installed to handle this intent",
+                                e.localizedMessage
+                            )
+                        } catch (e: Exception) {
+                            result.error("LAUNCH_FAILED", e.localizedMessage, null)
+                        }
+                    }
+                    else -> result.notImplemented()
+                }
+            }
+  }
+```
+
+
+  </Accordion>
+
 <Accordion title="Use _launchUpiIntent method to handle UPI Deeplink" icon="fa-code">
   ```Packages
       Future<bool> _launchUpiIntent(String url) async {
