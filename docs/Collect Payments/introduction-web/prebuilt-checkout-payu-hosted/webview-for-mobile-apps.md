@@ -718,7 +718,9 @@ class MainActivity : FlutterActivity() {
 </Accordion>
 
 <Accordion title="Use _launchUpiIntent method to handle UPI Deeplink" icon="fa-code">
-  ```Packages
+```Packages
+ static const MethodChannel _upiChannel =
+      MethodChannel('com.example.flutterwebview/upi');
       Future<bool> _launchUpiIntent(String url) async {
     if (Platform.isAndroid) {
       try {
