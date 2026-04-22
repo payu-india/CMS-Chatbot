@@ -20,20 +20,25 @@ Integrate TWID or Zillion rewards  to enable customers to redeem their TWID or Z
 This section describes the complete integration workflow for TWID Rewards Seamless Transactions. This integration involves the following steps:
 
 <Cards columns={2}>
-  <Card title="1. Initiate Payment with PayU" href="#step-1-initiate-payment-with-payu">
+  <Card title="1. Fetch All Balanc" href="#step-1-fetch-all-balance">
+    Prepare PayU payment POST with SPLITPAY, TWIDX, splitInfo parameters and generate the required hash
+  </Card>
+ <Card title="1. Initiate Payment with PayU" href="#step-2-initiate-payment-with-payu">
     Prepare PayU payment POST with SPLITPAY, TWIDX, splitInfo parameters and generate the required hash
   </Card>
 
-  <Card title="2. Check Response from PayU" href="#step-2-check-response-from-payu">
+  <Card title="2. Check Response from PayU" href="#step-3-check-response-from-payu">
     Parse postback response and validate reverse hash from PayU
   </Card>
 
-  <Card title=". Verify the Payment" href="#step-3-verify-the-payment">
+  <Card title=". Verify the Payment" href="#step-4-verify-the-payment">
     Perform final verification step to confirm transaction completion
   </Card>
 </Cards>
 
-## Step 1: Initiate Payment with PayU
+<Rewards_Fetch_All_Balance />
+
+## Step 2: Initiate Payment with PayU
 
 <Accordion title="Request parameters" icon="fa-table">
   | Parameter                    | Description                                                                                                                                                                                                                                                                                        | Example                                                                                            |   |
@@ -371,7 +376,7 @@ Use the following bankcode values to identify the reward provider in both the to
   ```
 </Accordion>
 
-## Step 2: Check response from PayU
+## Step 3: Check response from PayU
 
 <ReverseHashing />
 
@@ -783,6 +788,6 @@ Use the following bankcode values to identify the reward provider in both the to
   | mode                        | `String` Payment instrument used for this leg: `CC` for Card, `UPI` for UPI.                                              | CC                                   |
 </Accordion>
 
-## Step 3: Verify the Payment
+## Step 4: Verify the Payment
 
 <Verify_Payment_Tabs />
