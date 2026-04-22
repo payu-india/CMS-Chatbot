@@ -718,3 +718,33 @@ import 'package:url_launcher/url_launcher.dart';
 
   ```
 </Accordion>
+
+  <Accordion title="For iOS Add LSApplicationQueriesSchemes" icon="fa-code">
+    To allow your application to support UPI intent, you must add the PSP applications for which you want to enable UPI intents to the **LSApplicationQueriesSchemes** in the info.plist file of your project.
+
+    ```plaintext
+    <key>LSApplicationQueriesSchemes</key> 
+    <array> 
+    		<string>phonepe</string>
+    		<string>bhim</string>
+    		<string>tez</string>
+    		<string>paytm</string>
+    		<string>gpay</string>
+    		<string>credpay</string>
+    		<string>icici</string>
+    		<string>myairtel</string>
+    		<string>payzapp</string>
+    		<string>axismobile</string>
+    		<string>freecharge</string>
+        <string>slice-upi</string>
+    		<string>olamoney</string>
+    		<string>sbiyono</string>
+        <string>kmb</string>
+        <string>navipay</string>
+    </array> 
+    ```
+
+    Each string in the array is the name of the PSP apps (in lowercase) for which you want to enable the UPI intent.
+
+    Note:- If a new app is onboarded during checkout the corresponding PSP (Payment Service Provider) scheme must be added to the Info.plist file to support the new app intent.
+  </Accordion>
