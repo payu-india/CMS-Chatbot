@@ -45,97 +45,15 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
 Use the Fetch All Balance API to retrieve reward point balances from multiple specified loyalty providers and determine how much users can save using their points.
 
 <Accordion title="Request parameters" icon="fa-table">
-  <HTMLBlock>{`
-                                              <style>
-                                              /* Target only the second column in the table */
-                                              .markdown-body table td:nth-child(2) {
-                                                word-break: break-word !important;
-                                              }
+# Loyalty API Parameters
 
-                                              /* Keep the first column from breaking unnecessarily */
-                                              .markdown-body table td:nth-child(1) {
-                                                word-break: normal;
-                                                white-space: nowrap;
-                                              }
-                                              </style>
-                                              <Table align={["left","left","left"]}>
-                                                <thead>
-                                                  <tr>
-                                                    <th style={{ textAlign: "left" }}>
-                                                      Parameter
-                                                    </th>
-                                                    <th style={{ textAlign: "left" }}>
-                                                      Description
-                                                    </th>
-                                                    <th style={{ textAlign: "left" }}>
-                                                      Example
-                                                    </th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                  <tr>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      loyaltyProviders <br/>
-                                                      <code>mandatory</code>
-                                                    </td>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      <code>Array</code> Array of loyalty provider names to fetch rewards from
-                                                    </td>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      ["TWID", "ZILLION"]
-                                                    </td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      mobileNumber <br/>
-                                                      <code>mandatory</code>
-                                                    </td>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      <code>Number</code> User's mobile number (masked for privacy)
-                                                    </td>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      88001085**
-                                                    </td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      orderAmount <br/>
-                                                      <code>mandatory</code>
-                                                    </td>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      <code>Number</code> Order amount for which reward points are applicable
-                                                    </td>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      1000
-                                                    </td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      merchantTxnId <br/>
-                                                      <code>optional</code>
-                                                    </td>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      <code>String</code> Merchant-generated transaction reference identifier for tracking the balance lookup against the order.
-                                                    </td>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      123merchantTxnId
-                                                    </td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      fetchRevisedEarn <br/>
-                                                      <code>optional</code>
-                                                    </td>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      <code>Boolean</code> When set to <code>true</code>, the response includes the revised earn configuration (<code>revisedEarnConfig</code>) for each reward.
-                                                    </td>
-                                                    <td style={{ textAlign: "left" }}>
-                                                      true
-                                                    </td>
-                                                  </tr>
-                                                </tbody>
-                                              </Table>
-  `}</HTMLBlock>
+| Parameter | Description | Example |
+|---|---|---|
+| loyaltyProviders<br/>`mandatory` | `Array` Array of loyalty provider names to fetch rewards from | ["TWID", "ZILLION"] |
+| mobileNumber<br/>`mandatory` | `Number` User's mobile number (masked for privacy) | 88001085** |
+| orderAmount<br/>`mandatory` | `Number` Order amount for which reward points are applicable | 1000 |
+| merchantTxnId<br/>`optional` | `String` Merchant-generated transaction reference identifier for tracking the balance lookup against the order. | 123merchantTxnId |
+| fetchRevisedEarn<br/>`optional` | `Boolean` When set to `true`, the response includes the revised earn configuration (`revisedEarnConfig`) for each reward. | true |
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
@@ -408,6 +326,16 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
     ]
   }
   ```
+**Sample responses with various cases**
+
+| Modal | Sample JSON |
+|---|---|
+| Zillion Earn is enabled | ```json<br/>{"usableAmount": 0, "usablePoints": 0, "userStatus": "ACTIVE", "availablePoints": 107072, "earnConfig": {"points": 400000, "amount": 100000.00}}<br/>``` |
+| Zillion Burn is enabled | ```json<br/>{"usableAmount": 10012, "usablePoints": 11212, "userStatus": "ACTIVE", "availablePoints": 107072}<br/>``` |
+| Both are enabled | ```json<br/>{"usableAmount": 26768.00, "usablePoints": 107072, "userStatus": "ACTIVE", "availablePoints": 107072, "earnConfig": {"points": 400000, "amount": 100000.00}, "revisedEarnConfig": {"points": 389292, "amount": 97323.00}}<br/>``` |
+| Non-Registered User | ```json<br/>{"userStatus": "NOT_REGISTERED", "earnConfig": {"points": 400000, "amount": 100000.00}}<br/>``` |
+
+
 </Accordion>
 
 > 📘 Note:
@@ -529,6 +457,7 @@ Use the following bankcode values to identify the reward provider in both the to
   }
   ```
 </Accordion>
+
 <Accordion title="Field Descriptions in childPaymentInstruments" icon="fa-table">
   | Field                                    | Description                                                                                                                                                                                                                 | Example          |
   | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
@@ -649,7 +578,6 @@ Use the following bankcode values to identify the reward provider in both the to
   ```
 </Accordion>
 
-
 #### UPI
 
 <Accordion title="Sample request for Burn Points with UPI (Zillion)" icon="fa-code">
@@ -732,8 +660,6 @@ Use the following bankcode values to identify the reward provider in both the to
     }'
   ```
 </Accordion>
-
-
 
 ## Step 3: Check response from PayU
 
