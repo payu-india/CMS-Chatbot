@@ -675,7 +675,35 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
     </tbody>
   </Table>
 </Accordion>
+<Accordion title="Use _launchUpiIntent method to handle UPI Deeplink" icon="fa-code">
+  ```Packages
+      Future<bool> _launchUpiIntent(String url) async {
+    if (Platform.isAndroid) {
+      try {
+        final ok = await _upiChannel
+            .invokeMethod<bool>('launchUpi', {'url': url});
+        return ok ?? false;
+      } on MissingPluginException catch (e) {
+        debugPrint(
+            "UPI channel not registered. Do a full rebuild (flutter clean && flutter run). $e");
+      } on PlatformException catch (e) {
+        debugPrint("UPI intent error: ${e.code} ${e.message}");
+        return false;
+      }
+    }
+    try {
+      return await launchUrl(
+        Uri.parse(url),
+        mode: LaunchMode.externalApplication,
+      );
+    } catch (e) {
+      debugPrint("launchUrl fallback failed: $e");
+      return false;
+    }
+  }
 
+  ```
+</Accordion>
 <Accordion title="Set up WebView with UPI launch capability" icon="fa-code">
   ```Packages
       ..setNavigationDelegate(
