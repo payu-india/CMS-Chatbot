@@ -677,7 +677,7 @@ To ensure the payment request is secure, you must generate a hash using your tra
 
   <br />
 
-  **If you are a Backend Developer:**
+  **Backend Developer:**
 
   * Generate the hash on your server using SHA-512
   * Follow the **exact parameter order**
@@ -685,7 +685,7 @@ To ensure the payment request is secure, you must generate a hash using your tra
   * Use **UTF-8 encoding**
   * Keep your **salt secure (never expose it)**
 
-  **If you are a Frontend Developer:**
+  **Frontend Developer:**
 
   * No action required
   * Do not attempt to generate hash on client side
@@ -694,7 +694,7 @@ To ensure the payment request is secure, you must generate a hash using your tra
 
   You are creating a **secure signature** that PayU uses to validate your payment request.<br />
 
-  **Common Mistakes**
+  **Common Mistake**
 
   These are the common mistakes while concatenating params in the hash logic.
 
@@ -712,4 +712,15 @@ To ensure the payment request is secure, you must generate a hash using your tra
   Refer to the **Generate Hash (Detailed Guide)** for complete implementation details.
 </Accordion>
 
-<br />
+### Step 1.3 Create a Payment Request
+
+Now that you have created the hash value combine the below into a request that will be sent to PayU.
+
+* Payment parameters
+* Generated hash
+
+<Accordion title="POST the HTML Form (server renders)" icon="fa-paper-plane">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
