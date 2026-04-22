@@ -637,6 +637,51 @@ import 'package:url_launcher/url_launcher.dart';
   **Note:** We recommend that you compute the hash at your server so to prevent cyber attackers from tampering your requests.
 </Accordion>
 
+<br />
+
+<Accordion title="Load PayU Checkout form in WebView" icon="fa-code">
+  ```java
+   webView.postUrl("URL", postData);
+  ```
+
+  Pass the postData to load the PayU checkout form with the transaction data using *postUrl*() method.
+
+  <Table align={["left","left"]}>
+    <thead>
+      <tr>
+        <th>
+          URL
+        </th>
+
+        <th>
+          String. The endpoint of the API.
+
+          Test URL:
+
+          [https://test.payu.in/\_payment](https://test.payu.in/_payment)
+
+          Production URL:
+
+          [https://secure.payu.in/\_payment](https://secure.payu.in/_payment)
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>
+          postData
+        </td>
+
+        <td>
+          byte. Create the postData and send it in this field. The value of this parameter cannot be null.
+        </td>
+      </tr>
+    </tbody>
+  </Table>
+</Accordion>
+
+
 
 <Accordion title="Set up WebView with UPI launch capability" icon="fa-code">
   ```Packages
