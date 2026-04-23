@@ -1,5 +1,5 @@
 ---
-title: Copy of Decoupled Flow Integration
+title: RewardX - Decoupled Flow Integration
 deprecated: false
 hidden: true
 metadata:
