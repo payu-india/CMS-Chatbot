@@ -117,7 +117,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        command
+        YOUR_HASH_VALUE
       </td>
     </tr>
   </tbody>
