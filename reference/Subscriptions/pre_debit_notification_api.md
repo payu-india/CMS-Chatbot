@@ -48,9 +48,15 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
   --form 'form="2"' \
   --form 'key="BmTY3G"' \
   --form 'command="pre_debit_SI"' \
-  --form 'hash="775f7fdbefedbb7d4b63d7c1f8da56d09d0d69be6b26643cec5fb8ef38d931a7109eef9d482bc7606ef5874ab799061441e9c71e137b9c8d982925f48f37c51a"' \
-  --form 'var1="{\"authpayuid\":\"25511473084\",\"requestId\":\"9a900b2f-85e2-4034-aaa9-9c71e1d2af14\",\"amount\":\"100.00\",\"debitDate\":\"2026-03-20\",\"invoiceDisplayNumber\":\"19976ec0-c01f-4f6f-886b-8ea614f5fd83\"}"' \
-  --form 'salt="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCm/k3tcvyLiHH0075vrXkhkjfaC+MOPnjaJRul9JXCdsXqWuYw12OZZlVWjJpi+oNpX0Dn8bq2y7wGXa5sL80XTx25PKTXY0mVOmXIrfydWS0e/p1TsrPS7gwdoN73Zz2rUfIQTAdyhnyFI29NftaEB69Lnve3FN82Skn821HUeGrc3ItPHTSnPAksCHvgNIL9EWfY6vYULO8EtPSnQ4pGgkWuQqU/e4Lty7VlLqp+7v/m6djxedBzo7DQsoTdxf6FjXj2z/5UCIieoovP+8RQwL5z/zk7LjKxlDnzyhEDCHvudYx70lzGAp3m3LoLAjZCwrKZNY+fU6gzjixUm4XjAgMBAAECggEAGH/w0Ohw0svW5DN4mgvaXKmGFjBuRHW351FQaB2lJx2j1ck2Qm4nR6cy1/rS37ifNQNrk1vsp8rmMAzofSjaLxRFaRrTmGIRtpoVusaD7FXb/9MdI91w8n5IOsSSUbvM2WixWeC9qvi+Jg5X0wfL0x0Jg8+zyiF+yglGJ5nJvKEdWCyohM8z7qE2K/zuoMyqXIW316BbmAAmD8jNRiTSTgXn7sjiZl63wc2orkQYGOx46TeK6ez90wweGGDGf3+YxAQuoFWdakSW9bYV//kfgNdIHUdZBoDbdOnYPeJHiD7u7lmAFCn+U8inLS27s6gFe4IWekE4ziN0q7N/ebyiIQKBgQDYqPW8DS18CvQdk1gA78x8QpR0tTMPPkLsq1JXdfyZuStqY1fkTms7bpYLFRlh188vVo4ffqyHaxlYRvkxfFlWEJOgZy1eLsR75Rubq1DBAvSxuL/V51ddou81WsN5+IT8Qr6RxjKUlVBSXjPDXBtbKH3lrn8ySk7h6ShIjny+cQKBgQDFUK7ntqsJDJu29BBXNyQua+OGxC6rldWc2y+gH2i91eMQvMVJjE+rkRBglwuAsre3ELt29AQPSFXq1FuAlSeIRwySqBIVssclPQbutDNSD9HUHJOYULooesmfkBesFmcVxnzzsHvMZyUu6pbjbERAvjXxrUvc20gq7d8VE8hbkwKBgQDWgSmR/mX6+olIQtoNS11j5TM//SpJPDZcRR5n8yudMqRWV3bsVet60vkAjeosYdMBpitd6Td9dz6HlPUg1mFIgW73j09ugNUNaP6Vd96iyX9j+WsMp1drIGa+p1cDilZ3vskYYGcxjkcQ1a1gDPAUp5lF7iaGruU8a2/zrga5MQKBgGc9zzaYoqdqfHNfAsnPpVPQyc0zC0Rmcs3O9f1vUcu6hUO1sfjIvMsFbS9M+QzO9keILr6P8SvZ6nKjyHjgEj5BBrgZztShpYe7hcwSZ6PxeRXmGeghnTYfAS5HI8u8MRX4tFqBplUORytkPa0jchb6L5mT1lTqO7mSmx4ZKsWXAoGAGZuTuOd4lXKrQ4nM3NuG4qEfWc4sJgg1y+9C88Za2b6kKvQ8nBj97rFX1kfFKckkp5qGmdKsqCTDKbj/t6in7Cd/zsW8Zdf/lqWtbAA6j5S8hhUswYwIpt8ruJBtTDpTaRokIaw6wivTSLUMYfr1lWqfE9KBmvUOxS35kVA5rIM="'
+  --form 'hash="{{hash_value}}"' \
+  --form 'var1="{
+    \"authpayuid\": \"25511473084\",
+    \"requestId\": \"9a900b2f-85e2-4034-aaa9-9c71e1d2af14\",
+    \"amount\": \"100.00\",
+    \"debitDate\": \"2026-03-20\",
+    \"invoiceDisplayNumber\": \"19976ec0-c01f-4f6f-886b-8ea614f5fd83\"
+  }"' \
+  --form 'salt="{{salt_value}}"' 
   ```
 
   #### UPI
@@ -61,9 +67,15 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
   --form 'form="2"' \
   --form 'key="smsplus"' \
   --form 'command="pre_debit_SI"' \
-  --form 'hash="6e6a34a932bb56bc160cc6b3b40af72e7cfd6cfbf9153edce7b866fe9b87d6d03303e60f810bb7cf2559695bde8033c442e73a8adcfd0957bd8e6fee17b4df37"' \
-  --form 'var1="{\"authpayuid\":\"25600438037\",\"requestId\":\"c03f0265-b802-4cd9-8a09-1f679957e02e\",\"amount\":\"100.00\",\"debitDate\":\"2026-03-20\",\"invoiceDisplayNumber\":\"ad52cb45-76ae-4aad-8245-b2eb5e737f17\"}"' \
-  --form 'salt="1b1b0"'
+  --form 'hash="{{hash_value}}"' \
+  --form 'var1="{
+    \"authpayuid\": \"25600438037\",
+    \"requestId\": \"c03f0265-b802-4cd9-8a09-1f679957e02e\",
+    \"amount\": \"100.00\",
+    \"debitDate\": \"2026-03-20\",
+    \"invoiceDisplayNumber\": \"ad52cb45-76ae-4aad-8245-b2eb5e737f17\"
+  }"' \
+  --form 'salt="{{salt_value}}"'
   ```
 </Accordion>
 
