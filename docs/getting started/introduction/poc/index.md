@@ -119,19 +119,13 @@ Accelerate your integration workflow with our net banking Postman collection for
   <p>This accordion is open by default. The title is rendered as a heading. You can put any content here: tables, code blocks, or more MDX. Users can collapse or expand by clicking the header.</p>
 </AccordionOpen>
 
-<NewBadge title="Getting Started" />
+
 
 <br />
 
-<NewBadge title="API Reference" headingLevel={2} />
-
 <br />
 
-<Callout icon="📘" theme="info">
-  <NewBadge title="What's New!" asHeading={false} />
-
-  Lorem Ispum
-</Callout>
+<br />
 
 <br />
 
@@ -211,12 +205,6 @@ Accelerate your integration workflow with our net banking Postman collection for
 </script>
 `}</HTMLBlock>
 
-// Preview for Readme CMS (component must appear after exports)
+<br />
 
-<NewBadge title="Getting Started" />
-
-<Callout icon="👍" theme="okay">
-  <NewBadge title="What's New!" />
-</Callout>
-
-<NewBadge title="Getting Started" />
+<br />
