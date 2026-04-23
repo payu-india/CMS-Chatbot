@@ -172,19 +172,6 @@ Use the following bankcode values to identify the reward provider in both the to
   | transactionAmount                        | The amount to be processed in the transaction for the given payment instrument.                                                                                                                                             | 512              |
 </Accordion>
 
-<Accordion title="Field Descriptions in earnPaymentInstruments" icon="fa-table">
-  Use the `earnPaymentInstruments` array when the customer is paying via Card or UPI and accruing reward points on the same transaction. Earn is supported for both **TWID** and **Zillion**.
-
-  | Field                                   | Description                                                                                                                                                                                                                 | Example  |
-  | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-  | name                                    | The name of the payment instrument. Use **RD** for the reward instrument.                                                                                                                                                   | RD       |
-  | bankCode                                | The bank code identifier for the reward instrument. Use `TWIDLS` for **TWID** Rewards or `ZLS` for **Zillion** Rewards.                                                                                                     | TWIDLS   |
-  | transactionAmount                       | The amount processed against the reward instrument. For Earn requests this is typically `"0"`, since reward points are accrued (not redeemed).                                                                              | 0        |
-  | rewardId<br /> `mandatory for TWID`     | The unique reward identifier returned in the `rewardId` field of the Fetch Balance response.                                                                                                                                | 270940   |
-  | rewardName<br /> `mandatory for TWID`   | `String` Brand name of the reward program. Pass the value received as `issuerDetailDTO.brandName` in the Fetch Balance response (for example, `Woodland`, `HDFC Bank`). **Mandatory for TWID, not applicable for Zillion.** | Woodland |
-  | cardBin<br /> `mandatory for TWID`      | The TWID Rewards card BIN (first 6 digits of the underlying card).                                                                                                                                                          | 524216   |
-  | cardLastFour<br /> `mandatory for TWID` | The last four digits of the TWID Rewards card.                                                                                                                                                                              | 0009     |
-</Accordion>
 
 #### Cards
 
