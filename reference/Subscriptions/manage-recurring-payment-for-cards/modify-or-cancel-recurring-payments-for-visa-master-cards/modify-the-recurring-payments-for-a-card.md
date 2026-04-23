@@ -458,88 +458,16 @@ The description for the **si_details** parameter (JSON format):
   <tbody>
     <tr>
       <td>
-        billingCycle
-        `mandatory`
+        action
+        `mandatory for cards`
       </td>
 
       <td>
-        Billing Cycle defines whether the customer needs to be charged over Daily, Weekly basis, Monthly or Yearly basis or one time.
+        This field is used to modify or cancel an existing subscription. Include **modify** to modify a subscription.
       </td>
 
       <td>
-        ONCE
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        billingInterval
-        `mandatory`
-      </td>
-
-      <td>
-        Billing Interval is closely coupled with the **billingCycle** field and denotes at what frequency, the subscription plan needs to be executed. For monthly subscriptions, parameter values need to be sent in the request are:
-
-        * billingCycle = MONTHLY
-        * billingInterval = 1
-
-        Similarly, by keeping the following values, customer will be charged once in every 3 days:
-
-        * billingCycle = DAILY
-        * billingInterval = 3
-      </td>
-
-      <td>
-        * billingCycle = MONTHLY
-        * billingInterval = 1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        billingAmount
-        `mandatory`
-      </td>
-
-      <td>
-        The billing amount is passed in XX. XX format.
-        In use cases where **billingCycle = ADHOC**, amount passed is treated as maximum amount since billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.  For UPI, **billingAmount** should not be more than INR 15000 as it is the maximum limit allowed for UPI currently.
-      </td>
-
-      <td>
-        INR 2000
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        billingCurrency
-        `mandatory`
-      </td>
-
-      <td>
-        This field must be passed as "INR" .
-      </td>
-
-      <td>
-        INR
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        paymentStartDate
-        `mandatory`
-      </td>
-
-      <td>
-        The start date of the billing plan is specified in this field with the YYYY-MM-DD format.
-
-        **Note**: All the subsequent recurring transactions will be processed from this date onwards as per **billingCycle** and **billingInterval** fields combination. This date acts as reference point for recurring payments. **Note**: In case of UPI, send the current date here and any other value will be ignored.
-      </td>
-
-      <td>
-        2022-02-14
+        modify
       </td>
     </tr>
 
@@ -562,98 +490,17 @@ The description for the **si_details** parameter (JSON format):
 
     <tr>
       <td>
-        siTokenRequestor
-        `mandatory for saved cards`
+        billingAmount
+        `mandatory`
       </td>
 
       <td>
-        This is optional and is only needed before 30th September, 2022 to activate new mandate setups in a controlled manner than activating it completely on all users. This involves creating token at the time of susbcription set. You can include any of the following values::
-
-        * **1** : PayU will tokenise the card and share it in same subscription setup call with issuers for subscription setup.
-        * **2**: PayU will do the authorization on plain card. Later, the same response will be shared to merchant.
+        The billing amount is passed in XX. XX format.
+        In use cases where **billingCycle = ADHOC**, amount passed is treated as maximum amount since billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.  For UPI, **billingAmount** should not be more than INR 15000 as it is the maximum limit allowed for UPI currently.
       </td>
 
       <td>
-        1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        remarks
-        `optional`
-      </td>
-
-      <td>
-        This field is used to provide remarks on PSP applications during the registration transaction of UPI.  For cards and Net Banking, this parameter has no significance.  Character limit = 50.
-
-        **Note**: This field is applicable only for UPI.
-      </td>
-
-      <td>
-        Subscription for a year
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        billingLimit
-        `optional`
-      </td>
-
-      <td>
-        For UPI, this field is used to decide the period corresponding which the debit from the mandate recurring date can happen and this mandate registration date is confirmed during registration transaction of UPI.
-
-        **Note**: This field is applicable only for UPI.
-        The possible values are:
-
-        * **ON** = Use this parameter to deduct on a specific date
-        * **BEFORE** = Use this parameter to deduct before and on a specific date
-        * **AFTER** = Use this parameter to After and on the specific date
-
-        **Note**: If no value is passed, 'AFTER' is considered by default.
-      </td>
-
-      <td>
-        ON = 2022-02-20
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        billingRule
-        `optional`
-      </td>
-
-      <td>
-        For UPI, this field is used to decide the limitation on the amount of recurring debit against the mandate amount which is set during registration transaction of UPI.
-
-        **Note**: This field is applicable only for UPI.
-        The possible values are:
-
-        * **MAX** = This is the maximum amount that a merchant can debit, that is, merchant can debit lesser or equal to this amount for a recurring transaction.
-        * **EXACT**= This the exact amount that a merchant can debit in recurring debits.
-
-        Note: If no value is passed, 'MAX' is considered by default.
-      </td>
-
-      <td>
-        MAX = 5000
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        billingDate
-        `optional`
-      </td>
-
-      <td>
-        **Applicable for UPI only**: This field is used to decide the date/day, basis which the recurring debit should happen. This can be ignored and the debit will happen as per the start date in every cycle.
-      </td>
-
-      <td>
-        FORTNIGHTLY = 7
+        INR 2000
       </td>
     </tr>
 
@@ -670,21 +517,6 @@ The description for the **si_details** parameter (JSON format):
 
       <td>
 
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        action
-        `mandatory for cards`
-      </td>
-
-      <td>
-        This field is used to modify or cancel an existing subscription. Include **modify** to modify a subscription.
-      </td>
-
-      <td>
-        modify
       </td>
     </tr>
   </tbody>
