@@ -203,7 +203,18 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
   ```curl
   curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data 'form=2&key=smsplus&command=pre_debit_si&var1={"authpayuid": "25600438037", "requestId": "REQ-2024-001-SEQ2", "debitDate": "2026-03-20", "amount": "100.00", "invoiceDisplayNumber": "INV-12345", "mandateSeqNo": 2}&hash=d9e184476637002a3c2db99a7324673647a313de96e574b7a9812e99153dc1a47f0f9da9b32e3a7382bb46dce09a5eb8d4471c85e1bfc1b0dac380a67ff07b43'
+  --data 'form=2' \
+  --data 'key=smsplus' \
+  --data 'command=pre_debit_si' \
+  --data 'var1={
+    "authpayuid": "25600438037",
+    "requestId": "REQ-2024-001-SEQ2",
+    "debitDate": "2026-03-20",
+    "amount": "100.00",
+    "invoiceDisplayNumber": "INV-12345",
+    "mandateSeqNo": 2
+  }' \
+  --data 'hash={{hash_value}}'
   ```
 </Accordion>
 
