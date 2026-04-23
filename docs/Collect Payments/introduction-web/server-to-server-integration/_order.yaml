@@ -2,6 +2,7 @@
 - integrate-with-s2s-for-cards-classic-integration
 - classic-integration-for-cards-otp-integration
 - integrate-with-decoupled-flow-s2s
+- copy-of-decoupled-flow-integration
 - integrate-with-direct-authorization-s2s
 - upi-collection-s2s
 - upi-credit-card-integration-s2s
@@ -13,4 +14,3 @@
 - hashing-request-and-response
 - legacy-flow-for-server-to-server
 - decoupled-flow-authentication-only-integration
-- copy-of-decoupled-flow-integration
