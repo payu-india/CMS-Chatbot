@@ -23,7 +23,7 @@ Integrate RewardX  to enable customers to redeem their loyalty points during che
   </Card>
 
   <Card title="2. Initiate Payment with PayU" href="#step-2-initiate-payment-with-payu">
-    Prepare PayU payment POST with splitInfo parameters and generate the required hash
+    Prepare PayU payment POST with SPLITPAY parameters and generate the required hash
   </Card>
 
   <Card title="3. Check Response from PayU" href="#step-3-check-response-from-payu">
