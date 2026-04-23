@@ -27,7 +27,7 @@ This section describes the complete integration workflow for TWID Rewards Seamle
   </Card>
 
   <Card title="2. Initiate Payment with PayU" href="#step-2-initiate-payment-with-payu">
-    Prepare PayU payment POST with SPLITPAY, TWIDX, splitInfo parameters and generate the required hash
+    Prepare PayU payment POST with the splitInfo parameter and generate the required hash
   </Card>
 
   <Card title="3. Check Response from PayU" href="#step-3-check-response-from-payu">
@@ -38,7 +38,6 @@ This section describes the complete integration workflow for TWID Rewards Seamle
     Perform final verification step to confirm transaction completion
   </Card>
 </Cards>
-
 
 ## Step 2: Initiate Payment with PayU
 
