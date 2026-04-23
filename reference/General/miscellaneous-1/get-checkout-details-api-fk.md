@@ -101,15 +101,14 @@ This API retrieves available payment options and eligibility details for a given
 
 ### var1 Object Parameters Description
 
-| Field                                                | Description                                                                                                      | Example                              |
-| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| requestId<br /><code>mandatory</code>                | `String` Unique identifier for the request to track the API call.                                                | `"9078698a15d746feadcffbdaf979a198"` |
-| transactionDetails<br /><code>mandatory</code>       | `Object` Contains transaction-specific information including amount and charges.                                 | See transactionDetails table below   |
-| useCase<br /><code>mandatory</code>                  | `Object` Configuration flags to control eligibility checks and limit information in response.                    | See useCase table below              |
-| customerDetails<br /><code>mandatory</code>          | `Object` Customer information required for eligibility checks.                                                   | See customerDetails table below      |
-| filters<br /><code>optional</code>                   | `Object` Filter criteria to specify which payment options to retrieve.                                           | See filters table below              |
-| transactionDetails<br /><code>mandatory</code>       | SHA512 hash of `key\|command\|var1\|salt`                                                                        |                                      |
-| getExtendedPaymentDetails<br /><code>optional</code> | `Boolean`This field must be set to `true` to get the extended details such as ROI. The default value is `false`. | true                                 |
+| Field                                          | Description                                                                                   | Example                              |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------ |
+| requestId<br /><code>mandatory</code>          | `String` Unique identifier for the request to track the API call.                             | `"9078698a15d746feadcffbdaf979a198"` |
+| transactionDetails<br /><code>mandatory</code> | `Object` Contains transaction-specific information including amount and charges.              | See transactionDetails table below   |
+| useCase<br /><code>mandatory</code>            | `Object` Configuration flags to control eligibility checks and limit information in response. | See useCase table below              |
+| customerDetails<br /><code>mandatory</code>    | `Object` Customer information required for eligibility checks.                                | See customerDetails table below      |
+| filters<br /><code>optional</code>             | `Object` Filter criteria to specify which payment options to retrieve.                        | See filters table below              |
+| transactionDetails<br /><code>mandatory</code> | SHA512 hash of `key\|command\|var1\|salt`                                                     |                                      |
 
 ### transactionDetails Parameters
 
@@ -123,10 +122,11 @@ This API retrieves available payment options and eligibility details for a given
 ### useCase Parameters
 
 | Parameter                                              | Description                                                                                                                                     | Example |
-| ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| :----------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- | :------ |
 | checkNTBCustomerEligibility<br /><code>optional</code> | `Boolean` Whether to check new-to-bank (NTB) customer eligibility.                                                                              | `false` |
 | checkCustomerEligibility<br /><code>optional</code>    | `Boolean` Whether to check general customer eligibility for payment options.                                                                    | `true`  |
 | returnUserLimit<br /><code>optional</code>             | `Boolean` Whether to include per-user limit information in the response. When `true`, eligibility and maximumEligibleLimit fields are returned. | `true`  |
+| getExtendedPaymentDetails<br /><code>optional</code>   | `Boolean`This field must be set to `true` to get the extended details such as ROI. The default value is `false`.                                | true    |
 
 ### customerDetails Parameters
 
