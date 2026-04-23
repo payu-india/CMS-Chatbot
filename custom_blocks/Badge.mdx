@@ -43,7 +43,7 @@ export const NewBadge = (props) => {
     return badge;
   }
 
-  const wrapperClass = "flex flex-wrap items-center gap-2 !mb-0";
+  const wrapperClass = "flex flex-wrap items-center gap-2";
 
   if (!asHeading) {
     return (
@@ -55,15 +55,13 @@ export const NewBadge = (props) => {
   }
 
   const level = Math.min(6, Math.max(1, Number(headingLevel)));
-  const HeadingTag = `h${level}`;
 
-  return (
-    <HeadingTag className={wrapperClass}>
-      <span>{title}</span>
-      {badge}
-    </HeadingTag>
-  );
+  if (level === 1) return <h1 className={wrapperClass}><span>{title}</span>{badge}</h1>;
+  if (level === 2) return <h2 className={wrapperClass}><span>{title}</span>{badge}</h2>;
+  if (level === 3) return <h3 className={wrapperClass}><span>{title}</span>{badge}</h3>;
+  if (level === 4) return <h4 className={wrapperClass}><span>{title}</span>{badge}</h4>;
+  if (level === 5) return <h5 className={wrapperClass}><span>{title}</span>{badge}</h5>;
+  return <h6 className={wrapperClass}><span>{title}</span>{badge}</h6>;
 };
 
-// Preview for Readme CMS (component must appear after exports)
 <NewBadge title="Getting Started" />
