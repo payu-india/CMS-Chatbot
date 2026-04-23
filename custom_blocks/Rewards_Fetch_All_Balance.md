@@ -290,37 +290,8 @@ Use the Fetch All Balance API to retrieve reward point balances from multiple sp
   ```
 </Accordion>
 
-<Accordion title="Sample request for Zillon only" icon="fa-code">
-  ```curl
-  curl -X POST "https://apitest.payu.in/loyalty-points/v1/balance/all" \
-    -H "Content-Type: application/json" \
-    -H "mid: YOUR_MERCHANT_ID" \
-    -d '{
-  {
-  "payuMerchantKey": "travelibibo",
-  "payuMerchantId": "3",
-  "name": "Earn onlhyp",
-  "category": "Bobby Shop",
-  "companyName": "BobbySharmaCorp",
-  "alias": "alias",
-  "email": "test123@gmail.com",
-  "phone": "9999999999",
-  "active": 1,
-  "loyaltyProvider": "ZILLION"
-  }`
-  ```
-</Accordion>
 
-<Accordion title="Sample respone for Zillion only" icon="fa-code">
-  **Sample responses with various cases**
 
-  | Modal                   | Sample JSON                                                                                                                                                                                                                               |
-  | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | Zillion Earn is enabled | `json<br/>{"usableAmount": 0, "usablePoints": 0, "userStatus": "ACTIVE", "availablePoints": 107072, "earnConfig": {"points": 400000, "amount": 100000.00}}<br/>`                                                                          |
-  | Zillion Burn is enabled | `json<br/>{"usableAmount": 10012, "usablePoints": 11212, "userStatus": "ACTIVE", "availablePoints": 107072}<br/>`                                                                                                                         |
-  | Both are enabled        | `json<br/>{"usableAmount": 26768.00, "usablePoints": 107072, "userStatus": "ACTIVE", "availablePoints": 107072, "earnConfig": {"points": 400000, "amount": 100000.00}, "revisedEarnConfig": {"points": 389292, "amount": 97323.00}}<br/>` |
-  | Non-Registered User     | `json<br/>{"userStatus": "NOT_REGISTERED", "earnConfig": {"points": 400000, "amount": 100000.00}}<br/>`                                                                                                                                   |
-</Accordion>
 
 > 📘 Note:
 >
