@@ -211,4 +211,9 @@ Accelerate your integration workflow with our net banking Postman collection for
 </script>
 `}</HTMLBlock>
 
-<br />
+// Preview for Readme CMS (component must appear after exports)
+<NewBadge title="Getting Started" />
+
+<Callout icon="📘" theme="info">
+  <NewBadge title="What's New!" />
+</Callout>
