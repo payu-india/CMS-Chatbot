@@ -1,7 +1,7 @@
 ---
 title: Copy of Decoupled Flow Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
