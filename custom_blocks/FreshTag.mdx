@@ -5,7 +5,8 @@ name: FreshTag
  * FreshTag - Readme CMS Custom Component
  *
  * A glowing animated "New" tag. Use the `heading` prop so the tag
- * stays on the same line as the page title.
+ * stays on the same line as the page title. Set `showTag={false}` to
+ * render only the heading (no tag).
  *
  * Note: do NOT use `title` as a prop name - it is a reserved HTML attribute
  * and Readme's MDX/React pipeline may strip it before it reaches the component.
@@ -14,7 +15,8 @@ name: FreshTag
  *   <FreshTag heading="Getting Started" />
  *   <FreshTag heading="API Reference" headingLevel={2} />
  *   <FreshTag heading="Note" asHeading={false} />
- * Or tag only: <FreshTag />
+ *   <FreshTag heading="Plain Title" showTag={false} />
+ *   <FreshTag />
  */
 
 export const FreshTag = (props) => {
@@ -22,6 +24,7 @@ export const FreshTag = (props) => {
     heading = '',
     headingLevel = 1,
     asHeading = true,
+    showTag = true,
     text = 'New',
     size = 'sm',
     className = '',
@@ -34,13 +37,13 @@ export const FreshTag = (props) => {
         ? 'px-2 py-0.5 text-[10px] font-semibold'
         : 'px-1.5 py-0.5 text-[10px] font-semibold';
 
-  const tag = (
+  const tag = showTag ? (
     <span
       className={`inline-flex flex-shrink-0 items-center align-middle rounded-md bg-emerald-500 text-white shadow-[0_0_12px_rgba(16,185,129,0.5)] animate-pulse ${sizeClasses} ${className}`}
     >
       {text}
     </span>
-  );
+  ) : null;
 
   if (!heading) {
     return tag;
