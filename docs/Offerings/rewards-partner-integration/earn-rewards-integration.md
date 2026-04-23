@@ -19,18 +19,18 @@ Integrate RewardX  to enable customers to redeem their loyalty points during che
 
 <Cards columns={2}>
   <Card title="1. Fetch All Balance" href="#step-1-fetch-all-balance">
+   Fetch the balance of all the loyalty points integrated.
+  </Card>
+
+  <Card title="2. Initiate Payment with PayU" href="#step-2-initiate-payment-with-payu">
     Prepare PayU payment POST with SPLITPAY, TWIDX, splitInfo parameters and generate the required hash
   </Card>
 
-  <Card title="1. Initiate Payment with PayU" href="#step-2-initiate-payment-with-payu">
-    Prepare PayU payment POST with SPLITPAY, TWIDX, splitInfo parameters and generate the required hash
-  </Card>
-
-  <Card title="2. Check Response from PayU" href="#step-3-check-response-from-payu">
+  <Card title="3. Check Response from PayU" href="#step-3-check-response-from-payu">
     Parse postback response and validate reverse hash from PayU
   </Card>
 
-  <Card title=". Verify the Payment" href="#step-4-verify-the-payment">
+  <Card title="4. Verify the Payment" href="#step-4-verify-the-payment">
     Perform final verification step to confirm transaction completion
   </Card>
 </Cards>
