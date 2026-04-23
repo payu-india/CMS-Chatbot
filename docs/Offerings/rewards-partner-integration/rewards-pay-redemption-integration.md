@@ -39,6 +39,10 @@ This section describes the complete integration workflow for TWID Rewards Seamle
   </Card>
 </Cards>
 
+<Rewards_Fetch_All_Balance />
+
+<br />
+
 ## Step 2: Initiate Payment with PayU
 
 <Accordion title="Request parameters" icon="fa-table">
