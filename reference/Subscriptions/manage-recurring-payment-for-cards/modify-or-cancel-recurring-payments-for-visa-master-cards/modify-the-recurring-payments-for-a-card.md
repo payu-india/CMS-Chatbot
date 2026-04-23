@@ -208,7 +208,7 @@ The following table describes the parameters for modifying the recurring payment
       </td>
 
       <td>
-        This parameter must be passed with the value as 2 to modify an already existing subscription/consent.
+        This parameter must be passed with the value as 3 to modify an already existing subscription/consent.
       </td>
 
       <td>
