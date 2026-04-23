@@ -347,9 +347,65 @@ Use the following bankcode values to identify the reward provider in both the to
 
 ## Step 3: Check response from PayU
 
+### Intermediate response 
+<Accordion title="Success scenario for cards part" icon="fa-code">
+```json
+{
+  "referenceId": "96ed9912ef9d1257afe9ba8839f11e60",
+  "order": 2,
+  "metaData": {
+    "referenceId": "96ed9912ef9d1257afe9ba8839f11e60",
+    "txnId": "37825f14-1439-4b80-9598-aca70c5510c7",
+    "txnStatus": "Enrolled",
+    "unmappedStatus": "pending",
+    "resendOtp": {
+      "attemptsLeft": true,
+      "isSupported": true
+    },
+    "submitOtp": {
+      "attemptsLeft": true
+    },
+    "bankName": "HDFC",
+    "bankLabel": "HDFC",
+    "type": "otp",
+    "expiryTimeout": 180,
+    "cancelUrl": "https://pp2api.payu.in/split-payment/transaction/v1/467e73c4544dbf3aa04f2cc5045ed7f3/cancel/96ed9912ef9d1257afe9ba8839f11e60",
+    "isSplitTransaction": true
+  },
+  "binData": {
+    "pureS2SSupported": true,
+    "issuingBank": "HDFC",
+    "category": "creditcard",
+    "cardType": "MAST",
+    "isDomestic": true
+  },
+  "result": {
+    "otpPostUrl": "https://pp2secure.payu.in/ResponseHandler.php",
+    "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vcHAyc2VjdXJlLnBheXUuaW4vNDllNGRiODQ3N2Y5NDQ3M2U3NzlhYmM5MzNlMGQ2ZWFjYTVlMjA4ZTNhMGQ2OGU3ZTM5YmIwODQwZTU3ODcxZTA5MWQzYjY1NzY0ZjVkOWI4N2RmN2I3MGQwYzMwMDQ0L2JhbmtBY3MiIG1ldGhvZD0icG9zdCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+    "actionUrl": "https://pp2api.payu.in/split-payment/transaction/v1/467e73c4544dbf3aa04f2cc5045ed7f3/success/96ed9912ef9d1257afe9ba8839f11e60"
+  },
+  "mode": "CC"
+}
+```
+</Accordion>
+<Accordion title="Failure scenario (Zillion + UPI)" icon="fa-code">
+```json
+{
+  "metaData": {
+    "message": "Bank was unable to authenticate.",
+    "referenceId": "29091d2f644f135f197c8c0c0579478d",
+    "statusCode": "SSER001",
+    "txnId": "ram123456",
+    "txnStatus": "Not_Enrolled",
+    "unmappedStatus": "failure"
+  },
+  "result": {},
+  "binData": []
+}
+```
+</Accordion>
+### Final Sample Success response (parsed)
 <ReverseHashing />
-
-### Sample Success response (parsed)
 
 <Accordion title="Success scenario (Zillion + UPI)" icon="fa-code">
   ```json
