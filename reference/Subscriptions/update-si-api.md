@@ -63,7 +63,7 @@ The **Update SI** API allows you to perform the following:
       </td>
 
       <td>
-        The value of the parameter will be passed as “subscription_with_payu”
+        The value of the parameter will be passed as `update_SI`.
       </td>
 
       <td>
