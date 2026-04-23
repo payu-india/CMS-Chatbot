@@ -18,7 +18,7 @@
         "tags": [
           "Misc"
         ],
-        "summary": "predebit",
+        "summary": "Predebit Notification API",
         "description": "predebit",
         "operationId": "predebit",
         "parameters": [
