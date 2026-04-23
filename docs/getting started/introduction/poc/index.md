@@ -119,8 +119,6 @@ Accelerate your integration workflow with our net banking Postman collection for
   <p>This accordion is open by default. The title is rendered as a heading. You can put any content here: tables, code blocks, or more MDX. Users can collapse or expand by clicking the header.</p>
 </AccordionOpen>
 
-
-
 <br />
 
 <br />
@@ -209,6 +207,26 @@ Accelerate your integration workflow with our net banking Postman collection for
 
 <FreshTag heading="Getting Started" />
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   <FreshTag heading="What's New!" />
 </Callout>
+
+<Callout icon="👍">
+  <FreshTag heading="Note" asHeading={false} />
+</Callout>
+
+<br />
+
+<FreshTag heading="Getting Started" />
+
+<FreshTag heading="API Reference" headingLevel={2} />
+
+<FreshTag heading="Note" asHeading={false} />
+
+<FreshTag heading="Plain Title" showTag={false} />
+
+<FreshTag heading="Subsection" headingLevel={3} showTag={false} />
+
+<FreshTag heading="Bold label" asHeading={false} showTag={false} />
+
+<FreshTag />
