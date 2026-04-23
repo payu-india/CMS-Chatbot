@@ -124,10 +124,10 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
 --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
 --form 'form="2"' \
 --form 'key="BmTY3G"' \
---form 'command="upi_mandate_revoke"' \
+--form 'command="mandate_revoke"' \
 --form 'var1="{\"authpayuid\":\"19504273314\",\"requestId\":\"test000212\"}"' \
---form 'hash="358fae564df0f392b959af59ec1445ca36d7a6749fc9dc70c4e5722eeb3a0ef8d11f02c124e319ce92cbb06e5611323f60d6020bae953953a2028408656fa573"' \
---form 'salt="{{salt}}"'
+--form 'hash="YOUR_HASH_VALUE"' \
+--form 'salt="YOUR_SALT_VALUE"'
 ```
 
 <br />
