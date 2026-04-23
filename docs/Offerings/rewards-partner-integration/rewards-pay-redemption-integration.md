@@ -17,9 +17,9 @@ metadata:
   robots: index
 ---
 
-Integrate TWID or Zillion rewards  to enable customers to redeem their TWID or Zillon loyalty points during checkout. Follow these sequential steps to implement a complete TWID or Zillion rewards integration.
+Integrate  Rewardx  to enable customers to redeem their loyalty points during checkout. Follow these sequential steps to implement a complete RewardX integration.
 
-This section describes the complete integration workflow for TWID Rewards Seamless Transactions. This integration involves the following steps:
+This section describes the complete integration workflow for RewardX Seamless Transactions. This integration involves the following steps:
 
 <Cards columns={2}>
   <Card title="1. Fetch All Balance" href="#step-1-fetch-all-balance">
@@ -350,11 +350,9 @@ Use the following bankcode values to identify the reward provider in both the to
 
 ## Step 3: Check response from PayU
 
-
 <ReverseHashing />
 
 ### Sample Success response (parsed)
-
 
 <Accordion title="Success scenario (Zillion + UPI)" icon="fa-code">
   ```json
