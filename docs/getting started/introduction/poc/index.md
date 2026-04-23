@@ -211,8 +211,10 @@ Accelerate your integration workflow with our net banking Postman collection for
   <FreshTag heading="What's New!" />
 </Callout>
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   <FreshTag heading="Note" asHeading={false} />
+
+  * <br />
 </Callout>
 
 <br />
