@@ -101,14 +101,15 @@ This API retrieves available payment options and eligibility details for a given
 
 ### var1 Object Parameters Description
 
-| Parameter                                      | Description                                                                                   | Example                              |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------ |
-| requestId<br /><code>mandatory</code>          | `String` Unique identifier for the request to track the API call.                             | `"9078698a15d746feadcffbdaf979a198"` |
-| transactionDetails<br /><code>mandatory</code> | `Object` Contains transaction-specific information including amount and charges.              | See transactionDetails table below   |
-| useCase<br /><code>mandatory</code>            | `Object` Configuration flags to control eligibility checks and limit information in response. | See useCase table below              |
-| customerDetails<br /><code>mandatory</code>    | `Object` Customer information required for eligibility checks.                                | See customerDetails table below      |
-| filters<br /><code>optional</code>             | `Object` Filter criteria to specify which payment options to retrieve.                        | See filters table below              |
-| transactionDetails<br /><code>mandatory</code> | SHA512 hash of `key\|command\|var1\|salt`                                                     |                                      |
+| Field                                                | Description                                                                                   | Example                              |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------ |
+| requestId<br /><code>mandatory</code>                | `String` Unique identifier for the request to track the API call.                             | `"9078698a15d746feadcffbdaf979a198"` |
+| transactionDetails<br /><code>mandatory</code>       | `Object` Contains transaction-specific information including amount and charges.              | See transactionDetails table below   |
+| useCase<br /><code>mandatory</code>                  | `Object` Configuration flags to control eligibility checks and limit information in response. | See useCase table below              |
+| customerDetails<br /><code>mandatory</code>          | `Object` Customer information required for eligibility checks.                                | See customerDetails table below      |
+| filters<br /><code>optional</code>                   | `Object` Filter criteria to specify which payment options to retrieve.                        | See filters table below              |
+| transactionDetails<br /><code>mandatory</code>       | SHA512 hash of `key\|command\|var1\|salt`                                                     |                                      |
+| getExtendedPaymentDetails<br /><code>optional</code> | `String`Get extended information such as ROI                                                  |                                      |
 
 ### transactionDetails Parameters
 
