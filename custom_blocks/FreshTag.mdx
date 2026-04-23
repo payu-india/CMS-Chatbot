@@ -1,0 +1,70 @@
+---
+name: FreshTag
+---
+/**
+ * FreshTag - Readme CMS Custom Component
+ *
+ * A glowing animated "New" tag. Use the `heading` prop so the tag
+ * stays on the same line as the page title.
+ *
+ * Note: do NOT use `title` as a prop name - it is a reserved HTML attribute
+ * and Readme's MDX/React pipeline may strip it before it reaches the component.
+ *
+ * Usage:
+ *   <FreshTag heading="Getting Started" />
+ *   <FreshTag heading="API Reference" headingLevel={2} />
+ *   <FreshTag heading="Note" asHeading={false} />
+ * Or tag only: <FreshTag />
+ */
+
+export const FreshTag = (props) => {
+  const {
+    heading = '',
+    headingLevel = 1,
+    asHeading = true,
+    text = 'New',
+    size = 'sm',
+    className = '',
+  } = props;
+
+  const sizeClasses =
+    size === 'lg'
+      ? 'px-2.5 py-1 text-xs font-semibold'
+      : size === 'md'
+        ? 'px-2 py-0.5 text-[10px] font-semibold'
+        : 'px-1.5 py-0.5 text-[10px] font-semibold';
+
+  const tag = (
+    <span
+      className={`inline-flex flex-shrink-0 items-center align-middle rounded-md bg-emerald-500 text-white shadow-[0_0_12px_rgba(16,185,129,0.5)] animate-pulse ${sizeClasses} ${className}`}
+    >
+      {text}
+    </span>
+  );
+
+  if (!heading) {
+    return tag;
+  }
+
+  const wrapperClass = "flex flex-wrap items-center gap-2";
+
+  if (!asHeading) {
+    return (
+      <span className={`font-bold ${wrapperClass}`}>
+        <span>{heading}</span>
+        {tag}
+      </span>
+    );
+  }
+
+  const level = Math.min(6, Math.max(1, Number(headingLevel)));
+
+  if (level === 1) return <h1 className={wrapperClass}><span>{heading}</span>{tag}</h1>;
+  if (level === 2) return <h2 className={wrapperClass}><span>{heading}</span>{tag}</h2>;
+  if (level === 3) return <h3 className={wrapperClass}><span>{heading}</span>{tag}</h3>;
+  if (level === 4) return <h4 className={wrapperClass}><span>{heading}</span>{tag}</h4>;
+  if (level === 5) return <h5 className={wrapperClass}><span>{heading}</span>{tag}</h5>;
+  return <h6 className={wrapperClass}><span>{heading}</span>{tag}</h6>;
+};
+
+<FreshTag heading="Getting Started" />
