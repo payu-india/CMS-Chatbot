@@ -207,4 +207,8 @@ Accelerate your integration workflow with our net banking Postman collection for
 
 <br />
 
-<br />
+<FreshTag heading="Getting Started" />
+
+<Callout icon="👍">
+  <FreshTag heading="What's New!" />
+</Callout>
