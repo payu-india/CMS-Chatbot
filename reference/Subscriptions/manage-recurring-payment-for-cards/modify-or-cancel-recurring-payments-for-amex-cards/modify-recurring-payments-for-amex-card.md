@@ -536,7 +536,7 @@ curl --location 'https://secure.payu.in/_payment' \
 --data-urlencode 'ccexpyr=2030' \
 --data-urlencode 'ccvv=123' \
 --data-urlencode 'ccname=Test User' \
---data-urlencode 'si_details={billingAmount:100.00,billingCurrency:INR,billingCycle:MONTHLY,billingInterval:1,paymentStartDate:2022-09-01,paymentEndDate:2022-12-01,authpayuid:403993715525316543,action:modify}' \
+--data-urlencode 'si_details={"action":"modify","paymentEndDate":"2030-04-13","billingAmount":"400.00","authPayuId":"999990000006391"}' \
 --data-urlencode 'hash={{hash_value}}'
 ```
 
