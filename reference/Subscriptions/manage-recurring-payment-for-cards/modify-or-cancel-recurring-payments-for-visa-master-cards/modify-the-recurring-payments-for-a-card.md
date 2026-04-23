@@ -208,7 +208,7 @@ The following table describes the parameters for modifying the recurring payment
       </td>
 
       <td>
-        This parameter must be passed with the value as 2 to modify an already existing subscription/consent.
+        This parameter must be passed with the value as 3 to modify an already existing subscription/consent.
       </td>
 
       <td>
@@ -694,16 +694,12 @@ The description for the **si_details** parameter (JSON format):
 
 For a yearly plan starting from 1st January 2019, having a monthly billing amount of INR 100, the plan details:
 
-```plaintext
+```json
 {
-  "billingAmount": "10.00",
-  "billingCurrency": "INR",
-  "billingCycle": "MONTHLY",
-  "billingInterval": 1,
-  "paymentStartDate": "2022-02-04",
-  "paymentEndDate": "2022-12-12",
-  "action": "modify",
-  "authPayuId": "123"
+  "action":"modify",
+  "paymentEndDate":"2030-04-13",
+  "billingAmount":"400.00",
+  "authPayuId":"999990000006391"
 }
 ```
 
