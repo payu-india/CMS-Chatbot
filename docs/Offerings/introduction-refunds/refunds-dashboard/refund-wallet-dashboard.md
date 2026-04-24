@@ -40,9 +40,9 @@ Click **Know More** in the ad similar to following screenshot and then click **A
 
 To add funds to your refund wallet:
 
-1. Navigate to **Explore Pay** > **Post Payments** tab.
+1. Navigate to **Explore Products** and navigate to **Settlement & Refund Upgrades**section.
 
-<Image align="center" alt="Explore PayU > Post Payment tab" border={true} src="https://files.readme.io/4f0a2e60bcb9623a6e337bb1099c984a283a1d513f5122a60956a411aca1e61f-dashboard_explore_payu_post_payments_tab.png" className="border" />
+<Image align="center" alt="Explore PayU > Post Payment tab" border={true} src="https://files.readme.io/bbd4ccd0737b82d2c81eaec9037c89c3344cc3e64bbad84df5eabd805a864dff-Screenshot_2026-04-24_at_3.28.32_PM.png" className="border" />
 
 2. Select the **Refund Wallet** tile.
 3. Click the **Add Funds** button.
@@ -51,14 +51,13 @@ To add funds to your refund wallet:
 
 <Image align="center" alt="Refund Wallets > Add Fund Popup Page" src="https://files.readme.io/658c821c585d8fcff00edb08f03b10d2e57b53942837a0ef7c001d8db9dbc813-dashboard_refund_wallets_add_fund_popup.png" />
 
-<Callout icon="📘" theme="info">
-  **Note**: Transfer funds from your Settlement-linked account only. Amounts transferred from other accounts will be rejected.
-</Callout>
-
 4. Transfer funds from your Settlement-linked account.
 
 <Callout icon="📘" theme="info">
-  **Notes**:  Funds added to the Refund Wallet **cannot be withdrawn** from PayU Escrow and are used only for processing refunds.
+  **Notes**:  
+
+  * Funds added to the Refund Wallet **cannot be withdrawn** from PayU Escrow and are used only for processing refunds.
+  * Transfer funds from your Settlement-linked account only. Amounts transferred from other accounts will be rejected.
 </Callout>
 
 ## Configure Refund Wallet
@@ -92,17 +91,6 @@ The _Customer Notifications_ page is displayed.
 <Image align="center" alt="Configure Refund Waleet Notifications.png" border={true} src="https://files.readme.io/18703b0ca7316b87ccab5588e851e255d3c33222c8a7bf8ba2b597e8be855dba-dashboard_refunds_notifications.png" className="border" />
 
 5. Update the email for notifications.
-
-### Configure Payment Link Reminders
-
-To configure the payment link reminders:
-
-1. Navigate to **Payment Link Reminders** tab.
-
-<Image align="center" alt="Refund Wallets Payment Link Reminders Configuration" border={true} width="450px" src="https://files.readme.io/f6a2cc98dd97b08179651b225618e34fab83046bac856016dc826f7ef9edd43d-dashboard_explore_refund_wallets_payment_link_reminders.png" className="border" />
-
-2. In the **For links with an expiry date** field,  enter the days before expiry when the reminder must be sent.
-3. In the **For links without any expiry date** field, remove number of days before expiry or retain all of them.
 
 ## View Refund Wallet Ledger
 
