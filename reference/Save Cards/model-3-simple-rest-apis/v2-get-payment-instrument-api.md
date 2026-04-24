@@ -19,10 +19,10 @@ HTTP Method:  **GET**
 
 **Environment**
 
-|            |                                                                                              |
-| :--------- | :------------------------------------------------------------------------------------------- |
-| Test       | [https://test.payu.in/storecard/instrument/v1](https://test.payu.in/storecard/instrument/v1) |
-| Production | [https://info.payu.in/storecard/instrument/v1](https://info.payu.in/storecard/instrument/v1) |
+|            |                                                                                                    |
+| :--------- | :------------------------------------------------------------------------------------------------- |
+| Test       | [https://apitest.payu.in/storecard/instrument/v1](https://apitest.payu.in/storecard/instrument/v1) |
+| Production | [https://info.payu.in/storecard/instrument/v1](https://info.payu.in/storecard/instrument/v1)       |
 
 ## Request header
 
