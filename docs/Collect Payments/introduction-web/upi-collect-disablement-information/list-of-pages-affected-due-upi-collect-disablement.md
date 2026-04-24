@@ -8,9 +8,9 @@ metadata:
 The following integration guides will be replaced with the following Note and reference to above page:
 
 <Callout icon="⚠️" theme="warning">
-  **UPI Collect Deprecation**
+  **NPCI Mandate**: The UPI Collect flow will be sunset effective 28 February 2026. After this date, your customers will no longer be able to initiate payments or register UPI mandates by manually entering a Virtual Payment Address (VPA), UPI ID, or mobile number.
 
-  The UPI Collect flow will be **deprecated effective 28 February 2026**. After this date, your customers will no longer be able to initiate payments or register UPI mandates by manually entering a Virtual Payment Address (VPA), UPI ID, or mobile number.
+  For more information,  refer to [UPI Collect Disablement Information](doc:upi-collect-disablement-information).
 </Callout>
 
 * [Collect Payments with UPI - Seamless](doc:collect-payments-with-upi-seamless)
