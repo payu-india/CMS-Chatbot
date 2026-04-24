@@ -108,39 +108,38 @@ curl --location 'https://apitest.payu.in/storecard/instrument/v1?userCredentials
 
 ```json
 {
-  "message": "Success",
-  "status": 1,
-  "result": {
-    "user_cards": {
-      "13b390284be7ef8acf8": {
-        "cardNo": "XXXXXXXXXXXX1258",
-        "cardMode": "CC",
-        "par": "0185NPMT1F8OS22Y4X0UU6AQUL8R1",
-        "oneClickStatus": "",
-        "oneClickCardAlias": "",
-        "cardToken": "13b390284be7ef8acf8",
-        "oneClickFlow": "",
-        "cardName": "testAll",
-        "nameOnCard": "DUMMY",
-        "cardType": "CC",
-        "isExpired": false,
-        "cardExpiryMonth": 12,
-        "cardExpiryYear": 2026,
-        "networkToken": {
-          "tokenValue": "4761360000000009",
-          "isExpired": false,
-          "tokenExpiryMonth": 12,
-          "tokenExpiryYear": 2026,
-          "tokenBin": "476136"
-        },
-        "cardCVV": "0",
-        "isDomestic": "Y",
-        "cardBin": "476136",
-        "cardBrand": "VISA"
-      }
-      // ... more tokens
+    "message": "Success",
+    "status": 1,
+    "result": {
+        "user_cards": {
+            "2d1e53f353cd446d3e5d8d": {
+                "cardNo": "XXXXXXXXXXXX1258",
+                "cardMode": "CC",
+                "par": "V0010013021320427651459792018",
+                "oneClickStatus": "",
+                "oneClickCardAlias": "",
+                "cardToken": "2d1e53f353cd446d3e5d8d",
+                "oneClickFlow": "",
+                "cardName": "testAll",
+                "nameOnCard": "DUMMY",
+                "cardType": "CC",
+                "isExpired": false,
+                "cardExpiryMonth": 12,
+                "cardExpiryYear": 2034,
+                "networkToken": {
+                    "tokenValue": "4489682380114436",
+                    "isExpired": false,
+                    "tokenExpiryMonth": 12,
+                    "tokenExpiryYear": 2034,
+                    "tokenBin": "448968"
+                },
+                "cardCVV": "0",
+                "isDomestic": "Y",
+                "cardBin": "476136",
+                "cardBrand": "VISA"
+            }
+        }
     }
-  }
 }
 ```
 
