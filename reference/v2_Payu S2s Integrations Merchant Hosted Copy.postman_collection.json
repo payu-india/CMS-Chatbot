@@ -1,0 +1,284 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "[v2] Payu S2s Integrations Merchant Hosted Copy",
+    "description": "Complete API collection for PayU Cross Border integration including S2S flows, cards, UPI, mandate registration, and recurring payments. Created from Jira CTP-168 requirements.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://test.payu.in"
+    }
+  ],
+  "tags": [
+    {
+      "name": "1. Server to Server (S2S) - Cards",
+      "description": "Server to Server integration for cross border with S2S flow parameters"
+    },
+    {
+      "name": "1. Server to Server (S2S) - Cards > S2s APIs for Tokenisation",
+      "description": "| **Card Number** | **Network** | **Expiry** | **CVV** |\n| 5506900480000008 | MAST | 05/2030 | 123 |\n| 4895370077346937 | VISA | 05/2030 | 123 |\n| 36082500000126 | DINR | 05/2030 | 123 |\n| 370295061673669 | AMEX | 03/2030 | 1234 |\n| 6082015309577308 | RUPAY | 05/2030 | 123 |\n\n  \nCard numbers for tokenisation in UAT environment"
+    }
+  ],
+  "paths": {
+    "/storecard/card/v1": {
+      "post": {
+        "tags": [
+          "1. Server to Server (S2S) - Cards > S2s APIs for Tokenisation"
+        ],
+        "summary": "save_payment_instrument",
+        "description": "        ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "userCredential": "sms:123",
+                  "cardName": "testAll",
+                  "cardMode": "CC",
+                  "cardType": "CC",
+                  "nameOnCard": "test",
+                  "cardNo": "4761360079851258",
+                  "cardExpiryMonth": 12,
+                  "cardExpiryYear": 2029
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{authorization}}"
+          },
+          {
+            "name": "date",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{date}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "1. Server to Server (S2S) - Cards > S2s APIs for Tokenisation"
+        ],
+        "summary": "delete_payment_instrument",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{date}}"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{authorization}}"
+          },
+          {
+            "name": "userCredential",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "sms:123"
+          },
+          {
+            "name": "cardToken",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2d1ab4c2f453f25bc9b2d8"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/storecard/instrument/v1": {
+      "get": {
+        "tags": [
+          "1. Server to Server (S2S) - Cards > S2s APIs for Tokenisation"
+        ],
+        "summary": "get_payment_instrument",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{authorization}}"
+          },
+          {
+            "name": "date",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{date}}"
+          },
+          {
+            "name": "userCredentials",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "sms:123"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/storecard/card/v1/cryptogram": {
+      "post": {
+        "tags": [
+          "1. Server to Server (S2S) - Cards > S2s APIs for Tokenisation"
+        ],
+        "summary": "Cryptogram",
+        "description": "Generated from cURL: curl --request POST \\\n     --url https://test.payu.in/merchant/postservice.php \\\n     --header 'accept: text/html; charset=UTF-8' \\\n     --header 'content-type: application/x-www-form-urlencoded' \\\n     --data key=JPM7Fg \\\n     --data command=get_payment_details \\\n     --data var1=kshitij:tomar \\\n     --data var2=5506900496715219 \\\n     --data var3=10 \\\n     --data var4=INR \\\n     --data var5=NETWORK \\\n     --data hash=696d0c8ebbdda3653931cb9c5ec7c7e1987acd075de77a0276432276bba5c2b5a17356c779d78419fefb5c418998bad616c604f769c24c41ff2e3d954cc35bb4",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "userCredential": "testuser:testuser123",
+                  "cardToken": "8da719a3742ca6fe1663d",
+                  "amount": 10,
+                  "currency_type": "INR",
+                  "tokenType": null
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "117256"
+          },
+          {
+            "name": "date",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{date}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{authorization}}"
+          },
+          {
+            "name": "userCredential",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "sms:123"
+          },
+          {
+            "name": "cardToken",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2d17e9808c7693151df761"
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "10"
+          },
+          {
+            "name": "currency_type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "INR"
+          },
+          {
+            "name": "tokenType",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "PAYU"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
