@@ -170,6 +170,7 @@ This API retrieves available payment options and eligibility details for a given
 ```
 
 ## Sample Response
+
 **Without Extended Payment Details**
 
 ```json
@@ -263,6 +264,7 @@ This API retrieves available payment options and eligibility details for a given
   "status": 1
 }
 ```
+
 **With Extended Payment Details**
 
 ```json
@@ -270,14 +272,14 @@ This API retrieves available payment options and eligibility details for a given
   "requestId": "9078612a15d746feadcffbdaf979a198",
   "transactionDetails": {
     "source": null,
-    "amount": 912,
+    "amount": 47990,
     "pre_authorize": null,
     "additional_charges": null
   },
   "useCase": {
     "checkNTBCustomerEligibility": false,
     "checkCustomerEligibility": true,
-    "returnUserLimit": true
+    "returnUserLimit": true,
     "getExtendedPaymentDetails" : true
   },
   "customerDetails": {
