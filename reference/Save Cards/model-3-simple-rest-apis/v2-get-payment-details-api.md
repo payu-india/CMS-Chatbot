@@ -12,6 +12,7 @@ hidden: false
 metadata:
   robots: index
 ---
+
 This API allows merchants to retrieve payment details (including the cryptogram for a network token) for a stored card token.
 
 HTTP Method:  **POST**
@@ -69,7 +70,7 @@ HTTP Method:  **POST**
   </tbody>
 </Table>
 
-### Body parameters
+### Query parameters
 
 <Table>
   <thead>
@@ -145,54 +146,49 @@ HTTP Method:  **POST**
 ## Sample request
 
 ```bash
-curl --location --request POST 'https://test.payu.in/storecard/card/v1/cryptogram' \
-  --header 'Content-Type: application/json' \
-  --header 'mid: 117256' \
-  --header 'date: {{date}}' \
-  --header 'Authorization: {{authorization}}' \
-  --data '{
-    "userCredential": "testuser:testuser123",
-    "cardToken": "8da719a3742ca6fe1663d",
-    "amount": 10,
-    "currency_type": "INR",
-    "tokenType": null
-}'
+curl --location --request POST 'https://apitest.payu.in/storecard/card/v1/cryptogram?userCredential=sms%3A123&cardToken=2d264984a4fa7253d4a4d9&amount=10&currency_type=INR&tokenType=PAYU' \
+--header 'Content-Type: application/json' \
+--header 'mid: 117256' \
+--header 'date: Fri, 24 Apr 2026 09:32:42 GMT' \
+--header 'Authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="f65970652dcd74b0cbd00361636fe04fc340274fa4f86984580032182b7c1a8911d9c18c637504c5809f630dde189349f3aa49572274fa9e909e3edc3a19996c"' \
+--header 'Cookie: PHPSESSID=krida5voc39gqosfud8tt6n8as' \
+--data ''
 ```
 
 ## Sample response
 
 ```json
 {
-  "message": "Instrument details",
-  "status": 1,
-  "result": {
-    "oneClickFlow": "",
-    "oneClickStatus": "",
-    "cardType": "VISA",
-    "trid": "400000340044",
-    "networkToken": {
-      "tokenValue": "4761360000000009",
-      "tokenExpiryMonth": 12,
-      "tokenExpiryYear": 2026
-    },
-    "cardMode": "",
-    "par": "ZCLY85YBYQ4Q8D6162O8M0V414GK7",
-    "tokenReferenceId": "3dc50cce023cf4d7dd243c9af272c5c6",
-    "cardNo": "XXXXXXXXXXXX1258",
-    "oneClickCardAlias": "",
-    "cardToken": "9350516de374f7bab4cd2",
-    "cardName": "",
-    "cryptogram": "AgAAAGQBdCZtW8sAmbHTg0UAAAA="
-  }
+    "message": "Instrument details",
+    "status": 1,
+    "result": {
+        "oneClickFlow": "",
+        "oneClickStatus": "",
+        "cardType": "VISA",
+        "trid": "400000340044",
+        "networkToken": {
+            "tokenValue": "4489682380114436",
+            "tokenExpiryMonth": 12,
+            "tokenExpiryYear": 2034
+        },
+        "cardMode": "",
+        "par": "V0010013021320427651459792018",
+        "tokenReferenceId": "d708fb5c7273580e21d91faa506b4301",
+        "cardNo": "XXXXXXXXXXXX1258",
+        "oneClickCardAlias": "",
+        "cardToken": "2d1e569bf1f6b150a32f70",
+        "cardName": "",
+        "cryptogram": "BAAAAAAAtZF+jUIAmbHTgnIAAAg="
+    }
 }
 ```
 
 ## Response parameters
 
-| Parameter | Description                                                                                                                          | Example              |
-| :-------- | :----------------------------------------------------------------------------------------------------------------------------------- | :------------------- |
-| message   | Response message indicating the operation result.                                                                                    | `Instrument details` |
-| status    | Status code for the operation. `1` for success, `0` for failure.                                                                     | `1`                  |
+| Parameter | Description                                                                                                                                              | Example              |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------- |
+| message   | Response message indicating the operation result.                                                                                                        | `Instrument details` |
+| status    | Status code for the operation. `1` for success, `0` for failure.                                                                                         | `1`                  |
 | result    | JSON object containing the payment instrument details. For more information, refer to [result JSON fields description](#result-json-fields-description). |                      |
 
 ### result JSON fields description
