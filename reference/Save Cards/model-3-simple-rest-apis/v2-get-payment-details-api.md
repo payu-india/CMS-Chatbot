@@ -19,10 +19,10 @@ HTTP Method:  **POST**
 
 **Environment**
 
-|            |                                                                                                        |
-| :--------- | :----------------------------------------------------------------------------------------------------- |
-| Test       | [https://test.payu.in/storecard/card/v1/cryptogram](https://test.payu.in/storecard/card/v1/cryptogram) |
-| Production | [https://info.payu.in/storecard/card/v1/cryptogram](https://info.payu.in/storecard/card/v1/cryptogram) |
+|            |                                                                                                              |
+| :--------- | :----------------------------------------------------------------------------------------------------------- |
+| Test       | [https://apitest.payu.in/storecard/card/v1/cryptogram](https://apitest.payu.in/storecard/card/v1/cryptogram) |
+| Production | [https://info.payu.in/storecard/card/v1/cryptogram](https://info.payu.in/storecard/card/v1/cryptogram)       |
 
 ## Request header
 
