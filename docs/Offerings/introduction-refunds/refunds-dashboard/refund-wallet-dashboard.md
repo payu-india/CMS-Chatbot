@@ -8,7 +8,7 @@ metadata:
 The Refund Wallet allows you to manage, recharge, and configure your refund funds for faster and more transparent refund processing. This guide walks you through activating, configuring, recharging, and monitoring your Refund Wallet.
 
 <Callout icon="📘" theme="info">
-  **Funds cannot be withdrawn**: Funds in the Refund Wallet are non-withdrawable and strictly for refunds. As per RBI guidelines, Pre-funding withdrawal is not permitted as per RBI PA-PG guidelines. Please refer to circular no. RBI/DPSS/2025-26/141CO.DPSS.POLC.No.S-633/02-14-008/2025-26. You are requested to utilize the funds for the specific purpose for which this amount is being transferred or for any future refunds
+  **Funds cannot be withdrawn**: Funds in the Refund Wallet are non-withdrawable and strictly for refunds. Pre‑funding withdrawals are not permitted under RBI PA‑PG guidelines (refer to RBI circular no. RBI/DPSS/2025-26/141CO.DPSS.POLC.No.S-633/02-14-008/2025-26).The transferred funds must be used only for their intended purpose or for future refunds.
 </Callout>
 
 <Callout icon="📘" theme="info">
