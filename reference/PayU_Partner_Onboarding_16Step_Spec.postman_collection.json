@@ -7,10 +7,10 @@
   },
   "servers": [
     {
-      "url": "https://test-partner.payu.in"
+      "url": "http://{{partner_base_url}}"
     },
     {
-      "url": "https://test-accounts.payu.in"
+      "url": "http://{{auth_base_url}}"
     }
   ],
   "tags": [
@@ -257,7 +257,7 @@
         }
       }
     },
-    "/api/v1/merchants/11f1-1d1b-d2fdba94-b63d-02f4a48620c1/update": {
+    "/api/v1/merchants/{uuid}/update": {
       "put": {
         "tags": [
           "Step 10 — Update: Addresses"
@@ -332,6 +332,16 @@
               "type": "string"
             },
             "example": "application/json"
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Merchant UUID from Step 01 create merchant response",
+            "example": "{{uuid}}"
           }
         ],
         "responses": {
@@ -387,7 +397,7 @@
               "schema": {
                 "type": "object",
                 "example": {
-                  "merchant_id": "760181268",
+                  "merchant_id": "{{mid}}",
                   "mobile": "{{merchant_mobile}}",
                   "consent": true
                 }
@@ -461,7 +471,7 @@
               "schema": {
                 "type": "object",
                 "example": {
-                  "merchant_id": "760181268",
+                  "merchant_id": "{{mid}}",
                   "otp": "123456"
                 }
               }
@@ -534,7 +544,7 @@
               "schema": {
                 "type": "object",
                 "example": {
-                  "merchant_id": "760181268",
+                  "merchant_id": "{{mid}}",
                   "consent": true
                 }
               }
@@ -602,7 +612,7 @@
         }
       }
     },
-    "/api/v1/merchants/11f1-1d1b-d2fdba94-b63d-02f4a48620c1/submit_ckyc_consent": {
+    "/api/v1/merchants/{uuid}/submit_ckyc_consent": {
       "post": {
         "tags": [
           "Step 03 — CKYC Verification"
@@ -618,7 +628,7 @@
                   "consents": [
                     {
                       "name": "skip_ckyc_flow",
-                      "provided_by_uuid": "11f1-1dde-2a2ebd78-868c-02f4a48620c1"
+                      "provided_by_uuid": "{{partner_uuid}}"
                     }
                   ]
                 }
@@ -650,6 +660,16 @@
               "type": "string"
             },
             "example": "application/json"
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Merchant UUID from Step 01 create merchant response",
+            "example": "{{uuid}}"
           }
         ],
         "responses": {
@@ -823,7 +843,7 @@
         }
       }
     },
-    "/api/v3/merchants/760181268/kyc_document": {
+    "/api/v3/merchants/{mid}/kyc_document": {
       "post": {
         "tags": [
           "Step 15 — Upload KYC Documents"
@@ -873,6 +893,16 @@
               "type": "string"
             },
             "example": "application/json"
+          },
+          {
+            "name": "mid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Merchant MID (numeric) from Step 01 response",
+            "example": "{{mid}}"
           }
         ],
         "responses": {
@@ -902,7 +932,7 @@
         }
       }
     },
-    "/api/v1/merchants/11f1-1d1b-d2fdba94-b63d-02f4a48620c1/signatory_details": {
+    "/api/v1/merchants/{uuid}/signatory_details": {
       "put": {
         "tags": [
           "Step 12 — Add/Update UBO"
@@ -1110,6 +1140,16 @@
               "type": "string"
             },
             "example": "application/json"
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Merchant UUID from Step 01 create merchant response",
+            "example": "{{uuid}}"
           }
         ],
         "responses": {
@@ -1137,7 +1177,7 @@
         }
       }
     },
-    "/api/v3/merchants/760181268/kyc_document/generate_digilocker_link": {
+    "/api/v3/merchants/{mid}/kyc_document/generate_digilocker_link": {
       "post": {
         "tags": [
           "Step 09 — DigiLocker Verification"
@@ -1182,6 +1222,16 @@
               "type": "string"
             },
             "example": "application/json"
+          },
+          {
+            "name": "mid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Merchant MID (numeric) from Step 01 response",
+            "example": "{{mid}}"
           }
         ],
         "responses": {
@@ -1244,7 +1294,7 @@
               "schema": {
                 "type": "object",
                 "example": {
-                  "merchant_id": "760181268"
+                  "merchant_id": "{{mid}}"
                 }
               }
             }
@@ -1331,7 +1381,7 @@
         }
       }
     },
-    "/api/v1/merchants/11f1-1d1b-d2fdba94-b63d-02f4a48620c1/submit_business_members": {
+    "/api/v1/merchants/{uuid}/submit_business_members": {
       "put": {
         "tags": [
           "Step 13 — Business Members & KMP"
@@ -1409,6 +1459,16 @@
               "type": "string"
             },
             "example": "application/json"
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Merchant UUID from Step 01 create merchant response",
+            "example": "{{uuid}}"
           }
         ],
         "responses": {
@@ -1449,7 +1509,7 @@
         }
       }
     },
-    "/api/v3/merchants/760181268/kyc_document/required_docs": {
+    "/api/v3/merchants/{mid}/kyc_document/required_docs": {
       "get": {
         "tags": [
           "Step 14 — Fetch Required KYC Documents"
@@ -1473,6 +1533,16 @@
               "type": "string"
             },
             "example": "application/json"
+          },
+          {
+            "name": "mid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Merchant MID (numeric) from Step 01 response",
+            "example": "{{mid}}"
           }
         ],
         "responses": {
@@ -1808,7 +1878,7 @@
         }
       }
     },
-    "/api/v3/merchants/760181268/kyc_document/{kyc_document_uuid}": {
+    "/api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}": {
       "get": {
         "tags": [
           "Step 15 — Upload KYC Documents"
@@ -1832,6 +1902,16 @@
               "type": "string"
             },
             "example": "application/json"
+          },
+          {
+            "name": "mid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Merchant MID (numeric) from Step 01 response",
+            "example": "{{mid}}"
           },
           {
             "name": "kyc_document_uuid",
@@ -2015,6 +2095,16 @@
             "example": "application/json"
           },
           {
+            "name": "mid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Merchant MID (numeric) from Step 01 response",
+            "example": "{{mid}}"
+          },
+          {
             "name": "kyc_document_uuid",
             "in": "path",
             "schema": {
@@ -2048,7 +2138,7 @@
         }
       }
     },
-    "/api/v1/merchants/11f1-1d1b-d2fdba94-b63d-02f4a48620c1/generate_merged_document_for_esign": {
+    "/api/v1/merchants/{uuid}/generate_merged_document_for_esign": {
       "get": {
         "tags": [
           "Step 16 — E-Sign Agreement"
@@ -2072,6 +2162,16 @@
             },
             "description": "Bearer token with 'client_manage_agreement' scope.",
             "example": "Bearer {{access_token}}"
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Merchant UUID from Step 01 create merchant response",
+            "example": "{{uuid}}"
           }
         ],
         "responses": {
@@ -2099,7 +2199,7 @@
         }
       }
     },
-    "/api/v1/merchants/760181268": {
+    "/api/v1/merchants/{merchant_id}": {
       "get": {
         "tags": [
           "Utilities"
@@ -2123,6 +2223,16 @@
               "type": "string"
             },
             "example": "application/json"
+          },
+          {
+            "name": "merchant_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Merchant MID used by GetMerchant utility endpoint",
+            "example": "{{merchant_id}}"
           }
         ],
         "responses": {
