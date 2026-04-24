@@ -5,9 +5,16 @@ hidden: false
 metadata:
   robots: index
 ---
-This API allows merchants to retrieve payment details for a stored card token.
+---
+title: Get Payment Details API
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
+This API allows merchants to retrieve payment details (including the cryptogram for a network token) for a stored card token.
 
-HTTP Method:  **GET**
+HTTP Method:  **POST**
 
 **Environment**
 
@@ -62,7 +69,7 @@ HTTP Method:  **GET**
   </tbody>
 </Table>
 
-### Query parameters
+### Body parameters
 
 <Table>
   <thead>
@@ -96,7 +103,7 @@ HTTP Method:  **GET**
       </td>
 
       <td>
-        `String`Token for the card whose payment details are being fetched.
+        `String` Token for the card whose payment details are being fetched.
       </td>
     </tr>
 
@@ -107,7 +114,7 @@ HTTP Method:  **GET**
       </td>
 
       <td>
-        `String`Amount to validate or process for this payment.
+        `Number` Amount to validate or process for this payment.
       </td>
     </tr>
 
@@ -118,18 +125,18 @@ HTTP Method:  **GET**
       </td>
 
       <td>
-        `String`Currency in which the payment is being processed.
+        `String` Currency in which the payment is being processed (for example, `INR`).
       </td>
     </tr>
 
     <tr>
       <td>
         tokenType
-        `mandatory`
+        `optional`
       </td>
 
       <td>
-        `String`Type of token.
+        `String` Type of token. Possible values include `PAYU`, `NETWORK`, `ISSUER`, or `null`.
       </td>
     </tr>
   </tbody>
@@ -138,9 +145,18 @@ HTTP Method:  **GET**
 ## Sample request
 
 ```bash
-curl --location --request GET 'https://test.payu.in/storecard/card/v1/cryptogram?userCredential=testuser%3Atestuser123&cardToken=9350516de374f7bab4cd2&amount=10&currency_type=INR&tokenType=null' \
+curl --location --request POST 'https://test.payu.in/storecard/card/v1/cryptogram' \
+  --header 'Content-Type: application/json' \
+  --header 'mid: 117256' \
   --header 'date: {{date}}' \
   --header 'Authorization: {{authorization}}' \
+  --data '{
+    "userCredential": "testuser:testuser123",
+    "cardToken": "8da719a3742ca6fe1663d",
+    "amount": 10,
+    "currency_type": "INR",
+    "tokenType": null
+}'
 ```
 
 ## Sample response
@@ -173,17 +189,11 @@ curl --location --request GET 'https://test.payu.in/storecard/card/v1/cryptogram
 
 ## Response parameters
 
-| Parameter         | Description                                                                                                                                                                                                            | Example                         |
-| :---------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------ |
-| message           | Response message indicating the operation result.                                                                                                                                                                      | `Instrument details`            |
-| status            | Status code for the operation. `1` for success, `0` for failure.                                                                                                                                                       | `1`                             |
-| result            | Result of response in JSON format. For more information, refer to [result JSON fields description](#result-josn-fields-description)                                                                                    |                                 |
-| par               | Payment Account Reference.                                                                                                                                                                                             | `LI0K7PL4VJNHJZ6LVQ7LWXHGD3LPS` |
-| cardNo            | Masked card number.                                                                                                                                                                                                    | `XXXXXXXXXXXX1114`              |
-| oneClickCardAlias | It is a non-sensitive, unique identifier (or token) that represents a customer's actual credit or debit card number (PAN), allowing them to make future purchases with a single click without re-entering card details | A\*\*\*176724***941             |
-| cardToken         | Card token.                                                                                                                                                                                                            | `1817ca29b7cdd28a0e406`         |
-| cardName          | Name on card.                                                                                                                                                                                                          | Ashsih K                        |
-| cryptogram        | Generated encrypted string for payment security.                                                                                                                                                                       | `AgAAAGQBdCZtW8sAmbHTg0UAAAA=`  |
+| Parameter | Description                                                                                                                          | Example              |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------- | :------------------- |
+| message   | Response message indicating the operation result.                                                                                    | `Instrument details` |
+| status    | Status code for the operation. `1` for success, `0` for failure.                                                                     | `1`                  |
+| result    | JSON object containing the payment instrument details. For more information, refer to [result JSON fields description](#result-json-fields-description). |                      |
 
 ### result JSON fields description
 
@@ -225,7 +235,7 @@ curl --location --request GET 'https://test.payu.in/storecard/card/v1/cryptogram
       </td>
 
       <td>
-        Wheter it allows a returning customer to complete a purchase with a single click or tap, without needing to re-enter card details (card number, CVV, or expiry date) or undergo additional 3D Secure authentication for every transaction.
+        Indicates whether the saved card allows the customer to complete a purchase with a single click or tap, without re-entering card details (card number, CVV, or expiry date) or undergoing additional 3D Secure authentication for every transaction.
       </td>
 
       <td>
@@ -243,7 +253,7 @@ curl --location --request GET 'https://test.payu.in/storecard/card/v1/cryptogram
       </td>
 
       <td>
-        `AMEX`
+        `VISA`
       </td>
     </tr>
 
@@ -253,11 +263,11 @@ curl --location --request GET 'https://test.payu.in/storecard/card/v1/cryptogram
       </td>
 
       <td>
-        Transaction ID.
+        Token Reference ID assigned by the network.
       </td>
 
       <td>
-        `400000340055`
+        `400000340044`
       </td>
     </tr>
 
@@ -267,7 +277,7 @@ curl --location --request GET 'https://test.payu.in/storecard/card/v1/cryptogram
       </td>
 
       <td>
-        The field contains the following fields:
+        Object containing the network token details:
 
         * **tokenValue**: The actual card/network token.
         * **tokenExpiryMonth**: Token expiry month.
@@ -275,13 +285,119 @@ curl --location --request GET 'https://test.payu.in/storecard/card/v1/cryptogram
       </td>
 
       <td>
-        `3711110000000001`
+        `{ "tokenValue": "4761360000000009", "tokenExpiryMonth": 12, "tokenExpiryYear": 2026 }`
       </td>
     </tr>
 
     <tr>
       <td>
+        cardMode
+      </td>
 
+      <td>
+        Card mode (for example, `CC` for Credit Card or `DC` for Debit Card).
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        par
+      </td>
+
+      <td>
+        Payment Account Reference – unique identifier for the card across environments.
+      </td>
+
+      <td>
+        `ZCLY85YBYQ4Q8D6162O8M0V414GK7`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        tokenReferenceId
+      </td>
+
+      <td>
+        Reference ID associated with the token.
+      </td>
+
+      <td>
+        `3dc50cce023cf4d7dd243c9af272c5c6`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardNo
+      </td>
+
+      <td>
+        Masked card number.
+      </td>
+
+      <td>
+        `XXXXXXXXXXXX1258`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        oneClickCardAlias
+      </td>
+
+      <td>
+        Non-sensitive, unique identifier (or token) that represents a customer's actual credit or debit card number (PAN), allowing them to make future purchases with a single click without re-entering card details.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardToken
+      </td>
+
+      <td>
+        Card token.
+      </td>
+
+      <td>
+        `9350516de374f7bab4cd2`
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cardName
+      </td>
+
+      <td>
+        Nickname assigned to the card at the time of saving.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        cryptogram
+      </td>
+
+      <td>
+        Generated encrypted string used for payment security.
+      </td>
+
+      <td>
+        `AgAAAGQBdCZtW8sAmbHTg0UAAAA=`
       </td>
     </tr>
   </tbody>
