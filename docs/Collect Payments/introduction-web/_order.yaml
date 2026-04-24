@@ -4,6 +4,7 @@
 - checkout-plus-integration
 - decoupled-flow-authn-authz-flow
 - server-to-server-integration
+- upi-collect-disablement-information
 - bank-and-card-codes-for-integration
 - collect-additional-charges
 - error-handling
@@ -12,4 +13,3 @@
 - general-faqs
 - faqs-for-review
 - faqs-for-web-checkout-integration
-- upi-collect-disablement-information
