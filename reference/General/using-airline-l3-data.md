@@ -14,8 +14,8 @@ This section includes the following:
 
 You must use the L3 fields in **_payment** API, where the airline data is collected (JSON only):
 
-```
-l3_details{
+```json
+l3_details = {
   "bookingReference": "MC12D8",
   "documentType": "PASSENGER_TICKET",
   "itinerary": {
