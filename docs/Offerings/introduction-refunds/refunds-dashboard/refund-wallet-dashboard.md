@@ -8,11 +8,14 @@ metadata:
 The Refund Wallet allows you to manage, recharge, and configure your refund funds for faster and more transparent refund processing. This guide walks you through activating, configuring, recharging, and monitoring your Refund Wallet.
 
 <Callout icon="📘" theme="info">
+  **Funds cannot be withdrawn**: Funds in the Refund Wallet are non-withdrawable and strictly for refunds.
+</Callout>
+
+<Callout icon="📘" theme="info">
   **Notes**:
 
-  * Refund Wallet is currently available to available to all normal merchants (excluding split settlement merchants, MCC merchants, FK, Amazon, and Myntra).
+  * Refund Wallet is currently available to all normal merchants (excluding split settlement merchants, MCC merchants, FK, Amazon, and Myntra).
   * You must only use your Settlement-linked account for adding funds.
-  * Funds in the Refund Wallet are non-withdrawable and strictly for refunds.
   * PayU suggests you regularly monitor your wallet balance and set up notifications to avoid refund delays.
 </Callout>
 
@@ -27,7 +30,7 @@ OR
 
 Click **Know More** in the ad similar to following screenshot and then click **Activate Now**.
 
-<Image align="center" alt="Activate Refund Wallet on Dashboard" border={false} src="https://files.readme.io/ffece402fa25ae70215a023ba438920f2b4970c7cb6aad1e647fa73cd60f2ea3-dashboard_refund_wallets_activate_ad.png" />
+<Image align="center" alt="Activate Refund Wallet on Dashboard" src="https://files.readme.io/ffece402fa25ae70215a023ba438920f2b4970c7cb6aad1e647fa73cd60f2ea3-dashboard_refund_wallets_activate_ad.png" />
 
 <Callout icon="📘" theme="info">
   **Note**: After the refund wallet is activated, you can set the refund wallet priority. For more information, refer to [Configure Refund Wallet](https://docs.payu.in/docs/refund-wallet-dashboard#configure-refund-wallet).
@@ -46,7 +49,7 @@ To add funds to your refund wallet:
 
    A popup page is displayed listing the VA, IFSC, and beneficiary details.
 
-<Image align="center" alt="Refund Wallets > Add Fund Popup Page" border={false} src="https://files.readme.io/658c821c585d8fcff00edb08f03b10d2e57b53942837a0ef7c001d8db9dbc813-dashboard_refund_wallets_add_fund_popup.png" />
+<Image align="center" alt="Refund Wallets > Add Fund Popup Page" src="https://files.readme.io/658c821c585d8fcff00edb08f03b10d2e57b53942837a0ef7c001d8db9dbc813-dashboard_refund_wallets_add_fund_popup.png" />
 
 <Callout icon="📘" theme="info">
   **Note**: Transfer funds from your Settlement-linked account only. Amounts transferred from other accounts will be rejected.
