@@ -25,44 +25,28 @@ name: HeaderAuthentication
   Where, \<Body data> contains the request Body posted with the request.
 </Accordion>
 
-  <Accordion title="Sample authorization header code" icon="fa-info-circle">
-    ```
-    var merchant_key = 'smsplus';
-    var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
+<Accordion title="Sample authorization header code" icon="fa-info-circle">
+```javascript
+var merchant_key = pm.environment.get('merchantKey') || 'PRiQvJ';
+var merchant_secret = pm.environment.get('merchantSalt') || 'mGHSxpD2iBVywParGQrGBlaXjnwkGJMQ';
 
-    // date
-    var date = new Date();
-    // var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-    date = date.toUTCString();
+// Generate current date in RFC 1123 format
+var date = new Date().toUTCString();
 
-    // authorization
-    var authorization = getAuthHeader(date);
-    console.log(authorization);
+// Get request body data (empty for GET/DELETE)
+var data = "";
+if (pm.request.method === "POST" && pm.request.body && pm.request.body.raw) {
+    data = pm.request.body.raw;
+}
 
-    function getAuthHeader(date) {
-    var AUTH_TYPE = 'sha512';
-    var data = isEmpty(request['data'])?"":request['data'];
-    var hash_string = data + '|' + date + '|' + merchant_secret;
-    console.log("Hash String is ", hash_string);
-    var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-    var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-    return authHeader;
-    }
+// Generate authorization header
+var hash_string = data + '|' + date + '|' + merchant_secret;
+var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
+var authorization = 'hmac username="' + merchant_key + '", algorithm="sha512", headers="date", signature="' + hash + '"';
 
-    pm.environment.set('date', date);
-    pm.environment.set('authorization', authorization);
-    pm.environment.set('merchant_key',merchant_key);
-    pm.environment.set('merchant_secret',merchant_secret);
-
-    function isEmpty(obj) {
-    for(var key in obj) {
-    if(obj.hasOwnProperty(key))
-    return false;
-    }
-    return true;
-    }
-    ```
-  </Accordion>
-
-
+// Set environment variables
+pm.environment.set('date', date);
+pm.environment.set('authorization', authorization);
+```
 <br />
+</Accordion>
