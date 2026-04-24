@@ -12,16 +12,17 @@ hidden: false
 metadata:
   robots: index
 ---
+
 The v2 **Save Card** API is used for saving a card to the vault. After successfully storing a card, it returns the `cardToken`.
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                                                                  |
-| :--------------------- | :------------------------------------------------------------------------------- |
-| Production Environment | [https://info.payu.in/storecard/card/v1](https://info.payu.in/storecard/card/v1) |
-| Test Environment       | [https://test.payu.in/storecard/card/v1](https://test.payu.in/storecard/card/v1) |
+|                        |                                                                                        |
+| :--------------------- | :------------------------------------------------------------------------------------- |
+| Production Environment | [https://info.payu.in/storecard/card/v1](https://info.payu.in/storecard/card/v1)       |
+| Test Environment       | [https://apitest.payu.in/storecard/card/v1](https://apitest.payu.in/storecard/card/v1) |
 
 ## Request Parameters
 
@@ -75,11 +76,12 @@ HTTP Method: **POST**
 ## Sample request
 
 ```bash
-curl --location 'https://test.payu.in/storecard/card/v1' \
-  --header 'authorization: {{authorization}}' \
-  --header 'date: {{date}}' \
-  --header 'Content-Type: application/json' \
-  --data '{
+curl --location 'https://apitest.payu.in/storecard/card/v1' \
+--header 'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="30d8f518edda5b0962c35c0057024cabb6e7f19727488cb1874e75652bcea7499811dbf3ddac419c50c2fe56a8e032129bb0d6eaeaa3f971b3c2b5ccbfd12aa3"' \
+--header 'date: Fri, 24 Apr 2026 07:05:59 GMT' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: PHPSESSID=krida5voc39gqosfud8tt6n8as' \
+--data '{
     "userCredential": "sms:123",
     "cardName": "testAll",
     "cardMode": "CC",
@@ -217,10 +219,10 @@ The following table describes the parameters in the response:
 
 ### result JSON fields description
 
-| Parameter    | Description                                                                                              | Example               |
-| ------------ | -------------------------------------------------------------------------------------------------------- | --------------------- |
-| cardToken    | The cardToken returned by PayU for the successful response.                                              | 18cc810671348c3d3241  |
-| cardNo       | The redacted card number with the last four digits that was saved.                                       | XXXXXXXXXXXX1258      |
-| cardName     | The nickname of the card that was saved.                                                                 | testAll               |
-| networkToken | The network token returned in this parameter (returned only when the merchant is PCI-DSS compliant).     | `1234 5*** 9*** 3456` |
-| issuerToken  | The issuer token returned in this parameter (returned only when the merchant is PCI-DSS compliant).      | `3456 7*** A*** EFGH` |
+| Parameter    | Description                                                                                          | Example               |
+| ------------ | ---------------------------------------------------------------------------------------------------- | --------------------- |
+| cardToken    | The cardToken returned by PayU for the successful response.                                          | 18cc810671348c3d3241  |
+| cardNo       | The redacted card number with the last four digits that was saved.                                   | XXXXXXXXXXXX1258      |
+| cardName     | The nickname of the card that was saved.                                                             | testAll               |
+| networkToken | The network token returned in this parameter (returned only when the merchant is PCI-DSS compliant). | `1234 5*** 9*** 3456` |
+| issuerToken  | The issuer token returned in this parameter (returned only when the merchant is PCI-DSS compliant).  | `3456 7*** A*** EFGH` |
