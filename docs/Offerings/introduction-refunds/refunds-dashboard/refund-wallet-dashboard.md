@@ -14,7 +14,7 @@ The Refund Wallet allows you to manage, recharge, and configure your refund fund
 <Callout icon="📘" theme="info">
   **Notes**:
 
-  * Refund Wallet is currently available to all normal merchants (excluding split settlement merchants, and MCC merchants).
+  * Refund Wallet is currently available to all normal merchants (excluding split settlement merchants and MCC merchants).
   * You must only use your Settlement-linked account for adding funds.
   * PayU suggests you regularly monitor your wallet balance and set up notifications to avoid refund delays.
 </Callout>
