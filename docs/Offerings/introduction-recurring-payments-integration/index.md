@@ -55,6 +55,8 @@ To enable subscription for your customer using various payment modes, it involve
   2. [Pre-Debit Notification API](ref:pre_debit_notification_api)
   3. [Recurring Payment Transaction API](ref:recurring_payment_api)
 
+<NPCI_Mandate />
+
 ## Choose the Method to Implement Subscription
 
 PayU offers the following methods to implement subscriptions for your customers:
