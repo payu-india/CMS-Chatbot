@@ -10,6 +10,8 @@ metadata:
 next:
   description: ''
 ---
+<NPCI_Mandate />
+
 The merchant initiates a call to PayU with the SI details, pg, bankcode, and pre-authorization amount. This amount is considered the Block Amount. Using these details, PayU will then relay the callback with the current status to the merchant.
 
 The **pre_authorize** parameter is used for pre-authorize payments using the seamless integration with the **_payment** API.
@@ -18,38 +20,38 @@ The **pre_authorize** parameter is used for pre-authorize payments using the sea
   Automatically generate code including hashing for your eCommerce website to integrate UPI OTM - PayU Hosted Checkout with zero coding knowledge:
 
   <HTMLBlock>{`
-                          <style>
-                          .tooltip-btn {
-                              position: relative;
-                              background-color: #4CAF50;
-                              color: white;
-                              padding: 10px 20px;
-                              border: none;
-                              border-radius: 5px;
-                              cursor: pointer;
-                              font-weight: bold; /* Added this line */
-                          }
-                          .tooltip-btn:hover::after {
-                              content: attr(data-tooltip);
-                              position: absolute;
-                              bottom: 125%;
-                              left: 50%;
-                              transform: translateX(-50%);
-                              background-color: #333;
-                              color: white;
-                              padding: 5px 10px;
-                              border-radius: 4px;
-                              white-space: nowrap;
-                              font-size: 12px;
-                              z-index: 1;
-                          }
-                          </style>
+                            <style>
+                            .tooltip-btn {
+                                position: relative;
+                                background-color: #4CAF50;
+                                color: white;
+                                padding: 10px 20px;
+                                border: none;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                font-weight: bold; /* Added this line */
+                            }
+                            .tooltip-btn:hover::after {
+                                content: attr(data-tooltip);
+                                position: absolute;
+                                bottom: 125%;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                background-color: #333;
+                                color: white;
+                                padding: 5px 10px;
+                                border-radius: 4px;
+                                white-space: nowrap;
+                                font-size: 12px;
+                                z-index: 1;
+                            }
+                            </style>
 
-                          <button onclick="window.open('https://payu.in/integrationlab/upiotm', '_blank')" 
-                                  class="tooltip-btn" 
-                                  data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate One-Time Mandate - PayU Hosted Checkout with zero coding knowledge.">
-                              Click Here to Generate Code
-                          </button>
+                            <button onclick="window.open('https://payu.in/integrationlab/upiotm', '_blank')" 
+                                    class="tooltip-btn" 
+                                    data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate One-Time Mandate - PayU Hosted Checkout with zero coding knowledge.">
+                                Click Here to Generate Code
+                            </button>
   `}</HTMLBlock>
 </Callout>
 
@@ -434,47 +436,47 @@ To capture a pre-authorized payment, use the following command. After the API co
 
 <Accordion title="Request parameters" icon="fa-code">
   <HTMLBlock>{`
-              <table>
-                <thead>
-                  <tr>
-                    <th>Parameter</th>
-                    <th>Description</th>
-                    <th>Example</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>key <code>mandatory</code></td>
-                    <td>This parameter is the unique Merchant Key provided by PayU for your merchant account. The Merchant Key acts as the unique identifier (primary key) to identify a Merchant Account in our database.</td>
-                    <td>YbfVda</td>
-                  </tr>
-                  <tr>
-                    <td>command <code>mandatory</code></td>
-                    <td>For initiating a capture transaction, the value of the parameter will be passed as <strong>capture_transaction</strong></td>
-                    <td>capture_transaction</td>
-                  </tr>
-                  <tr>
-                    <td>hash <code>mandatory</code></td>
-                    <td>This parameter must contain the hash value to be calculated at merchant end. Hash logic for this API is:<br><code>sha512(key|command|var1|salt)</code></td>
-                    <td>5fcf2d7c2b...</td>
-                  </tr>
-                  <tr>
-                    <td>var1 <code>mandatory</code></td>
-                    <td>This parameter must contain the payuId that was generated by PayU as part of pre-authorize operation.</td>
-                    <td>403993715523409521</td>
-                  </tr>
-                  <tr>
-                    <td>var2 <code>mandatory</code></td>
-                    <td>This parameter contains the token, that is, merchant unique reference number.</td>
-                    <td>TXN123456789</td>
-                  </tr>
-                  <tr>
-                    <td>var3 <code>mandatory</code></td>
-                    <td>This parameter must contain the amount to be captured.</td>
-                    <td>100.00</td>
-                  </tr>
-                </tbody>
-              </table>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>Description</th>
+                      <th>Example</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>key <code>mandatory</code></td>
+                      <td>This parameter is the unique Merchant Key provided by PayU for your merchant account. The Merchant Key acts as the unique identifier (primary key) to identify a Merchant Account in our database.</td>
+                      <td>YbfVda</td>
+                    </tr>
+                    <tr>
+                      <td>command <code>mandatory</code></td>
+                      <td>For initiating a capture transaction, the value of the parameter will be passed as <strong>capture_transaction</strong></td>
+                      <td>capture_transaction</td>
+                    </tr>
+                    <tr>
+                      <td>hash <code>mandatory</code></td>
+                      <td>This parameter must contain the hash value to be calculated at merchant end. Hash logic for this API is:<br><code>sha512(key|command|var1|salt)</code></td>
+                      <td>5fcf2d7c2b...</td>
+                    </tr>
+                    <tr>
+                      <td>var1 <code>mandatory</code></td>
+                      <td>This parameter must contain the payuId that was generated by PayU as part of pre-authorize operation.</td>
+                      <td>403993715523409521</td>
+                    </tr>
+                    <tr>
+                      <td>var2 <code>mandatory</code></td>
+                      <td>This parameter contains the token, that is, merchant unique reference number.</td>
+                      <td>TXN123456789</td>
+                    </tr>
+                    <tr>
+                      <td>var3 <code>mandatory</code></td>
+                      <td>This parameter must contain the amount to be captured.</td>
+                      <td>100.00</td>
+                    </tr>
+                  </tbody>
+                </table>
   `}</HTMLBlock>
 </Accordion>
 
