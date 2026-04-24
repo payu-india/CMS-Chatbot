@@ -14,7 +14,7 @@ The Refund Wallet allows you to manage, recharge, and configure your refund fund
 <Callout icon="📘" theme="info">
   **Notes**:
 
-  * Refund Wallet is currently available to all normal merchants (excluding split settlement merchants, MCC merchants, FK, Amazon, and Myntra).
+  * Refund Wallet is currently available to all normal merchants (excluding split settlement merchants, and MCC merchants).
   * You must only use your Settlement-linked account for adding funds.
   * PayU suggests you regularly monitor your wallet balance and set up notifications to avoid refund delays.
 </Callout>
@@ -54,7 +54,7 @@ To add funds to your refund wallet:
 4. Transfer funds from your Settlement-linked account.
 
 <Callout icon="📘" theme="info">
-  **Notes**:  
+  **Notes**:
 
   * Funds added to the Refund Wallet **cannot be withdrawn** from PayU Escrow and are used only for processing refunds.
   * Transfer funds from your Settlement-linked account only. Amounts transferred from other accounts will be rejected.
