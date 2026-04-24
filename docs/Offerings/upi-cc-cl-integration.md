@@ -1,7 +1,7 @@
 ---
 title: UPI CC & CL Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
