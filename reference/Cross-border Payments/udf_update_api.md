@@ -24,16 +24,7 @@ The UDF Update API allows you to update User Defined Fields (UDF1-UDF7 and addit
 | Test        | `https://pp1info.payu.in/merchant/postservice.php?form=2` |
 | Production  | `https://info.payu.in/merchant/postservice.php?form=2`    |
 
-## Request Header Parameters
-
-| Parameter                      | Description                                                                     | Example                                                                               |
-| ------------------------------ | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| date<br />`mandatory`          | `String`<br />Current date in RFC 2616 format (UTC).                            | `Sat, 13 Sep 2025 12:04:53 GMT`                                                       |
-| digest<br />`mandatory`        | `String`<br />Base64 encoded SHA256 digest of the request body.                 | `TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=`                                        |
-| authorization<br />`mandatory` | `String`<br />HMAC SHA512 authorization header containing merchant credentials. | `hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="<signature>"` |
-| Content-Type<br />`mandatory`  | `String`<br />Content type of the request.                                      | `application/json`                                                                    |
-
-## Request Body Parameters
+## Request Parameters
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -209,9 +200,6 @@ hash = sha512(key|command|var1|salt)
 
 ```bash
 curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
---header 'date: Sat, 13 Sep 2025 12:04:53 GMT' \
---header 'digest: TqXFCKZWbnYkBUP4/rBv1Fd3e+OVScQBZDav2mXSMw4=' \
---header 'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="65178bc488a7cd9cc631b722c6f37f439cd3ac9f2c9c018b30d9338d7a3d1fc6c518a316ad7d67becc2834473ecf125c730522ad04e62618b04a22e16acee33a"' \
 --header 'Content-Type: application/json' \
 --form 'key="smsplus"' \
 --form 'hash="17285990acb0dc4e64c23e7097575a39dc4fdb6d8162ea8d8c1b40a06c055c7fc6f2c6f25864010ced75417b249a576b54c17c805a4f1a4d8f5657878334f25b"' \
