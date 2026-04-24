@@ -12,6 +12,7 @@ hidden: false
 metadata:
   robots: index
 ---
+
 This v2 API is used to delete an existing card stored on PayU Vault.
 
 HTTP Method: **DELETE**
@@ -75,9 +76,10 @@ No body parameters for this API
 ## Sample request
 
 ```bash
-curl --location --request DELETE 'https://test.payu.in/storecard/card/v1?userCredential=sms%3A123&cardToken=2d1ab4c2f453f25bc9b2d8' \
-  --header 'authorization: {{authorization}}' \
-  --header 'date: {{date}}'
+curl --location --request DELETE 'https://apitest.payu.in/storecard/card/v1?userCredential=sms%3A123&cardToken=2d1e569bf1f6b150a32f70' \
+--header 'date: Fri, 24 Apr 2026 07:05:59 GMT' \
+--header 'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="30d8f518edda5b0962c35c0057024cabb6e7f19727488cb1874e75652bcea7499811dbf3ddac419c50c2fe56a8e032129bb0d6eaeaa3f971b3c2b5ccbfd12aa3"' \
+--header 'Cookie: PHPSESSID=krida5voc39gqosfud8tt6n8as'
 ```
 
 ## Sample Response
@@ -86,8 +88,8 @@ curl --location --request DELETE 'https://test.payu.in/storecard/card/v1?userCre
 
   ```json
   {
-    "message": "testAll card deleted successfully",
-    "status": 1
+      "message": "testAll card deleted successfully",
+      "status": 1
   }
   ```
 
@@ -95,7 +97,7 @@ curl --location --request DELETE 'https://test.payu.in/storecard/card/v1?userCre
 
   ```json
   {
-    "message": "card not found",
-    "status": 0
+      "message": "cardToken is invalid",
+      "status": 0
   }
   ```
