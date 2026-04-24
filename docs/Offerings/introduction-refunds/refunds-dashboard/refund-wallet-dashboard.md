@@ -86,10 +86,7 @@ To configure wallet threshold amount and email notifications:
 
 The _Customer Notifications_ page is displayed.
 
-4. Select the **Refunds** tab.
-
-<Image align="center" alt="Configure Refund Waleet Notifications.png" border={true} src="https://files.readme.io/18703b0ca7316b87ccab5588e851e255d3c33222c8a7bf8ba2b597e8be855dba-dashboard_refunds_notifications.png" className="border" />
-
+4. Select the **Refund Wallet** tab.
 5. Update the email for notifications.
 
 ## View Refund Wallet Ledger
