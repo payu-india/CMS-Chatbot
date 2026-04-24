@@ -1,5 +1,5 @@
 ---
-title: Get Payment Details API
+title: Get Payment Details API (Crytogram)
 deprecated: false
 hidden: false
 metadata:
