@@ -53,11 +53,11 @@ This guide describes the flow, specifications, and merchant configurations requi
 
 ## Supported Instruments
 
-| Instrument | Description | Split Tag Used |
-| --- | --- | --- |
-| **UPI CC** | UPI Credit Card | `CCONFEE` |
-| **UPI CL** | UPI Credit Line | `CCONFEE` |
-| **UPI PPI** | UPI Prepaid Payment Instrument (wallet) | `PCONFEE` |
+| Instrument  | Description                             | Split Tag Used |
+| ----------- | --------------------------------------- | -------------- |
+| **UPI CC**  | UPI Credit Card                         | `CCONFEE`      |
+| **UPI CL**  | UPI Credit Line                         | `CCONFEE`      |
+| **UPI PPI** | UPI Prepaid Payment Instrument (wallet) | `PCONFEE`      |
 
 <Callout icon="📘" theme="info">
   **Note**: NPCI does not currently support separate split tags for UPI CC and UPI CL — both share the **`CCONFEE`** tag. If different fees are configured at PayU for UPI CC and UPI CL, the **maximum** of the two is passed in the intent string.
@@ -73,6 +73,10 @@ This guide describes the flow, specifications, and merchant configurations requi
    * **Credit Card / Credit Line / Wallet** → the PSP app displays `base amount + applicable convenience fee` and debits this total from the chosen instrument.
    * **Savings / Current account** → the PSP app displays only the `base amount`; the convenience fee is **not added**.
 6. PayU receives the authorization with the **updated amount**, validates it against the configured fee, and forwards the result to the merchant via the standard payment response and webhook.
+
+<Image align="center" src="https://files.readme.io/2a2350e1e796f18ee61cd0b7a72363ab0e50a53942fd27c4d7398965ea00299b-upicc_flow.webp" />
+
+## Technical Flow 
 
 ```mermaid
 sequenceDiagram
@@ -101,14 +105,14 @@ sequenceDiagram
     PayU->>Merchant: Webhook / response with final amount
 ```
 
-## The `split` Parameter
+## The split Parameter
 
 The convenience fee is passed in the intent URI through the NPCI `split` parameter. The parameter has two sub-keys:
 
-| Sub-key | Description | Applicable Instruments |
-| --- | --- | --- |
-| **`CCONFEE`** | Convenience fee for UPI CC and UPI CL. As NPCI does not yet support separate tags for CC and CL, the **maximum** of the two configured fees is passed. | UPI CC, UPI CL |
-| **`PCONFEE`** | Convenience fee for UPI PPI (wallet). | UPI PPI |
+| Sub-key       | Description                                                                                                                                            | Applicable Instruments |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
+| **`CCONFEE`** | Convenience fee for UPI CC and UPI CL. As NPCI does not yet support separate tags for CC and CL, the **maximum** of the two configured fees is passed. | UPI CC, UPI CL         |
+| **`PCONFEE`** | Convenience fee for UPI PPI (wallet).                                                                                                                  | UPI PPI                |
 
 ### Sample Intent String
 
@@ -120,16 +124,16 @@ upi://pay?pa=testmerchant@acquiringbank&pn=merchant&tr=29999999999&tid=PPPXXXXXX
 
 Breakdown of the relevant parameters:
 
-| Parameter | Description |
-| --- | --- |
-| `pa` | Payee VPA (acquiring merchant VPA) |
-| `pn` | Payee name |
-| `tr` | Transaction reference |
-| `tid` | Transaction ID |
-| `am` | **Base** transaction amount |
-| `cu` | Currency (INR) |
-| `tn` | Transaction note |
-| `split` | Convenience fee container — pipe (`\|`) separated `KEY:VALUE` pairs (`CCONFEE`, `PCONFEE`) |
+| Parameter | Description                                                                                |
+| --------- | ------------------------------------------------------------------------------------------ |
+| `pa`      | Payee VPA (acquiring merchant VPA)                                                         |
+| `pn`      | Payee name                                                                                 |
+| `tr`      | Transaction reference                                                                      |
+| `tid`     | Transaction ID                                                                             |
+| `am`      | **Base** transaction amount                                                                |
+| `cu`      | Currency (INR)                                                                             |
+| `tn`      | Transaction note                                                                           |
+| `split`   | Convenience fee container — pipe (`\|`) separated `KEY:VALUE` pairs (`CCONFEE`, `PCONFEE`) |
 
 ## Merchant Configuration
 
@@ -152,12 +156,12 @@ Breakdown of the relevant parameters:
 
 Assuming a base amount of ₹100, with `CCONFEE = 2.36` and `PCONFEE = 1.00`:
 
-| Customer Selects | Amount Displayed in PSP App | Amount Debited |
-| --- | --- | --- |
-| UPI Credit Card | ₹102.36 | ₹102.36 |
-| UPI Credit Line | ₹102.36 | ₹102.36 |
-| UPI Wallet (PPI) | ₹101.00 (when commercials are enabled) | ₹101.00 |
-| Savings / Current Account | ₹100.00 | ₹100.00 |
+| Customer Selects          | Amount Displayed in PSP App            | Amount Debited |
+| ------------------------- | -------------------------------------- | -------------- |
+| UPI Credit Card           | ₹102.36                                | ₹102.36        |
+| UPI Credit Line           | ₹102.36                                | ₹102.36        |
+| UPI Wallet (PPI)          | ₹101.00 (when commercials are enabled) | ₹101.00        |
+| Savings / Current Account | ₹100.00                                | ₹100.00        |
 
 ## Important Considerations
 
