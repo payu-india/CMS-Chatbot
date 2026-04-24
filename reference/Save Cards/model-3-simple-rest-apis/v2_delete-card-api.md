@@ -5,7 +5,14 @@ hidden: false
 metadata:
   robots: index
 ---
-This API is used to delete an existing card stored on PayU Vault.
+---
+title: Delete a Saved Card API
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
+This v2 API is used to delete an existing card stored on PayU Vault.
 
 HTTP Method: **DELETE**
 
@@ -67,8 +74,8 @@ No body parameters for this API
 
 ## Sample request
 
-```
-curl --location --request DELETE 'https://test.payu.in/storecard/card/v1?userCredential=sms%3A123&cardToken=18c7804aafdac732b5e8&networkTokene=null&issuerToken=null&bankType=null' \
+```bash
+curl --location --request DELETE 'https://test.payu.in/storecard/card/v1?userCredential=sms%3A123&cardToken=2d1ab4c2f453f25bc9b2d8' \
   --header 'authorization: {{authorization}}' \
   --header 'date: {{date}}'
 ```
@@ -77,18 +84,18 @@ curl --location --request DELETE 'https://test.payu.in/storecard/card/v1?userCre
 
 * On successful deletion
 
-  ```plaintext
+  ```json
   {
-      "message": "testAll card deleted successfully",
-      "status": 1
+    "message": "testAll card deleted successfully",
+    "status": 1
   }
   ```
 
-  * On failure of deletion
+* On failure of deletion
 
-  ```plaintext
+  ```json
   {
-  "status": 0,
-  "msg": card not found
+    "message": "card not found",
+    "status": 0
   }
   ```
