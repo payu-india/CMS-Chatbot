@@ -1,5 +1,5 @@
 ---
-title: Integration Guide2
+title: Integration Guide
 deprecated: false
 hidden: false
 metadata:
