@@ -1,23 +1,19 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Merchant Onboarding APIs for Partners",
+    "title": "Partner API - Public Entity Copy 2",
     "description": "# PayU Partner Onboarding APIs — Complete 16-Step Specification\n\nA complete set of white-label APIs that let partners onboard merchants onto PayU entirely from their own platform. Partners call APIs, PayU validates, verifies, and activates. PayU remains the system of record.\n\n## Architecture\n\n```\nMERCHANT ──(browser/app)──> PARTNER BACKEND ──(API)──> PAYU BACKEND\n                                               <──(webhook)──\n```\n\nAll API calls are **server-to-server**. Never expose your bearer token to the browser.\n\n## Environments\n\n| Environment | Auth URL | Partner API URL |\n|-------------|----------|-----------------|\n| Test | `https://test-accounts.payu.in` | `https://test-partner.payu.in` |\n| Production | `https://accounts.payu.in` | `https://partner.payu.in` |\n\n## Authentication\n\nAll requests require a bearer token obtained via OAuth (`POST /oauth/token`).\n\n| Header | Value |\n|--------|-------|\n| `Authorization` | `Bearer {token}` |\n| `Content-Type` | `application/json` or `multipart/form-data` (file uploads) |\n\n## The 16-Step Onboarding Sequence\n\nThis sequence **must be followed exactly**. Each step depends on the previous one.\n\n| Step | Name | Endpoint | Entities | Notes |\n|------|------|----------|----------|-------|\n| 01 | Create Merchant | `POST /api/v3/merchants` | All | Returns `mid` + `uuid`. Entity type set here. |\n| 02 | Update: PAN + DOB | `PUT /api/v1/merchants/{uuid}/update` | All | PAN, DOB/DOI |\n| 03 | CKYC Verification | `POST .../send_ckyc_otp` or `.../ckyc_data` | All | OTP for Individual/Sole Prop; Fetch for others |\n| 04 | Update: Business Details | `PUT /api/v1/merchants/{uuid}/update` | All | Category, GST, CIN (if eligible) |\n| 05 | Update: Bank Details | `PUT /api/v1/merchants/{uuid}/update` | All | Auto-verification attempted |\n| 06 | Upload Bank Proof | `POST /api/v3/merchants/{mid}/kyc_document` | All (conditional) | Only if bank auto-verification fails |\n| 07 | Update: Website Details | `PUT /api/v1/merchants/{uuid}/update` | All | Website, Android, iOS URLs |\n| 08 | Add Signatory Details | `POST /api/v1/merchants/{uuid}/add_bank_detail` | All | Prerequisite for DigiLocker |\n| 09 | DigiLocker Verification | `POST .../generate_digilocker_link` | Conditional | See branching rules below |\n| 10 | Update: Addresses | `PUT /api/v1/merchants/{uuid}/update` | All | Registration + Operating |\n| 11 | Video KYC | `POST .../create_vkyc_profile` | All | Can be skipped |\n| 12 | Add/Update UBO | `POST /api/v1/merchants/{uuid}/add_bank_detail` | Pvt Ltd, Public Ltd, Partnership, Trust, LLP, Society | Not for Individual/Sole Prop |\n| 13 | Business Members & KMP | `PUT /api/v1/merchants/{uuid}/submit_business_members` | Pvt Ltd, Public Ltd, Partnership, LLP | Not for Individual/Sole Prop/Trust/Society |\n| 14 | Fetch Required KYC Docs | `GET /api/v3/merchants/{mid}/kyc_document/required_docs` | All | Response feeds into Step 15 |\n| 15 | Upload KYC Documents | `POST /api/v3/merchants/{mid}/kyc_document` | All | One call per required doc category |\n| 16 | E-Sign Agreement | `GET .../generate_merged_document_for_esign` | All | Final step — merchant activated |\n\n## Entity-Step Applicability Matrix\n\n| Step | Individual | Sole Prop | Partnership | Pvt Ltd | Public Ltd | LLP | Trust | Society | One Person Co |\n|------|-----------|-----------|-------------|---------|------------|-----|-------|---------|---------------|\n| 01-02 | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |\n| 03 CKYC | OTP flow | OTP flow | Fetch flow | Fetch flow | Fetch flow | Fetch flow | Fetch flow | Fetch flow | Fetch flow |\n| 04-05 | Yes | Yes | Yes | Yes (+ CIN) | Yes (+ CIN) | Yes | Yes | Yes | Yes (+ CIN) |\n| 06 | If bank fails | If bank fails | If bank fails | If bank fails | If bank fails | If bank fails | If bank fails | If bank fails | If bank fails |\n| 07-08 | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |\n| 08 CIN field | No | No | No | Yes | Yes | No | No | No | Yes |\n| 09 DigiLocker | Skip if CKYC ok | Skip if CKYC ok | Required | Required | Required | Required | Required | Required | Required |\n| 10-11 | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |\n| 12 UBO | No | No | Yes | Yes | Yes | Yes | Yes | Yes | No |\n| 13 Biz Members | No | No | Yes | Yes | Yes | Yes | No | No | No |\n| 14-16 | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |\n\n## DigiLocker Branching Rules (Step 09)\n\n```\nIF entity_type IN (Individual, Sole Proprietorship):\n    IF CKYC (Step 03) succeeded:\n        DigiLocker = OPTIONAL (can skip)\n    ELSE IF CKYC was skipped:\n        DigiLocker = REQUIRED\nELSE (all other entity types):\n    DigiLocker = ALWAYS REQUIRED (even if CKYC succeeded)\n\nPREREQUISITE: Step 08 (Signatory Details) must be completed before DigiLocker.\n```\n\n## Key Identifiers\n\n| Identifier | Source | Format | Used In Steps |\n|------------|--------|--------|---------------|\n| `mid` | Step 01 response | Numeric (e.g., `8390925`) | 06, 09, 14, 15 (KYC doc APIs) |\n| `uuid` | Step 01 response | UUID (e.g., `11ef-d968-6b042d6c-9b94-02975f21d323`) | 02, 04, 05, 07, 08, 10, 12, 13, 16 |\n| `product_account_uuid` | Step 01 response | UUID | 16 (E-Sign) |\n\n## Error Codes Reference\n\n| Code | Meaning | Recovery |\n|------|---------|----------|\n| `200` | Success | Process response |\n| `201` | Created | Resource created |\n| `204` | No Content | Deletion successful |\n| `400` | Bad Request | Check parameters |\n| `401` | Unauthorized | Token invalid/expired — call Step 00 again |\n| `403` | Forbidden | No access to this merchant |\n| `404` | Not Found | Check `uuid`, `mid`, or `merchant_id` |\n| `422` | Validation Failed | Read error message — it says exactly what's wrong |\n| `429` | Rate Limited | Back off and retry |\n| `500` | Server Error | Retry with exponential backoff |\n\n## Utilities\n\nThe **GetMerchant** API (`GET /api/v1/merchants/{merchant_id}`) can be called **at any point** between steps to check internal statuses: PAN verification, bank verification, CKYC status, DigiLocker status, VKYC status, document verification, agreement status, and overall onboarding stage. See the Utilities folder.\n\n## References\n\n- [PayU Partner Program Overview](https://docs.payu.in/docs/payu-partner-program-overview)\n- [Onboarding APIs Reference](https://docs.payu.in/reference/onboarding-apis)\n- [Documents Checklist](https://docs.payu.in/docs/documents-checklist-for-account-activation)\n\n\n## Discovered During Live Testing (March 2026)\n\n1. **CreateMerchant requires `merchant[product]=PayUbiz`** — without it, a MySQL duplicate entry error occurs. The `business_entity_type` is also required at creation time (despite initial assumption it could be deferred to Step 02). The entity type can be changed in Step 02 via the Update API.\n3. **VKYC requires signatory details** — calling VKYC before adding signatory returns: `Please complete (Signing authority details captured step) before initiating VKYC`.\n\n\n## Learnings from Live Merchant (mid: 760070179, Private Limited, status: live)\n\n### Successful API Responses Captured\n- **VKYC**: Returns `capture_link` even for already-approved merchants (generates new VCIP link)\n- **DigiLocker**: Returns `\"Digilocker KYC is already completed\"` if already done — idempotent check\n- **Required Docs**: For a live Private Limited, returns 5 remaining categories (some already `Approved`). The `kyc_document` field is `null` for pending, or contains `{\"status\": \"Approved\"}` for uploaded docs.\n- **Show KYC Document**: Returns full document details including `doc_url` (signed S3 URL), `document_category_name`, `document_type_name`, `status`\n- **Upload KYC Document (no file)**: Returns `{\"error\": {\"document\": \"must be present\"}}` — file is mandatory\n- **GetMerchant (live)**: Shows `status: live`, all verifications `Success`/`approved`, `settlement_status: Active`, `agreement_status: Approved`\n\n### API Constraints Discovered\n\n### E-Sign Correct Endpoint (Discovered March 2026)\n- **URL:** `GET /api/v1/merchants/{uuid}/generate_merged_document_for_esign` on `test-partner.payu.in`\n- **Scope:** `refer_merchant` + at least one of (`client_manage_agreement` or `client_manage_kyc_details`). `refer_merchant` alone returns `401`.\n",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "https://test-accounts.payu.in"
+      "url": "https://test-partner.payu.in"
     },
     {
-      "url": "https://test-partner.payu.in"
+      "url": "https://test-accounts.payu.in"
     }
   ],
   "tags": [
-    {
-      "name": "Step 00 — Authentication",
-      "description": "# Step 00 — Authentication (OAuth Token)\n\nBefore calling any onboarding API, obtain a bearer token from PayU's OAuth endpoint.\n\n## Environments\n\n| Environment | URL |\n|-------------|-----|\n| Test | `https://test-accounts.payu.in/oauth/token` |\n| Production | `https://accounts.payu.in/oauth/token` |\n\n## Token Lifecycle\n\n- Tokens expire after `expires_in` seconds (typically 7200 = 2 hours)\n- Implement refresh logic — do not request a new token per API call\n- Store tokens server-side only\n\n## Scopes\n\n| Scope | Purpose |\n|-------|---------|\n| `refer_merchant` | Create and manage merchant accounts (Steps 01-13) |\n| `client_manage_kyc_details` | KYC documents and verification (Steps 03, 06, 09, 11, 14, 15) |\n| `client_manage_agreement` | Agreement management (Step 16) |\n"
-    },
     {
       "name": "Step 01 — Create Merchant",
       "description": "# Step 01 — Create Merchant\n\nCreates a new merchant account on PayU. Returns `mid` and `uuid` identifiers used in all subsequent steps.\n\n## Prerequisite Steps\n- Step 00 (Authentication) — valid bearer token required\n\n## Entity Applicability\n**All entities** — this is always the first onboarding step.\n\n## Important\n- Only `display_name`, `email`, and `mobile` are sent here\n- **Do NOT send `business_entity_type` in this step** — it is set in Step 02\n- `email` must be unique across PayU — duplicate emails are rejected\n- Store both `mid` and `uuid` from the response — different APIs require different identifiers\n"
@@ -85,76 +81,13 @@
     {
       "name": "Utilities",
       "description": "# Utilities — Status Polling\n\nThe GetMerchant API can be called **at any point between steps** to check the merchant's internal statuses. Use it to:\n\n- Verify PAN verification completed (after Step 02)\n- Check bank auto-verification result (after Step 05 — determines if Step 06 is needed)\n- Check CKYC status (after Step 03 — determines DigiLocker requirement in Step 09)\n- Check DigiLocker, VKYC status\n- Check KYC document verification status per document\n- Check agreement/E-sign status\n- Check overall onboarding stage and activation readiness\n"
+    },
+    {
+      "name": "Step 00 — Authentication",
+      "description": "# Step 00 — Authentication (OAuth Token)\n\nBefore calling any onboarding API, obtain a bearer token from PayU's OAuth endpoint.\n\n## Environments\n\n| Environment | URL |\n|-------------|-----|\n| Test | `https://test-accounts.payu.in/oauth/token` |\n| Production | `https://accounts.payu.in/oauth/token` |\n\n## Token Lifecycle\n\n- Tokens expire after `expires_in` seconds (typically 7200 = 2 hours)\n- Implement refresh logic — do not request a new token per API call\n- Store tokens server-side only\n\n## Scopes\n\n| Scope | Purpose |\n|-------|---------|\n| `refer_merchant` | Create and manage merchant accounts (Steps 01-13) |\n| `client_manage_kyc_details` | KYC documents and verification (Steps 03, 06, 09, 11, 14, 15) |\n| `client_manage_agreement` | Agreement management (Step 16) |\n"
     }
   ],
   "paths": {
-    "/oauth/token": {
-      "post": {
-        "tags": [
-          "Step 00 — Authentication"
-        ],
-        "summary": "GetToken",
-        "description": "# GetToken — Obtain Bearer Token\n\n**Step 0 of 16** — Always call this first.\n\n## Endpoint\n\n`POST /oauth/token`\n\n## Request Body (x-www-form-urlencoded)\n\n| Parameter | Type | Required | Validation | Description |\n|-----------|------|----------|------------|-------------|\n| `client_id` | string | Yes | 64-char hex | Partner OAuth client ID |\n| `client_secret` | string | Yes | 64-char hex | Partner OAuth client secret |\n| `grant_type` | string | Yes | Must be `client_credentials` | OAuth grant type |\n| `scope` | string | Yes | Space-separated | Required scopes |\n\n## Response (200 OK)\n\n```json\n{\n    \"access_token\": \"7b5843b39e5532bc...\",\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 7199,\n    \"scope\": \"refer_merchant\",\n    \"created_at\": 1723498499\n}\n```\n\n## Response-to-Request Mapping\n\n| Response Field | Used As | In Steps |\n|---------------|---------|----------|\n| `access_token` | `Authorization: Bearer {access_token}` header | All subsequent steps |\n| `expires_in` | Token validity in seconds | Refresh before expiry |\n\n## Error Handling\n\n| Error | Cause | Recovery |\n|-------|-------|----------|\n| `401` | Invalid client_id or client_secret | Verify credentials with PayU KAM |\n| `400` | Invalid grant_type or scope | Check parameter values |\n\n## Next Step\n\nUse the `access_token` in Step 01 to create a merchant.\n",
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "client_id": {
-                    "type": "string",
-                    "description": "Your partner OAuth client ID, provided by PayU during partner onboarding.",
-                    "example": "{{client_id}}"
-                  },
-                  "client_secret": {
-                    "type": "string",
-                    "description": "Your partner OAuth client secret. Keep confidential — never expose in client-side code.",
-                    "example": "{{client_secret}}"
-                  },
-                  "grant_type": {
-                    "type": "string",
-                    "description": "Must be 'client_credentials' for server-to-server partner authentication.",
-                    "example": "client_credentials"
-                  },
-                  "scope": {
-                    "type": "string",
-                    "description": "Space-separated scopes. Use: send_sign_in_otp verify_sign_in_otp refer_merchant read_merchant_reseller.",
-                    "example": "send_sign_in_otp verify_sign_in_otp refer_merchant read_merchant_reseller"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "Content-Type": {
-                "schema": {
-                  "type": "string",
-                  "example": "application/json; charset=utf-8"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                },
-                "example": {
-                  "access_token": "f747c95a73aae62012f26421e00f2cea9c7c7475571c0a9e29e46054129dc30a",
-                  "token_type": "Bearer",
-                  "expires_in": 7200,
-                  "scope": "refer_merchant",
-                  "created_at": 1772469291
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/v3/merchants": {
       "post": {
         "tags": [
@@ -207,6 +140,14 @@
             },
             "description": "Bearer token obtained from Step 00 (GetToken). Must include 'refer_merchant' scope.",
             "example": "Bearer {{access_token}}"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
           }
         ],
         "responses": {
@@ -316,7 +257,7 @@
         }
       }
     },
-    "/api/v1/merchants/{uuid}/update": {
+    "/api/v1/merchants/11f1-1d1b-d2fdba94-b63d-02f4a48620c1/update": {
       "put": {
         "tags": [
           "Step 10 — Update: Addresses"
@@ -385,12 +326,12 @@
             "example": "Bearer {{access_token}}"
           },
           {
-            "name": "uuid",
-            "in": "path",
+            "name": "Accept",
+            "in": "header",
             "schema": {
               "type": "string"
             },
-            "required": true
+            "example": "application/json"
           }
         ],
         "responses": {
@@ -446,7 +387,7 @@
               "schema": {
                 "type": "object",
                 "example": {
-                  "merchant_id": "{{mid}}",
+                  "merchant_id": "760181268",
                   "mobile": "{{merchant_mobile}}",
                   "consent": true
                 }
@@ -472,13 +413,36 @@
             },
             "description": "JSON request body.",
             "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "OK",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
             "content": {
-              "application/json": {}
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "message": "OTP sent successfully"
+                }
+              }
             }
           }
         }
@@ -497,7 +461,7 @@
               "schema": {
                 "type": "object",
                 "example": {
-                  "merchant_id": "{{mid}}",
+                  "merchant_id": "760181268",
                   "otp": "123456"
                 }
               }
@@ -522,13 +486,36 @@
             },
             "description": "JSON request body.",
             "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "OK",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
             "content": {
-              "application/json": {}
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "message": "CKYC OTP verified successfully"
+                }
+              }
             }
           }
         }
@@ -547,7 +534,7 @@
               "schema": {
                 "type": "object",
                 "example": {
-                  "merchant_id": "{{mid}}",
+                  "merchant_id": "760181268",
                   "consent": true
                 }
               }
@@ -571,6 +558,14 @@
               "type": "string"
             },
             "description": "JSON request body.",
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
             "example": "application/json"
           }
         ],
@@ -623,7 +618,7 @@
                   "consents": [
                     {
                       "name": "skip_ckyc_flow",
-                      "provided_by_uuid": "11f1-1d1b-d2fdba94-b63d-02f4a48620c1"
+                      "provided_by_uuid": "11f1-1dde-2a2ebd78-868c-02f4a48620c1"
                     }
                   ]
                 }
@@ -642,6 +637,14 @@
           },
           {
             "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
             "in": "header",
             "schema": {
               "type": "string"
@@ -820,7 +823,7 @@
         }
       }
     },
-    "/api/v3/merchants/{mid}/kyc_document": {
+    "/api/v3/merchants/760181268/kyc_document": {
       "post": {
         "tags": [
           "Step 15 — Upload KYC Documents"
@@ -864,12 +867,12 @@
             "example": "Bearer {{access_token}}"
           },
           {
-            "name": "mid",
-            "in": "path",
+            "name": "Accept",
+            "in": "header",
             "schema": {
               "type": "string"
             },
-            "required": true
+            "example": "application/json"
           }
         ],
         "responses": {
@@ -899,7 +902,7 @@
         }
       }
     },
-    "/api/v1/merchants/{uuid}/signatory_details": {
+    "/api/v1/merchants/11f1-1d1b-d2fdba94-b63d-02f4a48620c1/signatory_details": {
       "put": {
         "tags": [
           "Step 12 — Add/Update UBO"
@@ -1101,12 +1104,12 @@
             "example": "application/x-www-form-urlencoded"
           },
           {
-            "name": "uuid",
-            "in": "path",
+            "name": "Accept",
+            "in": "header",
             "schema": {
               "type": "string"
             },
-            "required": true
+            "example": "application/json"
           }
         ],
         "responses": {
@@ -1134,7 +1137,7 @@
         }
       }
     },
-    "/api/v3/merchants/{mid}/kyc_document/generate_digilocker_link": {
+    "/api/v3/merchants/760181268/kyc_document/generate_digilocker_link": {
       "post": {
         "tags": [
           "Step 09 — DigiLocker Verification"
@@ -1173,12 +1176,12 @@
             "example": "application/json"
           },
           {
-            "name": "mid",
-            "in": "path",
+            "name": "Accept",
+            "in": "header",
             "schema": {
               "type": "string"
             },
-            "required": true
+            "example": "application/json"
           }
         ],
         "responses": {
@@ -1241,7 +1244,7 @@
               "schema": {
                 "type": "object",
                 "example": {
-                  "merchant_id": "{{mid}}"
+                  "merchant_id": "760181268"
                 }
               }
             }
@@ -1264,6 +1267,14 @@
               "type": "string"
             },
             "description": "JSON request body.",
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
             "example": "application/json"
           }
         ],
@@ -1320,7 +1331,7 @@
         }
       }
     },
-    "/api/v1/merchants/{uuid}/submit_business_members": {
+    "/api/v1/merchants/11f1-1d1b-d2fdba94-b63d-02f4a48620c1/submit_business_members": {
       "put": {
         "tags": [
           "Step 13 — Business Members & KMP"
@@ -1392,12 +1403,12 @@
             "example": "application/json"
           },
           {
-            "name": "uuid",
-            "in": "path",
+            "name": "Accept",
+            "in": "header",
             "schema": {
               "type": "string"
             },
-            "required": true
+            "example": "application/json"
           }
         ],
         "responses": {
@@ -1438,7 +1449,7 @@
         }
       }
     },
-    "/api/v3/merchants/{mid}/kyc_document/required_docs": {
+    "/api/v3/merchants/760181268/kyc_document/required_docs": {
       "get": {
         "tags": [
           "Step 14 — Fetch Required KYC Documents"
@@ -1456,12 +1467,12 @@
             "example": "Bearer {{access_token}}"
           },
           {
-            "name": "mid",
-            "in": "path",
+            "name": "Accept",
+            "in": "header",
             "schema": {
               "type": "string"
             },
-            "required": true
+            "example": "application/json"
           }
         ],
         "responses": {
@@ -1797,7 +1808,7 @@
         }
       }
     },
-    "/api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}": {
+    "/api/v3/merchants/760181268/kyc_document/{kyc_document_uuid}": {
       "get": {
         "tags": [
           "Step 15 — Upload KYC Documents"
@@ -1815,12 +1826,12 @@
             "example": "Bearer {{access_token}}"
           },
           {
-            "name": "mid",
-            "in": "path",
+            "name": "Accept",
+            "in": "header",
             "schema": {
               "type": "string"
             },
-            "required": true
+            "example": "application/json"
           },
           {
             "name": "kyc_document_uuid",
@@ -1828,7 +1839,9 @@
             "schema": {
               "type": "string"
             },
-            "required": true
+            "required": true,
+            "description": "KYC document UUID returned by upload/show endpoints",
+            "example": "{{kyc_document_uuid}}"
           }
         ],
         "responses": {
@@ -1994,12 +2007,12 @@
             "example": "Bearer {{access_token}}"
           },
           {
-            "name": "mid",
-            "in": "path",
+            "name": "Accept",
+            "in": "header",
             "schema": {
               "type": "string"
             },
-            "required": true
+            "example": "application/json"
           },
           {
             "name": "kyc_document_uuid",
@@ -2007,20 +2020,35 @@
             "schema": {
               "type": "string"
             },
-            "required": true
+            "required": true,
+            "description": "KYC document UUID returned by upload/show endpoints",
+            "example": "{{kyc_document_uuid}}"
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successful response",
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
             "content": {
-              "application/json": {}
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {}
+              }
             }
           }
         }
       }
     },
-    "/api/v1/merchants/{uuid}/generate_merged_document_for_esign": {
+    "/api/v1/merchants/11f1-1d1b-d2fdba94-b63d-02f4a48620c1/generate_merged_document_for_esign": {
       "get": {
         "tags": [
           "Step 16 — E-Sign Agreement"
@@ -2044,14 +2072,6 @@
             },
             "description": "Bearer token with 'client_manage_agreement' scope.",
             "example": "Bearer {{access_token}}"
-          },
-          {
-            "name": "uuid",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
           }
         ],
         "responses": {
@@ -2079,7 +2099,7 @@
         }
       }
     },
-    "/api/v1/merchants/{merchant_id}": {
+    "/api/v1/merchants/760181268": {
       "get": {
         "tags": [
           "Utilities"
@@ -2097,12 +2117,12 @@
             "example": "Bearer {{access_token}}"
           },
           {
-            "name": "merchant_id",
-            "in": "path",
+            "name": "Accept",
+            "in": "header",
             "schema": {
               "type": "string"
             },
-            "required": true
+            "example": "application/json"
           }
         ],
         "responses": {
@@ -2271,8 +2291,83 @@
           }
         }
       }
+    },
+    "/oauth/token": {
+      "post": {
+        "tags": [
+          "Step 00 — Authentication"
+        ],
+        "summary": "GetToken",
+        "description": "# GetToken — Obtain Bearer Token\n\n**Step 0 of 16** — Always call this first.\n\n## Endpoint\n\n`POST /oauth/token`\n\n## Request Body (x-www-form-urlencoded)\n\n| Parameter | Type | Required | Validation | Description |\n|-----------|------|----------|------------|-------------|\n| `client_id` | string | Yes | 64-char hex | Partner OAuth client ID |\n| `client_secret` | string | Yes | 64-char hex | Partner OAuth client secret |\n| `grant_type` | string | Yes | Must be `client_credentials` | OAuth grant type |\n| `scope` | string | Yes | Space-separated | Required scopes |\n\n## Response (200 OK)\n\n```json\n{\n    \"access_token\": \"7b5843b39e5532bc...\",\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 7199,\n    \"scope\": \"refer_merchant\",\n    \"created_at\": 1723498499\n}\n```\n\n## Response-to-Request Mapping\n\n| Response Field | Used As | In Steps |\n|---------------|---------|----------|\n| `access_token` | `Authorization: Bearer {access_token}` header | All subsequent steps |\n| `expires_in` | Token validity in seconds | Refresh before expiry |\n\n## Error Handling\n\n| Error | Cause | Recovery |\n|-------|-------|----------|\n| `401` | Invalid client_id or client_secret | Verify credentials with PayU KAM |\n| `400` | Invalid grant_type or scope | Check parameter values |\n\n## Next Step\n\nUse the `access_token` in Step 01 to create a merchant.\n",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "description": "Your partner OAuth client ID, provided by PayU during partner onboarding.",
+                    "example": "{{client_id}}"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "description": "Your partner OAuth client secret. Keep confidential — never expose in client-side code.",
+                    "example": "{{client_secret}}"
+                  },
+                  "grant_type": {
+                    "type": "string",
+                    "description": "Must be 'client_credentials' for server-to-server partner authentication.",
+                    "example": "client_credentials"
+                  },
+                  "scope": {
+                    "type": "string",
+                    "description": "Space-separated scopes. Use: send_sign_in_otp verify_sign_in_otp refer_merchant read_merchant_reseller.",
+                    "example": "send_sign_in_otp verify_sign_in_otp refer_merchant read_merchant_reseller"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "access_token": "f747c95a73aae62012f26421e00f2cea9c7c7475571c0a9e29e46054129dc30a",
+                  "token_type": "Bearer",
+                  "expires_in": 7200,
+                  "scope": "refer_merchant",
+                  "created_at": 1772469291
+                }
+              }
+            }
+          }
+        }
+      }
     }
-  },
-  "components": {},
-  "x-readme": {}
+  }
 }
