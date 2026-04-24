@@ -19,10 +19,10 @@ HTTP Method: **DELETE**
 
 **Environment**
 
-|            |                                                                                  |
-| :--------- | :------------------------------------------------------------------------------- |
-| Test       | [https://test.payu.in/storecard/card/v1](https://test.payu.in/storecard/card/v1) |
-| Production | [https://info.payu.in/storecard/card/v1](https://info.payu.in/storecard/card/v1) |
+|            |                                                                                        |
+| :--------- | :------------------------------------------------------------------------------------- |
+| Test       | [https://apitest.payu.in/storecard/card/v1](https://apitest.payu.in/storecard/card/v1) |
+| Production | [https://info.payu.in/storecard/card/v1](https://info.payu.in/storecard/card/v1)       |
 
 ## Request parameters
 
