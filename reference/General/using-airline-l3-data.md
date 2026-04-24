@@ -7,15 +7,15 @@ metadata:
 ---
 This section includes the following:
 
-* [Using L3 fields in \_payment API ](#using-l3-fields-in-_payment-api)section provides JSON object format to include the L3 fields
+* [Using L3 fields in _payment API ](#using-l3-fields-in-_payment-api)section provides JSON object format to include the L3 fields
 * [ L3 field descriptions](#l3-field-descriptions) table provides the list of fields with their length, type and description.
 
-## Using L3 fields in \_payment API
+## Using L3 fields in _payment API
 
-You must use the L3 fields in **\_payment** API, where the airline data is collected (JSON only):
+You must use the L3 fields in **_payment** API, where the airline data is collected (JSON only):
 
 ```
-{
+l3_details{
   "bookingReference": "MC12D8",
   "documentType": "PASSENGER_TICKET",
   "itinerary": {
