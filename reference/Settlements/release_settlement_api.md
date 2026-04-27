@@ -10,11 +10,11 @@ metadata:
 next:
   description: ''
 ---
-The** Release Settlement** API is used to flag the sub-payment you want to settle; after adding splits for a particular payment, the money will not be settled directly into the child merchants account unless you call a release event corresponding to the individual suborder you want to settle.
+The **Release Settlement** API is used to flag the sub-payment you want to settle; after adding splits for a particular payment, the money will not be settled directly into the child merchants account unless you call a release event corresponding to the individual suborder you want to settle.
 
 **Use Case**: Most marketplace model owners wait for the delivery or dispatch to happen first from the sub-seller’s end. Only after the successful dispatch, the owner will release the funds into the sub-seller’s bank account. This API gives them the flexibility to do so.
 
-The Release Settlement API can be used to release the settlement of all the blocked child transactions in the aggregator workflow.
+The **Release Settlement** API can be used to release the settlement of all the blocked child transactions in the aggregator workflow.
 
 HTTP Method: **POST**
 
@@ -25,7 +25,7 @@ HTTP Method: **POST**
 | Test Environment       | \<[https://test.payu.in/merchant/](https://test.payu.in/merchant/)> |
 | Production Environment | \<[https://info.payu.in/merchant/](https://info.payu.in/merchant/)> |
 
-## Request parameters
+<Accordion title="Request Parameters" icon="fa-table">
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -79,6 +79,7 @@ HTTP Method: **POST**
 </tbody>
 </table>
 `}</HTMLBlock>
+</Accordion>
 
 ## Sample request
 
@@ -88,8 +89,7 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"
 "key=A****r&command=release_settlement&var1=8000123&var2=8000123&hash=6692a8b560c51e8a4bb830206d3b8fac3678fb5b0844"
 ```
 
-## Response parameters
-
+<Accordion title="Response Parameters" icon="fa-table">
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -118,8 +118,8 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"
 </tbody>
 </table>
 `}</HTMLBlock>
-
-## Sample Response
+</Accordion>
+<Accordion title="Sample Response" icon="fa-reply">
 
 ### Success Scenario
 
@@ -164,3 +164,4 @@ Failure response when attempt to release an already released sub- payment
 ```json
 {"status":1,"msg":"Release request is already accepted"}
 ```
+</Accordion>
