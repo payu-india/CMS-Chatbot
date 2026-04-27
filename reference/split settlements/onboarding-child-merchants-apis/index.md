@@ -73,4 +73,4 @@ You can create child merchants using the **Create Child Merchant** API. For more
 
 After you onboard your child merchants, you can fetch the child merchant details as described in the following API reference:
 
-* [Sub Account Listing API](ref:sub-account-listing)
+* [Sub Account Listing API](ref:sub-account-listing-api)
