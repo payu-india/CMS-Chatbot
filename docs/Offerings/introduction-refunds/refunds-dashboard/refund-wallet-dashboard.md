@@ -91,9 +91,11 @@ The _Customer Notifications_ page is displayed.
 
 4. Click **Add or edit** in **Email** section.
 
+The **Add Recipient** page is displayed.
+
 <Image align="center" width="350px" src="https://files.readme.io/d5fa8f5501dc91258f31987ea07f15f0729a30c5cee256a95b9dde3976edb41f-refund_wallet_email_configuration.png" />
 
-4. Type the email in the **Add Recipient** field.
+4. Type the email in the field on the **Add Recipient** page.
 5. Click **Save**.
 
 ## View Refund Wallet Ledger
