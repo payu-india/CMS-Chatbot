@@ -82,9 +82,6 @@ To configure wallet threshold amount and email notifications:
    * **Refund wallet always**: Refund Wallet balance will always be used to process refunds to your customers. Refund processed via this option will be present in the refund wallet statement but not in settlement MIS.
 2. Enter the threshold limit amount in the **Set low balance limit** field to get notified when your wallet balance is low.
 3. Click **Set Notification**.
-
-The _Customer Notifications_ page is displayed.
-
 4. Select the **Refund Wallet** tab.
 
 <Image align="center" border={true} width="400px" src="https://files.readme.io/1cc91b41348174cce9a1fb4b978189dee7b946406a8dbf973c64a4694e129aa6-update_refund_email_notification.png" className="border" />
