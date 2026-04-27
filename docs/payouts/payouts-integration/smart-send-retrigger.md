@@ -41,13 +41,43 @@ This section describes Smart Send retrigger, its benefits, eligibility, and how 
 
 ## End-to-End flow
 
-The high-level flow below shows how a Smart Send request progresses from creation to completion, with retrigger applied at each evaluation point until the request completes, expires, or exits the retry window.
+The following flow chart provides a high-level view of how Smart Send and retriggering progress from creation to completion. At each decision point, PayU evaluates whether the request should be retriggered, completed, or exited.
 
-1. **Smart Send created** — Merchant calls the [Create Smart Send Link API](ref:create-smart-send-link-api) (Day 0).
-2. **Initial communication sent** — PayU delivers the link to the payee via SMS/email.
-3. **Evaluation point reached** — Based on the configured skip days, PayU evaluates retrigger eligibility.
-4. **Retrigger executed** — If eligible, PayU resends the Smart Send communication automatically.
-5. **Completion or exit** — The cycle continues until the payee completes the action, the request expires, or the retry window closes.
+```mermaid
+flowchart TD
+    A(Initiate Smart Send) --> B(PayU sends initial<br/>communication with link)
+    B --> C{Payee completes action?}
+    C -->|Yes| D(Flow completed)
+    C -->|No| E{Request still valid?}
+    E -->|No| F(No further retries)
+    E -->|Yes| G{Retrigger enabled?}
+    G -->|No| H(No automated retries)
+    G -->|Yes| I{Eligible for retrigger?}
+    I -->|No| J(Wait for next cycle)
+    I -->|Yes| K(PayU resends communication)
+    K --> C
+
+    classDef start fill:#00ffde,stroke:#00ffde,stroke-width:2px,color:#002124,font-weight:bold
+    classDef process fill:#002124,stroke:#00ffde,stroke-width:1.5px,color:#ffffff
+    classDef decision fill:#0a3a3d,stroke:#00ffde,stroke-width:1.5px,color:#ffffff
+    classDef success fill:#00ffde,stroke:#00ffde,stroke-width:2px,color:#002124,font-weight:bold
+    classDef terminal fill:#4d174d,stroke:#00ffde,stroke-width:1.5px,color:#ffffff
+
+    class A start
+    class B,K process
+    class C,E,G,I decision
+    class D success
+    class F,H,J terminal
+
+    linkStyle default stroke:#00ffde,stroke-width:1.5px,color:#00ffde
+```
+
+**Reading the diagram**:
+
+* **Cyan-filled nodes** (`Initiate Smart Send`, `Flow completed`) mark the entry and successful exit of the flow.
+* **Diamond nodes** are PayU evaluation checkpoints (action completion, validity, retrigger enablement, eligibility).
+* **Purple nodes** (`No further retries`, `No automated retries`, `Wait for next cycle`) represent terminal or holding states where no retrigger is performed.
+* The loop from **`PayU resends communication`** back to **`Payee completes action?`** continues until the payee completes the action, the request expires, or the retry window closes.
 
 ## PayU retrigger process
 
