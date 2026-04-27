@@ -24,7 +24,7 @@ The steps involved in creating a child merchant are:
 <Callout icon="📮" theme="default">
   **Postman Collection**: Download the **Split Settlements > Onboarding Child Merchants Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/ghidoum/onboarding-child-merchants-api-s
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/ghidoum/onboarding-child-merchants-api-s](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/ghidoum/onboarding-child-merchants-api-s)
 </Callout>
 
 ## Domains
@@ -73,4 +73,4 @@ You can create child merchants using the **Create Child Merchant** API. For more
 
 After you onboard your child merchants, you can fetch the child merchant details as described in the following API reference:
 
-* [Sub Account Listing API](ref:sub-account-listing-v3-api)
+* [Sub Account Listing API](ref:sub-account-listing)
