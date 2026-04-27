@@ -24,9 +24,9 @@ Smart Send allows you to send a secure payment or action link to your customer (
 
 This section describes Smart Send retrigger, its benefits, eligibility, and how skip days determine the retry cadence.
 
-> 📘 Note:
->
-> To enable Smart Send Retrigger and configuration assistance, contact your PayU Key Account Manager (KAM).
+<Callout icon="📘" theme="info">
+  **Note**: To enable Smart Send Retrigger and configuration assistance, contact your PayU Key Account Manager (KAM).
+</Callout>
 
 ### Why use Smart Send retrigger?
 
@@ -138,9 +138,9 @@ To get started with Smart Send retrigger, request enablement via your KAM. The f
 | Retry window           | Maximum duration during which a request remains eligible for retrigger.          |
 | Additional constraints | Optional rules such as channel preferences, quiet hours, or maximum retry count. |
 
-> 📘 Note:
->
-> Skip days can be configured per **Payout Virtual Account (VA)** where supported. You may also set a common skip-day value that applies across all supported VAs.
+<Callout icon="📘" theme="info">
+  **Note**: Skip days can be configured per **Payout Virtual Account (VA)** where supported. You may also set a common skip-day value that applies across all supported VAs.
+</Callout>
 
 ## Operational tips and best practices
 
