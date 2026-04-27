@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-The Refund Wallet allows you to manage, recharge, and configure your refund funds for faster and more transparent refund processing. This guide walks you through activating, configuring, recharging, and monitoring your Refund Wallet.
+The Refund Wallet allows you to manage, recharge, and configure your refund funds for faster and more transparent refund processing. This sections is on activating, configuring, recharging, and monitoring refunds your Refund Wallet.
 
 <Callout icon="📘" theme="info">
   **Funds cannot be withdrawn**: Pre‑funding withdrawals are not permitted under RBI PA‑PG guidelines (refer to RBI circular no. RBI/DPSS/2025-26/141CO.DPSS.POLC.No.S-633/02-14-008/2025-26).The transferred funds must be used only for their intended purpose or for future refunds.
@@ -72,7 +72,6 @@ After activation, to configure your wallet:
 
 * **Threshold Limit**: Set a threshold limit for minimum balance. For more information, refer to [Configure Thresholds and Notifications](https://docs.payu.in/?isFramePreview=true#configure-thresholds-and-notifications).
 * **Email Notifications**: Enable email notifications for low balance alerts. For more information, refer to [Configure Thresholds and Notifications](https://docs.payu.in/?isFramePreview=true#configure-thresholds-and-notifications).
-* **Payment Link Reminders**: Configure the payment link reminders before number of days when it will expire. For more information, refer to [Configure Payment Link Reminders](https://docs.payu.in/?isFramePreview=true#configure-payment-link-reminders)
 
 ### Configure Thresholds and Notifications
 
@@ -87,7 +86,15 @@ To configure wallet threshold amount and email notifications:
 The _Customer Notifications_ page is displayed.
 
 4. Select the **Refund Wallet** tab.
-5. Update the email for notifications.
+
+<Image align="center" border={true} width="400px" src="https://files.readme.io/1cc91b41348174cce9a1fb4b978189dee7b946406a8dbf973c64a4694e129aa6-update_refund_email_notification.png" className="border" />
+
+4. Click **Add or edit** in **Email** section.
+
+<Image align="center" width="350px" src="https://files.readme.io/d5fa8f5501dc91258f31987ea07f15f0729a30c5cee256a95b9dde3976edb41f-refund_wallet_email_configuration.png" />
+
+4. Type the email in the **Add Recipient** field.
+5. Click **Save**.
 
 ## View Refund Wallet Ledger
 
