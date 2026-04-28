@@ -2,7 +2,7 @@
 title: BNPL payment errors
 excerpt: Buy Now Pay Later payment failure errors categorized from the PayU repo.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: BNPL payment errors
   description: Buy Now Pay Later payment failure errors categorized from the PayU repo.

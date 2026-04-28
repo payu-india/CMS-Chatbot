@@ -2,7 +2,7 @@
 title: Refund payment errors
 excerpt: Refund initiation and refund status errors categorized from the PayU repo.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Refund payment errors
   description: Refund initiation and refund status errors categorized from the PayU repo.

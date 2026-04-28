@@ -2,7 +2,7 @@
 title: CheckoutPro SDK payment errors
 excerpt: CheckoutPro SDK payment and integration errors categorized from the PayU repo.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: CheckoutPro SDK payment errors
   description: CheckoutPro SDK payment and integration errors categorized from the PayU repo.

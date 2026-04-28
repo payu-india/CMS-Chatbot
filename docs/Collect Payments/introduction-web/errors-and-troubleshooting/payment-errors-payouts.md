@@ -2,7 +2,7 @@
 title: Payouts and Smart Send errors
 excerpt: Payouts and Smart Send errors categorized from the PayU repo.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Payouts and Smart Send errors
   description: Payouts and Smart Send errors categorized from the PayU repo.

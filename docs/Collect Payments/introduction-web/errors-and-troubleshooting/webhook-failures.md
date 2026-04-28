@@ -2,7 +2,7 @@
 title: Webhook Failures
 excerpt: Debug PayU payment webhook delivery and processing issues.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Webhook Failures
   description: Debug PayU payment webhook delivery failures, HTTP errors, content-type issues, hash validation, and idempotency.

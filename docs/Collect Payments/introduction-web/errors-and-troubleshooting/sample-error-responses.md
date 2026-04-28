@@ -2,7 +2,7 @@
 title: Sample Error Responses
 excerpt: Realistic PayU success, failure, invalid hash, and authentication failure response examples.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Sample Error Responses
   description: Sample PayU response payloads for successful payments, failed transactions, invalid hash errors, and authentication failures.

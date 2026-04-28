@@ -2,7 +2,7 @@
 title: Transaction stage errors
 excerpt: Field7 and Field8 transaction-stage payment errors categorized from the PayU repo.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Transaction stage errors
   description: Field7 and Field8 transaction-stage payment errors categorized from the PayU repo.

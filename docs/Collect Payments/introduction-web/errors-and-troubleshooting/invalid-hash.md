@@ -2,7 +2,7 @@
 title: Invalid Hash Error
 excerpt: Debug and fix PayU hash mismatch and secure hash validation errors.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Invalid Hash Error
   description: Debug and fix PayU invalid hash, hash mismatch, and secure hash validation errors.

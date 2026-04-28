@@ -2,7 +2,7 @@
 title: Issuer decline errors
 excerpt: Issuer decline error codes and card-network response codes categorized from the PayU repo.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Issuer decline errors
   description: Issuer decline error codes and card-network response codes categorized from the PayU repo.

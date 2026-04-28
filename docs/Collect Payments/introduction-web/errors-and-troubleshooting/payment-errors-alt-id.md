@@ -2,7 +2,7 @@
 title: Alt ID errors
 excerpt: Alt ID card and token-related payment errors categorized from the PayU repo.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Alt ID errors
   description: Alt ID card and token-related payment errors categorized from the PayU repo.

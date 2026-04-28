@@ -2,7 +2,7 @@
 title: UPI QR API payment errors
 excerpt: In-person UPI QR API payment errors categorized from the PayU repo.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: UPI QR API payment errors
   description: In-person UPI QR API payment errors categorized from the PayU repo.

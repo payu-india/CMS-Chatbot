@@ -2,7 +2,7 @@
 title: KYC and partner payment errors
 excerpt: KYC and partner merchant-status errors categorized from the PayU repo.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: KYC and partner payment errors
   description: KYC and partner merchant-status errors categorized from the PayU repo.

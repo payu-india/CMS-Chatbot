@@ -2,7 +2,7 @@
 title: Pending Transactions
 excerpt: Debug pending, dropped, timeout, and uncertain PayU payment states.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Pending Transactions
   description: Debug pending, dropped, timeout, and uncertain PayU payment states.

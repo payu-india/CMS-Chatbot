@@ -40,15 +40,16 @@ PayU errors usually fall into these causes:
 >
 > Do not rely only on browser redirects to decide order status. Always verify the final status using the payment response hash, webhooks, and Transaction Detail APIs.
 
-## Pages in this section
+## Troubleshooting guides
 
-| Page | Use it for |
+Use this page as the main hub. Detailed guides are linked below as sub-pages.
+
+| Sub-page | Use it for |
 | --- | --- |
 | [Error categories](doc:error-categories) | Understand the main classes of PayU errors and ownership. |
 | [Error codes and messages](doc:error-codes-and-messages) | Look up common PayU error codes, messages, causes, and fixes. |
 | [Invalid hash errors](doc:invalid-hash) | Debug `E700`, `SECURE_HASH_FAILURE`, hash mismatch, and response hash issues. |
 | [Payment failed or declined](doc:payment-failed-declined) | Debug bank, issuer, UPI, wallet, OTP, CVV, and customer-driven failures. |
-| [Payment failure errors by product](doc:payment-failed-declined) | Start here, then open the product-specific payment error sub-pages. |
 | [Pending transactions](doc:pending-transactions) | Handle `E227`, delayed bank callbacks, UPI pending states, and reconciliation. |
 | [Webhook failures](doc:webhook-failures) | Debug webhook delivery failures, HTTP errors, content types, and idempotency. |
 | [Recurring and SI errors](doc:recurring-si-errors) | Debug Standing Instruction, UPI Autopay, mandate, and recurring debit failures. |
@@ -56,6 +57,22 @@ PayU errors usually fall into these causes:
 | [Integration best practices](doc:integration-best-practices) | Prevent errors with hash, validation, idempotency, retries, and status handling. |
 | [Sample error responses](doc:sample-error-responses) | See realistic success, failure, invalid hash, and authentication-failure payloads. |
 | [Escalation checklist](doc:escalation-checklist) | Collect the right details before contacting PayU Support. |
+
+## Payment failure errors by product
+
+| Product sub-page | Rows categorized | Source docs |
+| --- | ---: | --- |
+| [Collect Payments payment errors](doc:payment-errors-collect-payments) | 2,389 | Collect Payment Error Codes |
+| [Issuer decline errors](doc:payment-errors-issuer-declines) | 55 | Issuer Decline Error Codes |
+| [Transaction stage errors](doc:payment-errors-transaction-stages) | 4 | Transaction Stages Field7/Field8 |
+| [S2S Link and Pay errors](doc:payment-errors-s2s-link-and-pay) | 4 | S2S Link and Pay Error Codes |
+| [Refund payment errors](doc:payment-errors-refunds) | 85 | Refund Initiation Error Codes, Refund Status Error Codes |
+| [Payouts and Smart Send errors](doc:payment-errors-payouts) | 17 | Payouts Error Codes, Smart Send Error Codes |
+| [Alt ID errors](doc:payment-errors-alt-id) | 9 | Alt ID Error Page |
+| [BNPL payment errors](doc:payment-errors-bnpl) | 4 | BNPL Error Codes |
+| [UPI QR API payment errors](doc:payment-errors-qr-apis) | 3 | QR API Error Codes |
+| [CheckoutPro SDK payment errors](doc:payment-errors-checkoutpro-sdk) | 2 | CheckoutPro SDK Troubleshooting |
+| [KYC and partner payment errors](doc:payment-errors-kyc) | 6 | KYC Errors and Solutions |
 
 ## Start here
 

@@ -2,7 +2,7 @@
 title: Payment Failed or Declined
 excerpt: Debug issuer declines, bank failures, user cancellations, and payment method failures.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Payment Failed or Declined
   description: Troubleshoot PayU failed or declined transactions using status, error codes, field7, field8, and field9.
