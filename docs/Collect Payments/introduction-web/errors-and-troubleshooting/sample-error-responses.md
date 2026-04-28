@@ -43,6 +43,10 @@ Use this response only after:
 * `amount` matches your expected payable amount.
 * No later verified webhook/status response contradicts it.
 
+| Error code / type | Error message as returned by PayU | Recommended fix |
+| --- | --- | --- |
+| `E000` | `No Error` | Validate response hash, match `txnid` and `amount`, then mark the order paid. |
+
 ## Failed transaction
 
 ```json
@@ -68,12 +72,17 @@ Use this response only after:
 }
 ```
 
-Recommended handling:
+Recommended fix:
 
 * Verify response hash.
 * Store `mihpayid`, `error`, `error_Message`, `field7`, `field8`, and `field9`.
 * Show a retry option.
 * Use a new `txnid` for a new payment attempt.
+
+| Error code / type | Error message as returned by PayU | Recommended fix |
+| --- | --- | --- |
+| `E500` | `Bank failed to authenticate the customer` | Verify final status through webhook/status API, then let the customer retry with a new `txnid` or another payment method. |
+| `AUCNEGATIVE` | Authentication stage failed | Ask the customer to retry OTP/3DS or use another payment method. |
 
 ## Invalid hash
 
@@ -87,12 +96,16 @@ Recommended handling:
 }
 ```
 
-Recommended handling:
+Recommended fix:
 
 * Do not retry from the frontend.
 * Fix backend hash generation.
 * Compare raw request values with the hash string.
 * Confirm key, salt, endpoint, and environment.
+
+| Error code / type | Error message as returned by PayU | Recommended fix |
+| --- | --- | --- |
+| `E700` | `Validation of secure hash failed` | Regenerate the request hash on the backend using the exact posted values and correct key/salt environment. |
 
 ## Authentication failure
 
@@ -113,9 +126,14 @@ Recommended handling:
 }
 ```
 
-Recommended handling:
+Recommended fix:
 
 * Verify hash before trusting the response.
 * Ask customer to retry OTP/3DS.
 * Offer another payment method.
 * Do not expose raw issuer payloads if they are unclear.
+
+| Error code / type | Error message as returned by PayU | Recommended fix |
+| --- | --- | --- |
+| `E300` | `Card failed 3D authentication as 3 D Secure signatures did not match` | Verify final status, then ask the customer to retry authentication or use another card. |
+| `3DS_CHALLENGE_NEGATIVE` | Authentication failed | Treat as customer/issuer authentication failure and provide a retry or alternate payment method. |

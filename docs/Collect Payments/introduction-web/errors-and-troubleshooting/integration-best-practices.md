@@ -54,14 +54,14 @@ Use these practices to prevent common PayU payment errors before they reach prod
 
 Recommended merchant-side states:
 
-| Merchant state | PayU signal | Action |
+| Merchant state | PayU signal | Recommended fix |
 | --- | --- | --- |
-| `payment_initiated` | Request created | Await redirect/webhook/status. |
-| `payment_pending` | `status=pending` or `E227` | Do not fulfill. Poll/reconcile. |
-| `payment_success` | `status=success` and hash valid | Fulfill order. |
-| `payment_failed` | `status=failure` and final status verified | Show retry options. |
-| `payment_dropped` | `E231`, timeout, abandoned flow | Verify status before retry. |
-| `payment_review` | Conflicting redirect/webhook/status | Hold fulfillment and reconcile. |
+| `payment_initiated` | Request created | Await redirect, webhook, or status API update before fulfillment. |
+| `payment_pending` | `status=pending` or `E227` | Do not fulfill. Poll/reconcile and wait for webhook/status confirmation. |
+| `payment_success` | `status=success` and hash valid | Fulfill order after matching `txnid`, `amount`, and response hash. |
+| `payment_failed` | `status=failure` and final status verified | Show retry options and create a new `txnid` for a new attempt. |
+| `payment_dropped` | `E231`, timeout, abandoned flow | Verify final status before retrying or closing the order. |
+| `payment_review` | Conflicting redirect/webhook/status | Hold fulfillment and reconcile using Transaction Detail APIs. |
 
 ## Webhook handler checklist
 

@@ -15,14 +15,14 @@ Use this flow when a payment does not behave as expected.
 
 ## 1. Identify where the failure occurred
 
-| Where it failed | What to inspect |
-| --- | --- |
-| Before redirect to PayU | Request payload, mandatory parameters, hash string, endpoint, key/salt environment |
-| On PayU checkout page | `txnid`, `amount`, hash, merchant configuration, payment mode availability |
-| On bank/issuer/UPI app | `error`, `error_Message`, `field7`, `field8`, issuer decline codes |
-| After customer returns | Browser redirect payload, response hash, `status`, `unmappedstatus` |
-| Server-to-server notification | Webhook delivery logs, HTTP status, firewall/WAF, content type handling |
-| Reconciliation | Transaction Detail APIs, `mihpayid`, `txnid`, final status |
+| Where it failed | What to inspect | Recommended fix |
+| --- | --- | --- |
+| Before redirect to PayU | Request payload, mandatory parameters, hash string, endpoint, key/salt environment | Fix backend payload construction and regenerate hash from exact posted values. |
+| On PayU checkout page | `txnid`, `amount`, hash, merchant configuration, payment mode availability | Validate merchant configuration, payment mode enablement, and request/hash values. |
+| On bank/issuer/UPI app | `error`, `error_Message`, `field7`, `field8`, issuer decline codes | Show customer-safe retry guidance and offer alternate payment methods after final status verification. |
+| After customer returns | Browser redirect payload, response hash, `status`, `unmappedstatus` | Verify response hash and reconcile with webhook/status API before fulfilling. |
+| Server-to-server notification | Webhook delivery logs, HTTP status, firewall/WAF, content type handling | Fix endpoint availability, method/content-type handling, IP allowlisting, and idempotency. |
+| Reconciliation | Transaction Detail APIs, `mihpayid`, `txnid`, final status | Use verified final status as source of truth and update the merchant order state idempotently. |
 
 ## 2. Check these fields first
 
@@ -50,15 +50,15 @@ Do not log:
 
 ## 3. Isolate frontend vs backend vs PayU
 
-| Symptom | Likely owner | How to isolate |
-| --- | --- | --- |
-| Button click does nothing | Frontend | Check browser console, network tab, form submit, client-side validation. |
-| Backend returns error before PayU | Backend | Check server logs, payload construction, hash generation, mandatory fields. |
-| PayU shows hash/missing parameter error | Backend integration | Compare raw request with hash string and API reference. |
-| Customer reaches bank but payment fails | Bank/customer/payment method | Inspect `error`, `field7`, `field8`, and issuer decline reason. |
-| Redirect not received | Customer browser/network | Use webhook and Transaction Detail APIs as source of truth. |
-| Webhook not received | Merchant infrastructure | Check endpoint URL, firewall, WAF, HTTP method, content type, TLS, application logs. |
-| Status differs between redirect and webhook | Race condition or late bank update | Use verified server-side status and reconciliation rules. |
+| Symptom | Likely owner | How to isolate | Recommended fix |
+| --- | --- | --- | --- |
+| Button click does nothing | Frontend | Check browser console, network tab, form submit, client-side validation. | Fix client validation, form submit, or JavaScript errors before creating a PayU request. |
+| Backend returns error before PayU | Backend | Check server logs, payload construction, hash generation, mandatory fields. | Correct payload validation and return actionable errors to frontend. |
+| PayU shows hash/missing parameter error | Backend integration | Compare raw request with hash string and API reference. | Add missing fields, preserve delimiters, and regenerate hash server-side. |
+| Customer reaches bank but payment fails | Bank/customer/payment method | Inspect `error`, `field7`, `field8`, and issuer decline reason. | Verify final status, then ask customer to retry or use another payment method. |
+| Redirect not received | Customer browser/network | Use webhook and Transaction Detail APIs as source of truth. | Do not depend on redirect alone; reconcile through webhook/status API. |
+| Webhook not received | Merchant infrastructure | Check endpoint URL, firewall, WAF, HTTP method, content type, TLS, application logs. | Fix endpoint delivery path and allow PayU POST callbacks. |
+| Status differs between redirect and webhook | Race condition or late bank update | Use verified server-side status and reconciliation rules. | Resolve order state using the latest verified webhook/status API result. |
 
 ## 4. Inspect logs in this order
 
@@ -82,14 +82,14 @@ Do not log:
 
 ## Quick triage checklist
 
-| Check | Pass condition |
-| --- | --- |
-| Environment | Test key/salt used only with test endpoint; production key/salt used only with production endpoint. |
-| Transaction identity | `txnid`, merchant order ID, and `mihpayid` are stored and searchable. |
-| Hash | Request hash and response hash validation use the exact documented sequence. |
-| Status | Merchant system has separate success, failed, pending, dropped, and review states. |
-| Webhook | Endpoint accepts PayU POST callbacks and returns `2xx` quickly after durable receipt. |
-| Retry | New customer attempt uses a new `txnid`; previous attempt is reconciled first. |
+| Check | Pass condition | Recommended fix |
+| --- | --- | --- |
+| Environment | Test key/salt used only with test endpoint; production key/salt used only with production endpoint. | Separate environment config and block mixed key/salt/endpoint combinations. |
+| Transaction identity | `txnid`, merchant order ID, and `mihpayid` are stored and searchable. | Persist all identifiers at initiation and update records on redirect/webhook/status. |
+| Hash | Request hash and response hash validation use the exact documented sequence. | Centralize hash generation/validation in backend code. |
+| Status | Merchant system has separate success, failed, pending, dropped, and review states. | Add explicit state mapping for PayU `status`, `unmappedstatus`, and error codes. |
+| Webhook | Endpoint accepts PayU POST callbacks and returns `2xx` quickly after durable receipt. | Persist payload first, queue downstream processing, and return fast `2xx`. |
+| Retry | New customer attempt uses a new `txnid`; previous attempt is reconciled first. | Enforce idempotency and create a fresh PayU attempt only after status check. |
 
 > **Pro Tip**
 >

@@ -15,13 +15,12 @@ Invalid hash errors occur during request validation when PayU receives a `hash` 
 
 ## When it occurs
 
-Typical symptoms:
-
-* Hosted Checkout page shows a hash mismatch or transaction dropped message.
-* Payment request fails before bank redirection.
-* Error code is `E700`.
-* Error description is `SECURE_HASH_FAILURE`.
-* Message is `Validation of secure hash failed`.
+| Error code / type | Error message or symptom | Recommended fix |
+| --- | --- | --- |
+| Hash mismatch | Hosted Checkout page shows a hash mismatch or transaction dropped message. | Regenerate the request hash on the backend using the exact fields posted to PayU. |
+| Pre-bank validation failure | Payment request fails before bank redirection. | Check mandatory fields, hash sequence, key/salt, and environment before retrying. |
+| `E700` | `Validation of secure hash failed` | Recreate the SHA-512 hash with correct delimiters and exact request values. |
+| `SECURE_HASH_FAILURE` | Security validation failed. | Compare raw request fields with the hash string and confirm salt is not exposed or mixed across environments. |
 
 ## Sample request
 
@@ -90,13 +89,14 @@ Common mistakes:
 
 ## Fix checklist
 
-| Check | Expected result |
-| --- | --- |
-| Hash generated on backend | Salt never leaves backend systems. |
-| Exact request values used | Values in hash string match posted values byte-for-byte. |
-| Empty fields preserved | Blank UDF positions remain in the hash string. |
-| Environment matches | Test key/salt only with test endpoint; production key/salt only with production endpoint. |
-| Response hash verified | Order status is updated only after reverse hash validation. |
+| Error / check | Expected result | Recommended fix |
+| --- | --- | --- |
+| `E700` / `SECURE_HASH_FAILURE` | Request hash matches PayU's calculated hash. | Regenerate hash on backend using exact posted values, correct key/salt, and preserved pipe delimiters. |
+| Hash generated on backend | Salt never leaves backend systems. | Move hash generation from browser/mobile code to backend service. |
+| Exact request values used | Values in hash string match posted values byte-for-byte. | Generate hash after final amount formatting and after all fields are finalized. |
+| Empty fields preserved | Blank UDF positions remain in the hash string. | Keep empty pipe positions for missing `udf1` to `udf5`; do not remove delimiters. |
+| Environment matches | Test key/salt only with test endpoint; production key/salt only with production endpoint. | Separate test and production credentials and validate endpoint selection in config. |
+| Response hash verified | Order status is updated only after reverse hash validation. | Recalculate response hash on backend before marking success, failure, or pending. |
 
 ## Related docs
 

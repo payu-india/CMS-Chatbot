@@ -17,10 +17,12 @@ Webhook failures occur when PayU sends a server-to-server callback but your endp
 
 Typical symptoms:
 
-* PayU delivery status is `Failed`.
-* `response_code` is `401`, `403`, `404`, `405`, `500`, `502`, `503`, or `504`.
-* `webhook_delivery_message` contains HTTP error text.
-* Browser redirect was received, but server-side webhook was not.
+| Error code / type | Error message or signal | Recommended fix |
+| --- | --- | --- |
+| Webhook delivery failed | PayU delivery status is `Failed`. | Check endpoint reachability, HTTP status, content type handling, and application logs. |
+| `401`, `403`, `404`, `405`, `500`, `502`, `503`, `504` | `response_code` contains an HTTP failure. | Use the HTTP failure table below to fix auth, route, method, firewall, or server issues. |
+| Delivery message present | `webhook_delivery_message` contains HTTP error text. | Inspect the response body and fix the endpoint behavior reported by PayU. |
+| Missing server callback | Browser redirect was received, but server-side webhook was not. | Verify webhook configuration, allow PayU IPs, and confirm the endpoint accepts PayU POST callbacks. |
 
 ## Sample webhook delivery failure
 
@@ -79,11 +81,11 @@ Common causes:
 
 ## Common HTTP failures
 
-| HTTP status | Meaning | Fix |
-| --- | --- | --- |
-| `401` | Endpoint requires authentication PayU does not provide. | Use webhook-specific authentication that PayU can satisfy, or allowlist PayU delivery safely. |
-| `403` | Firewall, WAF, or authorization rule blocked PayU. | Allow PayU IPs and check WAF rules. |
-| `404` | Webhook URL is wrong or route is not deployed. | Correct the configured URL. |
-| `405` | Endpoint does not accept `POST`. | Enable `POST` on the webhook route. |
-| `415` | Unsupported content type. | Accept form data and `application/x-www-form-urlencoded`. |
-| `5xx` | Merchant server failed. | Check application logs and dependencies. Queue processing. |
+| Error code / type | Error message as returned by PayU | Description | Possible cause | Recommended fix |
+| --- | --- | --- | --- | --- |
+| `401` | `401 Unauthorized` | Merchant endpoint rejected authentication. | Endpoint requires browser session, bearer token, or basic auth that PayU does not send. | Use webhook-specific authentication that PayU can satisfy, or allowlist PayU delivery safely. |
+| `403` | `403 Forbidden` | Merchant endpoint blocked PayU. | Firewall, WAF, IP allowlist, or authorization rule blocked the callback. | Allow PayU IPs and check WAF rules. |
+| `404` | `404 Not Found` | Webhook route was not found. | URL is incorrect, environment points to old route, or deployment is missing the route. | Correct the configured URL and redeploy the webhook route. |
+| `405` | `HTTP/2 405` / `405 Method Not Allowed` | Endpoint does not accept PayU's HTTP method. | Route only accepts `GET` or another method. | Enable `POST` on the webhook route. |
+| `415` | `415 Unsupported Media Type` | Endpoint rejected PayU's content type. | Handler accepts JSON only. | Accept form data and `application/x-www-form-urlencoded`. |
+| `5xx` | `500 Internal Server Error`, `502`, `503`, `504` | Merchant server failed while handling webhook. | Handler exception, timeout, dependency outage, database failure. | Check application logs and dependencies. Persist payload first and process asynchronously. |

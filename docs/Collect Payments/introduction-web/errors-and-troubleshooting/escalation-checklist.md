@@ -38,12 +38,12 @@ Before contacting PayU Support or Integration Team, collect enough evidence to r
 
 ## Useful context by issue type
 
-| Issue type | Add this context |
-| --- | --- |
-| Invalid hash | Hash sequence used, raw request fields excluding salt, endpoint, environment. |
-| Payment failed | Error code, issuer/bank message, `field7`, `field8`, `field9`, payment mode. |
-| Pending transaction | First response timestamp, latest status-check response, webhook status. |
-| Webhook failure | Endpoint URL, HTTP status, response body, WAF/firewall logs, content type accepted. |
-| Recurring/SI failure | Mandate ID/auth reference, billing rule, billing amount, debit date, sequence details. |
+| Issue type | Add this context | Recommended fix |
+| --- | --- | --- |
+| Invalid hash | Hash sequence used, raw request fields excluding salt, endpoint, environment. | Recreate the hash server-side with exact posted values, correct delimiters, and matching environment key/salt. |
+| Payment failed | Error code, issuer/bank message, `field7`, `field8`, `field9`, payment mode. | Verify final status, classify customer/issuer vs technical failure, and offer retry with a new `txnid` only when safe. |
+| Pending transaction | First response timestamp, latest status-check response, webhook status. | Keep order pending, poll Transaction Detail APIs, and reconcile webhook/status before fulfillment or retry. |
+| Webhook failure | Endpoint URL, HTTP status, response body, WAF/firewall logs, content type accepted. | Fix endpoint method/auth/content-type/firewall issues and return `2xx` after durable receipt. |
+| Recurring/SI failure | Mandate ID/auth reference, billing rule, billing amount, debit date, sequence details. | Validate mandate dates, billing rules, debit sequence, and duplicate debit protection before retrying. |
 
 If you are unable to resolve the issue, contact [PayU Support](https://help.payu.in/).
