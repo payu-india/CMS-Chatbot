@@ -4898,7 +4898,9 @@ A live preview on the right-hand side of the page shows how your checkout page w
 
      The *Set up your brand* page is displayed.
 
-  <Image align="center" border={true} src="https://files.readme.io/eb8cf99-Screenshot_2024-07-19_at_10.43.53_AM.png" /><br/>
+  <Image align="center" border={true} src="https://files.readme.io/eb8cf99-Screenshot_2024-07-19_at_10.43.53_AM.png" />
+
+  <br />
 
   2. Select or enter the details as described in the following table:
 
@@ -4982,9 +4984,9 @@ A live preview on the right-hand side of the page shows how your checkout page w
 
     3. Under **Payment Methods Order**, click **Set Order**.
 
-    The `Payment Method Order` pop-up page is displayed with the list of your integrated payment methods..
+    The `Payment Method Order` pop-up page is displayed with the list of your integrated payment methods.<br/>
 
-    <Image align="center" border={true} src="https://files.readme.io/721753e89db5f00f6bef65082da4a6b5ba42b3477cc9da91352fa42acb6b3580-Order_of_Payment_Modes.png" />
+    <Image align="center" border={true} src="https://files.readme.io/721753e89db5f00f6bef65082da4a6b5ba42b3477cc9da91352fa42acb6b3580-Order_of_Payment_Modes.png" /><br/>
 
     4. To reorder the list, drag a payment method by the handle on the left and drop it in the position where you want it to appear.
 
@@ -5005,15 +5007,15 @@ A live preview on the right-hand side of the page shows how your checkout page w
     1. Select **Manage Checkout** >  *Checkout Customisation* from the menu on left pane.
     2. Select the **Features for Website platform** tab.
 
-    The  **Features for Website platform** tab is displayed.
+    The  **Features for Website platform** tab is displayed.<br/>
 
-    <Image align="center" src="https://files.readme.io/33ebc38e106fa4e46d62398d3d15f475d0bab59ef9619319883c5db5bcfc10da-Features_for_Website_platform_tab_PayU_Recommended_Selected.png" />
+    <Image align="center" src="https://files.readme.io/33ebc38e106fa4e46d62398d3d15f475d0bab59ef9619319883c5db5bcfc10da-Features_for_Website_platform_tab_PayU_Recommended_Selected.png" /><br/>
 
     3. Under **Payment Methods Order**, turn on the **PayU Recommended Order** toggle.
 
        When this toggle is turned on, PayU automatically determines the order of payment methods at checkout, and the **Set Order** option is disabled.
 
-    4. Select **Apply Changes** to save your settings.
+    4. Select **Apply Changes** to save your settings.<br/>
 
     > **Note:** To switch back to a custom order, turn off the **PayU Recommended Order** toggle, and then follow the steps in [Set a Custom Payment Method Order](#set-a-custom-payment-method-order).
   </Accordion>
