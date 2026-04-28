@@ -1,7 +1,7 @@
 ---
 title: Smart Send
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -127,4 +127,3 @@ To start using Smart Send:
 1. **Contact your KAM** for enablement on your account.
 2. **Confirm supported configurations** and communication channels (SMS, email, or both).
 3. **Integrate the Smart Send initiation flow** using the [Create Smart Send Link API](ref:create-smart-send-link-api).
-
