@@ -21,9 +21,13 @@ Invalid hash errors occur during request validation when PayU receives a `hash` 
   * Message is `Validation of secure hash failed`.
 </Accordion>
 
-## Sample request
+### Example
 
-```bash
+You will get an error when you POST this HTML code.
+
+<Accordion title="Sample Request" icon="fa-code">
+
+```html
 curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=gtKFFx" \
@@ -38,7 +42,9 @@ curl -X POST "https://test.payu.in/_payment" \
   -d "hash=bad_hash_value"
 ```
 
-## Sample response
+</Accordion>
+
+<Accordion title="Sample Response" icon="fa-code">
 
 ```json
 {
@@ -50,11 +56,13 @@ curl -X POST "https://test.payu.in/_payment" \
 }
 ```
 
+</Accordion>
+
 ## Root cause
 
-The hash was not generated from the exact values submitted to PayU.
+Lets find the root cause of this error.  Hash was not generated from the exact values submitted to PayU.
 
-Common mistakes:
+<Accordion title="Common Mistakes" icon="fa-warn">
 
 * Using Merchant ID instead of merchant key.
 * Using key in place of salt or salt in place of key.
@@ -64,33 +72,75 @@ Common mistakes:
 * Using test key with production salt or production key with test salt.
 * Generating hash on frontend and exposing salt.
 
-## Debugging guide
+</Accordion>
+
+## Troubleshooting
+
+Now we know the root cause of the error. Let us see how to troubleshoot the error.
+
+<Accordion title="Troubleshooting Steps" icon="fa-info-circle">
 
 1. Log the raw server-side hash string before hashing. Do not log salt in shared logs.
-
 2. Confirm the sequence:
 
-   ```text
-   key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT
-   ```
+```Text Logic
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT
+```
 
 3. Confirm the posted values exactly match the values in the hash string.
-
 4. Confirm blank UDF fields are represented by empty positions, not removed.
-
 5. Confirm the correct environment:
    * Test: test key + test salt + test endpoint.
    * Production: production key + production salt + production endpoint.
-
 6. Generate SHA-512 in lowercase hexadecimal.
-
 7. Move hash generation to backend if it is currently generated in browser/mobile code.
-
 8. Validate response hash before updating order status.
 
-> **Common Mistake**
->
-> `10`, `10.0`, and `10.00` are different strings for hash generation. If you hash `10.00`, post `10.00`.
+</Accordion>
+
+## PayU Hash Generator
+
+<HTMLBlock>{`
+			<p>You can use this tool to generate hash value by providing the mandatory parameter values depending on the logic.</p><br/>
+								<style>
+                .tooltip-btn {
+                    position: relative;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold; /* Added this line */
+                }
+                .tooltip-btn:hover::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: 125%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    z-index: 1;
+                }
+                </style>
+
+                <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
+                        class="tooltip-btn" 
+                        data-tooltip="Click to generate hash.">
+                    Generate Hash
+                </button>
+`}</HTMLBlock>
+
+<Callout icon="❗️">
+  **Common Mistakes**
+
+  `10`, `10.0`, and `10.00` are different strings for hash generation. If you hash `10.00`, post `10.00`.
+</Callout>
 
 ## Fix checklist
 
