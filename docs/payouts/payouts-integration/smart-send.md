@@ -17,6 +17,7 @@ metadata:
 next:
   description: ''
 ---
+
 **Smart Send** is a PayU Payouts feature that lets you initiate a payout or request action **without collecting full beneficiary details upfront**. Instead of requiring a bank account number and IFSC at initiation, you start the process with basic customer information (such as a mobile number or email address) — the payee then receives a secure link to complete the required details or action.
 
 This guide introduces Smart Send, explains when to use it, and outlines how the flow works from a merchant perspective. For enablement or configuration, contact your **Key Account Manager (KAM)**.
@@ -32,9 +33,9 @@ Instead of collecting full bank details (such as account number and IFSC), you c
 
 The customer (payee) then receives a secure link to complete the required details or action.
 
-> 📘 Note:
->
-> To enable Smart Send on your account, contact your PayU KAM.
+<Callout icon="📘" theme="info">
+  **Note**: To enable Smart Send on your account, contact your PayU Key Account Manager (KAM).
+</Callout>
 
 ## When should you use Smart Send?
 
@@ -46,11 +47,11 @@ Smart Send is useful when:
 
 ### Use cases
 
-| Use case                    | Why Smart Send fits                                                                          |
-| --------------------------- | -------------------------------------------------------------------------------------------- |
-| Refunds when bank details are not available | The payee provides bank or UPI details directly via the secure link.        |
-| Customer reimbursements     | No need to capture or store sensitive financial information at the merchant end.             |
-| Onboarding new recipients   | Faster than collecting and validating bank details upfront.                                  |
+| Use case                                    | Why Smart Send fits                                                              |
+| ------------------------------------------- | -------------------------------------------------------------------------------- |
+| Refunds when bank details are not available | The payee provides bank or UPI details directly via the secure link.             |
+| Customer reimbursements                     | No need to capture or store sensitive financial information at the merchant end. |
+| Onboarding new recipients                   | Faster than collecting and validating bank details upfront.                      |
 
 ## How Smart Send works
 
