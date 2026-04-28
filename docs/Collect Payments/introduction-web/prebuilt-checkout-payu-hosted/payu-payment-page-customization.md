@@ -4966,20 +4966,19 @@ A live preview on the right-hand side of the page shows how your checkout page w
 </Accordion>
 
 <Accordion title="Customize the Payment Order" icon="fa-list">
+  You can choose either configure the custom payment method order or PayU recommended order as described in the following:
 
-You can choose either configure the custom payment method order or PayU recommended order as described in the following:
   <Accordion title="Configure the Custom Payment Method Order" icon="fa-cash">
     Set a custom order if you want to control exactly which payment method appears first, second, and so on at checkout.
 
     To set a custom payment method order:
 
     1. Select **Manage Checkout** >  *Checkout Customisation* from the menu on left pane.
+
     2. Select the **Features for Website platform** tab.
        The  **Features for Website platform** tab is displayed.
 
-    <Image align="center" border={true} src="https://files.readme.io/07ec42d3ae1c1192e90fd79bc6f1de2e85c6bb8aa886131ce55e11cca666c7dd-Features_for_Website_platform_tab.png" />
-
-    3. Under **Payment Methods Order**, select **Set Order**.
+    3. Under **Payment Methods Order**, click **Set Order**.
 
     The `Payment Method Order` pop-up page is displayed with the list of your integrated payment methods..
 
@@ -5006,7 +5005,7 @@ You can choose either configure the custom payment method order or PayU recommen
 
     The  **Features for Website platform** tab is displayed.
 
-    <Image align="center" border={true} src="https://files.readme.io/07ec42d3ae1c1192e90fd79bc6f1de2e85c6bb8aa886131ce55e11cca666c7dd-Features_for_Website_platform_tab.png" />
+    <Image align="center" src="https://files.readme.io/33ebc38e106fa4e46d62398d3d15f475d0bab59ef9619319883c5db5bcfc10da-Features_for_Website_platform_tab_PayU_Recommended_Selected.png" />
 
     3. Under **Payment Methods Order**, turn on the **PayU Recommended Order** toggle.
 
