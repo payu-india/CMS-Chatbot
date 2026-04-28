@@ -28,17 +28,13 @@ They can be returned in:
 PayU errors usually fall into these causes:
 
 <Accordion title="Error Causes" icon="fa-exclamation-triangle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+  * **Merchant configuration issues**: invalid merchant key, disabled payment mode, missing S2S access, wrong environment, webhook URL not configured.
+  * **Request validation issues**: missing mandatory parameters, invalid amount, duplicate `txnid`, invalid `bankcode`, invalid VPA, invalid card details.
+  * **Hash or security issues**: incorrect hash sequence, wrong salt, response hash mismatch, sending salt in the request, altered response parameters.
+  * **Customer or issuer declines**: insufficient funds, incorrect OTP/CVV, card blocked, VPA inactive, transaction not permitted by bank.
+  * **Network or timeout issues**: bank unavailable, PSP timeout, no callback from bank, PayU-to-merchant webhook delivery failure.
+  * **Recurring or SI issues**: mandate declined, invalid billing dates, amount mismatch, sequence mismatch, mandate timeout.
 </Accordion>
-
-* **Merchant configuration issues**: invalid merchant key, disabled payment mode, missing S2S access, wrong environment, webhook URL not configured.
-* **Request validation issues**: missing mandatory parameters, invalid amount, duplicate `txnid`, invalid `bankcode`, invalid VPA, invalid card details.
-* **Hash or security issues**: incorrect hash sequence, wrong salt, response hash mismatch, sending salt in the request, altered response parameters.
-* **Customer or issuer declines**: insufficient funds, incorrect OTP/CVV, card blocked, VPA inactive, transaction not permitted by bank.
-* **Network or timeout issues**: bank unavailable, PSP timeout, no callback from bank, PayU-to-merchant webhook delivery failure.
-* **Recurring or SI issues**: mandate declined, invalid billing dates, amount mismatch, sequence mismatch, mandate timeout.
 
 ## Pages in this section
 
