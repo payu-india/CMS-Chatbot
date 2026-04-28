@@ -143,7 +143,34 @@ This API retrieves available payment options and eligibility details for a given
 ## Sample Request
 
 ```json
-{"requestId":"9078698a15d746feadcffbdaf979a198","transactionDetails":{"source":null,"amount":47990,"pre_authorize":null,"additional_charges":null},"useCase":{"checkCustomerEligibility":true,"returnUserLimit":true},"customerDetails":{"mobile":"9123412345"},"filters":{"paymentOptions":{"emi":{"cardless":"all","dc":"all"}}}} 
+curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
+--form 'key=0d5aDh' \
+--form 'command=get_checkout_details' \
+--form 'var1={
+  "requestId": "9078698a15d746feadcffbdaf979a198",
+  "transactionDetails": {
+    "source": null,
+    "amount": 47990,
+    "pre_authorize": null,
+    "additional_charges": null
+  },
+  "useCase": {
+    "checkNTBCustomerEligibility": false,
+    "checkCustomerEligibility": true,
+    "returnUserLimit": true
+  },
+  "customerDetails": {
+    "mobile": "9123412345"
+  },
+  "filters": {
+    "paymentOptions": {
+      "emi": {
+        "cardless": "all"
+      }
+    }
+  }
+}' \
+--form 'hash=5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a'
 ```
 
 ## Sample Response
@@ -151,13 +178,292 @@ This API retrieves available payment options and eligibility details for a given
 **Without Extended Payment Details**
 
 ```json
-{"httpCode":"200","message":"","status":1,"data":{"details":{"paymentOption":{"emi":{"all":{"cardless":{"all":{"LPEMI":{"tenureOptions":{"LPEMI09":{"tenure":9,"maximumAmount":null,"maximumEligibleLimit":1000000,"eligibility":{"status":true}},"LPEMI03":{"tenure":3,"maximumAmount":null,"maximumEligibleLimit":1000000,"eligibility":{"status":true}}},"maximumAmount":null,"eligibility":{"status":true}}},"hasEligible":true}}}}}}}
+{
+  "requestId": "9078698a15d746feadcffbdaf979a198",
+  "transactionDetails": {
+    "source": null,
+    "amount": 47990,
+    "pre_authorize": null,
+    "additional_charges": null
+  },
+  "useCase": {
+    "checkNTBCustomerEligibility": false,
+    "checkCustomerEligibility": true,
+    "returnUserLimit": true
+  },
+  "customerDetails": {
+    "mobile": "9123412345"
+  },
+  "filters": {
+    "paymentOptions": {
+      "emi": {
+        "cardless": "all"
+      }
+    }
+  },
+  "details": {
+    "paymentOptions": {
+      "emi": {
+        "all": {
+          "cardless": {
+            "all": {
+              "LPEMI": {
+                "tenureOptions": {
+                  "LPEMI12": {
+                    "tenure": 12,
+                    "maximumAmount": null,
+                    "maximumEligibleLimit": 1000000,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "LPEMI": {
+                    "tenure": 0,
+                    "maximumAmount": null,
+                    "maximumEligibleLimit": 1000000,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "LPEMI09": {
+                    "tenure": 9,
+                    "maximumAmount": null,
+                    "maximumEligibleLimit": 1000000,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "LPEMI03": {
+                    "tenure": 3,
+                    "maximumAmount": null,
+                    "maximumEligibleLimit": 1000000,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "LPEMI06": {
+                    "tenure": 6,
+                    "maximumAmount": null,
+                    "maximumEligibleLimit": 1000000,
+                    "eligibility": {
+                      "status": true
+                    }
+                  }
+                },
+                "maximumAmount": null,
+                "eligibility": {
+                  "status": true
+                }
+              }
+            },
+            "hasEligible": true
+          }
+        }
+      }
+    }
+  },
+  "registeredAmtConvFee": null,
+  "recurringAmtConvFee": null,
+  "configData": null,
+  "status": 1
+}
 ```
 
 **With Extended Payment Details**
 
 ```json
-{"httpCode":"200","message":"","status":1,"data":{"details":{"paymentOption":{"emi":{"all":{"cardless":{"all":{"LPEMI":{"tenureOptions":{"LPEMI09":{"tenure":9,"minimumAmount":15000,"maximumAmount":100000,"maximumEligibleLimit":1000000,"interestRate":0,"monthlyEmi":1666.78,"interestCharged":0.02,"paybackAmount":0,"bankCharge":0,"eligibility":{"status":true}},"LPEMI03":{"tenure":3,"minimumAmount":3000,"maximumAmount":60000,"maximumEligibleLimit":1000000,"interestRate":0,"monthlyEmi":5000.33,"paybackAmount":0,"bankCharge":0,"eligibility":{"status":true}}},"title":"LazyPay EMI","shortTitle":"Lazypay","priority":"100","minimumAmount":3000,"maximumAmount":100000,"eligibility":{"status":true}}},"hasEligible":true}}}}}}}
+{
+  "requestId": "9078612a15d746feadcffbdaf979a198",
+  "transactionDetails": {
+    "source": null,
+    "amount": 47990,
+    "pre_authorize": null,
+    "additional_charges": null
+  },
+  "useCase": {
+    "checkNTBCustomerEligibility": false,
+    "checkCustomerEligibility": true,
+    "returnUserLimit": true,
+    "getExtendedPaymentDetails" : true
+  },
+  "customerDetails": {
+    "mobile": "9123412345"
+  },
+  "filters": {
+    "paymentOptions": {
+      "emi": {
+        "cardless": "all"
+      }
+    }
+  },
+  "details": {
+    "paymentOptions": {
+      "emi": {
+        "all": {
+          "cardless": {
+            "all": {
+              "ZESTMON": {
+                "tenureOptions": {
+                  "ZEST09": {
+                    "tenure": 9,
+                    "minimumAmount": 3000.0,
+                    "maximumAmount": 300000.0,
+                    "interestRate": 0,
+                    "monthlyEmi": 1111.11,
+                    "paybackAmount": 0.0,
+                    "bankCharge": 0.0,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "ZEST06": {
+                    "tenure": 6,
+                    "minimumAmount": 3000.0,
+                    "maximumAmount": 300000.0,
+                    "interestRate": 0,
+                    "monthlyEmi": 1666.67,
+                    "interestCharged": 0.02,
+                    "paybackAmount": 0.0,
+                    "bankCharge": 0.0,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "ZEST03": {
+                    "tenure": 3,
+                    "minimumAmount": 3000.0,
+                    "maximumAmount": 300000.0,
+                    "interestRate": 0,
+                    "monthlyEmi": 3333.33,
+                    "paybackAmount": 0.0,
+                    "bankCharge": 0.0,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "ZESTMON": {
+                    "tenure": 0,
+                    "minimumAmount": 3000.0,
+                    "maximumAmount": 300000.0,
+                    "interestRate": 0,
+                    "monthlyEmi": 0,
+                    "paybackAmount": 0.0,
+                    "bankCharge": 0.0,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "ZEST12": {
+                    "tenure": 12,
+                    "minimumAmount": 3000.0,
+                    "maximumAmount": 300000.0,
+                    "interestRate": 0,
+                    "monthlyEmi": 833.33,
+                    "paybackAmount": 0.0,
+                    "bankCharge": 0.0,
+                    "eligibility": {
+                      "status": true
+                    }
+                  }
+                },
+                "title": "ZestMoney",
+                "shortTitle": "ZestMoney",
+                "priority": "100",
+                "minimumAmount": 3000.0,
+                "maximumAmount": 300000.0,
+                "eligibility": {
+                  "status": true
+                }
+              },
+              "LPEMI": {
+                "tenureOptions": {
+                  "LPEMI12": {
+                    "tenure": 12,
+                    "minimumAmount": 3000.0,
+                    "maximumAmount": 1000000.0,
+                    "interestRate": 18,
+                    "monthlyEmi": 916.8,
+                    "interestCharged": 1001.6,
+                    "paybackAmount": 0.0,
+                    "bankCharge": 0.0,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "LPEMI": {
+                    "tenure": 0,
+                    "minimumAmount": 3000.0,
+                    "maximumAmount": 1000000.0,
+                    "interestRate": 18,
+                    "monthlyEmi": 0,
+                    "paybackAmount": 0.0,
+                    "bankCharge": 0.0,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "LPEMI09": {
+                    "tenure": 9,
+                    "minimumAmount": 15000.0,
+                    "maximumAmount": 1000000.0,
+                    "interestRate": 18,
+                    "monthlyEmi": 1196.1,
+                    "interestCharged": 764.9,
+                    "paybackAmount": 0.0,
+                    "bankCharge": 0.0,
+                    "eligibility": {
+                      "status": false,
+                      "reason": "Minimum required amount is 15000"
+                    }
+                  },
+                  "LPEMI03": {
+                    "tenure": 3,
+                    "minimumAmount": 3000.0,
+                    "maximumAmount": 60000.0,
+                    "interestRate": 18,
+                    "monthlyEmi": 3433.83,
+                    "interestCharged": 301.49,
+                    "paybackAmount": 0.0,
+                    "bankCharge": 0.0,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "LPEMI06": {
+                    "tenure": 6,
+                    "minimumAmount": 6000.0,
+                    "maximumAmount": 1000000.0,
+                    "interestRate": 18,
+                    "monthlyEmi": 1755.25,
+                    "interestCharged": 531.5,
+                    "paybackAmount": 0.0,
+                    "bankCharge": 0.0,
+                    "eligibility": {
+                      "status": true
+                    }
+                  }
+                },
+                "title": "LazyPay EMI",
+                "shortTitle": "Lazypay",
+                "priority": "100",
+                "minimumAmount": 3000.0,
+                "maximumAmount": 1000000.0,
+                "eligibility": {
+                  "status": true
+                }
+              }
+            },
+            "hasEligible": true
+          }
+        }
+      }
+    }
+  },
+  "registeredAmtConvFee": null,
+  "recurringAmtConvFee": null,
+  "configData": null,
+  "status": 1
+}
 ```
 
 ## Response Parameters
