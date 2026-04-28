@@ -14,16 +14,12 @@ Invalid hash errors occur during request validation when PayU receives a `hash` 
 ## When it occurs
 
 <Accordion title="Error Causes" icon="fa-info-circle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+  * Hosted Checkout page shows a hash mismatch or transaction dropped message.
+  * Payment request fails before bank redirection.
+  * Error code is `E700`.
+  * Error description is `SECURE_HASH_FAILURE`.
+  * Message is `Validation of secure hash failed`.
 </Accordion>
-
-* Hosted Checkout page shows a hash mismatch or transaction dropped message.
-* Payment request fails before bank redirection.
-* Error code is `E700`.
-* Error description is `SECURE_HASH_FAILURE`.
-* Message is `Validation of secure hash failed`.
 
 ## Sample request
 
