@@ -69,28 +69,31 @@ The following diagram below provides a high-level view of how Smart Send progres
 
 ```mermaid
 flowchart TD
-    A(Merchant initiates Smart Send<br/>with basic payee details) --> B(PayU sends secure link<br/>via SMS / Email)
-    B --> C(Payee opens the link)
-    C --> D(Payee provides bank account<br/>or UPI ID)
-    D --> E{Details valid?}
-    E -->|No| F(Payee corrects and resubmits)
-    F --> D
-    E -->|Yes| G(Payee reviews and submits)
-    G --> H(PayU processes the payout)
+    A(Start: Merchant initiates<br/>Smart Send) --> B(Provide basic details<br/>mobile/email + expiry date)
+    B --> C(PayU generates secure<br/>Smart Send link)
+    C --> D(Link sent to payee via<br/>SMS/email)
+    D --> E{Payee opens link}
+    E --> F{Link expired?}
+    F -->|Yes| G(Smart Send expired<br/>No further action)
+    F -->|No| H(Payee enters required<br/>details bank/UPI)
+    H --> I(Details submitted)
+    I --> J(PayU processes payout)
+    J --> K(Payout completed)
 
     classDef start fill:#00ffde,stroke:#00ffde,stroke-width:2px,color:#002124,font-weight:bold
     classDef process fill:#002124,stroke:#00ffde,stroke-width:1.5px,color:#ffffff
     classDef decision fill:#0a3a3d,stroke:#00ffde,stroke-width:1.5px,color:#ffffff
-    classDef holding fill:#4d174d,stroke:#00ffde,stroke-width:1.5px,color:#ffffff
+    classDef terminal fill:#4d174d,stroke:#00ffde,stroke-width:1.5px,color:#ffffff
     classDef success fill:#00ffde,stroke:#00ffde,stroke-width:2px,color:#002124,font-weight:bold
 
     class A start
-    class B,C,D,G process
-    class E decision
-    class F holding
-    class H success
+    class B,C,D,H,I,J process
+    class E,F decision
+    class G terminal
+    class K success
 
     linkStyle default stroke:#00ffde,stroke-width:1.5px,color:#00ffde
+
 ```
 
 **Reading the diagram**:
