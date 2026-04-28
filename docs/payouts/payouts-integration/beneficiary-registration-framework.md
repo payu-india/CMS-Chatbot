@@ -62,7 +62,7 @@ Auto Beneficiary Registration allows PayU to automatically create a beneficiary 
 | Failure risk      | Higher chance of payout failure (unregistered beneficiary) | Lower failure risk              |
 | System complexity | More system state to manage                                | Simplified integration          |
 
-#### Manual Registration Flow
+### Manual Registration Flow
 
 ```mermaid
 flowchart TD
@@ -82,7 +82,7 @@ flowchart TD
     linkStyle default stroke:#00ffde,stroke-width:1.5px,color:#00ffde
 ```
 
-#### Limitations
+#### Manual Registration Limitations
 
 * Higher integration complexity.
 * Additional API calls.
