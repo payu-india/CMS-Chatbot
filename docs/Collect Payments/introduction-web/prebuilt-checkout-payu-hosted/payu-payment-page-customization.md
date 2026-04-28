@@ -4958,7 +4958,7 @@ A live preview on the right-hand side of the page shows how your checkout page w
         </td>
       </tr>
     </tbody>
-  </Table>
+  </Table><br/>
 
   <Callout icon="📘" theme="info">
     **Note**: While you configure each field above on the ,  you can see the preview in the right pane. For example, if you add or update the brand logo URL, it will be updated in the right pane preview.
