@@ -17,7 +17,7 @@ Webhook failures occur when PayU sends a server-to-server callback but your endp
 
 Typical symptoms:
 
-| Error code / type | Error message or signal | Recommended fix |
+| Error code / type | Error message or HTTP response | Recommended fix |
 | --- | --- | --- |
 | Webhook delivery failed | PayU delivery status is `Failed`. | Check endpoint reachability, HTTP status, content type handling, and application logs. |
 | `401`, `403`, `404`, `405`, `500`, `502`, `503`, `504` | `response_code` contains an HTTP failure. | Use the HTTP failure table below to fix auth, route, method, firewall, or server issues. |

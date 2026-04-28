@@ -17,7 +17,7 @@ Use categories to quickly identify whether an issue belongs to your checkout fro
 
 These happen when PayU, the issuer, bank, PSP, or payment network cannot authenticate the customer or authorize the payment.
 
-| Signal | What it means | What to check | Recommended fix |
+| Error code / type | What it means | What to check | Recommended fix |
 | --- | --- | --- | --- |
 | `E306` | Card authentication failure | OTP, 3DS challenge, user abandonment | Ask the customer to retry authentication or use another payment method. |
 | `E300` | 3DS signatures did not match | Incorrect OTP/password, issuer authentication issue | Let the customer retry 3DS; if repeated, suggest another card. |
@@ -36,7 +36,7 @@ Common causes:
 
 These happen when PayU cannot validate request or response integrity.
 
-| Signal | What it means | What to check | Recommended fix |
+| Error code / type | What it means | What to check | Recommended fix |
 | --- | --- | --- | --- |
 | `E700` | Validation of secure hash failed | Hash sequence, key, salt, blank delimiters | Regenerate the hash server-side using the exact posted values and correct salt. |
 | `SECURE_HASH_FAILURE` | Security validation failed | Tampered request or mismatched posted values | Compare raw request fields with the hash string and remove salt from frontend exposure. |
@@ -58,7 +58,7 @@ Common causes:
 
 These happen before PayU can process the payment request.
 
-| Signal | What it means | What to check | Recommended fix |
+| Error code / type | What it means | What to check | Recommended fix |
 | --- | --- | --- | --- |
 | `E1101` | Invalid params shared by merchant | Request body and field values | Validate payload against the API reference before posting to PayU. |
 | `E4156` / `E4373` | Validation error | Missing/malformed fields | Fix missing, invalid, or unsupported fields and retry with a new valid request. |
@@ -77,7 +77,7 @@ Common causes:
 
 These happen after payment initiation when the customer, issuer, bank, PSP, wallet, or UPI app declines or cannot complete the payment.
 
-| Signal | What it means | What to check | Recommended fix |
+| Error code / type | What it means | What to check | Recommended fix |
 | --- | --- | --- | --- |
 | `E308` | Transaction failed at bank end | Bank response and final status | Treat as failed unless a verified webhook/status response later confirms success. |
 | `E500` | Bank failed to authenticate customer | Bank authentication page, OTP flow | Verify final status, then allow the customer to retry. |
@@ -96,7 +96,7 @@ Common causes:
 
 These happen when an API request cannot be processed due to timeout, service unavailability, routing, or credential issues.
 
-| Signal | What it means | What to check | Recommended fix |
+| Error code / type | What it means | What to check | Recommended fix |
 | --- | --- | --- | --- |
 | `E1201` | Not authorized for transaction | Feature/payment mode enablement | Enable the requested feature/payment mode or use an enabled route. |
 | `E1631` | Merchant validation failed | Merchant key, environment, MID status | Verify key/salt, environment, MID status, and merchant activation. |
@@ -109,7 +109,7 @@ These happen when an API request cannot be processed due to timeout, service una
 
 These happen when PayU cannot deliver the server-to-server notification or when your system cannot process it safely.
 
-| Signal | What it means | What to check | Recommended fix |
+| Error code / type | What it means | What to check | Recommended fix |
 | --- | --- | --- | --- |
 | `401` / `403` | Endpoint rejected request | Auth rules, firewall, WAF | Allow PayU webhook delivery and use webhook-safe authentication. |
 | `404` | Endpoint not found | Webhook URL and deployment | Correct the configured webhook URL and deploy the route. |
@@ -128,7 +128,7 @@ Common causes:
 
 These happen during Standing Instruction (SI), UPI Autopay, mandate registration, mandate modification, or recurring debit.
 
-| Signal | What it means | What to check | Recommended fix |
+| Error code / type | What it means | What to check | Recommended fix |
 | --- | --- | --- | --- |
 | `E4530` | Mandate start date is less than current date | Date and timezone handling | Send a valid current/future start date. |
 | `E4531` | Mandate end date is less than start date | Date range validation | Validate mandate date range before request submission. |

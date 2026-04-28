@@ -54,7 +54,7 @@ Use these practices to prevent common PayU payment errors before they reach prod
 
 Recommended merchant-side states:
 
-| Merchant state | PayU signal | Recommended fix |
+| Merchant state | PayU status / error type | Recommended fix |
 | --- | --- | --- |
 | `payment_initiated` | Request created | Await redirect, webhook, or status API update before fulfillment. |
 | `payment_pending` | `status=pending` or `E227` | Do not fulfill. Poll/reconcile and wait for webhook/status confirmation. |

@@ -15,9 +15,9 @@ Payment failures occur after the customer is redirected to PayU, issuer, bank, w
 
 ## When it occurs
 
-Typical signals:
+Typical indicators:
 
-| Error code / type | Error message or signal | Recommended fix |
+| Error code / type | Error message or response indicator | Recommended fix |
 | --- | --- | --- |
 | `status=failure` | Payment attempt failed. | Verify response hash and final status before showing retry options. |
 | `unmappedstatus=failed` | Bank/issuer/PayU status maps to failed. | Treat as failed after reconciliation and create a new `txnid` for any retry. |
@@ -66,7 +66,7 @@ Examples:
 6. If failure is technical or timeout driven, verify final status before creating another attempt.
 7. For repeated failures on one method, test another payment mode and check merchant configuration.
 
-| Error code / type | Error message or signal | Description | Possible cause | Recommended fix |
+| Error code / type | Error message or response indicator | Description | Possible cause | Recommended fix |
 | --- | --- | --- | --- | --- |
 | `AUCNEGATIVE` | `field7=AUCNEGATIVE` | Authentication failed. | Incorrect OTP/3DS challenge failure, user abandonment, or issuer authentication decline. | Ask the customer to retry authentication or use another payment method after final status verification. |
 | `AUTHNEGATIVE` | `field7=AUTHNEGATIVE` | Authorization failed after authentication. | Issuer declined authorization because of limits, risk, card restrictions, or insufficient funds. | Show issuer-decline guidance and offer another payment method. |
@@ -90,7 +90,7 @@ Examples:
 
 ## Customer message examples
 
-| PayU signal | Customer-safe message | Recommended fix |
+| PayU error type | Customer-safe message | Recommended fix |
 | --- | --- | --- |
 | Issuer decline | Your bank declined this payment. Try another payment method or contact your bank. | Offer alternate payment modes and do not retry the same `txnid`. |
 | Authentication failure | Authentication failed. Check the OTP/CVV and try again. | Let the customer retry authentication with a new payment attempt after final status verification. |

@@ -15,7 +15,7 @@ Pending transactions occur when PayU has not received a final success or failure
 
 ## When it occurs
 
-| Signal | What it means | Recommended fix |
+| Error code / type | What it means | Recommended fix |
 | --- | --- | --- |
 | `status=pending` | PayU has not confirmed final payment status. | Keep the order pending and wait for webhook/status reconciliation. |
 | `unmappedstatus=in progress` | The transaction is still being processed. | Do not fulfill or fail the order until final status is available. |
@@ -73,7 +73,7 @@ Common causes:
 
 ## Recommended order states
 
-| Merchant state | PayU signal | Recommended fix |
+| Merchant state | PayU status / error type | Recommended fix |
 | --- | --- | --- |
 | `payment_initiated` | Request created | Await redirect, webhook, or status API result before fulfillment. |
 | `payment_pending` | `status=pending` or `E227` | Do not fulfill. Poll Transaction Detail APIs and wait for webhook/status reconciliation. |
@@ -82,9 +82,9 @@ Common causes:
 | `payment_dropped` | `E231`, timeout, abandoned flow | Verify final status before retry; if not successful, create a new attempt. |
 | `payment_review` | Conflicting redirect/webhook/status | Hold fulfillment and reconcile manually using `mihpayid`, `txnid`, and latest verified status. |
 
-## Common pending signals
+## Common pending indicators
 
-| Error code / type | Error message or signal | Description | Possible cause | Recommended fix |
+| Error code / type | Error message or response indicator | Description | Possible cause | Recommended fix |
 | --- | --- | --- | --- | --- |
 | `E227` | `Transaction is Pending` | Final transaction state is not yet available. | Bank/PSP callback is delayed or verification has not completed. | Keep order pending, listen for webhook, and poll Transaction Detail APIs. |
 | `TXNPENDING` | `field7=TXNPENDING` | Bank/wallet transaction is awaiting final result. | Bank or wallet has not sent final callback. | Do not retry immediately; reconcile before allowing another attempt. |

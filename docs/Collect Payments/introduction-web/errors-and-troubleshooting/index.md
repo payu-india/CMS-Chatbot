@@ -15,7 +15,7 @@ Use this section to identify, debug, and fix PayU integration errors across Host
 
 ## What are errors in PayU?
 
-Errors in PayU are signals returned during payment initiation, authentication, authorization, bank processing, webhook delivery, refund, or recurring-payment processing.
+Errors in PayU are response indicators returned during payment initiation, authentication, authorization, bank processing, webhook delivery, refund, or recurring-payment processing.
 
 They can be returned in:
 
