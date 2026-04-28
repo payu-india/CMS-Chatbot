@@ -3618,7 +3618,7 @@ You can append the parameter names in your transaction request to opt for all or
           -H "accept: application/json" \
           -H "Content-Type: application/x-www-form-urlencoded" \
           -d "key=JP***g&txnid=DROPBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=BNPL&hash=REPLACE_WITH_GENERATED_HASH"
-```
+    ```
     ```python
     import requests
 
@@ -4874,8 +4874,21 @@ The following procedures describes how to enable payment mode or a feature.
   </Callout>
 </Accordion>
 
-<Accordion title="Configure Checkout Settings" icon="fa-table">
-  You can customize your customer-facing checkout page that is displayed when you are using PayU Hosted Checkout integration. For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
+## Configure Checkout Settings
+The **Checkout Customisation** page on PayU Dashboard lets you tailor your checkout page to match your brand identity and prioritise the payment methods that are most relevant to your customers.
+
+You can perform the following tasks from this page:
+
+* Add your brand logo and apply your brand colours.
+* Set a default language for the checkout page.
+* Add an owner signature that appears on invoices and customer-facing pages.
+* Choose the order in which payment methods appear at checkout, or let PayU recommend the order automatically.
+
+A live preview on the right-hand side of the page shows how your checkout page will appear on **Desktop** and **Mobile** devices as you make changes.
+
+> **Reference**: For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
+
+<Accordion title="Configure Brandings" icon="fa-table">
 
   To update your brand settings:
 
