@@ -25,7 +25,7 @@ Use this API to retrieve 3DS2 authentication results when using the `auth_only=2
 
 HTTP Method:  **POST**
 
-## Request Parameters 
+## Request Parameters
 
 ### Headers
 
@@ -61,12 +61,13 @@ hash = SHA512(key | mihpayid | "admin" | date)
 ### Hash Generation Sample Code
 
 ```javascript
-var mihpayid = '999000000000704';
-var merchantKey = "smsplus";
+var referenceId = 'abf367fd2cfb7a4d3ceed0257652aef86cdc8400683aba26a838cdda6c8f29f0';
+var merchantKey = pm.environment.get("merchantKey");
+var merchantSalt = pm.environment.get("merchantSalt");
 var date = new Date();
 date = date.toUTCString();
 
-var hashString = merchantKey + "|" + mihpayid + "|" + "admin" + "|" + date;
+var hashString = merchantKey + "|" + referenceId + "|" + merchantSalt + "|" + date;
 console.log("Hash string: " + hashString);
 
 var hashResult = CryptoJS.SHA512(hashString).toString(CryptoJS.enc.Hex);
@@ -78,45 +79,15 @@ pm.environment.set("hash", hashResult);
 pm.environment.set("key", merchantKey);
 pm.environment.set("date", date);
 ```
-```python
-import hashlib
-from datetime import datetime
-
-mihpayid = '999000000000704'
-merchant_key = 'smsplus'
-date = datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
-
-hash_string = f"{merchant_key}|{mihpayid}|admin|{date}"
-hash_result = hashlib.sha512(hash_string.encode()).hexdigest()
-
-print(f"Hash string: {hash_string}")
-print(f"Hash: {hash_result}")
-```
-```php
-<?php
-$mihpayid = '999000000000704';
-$merchantKey = 'smsplus';
-$date = gmdate('D, d M Y H:i:s') . ' GMT';
-
-$hashString = $merchantKey . '|' . $mihpayid . '|' . 'admin' . '|' . $date;
-$hash = hash('sha512', $hashString);
-
-echo "Hash string: " . $hashString . "\n";
-echo "Hash: " . $hash . "\n";
-?>
-```
 
 ## Sample Request
 
 ```bash
-curl --location 'https://secure.payu.in/decoupled/AuthData?referenceId=224845c3c891a0925d0554b390d70e71' \
---header 'key: smsplus' \
---header 'hash: 3f6759853702db56124ce7d1515e98cf7fdc58617253422a43c63f38aa7660e8a500bc97ba642ad3c1fb7d0a7264050b8cd28015c4448eb45c9d4cff2cdf61c1' \
---header 'Date: Tue, 12 Mar 2024 10:54:29 GMT' \
---header 'Content-Type: application/json' \
---data '{
-    "cres": "eyJtZXNzYWdlVHlwZSI6IkNSZXMiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiJlYzI5NWMwNS0xNWViLTRjNjktYmYyNi1iMzQ4YzZjZmEwY2QiLCJ0cmFuc1N0YXR1cyI6IlkifQ=="
-}'
+curl --location 'https://test.payu.in/decoupled/AuthData?referenceId=abf367fd2cfb7a4d3ceed0257652aef86cdc8400683aba26a838cdda6c8f29f0' \
+--header 'key: PRiQvJ' \
+--header 'hash: fe94fd6b4ef0116e33870e40301342440a588cbfbc5357795fb6cccb9cc81f122a857778963d835149e46945b6b7a9b28456b90855b46de312103e3701bdfc8e' \
+--header 'Date: Mon, 27 Apr 2026 10:34:26 GMT' \
+--header 'Content-Type: application/json'
 ```
 ```python
 import requests
