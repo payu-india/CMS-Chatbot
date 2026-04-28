@@ -4968,7 +4968,7 @@ A live preview on the right-hand side of the page shows how your checkout page w
 <Accordion title="Customize the Payment Order" icon="fa-list">
   You can choose either configure the custom payment method order or PayU recommended order as described in the following:
 
-  <Accordion title="Configure the Custom Payment Method Order" icon="fa-cash">
+  <Accordion title="Configure the Custom Payment Method Order" icon="fa-money-bill">
     Set a custom order if you want to control exactly which payment method appears first, second, and so on at checkout.
 
     To set a custom payment method order:
@@ -4995,7 +4995,7 @@ A live preview on the right-hand side of the page shows how your checkout page w
        The custom order is reflected immediately in the preview pane.
   </Accordion>
 
-  <Accordion title="Enable PayU Recommended Order" icon="fa-cash">
+  <Accordion title="Enable PayU Recommended Order" icon="fa-shopping-cart">
     Enable PayU Recommended Order if you want PayU to automatically prioritise payment methods based on real-time signals such as customer behaviour and cart value. This option helps to improve conversion without requiring you to manage the order manually.
 
     To enable PayU Recommended Order:
