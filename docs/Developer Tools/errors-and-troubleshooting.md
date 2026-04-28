@@ -27,6 +27,12 @@ They can be returned in:
 
 PayU errors usually fall into these causes:
 
+<Accordion title="Error Causes" icon="fa-exclamation-triangle">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
+
 * **Merchant configuration issues**: invalid merchant key, disabled payment mode, missing S2S access, wrong environment, webhook URL not configured.
 * **Request validation issues**: missing mandatory parameters, invalid amount, duplicate `txnid`, invalid `bankcode`, invalid VPA, invalid card details.
 * **Hash or security issues**: incorrect hash sequence, wrong salt, response hash mismatch, sending salt in the request, altered response parameters.
