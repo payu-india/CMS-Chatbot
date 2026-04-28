@@ -143,34 +143,7 @@ This API retrieves available payment options and eligibility details for a given
 ## Sample Request
 
 ```json
-curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
---form 'key=0d5aDh' \
---form 'command=get_checkout_details' \
---form 'var1={
-  "requestId": "9078698a15d746feadcffbdaf979a198",
-  "transactionDetails": {
-    "source": null,
-    "amount": 47990,
-    "pre_authorize": null,
-    "additional_charges": null
-  },
-  "useCase": {
-    "checkNTBCustomerEligibility": false,
-    "checkCustomerEligibility": true,
-    "returnUserLimit": true
-  },
-  "customerDetails": {
-    "mobile": "9123412345"
-  },
-  "filters": {
-    "paymentOptions": {
-      "emi": {
-        "cardless": "all"
-      }
-    }
-  }
-}' \
---form 'hash=5c4784472c10fab50be3730a923474925c477e0fdd9a4957d5b0e0469cca3144cb74670ddc5cbe0e3edcbcd04dae64792a93989e99fd17b1cb4ce561659ce24a'
+{"requestId":"9078698a15d746feadcffbdaf979a198","transactionDetails":{"source":null,"amount":47990,"pre_authorize":null,"additional_charges":null},"useCase":{"checkCustomerEligibility":true,"returnUserLimit":true},"customerDetails":{"mobile":"9123412345"},"filters":{"paymentOptions":{"emi":{"cardless":"all","dc":"all"}}}}
 ```
 
 ## Sample Response
