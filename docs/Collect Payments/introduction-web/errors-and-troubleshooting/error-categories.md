@@ -2,7 +2,7 @@
 title: Error Categories
 excerpt: Understand the main classes of PayU errors and where they occur in the payment flow.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Error Categories
   description: Categorized guide to PayU authentication, hash, validation, payment, API, webhook, and recurring payment errors.

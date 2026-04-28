@@ -2,7 +2,7 @@
 title: Collect Payments payment errors
 excerpt: Collect Payments payment failure and decline errors categorized from the PayU repo.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Collect Payments payment errors
   description: Collect Payments payment failure and decline errors categorized from the PayU repo.

@@ -2,7 +2,7 @@
 title: Debugging Playbook
 excerpt: Step-by-step troubleshooting flow for PayU payment issues.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Debugging Playbook
   description: Step-by-step troubleshooting flow for PayU Hosted Checkout, Merchant Hosted Checkout, S2S, webhooks, and recurring payments.

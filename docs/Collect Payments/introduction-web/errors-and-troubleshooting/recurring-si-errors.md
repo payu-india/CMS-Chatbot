@@ -2,7 +2,7 @@
 title: Recurring and SI Errors
 excerpt: Troubleshoot Standing Instruction, UPI Autopay, mandate, and recurring debit errors.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Recurring and SI Errors
   description: Troubleshoot PayU Standing Instruction, UPI Autopay, mandate, and recurring debit errors.

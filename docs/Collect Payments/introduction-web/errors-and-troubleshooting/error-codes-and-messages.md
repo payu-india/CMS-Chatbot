@@ -2,7 +2,7 @@
 title: Error Codes and Messages
 excerpt: PayU payment error codes, messages, causes, and recommended fixes.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: PayU Error Codes and Messages
   description: PayU payment error codes, messages, developer-friendly descriptions, possible causes, and fixes.

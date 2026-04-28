@@ -2,7 +2,7 @@
 title: Escalation Checklist
 excerpt: Details to collect before contacting PayU Support or Integration Team.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Escalation Checklist
   description: Information to collect before escalating PayU payment, webhook, hash, or recurring-payment issues.

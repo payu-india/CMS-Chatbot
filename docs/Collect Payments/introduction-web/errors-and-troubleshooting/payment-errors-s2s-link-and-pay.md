@@ -2,7 +2,7 @@
 title: S2S Link and Pay errors
 excerpt: Server-to-server Link and Pay payment errors categorized from the PayU repo.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: S2S Link and Pay errors
   description: Server-to-server Link and Pay payment errors categorized from the PayU repo.

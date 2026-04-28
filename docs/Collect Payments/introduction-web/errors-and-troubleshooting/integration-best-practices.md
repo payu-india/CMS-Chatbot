@@ -2,7 +2,7 @@
 title: Integration Best Practices
 excerpt: Prevent common PayU integration errors with secure hash handling, idempotency, retries, and clean status management.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Integration Best Practices
   description: Best practices to prevent PayU payment integration errors across Hosted Checkout, Merchant Hosted Checkout, S2S, webhooks, and recurring payments.
