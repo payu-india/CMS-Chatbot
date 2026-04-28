@@ -23,7 +23,7 @@ Invalid hash errors occur during request validation when PayU receives a `hash` 
 
 ### Example
 
-You will get an error when you POST this HTML code.
+Here is an example HTML code that generates a hash error. 
 
 <Accordion title="Sample Request" icon="fa-code">
   ```html
@@ -139,15 +139,13 @@ Now we know the root cause of the error. Let us see how to troubleshoot the erro
 Follow this checklist while fixing the hash error.
 
 <Accordion title="Checklist" icon="fa-list">
-
-| Check                     | Expected result                                                                           |
-| ------------------------- | ----------------------------------------------------------------------------------------- |
-| Hash generated on backend | Salt never leaves backend systems.                                                        |
-| Exact request values used | Values in hash string match posted values byte-for-byte.                                  |
-| Empty fields preserved    | Blank UDF positions remain in the hash string.                                            |
-| Environment matches       | Test key/salt only with test endpoint; production key/salt only with production endpoint. |
-| Response hash verified    | Order status is updated only after reverse hash validation.                               |
-
+  | Check                     | Expected result                                                                           |
+  | ------------------------- | ----------------------------------------------------------------------------------------- |
+  | Hash generated on backend | Salt never leaves backend systems.                                                        |
+  | Exact request values used | Values in hash string match posted values byte-for-byte.                                  |
+  | Empty fields preserved    | Blank UDF positions remain in the hash string.                                            |
+  | Environment matches       | Test key/salt only with test endpoint; production key/salt only with production endpoint. |
+  | Response hash verified    | Order status is updated only after reverse hash validation.                               |
 </Accordion>
 
 ## Related docs
