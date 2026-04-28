@@ -4898,7 +4898,7 @@ A live preview on the right-hand side of the page shows how your checkout page w
 
      The *Set up your brand* page is displayed.
 
-  <Image align="center" border={true} src="https://files.readme.io/eb8cf99-Screenshot_2024-07-19_at_10.43.53_AM.png" />
+  <Image align="center" border={true} src="https://files.readme.io/eb8cf99-Screenshot_2024-07-19_at_10.43.53_AM.png" /><br/>
 
   2. Select or enter the details as described in the following table:
 
@@ -4958,7 +4958,9 @@ A live preview on the right-hand side of the page shows how your checkout page w
         </td>
       </tr>
     </tbody>
-  </Table><br/>
+  </Table>
+
+  <br />
 
   <Callout icon="📘" theme="info">
     **Note**: While you configure each field above on the ,  you can see the preview in the right pane. For example, if you add or update the brand logo URL, it will be updated in the right pane preview.
