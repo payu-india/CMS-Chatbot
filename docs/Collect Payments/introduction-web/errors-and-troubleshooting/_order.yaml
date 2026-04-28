@@ -2,6 +2,17 @@
 - error-codes-and-messages
 - invalid-hash
 - payment-failed-declined
+- payment-errors-collect-payments
+- payment-errors-issuer-declines
+- payment-errors-transaction-stages
+- payment-errors-s2s-link-and-pay
+- payment-errors-refunds
+- payment-errors-payouts
+- payment-errors-alt-id
+- payment-errors-bnpl
+- payment-errors-qr-apis
+- payment-errors-checkoutpro-sdk
+- payment-errors-kyc
 - pending-transactions
 - webhook-failures
 - recurring-si-errors

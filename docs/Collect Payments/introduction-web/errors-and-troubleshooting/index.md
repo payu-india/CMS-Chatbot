@@ -48,6 +48,7 @@ PayU errors usually fall into these causes:
 | [Error codes and messages](doc:error-codes-and-messages) | Look up common PayU error codes, messages, causes, and fixes. |
 | [Invalid hash errors](doc:invalid-hash) | Debug `E700`, `SECURE_HASH_FAILURE`, hash mismatch, and response hash issues. |
 | [Payment failed or declined](doc:payment-failed-declined) | Debug bank, issuer, UPI, wallet, OTP, CVV, and customer-driven failures. |
+| [Payment failure errors by product](doc:payment-failed-declined) | Start here, then open the product-specific payment error sub-pages. |
 | [Pending transactions](doc:pending-transactions) | Handle `E227`, delayed bank callbacks, UPI pending states, and reconciliation. |
 | [Webhook failures](doc:webhook-failures) | Debug webhook delivery failures, HTTP errors, content types, and idempotency. |
 | [Recurring and SI errors](doc:recurring-si-errors) | Debug Standing Instruction, UPI Autopay, mandate, and recurring debit failures. |
@@ -86,7 +87,7 @@ The troubleshooting sub-pages now include categorized tables for every unique er
 | --- | ---: |
 | `error-codes-and-messages` | 82 |
 | `invalid-hash` | 361 |
-| `payment-failed-declined` | 2578 |
+| `payment-failed-declined + product sub-pages` | 2578 |
 | `pending-transactions` | 214 |
 | `recurring-si-errors` | 604 |
 | `webhook-failures` | 353 |
