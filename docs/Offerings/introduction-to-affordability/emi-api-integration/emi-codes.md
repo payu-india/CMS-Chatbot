@@ -17,12 +17,12 @@ next:
 <SearchableTable
   headers={['Bank Name', 'bank_code', 'Tenure', 'Interest Rate', 'Min. Amt.', 'Max. Amt', 'Default Processing Fee', 'Min. Processing Fee']}
   rows={[
-    ['AU Small Finance Bank', 'AUSF03', '3 Months', '16%', 'Rs. 2,000', 'Rs. 100,000,000', 'Rs. 199', 'Rs. 150'],
-    ['AU Small Finance Bank', 'AUSF06', '6 Months', '16%', 'Rs. 2,000', 'Rs. 100,000,000', 'Rs. 199', 'Rs. 100'],
-    ['AU Small Finance Bank', 'AUSF09', '9 Months', '16%', 'Rs. 2,000', 'Rs. 100,000,000', 'Rs. 199', 'Rs. 100'],
-    ['AU Small Finance Bank', 'AUSF12', '12 Months', '16%', 'Rs. 2,000', 'Rs. 100,000,000', 'Rs. 199', 'N/A'],
-    ['AU Small Finance Bank', 'AUSF18', '18 Months', '16%', 'Rs. 2,000', 'Rs. 100,000,000', 'Rs. 199', 'Rs. 100'],
-    ['AU Small Finance Bank', 'AUSF24', '24 Months', '16%', 'Rs. 2,000', 'Rs. 100,000,000', 'Rs. 199', 'Rs. 100'],
+    ['AU Small Finance Bank', 'AUSF03', '3 Months', '14%', 'Rs. 2,000', 'Rs. 100,000,000', 'Rs. 199', 'Rs. 150'],
+    ['AU Small Finance Bank', 'AUSF06', '6 Months', '14%', 'Rs. 2,000', 'Rs. 100,000,000', 'Rs. 199', 'Rs. 100'],
+    ['AU Small Finance Bank', 'AUSF09', '9 Months', '14%', 'Rs. 2,000', 'Rs. 100,000,000', 'Rs. 199', 'Rs. 100'],
+    ['AU Small Finance Bank', 'AUSF12', '12 Months', '14%', 'Rs. 2,000', 'Rs. 100,000,000', 'Rs. 199', 'N/A'],
+    ['AU Small Finance Bank', 'AUSF18', '18 Months', '14%', 'Rs. 2,000', 'Rs. 100,000,000', 'Rs. 199', 'Rs. 100'],
+    ['AU Small Finance Bank', 'AUSF24', '24 Months', '14%', 'Rs. 2,000', 'Rs. 100,000,000', 'Rs. 199', 'Rs. 100'],
     ['American Express', 'EMAMEX12', '12 Months', '14%', 'Rs. 5,000', 'N/A.', 'Rs. 199', 'Rs. 199'],
     ['American Express', 'EMIAMEX3', '3 Months', '14%', 'Rs. 5,000', 'N/A.', 'Rs. 199', 'Rs. 199'],
     ['American Express', 'EMIAMEX6', '6 Months', '14%', 'Rs. 5,000', 'N/A.', 'Rs. 199', 'Rs. 199'],
