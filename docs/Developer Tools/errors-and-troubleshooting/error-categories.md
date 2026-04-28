@@ -4,7 +4,7 @@ excerpt: >-
   Categorised guide to PayU authentication, hash, validation, payment, API,
   webhook, and recurring payment errors.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   description: >-
     Understand the main classes of PayU errors and where they occur in the
