@@ -13,20 +13,18 @@ metadata:
 ---
 Error categories lets you quickly identify whether an issue belongs to your checkout frontend, backend integration, PayU configuration, bank/issuer processing, webhook infrastructure, or recurring payment setup.
 
-## Authentication and authorization errors
+## Authentication and Authorisation Errors
 
 These happen when PayU, the issuer, bank, PSP, or payment network cannot authenticate the customer or authorize the payment.
 
 <Accordion title="Errors and Fixes" icon="fa-wrench">
-
-| Error code/type | Description                      | What to check                                       | Recommended fix                                                         |
-| --------------- | -------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------- |
-| `E306`          | Card authentication failure      | OTP, 3DS challenge, user abandonment                | Ask the customer to retry authentication or use another payment method. |
-| `E300`          | 3DS signatures did not match     | Incorrect OTP/password, issuer authentication issue | Let the customer retry 3DS; if repeated, suggest another card.          |
-| `E1000`         | 3-D secure authentication failed | Challenge failure or timeout                        | Verify final status, then allow a new attempt with a new `txnid`.       |
-| `E317`          | Payer could not be authenticated | Issuer or ACS authentication failure                | Show retry and alternate payment options.                               |
-| `E348`          | Issuer declined authorization    | Card limits, risk rules, issuer restrictions        | Ask the customer to contact the issuer or use another payment method.   |
-
+  | Error code/type | Description                      | What to check                                       | Recommended fix                                                         |
+  | --------------- | -------------------------------- | --------------------------------------------------- | ----------------------------------------------------------------------- |
+  | `E306`          | Card authentication failure      | OTP, 3DS challenge, user abandonment                | Ask the customer to retry authentication or use another payment method. |
+  | `E300`          | 3DS signatures did not match     | Incorrect OTP/password, issuer authentication issue | Let the customer retry 3DS; if repeated, suggest another card.          |
+  | `E1000`         | 3-D secure authentication failed | Challenge failure or timeout                        | Verify final status, then allow a new attempt with a new `txnid`.       |
+  | `E317`          | Payer could not be authenticated | Issuer or ACS authentication failure                | Show retry and alternate payment options.                               |
+  | `E348`          | Issuer declined authorization    | Card limits, risk rules, issuer restrictions        | Ask the customer to contact the issuer or use another payment method.   |
 </Accordion>
 
 <Accordion title="Common Causes" icon="fa-question-circle">
