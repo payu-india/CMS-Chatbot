@@ -1,0 +1,11 @@
+- error-categories
+- error-codes-and-messages
+- invalid-hash
+- payment-failed-declined
+- pending-transactions
+- webhook-failures
+- recurring-si-errors
+- debugging-playbook
+- integration-best-practices
+- sample-error-responses
+- escalation-checklist
