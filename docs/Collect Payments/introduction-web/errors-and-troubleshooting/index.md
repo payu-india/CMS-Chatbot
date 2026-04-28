@@ -75,3 +75,20 @@ PayU errors usually fall into these causes:
 * [Generate Hash for Merchant Hosted Checkout](doc:generate-hash-merchant-hosted)
 * [Webhooks for Payments](doc:webhooks)
 * [Transaction Detail APIs](ref:transaction-detail-apis)
+
+<!-- PAYU_REPO_ERROR_COVERAGE_BEGIN -->
+
+## Repo error coverage
+
+The troubleshooting sub-pages now include categorized tables for every unique error row extracted from explicit error-code and troubleshooting pages in this repository. Total rows categorized: **4192**.
+
+| Target page | Rows categorized |
+| --- | ---: |
+| `error-codes-and-messages` | 82 |
+| `invalid-hash` | 361 |
+| `payment-failed-declined` | 2578 |
+| `pending-transactions` | 214 |
+| `recurring-si-errors` | 604 |
+| `webhook-failures` | 353 |
+
+<!-- PAYU_REPO_ERROR_COVERAGE_END -->

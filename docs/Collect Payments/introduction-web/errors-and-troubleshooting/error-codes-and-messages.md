@@ -63,3 +63,96 @@ For the complete reference, see [Error Codes](ref:error-codes). For transaction-
 | `E4278` | `Transaction failed as mandate setup failed from customer's bank` | Mandate setup failed at customer bank. | Bank rejected mandate or account does not support it. | Ask customer to use another account/payment method. |
 | `E4682` | `Recurrence Payment is in progress` | Recurring debit is already being processed. | Duplicate or parallel recurring request. | Do not retry immediately. Wait for final status or webhook. |
 | `E4683` | `Recurrence Payment is already completed` | Recurring debit was already completed. | Duplicate debit request for the same cycle. | Treat as duplicate and reconcile existing debit. |
+
+<!-- PAYU_REPO_ERRORS_ERROR_CODES_AND_MESSAGES_BEGIN -->
+
+## Repo-backed validation, API, refund, payout, QR, SDK, KYC, and product errors
+
+These rows are categorized from existing PayU repository error-code and troubleshooting documentation. Existing guidance on this page remains unchanged.
+
+| Source doc | Error code / type | Error message / response indicator | Description | Recommended fix |
+| --- | --- | --- | --- | --- |
+| Alt ID Error Page | EA01 | Success | Success | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| Alt ID Error Page | EA022 | Failure | Expiry year is Invalid. Please check and initiate again | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| Alt ID Error Page | EA025 | Failure | Expiry month is Invalid. Please check and initiate again. | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| Alt ID Error Page | EA03 | Failure | Technical error. Please try again | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| Alt ID Error Page | EA04 | Failure | Invalid merchant ID configuration. Please reach out to PayU support team | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| Alt ID Error Page | EA06 | Failure | Invalid auth code configuration. Please raise this to PayU support team | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| Alt ID Error Page | EA07 | Failure | Invalid Acq ID Code configuration. Please raise this to PayU support team | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| Alt ID Error Page | EA080 | Failure | Technical error. Please try again | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| Alt ID Error Page | EA083 | Failure | AMEX TRID not valid. Please raise this to PayU support team | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| Alt ID Error Page | EA09 | Failure | Invalid merchant ID configuration. Please reach out to PayU support team | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| Alt ID Error Page | EA10 | Failure | The MID is not active. Please raise this to PayU support team | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| BNPL Error Codes | E2417 | One or more parameters is invalid in the API. | - | Validate customer eligibility, lender configuration, amount, OTP, and required BNPL parameters before retrying. |
+| BNPL Error Codes | E2419 | Merchant ID passed in the API is invalid | - | Validate customer eligibility, lender configuration, amount, OTP, and required BNPL parameters before retrying. |
+| BNPL Error Codes | E2420 | The merchant has been disabled by the lender | - | Validate customer eligibility, lender configuration, amount, OTP, and required BNPL parameters before retrying. |
+| CheckoutPro SDK Troubleshooting | SDK error | Oops Something went Wrong | Enable txn-s2s_flow on the MID. | Enable txn-s2s_flow on the MID. |
+| KYC Errors and Solutions | Date not mentioned in board resolution letter | Date not mentioned in board resolution letter | Re-upload board resolution letter with board resolution date | Re-upload board resolution letter with board resolution date |
+| KYC Errors and Solutions | Entity ( Individual/proprietor/Pvt ltd etc ) written mismatch with the provided documents | Entity ( Individual/proprietor/Pvt ltd etc ) written mismatch with the provided documents | Re-upload correct document as per the Entity. | Re-upload correct document as per the Entity. |
+| KYC Errors and Solutions | Government Issued Certificate Document | Government Issued Certificate Document | - | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| KYC Errors and Solutions | Partnership deed is not verified by registrar | Partnership deed is not verified by registrar | Upload the partnership deed verified by registrar | Upload the partnership deed verified by registrar |
+| KYC Errors and Solutions | Society deed is not verified by registrar | Society deed is not verified by registrar | Upload the society deed verified by registrar | Upload the society deed verified by registrar |
+| KYC Errors and Solutions | Trust deed is not verified by registrar | Trust deed is not verified by registrar | Upload the Trust deed verified by registrar | Upload the Trust deed verified by registrar |
+| Partner Integration Errors | Invalid PAN | Format | Validate `ABCDE1234F` before submit | Validate `ABCDE1234F` before submit |
+| Partner Integration Errors | Invalid document category | Hardcoded or stale | Use Required Docs API | Use Required Docs API |
+| Partner Integration Errors | Unsupported file type | Not JPG/PNG/PDF | Convert | Convert |
+| Partner Integration Errors | `200` | Success | Process the response | Process the response |
+| Partner Integration Errors | `201` | Created | Resource created | Resource created |
+| Partner Integration Errors | `400` | Bad request | Check parameters | Check parameters |
+| Payouts Error Codes | 1001 | INVALID MERCHANT REF ID | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1002 | DUPLICATE MERCHANT REF ID | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1003 | INVALID BATCH ID | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1005 | INVALID IFSC CODE | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1006 | INVALID AMOUNT | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1007 | INVALID NAME | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1008 | INVALID MOBILE | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1009 | INVALID EMAIL | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1010 | INVALID PURPOSE | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1011 | INVALID TRANSFER TYPE | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1018 | INVALID SCHEDULE DATE FORMAT | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1019 | INVALID SCHEDULE DATE | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1022 | INVALID IFSC CODE PATTERN | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1024 | DISABLED_TRANSFER_TYPE | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1025 | DISABLED_TXN_SOURCE | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1026 | INVALID_CUSTOM_FIELD | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1031 | INVALID_ISTOKENIZED_VALUE | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1032 | EXCEEDED_TXN_LIMIT | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Payouts Error Codes | 1128 | TXN_LIMIT_EXCEEDED | Payouts Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| QR API Error Codes | - | "if it is invalid, an HTML page is shown with a message : 'Sorry, Some Problem Occurred" | Command name is empty | Correct the QR request parameters, merchant/VPA setup, amount, and transaction ID before retrying. |
+| QR API Error Codes | - | "if it is invalid, an HTML page is shown with a message : 'Sorry, Some Problem Occurred" | Merchant key is empty | Correct the QR request parameters, merchant/VPA setup, amount, and transaction ID before retrying. |
+| QR API Error Codes | E2003 | transactionId is | - | Correct the QR request parameters, merchant/VPA setup, amount, and transaction ID before retrying. |
+| QR API Error Codes | E2004 | Amount is empty or less than 1 | - | Correct the QR request parameters, merchant/VPA setup, amount, and transaction ID before retrying. |
+| QR API Error Codes | E2006 | Amount is less than 1 | - | Correct the QR request parameters, merchant/VPA setup, amount, and transaction ID before retrying. |
+| QR API Error Codes | E2009 | Expiry Time cannot be less than 1 | - | Correct the QR request parameters, merchant/VPA setup, amount, and transaction ID before retrying. |
+| QR API Error Codes | E2010 | qr already exists but amount does not match with existing qr amount | Couldn't match the incoming amount with existing QR's amount | Correct the QR request parameters, merchant/VPA setup, amount, and transaction ID before retrying. |
+| QR API Error Codes | E2013 | QR Generation Failed | Couldn't generate QR due to internal issues | Correct the QR request parameters, merchant/VPA setup, amount, and transaction ID before retrying. |
+| QR API Error Codes | E2017 | transactionId is longer than 40 | - | Correct the QR request parameters, merchant/VPA setup, amount, and transaction ID before retrying. |
+| QR API Error Codes | E2018 | transactionId is not alphanumeric | - | Correct the QR request parameters, merchant/VPA setup, amount, and transaction ID before retrying. |
+| QR API Error Codes | E2025 | Duplicate Request | when multiple qr generation requests are sent with same txnid at the same time | Correct the QR request parameters, merchant/VPA setup, amount, and transaction ID before retrying. |
+| S2S Link and Pay Error Codes | E2417 | One or more parameters is invalid in the API. | - | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| S2S Link and Pay Error Codes | E2419 | Merchant ID passed in the API is invalid | - | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| S2S Link and Pay Error Codes | E2420 | The merchant has been disabled by the lender | - | Review the source error message, correct the request or merchant configuration, and retry only after confirming the current transaction status. |
+| Smart Send Error Codes | 1100 | INVALID_MERCHANT | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1101 | INVALID_MERCHNAT_REF_ID | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1102 | INVALID_MERCHNAT_REF_ID_LENGTH | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1103 | DUPLICATE_MERCHNAT_REF_ID | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1104 | INVALID_AMOUNT | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1105 | INVALID_MOBILE | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1106 | INVALID_EMAIL | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1107 | INVALID_LINK_TYPE | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1108 | MOBILE_OR_EMAIL_REQUIRED | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1109 | INVALID_IFSC | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1110 | INVALID_LINK | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1112 | LINK_NOT_FOUND | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1114 | INVALID_DESCRIPTION | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1115 | DUPLICATE_REQUEST | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1118 | DETAILS_ALREADY_FILLED | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1119 | FAILED_TO_CANCEL_SMARTPAY | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1121 | EXPIRY_DATE_INVALID | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1122 | LINK_CANCELLED | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1123 | LINK_REJECTED | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1124 | LINK_TRANSACTION_FAILED | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1125 | DUPLICATE_SMARTSEND_LINK | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+| Smart Send Error Codes | 1126 | APPROVAL_FLOW_ERROR | Smart Send Error Codes | Correct the payout request fields or beneficiary details and retry with a valid unique reference. |
+
+<!-- PAYU_REPO_ERRORS_ERROR_CODES_AND_MESSAGES_END -->
