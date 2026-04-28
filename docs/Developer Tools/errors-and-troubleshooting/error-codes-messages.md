@@ -116,3 +116,13 @@ For the complete reference, see [Error Codes](ref:error-codes). For transaction-
   ]}
   placeholder="Search"
 />
+
+<br />
+
+<SearchableTable
+  headers={['Error Code', 'Message']}
+  rows={[
+    ['`E000`', 'No Error'],
+    ['`E700`', 'Validation failed']
+  ]}
+/>
