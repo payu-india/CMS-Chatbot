@@ -17,15 +17,24 @@ metadata:
 next:
   description: ''
 ---
+
 **Beneficiary Management** lets you define and manage the recipients of your payouts. PayU supports two approaches: **Manual (API-based) Registration**, where you explicitly register beneficiaries before initiating a payout, and **Auto Beneficiary Registration**, where PayU registers the beneficiary automatically inline during payout processing when supported and enabled.
 
 This section descrobes what a beneficiary is, how beneficiary registration works, and the difference between manual and auto beneficiary registration. For enablement or configuration changes, contact your **Key Account Manager (KAM)**.
-
 
 Payouts require a defined recipient (a **beneficiary**). You can manage beneficiaries in two ways:
 
 * **Manually** through APIs before payout, or
 * **Automatically** inline during payout, when supported and enabled.
+
+<Callout icon="📘" theme="info">
+  **Enable Auto Beneficiary Registration**: To enable Auto beneficiary registration, contact you PayU Key Account Manager.
+
+  Auto beneficiary registration applies only when **both** of the following are true:
+
+  * The merchant is enabled for the feature.
+  * The bank and payout method support auto registration.
+</Callout>
 
 ## What is a beneficiary?
 
@@ -46,13 +55,12 @@ Auto Beneficiary Registration allows PayU to automatically create a beneficiary 
 
 ### Why this matters
 
-| Aspect             | Without Auto Registration                                  | With Auto Registration                       |
-| ------------------ | ---------------------------------------------------------- | -------------------------------------------- |
-| Beneficiary setup  | Must pre-register all beneficiaries                        | Beneficiaries created on demand              |
-| API interactions   | Additional API calls required                              | Fewer API interactions                       |
-| Failure risk       | Higher chance of payout failure (unregistered beneficiary) | Lower failure risk                           |
-| System complexity  | More system state to manage                                | Simplified integration                       |
-
+| Aspect            | Without Auto Registration                                  | With Auto Registration          |
+| ----------------- | ---------------------------------------------------------- | ------------------------------- |
+| Beneficiary setup | Must pre-register all beneficiaries                        | Beneficiaries created on demand |
+| API interactions  | Additional API calls required                              | Fewer API interactions          |
+| Failure risk      | Higher chance of payout failure (unregistered beneficiary) | Lower failure risk              |
+| System complexity | More system state to manage                                | Simplified integration          |
 
 #### Manual Registration Flow
 
@@ -125,14 +133,14 @@ flowchart TD
 
 ## Manual vs Auto Registration
 
-| Feature                                    | Manual Registration | Auto Registration (Enabled) |
-| ------------------------------------------ | ------------------- | --------------------------- |
-| Registration control                       | Merchant-managed    | System-managed              |
-| API effort                                 | Higher              | Lower                       |
-| Integration complexity                     | More steps          | Simplified                  |
-| Registration timing                        | Pre-payout          | Inline during payout        |
-| Failure risk (unregistered beneficiary)    | Higher              | Lower                       |
+| Feature                                 | Manual Registration | Auto Registration (Enabled) |
+| --------------------------------------- | ------------------- | --------------------------- |
+| Registration control                    | Merchant-managed    | System-managed              |
+| API effort                              | Higher              | Lower                       |
+| Integration complexity                  | More steps          | Simplified                  |
+| Registration timing                     | Pre-payout          | Inline during payout        |
+| Failure risk (unregistered beneficiary) | Higher              | Lower                       |
 
-
-> 📘 **Note**: If these conditions are not met, payouts may require manual beneficiary registration. In some cases, no beneficiary registration is required at all — your KAM can confirm what applies to your account.
-
+<Callout icon="📘" theme="info">
+   **Note**: If these conditions are not met, payouts may require manual beneficiary registration. In some cases, no beneficiary registration is required at all — your KAM can confirm what applies to your account.
+</Callout>
