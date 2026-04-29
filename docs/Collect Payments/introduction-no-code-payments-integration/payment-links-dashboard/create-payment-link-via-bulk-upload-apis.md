@@ -14,22 +14,22 @@ Below are the integration steps:
 
 <style>
   {`
-          .zoom-card-link {
-            display: block;
-            color: inherit !important;
-            text-decoration: none !important;
-            transition: transform 0.2s ease;
-          }
-          .zoom-card-link h4,
-          .zoom-card-link p,
-          .zoom-card-link span {
-            color: inherit !important;
-            text-decoration: none !important;
-          }
-          .zoom-card-link:hover {
-            transform: scale(1.05);
-          }
-        `}
+            .zoom-card-link {
+              display: block;
+              color: inherit !important;
+              text-decoration: none !important;
+              transition: transform 0.2s ease;
+            }
+            .zoom-card-link h4,
+            .zoom-card-link p,
+            .zoom-card-link span {
+              color: inherit !important;
+              text-decoration: none !important;
+            }
+            .zoom-card-link:hover {
+              transform: scale(1.05);
+            }
+          `}
 </style>
 
 <Cards columns={3}>
@@ -91,10 +91,10 @@ The first step is to obtain an access token using the following API. Refer to th
 </Cards>
 
 <Accordion title="Environment Details" icon="fa-cogs">
-  |                |                                                                                      |
-  | :------------- | :----------------------------------------------------------------------------------- |
+  |                |                                            |
+  | :------------- | :----------------------------------------- |
   | **Test**       | `https://uat-accounts.payu.in/oauth/token` |
-  | **Production** | `https://accounts.payu.in/oauth/token`         |
+  | **Production** | `https://accounts.payu.in/oauth/token`     |
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
@@ -214,8 +214,8 @@ Use the generated access token in the step 1 and upload the bulk file using the 
 <Accordion title="Environment Details" icon="fa-cogs">
   |                |                                                        |
   | :------------- | :----------------------------------------------------- |
-  | **Test**       | [https://oneapi.payu.in](https://oneapi.payu.in)       |
-  | **Production** | [https://uatoneapi.payu.in](https://uatoneapi.payu.in) |
+  | **Test**       | `https://oneapi.payu.in/payment-links/bulk-uploads/v2/upload`       |
+  | **Production** | `https://uatoneapi.payu.in/payment-links/bulk-uploads/v2/upload` |
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
@@ -356,8 +356,8 @@ Now that you have uploaded the file, use this API to fetch the payment links tha
 <Accordion title="Environment Details" icon="fa-cogs">
   |                |                                                        |
   | :------------- | :----------------------------------------------------- |
-  | **Test**       | [https://oneapi.payu.in](https://oneapi.payu.in)       |
-  | **Production** | [https://uatoneapi.payu.in](https://uatoneapi.payu.in) |
+  | **Test**       | `https://oneapi.payu.in/payment-links/bulk-uploads/batchId`       |
+  | **Production** | `https://uatoneapi.payu.in/payment-links/bulk-uploads/batchId` |
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
