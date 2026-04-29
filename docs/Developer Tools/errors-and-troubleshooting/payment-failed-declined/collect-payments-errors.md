@@ -12,8 +12,8 @@ Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for 
 
 <Accordion title="Errors and Fixes" icon="fa-wrench">
   <SearchableTable
-  headers={["Error code / type", "Description", "Recommended fix"]}
-  rows={[
+    headers={["Error code / type", "Description", "Recommended fix"]}
+    rows={[
     ["`E000`", "NO_ERROR", "Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt."],
     ["`AUCNEGATIVE`", "0 | OTP Generated Successfully", "Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt."],
     ["`AUCNEGATIVE`", "0 | OTP Generated Successfully", "Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt."],
@@ -2404,6 +2404,6 @@ Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for 
     ["`E706`", "You do not have sufficient credit limit to complete this transaction.", "Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt."],
     ["`Verification failure`", "Indicates that a verification call confirms the transaction has failed or been declined.", "Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt."],
   ]}
-  placeholder="Search"
-/>
+    placeholder="Search"
+  />
 </Accordion>
