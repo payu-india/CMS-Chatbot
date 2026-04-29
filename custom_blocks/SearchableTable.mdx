@@ -36,10 +36,47 @@ export const SearchableTable = (props) => {
   const showEmptyState = hasSearchQuery && filteredRows.length === 0;
   const colCount = headers.length;
 
-  const getColWidth = (i) =>
-    columnWidths && columnWidths[i]
-      ? columnWidths[i]
-      : `${100 / Math.max(1, headers.length)}%`;
+  const autoWidths = useMemo(() => {
+    if (headers.length === 0) return [];
+    const stripBackticks = (s) => String(s == null ? '' : s).replace(/`/g, '');
+    const SAMPLE_SIZE = 200;
+    const sample = rows.length > SAMPLE_SIZE ? rows.slice(0, SAMPLE_SIZE) : rows;
+
+    const weights = headers.map((header, i) => {
+      const headerLen = stripBackticks(header).length;
+      let total = 0;
+      let count = 0;
+      for (const row of sample) {
+        if (row && row[i] != null) {
+          total += stripBackticks(row[i]).length;
+          count++;
+        }
+      }
+      const avg = count > 0 ? total / count : 0;
+      return Math.max(headerLen, avg, 4);
+    });
+
+    const sumWeights = weights.reduce((a, b) => a + b, 0) || 1;
+    let pcts = weights.map((w) => (w / sumWeights) * 100);
+
+    const minPct = Math.min(8, 100 / headers.length);
+    const totalDeficit = pcts.reduce((acc, p) => acc + Math.max(0, minPct - p), 0);
+    if (totalDeficit > 0) {
+      const surplusTotal = pcts.reduce((acc, p) => acc + Math.max(0, p - minPct), 0);
+      if (surplusTotal > 0) {
+        pcts = pcts.map((p) =>
+          p < minPct ? minPct : p - ((p - minPct) / surplusTotal) * totalDeficit
+        );
+      }
+    }
+    return pcts.map((p) => `${p.toFixed(2)}%`);
+  }, [headers, rows]);
+
+  const getColWidth = (i) => {
+    if (columnWidths && columnWidths[i]) return columnWidths[i];
+    if (autoWidths[i]) return autoWidths[i];
+    return `${100 / Math.max(1, headers.length)}%`;
+  };
 
   const renderCellContent = (value) => {
     if (value == null) return '';
@@ -51,9 +88,7 @@ export const SearchableTable = (props) => {
         <code key={i} style={{ padding: '2px 6px', background: '#f3f4f6', color: '#1f2937', borderRadius: '4px', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace', fontSize: '0.875em' }}>
           {part}
         </code>
-      ) : (
-        part
-      )
+      ) : part
     );
   };
 
@@ -144,7 +179,6 @@ export const SearchableTable = (props) => {
 
 <SearchableTable
   headers={['Bank Code', 'Description', 'Recommended Fix']}
-  columnWidths={['18%', '32%', '50%']}
   rows={[
     ['`E000`', 'NO_ERROR', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
     ['`AUCNEGATIVE`', 'OTP Generated Successfully', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
