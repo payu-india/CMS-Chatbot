@@ -78,17 +78,31 @@ export const SearchableTable = (props) => {
           className="overflow-y-auto overflow-x-hidden relative"
           style={showEmptyState ? {} : { maxHeight }}
         >
-          <table className="w-full border-separate border-spacing-0" style={{ tableLayout: 'fixed' }}>
+          <table
+            className="border-separate border-spacing-0"
+            style={{ tableLayout: 'fixed', width: '100%' }}
+          >
+            <colgroup>
+              {headers.map((_, i) => {
+                const w =
+                  columnWidths && columnWidths[i]
+                    ? columnWidths[i]
+                    : `${100 / headers.length}%`;
+                return <col key={i} style={{ width: w }} />;
+              })}
+            </colgroup>
             <thead>
               <tr>
                 {headers.map((header, i) => {
-                  const widthStyle =
-                    columnWidths && columnWidths[i] ? { width: columnWidths[i] } : {};
+                  const w =
+                    columnWidths && columnWidths[i]
+                      ? columnWidths[i]
+                      : `${100 / headers.length}%`;
                   return (
                     <th
                       key={i}
                       scope="col"
-                      style={{ position: 'sticky', top: 0, zIndex: 10, ...widthStyle }}
+                      style={{ position: 'sticky', top: 0, zIndex: 10, width: w }}
                       className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider bg-gray-50 border-b border-gray-200 align-top break-words"
                     >
                       {renderCellContent(header)}
@@ -100,7 +114,11 @@ export const SearchableTable = (props) => {
             <tbody className="bg-white divide-y divide-gray-200">
               {showEmptyState ? (
                 <tr>
-                  <td colSpan={colCount} className="px-4 py-4 bg-red-50 text-red-700 border-b border-red-200" role="alert">
+                  <td
+                    colSpan={colCount}
+                    className="px-4 py-4 bg-red-50 text-red-700 border-b border-red-200"
+                    role="alert"
+                  >
                     {emptyMessage}
                   </td>
                 </tr>
@@ -108,7 +126,10 @@ export const SearchableTable = (props) => {
                 filteredRows.map((row, rowIndex) => (
                   <tr key={rowIndex} className="hover:bg-gray-50">
                     {row.map((cell, cellIndex) => (
-                      <td key={cellIndex} className="px-4 py-2 text-sm text-gray-900 align-top break-words border-b border-gray-100">
+                      <td
+                        key={cellIndex}
+                        className="px-4 py-2 text-sm text-gray-900 align-top break-words border-b border-gray-100"
+                      >
                         {renderCellContent(cell)}
                       </td>
                     ))}
@@ -131,11 +152,10 @@ export const SearchableTable = (props) => {
 };
 
 <SearchableTable
-  headers={['Bank Code', 'Description', 'Recommended Fix']}
-  columnWidths={['18%', '32%', '50%']}
+  headers={['Bank', 'Type', 'Status']}
   rows={[
-    ['`AUCNEGATIVE`', 'OTP Generated Successfully', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
-    ['`E348`', 'ISSUER_DECLINED', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
+    ['HDFC Bank', 'Netbanking / Cards', 'Active'],
+    ['ICICI Bank', 'Netbanking / Cards', 'Active'],
   ]}
-  placeholder="Search errors..."
+  placeholder="Search banks..."
 />
