@@ -25,6 +25,7 @@ export const SearchableTable = (props) => {
     maxHeight = '400px',
     emptyMessage = 'No results found. Try a different search.',
     className = '',
+    columnWidths = null,
   } = props;
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -72,7 +73,7 @@ export const SearchableTable = (props) => {
   };
 
   return (
-    <div className={`w-fit max-w-full ${className}`}>
+    <div className={`w-full ${className}`}>
       <div className="border border-gray-200 rounded-md overflow-hidden">
         {/* Search bar: outside the scroll area, never moves */}
         <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
@@ -96,17 +97,28 @@ export const SearchableTable = (props) => {
 
         {/* Scrollable table; only the column header row is sticky inside it */}
         <div
-          className="overflow-auto"
+          className="overflow-y-auto overflow-x-hidden relative"
           style={showEmptyState ? {} : { maxHeight }}
         >
-          <table className="min-w-full divide-y divide-gray-200 border-collapse">
+          <table
+            className="w-full border-separate border-spacing-0"
+            style={columnWidths ? { tableLayout: 'fixed' } : { tableLayout: 'auto' }}
+          >
+            {columnWidths && (
+              <colgroup>
+                {columnWidths.map((w, i) => (
+                  <col key={i} style={{ width: w }} />
+                ))}
+              </colgroup>
+            )}
             <thead>
-              <tr className="sticky top-0 z-10 bg-gray-50 shadow-[0_2px_0_0_rgba(0,0,0,0.05)]">
+              <tr>
                 {headers.map((header, i) => (
                   <th
                     key={i}
                     scope="col"
-                    className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider bg-gray-50 border-b border-gray-200"
+                    style={{ position: 'sticky', top: 0, zIndex: 10 }}
+                    className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider bg-gray-50 border-b border-gray-200 align-top break-words"
                   >
                     {renderCellContent(header)}
                   </th>
@@ -130,7 +142,7 @@ export const SearchableTable = (props) => {
                     {row.map((cell, cellIndex) => (
                       <td
                         key={cellIndex}
-                        className="px-4 py-2 text-sm text-gray-900"
+                        className="px-4 py-2 text-sm text-gray-900 align-top break-words border-b border-gray-100"
                       >
                         {renderCellContent(cell)}
                       </td>
