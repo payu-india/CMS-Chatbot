@@ -2408,7 +2408,7 @@ Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for 
   />
 </Accordion>
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
+<Accordion title="Errors and Fixes" icon="fa-wrench">
   SearchableTable
     headers={['Error code / type', 'Description', 'Recommended fix']}
     rows={[
