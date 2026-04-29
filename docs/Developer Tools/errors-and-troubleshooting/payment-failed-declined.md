@@ -13,7 +13,7 @@ metadata:
 ---
 Payment failures occur after the customer is redirected to PayU, issuer, bank, wallet, or UPI app and the payment cannot be completed.
 
-## When it occurs
+## When Errors Occur
 
 <Accordion title="Error and Fixes" icon="fa-info-circle">
   | Error code / type                                           | Error message or response indicator     | Recommended fix                                                                                                           |
@@ -57,7 +57,7 @@ Below is the sample error response of a transaction declined by an issuer.
   ```
 </Accordion>
 
-## Root cause
+## Root Cause
 
 Now let us understand the root cause of this error. Failures are commonly caused by customer action, issuer/bank rules, payment instrument restrictions, or technical timeouts.
 
