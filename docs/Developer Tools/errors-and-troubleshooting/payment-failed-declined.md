@@ -93,7 +93,9 @@ Now that we know the root cause let's troubleshoot the error.
   Do not show raw bank text directly to customers if it is unclear. Map it to a clear message such as "Your bank declined the payment. Try another card or contact your bank."
 </Callout>
 
-## Common failure patterns
+## Common Failure Patterns
+
+<Accordion title="Errors and Fixes" icon="fa-wrench">
 
 | Pattern                         | Likely cause                                | Recommended fix                                             |
 | ------------------------------- | ------------------------------------------- | ----------------------------------------------------------- |
@@ -104,7 +106,13 @@ Now that we know the root cause let's troubleshoot the error.
 | `E1206`, `E231`                 | Customer interrupted or transaction dropped | Verify final status before retry.                           |
 | `E4177`, `E4292`                | Bank/PSP timeout or unavailable             | Keep pending until reconciliation confirms final state.     |
 
-## Customer message examples
+</Accordion>
+
+## Customer Message Examples
+
+Go through some of these customer message examples you can display to customers.
+
+<Accordion title="Errro Messages and Fixes" icon="fa-info-circle">
 
 | PayU error type        | Customer-safe message                                                              | Recommended fix                                                                                   |
 | ---------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
@@ -113,11 +121,29 @@ Now that we know the root cause let's troubleshoot the error.
 | Timeout                | We could not confirm the payment yet. Please wait while we verify the status.      | Keep the order pending and reconcile through webhook or Transaction Detail APIs.                  |
 | Card not permitted     | This card is not enabled for this transaction. Try another card or payment method. | Ask the customer to use another card or enable the card with the issuer.                          |
 
-## Developer checklist
+</Accordion>
 
-* Confirm the failure is final before creating another attempt.
-* Store full diagnostic fields for support and reconciliation.
-* Do not retry the same `txnid` as a new payment.
-* Offer alternate payment methods for customer/issuer declines.
-* Use [Issuer Decline Error Codes](ref:issuer-decline-error-codes) for card decline details.
-* Use [Transaction Stages - Error References on Field7 & Field8](ref:transaction-stages-error-references-field7-field8) to identify the failed processing stage.
+## Developer Checklist
+
+Here is a checklist you as a developer should go through while fixing the error.
+
+<Accordion title="Checklist" icon="fa-list">
+
+* [x] Confirm the failure is final before creating another attempt.
+
+
+* [x] Store full diagnostic fields for support and reconciliation.
+
+
+* [x] Do not retry the same `txnid` as a new payment.
+
+
+* [x] Offer alternate payment methods for customer/issuer declines.
+
+
+* [x] Use [Issuer Decline Error Codes](ref:issuer-decline-error-codes) for card decline details.
+
+
+* [x] Use [Transaction Stages - Error References on Field7 & Field8](ref:transaction-stages-error-references-field7-field8) to identify the failed processing stage.
+
+</Accordion>
