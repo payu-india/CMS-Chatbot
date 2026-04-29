@@ -45,7 +45,7 @@ HTTP Method: **GET**
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>Query</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><br>Merchant access token<br> or client token<br> with the scope as <strong>fetch_child_merchants</strong> from Hub.</p> <p>Bearer {{access_token}}</p> For more information, refer to <a href="docs.payu.in/reference/sub-account-listing-api">Sub Account Listing API</a
+  <td style="border: 1px solid #ddd; padding: 8px;">Merchant access token or client token with the scope as <strong>fetch_child_merchants</strong> from Hub.</p> <p>Bearer {{access_token}}</p> For more information, refer to <a href="docs.payu.in/reference/sub-account-listing-api">Sub Account Listing API</a
 </td>
 </tr>
 <tr>
