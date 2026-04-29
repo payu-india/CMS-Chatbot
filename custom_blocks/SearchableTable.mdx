@@ -1,20 +1,6 @@
 ---
 name: SearchableTable
 ---
-/**
- * SearchableTable - Readme CMS Custom Component
- * 
- * A table with:
- * - Search input that filters rows by any column (case-insensitive, multi-word)
- * - "No results found" error state when search has no matches
- * - Scrollable table body (fixed max height with overflow)
- * 
- * Usage in Readme: Add this code in Settings > Custom Components, then use
- * <SearchableTable headers={["Column A","Column B"]} rows={[["a1","b1"],["a2","b2"]]} />
- * 
- * Reference: Razorpay-style supported banks/cards table
- */
-
 import { useState, useMemo } from 'react';
 
 export const SearchableTable = (props) => {
@@ -48,11 +34,8 @@ export const SearchableTable = (props) => {
 
   const hasSearchQuery = normalize(searchQuery).length > 0;
   const showEmptyState = hasSearchQuery && filteredRows.length === 0;
-
   const colCount = headers.length;
 
-  // Renders a string with `inline code` segments as <code> elements.
-  // Non-string values (numbers, JSX) pass through unchanged.
   const renderCellContent = (value) => {
     if (value == null) return '';
     if (typeof value !== 'string') return value;
@@ -60,10 +43,7 @@ export const SearchableTable = (props) => {
     const parts = value.split('`');
     return parts.map((part, i) =>
       i % 2 === 1 ? (
-        <code
-          key={i}
-          className="px-1.5 py-0.5 bg-gray-100 text-gray-800 rounded text-[0.875em] font-mono"
-        >
+        <code key={i} className="px-1.5 py-0.5 bg-gray-100 text-gray-800 rounded text-[0.875em] font-mono">
           {part}
         </code>
       ) : (
@@ -75,7 +55,6 @@ export const SearchableTable = (props) => {
   return (
     <div className={`w-full ${className}`}>
       <div className="border border-gray-200 rounded-md overflow-hidden">
-        {/* Search bar: outside the scroll area, never moves */}
         <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
           <div className="flex items-center w-full max-w-md border border-gray-300 rounded-md bg-white shadow-sm focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
             <span className="flex items-center justify-center pl-3 text-gray-400 flex-shrink-0" aria-hidden="true">
@@ -95,7 +74,6 @@ export const SearchableTable = (props) => {
           </div>
         </div>
 
-        {/* Scrollable table; only the column header row is sticky inside it */}
         <div
           className="overflow-y-auto overflow-x-hidden relative"
           style={showEmptyState ? {} : { maxHeight }}
@@ -128,11 +106,7 @@ export const SearchableTable = (props) => {
             <tbody className="bg-white divide-y divide-gray-200">
               {showEmptyState ? (
                 <tr>
-                  <td
-                    colSpan={colCount}
-                    className="px-4 py-4 bg-red-50 text-red-700 border-b border-red-200"
-                    role="alert"
-                  >
+                  <td colSpan={colCount} className="px-4 py-4 bg-red-50 text-red-700 border-b border-red-200" role="alert">
                     {emptyMessage}
                   </td>
                 </tr>
@@ -140,10 +114,7 @@ export const SearchableTable = (props) => {
                 filteredRows.map((row, rowIndex) => (
                   <tr key={rowIndex} className="hover:bg-gray-50">
                     {row.map((cell, cellIndex) => (
-                      <td
-                        key={cellIndex}
-                        className="px-4 py-2 text-sm text-gray-900 align-top break-words border-b border-gray-100"
-                      >
+                      <td key={cellIndex} className="px-4 py-2 text-sm text-gray-900 align-top break-words border-b border-gray-100">
                         {renderCellContent(cell)}
                       </td>
                     ))}
@@ -165,14 +136,12 @@ export const SearchableTable = (props) => {
   );
 };
 
-// Default preview for Readme CMS (component must appear after exports)
 <SearchableTable
-  headers={['Bank', 'Type', 'Status']}
+  headers={['Bank Code', 'Description', 'Recommended Fix']}
+  columnWidths={['18%', '32%', '50%']}
   rows={[
-    ['HDFC Bank', 'Netbanking / Cards', 'Active'],
-    ['ICICI Bank', 'Netbanking / Cards', 'Active'],
-    ['State Bank of India', 'Netbanking', 'Active'],
-    ['Axis Bank', 'Cards', 'Active'],
+    ['`AUCNEGATIVE`', 'OTP Generated Successfully', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
+    ['`E348`', 'ISSUER_DECLINED', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
   ]}
-  placeholder="Search banks..."
+  placeholder="Search errors..."
 />
