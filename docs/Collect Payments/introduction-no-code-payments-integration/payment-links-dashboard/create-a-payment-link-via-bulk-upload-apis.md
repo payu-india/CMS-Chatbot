@@ -17,7 +17,7 @@ Below are the integration steps:
     <div style={{ color: "#000", padding: "8px" }}>
       <i className="fa fa-key" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
 
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Fetch the Access Token</h4>
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 1. Get the Access Token</h4>
 
       <p style={{ margin: 0 }}>
         Fetch the Bearer Token.
@@ -29,7 +29,7 @@ Below are the integration steps:
     <div style={{ color: "#000", padding: "8px" }}>
       <i className="fa fa-file-upload" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
 
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Bulk Upload</h4>
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 2. Upload the Bulk File</h4>
 
       <p style={{ margin: 0 }}>
         Upload the Bulk File.
@@ -335,101 +335,91 @@ Now that you have uploaded the file, use this API to fetch the payment links tha
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
-
-```curl
-curl -X GET 'https://oneapi.payu.in/payment-links/bulk-uploads/BULK832297752700?orderBy=addedOn&order=desc&pageOffset=0&pageSize=20' \
-  -H 'accept: application/json' \
-  -H 'authorization: Bearer_ACCESS_TOKEN' \
-  -H 'mid: 8235901' \
-  -H 'product: PAYUBIZ' \
-  -H 'origin: https://payu.in' \
-  -H 'referer: https://payu.in/'
-```
-
+  ```curl
+  curl -X GET 'https://oneapi.payu.in/payment-links/bulk-uploads/BULK832297752700?orderBy=addedOn&order=desc&pageOffset=0&pageSize=20' \
+    -H 'accept: application/json' \
+    -H 'authorization: Bearer_ACCESS_TOKEN' \
+    -H 'mid: 8235901' \
+    -H 'product: PAYUBIZ' \
+    -H 'origin: https://payu.in' \
+    -H 'referer: https://payu.in/'
+  ```
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-code">
-
-```json Success Response
-{
-  "status": 0,
-  "message": null,
-  "result": {
-    "pageSize": 20,
-    "pages": 1,
-    "rows": 3,
-    "pageOffset": 0,
-    "paymentLinksList": [
-      {
-        "invoiceNumber": "INV-1001",
-        "description": "Apr subscription",
-        "createDate": "2026-04-24T11:32:18.000+00:00",
-        "paymentLinkURL": "https://u.payu.in/abcd1234",
-        "customerName": "Asha Rao",
-        "amount": 1499.00,
-        "active": true,
-        "expiry": "2026-05-24T11:32:18.000+00:00",
-        "isAmountFilledByCustomer": false,
-        "isPartialPaymentAllowed": false,
-        "status": "active",
-        "isScheduled": null,
-        "reminderCount": null,
-        "isSplit": false,
-        "currency": "INR",
-        "merchantId": 8235901,
-        "creatorEmail": "ops@example.com"
-      }
-    ]
-  },
-  "errorCode": null,
-  "guid": "..."
-}
-```
-
+  ```json Success Response
+  {
+    "status": 0,
+    "message": null,
+    "result": {
+      "pageSize": 20,
+      "pages": 1,
+      "rows": 3,
+      "pageOffset": 0,
+      "paymentLinksList": [
+        {
+          "invoiceNumber": "INV-1001",
+          "description": "Apr subscription",
+          "createDate": "2026-04-24T11:32:18.000+00:00",
+          "paymentLinkURL": "https://u.payu.in/abcd1234",
+          "customerName": "Asha Rao",
+          "amount": 1499.00,
+          "active": true,
+          "expiry": "2026-05-24T11:32:18.000+00:00",
+          "isAmountFilledByCustomer": false,
+          "isPartialPaymentAllowed": false,
+          "status": "active",
+          "isScheduled": null,
+          "reminderCount": null,
+          "isSplit": false,
+          "currency": "INR",
+          "merchantId": 8235901,
+          "creatorEmail": "ops@example.com"
+        }
+      ]
+    },
+    "errorCode": null,
+    "guid": "..."
+  }
+  ```
 </Accordion>
 
 <Accordion title="Path and Query Parameters" icon="fa-table">
-
-| **Parameter**           | **Passed In** | **Description**                                                              |
-| :---------------------- | :------------ | :--------------------------------------------------------------------------- |
-| `batchId` *mandatory*   | path          | `string` The unique batch ID.                                                |
-| `orderBy` *mandatory*   | query         | `string` The order by description.                                           |
-| `order` *optional*      | query         | `string` The order description.                                              |
-| `pageOffset` *optional* | query         | `integer` The page offset number.                                            |
-| `pageSize` *optional*   | query         | `integer` The page size.                                                     |
-| `searchText` *optional* | query         | `string` The search text. Case‑insensitive substring match on `customerName` |
-| `status` *optional*     | query         | `object` The link status.                                                    |
-
+  | **Parameter**           | **Passed In** | **Description**                                                              |
+  | :---------------------- | :------------ | :--------------------------------------------------------------------------- |
+  | `batchId` *mandatory*   | path          | `string` The unique batch ID.                                                |
+  | `orderBy` *mandatory*   | query         | `string` The order by description.                                           |
+  | `order` *optional*      | query         | `string` The order description.                                              |
+  | `pageOffset` *optional* | query         | `integer` The page offset number.                                            |
+  | `pageSize` *optional*   | query         | `integer` The page size.                                                     |
+  | `searchText` *optional* | query         | `string` The search text. Case‑insensitive substring match on `customerName` |
+  | `status` *optional*     | query         | `object` The link status.                                                    |
 </Accordion>
 
 <Accordion title="Response Parameters" icon="fa-table">
-
-| **Parameter**              | **Description**                                                                            |
-| :------------------------- | :----------------------------------------------------------------------------------------- |
-| `invoiceNumber`            | `string` The invoice number. Same value as InvoiceId from CSV (or auto‑generated if blank) |
-| `description`              | `string` The product description from the CSV file.                                        |
-| `createDate`               | `datetime` The created date.                                                               |
-| `paymentLinkURL`           | `string` The payment link to share with the customer.                                      |
-| `customerName`             | `string` The customer name.                                                                |
-| `amount`                   | `number` The total amount of the link.                                                     |
-| `active`                   | `boolean` Determines whether the link is active.                                           |
-| `expiry`                   | `datetime` The expiry timestamp of the link.                                               |
-| `isAmountFilledByCustomer` | `boolean` Determines whether the amount is filled by the customer.                         |
-| `isPartialPaymentAllowed`  | `boolean` Determines whether the partial payment is allowed.                               |
-| `status`                   | `string` The status of the payment link.                                                   |
-| `isSplit`                  | `boolean` Determines whether the split payment is enabled.                                 |
-| `currency`                 | `string` The currency of the amount.                                                       |
-| `merchantId`               | `integer` The unique merchant ID.                                                          |
-| `creatorEmail`             | `string` The creator email address.                                                        |
-
+  | **Parameter**              | **Description**                                                                            |
+  | :------------------------- | :----------------------------------------------------------------------------------------- |
+  | `invoiceNumber`            | `string` The invoice number. Same value as InvoiceId from CSV (or auto‑generated if blank) |
+  | `description`              | `string` The product description from the CSV file.                                        |
+  | `createDate`               | `datetime` The created date.                                                               |
+  | `paymentLinkURL`           | `string` The payment link to share with the customer.                                      |
+  | `customerName`             | `string` The customer name.                                                                |
+  | `amount`                   | `number` The total amount of the link.                                                     |
+  | `active`                   | `boolean` Determines whether the link is active.                                           |
+  | `expiry`                   | `datetime` The expiry timestamp of the link.                                               |
+  | `isAmountFilledByCustomer` | `boolean` Determines whether the amount is filled by the customer.                         |
+  | `isPartialPaymentAllowed`  | `boolean` Determines whether the partial payment is allowed.                               |
+  | `status`                   | `string` The status of the payment link.                                                   |
+  | `isSplit`                  | `boolean` Determines whether the split payment is enabled.                                 |
+  | `currency`                 | `string` The currency of the amount.                                                       |
+  | `merchantId`               | `integer` The unique merchant ID.                                                          |
+  | `creatorEmail`             | `string` The creator email address.                                                        |
 </Accordion>
 
 <Accordion title="Error Response Scenarios" icon="fa-exclamation-triangle">
-
-| **Error Message**                       | **Description**                                                 |
-| :-------------------------------------- | :-------------------------------------------------------------- |
-| `invalid orderBy`                       | `orderBy` not in the allowed list.                              |
-| `pass valid status param`               | `status` query value not in `active`, `inactive`, or `expired`. |
-| `error occured while bulk paymentLinks` | Server‑side exception                                           |
-
+  | **Error Message**                       | **Description**                                                 |
+  | :-------------------------------------- | :-------------------------------------------------------------- |
+  | `invalid orderBy`                       | `orderBy` not in the allowed list.                              |
+  | `pass valid status param`               | `status` query value not in `active`, `inactive`, or `expired`. |
+  | `error occured while bulk paymentLinks` | Server‑side exception                                           |
 </Accordion>
