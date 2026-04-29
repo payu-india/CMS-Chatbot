@@ -21,10 +21,15 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for
 
 Rows categorized: **3**.
 
-| Source doc | Error code / type | Error message / response indicator | Description | Recommended fix |
-| --- | --- | --- | --- | --- |
-| QR API Error Codes | E2007 | No vpa exists against given merchant. Please contact sales support | - | Correct QR request parameters, merchant VPA setup, amount, and transactionId; retry with a valid unique transactionId. |
-| QR API Error Codes | E2008 | Incoming VPA Does Not Match with registered vpa. Please provide a valid vpa | - | Correct QR request parameters, merchant VPA setup, amount, and transactionId; retry with a valid unique transactionId. |
-| QR API Error Codes | E2011 | qr already exists but vpa does not match with existing qr vpa | - | Correct QR request parameters, merchant VPA setup, amount, and transactionId; retry with a valid unique transactionId. |
+<SearchableTable
+  headers={["Error code / type", "Description", "Recommended fix"]}
+  rows={[
+    ["`No vpa exists against given merchant. Please contact sales support`", "-", "Correct QR request parameters, merchant VPA setup, amount, and transactionId; retry with a valid unique transactionId."],
+    ["`Incoming VPA Does Not Match with registered vpa. Please provide a valid vpa`", "-", "Correct QR request parameters, merchant VPA setup, amount, and transactionId; retry with a valid unique transactionId."],
+    ["`qr already exists but vpa does not match with existing qr vpa`", "-", "Correct QR request parameters, merchant VPA setup, amount, and transactionId; retry with a valid unique transactionId."],
+  ]}
+  placeholder="Search"
+/>
+
 
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_QR_APIS_END -->
