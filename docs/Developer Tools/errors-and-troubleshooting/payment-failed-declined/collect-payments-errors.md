@@ -10,7 +10,7 @@ Below are the errors associated with Collect Payments, along with their descript
 
 Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for debugging guidance and retry handling.
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
+<Accordion title="Errors and Fixes" icon="fa-wrench">
   <SearchableTable
   headers={['Bank Code', 'Description', 'Recommended Fix']}
   columnWidths={['18%', '32%', '50%']}
