@@ -12,9 +12,23 @@ The bulk upload option using APIs lets you create many payment links by uploadin
 
 Below are the integration steps:
 
+<style>{`
+  .zoom-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 8px;
+  }
+  .zoom-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  }
+`}</style>
+
 <Cards columns={3}>
   <Card>
-    <a href="#step-1-get-the-access-token" style={{ display: "block", color: "inherit", textDecoration: "none" }}>
+    <a href="#step-1-get-the-access-token" className="zoom-card">
       <div style={{ color: "#000", padding: "8px" }}>
         <i className="fa fa-key" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
 
@@ -28,7 +42,7 @@ Below are the integration steps:
   </Card>
 
   <Card>
-    <a href="#step-2-upload-the-bulk-file" style={{ display: "block", color: "inherit", textDecoration: "none" }}>
+    <a href="#step-2-upload-the-bulk-file" className="zoom-card">
       <div style={{ color: "#000", padding: "8px" }}>
         <i className="fa fa-file-upload" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
 
@@ -42,7 +56,7 @@ Below are the integration steps:
   </Card>
 
   <Card>
-    <a href="#step-3-fetch-payment-links" style={{ display: "block", color: "inherit", textDecoration: "none" }}>
+    <a href="#step-3-fetch-payment-links" className="zoom-card">
       <div style={{ color: "#000", padding: "8px" }}>
         <i className="fa fa-link" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
 
