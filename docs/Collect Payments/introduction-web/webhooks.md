@@ -5,7 +5,7 @@ excerpt: >-
   sending an HTTP callback or message. These callbacks are triggered by specific
   events or instances and they operate at the server-to-server (S2S) level.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Webhooks
   description: >-
