@@ -12,23 +12,25 @@ The bulk upload option using APIs lets you create many payment links by uploadin
 
 Below are the integration steps:
 
-<style>{`
-  .zoom-card-link {
-    display: block;
-    color: inherit !important;
-    text-decoration: none !important;
-    transition: transform 0.2s ease;
-  }
-  .zoom-card-link h4,
-  .zoom-card-link p,
-  .zoom-card-link span {
-    color: inherit !important;
-    text-decoration: none !important;
-  }
-  .zoom-card-link:hover {
-    transform: scale(1.05);
-  }
-`}</style>
+<style>
+  {`
+    .zoom-card-link {
+      display: block;
+      color: inherit !important;
+      text-decoration: none !important;
+      transition: transform 0.2s ease;
+    }
+    .zoom-card-link h4,
+    .zoom-card-link p,
+    .zoom-card-link span {
+      color: inherit !important;
+      text-decoration: none !important;
+    }
+    .zoom-card-link:hover {
+      transform: scale(1.05);
+    }
+  `}
+</style>
 
 <Cards columns={3}>
   <Card>
@@ -53,7 +55,7 @@ Below are the integration steps:
         <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 2. Upload the Bulk File</h4>
 
         <p style={{ margin: 0 }}>
-          Upload the Bulk File.
+          Upload the .csv file to create payment links.
         </p>
       </div>
     </a>
