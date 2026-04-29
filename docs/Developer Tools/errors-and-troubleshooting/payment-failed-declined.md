@@ -86,10 +86,3 @@ Now that we know the root cause let's troubleshoot the error.
   6. If failure is technical or timeout driven, verify final status before creating another attempt.
   7. For repeated failures on one method, test another payment mode and check merchant configuration.
 </Accordion>
-
-| Error code / type | Error message or response indicator | Description                                | Possible cause                                                                                   | Recommended fix                                                                                         |
-| ----------------- | ----------------------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| `AUCNEGATIVE`     | `field7=AUCNEGATIVE`                | Authentication failed.                     | Incorrect OTP/3DS challenge failure, user abandonment, or issuer authentication decline.         | Ask the customer to retry authentication or use another payment method after final status verification. |
-| `AUTHNEGATIVE`    | `field7=AUTHNEGATIVE`               | Authorization failed after authentication. | Issuer declined authorization because of limits, risk, card restrictions, or insufficient funds. | Show issuer-decline guidance and offer another payment method.                                          |
-| `TXNNEGATIVE`     | `field7=TXNNEGATIVE`                | Bank/wallet returned failed status.        | Bank, wallet, or PSP declined the transaction.                                                   | Treat as failed after hash/status verification and allow a new attempt with a new `txnid`.              |
-| `VERNEGATIVE`     | `field7=VERNEGATIVE`                | Verification confirmed failed status.      | PayU verification with bank/wallet confirmed failure.                                            | Mark the attempt failed and show retry options.                                                         |
