@@ -1,7 +1,7 @@
 ---
 title: ALD ID Error Page
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
   url: https://docs.payu.in/reference/error-codes
