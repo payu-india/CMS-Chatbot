@@ -2,6 +2,5 @@
 - _payment_merchant_hosted
 - _payment_server_to_server
 - error-codes
-- alt-id-error-page
 - addl_info-payment-apis
 - sample-payu-hosted-checkout-api
