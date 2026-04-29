@@ -86,3 +86,38 @@ Now that we know the root cause let's troubleshoot the error.
   6. If failure is technical or timeout driven, verify final status before creating another attempt.
   7. For repeated failures on one method, test another payment mode and check merchant configuration.
 </Accordion>
+
+<Callout icon="📘" theme="info">
+  **Handy Tips**
+
+  Do not show raw bank text directly to customers if it is unclear. Map it to a clear message such as "Your bank declined the payment. Try another card or contact your bank."
+</Callout>
+
+## Common failure patterns
+
+| Pattern                         | Likely cause                                | Recommended fix                                             |
+| ------------------------------- | ------------------------------------------- | ----------------------------------------------------------- |
+| `E306`, `E300`, `E1000`, `E317` | Authentication failure                      | Ask customer to retry OTP/3DS or use another card.          |
+| `E348`, `E307`, `E337`          | Issuer declined                             | Ask customer to contact bank or use another payment method. |
+| `E500`, `E308`                  | Bank authentication/processing failed       | Verify final status, then allow retry.                      |
+| `E507`, `E408`                  | Session/page expired                        | Create a new payment attempt with a new `txnid`.            |
+| `E1206`, `E231`                 | Customer interrupted or transaction dropped | Verify final status before retry.                           |
+| `E4177`, `E4292`                | Bank/PSP timeout or unavailable             | Keep pending until reconciliation confirms final state.     |
+
+## Customer message examples
+
+| PayU error type        | Customer-safe message                                                              | Recommended fix                                                                                   |
+| ---------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Issuer decline         | Your bank declined this payment. Try another payment method or contact your bank.  | Offer alternate payment modes and do not retry the same `txnid`.                                  |
+| Authentication failure | Authentication failed. Check the OTP/CVV and try again.                            | Let the customer retry authentication with a new payment attempt after final status verification. |
+| Timeout                | We could not confirm the payment yet. Please wait while we verify the status.      | Keep the order pending and reconcile through webhook or Transaction Detail APIs.                  |
+| Card not permitted     | This card is not enabled for this transaction. Try another card or payment method. | Ask the customer to use another card or enable the card with the issuer.                          |
+
+## Developer checklist
+
+* Confirm the failure is final before creating another attempt.
+* Store full diagnostic fields for support and reconciliation.
+* Do not retry the same `txnid` as a new payment.
+* Offer alternate payment methods for customer/issuer declines.
+* Use [Issuer Decline Error Codes](ref:issuer-decline-error-codes) for card decline details.
+* Use [Transaction Stages - Error References on Field7 & Field8](ref:transaction-stages-error-references-field7-field8) to identify the failed processing stage.
