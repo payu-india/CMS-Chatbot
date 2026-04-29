@@ -22,8 +22,9 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for
 Rows categorized: **85**.
 
 <SearchableTable
-    headers={['Error code / type', 'Description', 'Recommended fix']}
-    rows={[
+  headers={['Bank Code', 'Description', 'Recommended Fix']}
+  columnWidths={['18%', '32%', '50%']}
+  rows={[
     ['`Refund Successful`', '100', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`Refund Successful`', '101', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`Confirmation required`', '104', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
@@ -110,8 +111,9 @@ Rows categorized: **85**.
     ['`INSUFFICIENT_BALANCE`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`FAILED`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
   ]}
-    placeholder="Search"
-  />
+  placeholder="Search errors..."
+  maxHeight="500px"
+/>
 
 
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_REFUNDS_END -->

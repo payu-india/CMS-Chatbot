@@ -22,8 +22,9 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for
 Rows categorized: **17**.
 
 <SearchableTable
-    headers={['Error code / type', 'Description', 'Recommended fix']}
-    rows={[
+  headers={['Bank Code', 'Description', 'Recommended Fix']}
+  columnWidths={['18%', '32%', '50%']}
+  rows={[
     ['`INVALID ACCOUNT NUMBER`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
     ['`INVALID UPI REQUEST`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
     ['`INVALID UPI LENGTH`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
@@ -42,8 +43,9 @@ Rows categorized: **17**.
     ['`OTP_VERIFICATION_FAILED`', 'Smart Send Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
     ['`INVALID_VPA`', 'Smart Send Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
   ]}
-    placeholder="Search"
-  />
+  placeholder="Search errors..."
+  maxHeight="500px"
+/>
 
 
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_PAYOUTS_END -->

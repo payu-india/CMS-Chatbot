@@ -22,15 +22,17 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for
 Rows categorized: **4**.
 
 <SearchableTable
-    headers={['Error code / type', 'Description', 'Recommended fix']}
-    rows={[
+  headers={['Bank Code', 'Description', 'Recommended Fix']}
+  columnWidths={['18%', '32%', '50%']}
+  rows={[
     ['`The customer does not have an active credit line to book a consumer loan`', '-', 'Validate customer eligibility, credit line, lender configuration, OTP, amount, and required BNPL parameters before retrying.'],
     ['`The transaction or loan amount is greater than the available credit line with the customer`', '-', 'Validate customer eligibility, credit line, lender configuration, OTP, amount, and required BNPL parameters before retrying.'],
     ['`The customer’s account is inactive.`', '-', 'Validate customer eligibility, credit line, lender configuration, OTP, amount, and required BNPL parameters before retrying.'],
     ['`Potential fraud risk. Transaction not permitted`', '-', 'Validate customer eligibility, credit line, lender configuration, OTP, amount, and required BNPL parameters before retrying.'],
   ]}
-    placeholder="Search"
-  />
+  placeholder="Search errors..."
+  maxHeight="500px"
+/>
 
 
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_BNPL_END -->

@@ -22,8 +22,9 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for
 Rows categorized: **55**.
 
 <SearchableTable
-    headers={['Error code / type', 'Description', 'Recommended fix']}
-    rows={[
+  headers={['Bank Code', 'Description', 'Recommended Fix']}
+  columnWidths={['18%', '32%', '50%']}
+  rows={[
     ['`No Error`', 'Approved or completed successfully', 'Verify final status, then ask the customer to contact the issuer or use another payment method.'],
     ['`Card not enabled for Ecomm transactions, either the card is newly issued or has not been used for any online transaction during last 12 months`', 'Invalid/nonexistent account specified (general)', 'Verify final status, then ask the customer to contact the issuer or use another payment method.'],
     ['`Restricted card`', 'Restricted card', 'Verify final status, then ask the customer to contact the issuer or use another payment method.'],
@@ -80,8 +81,9 @@ Rows categorized: **55**.
     ['`Amount Incorrect / Mismatch`', 'Original Amount Incorrect', 'Verify final status, then ask the customer to contact the issuer or use another payment method.'],
     ['`Authorization Platform or Switch / Issuer system inoperative or Not Supported`', 'Issuer or Switch is Inoperative', 'Verify final status, then ask the customer to contact the issuer or use another payment method.'],
   ]}
-    placeholder="Search"
-  />
+  placeholder="Search errors..."
+  maxHeight="500px"
+/>
 
 
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_ISSUER_DECLINES_END -->
