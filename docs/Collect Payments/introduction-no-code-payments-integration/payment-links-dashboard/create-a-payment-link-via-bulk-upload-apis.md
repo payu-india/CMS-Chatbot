@@ -186,143 +186,131 @@ Use the generated access token in the step 1 and upload the bulk file using the 
 </Cards>
 
 <Accordion title="Environment Details" icon="fa-cogs">
-  |                |                                                              |
-  | :------------- | :----------------------------------------------------------- |
-  | **Test**       | [https://oneapi.payu.in](https://oneapi.payu.in) |
-  | **Production** | [https://uatoneapi.payu.in](https://uatoneapi.payu.in)         |
+  |                |                                                        |
+  | :------------- | :----------------------------------------------------- |
+  | **Test**       | [https://oneapi.payu.in](https://oneapi.payu.in)       |
+  | **Production** | [https://uatoneapi.payu.in](https://uatoneapi.payu.in) |
 </Accordion>
 
 <Accordion title="Sample Request" icon="fa-code">
-
-```curl
-curl -X POST 'https://oneapi.payu.in/payment-links/bulk-uploads/v2/upload' \
-  -H 'accept: application/json' \
-  -H 'authorization: Bearer <ACCESS_TOKEN>' \
-  -H 'mid: 8235901' \
-  -H 'product: PAYUBIZ' \
-  -H 'origin: https://payu.in' \
-  -H 'referer: https://payu.in/' \
-  -F 'file=@/absolute/path/to/bulktest.csv;type=text/csv' \
-  -F 'payload={
-    "batchDesc": "Apr-26 marketing batch",
-    "batchId": "",
-    "source": "BULKUPLOAD",
-    "fileType": 0,
-    "shareVia": {
-      "email": true,
-      "mobile": true
-    },
-    "customAttributes": [
-      {
-        "customAttributeName": "Customer Name",
-        "attributeType": "input",
-        "checked": true,
-        "required": true
+  ```curl
+  curl -X POST 'https://oneapi.payu.in/payment-links/bulk-uploads/v2/upload' \
+    -H 'accept: application/json' \
+    -H 'authorization: Bearer_ACCESS_TOKEN' \
+    -H 'mid: 8235901' \
+    -H 'product: PAYUBIZ' \
+    -H 'origin: https://payu.in' \
+    -H 'referer: https://payu.in/' \
+    -F 'file=@/absolute/path/to/bulktest.csv;type=text/csv' \
+    -F 'payload={
+      "batchDesc": "Apr-26 marketing batch",
+      "batchId": "",
+      "source": "BULKUPLOAD",
+      "fileType": 0,
+      "shareVia": {
+        "email": true,
+        "mobile": true
       },
-      {
-        "customAttributeName": "Customer Email",
-        "attributeType": "input",
-        "checked": true,
-        "required": true
-      },
-      {
-        "customAttributeName": "Customer Phone",
-        "attributeType": "input",
-        "checked": true,
-        "required": true
-      }
-    ]
-  };type=application/json'
-```
-
+      "customAttributes": [
+        {
+          "customAttributeName": "Customer Name",
+          "attributeType": "input",
+          "checked": true,
+          "required": true
+        },
+        {
+          "customAttributeName": "Customer Email",
+          "attributeType": "input",
+          "checked": true,
+          "required": true
+        },
+        {
+          "customAttributeName": "Customer Phone",
+          "attributeType": "input",
+          "checked": true,
+          "required": true
+        }
+      ]
+    };type=application/json'
+  ```
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-code">
-
-```json Success Response
-{
-  "status":0,
-  "message":"Bulk link creation started",
-  "result":{
-    "batchId":"BULK832297752700",
-    "errorFileDownloadUrl":null,
-    "rowCount":3
-  },
-  "errorCode":null,
-  "guid":"25666641-b2a7-4ecc-93b3-79e16761fd6a"
-}
-```
-```json Error Response
-{
-  "status":-1,
-  "message":"Invalid Data.Please check the errorFile",
-  "result":{
-    "batchId":null,
-    "errorFileDownloadUrl":"https://<s3-presigned-url>",
-    "rowCount":3
+  ```json Success Response
+  {
+    "status":0,
+    "message":"Bulk link creation started",
+    "result":{
+      "batchId":"BULK832297752700",
+      "errorFileDownloadUrl":null,
+      "rowCount":3
+    },
+    "errorCode":null,
+    "guid":"25666641-b2a7-4ecc-93b3-79e16761fd6a"
   }
-}
-```
-
+  ```
+  ```json Error Response
+  {
+    "status":-1,
+    "message":"Invalid Data.Please check the errorFile",
+    "result":{
+      "batchId":null,
+      "errorFileDownloadUrl":"https://<s3-presigned-url>",
+      "rowCount":3
+    }
+  }
+  ```
 </Accordion>
 
 <Accordion title="Request Headers" icon="fa-table">
-
-| **Header Parameter**        | **Description**                                                                                                                    |
-| :-------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
-| `authorization` *mandatory* | `string` The access token generated in the step 1. For example, `ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4` |
-| `mid` *mandatory*           | `string` The unique merchant ID.                                                                                                   |
-| `product` *mandatory*       | `string` The PayU product family. For example `PAYUBIZ`.                                                                           |
-
+  | **Header Parameter**        | **Description**                                                                                                                    |
+  | :-------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
+  | `authorization` *mandatory* | `string` The access token generated in the step 1. For example, `ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4` |
+  | `mid` *mandatory*           | `string` The unique merchant ID.                                                                                                   |
+  | `product` *mandatory*       | `string` The PayU product family. For example `PAYUBIZ`.                                                                           |
 </Accordion>
 
 <Accordion title="Request Parameters" icon="fa-table">
-
-| **Parameter**      | **Description**                                                                                                                                                        |
-| :----------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `file` *mandatory* | `file (CSV)` The `.csv` file name you wan to upload. It should match `^[-_A-Za-z.()\s\d]+\.(csv\|CSV)$`. For example, `@/absolute/path/to/bulktest.csv;type=text/csv`. |
-| `payload`          | `application/json` The payload details. Parameters are described in the payload Object section.                                                                        |
-
+  | **Parameter**      | **Description**                                                                                                                                                         |
+  | :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `file` *mandatory* | `file (CSV)` The `.csv` file name you wan to upload. It should match `^[-_A-Za-z.()\s\d]+\.(csv\\|CSV)$`. For example, `@/absolute/path/to/bulktest.csv;type=text/csv`. |
+  | `payload`          | `application/json` The payload details. Parameters are described in the payload Object section.                                                                         |
 </Accordion>
 
 #### `payload` Object
 
 <Accordion title="Parameters and Description" icon="fa-table">
-
-| **Parameter**                 | **Description**                                                                                                                                                                                                  |
-| :---------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `batchId` _optional_          | `string` The batch ID. If passed, should be alphanumeric (^[a-zA-Z0-9]*$) and unique for the merchant.                                                                                                           |
-| `batchDesc` *mandatory*       | `string` The batch description.                                                                                                                                                                                  |
-| `source` *optional*           | `string` The payload source. Defaults to `BULKUPLOAD`. Allowed values: <ul><li><code>BULKUPLOAD</code></li> <li><code>SI_BULKUPLOAD</code></li></ul>                                                             |
-| `fileType` *optional*         | `integer` The uploaded file type. Possible values: <ul><li><code>0</code>: Payment Link</li> <li><code>1</code>: Aggregator Payment Link</li> <li><code>2</code>: Subscription</li></ul>                         |
-| `shareVia` *optional*         | `object` Use this object to share the link via email or mobile. `{email: bool, mobile: bool}`                                                                                                                    |
-| `customAttributes` *optional* | `array` The array of custom attributes with extra fields collected from the customer. `{"customAttributeName":"Customer Name","attributeType":"input","options":["opt1","opt2"],"checked":true,"required":true}` |
-| `reminder` *optional*         | `object` Use this object send a reminder. `{isScheduled, type (0=BEFORE,1=AFTER), channels:[\"email\",\"phone\"]}`                                                                                               |
-
+  | **Parameter**                 | **Description**                                                                                                                                                                                                  |
+  | :---------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `batchId` *optional*          | `string` The batch ID. If passed, should be alphanumeric (^\[a-zA-Z0-9]\*$) and unique for the merchant.                                                                                                         |
+  | `batchDesc` *mandatory*       | `string` The batch description.                                                                                                                                                                                  |
+  | `source` *optional*           | `string` The payload source. Defaults to `BULKUPLOAD`. Allowed values: <ul><li><code>BULKUPLOAD</code></li> <li><code>SI\_BULKUPLOAD</code></li></ul>                                                            |
+  | `fileType` *optional*         | `integer` The uploaded file type. Possible values: <ul><li><code>0</code>: Payment Link</li> <li><code>1</code>: Aggregator Payment Link</li> <li><code>2</code>: Subscription</li></ul>                         |
+  | `shareVia` *optional*         | `object` Use this object to share the link via email or mobile. `{email: bool, mobile: bool}`                                                                                                                    |
+  | `customAttributes` *optional* | `array` The array of custom attributes with extra fields collected from the customer. `{"customAttributeName":"Customer Name","attributeType":"input","options":["opt1","opt2"],"checked":true,"required":true}` |
+  | `reminder` *optional*         | `object` Use this object send a reminder. `{isScheduled, type (0=BEFORE,1=AFTER), channels:[\"email\",\"phone\"]}`                                                                                               |
 </Accordion>
 
 <Accordion title="Response Parameters" icon="fa-table">
-
-| **Parameter**          | **Description**                                                                                               |
-| :--------------------- | :------------------------------------------------------------------------------------------------------------ |
-| `status`               | `string` The upload status.                                                                                   |
-| `message`              | `string` The status message. For example `Bulk link creation started`.                                        |
-| `batchId`              | `string` The created unique batch ID. For example `BULK832297752700`.                                         |
-| `errorFileDownloadUrl` | `string/null` This is returned as null if the upload is successful.                                           |
-| `rowCount`             | `integer` Total data rows in the uploaded file (excluding header). This value is returned only when non-null. |
-
+  | **Parameter**          | **Description**                                                                                               |
+  | :--------------------- | :------------------------------------------------------------------------------------------------------------ |
+  | `status`               | `string` The upload status.                                                                                   |
+  | `message`              | `string` The status message. For example `Bulk link creation started`.                                        |
+  | `batchId`              | `string` The created unique batch ID. For example `BULK832297752700`.                                         |
+  | `errorFileDownloadUrl` | `string/null` This is returned as null if the upload is successful.                                           |
+  | `rowCount`             | `integer` Total data rows in the uploaded file (excluding header). This value is returned only when non-null. |
 </Accordion>
 
 <Accordion title="Error Response Scenarios" icon="fa-exclamation-triangle">
-
-| **Error Message**                                                                            | **Description**           |
-| :------------------------------------------------------------------------------------------- | :------------------------ |
-| `merchantId can not be null`                                                                 | Missing `mid`             |
-| `Invalid bulk upload source`                                                                 | Invalid `source`          |
-| `Batch with given batch Id already exists`                                                   | Duplicate `batchId`       |
-| `Invalid file format`                                                                        | Bad file extension / name |
-| `<col> = Not a valid column \| Mandatory columns(Amount/Description) are not present \| ...` | Header issue              |
-| `Number of cell in row is not equal to number of headers :- <row>`                           | Row width mismatch        |
-| `Exception while uploading`                                                                  | Kafka / IO error          |
-
+  | **Error Message**                                                                              | **Description**           |
+  | :--------------------------------------------------------------------------------------------- | :------------------------ |
+  | `merchantId can not be null`                                                                   | Missing `mid`             |
+  | `Invalid bulk upload source`                                                                   | Invalid `source`          |
+  | `Batch with given batch Id already exists`                                                     | Duplicate `batchId`       |
+  | `Invalid file format`                                                                          | Bad file extension / name |
+  | `col = Not a valid column \\| Mandatory columns(Amount/Description) are not present \\| ...` | Header issue              |
+  | `Number of cell in row is not equal to number of headers :- <row>`                             | Row width mismatch        |
+  | `Exception while uploading`                                                                    | Kafka / IO error          |
 </Accordion>
+
+<br />
