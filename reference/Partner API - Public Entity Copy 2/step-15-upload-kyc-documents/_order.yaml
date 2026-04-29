@@ -1,0 +1,3 @@
+- post_api_v3_merchants_mid_kyc_document
+- get_api_v3_merchants_mid_kyc_document_kyc_document_uuid
+- delete_api_v3_merchants_mid_kyc_document_kyc_document_uuid

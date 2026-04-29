@@ -1,0 +1,4 @@
+- post_api_v3_merchants_kyc_document_send_ckyc_otp
+- post_api_v3_merchants_kyc_document_verify_ckyc_otp
+- post_api_v3_merchants_kyc_document_ckyc_data
+- post_api_v1_merchants_uuid_submit_ckyc_consent
