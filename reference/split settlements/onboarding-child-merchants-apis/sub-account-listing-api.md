@@ -16,7 +16,7 @@ HTTP Method: **GET**
 | **Test Environment**       | \<[https://uat-onepayuonboarding.payu.in>](https://uat-onepayuonboarding.payu.in>) |
 | **Production Environment** | \<[https://onboarding.payu.in>](https://onboarding.payu.in>)                       |
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Reference:** You must use the [Get Access Token API](ref:get-token-api-for-general-apis) with the scope as **fetch_child_merchants** to get the token that must be passed in header.
 </Callout>
 
@@ -41,11 +41,11 @@ HTTP Method: **GET**
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br>Merchant access token<br> or client token<br> with the scope as <strong>fetch_child_merchants</strong> from Hub.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>Query</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Bearer {{access_token}}</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><br>Merchant access token<br> or client token<br> with the scope as <strong>fetch_child_merchants</strong> from Hub.</p> <p>Bearer {{access_token}}</p> For more information, refer to <a href="docs.payu.in/reference/sub-account-listing-api">Sub Account Listing API</a
 </td>
 </tr>
 <tr>
