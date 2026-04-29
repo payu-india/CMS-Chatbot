@@ -52,7 +52,7 @@ Below are the integration steps:
 
 ### Step 1. Get the Access Token
 
-The first step is to obtain an access token using the following API:
+The first step is to obtain an access token using the following API. Refer to the <Anchor label="Get Access Token API" target="_blank" href="https://docs.payu.in/reference/get-token-api-for-payment-links">Get Access Token API</Anchor> for more information.
 
 <Cards>
   <Card title="Method">
@@ -107,9 +107,76 @@ curl --location -g --request POST '{{hub_base_url}}/oauth/token' \
 
 <Accordion title="Request Parameters" icon="fa-table">
 
-| **Parameter**             | **Description** |
-| :------------------------ | :-------------- |
-| `client_id` `*mandatory*` |                 |
-|                           |                 |
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `client_id` *mandatory*
+      </td>
+
+      <td>
+        `string` Your OAuth 2.0 client ID issued by PayU. Refer to the <Anchor label="Get Client ID and Secret from Dashboard" target="_blank" href="/docs/get-client-id-and-secret-from-dashboard">Get Client ID and Secret from Dashboard</Anchor> page for more information.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `client_secret` *mandatory*
+      </td>
+
+      <td>
+        `string` Your OAuth 2.0 client secret (keep this secure). Refer to the <Anchor label="Get Client ID and Secret from Dashboard" target="_blank" href="/docs/get-client-id-and-secret-from-dashboard">Get Client ID and Secret from Dashboard</Anchor> page for more information.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `grant_type` *mandatory*
+      </td>
+
+      <td>
+        `string/enum` The OAuth 2.0 grant type for server-to-server authentication. Allowed value is `client_credentials`.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `scope` *optional*
+      </td>
+
+      <td>
+        `string` The scope that must be used for payment links are: <ul><li>Create Link: create_payment_links</li> <li>Change status and expiry: update_payment_links</li> <li>Get a single payment link: read_payment_links</li> <li>Get all payment links: read_payment_links</li> <li>Share payment links: read_payment_links</li></ul>  
+
+        <strong>Note:</strong> Merchant can pass up to three scopes simultaneously for an access token value. This is done by passing scopes separated by a space between them. For example: `create_payment_links update_payment_links read_payment_links`.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 </Accordion>
+
+<Accordion title="Response Parameters" icon="fa-table">
+
+| **Parameter**  | **Description**                                                |
+| :------------- | :------------------------------------------------------------- |
+| `access_token` | `string` The generated access token.                           |
+| `token_type`   | `string` The type of the generated token. Here it is `Bearer`. |
+| `expires_in`   | `string` The token expiry timestamp.                           |
+| `scope`        | `string` The scope of the token.                               |
+| `created_at`   | `string` The timestamp at which the token was created.         |
+
+</Accordion>
+
+<br />
