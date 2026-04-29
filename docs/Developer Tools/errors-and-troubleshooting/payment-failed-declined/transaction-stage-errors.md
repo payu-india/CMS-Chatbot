@@ -6,6 +6,6 @@ hidden: false
 metadata:
   robots: index
 ---
-These rows are categorized from existing PayU repository error-code and troubleshooting documentation for **Transaction Stages Field7/Field8**.
+These are Field7 and Field8 transaction-stage payment errors, along with their descriptions, and recommended fix.
 
-Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for debugging guidance and retry handling.
+Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for debugging guidance and retry handling.
