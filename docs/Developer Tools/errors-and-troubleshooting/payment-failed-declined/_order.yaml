@@ -1,3 +1,4 @@
 - collect-payments-errors
 - issuer-decline-errors
 - transaction-stage-errors
+- s2s-link-and-pay-errors
