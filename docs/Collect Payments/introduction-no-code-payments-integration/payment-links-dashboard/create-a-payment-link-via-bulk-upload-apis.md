@@ -49,3 +49,18 @@ Below are the integration steps:
     </div>
   </Card>
 </Cards>
+
+### Step 1. Get the Access Token
+
+The first step is to obtain an access token using the following API:
+
+<Accordion title="Environment Details" icon="fa-cogs">
+
+|                |                              |
+| :------------- | :--------------------------- |
+| **Test**       | https://uat-accounts.payu.in |
+| **Production** | https://accounts.payu.in     |
+
+</Accordion>
+
+<br />
