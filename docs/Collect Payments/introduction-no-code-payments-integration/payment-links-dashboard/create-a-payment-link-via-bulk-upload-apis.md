@@ -271,15 +271,15 @@ Use the generated access token in the step 1 and upload the bulk file using the 
 </Accordion>
 
 <Accordion title="Request Parameters" icon="fa-table">
-  | **Parameter**      | **Description**                                                                                                                                                         |
-  | :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | `file` *mandatory* | `file (CSV)` The `.csv` file name you wan to upload. It should match `^[-_A-Za-z.()\s\d]+\.(csv\\|CSV)$`. For example, `@/absolute/path/to/bulktest.csv;type=text/csv`. |
-  | `payload`          | `application/json` The payload details. Parameters are described in the payload Object section.                                                                         |
+  | **Parameter**      | **Description**                                                                                     |                                                                        |
+  | :----------------- | :-------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+  | `file` *mandatory* | `file (CSV)` The `.csv` file name you wan to upload. It should match \`^\[-\_A-Za-z.()\s\d]+.(csv\\ | CSV)$`. For example, `@/absolute/path/to/bulktest.csv;type=text/csv\`. |
+  | `payload`          | `application/json` The payload details. Parameters are described in the payload Object section.     |                                                                        |
 </Accordion>
 
-#### `payload` Object
+<br />
 
-<Accordion title="Parameters and Description" icon="fa-table">
+<Accordion title="Payload Object Parameters and Description" icon="fa-table">
   | **Parameter**                 | **Description**                                                                                                                                                                                                  |
   | :---------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | `batchId` *optional*          | `string` The batch ID. If passed, should be alphanumeric (^\[a-zA-Z0-9]\*$) and unique for the merchant.                                                                                                         |
@@ -302,15 +302,19 @@ Use the generated access token in the step 1 and upload the bulk file using the 
 </Accordion>
 
 <Accordion title="Error Response Scenarios" icon="fa-exclamation-triangle">
-  | **Error Message**                                                                              | **Description**           |
-  | :--------------------------------------------------------------------------------------------- | :------------------------ |
-  | `merchantId can not be null`                                                                   | Missing `mid`             |
-  | `Invalid bulk upload source`                                                                   | Invalid `source`          |
-  | `Batch with given batch Id already exists`                                                     | Duplicate `batchId`       |
-  | `Invalid file format`                                                                          | Bad file extension / name |
-  | `col = Not a valid column \\| Mandatory columns(Amount/Description) are not present \\| ...` | Header issue              |
-  | `Number of cell in row is not equal to number of headers :- <row>`                             | Row width mismatch        |
-  | `Exception while uploading`                                                                    | Kafka / IO error          |
+  | **Error Message**                                                  | **Description**                                          |       |              |
+  | :----------------------------------------------------------------- | :------------------------------------------------------- | ----- | ------------ |
+  | `merchantId can not be null`                                       | Missing `mid`                                            |       |              |
+  | `Invalid bulk upload source`                                       | Invalid `source`                                         |       |              |
+  | `Batch with given batch Id already exists`                         | Duplicate `batchId`                                      |       |              |
+  | `Invalid file format`                                              | Bad file extension / name                                |       |              |
+  | \`col = Not a valid column \\                                      | Mandatory columns(Amount/Description) are not present \\ | ...\` | Header issue |
+  | `Number of cell in row is not equal to number of headers :- <row>` | Row width mismatch                                       |       |              |
+  | `Exception while uploading`                                        | Kafka / IO error                                         |       |              |
 </Accordion>
+
+### Step 3. Fetch Payment Links 
+
+Now that you have uploaded the file, use this API to fetch the payment links that have already been persisted for a given batch. Because creation is async, this endpoint will return links progressively while the batch is still in `processing`. 
 
 <br />
