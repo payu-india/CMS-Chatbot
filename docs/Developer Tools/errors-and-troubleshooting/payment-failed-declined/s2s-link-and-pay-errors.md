@@ -2,7 +2,7 @@
 title: S2S Link and Pay Errors
 excerpt: Go through these server-to-server link and pay payment errors.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
