@@ -2,7 +2,7 @@
 title: Issuer Decline Errors
 excerpt: Go through issuer decline error codes and card-network response codes.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
