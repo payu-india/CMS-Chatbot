@@ -41,7 +41,7 @@ Below are the integration steps:
     <div style={{ color: "#000", padding: "8px" }}>
       <i className="fa fa-link" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
 
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Get Payment Links</h4>
+      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 3. Fetch Payment Links</h4>
 
       <p style={{ margin: 0 }}>
         Get the Created Payment Links Using the Batch ID.
