@@ -14,39 +14,45 @@ Below are the integration steps:
 
 <Cards columns={3}>
   <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-key" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+    <a href="#step-1-get-the-access-token" style={{ display: "block", color: "inherit", textDecoration: "none" }}>
+      <div style={{ color: "#000", padding: "8px" }}>
+        <i className="fa fa-key" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
 
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 1. Get the Access Token</h4>
+        <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 1. Get the Access Token</h4>
 
-      <p style={{ margin: 0 }}>
-        Fetch the Bearer Token.
-      </p>
-    </div>
+        <p style={{ margin: 0 }}>
+          Fetch the Bearer Token.
+        </p>
+      </div>
+    </a>
   </Card>
 
   <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-file-upload" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+    <a href="#step-2-upload-the-bulk-file" style={{ display: "block", color: "inherit", textDecoration: "none" }}>
+      <div style={{ color: "#000", padding: "8px" }}>
+        <i className="fa fa-file-upload" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
 
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 2. Upload the Bulk File</h4>
+        <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 2. Upload the Bulk File</h4>
 
-      <p style={{ margin: 0 }}>
-        Upload the Bulk File.
-      </p>
-    </div>
+        <p style={{ margin: 0 }}>
+          Upload the Bulk File.
+        </p>
+      </div>
+    </a>
   </Card>
 
   <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-link" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+    <a href="#step-3-fetch-payment-links" style={{ display: "block", color: "inherit", textDecoration: "none" }}>
+      <div style={{ color: "#000", padding: "8px" }}>
+        <i className="fa fa-link" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
 
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 3. Fetch Payment Links</h4>
+        <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 3. Fetch Payment Links</h4>
 
-      <p style={{ margin: 0 }}>
-        Get the Created Payment Links Using the Batch ID.
-      </p>
-    </div>
+        <p style={{ margin: 0 }}>
+          Get the Created Payment Links Using the Batch ID.
+        </p>
+      </div>
+    </a>
   </Card>
 </Cards>
 
