@@ -80,12 +80,14 @@ Use the **get_client_token** API with the scope as **fetch_child_merchants** to 
 
 ## Step 2: Get sub account listing
 
-Call the **Sub Account Listing** API to fetch all child merchant details linked to a parent merchant. You must pass the UUID in this request. For more information, refer to <Anchor label="Sub Account Listing API" target="_blank" href="ref:sub-account-listing-v3-api">Sub Account Listing API</Anchor>.
+Call the **Sub Account Listing** API to fetch all child merchant details linked to a parent merchant. You must pass the UUID in this request. For more information, refer to <Anchor label="Sub Account Listing API" target="_blank" href="ref:sub-account-listing-api">Sub Account Listing API</Anchor>.
 
-> 📘 Notes:
->
-> * Use correct Environment URL as base URL in place of \{\{onboarding_base_url}} variable
-> * Use parent merchant UUID in place of \{\{merchant_uuid}} variable in request
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * Use correct Environment URL as base URL in place of \{\{onboarding_base_url}} variable
+  * Use parent merchant UUID in place of \{\{merchant_uuid}} variable in request
+</Callout>
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
