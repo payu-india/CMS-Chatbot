@@ -16,6 +16,10 @@ HTTP Method: **GET**
 | **Test Environment**       | \<[https://uat-onepayuonboarding.payu.in>](https://uat-onepayuonboarding.payu.in>) |
 | **Production Environment** | \<[https://onboarding.payu.in>](https://onboarding.payu.in>)                       |
 
+<Callout icon="👍">
+  **Reference:** You must use the [Get Access Token API](ref:get-token-api-for-general-apis) with the scope as **fetch_child_merchants** to get the token that must be passed in header.
+</Callout>
+
 ## Post parameters
 
 <HTMLBlock>{`
@@ -37,7 +41,7 @@ HTTP Method: **GET**
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br>Merchant access token or client token with the scope as<strong>fetch_child_merchants</strong> from Hub.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization<br>Merchant access token<br> or client token<br> with the scope as <strong>fetch_child_merchants</strong> from Hub.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>Query</p>
 </td>
