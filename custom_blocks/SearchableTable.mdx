@@ -36,6 +36,11 @@ export const SearchableTable = (props) => {
   const showEmptyState = hasSearchQuery && filteredRows.length === 0;
   const colCount = headers.length;
 
+  const getColWidth = (i) =>
+    columnWidths && columnWidths[i]
+      ? columnWidths[i]
+      : `${100 / Math.max(1, headers.length)}%`;
+
   const renderCellContent = (value) => {
     if (value == null) return '';
     if (typeof value !== 'string') return value;
@@ -43,7 +48,7 @@ export const SearchableTable = (props) => {
     const parts = value.split('`');
     return parts.map((part, i) =>
       i % 2 === 1 ? (
-        <code key={i} className="px-1.5 py-0.5 bg-gray-100 text-gray-800 rounded text-[0.875em] font-mono">
+        <code key={i} style={{ padding: '2px 6px', background: '#f3f4f6', color: '#1f2937', borderRadius: '4px', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace', fontSize: '0.875em' }}>
           {part}
         </code>
       ) : (
@@ -52,12 +57,26 @@ export const SearchableTable = (props) => {
     );
   };
 
+  const headerCellStyle = {
+    padding: '12px 16px', textAlign: 'left', fontSize: '12px', fontWeight: 600,
+    color: '#374151', textTransform: 'uppercase', letterSpacing: '0.05em',
+    background: '#f9fafb', borderBottom: '1px solid #e5e7eb',
+    verticalAlign: 'top', wordBreak: 'break-word', overflowWrap: 'break-word',
+    position: 'sticky', top: 0, zIndex: 10,
+  };
+
+  const bodyCellStyle = {
+    padding: '8px 16px', fontSize: '14px', color: '#111827',
+    verticalAlign: 'top', wordBreak: 'break-word', overflowWrap: 'break-word',
+    borderBottom: '1px solid #f3f4f6',
+  };
+
   return (
-    <div className={`w-full ${className}`}>
-      <div className="border border-gray-200 rounded-md overflow-hidden">
-        <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
-          <div className="flex items-center w-full max-w-md border border-gray-300 rounded-md bg-white shadow-sm focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500">
-            <span className="flex items-center justify-center pl-3 text-gray-400 flex-shrink-0" aria-hidden="true">
+    <div className={className} style={{ width: '100%', display: 'block' }}>
+      <div style={{ width: '100%', border: '1px solid #e5e7eb', borderRadius: '6px', overflow: 'hidden', boxSizing: 'border-box' }}>
+        <div style={{ padding: '12px 16px', background: '#f9fafb', borderBottom: '1px solid #e5e7eb' }}>
+          <div style={{ display: 'flex', alignItems: 'center', width: '100%', maxWidth: '420px', border: '1px solid #d1d5db', borderRadius: '6px', background: '#ffffff', boxShadow: '0 1px 2px 0 rgba(0,0,0,0.05)' }}>
+            <span aria-hidden="true" style={{ display: 'flex', alignItems: 'center', paddingLeft: '12px', color: '#9ca3af', flexShrink: 0 }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.35-4.35" />
@@ -68,68 +87,40 @@ export const SearchableTable = (props) => {
               placeholder={placeholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="flex-1 min-w-0 py-2 pr-3 border-0 bg-transparent focus:ring-0 focus:outline-none"
               aria-label="Search table"
+              style={{ flex: 1, minWidth: 0, padding: '8px 12px 8px 8px', border: 0, background: 'transparent', outline: 'none', fontSize: '14px' }}
             />
           </div>
         </div>
 
-        <div
-          className="overflow-y-auto overflow-x-hidden relative"
-          style={showEmptyState ? {} : { maxHeight }}
-        >
-          <table
-            className="border-separate border-spacing-0"
-            style={{ tableLayout: 'fixed', width: '100%' }}
-          >
+        <div style={{ width: '100%', overflowY: 'auto', overflowX: 'hidden', position: 'relative', maxHeight: showEmptyState ? 'none' : maxHeight, boxSizing: 'border-box' }}>
+          <table style={{ width: '100%', tableLayout: 'fixed', borderCollapse: 'separate', borderSpacing: 0 }}>
             <colgroup>
-              {headers.map((_, i) => {
-                const w =
-                  columnWidths && columnWidths[i]
-                    ? columnWidths[i]
-                    : `${100 / headers.length}%`;
-                return <col key={i} style={{ width: w }} />;
-              })}
+              {headers.map((_, i) => (
+                <col key={i} style={{ width: getColWidth(i) }} />
+              ))}
             </colgroup>
             <thead>
               <tr>
-                {headers.map((header, i) => {
-                  const w =
-                    columnWidths && columnWidths[i]
-                      ? columnWidths[i]
-                      : `${100 / headers.length}%`;
-                  return (
-                    <th
-                      key={i}
-                      scope="col"
-                      style={{ position: 'sticky', top: 0, zIndex: 10, width: w }}
-                      className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider bg-gray-50 border-b border-gray-200 align-top break-words"
-                    >
-                      {renderCellContent(header)}
-                    </th>
-                  );
-                })}
+                {headers.map((header, i) => (
+                  <th key={i} scope="col" style={{ ...headerCellStyle, width: getColWidth(i) }}>
+                    {renderCellContent(header)}
+                  </th>
+                ))}
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody style={{ background: '#ffffff' }}>
               {showEmptyState ? (
                 <tr>
-                  <td
-                    colSpan={colCount}
-                    className="px-4 py-4 bg-red-50 text-red-700 border-b border-red-200"
-                    role="alert"
-                  >
+                  <td colSpan={colCount} role="alert" style={{ padding: '16px', background: '#fef2f2', color: '#b91c1c', borderBottom: '1px solid #fecaca' }}>
                     {emptyMessage}
                   </td>
                 </tr>
               ) : (
                 filteredRows.map((row, rowIndex) => (
-                  <tr key={rowIndex} className="hover:bg-gray-50">
+                  <tr key={rowIndex}>
                     {row.map((cell, cellIndex) => (
-                      <td
-                        key={cellIndex}
-                        className="px-4 py-2 text-sm text-gray-900 align-top break-words border-b border-gray-100"
-                      >
+                      <td key={cellIndex} style={bodyCellStyle}>
                         {renderCellContent(cell)}
                       </td>
                     ))}
@@ -142,7 +133,7 @@ export const SearchableTable = (props) => {
       </div>
 
       {filteredRows.length > 0 && (
-        <p className="mt-2 text-xs text-gray-500">
+        <p style={{ marginTop: '8px', fontSize: '12px', color: '#6b7280' }}>
           Showing {filteredRows.length} of {rows.length} row{rows.length !== 1 ? 's' : ''}
           {hasSearchQuery && ' (filtered by search)'}.
         </p>
@@ -152,10 +143,12 @@ export const SearchableTable = (props) => {
 };
 
 <SearchableTable
-  headers={['Bank', 'Type', 'Status']}
+  headers={['Bank Code', 'Description', 'Recommended Fix']}
+  columnWidths={['18%', '32%', '50%']}
   rows={[
-    ['HDFC Bank', 'Netbanking / Cards', 'Active'],
-    ['ICICI Bank', 'Netbanking / Cards', 'Active'],
+    ['`E000`', 'NO_ERROR', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
+    ['`AUCNEGATIVE`', 'OTP Generated Successfully', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
+    ['`E348`', 'ISSUER_DECLINED', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
   ]}
-  placeholder="Search banks..."
+  placeholder="Search errors..."
 />
