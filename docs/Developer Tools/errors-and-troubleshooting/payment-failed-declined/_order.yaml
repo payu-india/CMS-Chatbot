@@ -2,3 +2,4 @@
 - issuer-decline-errors
 - transaction-stage-errors
 - s2s-link-and-pay-errors
+- refund-payment-errors
