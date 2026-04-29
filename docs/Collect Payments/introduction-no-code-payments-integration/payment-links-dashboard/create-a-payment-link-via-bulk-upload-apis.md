@@ -71,4 +71,45 @@ The first step is to obtain an access token using the following API:
   | **Production** | [https://accounts.payu.in](https://accounts.payu.in)         |
 </Accordion>
 
-<br />
+<Accordion title="Sample Request" icon="fa-code">
+
+```curl
+curl --location -g --request POST '{{hub_base_url}}/oauth/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client_id={{client_id}}' \
+--data-urlencode 'client_secret={{client_secret}}' \
+--data-urlencode 'grant_type=client_credentials' \
+--data-urlencode 'scope=read_payment_links'
+```
+
+</Accordion>
+
+<Accordion title="Sample Response" icon="fa-code">
+
+```json Success Response
+{
+"access_token": "ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4",
+"token_type": "Bearer",
+"expires_in": 7011,
+"scope": "create_payment_links",
+"created_at": 1763036368
+}
+```
+```json Error Response
+{
+  "error": "invalid_client",
+  "error_description": "Client authentication failed",
+  "status": 401
+}
+```
+
+</Accordion>
+
+<Accordion title="Request Parameters" icon="fa-table">
+
+| **Parameter**             | **Description** |
+| :------------------------ | :-------------- |
+| `client_id` `*mandatory*` |                 |
+|                           |                 |
+
+</Accordion>
