@@ -22,14 +22,14 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for
 Rows categorized: **3**.
 
 <SearchableTable
-  headers={["Error code / type", "Description", "Recommended fix"]}
-  rows={[
-    ["`No vpa exists against given merchant. Please contact sales support`", "-", "Correct QR request parameters, merchant VPA setup, amount, and transactionId; retry with a valid unique transactionId."],
-    ["`Incoming VPA Does Not Match with registered vpa. Please provide a valid vpa`", "-", "Correct QR request parameters, merchant VPA setup, amount, and transactionId; retry with a valid unique transactionId."],
-    ["`qr already exists but vpa does not match with existing qr vpa`", "-", "Correct QR request parameters, merchant VPA setup, amount, and transactionId; retry with a valid unique transactionId."],
+    headers={['Error code / type', 'Description', 'Recommended fix']}
+    rows={[
+    ['`No vpa exists against given merchant. Please contact sales support`', '-', 'Correct QR request parameters, merchant VPA setup, amount, and transactionId; retry with a valid unique transactionId.'],
+    ['`Incoming VPA Does Not Match with registered vpa. Please provide a valid vpa`', '-', 'Correct QR request parameters, merchant VPA setup, amount, and transactionId; retry with a valid unique transactionId.'],
+    ['`qr already exists but vpa does not match with existing qr vpa`', '-', 'Correct QR request parameters, merchant VPA setup, amount, and transactionId; retry with a valid unique transactionId.'],
   ]}
-  placeholder="Search"
-/>
+    placeholder="Search"
+  />
 
 
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_QR_APIS_END -->

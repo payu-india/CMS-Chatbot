@@ -22,20 +22,20 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for
 Rows categorized: **9**.
 
 <SearchableTable
-  headers={["Error code / type", "Description", "Recommended fix"]}
-  rows={[
-    ["`Failure`", "Card No is Invalid. Please check and initiate again", "Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply."],
-    ["`Failure`", "CVV is Invalid. Please check and initiate again", "Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply."],
-    ["`Failure`", "Incorrect Card Details. Please recheck CVV or expiry and try again", "Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply."],
-    ["`Failure`", "Card not eligible. Please try another card", "Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply."],
-    ["`Failure`", "Issuing bank server down. Please try in some time or try another card", "Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply."],
-    ["`Failure`", "Card cannot be used. Please try another card", "Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply."],
-    ["`Failure`", "Invalid details. Please try another card", "Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply."],
-    ["`Failure`", "Card cannot be used. Please try another card", "Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply."],
-    ["`Failure`", "Card Association Error", "Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply."],
+    headers={['Error code / type', 'Description', 'Recommended fix']}
+    rows={[
+    ['`Failure`', 'Card No is Invalid. Please check and initiate again', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
+    ['`Failure`', 'CVV is Invalid. Please check and initiate again', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
+    ['`Failure`', 'Incorrect Card Details. Please recheck CVV or expiry and try again', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
+    ['`Failure`', 'Card not eligible. Please try another card', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
+    ['`Failure`', 'Issuing bank server down. Please try in some time or try another card', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
+    ['`Failure`', 'Card cannot be used. Please try another card', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
+    ['`Failure`', 'Invalid details. Please try another card', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
+    ['`Failure`', 'Card cannot be used. Please try another card', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
+    ['`Failure`', 'Card Association Error', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
   ]}
-  placeholder="Search"
-/>
+    placeholder="Search"
+  />
 
 
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_ALT_ID_END -->

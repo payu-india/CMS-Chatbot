@@ -22,28 +22,28 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for
 Rows categorized: **17**.
 
 <SearchableTable
-  headers={["Error code / type", "Description", "Recommended fix"]}
-  rows={[
-    ["`INVALID ACCOUNT NUMBER`", "Payouts Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`INVALID UPI REQUEST`", "Payouts Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`INVALID UPI LENGTH`", "Payouts Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`INVALID UPI ID`", "Payouts Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`BENEFICIARY NAME INVALID`", "Payouts Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`INVALID CARD NUMBER`", "Payouts Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`INVALID BENEFICIARY ID`", "Payouts Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`CARD PROVIDER DETAILS NOT FOUND`", "Payouts Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`INVALID CARD PROVIDER DETAILS`", "Payouts Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`INVALID_CARD_TOKEN`", "Payouts Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`INVALID_CARD_EXPIRY`", "Payouts Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`INVALID_CARD_CRYPTOGRAM`", "Payouts Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`INVALID_ACCOUNT_NUMBER`", "Smart Send Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`OTP_REQUIRED`", "Smart Send Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`OTP_TRIGGERED_FAILED`", "Smart Send Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`OTP_VERIFICATION_FAILED`", "Smart Send Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
-    ["`INVALID_VPA`", "Smart Send Error Codes", "Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference."],
+    headers={['Error code / type', 'Description', 'Recommended fix']}
+    rows={[
+    ['`INVALID ACCOUNT NUMBER`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`INVALID UPI REQUEST`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`INVALID UPI LENGTH`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`INVALID UPI ID`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`BENEFICIARY NAME INVALID`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`INVALID CARD NUMBER`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`INVALID BENEFICIARY ID`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`CARD PROVIDER DETAILS NOT FOUND`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`INVALID CARD PROVIDER DETAILS`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`INVALID_CARD_TOKEN`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`INVALID_CARD_EXPIRY`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`INVALID_CARD_CRYPTOGRAM`', 'Payouts Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`INVALID_ACCOUNT_NUMBER`', 'Smart Send Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`OTP_REQUIRED`', 'Smart Send Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`OTP_TRIGGERED_FAILED`', 'Smart Send Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`OTP_VERIFICATION_FAILED`', 'Smart Send Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
+    ['`INVALID_VPA`', 'Smart Send Error Codes', 'Correct payout request fields, beneficiary details, and transfer configuration; retry with a valid unique merchant reference.'],
   ]}
-  placeholder="Search"
-/>
+    placeholder="Search"
+  />
 
 
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_PAYOUTS_END -->
