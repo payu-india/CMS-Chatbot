@@ -54,13 +54,21 @@ Below are the integration steps:
 
 The first step is to obtain an access token using the following API:
 
+<Cards>
+  <Card title="Method">
+    POST
+  </Card>
+
+  <Card title="Endpoint">
+    /oauth/token
+  </Card>
+</Cards>
+
 <Accordion title="Environment Details" icon="fa-cogs">
-
-|                |                              |
-| :------------- | :--------------------------- |
-| **Test**       | https://uat-accounts.payu.in |
-| **Production** | https://accounts.payu.in     |
-
+  |                |                                                              |
+  | :------------- | :----------------------------------------------------------- |
+  | **Test**       | [https://uat-accounts.payu.in](https://uat-accounts.payu.in) |
+  | **Production** | [https://accounts.payu.in](https://accounts.payu.in)         |
 </Accordion>
 
 <br />
