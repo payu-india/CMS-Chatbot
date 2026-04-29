@@ -2,7 +2,7 @@
 title: EMI Calculator API
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: EMI Calculator API version 2.0
   description: >-
