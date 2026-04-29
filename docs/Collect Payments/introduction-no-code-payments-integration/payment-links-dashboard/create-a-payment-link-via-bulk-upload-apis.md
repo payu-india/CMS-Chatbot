@@ -13,14 +13,17 @@ The bulk upload option using APIs lets you create many payment links by uploadin
 Below are the integration steps:
 
 <style>{`
-  .zoom-card-link,
-  .zoom-card-link * {
-    color: inherit !important;
-    text-decoration: none !important;
-  }
   .zoom-card-link {
     display: block;
+    color: inherit !important;
+    text-decoration: none !important;
     transition: transform 0.2s ease;
+  }
+  .zoom-card-link h4,
+  .zoom-card-link p,
+  .zoom-card-link span {
+    color: inherit !important;
+    text-decoration: none !important;
   }
   .zoom-card-link:hover {
     transform: scale(1.05);
