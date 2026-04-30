@@ -75,7 +75,7 @@ next:
 <tr><td>Federal Bank</td><td>FDRL12</td><td>12 Months</td><td>15.99</td><td>1500</td><td>2000000</td><td>1%</td><td>Rs. 99</td></tr>
 <tr><td>Federal Bank</td><td>FDRL18</td><td>18 Months</td><td>15.99</td><td>1500</td><td>2000000</td><td>1%</td><td>Rs. 99</td></tr>
 <tr><td>Federal Bank</td><td>FDRL24</td><td>24 Months</td><td>15.99</td><td>1500</td><td>2000000</td><td>1%</td><td>Rs. 99</td></tr>
-<tr><td>HDFC Bank</td><td>EMI</td><td>3 Months</td><td>16</td><td>1000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
+<tr><td>HDFC Bank</td><td>EMI</td><td>3 Months</td><td>18</td><td>1000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
 <tr><td>HDFC Bank</td><td>EMI6</td><td>6 Months</td><td>17</td><td>1000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
 <tr><td>HDFC Bank</td><td>EMI9</td><td>9 Months</td><td>17</td><td>1000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
 <tr><td>HDFC Bank</td><td>EMI12</td><td>12 Months</td><td>17</td><td>1000</td><td>N/A</td><td>Rs. 299</td><td>N/A</td></tr>
