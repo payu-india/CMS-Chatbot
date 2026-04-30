@@ -21,7 +21,13 @@ The table below lists the available webhook events.
 
 ## Sample Payloads
 
-Given below are the sample payloads for webhook events.
+The following are the sample payloads for webhook events.
+
+<Callout icon="📘" theme="info">
+  The payment successful and failure payloads are in the Form POST URL Encoded format:
+
+  FormData application/x-www-form-urlencode
+</Callout>
 
 <Callout icon="❗️" theme="error">
   **Watch Out!**
