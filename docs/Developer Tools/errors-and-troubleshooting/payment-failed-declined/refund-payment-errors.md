@@ -10,6 +10,8 @@ These are refund initiation and refund status errors, along with their descripti
 
 Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for debugging guidance and retry handling.
 
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+
 <SearchableTable
   headers={['Bank Code', 'Description', 'Recommended Fix']}
   columnWidths={['18%', '32%', '50%']}
@@ -81,6 +83,7 @@ Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for 
   placeholder="Search errors..."
   maxHeight="500px"
 />
+</Accordion>
 
 <br />
 
