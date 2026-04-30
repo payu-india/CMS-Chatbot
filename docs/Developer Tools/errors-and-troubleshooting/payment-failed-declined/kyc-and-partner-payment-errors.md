@@ -8,8 +8,6 @@ hidden: true
 metadata:
   robots: index
 ---
-<br />
-
 These are KYC and partner merchant-status errors, along with their descriptions, and recommended fix.
 
 Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for debugging guidance and retry handling.
