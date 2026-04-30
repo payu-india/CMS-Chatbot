@@ -118,4 +118,73 @@ Below are the similar errors and their recommended fixes.
 
 ## Pending, Timeout, and Uncertain-status Errors
 
-<br />
+<Accordion title="Errors and Fixes" icon="fa-wrench">
+  <SearchableTable
+  headers={['Source doc', 'Error code / type', 'Error message / response indicator', 'Description', 'Recommended fix']}
+  rows={[
+    ['Alt ID Error Page', '`EA05`', '`Failure`', 'Card network seems to be down. Please retry after some time', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+    ['Alt ID Error Page', '`EA082`', '`Failure`', 'Mastercard DPA creation in progress. Please retry after 15 mins', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+    ['Alt ID Error Page', '`EA11`', '`Failure`', 'Alt ID timeout at StoreCard. Please raise this to PayU support team', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`25`', '`E9211`', 'UNABLE_TO_LOCATE_ RECORD_ON_FILE', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+    ['Collect Payment Error Codes', '`54`', '`E311`', 'EXPIRED_CARD', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+    ['Collect Payment Error Codes', '`68`', '`E9220`', 'RESPONSE_RECEIVED_ TOO_LATE', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`AUTHERROR`', 'Authorization error', 'Indicates a technical failure during the authorization process, such as network issues, timeout, or gateway errors.', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E000`', '`ACS_REDIRECT`', 'Marking transaction as dropped - CSW', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+    ['Collect Payment Error Codes', '`E000`', '`AUTHNEGATIVE`', 'T1 | Payment Gateway timed out', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+    ['Collect Payment Error Codes', '`E000`', '`AUTHNEGATIVE`', '8 | Transaction Timed Out', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E1206`', '`3DS_CHALLENGE_NEGATIVE`', '914 | Transaction timed out at the ACS', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+    ['Collect Payment Error Codes', '`E1206`', '`3DS_VERIFICATION_NEGATIVE`', 'Transaction timed out at the ACS', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E1602`', 'Transaction failed. Page expired due to no user input.', '`ATM_PIN_PAGE_EXPIRED`', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+    ['Collect Payment Error Codes', '`E1610`', 'Transaction failed. Page expired due to no user input.', '`PAGE_EXPIRED`', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E1633`', '`3DS_CHALLENGE_NEGATIVE`', 'AUTHENTICATION_FAILED | Cardholder did not complete authentication | Transaction timed out at ACS—other timeouts', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E1703`', '`AUTHNEGATIVE`', '54 | Expired card', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E1903`', '`AUTHNEGATIVE`', 'DECLINED | EXPIRED_CARD | Decline - Expired card.', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E202`', '`3DS_CHALLENGE_NEGATIVE`', '914 | Transaction timed out at the ACS', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E207`', '`AUCNEGATIVE`', '305 | Transaction ID has already been received and processed.', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E208`', '`AUTHNEGATIVE`', 'Error - The request was received but there was a server timeout.', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E221`', 'Bank reference number is not received in transaction response', '`NO_BANK_REFERENCE_NUMBER`', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E225`', 'Transaction in Progress', 'Destination cannot be found for routing', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E227`', 'Transaction is Pending', '`TRANSACTION_PENDING`', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E231`', 'Transaction was marked as dropped', '`TRANSACTION_DROPPED`', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E303`', '`AUCERROR`', '12002 | Rupay Redirect Response Timeout', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E311`', '`AUTHNEGATIVE`', '54 | Expired card', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E408`', 'Transaction failed. Page expired due to no user input.', '`TRANSACTION_BOUNCED`', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`E4103`', 'Payment validity expired', 'Payment validity expired', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Collect Payment Error Codes', '`INTERROR`', 'No response from bank', 'Occurs when PayU initiates a payment request to the bank but does not receive any response.', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Partner Integration Errors', 'Token expired', 'Auth', 'Refresh / contact KAM', 'Refresh / contact KAM'],
+
+    ['Refund Initiation Error Codes', '`102`', 'Refund Queued', '`102`', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+    ['Refund Initiation Error Codes', '`103`', 'Request rejected on reconfirmation', '`103`', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Refund Status Error Codes', '`R0003`', '`INVALID_OR_EXPIRED_VPA`', 'Refund status error', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Smart Send Error Codes', '`1111`', '`LINK_EXPIRED`', 'Smart Send Error Codes', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Transaction Stages Field7/Field8', '`TXNPENDING`', 'Maker has initiated but checker approval pending', 'Corporate transaction awaiting approval', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+
+    ['Issuer Decline Error Codes', '`E311 / response 54`', 'Expired card', 'Transaction declined due to invalid expiry details or expired card', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
+  ]}
+  placeholder="Search errors..."
+/>
+</Accordion>
