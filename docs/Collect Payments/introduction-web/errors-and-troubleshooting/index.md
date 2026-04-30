@@ -73,6 +73,7 @@ Use this page as the main hub. Detailed guides are linked below as sub-pages.
 | [UPI QR API payment errors](doc:payment-errors-qr-apis) | 3 | QR API Error Codes |
 | [CheckoutPro SDK payment errors](doc:payment-errors-checkoutpro-sdk) | 2 | CheckoutPro SDK Troubleshooting |
 | [KYC and partner payment errors](doc:payment-errors-kyc) | 6 | KYC Errors and Solutions |
+| [Ecommerce plugin payment errors](doc:payment-errors-ecommerce-plugins) | 13 | WooCommerce, Wix, Shopmatic, OpenCart, Magento, BigCommerce, and PrestaShop troubleshooting pages |
 
 ## Start here
 
@@ -98,13 +99,13 @@ Use this page as the main hub. Detailed guides are linked below as sub-pages.
 
 ## Repo error coverage
 
-The troubleshooting sub-pages now include categorized tables for every unique error row extracted from explicit error-code and troubleshooting pages in this repository. Total rows categorized: **4192**.
+The troubleshooting sub-pages now include categorized tables for every unique error row extracted from explicit error-code and troubleshooting pages in this repository. Total rows categorized: **4205**.
 
 | Target page | Rows categorized |
 | --- | ---: |
 | `error-codes-and-messages` | 82 |
 | `invalid-hash` | 361 |
-| `payment-failed-declined + product sub-pages` | 2578 |
+| `payment-failed-declined + product sub-pages` | 2591 |
 | `pending-transactions` | 214 |
 | `recurring-si-errors` | 604 |
 | `webhook-failures` | 353 |

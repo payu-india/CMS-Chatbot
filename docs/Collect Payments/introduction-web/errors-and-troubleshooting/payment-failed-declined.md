@@ -125,7 +125,8 @@ The mixed repo-backed payment-failure table has been split into product-specific
 | [UPI QR API payment errors](doc:payment-errors-qr-apis) | 3 | QR API Error Codes |
 | [CheckoutPro SDK payment errors](doc:payment-errors-checkoutpro-sdk) | 2 | CheckoutPro SDK Troubleshooting |
 | [KYC and partner payment errors](doc:payment-errors-kyc) | 6 | KYC Errors and Solutions |
+| [Ecommerce plugin payment errors](doc:payment-errors-ecommerce-plugins) | 13 | WooCommerce, Wix, Shopmatic, OpenCart, Magento, BigCommerce, PrestaShop troubleshooting |
 
-Total rows categorized across product sub-pages: **2578**.
+Total rows categorized across product sub-pages: **2591**.
 
 <!-- PAYU_REPO_ERRORS_PAYMENT_FAILED_DECLINED_END -->
