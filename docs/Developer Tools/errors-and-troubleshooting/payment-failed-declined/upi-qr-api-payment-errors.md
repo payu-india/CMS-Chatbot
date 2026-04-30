@@ -4,7 +4,7 @@ excerpt: >-
   Go through the In-person UPI QR API payment errors and their recommended
   fixes.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -29,4 +29,3 @@ The following table lists errors and their recommended fixes.
   maxHeight="500px"
 />
 </Accordion>
-
