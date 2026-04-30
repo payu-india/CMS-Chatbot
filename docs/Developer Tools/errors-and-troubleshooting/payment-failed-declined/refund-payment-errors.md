@@ -10,12 +10,11 @@ These are refund initiation and refund status errors, along with their descripti
 
 Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for debugging guidance and retry handling.
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
-
-<SearchableTable
-  headers={['Bank Code', 'Description', 'Recommended Fix']}
-  columnWidths={['18%', '32%', '50%']}
-  rows={[
+<Accordion title="Errors and Fixes" icon="fa-wrench">
+  <SearchableTable
+    headers={['Bank Code', 'Description', 'Recommended Fix']}
+    columnWidths={['18%', '32%', '50%']}
+    rows={[
     ['`Refund Successful`', '100', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`Refund Successful`', '101', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`Confirmation required`', '104', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
@@ -80,9 +79,9 @@ Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for 
     ['`TECHNICAL_ERROR`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`FAILED`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
   ]}
-  placeholder="Search errors..."
-  maxHeight="500px"
-/>
+    placeholder="Search errors..."
+    maxHeight="500px"
+  />
 </Accordion>
 
 <br />
