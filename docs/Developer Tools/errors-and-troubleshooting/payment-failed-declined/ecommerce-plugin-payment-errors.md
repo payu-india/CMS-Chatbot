@@ -8,19 +8,16 @@ hidden: true
 metadata:
   robots: index
 ---
-These rows are categorized from existing PayU ecommerce plugin troubleshooting documentation.
+These are Ecommerce platform plugin troubleshooting issues, along with their descriptions, and recommended fix.
 
-<br />
+Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for debugging guidance and retry handling.
 
-Use this page with [Payment Failed or Declined](doc:payment-failed-declined)  for debugging guidance and retry handling.
+## Error Codes and Description
 
-<br />
+The following table lists errors and their recommended fixes.
 
-## Error reference
-
-<br />
-
-<SearchableTable
+<Accordion title="Errors and Fixes" icon="fa-wrench">
+  <SearchableTable
   headers={['Bank Code', 'Description', 'Recommended Fix']}
   rows={[
     ['`WooCommerce`', 'Payment Page is showing only card payment mode', 'Install the PayU WooCommerce v3.8.2 plugin and configure Currency 1, merchant key, salt, and Verify Payment as documented.'],
@@ -39,3 +36,4 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined)  fo
   ]}
   placeholder="Search errors..."
 />
+</Accordion>
