@@ -6,23 +6,12 @@ hidden: true
 metadata:
   robots: index
 ---
-<br />
+These are Alt ID card and token-related payment errors, along with their descriptions, and recommended fix.
 
-<br />
+Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for debugging guidance and retry handling.
 
-These rows are categorized from existing PayU repository error-code and troubleshooting documentation for **Alt ID Error Page**.
-
-<br />
-
-Use this page with [Payment Failed or Declined](doc:payment-failed-declined)  for debugging guidance and retry handling.
-
-<br />
-
-## Error reference
-
-<br />
-
-<SearchableTable
+<Accordion title="Errors and Fixes" icon="fa-wrench">
+  <SearchableTable
   headers={['Bank Code', 'Description', 'Recommended Fix']}
   columnWidths={['18%', '32%', '50%']}
   rows={[
@@ -39,3 +28,7 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined)  fo
   placeholder="Search errors..."
   maxHeight="500px"
 />
+</Accordion>
+
+<br />
+
