@@ -8,19 +8,18 @@ hidden: true
 metadata:
   robots: index
 ---
-These rows are categorized from existing PayU repository error-code and troubleshooting documentation for **KYC Errors and Solutions**.
-
 <br />
 
-Use this page with [Payment Failed or Declined](doc:payment-failed-declined)  for debugging guidance and retry handling.
+These are KYC and partner merchant-status errors, along with their descriptions, and recommended fix.
 
-<br />
+Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for debugging guidance and retry handling.
 
-## Error reference
+## Error Codes and Description
 
-<br />
+The following table lists errors and their recommended fixes.
 
-<SearchableTable
+<Accordion title="Errors and Fixes" icon="fa-wrench">
+  <SearchableTable
   headers={['Bank Code', 'Description', 'Recommended Fix']}
   columnWidths={['18%', '32%', '50%']}
   rows={[
@@ -34,3 +33,4 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined)  fo
   placeholder="Search errors..."
   maxHeight="500px"
 />
+</Accordion>
