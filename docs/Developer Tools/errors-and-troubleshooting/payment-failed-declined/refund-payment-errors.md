@@ -10,11 +10,10 @@ These are refund initiation and refund status errors, along with their descripti
 
 Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for debugging guidance and retry handling.
 
-<Accordion title="Errors and Fixes" icon="fa-wrench">
-  <SearchableTable
-    headers={['Bank Code', 'Description', 'Recommended Fix']}
-    columnWidths={['18%', '32%', '50%']}
-    rows={[
+<SearchableTable
+  headers={['Bank Code', 'Description', 'Recommended Fix']}
+  columnWidths={['18%', '32%', '50%']}
+  rows={[
     ['`Refund Successful`', '100', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`Refund Successful`', '101', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`Confirmation required`', '104', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
@@ -76,50 +75,13 @@ Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for 
     ['`SUCCESS`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`TECHNICAL_ERROR_AT_ACQUIRER_BANK`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`TECHNICAL_ERROR_AT_CUSTOMER_BANK`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`CREDIT_FAILED_IN_CUSTOMER_ACCOUNT`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`REFUND_NOT_PERMITTED_TO_ACCOUNT`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`TECHNICAL_ERROR`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`TECHNICAL_ERROR_AT_ISSUER_OR_ACQUIRER_END`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`REFUND_IN_DEEMED_STATE`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`ACCOUNT_DETAILS_NOT_FOUND_AT_CUSTOMER_BANK`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`COMPLIANCE_DECLINE_AT_CUSTOMER_BANK`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`CUSTOMER_ACCOUNT_BLOCKED`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`REFUND_NOT_ALLOWED_ON_VPA`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`ORIGINAL_REFUND_DETAILS_NOT_FOUND`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`CUSTOMER_ACCOUNT_INACTIVE`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`CUSTOMER_BANK_MAXIMUM_BALANCE_LIMIT_BREACHED`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`RISK_DECLINE`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`CUSTOMER_VPA_BLOCKED`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`REFUND_NOT_ALLOWED_ON_OVERDRAFT_ACCOUNT`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`MERCHANT_BLOCKED_BY_CUSTOMER`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`CUSTOMER_BANK_NOT_HONOURING_REFUND`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`TECHNICAL_ERROR_AT_ACQUIRER_BANK`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`TECHNICAL_ERROR_AT_CUSTOMER_BANK`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`TECHNICAL_ERROR`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`RISK_DECLINE`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`IN_PROGRESS`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`INSUFFICIENT_BALANCE`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`FAILED`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
   ]}
-    placeholder="Search errors..."
-    maxHeight="500px"
-  />
-</Accordion>
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-<SearchableTable
-  headers={['Bank Code', 'Description', 'Recommended Fix']}
-  rows={[
-    ['`E000`', 'NO_ERROR', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
-    ['`AUCNEGATIVE`', 'OTP Generated Successfully', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
-    ['`E348`', 'ISSUER_DECLINED', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
-  ]}
   placeholder="Search errors..."
+  maxHeight="500px"
 />
+
+<br />
+
+<br />
