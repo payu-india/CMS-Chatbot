@@ -12,9 +12,9 @@ Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for 
 
 <Accordion title="Errors and Fixes" icon="fa-wrench">
   <SearchableTable
-  headers={['Bank Code', 'Description', 'Recommended Fix']}
-  columnWidths={['18%', '32%', '50%']}
-  rows={[
+    headers={['Bank Code', 'Description', 'Recommended Fix']}
+    columnWidths={['18%', '32%', '50%']}
+    rows={[
     ['`Refund Successful`', '100', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`Refund Successful`', '101', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`Confirmation required`', '104', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
@@ -101,7 +101,25 @@ Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for 
     ['`INSUFFICIENT_BALANCE`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`FAILED`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
   ]}
-  placeholder="Search errors..."
-  maxHeight="500px"
-/>
+    placeholder="Search errors..."
+    maxHeight="500px"
+  />
 </Accordion>
+
+<br />
+
+<br />
+
+<br />
+
+<br />
+
+<SearchableTable
+  headers={['Bank Code', 'Description', 'Recommended Fix']}
+  rows={[
+    ['`E000`', 'NO_ERROR', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
+    ['`AUCNEGATIVE`', 'OTP Generated Successfully', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
+    ['`E348`', 'ISSUER_DECLINED', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
+  ]}
+  placeholder="Search errors..."
+/>
