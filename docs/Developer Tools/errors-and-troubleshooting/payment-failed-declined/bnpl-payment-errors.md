@@ -2,7 +2,7 @@
 title: BNPL Payment Errors
 excerpt: Go through the Buy Now Pay Later payment failure errors and find their fixes.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
