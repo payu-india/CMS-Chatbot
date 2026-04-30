@@ -8,19 +8,16 @@ hidden: false
 metadata:
   robots: index
 ---
-These rows are categorized from existing PayU repository error-code and troubleshooting documentation for **QR API Error Codes**.
+These are in-person UPI QR API payment errors, along with their descriptions, and recommended fix.
 
-<br />
+Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for debugging guidance and retry handling.
 
-Use this page with [Payment Failed or Declined](doc:payment-failed-declined)  for debugging guidance and retry handling.
+## Error Codes and Description
 
-<br />
+The following table lists errors and their recommended fixes.
 
-## Error reference
-
-<br />
-
-<SearchableTable
+<Accordion title="Errors and Fixes" icon="fa-wrench">
+  <SearchableTable
   headers={['Bank Code', 'Description', 'Recommended Fix']}
   columnWidths={['18%', '32%', '50%']}
   rows={[
@@ -31,3 +28,5 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined)  fo
   placeholder="Search errors..."
   maxHeight="500px"
 />
+</Accordion>
+
