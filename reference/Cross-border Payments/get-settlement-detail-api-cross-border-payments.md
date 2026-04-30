@@ -52,96 +52,13 @@ function getAuthHeader(date) {
 
 ### Query parameters
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Reference
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        settledOn `mandatory`
-      </td>
-
-      <td>
-        This parameter must either contain either date for the settlement or UTR (Unique Transaction Reference number).
-      </td>
-
-      <td>
-        2023-09-26
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        isVersion `optional`
-      </td>
-
-      <td>
-        This parameter must contain the version of the API that can be either 1 or 2.
-      </td>
-
-      <td>
-        1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        pageSize `mandatory`
-      </td>
-
-      <td>
-        This parameter must contain the number of records to be paginated on each page is specified in this parameter. If not specified, 2000 records will be fetched.
-      </td>
-
-      <td>
-        1000
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        page `mandatory`
-      </td>
-
-      <td>
-        This parameter must contain the page number to be fetched.
-      </td>
-
-      <td>
-        5
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        type
-        `optional`
-      </td>
-
-      <td>
-        This parameter must contain either G to get a detailed output or leave it blank.
-      </td>
-
-      <td>
-        G
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameter             | Reference                                                                                                                                                      | Example    |
+| :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------- |
+| settledOn `mandatory` | This parameter must either contain either date for the settlement or UTR (Unique Transaction Reference number).                                                | 2023-09-26 |
+| isVersion `optional`  | This parameter must contain the version of the API that can be either 1 or 2.                                                                                  | 1          |
+| pageSize `mandatory`  | This parameter must contain the number of records to be paginated on each page is specified in this parameter. If not specified, 2000 records will be fetched. | 1000       |
+| page `mandatory`      | This parameter must contain the page number to be fetched.                                                                                                     | 5          |
+| type `optional`       | This parameter must contain either G to get a detailed output or leave it blank.                                                                               | G          |
 
 ## Sample request/response
 
@@ -502,13 +419,7 @@ curl --location 'http://127.0.0.1:8090/treasury/int/payu/settlement/settlementDe
 | merchant_id          | This parameter contains the merchant ID.                                                                                                                                                                                                   | JP***g                 |
 | merchantName         | This parameter contains the merchant name.                                                                                                                                                                                                 | ABC company            |
 | PSP                  | This parameter contains the payment service provider.                                                                                                                                                                                      | PayU                   |
-| action               | This parameter contains the action taken on the transaction. The action can be any of the following:                                                                                                                                       |                        |
-| capture              |                                                                                                                                                                                                                                            |                        |
-| refund               |                                                                                                                                                                                                                                            |                        |
-| cancel               |                                                                                                                                                                                                                                            |                        |
-| chargeback           |                                                                                                                                                                                                                                            |                        |
-| chargeback reversal  |                                                                                                                                                                                                                                            |                        |
-| refundreversal       | capture                                                                                                                                                                                                                                    |                        |
+| action               | This parameter contains the action taken on the transaction. For description of the various unampped status, refer to [List of Unmapped Status](#list-of-unmapped-status)                                                                  | capture                |
 | txnid                | This parameter contains the transaction ID.                                                                                                                                                                                                | PZT24040523596DQOT01   |
 | payu_id              | This parameter contains a unique reference number created for each transaction at PayU's end. You must note this transaction ID as this will be used as a reference for all the future actions on this transaction like Inquiry or Refund. | 403993715521937565     |
 | request_id           | This parameter contains the request ID value posted by the merchant during the transaction request.                                                                                                                                        | 131278418              |
@@ -536,3 +447,15 @@ curl --location 'http://127.0.0.1:8090/treasury/int/payu/settlement/settlementDe
 | merchant_key         | This parameter contains the merchant key.                                                                                                                                                                                                  |                        |
 | PG_TYPE              | This parameter contains the PG type.                                                                                                                                                                                                       | AxisCYBER              |
 | Card Type            | This parameter contains whether card type is domestic or international.                                                                                                                                                                    | domestic               |
+
+### List of Unmapped Status
+
+| Unmapped Status    | Status  | Description                                                                                                                                                    |
+| ------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| auth               | Success | Auth refers to a transaction that has been authorized by the bank, where the amount is blocked on the customer's account but not yet captured by the merchant. |
+| capture            | Success | Capture refers to the transaction where the previously authorized amount is successfully collected from the customer, completing the payment.                  |
+| cancel             | Failure | This status is used when an authorized transaction is canceled before capture, and the blocked amount is released back to the customer.                        |
+| refund             | Success | Refund refers to the process where a captured (successful) transaction amount is returned back to the customer, either fully or partially.                     |
+| refundreversal     | Failure | Refund Reversal occurs when a previously initiated refund is canceled or fails, resulting in the amount being retained by the merchant.                        |
+| chargeback         | Failure | Chargeback occurs when a customer disputes a transaction with their bank, leading to the amount being debited from the merchant and returned to the customer.  |
+| chargebackreversal | Success | Chargeback Reversal occurs when the merchant successfully contests a chargeback and the disputed amount is returned back to the merchant.                      |
