@@ -20,9 +20,9 @@ Settlement Details APIs are build on top of settlement data that provides transa
 
 #### Environment
 
-|            |                                        |
-| :--------- | :------------------------------------- |
-| Production | https://info.payu.in/settlement/range/ |
+|            |                                                                                  |
+| :--------- | :------------------------------------------------------------------------------- |
+| Production | [https://info.payu.in/settlement/range/](https://info.payu.in/settlement/range/) |
 
 ## Request parameters
 
@@ -78,8 +78,7 @@ function getAuthHeader(date) {
   <tbody>
     <tr>
       <td>
-        dateFrom
-        `mandatory`
+        dateFrom `mandatory`
       </td>
 
       <td>
@@ -93,8 +92,7 @@ function getAuthHeader(date) {
 
     <tr>
       <td>
-        dateTo
-        `optional`
+        dateTo `optional`
       </td>
 
       <td>
@@ -560,11 +558,11 @@ The description of fields in the **transaction** JSON of the response:
       </td>
 
       <td>
-
+        This parameter contains the payment state of the transaction. For more information, refer to [List of Unmapped Status](#list-of-unmapped-status) .
       </td>
 
       <td>
-
+        capture
       </td>
     </tr>
 
@@ -709,3 +707,17 @@ The description of fields in the **transaction** JSON of the response:
     </tr>
   </tbody>
 </Table>
+
+<br />
+
+### List of Unmapped Status
+
+| Unmapped Status    | Status  | Description                                                                                                                                                    |
+| ------------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| auth               | Success | Auth refers to a transaction that has been authorized by the bank, where the amount is blocked on the customer's account but not yet captured by the merchant. |
+| capture            | Success | Capture refers to the transaction where the previously authorized amount is successfully collected from the customer, completing the payment.                  |
+| cancel             | Failure | This status is used when an authorized transaction is canceled before capture, and the blocked amount is released back to the customer.                        |
+| refund             | Success | Refund refers to the process where a captured (successful) transaction amount is returned back to the customer, either fully or partially.                     |
+| refundreversal     | Failure | Refund Reversal occurs when a previously initiated refund is canceled or fails, resulting in the amount being retained by the merchant.                        |
+| chargeback         | Failure | Chargeback occurs when a customer disputes a transaction with their bank, leading to the amount being debited from the merchant and returned to the customer.  |
+| chargebackreversal | Success | Chargeback Reversal occurs when the merchant successfully contests a chargeback and the disputed amount is returned back to the merchant.                      |
