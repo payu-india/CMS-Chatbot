@@ -62,11 +62,9 @@ Now that we know the root causes of the error, let's see how to troubleshoot the
   Treating pending as failed can create false failures. Treating pending as success can create revenue leakage. Keep a separate pending state.
 </Callout>
 
-## Error Codes
+## When these Errors Occur
 
-Below are the similar errors and their recommended fixes.
-
-<Accordion title="Errors and Fixes" icon="fa-wrench">
+<Accordion title="Errors Scenarios and Fixes" icon="fa-wrench">
   <SearchableTable
     headers={['Error code / type', 'What it means', 'Recommended fix']}
     rows={[
@@ -130,21 +128,21 @@ Errors are divided into:
 
 <Accordion title="Errors and Fixes" icon="fa-wrench">
   <SearchableTable
-  headers={['Error code / type', 'Error message / response indicator', 'Description', 'Recommended fix']}
-  rows={[
+    headers={['Error code / type', 'Error message / response indicator', 'Description', 'Recommended fix']}
+    rows={[
     ['`EA05`', '`Failure`', 'Card network seems to be down. Please retry after some time', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`EA082`', '`Failure`', 'Mastercard DPA creation in progress. Please retry after 15 mins', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`EA11`', '`Failure`', 'Alt ID timeout at StoreCard. Please raise this to PayU support team', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
   ]}
-/>
+  />
 </Accordion>
 
 ### Card / Collect Payment Errors
 
 <Accordion title="Errors and Fixes" icon="fa-wrench">
   <SearchableTable
-  headers={['Error code / type', 'Error message / response indicator', 'Description', 'Recommended fix']}
-  rows={[
+    headers={['Error code / type', 'Error message / response indicator', 'Description', 'Recommended fix']}
+    rows={[
     ['`25`', '`E9211`', 'UNABLE_TO_LOCATE_ RECORD_ON_FILE', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`54`', '`E311`', 'EXPIRED_CARD', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`68`', '`E9220`', 'RESPONSE_RECEIVED_ TOO_LATE', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
@@ -161,47 +159,47 @@ Errors are divided into:
     ['`E303`', '`AUCERROR`', 'Rupay Timeout', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`E311`', '`Expired card`', 'Expired card', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
   ]}
-/>
+  />
 </Accordion>
 
 ### UPI Errors
 
 <Accordion title="Errors and Fixes" icon="fa-wrench">
   <SearchableTable
-  headers={['Error code / type', 'Error message / response indicator', 'Description', 'Recommended fix']}
-  rows={[
+    headers={['Error code / type', 'Error message / response indicator', 'Description', 'Recommended fix']}
+    rows={[
     ['`E317`', 'Transaction Expired', 'Transaction Expired', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`E4167`', 'Auth acknowledgement not received', 'Transaction failed', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`E4218`', 'Collect expired', 'Collect request expired', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`E4292`', 'Issuer timeout', 'Timeout at issuer', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`E4295`', 'Invalid VPA', 'VPA expired/invalid', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
   ]}
-/>
+  />
 </Accordion>
 
 ### Refund Errors
 
 <Accordion title="Errors and Fixes" icon="fa-wrench">
   <SearchableTable
-  headers={['Error code / type', 'Error message / response indicator', 'Description', 'Recommended fix']}
-  rows={[
+    headers={['Error code / type', 'Error message / response indicator', 'Description', 'Recommended fix']}
+    rows={[
     ['`102`', '`Refund Queued`', '102', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`103`', '`Rejected on reconfirmation`', '103', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`R0003`', '`INVALID_OR_EXPIRED_VPA`', 'Refund status error', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`R0008`', '`TIMEOUT_AT_ACQUIRER_END`', 'Refund status error', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
   ]}
-/>
+  />
 </Accordion>
 
 ### Integration / System Errors
 
 <Accordion title="Errors and Fixes" icon="fa-wrench">
   <SearchableTable
-  headers={['Error code / type', 'Error message / response indicator', 'Description', 'Recommended fix']}
-  rows={[
+    headers={['Error code / type', 'Error message / response indicator', 'Description', 'Recommended fix']}
+    rows={[
     ['`Token expired`', '`Auth`', 'Refresh / contact KAM', 'Refresh / contact KAM'],
     ['`TXNPENDING`', 'Checker pending', 'Corporate approval pending', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
     ['`E311 / response 54`', 'Expired card', 'Card expired', 'Keep the merchant order pending and reconcile with webhook or Transaction Detail APIs before retrying or fulfilling.'],
   ]}
-/>
+  />
 </Accordion>
