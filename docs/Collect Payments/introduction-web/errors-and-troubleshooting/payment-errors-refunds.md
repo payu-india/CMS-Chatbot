@@ -19,7 +19,7 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for
 
 ## Error reference
 
-Rows categorized: **85**.
+Rows categorized: **81**.
 
 <SearchableTable
   headers={['Bank Code', 'Description', 'Recommended Fix']}
@@ -103,10 +103,6 @@ Rows categorized: **85**.
     ['`REFUND_NOT_ALLOWED_ON_OVERDRAFT_ACCOUNT`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`MERCHANT_BLOCKED_BY_CUSTOMER`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`CUSTOMER_BANK_NOT_HONOURING_REFUND`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`TECHNICAL_ERROR_AT_ACQUIRER_BANK`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`TECHNICAL_ERROR_AT_CUSTOMER_BANK`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`TECHNICAL_ERROR`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
-    ['`RISK_DECLINE`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`IN_PROGRESS`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`INSUFFICIENT_BALANCE`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],
     ['`FAILED`', 'Refund status error', 'Check the original transaction, refund amount, refund status, and eligibility; retry only when the source status permits it.'],

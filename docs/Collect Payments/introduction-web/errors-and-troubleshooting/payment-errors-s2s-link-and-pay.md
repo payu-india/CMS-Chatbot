@@ -19,16 +19,14 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for
 
 ## Error reference
 
-Rows categorized: **4**.
+All S2S Link and Pay rows from the repo overlap with BNPL payment errors. To avoid duplicate error rows across pages, see [BNPL payment errors](doc:payment-errors-bnpl).
+
+Rows categorized: **0**.
 
 <SearchableTable
   headers={['Bank Code', 'Description', 'Recommended Fix']}
   columnWidths={['18%', '32%', '50%']}
   rows={[
-    ['`The customer does not have an active credit line to book a consumer loan`', '-', 'Correct the S2S Link-and-Pay request, eligibility, or enablement issue, then retry only after confirming the current status.'],
-    ['`The transaction or loan amount is greater than the available credit line with the customer`', '-', 'Correct the S2S Link-and-Pay request, eligibility, or enablement issue, then retry only after confirming the current status.'],
-    ['`The customer’s account is inactive.`', '-', 'Correct the S2S Link-and-Pay request, eligibility, or enablement issue, then retry only after confirming the current status.'],
-    ['`Potential fraud risk. Transaction not permitted`', '-', 'Correct the S2S Link-and-Pay request, eligibility, or enablement issue, then retry only after confirming the current status.'],
   ]}
   placeholder="Search errors..."
   maxHeight="500px"

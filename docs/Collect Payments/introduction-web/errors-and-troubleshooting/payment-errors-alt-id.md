@@ -19,7 +19,7 @@ Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for
 
 ## Error reference
 
-Rows categorized: **9**.
+Rows categorized: **8**.
 
 <SearchableTable
   headers={['Bank Code', 'Description', 'Recommended Fix']}
@@ -32,7 +32,6 @@ Rows categorized: **9**.
     ['`Failure`', 'Issuing bank server down. Please try in some time or try another card', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
     ['`Failure`', 'Card cannot be used. Please try another card', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
     ['`Failure`', 'Invalid details. Please try another card', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
-    ['`Failure`', 'Card cannot be used. Please try another card', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
     ['`Failure`', 'Card Association Error', 'Correct card number, CVV, expiry, or eligibility issues; ask the customer to use another card when issuer/card restrictions apply.'],
   ]}
   placeholder="Search errors..."

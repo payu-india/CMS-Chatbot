@@ -62,13 +62,13 @@ Use this page as the main hub. Detailed guides are linked below as sub-pages.
 
 | Product sub-page | Rows categorized | Source docs |
 | --- | ---: | --- |
-| [Collect Payments payment errors](doc:payment-errors-collect-payments) | 2,389 | Collect Payment Error Codes |
+| [Collect Payments payment errors](doc:payment-errors-collect-payments) | 1,673 | Collect Payment Error Codes |
 | [Issuer decline errors](doc:payment-errors-issuer-declines) | 55 | Issuer Decline Error Codes |
 | [Transaction stage errors](doc:payment-errors-transaction-stages) | 4 | Transaction Stages Field7/Field8 |
-| [S2S Link and Pay errors](doc:payment-errors-s2s-link-and-pay) | 4 | S2S Link and Pay Error Codes |
-| [Refund payment errors](doc:payment-errors-refunds) | 85 | Refund Initiation Error Codes, Refund Status Error Codes |
+| [S2S Link and Pay errors](doc:payment-errors-s2s-link-and-pay) | 0 | S2S Link and Pay Error Codes |
+| [Refund payment errors](doc:payment-errors-refunds) | 81 | Refund Initiation Error Codes, Refund Status Error Codes |
 | [Payouts and Smart Send errors](doc:payment-errors-payouts) | 17 | Payouts Error Codes, Smart Send Error Codes |
-| [Alt ID errors](doc:payment-errors-alt-id) | 9 | Alt ID Error Page |
+| [Alt ID errors](doc:payment-errors-alt-id) | 8 | Alt ID Error Page |
 | [BNPL payment errors](doc:payment-errors-bnpl) | 4 | BNPL Error Codes |
 | [UPI QR API payment errors](doc:payment-errors-qr-apis) | 3 | QR API Error Codes |
 | [CheckoutPro SDK payment errors](doc:payment-errors-checkoutpro-sdk) | 2 | CheckoutPro SDK Troubleshooting |
@@ -99,13 +99,13 @@ Use this page as the main hub. Detailed guides are linked below as sub-pages.
 
 ## Repo error coverage
 
-The troubleshooting sub-pages now include categorized tables for every unique error row extracted from explicit error-code and troubleshooting pages in this repository. Total rows categorized: **4205**.
+The troubleshooting sub-pages now include categorized tables for every unique error row extracted from explicit error-code and troubleshooting pages in this repository. Total rows categorized: **3480**.
 
 | Target page | Rows categorized |
 | --- | ---: |
 | `error-codes-and-messages` | 82 |
 | `invalid-hash` | 361 |
-| `payment-failed-declined + product sub-pages` | 2591 |
+| `payment-failed-declined + product sub-pages` | 1866 |
 | `pending-transactions` | 214 |
 | `recurring-si-errors` | 604 |
 | `webhook-failures` | 353 |

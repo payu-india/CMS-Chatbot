@@ -114,19 +114,19 @@ The mixed repo-backed payment-failure table has been split into product-specific
 
 | Product page | Rows categorized | Source docs |
 | --- | ---: | --- |
-| [Collect Payments payment errors](doc:payment-errors-collect-payments) | 2389 | Collect Payment Error Codes |
+| [Collect Payments payment errors](doc:payment-errors-collect-payments) | 1,673 | Collect Payment Error Codes |
 | [Issuer decline errors](doc:payment-errors-issuer-declines) | 55 | Issuer Decline Error Codes |
 | [Transaction stage errors](doc:payment-errors-transaction-stages) | 4 | Transaction Stages Field7/Field8 |
-| [S2S Link and Pay errors](doc:payment-errors-s2s-link-and-pay) | 4 | S2S Link and Pay Error Codes |
-| [Refund payment errors](doc:payment-errors-refunds) | 85 | Refund Initiation Error Codes, Refund Status Error Codes |
+| [S2S Link and Pay errors](doc:payment-errors-s2s-link-and-pay) | 0 | S2S Link and Pay Error Codes |
+| [Refund payment errors](doc:payment-errors-refunds) | 81 | Refund Initiation Error Codes, Refund Status Error Codes |
 | [Payouts and Smart Send errors](doc:payment-errors-payouts) | 17 | Payouts Error Codes, Smart Send Error Codes |
-| [Alt ID errors](doc:payment-errors-alt-id) | 9 | Alt ID Error Page |
+| [Alt ID errors](doc:payment-errors-alt-id) | 8 | Alt ID Error Page |
 | [BNPL payment errors](doc:payment-errors-bnpl) | 4 | BNPL Error Codes |
 | [UPI QR API payment errors](doc:payment-errors-qr-apis) | 3 | QR API Error Codes |
 | [CheckoutPro SDK payment errors](doc:payment-errors-checkoutpro-sdk) | 2 | CheckoutPro SDK Troubleshooting |
 | [KYC and partner payment errors](doc:payment-errors-kyc) | 6 | KYC Errors and Solutions |
 | [Ecommerce plugin payment errors](doc:payment-errors-ecommerce-plugins) | 13 | WooCommerce, Wix, Shopmatic, OpenCart, Magento, BigCommerce, PrestaShop troubleshooting |
 
-Total rows categorized across product sub-pages: **2591**.
+Total rows categorized across product sub-pages: **1,866**.
 
 <!-- PAYU_REPO_ERRORS_PAYMENT_FAILED_DECLINED_END -->
