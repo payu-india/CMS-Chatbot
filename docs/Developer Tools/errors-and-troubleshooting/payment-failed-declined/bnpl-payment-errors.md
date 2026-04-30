@@ -6,29 +6,16 @@ hidden: false
 metadata:
   robots: index
 ---
-<br />
+These are Alt ID card and token-related payment errors, along with their descriptions, and recommended fix.
 
-<br />
+Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for debugging guidance and retry handling.
 
-These rows are categorized from existing PayU repository error-code and troubleshooting documentation for **BNPL Error Codes**.
+## Error Codes and Description
 
-<br />
+The following table lists Alt ID card and token-related payment errors and their recommended fixes.
 
-Use this page with [Payment Failed or Declined](doc:payment-failed-declined)  for debugging guidance and retry handling.
-
-<br />
-
-<br />
-
-## Error reference
-
-<br />
-
-Rows categorized: **4**.
-
-<br />
-
-<SearchableTable
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  <SearchableTable
   headers={['Bank Code', 'Description', 'Recommended Fix']}
   columnWidths={['18%', '32%', '50%']}
   rows={[
@@ -40,3 +27,7 @@ Rows categorized: **4**.
   placeholder="Search errors..."
   maxHeight="500px"
 />
+</Accordion>
+
+<br />
+
