@@ -1,5 +1,4 @@
 ---
-title: Get Transaction Details API
 api:
   file: get-transaction-details-7.json
   operationId: GetTransactionDetails

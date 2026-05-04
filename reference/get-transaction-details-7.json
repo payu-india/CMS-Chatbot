@@ -16,8 +16,7 @@
   "paths": {
     "/merchant/postservice.php": {
       "post": {
-        "summary": "GetTransactionDetails",
-        "description": "",
+        "summary": "Get Transaction Details",
         "operationId": "GetTransactionDetails",
         "parameters": [
           {
@@ -28,9 +27,12 @@
             "style": "form",
             "explode": true,
             "schema": {
-              "const": "2",
-              "type": "string",
-              "default": "1"
+              "const": 2,
+              "type": "integer",
+              "contentEncoding": "int32",
+              "examples": [
+                2
+              ]
             }
           },
           {
@@ -41,8 +43,7 @@
             "style": "simple",
             "schema": {
               "const": "application/x-www-form-urlencoded",
-              "type": "string",
-              "default": "application/x-www-form-urlencoded"
+              "type": "string"
             }
           }
         ],
@@ -52,18 +53,18 @@
               "encoding": {},
               "schema": {
                 "required": [
+                  "key",
                   "command",
                   "var1",
                   "var2",
-                  "hash",
-                  "key"
+                  "hash"
                 ],
                 "type": "object",
                 "properties": {
                   "key": {
+                    "const": "JPM7Fg",
                     "type": "string",
-                    "description": "This parameter must contain the merchant key provided by PayU.",
-                    "default": "JPM7Fg"
+                    "description": "This parameter must contain the merchant key provided by PayU."
                   },
                   "command": {
                     "const": "get_Transaction_Details",
@@ -74,26 +75,18 @@
                     "type": "string",
                     "description": "The starting Time (from when the transaction details are needed) in YYYY-MM-DD format",
                     "examples": [
-                      "2025-01-20"
+                      "2020-10-20"
                     ]
                   },
                   "var2": {
                     "type": "string",
                     "description": "The end Time (till when the transaction details are needed) in YYYY-MM-DD format.",
                     "examples": [
-                      "2025-01-26"
-                    ]
-                  },
-                  "var3": {
-                    "type": "string",
-                    "description": "This parameter is used to specify the pagination so that response is segmented.",
-                    "examples": [
-                      "2"
+                      "2020-10-27"
                     ]
                   },
                   "hash": {
-                    "type": "string",
-                    "description": "This parameter must contain the hash value to be calculated at your end. Hash logic for this API is: sha512(key|command|var1|salt) sha512"
+                    "type": "string"
                   }
                 },
                 "contentMediaType": "application/x-www-form-urlencoded"
@@ -105,7 +98,15 @@
         "responses": {
           "200": {
             "description": "",
-            "headers": {}
+            "headers": {},
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "contentMediaType": "text/plain"
+                }
+              }
+            }
           }
         },
         "deprecated": false
@@ -113,44 +114,5 @@
       "parameters": []
     }
   },
-  "components": {
-    "schemas": {
-      "form": {
-        "title": "form",
-        "const": 2,
-        "type": "integer",
-        "examples": [
-          2
-        ]
-      },
-      "Content-Type": {
-        "title": "Content-Type",
-        "const": "application/x-www-form-urlencoded",
-        "type": "string"
-      },
-      "key": {
-        "title": "key",
-        "const": "JPM7Fg",
-        "type": "string",
-        "description": "This parameter must contain the merchant key provided by PayU."
-      },
-      "command": {
-        "title": "command",
-        "const": "get_Transaction_Details",
-        "type": "string",
-        "description": "This parameter must have the get_transaction_details as command name."
-      },
-      "command1": {
-        "title": "command1",
-        "const": "get_transaction_details",
-        "type": "string",
-        "description": "This parameter must have the get_transaction_details as command name."
-      }
-    }
-  },
-  "tags": [],
-  "x-readme": {
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  }
+  "tags": []
 }
