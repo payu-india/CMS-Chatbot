@@ -1,5 +1,5 @@
 ---
-title: UPI CC & CL Integration
+title: UPI CC & CL Integration with Convenience Fee
 deprecated: false
 hidden: true
 metadata:
@@ -74,9 +74,9 @@ This guide describes the flow, specifications, and merchant configurations requi
    * **Savings / Current account** → the PSP app displays only the `base amount`; the convenience fee is **not added**.
 6. PayU receives the authorization with the **updated amount**, validates it against the configured fee, and forwards the result to the merchant via the standard payment response and webhook.
 
-<Image align="center" src="https://files.readme.io/2a2350e1e796f18ee61cd0b7a72363ab0e50a53942fd27c4d7398965ea00299b-upicc_flow.webp" />
+<Image align="center" src="https://files.readme.io/91a7702600d944d779f6555aaf221f5084e63365d525c3d72b2bf5481d7e16e0-upi-cc-flow.png" />
 
-## Technical Flow 
+## Technical Flow
 
 ```mermaid
 sequenceDiagram
