@@ -74,26 +74,26 @@ The Get Transaction Details **(get_Transaction_Details)** API works based on inp
   })
   .then(response => console.log(response.data));
   ```
-```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+  ```java
+  import java.net.URI;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
 
-String url = "https://test.payu.in/merchant/postservice?form=2";
-String formData = "key=JP***g&command=get_Transaction_Details&var1=2020-10-20&var2=2020-10-27&hash=0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634";
+  String url = "https://test.payu.in/merchant/postservice?form=2";
+  String formData = "key=JP***g&command=get_Transaction_Details&var1=2020-10-20&var2=2020-10-27&hash=0545c11641bd91ed7ba2b5c937480b0f8737962ccc4959994f2aa950ca16212283e7c440a4251ffebd725e0c2c2c03701186eec82c8dd667e75dfbb3cba8e634";
 
-HttpClient client = HttpClient.newHttpClient();
-HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create(url))
-    .header("accept", "application/json")
-    .header("Content-Type", "application/x-www-form-urlencoded")
-    .POST(HttpRequest.BodyPublishers.ofString(formData))
-    .build();
+  HttpClient client = HttpClient.newHttpClient();
+  HttpRequest request = HttpRequest.newBuilder()
+      .uri(URI.create(url))
+      .header("accept", "application/json")
+      .header("Content-Type", "application/x-www-form-urlencoded")
+      .POST(HttpRequest.BodyPublishers.ofString(formData))
+      .build();
 
-HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-System.out.println(response.body());
-```
+  HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+  System.out.println(response.body());
+  ```
   ```php
   <?php
   $url = "https://test.payu.in/merchant/postservice?form=2";
@@ -270,7 +270,57 @@ System.out.println(response.body());
 ## Request parameters
 
 <Accordion title="Reference information for request parameters" icon="fa-book">
-  <KeyHashForGeneralParametersDescription />
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: "left" }}>
+        Parameter
+      </th>
+
+      <th style={{ textAlign: "left" }}>
+        Reference
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        <Glossary>key</Glossary>
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        For more information on how to generate the Key and Salt, refer to any of the following:
+
+        * **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+
+        * **Test**: [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        var3  <br/>
+        `optional`
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        This parameter is used pagination to retrieve subsequent pages of results.
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        <Glossary>hash</Glossary>
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        Hash logic for this API is:  
+        `sha512(key|command|var1|salt) sha512`
+      </td>
+    </tr>
+  </tbody>
+</Table>
 </Accordion>
 
 <Accordion title="Sample values" icon="fa-flask">
@@ -279,3 +329,5 @@ System.out.println(response.body());
   * `var1`: 2020-10-20
   * `var2`: 2020-10-27
 </Accordion>
+
+<br />
