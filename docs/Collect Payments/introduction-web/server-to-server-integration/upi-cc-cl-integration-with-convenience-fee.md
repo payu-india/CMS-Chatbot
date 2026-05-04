@@ -118,7 +118,7 @@ The convenience fee is passed in the intent URI through the NPCI `split` paramet
 
 A sample UPI intent URI carrying both UPI CC/CL and UPI PPI convenience fees:
 
-```text
+```text URL
 upi://pay?pa=testmerchant@acquiringbank&pn=merchant&tr=29999999999&tid=PPPXXXXXXXXX&am=100.00&cu=INR&tn=UPIIntent&split=CCONFEE:2.36|PCONFEE:1
 ```
 
