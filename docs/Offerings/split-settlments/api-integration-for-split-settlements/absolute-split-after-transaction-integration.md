@@ -21,6 +21,7 @@ metadata:
 next:
   description: ''
 ---
+
 Use this integration to split a completed parent transaction into fixed amounts using the `payment_split` API.
 
 In absolute split mode, each child merchant receives a fixed amount through `aggregatorSubAmt`.
@@ -34,7 +35,13 @@ Before integrating:
 3. You have the merchant `key` and `salt`.
 4. You have the `payuId` of the already completed parent transaction.
 
-## Step 1: Prepare var1 JSON payload
+## Step 1: Verify the Payment
+
+Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
+
+<Verify_Payment_Tabs />
+
+## Step 2: Prepare var1 JSON payload
 
 Set `type` as `absolute` and pass parent `payuId`:
 
@@ -58,7 +65,7 @@ Set `type` as `absolute` and pass parent `payuId`:
 
 > **Important:** Ensure all split amounts and charges map correctly to the original transaction amount.
 
-## Step 2: Generate hash
+## Step 3: Generate hash
 
 Use:
 
@@ -68,15 +75,15 @@ sha512(key|command|var1|salt)
 
 Where:
 
-- `command` = `payment_split`
-- `var1` = compact JSON string from Step 1
+* `command` = `payment_split`
+* `var1` = compact JSON string from Step 1
 
-## Step 3: Call payment_split API
+## Step 4: Call payment_split API
 
 Environment endpoints:
 
-- Test: `https://test.payu.in/merchant/postservice.php?form=2`
-- Production: `https://info.payu.in/merchant/postservice.php?form=2`
+* Test: `https://test.payu.in/merchant/postservice.php?form=2`
+* Production: `https://info.payu.in/merchant/postservice.php?form=2`
 
 Sample request:
 
@@ -117,8 +124,4 @@ Sample success response:
 }
 ```
 
-## Step 4: Verify the Payment
-
-Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
-
-<Verify_Payment_Tabs />
+<br />
