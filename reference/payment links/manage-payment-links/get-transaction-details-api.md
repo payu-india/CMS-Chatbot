@@ -1,5 +1,4 @@
 ---
-title: Get Transaction Details API
 excerpt: ''
 api:
   file: get-transaction-details-6.json
