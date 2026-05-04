@@ -6,6 +6,7 @@
 - upi-collection-s2s
 - upi-credit-card-integration-s2s
 - upi-intent-server-to-server
+- upi-cc-cl-integration
 - upi-omnichannel-integration
 - upi-integrations-s2s
 - phonepe-deep-offers-integration
