@@ -106,6 +106,49 @@ When PayU posts data to your `surl` or `furl`, validate reverse hash before fina
 sha512(SALT|status|splitInfo||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
 ```
 
+After payment completion, PayU redirects to your success or failure URL with transaction details:
+
+**Response Parameters**:
+
+| Parameter                 | Description                                |
+| ------------------------- | ------------------------------------------ |
+| `status`                  | Payment status (success, failure, pending) |
+| `txnid`                   | Transaction ID sent in the request         |
+| `amount`                  | Transaction amount                         |
+| `mihpayid`                | PayU payment ID                            |
+| `splitInfo.splitStatus`   | Status of the split operation              |
+| `splitInfo.splitSegments` | Array of split details                     |
+
+**Example Response**:
+
+```json
+{
+  "status": "success",
+  "txnid": "payment-txnid-1",
+  "amount": "10.00",
+  "mihpayid": "403993715519672950",
+  "error_code": "E000",
+  "splitInfo": {
+    "splitStatus": "success",
+    "splitSegments": [
+      {
+        "merchantKey": "P41sCY",
+        "amount": 3,
+        "txnId": "0e7411799c9f0e96620c11"
+      },
+      {
+        "merchantKey": "P41sCK",
+        "amount": 5,
+        "txnId": "0e7411799c9f0e96620c22"
+      }
+    ]
+  }
+}
+
+```
+
+##
+
 ## Step 5: Confirm payment via webhooks
 
 Use webhook notifications as your final payment confirmation mechanism.
