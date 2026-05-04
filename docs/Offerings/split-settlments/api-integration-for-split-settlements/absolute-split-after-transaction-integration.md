@@ -37,7 +37,7 @@ Before integrating:
 
 ## Step 1: Verify the Payment
 
-Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
+After completing the payment using **_payment** API, perform this step to verify the payment. Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
 
 <Verify_Payment_Tabs />
 
