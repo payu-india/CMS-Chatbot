@@ -123,8 +123,4 @@ Sample success response:
 }
 ```
 
-## Step 4: Verify the Payment
-
-Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
-
-<Verify_Payment_Tabs />
+<br />
