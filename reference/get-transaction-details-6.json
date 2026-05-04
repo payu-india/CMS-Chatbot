@@ -1,1 +1,111 @@
-{"openapi":"3.1.0","info":{"title":"Get Transaction Details","description":"","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://uatoneapi.payu.in","variables":{}}],"paths":{"/payment-links/{invoiceId}/txns":{"get":{"summary":"Get Transaction Details API","description":"","operationId":"GetTransactionDetailsAPI","parameters":[{"name":"invoiceId","in":"path","description":"This parameter must contain the invoice ID.","required":true,"style":"simple","schema":{"type":"string"}},{"name":"merchantId","in":"header","description":"This parameter must contain the merchant ID.","required":true,"style":"simple","schema":{"type":"string","examples":["8237736"]}},{"name":"dateFrom","in":"query","description":"This parameter must contain date (in YYYY-MM-DD format) from which transactions are required to be queried,","required":true,"style":"form","explode":true,"schema":{"type":"string","examples":["2024-10-16"]}},{"name":"dateTo","in":"query","description":"This parameter must contain date  (in YYYY-MM-DD format) up to which transactions are required  to be queried,","required":true,"style":"form","explode":true,"schema":{"type":"string","examples":["2024-10-17"]}}],"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"servers":[{"url":"https://uatoneapi.payu.in","variables":{}}]},"parameters":[]}},"components":{"schemas":{},"securitySchemes":{"httpBearer":{"type":"http","scheme":"bearer"}}},"security":[{"httpBearer":[]}],"tags":[],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Get Transaction Details",
+    "description": "",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://uatoneapi.payu.in",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/payment-links/{invoiceId}/txns": {
+      "get": {
+        "summary": "Get Transaction Details API - Payment Links",
+        "description": "",
+        "operationId": "GetTransactionDetailsAPI",
+        "parameters": [
+          {
+            "name": "invoiceId",
+            "in": "path",
+            "description": "This parameter must contain the invoice ID.",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "merchantId",
+            "in": "header",
+            "description": "This parameter must contain the merchant ID.",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "examples": [
+                "8237736"
+              ]
+            }
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "description": "This parameter must contain date (in YYYY-MM-DD format) from which transactions are required to be queried,",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "2024-10-16"
+              ]
+            }
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "description": "This parameter must contain date  (in YYYY-MM-DD format) up to which transactions are required  to be queried,",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "2024-10-17"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://uatoneapi.payu.in",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ],
+  "tags": [],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
