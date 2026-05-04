@@ -20,6 +20,7 @@ metadata:
 next:
   description: ''
 ---
+
 Use this integration to split a completed transaction by percentage using the `payment_split` API.
 
 In this mode, define `type` as `percentage` and distribute split values in `aggregatorSubAmt`.
@@ -33,7 +34,13 @@ Before integrating:
 3. Merchant `key` and `salt` are available.
 4. You have parent transaction `payuId` from a completed transaction.
 
-## Step 1: Prepare var1 JSON payload
+## Step 1: Verify the Payment
+
+After completing the payment using **_payment** API, perform this step to verify the payment.Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
+
+<Verify_Payment_Tabs />
+
+## Step 2: Prepare var1 JSON payload
 
 Set `type` as `percentage` and ensure total percentage is `100`.
 
@@ -57,7 +64,7 @@ Set `type` as `percentage` and ensure total percentage is `100`.
 
 > **Important:** Ensure total percentage across split entries equals `100.00`.
 
-## Step 2: Generate hash
+## Step 3: Generate hash
 
 Use:
 
@@ -67,15 +74,15 @@ sha512(key|command|var1|salt)
 
 Where:
 
-- `command` = `payment_split`
-- `var1` = compact JSON string from Step 1
+* `command` = `payment_split`
+* `var1` = compact JSON string from Step 1
 
-## Step 3: Call payment_split API
+## Step 4: Call payment_split API
 
 Environment endpoints:
 
-- Test: `https://test.payu.in/merchant/postservice.php?form=2`
-- Production: `https://info.payu.in/merchant/postservice.php?form=2`
+* Test: `https://test.payu.in/merchant/postservice.php?form=2`
+* Production: `https://info.payu.in/merchant/postservice.php?form=2`
 
 Sample request:
 
