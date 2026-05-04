@@ -44,7 +44,9 @@ This guide describes the flow, specifications, and merchant configurations requi
   **Regulatory Note**: Convenience fee on **UPI PPI (wallet)** is **not allowed** as of today per the regulator. However, the technical provision is available and will be enabled as and when the commercials on UPI PPI are introduced.
 </Callout>
 
-## Merchant Configuration
+## Convenience Fee Configuration
+
+PayU recommends you to follow these steps to configure convenience fee:
 
 1. Configure the convenience fee at PayU as either a **percentage** or a **flat amount** for each applicable instrument:
    * UPI CC
