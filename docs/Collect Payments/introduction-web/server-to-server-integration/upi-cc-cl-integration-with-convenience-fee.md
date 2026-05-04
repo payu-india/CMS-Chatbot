@@ -53,11 +53,11 @@ This guide describes the flow, specifications, and merchant configurations requi
 
 ## Supported Instruments
 
-| Instrument  | Description                             | Split Tag Used |
-| ----------- | --------------------------------------- | -------------- |
-| **UPI CC**  | UPI Credit Card                         | `CCONFEE`      |
-| **UPI CL**  | UPI Credit Line                         | `CCONFEE`      |
-| **UPI PPI** | UPI Prepaid Payment Instrument (wallet) | `PCONFEE`      |
+| Instrument  | Description                             | Split Parameter Used |
+| ----------- | --------------------------------------- | -------------------- |
+| **UPI CC**  | UPI Credit Card                         | `CCONFEE`            |
+| **UPI CL**  | UPI Credit Line                         | `CCONFEE`            |
+| **UPI PPI** | UPI Prepaid Payment Instrument (wallet) | `PCONFEE`            |
 
 <Callout icon="📘" theme="info">
   **Note**: NPCI does not currently support separate split tags for UPI CC and UPI CL — both share the **`CCONFEE`** tag. If different fees are configured at PayU for UPI CC and UPI CL, the **maximum** of the two is passed in the intent string.
