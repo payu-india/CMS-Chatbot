@@ -44,6 +44,23 @@ This guide describes the flow, specifications, and merchant configurations requi
   **Regulatory Note**: Convenience fee on **UPI PPI (wallet)** is **not allowed** as of today per the regulator. However, the technical provision is available and will be enabled as and when the commercials on UPI PPI are introduced.
 </Callout>
 
+## Merchant Configuration
+
+1. Configure the convenience fee at PayU as either a **percentage** or a **flat amount** for each applicable instrument:
+   * UPI CC
+   * UPI CL
+   * UPI PPI
+2. Separate convenience fees can be configured for UPI CC and UPI CL. During the transaction, **whichever value is greater is passed** in the intent's `CCONFEE` tag (NPCI does not currently allow distinct tags for CC and CL).
+3. **No additional handling is required from the merchant during the payment process.** PayU automatically:
+   * Computes the convenience fee from your configuration.
+   * Appends the `split` parameter to the intent string.
+   * Validates the authorized amount against the configured fee.
+   * Returns the final amount along with the convenience fee breakup in the response and webhook.
+
+<Callout icon="📘" theme="info">
+  **Setting up convenience fee**: Contact your PayU **Key Account Manager (KAM)** or PayU Support to enable and configure UPI CC, UPI CL, and UPI PPI convenience fees on your merchant account.
+</Callout>
+
 ## Key Highlights
 
 * Convenience fee is supported only via **UPI Intent** and **Dynamic QR** flows (it can only be embedded in an intent string).
@@ -134,23 +151,6 @@ Breakdown of the relevant parameters:
 | `cu`      | Currency (INR)                                                                             |
 | `tn`      | Transaction note                                                                           |
 | `split`   | Convenience fee container — pipe (`\|`) separated `KEY:VALUE` pairs (`CCONFEE`, `PCONFEE`) |
-
-## Merchant Configuration
-
-1. Configure the convenience fee at PayU as either a **percentage** or a **flat amount** for each applicable instrument:
-   * UPI CC
-   * UPI CL
-   * UPI PPI
-2. Separate convenience fees can be configured for UPI CC and UPI CL. During the transaction, **whichever value is greater is passed** in the intent's `CCONFEE` tag (NPCI does not currently allow distinct tags for CC and CL).
-3. **No additional handling is required from the merchant during the payment process.** PayU automatically:
-   * Computes the convenience fee from your configuration.
-   * Appends the `split` parameter to the intent string.
-   * Validates the authorized amount against the configured fee.
-   * Returns the final amount along with the convenience fee breakup in the response and webhook.
-
-<Callout icon="📘" theme="info">
-  **Setting up convenience fee**: Contact your PayU **Key Account Manager (KAM)** or PayU Support to enable and configure UPI CC, UPI CL, and UPI PPI convenience fees on your merchant account.
-</Callout>
 
 ## Behaviour by Selected Instrument
 
