@@ -36,7 +36,17 @@ Before integrating:
 
 ## Step 1: Verify the Payment
 
-After completing the payment using **_payment** API, perform this step to verify the payment.Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
+After completing the payment using the Collect Payment (**_payment**) API, perform this step to verify the payment.
+
+<Callout icon="👍" theme="okay">
+  **Reference:** Refer to any of the following API Reference pages for the sample request/response for collecting payments using the Collection (**_payment**)  API:
+
+  * [Collect Payment API using PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout)
+  * [Collect Payment API using Merchant Hosted Checkout](https://docs.payu.in/reference/_payment_merchant_hosted)
+  * [Collect Payment API using S2S](https://docs.payu.in/reference/_payment_server_to_server)
+</Callout>
+
+Upon receiving the response, PayU recommends performing a reconciliation step to validate all transaction details. You can verify your payments using either of the following methods:
 
 <Verify_Payment_Tabs />
 
