@@ -4,3 +4,4 @@
 - payment-failed-declined
 - pending-transactions
 - webhook-failures
+- recurring-and-si-errors
