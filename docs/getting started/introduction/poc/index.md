@@ -230,10 +230,8 @@ Accelerate your integration workflow with our net banking Postman collection for
       text: 'No image — icon only.',
     },
   ]}
-  />
-
-<br />
-
-<br />
+/>
 
 <PayUErrorExplorer />
+
+<br />
