@@ -15,9 +15,9 @@ Recurring and Standing Instruction (SI) errors happen during mandate registratio
 These are some of the common recurring and SI errors.
 
 <Accordion title="Errors and Fixes" icon="fa-wrench">
- <SearchableTable
-  headers={['Error code / type', 'What it means', 'Recommended fix']}
-  rows={[
+  <SearchableTable
+    headers={['Error code / type', 'What it means', 'Recommended fix']}
+    rows={[
     ['`E4530`', 'SI/mandate start date is invalid.', 'Send a valid future/current mandate start date as per API requirements.'],
     ['`E4531`', 'SI/mandate end date is invalid.', 'Validate mandate date range before creating mandate.'],
     ['`E4112`', 'Debit amount does not match mandate rules.', 'Align debit amount with mandate amount and billing rule.'],
@@ -28,22 +28,20 @@ These are some of the common recurring and SI errors.
     ['`E4682`', 'Recurring debit is already being processed.', 'Do not retry immediately. Wait for final status or webhook.'],
     ['`E4683`', 'Recurring debit was already completed.', 'Treat as duplicate and reconcile existing debit.'],
   ]}
-  placeholder="Search errors..."
-/>
+    placeholder="Search errors..."
+  />
 </Accordion>
 
 ## When these Errors Occur
 
 <Accordion title="Error Causes" icon="fa-info-circle">
+  Recurring/SI failures commonly appear when:
 
-Recurring/SI failures commonly appear when:
-
-* A customer rejects the mandate in the bank or UPI app.
-* Mandate dates are invalid.
-* Debit amount does not match the mandate rule.
-* Multiple recurring debits are sent for the same cycle.
-* Issuer, PSP, or customer bank times out during mandate authentication.
-
+  * A customer rejects the mandate in the bank or UPI app.
+  * Mandate dates are invalid.
+  * Debit amount does not match the mandate rule.
+  * Multiple recurring debits are sent for the same cycle.
+  * Issuer, PSP, or customer bank times out during mandate authentication.
 </Accordion>
 
 ## Troubleshooting
@@ -72,7 +70,7 @@ Now that we know the error causes, let's see how how to troubleshoot.
 
 These are recurring, SI, and mandate errors, their description and recommended fixes.
 
-<PayUErrorExplorer />
+<br />
 
 | Source doc                        | Error code / type                                                                         | Error message / response indicator                                                                                                                                 | Description                                                                                                                                                                                                                  | Recommended fix                                                                                                                    |
 | --------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
