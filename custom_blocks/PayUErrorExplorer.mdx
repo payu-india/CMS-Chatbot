@@ -626,10 +626,10 @@ export const PayUErrorExplorer = () => {
 
   return (
     <div className="w-full bg-zinc-50 text-zinc-900">
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-none px-2 py-3 sm:px-3">
         <div className="rounded-2xl border border-zinc-200 bg-white shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-10">
-            <aside className="border-b border-zinc-200 p-4 lg:col-span-3 lg:max-h-[82vh] lg:overflow-y-auto lg:border-b-0 lg:border-r">
+          <div className="grid grid-cols-1 xl:grid-cols-10">
+            <aside className="border-b border-zinc-200 p-4 xl:col-span-3 xl:max-h-[82vh] xl:overflow-y-auto xl:border-b-0 xl:border-r">
               <div className="sticky top-0 z-10 -mx-4 -mt-4 border-b border-zinc-200 bg-white px-4 pb-4 pt-4">
                 <h1 className="text-lg font-semibold tracking-tight">PayU Error Explorer</h1>
                 <p className="mt-1 text-sm text-zinc-600">
@@ -696,7 +696,7 @@ export const PayUErrorExplorer = () => {
               </div>
             </aside>
 
-            <section className="p-4 sm:p-6 lg:col-span-7">
+            <section className="p-4 sm:p-5 xl:col-span-7">
               {!selectedError ? (
                 <div className="rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-sm text-zinc-600">
                   Select an error to view debugging details.
