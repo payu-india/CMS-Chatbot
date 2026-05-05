@@ -588,13 +588,6 @@ export const PayUErrorExplorer = () => {
   );
 
   useEffect(() => {
-    if (!selectedError || typeof window === 'undefined') return;
-    const url = new URL(window.location.href);
-    url.searchParams.set('error', selectedError.code);
-    window.history.replaceState({}, '', url.toString());
-  }, [selectedError]);
-
-  useEffect(() => {
     const handleKeyDown = (event) => {
       if (!filteredErrors.length) return;
       if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') return;
@@ -632,7 +625,7 @@ export const PayUErrorExplorer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-900">
+    <div className="w-full bg-zinc-50 text-zinc-900">
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="rounded-2xl border border-zinc-200 bg-white shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-10">
