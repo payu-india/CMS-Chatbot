@@ -4,7 +4,7 @@ excerpt: >-
   Debug PayU payment webhook delivery failures, HTTP errors, content-type
   issues, hash validation, and idempotency.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
