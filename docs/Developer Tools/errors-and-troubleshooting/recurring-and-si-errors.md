@@ -64,16 +64,14 @@ Now that we know the error causes, let's see how how to troubleshoot.
   Reusing the same recurring request while the first debit is still in progress can create duplicate or sequence-mismatch errors.
 </Callout>
 
-<br />
-
 # Recurring, SI, and Mandate Errors
 
 These are recurring, SI, and mandate errors, their description and recommended fixes.
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
+<Accordion title="Errors and Fixes" icon="fa-wrench">
   <SearchableTable
-  headers={['Error Code / Type', 'Description', 'Recommended Fix']}
-  rows={[
+    headers={['Error Code / Type', 'Description', 'Recommended Fix']}
+    rows={[
     ['`E2416`', 'One or more parameters is missing in the API.', 'Validate mandate/SI dates, amount, sequence, and customer approval state; reconcile through webhook or status API before retrying.'],
     ['`E2418`', 'Transaction cannot Processed. Previous bill is overdue', 'Validate mandate/SI dates, amount, sequence, and customer approval state; reconcile through webhook or status API before retrying.'],
     ['`SDK error`', 'MERCHANT_INFO_NOT_PRESENT - Enable txn-s2s_flow on the MID.', 'Enable txn-s2s_flow on the MID.'],
@@ -676,6 +674,6 @@ These are recurring, SI, and mandate errors, their description and recommended f
     ['`TXNPOSITIVE`', 'Callback received from the bank - Positive identification - Indicates that the bank or wallet provider has sent a positive callback to PayU confirming that the payment was successful. The funds have been debited from the customer\'s account and the transaction has been approved...', 'Validate mandate/SI dates, amount, sequence, and customer approval state; reconcile through webhook or status API before retrying.'],
     ['`VERERROR`', 'Technical error with the verification call - Occurs when a technical error prevents PayU from successfully making or processing a verification call to the bank/wallet. This could be due to API errors, network issues, or invalid parameters in the verification req...', 'Validate mandate/SI dates, amount, sequence, and customer approval state; reconcile through webhook or status API before retrying.'],
   ]}
-  placeholder="Search errors..."
-/>
+    placeholder="Search errors..."
+  />
 </Accordion>
