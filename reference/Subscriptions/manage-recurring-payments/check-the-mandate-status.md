@@ -15,4 +15,16 @@ Use this endpoint to check the mandate status of the following payment methods:
 * NetBanking
 * UPI
 
+<Cards>
+  <Card title="Method">
+    POST
+  </Card>
+
+  <Card title="Endpoint">
+    /merchant/postservice.php
+  </Card>
+</Cards>
+
+<GENERALAPIsEnvironment />
+
 <br />
