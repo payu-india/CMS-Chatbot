@@ -15,28 +15,26 @@ The following examples are shown as JSON for readability. Depending on your inte
 Below is the sample payment success payload.
 
 <Accordion title="Sample Success Payload" icon="fa-code">
-
-```json Success Sample
-{
-  "mihpayid": "403993715525079998",
-  "mode": "CC",
-  "status": "success",
-  "unmappedstatus": "captured",
-  "key": "gtKFFx",
-  "txnid": "txn_10005",
-  "amount": "10.00",
-  "productinfo": "Test Product",
-  "firstname": "John",
-  "email": "john@example.com",
-  "phone": "9999999999",
-  "error": "E000",
-  "error_Message": "No Error",
-  "bank_ref_num": "123456789",
-  "PG_TYPE": "CC-PG",
-  "hash": "response_hash"
-}
-```
-
+  ```json Success Sample
+  {
+    "mihpayid": "403993715525079998",
+    "mode": "CC",
+    "status": "success",
+    "unmappedstatus": "captured",
+    "key": "gtKFFx",
+    "txnid": "txn_10005",
+    "amount": "10.00",
+    "productinfo": "Test Product",
+    "firstname": "John",
+    "email": "john@example.com",
+    "phone": "9999999999",
+    "error": "E000",
+    "error_Message": "No Error",
+    "bank_ref_num": "123456789",
+    "PG_TYPE": "CC-PG",
+    "hash": "response_hash"
+  }
+  ```
 </Accordion>
 
 Use this response only after:
@@ -46,39 +44,37 @@ Use this response only after:
 * `amount` matches your expected payable amount.
 * No later verified webhook/status response contradicts it.
 
-|  Success code | Success message as returned by PayU | Next Step                                                                     |
-| ------------- | ----------------------------------- | ----------------------------------------------------------------------------- |
-| `E000`        | `No Error`                          | Validate response hash, match `txnid` and `amount`, then mark the order paid. |
+| Success code | Success message as returned by PayU | Next Step                                                                     |
+| ------------ | ----------------------------------- | ----------------------------------------------------------------------------- |
+| `E000`       | `No Error`                          | Validate response hash, match `txnid` and `amount`, then mark the order paid. |
 
 ## Failed Transaction
 
 Below is the sample transaction failure payload.
 
 <Accordion title="Sample Failure Payload" icon="fa-code">
-
-```json Failure Sample
-{
-  "mihpayid": "403993715525080001",
-  "mode": "DC",
-  "status": "failure",
-  "unmappedstatus": "failed",
-  "key": "gtKFFx",
-  "txnid": "txn_10006",
-  "amount": "250.00",
-  "productinfo": "Test Product",
-  "firstname": "John",
-  "email": "john@example.com",
-  "phone": "9999999999",
-  "error": "E500",
-  "error_Message": "Bank failed to authenticate the customer",
-  "PG_TYPE": "DC-PG",
-  "field7": "AUCNEGATIVE",
-  "field8": "Message Received Invalid",
-  "field9": "UNKNOWN",
-  "hash": "response_hash"
-}
-```
-
+  ```json Failure Sample
+  {
+    "mihpayid": "403993715525080001",
+    "mode": "DC",
+    "status": "failure",
+    "unmappedstatus": "failed",
+    "key": "gtKFFx",
+    "txnid": "txn_10006",
+    "amount": "250.00",
+    "productinfo": "Test Product",
+    "firstname": "John",
+    "email": "john@example.com",
+    "phone": "9999999999",
+    "error": "E500",
+    "error_Message": "Bank failed to authenticate the customer",
+    "PG_TYPE": "DC-PG",
+    "field7": "AUCNEGATIVE",
+    "field8": "Message Received Invalid",
+    "field9": "UNKNOWN",
+    "hash": "response_hash"
+  }
+  ```
 </Accordion>
 
 Recommended fix:
@@ -93,9 +89,13 @@ Recommended fix:
 | `E500`            | `Bank failed to authenticate the customer` | Verify final status through webhook/status API, then let the customer retry with a new `txnid` or another payment method. |
 | `AUCNEGATIVE`     | Authentication stage failed                | Ask the customer to retry OTP/3DS or use another payment method.                                                          |
 
-## Invalid hash
+## Invalid Hash
 
-```json
+Below is the invalid hash error sample.
+
+<Accordion title="Invalid Hash Sample" icon="fa-code">
+
+```json Invalid Hash
 {
   "status": "failure",
   "unmappedstatus": "failed",
@@ -104,6 +104,8 @@ Recommended fix:
   "error_Message": "Validation of secure hash failed"
 }
 ```
+
+</Accordion>
 
 Recommended fix:
 
@@ -115,6 +117,8 @@ Recommended fix:
 | Error code / type | Error message as returned by PayU  | Recommended fix                                                                                            |
 | ----------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `E700`            | `Validation of secure hash failed` | Regenerate the request hash on the backend using the exact posted values and correct key/salt environment. |
+
+###
 
 ## Authentication failure
 
