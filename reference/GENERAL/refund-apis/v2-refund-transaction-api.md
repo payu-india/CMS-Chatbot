@@ -15,7 +15,7 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 | Test Environment       | https://apitest.payu.in/v2/refund/                                     |
 
 <Callout icon="📘" theme="info">
-
+  **Note**: You must include a slash (/) at the end of the endpoint as above, else the API calls will fail.
 </Callout>
 
 ## Request header
