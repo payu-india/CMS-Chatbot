@@ -4,7 +4,7 @@ excerpt: >-
   Information to collect before escalating PayU payment, webhook, hash, or
   recurring-payment issues.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
