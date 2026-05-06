@@ -37,7 +37,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
   --form 'form="2"' \
   --form 'key="BmTY3G"' \
   --form 'command="check_mandate_status"' \
-  --form 'var1="{\"authPayuId\":\"25599222315\",\"requestId\":\"403993715532527858_check_3\"}"' \
+  --form 'var1="{\"authPayuId\":\"25599222315\",\"requestId\":\"403993715532527858_check_3\",\"endDate\":\"2025-11-15\",\"amount\":\"1\"}"' \
   --form 'hash="YOUR_HASH_VALUE"'
 ```
 
@@ -47,7 +47,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 
 <Accordion title="Success and Failure Response Payload" icon="fa-code">
 
-```json Success Response
+```json Cards - Success Response 
 {
   "status":"active",
   "action":"check_mandate_status",
@@ -57,14 +57,24 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
   "mandateEndDate":"2027-12-01"
 }
 ```
-```Text Error Response
+```json NetBanking - Success Response
 {
-  "status": "cancelled",
-  "action": "check_mandate_status",
-  "authpayuid": "19122384119",
-  "amount": 18029,
-  "mandateStartDate": "2024-02-06",
-  "mandateEndDate": "2030-02-06"
+	"status": "SUCCESS", // INITIATED/SUCCESS/FAILED/CANCEL_INITIATED/CANCEL_PENDING/CANCEL_FAILED/CANCEL_INITIATION_FAILED
+	"action": "NB_mandate_status",
+	"authpayuid": "10731087875",
+	"amount": "100.00",
+	"mandateStartDate": "2022-07-19",
+	"mandateEndDate": "2023-12-20"
+}
+```
+```json UPI - Success Response
+{
+    "status": "active",
+    "action": "MANDATE_STATUS",
+    "authpayuid": "25600438037",
+    "amount": "1.00",
+    "mandateStartDate": "2025-10-14 00:00:00",
+    "mandateEndDate": "2027-12-01 00:00:00"
 }
 ```
 
@@ -137,27 +147,31 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 
 ### `var1` Object Parameters
 
-| **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                            |
-| :------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **authPayuId**<sup style={{color: 'red'}}>*</sup> | The value of `mihpayid` is returned in the payment response of the Registration transaction when the transaction is successfully completed. As described earlier, the merchant needs to map this value against the customer profile at his end so that correct `authPayuid` will be passed in the request. |
-| **requestId**<sup style={{color: 'red'}}>*</sup>  | A unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                |
+| **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                     |
+| :------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **authPayuId**<sup style={{color: 'red'}}>*</sup> | `string` The value of `mihpayid` is returned in the payment response of the Registration transaction when the transaction is successfully completed. As described earlier, the merchant needs to map this value against the customer profile at his end so that correct `authPayuid` will be passed in the request. |
+| **requestId**<sup style={{color: 'red'}}>*</sup>  | `string` A unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                |
+| **endDate**                                       | `date` The end date of the mandate. For example, `2025-11-15`.                                                                                                                                                                                                                                                      |
+| **amount**                                        | `integer` The mandate amount in INR. For example, `1`.                                                                                                                                                                                                                                                              |
 
 ## Response Parameters
 
-| **Parameter**        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **status**           | The mandate status. Possible values: <ul><li><code>active</code>: The mandate is active.</li> <li><code>cancelled</code>: The mandate is cancelled.</li> <li><code>discarded</code>, <code>deleted</code>: The customer is either discarded or deleted the mandate</li> <li><code>failed</code>: The mandate failed to register.</li> <li><code>expired</code>: The mandate has expired.</li> <li><code>paused</code>: The mandate is paused.</li></ul> |
-| **action**           | The type of action. This value is always returned as `MANDATE_STATUS`.                                                                                                                                                                                                                                                                                                                                                                                  |
-| **authpayuid**       | The value of registration transaction ID sent in the request.                                                                                                                                                                                                                                                                                                                                                                                           |
-| **amount**           | The billing amount as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                              |
-| **mandateStartDate** | The mandate start date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                          |
-| **mandateEndDate**   | The mandate end date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **Parameter**        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **status**           | The mandate status. Possible values: <ul><li>**For Cards**: <code>active</code>, <code>cancelled</code>, <code>discarded, deleted</code>, <code>failed</code>, <code>expired</code>, <code>paused</code></li> <li>**For NetBanking**: <code>INITIATED</code>, <code>SUCCESS</code>, <code>FAILED</code>, <code>CANCEL_INITIATED</code>, <code>CANCEL_PENDING</code>, <code>CANCEL_SUCCESS</code>, <code>CANCEL_FAILED</code>, <code>CANCEL_INITIATION_FAILED</code></li> <li>**For UPI**: <code>active</code>, <code>cancelled</code>, <code>discarded, deleted</code>, <code>failed</code>, <code>expired</code>, <code>paused</code></li></ul> |
+| **action**           | The type of action. Possible values: <ul><li>**For Cards:** <code>MANDATE_STATUS</code></li> <li>**For NetBanking**: <code>NB_mandate_status</code></li> <li>**For UPI** <code>MANDATE_STATUS</code></li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **authpayuid**       | The value of registration transaction ID sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **amount**           | The billing amount as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **mandateStartDate** | The mandate start date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **mandateEndDate**   | The mandate end date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
 ## Errors
 
 Below are the failure scenarios divided as per payment methods.
 
 ### Cards
+
+Below are the errors associated to cards.
 
 <Accordion title="Mandate is Cancelled" icon="fa-bug">
 
@@ -321,5 +335,41 @@ Below are the failure scenarios divided as per payment methods.
 ```
 
 **Reason:** This error occurs when you try to access the details of a paused mandate.
+
+</Accordion>
+
+### NetBanking
+
+Below are the errors associated to NetBanking.
+
+<Accordion title="ENACH Mandate Entry not Found" icon="fa-bug">
+
+```json Error Response
+{
+    "status": 0,
+    "message": "ENACH Mandate entry not found",
+    "action": "NB_mandate_status"
+}
+```
+
+**Reason:** This error occurs when you try to access the details of a unregistered ENACH mandate.
+
+</Accordion>
+
+### UPI
+
+Below are the errors associated to UPI.
+
+<Accordion title="Mandate Entry not Found" icon="fa-bug">
+
+```json Error Response
+{
+    "status": 0,
+    "message": "Mandate entry not found",
+    "action": "MANDATE_STATUS"
+}
+```
+
+**Reason:** This error occurs when you try to access the details of a unregistered mandate.
 
 </Accordion>
