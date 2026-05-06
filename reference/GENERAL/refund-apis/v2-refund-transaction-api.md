@@ -9,10 +9,10 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 **Endpoint**
 
-|                        |                                                                                                          |
-| :--------------------- | :------------------------------------------------------------------------------------------------------- |
-| Production Environment | [https://secure.payu.in/v2/refund/](https://secure.payu.in/v2/refund/)                                   |
-| Test Environment       | [https://apitest.payu.in/refund/v1/refundInitiation](https://apitest.payu.in/refund/v1/refundInitiation) |
+|                        |                                                                        |
+| :--------------------- | :--------------------------------------------------------------------- |
+| Production Environment | [https://secure.payu.in/v2/refund/](https://secure.payu.in/v2/refund/) |
+| Test Environment       | https://apitest.payu.in/v2/refund/                                     |
 
 ## Request header
 
@@ -81,7 +81,7 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 </Callout>
 
 ```curl
-curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
+curl --location 'https://apitest.payu.in/v2/refund/' \
 --header 'Authorization: hmac username="a4vGC2", algorithm="sha512", headers="date", signature="f861738a3b1c73230d0352e4b8eaa47d4140912011f5e6768d7a8307edb59f2adeb226559128239193ade16ee4ad1b646e414e27435cb70e236361f25e03482c"' \
 --header 'date: Mon, 29 Dec 2025 09:45:14 GMT' \
 --header 'Content-Type: application/json' \
@@ -99,7 +99,7 @@ curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
 ### Refund Initiation for Closed-Loop Wallet (CLW)
 
 ```curl
-curl --location 'http://10.248.8.237:9095/refund/v1/refundInitiation' \
+curl --location 'https://apitest.payu.in/v2/refund/' \
 --header 'Content-Type: application/json' \
 --header 'mid: 180012' \
 --data '{
