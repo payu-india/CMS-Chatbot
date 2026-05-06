@@ -94,17 +94,15 @@ Recommended fix:
 Below is the invalid hash error sample.
 
 <Accordion title="Invalid Hash Sample" icon="fa-code">
-
-```json Invalid Hash
-{
-  "status": "failure",
-  "unmappedstatus": "failed",
-  "txnid": "txn_10007",
-  "error": "E700",
-  "error_Message": "Validation of secure hash failed"
-}
-```
-
+  ```json Invalid Hash
+  {
+    "status": "failure",
+    "unmappedstatus": "failed",
+    "txnid": "txn_10007",
+    "error": "E700",
+    "error_Message": "Validation of secure hash failed"
+  }
+  ```
 </Accordion>
 
 Recommended fix:
@@ -118,7 +116,9 @@ Recommended fix:
 | ----------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `E700`            | `Validation of secure hash failed` | Regenerate the request hash on the backend using the exact posted values and correct key/salt environment. |
 
-###
+### PayU Hash Generator
+
+<br />
 
 ## Authentication failure
 
