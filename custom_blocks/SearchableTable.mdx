@@ -1,6 +1,22 @@
 ---
 name: SearchableTable
 ---
+/**
+ * SearchableTable - Readme CMS Custom Component
+ *
+ * - Search input that filters rows by any column (case-insensitive, multi-word)
+ * - "No results found" error state when search has no matches
+ * - Scrollable table body (fixed max height with overflow)
+ * - Columns auto-size to content (browser-native, via `table-layout: auto`).
+ *   Short columns ("100", "104") stay narrow, long columns ("Recommended Fix")
+ *   absorb the remaining space. Pass `columnWidths` only if you want to force
+ *   specific widths (e.g., ['18%', '32%', '50%']).
+ *
+ * NOTE: All critical layout (widths, table-layout, overflow) uses inline
+ * styles instead of Tailwind classes, because Readme's MDX renderer does
+ * not always apply Tailwind utilities.
+ */
+
 import { useState, useMemo } from 'react';
 
 export const SearchableTable = (props) => {
@@ -36,12 +52,21 @@ export const SearchableTable = (props) => {
   const showEmptyState = hasSearchQuery && filteredRows.length === 0;
   const colCount = headers.length;
 
+  // If caller passes explicit `columnWidths`, lock the layout. Otherwise let
+  // the browser auto-size columns to their content.
   const useFixedLayout = Array.isArray(columnWidths) && columnWidths.length > 0;
 
-  const FLUID_CONTENT_THRESHOLD = 35;
+  // Decide which columns hug their content vs. absorb leftover space.
+  // CSS trick: `width: 1%` + `white-space: nowrap` makes a column shrink to
+  // exactly its content width inside an auto-layout table. Columns marked
+  // "fluid" use `width: auto` and wrap, absorbing the remaining space so the
+  // table still fills its container.
+  const FLUID_CONTENT_THRESHOLD = 35; // chars; longer cells wrap
   const columnSizing = useMemo(() => {
     if (headers.length === 0) return [];
-    const stripBackticks = (s) => String(s == null ? '' : s).replace(/`/g, '');
+    const stripBackticks = (s) =>
+      String(s == null ? '' : s).replace(/`/g, '');
+
     const maxLenByCol = headers.map((header, i) => {
       let maxLen = stripBackticks(header).length;
       for (const row of rows) {
@@ -52,7 +77,35 @@ export const SearchableTable = (props) => {
       }
       return maxLen;
     });
-    const sizing = maxLenByCol.map((len) => (len > FLUID_CONTENT_THRESHOLD ? 'fluid' : 'tight'));
+
+    const sizing = maxLenByCol.map((len) =>
+      len > FLUID_CONTENT_THRESHOLD ? 'fluid' : 'tight'
+    );
+
+    // Prefer keeping code-like columns narrow while giving long text columns
+    // extra room, based on common header naming.
+    const normalizedHeaders = headers.map((h) => stripBackticks(h).toLowerCase());
+    normalizedHeaders.forEach((header, i) => {
+      if (
+        header.includes('description') ||
+        header.includes('recommended') ||
+        header.includes('what it means') ||
+        header.includes('message')
+      ) {
+        sizing[i] = 'fluid';
+      }
+      if (
+        header.includes('code') ||
+        header.includes('bank code') ||
+        header.includes('error code') ||
+        header.includes('type')
+      ) {
+        sizing[i] = 'tight';
+      }
+    });
+
+    // Need at least one fluid column so the table fills 100% width without
+    // every column getting padded out with leftover space.
     if (!sizing.includes('fluid')) {
       let longestIdx = 0;
       for (let i = 1; i < maxLenByCol.length; i++) {
@@ -64,7 +117,20 @@ export const SearchableTable = (props) => {
   }, [headers, rows]);
 
   const tightCellStyle = { width: '1%', whiteSpace: 'nowrap' };
-  const getSizingStyle = (i) => (columnSizing[i] === 'tight' ? tightCellStyle : null);
+  const getSizingStyle = (i) => {
+    if (columnSizing[i] === 'tight') return tightCellStyle;
+    const header = String(headers[i] == null ? '' : headers[i]).toLowerCase();
+
+    // Prefer giving "Recommended Fix" the widest readable column,
+    // then "Description", while still allowing responsive wrapping.
+    if (header.includes('recommended') || header.includes('fix')) {
+      return { minWidth: '38%' };
+    }
+    if (header.includes('description') || header.includes('what it means')) {
+      return { minWidth: '30%' };
+    }
+    return null;
+  };
 
   const renderCellContent = (value) => {
     if (value == null) return '';
@@ -73,46 +139,148 @@ export const SearchableTable = (props) => {
     const parts = value.split('`');
     return parts.map((part, i) =>
       i % 2 === 1 ? (
-        <code key={i} style={{ padding: '2px 6px', background: '#f3f4f6', color: '#1f2937', borderRadius: '4px', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace', fontSize: '0.875em' }}>
+        <code
+          key={i}
+          style={{
+            padding: '2px 6px',
+            background: '#f3f4f6',
+            color: '#1f2937',
+            borderRadius: '4px',
+            fontFamily:
+              'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+            fontSize: '0.875em',
+          }}
+        >
           {part}
         </code>
-      ) : part
+      ) : (
+        part
+      )
     );
   };
 
   const headerCellStyle = {
-    padding: '12px 16px', textAlign: 'left', fontSize: '12px', fontWeight: 600,
-    color: '#374151', textTransform: 'uppercase', letterSpacing: '0.05em',
-    background: '#f9fafb', borderBottom: '1px solid #e5e7eb',
-    verticalAlign: 'top', wordBreak: 'normal', overflowWrap: 'break-word',
-    position: 'sticky', top: 0, zIndex: 10,
+    padding: '12px 16px',
+    textAlign: 'left',
+    fontSize: '12px',
+    fontWeight: 600,
+    color: '#374151',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    background: '#f9fafb',
+    borderBottom: '1px solid #e5e7eb',
+    verticalAlign: 'top',
+    wordBreak: 'normal',
+    overflowWrap: 'break-word',
+    position: 'sticky',
+    top: 0,
+    zIndex: 10,
   };
 
   const bodyCellStyle = {
-    padding: '8px 16px', fontSize: '14px', color: '#111827',
-    verticalAlign: 'top', wordBreak: 'normal', overflowWrap: 'break-word',
+    padding: '8px 16px',
+    fontSize: '14px',
+    color: '#111827',
+    verticalAlign: 'top',
+    wordBreak: 'normal',
+    overflowWrap: 'break-word',
     borderBottom: '1px solid #f3f4f6',
   };
 
   return (
     <div className={className} style={{ width: '100%', display: 'block' }}>
-      <div style={{ width: '100%', border: '1px solid #e5e7eb', borderRadius: '6px', overflow: 'hidden', boxSizing: 'border-box' }}>
-        <div style={{ padding: '12px 16px', background: '#f9fafb', borderBottom: '1px solid #e5e7eb' }}>
-          <div style={{ display: 'flex', alignItems: 'center', width: '100%', maxWidth: '420px', border: '1px solid #d1d5db', borderRadius: '6px', background: '#ffffff', boxShadow: '0 1px 2px 0 rgba(0,0,0,0.05)' }}>
-            <span aria-hidden="true" style={{ display: 'flex', alignItems: 'center', paddingLeft: '12px', color: '#9ca3af', flexShrink: 0 }}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <div
+        style={{
+          width: '100%',
+          border: '1px solid #e5e7eb',
+          borderRadius: '6px',
+          overflow: 'hidden',
+          boxSizing: 'border-box',
+        }}
+      >
+        {/* Search bar: outside scroll area, never moves */}
+        <div
+          style={{
+            padding: '12px 16px',
+            background: '#f9fafb',
+            borderBottom: '1px solid #e5e7eb',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              width: '100%',
+              maxWidth: '420px',
+              border: '1px solid #d1d5db',
+              borderRadius: '6px',
+              background: '#ffffff',
+              boxShadow: '0 1px 2px 0 rgba(0,0,0,0.05)',
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                paddingLeft: '12px',
+                color: '#9ca3af',
+                flexShrink: 0,
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.35-4.35" />
               </svg>
             </span>
-            <input type="search" placeholder={placeholder} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} aria-label="Search table"
-              style={{ flex: 1, minWidth: 0, padding: '8px 12px 8px 8px', border: 0, background: 'transparent', outline: 'none', fontSize: '14px' }}
+            <input
+              type="search"
+              placeholder={placeholder}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search table"
+              style={{
+                flex: 1,
+                minWidth: 0,
+                padding: '8px 12px 8px 8px',
+                border: 0,
+                background: 'transparent',
+                outline: 'none',
+                fontSize: '14px',
+              }}
             />
           </div>
         </div>
 
-        <div style={{ width: '100%', overflowY: 'auto', overflowX: 'hidden', position: 'relative', maxHeight: showEmptyState ? 'none' : maxHeight, boxSizing: 'border-box' }}>
-          <table style={{ width: '100%', tableLayout: useFixedLayout ? 'fixed' : 'auto', borderCollapse: 'separate', borderSpacing: 0 }}>
+        {/* Scrollable table; only column header row is sticky inside it */}
+        <div
+          style={{
+            width: '100%',
+            overflowY: 'auto',
+            overflowX: 'hidden',
+            position: 'relative',
+            maxHeight: showEmptyState ? 'none' : maxHeight,
+            boxSizing: 'border-box',
+          }}
+        >
+          <table
+            style={{
+              width: '100%',
+              tableLayout: useFixedLayout ? 'fixed' : 'auto',
+              borderCollapse: 'separate',
+              borderSpacing: 0,
+            }}
+          >
             {useFixedLayout && (
               <colgroup>
                 {headers.map((_, i) => (
@@ -123,9 +291,15 @@ export const SearchableTable = (props) => {
             <thead>
               <tr>
                 {headers.map((header, i) => {
-                  const sizing = useFixedLayout ? { width: columnWidths[i] } : getSizingStyle(i);
+                  const sizing = useFixedLayout
+                    ? { width: columnWidths[i] }
+                    : getSizingStyle(i);
                   return (
-                    <th key={i} scope="col" style={{ ...headerCellStyle, ...(sizing || {}) }}>
+                    <th
+                      key={i}
+                      scope="col"
+                      style={{ ...headerCellStyle, ...(sizing || {}) }}
+                    >
                       {renderCellContent(header)}
                     </th>
                   );
@@ -135,7 +309,16 @@ export const SearchableTable = (props) => {
             <tbody style={{ background: '#ffffff' }}>
               {showEmptyState ? (
                 <tr>
-                  <td colSpan={colCount} role="alert" style={{ padding: '16px', background: '#fef2f2', color: '#b91c1c', borderBottom: '1px solid #fecaca' }}>
+                  <td
+                    colSpan={colCount}
+                    role="alert"
+                    style={{
+                      padding: '16px',
+                      background: '#fef2f2',
+                      color: '#b91c1c',
+                      borderBottom: '1px solid #fecaca',
+                    }}
+                  >
                     {emptyMessage}
                   </td>
                 </tr>
@@ -143,9 +326,14 @@ export const SearchableTable = (props) => {
                 filteredRows.map((row, rowIndex) => (
                   <tr key={rowIndex}>
                     {row.map((cell, cellIndex) => {
-                      const sizing = useFixedLayout ? null : getSizingStyle(cellIndex);
+                      const sizing = useFixedLayout
+                        ? null
+                        : getSizingStyle(cellIndex);
                       return (
-                        <td key={cellIndex} style={{ ...bodyCellStyle, ...(sizing || {}) }}>
+                        <td
+                          key={cellIndex}
+                          style={{ ...bodyCellStyle, ...(sizing || {}) }}
+                        >
                           {renderCellContent(cell)}
                         </td>
                       );
