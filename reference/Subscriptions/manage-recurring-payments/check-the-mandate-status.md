@@ -153,12 +153,25 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 | **mandateStartDate** | The mandate start date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                          |
 | **mandateEndDate**   | The mandate end date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                            |
 
-## Error Scenarios
+## Error
 
 Below are the failure scenarios divided as per payment methods.
 
 <Accordion title="Mandate is Cancelled" icon="fa-bug">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+
+```json Error Response
+{
+  "status": "cancelled",
+  "action": "check_mandate_status",
+  "authpayuid": "19122384119",
+  "amount": 18029,
+  "mandateStartDate": "2024-02-06",
+  "mandateEndDate": "2030-02-06"
+}
+```
+
+**Reason:** This error occurs when you try to check the status of a cancelled mandate.
+
+**Solution:** You cannot check status of a cancelled mandate.
+
 </Accordion>
