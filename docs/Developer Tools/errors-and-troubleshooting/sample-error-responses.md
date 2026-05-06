@@ -154,9 +154,13 @@ Recommended fix:
                 </button>
 `}</HTMLBlock>
 
-## Authentication failure
+## Authentication Failure
 
-```json
+Below is the authentication failure error sample
+
+<Accordion title="Authentication Error Sample" icon="fa-code">
+
+```json Authentication Error
 {
   "mihpayid": "403993715525080002",
   "status": "failure",
@@ -172,6 +176,8 @@ Recommended fix:
   "hash": "response_hash"
 }
 ```
+
+</Accordion>
 
 Recommended fix:
 
