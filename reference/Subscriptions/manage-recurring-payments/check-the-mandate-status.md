@@ -172,6 +172,152 @@ Below are the failure scenarios divided as per payment methods.
 
 **Reason:** This error occurs when you try to check the status of a cancelled mandate.
 
-**Solution:** You cannot check status of a cancelled mandate.
+</Accordion>
+
+<Accordion title="SI is not Valid" icon="fa-bug">
+
+```json Error Response
+{
+  "status": 422,
+  "errorCode": "ER0816",
+  "errorMessage": "SI is not valid",
+  "action": "check_mandate_status"
+}
+```
+
+**Reason:** This error occurs when the SI instructions of a mandate is invalid.
+
+</Accordion>
+
+<Accordion title="Mandate is Discarded" icon="fa-bug">
+
+```json Error Response
+{
+  "status": "discarded",
+  "action": "check_mandate_status",
+  "authpayuid": "16696314880",
+  "amount": 599,
+  "mandateStartDate": "2024-01-30",
+  "mandateEndDate": "2029-01-30"
+}
+```
+
+**Reason:** This error occurs when you try to check the status of a discarded mandate.
+
+</Accordion>
+
+<Accordion title="Consent is not Mandated" icon="fa-bug">
+
+```json Error Response
+{
+  "status": 0,
+  "message": "Consent is Not Mandated",
+  "action": "check_mandate_status"
+}
+```
+
+**Reason:** This error occurs when the consent is not mandated.
+
+</Accordion>
+
+<Accordion title="Mandate has Failed" icon="fa-bug">
+
+```json Error Response
+{
+  "status": "failed",
+  "action": "check_mandate_status",
+  "authpayuid": "15598035386",
+  "amount": 149,
+  "mandateStartDate": "2022-08-30",
+  "mandateEndDate": "2027-08-30"
+}
+```
+
+**Reason:** This error occurs when you try to access the details of a failed mandate.
+
+</Accordion>
+
+<Accordion title="Deleted Mandate" icon="fa-bug">
+
+```json Error Response
+{
+  "status": "deleted",
+  "action": "check_mandate_status",
+  "authpayuid": "21830274499",
+  "amount": 23888,
+  "mandateStartDate": "2025-02-07",
+  "mandateEndDate": "2026-01-07",
+  "deletedon": "2025-01-26T01:00:33+05:30"
+}
+```
+
+**Reason:** This error occurs when you try to access the details of a deleted mandate.
+
+</Accordion>
+
+<Accordion title="Expired Mandate" icon="fa-bug">
+
+```json Error Response
+{
+  "status": "expired",
+  "action": "check_mandate_status",
+  "authpayuid": "20962358568",
+  "amount": 63000,
+  "mandateStartDate": "2024-11-07",
+  "mandateEndDate": "2025-01-07"
+}
+```
+
+**Reason:** This error occurs when you try to access the details of a expired mandate.
+
+</Accordion>
+
+<Accordion title="authPayuId is Missing" icon="fa-bug">
+
+```json Error Response
+{
+  "status": 0,
+  "message": "authPayuId is mandatory",
+  "action": "check_mandate_status"
+}
+```
+
+**Reason:** This error occurs when you do not pass the `authPayuId` parameter.
+
+**Solution:** Make sure to pass the `authPayuId` parameter as it is a mandatory parameter.
+
+</Accordion>
+
+<Accordion title="Internal Error" icon="fa-bug">
+
+```json Error Response
+{
+  "status": 422,
+  "errorCode": "ER1002",
+  "errorMessage": "INTERNAL_ERROR",
+  "action": "check_mandate_status"
+}
+```
+
+**Reason:** This error occurs when there is an internal error while polling the API .
+
+**Solution:** Retry after sometime.
+
+</Accordion>
+
+<Accordion title="Mandate is Paused" icon="fa-bug">
+
+```json Error Response
+{
+  "status": "paused",
+  "action": "check_mandate_status",
+  "authpayuid": 21652087097,
+  "amount": "5",
+  "mandateStartDate": "2024-11-24",
+  "mandateEndDate": "2025-12-07"
+}
+```
+
+**Reason:** This error occurs when you try to access the details of a paused mandate.
 
 </Accordion>
