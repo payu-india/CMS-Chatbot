@@ -56,81 +56,10 @@ export const SearchableTable = (props) => {
   // the browser auto-size columns to their content.
   const useFixedLayout = Array.isArray(columnWidths) && columnWidths.length > 0;
 
-  // Decide which columns hug their content vs. absorb leftover space.
-  // CSS trick: `width: 1%` + `white-space: nowrap` makes a column shrink to
-  // exactly its content width inside an auto-layout table. Columns marked
-  // "fluid" use `width: auto` and wrap, absorbing the remaining space so the
-  // table still fills its container.
-  const FLUID_CONTENT_THRESHOLD = 35; // chars; longer cells wrap
-  const columnSizing = useMemo(() => {
-    if (headers.length === 0) return [];
-    const stripBackticks = (s) =>
-      String(s == null ? '' : s).replace(/`/g, '');
-
-    const maxLenByCol = headers.map((header, i) => {
-      let maxLen = stripBackticks(header).length;
-      for (const row of rows) {
-        if (row && row[i] != null) {
-          const text = stripBackticks(row[i]);
-          if (text.length > maxLen) maxLen = text.length;
-        }
-      }
-      return maxLen;
-    });
-
-    const sizing = maxLenByCol.map((len) =>
-      len > FLUID_CONTENT_THRESHOLD ? 'fluid' : 'tight'
-    );
-
-    // Prefer keeping code-like columns narrow while giving long text columns
-    // extra room, based on common header naming.
-    const normalizedHeaders = headers.map((h) => stripBackticks(h).toLowerCase());
-    normalizedHeaders.forEach((header, i) => {
-      if (
-        header.includes('description') ||
-        header.includes('recommended') ||
-        header.includes('what it means') ||
-        header.includes('message')
-      ) {
-        sizing[i] = 'fluid';
-      }
-      if (
-        header.includes('code') ||
-        header.includes('bank code') ||
-        header.includes('error code') ||
-        header.includes('type')
-      ) {
-        sizing[i] = 'tight';
-      }
-    });
-
-    // Need at least one fluid column so the table fills 100% width without
-    // every column getting padded out with leftover space.
-    if (!sizing.includes('fluid')) {
-      let longestIdx = 0;
-      for (let i = 1; i < maxLenByCol.length; i++) {
-        if (maxLenByCol[i] > maxLenByCol[longestIdx]) longestIdx = i;
-      }
-      sizing[longestIdx] = 'fluid';
-    }
-    return sizing;
-  }, [headers, rows]);
-
-  const tightCellStyle = { width: '1%', whiteSpace: 'nowrap' };
-  const getSizingStyle = (i) => {
-    if (columnSizing[i] === 'tight') return tightCellStyle;
-    const header = String(headers[i] == null ? '' : headers[i]).toLowerCase();
-
-    // Prefer giving "Recommended Fix" the widest readable column,
-    // then "Description", while still allowing responsive wrapping.
-    if (header.includes('recommended') || header.includes('fix')) {
-      return { minWidth: '38%' };
-    }
-    if (header.includes('description') || header.includes('what it means')) {
-      return { minWidth: '30%' };
-    }
-    return null;
-  };
+  // In auto mode we let the browser size columns from content naturally.
+  // Only apply widths when explicit `columnWidths` are provided.
+  const getSizingStyle = (i) =>
+    useFixedLayout ? { width: columnWidths[i] } : null;
 
   const renderCellContent = (value) => {
     if (value == null) return '';
@@ -267,7 +196,7 @@ export const SearchableTable = (props) => {
           style={{
             width: '100%',
             overflowY: 'auto',
-            overflowX: 'hidden',
+            overflowX: 'auto',
             position: 'relative',
             maxHeight: showEmptyState ? 'none' : maxHeight,
             boxSizing: 'border-box',
@@ -275,7 +204,8 @@ export const SearchableTable = (props) => {
         >
           <table
             style={{
-              width: '100%',
+              width: useFixedLayout ? '100%' : 'max-content',
+              minWidth: '100%',
               tableLayout: useFixedLayout ? 'fixed' : 'auto',
               borderCollapse: 'separate',
               borderSpacing: 0,
