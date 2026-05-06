@@ -72,7 +72,7 @@ These are recurring, SI, and mandate errors, their description and recommended f
 
 <Accordion title="My Accordion Title" icon="fa-info-circle">
   <SearchableTable
-  headers={['Bank Code', 'Description', 'Recommended Fix']}
+  headers={['Error Code / Type', 'Description', 'Recommended Fix']}
   rows={[
     ['`E2416`', 'One or more parameters is missing in the API.', 'Validate mandate/SI dates, amount, sequence, and customer approval state; reconcile through webhook or status API before retrying.'],
     ['`E2418`', 'Transaction cannot Processed. Previous bill is overdue', 'Validate mandate/SI dates, amount, sequence, and customer approval state; reconcile through webhook or status API before retrying.'],
