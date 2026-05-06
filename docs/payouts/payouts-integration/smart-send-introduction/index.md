@@ -124,6 +124,43 @@ flowchart TD
 * The payout outcome depends on the **payee-provided details** and on the standard **bank validation and rules** applied during processing.
 * For incomplete requests, PayU can automatically resend the link based on a configurable cadence — see [Smart Send Retrigger](ref:smart-send-retrigger).
 
+## Maker-Checker Flow
+
+Smart Send can also support a **maker-checker approval flow**, where payout initiation requires one or more approval steps before the Smart Send link is generated and shared with the payee.
+
+In this setup:
+
+* A **maker** creates or initiates the Smart Send request
+* The request moves to an approval stage
+* One or multiple **checkers** can approve the request, based on the approval rules configured for the merchant
+* Once the required approvals are completed, PayU generates and sends the Smart Send link to the payee
+
+This helps merchants implement internal authorization controls and ensures payout requests are reviewed before being shared with customers or payees.
+
+### High-Level Flow
+
+1. Maker initiates Smart Send request
+
+2. Request moves to pending approval state
+
+3. One or more checkers review the request
+
+4. Approval flow is completed based on configured rules
+
+5. On successful approval:
+
+   * Smart Send link is generated
+   * Communication is sent to the payee
+
+6. Payee completes the Smart Send flow
+
+### Key Benefits
+
+* Additional authorization layer before payout initiation
+* Flexible approval workflows based on merchant rules
+* Better operational control and auditability
+* Suitable for businesses with compliance or governance requirements
+
 ## Getting started
 
 To start using Smart Send:
