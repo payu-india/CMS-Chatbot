@@ -153,7 +153,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 | **mandateStartDate** | The mandate start date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                          |
 | **mandateEndDate**   | The mandate end date as sent in the request.                                                                                                                                                                                                                                                                                                                                                                                                            |
 
-## Error
+## Errors
 
 Below are the failure scenarios divided as per payment methods.
 
