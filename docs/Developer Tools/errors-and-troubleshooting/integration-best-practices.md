@@ -21,7 +21,7 @@ Use these best practices to prevent common PayU payment errors before they reach
   * Validate PayU response hash before updating order status.
 </Accordion>
 
-<Callout icon="🚧">
+<Callout icon="🚧" theme="warn">
   **Watch Out!**
 
   Hashing `10.00` and posting `10` causes hash validation failure because hashes are generated from strings, not numeric values.
@@ -65,7 +65,9 @@ Use these best practices to prevent common PayU payment errors before they reach
                 </button>
 `}</HTMLBlock>
 
-## Separate frontend and backend responsibilities
+## Separate Frontend and Backend Responsibilities
+
+<Accordion title="Responsibilities" icon="fa-table">
 
 | Responsibility             | Frontend                           | Backend                                |
 | -------------------------- | ---------------------------------- | -------------------------------------- |
@@ -79,19 +81,25 @@ Use these best practices to prevent common PayU payment errors before they reach
 | Decide final order status  | No                                 | Yes                                    |
 | Process webhook            | No                                 | Yes                                    |
 
-## Handle retries and idempotency
+</Accordion>
 
-* Use a unique `txnid` for every new payment attempt.
-* Keep a stable merchant order ID in your system and map multiple PayU attempts to it.
-* Do not retry a pending transaction blindly.
-* Before creating a new attempt, check whether the previous attempt succeeded, failed, or is still pending.
-* Make webhook processing idempotent with a unique key such as `mihpayid` + `txnid` + final status.
-* Protect the checkout button from double-click submissions.
-* Do not create duplicate fulfillment on duplicate redirects or duplicate webhooks.
+## Handle Retries and Idempotency
 
-## Build clear status handling
+<Accordion title="Retries and Idempotency List" icon="fa-list">
+  * Use a unique `txnid` for every new payment attempt.
+  * Keep a stable merchant order ID in your system and map multiple PayU attempts to it.
+  * Do not retry a pending transaction blindly.
+  * Before creating a new attempt, check whether the previous attempt succeeded, failed, or is still pending.
+  * Make webhook processing idempotent with a unique key such as `mihpayid` + `txnid` + final status.
+  * Protect the checkout button from double-click submissions.
+  * Do not create duplicate fulfillment on duplicate redirects or duplicate webhooks.
+</Accordion>
+
+## Build Clear Status Handling
 
 Recommended merchant-side states:
+
+<Accordion title="Status Handling" icon="fa-table">
 
 | Merchant state      | PayU status / error type                   | Recommended fix                                                          |
 | ------------------- | ------------------------------------------ | ------------------------------------------------------------------------ |
@@ -102,21 +110,31 @@ Recommended merchant-side states:
 | `payment_dropped`   | `E231`, timeout, abandoned flow            | Verify final status before retrying or closing the order.                |
 | `payment_review`    | Conflicting redirect/webhook/status        | Hold fulfillment and reconcile using Transaction Detail APIs.            |
 
-## Webhook handler checklist
+</Accordion>
 
-* Accept `POST`.
-* Accept form data and `application/x-www-form-urlencoded`.
-* Allow PayU webhook IPs.
-* Verify response hash.
-* Persist payload before processing.
-* Return `2xx` after durable receipt.
-* Process fulfillment asynchronously.
-* Make all state updates idempotent.
+## Webhook Handler Checklist
 
-## Recurring and SI checklist
+Follow these webhook handler checklist:
 
-* Validate mandate start and end dates before sending request.
-* Prevent duplicate debit requests for the same mandate cycle.
-* Store `authpayuid` or `authPayuId` against the customer mandate.
-* Reconcile all recurring debits through webhook/status APIs.
-* Treat mandate setup pending states separately from payment pending states.
+<Accordion title="Webhook Handler Checklist" icon="fa-list">
+  * Accept `POST`.
+  * Accept form data and `application/x-www-form-urlencoded`.
+  * Allow PayU webhook IPs.
+  * Verify response hash.
+  * Persist payload before processing.
+  * Return `2xx` after durable receipt.
+  * Process fulfillment asynchronously.
+  * Make all state updates idempotent.
+</Accordion>
+
+## Recurring Payments and SI Checklist
+
+Below are the recurring payments and SI checklist
+
+<Accordion title="Recurring and SI Checklist" icon="fa-list">
+  * Validate mandate start and end dates before sending request.
+  * Prevent duplicate debit requests for the same mandate cycle.
+  * Store `authpayuid` or `authPayuId` against the customer mandate.
+  * Reconcile all recurring debits through webhook/status APIs.
+  * Treat mandate setup pending states separately from payment pending states.
+</Accordion>
