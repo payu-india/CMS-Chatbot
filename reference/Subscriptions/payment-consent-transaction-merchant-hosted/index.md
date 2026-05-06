@@ -18,7 +18,7 @@ next:
       title: Using API Integration
 ---
 <Callout icon="👍" theme="okay">
-  <FreshTag heading="What's New" asHeading={false} />
+  <FreshTag heading="What's New!" asHeading={false} />
 
   <ul><li><Anchor label="RuPay Debit and Credit Cards" target="_blank" href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction">RuPay Debit and Credit Cards</Anchor> are supported for Subscriptions.</li></ul>
 </Callout>
