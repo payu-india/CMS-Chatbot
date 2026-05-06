@@ -4,7 +4,7 @@ excerpt: >-
   Step-by-step troubleshooting flow for PayU Hosted Checkout, Merchant Hosted
   Checkout, S2S, Webhooks, and Recurring Payments.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
