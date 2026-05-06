@@ -157,6 +157,8 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 
 Below are the failure scenarios divided as per payment methods.
 
+### Cards
+
 <Accordion title="Mandate is Cancelled" icon="fa-bug">
 
 ```json Error Response
