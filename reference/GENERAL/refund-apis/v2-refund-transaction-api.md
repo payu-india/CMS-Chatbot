@@ -9,10 +9,10 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 **Endpoint**
 
-|                        |                                                                        |
-| :--------------------- | :--------------------------------------------------------------------- |
-| Production Environment | [https://secure.payu.in/v2/refund/](https://secure.payu.in/v2/refund/) |
-| Test Environment       | https://apitest.payu.in/v2/refund/                                     |
+|                        |                                                                          |
+| :--------------------- | :----------------------------------------------------------------------- |
+| Production Environment | [https://secure.payu.in/v2/refund/](https://secure.payu.in/v2/refund/)   |
+| Test Environment       | [https://apitest.payu.in/v2/refund/](https://apitest.payu.in/v2/refund/) |
 
 <Callout icon="📘" theme="info">
   **Note**: You must include a slash (/) at the end of the endpoint as above, else the API calls will fail.
@@ -86,18 +86,17 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 
 ```curl
 curl --location 'https://apitest.payu.in/v2/refund/' \
---header 'Authorization: hmac username="a4vGC2", algorithm="sha512", headers="date", signature="f861738a3b1c73230d0352e4b8eaa47d4140912011f5e6768d7a8307edb59f2adeb226559128239193ade16ee4ad1b646e414e27435cb70e236361f25e03482c"' \
---header 'date: Mon, 29 Dec 2025 09:45:14 GMT' \
+--header 'Authorization: hmac username="a4vGC2", algorithm="sha512", headers="date", signature="2f7f7de82ee5b8b4760d4a526ef69938cea6a0f3e6789a5438f2f0447c556b88a4daedf41e57fb79983e47d6b60ab2364787d6f4f7d4659c893636bb56b04f27"' \
+--header 'date: Wed, 06 May 2026 06:55:44 GMT' \
 --header 'Content-Type: application/json' \
+--header 'Cookie: PHPSESSID=sd0tpvqmpokf6bmbjkmflgfd5u' \
 --data '{
-    "payuId": "403993715535614124",
+    "payuId": "403993715537366555",
     "amount": 100,
-    "refundToken": "435239928",
+    "refundToken": "Refund-403993715537322",
     "source": 1,
-    "merchantCallbackUrl": "https://merchant.example.com/refund/callback",
-    "var1Type": "REWARD_REFUND"
+    "merchantCallbackUrl": "https://merchant.example.com/refund/callback"
 }'
- 
 ```
 
 ### Refund Initiation for Closed-Loop Wallet (CLW)
