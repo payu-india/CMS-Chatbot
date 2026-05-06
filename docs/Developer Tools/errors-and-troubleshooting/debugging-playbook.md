@@ -69,7 +69,7 @@ Capture and log these fields for every transaction attempt:
 
 Start inspecting logs in the below order:
 
-<Accordion title="Logs Order" icon="fa-steps">
+<Accordion title="Logs Order" icon="fa-list">
   1. Backend payment-initiation logs.
   2. Raw request sent to PayU, excluding salt and sensitive payment data.
   3. Server-side hash-generation logs.
