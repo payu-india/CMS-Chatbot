@@ -34,7 +34,7 @@ next:
       title: Customer Experience and Workflow
 ---
 <Callout icon="👍" theme="okay">
-  <NewBadge title="What's New!" asHeading={false} />
+  <FreshTag heading="What's New!" asHeading={false} />
 
   <ul><li>RuPay Debit and Credit Cards are supported for Subscriptions.</li></ul>
 </Callout>
