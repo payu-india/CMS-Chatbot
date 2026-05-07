@@ -119,7 +119,7 @@ Below are the failure scenarios divided as per payment methods.
 
 Below are the errors associated to cards.
 
-<Accordion title="Mandate is Cancelled" icon="fa-bug">
+<Accordion title="Mandate is Cancelled" icon="fa-ban">
   ```json Error Response
   {
     "status": "cancelled",
