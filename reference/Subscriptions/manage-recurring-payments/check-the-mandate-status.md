@@ -21,7 +21,7 @@ Use this endpoint to check the mandate status of the following payment methods:
   </Card>
 
   <Card title="Endpoint">
-    /merchant/postservice.php
+    /merchant/postservice.php?form=2
   </Card>
 </Cards>
 
