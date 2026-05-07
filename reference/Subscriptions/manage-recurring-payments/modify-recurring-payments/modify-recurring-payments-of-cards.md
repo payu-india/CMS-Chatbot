@@ -209,6 +209,16 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
         **Note:** The email is used in case of fraud detection and chargebacks. Additionally, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
       </td>
     </tr>
+
+    <tr>
+      <td>
+        **productinfo**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `string` A product description. The value cabn 
+      </td>
+    </tr>
   </tbody>
 </Table>
 
