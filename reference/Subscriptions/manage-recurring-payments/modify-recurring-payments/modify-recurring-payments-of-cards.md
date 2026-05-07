@@ -5,7 +5,7 @@ excerpt: >-
   rules, subscription settings, mandate details, and recurring payment
   configurations securely for card-based transactions.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
