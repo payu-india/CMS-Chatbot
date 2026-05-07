@@ -13,7 +13,7 @@ This page provides an overview of APIs used to modify recurring payments and man
 <Callout icon="❗️" theme="error">
   **Watch Out!**
 
-  For NetBanking mandates, you cannot modify them. You should cancel and create a new mandate.
+  You cannot modify a mandate created using NetBanking as a payment method. You should cancel the existing one and create a new mandate.
 </Callout>
 
 You can modify cards mandates of the following Networks:
