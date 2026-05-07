@@ -21,7 +21,7 @@ Use this endpoint to check the mandate status of the following payment methods:
   </Card>
 
   <Card title="Endpoint">
-    /merchant/postservice.php?form=2
+    /merchant/postservice.php
   </Card>
 </Cards>
 
@@ -43,7 +43,7 @@ Use this endpoint to check the mandate status of the following payment methods:
 
 ## Sample Response
 
-<Accordion title="Success and Failure Response Payload" icon="fa-code">
+<Accordion title="Response Payload" icon="fa-code">
   ```json Cards - Success Response 
   {
     "status":"active",
