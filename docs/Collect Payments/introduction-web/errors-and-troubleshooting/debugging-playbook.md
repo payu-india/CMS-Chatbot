@@ -12,6 +12,9 @@ next:
 ---
 
 Use this flow when a payment does not behave as expected.
+## Category alignment
+
+Cross-category operational guide.
 
 ## 1. Identify where the failure occurred
 

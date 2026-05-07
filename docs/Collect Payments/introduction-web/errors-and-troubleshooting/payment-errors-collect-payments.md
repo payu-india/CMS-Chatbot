@@ -15,6 +15,10 @@ These rows are categorized from existing PayU repository error-code and troubles
 
 Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for debugging guidance and retry handling.
 
+## Category alignment
+
+Primary categories: Authentication and authorization errors and Payment failures. Includes Collect Payments auth-stage (`AUC*`, `AUTH*`, `3DS_*`) and bank/payment-method errors.
+
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_COLLECT_PAYMENTS_BEGIN -->
 
 ## Error reference

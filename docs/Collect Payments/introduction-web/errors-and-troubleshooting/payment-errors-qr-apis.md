@@ -15,6 +15,10 @@ These rows are categorized from existing PayU repository error-code and troubles
 
 Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for debugging guidance and retry handling.
 
+## Category alignment
+
+Primary categories: Validation errors and Payment failures for UPI QR APIs.
+
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_QR_APIS_BEGIN -->
 
 ## Error reference

@@ -15,6 +15,10 @@ These rows are categorized from existing PayU repository error-code and troubles
 
 Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for debugging guidance and retry handling.
 
+## Category alignment
+
+Primary categories: Network/API errors and Payment failures. Overlapping BNPL rows are linked from this page to avoid duplicates.
+
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_S2S_LINK_AND_PAY_BEGIN -->
 
 ## Error reference

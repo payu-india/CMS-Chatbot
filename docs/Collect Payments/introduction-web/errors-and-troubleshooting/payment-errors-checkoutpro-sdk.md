@@ -15,6 +15,10 @@ These rows are categorized from existing PayU repository error-code and troubles
 
 Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for debugging guidance and retry handling.
 
+## Category alignment
+
+Primary categories: Validation errors, Network/API errors, and Payment failures for SDK integration flows.
+
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_CHECKOUTPRO_SDK_BEGIN -->
 
 ## Error reference

@@ -12,6 +12,9 @@ next:
 ---
 
 Pending transactions occur when PayU has not received a final success or failure from the bank, PSP, wallet, or UPI app.
+## Category alignment
+
+Primary category: Pending, timeout, and uncertain-status errors within Payment failures.
 
 ## When it occurs
 

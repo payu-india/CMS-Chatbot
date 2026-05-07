@@ -40,40 +40,84 @@ PayU errors usually fall into these causes:
 >
 > Do not rely only on browser redirects to decide order status. Always verify the final status using the payment response hash, webhooks, and Transaction Detail APIs.
 
-## Troubleshooting guides
+## Browse by error category
 
-Use this page as the main hub. Detailed guides are linked below as sub-pages.
+Use the category below first, then open the relevant detailed guide or product-specific reference.
+
+### Authentication and authorization errors
 
 | Sub-page | Use it for |
 | --- | --- |
-| [Error categories](doc:error-categories) | Understand the main classes of PayU errors and ownership. |
-| [Error codes and messages](doc:error-codes-and-messages) | Look up common PayU error codes, messages, causes, and fixes. |
-| [Invalid hash errors](doc:invalid-hash) | Debug `E700`, `SECURE_HASH_FAILURE`, hash mismatch, and response hash issues. |
-| [Payment failed or declined](doc:payment-failed-declined) | Debug bank, issuer, UPI, wallet, OTP, CVV, and customer-driven failures. |
-| [Pending transactions](doc:pending-transactions) | Handle `E227`, delayed bank callbacks, UPI pending states, and reconciliation. |
-| [Webhook failures](doc:webhook-failures) | Debug webhook delivery failures, HTTP errors, content types, and idempotency. |
-| [Recurring and SI errors](doc:recurring-si-errors) | Debug Standing Instruction, UPI Autopay, mandate, and recurring debit failures. |
-| [Debugging playbook](doc:debugging-playbook) | Follow a step-by-step troubleshooting flow. |
-| [Integration best practices](doc:integration-best-practices) | Prevent errors with hash, validation, idempotency, retries, and status handling. |
-| [Sample error responses](doc:sample-error-responses) | See realistic success, failure, invalid hash, and authentication-failure payloads. |
-| [Escalation checklist](doc:escalation-checklist) | Collect the right details before contacting PayU Support. |
+| [Payment failed or declined](doc:payment-failed-declined) | Customer, issuer, OTP, CVV, 3DS, authorization, and payment-method declines. |
+| [Issuer decline errors](doc:payment-errors-issuer-declines) | Issuer/card-network decline codes and customer-bank rejection reasons. |
+| [Transaction stage errors](doc:payment-errors-transaction-stages) | Field7/Field8 authentication, authorization, and bank/wallet stage failures. |
+| [Collect Payments payment errors](doc:payment-errors-collect-payments) | Collect Payments errors including `AUC*`, `AUTH*`, `3DS_*`, UPI, card, wallet, and bank failures. |
 
-## Payment failure errors by product
+### Hash and security errors
 
-| Product sub-page | Rows categorized | Source docs |
+| Sub-page | Use it for |
+| --- | --- |
+| [Invalid hash errors](doc:invalid-hash) | `E700`, `SECURE_HASH_FAILURE`, request hash mismatch, and response hash validation issues. |
+
+### Validation errors
+
+| Sub-page | Use it for |
+| --- | --- |
+| [Error codes and messages](doc:error-codes-and-messages) | General validation, API, request, product, QR, payout, KYC, and product-specific errors that are not covered by a specialized deep dive. |
+| [Ecommerce plugin payment errors](doc:payment-errors-ecommerce-plugins) | WooCommerce, Wix, Shopmatic, OpenCart, Magento, BigCommerce, and PrestaShop configuration issues. |
+| [Alt ID errors](doc:payment-errors-alt-id) | Card number, CVV, expiry, card eligibility, and token/Alt ID provisioning issues. |
+| [UPI QR API payment errors](doc:payment-errors-qr-apis) | QR request validation, merchant VPA setup, amount, and transaction ID issues. |
+
+### Payment failures
+
+| Sub-page | Rows categorized | Source docs |
 | --- | ---: | --- |
 | [Collect Payments payment errors](doc:payment-errors-collect-payments) | 1,673 | Collect Payment Error Codes |
 | [Issuer decline errors](doc:payment-errors-issuer-declines) | 55 | Issuer Decline Error Codes |
 | [Transaction stage errors](doc:payment-errors-transaction-stages) | 4 | Transaction Stages Field7/Field8 |
-| [S2S Link and Pay errors](doc:payment-errors-s2s-link-and-pay) | 0 | S2S Link and Pay Error Codes |
+| [S2S Link and Pay errors](doc:payment-errors-s2s-link-and-pay) | 0 | S2S Link and Pay Error Codes; overlapping rows are listed under BNPL |
 | [Refund payment errors](doc:payment-errors-refunds) | 81 | Refund Initiation Error Codes, Refund Status Error Codes |
 | [Payouts and Smart Send errors](doc:payment-errors-payouts) | 17 | Payouts Error Codes, Smart Send Error Codes |
-| [Alt ID errors](doc:payment-errors-alt-id) | 8 | Alt ID Error Page |
 | [BNPL payment errors](doc:payment-errors-bnpl) | 4 | BNPL Error Codes |
-| [UPI QR API payment errors](doc:payment-errors-qr-apis) | 3 | QR API Error Codes |
 | [CheckoutPro SDK payment errors](doc:payment-errors-checkoutpro-sdk) | 2 | CheckoutPro SDK Troubleshooting |
 | [KYC and partner payment errors](doc:payment-errors-kyc) | 6 | KYC Errors and Solutions |
-| [Ecommerce plugin payment errors](doc:payment-errors-ecommerce-plugins) | 13 | WooCommerce, Wix, Shopmatic, OpenCart, Magento, BigCommerce, and PrestaShop troubleshooting pages |
+
+### Pending, timeout, and uncertain-status errors
+
+| Sub-page | Use it for |
+| --- | --- |
+| [Pending transactions](doc:pending-transactions) | `E227`, dropped transactions, delayed bank callbacks, UPI pending states, late responses, and reconciliation. |
+
+### Network and API errors
+
+| Sub-page | Use it for |
+| --- | --- |
+| [Error codes and messages](doc:error-codes-and-messages) | API validation, routing, merchant configuration, payout, refund, QR, SDK, KYC, and product errors. |
+| [S2S Link and Pay errors](doc:payment-errors-s2s-link-and-pay) | S2S Link and Pay enablement and eligibility issues; overlapping BNPL rows are linked from this page. |
+| [Payouts and Smart Send errors](doc:payment-errors-payouts) | Payout request, beneficiary, transfer, and Smart Send errors. |
+| [Refund payment errors](doc:payment-errors-refunds) | Refund initiation/status errors and refund eligibility issues. |
+
+### Webhook errors
+
+| Sub-page | Use it for |
+| --- | --- |
+| [Webhook failures](doc:webhook-failures) | Webhook delivery failures, HTTP errors, endpoint content types, firewall/WAF issues, and idempotency. |
+
+### Recurring and SI errors
+
+| Sub-page | Use it for |
+| --- | --- |
+| [Recurring and SI errors](doc:recurring-si-errors) | Standing Instruction, UPI Autopay, mandate registration, mandate modification, recurring debit, and invoice/subscription lifecycle issues. |
+
+### Cross-category operational guides
+
+| Sub-page | Use it for |
+| --- | --- |
+| [Debugging playbook](doc:debugging-playbook) | Step-by-step troubleshooting across frontend, backend, PayU, bank, webhook, and reconciliation layers. |
+| [Integration best practices](doc:integration-best-practices) | Prevention guidance across hash, validation, retries, idempotency, webhook, and recurring flows. |
+| [Sample error responses](doc:sample-error-responses) | Realistic success, failed, invalid hash, and authentication-failure payloads. |
+| [Escalation checklist](doc:escalation-checklist) | Details to collect before contacting PayU Support or Integration Team. |
+| [Error categories](doc:error-categories) | The taxonomy that this section uses for categorization. |
 
 ## Start here
 

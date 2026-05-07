@@ -12,6 +12,9 @@ next:
 ---
 
 Invalid hash errors occur during request validation when PayU receives a `hash` that does not match the hash PayU calculates from the submitted fields.
+## Category alignment
+
+Primary category: Hash and security errors.
 
 ## When it occurs
 

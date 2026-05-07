@@ -26,6 +26,9 @@ Recurring and Standing Instruction (SI) errors happen during mandate registratio
 | `E4278` | `Transaction failed as mandate setup failed from customer's bank` | Mandate setup failed at customer bank. | Bank rejected mandate or account does not support it. | Ask customer to use another account/payment method. |
 | `E4682` | `Recurrence Payment is in progress` | Recurring debit is already being processed. | Duplicate or parallel recurring request. | Do not retry immediately. Wait for final status or webhook. |
 | `E4683` | `Recurrence Payment is already completed` | Recurring debit was already completed. | Duplicate debit request for the same cycle. | Treat as duplicate and reconcile existing debit. |
+## Category alignment
+
+Primary category: Recurring and SI errors.
 
 ## When it occurs
 

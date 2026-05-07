@@ -12,6 +12,9 @@ next:
 ---
 
 Webhook failures occur when PayU sends a server-to-server callback but your endpoint does not accept or process it successfully.
+## Category alignment
+
+Primary category: Webhook errors.
 
 ## When it occurs
 

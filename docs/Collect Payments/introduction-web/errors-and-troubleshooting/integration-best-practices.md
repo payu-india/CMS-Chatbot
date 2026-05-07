@@ -12,6 +12,9 @@ next:
 ---
 
 Use these practices to prevent common PayU payment errors before they reach production.
+## Category alignment
+
+Cross-category operational guide.
 
 ## Generate and validate hash correctly
 

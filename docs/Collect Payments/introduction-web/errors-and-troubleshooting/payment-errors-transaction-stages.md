@@ -15,6 +15,10 @@ These rows are categorized from existing PayU repository error-code and troubles
 
 Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for debugging guidance and retry handling.
 
+## Category alignment
+
+Primary categories: Authentication and authorization errors, Payment failures, and Pending/uncertain-status errors. Use this with Field7/Field8 diagnostics.
+
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_TRANSACTION_STAGES_BEGIN -->
 
 ## Error reference

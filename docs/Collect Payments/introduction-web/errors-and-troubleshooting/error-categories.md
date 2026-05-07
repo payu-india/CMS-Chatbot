@@ -141,3 +141,6 @@ These happen during Standing Instruction (SI), UPI Autopay, mandate registration
 > **Pro Tip**
 >
 > For recurring payments, store mandate identifiers, billing rule, billing amount, debit sequence, and latest webhook status together. Most SI issues are caused by state mismatch across these fields.
+## Category alignment
+
+This page defines the category taxonomy used across all troubleshooting pages.

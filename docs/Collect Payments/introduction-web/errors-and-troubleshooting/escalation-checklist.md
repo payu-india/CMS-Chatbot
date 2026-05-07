@@ -12,6 +12,9 @@ next:
 ---
 
 Before contacting PayU Support or Integration Team, collect enough evidence to reproduce and trace the issue.
+## Category alignment
+
+Cross-category operational guide.
 
 ## Include these details
 

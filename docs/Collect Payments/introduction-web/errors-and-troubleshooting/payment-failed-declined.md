@@ -12,6 +12,9 @@ next:
 ---
 
 Payment failures occur after the customer is redirected to PayU, issuer, bank, wallet, or UPI app and the payment cannot be completed.
+## Category alignment
+
+Primary categories: Authentication and authorization errors, Payment failures, and Pending/uncertain-status errors.
 
 ## When it occurs
 

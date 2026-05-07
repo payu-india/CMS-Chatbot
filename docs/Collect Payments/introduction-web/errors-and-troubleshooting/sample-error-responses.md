@@ -12,6 +12,9 @@ next:
 ---
 
 The following examples are shown as JSON for readability. Depending on your integration, PayU may return fields through browser redirect, form post, webhook, or API response.
+## Category alignment
+
+Cross-category response examples.
 
 ## Success
 

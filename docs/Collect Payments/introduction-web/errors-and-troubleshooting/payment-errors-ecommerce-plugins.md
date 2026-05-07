@@ -15,6 +15,10 @@ These rows are categorized from existing PayU ecommerce plugin troubleshooting d
 
 Use this page with [Payment Failed or Declined](doc:payment-failed-declined) for debugging guidance and retry handling.
 
+## Category alignment
+
+Primary categories: Validation errors and Network/API errors for ecommerce platform plugin setup and runtime issues.
+
 <!-- PAYU_REPO_PRODUCT_PAYMENT_ERRORS_PAYMENT_ERRORS_ECOMMERCE_PLUGINS_BEGIN -->
 
 ## Error reference
