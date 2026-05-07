@@ -169,7 +169,7 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
       <td>
         `float` The transaction amount in `INR`.
 
-        **Note**: Type-cast the amount to float type Depending upon the merchant use case, this value will vary.  
+        **Note**: Type-cast the amount to float type Depending upon the merchant use case, this value will vary.
 
         * The value should be minimum of `1.00` INR for Cards for penny testing.
         * For first installment, this can be initiate setup amount However, this is supported only for selected NetBanking (ICICI and HDFC), all Credit / Debit Cards, and UPI.
@@ -204,7 +204,7 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
       </td>
 
       <td>
-        `varchar` The customer phone number. For example, `1234567890`.   
+        `varchar` The customer phone number. For example, `1234567890`.
 
         **Note:** The email is used in case of fraud detection and chargebacks. Additionally, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
       </td>
@@ -353,7 +353,9 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
 </Table>
 
 <HTMLBlock>{`
-<p>Use this button to generate the hash value.</p>
+<h3>Hash Generator</h3>
+
+<p>Use this button to generate the hash value.</p><br/>
 
 <style>
                 .tooltip-btn {
@@ -409,7 +411,7 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
   <tbody>
     <tr>
       <td>
-        **action**<sup style={{color: 'red'}}>*</sup> 
+        **action**<sup style={{color: 'red'}}>*</sup>
       </td>
 
       <td>
@@ -419,7 +421,7 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
 
     <tr>
       <td>
-        **paymentEndDate**<sup style={{color: 'red'}}>*</sup> 
+        **paymentEndDate**<sup style={{color: 'red'}}>*</sup>
       </td>
 
       <td>
@@ -431,11 +433,11 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
 
     <tr>
       <td>
-        **billingAmount**<sup style={{color: 'red'}}>*</sup> 
+        **billingAmount**<sup style={{color: 'red'}}>*</sup>
       </td>
 
       <td>
-        `number` The billing amount is passed in the XX format. In use cases where **billingCycle = ADHOC**, amount passed is treated as maximum amount since the billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call. 
+        `number` The billing amount is passed in the XX format. In use cases where **billingCycle = ADHOC**, amount passed is treated as maximum amount since the billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.
       </td>
     </tr>
 
@@ -445,7 +447,7 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
       </td>
 
       <td>
-        This field is used only to modify an existing subscription/consent. You can modify the following details:   
+        This field is used only to modify an existing subscription/consent. You can modify the following details:
 
         * `startDate`
         * `endDate`
