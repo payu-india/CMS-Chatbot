@@ -50,7 +50,7 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
     --data-urlencode 'ccvv=123' \
     --data-urlencode 'ccname=Test User' \
     --data-urlencode 'si_details={"action":"modify","paymentEndDate":"2030-04-13","billingAmount":"400.00","authPayuId":"999990000006391"}' \
-    --data-urlencode 'YOUR_HASH_VALUE'
+    --data-urlencode 'hash=YOUR_HASH_VALUE'
   ```
 </Accordion>
 
@@ -216,7 +216,242 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
       </td>
 
       <td>
-        `string` A product description. The value cabn 
+        `string` A product description. The value can contain maximum of 100 characters.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **api_version**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `number` The API version. You should always pass this value as `7`.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **si**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `number` The standing instruction. You should pass the value as `3` to modify the card mandate.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **pg**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `string` The payment category you want the customer to see by default on the PayU's payment page. You should pass the value as `cc` in this example.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **bankcode**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `string` A unique bank code of the payment method. You should post this parameter with the corresponding payment option's bank code value. For more information, refer to the [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards) page.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **surl**
+      </td>
+
+      <td>
+        `string` The success URL customers are redirected to if the transaction is successful.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **furl**
+      </td>
+
+      <td>
+        `string` The failure URL customers are redirected to if the transaction is unsuccessful.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **ccnum**
+      </td>
+
+      <td>
+        `number` The credit card number used to register the mandate.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **ccexpmon**
+      </td>
+
+      <td>
+        `number` The expiry month of the CC.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **ccexpyr**
+      </td>
+
+      <td>
+        `number` The expiry year of the CC.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **ccvv**
+      </td>
+
+      <td>
+        `number` The CVV of the CC.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **ccname**
+      </td>
+
+      <td>
+        `string` The name of the CC owner.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **si_details**
+      </td>
+
+      <td>
+        `json` The SI mandatory details that need to be passed during registration transaction from your system to PayU. Parameters are described in the si_details Object section.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **hash**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `string` The calculated hash value using the following logic. `SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)`
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<HTMLBlock>{`
+<p>Use this button to generate the hash value.</p>
+
+<style>
+                .tooltip-btn {
+                    position: relative;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold; /* Added this line */
+                }
+                .tooltip-btn:hover::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: 125%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    z-index: 1;
+                }
+                </style>
+
+                <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
+                        class="tooltip-btn" 
+                        data-tooltip="Click to generate hash.">
+                    Generate Hash
+                </button>
+`}</HTMLBlock>
+
+<br />
+
+### si_details JSON Parameter
+
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        **Parameters**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **action**<sup style={{color: 'red'}}>*</sup> 
+      </td>
+
+      <td>
+        `string` This field is used to modify or cancel an existing subscription. Pass `modify` as a value to modify a subscription.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **paymentEndDate**<sup style={{color: 'red'}}>*</sup> 
+      </td>
+
+      <td>
+        `date` The end date of the billing plan in the YYYY-MM-DD format.
+
+        **Note**: Make sure to pass the correct end date. Depending on the start and end date, number of payment iterations are internally calculated and same is passed to acquirers or banks.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **billingAmount**<sup style={{color: 'red'}}>*</sup> 
+      </td>
+
+      <td>
+        `number` The billing amount is passed in the XX format. In use cases where **billingCycle = ADHOC**, amount passed is treated as maximum amount since the billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call. 
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **authpayuid**<sup style={{color: 'red'}}>*</sup>`mandatory for modifying subscription with cards`
+      </td>
+
+      <td>
+        This field is used only to modify an existing subscription/consent. You can modify the following details:   
+
+        * `startDate`
+        * `endDate`
+        * `billing cycle`
+        * `billing interval`
+        * `billing amount`
       </td>
     </tr>
   </tbody>
