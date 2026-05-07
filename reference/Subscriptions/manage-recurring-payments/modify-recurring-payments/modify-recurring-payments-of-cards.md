@@ -346,16 +346,14 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
       </td>
 
       <td>
-        `string` The calculated hash value using the following logic. `SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)`
+        `string` The calculated hash value using the following logic. `SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)`. You can use the below button to generate a hash by providing the parameter values as per the logic.
       </td>
     </tr>
   </tbody>
 </Table>
 
 <HTMLBlock>{`
-<h3>Hash Generator</h3>
-
-<p>Use this button to generate the hash value.</p><br/>
+<p>Use this button to generate the hash value.</p>
 
 <style>
                 .tooltip-btn {
