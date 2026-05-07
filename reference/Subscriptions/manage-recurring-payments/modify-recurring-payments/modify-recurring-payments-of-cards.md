@@ -131,7 +131,7 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
   <thead>
     <tr>
       <th>
-        **Parameters**
+        **Parameter**
       </th>
 
       <th>
@@ -391,13 +391,13 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
 
 <br />
 
-### si_details JSON Parameter
+### si_details JSON Parameters
 
 <Table align={["left","left"]}>
   <thead>
     <tr>
       <th>
-        **Parameters**
+        **Parameter**
       </th>
 
       <th>
