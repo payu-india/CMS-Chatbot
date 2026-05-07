@@ -37,7 +37,7 @@ To generate Salt from the PayU Merchant Dashboard:
 
 The _Developers_ page is displayed similar to the following screenshot. The values for the following fields are generated automatically (for the first time) and displayed similar to the following screenshot:
 
-<Image align="center" border={true} src="https://files.readme.io/0ddaa94d203d7102154ece7c74b95ec50274d3fc3e4004ed64bbb8eadc0b37f3-dashboard_key_salt_live_mode.png" className="border" />
+<Image align="center" border={true} src="https://files.readme.io/5a0b88f0cdb5d94c61b2100c99e64043ccf0dcda0e0041b6e0ec177d04a4ed26-Screenshot_2026-05-07_at_7.53.16_PM.png" className="border" />
 
 * **key**: The API key that you must use for all payment requests.
 * **Salt-32 bit**: The Salt, v1 is the 32-character string that you must use to generate a hash and further post the hash along with parameters when posting a payment request with PayU.
@@ -66,7 +66,7 @@ To regenerate key and salt and then activate them:
 
    A confirmation pop-up message is displayed similar to the following screenshot:
 
-<Image align="center" border={false} width="450px" src="https://files.readme.io/41a57c7d4a7ad13a27b56634e8eeb0d8f812f71e973fc6ca496f3fa1701c0992-dashboard_regenerate_salt_confirmation.png" />
+<Image align="center" width="450px" src="https://files.readme.io/41a57c7d4a7ad13a27b56634e8eeb0d8f812f71e973fc6ca496f3fa1701c0992-dashboard_regenerate_salt_confirmation.png" />
 
 5. Click the **Regenerate** button.
 
