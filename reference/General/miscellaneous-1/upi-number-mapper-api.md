@@ -2,7 +2,7 @@
 title: UPI Number Mapper API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: UPI Number Mapper API
   description: >-
