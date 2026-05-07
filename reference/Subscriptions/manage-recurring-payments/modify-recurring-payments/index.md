@@ -1,5 +1,5 @@
 ---
-title: Modify Recurring Payments for Cards
+title: Modify Recurring Payments of Cards
 excerpt: >-
   Modify recurring payments and mandates for Cards using PayU APIs. Update
   recurring payment details, billing rules, and mandate configurations securely.
