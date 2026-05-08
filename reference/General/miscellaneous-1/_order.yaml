@@ -1,6 +1,6 @@
 - gettoken-bank-verification
 - bank-verification-api
-- upi-number-mapper-api
+- old-upi-number-mapper-api
 - provision-alt-id-api
 - submit-otp-to-payu
 - resend-otp-api
