@@ -33,30 +33,30 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
 
 <Accordion title="Request Payload" icon="fa-code">
   ```curl
-  curl --location 'https://test.payu.in/_payment' \
-    --header 'accept: application/json' \
-    --header 'Content-Type: application/x-www-form-urlencoded' \
-    --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
-    --data-urlencode 'key=BmTY3G' \
-    --data-urlencode 'txnid=my_order_47719' \
-    --data-urlencode 'amount=1.00' \
-    --data-urlencode 'firstname=Gaurav' \
-    --data-urlencode 'email=gaurav@example.com' \
-    --data-urlencode 'phone=1234567890' \
-    --data-urlencode 'productinfo=my_order_47719' \
-    --data-urlencode 'api_version=7' \
-    --data-urlencode 'si=3' \
-    --data-urlencode 'pg=CC' \
-    --data-urlencode 'bankcode=UTIBENCC' \
-    --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
-    --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
-    --data-urlencode 'ccnum=5123456789012346' \
-    --data-urlencode 'ccexpmon=05' \
-    --data-urlencode 'ccexpyr=2030' \
-    --data-urlencode 'ccvv=123' \
-    --data-urlencode 'ccname=Test User' \
-    --data-urlencode 'si_details={"action":"modify","paymentEndDate":"2030-04-13","billingAmount":"400.00","authPayuId":"999990000006391"}' \
-    --data-urlencode 'hash=YOUR_HASH_VALUE'
+curl --location 'https://secure.payu.in/_payment' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'txnid=my_order_47719' \
+--data-urlencode 'amount=1.00' \
+--data-urlencode 'firstname=Payu-Admin' \
+--data-urlencode 'email=test@example.com' \
+--data-urlencode 'phone=1234567890' \
+--data-urlencode 'productinfo=my_order_47719' \
+--data-urlencode 'api_version=7' \
+--data-urlencode 'si=3' \
+--data-urlencode 'pg=CC' \ -- CC/DC
+--data-urlencode 'bankcode=CC' \ -- RUPAYCC/RUPAY
+--data-urlencode 'surl=https://admin.payu.in/test_response' \
+--data-urlencode 'furl=https://admin.payu.in/test_response' \
+--data-urlencode 'ccnum=5123456789012346' \
+--data-urlencode 'ccexpmon=05' \
+--data-urlencode 'ccexpyr=2030' \
+--data-urlencode 'ccvv=123' \
+--data-urlencode 'ccname=Test User' \
+--data-urlencode 'si_details={"action":"modify","paymentEndDate":"2030-04-13","billingAmount":"400.00","authPayuId":"999990000006391"}' \
+--data-urlencode 'hash={{hash_value}}'
   ```
 </Accordion>
 
