@@ -11,6 +11,12 @@ metadata:
 ---
 Use this endpoint to modify card recurring payments and mandates of Visa and Mastercard.
 
+<Callout icon="❗️" theme="error">
+  **RBI Guidelines:**
+
+  While modifying the recurring payment, taking consent from the customer and doing an additional factor of authentication is mandatory. You must ensure this is done before using this API. You need to pass `authPayuId` and `action` parameters to modify the billing details as a part of JSON using this API.
+</Callout>
+
 <Cards>
   <Card title="Method">
     POST
@@ -482,7 +488,7 @@ If you are a merchant:
 | **tokenRefNo**<sup style={{color: 'red'}}>*</sup> | `string` (Token Reference Number) is generated along with the network token. . You should be able to get the same from your token provider.               |
 | **TAVV** <sup style={{color: 'red'}}>*</sup>      | `string` A token authentication verification value given by schemes or interchange. Also, known as cryptogram.                                            |
 
-<Callout icon="📘">
+<Callout icon="📘" theme="info">
   **Notes:**
 
   * The last 4 digits of cards is mandatory for all transactions.
