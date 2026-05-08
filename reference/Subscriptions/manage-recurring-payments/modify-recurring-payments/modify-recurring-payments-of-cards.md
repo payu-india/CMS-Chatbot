@@ -1,5 +1,5 @@
 ---
-title: Modify Recurring Payments of Visa and Mastercard Cards
+title: Modify Recurring Payments of Cards
 excerpt: >-
   Modify card recurring payments and mandates of Visa and Mastercard using PayU
   APIs. Update billing rules, subscription settings, mandate details, and
@@ -9,7 +9,12 @@ hidden: true
 metadata:
   robots: index
 ---
-Use this endpoint to modify card recurring payments and mandates of Visa and Mastercard.
+Use this endpoint to modify recurring payments and mandates of cards of the following card networks.
+
+* Visa
+* Mastercard
+* Amex
+* RuPay
 
 <Callout icon="❗️" theme="error">
   **RBI Guidelines:**
