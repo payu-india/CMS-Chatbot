@@ -33,7 +33,7 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
 
 <Accordion title="Request Payload" icon="fa-code">
   ```curl
-  curl --location 'https://secure.payu.in/_payment' \
+  curl --location 'https://test.payu.in/_payment' \
     --header 'accept: application/json' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
