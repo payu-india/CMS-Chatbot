@@ -1,5 +1,5 @@
 ---
-title: Copy of Modify Recurring Payments of AMEX and RuPay Cards
+title: Modify Recurring Payments of AMEX and RuPay Cards
 excerpt: >-
   Modify card recurring payments and mandates of AMEX and RuPay using PayU APIs.
   Update billing rules, subscription settings, mandate details, and recurring
@@ -11,8 +11,8 @@ metadata:
 ---
 Use this endpoint to modify card recurring payments and mandates of Visa and Mastercard.
 
-<Callout icon="❗️">
-  **RBI Guidelines:** 
+<Callout icon="❗️" theme="error">
+  **RBI Guidelines:**
 
   While modifying the recurring payment, taking consent from the customer and doing an additional factor of authentication is mandatory. You must ensure this is done before using this API. You need to pass `authPayuId` and `action` parameters to modify the billing details as a part of JSON using this API.
 </Callout>
@@ -33,7 +33,7 @@ Use this endpoint to modify card recurring payments and mandates of Visa and Mas
 
 <Accordion title="Request Payload" icon="fa-code">
   ```curl
-  curl --location 'https://secure.payu.in/_payment' \
+  curl --location 'https://test.payu.in/_payment' \
     --header 'accept: application/json' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
