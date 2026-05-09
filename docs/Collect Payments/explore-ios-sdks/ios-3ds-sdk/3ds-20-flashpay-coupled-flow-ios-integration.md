@@ -244,15 +244,16 @@ config.acsContentConfig?.maxResendInfoContent = "Max Retry Content"
 
 #### Configuration properties
 
-| Property                    | Description                                                                    |
-| --------------------------- | ------------------------------------------------------------------------------ |
-| `isProduction`              | Set environment (true for production, false for sandbox).                      |
-| `fallback3DS1`              | Complete payment on bank page in case of failure. By default, value is "false" |
-| `autoSubmit`                | Submit OTP automatically. By default, value is "false"                         |
-| `initialiseTimeoutTimer`    | Timeout in seconds for merchant response. By default, value is "5"             |
-| `enableMFAViaBiometric`     | Enable biometric authentication for OTP flow                                   |
-| `enableCustomizedOtpUIFlow` | Enable customized OTP UI flow                                                  |
-| `enableTxnTimeoutTimer`     | Enable transaction timeout timer                                               |
+| Property                    | Description                                                                                  |
+| --------------------------- | -------------------------------------------------------------------------------------------- |
+| `isProduction`              | Set environment (true for production, false for sandbox).                                    |
+| `fallback3DS1`              | Complete payment on bank page in case of failure. By default, value is "false"               |
+| `autoSubmit`                | Submit OTP automatically. By default, value is "false"                                       |
+| `initialiseTimeoutTimer`    | Timeout in seconds for merchant response. By default, value is "5"                           |
+| `enableMFAViaBiometric`     | Enable biometric authentication for OTP flow                                                 |
+| `enableCustomizedOtpUIFlow` | Enable customized OTP UI flow                                                                |
+| `enableTxnTimeoutTimer`     | Enable transaction timeout timer                                                             |
+| `authenticateOnly`          | Pass this as true if you want to authenticate only using PayU. By default we will authorize. |
 
 ### Step 3: UI customization
 
