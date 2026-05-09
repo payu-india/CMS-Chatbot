@@ -372,6 +372,7 @@ let paymentParam = PayU3DS2PaymentParam(
 let udfs = PayU3DS2UserDefines()
 udfs.udf1 = "<User Defined Field>"
 paymentParam.udfs = udfs
+paymentParam.userCredential = "<XXXX:XXXX>"
 
 var cardDetails = PayU3DS2CardInfo()
 cardDetails.cardNumber = "<Card Number>"
@@ -380,19 +381,20 @@ cardDetails.nameOnCard = "John Doe"
 cardDetails.expiryMonth = "01"
 cardDetails.expiryYear = "2025"
 cardDetails.cvv = "123"
-paymentParam.userCredential = "<XXXX:XXXX>"
-
 // For Stored Card with PayU Token
 cardDetails.cardToken = "<Card Token>"
 
+// For Store Card with Network Token
 Note: To make payment using another payment aggregator vault saved card.
 cardDetails.networkToken = "<networkToken>"
 paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","trid" : "40020003934", "tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
 paymentParam.cardTokenTpe = "1" //if passing networkToken otherwise value = 0 if you will pass cardToken
+paymentParam.cardinfo = cardDetails
+
 paymentParam.partnerWebhookSuccess = "<url>"
 paymentParam.partnerWebhookFailure = "<url>"
+
 paymentParam.isPreAuthTxn = true //Optional - Set this as true for pre auth transactions
-paymentParam.cardinfo = cardDetails
 ```
 
 **SI Payments**:
