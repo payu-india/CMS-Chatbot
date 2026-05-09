@@ -558,7 +558,8 @@ implementation 'in.payu:threeds-sdk:2.0.0'
           udf5
         </td>
       </tr>
-			<tr>
+
+      <tr>
         <td>
           isPreAuthTxn `optional`
         </td>
@@ -568,9 +569,10 @@ implementation 'in.payu:threeds-sdk:2.0.0'
         </td>
 
         <td>
-          The success URL that you have configured
+          ture/false
         </td>
       </tr>
+
       <tr>
         <td>
           partnerWebhookSuccess `optional`
