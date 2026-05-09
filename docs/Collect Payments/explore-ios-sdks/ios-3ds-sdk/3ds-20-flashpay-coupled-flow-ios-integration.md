@@ -389,7 +389,7 @@ paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YI
 paymentParam.cardTokenTpe = "1" //if passing networkToken otherwise value = 0 if you will pass cardToken
 paymentParam.partnerWebhookSuccess = "<url>"
 paymentParam.partnerWebhookFailure = "<url>"
-
+paymentParam.isPreAuthTxn = true //Optional - Set this as true for pre auth transactions
 paymentParam.cardinfo = cardDetails
 ```
 
