@@ -220,6 +220,7 @@ var config = PayU3DS2Config()
 config.uiCustomisation = "set UI customisation object, refer below section of UI Customisation"
 config.isProduction = "set environment where you want to test, true for production and false for sandbox"
 config.fallback3DS1 = true //default value false, send true to complete payment on bank page in case of any failure
+config.authenticateOnly = false //Pass this as true if you want to authenticate only using PayU. By default we will authorize.
 config.autoSubmit = false //Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
 config.initialiseTimeoutTimer = 5 //provide time in seconds, for waiting for merchant response
 config.supportedUIMode = ArrayList<String> //to show own UI, currently accepted value = 01. Pass this if you want to create own UI and follow step 4.1 and 4.2
@@ -243,15 +244,16 @@ config.acsContentConfig?.maxResendInfoContent = "Max Retry Content"
 
 #### Configuration properties
 
-| Property                    | Description                                                                    |
-| --------------------------- | ------------------------------------------------------------------------------ |
-| `isProduction`              | Set environment (true for production, false for sandbox).                      |
-| `fallback3DS1`              | Complete payment on bank page in case of failure. By default, value is "false" |
-| `autoSubmit`                | Submit OTP automatically. By default, value is "false"                         |
-| `initialiseTimeoutTimer`    | Timeout in seconds for merchant response. By default, value is "5"             |
-| `enableMFAViaBiometric`     | Enable biometric authentication for OTP flow                                   |
-| `enableCustomizedOtpUIFlow` | Enable customized OTP UI flow                                                  |
-| `enableTxnTimeoutTimer`     | Enable transaction timeout timer                                               |
+| Property                    | Description                                                                                  |
+| --------------------------- | -------------------------------------------------------------------------------------------- |
+| `isProduction`              | Set environment (true for production, false for sandbox).                                    |
+| `fallback3DS1`              | Complete payment on bank page in case of failure. By default, value is "false"               |
+| `autoSubmit`                | Submit OTP automatically. By default, value is "false"                                       |
+| `initialiseTimeoutTimer`    | Timeout in seconds for merchant response. By default, value is "5"                           |
+| `enableMFAViaBiometric`     | Enable biometric authentication for OTP flow                                                 |
+| `enableCustomizedOtpUIFlow` | Enable customized OTP UI flow                                                                |
+| `enableTxnTimeoutTimer`     | Enable transaction timeout timer                                                             |
+| `authenticateOnly`          | Pass this as true if you want to authenticate only using PayU. By default we will authorize. |
 
 ### Step 3: UI customization
 
