@@ -455,6 +455,7 @@ paymentParam.bankCode = "<Bank Code>" // Bank code for EMI (e.g., EMI03)
 | udfs.udf3`optional`       | `String` User-defined field, Merchant can store their customer ID, etc. |
 | udfs.udf4`optional`       | `String` User-defined field, Merchant can store their customer ID, etc. |
 | udfs.udf5`optional`       | `String` User-defined field, Merchant can store their customer ID, etc. |
+| `isPreAuthTxn`            | `Boolean`Set this as true for pre auth transactions                     |
 
 ### Card Information
 
