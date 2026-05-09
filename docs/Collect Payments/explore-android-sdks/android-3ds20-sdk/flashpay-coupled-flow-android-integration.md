@@ -273,7 +273,8 @@ implementation 'in.payu:threeds-sdk:2.0.0'
           mPaymentParams.nameOnCard = "<cardholderName>"
           mPaymentParams.expiryMonth = "<expiryMonth>"// MM
           mPaymentParams.expiryYear = "<expiryYear>"// YYYY
-          mPaymentParams.cvv = "<cvv>"
+  				mPaymentParams.cvv = "<cvv>"
+        	mPaymentParams.isPreAuthTxn = "<Boolean>"
           mPaymentParams.partnerWebhookSuccess = "<Webhook Success  URL>"
           mPaymentParams.partnerWebhookFailure = "<Webhook Failure  URL>"
 
@@ -557,7 +558,19 @@ implementation 'in.payu:threeds-sdk:2.0.0'
           udf5
         </td>
       </tr>
+			<tr>
+        <td>
+          isPreAuthTxn `optional`
+        </td>
 
+        <td>
+          `Boolean` Set this as true for pre auth transactions
+        </td>
+
+        <td>
+          The success URL that you have configured
+        </td>
+      </tr>
       <tr>
         <td>
           partnerWebhookSuccess `optional`
@@ -640,7 +653,6 @@ implementation 'in.payu:threeds-sdk:2.0.0'
       ```
     </Accordion>
   </Accordion>
-      
 
   <Callout icon="📘" theme="info">
     **Saved Card Payments**: Requires both `networkToken` and `cardToken` under `mPaymentParams` for saved card-related transactions.
