@@ -645,7 +645,7 @@ paymentParam.bankCode = "<Bank Code>" // Bank code for EMI (e.g., EMI03)
 
       <td>
         `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards.   
-        **Format**: A:B
+        **Format**: merchantKey**:**phone, Here, the UserId is any ID/email/phone number to uniquely identify the user.
       </td>
     </tr>
   </tbody>
