@@ -442,23 +442,192 @@ paymentParam.bankCode = "<Bank Code>" // Bank code for EMI (e.g., EMI03)
 
 > 📘 All the parameters are mandatory
 
-| Parameter                 | Description                                                             |
-| :------------------------ | :---------------------------------------------------------------------- |
-| key `mandatory`           | Merchant key issued by PayU                                             |
-| transactionId `mandatory` | Unique transaction identifier                                           |
-| amount `mandatory`        | Transaction amount                                                      |
-| productInfo `mandatory`   | Product description                                                     |
-| firstName `mandatory`     | Customer first name                                                     |
-| email `mandatory`         | Customer email                                                          |
-| phone `mandatory`         | Customer phone number                                                   |
-| surl `mandatory`          | Success URL                                                             |
-| furl  `mandatory`         | Failure URL                                                             |
-| udfs.udf1 `optional`      | `String` User-defined field, Merchant can store their customer ID, etc. |
-| udfs.udf2`optional`       | `String` User-defined field, Merchant can store their customer ID, etc. |
-| udfs.udf3`optional`       | `String` User-defined field, Merchant can store their customer ID, etc. |
-| udfs.udf4`optional`       | `String` User-defined field, Merchant can store their customer ID, etc. |
-| udfs.udf5`optional`       | `String` User-defined field, Merchant can store their customer ID, etc. |
-| `isPreAuthTxn`            | `Boolean`Set this as true for pre auth transactions                     |
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key `mandatory`
+      </td>
+
+      <td>
+        Merchant key issued by PayU
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        transactionId `mandatory`
+      </td>
+
+      <td>
+        Unique transaction identifier
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount `mandatory`
+      </td>
+
+      <td>
+        Transaction amount
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productInfo `mandatory`
+      </td>
+
+      <td>
+        Product description
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstName `mandatory`
+      </td>
+
+      <td>
+        Customer first name
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email `mandatory`
+      </td>
+
+      <td>
+        Customer email
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone `mandatory`
+      </td>
+
+      <td>
+        Customer phone number
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        surl `mandatory`
+      </td>
+
+      <td>
+        Success URL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        furl  `mandatory`
+      </td>
+
+      <td>
+        Failure URL
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udfs.udf1 `optional`
+      </td>
+
+      <td>
+        `String` User-defined field, Merchant can store their customer ID, etc.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udfs.udf2`optional`
+      </td>
+
+      <td>
+        `String` User-defined field, Merchant can store their customer ID, etc.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udfs.udf3`optional`
+      </td>
+
+      <td>
+        `String` User-defined field, Merchant can store their customer ID, etc.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udfs.udf4`optional`
+      </td>
+
+      <td>
+        `String` User-defined field, Merchant can store their customer ID, etc.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        udfs.udf5`optional`
+      </td>
+
+      <td>
+        `String` User-defined field, Merchant can store their customer ID, etc.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `isPreAuthTxn`
+      </td>
+
+      <td>
+        `Boolean`Set this as true for pre auth transactions
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        partnerWebhookSuccess `optional`
+      </td>
+
+      <td>
+        `String` When the transaction is successful, PayU will send webhook response in this URL and pass the transaction response. [https://docs.payu.in/docs/webhooks#/](https://docs.payu.in/docs/webhooks#/)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        partnerWebhookFailure  
+        `optional`
+      </td>
+
+      <td>
+        `String` When the transaction is failed, PayU will send webhook response in this URL and pass the transaction response. [https://docs.payu.in/docs/webhooks#/](https://docs.payu.in/docs/webhooks#/)
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Card Information
 
