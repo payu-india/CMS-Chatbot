@@ -381,11 +381,12 @@ cardDetails.nameOnCard = "John Doe"
 cardDetails.expiryMonth = "01"
 cardDetails.expiryYear = "2025"
 cardDetails.cvv = "123"
+cardDetails.shouldSaveCard = true/false //For Save Card
 
-// For Stored Card with PayU Token
+// For Stored Card with PayU Token Tranasaction
 cardDetails.cardToken = "<Card Token>"
 
-// For Store Card with Network Token
+// For Store Card with Network Token Tranasaction
 Note: To make payment using another payment aggregator vault saved card.
 cardDetails.networkToken = "<networkToken>"
 paymentParam.additionalParam = ["last4Digits" : "6702", "tavv": "/wAAAAAARebB4YIAmbHTgmoAAAA=","trid" : "40020003934", "tokenRefNo": "2b7f916e790ff9d551cf145fbc9bee0b"]
@@ -624,6 +625,27 @@ paymentParam.bankCode = "<Bank Code>" // Bank code for EMI (e.g., EMI03)
 
       <td>
         `String` When the transaction is failed, PayU will send webhook response in this URL and pass the transaction response. [https://docs.payu.in/docs/webhooks#/](https://docs.payu.in/docs/webhooks#/)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `shouldSaveCard`
+      </td>
+
+      <td>
+        `Boolean` For StoreCard pass as true.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `userCredential`
+      </td>
+
+      <td>
+        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards.   
+        **Format**: A:B
       </td>
     </tr>
   </tbody>
