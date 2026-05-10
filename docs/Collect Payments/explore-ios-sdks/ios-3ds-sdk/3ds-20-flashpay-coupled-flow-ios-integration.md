@@ -371,7 +371,11 @@ let paymentParam = PayU3DS2PaymentParam(
 
 let udfs = PayU3DS2UserDefines()
 udfs.udf1 = "<User Defined Field>"
-paymentParam.udfs = udfs
+udfs.udf2 = "<User Defined Field>"
+udfs.udf3 = "<User Defined Field>"
+udfs.udf4 = "<User Defined Field>"
+udfs.udf5 = "<User Defined Field>"
+paymentParam.udfs = udf
 paymentParam.userCredential = "<XXXX:XXXX>"
 
 var cardDetails = PayU3DS2CardInfo()
@@ -644,7 +648,7 @@ paymentParam.bankCode = "<Bank Code>" // Bank code for EMI (e.g., EMI03)
       </td>
 
       <td>
-        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards.   
+        `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards.  
         **Format**: merchantKey**:**phone, Here, the UserId is any ID/email/phone number to uniquely identify the user.
       </td>
     </tr>
