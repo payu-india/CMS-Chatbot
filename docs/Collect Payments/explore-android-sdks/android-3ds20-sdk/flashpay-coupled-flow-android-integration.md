@@ -653,8 +653,32 @@ implementation 'in.payu:threeds-sdk:2.0.0'
 
       mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token details
       ```
+    </Accordion>
       </Accordion>
-<Accordion title="Recurring Payments via Card" icon="fa-code">
+
+  <Callout icon="📘" theme="info">
+    **Saved Card Payments**: Requires both `networkToken` and `cardToken` under `mPaymentParams` for saved card-related transactions.
+  </Callout>
+
+  <br />
+
+  | Parameters      | Description                                                                                                                                                                                                                                                                                                                          | Example  |
+  | :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
+  | userCredentials | `String` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save\_user\_cards API. The format of the value is  *merchant key:user ID*                                                                                          | a:b      |
+  | storeCard       | `integer`  This is an existing field, where the card token flag is passed by merchant. The values for this field can be:                                                                                                                                                                                                             | 1        |
+  | networkToken    | `String` A network token is a tokenized representation of a card provided by the card network (e.g., Visa, Mastercard). It is used for processing payments at the network level and is required for certain API processes like binInfo API 1. Network tokens are typically used when a non-DI (Direct Integration) payment gateway . | abcdefgh |
+  | cardToken       | `String` A card token is a merchant-specific tokenized representation of a card. It is often used to store card information securely without exposing sensitive details. Merchants can store these tokens themselves or with a payment service provider like PayU.                                                                   | abcdefgh |
+
+  <br />
+
+  **EMI**
+  To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI".  Refer to [EMI Codes](https://docs.payu.in/docs/emi-codes)
+
+  ```kotlin Kotlin
+  mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., EMI03)
+  mPaymentParams.setPg("EMI")                         // Set payment gateway to EMI
+      ```
+     <Accordion title="Recurring Payments via Card" icon="fa-code">
       For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
 
       ```kotlin
@@ -678,33 +702,7 @@ implementation 'in.payu:threeds-sdk:2.0.0'
 
       mPaymentParams.siParams = getSIDetails() // Add subscription details to the payment parameters
       ```
-    </Accordion>
-  
-
-  </Accordion>
-
-  <Callout icon="📘" theme="info">
-    **Saved Card Payments**: Requires both `networkToken` and `cardToken` under `mPaymentParams` for saved card-related transactions.
-  </Callout>
-
-  <br />
-
-  | Parameters      | Description                                                                                                                                                                                                                                                                                                                          | Example  |
-  | :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-  | userCredentials | `String` It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save\_user\_cards API. The format of the value is  *merchant key:user ID*                                                                                          | a:b      |
-  | storeCard       | `integer`  This is an existing field, where the card token flag is passed by merchant. The values for this field can be:                                                                                                                                                                                                             | 1        |
-  | networkToken    | `String` A network token is a tokenized representation of a card provided by the card network (e.g., Visa, Mastercard). It is used for processing payments at the network level and is required for certain API processes like binInfo API 1. Network tokens are typically used when a non-DI (Direct Integration) payment gateway . | abcdefgh |
-  | cardToken       | `String` A card token is a merchant-specific tokenized representation of a card. It is often used to store card information securely without exposing sensitive details. Merchants can store these tokens themselves or with a payment service provider like PayU.                                                                   | abcdefgh |
-
-  <br />
-
-  **EMI**
-  To process payments using EMI (Equated Monthly Installments), you need to specify the card details along with the bank code for EMI and set the payment gateway (PG) to "EMI".  Refer to [EMI Codes](https://docs.payu.in/docs/emi-codes)
-
-  ```kotlin Kotlin
-  mPaymentParams.setBankCode("EMI03")                 // Bank code for EMI (e.g., EMI03)
-  mPaymentParams.setPg("EMI")                         // Set payment gateway to EMI
-  ```
+    </Accordion> 
 </Accordion>
 
 <Accordion title="2.3 PayU3DS2PaymentCallback" icon="fa-exchange-alt">
