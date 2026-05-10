@@ -653,7 +653,34 @@ implementation 'in.payu:threeds-sdk:2.0.0'
 
       mPaymentParams.tokenizedCardAdditionalParam = getTokenizedDetails() // Add token details
       ```
+      </Accordion>
+<Accordion title="Recurring Payments via Card" icon="fa-code">
+      For recurring payments, you need to configure SIParams (Subscription Information). This includes the billing cycle, amount, and other details regarding the recurring payment setup.:
+
+      ```kotlin
+      fun getSIDetails(): SIParams {
+          var siParams = SIParams()
+          siParams.api_version = "7"                       // API version
+          siParams.si = "1"                                // Indicates recurring payment
+          siParams.isFree_trial = false                    // Free trial flag (if applicable)
+
+          var siParamDetails = SIParamsDetails()
+          siParamDetails.billingAmount = "1.0"             // Recurring billing amount
+          siParamDetails.billingCurrency = "INR"           // Currency (INR in this example)
+          siParamDetails.billingInterval = 1               // Interval between payments (e.g., monthly)
+          siParamDetails.billingCycle = BillingCycle.ADHOC // Recurring cycle type
+          siParamDetails.paymentStartDate = "2025-09-26"   // Start date of the recurring payments
+          siParamDetails.paymentEndDate = "2025-10-26"     // End date of the recurring payments
+          
+          siParams.si_details = siParamDetails
+          return siParams
+      }
+
+      mPaymentParams.siParams = getSIDetails() // Add subscription details to the payment parameters
+      ```
     </Accordion>
+  
+
   </Accordion>
 
   <Callout icon="📘" theme="info">
