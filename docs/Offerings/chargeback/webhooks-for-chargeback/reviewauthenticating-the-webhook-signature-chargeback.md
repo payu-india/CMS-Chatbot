@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU will optionally send cryptographic signatures on dispute (Chargeback) webhooks so you can confirm the request came from PayU and that the signed fields were not altered in transit. The request body remains JSON; signatures are delivered in HTTP headers.
+PayU can optionally send cryptographic signatures on dispute (chargeback) webhooks so you can confirm the request came from PayU and that the signed fields were not altered in transit. The request body remains JSON; signatures are delivered in HTTP headers.
 
 **Enabling signed webhooks:** Signing is not on by default for every account. If signature headers are missing, the webhook may still be valid—signing simply is not enabled. To enable signed dispute webhooks, contact your PayU integration contact.
 
@@ -33,7 +33,7 @@ PayU builds a single UTF-8 string, then hashes it with SHA-512 and sends the dig
 4. **cb_id** — Chargeback ID.
 5. **cb_type** — Chargeback type.
 6. **cb_status** — Chargeback status used for signing (PayU may apply a **mapped** value for signing; see below).
-7. **merchantSalt** — Your merchant salt.
+7. **merchantSalt** — Your merchant salt (final segment only).
 
 Template:
 
@@ -43,23 +43,15 @@ Template:
 
 **Fields in the JSON vs fields in the signature:** The JSON body can include whatever fields you configured for the webhook (for example `type`, `event`, `mid`, `reason_code`). Only the values above participate in the signed string, in this fixed order.
 
-**Disabled body fields:** In the Dashboard you can choose which of the five middle fields (`txn_id`, `cb_amount`, `cb_id`, `cb_type`, `cb_status`) appear in the JSON. The signed string **always** uses seven slots in this order. If a field is not enabled for your webhook body, use an **empty string** for that slot; the `|` delimiters around it are still present, so the number of pipes in the signed string is always the same.
-
-Example when only `txn_id` and `cb_id` are enabled in the body (other three middle slots empty):
-
-```text
-<merchantKey>|<txn_id>||<cb_id>||
-```
-
-Note: the example above shows empty segments for `cb_amount`, `cb_type`, and `cb_status` while keeping the same pipe pattern between `merchantKey` and `merchantSalt`.
+**Merchant salt at the end:** **`merchantSalt`** is always the **last** segment—append it after `cb_status` with a single `|` before it. There is no trailing pipe after the salt.
 
 **Field values:** Use the same lexical values as in the JSON for `txn_id`, `cb_amount`, `cb_id`, and `cb_type` (for example `cb_amount` as a string like `1500.0`, not a currency-formatted label). For **`cb_status`**, PayU’s merchant guide states the signed value is a mapped form. In PayU’s worked example, the JSON contains `"cb_status":"Pending Response"` while the string that is hashed uses `PendingResponse` (spaces removed for signing). Build the segment PayU uses for your status so it matches the digest; if verification fails while using the raw JSON string, apply PayU’s signing-time mapping for `cb_status` or confirm the mapping with PayU support.
 
 ### Verification steps
 
 1. Read the **raw** HTTP body bytes and parse JSON from that buffer (do not re-serialize the body to compute the signature).
-2. For each of the five middle fields, take the value from the parsed JSON if that field is enabled in your webhook configuration; otherwise use an empty string. Resolve **`cb_status`** to the value PayU signs (see above).
-3. Concatenate: `merchantKey + "|" + txn_id + "|" + cb_amount + "|" + cb_id + "|" + cb_type + "|" + cb_status + "|" + merchantSalt`.
+2. From the parsed JSON, take `txn_id`, `cb_amount`, `cb_id`, and `cb_type` as they appear in the payload. Resolve **`cb_status`** to the value PayU signs (see above).
+3. Concatenate, then append **merchantSalt** as the final segment: `merchantKey + "|" + txn_id + "|" + cb_amount + "|" + cb_id + "|" + cb_type + "|" + cb_status + "|" + merchantSalt`.
 4. Compute **SHA-512** over the UTF-8 encoding of that string. Encode the digest as **lowercase hex**.
 5. Compare that digest to **`X-PayU-Dispute-Webhook-Signature-V2`** using a **constant-time** comparison (for example `hmac.compare_digest` in Python or `crypto.timingSafeEqual` on equal-length buffers in Node.js). If they match, accept the webhook; otherwise reject it.
 
@@ -67,17 +59,16 @@ Note: the example above shows empty segments for `cb_amount`, `cb_type`, and `cb
 
 ### Aggregator (child) merchants
 
-If you are an aggregator with child merchants, dispute webhooks for a child are signed with the **parent aggregator’s merchant key** (and you use the parent’s salt when building the string). Verify using the parent credentials, not the child’s.
+If you are an aggregator with child merchants, dispute webhooks for a child are signed with the **parent aggregator’s merchant key** as the first segment and the parent’s **merchantSalt** appended last. Build the string with the parent’s key and salt, not the child’s.
 
 ### Quick reference
 
 * **Algorithm:** SHA-512, lowercase hex.
 * **Header to verify:** `X-PayU-Dispute-Webhook-Signature-V2`.
 * **Delimiter:** `|` (pipe).
-* **Order:** `merchantKey` → `txn_id` → `cb_amount` → `cb_id` → `cb_type` → `cb_status` → `merchantSalt`.
-* **Disabled middle fields:** empty string in slot; delimiters unchanged.
+* **Order:** `merchantKey` → `txn_id` → `cb_amount` → `cb_id` → `cb_type` → `cb_status` → append **`merchantSalt`** last.
 
-### Example
+### Example (from PayU’s merchant guide)
 
 Body (abbreviated):
 
