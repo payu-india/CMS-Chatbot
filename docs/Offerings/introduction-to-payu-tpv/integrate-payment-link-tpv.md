@@ -105,8 +105,8 @@ Create a payment link with beneficiary account details using the Create Payment 
   ```bash
   curl --location 'https://uatoneapi.payu.in/payment-links' \
   --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer 03ddf1ee8d6daf811016c1cc9ce6a3de1771092b1eaeeb936764743888b9eb75' \
-  --header 'mid: 8237350' \
+  --header 'Authorization: Bearer <Bearer Token>' \
+  --header 'mid: 82**3*0' \
   --data-raw '{
       "subAmount": 10,
       "maxPaymentsAllowed": 1,
