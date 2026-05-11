@@ -5,9 +5,9 @@ hidden: false
 metadata:
   robots: index
 ---
-The following APIs used for TWID Integration:
+The following APIs used for Rewards Integration:
 
-**Spend Rewards or Fetch Rewards Balance**
+**Fetch Rewards Balance and Initiate Payment**
 
 * [Fetch Balance All API](https://docs.payu.in/reference/rewards-fetch-balance-all-api)
 * [Collect Payment with Rewards API](https://docs.payu.in/reference/_payment-merchant-hosted-rewards)
