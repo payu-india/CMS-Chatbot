@@ -9,7 +9,7 @@ hidden: true
 metadata:
   robots: index
 ---
-Use this endpoint to modify recurring payments and mandates of cards of the following card networks.
+Use this endpoint to modify recurring payments and mandates of cards of the following card networks. You can update mandate details, recurring payment configurations, billing rules, and subscription settings for active recurring transactions.
 
 * Visa
 * Mastercard
@@ -38,7 +38,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
 <Accordion title="Request Payload" icon="fa-code">
   ```curl
-  curl --location 'https://test.payu.in/_payment' \
+    curl --location 'https://test.payu.in/_payment' \
     --header 'accept: application/json' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
@@ -257,7 +257,10 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
       </td>
 
       <td>
-        `string` The payment category you want the customer to see by default on the PayU's payment page. You should pass the value as `cc` in this example.
+        `string` This parameter describes the payment category by which the transaction was completed/attempted by the customer. Possible values:    
+
+        * `DC`: For debit cards
+        * `CC`: For credit cards
       </td>
     </tr>
 
@@ -267,7 +270,14 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
       </td>
 
       <td>
-        `string` A unique bank code of the payment method. You should post this parameter with the corresponding payment option's bank code value. For more information, refer to the [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards) page.
+        `string` This parameter contains the code indicating the payment option used for the transaction. Possible values:  
+
+        * `CC`: For Visa and Mastercard credit cards
+        * `AMEX`: For American Express credit and debit cards
+        * `RUPAYCC`: For RuPay credit cards
+        * `VISA`: For Visa debit cards
+        * `MAST`: For Mastercard debit cards
+        * `RUPAY`: For RuPay debit cards
       </td>
     </tr>
 
