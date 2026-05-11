@@ -68,8 +68,7 @@ If you are an aggregator with child merchants, dispute webhooks for a child are 
 * **Delimiter:** `|` (pipe).
 * **Order:** `merchantKey` → `txn_id` → `cb_amount` → `cb_id` → `cb_type` → `cb_status` → append **`merchantSalt`** last.
 
-### Example (from PayU’s merchant guide)
-
+### Example
 Body (abbreviated):
 
 ```json
