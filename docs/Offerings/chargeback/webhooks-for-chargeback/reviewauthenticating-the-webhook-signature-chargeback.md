@@ -55,8 +55,6 @@ Template:
 4. Compute **SHA-512** over the UTF-8 encoding of that string. Encode the digest as **lowercase hex**.
 5. Compare that digest to **`X-PayU-Dispute-Webhook-Signature-V2`** using a **constant-time** comparison (for example `hmac.compare_digest` in Python or `crypto.timingSafeEqual` on equal-length buffers in Node.js). If they match, accept the webhook; otherwise reject it.
 
-`X-PayU-Dispute-Webhook-Signature-V1` is also a SHA-512 digest over the same signing string in PayU’s guide; PayU still recommends relying on **V2** for verification.
-
 ### Aggregator (child) merchants
 
 If you are an aggregator with child merchants, dispute webhooks for a child are signed with the **parent aggregator’s merchant key** as the first segment and the parent’s **merchantSalt** appended last. Build the string with the parent’s key and salt, not the child’s.
