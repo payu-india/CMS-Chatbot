@@ -1,7 +1,7 @@
 ---
 title: Rewards Refund Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
