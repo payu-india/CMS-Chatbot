@@ -1,7 +1,7 @@
 ---
 title: Earn Rewards Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
