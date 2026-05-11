@@ -7,7 +7,7 @@ metadata:
 ---
 PayU can optionally send cryptographic signatures on dispute (chargeback) webhooks so you can confirm the request came from PayU and that the signed fields were not altered in transit. The request body remains JSON; signatures are delivered in HTTP headers.
 
-**Enabling signed webhooks:** Signing is not on by default for every account. If signature headers are missing, the webhook may still be valid—signing simply is not enabled. To enable signed dispute webhooks, contact your PayU Key Account Manager (KAM) or contact <Anchor label="PayU Support" target="_blank" href="help.payu.in">PayU Support</Anchor>. 
+**Enabling signed webhooks:** Signing is not on by default for every account. If signature headers are missing, the webhook may still be valid—signing simply is not enabled. To enable signed dispute webhooks, contact your PayU Key Account Manager (KAM) or contact <Anchor label="PayU Support" target="_blank" href="https://help.payu.in">PayU Support</Anchor>.
 
 ### Headers
 
