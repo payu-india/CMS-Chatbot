@@ -13,13 +13,11 @@ PayU can optionally send cryptographic signatures on dispute (chargeback) webhoo
 
 When signing is enabled, each POST includes these headers in addition to the usual ones:
 
-| Header | Description |
-| ------ | ----------- |
-| `X-PayU-Dispute-Webhook-Signature-V1` | SHA-512 digest, version 1 |
-| `X-PayU-Dispute-Webhook-Signature-V2` | SHA-512 digest, version 2 |
-| `X-PayU-Dispute-Webhook-Signature-Algorithm` | `SHA512` |
-
-PayU recommends that you verify the payload against **`X-PayU-Dispute-Webhook-Signature-V2`**.
+| Header                                       | Description               |
+| -------------------------------------------- | ------------------------- |
+| `X-PayU-Dispute-Webhook-Signature-V1`        | SHA-512 digest, version 1 |
+| `X-PayU-Dispute-Webhook-Signature-V2`        | SHA-512 digest, version 2 |
+| `X-PayU-Dispute-Webhook-Signature-Algorithm` | `SHA512`                  |
 
 ### String that PayU signs
 
@@ -67,6 +65,7 @@ If you are an aggregator with child merchants, dispute webhooks for a child are 
 * **Order:** `merchantKey` → `txn_id` → `cb_amount` → `cb_id` → `cb_type` → `cb_status` → append **`merchantSalt`** last.
 
 ### Example
+
 Body (abbreviated):
 
 ```json
