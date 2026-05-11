@@ -454,7 +454,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
       </td>
 
       <td>
-        `number` The billing amount is passed in the XX format. In use cases where **billingCycle = ADHOC**, amount passed is treated as maximum amount since the billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.
+        `number` The billing amount is passed in the XX format. In use cases where `billingCycle` = `ADHOC`, amount passed is treated as maximum amount since the billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.
       </td>
     </tr>
 
