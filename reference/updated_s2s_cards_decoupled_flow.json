@@ -30,7 +30,7 @@
         "tags": [
           "Misc"
         ],
-        "summary": "S2SDirectAuthorizationFlow",
+        "summary": "Cards Direct Authorization Flow",
         "description": "",
         "operationId": "S2SDirectAuthorizationFlow",
         "parameters": [
