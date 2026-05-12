@@ -42,22 +42,20 @@ Use this API to modify mandates created using UPI as a payment method.
 ## Sample Response
 
 <Accordion title="Response Payload" icon="fa-code">
-
-```json Success Response
-{
-    "status": 1,
-    "action": "MANDATE_UPDATE",
-    "message": "Mandate modify request processed successfully"
-}
-```
-```json Error Response
-{
-"status":0,
-"action": " MANDATE_UPDATE ",
-"message": "authPayuId is mandatory "
-}
-```
-
+  ```json Success Response
+  {
+      "status": 1,
+      "action": "MANDATE_UPDATE",
+      "message": "Mandate modify request processed successfully"
+  }
+  ```
+  ```json Error Response
+  {
+  "status":0,
+  "action": " MANDATE_UPDATE ",
+  "message": "authPayuId is mandatory "
+  }
+  ```
 </Accordion>
 
 ## Request Parameters
@@ -73,7 +71,7 @@ Use this API to modify mandates created using UPI as a payment method.
 | **key**<sup style={{color: 'red'}}>*</sup>     | `varchar` The unique Merchant Key provided by PayU for your merchant account.                                                                                                                                            |
 | **command**<sup style={{color: 'red'}}>*</sup> | `varchar` Determines the API command. Here, it is `upi_mandate_modify`.                                                                                                                                                  |
 | **hash**<sup style={{color: 'red'}}>*</sup>    | `string` The calculated hash value using the following logic. `hash = sha512(key\|command\|var1\|SALT)`. You can use the **Generate Hash** button to generate a hash by providing the parameter values as per the logic. |
-| **var1**<sup style={{color: 'red'}}>*</sup>    | `json` The variable details. Parameters are described in the var1 JSON Parameters section.                                                                                                                               |
+| **var1**                                       | `json` The variable details. Parameters are described in the var1 JSON Parameters section.                                                                                                                               |
 
 <HTMLBlock>{`
 <p>Use this button to generate the hash value.</p>
@@ -114,69 +112,12 @@ Use this API to modify mandates created using UPI as a payment method.
 
 ### var1 JSON Parameters
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        **authPayuId**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **paymentEndDate**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `date` The end date of the billing plan in the YYYY-MM-DD format.
-
-        **Note**: Make sure to pass the correct end date. Depending on the start and end date, number of payment iterations are internally calculated and same is passed to acquirers or banks.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **billingAmount**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `number` The billing amount is passed in the XX format. In use cases where `billingCycle` = `ADHOC`, amount passed is treated as maximum amount since the billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **authpayuid**<sup style={{color: 'red'}}>*</sup>`mandatory for modifying subscription with cards`
-      </td>
-
-      <td>
-        This field is used only to modify an existing subscription/consent. You can modify the following details:
-
-        * `startDate`
-        * `endDate`
-        * `billing cycle`
-        * `billing interval`
-        * `billing amount`
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                                                               |
+| :------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **authPayuId**<sup style={{color: 'red'}}>*</sup> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
+| **amount**                                        | `float` The new amount that has been modified.                                                                                                                                                                                                                                                                                                                                                                                |
+| **endDate**                                       | `datetime` The end date of the mandate.                                                                                                                                                                                                                                                                                                                                                                                       |
+| **requestId**<sup style={{color: 'red'}}>*</sup>  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                                                            |
 
 ## Response Parameters
 
