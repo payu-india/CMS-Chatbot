@@ -1,5 +1,4 @@
 ---
-title: UPI Collect - S2S
 excerpt: ''
 api:
   file: merchant-hosted-36.json
@@ -23,9 +22,16 @@ This section provides the request and response parameters used in Step 1 of [UPI
   **Reference**: For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 </Callout>
 
+<br />
+
+<Cards_PayU_Labs />
+
+<br />
+
 <Additional_paymentRequestParams />
 
 <Accordion_Collect_Fraud_Detection />
+
 <Accordion title="Sample request" icon="fa-code">
   ```curl
   curl --location --request POST 'https://test.payu.in/_payment' \
@@ -49,7 +55,6 @@ This section provides the request and response parameters used in Step 1 of [UPI
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-reply">
-
   **Parsed response**
 
   ```json
@@ -78,6 +83,7 @@ This section provides the request and response parameters used in Step 1 of [UPI
     "hash" : "664b8ddd1b5b2d1b68abb7eee5ea6e001a02773499ddcd86956ba0833315e7d4e69c641d7b0b3e7590532e21e71936da173f4eda716fc09f83cd1117f0d0c37c"} 
   ```
 </Accordion>
+
 ## Response parameters
 
 For the response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
