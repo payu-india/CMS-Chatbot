@@ -12,6 +12,8 @@ next:
 ---
 This section includes the workflow and steps to integrate UPI Intent with Server-to-Server integration.
 
+<NPCI_Mandate />
+
 ## Smart Intent Flow
 
 ### Workflow
@@ -397,4 +399,3 @@ This section includes the workflow and steps to integrate UPI Intent with Server
 <Accordion title="Step 5: Verify the payment" icon="fa-code">
   <Verify_Payment_Tabs />
 </Accordion>
-
