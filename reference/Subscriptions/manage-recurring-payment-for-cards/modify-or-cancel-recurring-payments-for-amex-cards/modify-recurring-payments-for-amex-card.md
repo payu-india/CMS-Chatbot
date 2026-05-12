@@ -39,9 +39,6 @@ HTTP Method: **POST**
 
 The following table describes the parameters for modifying the recurring payment details for AMEX and RuPay cards.
 
-Here's the request parameters table in markdown format, following the same two-column pipe-table style used in the sibling Integration page `cancel-recurring-payment-for-a-amex-card.md` (i.e., `**param**<br />\`mandatory\``  in the first column and type chip + description in the second).
-
-```markdown
 | Parameter                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | :--------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **key**<br />`mandatory`           | `varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -202,7 +199,7 @@ For a yearly plan starting from 1st January 2019, having a monthly billing amoun
   "billingAmount":"400.00",
   "authPayuId":"999990000006391"
 }
-```
+````
 
 ## Sample request
 
@@ -290,7 +287,9 @@ Array
     [cardnum] => XXXXXXXXXXXX4879
 )
 ```
+
 ## Response parameters
+
 <HTMLBlock>{`
 <style>
 /* Target only the second column in the table */
