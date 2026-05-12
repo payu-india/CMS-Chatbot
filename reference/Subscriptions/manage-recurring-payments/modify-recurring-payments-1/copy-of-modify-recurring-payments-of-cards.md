@@ -227,6 +227,10 @@ Use this API to modify mandates created using UPI as a payment method.
   </tbody>
 </Table>
 
+### Update Pending
+
+It will be an async call to customer for approving the mandate modification in their PSP app by entering their MPIN. After the UPI mandate is modified, you can check the UPI mandate status, or can consume the UPI mandate modification webhooks from PayU end. Poll the Check the Mandate Status API to get the mandate status.
+
 ## Errors
 
 Below are the failure scenarios associated with UPI.
