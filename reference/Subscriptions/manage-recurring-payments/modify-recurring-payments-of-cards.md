@@ -724,6 +724,71 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
         `string` The hash value generated and sent in the request.
       </td>
     </tr>
+
+    <tr>
+      <td>
+        **PG_TYPE**
+      </td>
+
+      <td>
+        `string` Indicates the payment gateway used for the transaction.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **udf1-udf10**
+      </td>
+
+      <td>
+        `string` The user defined field values sent in the request.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **success_at**
+      </td>
+
+      <td>
+        `datetime` The date and time at when the transaction was successful.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **cardnum**
+      </td>
+
+      <td>
+        `integer` The last 4 digits of the card used for the transactions.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **issuing_bank**
+      </td>
+
+      <td>
+        `string` The card issuing bank.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **si_consent_action**
+      </td>
+
+      <td>
+        `string` This parameter will be returned only if a modify subscription request has been received. In other cases, this field will not be returned. Possible values:  
+
+        * `modify` 
+        * `cancel`
+
+        If, in billing details, the action was to modify, then to validate whether the subscription was modified, this fields need to be validated in response. If this field is not sent in response of modify request, then even if transaction is success, then money would have got deducted but the subscription would not have been modified.
+      </td>
+    </tr>
   </tbody>
 </Table>
 
@@ -799,3 +864,5 @@ Please find below the complete request payload with the additional added.
   * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
   * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
 </Callout>
+
+<br />
