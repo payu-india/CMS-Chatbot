@@ -1,5 +1,4 @@
 ---
-title: PayU Hosted Checkout with Pre-Authorize Payment
 excerpt: ''
 api:
   file: payment-api-9.json
@@ -13,10 +12,17 @@ metadata:
 next:
   description: ''
 ---
-The **pre\_authorize** parameter is used to pre-authorize payments using the PayU Hosted Checkout integration.
+The **pre_authorize** parameter is used to pre-authorize payments using the PayU Hosted Checkout integration.
 
-<details>
-  <summary>Sample request</summary>
+<PayU_Labs />
+
+<br />
+
+## Postman Collection
+
+<Postman_collection />
+
+<Accordion title="Sample request" icon="fa-info-circle">
 
   ```curl
   curl -X POST "https://test.payu.in/_payment
@@ -28,12 +34,9 @@ The **pre\_authorize** parameter is used to pre-authorize payments using the Pay
   &furl=https://apiplayground-response.herokuapp.com/
   &pre_authorize=1&hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
   ```
+</Accordion>
 
-</details>
-
-<details>
-  <summary>Sample response</summary>
-
+<Accordion title="Sample response" icon="fa-info-circle">
   By default, the response in HTML format. The formatted sample response body is similar to the following, and you need to look for the following parameters:
 
   * PG\_TYPE: CC PG
@@ -93,22 +96,20 @@ The **pre\_authorize** parameter is used to pre-authorize payments using the Pay
   cardnum: 411111XXXXXX1111
   cardhash: This field is no longer supported in postback params.
   ```
-
-</details>
+</Accordion>
 
 ## Request parameters
 
-<details>
-  <summary>Reference information for request parameters</summary>
+<Accordion title="Reference information for request parameters" icon="fa-info-circle">
 
   <Table align={["left","left"]}>
     <thead>
       <tr>
-        <th>
+        <th style={{ textAlign: "left" }}>
           Parameter
         </th>
 
-        <th>
+        <th style={{ textAlign: "left" }}>
           Reference
         </th>
       </tr>
@@ -116,12 +117,12 @@ The **pre\_authorize** parameter is used to pre-authorize payments using the Pay
 
     <tbody>
       <tr>
-        <td>
+        <td style={{ textAlign: "left" }}>
           <Glossary>key</Glossary>
         </td>
 
-        <td>
-          For more information on how to generate the Key and Salt, refer to any of the following:  
+        <td style={{ textAlign: "left" }}>
+          For more information on how to generate the Key and Salt, refer to any of the following:
 
           * **Production**: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
 
@@ -130,11 +131,11 @@ The **pre\_authorize** parameter is used to pre-authorize payments using the Pay
       </tr>
 
       <tr>
-        <td>
+        <td style={{ textAlign: "left" }}>
           <Glossary>hash</Glossary>
         </td>
 
-        <td>
+        <td style={{ textAlign: "left" }}>
           Hash logic for this API is:\
           sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
         </td>
@@ -147,5 +148,4 @@ The **pre\_authorize** parameter is used to pre-authorize payments using the Pay
   > * Use the card details as follows: cccnum=5123456789012346, ccexpmon=11, ccexpyr=2025, ccvv=123 and OTP =123456 (displayed in Simulator page).
   > * For the list of error codes, refer to [Error Codes - Pre-Authorize Payment](ref:error-codes-pre-authorize-payment).
   > * If you want to cancel or refund a pre-authorized transaction, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
-
-</details>
+</Accordion>
