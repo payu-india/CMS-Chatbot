@@ -1,5 +1,5 @@
 ---
-title: Copy of Modify Recurring Payments of Cards
+title: Copy of Modify Recurring Payments of UPI
 excerpt: >-
   Modify card recurring payments and mandates of Visa and Mastercard using PayU
   APIs. Update billing rules, subscription settings, mandate details, and
