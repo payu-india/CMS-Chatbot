@@ -493,7 +493,7 @@ Use the standard card flow when processing mandates using regular card details. 
 
 ### Additional Object to Pass
 
-Please find below the complete request payload with the additional object added.
+Please find below the complete request payload with the additional added.
 
 <Accordion title="Sample Request Payload" icon="fa-code">
   ```curl
