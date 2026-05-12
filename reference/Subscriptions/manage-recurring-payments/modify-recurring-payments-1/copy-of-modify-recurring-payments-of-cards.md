@@ -137,41 +137,41 @@ Use this API to modify mandates created using UPI as a payment method.
   <tbody>
     <tr>
       <td>
-        **mihpayid**
+        **status**
       </td>
 
       <td>
-        `string` It is a unique reference number created for each transaction at PayU's end which is used to identify a transaction in case of a refund.
-      </td>
-    </tr>
+        `string` The status of the transaction. Possible values:  
 
-    <tr>
-      <td>
-        **mode**
-      </td>
-
-      <td>
-        `string` This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:
-
-        * `CC`: Credit Card
-        * `DC`: Debit Card
+        * `active`: The mandate is active.
+        * `revoked`: The mandate is revoked/cancelled.
+        * `pause`: The mandate is paused.
+        * `unpause`: The mandate is unpaused.
       </td>
     </tr>
 
     <tr>
       <td>
-        **bankcode**
+        **authpayuid**
       </td>
 
       <td>
-        `string` This parameter contains the code indicating the payment option used for the transaction. Possible values:
+        `string` The consent transaction ID.
+      </td>
+    </tr>
 
-        * `CC`: For Visa and Mastercard credit cards
-        * `AMEX`: For American Express credit and debit cards
-        * `RUPAYCC`: For RuPay credit cards
-        * `VISA`: For Visa debit cards
-        * `MAST`: For Mastercard debit cards
-        * `RUPAY`: For RuPay debit cards
+    <tr>
+      <td>
+        **action**
+      </td>
+
+      <td>
+        `string` The action performed. Possible values:  
+
+        * `MANDATE_UPDATE`
+        * `MANDATE_PRE_DEBIT`
+        * `MANDATE_REVOKE`
+        * `MANDATE_STATUS`
       </td>
     </tr>
 
