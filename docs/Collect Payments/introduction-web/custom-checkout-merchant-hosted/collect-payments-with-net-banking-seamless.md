@@ -13,41 +13,41 @@ next:
 Collect payments using Net Banking with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
 
 <Callout icon="👍" theme="okay">
-  Experience the end-to-end Merchant Hosted Checkout > Net Banking flow and instantly generate the complete code for seamless, zero-coding integration into your website.
-
+  Experience the end-to-end **Merchant Hosted Checkout** > **Net Banking** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+<br/>
   <HTMLBlock>{`
-                  <style>
-                  .tooltip-btn {
-                      position: relative;
-                      background-color: #4CAF50;
-                      color: white;
-                      padding: 10px 20px;
-                      border: none;
-                      border-radius: 5px;
-                      cursor: pointer;
-                      font-weight: bold; /* Added this line */
-                  }
-                  .tooltip-btn:hover::after {
-                      content: attr(data-tooltip);
-                      position: absolute;
-                      bottom: 125%;
-                      left: 50%;
-                      transform: translateX(-50%);
-                      background-color: #333;
-                      color: white;
-                      padding: 5px 10px;
-                      border-radius: 4px;
-                      white-space: nowrap;
-                      font-size: 12px;
-                      z-index: 1;
-                  }
-                  </style>
+                    <style>
+                    .tooltip-btn {
+                        position: relative;
+                        background-color: #4CAF50;
+                        color: white;
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-weight: bold; /* Added this line */
+                    }
+                    .tooltip-btn:hover::after {
+                        content: attr(data-tooltip);
+                        position: absolute;
+                        bottom: 125%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: #333;
+                        color: white;
+                        padding: 5px 10px;
+                        border-radius: 4px;
+                        white-space: nowrap;
+                        font-size: 12px;
+                        z-index: 1;
+                    }
+                    </style>
 
-                  <button onclick="window.open('https://payu.in/integrationlab/seamless/sm-nb-status', '_blank')" 
-                          class="tooltip-btn" 
-                          data-tooltip="Click here to see the Merchant Hosted Checkout > Net Banking end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
-                      Experience the flow and get the code
-                  </button>
+                    <button onclick="window.open('https://payu.in/integrationlab/seamless/sm-nb-status', '_blank')" 
+                            class="tooltip-btn" 
+                            data-tooltip="Click here to see the Merchant Hosted Checkout > Net Banking end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+                        Experience the flow and get the code
+                    </button>
   `}</HTMLBlock>
 </Callout>
 
@@ -369,132 +369,132 @@ Below are the integration steps:
   The pg and bankcode parameters vary for the NetBanking payment mode in the **Collect Payment** API (**\_payment** API).
 
   <HTMLBlock>{`
-                                                        <table>
-                                                          <thead>
-                                                            <tr>
-                                                              <th>Parameter</th>
-                                                              <th>Description</th>
-                                                              <th>Example</th>
-                                                            </tr>
-                                                          </thead>
-                                                          <tbody>
-                                                            <tr>
-                                                              <td>key<br><code>mandatory</code></td>
-                                                              <td><code>String</code> Merchant key provided by PayU during onboarding.</td>
-                                                              <td>JP***g</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>txnId<br><code>mandatory</code></td>
-                                                              <td><code>String</code> The transaction ID is a reference number for a specific order that is generated by the merchant.</td>
-                                                              <td>ypl938459435</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>amount<br><code>mandatory</code></td>
-                                                              <td><code>String</code> The payment amount for the transaction.</td>
-                                                              <td>10.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>productinfo<br><code>mandatory</code></td>
-                                                              <td><code>String</code> A brief description of the product.</td>
-                                                              <td>iPhone</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>firstname<br><code>mandatory</code></td>
-                                                              <td><code>String</code> The first name of the customer.</td>
-                                                              <td>Ashish</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>email<br><code>mandatory</code></td>
-                                                              <td><code>String</code> The email address of the customer.</td>
-                                                              <td>abc@payu.in</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>phone<br><code>mandatory</code></td>
-                                                              <td><code>String</code> The phone number of the customer.</td>
-                                                              <td>9876543210</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>pg<br><code>mandatory</code></td>
-                                                              <td><code>String</code> This parameter defined the payment gateway. For NetBanking, pg=NB.</td>
-                                                              <td>TESTPG</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>bankcode<br><code>mandatory</code></td>
-                                                              <td><code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bank codes that can be used with the <strong>bankcode</strong> parameter, refer to <a href="https://docs.payu.in/docs/net-banking-codes">Net Banking Codes</a>.<br><br><em>Reference</em>: For the test Net Banking credentials, refer to <a href="https://docs.payu.in/docs/net-banking-codes">Test Cards, UPI ID and Wallets</a>.</td>
-                                                              <td>TESTPGNB</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>furl<br><code>mandatory</code></td>
-                                                              <td><code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.</td>
-                                                              <td>https://merchant.com/success</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>surl<br><code>mandatory</code></td>
-                                                              <td><code>String</code> The Failure URL, which is the page PayU will redirect to if the transaction is failed.</td>
-                                                              <td>https://merchant.com/failure</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>hash<br><code>mandatory</code></td>
-                                                              <td><code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br><br><code>sha512(key&#124;txnid&#124;amount&#124; productinfo&#124;firstname&#124;email&#124; udf1&#124;udf2&#124;udf3&#124;udf4&#124;udf5 &#124;&#124;&#124;&#124;&#124;&#124;SALT)</code></td>
-                                                              <td>calculated_hash_value</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>address1<br><code>optional</code></td>
-                                                              <td><code>String</code> The first line of the billing address.<br><br><em>For Fraud Detection</em>: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
-                                                              <td>123 Main Street</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>address2<br><code>optional</code></td>
-                                                              <td><code>String</code> The second line of the billing address.</td>
-                                                              <td>Apt 456</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>city<br><code>optional</code></td>
-                                                              <td><code>String</code> The city where your customer resides as part of the billing address.</td>
-                                                              <td>Mumbai</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>state<br><code>optional</code></td>
-                                                              <td><code>String</code> The state where your customer resides as part of the billing address.</td>
-                                                              <td>Maharashtra</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>country<br><code>optional</code></td>
-                                                              <td><code>String</code> The country where your customer resides.</td>
-                                                              <td>India</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>zipcode<br><code>optional</code></td>
-                                                              <td><code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br><br><code>Character Limit</code>: 20</td>
-                                                              <td>400001</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>udf1<br><code>optional</code></td>
-                                                              <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</td>
-                                                              <td>custom_value_1</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>udf2<br><code>optional</code></td>
-                                                              <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</td>
-                                                              <td>custom_value_2</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>udf3<br><code>optional</code></td>
-                                                              <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
-                                                              <td>custom_value_3</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>udf4<br><code>optional</code></td>
-                                                              <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
-                                                              <td>custom_value_4</td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>udf5<br><code>optional</code></td>
-                                                              <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
-                                                              <td>custom_value_5</td>
-                                                            </tr>
-                                                          </tbody>
-                                                        </table>
+                                                          <table>
+                                                            <thead>
+                                                              <tr>
+                                                                <th>Parameter</th>
+                                                                <th>Description</th>
+                                                                <th>Example</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr>
+                                                                <td>key<br><code>mandatory</code></td>
+                                                                <td><code>String</code> Merchant key provided by PayU during onboarding.</td>
+                                                                <td>JP***g</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>txnId<br><code>mandatory</code></td>
+                                                                <td><code>String</code> The transaction ID is a reference number for a specific order that is generated by the merchant.</td>
+                                                                <td>ypl938459435</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>amount<br><code>mandatory</code></td>
+                                                                <td><code>String</code> The payment amount for the transaction.</td>
+                                                                <td>10.00</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>productinfo<br><code>mandatory</code></td>
+                                                                <td><code>String</code> A brief description of the product.</td>
+                                                                <td>iPhone</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>firstname<br><code>mandatory</code></td>
+                                                                <td><code>String</code> The first name of the customer.</td>
+                                                                <td>Ashish</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>email<br><code>mandatory</code></td>
+                                                                <td><code>String</code> The email address of the customer.</td>
+                                                                <td>abc@payu.in</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>phone<br><code>mandatory</code></td>
+                                                                <td><code>String</code> The phone number of the customer.</td>
+                                                                <td>9876543210</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>pg<br><code>mandatory</code></td>
+                                                                <td><code>String</code> This parameter defined the payment gateway. For NetBanking, pg=NB.</td>
+                                                                <td>TESTPG</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>bankcode<br><code>mandatory</code></td>
+                                                                <td><code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bank codes that can be used with the <strong>bankcode</strong> parameter, refer to <a href="https://docs.payu.in/docs/net-banking-codes">Net Banking Codes</a>.<br><br><em>Reference</em>: For the test Net Banking credentials, refer to <a href="https://docs.payu.in/docs/net-banking-codes">Test Cards, UPI ID and Wallets</a>.</td>
+                                                                <td>TESTPGNB</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>furl<br><code>mandatory</code></td>
+                                                                <td><code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.</td>
+                                                                <td>https://merchant.com/success</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>surl<br><code>mandatory</code></td>
+                                                                <td><code>String</code> The Failure URL, which is the page PayU will redirect to if the transaction is failed.</td>
+                                                                <td>https://merchant.com/failure</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>hash<br><code>mandatory</code></td>
+                                                                <td><code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br><br><code>sha512(key&#124;txnid&#124;amount&#124; productinfo&#124;firstname&#124;email&#124; udf1&#124;udf2&#124;udf3&#124;udf4&#124;udf5 &#124;&#124;&#124;&#124;&#124;&#124;SALT)</code></td>
+                                                                <td>calculated_hash_value</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>address1<br><code>optional</code></td>
+                                                                <td><code>String</code> The first line of the billing address.<br><br><em>For Fraud Detection</em>: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
+                                                                <td>123 Main Street</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>address2<br><code>optional</code></td>
+                                                                <td><code>String</code> The second line of the billing address.</td>
+                                                                <td>Apt 456</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>city<br><code>optional</code></td>
+                                                                <td><code>String</code> The city where your customer resides as part of the billing address.</td>
+                                                                <td>Mumbai</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>state<br><code>optional</code></td>
+                                                                <td><code>String</code> The state where your customer resides as part of the billing address.</td>
+                                                                <td>Maharashtra</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>country<br><code>optional</code></td>
+                                                                <td><code>String</code> The country where your customer resides.</td>
+                                                                <td>India</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>zipcode<br><code>optional</code></td>
+                                                                <td><code>String</code> Billing address zip code is mandatory for the cardless EMI option.<br><br><code>Character Limit</code>: 20</td>
+                                                                <td>400001</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>udf1<br><code>optional</code></td>
+                                                                <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</td>
+                                                                <td>custom_value_1</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>udf2<br><code>optional</code></td>
+                                                                <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</td>
+                                                                <td>custom_value_2</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>udf3<br><code>optional</code></td>
+                                                                <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
+                                                                <td>custom_value_3</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>udf4<br><code>optional</code></td>
+                                                                <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
+                                                                <td>custom_value_4</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>udf5<br><code>optional</code></td>
+                                                                <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
+                                                                <td>custom_value_5</td>
+                                                              </tr>
+                                                            </tbody>
+                                                          </table>
   `}</HTMLBlock>
 
   <Accordion title="Understanding Hashing and sample code" icon="fa-code">
