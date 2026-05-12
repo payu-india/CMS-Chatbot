@@ -25,3 +25,9 @@ This part of the document includes the API Reference for the following with "Try
 > 📘 Note:
 >
 > The above API Reference pages only provides the Initiate Payment step only. You need to follow the respective integrations for the complete flow. For more information, refer to [Server-to-Server Integration](doc:server-to-server-integration)
+
+## Postman Collection
+
+<Postman_collection />
+
+<br />
