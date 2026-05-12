@@ -18,7 +18,7 @@ metadata:
 next:
   description: ''
 ---
-This guide provides a comprehensive overview of integrating PayU’s Merchant Hosted Checkout solution for collecting payments on your website or application. This guide is designed for developers with varying levels of experience, from those new to payment gateways to seasoned API integrators.
+This part of the documentation provides a comprehensive overview of integrating PayU’s Merchant Hosted Checkout solution for collecting payments on your website or application. This guide is designed for developers with varying levels of experience, from those new to payment gateways to seasoned API integrators.
 
 ```php
 <?php
