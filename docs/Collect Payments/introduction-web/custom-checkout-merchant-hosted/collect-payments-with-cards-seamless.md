@@ -19,10 +19,50 @@ PayU supports the following debit cards and credit cards:
 * Rupay
 
 <Callout icon="📘" theme="info">
-  **Note**: PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team (<Anchor label="integration@pay.in" target="_blank" href="mailto:integration@pay.in">integration@pay.in</Anchor>).
+  **Notes**: 
+
+  * PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team (<Anchor label="integration@pay.in" target="_blank" href="mailto:integration@pay.in">integration@pay.in</Anchor>).
+  * If you are storing or transmitting cardholder data, you must fill the “<Anchor label="Self-Assessment Questionnaire A-EP and Attestation of Compliance" target="_blank" href="https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf">Self-Assessment Questionnaire A-EP and Attestation of Compliance</Anchor>” form. For more information on Save Cards API integration, refer to PayU Save Cards API Integration docs.
 </Callout>
 
-If you are storing or transmitting cardholder data, you must fill the “<Anchor label="Self-Assessment Questionnaire A-EP and Attestation of Compliance" target="_blank" href="https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf">Self-Assessment Questionnaire A-EP and Attestation of Compliance</Anchor>” form. For more information on Save Cards API integration, refer to PayU Save Cards API Integration docs.
+<Callout icon="👍" theme="okay">
+  Experience the end-to-end **Merchant Hosted Checkout** > **Net Banking** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+
+  <HTMLBlock>{`
+                            <style>
+                            .tooltip-btn {
+                                position: relative;
+                                background-color: #4CAF50;
+                                color: white;
+                                padding: 10px 20px;
+                                border: none;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                font-weight: bold; /* Added this line */
+                            }
+                            .tooltip-btn:hover::after {
+                                content: attr(data-tooltip);
+                                position: absolute;
+                                bottom: 125%;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                background-color: #333;
+                                color: white;
+                                padding: 5px 10px;
+                                border-radius: 4px;
+                                white-space: nowrap;
+                                font-size: 12px;
+                                z-index: 1;
+                            }
+                            </style>
+
+                            <button onclick="window.open('https://payu.in/integrationlab/seamless/sm-nb-status', '_blank')" 
+                                    class="tooltip-btn" 
+                                    data-tooltip="Click here to see the Merchant Hosted Checkout > Net Banking end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+                                Experience the flow and get the code
+                            </button>
+  `}</HTMLBlock>
+</Callout>
 
 <RegisterMerchantPrerequiste />
 
@@ -1116,482 +1156,482 @@ When customers use debit cards or credit cards on your website, you can validate
 <Accordion title="Sample request for saved card" icon="fa-code">
   <Accordion title="Request parameters" icon="fa-info-table">
     <HTMLBlock>{`
-                                                                                                                                                                                                                              <Table>
-                                                                                                                                                                                                                                <thead>
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <th>
-                                                                                                                                                                                                                                      Parameter
-                                                                                                                                                                                                                                    </th>
-
-                                                                                                                                                                                                                                    <th>
-                                                                                                                                                                                                                                      Description
-                                                                                                                                                                                                                                    </th>
-
-                                                                                                                                                                                                                                    <th>
-                                                                                                                                                                                                                                      Example
-                                                                                                                                                                                                                                    </th>
-                                                                                                                                                                                                                                  </tr>
-                                                                                                                                                                                                                                </thead>
-
-                                                                                                                                                                                                                                <tbody>
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      key
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The merchant key is a unique identifier for a merchant account in PayU's database.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      Your Test Key
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      api_version
-                                                                                                                                                                                                                                      <br/><code>optional</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The API version for this API.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      1
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      txnid
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The transaction ID is a reference number for a specific order that is generated by the merchant. It is used to track the order and must be unique. PayU's system will not accept duplicate transaction IDs.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      s7hhDQVWvbhBdN
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      amount
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> This field should contain the payment amount for the transaction. If you want to use the cardless EMI option, the amount must be at least Rs. 8000
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      10.00
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      productinfo
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> It should be a string containing a brief description of the product.\`\`\`
-
-                                                                                                                                                                                                                                      Character Limit-100
-                                                                                                                                                                                                                                      \`\`\`
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      iPhone
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      firstname
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The first name of the customer.\`\`\`
-
-                                                                                                                                                                                                                                      Character Limit-60
-                                                                                                                                                                                                                                      \`\`\`
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      Ashish
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      email
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The email of the customer.\`\`\`
-
-                                                                                                                                                                                                                                      Character Limit-50
-                                                                                                                                                                                                                                      \`\`\`
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      [test@gmail.com](mailto:test@gmail.com)
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      phone
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The phone number of the customer.  
-
-                                                                                                                                                                                                                                      * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      9876543210
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      lastname
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The last name of the customer.\`\`\`
-
-                                                                                                                                                                                                                                      Character Limit-60
-                                                                                                                                                                                                                                      \`\`\`
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      Verma
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      address1
-                                                                                                                                                                                                                                      <br/><code>optional</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The first line of the billing address.\`\`\`
-
-                                                                                                                                                                                                                                      Character Limit-100
-                                                                                                                                                                                                                                      \`\`\`
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      address2
-                                                                                                                                                                                                                                      <br/><code>optional</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The second line of the billing address.<code>Character Limit-100</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      34 Saikripa-Estate, Tilak Nagar
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      city
-                                                                                                                                                                                                                                      <br/><code>optional</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The city where your customer resides as part of the billing address.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      Mumbai
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      state
-                                                                                                                                                                                                                                      <br/><code>optional</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The state where your customer resides as part of the billing address,
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      Maharashtra
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      country
-                                                                                                                                                                                                                                      <br/><code>optional</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The country where your customer resides.<code>Character Limit-50</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      India
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      zipcode
-                                                                                                                                                                                                                                      <br/><code>optional</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> Billing address zip code is mandatory for the cardless EMI option.\`\`\`
-
-                                                                                                                                                                                                                                      Character Limit-20
-                                                                                                                                                                                                                                      \`\`\`
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      400004
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      surl
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      furl
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      hash
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972</code>
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <Glossary>pg</Glossary>
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> The pg parameter determines which payment tabs will be displayed. Here, use 'CC' as the value.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      CC
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <Glossary>bankcode</Glossary>
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. 
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      AMEX
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      udf1 - udf5
-                                                                                                                                                                                                                                      <br/><code>optional</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
-                                                                                                                                                                                                                                      <code>Character Limit-255</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      Payment Preference, Shipping Method, Shipping Address1, Shipping City, Shipping Zip Code, etc.
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      ccnum
-                                                                                                                                                                                                                                      <br/><code>optional</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>varchar</code> This parameter must contain the 13 to 19-digit card number for credit or debit cards in general. 
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      512***6789012346
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      ccname
-                                                                                                                                                                                                                                      <br/><code>optional</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>varchar</code> It is the customer's name on card.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      Ashish
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      ccvv
-                                                                                                                                                                                                                                      <br/><code>optional</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>varchar</code> This parameter must contain the CVV number of the card – as entered by the customer for the transaction.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      123
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      ccexpmon
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>integer</code> This parameter must contain the network token expiry month.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      10
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      ccexpyr
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>integer</code> This parameter must contain the network token expiry year.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      2022
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      store_card_token
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>varchar</code> This must include the Network token generated at your end.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      1234 4567 2456 3566
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      storecard_token_type
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>integer</code> This parameter is used to specify the store card token type. For this scenario, you must include 1.
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      1
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-
-                                                                                                                                                                                                                                  <tr>
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      additional_info
-                                                                                                                                                                                                                                      <br/><code>mandatory</code>
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      <code>varchar</code> This parameter will contain the additional information in the following JSON format:
-                                                                                                                                                                                                                                      {"last4Digits": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}  
-                                                                                                                                                                                                                                    </td>
-
-                                                                                                                                                                                                                                    <td>
-                                                                                                                                                                                                                                      {"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}
-                                                                                                                                                                                                                                    </td>
-                                                                                                                                                                                                                                  </tr>
-                                                                                                                                                                                                                                </tbody>
-                                                                                                                                                                                                                              </Table>
+                                                                                                                                                                                                                                  <Table>
+                                                                                                                                                                                                                                    <thead>
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <th>
+                                                                                                                                                                                                                                          Parameter
+                                                                                                                                                                                                                                        </th>
+
+                                                                                                                                                                                                                                        <th>
+                                                                                                                                                                                                                                          Description
+                                                                                                                                                                                                                                        </th>
+
+                                                                                                                                                                                                                                        <th>
+                                                                                                                                                                                                                                          Example
+                                                                                                                                                                                                                                        </th>
+                                                                                                                                                                                                                                      </tr>
+                                                                                                                                                                                                                                    </thead>
+
+                                                                                                                                                                                                                                    <tbody>
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          key
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The merchant key is a unique identifier for a merchant account in PayU's database.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          Your Test Key
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          api_version
+                                                                                                                                                                                                                                          <br/><code>optional</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The API version for this API.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          1
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          txnid
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The transaction ID is a reference number for a specific order that is generated by the merchant. It is used to track the order and must be unique. PayU's system will not accept duplicate transaction IDs.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          s7hhDQVWvbhBdN
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          amount
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> This field should contain the payment amount for the transaction. If you want to use the cardless EMI option, the amount must be at least Rs. 8000
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          10.00
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          productinfo
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> It should be a string containing a brief description of the product.\`\`\`
+
+                                                                                                                                                                                                                                          Character Limit-100
+                                                                                                                                                                                                                                          \`\`\`
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          iPhone
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          firstname
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The first name of the customer.\`\`\`
+
+                                                                                                                                                                                                                                          Character Limit-60
+                                                                                                                                                                                                                                          \`\`\`
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          Ashish
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          email
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The email of the customer.\`\`\`
+
+                                                                                                                                                                                                                                          Character Limit-50
+                                                                                                                                                                                                                                          \`\`\`
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          [test@gmail.com](mailto:test@gmail.com)
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          phone
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The phone number of the customer.  
+
+                                                                                                                                                                                                                                          * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          9876543210
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          lastname
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The last name of the customer.\`\`\`
+
+                                                                                                                                                                                                                                          Character Limit-60
+                                                                                                                                                                                                                                          \`\`\`
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          Verma
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          address1
+                                                                                                                                                                                                                                          <br/><code>optional</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The first line of the billing address.\`\`\`
+
+                                                                                                                                                                                                                                          Character Limit-100
+                                                                                                                                                                                                                                          \`\`\`
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          address2
+                                                                                                                                                                                                                                          <br/><code>optional</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The second line of the billing address.<code>Character Limit-100</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          34 Saikripa-Estate, Tilak Nagar
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          city
+                                                                                                                                                                                                                                          <br/><code>optional</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The city where your customer resides as part of the billing address.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          Mumbai
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          state
+                                                                                                                                                                                                                                          <br/><code>optional</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The state where your customer resides as part of the billing address,
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          Maharashtra
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          country
+                                                                                                                                                                                                                                          <br/><code>optional</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The country where your customer resides.<code>Character Limit-50</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          India
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          zipcode
+                                                                                                                                                                                                                                          <br/><code>optional</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> Billing address zip code is mandatory for the cardless EMI option.\`\`\`
+
+                                                                                                                                                                                                                                          Character Limit-20
+                                                                                                                                                                                                                                          \`\`\`
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          400004
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          surl
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          furl
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          hash
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-merchant-hosted).
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972</code>
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <Glossary>pg</Glossary>
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> The pg parameter determines which payment tabs will be displayed. Here, use 'CC' as the value.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          CC
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <Glossary>bankcode</Glossary>
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. 
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          AMEX
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          udf1 - udf5
+                                                                                                                                                                                                                                          <br/><code>optional</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
+                                                                                                                                                                                                                                          <code>Character Limit-255</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          Payment Preference, Shipping Method, Shipping Address1, Shipping City, Shipping Zip Code, etc.
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          ccnum
+                                                                                                                                                                                                                                          <br/><code>optional</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>varchar</code> This parameter must contain the 13 to 19-digit card number for credit or debit cards in general. 
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          512***6789012346
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          ccname
+                                                                                                                                                                                                                                          <br/><code>optional</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>varchar</code> It is the customer's name on card.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          Ashish
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          ccvv
+                                                                                                                                                                                                                                          <br/><code>optional</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>varchar</code> This parameter must contain the CVV number of the card – as entered by the customer for the transaction.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          123
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          ccexpmon
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>integer</code> This parameter must contain the network token expiry month.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          10
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          ccexpyr
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>integer</code> This parameter must contain the network token expiry year.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          2022
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          store_card_token
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>varchar</code> This must include the Network token generated at your end.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          1234 4567 2456 3566
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          storecard_token_type
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>integer</code> This parameter is used to specify the store card token type. For this scenario, you must include 1.
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          1
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+
+                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          additional_info
+                                                                                                                                                                                                                                          <br/><code>mandatory</code>
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          <code>varchar</code> This parameter will contain the additional information in the following JSON format:
+                                                                                                                                                                                                                                          {"last4Digits": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}  
+                                                                                                                                                                                                                                        </td>
+
+                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                          {"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}
+                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                      </tr>
+                                                                                                                                                                                                                                    </tbody>
+                                                                                                                                                                                                                                  </Table>
     `}</HTMLBlock>
   </Accordion>
 
@@ -1795,162 +1835,162 @@ There are three scenarios with Alternative ID:
   </Callout>
 
   <HTMLBlock>{`
-                                                                                                              <table>
-                                                                                                                <thead>
-                                                                                                                  <tr>
-                                                                                                                    <th>Parameter</th>
-                                                                                                                    <th>Description</th>
-                                                                                                                    <th>Example</th>
-                                                                                                                  </tr>
-                                                                                                                </thead>
-                                                                                                                <tbody>
-                                                                                                                  <tr>
-                                                                                                                    <td>key <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> Merchant key provided by PayU during onboarding.</td>
-                                                                                                                    <td>JP***g</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>txnid <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> The transaction ID is a reference number for a specific</br> order that is generated by the merchant.</td>
-                                                                                                                    <td>ashdfu72634</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>amount <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> The payment amount for the transaction.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>productinfo <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> A brief description of the product.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>firstname <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> The first name of the customer.</td>
-                                                                                                                    <td>Ashish</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>email <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> The email address of the customer.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>phone <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> The phone number of the customer.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>pg <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> The pg parameter determines which payment tabs will</br> be displayed on the PayU page. For cards, 'CC' will be the value.</td>
-                                                                                                                    <td>CC</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>bankcode <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> Each payment option is identified with a unique bank code</br> at PayU. The merchant must post this parameter with the corresponding payment option's</br> bank code value in it. For more information, refer to Card Type Codes and Supported Banks for Cards.</td>
-                                                                                                                    <td>AMEX</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>ccname <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> This parameter must contain the name on card – as entered by the customer for the transaction.</td>
-                                                                                                                    <td>Ashish Kumar</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>ccvv <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API.</td>
-                                                                                                                    <td>123</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>ccexpmon <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> This parameter must contain the card's expiry month or Alt ID expiry month for guest checkout – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. For VISA cards,</br> Plain card's expiry month need to be posted this parameter.</td>
-                                                                                                                    <td>10</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>ccexpyr <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> This parameter must contain the card's expiry</br> year or Alt ID expiry year for guest checkout – as entered by the</br> customer for the transaction. It must be of four digits. For VISA cards,</br> Plain card's expiry year need to be posted this parameter.</td>
-                                                                                                                    <td>2021</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>alt_id <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> This parameter must contain Alt ID for the guest checkout.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>furl <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>surl <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> The Failure URL, which is the page PayU will redirect to if the transaction is failed.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>hash <code>mandatory</code></td>
-                                                                                                                    <td><code>String</code> It is the hash calculated by the merchant.</br> The hash calculation logic is: </br><code>sha512(key|txnid|amount|productinfo|firstname|</br>email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code></td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>additional_info <code>mandatory</code></td>
-                                                                                                                    <td><code>JSON</code> The fields which are included in this JSON.</br> For more information, refer to <a href="#additional_info-json-sample-and-field-description">additional_info JSON sample and field description</a>></td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>address1 <code>optional</code></td>
-                                                                                                                    <td><code>String</code> The first line of the billing address.</br> For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>address2 <code>optional</code></td>
-                                                                                                                    <td><code>String</code> The second line of the billing address.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>city <code>optional</code></td>
-                                                                                                                    <td><code>String</code> The city where your customer resides as part of the billing address.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>state <code>optional</code></td>
-                                                                                                                    <td><code>String</code> The state where your customer resides as part of the billing address.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>country <code>optional</code></td>
-                                                                                                                    <td><code>String</code> The country where your customer resides.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>zipcode <code>optional</code></td>
-                                                                                                                    <td><code>String</code> Billing address zip code is mandatory for the cardless EMI option. Character Limit-20</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>udf1 <code>optional</code></td>
-                                                                                                                    <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>udf2 <code>optional</code></td>
-                                                                                                                    <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>udf3 <code>optional</code></td>
-                                                                                                                    <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>udf4 <code>optional</code></td>
-                                                                                                                    <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>udf5 <code>optional</code></td>
-                                                                                                                    <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
-                                                                                                                    <td></td>
-                                                                                                                  </tr>
-                                                                                                                </tbody>
-                                                                                                              </table>
+                                                                                                                <table>
+                                                                                                                  <thead>
+                                                                                                                    <tr>
+                                                                                                                      <th>Parameter</th>
+                                                                                                                      <th>Description</th>
+                                                                                                                      <th>Example</th>
+                                                                                                                    </tr>
+                                                                                                                  </thead>
+                                                                                                                  <tbody>
+                                                                                                                    <tr>
+                                                                                                                      <td>key <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> Merchant key provided by PayU during onboarding.</td>
+                                                                                                                      <td>JP***g</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>txnid <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> The transaction ID is a reference number for a specific</br> order that is generated by the merchant.</td>
+                                                                                                                      <td>ashdfu72634</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>amount <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> The payment amount for the transaction.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>productinfo <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> A brief description of the product.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>firstname <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> The first name of the customer.</td>
+                                                                                                                      <td>Ashish</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>email <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> The email address of the customer.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>phone <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> The phone number of the customer.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>pg <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> The pg parameter determines which payment tabs will</br> be displayed on the PayU page. For cards, 'CC' will be the value.</td>
+                                                                                                                      <td>CC</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>bankcode <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> Each payment option is identified with a unique bank code</br> at PayU. The merchant must post this parameter with the corresponding payment option's</br> bank code value in it. For more information, refer to Card Type Codes and Supported Banks for Cards.</td>
+                                                                                                                      <td>AMEX</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>ccname <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> This parameter must contain the name on card – as entered by the customer for the transaction.</td>
+                                                                                                                      <td>Ashish Kumar</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>ccvv <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API.</td>
+                                                                                                                      <td>123</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>ccexpmon <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> This parameter must contain the card's expiry month or Alt ID expiry month for guest checkout – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. For VISA cards,</br> Plain card's expiry month need to be posted this parameter.</td>
+                                                                                                                      <td>10</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>ccexpyr <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> This parameter must contain the card's expiry</br> year or Alt ID expiry year for guest checkout – as entered by the</br> customer for the transaction. It must be of four digits. For VISA cards,</br> Plain card's expiry year need to be posted this parameter.</td>
+                                                                                                                      <td>2021</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>alt_id <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> This parameter must contain Alt ID for the guest checkout.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>furl <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>surl <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> The Failure URL, which is the page PayU will redirect to if the transaction is failed.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>hash <code>mandatory</code></td>
+                                                                                                                      <td><code>String</code> It is the hash calculated by the merchant.</br> The hash calculation logic is: </br><code>sha512(key|txnid|amount|productinfo|firstname|</br>email|udf1|udf2|udf3|udf4|udf5||||||SALT)</code></td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>additional_info <code>mandatory</code></td>
+                                                                                                                      <td><code>JSON</code> The fields which are included in this JSON.</br> For more information, refer to <a href="#additional_info-json-sample-and-field-description">additional_info JSON sample and field description</a>></td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>address1 <code>optional</code></td>
+                                                                                                                      <td><code>String</code> The first line of the billing address.</br> For Fraud Detection: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>address2 <code>optional</code></td>
+                                                                                                                      <td><code>String</code> The second line of the billing address.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>city <code>optional</code></td>
+                                                                                                                      <td><code>String</code> The city where your customer resides as part of the billing address.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>state <code>optional</code></td>
+                                                                                                                      <td><code>String</code> The state where your customer resides as part of the billing address.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>country <code>optional</code></td>
+                                                                                                                      <td><code>String</code> The country where your customer resides.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>zipcode <code>optional</code></td>
+                                                                                                                      <td><code>String</code> Billing address zip code is mandatory for the cardless EMI option. Character Limit-20</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>udf1 <code>optional</code></td>
+                                                                                                                      <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>udf2 <code>optional</code></td>
+                                                                                                                      <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>udf3 <code>optional</code></td>
+                                                                                                                      <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>udf4 <code>optional</code></td>
+                                                                                                                      <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>udf5 <code>optional</code></td>
+                                                                                                                      <td><code>String</code> User-defined fields (udf) are used to store any information corresponding to a particular transaction.</td>
+                                                                                                                      <td></td>
+                                                                                                                    </tr>
+                                                                                                                  </tbody>
+                                                                                                                </table>
   `}</HTMLBlock>
 
   <Callout icon="📘" theme="info">
@@ -2092,117 +2132,117 @@ PayU supports 3DS Secure 2.0 transaction with Merchant Hosted Checkout integrati
   </Callout>
 
   <HTMLBlock>{`
-                                                                                                              <table>
-                                                                                                                <thead>
-                                                                                                                  <tr>
-                                                                                                                    <th>Parameter</th>
-                                                                                                                    <th>Description</th>
-                                                                                                                    <th>Example</th>
-                                                                                                                  </tr>
-                                                                                                                </thead>
-                                                                                                                <tbody>
-                                                                                                                  <tr>
-                                                                                                                    <td>key<br/><code>mandatory</code></td>
-                                                                                                                    <td>Merchant key provided by PayU during onboarding. Data type: <code>string</code>.</td>
-                                                                                                                    <td>JF****g</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>txnid<br/><code>mandatory</code></td>
-                                                                                                                    <td>The transaction ID is a reference number for a specific order that is generated by the merchant. Data type: <code>string</code>.</td>
-                                                                                                                    <td>jYhbOYH9o4</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>amount<br/><code>mandatory</code></td>
-                                                                                                                    <td>The payment amount for the transaction. Data type: <code>string</code>.</td>
-                                                                                                                    <td>10</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>productinfo<br/><code>mandatory</code></td>
-                                                                                                                    <td>A brief description of the product. Data type: <code>string</code>.</td>
-                                                                                                                    <td>Product_info</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>firstname<br/><code>mandatory</code></td>
-                                                                                                                    <td>The first name of the customer. Data type: <code>string</code>.</td>
-                                                                                                                    <td>Ashish</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>lastname<br/><code>optional</code></td>
-                                                                                                                    <td>The last name of the customer. Data type: <code>string</code>.</td>
-                                                                                                                    <td>Test</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>email<br/><code>mandatory</code></td>
-                                                                                                                    <td>The email address of the customer. Data type: <code>string</code>.</td>
-                                                                                                                    <td>test@example.com</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>phone<br/><code>mandatory</code></td>
-                                                                                                                    <td>The phone number of the customer. Data type: <code>string</code>.</td>
-                                                                                                                    <td>9876543210</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>pg<br/><code>mandatory</code></td>
-                                                                                                                    <td>The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value. Data type: <code>string</code>.</td>
-                                                                                                                    <td>CC</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>bankcode<br/><code>mandatory</code></td>
-                                                                                                                    <td>Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. Data type: <code>string</code>.</td>
-                                                                                                                    <td>CC</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>ccnum<br/><code>mandatory</code></td>
-                                                                                                                    <td>Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Data type: <code>string</code>.</td>
-                                                                                                                    <td>4012000000002004</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>ccname<br/><code>mandatory</code></td>
-                                                                                                                    <td>This parameter must contain the name on card – as entered by the customer for the transaction. Data type: <code>string</code>.</td>
-                                                                                                                    <td>Test User</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>ccvv<br/><code>mandatory</code></td>
-                                                                                                                    <td>Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API. Data type: <code>string</code>.</td>
-                                                                                                                    <td>123</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>ccexpmon<br/><code>mandatory</code></td>
-                                                                                                                    <td>This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. Data type: <code>string</code>.</td>
-                                                                                                                    <td>06</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>ccexpyr<br/><code>mandatory</code></td>
-                                                                                                                    <td>This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits. Data type: <code>string</code>.</td>
-                                                                                                                    <td>2024</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>surl<br/><code>mandatory</code></td>
-                                                                                                                    <td>The success URL, which is the page PayU will redirect to if the transaction is successful. Data type: <code>string</code>.</td>
-                                                                                                                    <td>http://pp30admin.payu.in/</br>test_response</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>furl<br/><code>mandatory</code></td>
-                                                                                                                    <td>The failure URL, which is the page PayU will redirect to if the transaction is failed. Data type: <code>string</code>.</td>
-                                                                                                                    <td>http://pp30admin.payu.in/</br>test_response</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>hash<br/><code>mandatory</code></td>
-                                                                                                                    <td>It is the hash calculated by the merchant. The hash calculation logic is: sha512(key|txnid|amount|productinfo|firstname|email</br>|udf1|udf2|udf3|udf4|udf5||||||SALT). Data type: <code>string</code>.</td>
-                                                                                                                    <td>e5b286a9c8545038de9</br>d4e4ee4d8a2fd02</br>e821015aff7e0323</br>807ba174997d8643f9</br>aa174981385e3e4dfe60</br>b918650806ccb97b3e8e3</br>471e1985ecadefd0184</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>txn_s2s_flow<br/><code>optional</code></td>
-                                                                                                                    <td>Server-to-server transaction flow parameter that indicates the type of transaction processing flow to be used. Data type: <code>string</code>.</td>
-                                                                                                                    <td>4</td>
-                                                                                                                  </tr>
-                                                                                                                  <tr>
-                                                                                                                    <td>threeDS2RequestData<br/><code>optional</code></td>
-                                                                                                                    <td>JSON object containing 3DS2 authentication data including browser information, user agent, screen dimensions, timezone, and other parameters required for 3D Secure 2.0 authentication. Data type: <code>object</code>.</td>
-                                                                                                                    <td>Refer to #threeds2requestdata-json-format</td>
-                                                                                                                  </tr>
-                                                                                                                </tbody>
-                                                                                                              </table>
+                                                                                                                <table>
+                                                                                                                  <thead>
+                                                                                                                    <tr>
+                                                                                                                      <th>Parameter</th>
+                                                                                                                      <th>Description</th>
+                                                                                                                      <th>Example</th>
+                                                                                                                    </tr>
+                                                                                                                  </thead>
+                                                                                                                  <tbody>
+                                                                                                                    <tr>
+                                                                                                                      <td>key<br/><code>mandatory</code></td>
+                                                                                                                      <td>Merchant key provided by PayU during onboarding. Data type: <code>string</code>.</td>
+                                                                                                                      <td>JF****g</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>txnid<br/><code>mandatory</code></td>
+                                                                                                                      <td>The transaction ID is a reference number for a specific order that is generated by the merchant. Data type: <code>string</code>.</td>
+                                                                                                                      <td>jYhbOYH9o4</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>amount<br/><code>mandatory</code></td>
+                                                                                                                      <td>The payment amount for the transaction. Data type: <code>string</code>.</td>
+                                                                                                                      <td>10</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>productinfo<br/><code>mandatory</code></td>
+                                                                                                                      <td>A brief description of the product. Data type: <code>string</code>.</td>
+                                                                                                                      <td>Product_info</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>firstname<br/><code>mandatory</code></td>
+                                                                                                                      <td>The first name of the customer. Data type: <code>string</code>.</td>
+                                                                                                                      <td>Ashish</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>lastname<br/><code>optional</code></td>
+                                                                                                                      <td>The last name of the customer. Data type: <code>string</code>.</td>
+                                                                                                                      <td>Test</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>email<br/><code>mandatory</code></td>
+                                                                                                                      <td>The email address of the customer. Data type: <code>string</code>.</td>
+                                                                                                                      <td>test@example.com</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>phone<br/><code>mandatory</code></td>
+                                                                                                                      <td>The phone number of the customer. Data type: <code>string</code>.</td>
+                                                                                                                      <td>9876543210</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>pg<br/><code>mandatory</code></td>
+                                                                                                                      <td>The pg parameter determines which payment tabs will be displayed on the PayU page. For cards, 'CC' will be the value. Data type: <code>string</code>.</td>
+                                                                                                                      <td>CC</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>bankcode<br/><code>mandatory</code></td>
+                                                                                                                      <td>Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. Data type: <code>string</code>.</td>
+                                                                                                                      <td>CC</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>ccnum<br/><code>mandatory</code></td>
+                                                                                                                      <td>Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Data type: <code>string</code>.</td>
+                                                                                                                      <td>4012000000002004</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>ccname<br/><code>mandatory</code></td>
+                                                                                                                      <td>This parameter must contain the name on card – as entered by the customer for the transaction. Data type: <code>string</code>.</td>
+                                                                                                                      <td>Test User</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>ccvv<br/><code>mandatory</code></td>
+                                                                                                                      <td>Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API. Data type: <code>string</code>.</td>
+                                                                                                                      <td>123</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>ccexpmon<br/><code>mandatory</code></td>
+                                                                                                                      <td>This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively. Data type: <code>string</code>.</td>
+                                                                                                                      <td>06</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>ccexpyr<br/><code>mandatory</code></td>
+                                                                                                                      <td>This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits. Data type: <code>string</code>.</td>
+                                                                                                                      <td>2024</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>surl<br/><code>mandatory</code></td>
+                                                                                                                      <td>The success URL, which is the page PayU will redirect to if the transaction is successful. Data type: <code>string</code>.</td>
+                                                                                                                      <td>http://pp30admin.payu.in/</br>test_response</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>furl<br/><code>mandatory</code></td>
+                                                                                                                      <td>The failure URL, which is the page PayU will redirect to if the transaction is failed. Data type: <code>string</code>.</td>
+                                                                                                                      <td>http://pp30admin.payu.in/</br>test_response</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>hash<br/><code>mandatory</code></td>
+                                                                                                                      <td>It is the hash calculated by the merchant. The hash calculation logic is: sha512(key|txnid|amount|productinfo|firstname|email</br>|udf1|udf2|udf3|udf4|udf5||||||SALT). Data type: <code>string</code>.</td>
+                                                                                                                      <td>e5b286a9c8545038de9</br>d4e4ee4d8a2fd02</br>e821015aff7e0323</br>807ba174997d8643f9</br>aa174981385e3e4dfe60</br>b918650806ccb97b3e8e3</br>471e1985ecadefd0184</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>txn_s2s_flow<br/><code>optional</code></td>
+                                                                                                                      <td>Server-to-server transaction flow parameter that indicates the type of transaction processing flow to be used. Data type: <code>string</code>.</td>
+                                                                                                                      <td>4</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                      <td>threeDS2RequestData<br/><code>optional</code></td>
+                                                                                                                      <td>JSON object containing 3DS2 authentication data including browser information, user agent, screen dimensions, timezone, and other parameters required for 3D Secure 2.0 authentication. Data type: <code>object</code>.</td>
+                                                                                                                      <td>Refer to #threeds2requestdata-json-format</td>
+                                                                                                                    </tr>
+                                                                                                                  </tbody>
+                                                                                                                </table>
   `}</HTMLBlock>
 
   #### threeDS2RequestData JSON format
