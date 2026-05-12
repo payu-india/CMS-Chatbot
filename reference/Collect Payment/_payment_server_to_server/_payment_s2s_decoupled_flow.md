@@ -1,6 +1,4 @@
 ---
-title: Cards Decoupled Flow
-excerpt: Collect Payment API with PayU Hosted Checkout integration
 api:
   file: final_updated_s2s_decoupled_flow.json
   operationId: CollectPaymentAPI-S2S
@@ -13,6 +11,12 @@ You can collect card payments without redirection to bank page for entering OTP 
 <Callout icon="📘" theme="info">
   **Reference**: For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 </Callout>
+
+<br />
+
+<Cards_PayU_Labs />
+
+<br />
 
 <Accordion_Collect_Fraud_Detection />
 
