@@ -11,7 +11,7 @@ metadata:
 ---
 Use this API to modify mandates created using UPI as a payment method.
 
-<Callout icon="❗️">
+<Callout icon="❗️" theme="error">
   **Watch Out!**
 
   You can use this API to modify only UPI Collect registration transactions and not for mandates created using the UPI Intent mode.
@@ -238,25 +238,67 @@ Use this API to modify mandates created using UPI as a payment method.
 It will be an async call to customer for approving the mandate modification in their PSP app by entering their MPIN. After the UPI mandate is modified, you can check the UPI mandate status, or can consume the UPI mandate modification webhooks from PayU end. Poll the <Anchor label="Check the Mandate Status" target="_blank" href="https://docs.payu.in/reference/check-the-mandate-status">Check the Mandate Status</Anchor> API to get the mandate status. Below is the response you get in the case of pending update.
 
 <Accordion title="Update Pending Response Payload" icon="fa-code">
-
-```json Sample Response
-{
-    "status": 1,
-    "action": "MANDATE_UPDATE",
-    "message": "Mandate update pending at PG. Please wait for webhook or use upi_mandate_status service to confirm updated status"
-}
-```
-
+  ```json Sample Response
+  {
+      "status": 1,
+      "action": "MANDATE_UPDATE",
+      "message": "Mandate update pending at PG. Please wait for webhook or use upi_mandate_status service to confirm updated status"
+  }
+  ```
 </Accordion>
 
 ## Errors
 
 Below are the failure scenarios associated with UPI.
 
-<Accordion title="Invalid data" icon="fa-exclamation-triangle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+<Accordion title="Invalid Data" icon="fa-exclamation-triangle">
+
+```json Error Response
+{
+  "status":0,
+  "action":" MANDATE_UPDATE ",
+  "message":"Invalid Data "
+}
+```
+
+**Reason:** This error occurs when you pass invalid data.
+
+**Recommended Fix:** Make sure you pass valid data in the request.
+
 </Accordion>
+
+<Accordion title="authPayuid is Missing" icon="fa-user-times">
+
+```json Error Response
+{
+  "status":0,
+  "action":" MANDATE_UPDATE ",
+  "message":"authPayuId is mandatory "
+}
+```
+
+**Reason:** This error occurs when you do not pass the `authPayuId` value.
+
+**Recommended Fix:** Make sure to pass the `authPayuId` value.
+
+</Accordion>
+
+<Accordion title="requestId is Missing" icon="fa-id-badge">
+
+```json Error Response
+{
+  "status":0,
+  "action":" MANDATE_UPDATE ",
+  "message":"requestId is mandatory"
+}
+```
+
+**Reason:** This error occurs when you miss to pass the `requestId` parameter value.
+
+**Recommended Fix:** Make sure to pass the `requestId` parameter value.
+
+</Accordion>
+
+<br />
 
 <br />
