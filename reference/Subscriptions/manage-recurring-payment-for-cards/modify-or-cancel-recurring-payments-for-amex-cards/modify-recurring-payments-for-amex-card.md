@@ -1,6 +1,5 @@
 ---
 title: Modify Recurring Payments for AMEX and RuPay Cards
-excerpt: 'Resource: **_payment**'
 deprecated: false
 hidden: false
 metadata:
@@ -40,543 +39,32 @@ HTTP Method: **POST**
 
 The following table describes the parameters for modifying the recurring payment details for AMEX and RuPay cards.
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+Here's the request parameters table in markdown format, following the same two-column pipe-table style used in the sibling Integration page `cancel-recurring-payment-for-a-amex-card.md` (i.e., `**param**<br />\`mandatory\``  in the first column and type chip + description in the second).
+
+```markdown
+| Parameter                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| :--------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **key**<br />`mandatory`           | `varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **txnid**<br />`mandatory`         | `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.<br />`Character limit`: 25<br />**Note**: Ensure that the transaction ID sent to us has not been successful earlier. |
+| **amount**<br />`mandatory`        | `float` This parameter should contain the payment amount of the particular transaction.<br />**Note**: Type-cast the amount to float type. Depending upon the merchant use case, this value will vary.<br />- It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.<br />- In the case of first instalment use cases, this amount can be equal to initiate setup amount.                                                                                                                                            |
+| **firstname**<br />`mandatory`     | `varchar` Must contain the first name of the customer.<br />`Character limit`: 60                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **email**<br />`mandatory`         | `varchar` Must contain the email of the customer.<br />This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.<br />Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br />`Character limit`: 50                                                                                                                                                                              |
+| **phone**<br />`mandatory`         | `varchar` Must contain the phone number of the customer.<br />This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br />`Character limit`: 50                                                                                                                                                                            |
+| **productinfo**<br />`mandatory`   | `varchar` This parameter should contain a brief product description. It should be a string describing the product.<br />`Character limit`: 100                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **api_version**<br />`mandatory`   | This parameter must always be passed as **7**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **si**<br />`mandatory`            | This parameter must be passed with the value as **3** to modify an already existing subscription/consent.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **pg**<br />`mandatory`            | `String` Indicates the payment category that the merchant wants the customer to see by default on PayU's payment page. Possible values: <ul><li>`CC`: For credit cards</li><li>`DC`: For debit cards</li></ul>                                                                                                                                                                                                                                                                                                                                                       |
+| **bankcode**<br />`mandatory`      | `String` A unique bank code of a payment option. Possible values: <ul><li>`AMEX`: For American Express credit and debit cards</li><li>`RUPAYCC`: For RuPay credit cards</li><li>`RUPAY`: For RuPay debit cards</li></ul> For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).                                                                                                                                                                                                           |
+| **surl**<br />`mandatory`          | `String` The Success URL where the customer will be redirected after a successful payment.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **furl**<br />`mandatory`          | `String` The Failure URL where the customer will be redirected if the payment fails.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **ccnum**<br />`mandatory`         | This parameter must contain the 13 to 19-digit card number for credit or debit cards.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **ccexpmon**<br />`mandatory`      | This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format.<br />For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – it should be 10, 11 and 12 respectively.                                                                                                                                                                                                                                      |
+| **ccexpyr**<br />`mandatory`       | This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **ccvv**<br />`mandatory`          | This parameter must contain the 3-digit CVV number for credit cards or debit cards. For AMEX cards, the 4-digit security code (4DBC) number of the card must be posted. Also known as CID (Card Identification) number.                                                                                                                                                                                                                                                                                                                                              |
+| **ccname**<br />`mandatory`        | This parameter must contain the name on card – as entered by the customer for the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **si_details**<br />`mandatory`    | This parameter represents mandatory details which need to be passed during the modify transaction from the merchant system to PayU.<br />**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that the same can be forwarded to acquirers and issuers (for more details refer – [RBI Notification](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)).<br />This is a JSON object and it includes a set of parameters described in the **si_details Parameter – JSON Details** table. |
+| **hash**<br />`mandatory`          | Hash is a crucial parameter used to ensure that any data is not tampered while redirecting the customer from the merchant website to PayU's payment interface during registration transactions.<br />It is a SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by the merchant salt.<br />HASH = `SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|si_details\|SALT)`                                                                      |
 
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        key
-        `mandatory`
-      </td>
-
-      <td>
-        `varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account.
-      </td>
-
-      <td>
-        BmTY3G
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnid
-        `mandatory`
-      </td>
-
-      <td>
-        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.
-        `Character limit`: 25
-
-        **Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
-      </td>
-
-      <td>
-        my_order_47719
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount
-        `mandatory`
-      </td>
-
-      <td>
-        `float` This parameter should contain the payment amount of the particular transaction.
-
-        **Note**: Type-cast the amount to float type. Depending upon the merchant use case, this value will vary.
-
-        * It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.
-        * In the case of first instalment use cases, this amount can be equal to initiate setup amount.
-      </td>
-
-      <td>
-        1.00
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstname
-        `mandatory`
-      </td>
-
-      <td>
-        `varchar` Must contain the first name of the customer.
-        `Character limit`: 60
-      </td>
-
-      <td>
-        Payu-Admin
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email
-        `mandatory`
-      </td>
-
-      <td>
-        `varchar` Must contain the email of the customer.
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.
-        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
-        `Character limit`: 50
-      </td>
-
-      <td>
-        test@example.com
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone
-        `mandatory`
-      </td>
-
-      <td>
-        `varchar` Must contain the phone number of the customer.
-
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
-        `Character limit`: 50
-      </td>
-
-      <td>
-        1234567890
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productinfo
-        `mandatory`
-      </td>
-
-      <td>
-        `varchar` This parameter should contain a brief product description. It should be a string describing the product.
-        `Character limit`: 100
-      </td>
-
-      <td>
-        my_order_47719
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        api_version
-        `mandatory`
-      </td>
-
-      <td>
-        This parameter must always be passed as **7** for AMEX and RuPay recurring payment modification requests.
-      </td>
-
-      <td>
-        7
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        si
-        `mandatory`
-      </td>
-
-      <td>
-        This parameter must be passed with the value as **3** to modify an already existing subscription/consent.
-      </td>
-
-      <td>
-        3
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        pg
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter defines the payment category that the merchant wants the customer to see by default on PayU's payment page. The values are:
-        <ul>
-          <li><code>CC</code>: Credit Card</li>
-          <li><code>DC</code>: Debit Card</li>
-        </ul>
-        For more information, refer to Payment Mode Codes.
-      </td>
-
-      <td>
-        CC
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankcode
-        `mandatory`
-      </td>
-
-      <td>
-        Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value. Possible values are:
-        <ul>
-          <li><code>AMEX</code>: For American Express credit and debit cards</li>
-          <li><code>RUPAYCC</code>: For RuPay credit cards</li>
-          <li><code>RUPAY</code>: For RuPay debit cards</li>
-        </ul>
-        For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).
-      </td>
-
-      <td>
-        AMEX
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        surl
-        `mandatory`
-      </td>
-
-      <td>
-        `String` The Success URL where the customer will be redirected after a successful payment.
-      </td>
-
-      <td>
-        https://admin.payu.in/test_response
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        furl
-        `mandatory`
-      </td>
-
-      <td>
-        `String` The Failure URL where the customer will be redirected if the payment fails.
-      </td>
-
-      <td>
-        https://admin.payu.in/test_response
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccnum
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter contains the card number used for the transaction.
-      </td>
-
-      <td>
-        5123456789012346
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpmon
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter contains the card expiry month in **MM** format.
-      </td>
-
-      <td>
-        05
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpyr
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter contains the card expiry year in **YYYY** format.
-      </td>
-
-      <td>
-        2030
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccvv
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter contains the CVV number printed on the card.
-      </td>
-
-      <td>
-        123
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccname
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter contains the name of the cardholder as printed on the card.
-      </td>
-
-      <td>
-        Test User
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        si_details
-        `mandatory`
-      </td>
-
-      <td>
-        This parameter represents mandatory details which need to be passed during the modify transaction from the merchant system to PayU.
-
-        **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that the same can be forwarded to acquirers and issuers (for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0)).
-
-        This is a JSON object and it includes a set of parameters described in the si_details Parameter Description table.
-      </td>
-
-      <td>
-        Refer the example below the si_details Parameter Description table.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        hash
-        `mandatory`
-      </td>
-
-      <td>
-        Hash is a crucial parameter used to ensure that any data is not tampered while redirecting the customer from the merchant website to PayU's payment interface during registration transactions.
-
-        It is a SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by the merchant salt.
-
-        In the case of registration transaction, the formula used to calculate this hash is similar to the following:
-        HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)
-      </td>
-
-      <td>
-        \{\{hash_value\}\}
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-
-## Response parameters
-
-<HTMLBlock>{`
-<style>
-/* Target only the second column in the table */
-.markdown-body table td:nth-child(2) {
-  word-break: break-word !important;
-}
-
-/* Keep the first column from breaking unnecessarily */
-.markdown-body table td:nth-child(1) {
-  word-break: normal;
-  white-space: nowrap;
-}
-</style>
-<table>
-  <thead>
-    <tr>
-      <th align="left">Parameter</th>
-      <th align="left">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>mihpayid</td>
-      <td>It is a unique reference number created for each transaction at PayU's end which is used to identify a transaction in case of a refund.</td>
-    </tr>
-    <tr>
-      <td>mode</td>
-      <td>
-        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are: <ul><li><code>CC</code>: Credit Card</li> <li><code>DC</code>: Debit Card</li></ul>
-      </td>
-    </tr>
-    <tr>
-      <td>bankcode</td>
-      <td>Indicates the payment option used for the transaction. Possible values: <ul><li><code>AMEX</code>: For American Express credit and debit cards</li> <li><code>RUPAYCC</code>: For RuPay credit cards</li> <li><code>RUPAY</code>: For RuPay debit cards</li></ul></td>
-    </tr>
-    <tr>
-      <td>status</td>
-      <td>
-        This parameter returns the status of the transaction and must be used to map the order status. Possible values are success, failure, or pending. The significance of the values for these values are:<br/>
-        • <strong>Success</strong>: If the value of status parameter is 'success', the transaction is successful.<br/>
-        • <strong>Failed</strong>: If the value of status parameter is 'failure' or 'pending', must only be treated as a failed transaction.
-      </td>
-    </tr>
-    <tr>
-      <td>unmappedstatus</td>
-      <td>This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to <a href="http://docs.payu.in/reference/payment-state-explanations">Payment State Explanations</a>.</td>
-    </tr>
-    <tr>
-      <td>key</td>
-      <td>This parameter contains the merchant key.</td>
-    </tr>
-    <tr>
-      <td>error</td>
-      <td>For the failed transactions, this parameter provides the reason for failure.</td>
-    </tr>
-    <tr>
-      <td>error_message</td>
-      <td>This parameter contains the error message. For the list of error message, refer to <a href="http://docs.payu.in/reference/error-codes">Error Codes</a>.</td>
-    </tr>
-    <tr>
-      <td>bank_ref_num</td>
-      <td>For each successful transaction – this parameter contains the bank reference number generated by the bank.</td>
-    </tr>
-    <tr>
-      <td>txnid</td>
-      <td>This parameter contains the transaction ID value posted by the merchant during the transaction request.</td>
-    </tr>
-    <tr>
-      <td>amount</td>
-      <td>This parameter contains the original amount which was sent in the transaction request by the merchant.</td>
-    </tr>
-    <tr>
-      <td>cardCategory</td>
-      <td>This parameter contains the card category to indicate whether it is domestic or international.</td>
-    </tr>
-    <tr>
-      <td>discount</td>
-      <td>This parameter contains the discount amount by the merchant.</td>
-    </tr>
-    <tr>
-      <td>net_amount_debit</td>
-      <td>This parameter contains the net amount debited.</td>
-    </tr>
-    <tr>
-      <td>addedon</td>
-      <td>The transaction date and time of the transaction.</td>
-    </tr>
-    <tr>
-      <td>productinfo</td>
-      <td>This parameter contains the same value of product information which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>firstname</td>
-      <td>This parameter contains the same value of first name which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>lastname</td>
-      <td>This parameter contains the same value of last name which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>email</td>
-      <td>This parameter contains the same value of email which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>phone</td>
-      <td>This parameter contains the same value of phone which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>hash</td>
-      <td>This parameter is crucial and is similar to the hash parameter used in the transaction request. For more information, refer to <a href="http://docs.payu.in/docs/generate-hash-merchant-hosted">Generate Hash</a>.</td>
-    </tr>
-    <tr>
-      <td>PG_TYPE</td>
-      <td>This parameter gives information on the payment gateway used for the transaction.</td>
-    </tr>
-    <tr>
-      <td>udf1</td>
-      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>udf2</td>
-      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>udf3</td>
-      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5 which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>udf4</td>
-      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>udf5</td>
-      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>udf6</td>
-      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>udf7</td>
-      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>udf8</td>
-      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>udf9</td>
-      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
-    </tr>
-    <tr>
-      <td>success_at</td>
-      <td>This parameter contains the date and timestamp when the transaction was successful.</td>
-    </tr>
-    <tr>
-      <td>cardnum</td>
-      <td>The parameter contains the card number masked and only last 4 digits are returned.</td>
-    </tr>
-    <tr>
-      <td>issuing_bank</td>
-      <td>The parameters contains the card issuing bank.</td>
-    </tr>
-    <tr>
-      <td>si_consent_action</td>
-      <td>
-        This parameter will be returned only if a modify subscription request has been received. In other cases, this field will not be returned.<br/>
-        Values can be<br/>
-        modify<br/>
-        cancel<br/>
-        If, in billing details, the action was to modify, then to validate whether the subscription was modified, this fields need to be validated in response. If this field is not sent in response of modify request, then even if transaction is success, then money would have got deducted but the subscription would not have been modified.
-      </td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
-
-<br />
 
 ### For network tokens
 
@@ -802,3 +290,182 @@ Array
     [cardnum] => XXXXXXXXXXXX4879
 )
 ```
+## Response parameters
+<HTMLBlock>{`
+<style>
+/* Target only the second column in the table */
+.markdown-body table td:nth-child(2) {
+  word-break: break-word !important;
+}
+
+/* Keep the first column from breaking unnecessarily */
+.markdown-body table td:nth-child(1) {
+  word-break: normal;
+  white-space: nowrap;
+}
+</style>
+<table>
+  <thead>
+    <tr>
+      <th align="left">Parameter</th>
+      <th align="left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mihpayid</td>
+      <td>It is a unique reference number created for each transaction at PayU's end which is used to identify a transaction in case of a refund.</td>
+    </tr>
+    <tr>
+      <td>mode</td>
+      <td>
+        This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are: <ul><li><code>CC</code>: Credit Card</li> <li><code>DC</code>: Debit Card</li></ul>
+      </td>
+    </tr>
+    <tr>
+      <td>bankcode</td>
+      <td>Indicates the payment option used for the transaction. Possible values: <ul><li><code>AMEX</code>: For American Express credit and debit cards</li> <li><code>RUPAYCC</code>: For RuPay credit cards</li> <li><code>RUPAY</code>: For RuPay debit cards</li></ul></td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>
+        This parameter returns the status of the transaction and must be used to map the order status. Possible values are success, failure, or pending. The significance of the values for these values are:<br/>
+        • <strong>Success</strong>: If the value of status parameter is 'success', the transaction is successful.<br/>
+        • <strong>Failed</strong>: If the value of status parameter is 'failure' or 'pending', must only be treated as a failed transaction.
+      </td>
+    </tr>
+    <tr>
+      <td>unmappedstatus</td>
+      <td>This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to <a href="http://docs.payu.in/reference/payment-state-explanations">Payment State Explanations</a>.</td>
+    </tr>
+    <tr>
+      <td>key</td>
+      <td>This parameter contains the merchant key.</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>For the failed transactions, this parameter provides the reason for failure.</td>
+    </tr>
+    <tr>
+      <td>error_message</td>
+      <td>This parameter contains the error message. For the list of error message, refer to <a href="http://docs.payu.in/reference/error-codes">Error Codes</a>.</td>
+    </tr>
+    <tr>
+      <td>bank_ref_num</td>
+      <td>For each successful transaction – this parameter contains the bank reference number generated by the bank.</td>
+    </tr>
+    <tr>
+      <td>txnid</td>
+      <td>This parameter contains the transaction ID value posted by the merchant during the transaction request.</td>
+    </tr>
+    <tr>
+      <td>amount</td>
+      <td>This parameter contains the original amount which was sent in the transaction request by the merchant.</td>
+    </tr>
+    <tr>
+      <td>cardCategory</td>
+      <td>This parameter contains the card category to indicate whether it is domestic or international.</td>
+    </tr>
+    <tr>
+      <td>discount</td>
+      <td>This parameter contains the discount amount by the merchant.</td>
+    </tr>
+    <tr>
+      <td>net_amount_debit</td>
+      <td>This parameter contains the net amount debited.</td>
+    </tr>
+    <tr>
+      <td>addedon</td>
+      <td>The transaction date and time of the transaction.</td>
+    </tr>
+    <tr>
+      <td>productinfo</td>
+      <td>This parameter contains the same value of product information which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>firstname</td>
+      <td>This parameter contains the same value of first name which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>lastname</td>
+      <td>This parameter contains the same value of last name which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td>This parameter contains the same value of email which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>phone</td>
+      <td>This parameter contains the same value of phone which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>hash</td>
+      <td>This parameter is crucial and is similar to the hash parameter used in the transaction request. For more information, refer to <a href="http://docs.payu.in/docs/generate-hash-merchant-hosted">Generate Hash</a>.</td>
+    </tr>
+    <tr>
+      <td>PG_TYPE</td>
+      <td>This parameter gives information on the payment gateway used for the transaction.</td>
+    </tr>
+    <tr>
+      <td>udf1</td>
+      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>udf2</td>
+      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>udf3</td>
+      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5 which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>udf4</td>
+      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>udf5</td>
+      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>udf6</td>
+      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>udf7</td>
+      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>udf8</td>
+      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>udf9</td>
+      <td>This parameter contains the same value of udf1, udf2, udf3, udf4, or udf5, which was sent in the transaction request from the merchant's end to PayU.</td>
+    </tr>
+    <tr>
+      <td>success_at</td>
+      <td>This parameter contains the date and timestamp when the transaction was successful.</td>
+    </tr>
+    <tr>
+      <td>cardnum</td>
+      <td>The parameter contains the card number masked and only last 4 digits are returned.</td>
+    </tr>
+    <tr>
+      <td>issuing_bank</td>
+      <td>The parameters contains the card issuing bank.</td>
+    </tr>
+    <tr>
+      <td>si_consent_action</td>
+      <td>
+        This parameter will be returned only if a modify subscription request has been received. In other cases, this field will not be returned.<br/>
+        Values can be<br/>
+        modify<br/>
+        cancel<br/>
+        If, in billing details, the action was to modify, then to validate whether the subscription was modified, this fields need to be validated in response. If this field is not sent in response of modify request, then even if transaction is success, then money would have got deducted but the subscription would not have been modified.
+      </td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
+
+<br />
