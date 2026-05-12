@@ -68,240 +68,12 @@ Use this API to modify mandates created using UPI as a payment method.
   Parameters marked with <sup style={{color: 'red'}}>*</sup> are mandatory.
 </Callout>
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        **key**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `varchar` The unique Merchant Key provided by PayU for your merchant account.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **txnid**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `varchar` A unique transaction ID (or order ID). It is the order reference number generated at your end. You can use this ID to track a particular order. This ID should be unique and you can duplicate it. The parameter value can be maximum of 25 characters.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **amount**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `float` The transaction amount in `INR`.
-
-        **Note**: Type-cast the amount to float type Depending upon the merchant use case, this value will vary.
-
-        * The value should be minimum of `1.00` INR for Cards for penny testing.
-        * For first installment, this can be initiate setup amount However, this is supported only for selected NetBanking (ICICI and HDFC), all Credit / Debit Cards, and UPI.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **firstname**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `varchar` The first name of the customer. For example, `Gaurav`. The value can contain maximum of 60 characters.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **email**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `varchar` The email of the customer. For example, `gaurav@example.com`.  The value can contain maximum of 50 characters.
-
-        **Note:** The email is used in case of fraud detection and chargebacks. Additionally, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **phone**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `varchar` The customer phone number. For example, `1234567890`.
-
-        **Note:** The email is used in case of fraud detection and chargebacks. Additionally, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **productinfo**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `string` A product description. The value can contain maximum of 100 characters.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **api_version**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `number` The API version. You should always pass this value as `7`.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **si**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `number` The standing instruction. You should pass the value as `3` to modify the card mandate.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **pg**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `string` This parameter describes the payment category by which the transaction was completed/attempted by the customer. Possible values:
-
-        * `DC`: For debit cards
-        * `CC`: For credit cards
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **bankcode**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `string` This parameter contains the code indicating the payment option used for the transaction. Possible values:
-
-        * `CC`: For Visa and Mastercard credit cards
-        * `AMEX`: For American Express credit and debit cards
-        * `RUPAYCC`: For RuPay credit cards
-        * `VISA`: For Visa debit cards
-        * `MAST`: For Mastercard debit cards
-        * `RUPAY`: For RuPay debit cards
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **surl**
-      </td>
-
-      <td>
-        `string` The success URL customers are redirected to if the transaction is successful.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **furl**
-      </td>
-
-      <td>
-        `string` The failure URL customers are redirected to if the transaction is unsuccessful.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **ccnum**
-      </td>
-
-      <td>
-        `number` The credit card number used to register the mandate.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **ccexpmon**
-      </td>
-
-      <td>
-        `number` The expiry month of the CC.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **ccexpyr**
-      </td>
-
-      <td>
-        `number` The expiry year of the CC.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **ccvv**
-      </td>
-
-      <td>
-        `number` The CVV of the CC.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **ccname**
-      </td>
-
-      <td>
-        `string` The name of the CC owner.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **si_details**
-      </td>
-
-      <td>
-        `json` The SI mandatory details that need to be passed during registration transaction from your system to PayU. Parameters are described in the si_details Object section.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **hash**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `string` The calculated hash value using the following logic. `SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)`. You can use the below button to generate a hash by providing the parameter values as per the logic.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| **Parameter**                                  | **Description**                                                                                                                                                                                                          |
+| :--------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **key**<sup style={{color: 'red'}}>*</sup>     | `varchar` The unique Merchant Key provided by PayU for your merchant account.                                                                                                                                            |
+| **command**<sup style={{color: 'red'}}>*</sup> | `varchar` Determines the API command. Here, it is `upi_mandate_modify`.                                                                                                                                                  |
+| **hash**<sup style={{color: 'red'}}>*</sup>    | `string` The calculated hash value using the following logic. `hash = sha512(key\|command\|var1\|SALT)`. You can use the **Generate Hash** button to generate a hash by providing the parameter values as per the logic. |
+| **var1**<sup style={{color: 'red'}}>*</sup>    | `json` The variable details. Parameters are described in the var1 JSON Parameters section.                                                                                                                               |
 
 <HTMLBlock>{`
 <p>Use this button to generate the hash value.</p>
@@ -340,17 +112,7 @@ Use this API to modify mandates created using UPI as a payment method.
                 </button>
 `}</HTMLBlock>
 
-### si_details JSON Parameters
-
-<Callout icon="📘" theme="info">
-  **Handy Tips:**
-
-  * One or more fields (marked optional) in the following table must be posted to modify the subscription:
-    * `billingCycle`
-    * `billingInterval`
-    * `billingAmount`
-  * If the request was to modify a subscription, si_consent_action parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
-</Callout>
+### var1 JSON Parameters
 
 <Table align={["left","left"]}>
   <thead>
@@ -368,11 +130,11 @@ Use this API to modify mandates created using UPI as a payment method.
   <tbody>
     <tr>
       <td>
-        **action**<sup style={{color: 'red'}}>*</sup>
+        **authPayuId**<sup style={{color: 'red'}}>*</sup>
       </td>
 
       <td>
-        `string` This field is used to modify or cancel an existing subscription. Pass `modify` as a value to modify a subscription.
+        `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request.
       </td>
     </tr>
 
