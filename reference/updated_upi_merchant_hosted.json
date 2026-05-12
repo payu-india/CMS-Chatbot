@@ -19,7 +19,7 @@
           "Test",
           "TPV"
         ],
-        "summary": "Merchant Hosted Checkout - UPI",
+        "summary": "UPI",
         "description": "",
         "operationId": "MerchantHostedCheckout-UPI",
         "parameters": [
