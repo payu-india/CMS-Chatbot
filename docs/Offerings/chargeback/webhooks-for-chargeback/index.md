@@ -165,16 +165,14 @@ Content-Type: application/json
 x-payu-dispute-webhook-signature-algorithm: SHA512
 x-payu-dispute-webhook-signature-v2: 14221c99eab16d43512461dfee4ac102cb0a9d358a723aaa824147537bdf7de712c3a639950b74f50194525ae206ddc70f1dbd4382060d224a2e217d39bec
 x-payu-dispute-webhook-signature-v1: 14221c99eab16d43512461dfee4ac102cb0a9d358a723aaa824147537bdf7de712c3a639950b74f50194525ae206ddc70f1dbd4382060d224a2e2b1d39bec
-
- 
 {
   "type": "payments",
   "event": "dispute",
   "created_at": "2025-12-16T16:00:56.000+05:30",
   "updated_at": "2026-05-06T15:34:57.000+05:30",
-  "mid": "8235901",
-  "cb_id": 2042053,
-  "txn_id": "26431197092",
+  "mid": "823501",
+  "cb_id": 204053,
+  "txn_id": "264397092",
   "cb_type": "Arbitration",
   "due_date": "2026-03-05",
   "cb_amount": "2.0",
