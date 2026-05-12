@@ -1,5 +1,4 @@
 ---
-title: Cards Direct Authorization Flow
 api:
   file: updated_s2s_cards_decoupled_flow.json
   operationId: S2SDirectAuthorizationFlow
@@ -10,6 +9,12 @@ You can collect card payments without redirection to bank page for entering OTP 
 <Callout icon="📘" theme="info">
   **Reference**: For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 </Callout>
+
+<br />
+
+<Cards_PayU_Labs />
+
+<br />
 
 <Accordion_Collect_Fraud_Detection />
 
