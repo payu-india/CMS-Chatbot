@@ -18,7 +18,7 @@
         "tags": [
           "Test"
         ],
-        "summary": "S2S-UPI Collection",
+        "summary": "UPI Collect - S2S",
         "operationId": "S2S-UPICollection",
         "parameters": [
           {
