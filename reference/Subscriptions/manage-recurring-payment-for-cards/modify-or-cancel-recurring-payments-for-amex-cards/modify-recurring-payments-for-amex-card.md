@@ -40,6 +40,365 @@ HTTP Method: **POST**
 
 The following table describes the parameters for modifying the recurring payment details for AMEX and RuPay cards.
 
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        key
+        `mandatory`
+      </td>
+
+      <td>
+        `varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account.
+      </td>
+
+      <td>
+        BmTY3G
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        txnid
+        `mandatory`
+      </td>
+
+      <td>
+        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.
+        `Character limit`: 25
+
+        **Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
+      </td>
+
+      <td>
+        my_order_47719
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        amount
+        `mandatory`
+      </td>
+
+      <td>
+        `float` This parameter should contain the payment amount of the particular transaction.
+
+        **Note**: Type-cast the amount to float type. Depending upon the merchant use case, this value will vary.
+
+        * It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.
+        * In the case of first instalment use cases, this amount can be equal to initiate setup amount.
+      </td>
+
+      <td>
+        1.00
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        firstname
+        `mandatory`
+      </td>
+
+      <td>
+        `varchar` Must contain the first name of the customer.
+        `Character limit`: 60
+      </td>
+
+      <td>
+        Payu-Admin
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        email
+        `mandatory`
+      </td>
+
+      <td>
+        `varchar` Must contain the email of the customer.
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.
+        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
+        `Character limit`: 50
+      </td>
+
+      <td>
+        test@example.com
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        phone
+        `mandatory`
+      </td>
+
+      <td>
+        `varchar` Must contain the phone number of the customer.
+
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
+        `Character limit`: 50
+      </td>
+
+      <td>
+        1234567890
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        productinfo
+        `mandatory`
+      </td>
+
+      <td>
+        `varchar` This parameter should contain a brief product description. It should be a string describing the product.
+        `Character limit`: 100
+      </td>
+
+      <td>
+        my_order_47719
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        api_version
+        `mandatory`
+      </td>
+
+      <td>
+        This parameter must always be passed as **7** for AMEX and RuPay recurring payment modification requests.
+      </td>
+
+      <td>
+        7
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        si
+        `mandatory`
+      </td>
+
+      <td>
+        This parameter must be passed with the value as **3** to modify an already existing subscription/consent.
+      </td>
+
+      <td>
+        3
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        pg
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter defines the payment category that the merchant wants the customer to see by default on PayU's payment page. The values are:
+        <ul>
+          <li><code>CC</code>: Credit Card</li>
+          <li><code>DC</code>: Debit Card</li>
+        </ul>
+        For more information, refer to Payment Mode Codes.
+      </td>
+
+      <td>
+        CC
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankcode
+        `mandatory`
+      </td>
+
+      <td>
+        Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value. Possible values are:
+        <ul>
+          <li><code>AMEX</code>: For American Express credit and debit cards</li>
+          <li><code>RUPAYCC</code>: For RuPay credit cards</li>
+          <li><code>RUPAY</code>: For RuPay debit cards</li>
+        </ul>
+        For more information, refer to [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).
+      </td>
+
+      <td>
+        AMEX
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        surl
+        `mandatory`
+      </td>
+
+      <td>
+        `String` The Success URL where the customer will be redirected after a successful payment.
+      </td>
+
+      <td>
+        https://admin.payu.in/test_response
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        furl
+        `mandatory`
+      </td>
+
+      <td>
+        `String` The Failure URL where the customer will be redirected if the payment fails.
+      </td>
+
+      <td>
+        https://admin.payu.in/test_response
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccnum
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter contains the card number used for the transaction.
+      </td>
+
+      <td>
+        5123456789012346
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccexpmon
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter contains the card expiry month in **MM** format.
+      </td>
+
+      <td>
+        05
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccexpyr
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter contains the card expiry year in **YYYY** format.
+      </td>
+
+      <td>
+        2030
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccvv
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter contains the CVV number printed on the card.
+      </td>
+
+      <td>
+        123
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ccname
+        `mandatory`
+      </td>
+
+      <td>
+        `String` This parameter contains the name of the cardholder as printed on the card.
+      </td>
+
+      <td>
+        Test User
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        si_details
+        `mandatory`
+      </td>
+
+      <td>
+        This parameter represents mandatory details which need to be passed during the modify transaction from the merchant system to PayU.
+
+        **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that the same can be forwarded to acquirers and issuers (for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0)).
+
+        This is a JSON object and it includes a set of parameters described in the si_details Parameter Description table.
+      </td>
+
+      <td>
+        Refer the example below the si_details Parameter Description table.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        hash
+        `mandatory`
+      </td>
+
+      <td>
+        Hash is a crucial parameter used to ensure that any data is not tampered while redirecting the customer from the merchant website to PayU's payment interface during registration transactions.
+
+        It is a SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by the merchant salt.
+
+        In the case of registration transaction, the formula used to calculate this hash is similar to the following:
+        HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)
+      </td>
+
+      <td>
+        \{\{hash_value\}\}
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+
+## Response parameters
+
 <HTMLBlock>{`
 <style>
 /* Target only the second column in the table */
@@ -232,71 +591,11 @@ This is applicable for the following scenarios:
 
 <br />
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Value
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        store_card_token
-        `mandatory for store card transactions`
-      </td>
-
-      <td>
-        `String` This must include the Network token generated at your end.
-      </td>
-
-      <td>
-        1234 4567 2456 3566
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        storecard_token_type
-        `mandatory`
-      </td>
-
-      <td>
-        `integer` This parameter is used to specify the store card token type. For this scenario, you must include **1**.
-      </td>
-
-      <td>
-        1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        additional_info
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter will contain the additional information in the following JSON format:
-        `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}`
-      </td>
-
-      <td>
-        `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}`
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameter                                                | Description                                                                                                                                                                                 | Value                                                                                         |
+| :------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------- |
+| store_card_token `mandatory for store card transactions` | `String` This must include the Network token generated at your end.                                                                                                                         | 1234 4567 2456 3566                                                                           |
+| storecard_token_type `mandatory`                         | `integer` This parameter is used to specify the store card token type. For this scenario, you must include **1**.                                                                           | 1                                                                                             |
+| additional_info `mandatory`                              | `String` This parameter will contain the additional information in the following JSON format: `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}` | `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}` |
 
 > 📘 Notes for **additional_info** parameter:
 >
@@ -346,8 +645,7 @@ The description for the **si_details** parameter (JSON format):
   <tbody>
     <tr>
       <td>
-        action
-        **mandatory for cards**
+        action **mandatory for cards**
       </td>
 
       <td>
@@ -361,8 +659,7 @@ The description for the **si_details** parameter (JSON format):
 
     <tr>
       <td>
-        paymentEndDate
-        **mandatory**
+        paymentEndDate **mandatory**
       </td>
 
       <td>
@@ -378,13 +675,11 @@ The description for the **si_details** parameter (JSON format):
 
     <tr>
       <td>
-        billingAmount
-        **optional**
+        billingAmount **optional**
       </td>
 
       <td>
-        The billing amount is passed in XX. XX format.
-        In use cases where **billingCycle = ADHOC**, amount passed is treated as maximum amount since billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.  For UPI, **billingAmount** should not be more than INR 15000 as it is the maximum limit allowed for UPI currently.
+        The billing amount is passed in XX. XX format. In use cases where **billingCycle = ADHOC**, amount passed is treated as maximum amount since billing amount and billing cycle varies as per the usage of the subscription service.  In this case, the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.  For UPI, **billingAmount** should not be more than INR 15000 as it is the maximum limit allowed for UPI currently.
       </td>
 
       <td>
@@ -394,8 +689,7 @@ The description for the **si_details** parameter (JSON format):
 
     <tr>
       <td>
-        authpayuid
-        **mandatory for modifying subscription with cards**
+        authpayuid **mandatory for modifying subscription with cards**
       </td>
 
       <td>
