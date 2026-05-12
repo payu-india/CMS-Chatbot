@@ -11,6 +11,12 @@ metadata:
 ---
 Use this API to modify mandates created using UPI as a payment method.
 
+<Callout icon="❗️">
+  **Watch Out!**
+
+  You can use this API to modify only UPI Collect registration transactions and not for mandates created using the UPI Intent mode.
+</Callout>
+
 <Cards>
   <Card title="Method">
     POST
@@ -229,7 +235,19 @@ Use this API to modify mandates created using UPI as a payment method.
 
 ### Update Pending
 
-It will be an async call to customer for approving the mandate modification in their PSP app by entering their MPIN. After the UPI mandate is modified, you can check the UPI mandate status, or can consume the UPI mandate modification webhooks from PayU end. Poll the <Anchor label="Check the Mandate Status" target="_blank" href="https://docs.payu.in/reference/check-the-mandate-status">Check the Mandate Status</Anchor> API to get the mandate status.
+It will be an async call to customer for approving the mandate modification in their PSP app by entering their MPIN. After the UPI mandate is modified, you can check the UPI mandate status, or can consume the UPI mandate modification webhooks from PayU end. Poll the <Anchor label="Check the Mandate Status" target="_blank" href="https://docs.payu.in/reference/check-the-mandate-status">Check the Mandate Status</Anchor> API to get the mandate status. Below is the response you get in the case of pending update.
+
+<Accordion title="Update Pending Response Payload" icon="fa-code">
+
+```json Sample Response
+{
+    "status": 1,
+    "action": "MANDATE_UPDATE",
+    "message": "Mandate update pending at PG. Please wait for webhook or use upi_mandate_status service to confirm updated status"
+}
+```
+
+</Accordion>
 
 ## Errors
 
