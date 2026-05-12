@@ -4,7 +4,7 @@ excerpt: >-
   Manage PayU recurring payments for Cards and UPI by modifying subscription
   amount, billing cycle, mandates, and customer plans.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
