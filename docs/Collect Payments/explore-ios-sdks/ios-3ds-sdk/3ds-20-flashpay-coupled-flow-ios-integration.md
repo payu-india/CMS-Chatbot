@@ -182,7 +182,7 @@ use_frameworks!
 
 ```bash
 pod 'PayUIndia-3DS2-SDK', '4.0.0'
-pod 'PayUIndia-TridentityMFA-SDK 1.2.0'
+pod 'PayUIndia-TridentityMFA-SDK', '1.2.0'
 pod install
 ```
 
