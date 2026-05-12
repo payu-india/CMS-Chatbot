@@ -181,7 +181,8 @@ use_frameworks!
 2. Install the dependencies using the command:
 
 ```bash
-pod 'PayUIndia-3DS2-SDK', '3.0.0.alpha.1'
+pod 'PayUIndia-3DS2-SDK', '4.0.0'
+pod 'PayUIndia-TridentityMFA-SDK 1.2.0'
 pod install
 ```
 
