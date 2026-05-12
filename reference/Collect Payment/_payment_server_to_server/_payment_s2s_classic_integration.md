@@ -1,6 +1,4 @@
 ---
-title: Classic Integration-S2S
-excerpt: Collect Payment API with PayU Hosted Checkout integration
 api:
   file: updated_s2s_classic_flow.json
   operationId: ClassicIntegration-S2S
@@ -9,6 +7,10 @@ link:
   new_tab: false
 ---
 You can collect card payments using Server-to-Server integration. This section provides the request and response parameters used in Step 1 of  [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration). You can get the sample request and response when use the "Try It" experience. For the complete integration steps, refer to [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration).
+
+<Cards_PayU_Labs />
+
+<br />
 
 ## Postman Collection
 
