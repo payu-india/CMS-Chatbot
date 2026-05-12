@@ -253,7 +253,7 @@ It will be an async call to customer for approving the mandate modification in t
 
 Below are the failure scenarios associated with UPI.
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
+<Accordion title="Invalid data" icon="fa-exclamation-triangle">
   Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
   ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
   occaecat cupidatat non proident!
