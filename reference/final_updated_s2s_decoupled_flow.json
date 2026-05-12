@@ -30,7 +30,7 @@
         "tags": [
           "Misc"
         ],
-        "summary": "CollectPaymentAPI-S2S",
+        "summary": "Cards Decoupled Flow",
         "description": "Collect Payment API with PayU Hosted Checkout integration",
         "operationId": "CollectPaymentAPI-S2S",
         "parameters": [
