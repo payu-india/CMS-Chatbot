@@ -252,51 +252,45 @@ It will be an async call to customer for approving the mandate modification in t
 Below are the failure scenarios associated with UPI.
 
 <Accordion title="Invalid Data" icon="fa-exclamation-triangle">
+  ```json Error Response
+  {
+    "status":0,
+    "action":" MANDATE_UPDATE ",
+    "message":"Invalid Data "
+  }
+  ```
 
-```json Error Response
-{
-  "status":0,
-  "action":" MANDATE_UPDATE ",
-  "message":"Invalid Data "
-}
-```
+  **Reason:** This error occurs when you pass invalid data.
 
-**Reason:** This error occurs when you pass invalid data.
-
-**Recommended Fix:** Make sure you pass valid data in the request.
-
+  **Recommended Fix:** Make sure you pass valid data in the request.
 </Accordion>
 
-<Accordion title="authPayuid is Missing" icon="fa-user-times">
+<Accordion title="authPayuId is Missing" icon="fa-user-times">
+  ```json Error Response
+  {
+    "status":0,
+    "action":" MANDATE_UPDATE ",
+    "message":"authPayuId is mandatory "
+  }
+  ```
 
-```json Error Response
-{
-  "status":0,
-  "action":" MANDATE_UPDATE ",
-  "message":"authPayuId is mandatory "
-}
-```
+  **Reason:** This error occurs when you do not pass the `authPayuId` value.
 
-**Reason:** This error occurs when you do not pass the `authPayuId` value.
-
-**Recommended Fix:** Make sure to pass the `authPayuId` value.
-
+  **Recommended Fix:** Make sure to pass the `authPayuId` value.
 </Accordion>
 
 <Accordion title="requestId is Missing" icon="fa-id-badge">
+  ```json Error Response
+  {
+    "status":0,
+    "action":" MANDATE_UPDATE ",
+    "message":"requestId is mandatory"
+  }
+  ```
 
-```json Error Response
-{
-  "status":0,
-  "action":" MANDATE_UPDATE ",
-  "message":"requestId is mandatory"
-}
-```
+  **Reason:** This error occurs when you miss to pass the `requestId` parameter value.
 
-**Reason:** This error occurs when you miss to pass the `requestId` parameter value.
-
-**Recommended Fix:** Make sure to pass the `requestId` parameter value.
-
+  **Recommended Fix:** Make sure to pass the `requestId` parameter value.
 </Accordion>
 
 <br />
