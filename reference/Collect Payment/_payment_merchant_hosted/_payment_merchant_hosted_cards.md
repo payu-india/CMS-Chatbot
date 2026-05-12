@@ -37,9 +37,17 @@ You can collect payments from customers with leading cards using the Merchant Ho
   **Note**: PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team ([integration@pay.in](mailto:integration@pay.in)).
 </Callout>
 
-## Postman Collection
+<br />
 
 <Cards_PayU_Labs />
+
+<br />
+
+## Postman Collection
+
+<Postman_collection />
+
+<br />
 
 <PaymentAPIEnvironment />
 
