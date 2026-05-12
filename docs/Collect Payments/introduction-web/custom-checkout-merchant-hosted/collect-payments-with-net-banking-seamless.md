@@ -13,7 +13,7 @@ next:
 Collect payments using Net Banking with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
 
 <Callout icon="👍" theme="okay">
-  Experience the end-to-end Merchant Hosted Checkout flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+  Experience the end-to-end Merchant Hosted Checkout > Net Banking flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
                   <style>
