@@ -257,7 +257,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
       </td>
 
       <td>
-        `string` This parameter describes the payment category by which the transaction was completed/attempted by the customer. Possible values:    
+        `string` This parameter describes the payment category by which the transaction was completed/attempted by the customer. Possible values:
 
         * `DC`: For debit cards
         * `CC`: For credit cards
@@ -270,7 +270,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
       </td>
 
       <td>
-        `string` This parameter contains the code indicating the payment option used for the transaction. Possible values:  
+        `string` This parameter contains the code indicating the payment option used for the transaction. Possible values:
 
         * `CC`: For Visa and Mastercard credit cards
         * `AMEX`: For American Express credit and debit cards
@@ -478,16 +478,54 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
 ## For Network Tokens
 
-If you are a merchant:
+For `si=3` (Modify or Cancel Mandate), PayU supports two integration flows based on how card details are processed:
 
-* With card token, TAVV(Cryptogram), and the last four digits of the card
-* Who can create a token or through another partner
+* Standard card flow 
+* Network token flow
+
+Use the standard card flow when processing mandates using regular card details. Use the network token flow when the card has been tokenized and the transaction must be processed using the network token instead of the physical card number.
 
 <Callout icon="📘" theme="info">
   **Handy Tips:**
 
   This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sent the card transaction request in the form of authentication.
 </Callout>
+
+### Additional Object to Pass
+
+Please find below the complete request payload with the additional added.
+
+<Accordion title="Sample Request Payload" icon="fa-code">
+
+```curl
+curl --location 'https://test.payu.in/_payment' \
+  --header 'accept: application/json' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
+  --data-urlencode 'key=BmTY3G' \
+  --data-urlencode 'txnid=my_order_47719' \
+  --data-urlencode 'amount=1.00' \
+  --data-urlencode 'firstname=Gaurav' \
+  --data-urlencode 'email=gaurav@example.com' \
+  --data-urlencode 'phone=1234567890' \
+  --data-urlencode 'productinfo=my_order_47719' \
+  --data-urlencode 'api_version=7' \
+  --data-urlencode 'si=3' \
+  --data-urlencode 'pg=CC' \
+  --data-urlencode 'bankcode=UTIBENCC' \
+  --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+  --data-urlencode 'storecard_token_type=1' \
+  --data-urlencode 'storecard_token=5200000000000000001' \
+  --data-urlencode 'additional_info_for_tokenized_flow={"tavv":"6726","last4digits":"1005","par":"A0009WTYMUG6ANFB3F9Z8CNYAKCX9"}' \
+  --data-urlencode 'ccexpmon=05' \
+  --data-urlencode 'ccexpyr=2030' \
+  --data-urlencode 'ccname=Test User' \
+  --data-urlencode 'si_details={"action":"modify","paymentEndDate":"2030-04-13","billingAmount":"400.00","authPayuId":"999990000006391"}' \
+  --data-urlencode 'hash=YOUR_HASH_VALUE'
+```
+
+</Accordion>
 
 | **Parameter**                                               | **Description**                                                                                                                                                                           |
 | :---------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
