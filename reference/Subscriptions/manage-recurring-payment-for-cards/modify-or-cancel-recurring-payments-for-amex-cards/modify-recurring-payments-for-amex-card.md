@@ -39,8 +39,6 @@ HTTP Method: **POST**
 
 The following table describes the parameters for modifying the recurring payment details for AMEX and RuPay cards.
 
-Here's the request parameters table in markdown format, following the same two-column pipe-table style used in the sibling Integration page `cancel-recurring-payment-for-a-amex-card.md` (i.e., `**param**<br />\`mandatory``  in the first column and type chip + description in the second).
-
 ````markdown
 | Parameter                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | :--------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
