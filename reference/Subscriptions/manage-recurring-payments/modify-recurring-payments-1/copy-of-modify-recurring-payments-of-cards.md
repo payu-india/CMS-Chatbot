@@ -293,6 +293,20 @@ Below are the failure scenarios associated with UPI.
   **Recommended Fix:** Make sure to pass the `requestId` parameter value.
 </Accordion>
 
-<br />
+<Accordion title="Amount or endDate Needs to be Updated" icon="fa-refresh">
+
+```json Error Response
+{
+  "status":0,
+  "action":" MANDATE_UPDATE ",
+  "message":"amount or endDate required to update"
+}
+```
+
+**Reason:** This error occurs when you do not pass amount or endDate parameters to update.
+
+**Recommended Fix:** Make sure to pass the either of the parameters to modify.
+
+</Accordion>
 
 <br />
