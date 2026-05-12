@@ -227,6 +227,14 @@ Use this API to modify mandates created using UPI as a payment method.
   </tbody>
 </Table>
 
-<br />
+## Errors
+
+Below are the failure scenarios associated with UPI.
+
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
 
 <br />
