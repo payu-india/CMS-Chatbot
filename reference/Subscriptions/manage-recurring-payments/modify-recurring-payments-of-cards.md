@@ -412,6 +412,16 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
 ### si_details JSON Parameters
 
+<Callout icon="📘" theme="info">
+  **Handy Tips:**
+
+  * One or more fields (marked optional) in the following table must be posted to modify the subscription:
+    * `billingCycle`
+    * `billingInterval`
+    * `billingAmount`
+  * If the request was to modify a subscription, si_consent_action parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
+</Callout>
+
 <Table align={["left","left"]}>
   <thead>
     <tr>
