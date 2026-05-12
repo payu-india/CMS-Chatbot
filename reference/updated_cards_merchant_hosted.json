@@ -19,7 +19,7 @@
           "Test",
           "TPV"
         ],
-        "summary": "MerchantHostedCheckout-Cards",
+        "summary": "Cards",
         "description": "",
         "operationId": "MerchantHostedCheckout-Cards",
         "parameters": [
