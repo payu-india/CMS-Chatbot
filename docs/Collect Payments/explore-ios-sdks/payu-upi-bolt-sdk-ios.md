@@ -76,12 +76,12 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
   ```
   pod 'PayUIndia-UPIBoltUIKit', '~> 3.1'
+  pod 'PayUIndia-UPIBoltCoreKit', '~> 2.1'
   ```
 
   The following xcframework files will be provided by PayU during onboarding.
 
   * **NPCI** - CommonLibrary.xcframework
-  * **AXIS** - OlivePayLibrary.xcframework
 
   Add these framework in your project.
 
