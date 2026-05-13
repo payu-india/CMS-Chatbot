@@ -30,4 +30,8 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
 
 ## Sample Request
 
-<br />
+<Accordion title="Request " icon="fa-info-circle">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
