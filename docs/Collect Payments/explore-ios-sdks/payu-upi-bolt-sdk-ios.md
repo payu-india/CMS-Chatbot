@@ -25,7 +25,6 @@ next:
 
 PayU UPI Bolt SDK will provide a simpler and more efficient payment experience to the merchants. It will eliminate any third-party redirection and higher success rate. Profile management including accounts and balances for users. Enhancing the overall customer experience and decreasing customer drop-offs. This section describes the advantages and user journeys. For steps to integrate UPI Bolt UI, refer to [UPI Bolt UI Integration](doc:upi-bolt-ui-integration-ios-bolt-sdk).
 
-
 ## UPI Bolt UI advantages
 
 1. One-click payment journey and no hassle of redirection to a third-party UPI application.
@@ -76,7 +75,7 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
   To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your podfile.
 
   ```
-  pod 'PayUIndia-UPIBoltUIKit', '~> 1.0.0-alpha.0'
+  pod 'PayUIndia-UPIBoltUIKit', '~> 3.1'
   ```
 
   The following xcframework files will be provided by PayU during onboarding.
