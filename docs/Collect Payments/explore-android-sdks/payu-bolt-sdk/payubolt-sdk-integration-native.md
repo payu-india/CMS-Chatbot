@@ -2,7 +2,7 @@
 title: PayUBolt SDK Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: PayU Bolt SDK Integration on Android
   description: >-
