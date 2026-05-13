@@ -11,4 +11,23 @@ metadata:
 ---
 Use this API to cancel card mandates registered using VISA and Mastercard card networks. You cannot restore a cancelled mandate. You should ask customers to register a new mandate.
 
+<Cards>
+  <Card title="Method">
+    POST
+  </Card>
+
+  <Card title="Endpoint">
+    /merchant/postservice.php?form=2
+  </Card>
+</Cards>
+
+## Environment
+
+| **Environment**            | **URL**                                                |
+| :------------------------- | :----------------------------------------------------- |
+| **Test Environment**       | `https://test.payu.in/merchant/postservice.php?form=2` |
+| **Production Environment** | `https://info.payu.in/merchant/postservice.php?form=2` |
+
+## Sample Request
+
 <br />
