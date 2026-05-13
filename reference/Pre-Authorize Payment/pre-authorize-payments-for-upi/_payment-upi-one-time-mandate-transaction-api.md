@@ -16,6 +16,47 @@ This section describes the request and response parameters with sample request a
   **Note**: Currently, PayU supports UPI One-Time Mandate only for the Seamless integration.
 </Callout>
 
+<br />
+
+<Callout icon="👍" theme="okay">
+  Experience the end-to-end **Merchant Hosted Checkout**> **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+
+  <HTMLBlock>{`
+                          <style>
+                          .tooltip-btn {
+                              position: relative;
+                              background-color: #4CAF50;
+                              color: white;
+                              padding: 10px 20px;
+                              border: none;
+                              border-radius: 5px;
+                              cursor: pointer;
+                              font-weight: bold; /* Added this line */
+                          }
+                          .tooltip-btn:hover::after {
+                              content: attr(data-tooltip);
+                              position: absolute;
+                              bottom: 125%;
+                              left: 50%;
+                              transform: translateX(-50%);
+                              background-color: #333;
+                              color: white;
+                              padding: 5px 10px;
+                              border-radius: 4px;
+                              white-space: nowrap;
+                              font-size: 12px;
+                              z-index: 1;
+                          }
+                          </style>
+
+                          <button onclick="window.open('https://payu.in/integrationlab/seamless/sm-otm', '_blank')" 
+                                  class="tooltip-btn" 
+                                  data-tooltip="Click here to see the Merchant Hosted Checkout > UPI end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+                              Experience the flow and get the code
+                          </button>
+  `}</HTMLBlock>
+</Callout>
+
 ## Request Parameters
 
 <PaymentAPIEnvironment />
@@ -40,8 +81,7 @@ This section describes the request and response parameters with sample request a
   <tbody>
     <tr>
       <td>
-        key
-        `mandatory`
+        key `mandatory`
       </td>
 
       <td>
@@ -55,13 +95,11 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        txnid
-        `mandatory`
+        txnid `mandatory`
       </td>
 
       <td>
-        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.
-        `Character limit`: 25
+        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction. `Character limit`: 25
 
         * _Note_*: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’
       </td>
@@ -73,8 +111,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        amount
-        `mandatory`
+        amount `mandatory`
       </td>
 
       <td>
@@ -90,13 +127,11 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        productinfo
-        `mandatory`
+        productinfo `mandatory`
       </td>
 
       <td>
-        `varchar` This parameter should contain a brief product description. It should be a string describing the product.
-        `Character limit`: 100
+        `varchar` This parameter should contain a brief product description. It should be a string describing the product. `Character limit`: 100
       </td>
 
       <td>
@@ -106,13 +141,11 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        firstname
-        `mandatory`
+        firstname `mandatory`
       </td>
 
       <td>
-        `varchar` Must contain the first name of the customer.
-        `Character limit`: 60
+        `varchar` Must contain the first name of the customer. `Character limit`: 60
       </td>
 
       <td>
@@ -122,37 +155,27 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        email
-        `mandatory`
+        email `mandatory`
       </td>
 
       <td>
-        `varchar` Must contain the email of the customer.
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.
-        Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
-        Character limit: 50
+        `varchar` Must contain the email of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50
       </td>
 
       <td>
-
-
         [Ashish@test.com](mailto:Ashish@test.com)
-
-
       </td>
     </tr>
 
     <tr>
       <td>
-        phone
-        `mandatory`
+        phone `mandatory`
       </td>
 
       <td>
         `varchar` Must contain the phone number of the customer.
 
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
-        Character limit: 50
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50
       </td>
 
       <td>
@@ -162,8 +185,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        surl
-        `mandatory`
+        surl `mandatory`
       </td>
 
       <td>
@@ -177,8 +199,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        furl
-        `mandatory`
+        furl `mandatory`
       </td>
 
       <td>
@@ -192,8 +213,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        pg
-        `mandatory`
+        pg `mandatory`
       </td>
 
       <td>
@@ -207,8 +227,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        bankcode
-        `mandatory`
+        bankcode `mandatory`
       </td>
 
       <td>
@@ -223,8 +242,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        vpa
-        `mandatory`
+        vpa `mandatory`
       </td>
 
       <td>
@@ -240,8 +258,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        txn_s2s_flow
-        `mandatory`
+        txn_s2s_flow `mandatory`
       </td>
 
       <td>
@@ -255,8 +272,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        pre_authorize
-        `mandatory for Pre-Auth`
+        pre_authorize `mandatory for Pre-Auth`
       </td>
 
       <td>
@@ -288,8 +304,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        hash
-        `mandatory`
+        hash `mandatory`
       </td>
 
       <td>
@@ -297,8 +312,7 @@ This section describes the request and response parameters with sample request a
 
         It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.
 
-        In the case of registration transaction, the formula is used to calculate this hash is similar to the following:
-        `HASH = SHA512(sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT))`
+        In the case of registration transaction, the formula is used to calculate this hash is similar to the following: `HASH = SHA512(sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT))`
       </td>
 
       <td>
