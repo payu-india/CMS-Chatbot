@@ -73,15 +73,14 @@ Update the manifest file to include the following so that permissions are provid
 To include the PayU UPI Bolt UI SDK in your project, add the following code snippet to your app’s `build.gradle`.
 
 ```
-implementation 'in.payu:payu-upi-bolt-axis-wrapper-sdk:0.0.1' // PayU AXIS Wrapper
 implementation 'in.payu:payu-upi-bolt-ui-sdk:1.3.0' // PayU Bolt SDK
+implementation 'in.payu:payu-upi-bolt-core-sdk:1.3.0'
 ```
 
 Add the .aar files provided by PayU during onboarding. in the **libs** directory of your android module and add these in module level **build.gradle**. For the list of files, refer to[ Prerequisites](#prerequisites).
 
 ```
 api(files("$projectDir/libs/SecureComponent-release-prod_05062024_9d3904ab.aar")) // NPCI .aar
-api(files("$projectDir/libs/oliveupi-payu-release_PROD_02-12-2024_2.0.2.aar")) // AXIS .aar 
 ```
 
 The screenshot of libs directory is similar to the following:
