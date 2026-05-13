@@ -172,7 +172,7 @@ curl -X POST 'https://info.payu.in/v2/payments/platform/maintenance' \
   * `from` and `to` values must include time granularity (seconds) unless epoch is used.
   * The `from` value must be before the `to` value.
   * The `from` value must be within the last 3 months.
-  * The `to` value must not be greater than the current server time.
+  * The `to` value can be set up to 1 month from the current date.
 </Accordion>
 
 ## Response Parameters
