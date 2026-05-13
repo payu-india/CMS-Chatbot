@@ -19,7 +19,7 @@
           "Preauth",
           "EMI"
         ],
-        "summary": "CapturePreAuth",
+        "summary": "Capture a Pre-Authorized API",
         "description": "",
         "operationId": "CapturePreAuth",
         "parameters": [
