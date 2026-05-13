@@ -74,7 +74,7 @@ To include the PayU UPI Bolt UI SDK in your project, add the following code snip
 
 ```
 implementation 'in.payu:payu-upi-bolt-axis-wrapper-sdk:0.0.1' // PayU AXIS Wrapper
-implementation 'in.payu:payu-upi-bolt-ui-sdk:0.0.1' // PayU Bolt SDK
+implementation 'in.payu:payu-upi-bolt-ui-sdk:1.3.0' // PayU Bolt SDK
 ```
 
 Add the .aar files provided by PayU during onboarding. in the **libs** directory of your android module and add these in module level **build.gradle**. For the list of files, refer to[ Prerequisites](#prerequisites).
@@ -86,7 +86,7 @@ api(files("$projectDir/libs/oliveupi-payu-release_PROD_02-12-2024_2.0.2.aar")) /
 
 The screenshot of libs directory is similar to the following:
 
-<Image align="center" border={false} width="360px" src="https://files.readme.io/1af3684beef4a3b10716b5fc7de478bc9a07ff6f82ae0cec8041bbb94d8c754c-bolt_native_flow_aar_directory_structure.png" />
+<Image align="center" width="360px" src="https://files.readme.io/1af3684beef4a3b10716b5fc7de478bc9a07ff6f82ae0cec8041bbb94d8c754c-bolt_native_flow_aar_directory_structure.png" />
 
 ## Step 3: Initialize the SDK
 
@@ -102,131 +102,18 @@ val bolt = PayUUPIBoltUI.getInstance(
 
 The following fields are needed as a request for this API:
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Fields
-      </th>
-
-      <th>
-        Definition
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        activity
-        ` mandatory`
-      </td>
-
-      <td>
-        `AppCompatActivity` Calling activity of the merchant App
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        config
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUUPIBoltUIConfig` Config includes the below fields.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        hashGenerationListener
-        ` mandatory`
-      </td>
-
-      <td>
-        `PayUHashGenerationListener` Callback listener for hash generation
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        merchantKey
-        ` mandatory`
-      </td>
-
-      <td>
-        `String`PayU Merchant Key
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone
-        ` mandatory`
-      </td>
-
-      <td>
-        `String`Phone number for registration
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email
-        ` mandatory`
-      </td>
-
-      <td>
-        `String`Customer Email Id
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        pluginType
-        ` mandatory`
-      </td>
-
-      <td>
-        `String Array`List of Supported Banks (“AXIS, HDFC”)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        isProd
-        ` optional`
-      </td>
-
-      <td>
-        `Boolean`Prod - ture, staging - false
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        excludedBanksIINs
-        ` optional`
-      </td>
-
-      <td>
-        `String Array`List of Bank’s IIN to exclude
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        requestId
-        ` mandatory`
-      </td>
-
-      <td>
-        `String`Unique reference ID
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Fields                              | Definition                                                         |
+| ----------------------------------- | ------------------------------------------------------------------ |
+| activity ` mandatory`               | `AppCompatActivity` Calling activity of the merchant App           |
+| config ` mandatory`                 | `PayUUPIBoltUIConfig` Config includes the below fields.            |
+| hashGenerationListener ` mandatory` | `PayUHashGenerationListener` Callback listener for hash generation |
+| merchantKey ` mandatory`            | `String`PayU Merchant Key                                          |
+| phone ` mandatory`                  | `String`Phone number for registration                              |
+| email ` mandatory`                  | `String`Customer Email Id                                          |
+| pluginType ` mandatory`             | `String Array`List of Supported Banks (“AXIS, HDFC”)               |
+| isProd ` optional`                  | `Boolean`Prod - ture, staging - false                              |
+| excludedBanksIINs ` optional`       | `String Array`List of Bank’s IIN to exclude                        |
+| requestId ` mandatory`              | `String`Unique reference ID                                        |
 
 <Accordion title="Response" icon="fa-reply">
   | Response Params | Definition                                 |
@@ -283,8 +170,7 @@ boltUI.registerAndPay(paymentParams PayUUPIBoltPaymentParams, callback: PayUUPIB
   <tbody>
     <tr>
       <td>
-        paymentParams
-        `mandatory`
+        paymentParams `mandatory`
       </td>
 
       <td>
@@ -361,8 +247,7 @@ The following fields are needed as a request for this API:
 
     <tr>
       <td>
-        callback
-        `mandatory`
+        callback `mandatory`
       </td>
 
       <td>
