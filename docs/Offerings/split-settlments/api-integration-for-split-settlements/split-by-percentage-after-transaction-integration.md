@@ -27,12 +27,7 @@ In this mode, define `type` as `percentage` and distribute split values in `aggr
 
 ## Prerequisites
 
-Before integrating:
-
-1. Split Settlements is enabled for your parent merchant account.
-2. Child merchants are onboarded and active.
-3. Merchant `key` and `salt` are available.
-4. You have parent transaction `payuId` from a completed transaction.
+<Split_Settlments_Prerequiisites />
 
 ## Step 1: Verify the Payment
 
