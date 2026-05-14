@@ -401,7 +401,7 @@ paymentParam.cardinfo = cardDetails
 paymentParam.partnerWebhookSuccess = "<url>"
 paymentParam.partnerWebhookFailure = "<url>"
 
-paymentParam.isPreAuthTxn = true //Optional - Set this as true for pre auth transactions
+paymentParam.isPreAuthTxn = true/false //Optional - Set this as true for pre auth transactions
 ```
 
 **SI Payments**:
