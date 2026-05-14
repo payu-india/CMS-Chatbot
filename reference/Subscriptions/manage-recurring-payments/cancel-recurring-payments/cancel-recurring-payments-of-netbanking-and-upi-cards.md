@@ -68,9 +68,9 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
   ```
   ```json Error Response
   {
-    "status":0,
-    "message":"Mandate not in appropriate state to perform action",
-    "action":"MANDATE_REVOKE"
+  "status":0,
+  "action":"MANDATE_REVOKE",
+  "message":"Mandate is not active"
   }
   ```
 </Accordion>
