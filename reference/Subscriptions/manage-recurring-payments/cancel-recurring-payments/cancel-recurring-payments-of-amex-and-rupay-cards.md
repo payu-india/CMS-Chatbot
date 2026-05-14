@@ -359,7 +359,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
       </td>
 
       <td>
-        `varchar` The network token value. Refer to the refer to the Cards Consent Transaction page for more information.
+        `varchar` The network token generated at your end. You should pass this parameter if you are using the stored card token to register the mandate.
       </td>
     </tr>
 
@@ -369,7 +369,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
       </td>
 
       <td>
-        `integer` The token flow type. 
+        `integer` The token flow type. Pass the value as `1` if you are going for the `SITokenRequestor 2 flow`.
       </td>
     </tr>
 
