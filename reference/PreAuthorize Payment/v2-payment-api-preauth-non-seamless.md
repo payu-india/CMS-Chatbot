@@ -5,22 +5,15 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Non-seamless - Preauth Transaction
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
 The Collect Payment API (**v2 Payment** API) with the **preAuthorize=1** in the **additionalInfo** object.
 
-> 📘 Note:
->
-> You must use the **additionalInfo.txnFlow** must be set to **nonseamless** for PayU Hosted Checkout.
+<Callout icon="📘" theme="info">
+  **Note**: You must use the **additionalInfo.txnFlow** must be set to **nonseamless** for PayU Hosted Checkout.
+</Callout>
 
-> 📘 Reference:
->
-> To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](https://docs.payu.in/v1/docs/handling-the-redirect-urls).
+<Callout icon="📘" theme="info">
+  **Reference**: To handle redirect URLs (surl and furl), refer to [Handling the Redirect URLs](https://docs.payu.in/v1/docs/handling-the-redirect-urls).
+</Callout>
 
 **Environment**
 
@@ -120,12 +113,6 @@ Where, \<Body data> contains the request Body posted with the request.
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentStatus<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Indicates the status of the payment. For example, SUCCESS.</p>
-</td>
-</tr>
-<tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br> <code>optional</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the <code> order.paymentChargeSpecification.price</code> field will be considered.</p>
@@ -193,14 +180,9 @@ Where, \<Body data> contains the request Body posted with the request.
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Specify "nonseamless" for non-seamless integration.</p>
 </td>
 </tr>
+
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>createOrder<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Indicates whether to create an order on PayU's side. Set to "true" to create an order, or "false" otherwise.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>preAuthorize<br> <code>mandatory for Preauth</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>preAuthorize<br> <code>mandatory for Pre</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When set to "1", the transaction will be in pre-authorized state and funds will be captured later.</p>
 </td>
@@ -275,13 +257,7 @@ Where, \<Body data> contains the request Body posted with the request.
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>productInfo<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Details about the product being purchased.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>orderedItem<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Array</code>List of items included in the order. Each item can include details such as <code>itemId</code>, <code>description</code>, and <code>quantity</code>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Details about the product being purchased. For more information, refer to<a href="#userdefinedfields-object-fields-description"> userDefinedFields object fields description</a>.</p>
 </td>
 </tr>
 <tr>
@@ -384,22 +360,6 @@ Where, \<Body data> contains the request Body posted with the request.
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>address1<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Primary address line of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Test Payu Gurgaon</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>address2<br><code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Secondary address line of the billing contact</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Sector 32</p>
-</td>
-</tr>
-<tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>city<br><code>optional</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>City of the billing address</p>
@@ -444,13 +404,14 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 --header 'Content-Type: application/json' \
 --header 'mid: 8390470' \
 --header 'X-CREDENTIAL-USERNAME: UMXDPA' \
---data '{
+{
   "accountId": "smsplus",
   "referenceId": "b5f2d8785768087678fm9",
   "paymentStatus": "SUCCESS",
   "amount": 10,
   "currency": "INR",
   "paymentSource": "WEB",
+  },
   "order": {
     "productInfo": "string",
     "orderedItem": [
@@ -474,11 +435,10 @@ curl --location 'https://apitest.payu.in/v2/payments' \
     },
     "paymentChargeSpecification": {
       "price": 10
-    }
   },
   "additionalInfo": {
     "txnFlow": "nonseamless",
-    "createOrder": "false",
+    "createOrder" : "false",
     "preAuthorize": "1"
   },
   "callBackActions": {
@@ -498,7 +458,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
     "phone": "9876543210",
     "email": "testv2@example.in"
   }
-}'
+}
 ```
 
 ### Response parameters
