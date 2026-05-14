@@ -64,7 +64,7 @@ This API retrieves available payment options and eligibility details for a given
       </td>
 
       <td>
-        `get_checkout`
+        `get_checkout_details`
       </td>
     </tr>
 
