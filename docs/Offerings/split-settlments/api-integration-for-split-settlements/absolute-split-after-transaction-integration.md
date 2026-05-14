@@ -28,18 +28,13 @@ In absolute split mode, each child merchant receives a fixed amount through `agg
 
 ## Prerequisites
 
-Before integrating:
-
-1. Split Settlements is enabled for your parent merchant account.
-2. Child merchants are onboarded and active.
-3. You have the merchant `key` and `salt`.
-4. You have the `payuId` of the already completed parent transaction.
+<Split_Settlments_Prerequiisites />
 
 ## Step 1: Verify the Payment
 
-After completing the payment using the Collect Payment (**_payment**) API, perform this step to verify the payment. 
+After completing the payment using the Collect Payment (**_payment**) API, perform this step to verify the payment.
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Reference:** Refer to any of the following API Reference pages for the sample request/response for collecting payments using the Collection (**_payment**)  API:
 
   * [Collect Payment API using PayU Hosted Checkout](https://docs.payu.in/reference/_payment_payu_hosted_checkout)
