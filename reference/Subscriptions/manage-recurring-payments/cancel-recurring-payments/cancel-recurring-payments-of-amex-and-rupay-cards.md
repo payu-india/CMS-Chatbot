@@ -385,6 +385,16 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
+        **token_expiry**<sup style={{color: 'red'}}>*</sup>  `mandatory for SITokenRequestor 2 flow and tokenized flow`
+      </td>
+
+      <td>
+        `varchar` Determines the expiry date of the token.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
         **surl**
       </td>
 
@@ -415,13 +425,22 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
   </tbody>
 </Table>
 
-### var1 JSON Parameters
+### `si_details` JSON Parameters
 
-<Accordion title="Parameters and Description" icon="fa-info-circle">
-  | **Parameter**                                      | **Description**                                                                                                                                                                                                                                                                                                                                                                                                               |
-  | :------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | **authPayuId**<sup style={{color: 'red'}}>\*</sup> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
-  | **requestId**<sup style={{color: 'red'}}>\*</sup>  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                                                            |
+<Callout icon="📘" theme="info">
+  **Note:**
+
+  If the request was to modify a subscription, `si_consent_action` parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
+</Callout>
+
+<Accordion title="Parameters and Description" icon="fa-table">
+
+| **Parameter**                                     | **Description**                                                                                                    |
+| :------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------- |
+| **authpayuid**<sup style={{color: 'red'}}>*</sup> | This field is used to cancel an existing subscription/consent.                                                     |
+| **action**<sup style={{color: 'red'}}>*</sup>     | `string` This field is used to cancel an existing subscription. Pass `delete` as a value to modify a subscription. |
+| **siTokenRequestor**                              | `integer` The SI token requestor. Pass this parameter value as `2` if you opt for `token requestor 2 flow`.        |
+
 </Accordion>
 
 ## Response Parameters
