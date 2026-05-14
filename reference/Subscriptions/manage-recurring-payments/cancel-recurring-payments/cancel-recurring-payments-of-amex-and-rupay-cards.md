@@ -29,7 +29,13 @@ metadata:
     - merchant recurring payments
   robots: noindex
 ---
-Use this API to cancel card mandates registered using VISA and Mastercard card networks. You cannot restore a cancelled mandate. You should ask customers to register a new mandate.
+Use this API to cancel card mandates registered via AMEX and RuPay card networks. You cannot restore a cancelled mandate. You should ask customers to register a new mandate.
+
+<Callout icon="❗️">
+  **Watch Out!**
+
+  The 2FA is required for cancelling recurring payment with AMEX and RuPay cards.
+</Callout>
 
 <Cards>
   <Card title="Method">
@@ -37,28 +43,44 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
   </Card>
 
   <Card title="Endpoint">
-    /merchant/postservice.php?form=2
+    /_payment
   </Card>
 </Cards>
 
 ## Environment
 
-| **Environment**            | **URL**                                                |
-| :------------------------- | :----------------------------------------------------- |
-| **Test Environment**       | `https://test.payu.in/merchant/postservice.php?form=2` |
-| **Production Environment** | `https://info.payu.in/merchant/postservice.php?form=2` |
+| **Environment**            | **URL**                           |
+| :------------------------- | :-------------------------------- |
+| **Test Environment**       | `https://test.payu.in/_payment`   |
+| **Production Environment** | `https://secure.payu.in/_payment` |
 
 ## Sample Request
 
 <Accordion title="Request Payload" icon="fa-code">
   ```curl
-  curl --location 'https://info.payu.in/merchant/postservice.php' \
-    --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
-    --form 'form="2"' \
-    --form 'key="BmTY3G"' \
-    --form 'command="mandate_revoke"' \
-    --form 'var1={"authpayuid":"19504273314","requestId":"test000212"}' \
-    --form 'hash="YOUR_HASH_VALUE"' \
+  curl --location 'https://secure.payu.in/_payment' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
+  --data-urlencode 'key=BmTY3G' \
+  --data-urlencode 'txnid=my_order_96977' \
+  --data-urlencode 'amount=1' \
+  --data-urlencode 'firstname=Payu-Admin' \
+  --data-urlencode 'email=test@example.com' \
+  --data-urlencode 'phone=1234567890' \
+  --data-urlencode 'productinfo=my_order_96977' \
+  --data-urlencode 'api_version=1' \
+  --data-urlencode 'si=3' \
+  --data-urlencode 'pg=CC' \        # CC/DC
+  --data-urlencode 'bankcode=CC' \ # RUPAYCC/RUPAY
+  --data-urlencode 'surl=https://admin.payu.in/test_response' \
+  --data-urlencode 'furl=https://admin.payu.in/test_response' \
+  --data-urlencode 'ccnum=' \
+  --data-urlencode 'ccname=Test User' \
+  --data-urlencode 'ccexpmon=05' \
+  --data-urlencode 'ccexpyr=2025' \
+  --data-urlencode 'ccvv=123' \
+  --data-urlencode 'si_details={"action":"delete","authPayuId":25630224100,"siTokenRequestor":2}' \
+  --data-urlencode 'hash=YOUR_HASH_VALUE'
   ```
 </Accordion>
 
@@ -149,12 +171,10 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
 ### var1 JSON Parameters
 
 <Accordion title="Parameters and Description" icon="fa-info-circle">
-
-| **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                                                               |
-| :------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **authPayuId**<sup style={{color: 'red'}}>*</sup> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
-| **requestId**<sup style={{color: 'red'}}>*</sup>  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                                                            |
-
+  | **Parameter**                                      | **Description**                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | :------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **authPayuId**<sup style={{color: 'red'}}>\*</sup> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
+  | **requestId**<sup style={{color: 'red'}}>\*</sup>  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                                                            |
 </Accordion>
 
 ## Response Parameters
@@ -189,7 +209,7 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
       </td>
 
       <td>
-        `integer` The status of the action performed. Possible values:  
+        `integer` The status of the action performed. Possible values:
 
         * `1`: Card mandate is successfully canceled.
         * `0`: Card mandate is not canceled.
