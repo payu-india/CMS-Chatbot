@@ -31,7 +31,7 @@ metadata:
 ---
 Use this API to cancel card mandates registered via AMEX and RuPay card networks. You cannot restore a cancelled mandate. You should ask customers to register a new mandate.
 
-<Callout icon="❗️">
+<Callout icon="❗️" theme="error">
   **Watch Out!**
 
   The 2FA is required for cancelling recurring payment with AMEX and RuPay cards.
@@ -43,7 +43,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
   </Card>
 
   <Card title="Endpoint">
-    /_payment
+    /\_payment
   </Card>
 </Cards>
 
@@ -89,7 +89,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 <Accordion title="Response Payload" icon="fa-code">
   ```php Success Response
   Array
-(
+  (
     [mihpayid] => 28191285790
     [mode] => DC
     [status] => success
@@ -141,7 +141,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
     [error_Message] => No Error
     [cardnum] => XXXXXXXXXXXX2656
     [cardhash] => This field is no longer supported in postback params.
-)
+  )
   ```
 </Accordion>
 
@@ -179,21 +179,217 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **command**<sup style={{color: 'red'}}>*</sup>
+        **txnid**<sup style={{color: 'red'}}>*</sup>
       </td>
 
       <td>
-        `varchar` Determines the API command. Here, it is `mandate_revoke`.
+        `varchar` A unique transaction ID (or order ID). It is the order reference number generated at your end. You can use this ID to track a particular order. This ID should be unique and you can duplicate it. The parameter value can be maximum of 25 characters.
       </td>
     </tr>
 
     <tr>
       <td>
-        **var1**<sup style={{color: 'red'}}>*</sup>
+        **amount**<sup style={{color: 'red'}}>*</sup>
       </td>
 
       <td>
-        `json` The variable details. Parameters are described in the var1 JSON Parameters section.
+        `float` The transaction amount in `INR`.
+
+        **Note**: Type-cast the amount to float type Depending upon the merchant use case, this value will vary.
+
+        * The value should be minimum of `1.00` INR for Cards for penny testing.
+        * For first installment, this can be initiate setup amount However, this is supported only for selected NetBanking (ICICI and HDFC), all Credit / Debit Cards, and UPI.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **productinfo**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `string` A product description. The value can contain maximum of 100 characters.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **firstname**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `varchar` The first name of the customer. For example, `Gaurav`. The value can contain maximum of 60 characters.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **email**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `varchar` The email of the customer. For example, `gaurav@example.com`.  The value can contain maximum of 50 characters.
+
+        **Note:** The email is used in case of fraud detection and chargebacks. Additionally, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **phone**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `varchar` The customer phone number. For example, `1234567890`.
+
+        **Note:** The email is used in case of fraud detection and chargebacks. Additionally, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **api_version**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `number` The API version. You should always pass this value as `7`.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **si**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `number` The standing instruction. You should pass the value as `3` to cancel the card mandate.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **pg**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `string` This parameter describes the payment category by which the transaction was completed/attempted by the customer. Possible values:
+
+        * `DC`: For debit cards
+        * `CC`: For credit cards
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **bankcode**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `string` This parameter contains the code indicating the payment option used for the transaction. Possible values:
+
+        * `AMEX`: For American Express credit and debit cards
+        * `RUPAYCC`: For RuPay credit cards
+        * `RUPAY`: For RuPay debit cards
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **ccnum**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `number` The credit card number used to register the mandate.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **ccname**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `string` The name of the CC owner.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **ccvv**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `number` The CVV of the CC.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **ccexpmon**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `number` The expiry month of the CC.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **ccexpyr**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `number` The expiry year of the CC.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **si_details**<sup style={{color: 'red'}}>*</sup>
+      </td>
+
+      <td>
+        `json` The SI mandatory details that need to be passed during registration transaction from your system to PayU. Parameters are described in the si_details Object section.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Storecard_token**<sup style={{color: 'red'}}>*</sup> `mandatory for SITokenRequestor 2 flow and tokenized flow`
+      </td>
+
+      <td>
+        `varchar` The network token value. Refer to the refer to the Cards Consent Transaction page for more information.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **TokenFlowType**<sup style={{color: 'red'}}>*</sup>  `mandatory for SITokenRequestor 2 flow and tokenized flow`
+      </td>
+
+      <td>
+        `integer` The token flow type. 
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **surl**
+      </td>
+
+      <td>
+        `string` The success URL customers are redirected to if the transaction is successful.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **furl**
+      </td>
+
+      <td>
+        `string` The failure URL customers are redirected to if the transaction is unsuccessful.
       </td>
     </tr>
 
@@ -203,8 +399,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
       </td>
 
       <td>
-        `string` The calculated hash value using the following logic.  
-        `hash = sha512(key|command|var1|SALT)`
+        `string` The calculated hash value using the following logic. `SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)`. You can use the below button to generate a hash by providing the parameter values as per the logic.
       </td>
     </tr>
   </tbody>
