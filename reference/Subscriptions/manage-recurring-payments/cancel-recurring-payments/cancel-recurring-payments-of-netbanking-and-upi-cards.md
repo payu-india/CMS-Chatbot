@@ -113,7 +113,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
       </td>
 
       <td>
-        `varchar` Determines the API command. Possible values:  
+        `varchar` Determines the API command. Possible values:
 
         * **For NetBanking:** `mandate_revoke`
         * **For UPI:** `upi_mandate_revoke`
@@ -149,7 +149,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
   | **Parameter**                                      | **Description**                                                                                                                                                                                                                                                                                                                                                                                                               |
   | :------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | **authPayuId**<sup style={{color: 'red'}}>\*</sup> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
-  | **requestId**<sup style={{color: 'red'}}>\*</sup>  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call. | 
+  | **requestId**<sup style={{color: 'red'}}>\*</sup>  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                                                            |
 </Accordion>
 
 ## Response Parameters
@@ -207,7 +207,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
       </td>
 
       <td>
-        `string`  The auth PayU ID. This parameter is returned only while cancelling the UPI mandate.
+        `string`  The auth PayU ID. This parameter is returned only while cancelling the NetBanking mandate.
       </td>
     </tr>
   </tbody>
