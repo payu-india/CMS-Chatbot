@@ -1,12 +1,32 @@
 ---
 title: Cancel Recurring Payments of AMEX and RuPay Cards
 excerpt: >-
-  Cancel recurring payment mandates created using VISA and Mastercard cards with
-  PayU APIs. Learn the card mandate cancellation flow, request parameters,
-  response handling, and recurring payment management.
+  Learn how to cancel recurring payments for AMEX and RuPay cards using PayU
+  APIs. Follow the integration steps, request parameters, and response handling
+  for seamless mandate cancellation.
 deprecated: false
 hidden: true
 metadata:
+  description: >-
+    Learn how to cancel recurring payments for AMEX and RuPay cards using PayU
+    APIs. Follow the integration steps, request parameters, and response
+    handling for seamless mandate cancellation.
+  keywords:
+    - cancel recurring payments
+    - AMEX recurring payments
+    - RuPay recurring payments
+    - PayU recurring payment cancellation
+    - cancel card mandate
+    - recurring mandate API
+    - AMEX mandate cancellation
+    - RuPay mandate cancellation
+    - subscription cancellation API
+    - recurring payments API
+    - PayU subscriptions
+    - card mandate cancellation
+    - recurring transaction cancellation
+    - PayU API documentation
+    - merchant recurring payments
   robots: noindex
 ---
 Use this API to cancel card mandates registered using VISA and Mastercard card networks. You cannot restore a cancelled mandate. You should ask customers to register a new mandate.
