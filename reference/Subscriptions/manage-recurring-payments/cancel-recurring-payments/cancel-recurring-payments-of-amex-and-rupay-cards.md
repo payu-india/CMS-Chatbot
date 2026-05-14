@@ -375,6 +375,16 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
+        **additional_info** <sup style={{color: 'red'}}>*</sup> `mandatory for tokenized flow`
+      </td>
+
+      <td>
+        `json` The additional info json details. Refer to the <Anchor label="`additional_info` Object Parameters" target="_blank" href="https://docs.payu.in/reference/modify-recurring-payments-of-cards#additional_info-object-parameters">`additional_info` Object Parameters</Anchor> for parameters and their description.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
         **surl**
       </td>
 
