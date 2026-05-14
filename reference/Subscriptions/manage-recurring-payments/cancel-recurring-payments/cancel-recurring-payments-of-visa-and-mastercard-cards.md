@@ -31,38 +31,35 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
 ## Sample Request
 
 <Accordion title="Request Payload" icon="fa-code">
-
-```curl
-curl --location 'https://info.payu.in/merchant/postservice.php' \
-  --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
-  --form 'form="2"' \
-  --form 'key="BmTY3G"' \
-  --form 'command="mandate_revoke"' \
-  --form 'var1="{\"authpayuid\":\"19504273314\",\"requestId\":\"test000212\"}"' \
-  --form 'hash="YOUR_HASH_VALUE"' \
-  --form 'salt="YOUR_SALT_VALUE"'
-```
-
+  ```curl
+  curl --location 'https://info.payu.in/merchant/postservice.php' \
+    --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
+    --form 'form="2"' \
+    --form 'key="BmTY3G"' \
+    --form 'command="mandate_revoke"' \
+    --form 'var1="{\"authpayuid\":\"19504273314\",\"requestId\":\"test000212\"}"' \
+    --form 'hash="YOUR_HASH_VALUE"' \
+    --form 'salt="YOUR_SALT_VALUE"'
+  ```
 </Accordion>
 
 ## Sample Response
 
 <Accordion title="Response Payload" icon="fa-code">
-
-```json Success Response
-{
-  "status":1,
-  "message":"Mandate Revoked Successfully",
-  "action":"MANDATE_REVOKE"
-}
-```
-```json Error Response
-{
-  "status":0,
-  "message":"Mandate not in appropriate state to perform action",
-  "action":"MANDATE_REVOKE"
-}
-```
-
-
+  ```json Success Response
+  {
+    "status":1,
+    "message":"Mandate Revoked Successfully",
+    "action":"MANDATE_REVOKE"
+  }
+  ```
+  ```json Error Response
+  {
+    "status":0,
+    "message":"Mandate not in appropriate state to perform action",
+    "action":"MANDATE_REVOKE"
+  }
+  ```
 </Accordion>
+
+<br />
