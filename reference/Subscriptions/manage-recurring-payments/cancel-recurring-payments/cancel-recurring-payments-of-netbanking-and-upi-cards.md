@@ -9,7 +9,13 @@ hidden: true
 metadata:
   robots: noindex
 ---
-Use this API to cancel mandates registered using NetBanking and UPI as payment methods.
+Use this API to cancel mandates registered using NetBanking and UPI as payment methods. You cannot restore a cancelled mandate. You should ask customers to register a new mandate.
+
+<Callout icon="❗️">
+  **Watch Out!**
+
+  Your customers cannot use Recurring Payments without implementing the **Cancel Recurring Registration** API.
+</Callout>
 
 <Cards>
   <Card title="Method">
