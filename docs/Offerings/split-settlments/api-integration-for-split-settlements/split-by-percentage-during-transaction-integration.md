@@ -28,12 +28,7 @@ In this mode, set `type` as `percentage` and ensure that the total percentage ac
 
 ## Prerequisites
 
-Before implementing:
-
-1. Parent merchant account is enabled for Split Settlements.
-2. Child merchants are onboarded and mapped.
-3. Merchant `key` and `salt` are available.
-4. Your backend can generate hash and process webhook events.
+<Split_Settlments_Prerequiisites />
 
 ## Step 1: Build splitRequest for percentage split
 
