@@ -87,19 +87,61 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 ## Sample Response
 
 <Accordion title="Response Payload" icon="fa-code">
-  ```json Success Response
-  {
-    "status":1,
-    "message":"Mandate Revoked Successfully",
-    "action":"MANDATE_REVOKE"
-  }
-  ```
-  ```json Error Response
-  {
-    "status":0,
-    "message":"Mandate not in appropriate state to perform action",
-    "action":"MANDATE_REVOKE"
-  }
+  ```php Success Response
+  Array
+(
+    [mihpayid] => 28191285790
+    [mode] => DC
+    [status] => success
+    [unmappedstatus] => cancelled
+    [key] => BmTY3G
+    [txnid] => bab0b573ae32cf4677ee
+    [amount] => 1.00
+    [cardCategory] => domestic
+    [discount] => 0.00
+    [net_amount_debit] => 1
+    [addedon] => 2026-04-15 21:50:44
+    [productinfo] => Product Info
+    [firstname] => Payu-Admin
+    [lastname] => 
+    [address1] => 
+    [address2] => 
+    [city] => 
+    [state] => 
+    [country] => 
+    [zipcode] => 
+    [email] => test@example.com
+    [phone] => 1234567890
+    [udf1] => 
+    [udf2] => 
+    [udf3] => 
+    [udf4] => 
+    [udf5] => 
+    [udf6] => 
+    [udf7] => 
+    [udf8] => 
+    [udf9] => 
+    [udf10] => 
+    [hash] => {{hash_value}}
+    [field1] => 
+    [field2] => 
+    [field3] => 
+    [field4] => 
+    [field5] => 
+    [field6] => 05
+    [field7] => AUTHPOSITIVE
+    [field8] => SUCCESS
+    [field9] => Transaction is Successful
+    [payment_source] => payu
+    [meCode] => {"MID":"hdfc_89052104","TKey":"u2+JwlMyPmC+VkPEeAqBmiinElUkgQw0TeOYOjujBQOG+uVlXBphmVAzXcUgejbxdCwUSNBv72SdwUUQDcQQ4k9XZShrpgOL29fqAyY5GyPQ/iLmyWd9Z6lJeU8fnl+9ZTuz3+cy/SLSTOpLACc/anStKOaMY9DjvwEdkAZACu2wgxvwvS8ORFvQhXuJI9CRmDxAQP/CYOj469P7PFVzN8MlUaBxTt1104zOEjE4M/2Tw7w+541attHFZQgSEhQLRVB7ANgwRmV3GZR4xlgYd0DtgJcNplJAO+AWUN0VkQku/2g2vd/XFCFJFj0NrzleIzI9FXe9r6I9N/p5nf+muw=="}
+    [PG_TYPE] => DC-PG
+    [bank_ref_num] => 7762700774896643105912
+    [bankcode] => RUPAY
+    [error] => E000
+    [error_Message] => No Error
+    [cardnum] => XXXXXXXXXXXX2656
+    [cardhash] => This field is no longer supported in postback params.
+)
   ```
 </Accordion>
 
