@@ -1,5 +1,5 @@
 ---
-title: Copy of Cancel Recurring Payments of VISA and Mastercard Cards
+title: Cancel Recurring Payments of AMEX and RuPay Cards
 excerpt: >-
   Cancel recurring payment mandates created using VISA and Mastercard cards with
   PayU APIs. Learn the card mandate cancellation flow, request parameters,
