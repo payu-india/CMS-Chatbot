@@ -23,7 +23,9 @@ next:
 ---
 The PayU Affordability Widget is a small, ready-made block that you embed on your product page so customers can see EMI plans, Buy Now Pay Later (BNPL) options, and offers **before** they reach checkout. Showing affordability upfront helps customers decide faster and improves your conversion rate.
 
-To learn what the widget looks like and what it does, see [Affordability Widget overview](doc:affordability-suite) or try the [live demo](https://widget.payu.in/demo).
+To learn what the widget looks like and what it does, refer to [Affordability Widget overview](doc:affordability-suite) or try the [live demo](https://widget.payu.in/demo).
+
+> **Enable Affordability**: You need to enable PayU Affordability widget before start the integration. To enable PayU Affordability widget, contact your PayU Key Account Manager (KAM). 
 
 
 ## Integration steps
@@ -232,24 +234,3 @@ window.onload = function() {
 
 </Accordion>
 
-## Glossary
-
-<Accordion title="Plain-English glossary of terms used on this page" icon="fa-book">
-
-| Term | What it means |
-| :--- | :--- |
-| **Affordability Widget** | A small, ready-made block PayU provides that you embed on your product page. It shows EMI plans, BNPL options, and offers so customers can decide *before* checkout. |
-| **EMI** | Equated Monthly Instalment. A way to pay for a purchase in equal monthly amounts (over 3, 6, 9, 12 months, etc.) instead of paying the full price upfront. |
-| **BNPL** | Buy Now, Pay Later. A short-term financing option that lets a customer take the product today and pay for it later, often interest-free. |
-| **PDP** | Product Display Page — the page on your website that shows a single product, its price, and the "Buy" or "Add to cart" button. This is where the widget is usually placed. |
-| **SKU** | Stock Keeping Unit. A unique code in your catalog that identifies a specific product or variant (for example, "Red T-shirt, size M"). |
-| **Merchant key** | A unique identifier PayU issues to your merchant account. It is safe to include in your website code. |
-| **Salt** | A secret string PayU issues alongside your merchant key. **Never** put the salt in your website code; only use it on your server to compute hashes. |
-| **Hash / SHA-512** | A one-way "fingerprint" of a string. PayU uses it to verify a request really came from you and was not tampered with. SHA-512 is the specific hashing algorithm. |
-| **Token** | In this guide, a `token` is the SHA-512 hash you compute on your server and pass to the widget. It is *not* a long-lived API token. |
-| **L1 screen / L2 screen** | The widget has two views. L1 is the small, collapsed view shown on your product page. L2 is the larger, expanded view that opens when the customer taps the widget. |
-| **GMT timestamp** | The current date and time in Greenwich Mean Time, formatted exactly like `Mon, 14 Feb 2022 13:06:14 GMT`. |
-| **`<head>` / `<script>` / `<div>`** | Standard HTML tags. `<head>` is the section at the top of an HTML page where scripts are loaded. A `<script>` tag loads JavaScript. A `<div>` is a generic container element — Step 2 uses one as a placeholder for the widget. |
-| **PayU Key Account Manager (KAM)** | Your dedicated PayU contact for commercial questions, enablement, onboarding, and merchant account support. |
-
-</Accordion>
