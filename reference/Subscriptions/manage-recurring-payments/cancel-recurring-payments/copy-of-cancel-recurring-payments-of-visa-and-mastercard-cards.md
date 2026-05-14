@@ -1,15 +1,15 @@
 ---
-title: Copy of Cancel Recurring Payments of VISA and Mastercard Cards
+title: Cancel Recurring Payments of NetBanking and UPI
 excerpt: >-
-  Cancel recurring payment mandates created using VISA and Mastercard cards with
-  PayU APIs. Learn the card mandate cancellation flow, request parameters,
-  response handling, and recurring payment management.
+  Cancel recurring payment mandates created using NetBanking and UPI with PayU
+  APIs. Learn the card mandate cancellation flow, request parameters, response
+  handling, and recurring payment management.
 deprecated: false
 hidden: true
 metadata:
   robots: noindex
 ---
-Use this API to cancel card mandates registered using VISA and Mastercard card networks. You cannot restore a cancelled mandate. You should ask customers to register a new mandate.
+Use this API to cancel mandates registered using NetBanking and UPI as payment methods.
 
 <Cards>
   <Card title="Method">
@@ -129,12 +129,10 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
 ### var1 JSON Parameters
 
 <Accordion title="Parameters and Description" icon="fa-info-circle">
-
-| **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                                                               |
-| :------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **authPayuId**<sup style={{color: 'red'}}>*</sup> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
-| **requestId**<sup style={{color: 'red'}}>*</sup>  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                                                            |
-
+  | **Parameter**                                      | **Description**                                                                                                                                                                                                                                                                                                                                                                                                               |
+  | :------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **authPayuId**<sup style={{color: 'red'}}>\*</sup> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
+  | **requestId**<sup style={{color: 'red'}}>\*</sup>  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                                                            |
 </Accordion>
 
 ## Response Parameters
@@ -169,7 +167,7 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
       </td>
 
       <td>
-        `integer` The status of the action performed. Possible values:  
+        `integer` The status of the action performed. Possible values:
 
         * `1`: Card mandate is successfully canceled.
         * `0`: Card mandate is not canceled.
