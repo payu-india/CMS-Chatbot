@@ -11,7 +11,7 @@ metadata:
 ---
 Use this API to cancel mandates registered using NetBanking and UPI as payment methods. You cannot restore a cancelled mandate. You should ask customers to register a new mandate.
 
-<Callout icon="❗️">
+<Callout icon="❗️" theme="error">
   **Watch Out!**
 
   Your customers cannot use Recurring Payments without implementing the **Cancel Recurring Registration** API.
@@ -51,11 +51,19 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 ## Sample Response
 
 <Accordion title="Response Payload" icon="fa-code">
-  ```json Success Response
+  ```json Success Response - NetBanking
   {
-    "status":1,
-    "message":"Mandate Revoked Successfully",
-    "action":"MANDATE_REVOKE"
+  "action":"MANDATE_REVOKE",
+  "status":1,
+  "Message":"Mandate Cancel Initiated",
+  "authpayuid":26734617195
+  }
+  ```
+  ```json Success Response - UPI
+  {
+  "status":1,
+  "action":"MANDATE_REVOKE",
+  "message":"Mandate Revoke request processed successfully"
   }
   ```
   ```json Error Response
