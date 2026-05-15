@@ -10,11 +10,14 @@ metadata:
 ---
 After you setup mandates, you can:
 
-* Check the mandate status.
+* <Anchor label="Check the mandate status of Cards, NetBanking and UPI payment methods" target="_blank" href="https://docs.payu.in/reference/check-the-mandate-status">Check the mandate status of Cards, NetBanking and UPI payment methods</Anchor>.
 * Modify a mandate of the following payment methods
-  * Cards
-  * UPI
+
+  * [Cards](https://docs.payu.in/reference/modify-recurring-payments-of-cards)
+  * [UPI](https://docs.payu.in/reference/modify-recurring-payments-of-upi)
+
   <br />
+
   <Callout icon="❗️" theme="error">
     **Watch Out!**
 
