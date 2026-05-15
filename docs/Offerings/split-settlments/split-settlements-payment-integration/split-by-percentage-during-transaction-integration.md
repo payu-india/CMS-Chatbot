@@ -30,6 +30,40 @@ In this mode, set `type` as `percentage` and ensure that the total percentage ac
 
 <Split_Settlments_Prerequiisites />
 
+**Steps to integrate**:
+
+<Cards columns={3}>
+  <Card title="1. Build splitRequest for Percentage Split" href="#step-1-build-splitrequest-for-percentage-split">
+    Construct the splitRequest object with the required parameters to configure a percentage-based split payment
+
+    <br />
+  </Card>
+
+  <Card title="2. Generate Request Hash" href="#step-2-generate-request-hash">
+    Generate a secure request hash to authenticate and validate the payment request before submission
+
+    <br />
+  </Card>
+
+  <Card title="3. Submit Payment Request to _payment" href="#step-3-submit-payment-request-to-_payment">
+    Submit the constructed payment request along with the percentage split details to the PayU \_payment endpoint
+
+    <br />
+  </Card>
+
+  <Card title="4. Validate Redirect Response Using Reverse Hash" href="#step-4-validate-redirect-response-using-reverse-hash">
+    Validate the redirect response returned by PayU using a reverse hash to ensure the integrity of the transaction data
+
+    <br />
+  </Card>
+
+  <Card title="5. Confirm Payment via Webhooks" href="#step-5-confirm-payment-via-webhooks">
+    Confirm the final payment status and transaction outcome by listening to and processing PayU webhook notifications
+  </Card>
+
+  <br />
+</Cards>
+
 ## Step 1: Build splitRequest for percentage split
 
 Use `type: "percentage"` and assign percentage values in `aggregatorSubAmt`.
