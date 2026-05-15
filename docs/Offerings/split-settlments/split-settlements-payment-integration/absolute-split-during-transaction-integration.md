@@ -33,7 +33,7 @@ In an absolute split, each child merchant receives an exact amount (`aggregatorS
 
 **Steps to Integrate**:
 
-<Cards columns={3}>
+<Cards columns={2}>
   <Card title="1. Build splitRequest for Absolute Split" href="#step-1-build-splitrequest-for-absolute-split">
     Construct the splitRequest object with the required parameters to configure an absolute split payment
 
