@@ -32,7 +32,7 @@ In this mode, set `type` as `percentage` and ensure that the total percentage ac
 
 **Steps to integrate**:
 
-<Cards columns={3}>
+<Cards columns={2}>
   <Card title="1. Build splitRequest for Percentage Split" href="#step-1-build-splitrequest-for-percentage-split">
     Construct the splitRequest object with the required parameters to configure a percentage-based split payment
 
