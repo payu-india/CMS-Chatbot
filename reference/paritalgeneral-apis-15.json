@@ -1,1 +1,281 @@
-{"openapi":"3.1.0","info":{"title":"ParitalGeneral APIs","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://test.payu.in/merchant","variables":{}}],"paths":{"/postservice.php":{"post":{"tags":["Misc"],"summary":"validateVPA","description":"","operationId":"validateVPA","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"allOf":[{"$ref":"#/components/schemas/form"},{"examples":[2]}]}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"allOf":[{"$ref":"#/components/schemas/Content-Type"},{"examples":["application/x-www-form-urlencoded"]}]}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","var1","hash"],"type":"object","properties":{"key":{"allOf":[{"$ref":"#/components/schemas/key"},{"description":"This parameter must contain merchant key provided by PayU."}]},"command":{"allOf":[{"$ref":"#/components/schemas/command"},{"description":"This parameter must contain the command as validateVPA."}]},"var1":{"type":"string","description":"This parameter contains the UPA handle that has to be validated.","examples":["test@testvpa"]},"hash":{"type":"string","description":"This parameter must contain the hash value to be calculated at your end."},"var2":{"type":"string","description":"This parameter is used to check if the VPA is valid for Autopay or UPI Recurring Payments or not. You need pass the values as 1 in the validateAutoPayVPA field similar to the following: {\"validateAutoPayVPA\":\"1\"}. Use this parameter only for validating UPI Autopay."}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{},"content":{}}},"deprecated":false},"parameters":[]}},"components":{"schemas":{"var1":{"title":"var1","required":["amount","txnid","productinfo","firstname","email","phone"],"type":"object","properties":{"amount":{"type":"string","description":"This parameter contains the payment amount of the particular transaction."},"txnid":{"type":"string","description":"This parameter contains the merchant-generated transaction number which is used to track a particular order (must be unique every time if already successful, otherwise you get an error of the duplicate transaction)."},"productinfo":{"type":"string","description":"This parameter contains the product Description."},"firstname":{"type":"string","description":"This parameter contains the first name of the customer."},"email":{"type":"string","description":"This parameter contains the email address of the customer."},"phone":{"type":"string","description":"This parameter contains the phone number of the customer."},"address1":{"type":"string","description":"This parameter contains the first line of the billing address."},"city":{"type":"string","description":"This parameter contains the city where the customer resides."},"state":{"type":"string","description":"This parameter contains the state where the customer resides."},"country":{"type":"string","description":"This parameter contains the country where the customer resides."},"zipcode":{"type":"string","description":"This parameter contains the zip code of the customer's address."},"template_id":{"type":"string","description":"This parameter contains the template ID to be provided in case of more than one email invoice template. Merchant can decide which template to use and provide the particular template ID in this parameter."},"validation_period":{"type":"integer","description":"This parameter contains the number of days for which the email invoice usage is valid (If this field is left empty, the default value will be taken as 7 days).","contentEncoding":"int32"},"send_email_now":{"type":"string","description":"This parameter contains the flag to specify whether the email invoice needs to be sent to customer at the time of creation or later."},"send_sms":{"type":"string","description":"This parameter contains the flag to specify whether the SMS invoice needs to be sent to customer."},"time_unit":{"type":"string","description":"This parameter contains the any of the following time unit of validation period: M: Minute,, H: Hour or D: Days","examples":["H"]}},"examples":[{"amount":"10000","txnid":"abaac3330","productinfo":"iPhone","firstname":"Samir","email":"test@test.com","phone":"7401099153","address1":"testaddress","city":"Mumbai","state":"Maharashtra","country":"India","zipcode":"122002","template_id":"1290","validation_period":6,"send_email_now":"0","send_sms":"1"}]},"command":{"title":"command","const":"validateVPA","type":"string","description":"This parameter must contain the command as validateVPA.","examples":["validateVPA"]},"Content-Type":{"title":"Content-Type","const":"application/x-www-form-urlencoded","type":"string","examples":["application/x-www-form-urlencoded"]},"form":{"title":"form","const":2,"type":"integer","examples":[2]},"key":{"title":"key","const":"JPM7Fg","type":"string","description":"This parameter must contain merchant key provided by PayU.","examples":["JPM7Fg"]}}},"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ParitalGeneral APIs",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/merchant",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/postservice.php": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Validate VPA API",
+        "description": "",
+        "operationId": "validateVPA",
+        "parameters": [
+          {
+            "name": "form",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/form"
+                },
+                {
+                  "examples": [
+                    2
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Content-Type"
+                },
+                {
+                  "examples": [
+                    "application/x-www-form-urlencoded"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "key",
+                  "command",
+                  "var1",
+                  "hash"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/key"
+                      },
+                      {
+                        "description": "This parameter must contain merchant key provided by PayU."
+                      }
+                    ]
+                  },
+                  "command": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/command"
+                      },
+                      {
+                        "description": "This parameter must contain the command as validateVPA."
+                      }
+                    ]
+                  },
+                  "var1": {
+                    "type": "string",
+                    "description": "This parameter contains the UPA handle that has to be validated.",
+                    "examples": [
+                      "test@testvpa"
+                    ]
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "This parameter must contain the hash value to be calculated at your end."
+                  },
+                  "var2": {
+                    "type": "string",
+                    "description": "This parameter is used to check if the VPA is valid for Autopay or UPI Recurring Payments or not. You need pass the values as 1 in the validateAutoPayVPA field similar to the following: {\"validateAutoPayVPA\":\"1\"}. Use this parameter only for validating UPI Autopay."
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "var1": {
+        "title": "var1",
+        "required": [
+          "amount",
+          "txnid",
+          "productinfo",
+          "firstname",
+          "email",
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string",
+            "description": "This parameter contains the payment amount of the particular transaction."
+          },
+          "txnid": {
+            "type": "string",
+            "description": "This parameter contains the merchant-generated transaction number which is used to track a particular order (must be unique every time if already successful, otherwise you get an error of the duplicate transaction)."
+          },
+          "productinfo": {
+            "type": "string",
+            "description": "This parameter contains the product Description."
+          },
+          "firstname": {
+            "type": "string",
+            "description": "This parameter contains the first name of the customer."
+          },
+          "email": {
+            "type": "string",
+            "description": "This parameter contains the email address of the customer."
+          },
+          "phone": {
+            "type": "string",
+            "description": "This parameter contains the phone number of the customer."
+          },
+          "address1": {
+            "type": "string",
+            "description": "This parameter contains the first line of the billing address."
+          },
+          "city": {
+            "type": "string",
+            "description": "This parameter contains the city where the customer resides."
+          },
+          "state": {
+            "type": "string",
+            "description": "This parameter contains the state where the customer resides."
+          },
+          "country": {
+            "type": "string",
+            "description": "This parameter contains the country where the customer resides."
+          },
+          "zipcode": {
+            "type": "string",
+            "description": "This parameter contains the zip code of the customer's address."
+          },
+          "template_id": {
+            "type": "string",
+            "description": "This parameter contains the template ID to be provided in case of more than one email invoice template. Merchant can decide which template to use and provide the particular template ID in this parameter."
+          },
+          "validation_period": {
+            "type": "integer",
+            "description": "This parameter contains the number of days for which the email invoice usage is valid (If this field is left empty, the default value will be taken as 7 days).",
+            "contentEncoding": "int32"
+          },
+          "send_email_now": {
+            "type": "string",
+            "description": "This parameter contains the flag to specify whether the email invoice needs to be sent to customer at the time of creation or later."
+          },
+          "send_sms": {
+            "type": "string",
+            "description": "This parameter contains the flag to specify whether the SMS invoice needs to be sent to customer."
+          },
+          "time_unit": {
+            "type": "string",
+            "description": "This parameter contains the any of the following time unit of validation period: M: Minute,, H: Hour or D: Days",
+            "examples": [
+              "H"
+            ]
+          }
+        },
+        "examples": [
+          {
+            "amount": "10000",
+            "txnid": "abaac3330",
+            "productinfo": "iPhone",
+            "firstname": "Samir",
+            "email": "test@test.com",
+            "phone": "7401099153",
+            "address1": "testaddress",
+            "city": "Mumbai",
+            "state": "Maharashtra",
+            "country": "India",
+            "zipcode": "122002",
+            "template_id": "1290",
+            "validation_period": 6,
+            "send_email_now": "0",
+            "send_sms": "1"
+          }
+        ]
+      },
+      "command": {
+        "title": "command",
+        "const": "validateVPA",
+        "type": "string",
+        "description": "This parameter must contain the command as validateVPA.",
+        "examples": [
+          "validateVPA"
+        ]
+      },
+      "Content-Type": {
+        "title": "Content-Type",
+        "const": "application/x-www-form-urlencoded",
+        "type": "string",
+        "examples": [
+          "application/x-www-form-urlencoded"
+        ]
+      },
+      "form": {
+        "title": "form",
+        "const": 2,
+        "type": "integer",
+        "examples": [
+          2
+        ]
+      },
+      "key": {
+        "title": "key",
+        "const": "JPM7Fg",
+        "type": "string",
+        "description": "This parameter must contain merchant key provided by PayU.",
+        "examples": [
+          "JPM7Fg"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
