@@ -31,7 +31,39 @@ In an absolute split, each child merchant receives an exact amount (`aggregatorS
 
 <Split_Settlments_Prerequiisites />
 
-<br />
+**Steps to Integrate**:
+
+<Cards columns={3}>
+  <Card title="1. Build splitRequest for Absolute Split" href="#step-1-build-splitrequest-for-absolute-split">
+    Construct the splitRequest object with the required parameters to configure an absolute split payment
+
+    <br />
+  </Card>
+
+  <Card title="2. Generate Request Hash" href="#step-2-generate-request-hash">
+    Generate a secure request hash to authenticate and validate the payment request before submission
+
+    <br />
+  </Card>
+
+  <Card title="3. Submit Payment Request to _payment" href="#step-3-submit-payment-request-to-_payment">
+    Submit the constructed payment request along with the split details to the PayU \_payment endpoint
+
+    <br />
+  </Card>
+
+  <Card title="4. Handle Checkout Response on Success/Failure URL" href="#step-4-handle-checkout-response-on-successfailure-url">
+    Handle and process the checkout response returned by PayU on the configured success or failure URL
+
+    <br />
+  </Card>
+
+  <Card title="5. Verify Final Payment State Using Webhooks" href="#step-5-verify-final-payment-state-using-webhooks">
+    Confirm the final payment status and transaction outcome by listening to and processing PayU webhook notifications
+  </Card>
+
+  <br />
+</Cards>
 
 ## Step 1: Build splitRequest for absolute split
 
