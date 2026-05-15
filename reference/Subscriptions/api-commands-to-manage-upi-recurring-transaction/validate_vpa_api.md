@@ -26,8 +26,6 @@ This API (**validateVPA**) will let you validate VPA if it is a valid VPA or not
 
 After the customer enters VPA on the merchant page, you need to call this API to check for VPA validation. If VPA is valid only then, the second call should be made.
 
-**Environment**
-
 <GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
