@@ -2,7 +2,7 @@
 name: Validate_VPA
 ---
 ```curl
-curl --location 'https://secure.payu.in/merchant/postservice' \
+curl --location 'https://test.payu.in/merchant/postservice' \
   --header 'accept: application/json' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
   --data-urlencode 'form=2' \
