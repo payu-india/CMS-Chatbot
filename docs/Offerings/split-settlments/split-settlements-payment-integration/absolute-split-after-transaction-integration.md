@@ -30,6 +30,34 @@ In absolute split mode, each child merchant receives a fixed amount through `agg
 
 <Split_Settlments_Prerequiisites />
 
+**Steps to integrate:**
+
+<Cards columns={3}>
+  <Card title="1. Verify the Payment" href="#step-1-verify-the-payment">
+    Verify the payment status to confirm the transaction is successful before initiating the split
+
+    <br />
+  </Card>
+
+  <Card title="2. Prepare var1 JSON Payload" href="#step-2-prepare-var1-json-payload">
+    Prepare the var1 JSON payload with the required split details and partner-specific parameters
+
+    <br />
+  </Card>
+
+  <Card title="3. Generate Hash" href="#step-3-generate-hash">
+    Generate a secure hash for the API request to ensure data integrity and authentication
+
+    <br />
+  </Card>
+
+  <Card title="4. Call payment_split API" href="#step-4-call-payment_split-api">
+    Make the API call to the payment\_split endpoint to execute the split on the verified transaction
+  </Card>
+
+  <br />
+</Cards>
+
 ## Step 1: Verify the Payment
 
 After completing the payment using the Collect Payment (**_payment**) API, perform this step to verify the payment.
