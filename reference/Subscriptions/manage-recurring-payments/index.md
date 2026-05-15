@@ -23,6 +23,8 @@ After you setup mandates, you can:
 
     You cannot modify a mandate created using NetBanking as a payment method. You should cancel the existing one and create a new mandate.
   </Callout>
-* Cancel a mandate
+* Cancel mandates of:
+  * [VISA and Mastercard Cards](https://docs.payu.in/reference/cancel-recurring-payments-of-visa-and-mastercard-cards)
+  * [NetBanking and UPI](https://docs.payu.in/reference/cancel-recurring-payments-of-netbanking-and-upi)
 
 <br />
