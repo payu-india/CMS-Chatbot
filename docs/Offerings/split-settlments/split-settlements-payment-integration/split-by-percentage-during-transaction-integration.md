@@ -1,7 +1,7 @@
 ---
 title: Split by Percentage During Transaction Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
