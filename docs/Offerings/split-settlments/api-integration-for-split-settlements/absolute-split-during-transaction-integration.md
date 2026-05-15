@@ -29,12 +29,9 @@ In an absolute split, each child merchant receives an exact amount (`aggregatorS
 
 ## Prerequisites
 
-Before you start, ensure the following:
+<Split_Settlments_Prerequiisites />
 
-1. Your parent merchant account is enabled for Split Settlements.
-2. Child merchants are onboarded and available for split mapping.
-3. You have your merchant `key` and `salt`.
-4. You have server-side logic to generate hash and process webhooks.
+<br />
 
 ## Step 1: Build splitRequest for absolute split
 
