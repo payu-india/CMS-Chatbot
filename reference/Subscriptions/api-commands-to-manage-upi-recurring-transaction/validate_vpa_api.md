@@ -1,5 +1,4 @@
 ---
-title: Validate VPA API
 api:
   file: paritalgeneral-apis-15.json
   operationId: validateVPA
@@ -27,197 +26,202 @@ This API (**validateVPA**) will let you validate VPA if it is a valid VPA or not
 
 After the customer enters VPA on the merchant page, you need to call this API to check for VPA validation. If VPA is valid only then, the second call should be made.
 
+**Environment**
+
+<GENERALAPIsEnvironment />
+
 <Accordion title="Sample request" icon="fa-code">
   **Validate VPA**
-<Validate_VPA />
+
+  <Validate_VPA />
 
   **Validate VPA for Recurring Payment**
-```curl
-curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g" \
-  -d "command=validateVPA" \
-  -d "var1=9999999999@upi" \
-  -d "var2={\"validateAutoPayVPA\":\"1\"}" \
-  -d "hash=75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
-```
-```python
-import requests
-import json
 
-url = "https://test.payu.in/merchant/postservice"
+  ```curl
+  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=JP***g" \
+    -d "command=validateVPA" \
+    -d "var1=9999999999@upi" \
+    -d "var2={\"validateAutoPayVPA\":\"1\"}" \
+    -d "hash=75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
+  ```
+  ```python
+  import requests
+  import json
 
-headers = {
-    "accept": "application/json",
-    "Content-Type": "application/x-www-form-urlencoded"
-}
+  url = "https://test.payu.in/merchant/postservice"
 
-var2_json = json.dumps({"validateAutoPayVPA": "1"})
+  headers = {
+      "accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+  }
 
-data = {
-    "key": "JP***g",
-    "command": "validateVPA",
-    "var1": "9999999999@upi",
-    "var2": var2_json,
-    "hash": "75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
-}
+  var2_json = json.dumps({"validateAutoPayVPA": "1"})
 
-response = requests.post(url, headers=headers, data=data, params={"form": "2"})
+  data = {
+      "key": "JP***g",
+      "command": "validateVPA",
+      "var1": "9999999999@upi",
+      "var2": var2_json,
+      "hash": "75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
+  }
 
-print("Status Code:", response.status_code)
-print("Response:", response.json())
-```
-```java
-import java.io.IOException;
-import java.net.URI;
-import java.net.URLEncoder;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+  response = requests.post(url, headers=headers, data=data, params={"form": "2"})
 
-public class ValidateAutoPayVPA {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        String url = "https://test.payu.in/merchant/postservice?form=2";
-        
-        String var2Json = "{\"validateAutoPayVPA\":\"1\"}";
-        
-        Map<String, String> params = new HashMap<>();
-        params.put("key", "JP***g");
-        params.put("command", "validateVPA");
-        params.put("var1", "9999999999@upi");
-        params.put("var2", var2Json);
-        params.put("hash", "75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e");
-        
-        String formData = params.entrySet().stream()
-            .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" 
-                    + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
-            .collect(Collectors.joining("&"));
-        
-        HttpClient client = HttpClient.newHttpClient();
-        
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .header("accept", "application/json")
-            .header("Content-Type", "application/x-www-form-urlencoded")
-            .POST(HttpRequest.BodyPublishers.ofString(formData))
-            .build();
-        
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Response: " + response.body());
-    }
-}
-```
-```javascript
-const axios = require('axios');
-const qs = require('qs');
+  print("Status Code:", response.status_code)
+  print("Response:", response.json())
+  ```
+  ```java
+  import java.io.IOException;
+  import java.net.URI;
+  import java.net.URLEncoder;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.nio.charset.StandardCharsets;
+  import java.util.HashMap;
+  import java.util.Map;
+  import java.util.stream.Collectors;
 
-const url = 'https://test.payu.in/merchant/postservice?form=2';
+  public class ValidateAutoPayVPA {
+      public static void main(String[] args) throws IOException, InterruptedException {
+          String url = "https://test.payu.in/merchant/postservice?form=2";
+          
+          String var2Json = "{\"validateAutoPayVPA\":\"1\"}";
+          
+          Map<String, String> params = new HashMap<>();
+          params.put("key", "JP***g");
+          params.put("command", "validateVPA");
+          params.put("var1", "9999999999@upi");
+          params.put("var2", var2Json);
+          params.put("hash", "75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e");
+          
+          String formData = params.entrySet().stream()
+              .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" 
+                      + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+              .collect(Collectors.joining("&"));
+          
+          HttpClient client = HttpClient.newHttpClient();
+          
+          HttpRequest request = HttpRequest.newBuilder()
+              .uri(URI.create(url))
+              .header("accept", "application/json")
+              .header("Content-Type", "application/x-www-form-urlencoded")
+              .POST(HttpRequest.BodyPublishers.ofString(formData))
+              .build();
+          
+          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+          
+          System.out.println("Status Code: " + response.statusCode());
+          System.out.println("Response: " + response.body());
+      }
+  }
+  ```
+  ```javascript
+  const axios = require('axios');
+  const qs = require('qs');
 
-const var2Json = JSON.stringify({ validateAutoPayVPA: '1' });
+  const url = 'https://test.payu.in/merchant/postservice?form=2';
 
-const data = {
-    key: 'JP***g',
-    command: 'validateVPA',
-    var1: '9999999999@upi',
-    var2: var2Json,
-    hash: '75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
-};
+  const var2Json = JSON.stringify({ validateAutoPayVPA: '1' });
 
-const config = {
-    headers: {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-};
+  const data = {
+      key: 'JP***g',
+      command: 'validateVPA',
+      var1: '9999999999@upi',
+      var2: var2Json,
+      hash: '75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+  };
 
-axios.post(url, qs.stringify(data), config)
-    .then(response => {
-        console.log('Status Code:', response.status);
-        console.log('Response:', response.data);
-    })
-    .catch(error => {
-        console.error('Error:', error.response ? error.response.data : error.message);
-    });
-```
-```php
-<?php
+  const config = {
+      headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+      }
+  };
 
-$url = "https://test.payu.in/merchant/postservice?form=2";
+  axios.post(url, qs.stringify(data), config)
+      .then(response => {
+          console.log('Status Code:', response.status);
+          console.log('Response:', response.data);
+      })
+      .catch(error => {
+          console.error('Error:', error.response ? error.response.data : error.message);
+      });
+  ```
+  ```php
+  <?php
 
-$var2Json = json_encode(array('validateAutoPayVPA' => '1'));
+  $url = "https://test.payu.in/merchant/postservice?form=2";
 
-$data = array(
-    'key' => 'JP***g',
-    'command' => 'validateVPA',
-    'var1' => '9999999999@upi',
-    'var2' => $var2Json,
-    'hash' => '75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
-);
+  $var2Json = json_encode(array('validateAutoPayVPA' => '1'));
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'accept: application/json',
-    'Content-Type: application/x-www-form-urlencoded'
-));
+  $data = array(
+      'key' => 'JP***g',
+      'command' => 'validateVPA',
+      'var1' => '9999999999@upi',
+      'var2' => $var2Json,
+      'hash' => '75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+  );
 
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'accept: application/json',
+      'Content-Type: application/x-www-form-urlencoded'
+  ));
 
-echo "Status Code: " . $httpCode . "\n";
-echo "Response: " . $response . "\n";
+  $response = curl_exec($ch);
+  $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  curl_close($ch);
 
-$jsonResponse = json_decode($response, true);
-print_r($jsonResponse);
-?>
-```
-```perl
-#!/usr/bin/perl
-use strict;
-use warnings;
-use LWP::UserAgent;
-use HTTP::Request::Common;
-use JSON;
+  echo "Status Code: " . $httpCode . "\n";
+  echo "Response: " . $response . "\n";
 
-my $url = "https://test.payu.in/merchant/postservice?form=2";
+  $jsonResponse = json_decode($response, true);
+  print_r($jsonResponse);
+  ?>
+  ```
+  ```perl
+  #!/usr/bin/perl
+  use strict;
+  use warnings;
+  use LWP::UserAgent;
+  use HTTP::Request::Common;
+  use JSON;
 
-my $var2_json = encode_json({ validateAutoPayVPA => '1' });
+  my $url = "https://test.payu.in/merchant/postservice?form=2";
 
-my %data = (
-    key     => 'JP***g',
-    command => 'validateVPA',
-    var1    => '9999999999@upi',
-    var2    => $var2_json,
-    hash    => '75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
-);
+  my $var2_json = encode_json({ validateAutoPayVPA => '1' });
 
-my $ua = LWP::UserAgent->new;
-$ua->timeout(30);
+  my %data = (
+      key     => 'JP***g',
+      command => 'validateVPA',
+      var1    => '9999999999@upi',
+      var2    => $var2_json,
+      hash    => '75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+  );
 
-my $response = $ua->post($url, 
-    Content_Type => 'application/x-www-form-urlencoded',
-    Content => \%data
-);
+  my $ua = LWP::UserAgent->new;
+  $ua->timeout(30);
 
-if ($response->is_success) {
-    print "Status Code: " . $response->code . "\n";
-    print "Response: " . $response->decoded_content . "\n";
-} else {
-    print "Error: " . $response->status_line . "\n";
-}
-```
- 
+  my $response = $ua->post($url, 
+      Content_Type => 'application/x-www-form-urlencoded',
+      Content => \%data
+  );
+
+  if ($response->is_success) {
+      print "Status Code: " . $response->code . "\n";
+      print "Response: " . $response->decoded_content . "\n";
+  } else {
+      print "Error: " . $response->status_line . "\n";
+  }
+  ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
