@@ -32,7 +32,7 @@ In absolute split mode, each child merchant receives a fixed amount through `agg
 
 **Steps to integrate:**
 
-<Cards columns={3}>
+<Cards columns={2}>
   <Card title="1. Verify the Payment" href="#step-1-verify-the-payment">
     Verify the payment status to confirm the transaction is successful before initiating the split
 
