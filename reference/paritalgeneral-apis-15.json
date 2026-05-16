@@ -133,7 +133,7 @@
         "tags": [
           "Misc"
         ],
-        "summary": "Validate VPA API",
+        "summary": "Validate a VPA",
         "description": "",
         "operationId": "validateVPA-1",
         "parameters": [
