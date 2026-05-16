@@ -1,5 +1,4 @@
 ---
-title: Copy of Validate VPA API
 api:
   file: paritalgeneral-apis-15.json
   operationId: validateVPA-1
