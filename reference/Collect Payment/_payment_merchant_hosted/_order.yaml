@@ -6,3 +6,4 @@
 - _payment_merchant_hosted_bnpl
 - _payment_merchant_hosted_cards-with-transaction-biller-name
 - _payment_api_merchant_hosted_aft
+- merchant-upcoming-and-pending-settlement-api
