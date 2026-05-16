@@ -22,7 +22,7 @@ metadata:
     - Check UPI VPA
   robots: index
 ---
-This API (**validateVPA**) will let you validate VPA if it is a valid VPA or not.
+Use this API to check whether a VPA is valid.
 
 After the customer enters VPA on the merchant page, you need to call this API to check for VPA validation. If VPA is valid only then, the second call should be made.
 
