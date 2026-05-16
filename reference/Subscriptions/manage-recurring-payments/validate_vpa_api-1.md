@@ -24,6 +24,12 @@ metadata:
 ---
 Use this API to check whether a VPA is valid.
 
+<Callout icon="👍">
+  **Handy Tips**
+
+  You should poll this API after a customer enters a VPA on the merchant page to check for its validation. If VPA is valid only then, the second call should be made.
+</Callout>
+
 After the customer enters VPA on the merchant page, you need to call this API to check for VPA validation. If VPA is valid only then, the second call should be made.
 
 <GENERALAPIsEnvironment />
