@@ -32,7 +32,9 @@ Use this API to check whether a VPA is valid.
 
 <GENERALAPIsEnvironment />
 
-<Accordion title="Sample request" icon="fa-code">
+## Sample Request
+
+<Accordion title="Request Payload" icon="fa-code">
   **Validate VPA**
 
   <Validate_VPA />
