@@ -21,16 +21,18 @@ next:
 ---
 The Model 2 involves only zero code change and this section describes the general workflow.
 
-> 📘 Note:
->
-> To use tokenisation, you need to get the Token Requestor onboarding to be done. Contact your PayU Key Account Manager (KAM) to get the onboarding done.
+<Callout icon="📘" theme="info">
+  **Note**: To use tokenisation, you need to get the Token Requestor onboarding to be done. Contact your PayU Key Account Manager (KAM) to get the onboarding done.
+</Callout>
+
+<br />
 
 ## General workflow
 
 To create the token, only minor code changes is required in your implementation. However, to process the transactions using the tokens, you need to integrate an extra API.
 
 1. PayU onboards the merchant on the PayU token hub.
-2. Merchant will pass the consent value and user id in the **\_payment** API.
+2. Merchant will pass the consent value and user id in the **_payment** API.
 
    Here, consent is taken from customer on the merchant’s website (similar to the step 2 of [Model 1 - PayU Hosted Checkout Integration](doc:payu-hosted-checkout-integration-with-vault-model-1) before passing the consent value).
 
@@ -43,6 +45,45 @@ To create the token, only minor code changes is required in your implementation.
 2. PayU will store the tokens on its own servers on the merchant’s behalf.
 
 ## First-time payment workflow
+
+<Callout icon="👍" theme="okay">
+  Experience the end-to-end **Merchant Hosted Checkout** flow and instantly generate the complete code for seamless, zero-coding integration into your website. Select **First-Time Customer > Payment API (_payment)** from left navigation pane after opening the following page
+
+  <HTMLBlock>{`
+                        <style>
+                        .tooltip-btn {
+                            position: relative;
+                            background-color: #4CAF50;
+                            color: white;
+                            padding: 10px 20px;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-weight: bold; /* Added this line */
+                        }
+                        .tooltip-btn:hover::after {
+                            content: attr(data-tooltip);
+                            position: absolute;
+                            bottom: 125%;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            background-color: #333;
+                            color: white;
+                            padding: 5px 10px;
+                            border-radius: 4px;
+                            white-space: nowrap;
+                            font-size: 12px;
+                            z-index: 1;
+                        }
+                        </style>
+
+                        <button onclick="window.open('https://payu.in/integrationlab/seamless/cards', '_blank')" 
+                                class="tooltip-btn" 
+                                data-tooltip="Click here to see the Merchant Hosted Checkout end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+                            Experience the flow and get the code
+                        </button>
+  `}</HTMLBlock>
+</Callout>
 
 ### Workflow
 
@@ -57,14 +98,14 @@ The following flow diagram illustrates the workflow for first-time payment workf
 5. PayU then creates token with networks and issuers.
 6. PayU passes the token to the merchant.
 
-### Extra request parameters to be posted using \_payment API
+### Extra request parameters to be posted using _payment API
 
 **Environment**
 
-|                            |                                                                     |
-| :------------------------- | :------------------------------------------------------------------ |
-| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>) |
-| **Production Environment** | \<[https://info.payu.in/\_payment>](https://info.payu.in/_payment>) |
+|                            |                                                                    |
+| :------------------------- | :----------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/_payment>](https://test.payu.in/_payment>) |
+| **Production Environment** | \<[https://info.payu.in/_payment>](https://info.payu.in/_payment>) |
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -101,11 +142,13 @@ The following flow diagram illustrates the workflow for first-time payment workf
 </table>
 `}</HTMLBlock>
 
-> 📘 Notes:
->
-> * Only the fields needed for this operation are mentioned here. For the complete API details for the **\_payment** API, refer to [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted).
-> * After taking the consent, merchant will have to call PayU for doing the transaction and creating token. This is needed as PayU will ensure the additional factor authentication (AFA) requirements are taken care of.
-> * The subsequent transactions (using the token) can be done through PayU or any other payment processor.
+<Callout icon="📘" theme="info">
+  **Notes**:
+
+  * Only the fields needed for this operation are mentioned here. For the complete API details for the **_payment** API, refer to [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted).
+  * After taking the consent, merchant will have to call PayU for doing the transaction and creating token. This is needed as PayU will ensure the additional factor authentication (AFA) requirements are taken care of.
+  * The subsequent transactions (using the token) can be done through PayU or any other payment processor.
+</Callout>
 
 ### Sample request and response
 
@@ -118,6 +161,47 @@ The repeat transaction flow involves the following steps:
 1. Get the tokenized card details (as described in the [Get User Cards API](ref:get_user_cards_api) section)
 2. [Process the transaction with a Tokenized Card](#repeat-transaction-flow)
 
+<br />
+
+<Callout icon="👍" theme="okay">
+  Experience the end-to-end **Merchant Hosted Checkout** flow and instantly generate the complete code for seamless, zero-coding integration into your website. Select **Repeat Customer > Payment API (_payment)** from left navigation pane after opening the following page
+
+  <HTMLBlock>{`
+                          <style>
+                          .tooltip-btn {
+                              position: relative;
+                              background-color: #4CAF50;
+                              color: white;
+                              padding: 10px 20px;
+                              border: none;
+                              border-radius: 5px;
+                              cursor: pointer;
+                              font-weight: bold; /* Added this line */
+                          }
+                          .tooltip-btn:hover::after {
+                              content: attr(data-tooltip);
+                              position: absolute;
+                              bottom: 125%;
+                              left: 50%;
+                              transform: translateX(-50%);
+                              background-color: #333;
+                              color: white;
+                              padding: 5px 10px;
+                              border-radius: 4px;
+                              white-space: nowrap;
+                              font-size: 12px;
+                              z-index: 1;
+                          }
+                          </style>
+
+                          <button onclick="window.open('https://payu.in/integrationlab/seamless/cards', '_blank')" 
+                                  class="tooltip-btn" 
+                                  data-tooltip="Click here to see the Merchant Hosted Checkout end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+                              Experience the flow and get the code
+                          </button>
+  `}</HTMLBlock>
+</Callout>
+
 ### Workflow
 
 The steps involved in creating token after processing payment workflow:
@@ -129,9 +213,9 @@ The steps involved in creating token after processing payment workflow:
 
 ### Process transaction with a saved card
 
-If you have not received a response from PayU with First-Time Payment Workflow, use the **get\_user\_card** API as described in [Get User Cards API](ref:get_user_cards_api)
+If you have not received a response from PayU with First-Time Payment Workflow, use the **get_user_card** API as described in [Get User Cards API](ref:get_user_cards_api)
 
-### Extra parameters to be posted with saved card using \_payment API
+### Extra parameters to be posted with saved card using _payment API
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -173,13 +257,13 @@ If you have not received a response from PayU with First-Time Payment Workflow, 
 
 > 📘 Note:
 >
-> Only the fields needed for this operation are mentioned here. For the complete API details of the **\_payment** API, refer to [Collect Payments using Merchant Hosted Checkout](/docs/custom-checkout-merchant-hosted).
+> Only the fields needed for this operation are mentioned here. For the complete API details of the **_payment** API, refer to [Collect Payments using Merchant Hosted Checkout](/docs/custom-checkout-merchant-hosted).
 
 ### Sample response
 
 #### Success scenario
 
-PayU will return the response (unformatted) similar to the following on the **surl** specified using **\_payment** API:
+PayU will return the response (unformatted) similar to the following on the **surl** specified using **_payment** API:
 
 ```plaintext
 mihpayid=999000000001268&mode=CC&status=success&unmappedstatus=captured&key=J****g&txnid=2b019fa0976d7480cf5&amount=10.00&cardCategory=domestic&discount=0.00&net_amount_debit=10&addedon=2021-11-29+11%3A51%3A35&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=82df12630b4e4083a90b314534872dfb22e97aaa191b1b93db2a76351561bd612a0b321609b0e31a3b7b62d1928c8e67e9fed5b2b5209deba4366c58706c1ffe&field1=3245029356632939671830&field2=302404&field3=10.00&field4=999000000001268&field5=100&field6=02&field7=AUTHPOSITIVE&field8=&field9=Transaction+is+Successful&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=3245029356632939671830&bankcode=CC&error=E000&error_Message=No+Error&cardToken=28b99d39e83e8031caa7ad&name_on_card=Test+User&cardnum=XXXXXXXXXXXX2346&cardhash=This+field+is+no+longer+supported+in+postback+params.
