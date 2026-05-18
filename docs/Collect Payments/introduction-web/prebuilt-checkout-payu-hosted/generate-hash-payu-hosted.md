@@ -21,6 +21,49 @@ To ensure the security of transactions, PayU requires a hash to be generated for
   **Hashing logic for Web Integration and SDK is different**: For the hashing logic in Android SDK or iOS SKD, refer to [Generate Dynamic Hash](doc:ioscheckoutpro-generate-hash).
 </Callout>
 
+<Callout icon="👍" theme="okay">
+  Experience the end-to-end PayU Hosted Checkout flow and instantly generate the complete code for seamless, zero-coding integration into your website. Select Hash Generator under Tools & Utilities from the following page:
+
+
+
+  <HTMLBlock>{`
+                  <style>
+                  .tooltip-btn {
+                      position: relative;
+                      background-color: #4CAF50;
+                      color: white;
+                      padding: 10px 20px;
+                      border: none;
+                      border-radius: 5px;
+                      cursor: pointer;
+                      font-weight: bold; /* Added this line */
+                  }
+                  .tooltip-btn:hover::after {
+                      content: attr(data-tooltip);
+                      position: absolute;
+                      bottom: 125%;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      background-color: #333;
+                      color: white;
+                      padding: 5px 10px;
+                      border-radius: 4px;
+                      white-space: nowrap;
+                      font-size: 12px;
+                      z-index: 1;
+                  }
+                  </style>
+
+                  <button onclick="window.open('https://payu.in/integrationlab/payu-hosted', '_blank')" 
+                          class="tooltip-btn" 
+                          data-tooltip="Click here to see the PayU Hosted Checkout end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+                      Experience the flow and get the code
+                  </button>
+  `}</HTMLBlock>
+</Callout>
+
+<br />
+
 ## Hash Generation Logic for Basic Payment Request
 
 PayU uses the SHA-512 hash function that belongs to the SHA-2 family of cryptographic functions to generate hash values.
@@ -41,13 +84,11 @@ To generate hash for a payment request in general:
   **Reference**: For more information on getting key and salt, refer to [Generate Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt) or [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
 </Callout>
 
-2. **Create a Hash String**: Concatenate the collected data in the following format:
-   `sha512(key|txnid|amount|productinfo|firstname|email|||||||||||SALT)`
+2. **Create a Hash String**: Concatenate the collected data in the following format: `sha512(key|txnid|amount|productinfo|firstname|email|||||||||||SALT)`
 3. **Generate Hash**: Use the SHA512 encryption algorithm to generate a hash of the concatenated string.
 
 <Callout icon="📘" theme="info">
-  **Hash logic for _payment API Version 19:** The following hash logic must be used for _payment API with **api_version=19**:
-  `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone`
+  **Hash logic for _payment API Version 19:** The following hash logic must be used for _payment API with **api_version=19**: `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone`
 </Callout>
 
 ### Example Hash Generation
@@ -123,9 +164,9 @@ sha512(key|txnid|amount|productinfo|firstname|email|||||||||SALT)
   * However, in the **live environment**, to retain the confidentiality of the business information, PayU displays only an error message and drops the transaction.
   * It has been observed that a majority of the hash mismatch errors result from an incorrect key insert by the merchant’s developers while generating the hash value. For instance:
 
-  | Inserting Merchant ID (MID) instead of Merchant Key                   | sha512(4**1**1112345110001 Shopping I Vinay I [vinay@test.com](mailto:vinay@test.com) I &#x33;**\*\*\*\***&#x73;**\***&#x6B;**\*\*\*\***&#x68;**\***&#x6A;)                   |
-  | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | Inserting SALT instead of Merchant Key & Merchant ID in place of SALT | sha512(&#x33;**\*\*\*\***&#x73;**\***&#x6B;**\*\*\*\***&#x68;**\***[j112345110001Shopping1Vinaylvinay@test.com](mailto:j112345110001Shopping1Vinaylvinay@test.com) \|4**1**1) |
+  | Inserting Merchant ID (MID) instead of Merchant Key                   | sha512(4**1**1112345110001 Shopping I Vinay I [vinay@test.com](mailto:vinay@test.com) I &#x33;**\*\*\*\***&#x73;**\***&#x6B;**\*\*\*\***&#x68;**\***&#x6A;)                     |
+  | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Inserting SALT instead of Merchant Key & Merchant ID in place of SALT | sha512(&#x33;**\*\*\*\***&#x73;**\***&#x6B;**\*\*\*\***&#x68;**\***[j112345110001Shopping1Vinaylvinay@test.com](mailto:j112345110001Shopping1Vinaylvinay@test.com) \\\|4**1**1) |
 
   In these cases, while PayU will compile the hash value with the right positioning of the merchant key and salt in the string, it will be different from the one posted by the merchant for apparent reasons, leading to a mismatch.
 
