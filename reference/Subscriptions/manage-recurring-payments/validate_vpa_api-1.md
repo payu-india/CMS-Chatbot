@@ -34,11 +34,7 @@ Use this API to check whether a VPA is valid.
 
 ## Sample Request
 
-<Accordion title="Request Payload" icon="fa-info-circle">
 
-  <Validate_VPA />
-
-</Accordion>
 
 
 
@@ -488,5 +484,32 @@ if ($response->is_success) {
     print "Error: " . $response->status_line . "\n";
 }
 ```
+
+</Accordion>
+
+## Sample Response
+
+<Accordion title="Response Payload" icon="fa-code">
+
+```json Success Response
+{
+  "status":"SUCCESS",
+  "vpa":"9999999999@upi",
+  "isVPAValid":1,
+  "isAutoPayVPAValid":1,
+  "isAutoPayBankValid":"NA",
+  "payerAccountName":"ABC"
+}
+```
+```json Error Response
+{
+  "status":"SUCCESS",
+  "vpa":"abc@upi",
+  "isVPAValid":0,
+  "payerAccountName":"NA"
+}
+```
+
+<br />
 
 </Accordion>
