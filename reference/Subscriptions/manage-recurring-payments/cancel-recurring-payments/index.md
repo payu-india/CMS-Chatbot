@@ -22,9 +22,9 @@ metadata:
 ---
 The Cancel Recurring Payments API allows you to cancel active recurring payment mandates associated with a subscription or standing instruction. This API can be used to stop future debit attempts for mandates created using:
 
-* Cards of VISA or Mastercard
-* Cards of AMEX or RuPay
-* NetBanking (NB) and UPI
+* <Anchor label="Cards of VISA or Mastercard" target="_blank" href="https://docs.payu.in/update/reference/cancel-recurring-payments-of-visa-and-mastercard-cards">Cards of VISA or Mastercard</Anchor>
+* <Anchor label="Cards of AMEX or RuPay" target="_blank" href="https://docs.payu.in/update/reference/cancel-recurring-payments-of-amex-and-rupay-cards">Cards of AMEX or RuPay</Anchor>
+* <Anchor label="NetBanking (NB) and UPI" target="_blank" href="https://docs.payu.in/update/reference/cancel-recurring-payments-of-netbanking-and-upi">NetBanking (NB) and UPI</Anchor>
 
 ## Common Use Cases
 
