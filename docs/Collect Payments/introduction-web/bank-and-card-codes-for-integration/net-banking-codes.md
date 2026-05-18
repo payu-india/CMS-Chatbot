@@ -101,5 +101,4 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | Tamilnad Mercantile Bank                   | TMBB     |
 | UCO Bank                                   | UCOB     |
 | UCO Corporate                              | UCOCNB   |
-| Ujjivan Bank - Retail                      | UJJNB    |
 | Yes Bank                                   | YESB     |
