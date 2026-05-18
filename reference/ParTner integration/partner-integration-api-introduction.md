@@ -26,6 +26,10 @@ This documentation includes the APIs related to Partner Program Integration. It 
 
 <Image align="center" src="https://files.readme.io/0448b6806e7c38a12a8542b86d85322ebf8ff6cab0d471d74b4d50541daec0a3-Screenshot_2025-05-12_at_12.17.17_PM.png" />
 
+<Callout icon="👍">
+  **Integration guide:** For Partner Integration, refer to [Partner Integration - Introduction](ref:partner-integration-api-introduction)
+</Callout>
+
 ## List of APIs
 
 The APIs which must be used in various parts of the above flow diagram are listed in the following table:
