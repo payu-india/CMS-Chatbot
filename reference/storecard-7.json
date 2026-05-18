@@ -22,8 +22,8 @@
         "tags": [
           "Misc"
         ],
-        "summary": "Get User Cards",
-        "description": "",
+        "summary": "Get User Cards API",
+        "description": "API Command: **get\\_user\\_cards**",
         "operationId": "GetUserCards",
         "parameters": [
           {
