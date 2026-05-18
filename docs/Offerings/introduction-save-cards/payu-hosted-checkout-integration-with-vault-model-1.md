@@ -21,14 +21,59 @@ next:
 ---
 This part of the documentation describes the workflow and how the cards are tokenized or saved in the vault with PayU Hosted Checkout Integration.
 
-> 📘 Note:
->
-> If you are an existing PayU vault user, you do not need to make any changes.
+<Callout icon="📘" theme="info">
+  **Note**: If you are an existing PayU vault user, you do not need to make any changes.
+</Callout>
+
+<Callout icon="👍" theme="okay">
+  By default, when your customers make payment using card with PayU Hosted Checkout integration, PayU displays consent whether they want to save the card, so you need to do any implementation in this regard.
+
+  Experience the end-to-end PayU Hosted Checkout flow and instantly generate the complete code for seamless, zero-coding integration into your website. 
+
+
+
+  <HTMLBlock>{`
+                  <style>
+                  .tooltip-btn {
+                      position: relative;
+                      background-color: #4CAF50;
+                      color: white;
+                      padding: 10px 20px;
+                      border: none;
+                      border-radius: 5px;
+                      cursor: pointer;
+                      font-weight: bold; /* Added this line */
+                  }
+                  .tooltip-btn:hover::after {
+                      content: attr(data-tooltip);
+                      position: absolute;
+                      bottom: 125%;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      background-color: #333;
+                      color: white;
+                      padding: 5px 10px;
+                      border-radius: 4px;
+                      white-space: nowrap;
+                      font-size: 12px;
+                      z-index: 1;
+                  }
+                  </style>
+
+                  <button onclick="window.open('https://payu.in/integrationlab/payu-hosted', '_blank')" 
+                          class="tooltip-btn" 
+                          data-tooltip="Click here to see the PayU Hosted Checkout end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+                      Experience the flow and get the code
+                  </button>
+  `}</HTMLBlock>
+</Callout>
+
+<br />
 
 If you are not using the PayU vault, you need to ensure the following:
 
 * You need to contact your PayU Key Account Manager to get the vault enabled for your merchant ID.
-* After your customer logs on to your website, pass the customer’s user ID to identify and list the user’s tokenized cards on the PayU Checkout page. This is an extra parameter in the \_payment API with which you already integrated. For more information, refer to [Repeat Transaction Workflow-Model 1](#repeat-transaction-workflow).
+* After your customer logs on to your website, pass the customer’s user ID to identify and list the user’s tokenized cards on the PayU Checkout page. This is an extra parameter in the _payment API with which you already integrated. For more information, refer to [Repeat Transaction Workflow-Model 1](#repeat-transaction-workflow).
 
 For more information on the complete list of parameters for PayU Hosted Checkout Integration, refer to the <Anchor label="Collect Payment API - PayU Hosted Checkout" target="_blank" href="https://docs.payu.in/v2/reference/v2_payment_seamless_integration/">Collect Payment API - PayU Hosted Checkout</Anchor> under API Reference.
 
