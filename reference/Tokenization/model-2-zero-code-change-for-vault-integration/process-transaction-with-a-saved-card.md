@@ -10,82 +10,62 @@ metadata:
 next:
   description: ''
 ---
-If you have not received a response from PayU with First-Time Payment Workflow, use the get\_user\_card API as described in [Get User Cards API](ref:get_user_cards_api) (previous section).
+If you have not received a response from PayU with First-Time Payment Workflow, use the get_user_card API as described in [Get User Cards API](ref:get_user_cards_api) (previous section).
+
+<Callout icon="👍" theme="okay">
+  Experience the end-to-end **Merchant Hosted Checkout** flow and instantly generate the complete code for seamless, zero-coding integration into your website. Select **First-Time Customer > Payment API (_payment)** from left navigation pane after opening the following page
+
+  <HTMLBlock>{`
+                          <style>
+                          .tooltip-btn {
+                              position: relative;
+                              background-color: #4CAF50;
+                              color: white;
+                              padding: 10px 20px;
+                              border: none;
+                              border-radius: 5px;
+                              cursor: pointer;
+                              font-weight: bold; /* Added this line */
+                          }
+                          .tooltip-btn:hover::after {
+                              content: attr(data-tooltip);
+                              position: absolute;
+                              bottom: 125%;
+                              left: 50%;
+                              transform: translateX(-50%);
+                              background-color: #333;
+                              color: white;
+                              padding: 5px 10px;
+                              border-radius: 4px;
+                              white-space: nowrap;
+                              font-size: 12px;
+                              z-index: 1;
+                          }
+                          </style>
+
+                          <button onclick="window.open('https://payu.in/integrationlab/seamless/cards', '_blank')" 
+                                  class="tooltip-btn" 
+                                  data-tooltip="Click here to see the Merchant Hosted Checkout end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+                              Experience the flow and get the code
+                          </button>
+  `}</HTMLBlock>
+</Callout>
 
 HTTP Method: **POST**
 
 <PaymentAPIEnvironment />
 
-## Extra parameters to be posted with saved card using \_payment API
+## Extra parameters to be posted with saved card using _payment API
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Field**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        user\_credentials
-        **mandatory**
-      </td>
-
-      <td>
-        `varchar`  It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save\_user\_cards API.
-      </td>
-
-      <td>
-        a:b
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        store\_card\_token
-        **mandatory**
-      </td>
-
-      <td>
-        `varchar`  It is the card token for a card that is returned by PayU when you store a card. When you store a card using the save\_user\_cards API, the response from PayU contains the card token value in the cardToken parameter.
-      </td>
-
-      <td>
-        57cb996f2eaeee525765a
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        storecard\_token\_type 
-        **optional for PayU token flow**
-      </td>
-
-      <td>
-        `integer` This parameter can be posted with the value as **0** as you are using PayU token hub.
-      </td>
-
-      <td>
-        0
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| **Field**                                              | **Description**                                                                                                                                                                                                                  | **Example**           |
+| :----------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------- |
+| user_credentials **mandatory**                         | `varchar`  It contains the merchant ID and a unique customer identifier. In this example, the user credentials that you submitted with the var1 parameter using the save_user_cards API.                                         | a:b                   |
+| store_card_token **mandatory**                         | `varchar`  It is the card token for a card that is returned by PayU when you store a card. When you store a card using the save_user_cards API, the response from PayU contains the card token value in the cardToken parameter. | 57cb996f2eaeee525765a |
+| storecard_token_type  **optional for PayU token flow** | `integer` This parameter can be posted with the value as **0** as you are using PayU token hub.                                                                                                                                  | 0                     |
 
 > 📘 Note
 >
-> Only the fields needed for this operation are mentioned here. For the complete API details of the \_payment API, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted).
+> Only the fields needed for this operation are mentioned here. For the complete API details of the _payment API, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted).
 
 ## Sample request
 
