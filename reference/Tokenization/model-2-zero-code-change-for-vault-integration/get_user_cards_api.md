@@ -1,6 +1,4 @@
 ---
-title: Get User Cards API
-excerpt: 'API Command: **get\_user\_cards**'
 api:
   file: storecard-7.json
   operationId: GetUserCards
@@ -25,11 +23,50 @@ next:
 ---
 Use the **Get User Cards** API to get the card details of a customer in Model 2.
 
-> 📘 Note
->
-> While PayU token is sent in payment response, the network/issuer token creation may fail. In this case, the subsequent transaction with the said PayU token may fail. Merchant can do a **get\_user\_cards API** to fetch only active/tokenized cards or listen to notification API (to be published) to maintain state at your end.
+<Callout icon="📘" theme="info">
+  **Note**: While PayU token is sent in payment response, the network/issuer token creation may fail. In this case, the subsequent transaction with the said PayU token may fail. Merchant can do a **get_user_cards API** to fetch only active/tokenized cards or listen to notification API (to be published) to maintain state at your end.
+</Callout>
 
-The Get User Cards API (**get\_user\_cards**) is used to fetch all the cards for a customer which were saved earlier. In this API, the card number and other sensitive information are not returned.
+<Callout icon="👍" theme="okay">
+  Experience the end-to-end **Merchant Hosted Checkout** flow and instantly generate the complete code for seamless, zero-coding integration into your website. Select **Repeat Customer > Get User Cards** from left navigation pane after opening the following page
+
+  <HTMLBlock>{`
+                          <style>
+                          .tooltip-btn {
+                              position: relative;
+                              background-color: #4CAF50;
+                              color: white;
+                              padding: 10px 20px;
+                              border: none;
+                              border-radius: 5px;
+                              cursor: pointer;
+                              font-weight: bold; /* Added this line */
+                          }
+                          .tooltip-btn:hover::after {
+                              content: attr(data-tooltip);
+                              position: absolute;
+                              bottom: 125%;
+                              left: 50%;
+                              transform: translateX(-50%);
+                              background-color: #333;
+                              color: white;
+                              padding: 5px 10px;
+                              border-radius: 4px;
+                              white-space: nowrap;
+                              font-size: 12px;
+                              z-index: 1;
+                          }
+                          </style>
+
+                          <button onclick="window.open('https://payu.in/integrationlab/seamless/cards', '_blank')" 
+                                  class="tooltip-btn" 
+                                  data-tooltip="Click here to see the Merchant Hosted Checkout end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+                              Experience the flow and get the code
+                          </button>
+  `}</HTMLBlock>
+</Callout>
+
+The Get User Cards API (**get_user_cards**) is used to fetch all the cards for a customer which were saved earlier. In this API, the card number and other sensitive information are not returned.
 
 HTTP Method: **POST**
 
@@ -38,94 +75,94 @@ HTTP Method: **POST**
 <br />
 
 <Accordion title="Sample request" icon="fa-code">
-```curl
-  curl --request POST \
-       --url 'https://test.payu.in/merchant/postservice.php?form=2' \
-       --header 'Content-Type: application/x-www-form-urlencoded' \
-       --header 'accept: text/html; charset=UTF-8' \
-       --data key=JPM7Fg \
-       --data command=get_user_cards \
-       --data var1=JPM7Fg:abc \
-       --data hash=3cba79d881a4f82daed99241d60142b1c6816b3c16c96f5a2d1cf2a09910a2e1eb440a5d70ffd232ef80cf9207f9e90378db43ad76f9f545e9dd3a3692c2de18
+  ```curl
+    curl --request POST \
+         --url 'https://test.payu.in/merchant/postservice.php?form=2' \
+         --header 'Content-Type: application/x-www-form-urlencoded' \
+         --header 'accept: text/html; charset=UTF-8' \
+         --data key=JPM7Fg \
+         --data command=get_user_cards \
+         --data var1=JPM7Fg:abc \
+         --data hash=3cba79d881a4f82daed99241d60142b1c6816b3c16c96f5a2d1cf2a09910a2e1eb440a5d70ffd232ef80cf9207f9e90378db43ad76f9f545e9dd3a3692c2de18
   ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
-* Cards are found in the vault for PCI Compliant Merchants
+  * Cards are found in the vault for PCI Compliant Merchants
 
-  ```plaintext
-  {
-      "status": 1,
-      "msg": "Cards fetched Succesfully",
-      "user_cards": {
-          "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
-              "card_no": "XXXXXXXXXXXX8548",
-              "card_token": "0c186bdbXXXbda3XXXd92816772cbXXX46d027",
-              "card_name": "nilesh2_card_name",
-              "card_mode": "CC",
-              "card_PAR": "RCKGgxEEFX1un19I",
-              "card_type": "VISA",
-              "issuer_token": {
-                  "token_value": "8koNvAdC1bT0Hv5a",
-                  "is_expired": 0,
-                  "token_exp_mon": "11",
-                  "token_exp_yr": "2021",
-                  "token_bin": "123456"
-              },
-              "network_token": {
-                  "token_value": "8koNvAdC1bT0Hv5a",
-                  "is_expired": 0,
-                  "token_exp_mon": "11",
-                  "token_exp_yr": "2021",
-                  "token_bin": "512345"
-              }
-          }
-      }
-  }
-  ```
+    ```plaintext
+    {
+        "status": 1,
+        "msg": "Cards fetched Succesfully",
+        "user_cards": {
+            "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
+                "card_no": "XXXXXXXXXXXX8548",
+                "card_token": "0c186bdbXXXbda3XXXd92816772cbXXX46d027",
+                "card_name": "nilesh2_card_name",
+                "card_mode": "CC",
+                "card_PAR": "RCKGgxEEFX1un19I",
+                "card_type": "VISA",
+                "issuer_token": {
+                    "token_value": "8koNvAdC1bT0Hv5a",
+                    "is_expired": 0,
+                    "token_exp_mon": "11",
+                    "token_exp_yr": "2021",
+                    "token_bin": "123456"
+                },
+                "network_token": {
+                    "token_value": "8koNvAdC1bT0Hv5a",
+                    "is_expired": 0,
+                    "token_exp_mon": "11",
+                    "token_exp_yr": "2021",
+                    "token_bin": "512345"
+                }
+            }
+        }
+    }
+    ```
 
-  * Response for Non-PCI Compliant Merchants
+    * Response for Non-PCI Compliant Merchants
 
-  ```plaintext
-  {
-      "msg": "Cards fetched Succesfully",
-      "status": 1,
-      "user_cards": {
-          "9e299603hd4g7201b9cf6": {
-              "one_click_status": "",
-              "one_click_flow": "",
-              "card_type": "MAST",
-              "expiry_year": "2024",
-              "isDomestic": "Y",
-              "issuer_name": null,
-              "expiry_month": "02",
-              "card_mode": "DC",
-              "is_expired": "0",
-              "card_cvv": 1,
-              "card_no": "XXXXXXXXXXXX81",
-              "one_click_card_alias": "",
-              "card_token": "9e299603hd4g7201b9cf6",
-              "card_name": "MASTERCARD****7781",
-              "card_brand": "MAST",
-              "name_on_card": "TEST",
-              "card_bin": "519950"
-          }
-      }
-  }
-  ```
+    ```plaintext
+    {
+        "msg": "Cards fetched Succesfully",
+        "status": 1,
+        "user_cards": {
+            "9e299603hd4g7201b9cf6": {
+                "one_click_status": "",
+                "one_click_flow": "",
+                "card_type": "MAST",
+                "expiry_year": "2024",
+                "isDomestic": "Y",
+                "issuer_name": null,
+                "expiry_month": "02",
+                "card_mode": "DC",
+                "is_expired": "0",
+                "card_cvv": 1,
+                "card_no": "XXXXXXXXXXXX81",
+                "one_click_card_alias": "",
+                "card_token": "9e299603hd4g7201b9cf6",
+                "card_name": "MASTERCARD****7781",
+                "card_brand": "MAST",
+                "name_on_card": "TEST",
+                "card_bin": "519950"
+            }
+        }
+    }
+    ```
 
-  * No cards are found for the user
+    * No cards are found for the user
 
-  ```plaintext
-  {
-  "status": 0
-  "msg": Card not found.
-  }
-  ```
+    ```plaintext
+    {
+    "status": 0
+    "msg": Card not found.
+    }
+    ```
 </Accordion>
 
 <Accordion title="Response parameters" icon="fa-list">
-<Table>
+  <Table>
     <thead>
       <tr>
         <th>
@@ -463,5 +500,5 @@ HTTP Method: **POST**
 ## Request parameters
 
 <Accordion title="Reference info for request parameters" icon="fa-flask">
-`<KeyHashForGeneralParametersDescription />`
+  `<KeyHashForGeneralParametersDescription />`
 </Accordion>
