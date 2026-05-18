@@ -105,7 +105,7 @@ For the "Try It" experience, refer to <a href="https://docs.payu.in/reference/_p
 <Callout icon="📮" theme="default">
   **Postman Collection**: Download the **S2S > UPI Integration Postman Collection** from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/5t0c6pe/upi-s2s-integration
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/5t0c6pe/upi-s2s-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/5t0c6pe/upi-s2s-integration)
 </Callout>
 
 Some of the parameters are mandatory for S2S integration, and a few are optional. You need to include the following parameters.
@@ -618,6 +618,47 @@ Some of the parameters are mandatory for S2S integration, and a few are optional
 Redirect the customer to PayU Hosted Timer page, or create your own timer page and check the transactions status from PayU using the verify_payment API.
 
 To redirect customer on Payu hosted timer page, use the result.acsTemplate, and base64decode to use that HTML to open the timer page.
+
+<br />
+
+<Callout icon="👍" theme="okay">
+  Experience the end-to-end **Merchant Hosted Checkout** flow and instantly generate the complete code for seamless, zero-coding integration into your website. Navigate to **ACS Template Decoder** under **Tools & Utilities** to generate code for decoding the ACS template in the response:
+
+  <HTMLBlock>{`
+                          <style>
+                          .tooltip-btn {
+                              position: relative;
+                              background-color: #4CAF50;
+                              color: white;
+                              padding: 10px 20px;
+                              border: none;
+                              border-radius: 5px;
+                              cursor: pointer;
+                              font-weight: bold; /* Added this line */
+                          }
+                          .tooltip-btn:hover::after {
+                              content: attr(data-tooltip);
+                              position: absolute;
+                              bottom: 125%;
+                              left: 50%;
+                              transform: translateX(-50%);
+                              background-color: #333;
+                              color: white;
+                              padding: 5px 10px;
+                              border-radius: 4px;
+                              white-space: nowrap;
+                              font-size: 12px;
+                              z-index: 1;
+                          }
+                          </style>
+
+                          <button onclick="window.open('https://payu.in/integrationlab/seamless/cards', '_blank')" 
+                                  class="tooltip-btn" 
+                                  data-tooltip="Click here to see the Merchant Hosted Checkout end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+                              Experience the flow and get the code
+                          </button>
+  `}</HTMLBlock>
+</Callout>
 
 <Accordion title="Sample PayU response for successfully initiated UPI Collect request" icon="fa-code">
   ```json
