@@ -58,10 +58,10 @@ next:
 <tr><td>DBS Bank</td><td>DBS12</td><td>12 months</td><td>16</td><td>2500</td><td>2500000</td><td>Rs. 299</td><td>N/A</td></tr>
 <tr><td>DBS Bank</td><td>DBS18</td><td>18 months</td><td>16</td><td>2500</td><td>2500000</td><td>Rs. 299</td><td>N/A</td></tr>
 <tr><td>DBS Bank</td><td>DBS24</td><td>24 months</td><td>16</td><td>2500</td><td>2500000</td><td>Rs. 299</td><td>N/A</td></tr>
-<tr><td>Edge CSB on Jupiter</td><td>JUPITR03</td><td>3 Months</td><td>16</td><td>3000</td><td>450000</td><td>1%</td><td>Rs. 199</td></tr>
-<tr><td>Edge CSB on Jupiter</td><td>JUPITR06</td><td>6 Months</td><td>16</td><td>3000</td><td>450000</td><td>1%</td><td>Rs. 199</td></tr>
-<tr><td>Edge CSB on Jupiter</td><td>JUPITR09</td><td>9 Months</td><td>16</td><td>3000</td><td>450000</td><td>1%</td><td>Rs. 199</td></tr>
-<tr><td>Edge CSB on Jupiter</td><td>JUPITR12</td><td>12 Months</td><td>16</td><td>3000</td><td>450000</td><td>1%</td><td>Rs. 199</td></tr>
+<tr><td>Edge CSB on Jupiter</td><td>JUPITR03</td><td>3 Months</td><td>16</td><td>1500</td><td>450000</td><td>1%</td><td>Rs. 199</td></tr>
+<tr><td>Edge CSB on Jupiter</td><td>JUPITR06</td><td>6 Months</td><td>16</td><td>1500</td><td>450000</td><td>1%</td><td>Rs. 199</td></tr>
+<tr><td>Edge CSB on Jupiter</td><td>JUPITR09</td><td>9 Months</td><td>16</td><td>1500</td><td>450000</td><td>1%</td><td>Rs. 199</td></tr>
+<tr><td>Edge CSB on Jupiter</td><td>JUPITR12</td><td>12 Months</td><td>16</td><td>1500</td><td>450000</td><td>1%</td><td>Rs. 199</td></tr>
 <tr><td>Equitas Small Finance Bank</td><td>EQUIT03</td><td>3 Months</td><td>16.50</td><td>2000</td><td>1000000</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>Equitas Small Finance Bank</td><td>EQUIT06</td><td>6 Months</td><td>16</td><td>2000</td><td>1000000</td><td>Rs. 199</td><td>N/A</td></tr>
 <tr><td>Equitas Small Finance Bank</td><td>EQUIT09</td><td>9 Months</td><td>16</td><td>2000</td><td>1000000</td><td>Rs. 199</td><td>N/A</td></tr>
