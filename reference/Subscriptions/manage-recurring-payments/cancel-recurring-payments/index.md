@@ -22,11 +22,11 @@ metadata:
 ---
 The Cancel Recurring Payments API allows you to cancel active recurring payment mandates associated with a subscription or standing instruction. This API can be used to stop future debit attempts for mandates created using:
 
-* NetBanking (NB)
-* Cards
-* UPI
+* Cards of VISA or Mastercard
+* Cards of AMEX or RuPay
+* NetBanking (NB) and UPI
 
-## Common Use Cases 
+## Common Use Cases
 
 * Cancelling active subscriptions
 * Stopping future recurring debit attempts
