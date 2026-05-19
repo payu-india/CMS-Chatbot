@@ -118,9 +118,7 @@ paths:
                         - 1
       responses:
         '200':
-          description: >-
-            VPA validation result (check `isVPAValid` and related fields in the
-            body).
+          description: ok
           content:
             application/json:
               schema:
@@ -128,7 +126,10 @@ paths:
                 properties:
                   status:
                     type: string
-                    description: API call outcome.
+                    description: |-
+                      Determines the status of the API command. Possible values:
+                      - Successful
+                      - Failure
                     enum:
                       - SUCCESS
                       - FAILURE
