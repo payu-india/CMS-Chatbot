@@ -1,1 +1,1022 @@
-{"openapi":"3.1.0","info":{"title":"Documents Required for KYC API","version":"3.0.0","description":"API for retrieving documents required for KYC verification"},"servers":[{"url":"https://uat-partner.payu.in/api","description":"UAT Partner API server"}],"paths":{"/oauth/token":{"post":{"tags":["Send and verify"],"summary":"GetToken","operationId":"GetToken","parameters":[],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["client_id","client_secret","grant_type","scope"],"type":"object","properties":{"client_id":{"type":"string","description":"uat","examples":["56b16b8f4d16f61929d6596d3c9cfb3e9bfc526c9c906b09c916cc9ea591b66d"]},"client_secret":{"type":"string","description":"uat","examples":["f5e0115d5b9f715ce0e8c4ef99d438aa4e7f0203f6e1d5e9be9e36f80a07716b"]},"grant_type":{"type":"string","examples":["client_credentials"]},"scope":{"type":"string","examples":["send_sign_in_otp verify_sign_in_otp refer_merchant"]}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"servers":[{"url":"https://uat-accounts.payu.in","variables":{}}]},"parameters":[]},"/v3/merchants/{uuid}/kyc_document/required_docs":{"get":{"tags":["KycApis"],"summary":"Documents required for KYC","operationId":"DocumentsrequiredforKYC","parameters":[{"name":"uuid","in":"path","description":"Unique identifier for the merchant","required":true,"schema":{"type":"string","format":"uuid"}}],"responses":{"200":{"description":"OK","headers":{"Date":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"Mon, 12 Aug 2024 07:34:33 GMT"}}},"Transfer-Encoding":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"chunked"}}},"Connection":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"keep-alive"}}},"Server":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"nginx"}}},"X-DNS-Prefetch-Control":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"on"}}},"x-download-options":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"noopen"}}},"x-content-type-options":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"nosniff"}}},"x-xss-protection":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"1mode=block"}}},"Access-Control-Allow-Origin":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"*"}}},"Access-Control-Allow-Methods":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"*"}}},"Access-Control-Allow-Headers":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"*"}}},"x-frame-options":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"DENY"}}},"Strict-Transport-Security":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"max-age=31536000; includeSubDomains; preload"}}},"ETag":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"W/\"986be36aec460334c1605d2b7cd11262\""}}},"Cache-Control":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"max-age=0, private, must-revalidate"}}},"X-Request-Id":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"e0ff30b8-62df-4e3d-8aa4-8d8f93e90be3"}}},"X-Runtime":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"0.140811"}}},"Vary":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"Origin"}}},"Content-Encoding":{"content":{"text/plain":{"schema":{"type":"string","contentMediaType":"text/plain"},"example":"gzip"}}}},"content":{"application/json; charset=utf-8":{"schema":{"allOf":[{"$ref":"#/components/schemas/DocumentsrequiredforKYC"},{"examples":[{"business_entity":"Individual","document_categories":[{"id":81,"name":"Bank Account Proof","uuid":"11e8-748f-297c6048-9081-020aca9875be","name_on_frontend":"BANK_PROOF","re_fetch":false,"document_types":[{"name":"Passbook","id":92,"uuid":"11eb-d01a-456b15f8-adc5-0242a53cdb42","name_on_frontend":"PB","issue_date_req":false,"expiry_date_req":false},{"name":"Bank Statement","id":91,"uuid":"11eb-d01a-8322997a-adc5-0242a53cdb42","name_on_frontend":"BS","issue_date_req":false,"expiry_date_req":false},{"name":"Cancelled Cheque","id":48,"uuid":"ca0a-9047-28d705a1-7e97-b530fbec4c41","name_on_frontend":"CC","issue_date_req":false,"expiry_date_req":false},{"name":"Bank Verification Letter ","id":49,"uuid":"f912-b658-610ce46f-796b-14a515e41ad7","name_on_frontend":"BC","issue_date_req":false,"expiry_date_req":false}],"kyc_document":null},{"id":82,"name":"PAN Card of Signing Authority","uuid":"11e8-748f-297824ce-9081-020aca9875be","name_on_frontend":"PANCARD_SIGNED_AUTHORITY","re_fetch":false,"document_types":[{"name":"PAN Card","id":50,"uuid":"11e8-748f-2946799c-9081-020aca9875be","name_on_frontend":"PANCARD","issue_date_req":false,"expiry_date_req":false}],"kyc_document":null},{"id":89,"name":"Address Proof of Signing Authority","uuid":"11e8-748f-297a15b8-9081-020aca9875be","name_on_frontend":"ADDRESS_PROOF_SIGNED_AUTHORITY","re_fetch":false,"document_types":[{"name":"Passport","id":51,"uuid":"11e8-748f-2948a29e-9081-020aca9875be","name_on_frontend":"PASSPORT","issue_date_req":true,"expiry_date_req":true},{"name":"Aadhar","id":52,"uuid":"11e8-748f-294a800a-9081-020aca9875be","name_on_frontend":"AADHAR","issue_date_req":false,"expiry_date_req":false},{"name":"Voter's ID","id":53,"uuid":"11e8-748f-294c6ef6-9081-020aca9875be","name_on_frontend":"VOTER","issue_date_req":false,"expiry_date_req":false},{"name":"Driving Licence","id":54,"uuid":"11e8-748f-294e7dea-9081-020aca9875be","name_on_frontend":"DL","issue_date_req":true,"expiry_date_req":true},{"name":"Utilities Bill (electricity, water, landline, gas connection) ","id":55,"uuid":"11e8-748f-29508112-9081-020aca9875be","name_on_frontend":"BMTB","issue_date_req":false,"expiry_date_req":false},{"name":"Address Verification Letter from Bank","id":64,"uuid":"24d8-a849-14f755a1-d49b-12ca65c5cd7a","name_on_frontend":"AVFB","issue_date_req":false,"expiry_date_req":false}],"kyc_document":null}]}]}],"contentMediaType":"application/json; charset=utf-8"},"example":{"business_entity":"Individual","document_categories":[{"id":81,"name":"Bank Account Proof","uuid":"11e8-748f-297c6048-9081-020aca9875be","name_on_frontend":"BANK_PROOF","re_fetch":false,"document_types":[{"name":"Passbook","id":92,"uuid":"11eb-d01a-456b15f8-adc5-0242a53cdb42","name_on_frontend":"PB","issue_date_req":false,"expiry_date_req":false},{"name":"Bank Statement","id":91,"uuid":"11eb-d01a-8322997a-adc5-0242a53cdb42","name_on_frontend":"BS","issue_date_req":false,"expiry_date_req":false},{"name":"Cancelled Cheque","id":48,"uuid":"ca0a-9047-28d705a1-7e97-b530fbec4c41","name_on_frontend":"CC","issue_date_req":false,"expiry_date_req":false},{"name":"Bank Verification Letter ","id":49,"uuid":"f912-b658-610ce46f-796b-14a515e41ad7","name_on_frontend":"BC","issue_date_req":false,"expiry_date_req":false}],"kyc_document":null},{"id":82,"name":"PAN Card of Signing Authority","uuid":"11e8-748f-297824ce-9081-020aca9875be","name_on_frontend":"PANCARD_SIGNED_AUTHORITY","re_fetch":false,"document_types":[{"name":"PAN Card","id":50,"uuid":"11e8-748f-2946799c-9081-020aca9875be","name_on_frontend":"PANCARD","issue_date_req":false,"expiry_date_req":false}],"kyc_document":null},{"id":89,"name":"Address Proof of Signing Authority","uuid":"11e8-748f-297a15b8-9081-020aca9875be","name_on_frontend":"ADDRESS_PROOF_SIGNED_AUTHORITY","re_fetch":false,"document_types":[{"name":"Passport","id":51,"uuid":"11e8-748f-2948a29e-9081-020aca9875be","name_on_frontend":"PASSPORT","issue_date_req":true,"expiry_date_req":true},{"name":"Aadhar","id":52,"uuid":"11e8-748f-294a800a-9081-020aca9875be","name_on_frontend":"AADHAR","issue_date_req":false,"expiry_date_req":false},{"name":"Voter's ID","id":53,"uuid":"11e8-748f-294c6ef6-9081-020aca9875be","name_on_frontend":"VOTER","issue_date_req":false,"expiry_date_req":false},{"name":"Driving Licence","id":54,"uuid":"11e8-748f-294e7dea-9081-020aca9875be","name_on_frontend":"DL","issue_date_req":true,"expiry_date_req":true},{"name":"Utilities Bill (electricity, water, landline, gas connection) ","id":55,"uuid":"11e8-748f-29508112-9081-020aca9875be","name_on_frontend":"BMTB","issue_date_req":false,"expiry_date_req":false},{"name":"Address Verification Letter from Bank","id":64,"uuid":"24d8-a849-14f755a1-d49b-12ca65c5cd7a","name_on_frontend":"AVFB","issue_date_req":false,"expiry_date_req":false}],"kyc_document":null}]}}}}},"deprecated":false,"servers":[{"url":"https://uat-partner.payu.in/api/v3","variables":{}}]},"parameters":[]}},"components":{"schemas":{"InfoKYCdocument":{"title":"InfoKYCdocument","required":["PAN Card of Signing Authority","Address Proof of Signing Authority","Bank Account Proof","Service Agreement"],"type":"object","properties":{"PAN Card of Signing Authority":{"type":"array","items":{"type":"string"},"description":""},"Address Proof of Signing Authority":{"type":"array","items":{"type":"string"},"description":""},"Bank Account Proof":{"type":"array","items":{"type":"string"},"description":""},"Service Agreement":{"type":"array","items":{"type":"string"},"description":""}},"examples":[{"PAN Card of Signing Authority":["PAN Card"],"Address Proof of Signing Authority":["Passport","Aadhar","Voter's ID","Driving Licence","Utilities Bill (electricity, water, landline, gas connection)","Address Verification Letter from Bank"],"Bank Account Proof":["Cancelled Cheque","Bank Verification Letter","Bank Statement","Passbook"],"Service Agreement":["Service Agreement"]}]},"DocumentsrequiredforKYC":{"title":"DocumentsrequiredforKYC","required":["business_entity","document_categories"],"type":"object","properties":{"business_entity":{"type":"string"},"document_categories":{"type":"array","items":{"$ref":"#/components/schemas/DocumentCategory"},"description":""}},"examples":[{"business_entity":"Individual","document_categories":[{"id":81,"name":"Bank Account Proof","uuid":"11e8-748f-297c6048-9081-020aca9875be","name_on_frontend":"BANK_PROOF","re_fetch":false,"document_types":[{"name":"Passbook","id":92,"uuid":"11eb-d01a-456b15f8-adc5-0242a53cdb42","name_on_frontend":"PB","issue_date_req":false,"expiry_date_req":false},{"name":"Bank Statement","id":91,"uuid":"11eb-d01a-8322997a-adc5-0242a53cdb42","name_on_frontend":"BS","issue_date_req":false,"expiry_date_req":false},{"name":"Cancelled Cheque","id":48,"uuid":"ca0a-9047-28d705a1-7e97-b530fbec4c41","name_on_frontend":"CC","issue_date_req":false,"expiry_date_req":false},{"name":"Bank Verification Letter ","id":49,"uuid":"f912-b658-610ce46f-796b-14a515e41ad7","name_on_frontend":"BC","issue_date_req":false,"expiry_date_req":false}],"kyc_document":null},{"id":82,"name":"PAN Card of Signing Authority","uuid":"11e8-748f-297824ce-9081-020aca9875be","name_on_frontend":"PANCARD_SIGNED_AUTHORITY","re_fetch":false,"document_types":[{"name":"PAN Card","id":50,"uuid":"11e8-748f-2946799c-9081-020aca9875be","name_on_frontend":"PANCARD","issue_date_req":false,"expiry_date_req":false}],"kyc_document":null},{"id":89,"name":"Address Proof of Signing Authority","uuid":"11e8-748f-297a15b8-9081-020aca9875be","name_on_frontend":"ADDRESS_PROOF_SIGNED_AUTHORITY","re_fetch":false,"document_types":[{"name":"Passport","id":51,"uuid":"11e8-748f-2948a29e-9081-020aca9875be","name_on_frontend":"PASSPORT","issue_date_req":true,"expiry_date_req":true},{"name":"Aadhar","id":52,"uuid":"11e8-748f-294a800a-9081-020aca9875be","name_on_frontend":"AADHAR","issue_date_req":false,"expiry_date_req":false},{"name":"Voter's ID","id":53,"uuid":"11e8-748f-294c6ef6-9081-020aca9875be","name_on_frontend":"VOTER","issue_date_req":false,"expiry_date_req":false},{"name":"Driving Licence","id":54,"uuid":"11e8-748f-294e7dea-9081-020aca9875be","name_on_frontend":"DL","issue_date_req":true,"expiry_date_req":true},{"name":"Utilities Bill (electricity, water, landline, gas connection) ","id":55,"uuid":"11e8-748f-29508112-9081-020aca9875be","name_on_frontend":"BMTB","issue_date_req":false,"expiry_date_req":false},{"name":"Address Verification Letter from Bank","id":64,"uuid":"24d8-a849-14f755a1-d49b-12ca65c5cd7a","name_on_frontend":"AVFB","issue_date_req":false,"expiry_date_req":false}],"kyc_document":null}]}]},"DocumentCategory":{"title":"DocumentCategory","required":["id","name","uuid","name_on_frontend","re_fetch","document_types","kyc_document"],"type":"object","properties":{"id":{"type":"integer","contentEncoding":"int32"},"name":{"type":"string"},"uuid":{"type":"string"},"name_on_frontend":{"type":"string"},"re_fetch":{"type":"boolean"},"document_types":{"type":"array","items":{"$ref":"#/components/schemas/DocumentType"},"description":""},"kyc_document":{"type":["string","null"]}},"examples":[{"id":81,"name":"Bank Account Proof","uuid":"11e8-748f-297c6048-9081-020aca9875be","name_on_frontend":"BANK_PROOF","re_fetch":false,"document_types":[{"name":"Passbook","id":92,"uuid":"11eb-d01a-456b15f8-adc5-0242a53cdb42","name_on_frontend":"PB","issue_date_req":false,"expiry_date_req":false},{"name":"Bank Statement","id":91,"uuid":"11eb-d01a-8322997a-adc5-0242a53cdb42","name_on_frontend":"BS","issue_date_req":false,"expiry_date_req":false},{"name":"Cancelled Cheque","id":48,"uuid":"ca0a-9047-28d705a1-7e97-b530fbec4c41","name_on_frontend":"CC","issue_date_req":false,"expiry_date_req":false},{"name":"Bank Verification Letter ","id":49,"uuid":"f912-b658-610ce46f-796b-14a515e41ad7","name_on_frontend":"BC","issue_date_req":false,"expiry_date_req":false}],"kyc_document":null}]},"DocumentType":{"title":"DocumentType","required":["name","id","uuid","name_on_frontend","issue_date_req","expiry_date_req"],"type":"object","properties":{"name":{"type":"string"},"id":{"type":"integer","contentEncoding":"int32"},"uuid":{"type":"string"},"name_on_frontend":{"type":"string"},"issue_date_req":{"type":"boolean"},"expiry_date_req":{"type":"boolean"}},"examples":[{"name":"Passbook","id":92,"uuid":"11eb-d01a-456b15f8-adc5-0242a53cdb42","name_on_frontend":"PB","issue_date_req":false,"expiry_date_req":false}]},"CreateKYCDocument":{"title":"CreateKYCDocument","required":["merchant"],"type":"object","properties":{"merchant":{"allOf":[{"$ref":"#/components/schemas/Merchant"},{}]}},"examples":[{"merchant":{"mid":"8390925","kyc_document_name":"PAN Card of Signing Authority","kyc_document_uuid":"11ef-587e-43837330-95b0-021ec077a271","kyc_document_status":"DOCUMENT_SUBMITTED","error_message":null,"created_at":"2024-08-12T07:41:19.000Z"}}]},"Merchant":{"title":"Merchant","required":["mid","kyc_document_name","kyc_document_uuid","kyc_document_status","error_message","created_at"],"type":"object","properties":{"mid":{"type":"string"},"kyc_document_name":{"type":"string"},"kyc_document_uuid":{"type":"string"},"kyc_document_status":{"type":"string"},"error_message":{"type":["string","null"]},"created_at":{"type":"string"}},"examples":[{"mid":"8390925","kyc_document_name":"PAN Card of Signing Authority","kyc_document_uuid":"11ef-587e-43837330-95b0-021ec077a271","kyc_document_status":"DOCUMENT_SUBMITTED","error_message":null,"created_at":"2024-08-12T07:41:19.000Z"}]}},"securitySchemes":{"httpBearer":{"type":"http","scheme":"bearer"}}},"security":[{"httpBearer":[]}]}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Documents Required for KYC API",
+    "version": "3.0.0",
+    "description": "API for retrieving documents required for KYC verification"
+  },
+  "servers": [
+    {
+      "url": "https://uat-partner.payu.in/api",
+      "description": "UAT Partner API server"
+    }
+  ],
+  "paths": {
+    "/oauth/token": {
+      "post": {
+        "tags": [
+          "Send and verify"
+        ],
+        "summary": "GetToken",
+        "operationId": "GetToken",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "client_id",
+                  "client_secret",
+                  "grant_type",
+                  "scope"
+                ],
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "description": "uat",
+                    "examples": [
+                      "56b16b8f4d16f61929d6596d3c9cfb3e9bfc526c9c906b09c916cc9ea591b66d"
+                    ]
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "description": "uat",
+                    "examples": [
+                      "f5e0115d5b9f715ce0e8c4ef99d438aa4e7f0203f6e1d5e9be9e36f80a07716b"
+                    ]
+                  },
+                  "grant_type": {
+                    "type": "string",
+                    "examples": [
+                      "client_credentials"
+                    ]
+                  },
+                  "scope": {
+                    "type": "string",
+                    "examples": [
+                      "send_sign_in_otp verify_sign_in_otp refer_merchant"
+                    ]
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://uat-accounts.payu.in",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/v3/merchants/{uuid}/kyc_document/required_docs": {
+      "get": {
+        "tags": [
+          "KycApis"
+        ],
+        "summary": "Documents Required for KYC API",
+        "operationId": "DocumentsrequiredforKYC",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "Unique identifier for the merchant",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "Mon, 12 Aug 2024 07:34:33 GMT"
+                  }
+                }
+              },
+              "Transfer-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "chunked"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Server": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "nginx"
+                  }
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "on"
+                  }
+                }
+              },
+              "x-download-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "noopen"
+                  }
+                }
+              },
+              "x-content-type-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "x-xss-protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "1mode=block"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "x-frame-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "DENY"
+                  }
+                }
+              },
+              "Strict-Transport-Security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "max-age=31536000; includeSubDomains; preload"
+                  }
+                }
+              },
+              "ETag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "W/\"986be36aec460334c1605d2b7cd11262\""
+                  }
+                }
+              },
+              "Cache-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "max-age=0, private, must-revalidate"
+                  }
+                }
+              },
+              "X-Request-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "e0ff30b8-62df-4e3d-8aa4-8d8f93e90be3"
+                  }
+                }
+              },
+              "X-Runtime": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "0.140811"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "Origin"
+                  }
+                }
+              },
+              "Content-Encoding": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string",
+                      "contentMediaType": "text/plain"
+                    },
+                    "example": "gzip"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/DocumentsrequiredforKYC"
+                    },
+                    {
+                      "examples": [
+                        {
+                          "business_entity": "Individual",
+                          "document_categories": [
+                            {
+                              "id": 81,
+                              "name": "Bank Account Proof",
+                              "uuid": "11e8-748f-297c6048-9081-020aca9875be",
+                              "name_on_frontend": "BANK_PROOF",
+                              "re_fetch": false,
+                              "document_types": [
+                                {
+                                  "name": "Passbook",
+                                  "id": 92,
+                                  "uuid": "11eb-d01a-456b15f8-adc5-0242a53cdb42",
+                                  "name_on_frontend": "PB",
+                                  "issue_date_req": false,
+                                  "expiry_date_req": false
+                                },
+                                {
+                                  "name": "Bank Statement",
+                                  "id": 91,
+                                  "uuid": "11eb-d01a-8322997a-adc5-0242a53cdb42",
+                                  "name_on_frontend": "BS",
+                                  "issue_date_req": false,
+                                  "expiry_date_req": false
+                                },
+                                {
+                                  "name": "Cancelled Cheque",
+                                  "id": 48,
+                                  "uuid": "ca0a-9047-28d705a1-7e97-b530fbec4c41",
+                                  "name_on_frontend": "CC",
+                                  "issue_date_req": false,
+                                  "expiry_date_req": false
+                                },
+                                {
+                                  "name": "Bank Verification Letter ",
+                                  "id": 49,
+                                  "uuid": "f912-b658-610ce46f-796b-14a515e41ad7",
+                                  "name_on_frontend": "BC",
+                                  "issue_date_req": false,
+                                  "expiry_date_req": false
+                                }
+                              ],
+                              "kyc_document": null
+                            },
+                            {
+                              "id": 82,
+                              "name": "PAN Card of Signing Authority",
+                              "uuid": "11e8-748f-297824ce-9081-020aca9875be",
+                              "name_on_frontend": "PANCARD_SIGNED_AUTHORITY",
+                              "re_fetch": false,
+                              "document_types": [
+                                {
+                                  "name": "PAN Card",
+                                  "id": 50,
+                                  "uuid": "11e8-748f-2946799c-9081-020aca9875be",
+                                  "name_on_frontend": "PANCARD",
+                                  "issue_date_req": false,
+                                  "expiry_date_req": false
+                                }
+                              ],
+                              "kyc_document": null
+                            },
+                            {
+                              "id": 89,
+                              "name": "Address Proof of Signing Authority",
+                              "uuid": "11e8-748f-297a15b8-9081-020aca9875be",
+                              "name_on_frontend": "ADDRESS_PROOF_SIGNED_AUTHORITY",
+                              "re_fetch": false,
+                              "document_types": [
+                                {
+                                  "name": "Passport",
+                                  "id": 51,
+                                  "uuid": "11e8-748f-2948a29e-9081-020aca9875be",
+                                  "name_on_frontend": "PASSPORT",
+                                  "issue_date_req": true,
+                                  "expiry_date_req": true
+                                },
+                                {
+                                  "name": "Aadhar",
+                                  "id": 52,
+                                  "uuid": "11e8-748f-294a800a-9081-020aca9875be",
+                                  "name_on_frontend": "AADHAR",
+                                  "issue_date_req": false,
+                                  "expiry_date_req": false
+                                },
+                                {
+                                  "name": "Voter's ID",
+                                  "id": 53,
+                                  "uuid": "11e8-748f-294c6ef6-9081-020aca9875be",
+                                  "name_on_frontend": "VOTER",
+                                  "issue_date_req": false,
+                                  "expiry_date_req": false
+                                },
+                                {
+                                  "name": "Driving Licence",
+                                  "id": 54,
+                                  "uuid": "11e8-748f-294e7dea-9081-020aca9875be",
+                                  "name_on_frontend": "DL",
+                                  "issue_date_req": true,
+                                  "expiry_date_req": true
+                                },
+                                {
+                                  "name": "Utilities Bill (electricity, water, landline, gas connection) ",
+                                  "id": 55,
+                                  "uuid": "11e8-748f-29508112-9081-020aca9875be",
+                                  "name_on_frontend": "BMTB",
+                                  "issue_date_req": false,
+                                  "expiry_date_req": false
+                                },
+                                {
+                                  "name": "Address Verification Letter from Bank",
+                                  "id": 64,
+                                  "uuid": "24d8-a849-14f755a1-d49b-12ca65c5cd7a",
+                                  "name_on_frontend": "AVFB",
+                                  "issue_date_req": false,
+                                  "expiry_date_req": false
+                                }
+                              ],
+                              "kyc_document": null
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "contentMediaType": "application/json; charset=utf-8"
+                },
+                "example": {
+                  "business_entity": "Individual",
+                  "document_categories": [
+                    {
+                      "id": 81,
+                      "name": "Bank Account Proof",
+                      "uuid": "11e8-748f-297c6048-9081-020aca9875be",
+                      "name_on_frontend": "BANK_PROOF",
+                      "re_fetch": false,
+                      "document_types": [
+                        {
+                          "name": "Passbook",
+                          "id": 92,
+                          "uuid": "11eb-d01a-456b15f8-adc5-0242a53cdb42",
+                          "name_on_frontend": "PB",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Bank Statement",
+                          "id": 91,
+                          "uuid": "11eb-d01a-8322997a-adc5-0242a53cdb42",
+                          "name_on_frontend": "BS",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Cancelled Cheque",
+                          "id": 48,
+                          "uuid": "ca0a-9047-28d705a1-7e97-b530fbec4c41",
+                          "name_on_frontend": "CC",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Bank Verification Letter ",
+                          "id": 49,
+                          "uuid": "f912-b658-610ce46f-796b-14a515e41ad7",
+                          "name_on_frontend": "BC",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        }
+                      ],
+                      "kyc_document": null
+                    },
+                    {
+                      "id": 82,
+                      "name": "PAN Card of Signing Authority",
+                      "uuid": "11e8-748f-297824ce-9081-020aca9875be",
+                      "name_on_frontend": "PANCARD_SIGNED_AUTHORITY",
+                      "re_fetch": false,
+                      "document_types": [
+                        {
+                          "name": "PAN Card",
+                          "id": 50,
+                          "uuid": "11e8-748f-2946799c-9081-020aca9875be",
+                          "name_on_frontend": "PANCARD",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        }
+                      ],
+                      "kyc_document": null
+                    },
+                    {
+                      "id": 89,
+                      "name": "Address Proof of Signing Authority",
+                      "uuid": "11e8-748f-297a15b8-9081-020aca9875be",
+                      "name_on_frontend": "ADDRESS_PROOF_SIGNED_AUTHORITY",
+                      "re_fetch": false,
+                      "document_types": [
+                        {
+                          "name": "Passport",
+                          "id": 51,
+                          "uuid": "11e8-748f-2948a29e-9081-020aca9875be",
+                          "name_on_frontend": "PASSPORT",
+                          "issue_date_req": true,
+                          "expiry_date_req": true
+                        },
+                        {
+                          "name": "Aadhar",
+                          "id": 52,
+                          "uuid": "11e8-748f-294a800a-9081-020aca9875be",
+                          "name_on_frontend": "AADHAR",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Voter's ID",
+                          "id": 53,
+                          "uuid": "11e8-748f-294c6ef6-9081-020aca9875be",
+                          "name_on_frontend": "VOTER",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Driving Licence",
+                          "id": 54,
+                          "uuid": "11e8-748f-294e7dea-9081-020aca9875be",
+                          "name_on_frontend": "DL",
+                          "issue_date_req": true,
+                          "expiry_date_req": true
+                        },
+                        {
+                          "name": "Utilities Bill (electricity, water, landline, gas connection) ",
+                          "id": 55,
+                          "uuid": "11e8-748f-29508112-9081-020aca9875be",
+                          "name_on_frontend": "BMTB",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Address Verification Letter from Bank",
+                          "id": 64,
+                          "uuid": "24d8-a849-14f755a1-d49b-12ca65c5cd7a",
+                          "name_on_frontend": "AVFB",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        }
+                      ],
+                      "kyc_document": null
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://uat-partner.payu.in/api/v3",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "InfoKYCdocument": {
+        "title": "InfoKYCdocument",
+        "required": [
+          "PAN Card of Signing Authority",
+          "Address Proof of Signing Authority",
+          "Bank Account Proof",
+          "Service Agreement"
+        ],
+        "type": "object",
+        "properties": {
+          "PAN Card of Signing Authority": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "Address Proof of Signing Authority": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "Bank Account Proof": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "Service Agreement": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        },
+        "examples": [
+          {
+            "PAN Card of Signing Authority": [
+              "PAN Card"
+            ],
+            "Address Proof of Signing Authority": [
+              "Passport",
+              "Aadhar",
+              "Voter's ID",
+              "Driving Licence",
+              "Utilities Bill (electricity, water, landline, gas connection)",
+              "Address Verification Letter from Bank"
+            ],
+            "Bank Account Proof": [
+              "Cancelled Cheque",
+              "Bank Verification Letter",
+              "Bank Statement",
+              "Passbook"
+            ],
+            "Service Agreement": [
+              "Service Agreement"
+            ]
+          }
+        ]
+      },
+      "DocumentsrequiredforKYC": {
+        "title": "DocumentsrequiredforKYC",
+        "required": [
+          "business_entity",
+          "document_categories"
+        ],
+        "type": "object",
+        "properties": {
+          "business_entity": {
+            "type": "string"
+          },
+          "document_categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentCategory"
+            },
+            "description": ""
+          }
+        },
+        "examples": [
+          {
+            "business_entity": "Individual",
+            "document_categories": [
+              {
+                "id": 81,
+                "name": "Bank Account Proof",
+                "uuid": "11e8-748f-297c6048-9081-020aca9875be",
+                "name_on_frontend": "BANK_PROOF",
+                "re_fetch": false,
+                "document_types": [
+                  {
+                    "name": "Passbook",
+                    "id": 92,
+                    "uuid": "11eb-d01a-456b15f8-adc5-0242a53cdb42",
+                    "name_on_frontend": "PB",
+                    "issue_date_req": false,
+                    "expiry_date_req": false
+                  },
+                  {
+                    "name": "Bank Statement",
+                    "id": 91,
+                    "uuid": "11eb-d01a-8322997a-adc5-0242a53cdb42",
+                    "name_on_frontend": "BS",
+                    "issue_date_req": false,
+                    "expiry_date_req": false
+                  },
+                  {
+                    "name": "Cancelled Cheque",
+                    "id": 48,
+                    "uuid": "ca0a-9047-28d705a1-7e97-b530fbec4c41",
+                    "name_on_frontend": "CC",
+                    "issue_date_req": false,
+                    "expiry_date_req": false
+                  },
+                  {
+                    "name": "Bank Verification Letter ",
+                    "id": 49,
+                    "uuid": "f912-b658-610ce46f-796b-14a515e41ad7",
+                    "name_on_frontend": "BC",
+                    "issue_date_req": false,
+                    "expiry_date_req": false
+                  }
+                ],
+                "kyc_document": null
+              },
+              {
+                "id": 82,
+                "name": "PAN Card of Signing Authority",
+                "uuid": "11e8-748f-297824ce-9081-020aca9875be",
+                "name_on_frontend": "PANCARD_SIGNED_AUTHORITY",
+                "re_fetch": false,
+                "document_types": [
+                  {
+                    "name": "PAN Card",
+                    "id": 50,
+                    "uuid": "11e8-748f-2946799c-9081-020aca9875be",
+                    "name_on_frontend": "PANCARD",
+                    "issue_date_req": false,
+                    "expiry_date_req": false
+                  }
+                ],
+                "kyc_document": null
+              },
+              {
+                "id": 89,
+                "name": "Address Proof of Signing Authority",
+                "uuid": "11e8-748f-297a15b8-9081-020aca9875be",
+                "name_on_frontend": "ADDRESS_PROOF_SIGNED_AUTHORITY",
+                "re_fetch": false,
+                "document_types": [
+                  {
+                    "name": "Passport",
+                    "id": 51,
+                    "uuid": "11e8-748f-2948a29e-9081-020aca9875be",
+                    "name_on_frontend": "PASSPORT",
+                    "issue_date_req": true,
+                    "expiry_date_req": true
+                  },
+                  {
+                    "name": "Aadhar",
+                    "id": 52,
+                    "uuid": "11e8-748f-294a800a-9081-020aca9875be",
+                    "name_on_frontend": "AADHAR",
+                    "issue_date_req": false,
+                    "expiry_date_req": false
+                  },
+                  {
+                    "name": "Voter's ID",
+                    "id": 53,
+                    "uuid": "11e8-748f-294c6ef6-9081-020aca9875be",
+                    "name_on_frontend": "VOTER",
+                    "issue_date_req": false,
+                    "expiry_date_req": false
+                  },
+                  {
+                    "name": "Driving Licence",
+                    "id": 54,
+                    "uuid": "11e8-748f-294e7dea-9081-020aca9875be",
+                    "name_on_frontend": "DL",
+                    "issue_date_req": true,
+                    "expiry_date_req": true
+                  },
+                  {
+                    "name": "Utilities Bill (electricity, water, landline, gas connection) ",
+                    "id": 55,
+                    "uuid": "11e8-748f-29508112-9081-020aca9875be",
+                    "name_on_frontend": "BMTB",
+                    "issue_date_req": false,
+                    "expiry_date_req": false
+                  },
+                  {
+                    "name": "Address Verification Letter from Bank",
+                    "id": 64,
+                    "uuid": "24d8-a849-14f755a1-d49b-12ca65c5cd7a",
+                    "name_on_frontend": "AVFB",
+                    "issue_date_req": false,
+                    "expiry_date_req": false
+                  }
+                ],
+                "kyc_document": null
+              }
+            ]
+          }
+        ]
+      },
+      "DocumentCategory": {
+        "title": "DocumentCategory",
+        "required": [
+          "id",
+          "name",
+          "uuid",
+          "name_on_frontend",
+          "re_fetch",
+          "document_types",
+          "kyc_document"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "name_on_frontend": {
+            "type": "string"
+          },
+          "re_fetch": {
+            "type": "boolean"
+          },
+          "document_types": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentType"
+            },
+            "description": ""
+          },
+          "kyc_document": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "examples": [
+          {
+            "id": 81,
+            "name": "Bank Account Proof",
+            "uuid": "11e8-748f-297c6048-9081-020aca9875be",
+            "name_on_frontend": "BANK_PROOF",
+            "re_fetch": false,
+            "document_types": [
+              {
+                "name": "Passbook",
+                "id": 92,
+                "uuid": "11eb-d01a-456b15f8-adc5-0242a53cdb42",
+                "name_on_frontend": "PB",
+                "issue_date_req": false,
+                "expiry_date_req": false
+              },
+              {
+                "name": "Bank Statement",
+                "id": 91,
+                "uuid": "11eb-d01a-8322997a-adc5-0242a53cdb42",
+                "name_on_frontend": "BS",
+                "issue_date_req": false,
+                "expiry_date_req": false
+              },
+              {
+                "name": "Cancelled Cheque",
+                "id": 48,
+                "uuid": "ca0a-9047-28d705a1-7e97-b530fbec4c41",
+                "name_on_frontend": "CC",
+                "issue_date_req": false,
+                "expiry_date_req": false
+              },
+              {
+                "name": "Bank Verification Letter ",
+                "id": 49,
+                "uuid": "f912-b658-610ce46f-796b-14a515e41ad7",
+                "name_on_frontend": "BC",
+                "issue_date_req": false,
+                "expiry_date_req": false
+              }
+            ],
+            "kyc_document": null
+          }
+        ]
+      },
+      "DocumentType": {
+        "title": "DocumentType",
+        "required": [
+          "name",
+          "id",
+          "uuid",
+          "name_on_frontend",
+          "issue_date_req",
+          "expiry_date_req"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "integer",
+            "contentEncoding": "int32"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "name_on_frontend": {
+            "type": "string"
+          },
+          "issue_date_req": {
+            "type": "boolean"
+          },
+          "expiry_date_req": {
+            "type": "boolean"
+          }
+        },
+        "examples": [
+          {
+            "name": "Passbook",
+            "id": 92,
+            "uuid": "11eb-d01a-456b15f8-adc5-0242a53cdb42",
+            "name_on_frontend": "PB",
+            "issue_date_req": false,
+            "expiry_date_req": false
+          }
+        ]
+      },
+      "CreateKYCDocument": {
+        "title": "CreateKYCDocument",
+        "required": [
+          "merchant"
+        ],
+        "type": "object",
+        "properties": {
+          "merchant": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Merchant"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "merchant": {
+              "mid": "8390925",
+              "kyc_document_name": "PAN Card of Signing Authority",
+              "kyc_document_uuid": "11ef-587e-43837330-95b0-021ec077a271",
+              "kyc_document_status": "DOCUMENT_SUBMITTED",
+              "error_message": null,
+              "created_at": "2024-08-12T07:41:19.000Z"
+            }
+          }
+        ]
+      },
+      "Merchant": {
+        "title": "Merchant",
+        "required": [
+          "mid",
+          "kyc_document_name",
+          "kyc_document_uuid",
+          "kyc_document_status",
+          "error_message",
+          "created_at"
+        ],
+        "type": "object",
+        "properties": {
+          "mid": {
+            "type": "string"
+          },
+          "kyc_document_name": {
+            "type": "string"
+          },
+          "kyc_document_uuid": {
+            "type": "string"
+          },
+          "kyc_document_status": {
+            "type": "string"
+          },
+          "error_message": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "created_at": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "mid": "8390925",
+            "kyc_document_name": "PAN Card of Signing Authority",
+            "kyc_document_uuid": "11ef-587e-43837330-95b0-021ec077a271",
+            "kyc_document_status": "DOCUMENT_SUBMITTED",
+            "error_message": null,
+            "created_at": "2024-08-12T07:41:19.000Z"
+          }
+        ]
+      }
+    },
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ]
+}
