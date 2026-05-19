@@ -172,6 +172,8 @@ To integrate with the CheckoutPro mobile SDK for Android:
           udf3: 'udf3',
           udf4: 'udf4',
           udf5: 'udf5',
+					sourceId: "<sourceId>",
+          walletUrn: "<walletUrn>"
         },
       };
       return payUPaymentParams;
@@ -209,7 +211,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
         // Add SI Parameters
         payUSIParams: payUSIParams,
       };
-   
+
     ```
 
     **SI Parameters Reference:**
@@ -248,7 +250,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
         payUSIParams: payUSIParams,
       };
       
- 
+
     ```
 
     ***
@@ -342,7 +344,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
         skuDetails: skuDetails,
       };
       
-  
+
     ```
 
     > **🚧 Keep in mind:**
@@ -378,7 +380,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
         // Add TPV beneficiary details
         beneficiaryDetails: beneficiaryDetails,
       };
- 
+
     ```
 
     **TPV Parameters:**
@@ -424,7 +426,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
         // Add additional params with UDF5, pass invoice number
         additionalParam: additionalParam,
       };
- 
+
     ```
 
     > **Important:** For OPGSP merchants, both `address` and `udf5` (invoice number) are mandatory.
@@ -489,14 +491,13 @@ To integrate with the CheckoutPro mobile SDK for Android:
 
     | Parameter                                   | Description                                                                                                                                                                         |
     | :------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | PayUCheckoutProConstants.CP\_UDF1           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-    | PayUCheckoutProConstants.CP\_UDF2           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-    | PayUCheckoutProConstants.CP\_UDF3           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-    | PayUCheckoutProConstants.CP\_UDF4           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-    | PayUCheckoutProConstants.CP\_UDF5           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
-    | Static hashes                               | `String` The static hashes is specified in this parameter. For more information, refer to [Hash Generation](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) section. |
-    | PayUCheckoutProConstants.SODEX\_OSOURC\_EID | `String` Sodexo Source ID, Merchant can store it from the third field of PayU response.                                                                                             |
-    | PaymentParamConstant.walletUrn              | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                                  |
+    | udf1           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+    | udf2           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+    | udf3           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+    | udf4           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+    | udf5           | `String` User defined field, Merchant can store their customer id, etc.                                                                                                             |
+    | sourceId | `String` Sodexo Source ID, Merchant can store it from the third field of PayU response.                                                                                             |
+    | walletUrn              | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                                  |
   </Accordion>
 
   <Accordion title="Steps 2.12: Payment Param Definitions" icon="fa-code">
