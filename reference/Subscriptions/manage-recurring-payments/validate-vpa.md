@@ -213,30 +213,28 @@ Below is the validate VPA sample code for recurring payments.
 ## Sample Response
 
 <Accordion title="Response Payload" icon="fa-code">
-
-```json Success Response
+  ```json Success Response
+    {
+      "status":"SUCCESS",
+      "vpa":"9999999999@upi",
+      "isVPAValid":1,
+      "isAutoPayVPAValid":1,
+      "isAutoPayBankValid":"NA",
+      "payerAccountName":"ABC"
+    }
+  ```
+  ```json Error Response
   {
     "status":"SUCCESS",
-    "vpa":"9999999999@upi",
-    "isVPAValid":1,
-    "isAutoPayVPAValid":1,
-    "isAutoPayBankValid":"NA",
-    "payerAccountName":"ABC"
+    "vpa":"abc@upi",
+    "isVPAValid":0,
+    "payerAccountName":"NA"
   }
-```
-```json Error Response
-{
-  "status":"SUCCESS",
-  "vpa":"abc@upi",
-  "isVPAValid":0,
-  "payerAccountName":"NA"
-}
-```
-
+  ```
 </Accordion>
 
-<Callout icon="👍">
+<Callout icon="👍" theme="okay">
   **Request Parameter Description**
 
-  Refer to the Request Body section for request parameters, their descriptions and examples.
+  Refer to the [Form Data](https://docs.payu.in/reference/validate-vpa#body-params) section for request parameters, their descriptions and examples.
 </Callout>
