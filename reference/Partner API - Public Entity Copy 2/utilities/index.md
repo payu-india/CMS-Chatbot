@@ -1,4 +1,4 @@
 ---
 title: Utilities
-hidden: false
+hidden: true
 ---
