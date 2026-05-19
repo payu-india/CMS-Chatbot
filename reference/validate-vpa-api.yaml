@@ -105,14 +105,15 @@ paths:
                     d415188799f49f554a24064752bd6ce4d8a18c075b7b88b534e3150f253c09ae28a48554d2d1ba4be66b8441b2cbc364491d26bcead605c5fcecf4eaf622e224
                 var2:
                   type: object
-                  description: >
-                    Optional. Use only for UPI Autopay validation. Pass a JSON
-                    string such as
-
-                    `{"validateAutoPayVPA":"1"}` to check recurring-payment
-                    eligibility.
+                  description: |
+                    Use this parameter only for UPI autopay validation. 
                   example: '{"validateAutoPayVPA":"1"}'
-                  properties: {}
+                  properties:
+                    validateAutoPayVPA:
+                      type: integer
+                      description: >-
+                        Pass the value as `1` to check recurring-payment
+                        eligibility.
       responses:
         '200':
           description: >-
