@@ -98,8 +98,9 @@ paths:
                   description: >
                     The generated hash value. You should generate the hash using
                     the `sha512(key|command|var1|salt)` logic. Alternatively,
-                    you can use the button in the Generate Hash section above to
-                    generate the hash.
+                    you can use the button in the [Generate
+                    Hash](https://docs.payu.in/reference/validate-vpa#generate-hash)
+                    section above to generate the hash.
                   example: >-
                     d415188799f49f554a24064752bd6ce4d8a18c075b7b88b534e3150f253c09ae28a48554d2d1ba4be66b8441b2cbc364491d26bcead605c5fcecf4eaf622e224
                 var2:
