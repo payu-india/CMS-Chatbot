@@ -1,5 +1,5 @@
 ---
-title: Absolute Split During Transaction Integration - PayU Hosted Checkout
+title: Absolute Split During Transaction Integration
 deprecated: false
 hidden: true
 metadata:
