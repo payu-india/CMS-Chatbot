@@ -250,5 +250,5 @@ Below is the validate VPA sample code for recurring payments.
 <Callout icon="👍" theme="okay">
   **Response Parameter Description**
 
-  Refer to the [Form Data](https://docs.payu.in/reference/validate-vpa#body-params) section for request parameters, their descriptions and examples.
+  Refer to the [Response](https://docs.payu.in/reference/validate-vpa#response-schemas) section for response parameters and their descriptions.
 </Callout>
