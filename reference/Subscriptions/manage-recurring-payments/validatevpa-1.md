@@ -12,4 +12,11 @@ Use this API to check whether a VPA is valid. For UPI Autopay or recurring payme
   You should poll this API after a customer enters a VPA on the merchant page to check for its validation. If VPA is valid only then, the second call should be made.
 </Callout>
 
-<br />
+## Sample Request
+
+<Accordion title="Sample Payload" icon="fa-code">
+
+```
+```
+
+</Accordion>
