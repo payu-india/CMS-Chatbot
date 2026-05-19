@@ -24,6 +24,8 @@ The **Create Merchant** API creates a new merchant account on PayU and posts all
   **Note**: After using this API to create merchants, you can use the Update Merchant API to update the merchant details. For more information, refer to [Update Merchant Details API](ref:update_merchant_details_api).
 </Callout>
 
+<br />
+
 <Partner_Postman />
 
 ### Authentication
