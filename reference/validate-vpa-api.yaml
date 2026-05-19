@@ -45,8 +45,6 @@ paths:
           description: Must be `2` for command APIs.
           schema:
             type: integer
-            enum:
-              - 2
             example: 2
         - name: Content-Type
           in: header
