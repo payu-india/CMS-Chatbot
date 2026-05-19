@@ -25,7 +25,9 @@ next:
 
 Use this integration to split a parent transaction into fixed amounts at payment time with **PayU Hosted Checkout**. You post `_payment` with `splitRequest`; PayU redirects the customer to the hosted payment page, then returns transaction and split details to your `surl` or `furl`.
 
-For the full API contract, refer to [Absolute Split During Transaction - PayU Hosted Checkout](ref:absolute-split-during-transaction-payu-hosted-checkout).
+<Callout icon="📘" theme="info">
+  **Reference**: For the full API contract, refer to [Absolute Split During Transaction - PayU Hosted Checkout](ref:absolute-split-during-transaction-payu-hosted-checkout).
+</Callout>
 
 ## Prerequisites
 
@@ -120,12 +122,12 @@ sha512(SALT|status|splitInfo||||||udf5|udf4|udf3|udf2|udf1|email|firstname|produ
 
 **Response parameters**:
 
-| Parameter | Description |
-| --------- | ----------- |
-| `status` | Payment status (`success`, `failure`, `pending`) |
-| `txnid` | Transaction ID sent in the request |
-| `amount` | Transaction amount |
-| `mihpayid` | PayU payment ID |
+| Parameter   | Description                                        |
+| ----------- | -------------------------------------------------- |
+| `status`    | Payment status (`success`, `failure`, `pending`)   |
+| `txnid`     | Transaction ID sent in the request                 |
+| `amount`    | Transaction amount                                 |
+| `mihpayid`  | PayU payment ID                                    |
 | `splitInfo` | JSON string with `splitStatus` and `splitSegments` |
 
 **Example response** (parsed `splitInfo`):
