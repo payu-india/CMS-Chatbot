@@ -24,7 +24,9 @@ next:
 
 Use this integration to distribute a payment by percentage among child merchants at transaction time with **PayU Hosted Checkout**. Set `type` to `percentage` and ensure the total across all splits equals **100**.
 
-For the full API contract, refer to [Split by Percentage During Transaction - PayU Hosted Checkout](ref:split-by-percentage-during-transaction-payu-hosted-checkout).
+<Callout icon="👍">
+  **Reference**: For the full API contract, refer to [Split by Percentage During Transaction - PayU Hosted Checkout](ref:split-by-percentage-during-transaction-payu-hosted-checkout).
+</Callout>
 
 ## Prerequisites
 
@@ -117,12 +119,12 @@ sha512(SALT|status|splitInfo||||||udf5|udf4|udf3|udf2|udf1|email|firstname|produ
 
 **Response parameters**:
 
-| Parameter | Description |
-| --------- | ----------- |
-| `status` | Payment status (`success`, `failure`, `pending`) |
-| `txnid` | Transaction ID sent in the request |
-| `amount` | Transaction amount |
-| `mihpayid` | PayU payment ID |
+| Parameter   | Description                                        |
+| ----------- | -------------------------------------------------- |
+| `status`    | Payment status (`success`, `failure`, `pending`)   |
+| `txnid`     | Transaction ID sent in the request                 |
+| `amount`    | Transaction amount                                 |
+| `mihpayid`  | PayU payment ID                                    |
 | `splitInfo` | JSON string with `splitStatus` and `splitSegments` |
 
 **Example response** (parsed `splitInfo`):
