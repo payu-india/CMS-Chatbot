@@ -1,1 +1,550 @@
-{"openapi":"3.0.0","info":{"title":"Create Merchant API","description":"API to create a new merchant in the PayU system.","version":"1.0.0"},"servers":[{"url":"https://uat-partner.payu.in","description":"PayU UAT Partner environment"}],"paths":{"/api/v3/v3/merchants":{"post":{"summary":"Create Merchant","description":"This API allows you to create a new merchant in the PayU system.","operationId":"createMerchant","requestBody":{"required":true,"content":{"multipart/form-data":{"schema":{"type":"object","properties":{"[merchant][display_name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"The display name of the merchant that will be shown on PayU dashboard and reports."},"merchant[email]":{"type":"string","example":"boro13@yomail.com","description":"Primary email address of the merchant for communication and notifications."},"merchant[mobile]":{"type":"string","example":"9916965913","description":"Primary mobile number of the merchant for communication and notifications."},"merchant[business_details][pan]":{"type":"string","example":"FANPS6362D","description":"Permanent Account Number (PAN) of the merchant business."},"merchant[business_details][business_entity_type]":{"type":"string","example":"Sole Proprietorship","description":"Type of business entity (e.g., 'Sole Proprietorship', 'Partnership', 'Private Limited')."},"merchant[product]":{"type":"string","example":"PayUbiz","description":"The PayU product that the merchant wants to use (e.g., 'PayUbiz', 'PayUmoney')."},"merchant[bank_details][account_no]":{"type":"string","example":"919010067278549","description":"Bank account number of the merchant for settlements."},"merchant[bank_details][account_holder_name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"Name of the account holder as per bank records."},"merchant[bank_details][ifsc_code]":{"type":"string","example":"UTIB0003557","description":"IFSC code of the bank branch for settlements."},"merchant[business_details][registered_name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"The registered legal name of the merchant business."},"merchant[business_details][business_category]":{"type":"string","example":"Arts, Gifts & Stationery","description":"The primary business category of the merchant."},"merchant[business_details][business_sub_category]":{"type":"string","example":"Art Dealers and Galleries","description":"A more specific subcategory related to the business."},"merchant[website_details][website_url]":{"type":"string","example":"https://www.google.com","description":"The merchant's website URL."},"merchant[monthly_expected_volume]":{"type":"integer","example":"12000","description":"The monthly expected transaction volume in monetary terms."},"merchant[signing_authority_details][name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"Name of the authorized representative or signing authority for the merchant's business."},"merchant[signing_authority_details][pancard_number]":{"type":"string","example":"FANPS6362D","description":"PAN card number of the signing authority. Note: merchant[signing_authority_details][pancard_name] is required if you post the PAN card number."},"merchant[signing_authority_details][email]":{"type":"string","example":"email_test1213@yopmail.com","description":"Email of the authorized representative or signing authority."},"merchant[business_details][pancard_name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"The name as it appears on the PAN card."},"merchant[integration_type]":{"type":"string","example":null,"description":"Specifies the type of integration for the merchant's account."},"merchant[gst_number]":{"type":"string","example":"24FANPS6362D1ZE","description":"The GST number of the merchant business."},"merchant[udyam_number]":{"type":"string","example":"UDYAM-UP-19-0002053","description":"Udyam Registration Number for MSMEs (Micro, Small, and Medium Enterprises)."},"merchant[gst_consent]":{"type":"string","example":"false","description":"Consent for GST verification and processing."}},"required":["[merchant][display_name]","merchant[email]","merchant[mobile]","merchant[business_details][pan]","merchant[business_details][business_entity_type]"]}}}},"responses":{"200":{"description":"Successful response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"boolean"},"message":{"type":"string"},"data":{"type":"object"}}}}}}},"security":[{"OAuth2":["merchants:create"]}]}},"/api/v3/v3/merchants/{merchantId}":{"patch":{"tags":[],"summary":"Partially Update Merchant","description":"API to perform a partial update of an existing merchant in the PayU system. Only the merchantId path parameter is required; all fields in the request body are optional.","operationId":"patchMerchantById","parameters":[{"name":"merchantId","in":"path","required":true,"description":"ID of the merchant to update","schema":{"type":"string"}}],"requestBody":{"required":false,"content":{"multipart/form-data":{"schema":{"type":"object","properties":{"[merchant][display_name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"The display name of the merchant that will be shown on PayU dashboard and reports."},"merchant[email]":{"type":"string","example":"boro13@yomail.com","description":"Primary email address of the merchant for communication and notifications."},"merchant[mobile]":{"type":"string","example":"9916965913","description":"Primary mobile number of the merchant for communication and notifications."},"merchant[business_details][pan]":{"type":"string","example":"FANPS6362D","description":"Permanent Account Number (PAN) of the merchant business."},"merchant[business_details][business_entity_type]":{"type":"string","example":"Sole Proprietorship","description":"Type of business entity (e.g., 'Sole Proprietorship', 'Partnership', 'Private Limited')."},"merchant[product]":{"type":"string","example":"PayUbiz","description":"The PayU product that the merchant wants to use (e.g., 'PayUbiz', 'PayUmoney')."},"merchant[bank_details][account_no]":{"type":"string","example":"919010067278549","description":"Bank account number of the merchant for settlements."},"merchant[bank_details][account_holder_name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"Name of the account holder as per bank records."},"merchant[bank_details][ifsc_code]":{"type":"string","example":"UTIB0003557","description":"IFSC code of the bank branch for settlements."},"merchant[business_details][registered_name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"The registered legal name of the merchant business."},"merchant[business_details][business_category]":{"type":"string","example":"Arts, Gifts & Stationery","description":"The primary business category of the merchant."},"merchant[business_details][business_sub_category]":{"type":"string","example":"Art Dealers and Galleries","description":"A more specific subcategory related to the business."},"merchant[website_details][website_url]":{"type":"string","example":"https://www.google.com","description":"The merchant's website URL."},"merchant[monthly_expected_volume]":{"type":"integer","example":"12000","description":"The monthly expected transaction volume in monetary terms."},"merchant[signing_authority_details][name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"Name of the authorized representative or signing authority for the merchant's business."},"merchant[signing_authority_details][pancard_number]":{"type":"string","example":"FANPS6362D","description":"PAN card number of the signing authority. Note: merchant[signing_authority_details][pancard_name] is required if you post the PAN card number."},"merchant[signing_authority_details][email]":{"type":"string","example":"email_test1213@yopmail.com","description":"Email of the authorized representative or signing authority."},"merchant[business_details][pancard_name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"The name as it appears on the PAN card."},"merchant[integration_type]":{"type":"string","example":null,"description":"Specifies the type of integration for the merchant's account."},"merchant[gst_number]":{"type":"string","example":"24FANPS6362D1ZE","description":"The GST number of the merchant business."},"merchant[udyam_number]":{"type":"string","example":"UDYAM-UP-19-0002053","description":"Udyam Registration Number for MSMEs (Micro, Small, and Medium Enterprises)."},"merchant[gst_consent]":{"type":"string","example":"false","description":"Consent for GST verification and processing."}}}}},"description":"Merchant data to update. All fields are optional. Only include the fields you want to update."},"responses":{"200":{"description":"Successful response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"boolean"},"message":{"type":"string"},"data":{"type":"object"}}}}}}},"security":[{"OAuth2":["merchants:create"]}]}},"/api/v1/merchants/{{product_account_uuid}}/update/":{"put":{"tags":[],"summary":"Update Merchant","description":"API to perform a full update of an existing merchant in the PayU system. Only the merchantId path parameter is required; all fields in the request body are optional.","operationId":"updateMerchantById","parameters":[{"in":"path","name":"{product_account_uuid","schema":{"type":"string"},"required":true}],"requestBody":{"required":false,"content":{"multipart/form-data":{"schema":{"type":"object","properties":{"[merchant][display_name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"The display name of the merchant that will be shown on PayU dashboard and reports."},"merchant[email]":{"type":"string","example":"boro13@yomail.com","description":"Primary email address of the merchant for communication and notifications."},"merchant[mobile]":{"type":"string","example":"9916965913","description":"Primary mobile number of the merchant for communication and notifications."},"merchant[business_details][pan]":{"type":"string","example":"FANPS6362D","description":"Permanent Account Number (PAN) of the merchant business."},"merchant[business_details][business_entity_type]":{"type":"string","example":"Sole Proprietorship","description":"Type of business entity (e.g., 'Sole Proprietorship', 'Partnership', 'Private Limited')."},"merchant[product]":{"type":"string","example":"PayUbiz","description":"The PayU product that the merchant wants to use (e.g., 'PayUbiz', 'PayUmoney')."},"merchant[bank_details][account_no]":{"type":"string","example":"919010067278549","description":"Bank account number of the merchant for settlements."},"merchant[bank_details][account_holder_name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"Name of the account holder as per bank records."},"merchant[bank_details][ifsc_code]":{"type":"string","example":"UTIB0003557","description":"IFSC code of the bank branch for settlements."},"merchant[business_details][registered_name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"The registered legal name of the merchant business."},"merchant[business_details][business_category]":{"type":"string","example":"Arts, Gifts & Stationery","description":"The primary business category of the merchant."},"merchant[business_details][business_sub_category]":{"type":"string","example":"Art Dealers and Galleries","description":"A more specific subcategory related to the business."},"merchant[website_details][website_url]":{"type":"string","example":"https://www.google.com","description":"The merchant's website URL."},"merchant[monthly_expected_volume]":{"type":"integer","example":"12000","description":"The monthly expected transaction volume in monetary terms."},"merchant[signing_authority_details][name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"Name of the authorized representative or signing authority for the merchant's business."},"merchant[signing_authority_details][pancard_number]":{"type":"string","example":"FANPS6362D","description":"PAN card number of the signing authority. Note: merchant[signing_authority_details][pancard_name] is required if you post the PAN card number."},"merchant[signing_authority_details][email]":{"type":"string","example":"email_test1213@yopmail.com","description":"Email of the authorized representative or signing authority."},"merchant[business_details][pancard_name]":{"type":"string","example":"DIVY HARESHKUMAR SHAH","description":"The name as it appears on the PAN card."},"merchant[integration_type]":{"type":"string","example":null,"description":"Specifies the type of integration for the merchant's account."},"merchant[gst_number]":{"type":"string","example":"24FANPS6362D1ZE","description":"The GST number of the merchant business."},"merchant[udyam_number]":{"type":"string","example":"UDYAM-UP-19-0002053","description":"Udyam Registration Number for MSMEs (Micro, Small, and Medium Enterprises)."},"merchant[gst_consent]":{"type":"string","example":"false","description":"Consent for GST verification and processing."}}}}},"description":"Merchant data to update. All fields are optional. Only include the fields you want to update."},"responses":{"200":{"description":"Successful response","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"boolean"},"message":{"type":"string"},"data":{"type":"object"}}}}}}},"security":[{"OAuth2":["merchants:create"]}]}}},"components":{"securitySchemes":{"OAuth2":{"type":"oauth2","flows":{"clientCredentials":{"tokenUrl":"https://secure.payu.com/oauth/token","scopes":{"merchants:create":"Create new merchants","merchants:read":"Read merchant information"}}},"description":"OAuth 2.0 authentication for PayU API"}}},"security":[{"OAuth2":["merchants:create","merchants:read"]}]}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Create Merchant API",
+    "description": "API to create a new merchant in the PayU system.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://uat-partner.payu.in",
+      "description": "PayU UAT Partner environment"
+    }
+  ],
+  "paths": {
+    "/api/v3/v3/merchants": {
+      "post": {
+        "summary": "Create Merchant",
+        "description": "This API allows you to create a new merchant in the PayU system.",
+        "operationId": "createMerchant",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "[merchant][display_name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "The display name of the merchant that will be shown on PayU dashboard and reports."
+                  },
+                  "merchant[email]": {
+                    "type": "string",
+                    "example": "boro13@yomail.com",
+                    "description": "Primary email address of the merchant for communication and notifications."
+                  },
+                  "merchant[mobile]": {
+                    "type": "string",
+                    "example": "9916965913",
+                    "description": "Primary mobile number of the merchant for communication and notifications."
+                  },
+                  "merchant[business_details][pan]": {
+                    "type": "string",
+                    "example": "FANPS6362D",
+                    "description": "Permanent Account Number (PAN) of the merchant business."
+                  },
+                  "merchant[business_details][business_entity_type]": {
+                    "type": "string",
+                    "example": "Sole Proprietorship",
+                    "description": "Type of business entity (e.g., 'Sole Proprietorship', 'Partnership', 'Private Limited')."
+                  },
+                  "merchant[product]": {
+                    "type": "string",
+                    "example": "PayUbiz",
+                    "description": "The PayU product that the merchant wants to use (e.g., 'PayUbiz', 'PayUmoney')."
+                  },
+                  "merchant[bank_details][account_no]": {
+                    "type": "string",
+                    "example": "919010067278549",
+                    "description": "Bank account number of the merchant for settlements."
+                  },
+                  "merchant[bank_details][account_holder_name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "Name of the account holder as per bank records."
+                  },
+                  "merchant[bank_details][ifsc_code]": {
+                    "type": "string",
+                    "example": "UTIB0003557",
+                    "description": "IFSC code of the bank branch for settlements."
+                  },
+                  "merchant[business_details][registered_name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "The registered legal name of the merchant business."
+                  },
+                  "merchant[business_details][business_category]": {
+                    "type": "string",
+                    "example": "Arts, Gifts & Stationery",
+                    "description": "The primary business category of the merchant."
+                  },
+                  "merchant[business_details][business_sub_category]": {
+                    "type": "string",
+                    "example": "Art Dealers and Galleries",
+                    "description": "A more specific subcategory related to the business."
+                  },
+                  "merchant[website_details][website_url]": {
+                    "type": "string",
+                    "example": "https://www.google.com",
+                    "description": "The merchant's website URL."
+                  },
+                  "merchant[monthly_expected_volume]": {
+                    "type": "integer",
+                    "example": "12000",
+                    "description": "The monthly expected transaction volume in monetary terms."
+                  },
+                  "merchant[signing_authority_details][name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "Name of the authorized representative or signing authority for the merchant's business."
+                  },
+                  "merchant[signing_authority_details][pancard_number]": {
+                    "type": "string",
+                    "example": "FANPS6362D",
+                    "description": "PAN card number of the signing authority. Note: merchant[signing_authority_details][pancard_name] is required if you post the PAN card number."
+                  },
+                  "merchant[signing_authority_details][email]": {
+                    "type": "string",
+                    "example": "email_test1213@yopmail.com",
+                    "description": "Email of the authorized representative or signing authority."
+                  },
+                  "merchant[business_details][pancard_name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "The name as it appears on the PAN card."
+                  },
+                  "merchant[integration_type]": {
+                    "type": "string",
+                    "example": null,
+                    "description": "Specifies the type of integration for the merchant's account."
+                  },
+                  "merchant[gst_number]": {
+                    "type": "string",
+                    "example": "24FANPS6362D1ZE",
+                    "description": "The GST number of the merchant business."
+                  },
+                  "merchant[udyam_number]": {
+                    "type": "string",
+                    "example": "UDYAM-UP-19-0002053",
+                    "description": "Udyam Registration Number for MSMEs (Micro, Small, and Medium Enterprises)."
+                  },
+                  "merchant[gst_consent]": {
+                    "type": "string",
+                    "example": "false",
+                    "description": "Consent for GST verification and processing."
+                  }
+                },
+                "required": [
+                  "[merchant][display_name]",
+                  "merchant[email]",
+                  "merchant[mobile]",
+                  "merchant[business_details][pan]",
+                  "merchant[business_details][business_entity_type]"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "merchants:create"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v3/v3/merchants/{merchantId}": {
+      "patch": {
+        "tags": [],
+        "summary": "Partially Update Merchant",
+        "description": "API to perform a partial update of an existing merchant in the PayU system. Only the merchantId path parameter is required; all fields in the request body are optional.",
+        "operationId": "patchMerchantById",
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the merchant to update",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "[merchant][display_name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "The display name of the merchant that will be shown on PayU dashboard and reports."
+                  },
+                  "merchant[email]": {
+                    "type": "string",
+                    "example": "boro13@yomail.com",
+                    "description": "Primary email address of the merchant for communication and notifications."
+                  },
+                  "merchant[mobile]": {
+                    "type": "string",
+                    "example": "9916965913",
+                    "description": "Primary mobile number of the merchant for communication and notifications."
+                  },
+                  "merchant[business_details][pan]": {
+                    "type": "string",
+                    "example": "FANPS6362D",
+                    "description": "Permanent Account Number (PAN) of the merchant business."
+                  },
+                  "merchant[business_details][business_entity_type]": {
+                    "type": "string",
+                    "example": "Sole Proprietorship",
+                    "description": "Type of business entity (e.g., 'Sole Proprietorship', 'Partnership', 'Private Limited')."
+                  },
+                  "merchant[product]": {
+                    "type": "string",
+                    "example": "PayUbiz",
+                    "description": "The PayU product that the merchant wants to use (e.g., 'PayUbiz', 'PayUmoney')."
+                  },
+                  "merchant[bank_details][account_no]": {
+                    "type": "string",
+                    "example": "919010067278549",
+                    "description": "Bank account number of the merchant for settlements."
+                  },
+                  "merchant[bank_details][account_holder_name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "Name of the account holder as per bank records."
+                  },
+                  "merchant[bank_details][ifsc_code]": {
+                    "type": "string",
+                    "example": "UTIB0003557",
+                    "description": "IFSC code of the bank branch for settlements."
+                  },
+                  "merchant[business_details][registered_name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "The registered legal name of the merchant business."
+                  },
+                  "merchant[business_details][business_category]": {
+                    "type": "string",
+                    "example": "Arts, Gifts & Stationery",
+                    "description": "The primary business category of the merchant."
+                  },
+                  "merchant[business_details][business_sub_category]": {
+                    "type": "string",
+                    "example": "Art Dealers and Galleries",
+                    "description": "A more specific subcategory related to the business."
+                  },
+                  "merchant[website_details][website_url]": {
+                    "type": "string",
+                    "example": "https://www.google.com",
+                    "description": "The merchant's website URL."
+                  },
+                  "merchant[monthly_expected_volume]": {
+                    "type": "integer",
+                    "example": "12000",
+                    "description": "The monthly expected transaction volume in monetary terms."
+                  },
+                  "merchant[signing_authority_details][name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "Name of the authorized representative or signing authority for the merchant's business."
+                  },
+                  "merchant[signing_authority_details][pancard_number]": {
+                    "type": "string",
+                    "example": "FANPS6362D",
+                    "description": "PAN card number of the signing authority. Note: merchant[signing_authority_details][pancard_name] is required if you post the PAN card number."
+                  },
+                  "merchant[signing_authority_details][email]": {
+                    "type": "string",
+                    "example": "email_test1213@yopmail.com",
+                    "description": "Email of the authorized representative or signing authority."
+                  },
+                  "merchant[business_details][pancard_name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "The name as it appears on the PAN card."
+                  },
+                  "merchant[integration_type]": {
+                    "type": "string",
+                    "example": null,
+                    "description": "Specifies the type of integration for the merchant's account."
+                  },
+                  "merchant[gst_number]": {
+                    "type": "string",
+                    "example": "24FANPS6362D1ZE",
+                    "description": "The GST number of the merchant business."
+                  },
+                  "merchant[udyam_number]": {
+                    "type": "string",
+                    "example": "UDYAM-UP-19-0002053",
+                    "description": "Udyam Registration Number for MSMEs (Micro, Small, and Medium Enterprises)."
+                  },
+                  "merchant[gst_consent]": {
+                    "type": "string",
+                    "example": "false",
+                    "description": "Consent for GST verification and processing."
+                  }
+                }
+              }
+            }
+          },
+          "description": "Merchant data to update. All fields are optional. Only include the fields you want to update."
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "merchants:create"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/merchants/{{product_account_uuid}}/update/": {
+      "put": {
+        "tags": [],
+        "summary": "Update Merchant Details API",
+        "description": "API to perform a full update of an existing merchant in the PayU system. Only the merchantId path parameter is required; all fields in the request body are optional.",
+        "operationId": "updateMerchantById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "{product_account_uuid",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "[merchant][display_name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "The display name of the merchant that will be shown on PayU dashboard and reports."
+                  },
+                  "merchant[email]": {
+                    "type": "string",
+                    "example": "boro13@yomail.com",
+                    "description": "Primary email address of the merchant for communication and notifications."
+                  },
+                  "merchant[mobile]": {
+                    "type": "string",
+                    "example": "9916965913",
+                    "description": "Primary mobile number of the merchant for communication and notifications."
+                  },
+                  "merchant[business_details][pan]": {
+                    "type": "string",
+                    "example": "FANPS6362D",
+                    "description": "Permanent Account Number (PAN) of the merchant business."
+                  },
+                  "merchant[business_details][business_entity_type]": {
+                    "type": "string",
+                    "example": "Sole Proprietorship",
+                    "description": "Type of business entity (e.g., 'Sole Proprietorship', 'Partnership', 'Private Limited')."
+                  },
+                  "merchant[product]": {
+                    "type": "string",
+                    "example": "PayUbiz",
+                    "description": "The PayU product that the merchant wants to use (e.g., 'PayUbiz', 'PayUmoney')."
+                  },
+                  "merchant[bank_details][account_no]": {
+                    "type": "string",
+                    "example": "919010067278549",
+                    "description": "Bank account number of the merchant for settlements."
+                  },
+                  "merchant[bank_details][account_holder_name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "Name of the account holder as per bank records."
+                  },
+                  "merchant[bank_details][ifsc_code]": {
+                    "type": "string",
+                    "example": "UTIB0003557",
+                    "description": "IFSC code of the bank branch for settlements."
+                  },
+                  "merchant[business_details][registered_name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "The registered legal name of the merchant business."
+                  },
+                  "merchant[business_details][business_category]": {
+                    "type": "string",
+                    "example": "Arts, Gifts & Stationery",
+                    "description": "The primary business category of the merchant."
+                  },
+                  "merchant[business_details][business_sub_category]": {
+                    "type": "string",
+                    "example": "Art Dealers and Galleries",
+                    "description": "A more specific subcategory related to the business."
+                  },
+                  "merchant[website_details][website_url]": {
+                    "type": "string",
+                    "example": "https://www.google.com",
+                    "description": "The merchant's website URL."
+                  },
+                  "merchant[monthly_expected_volume]": {
+                    "type": "integer",
+                    "example": "12000",
+                    "description": "The monthly expected transaction volume in monetary terms."
+                  },
+                  "merchant[signing_authority_details][name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "Name of the authorized representative or signing authority for the merchant's business."
+                  },
+                  "merchant[signing_authority_details][pancard_number]": {
+                    "type": "string",
+                    "example": "FANPS6362D",
+                    "description": "PAN card number of the signing authority. Note: merchant[signing_authority_details][pancard_name] is required if you post the PAN card number."
+                  },
+                  "merchant[signing_authority_details][email]": {
+                    "type": "string",
+                    "example": "email_test1213@yopmail.com",
+                    "description": "Email of the authorized representative or signing authority."
+                  },
+                  "merchant[business_details][pancard_name]": {
+                    "type": "string",
+                    "example": "DIVY HARESHKUMAR SHAH",
+                    "description": "The name as it appears on the PAN card."
+                  },
+                  "merchant[integration_type]": {
+                    "type": "string",
+                    "example": null,
+                    "description": "Specifies the type of integration for the merchant's account."
+                  },
+                  "merchant[gst_number]": {
+                    "type": "string",
+                    "example": "24FANPS6362D1ZE",
+                    "description": "The GST number of the merchant business."
+                  },
+                  "merchant[udyam_number]": {
+                    "type": "string",
+                    "example": "UDYAM-UP-19-0002053",
+                    "description": "Udyam Registration Number for MSMEs (Micro, Small, and Medium Enterprises)."
+                  },
+                  "merchant[gst_consent]": {
+                    "type": "string",
+                    "example": "false",
+                    "description": "Consent for GST verification and processing."
+                  }
+                }
+              }
+            }
+          },
+          "description": "Merchant data to update. All fields are optional. Only include the fields you want to update."
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "OAuth2": [
+              "merchants:create"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "OAuth2": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://secure.payu.com/oauth/token",
+            "scopes": {
+              "merchants:create": "Create new merchants",
+              "merchants:read": "Read merchant information"
+            }
+          }
+        },
+        "description": "OAuth 2.0 authentication for PayU API"
+      }
+    }
+  },
+  "security": [
+    {
+      "OAuth2": [
+        "merchants:create",
+        "merchants:read"
+      ]
+    }
+  ]
+}
