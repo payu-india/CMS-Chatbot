@@ -1,7 +1,7 @@
 ---
 title: Split by Percentage - PayU Hosted Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
