@@ -256,7 +256,7 @@ Below is the validate VPA sample code for recurring payments.
 ## Generate Hash
 
 <HTMLBlock>{`
-<p>Use this button to generate the hash value.</p>
+<p>Use this button to generate the hash value.</p><br/>
 
 <style>
                 .tooltip-btn {
