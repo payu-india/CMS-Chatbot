@@ -42,10 +42,13 @@ paths:
         - name: form
           in: query
           required: true
-          description: Must be `2` for command APIs.
+          description: This value should always be `2` for command APIs.
           schema:
             type: integer
             example: 2
+            enum:
+              - 2
+            default: '2'
         - name: Content-Type
           in: header
           required: true
@@ -74,11 +77,13 @@ paths:
               properties:
                 key:
                   type: string
-                  description: Merchant key provided by PayU.
+                  description: The unique Merchant Key provided by PayU for your account.
                   example: BmTY3G
+                  enum:
+                    - BmTY3G
                 command:
                   type: string
-                  description: Must be `validateVPA`.
+                  description: The command API follows. <ul></ul>Must be `validateVPA`.
                   example: validateVPA
                 var1:
                   type: string
