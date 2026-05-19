@@ -1,5 +1,4 @@
 ---
-title: Update Merchant Details API
 api:
   file: payu_merchant_api_final.json
   operationId: updateMerchantById
@@ -36,10 +35,16 @@ The **Update Merchant Details** API is used to:
 > * The entire payload needs to be submitted for update requests as well
 > * No updates are allowed after successful PAN verification. PAN verification status is available in the get merchant API. If the merchant wants to update any information after PAN verification, you need to contact the PayU Care team through help.payu.in
 
+<br />
+
+<Partner_Postman />
+
+<br />
+
 ### Steps to get the Bearer token
 
-1. Generate token using the [Get Token API](ref:get_token_api)and use it in [Send OTP API](ref:send_otp_api) with the send\_sign\_in\_otp as the scope.
-2. generate token using the [Get Token API](ref:get_token_api)and use it in [Verify OTP API](ref:verify_otp_api) with the verify\_sign\_in\_otp as the scope and the the OTP received in Step 1.
+1. Generate token using the [Get Token API](ref:get_token_api)and use it in [Send OTP API](ref:send_otp_api) with the send_sign_in_otp as the scope.
+2. generate token using the [Get Token API](ref:get_token_api)and use it in [Verify OTP API](ref:verify_otp_api) with the verify_sign_in_otp as the scope and the the OTP received in Step 1.
 3. Use the bearer token for this Update Merchant API from the response of Step 2.
 
 <PARTNEROnboardingEnvironment />
