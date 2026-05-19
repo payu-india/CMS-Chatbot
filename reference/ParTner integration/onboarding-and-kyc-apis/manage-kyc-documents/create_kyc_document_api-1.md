@@ -7,13 +7,19 @@ metadata:
 ---
 The **Create KYC Document** API is used to create an instance to upload the KYC document (PAN Card). The access token is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get-token-api).
 
-> 📘 Note:
->
-> If the **bank\_verification\_status** parameter of the **Get Merchant API** response is unsuccessful, the [Create KYC Document](ref:create_kyc_document_api) is used to submit the KYC details.
+<Callout icon="📘" theme="info">
+  **Note**: If the **bank_verification_status** parameter of the **Get Merchant API** response is unsuccessful, the [Create KYC Document](ref:create_kyc_document_api) is used to submit the KYC details.
+</Callout>
+
+<br />
+
+<Partner_Postman />
+
+<br />
 
 ## Authentication
 
-The access token with the scope as **refer\_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+The access token with the scope as **refer_merchant** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 
 ## Environments
 
@@ -76,54 +82,11 @@ The merchant ID in the request header must be included as a query parameter in t
 >
 > **For example**, a correct format of the file name would be AadharCard.png for passing aadhar card. File name such as Aadhar Card.png or Aadhar-Card.png will result in `internal server error`.
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        merchant\[document\_category]
-        `mandatory`
-      </td>
-
-      <td>
-        The category of the KYC document (e.g., "PAN Card of Signing Authority")
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        merchant\[document\_type]
-        `mandatory`
-      </td>
-
-      <td>
-        The type of document (e.g., "PAN Card")
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        merchant\[processed\_document]
-        `mandatory`
-      </td>
-
-      <td>
-        The actual document file to upload
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameter                                | Description                                                              |
+| ---------------------------------------- | ------------------------------------------------------------------------ |
+| merchant[document_category] `mandatory`  | The category of the KYC document (e.g., "PAN Card of Signing Authority") |
+| merchant[document_type] `mandatory`      | The type of document (e.g., "PAN Card")                                  |
+| merchant[processed_document] `mandatory` | The actual document file to upload                                       |
 
 ## Sample request
 
