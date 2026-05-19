@@ -291,3 +291,7 @@ Below is the validate VPA sample code for recurring payments.
                     Generate Hash
                 </button>
 `}</HTMLBlock>
+
+## Errors
+
+<br />
