@@ -79,8 +79,6 @@ paths:
                 command:
                   type: string
                   description: Must be `validateVPA`.
-                  enum:
-                    - validateVPA
                   example: validateVPA
                 var1:
                   type: string
