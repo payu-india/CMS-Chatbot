@@ -210,6 +210,12 @@ Below is the validate VPA sample code for recurring payments.
   ```
 </Accordion>
 
+<Callout icon="👍" theme="okay">
+  **Request Parameter Description**
+
+  Refer to the [Form Data](https://docs.payu.in/reference/validate-vpa#body-params) section for request parameters, their descriptions and examples.
+</Callout>
+
 ## Sample Response
 
 <Accordion title="Response Payload" icon="fa-code">
