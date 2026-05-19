@@ -1,6 +1,4 @@
 ---
-title: Generate Merchant Agreement For E-Sign API
-excerpt: Generates a merchant agreement document that can be e-signed
 api:
   file: Generate_Merchant_Agreement_For_ESign_API_v0.json
   operationId: GenerateMerchantAgreementForEsign
@@ -10,9 +8,17 @@ metadata:
 ---
 This API is used to generate merchant agreements used while E-Sign PayU Service Agreement is generated and signed.
 
-> 📘 Prerequisite:
->
-> All KYC docs and website has to be in approved state for the merchant.
+<Callout icon="📘" theme="info">
+  **Prerequisite**: All KYC docs and website has to be in approved state for the merchant.
+</Callout>
+
+<br />
+
+<Partner_Postman />
+
+<br />
+
+<br />
 
 <PartnerKYCEnv />
 
@@ -20,7 +26,7 @@ This API is used to generate merchant agreements used while E-Sign PayU Service 
 
 > 📘 Notes:
 >
-> * The access token with the scope as **generate\_merged\_document\_for\_esign** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+> * The access token with the scope as **generate_merged_document_for_esign** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 > * uuid value can be found in the response of the  **Create Merchant** API that must be used as the path parameter. For more information, refer to [Create Merchant API](ref:create_merchant_api).
 
 |               |                         |
@@ -35,7 +41,7 @@ curl --location --request GET '{onboarding_url}/api/v3/merchants/{uuid}/generate
 --header 'Authorization: Bearer {access_token}'
 ```
 
-Where **`{onboarding_url}`** is substituted with the URL specified in the Test or Production environment as mentioned in the *Environment* section.
+Where **`{onboarding_url}`** is substituted with the URL specified in the Test or Production environment as mentioned in the _Environment_ section.
 
 ## Sample Response
 
