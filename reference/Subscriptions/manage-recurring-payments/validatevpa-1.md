@@ -214,6 +214,29 @@ Below is the validate VPA sample code for recurring payments.
 
 <Accordion title="Response Payload" icon="fa-code">
 
-<br />
+```json Success Response
+  {
+    "status":"SUCCESS",
+    "vpa":"9999999999@upi",
+    "isVPAValid":1,
+    "isAutoPayVPAValid":1,
+    "isAutoPayBankValid":"NA",
+    "payerAccountName":"ABC"
+  }
+```
+```json Error Response
+{
+  "status":"SUCCESS",
+  "vpa":"abc@upi",
+  "isVPAValid":0,
+  "payerAccountName":"NA"
+}
+```
 
 </Accordion>
+
+<Callout icon="👍">
+  **Request Parameter Description**
+
+  Refer to the Request Body section for request parameters, their descriptions and examples.
+</Callout>
