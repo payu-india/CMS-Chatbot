@@ -294,4 +294,31 @@ Below is the validate VPA sample code for recurring payments.
 
 ## Errors
 
-<br />
+<Accordion title="Invalid VPA" icon="fa-ban">
+  ```json Error Response
+  {
+  "status":"SUCCESS",
+  "vpa":"abc@upi",
+  "isVPAValid":0,
+  "payerAccountName":"NA"
+  }
+  ```
+
+  **Reason:** This error occurs when you pass an invalid VPA.
+</Accordion>
+
+<Accordion title="Invalid VPA With supporting SI (Autopay)" icon="fa-exclamation-triangle">
+  ```json Error Response
+  {
+  "status":"SUCCESS",
+  "vpa":"abc@upi",
+  "isVPAValid":0,
+  "isAutoPayVPAValid":1,
+  "isAutoPayBankValid":"NA",
+  "payerAccountName":"NA"
+  }
+  ```
+
+**Reason:** This error occurs when the VPA is invalid but supports SI or UPI Autopay.
+
+</Accordion>
