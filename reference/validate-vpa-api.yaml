@@ -1,0 +1,188 @@
+openapi: 3.0.3
+info:
+  title: PayU Validate VPA API
+  description: >
+    Validates a customer's UPI Virtual Payment Address (VPA) before initiating a
+    UPI Collect
+
+    or recurring (Autopay) payment. Call this API after the customer enters
+    their VPA on your
+
+    page; proceed with payment only when the VPA is valid.
+
+
+    **Hash logic:** `sha512(key|command|var1|salt)` — see
+
+    [Generate Merchant Key and
+    Salt](https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard)
+
+    (production) or
+
+    [Generate Test Merchant Key and
+    Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt)
+
+    (test).
+  version: 1.0.0
+  contact:
+    url: https://docs.payu.in/reference/validate_vpa_api
+servers:
+  - url: https://test.payu.in/merchant
+    description: Test environment
+  - url: https://info.payu.in/merchant
+    description: Production environment
+paths:
+  /postservice.php:
+    post:
+      summary: Validate VPA API
+      description: >
+        Validates whether a UPI handle (VPA) is valid. For UPI Autopay /
+        recurring payments,
+
+        pass `var2` with a JSON string containing `validateAutoPayVPA` set to
+        `"1"`.
+      operationId: validateVPA
+      tags:
+        - UPI
+      parameters:
+        - name: form
+          in: query
+          required: true
+          description: Must be `2` for command APIs.
+          schema:
+            type: integer
+            enum:
+              - 2
+            example: 2
+        - name: Content-Type
+          in: header
+          required: true
+          schema:
+            type: string
+            enum:
+              - application/x-www-form-urlencoded
+            example: application/x-www-form-urlencoded
+        - name: accept
+          in: header
+          required: false
+          schema:
+            type: string
+            example: application/json
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - key
+                - command
+                - var1
+                - hash
+              properties:
+                key:
+                  type: string
+                  description: Merchant key provided by PayU.
+                  example: BmTY3G
+                command:
+                  type: string
+                  description: Must be `validateVPA`.
+                  enum:
+                    - validateVPA
+                  example: validateVPA
+                var1:
+                  type: string
+                  description: UPI handle (VPA) to validate.
+                  example: 9999999999@upi
+                hash:
+                  type: string
+                  description: |
+                    Request hash. Calculate as `sha512(key|command|var1|salt)`.
+                  example: >-
+                    d415188799f49f554a24064752bd6ce4d8a18c075b7b88b534e3150f253c09ae28a48554d2d1ba4be66b8441b2cbc364491d26bcead605c5fcecf4eaf622e224
+                var2:
+                  type: string
+                  description: >
+                    Optional. Use only for UPI Autopay validation. Pass a JSON
+                    string such as
+
+                    `{"validateAutoPayVPA":"1"}` to check recurring-payment
+                    eligibility.
+                  example: '{"validateAutoPayVPA":"1"}'
+      responses:
+        '200':
+          description: >-
+            VPA validation result (check `isVPAValid` and related fields in the
+            body).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: API call outcome.
+                    enum:
+                      - SUCCESS
+                      - FAILURE
+                    example: SUCCESS
+                  vpa:
+                    type: string
+                    description: VPA that was validated.
+                    example: 9999999999@upi
+                  isVPAValid:
+                    type: integer
+                    description: '`1` = valid VPA, `0` = invalid VPA.'
+                    enum:
+                      - 0
+                      - 1
+                    example: 1
+                  isAutoPayVPAValid:
+                    type: integer
+                    description: >
+                      Present when Autopay validation was requested via `var2`.
+
+                      `1` = VPA registered for recurring payments, `0` = not
+                      registered.
+                    enum:
+                      - 0
+                      - 1
+                    example: 1
+                  isAutoPayBankValid:
+                    type: string
+                    description: >-
+                      Ignore this field in integration; may be `NA`, `0`, or
+                      `1`.
+                    example: NA
+                  payerAccountName:
+                    type: string
+                    description: Account holder name from the bank; may be empty or `NA`.
+                    example: ABC
+              examples:
+                validVpa:
+                  summary: Valid VPA
+                  value:
+                    status: SUCCESS
+                    vpa: 9999999999@upi
+                    isVPAValid: 1
+                    isAutoPayVPAValid: 1
+                    isAutoPayBankValid: NA
+                    payerAccountName: ABC
+                invalidVpa:
+                  summary: Invalid VPA
+                  value:
+                    status: SUCCESS
+                    vpa: abc@upi
+                    isVPAValid: 0
+                    payerAccountName: NA
+                validVpaNotAutopay:
+                  summary: Valid VPA but handle does not support Autopay
+                  value:
+                    status: SUCCESS
+                    vpa: xyz@freecharge
+                    isVPAValid: 1
+                    isAutoPayVPAValid: 0
+                    isAutoPayBankValid: NA
+                    payerAccountName: XYZ
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
