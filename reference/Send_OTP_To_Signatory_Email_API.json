@@ -1,1 +1,203 @@
-{"openapi":"3.1.0","info":{"title":"Send OTP to Signatory Email API","version":"1.0.0","description":"API for sending OTP to signatory's email for e-signing merchant agreements"},"servers":[{"url":"https://uatoneapi.payu.in","description":"UAT E-sign flows API server"}],"paths":{"/v3/merchants/{merchant_uuid}/agreements/{agreement_uuid}/send_signatory_otp":{"post":{"operationId":"SendOtpToSignatoryEmail","summary":"Send OTP to Signatory Email","description":"Sends a one-time password (OTP) to the signatory's email address for e-signing the merchant agreement","parameters":[{"name":"merchant_uuid","in":"path","required":true,"description":"Unique identifier for the merchant","schema":{"type":"string","default":""}},{"name":"agreement_uuid","in":"path","required":true,"description":"Unique identifier for the agreement document","schema":{"type":"string","default":""}}],"requestBody":{"description":"Request body for sending OTP to signatory","required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"signatory_email":{"type":"string","description":"Email address of the signatory"},"signatory_mobile":{"type":"string","description":"Mobile number of the signatory"},"signatory_name":{"type":"string","description":"Name of the signatory"},"send_to":{"type":"string","description":"Where to send the OTP","enum":["email","mobile","both"],"default":"email"}},"required":["signatory_email","signatory_name"]}}}},"responses":{"200":{"description":"OTP sent successfully","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","description":"Status of the OTP sending operation"},"message":{"type":"string","description":"Message about the OTP sending operation"},"otp_reference_id":{"type":"string","description":"Reference ID for the sent OTP, to be used during verification"}}}}}},"400":{"description":"Bad request or validation error"},"404":{"description":"Merchant or agreement not found"},"500":{"description":"Internal server error"}}}},"/oauth/token":{"post":{"tags":["Send and verify"],"summary":"GetToken","operationId":"GetToken","parameters":[],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["client_id","client_secret","grant_type","scope"],"type":"object","properties":{"client_id":{"type":"string","description":"uat","examples":["56b16b8f4d16f61929d6596d3c9cfb3e9bfc526c9c906b09c916cc9ea591b66d"]},"client_secret":{"type":"string","description":"uat","examples":["f5e0115d5b9f715ce0e8c4ef99d438aa4e7f0203f6e1d5e9be9e36f80a07716b"]},"grant_type":{"type":"string","examples":["client_credentials"]},"scope":{"type":"string","examples":["send_sign_in_otp verify_sign_in_otp refer_merchant"]}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{}}},"deprecated":false,"servers":[{"url":"https://uat-accounts.payu.in","variables":{}}]},"parameters":[]}},"components":{"schemas":{},"securitySchemes":{"httpBearer":{"type":"http","scheme":"bearer"}}},"security":[{"httpBearer":[]}]}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Send OTP to Signatory Email API",
+    "version": "1.0.0",
+    "description": "API for sending OTP to signatory's email for e-signing merchant agreements"
+  },
+  "servers": [
+    {
+      "url": "https://uatoneapi.payu.in",
+      "description": "UAT E-sign flows API server"
+    }
+  ],
+  "paths": {
+    "/v3/merchants/{merchant_uuid}/agreements/{agreement_uuid}/send_signatory_otp": {
+      "post": {
+        "operationId": "SendOtpToSignatoryEmail",
+        "summary": "Send OTP to Signatory Email",
+        "description": "Sends a one-time password (OTP) to the signatory's email address for e-signing the merchant agreement",
+        "parameters": [
+          {
+            "name": "merchant_uuid",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the merchant",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "agreement_uuid",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the agreement document",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body for sending OTP to signatory",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "signatory_email": {
+                    "type": "string",
+                    "description": "Email address of the signatory"
+                  },
+                  "signatory_mobile": {
+                    "type": "string",
+                    "description": "Mobile number of the signatory"
+                  },
+                  "signatory_name": {
+                    "type": "string",
+                    "description": "Name of the signatory"
+                  },
+                  "send_to": {
+                    "type": "string",
+                    "description": "Where to send the OTP",
+                    "enum": [
+                      "email",
+                      "mobile",
+                      "both"
+                    ],
+                    "default": "email"
+                  }
+                },
+                "required": [
+                  "signatory_email",
+                  "signatory_name"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OTP sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Status of the OTP sending operation"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Message about the OTP sending operation"
+                    },
+                    "otp_reference_id": {
+                      "type": "string",
+                      "description": "Reference ID for the sent OTP, to be used during verification"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request or validation error"
+          },
+          "404": {
+            "description": "Merchant or agreement not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/oauth/token": {
+      "post": {
+        "tags": [
+          "Send and verify"
+        ],
+        "summary": "GetToken",
+        "operationId": "GetToken",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "client_id",
+                  "client_secret",
+                  "grant_type",
+                  "scope"
+                ],
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "description": "uat",
+                    "examples": [
+                      "56b16b8f4d16f61929d6596d3c9cfb3e9bfc526c9c906b09c916cc9ea591b66d"
+                    ]
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "description": "uat",
+                    "examples": [
+                      "f5e0115d5b9f715ce0e8c4ef99d438aa4e7f0203f6e1d5e9be9e36f80a07716b"
+                    ]
+                  },
+                  "grant_type": {
+                    "type": "string",
+                    "examples": [
+                      "client_credentials"
+                    ]
+                  },
+                  "scope": {
+                    "type": "string",
+                    "examples": [
+                      "send_sign_in_otp verify_sign_in_otp refer_merchant"
+                    ]
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://uat-accounts.payu.in",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ]
+}
