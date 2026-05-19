@@ -33,7 +33,7 @@ servers:
 paths:
   /postservice.php:
     post:
-      summary: Validate VPA API
+      summary: Validate a VPA
       description: >
         Validates whether a UPI handle (VPA) is valid. For UPI Autopay /
         recurring payments,
