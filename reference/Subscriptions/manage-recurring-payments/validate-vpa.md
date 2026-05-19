@@ -252,3 +252,42 @@ Below is the validate VPA sample code for recurring payments.
 
   Refer to the [Response](https://docs.payu.in/reference/validate-vpa#response-schemas) section for response parameters and their descriptions.
 </Callout>
+
+## Generate Hash
+
+<HTMLBlock>{`
+<p>Use this button to generate the hash value.</p>
+
+<style>
+                .tooltip-btn {
+                    position: relative;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold; /* Added this line */
+                }
+                .tooltip-btn:hover::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: 125%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    z-index: 1;
+                }
+                </style>
+
+                <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
+                        class="tooltip-btn" 
+                        data-tooltip="Click to generate hash.">
+                    Generate Hash
+                </button>
+`}</HTMLBlock>
