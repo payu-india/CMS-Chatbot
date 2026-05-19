@@ -114,6 +114,8 @@ paths:
                       description: >-
                         Pass the value as `1` to check recurring-payment
                         eligibility.
+                      enum:
+                        - 1
       responses:
         '200':
           description: >-
