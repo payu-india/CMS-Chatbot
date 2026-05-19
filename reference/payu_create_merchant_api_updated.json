@@ -14,7 +14,7 @@
   "paths": {
     "/api/v3/merchants": {
       "post": {
-        "summary": "Create Merchant",
+        "summary": "Create Merchant API",
         "description": "This API allows you to create a new merchant in the PayU system.",
         "operationId": "createMerchant",
         "requestBody": {
