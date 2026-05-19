@@ -10,44 +10,44 @@ metadata:
 next:
   description: ''
 ---
-This section describes the request and response parameters with sample request and response for UPI One-Time mandate Intent and Collect flow with PayU Hosted Checkout integration (non-seamless flow). For more information on integration, refer to [UPI One-Time Mandate](doc:upi-intent-one-time-mandate-integration-payu-hosted).
+This section describes the request and response parameters with sample request and response for UPI One-Time Mandate (OTM) Intent and Collect flow with PayU Hosted Checkout integration (non-seamless flow). For more information on integration, refer to [UPI One-Time Mandate](doc:upi-intent-one-time-mandate-integration-payu-hosted).
 
 <Callout icon="👍" theme="okay">
   Experience the end-to-end PayU Hosted Checkout flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
-                            <style>
-                            .tooltip-btn {
-                                position: relative;
-                                background-color: #4CAF50;
-                                color: white;
-                                padding: 10px 20px;
-                                border: none;
-                                border-radius: 5px;
-                                cursor: pointer;
-                                font-weight: bold; /* Added this line */
-                            }
-                            .tooltip-btn:hover::after {
-                                content: attr(data-tooltip);
-                                position: absolute;
-                                bottom: 125%;
-                                left: 50%;
-                                transform: translateX(-50%);
-                                background-color: #333;
-                                color: white;
-                                padding: 5px 10px;
-                                border-radius: 4px;
-                                white-space: nowrap;
-                                font-size: 12px;
-                                z-index: 1;
-                            }
-                            </style>
+                              <style>
+                              .tooltip-btn {
+                                  position: relative;
+                                  background-color: #4CAF50;
+                                  color: white;
+                                  padding: 10px 20px;
+                                  border: none;
+                                  border-radius: 5px;
+                                  cursor: pointer;
+                                  font-weight: bold; /* Added this line */
+                              }
+                              .tooltip-btn:hover::after {
+                                  content: attr(data-tooltip);
+                                  position: absolute;
+                                  bottom: 125%;
+                                  left: 50%;
+                                  transform: translateX(-50%);
+                                  background-color: #333;
+                                  color: white;
+                                  padding: 5px 10px;
+                                  border-radius: 4px;
+                                  white-space: nowrap;
+                                  font-size: 12px;
+                                  z-index: 1;
+                              }
+                              </style>
 
-                            <button onclick="window.open('https://payu.in/integrationlab/upiotm', '_blank')" 
-                                    class="tooltip-btn" 
-                                    data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate One-Time Mandate - PayU Hosted Checkout with zero coding knowledge.">
-                                Experience the flow and get the code
-                            </button>
+                              <button onclick="window.open('https://payu.in/integrationlab/upiotm', '_blank')" 
+                                      class="tooltip-btn" 
+                                      data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate One-Time Mandate - PayU Hosted Checkout with zero coding knowledge.">
+                                  Experience the flow and get the code
+                              </button>
   `}</HTMLBlock>
 </Callout>
 
@@ -95,8 +95,7 @@ This section describes the request and response parameters with sample request a
       </td>
 
       <td>
-        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction.
-        `Character limit`: 25
+        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction. `Character limit`: 25
 
         * **Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
       </td>
@@ -271,8 +270,7 @@ This section describes the request and response parameters with sample request a
       </td>
 
       <td>
-        This parameter contains the following information in JSON format:  * paymentStartDate  * paymentEndDate
-        **Example**: `{"paymentStartDate":"2024-07-24","paymentEndDate":"2024-07-28"}`
+        This parameter contains the following information in JSON format:  * paymentStartDate  * paymentEndDate **Example**: `{"paymentStartDate":"2024-07-24","paymentEndDate":"2024-07-28"}`
       </td>
 
       <td>
@@ -286,8 +284,7 @@ This section describes the request and response parameters with sample request a
       </td>
 
       <td>
-        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions. It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.  In the case of registration transaction, the formula is used to calculate this hash is similar to the following:
-        SHA512(sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||SALT))
+        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions. It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.  In the case of registration transaction, the formula is used to calculate this hash is similar to the following: SHA512(sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||SALT))
       </td>
 
       <td>
