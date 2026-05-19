@@ -46,8 +46,6 @@ paths:
           schema:
             type: integer
             example: 2
-            enum:
-              - 2
             default: '2'
         - name: Content-Type
           in: header
@@ -83,8 +81,10 @@ paths:
                     - BmTY3G
                 command:
                   type: string
-                  description: The command API follows. <ul></ul>Must be `validateVPA`.
+                  description: The command API follows. Here, it should be `validateVPA`.
                   example: validateVPA
+                  enum:
+                    - validateVPA
                 var1:
                   type: string
                   description: UPI handle (VPA) to validate.
