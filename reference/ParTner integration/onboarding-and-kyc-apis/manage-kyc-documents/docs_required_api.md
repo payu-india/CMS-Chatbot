@@ -1,5 +1,4 @@
 ---
-title: Documents Required for KYC API
 api:
   file: Documents_Required_API_Collection.json
   operationId: DocumentsrequiredforKYC
@@ -14,8 +13,14 @@ This API is used to fetch list of documents required for completing KYC of merch
 
 > 📘 Notes:
 >
-> * The access token with the scope as refer\_merchant is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+> * The access token with the scope as refer_merchant is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 > * The merchant ID in the request header must be included as a query parameter in the **mid** field. This can found in the [Create Merchant API](ref:create_merchant_api) response.
+
+<br />
+
+<Partner_Postman />
+
+<br />
 
 <PARTNEROnboardingEnvironment />
 
