@@ -14,10 +14,16 @@ Use this API to check whether a VPA is valid. For UPI Autopay or recurring payme
 
 ## Sample Request
 
-<Accordion title="Sample Payload" icon="fa-code">
-
-<Validate_VPA />
-
+<Accordion title="Request Payload" icon="fa-code">
+  <Validate_VPA />
 </Accordion>
 
-###
+### Sample Request - Recurring Payments
+
+Below is the validate VPA sample code for recurring payments.
+
+<Accordion title="Request Payload" icon="fa-code">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
