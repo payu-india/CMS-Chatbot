@@ -34,12 +34,7 @@ paths:
   /postservice.php:
     post:
       summary: Validate a VPA
-      description: >
-        Validates whether a UPI handle (VPA) is valid. For UPI Autopay /
-        recurring payments,
-
-        pass `var2` with a JSON string containing `validateAutoPayVPA` set to
-        `"1"`.
+      description: Validate whether a VPA is valid.
       operationId: validateVPA
       tags:
         - UPI
