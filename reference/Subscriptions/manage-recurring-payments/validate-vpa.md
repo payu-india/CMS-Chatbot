@@ -239,8 +239,16 @@ Below is the validate VPA sample code for recurring payments.
   ```
 </Accordion>
 
+<Callout icon="📘" theme="info">
+  **Handy Tips**
+
+  * The **payerAccountName** parameter can be empty or NA or will have a payer name based on the value given by the bank.
+  * If both **isVPAValid** and **isAutoPayVPAValid** is 1, you must initiate payment for Recurring Payments.
+  * Ignore the **isAutoPayBankValid** parameter in the response.
+</Callout>
+
 <Callout icon="👍" theme="okay">
-  **Request Parameter Description**
+  **Response Parameter Description**
 
   Refer to the [Form Data](https://docs.payu.in/reference/validate-vpa#body-params) section for request parameters, their descriptions and examples.
 </Callout>
