@@ -1,5 +1,4 @@
 ---
-title: Create Merchant API
 api:
   file: payu_create_merchant_api_updated.json
   operationId: createMerchant
@@ -21,9 +20,11 @@ metadata:
 ---
 The **Create Merchant** API creates a new merchant account on PayU and posts all KYC details. This API returns the Merchant ID (MID) in the response.
 
-> 📘 Note:
->
-> After using this API to create merchants, you can use the Update Merchant API to update the merchant details. For more information, refer to [Update Merchant Details API](ref:update_merchant_details_api).
+<Callout icon="📘" theme="info">
+  **Note**: After using this API to create merchants, you can use the Update Merchant API to update the merchant details. For more information, refer to [Update Merchant Details API](ref:update_merchant_details_api).
+</Callout>
+
+<Partner_Postman />
 
 ### Authentication
 
