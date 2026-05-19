@@ -16,7 +16,8 @@ Use this API to check whether a VPA is valid. For UPI Autopay or recurring payme
 
 <Accordion title="Sample Payload" icon="fa-code">
 
-```
-```
+<Validate_VPA />
 
 </Accordion>
+
+###
