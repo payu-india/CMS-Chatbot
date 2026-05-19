@@ -34,6 +34,53 @@ Use this API to collect a payment on PayU Hosted Checkout and split the amount b
   **Note**: Specify two decimal places for each split percentage, and ensure the sum of all split percentages equals **100**.
 </Callout>
 
+<br />
+
+<Callout icon="👍" theme="okay">
+  Experience the end-to-end **PayU Hosted Checkout **> **Split** flow and instantly generate the complete code for seamless, zero-coding integration into your website. 
+
+
+
+  <HTMLBlock>{`
+                  <style>
+                  .tooltip-btn {
+                      position: relative;
+                      background-color: #4CAF50;
+                      color: white;
+                      padding: 10px 20px;
+                      border: none;
+                      border-radius: 5px;
+                      cursor: pointer;
+                      font-weight: bold; /* Added this line */
+                  }
+                  .tooltip-btn:hover::after {
+                      content: attr(data-tooltip);
+                      position: absolute;
+                      bottom: 125%;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      background-color: #333;
+                      color: white;
+                      padding: 5px 10px;
+                      border-radius: 4px;
+                      white-space: nowrap;
+                      font-size: 12px;
+                      z-index: 1;
+                  }
+                  </style>
+
+                  <button onclick="window.open('https://payu.in/integrationlab/split', '_blank')" 
+                          class="tooltip-btn" 
+                          data-tooltip="Click here to see the PayU Hosted Checkout > Split end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+                      Experience the flow and get the code
+                  </button>
+  `}</HTMLBlock>
+</Callout>
+
+<br />
+
+<br />
+
 <Callout icon="📮" theme="default">
   **Postman Collection**: Access the **Split by Percentage Postman Collection** from the following location:
 
