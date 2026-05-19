@@ -128,12 +128,12 @@ paths:
                     type: string
                     description: |-
                       Determines the status of the API command. Possible values:
+                      - `Successful`
+                      - `Failure`
+                    example: SUCCESS
+                    enum:
                       - Successful
                       - Failure
-                    enum:
-                      - SUCCESS
-                      - FAILURE
-                    example: SUCCESS
                   vpa:
                     type: string
                     description: VPA that was validated.
