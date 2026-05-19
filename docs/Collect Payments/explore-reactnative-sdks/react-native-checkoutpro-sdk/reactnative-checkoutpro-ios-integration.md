@@ -290,14 +290,13 @@ To integrate with the CheckoutPro mobile SDK for React Native:
 
       | Parameter                                   | Description                                                                                                                                                              |
       | :------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-      | PayUCheckoutProConstants.CP\_UDF1           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
-      | PayUCheckoutProConstants.CP\_UDF2           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
-      | PayUCheckoutProConstants.CP\_UDF3           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
-      | PayUCheckoutProConstants.CP\_UDF4           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
-      | PayUCheckoutProConstants.CP\_UDF5           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
-      | Static hashes                               | `String` The static hashes are specified in this parameter. For more information, refer to the [Generate Hash](https://docs.payu.in/docs/ios-checkoutpro-generate-hash). |
-      | PayUCheckoutProConstants.SODEX\_OSOURC\_EID | `String` Sodexo Source ID, Merchant can store it from the third field of the PayU response.                                                                              |
-      | PaymentParamConstant.walletUrn              | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                       |
+      | udf1           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
+      | udf2           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
+      | udf3           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
+      | udf4           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
+      | udf5           | `String`User-defined field, Merchant can store their customer id, etc.                                                                                                   |
+      | sourceId | `String` Sodexo Source ID, Merchant can store it from the third field of the PayU response.                                                                              |
+      | walletUrn              | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account.                                                                       |
 
       The payment parameters and additional parameters can be passed using the following code snippet:
 
@@ -324,9 +323,7 @@ To integrate with the CheckoutPro mobile SDK for React Native:
               udf3: "user defined value 3",
               udf4: "user defined value 4",
               udf5: "user defined value 5",
-              payment_related_details_for_mobile_sdk: "payment_related_details_for_mobile_sdk hash",
-              vas_for_mobile_sdk: "vas_for_mobile_sdk hash",
-              payment: "Payment Hash",
+              sourceId: "<sourceId>",
               walletUrn: "<walletUrn>"
           },
           payUSIParams: {
@@ -439,9 +436,9 @@ To integrate with the CheckoutPro mobile SDK for React Native:
 </Accordion>
 
 <Accordion title="Test the Integration" icon="fa-gear">
-<ReactNative_Test_the_Integration />
+  <ReactNative_Test_the_Integration />
 </Accordion>
 
 <Accordion title="Go-live Checklist" icon="fa-gear">
-<ReactNative_Go_Live />
+  <ReactNative_Go_Live />
 </Accordion>
