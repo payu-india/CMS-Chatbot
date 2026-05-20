@@ -26,7 +26,7 @@ next:
 This page provides the list of supported bank codes required for eNACH mandate registration. It also helps you identify the verification modes supported by each bank, including NetBanking, Debit Card, and Aadhaar-based authentication. Below are the available APIs:
 
 - Use the [Get Enabled Banks API](https://docs.payu.in/docs/bank-codes-recurring-payments#get-enabled-banks) to retrieve the list of supported banks along with their consent transaction and TPV bank codes.
-- Use the Get Verification Methods for a Bank API to check the verification methods supported by a specific bank before initiating mandate registration flows.
+- Use the [Get Verification Methods for a Bank API](https://docs.payu.in/docs/bank-codes-recurring-payments#get-verification-modes-for-a-bank) to check the verification methods supported by a specific bank before initiating mandate registration flows.
 
 > ⚠️ **Watch Out!**
 >
@@ -267,7 +267,7 @@ Use this API to fetch a list of eNACH enabled banks. This API returns all suppor
 
 </Accordion>
 
-## Get Verification Modes for a Bank
+## Get Verification Methods for a Bank
 
 Use this API to fetch supported verification modes for a specific bank.
 
