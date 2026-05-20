@@ -11,9 +11,7 @@ metadata:
 ---
 Use this API to cancel mandates registered using NetBanking and UPI as payment methods. You cannot restore a cancelled mandate. You should ask customers to register a new mandate.
 
-> ❗️
->
-> **Watch Out!**
+> ❗️ **Watch Out!**
 >
 > Your customers cannot use Recurring Payments without implementing the **Cancel Recurring Registration** API.
 
@@ -77,8 +75,6 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 
 ## Request Parameters
 
-<sup style={{color: 'red'}}>*</sup>
-
 <Table align={["left","left"]}>
   <thead>
     <tr>
@@ -95,7 +91,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
   <tbody>
     <tr>
       <td>
-        **key**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="key" />
       </td>
 
       <td>
@@ -105,7 +101,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 
     <tr>
       <td>
-        **command**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="command" />
       </td>
 
       <td>
@@ -118,7 +114,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 
     <tr>
       <td>
-        **var1**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="var1" />
       </td>
 
       <td>
@@ -128,7 +124,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 
     <tr>
       <td>
-        **hash**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="hash" />
       </td>
 
       <td>
@@ -143,7 +139,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 <Accordion title="Parameters and Description" icon="fa-info-circle">
   | **Parameter**                                      | **Description**                                                                                                                                                                                                                                                                                                                                                                                                               |
   | :------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | **authPayuId**<sup style={{color: 'red'}}>\*</sup> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
+  | <RequiredStar param="authPayuId" /> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
   | **requestId**<sup style={{color: 'red'}}>\*</sup>  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                                                            |
 </Accordion>
 
