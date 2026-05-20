@@ -31,11 +31,9 @@ metadata:
 ---
 Use this API to cancel card mandates registered via AMEX and RuPay card networks. You cannot restore a cancelled mandate. You should ask customers to register a new mandate.
 
-<Callout icon="❗️" theme="error">
-  **Watch Out!**
-
-  The 2FA is required for cancelling recurring payment with AMEX and RuPay cards.
-</Callout>
+> ❗️ **Watch Out!**
+>
+> The 2FA is required for cancelling recurring payment with AMEX and RuPay cards.
 
 <Cards>
   <Card title="Method">
@@ -147,11 +145,9 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
 ## Request Parameters
 
-<Callout icon="📘" theme="info">
-  **Mandatory Parameters**
-
-  Parameters marked with <sup style={{color: 'red'}}>*</sup> are mandatory.
-</Callout>
+> 📘 **Mandatory Parameters**
+>
+> <RequiredStar legend />
 
 <Table align={["left","left"]}>
   <thead>
@@ -169,7 +165,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
   <tbody>
     <tr>
       <td>
-        **key**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="key" />
       </td>
 
       <td>
@@ -179,7 +175,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **txnid**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="txnid" />
       </td>
 
       <td>
@@ -189,7 +185,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **amount**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="amount" />
       </td>
 
       <td>
@@ -197,14 +193,14 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
         **Note**: Type-cast the amount to float type Depending upon the merchant use case, this value will vary.
 
-        * The value should be minimum of `1.00` INR for Cards for penny testing.
-        * For first installment, this can be initiate setup amount However, this is supported only for selected NetBanking (ICICI and HDFC), all Credit / Debit Cards, and UPI.
+        - The value should be minimum of `1.00` INR for Cards for penny testing.
+        - For first installment, this can be initiate setup amount However, this is supported only for selected NetBanking (ICICI and HDFC), all Credit / Debit Cards, and UPI.
       </td>
     </tr>
 
     <tr>
       <td>
-        **productinfo**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="productinfo" />
       </td>
 
       <td>
@@ -214,7 +210,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **firstname**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="firstname" />
       </td>
 
       <td>
@@ -224,7 +220,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **email**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="email" />
       </td>
 
       <td>
@@ -236,7 +232,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **phone**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="phone" />
       </td>
 
       <td>
@@ -248,7 +244,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **api_version**<sup style={{color: 'red'}}>*</sup>
+        **api\_version**<sup style={{color: 'red'}}>*</sup>
       </td>
 
       <td>
@@ -274,8 +270,8 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
       <td>
         `string` This parameter describes the payment category by which the transaction was completed/attempted by the customer. Possible values:
 
-        * `DC`: For debit cards
-        * `CC`: For credit cards
+        - `DC`: For debit cards
+        - `CC`: For credit cards
       </td>
     </tr>
 
@@ -287,9 +283,9 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
       <td>
         `string` This parameter contains the code indicating the payment option used for the transaction. Possible values:
 
-        * `AMEX`: For American Express credit and debit cards
-        * `RUPAYCC`: For RuPay credit cards
-        * `RUPAY`: For RuPay debit cards
+        - `AMEX`: For American Express credit and debit cards
+        - `RUPAYCC`: For RuPay credit cards
+        - `RUPAY`: For RuPay debit cards
       </td>
     </tr>
 
@@ -345,17 +341,17 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **si_details**<sup style={{color: 'red'}}>*</sup>
+        **si\_details**<sup style={{color: 'red'}}>*</sup>
       </td>
 
       <td>
-        `json` The SI mandatory details that need to be passed during registration transaction from your system to PayU. Parameters are described in the si_details Object section.
+        `json` The SI mandatory details that need to be passed during registration transaction from your system to PayU. Parameters are described in the si\_details Object section.
       </td>
     </tr>
 
     <tr>
       <td>
-        **Storecard_token**<sup style={{color: 'red'}}>*</sup> `mandatory for SITokenRequestor 2 flow and tokenized flow`
+        **Storecard\_token**<sup style={{color: 'red'}}>*</sup> `mandatory for SITokenRequestor 2 flow and tokenized flow`
       </td>
 
       <td>
@@ -375,17 +371,17 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **additional_info** <sup style={{color: 'red'}}>*</sup> `mandatory for tokenized flow`
+        **additional\_info** <sup style={{color: 'red'}}>*</sup> `mandatory for tokenized flow`
       </td>
 
       <td>
-        `json` The additional info json details. Refer to the <Anchor label="`additional_info` Object Parameters" target="_blank" href="https://docs.payu.in/reference/modify-recurring-payments-of-cards#additional_info-object-parameters">`additional_info` Object Parameters</Anchor> for parameters and their description.
+        `json` The additional info json details. Refer to the <Anchor target="_blank" href="https://docs.payu.in/reference/modify-recurring-payments-of-cards#additional_info-object-parameters">`additional_info` Object Parameters</Anchor> for parameters and their description.
       </td>
     </tr>
 
     <tr>
       <td>
-        **token_expiry**<sup style={{color: 'red'}}>*</sup>  `mandatory for SITokenRequestor 2 flow and tokenized flow`
+        **token\_expiry**<sup style={{color: 'red'}}>*</sup>  `mandatory for SITokenRequestor 2 flow and tokenized flow`
       </td>
 
       <td>
@@ -427,11 +423,11 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
 ### `si_details` JSON Parameters
 
-<Callout icon="📘" theme="info">
-  **Note:**
-
-  If the request was to modify a subscription, `si_consent_action` parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
-</Callout>
+> 📘
+>
+> **Note:**
+>
+> If the request was to modify a subscription, `si_consent_action` parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
 
 <Accordion title="Parameters and Description" icon="fa-table">
 
@@ -477,8 +473,8 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
       <td>
         `string` This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:
 
-        * `CC`: Credit Card
-        * `DC`: Debit Card
+        - `CC`: Credit Card
+        - `DC`: Debit Card
       </td>
     </tr>
 
@@ -490,12 +486,12 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
       <td>
         `string` This parameter contains the code indicating the payment option used for the transaction. Possible values:
 
-        * `CC`: For Visa and Mastercard credit cards
-        * `AMEX`: For American Express credit and debit cards
-        * `RUPAYCC`: For RuPay credit cards
-        * `VISA`: For Visa debit cards
-        * `MAST`: For Mastercard debit cards
-        * `RUPAY`: For RuPay debit cards
+        - `CC`: For Visa and Mastercard credit cards
+        - `AMEX`: For American Express credit and debit cards
+        - `RUPAYCC`: For RuPay credit cards
+        - `VISA`: For Visa debit cards
+        - `MAST`: For Mastercard debit cards
+        - `RUPAY`: For RuPay debit cards
       </td>
     </tr>
 
@@ -507,8 +503,8 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
       <td>
         `string` The status of the transaction and must be used to map the order status. Possible values:
 
-        * `success`: Indicates the transaction is successful.
-        * `failed/pending`: If the value is `failure` or `pending`, should be treated as a failed transaction.
+        - `success`: Indicates the transaction is successful.
+        - `failed/pending`: If the value is `failure` or `pending`, should be treated as a failed transaction.
       </td>
     </tr>
 
@@ -520,15 +516,15 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
       <td>
         `string` The status of a transaction in PayU's internal database, which can include intermediate states. Possible values:
 
-        * `dropped`
-        * `bounced`
-        * `captured`
-        * `auth`
-        * `failed`
-        * `usercancelled`
-        * `pending`
+        - `dropped`
+        - `bounced`
+        - `captured`
+        - `auth`
+        - `failed`
+        - `usercancelled`
+        - `pending`
 
-        Refer to the <Anchor label="Payment State Explanations" target="_blank" href="https://docs.payu.in/reference/payment-state-explanations">Payment State Explanations</Anchor>.
+        Refer to the <Anchor target="_blank" href="https://docs.payu.in/reference/payment-state-explanations">Payment State Explanations</Anchor>.
       </td>
     </tr>
 
@@ -554,7 +550,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **error_message**
+        **error\_message**
       </td>
 
       <td>
@@ -564,7 +560,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **bank_ref_num**
+        **bank\_ref\_num**
       </td>
 
       <td>
@@ -614,7 +610,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **net_amount_debit**
+        **net\_amount\_debit**
       </td>
 
       <td>
@@ -694,7 +690,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **PG_TYPE**
+        **PG\_TYPE**
       </td>
 
       <td>
@@ -714,7 +710,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **success_at**
+        **success\_at**
       </td>
 
       <td>
@@ -734,7 +730,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **issuing_bank**
+        **issuing\_bank**
       </td>
 
       <td>
@@ -744,17 +740,19 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **si_consent_action**
+        **si\_consent\_action**
       </td>
 
       <td>
         `string` This parameter will be returned only if a modify subscription request has been received. In other cases, this field will not be returned. Possible values:
 
-        * `modify`
-        * `cancel`
+        - `modify`
+        - `cancel`
 
         If, in billing details, the action was to modify, then to validate whether the subscription was modified, this fields need to be validated in response. If this field is not sent in response of modify request, then even if transaction is success, then money would have got deducted but the subscription would not have been modified.
       </td>
     </tr>
   </tbody>
 </Table>
+
+<br />
