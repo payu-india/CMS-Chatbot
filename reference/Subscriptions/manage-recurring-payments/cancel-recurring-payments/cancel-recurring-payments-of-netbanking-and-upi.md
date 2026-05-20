@@ -136,11 +136,11 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 
 ### var1 JSON Parameters
 
-<Accordion title="Parameters and Description" icon="fa-info-circle">
+<Accordion title="Parameters and Description" icon="fa-table">
   | **Parameter**                                      | **Description**                                                                                                                                                                                                                                                                                                                                                                                                               |
   | :------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | <RequiredStar param="authPayuId" /> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
-  | **requestId**<sup style={{color: 'red'}}>\*</sup>  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                                                            |
+  | <RequiredStar param="requestId" />  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                                                            |
 </Accordion>
 
 ## Response Parameters
