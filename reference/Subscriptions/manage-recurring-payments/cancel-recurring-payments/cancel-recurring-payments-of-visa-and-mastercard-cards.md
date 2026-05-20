@@ -67,12 +67,12 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
 >
 > <RequiredStar legend />
 
-| **Parameter**                    | **Description**                                                                                              |
-| :------------------------------- | :----------------------------------------------------------------------------------------------------------- |
-| <RequiredStar param="key" />     | `varchar` The unique Merchant Key provided by PayU for your merchant account.                                |
-| <RequiredStar param="command" /> | `varchar` Determines the API command. Here, it is `mandate_revoke`.                                          |
-| <RequiredStar param="var1" />    | `json` The variable details. Parameters are described in the var1 JSON Parameters section.                   |
-| <RequiredStar param="hash" />    | `string` The calculated hash value using the following logic.<br />`hash = sha512(key\|command\|var1\|SALT)` |
+| **Parameter**                    | **Description**                                                                                                                                                                                          |
+| :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <RequiredStar param="key" />     | `varchar` The unique Merchant Key provided by PayU for your merchant account.                                                                                                                            |
+| <RequiredStar param="command" /> | `varchar` Determines the API command. Here, it is `mandate_revoke`.                                                                                                                                      |
+| <RequiredStar param="var1" />    | `json` The variable details. Parameters are described in the [var1 JSON Parameters](https://docs.payu.in/reference/cancel-recurring-payments-of-visa-and-mastercard-cards#var1-json-parameters) section. |
+| <RequiredStar param="hash" />    | `string` The calculated hash value using the following logic.<br />`hash = sha512(key\|command\|var1\|SALT)`                                                                                             |
 
 ### var1 JSON Parameters
 
