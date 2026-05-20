@@ -773,9 +773,9 @@ curl --location -g --request GET \
 
 ### Query Parameter
 
-| **Parameter**                               | **Description**                                                                                        |
-| ------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| <requiredparam>merchant\_id</RequiredParam> | `string` The unique merchant ID for which the supported bank list to be fetched. For example `134220`. |
+| **Parameter** | **Description**                                                                                        |
+| ------------- | ------------------------------------------------------------------------------------------------------ |
+|               | `string` The unique merchant ID for which the supported bank list to be fetched. For example `134220`. |
 
 ### Response Parameters
 
@@ -784,6 +784,13 @@ curl --location -g --request GET \
 | `status`      | `string` The status of the API. Possible values:<br /><ul><li>`SUCCESS`: The API fetched the list successfully.</li> <li>`FAILED`: The API could not fetch the list.</li></ul> |
 | `code`        | `string` The error code.                                                                                                                                                       |
 | `message`     | `string` The response message.                                                                                                                                                 |
-|               |                                                                                                                                                                                |
+| `data`        | `array` The list of banks and details. Parameters are described in the data Object section.                                                                                    |
+
+#### `data` Object Parameters
+
+| **Parameter** | **Description** |
+| ------------- | --------------- |
+|               |                 |
+|               |                 |
 
 <br />
