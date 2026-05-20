@@ -782,6 +782,8 @@ curl --location -g --request GET \
 | **Parameter** | **Description**                                                                                                                                                                |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `status`      | `string` The status of the API. Possible values:<br /><ul><li>`SUCCESS`: The API fetched the list successfully.</li> <li>`FAILED`: The API could not fetch the list.</li></ul> |
+| `code`        | `string` The error code.                                                                                                                                                       |
+| `message`     | `string` The response message.                                                                                                                                                 |
 |               |                                                                                                                                                                                |
 
 <br />
