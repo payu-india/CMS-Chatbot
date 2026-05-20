@@ -821,4 +821,54 @@ Use this API to fetch supported verification modes for a specific bank.
   ```
 </Accordion>
 
+### Sample Response
+
+<Accordion title="Response Payload" icon="fa-code">
+  ```json Success Response
+  {
+  "status":"SUCCESS",
+  "code":null,
+  "message":"Verification mode fetched successfully",
+  "data":{
+    "bankCode":"HDFC",
+    "bankName":"HDFC BANK LTD",
+    "netBankingSupported":true,
+    "debitCardSupported":true,
+    "aadhaarSupported":true
+    }
+  }
+  ```
+  ```json Error Response
+  {
+  "status":"FAILED",
+  "code":"BANK_NOT_FOUND",
+  "message":"No ENACH-enabled bank found for code: EFGH",
+  "data":null
+  }
+  ```
+</Accordion>
+
+```json Success Response
+{
+  "status":"SUCCESS",
+  "code":null,
+  "message":"Verification mode fetched successfully",
+  "data":{
+    "bankCode":"HDFC",
+    "bankName":"HDFC BANK LTD",
+    "netBankingSupported":true,
+    "debitCardSupported":true,
+    "aadhaarSupported":true
+  }
+}
+```
+```json Error Response
+{
+  "status":"FAILED",
+  "code":"BANK_NOT_FOUND",
+  "message":"No ENACH-enabled bank found for code: EFGH",
+  "data":null
+}
+```
+
 <br />
