@@ -796,4 +796,27 @@ curl --location -g --request GET \
 | `debitCardSupported`  | `boolean` Determines whether the debit card verification is supported.    |
 | `aadhaarSupported`    | `boolean` Determines whether the Aadhaar-based verification is supported. |
 
+## Get Verification Modes for a Bank
+
+Use this API to fetch supported verification modes for a specific bank.
+
+<Cards>
+  <Card title="Method">
+    GET
+  </Card>
+
+  <Card title="Endpoint">
+    /enach/bank-supported-verification-modes
+  </Card>
+</Cards>
+
+### Sample Request
+
+```curl
+curl --location -g --request GET \
+  'https://subscription_service/api/v1/enach/bank-supported-verification-modes?merchant_id=MERCHANT_ID' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Bearer `{access_token}`'
+```
+
 <br />
