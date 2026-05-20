@@ -11,7 +11,9 @@ metadata:
 ---
 Use this API to modify mandates created using UPI as a payment method.
 
-> ❗️ **Watch Out!**
+> ❗️
+>
+> **Watch Out!**
 >
 > You can use this API to modify only UPI Collect registration transactions and not for mandates created using the UPI Intent mode.
 
@@ -64,25 +66,29 @@ Use this API to modify mandates created using UPI as a payment method.
 
 ## Request Parameters
 
-> 📘 **Mandatory Parameters**
+> 📘
 >
-> <RequiredStar legend />
+> **Mandatory Parameters**
+>
+> Parameters marked with s a payment method.
+>
+> &#x20;are mandatory.
 
-| **Parameter**                    | **Description**                                                                                                                                                                                                          |
-| :------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <RequiredStar param="key" />     | `varchar` The unique Merchant Key provided by PayU for your merchant account.                                                                                                                                            |
-| <RequiredStar param="command" /> | `varchar` Determines the API command. Here, it is `upi_mandate_modify`.                                                                                                                                                  |
-| <RequiredStar param="hash" />    | `string` The calculated hash value using the following logic. `hash = sha512(key\|command\|var1\|SALT)`. You can use the **Generate Hash** button to generate a hash by providing the parameter values as per the logic. |
-| `var1`                           | `json` The variable details. Parameters are described in the var1 JSON Parameters section.                                                                                                                               |
+| **Parameter**                                  | **Description**                                                                                                                                                                                                          |
+| :--------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **key**<sup style={{color: 'red'}}>*</sup>     | `varchar` The unique Merchant Key provided by PayU for your merchant account.                                                                                                                                            |
+| **command**<sup style={{color: 'red'}}>*</sup> | `varchar` Determines the API command. Here, it is `upi_mandate_modify`.                                                                                                                                                  |
+| **hash**<sup style={{color: 'red'}}>*</sup>    | `string` The calculated hash value using the following logic. `hash = sha512(key\|command\|var1\|SALT)`. You can use the **Generate Hash** button to generate a hash by providing the parameter values as per the logic. |
+| **var1**                                       | `json` The variable details. Parameters are described in the [var1 JSON Parameters](https://docs.payu.in/reference/modify-recurring-payments-of-upi#var1-json-parameters) section.                                       |
 
 ### var1 JSON Parameters
 
-| **Parameter**                       | **Description**                                                                                                                                                                                                                                                                                                                                                                        |
-| :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <RequiredStar param="authPayuId" /> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
-| `amount`                            | `float` The new amount that has been modified.                                                                                                                                                                                                                                                                                                                                         |
-| `endDate`                           | `datetime` The end date of the mandate.                                                                                                                                                                                                                                                                                                                                                |
-| <RequiredStar param="requestId" />  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                     |
+| **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                        |
+| :------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **authPayuId**<sup style={{color: 'red'}}>*</sup> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
+| **amount**                                        | `float` The new amount that has been modified.                                                                                                                                                                                                                                                                                                                                         |
+| **endDate**                                       | `datetime` The end date of the mandate.                                                                                                                                                                                                                                                                                                                                                |
+| **requestId**<sup style={{color: 'red'}}>*</sup>  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                     |
 
 ## Response Parameters
 
@@ -102,7 +108,7 @@ Use this API to modify mandates created using UPI as a payment method.
   <tbody>
     <tr>
       <td>
-        `status`
+        **status**
       </td>
 
       <td>
@@ -117,7 +123,7 @@ Use this API to modify mandates created using UPI as a payment method.
 
     <tr>
       <td>
-        `authpayuid`
+        **authpayuid**
       </td>
 
       <td>
@@ -127,7 +133,7 @@ Use this API to modify mandates created using UPI as a payment method.
 
     <tr>
       <td>
-        `action`
+        **action**
       </td>
 
       <td>
@@ -142,7 +148,7 @@ Use this API to modify mandates created using UPI as a payment method.
 
     <tr>
       <td>
-        `dateTime`
+        **dateTime**
       </td>
 
       <td>
@@ -152,7 +158,7 @@ Use this API to modify mandates created using UPI as a payment method.
 
     <tr>
       <td>
-        `amount`
+        **amount**
       </td>
 
       <td>
@@ -162,7 +168,7 @@ Use this API to modify mandates created using UPI as a payment method.
 
     <tr>
       <td>
-        `endDate`
+        **endDate**
       </td>
 
       <td>
@@ -172,7 +178,7 @@ Use this API to modify mandates created using UPI as a payment method.
 
     <tr>
       <td>
-        `mandateNumber`
+        **mandateNumber**
       </td>
 
       <td>
@@ -182,7 +188,7 @@ Use this API to modify mandates created using UPI as a payment method.
 
     <tr>
       <td>
-        `hash`
+        **hash**
       </td>
 
       <td>
