@@ -3,23 +3,46 @@ name: RequiredStar
 ---
 export const RequiredStar = (props) => {
   const name = props.param || props.name || props.field || '';
+  const codeStyle = {
+    display: 'inline',
+    whiteSpace: 'nowrap',
+    padding: '2px 6px',
+    background: '#f3f4f6',
+    color: '#1f2937',
+    borderRadius: '4px',
+    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+    fontSize: '0.875em',
+  };
+  const starStyle = {
+    color: '#e53e3e',
+    fontWeight: 700,
+    marginLeft: '0.1em',
+  };
+  const starOnlyStyle = {
+    color: '#e53e3e',
+    fontWeight: 700,
+    verticalAlign: 'super',
+    fontSize: '0.75em',
+    marginLeft: '0.1em',
+    display: 'inline',
+  };
   if (props.htmlblock && name) {
     return (
-      <HTMLBlock>{`<code style="display:inline-block;padding:2px 6px;background:#f3f4f6;color:#1f2937;border-radius:4px;font-family:ui-monospace,Menlo,monospace;font-size:0.875em;white-space:nowrap">${name}<span style="color:#e53e3e;font-weight:700;margin-left:2px">*</span></code>`}</HTMLBlock>
+      <HTMLBlock>{`<code style="display:inline;white-space:nowrap;padding:2px 6px;background:#f3f4f6;color:#1f2937;border-radius:4px;font-family:ui-monospace,Menlo,monospace;font-size:0.875em">${name}<span style="color:#e53e3e;font-weight:700;margin-left:0.1em">*</span></code>`}</HTMLBlock>
     );
   }
   if (name) {
     return (
-      <code className="inline whitespace-nowrap rounded px-1.5 py-0.5 bg-gray-100 text-gray-800 font-mono text-sm">
+      <code style={codeStyle}>
         {name}
-        <span className="text-red-600 font-bold ml-0.5" aria-hidden="true">
+        <span aria-hidden="true" style={starStyle}>
           *
         </span>
       </code>
     );
   }
   return (
-    <span className="inline text-red-600 font-bold align-super text-xs ml-0.5" aria-hidden="true">
+    <span aria-hidden="true" style={starOnlyStyle}>
       *
     </span>
   );
