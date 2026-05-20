@@ -321,10 +321,10 @@ Use this API to fetch supported verification modes for a specific bank.
 
 ### Query Parameters
 
-| **Parameters**                         | **Description**                                                     |
-| -------------------------------------- | ------------------------------------------------------------------- |
-| {<RequiredStar param="merchant_id" />} | `number` A unique identifier of the merchant. For example `134220`. |
-| {<RequiredStar param="bank_code" />}   | `string` The bank code. For example `HDFC`.                         |
+| **Parameters**                       | **Description**                                                     |
+| ------------------------------------ | ------------------------------------------------------------------- |
+| <RequiredStar param="merchant_id" /> | `number` A unique identifier of the merchant. For example `134220`. |
+| {<RequiredStar param="bank_code" />} | `string` The bank code. For example `HDFC`.                         |
 
 ### Response Parameters
 
