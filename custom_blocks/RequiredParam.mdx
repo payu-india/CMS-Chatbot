@@ -1,0 +1,25 @@
+---
+name: RequiredParam
+---
+// RequiredParam - ReadMe Custom Component name: RequiredParam
+// Table cell (single line, NO backticks around the name):
+//   <RequiredParam>merchant_id</RequiredParam>
+
+export const RequiredParam = (props) => (
+  <code style={{ whiteSpace: 'nowrap', wordBreak: 'keep-all' }}>
+    {props.children}
+    <span
+      aria-hidden="true"
+      style={{
+        color: '#e53e3e',
+        fontWeight: 700,
+        fontSize: '0.95em',
+        marginLeft: '0.08em',
+      }}
+    >
+      *
+    </span>
+  </code>
+);
+
+<RequiredParam>merchant_id</RequiredParam>
