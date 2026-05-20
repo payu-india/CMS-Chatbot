@@ -773,15 +773,15 @@ curl --location -g --request GET \
 
 ### Query Parameter
 
-| **Parameter**                              | **Description**                                                                                        |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| <RequiredParam>merchant_id</RequiredParam> | `string` The unique merchant ID for which the supported bank list to be fetched. For example `134220`. |
+| **Parameter**                               | **Description**                                                                                        |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| <requiredparam>merchant\_id</RequiredParam> | `string` The unique merchant ID for which the supported bank list to be fetched. For example `134220`. |
 
 ### Response Parameters
 
-| **Parameter** | **Description**                                                                                                                                              |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `status`      | `string` The status of the API. Possible values:<br />- `SUCCESS`: The API fetched the list successfully.<br />- `FAILED`: The API could not fetch the list. |
-|               |                                                                                                                                                              |
+| **Parameter** | **Description**                                                                                                                                                          |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `status`      | `string` The status of the API. Possible values:<ul><li>`SUCCESS`: The API fetched the list successfully.</li> <li>`FAILED`: The API could not fetch the list.</li></ul> |
+|               |                                                                                                                                                                          |
 
 <br />
