@@ -812,11 +812,13 @@ Use this API to fetch supported verification modes for a specific bank.
 
 ### Sample Request
 
-```curl
-curl --location -g --request GET \
-  'https://subscription_service/api/v1/enach/bank-supported-verification-modes?merchant_id=MERCHANT_ID' \
+<Accordion title="Request Payload" icon="fa-code">
+  ```curl
+  curl --location -g --request GET \
+  'https://subscription_service/api/v1/enach/bank-supported-verification-modes?merchant_id=134220&bank_code=HDFC' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Bearer `{access_token}`'
-```
+  ```
+</Accordion>
 
 <br />
