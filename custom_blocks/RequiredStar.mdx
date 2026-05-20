@@ -3,6 +3,11 @@ name: RequiredStar
 ---
 export const RequiredStar = (props) => {
   const name = props.param || props.name || props.field || '';
+  if (props.htmlblock && name) {
+    return (
+      <HTMLBlock>{`<code style="display:inline-block;padding:2px 6px;background:#f3f4f6;color:#1f2937;border-radius:4px;font-family:ui-monospace,Menlo,monospace;font-size:0.875em;white-space:nowrap">${name}<span style="color:#e53e3e;font-weight:700;margin-left:2px">*</span></code>`}</HTMLBlock>
+    );
+  }
   if (name) {
     return (
       <code className="inline whitespace-nowrap rounded px-1.5 py-0.5 bg-gray-100 text-gray-800 font-mono text-sm">
