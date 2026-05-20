@@ -152,7 +152,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
   <tbody>
     <tr>
       <td>
-        **key**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="key" />
       </td>
 
       <td>
@@ -162,7 +162,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **txnid**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="txnid" />
       </td>
 
       <td>
@@ -172,7 +172,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **amount**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="amount" />
       </td>
 
       <td>
@@ -187,7 +187,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **firstname**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="firstname" />
       </td>
 
       <td>
@@ -197,7 +197,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **email**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="email" />
       </td>
 
       <td>
@@ -209,7 +209,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **phone**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="phone" />
       </td>
 
       <td>
@@ -221,7 +221,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **productinfo**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="productinfo" />
       </td>
 
       <td>
@@ -231,7 +231,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **api\_version**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="api_version" />
       </td>
 
       <td>
@@ -241,7 +241,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **si**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="si" />
       </td>
 
       <td>
@@ -251,7 +251,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **pg**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="pg" />
       </td>
 
       <td>
@@ -264,7 +264,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **bankcode**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="bankcode" />
       </td>
 
       <td>
@@ -281,7 +281,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **surl**
+        `surl`
       </td>
 
       <td>
@@ -291,7 +291,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **furl**
+        `furl`
       </td>
 
       <td>
@@ -301,7 +301,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **ccnum**
+        `ccnum`
       </td>
 
       <td>
@@ -311,7 +311,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **ccexpmon**
+        `ccexpmon`
       </td>
 
       <td>
@@ -321,7 +321,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **ccexpyr**
+        `ccexpyr`
       </td>
 
       <td>
@@ -331,7 +331,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **ccvv**
+        `ccvv`
       </td>
 
       <td>
@@ -341,7 +341,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **ccname**
+        `ccname`
       </td>
 
       <td>
@@ -351,7 +351,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **si\_details**
+        `si_details`
       </td>
 
       <td>
@@ -361,7 +361,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **hash**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="hash" />
       </td>
 
       <td>
@@ -371,48 +371,9 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
   </tbody>
 </Table>
 
-<HTMLBlock>{`
-<p>Use this button to generate the hash value.</p>
-
-<style>
-                .tooltip-btn {
-                    position: relative;
-                    background-color: #4CAF50;
-                    color: white;
-                    padding: 10px 20px;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-weight: bold; /* Added this line */
-                }
-                .tooltip-btn:hover::after {
-                    content: attr(data-tooltip);
-                    position: absolute;
-                    bottom: 125%;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background-color: #333;
-                    color: white;
-                    padding: 5px 10px;
-                    border-radius: 4px;
-                    white-space: nowrap;
-                    font-size: 12px;
-                    z-index: 1;
-                }
-                </style>
-
-                <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
-                        class="tooltip-btn" 
-                        data-tooltip="Click to generate hash.">
-                    Generate Hash
-                </button>
-`}</HTMLBlock>
-
 ### si\_details JSON Parameters
 
-> 📘
->
-> **Handy Tips:**
+> 📘 **Handy Tips:**
 >
 > - One or more fields (marked optional) in the following table must be posted to modify the subscription:
 >   - `billingCycle`
@@ -436,7 +397,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
   <tbody>
     <tr>
       <td>
-        **action**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="action" />
       </td>
 
       <td>
@@ -446,7 +407,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **paymentEndDate**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="paymentEndDate" />
       </td>
 
       <td>
@@ -458,7 +419,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **billingAmount**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="billingAmount" />
       </td>
 
       <td>
@@ -468,7 +429,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **authpayuid**<sup style={{color: 'red'}}>*</sup>`mandatory for modifying subscription with cards`
+        <RequiredStar param="authpayuid" /> `mandatory for modifying subscription with cards`
       </td>
 
       <td>
@@ -502,7 +463,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
   <tbody>
     <tr>
       <td>
-        **mihpayid**
+        `mihpayid`
       </td>
 
       <td>
@@ -512,7 +473,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **mode**
+        `mode`
       </td>
 
       <td>
@@ -525,7 +486,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **bankcode**
+        `bankcode`
       </td>
 
       <td>
@@ -542,7 +503,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **status**
+        `status`
       </td>
 
       <td>
@@ -555,7 +516,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **unmappedstatus**
+        `unmappedstatus`
       </td>
 
       <td>
@@ -575,7 +536,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **key**
+        `key`
       </td>
 
       <td>
@@ -585,7 +546,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **error**
+        `error`
       </td>
 
       <td>
@@ -595,7 +556,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **error\_message**
+        `error_message`
       </td>
 
       <td>
@@ -605,7 +566,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **bank\_ref\_num**
+        `bank_ref_num`
       </td>
 
       <td>
@@ -615,7 +576,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **txnid**
+        `txnid`
       </td>
 
       <td>
@@ -625,7 +586,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **amount**
+        `amount`
       </td>
 
       <td>
@@ -635,7 +596,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **cardCategory**
+        `cardCategory`
       </td>
 
       <td>
@@ -645,7 +606,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **discount**
+        `discount`
       </td>
 
       <td>
@@ -655,7 +616,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **net\_amount\_debit**
+        `net_amount_debit`
       </td>
 
       <td>
@@ -665,7 +626,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **addedon**
+        `addedon`
       </td>
 
       <td>
@@ -675,7 +636,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **productinfo**
+        `productinfo`
       </td>
 
       <td>
@@ -685,7 +646,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **firstname**
+        `firstname`
       </td>
 
       <td>
@@ -695,7 +656,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **lastname**
+        `lastname`
       </td>
 
       <td>
@@ -705,7 +666,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **email**
+        `email`
       </td>
 
       <td>
@@ -715,7 +676,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **phone**
+        `phone`
       </td>
 
       <td>
@@ -725,7 +686,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **hash**
+        `hash`
       </td>
 
       <td>
@@ -735,7 +696,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **PG\_TYPE**
+        `PG_TYPE`
       </td>
 
       <td>
@@ -745,7 +706,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **udf1-udf10**
+        `udf1-udf10`
       </td>
 
       <td>
@@ -755,7 +716,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **success\_at**
+        `success_at`
       </td>
 
       <td>
@@ -765,7 +726,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **cardnum**
+        `cardnum`
       </td>
 
       <td>
@@ -775,7 +736,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **issuing\_bank**
+        `issuing_bank`
       </td>
 
       <td>
@@ -785,7 +746,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **si\_consent\_action**
+        `si_consent_action`
       </td>
 
       <td>
@@ -809,9 +770,7 @@ For `si=3` (Modify or Cancel Mandate), PayU supports two integration flows based
 
 Use the standard card flow when processing mandates using regular card details. Use the network token flow when the card has been tokenized and the transaction must be processed using the network token instead of the physical card number.
 
-> 📘
->
-> **Handy Tips:**
+> 📘 **Handy Tips:**
 >
 > This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sent the card transaction request in the form of authentication.
 
@@ -851,23 +810,21 @@ Please find below the complete request payload with the additional added.
 
 ### Additional Parameters
 
-| **Parameter**                                                 | **Description**                                                                                                                                                                           |
-| :------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **store\_card\_token**<sup style={{color: 'red'}}>*</sup>     | `string` The Network token generated by you.                                                                                                                                              |
-| **storecard\_token\_type**<sup style={{color: 'red'}}>*</sup> | `integer` Indicates the store card token type. For this scenario, you must include `1`.                                                                                                   |
-| **additional\_info**<sup style={{color: 'red'}}>*</sup>       | `json` This parameter will contain the additional information in the following JSON format: `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}` |
+| **Parameter**                                 | **Description**                                                                                                                                                                           |
+| :-------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <RequiredStar param="store_card_token" />     | `string` The Network token generated by you.                                                                                                                                              |
+| <RequiredStar param="storecard_token_type" /> | `integer` Indicates the store card token type. For this scenario, you must include `1`.                                                                                                   |
+| <RequiredStar param="additional_info" />      | `json` This parameter will contain the additional information in the following JSON format: `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}` |
 
 #### `additional_info` Object Parameters
 
-| **Parameter**                                     | **Description**                                                                                                                                           |
-| :------------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **trid**<sup style={{color: 'red'}}>*</sup>       | `string` (Token Requestor ID) is the identity given by the networks for creating the tokens. You should be able to get the same from your token provider. |
-| **tokenRefNo**<sup style={{color: 'red'}}>*</sup> | `string` (Token Reference Number) is generated along with the network token. . You should be able to get the same from your token provider.               |
-| **TAVV** <sup style={{color: 'red'}}>*</sup>      | `string` A token authentication verification value given by schemes or interchange. Also, known as cryptogram.                                            |
+| **Parameter**                       | **Description**                                                                                                                                           |
+| :---------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <RequiredStar param="trid" />       | `string` (Token Requestor ID) is the identity given by the networks for creating the tokens. You should be able to get the same from your token provider. |
+| <RequiredStar param="tokenRefNo" /> | `string` (Token Reference Number) is generated along with the network token. . You should be able to get the same from your token provider.               |
+| <RequiredStar param="TAVV" />       | `string` A token authentication verification value given by schemes or interchange. Also, known as cryptogram.                                            |
 
-> 📘
->
-> **Notes:**
+> 📘 **Notes:**
 >
 > - The last 4 digits of cards is mandatory for all transactions.
 > - Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
