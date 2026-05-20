@@ -570,7 +570,7 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 
 # Get eNACH Enabled Banks
 
-Use this API to fetch a list of eNACH enabled banks for recurring payments.
+Use this API to fetch a list of eNACH enabled banks for recurring payments. This API returns all supported banks for the merchant.
 
 <Cards>
   <Card title="Method">
