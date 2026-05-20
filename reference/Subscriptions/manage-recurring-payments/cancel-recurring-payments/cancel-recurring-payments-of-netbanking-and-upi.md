@@ -77,7 +77,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 
 ## Request Parameters
 
-<sup style={{color: 'red'}}>*</sup>: Manadatory Parameters
+<sup style={{color: 'red'}}>*</sup>
 
 <Table align={["left","left"]}>
   <thead>
