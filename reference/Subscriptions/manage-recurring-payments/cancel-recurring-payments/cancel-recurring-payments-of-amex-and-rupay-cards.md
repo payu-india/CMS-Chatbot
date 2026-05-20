@@ -244,7 +244,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **api\_version**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="api_version" />
       </td>
 
       <td>
@@ -254,7 +254,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **si**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="si" />
       </td>
 
       <td>
@@ -264,7 +264,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **pg**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="pg" />
       </td>
 
       <td>
@@ -277,7 +277,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **bankcode**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="bankcode" />
       </td>
 
       <td>
@@ -291,7 +291,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **ccnum**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="ccnum" />
       </td>
 
       <td>
@@ -301,7 +301,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **ccname**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="ccname" />
       </td>
 
       <td>
@@ -311,7 +311,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **ccvv**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="ccvv" />
       </td>
 
       <td>
@@ -321,7 +321,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **ccexpmon**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="ccexpmon" />
       </td>
 
       <td>
@@ -331,7 +331,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **ccexpyr**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="ccexpyr" />
       </td>
 
       <td>
@@ -341,7 +341,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **si\_details**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="si_details" />
       </td>
 
       <td>
@@ -351,7 +351,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **Storecard\_token**<sup style={{color: 'red'}}>*</sup> `mandatory for SITokenRequestor 2 flow and tokenized flow`
+        <RequiredStar param="Storecard_token" /> `mandatory for SITokenRequestor 2 flow and tokenized flow`
       </td>
 
       <td>
@@ -361,7 +361,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **TokenFlowType**<sup style={{color: 'red'}}>*</sup>  `mandatory for SITokenRequestor 2 flow and tokenized flow`
+        <RequiredStar param="TokenFlowType" /> `mandatory for SITokenRequestor 2 flow and tokenized flow`
       </td>
 
       <td>
@@ -371,7 +371,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **additional\_info** <sup style={{color: 'red'}}>*</sup> `mandatory for tokenized flow`
+        <RequiredStar param="additional_info" /> `mandatory for tokenized flow`
       </td>
 
       <td>
@@ -381,7 +381,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **token\_expiry**<sup style={{color: 'red'}}>*</sup>  `mandatory for SITokenRequestor 2 flow and tokenized flow`
+        <RequiredStar param="token_expiry" /> `mandatory for SITokenRequestor 2 flow and tokenized flow`
       </td>
 
       <td>
@@ -391,7 +391,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **surl**
+        `surl`
       </td>
 
       <td>
@@ -401,7 +401,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **furl**
+        `furl`
       </td>
 
       <td>
@@ -411,7 +411,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **hash**<sup style={{color: 'red'}}>*</sup>
+        <RequiredStar param="hash" />
       </td>
 
       <td>
@@ -423,19 +423,21 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
 ### `si_details` JSON Parameters
 
-> 📘
->
-> **Note:**
+> 📘 **Handy Tips**
 >
 > If the request was to modify a subscription, `si_consent_action` parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
 
 <Accordion title="Parameters and Description" icon="fa-table">
 
+> 📘 **Mandatory Parameters**
+>
+> <RequiredStar legend />
+
 | **Parameter**                                     | **Description**                                                                                                    |
 | :------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------- |
-| **authpayuid**<sup style={{color: 'red'}}>*</sup> | This field is used to cancel an existing subscription/consent.                                                     |
-| **action**<sup style={{color: 'red'}}>*</sup>     | `string` This field is used to cancel an existing subscription. Pass `delete` as a value to modify a subscription. |
-| **siTokenRequestor**                              | `integer` The SI token requestor. Pass this parameter value as `2` if you opt for `token requestor 2 flow`.        |
+| <RequiredStar param="authpayuid" /> | This field is used to cancel an existing subscription/consent.                                                     |
+| <RequiredStar param="action" />     | `string` This field is used to cancel an existing subscription. Pass `delete` as a value to modify a subscription. |
+| `siTokenRequestor`                | `integer` The SI token requestor. Pass this parameter value as `2` if you opt for `token requestor 2 flow`.        |
 
 </Accordion>
 
@@ -457,7 +459,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
   <tbody>
     <tr>
       <td>
-        **mihpayid**
+        `mihpayid`
       </td>
 
       <td>
@@ -467,7 +469,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **mode**
+        `mode`
       </td>
 
       <td>
@@ -480,7 +482,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **bankcode**
+        `bankcode`
       </td>
 
       <td>
@@ -497,7 +499,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **status**
+        `status`
       </td>
 
       <td>
@@ -510,7 +512,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **unmappedstatus**
+        `unmappedstatus`
       </td>
 
       <td>
@@ -530,7 +532,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **key**
+        `key`
       </td>
 
       <td>
@@ -540,7 +542,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **error**
+        `error`
       </td>
 
       <td>
@@ -550,7 +552,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **error\_message**
+        `error_message`
       </td>
 
       <td>
@@ -560,7 +562,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **bank\_ref\_num**
+        `bank_ref_num`
       </td>
 
       <td>
@@ -570,7 +572,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **txnid**
+        `txnid`
       </td>
 
       <td>
@@ -580,7 +582,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **amount**
+        `amount`
       </td>
 
       <td>
@@ -590,7 +592,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **cardCategory**
+        `cardCategory`
       </td>
 
       <td>
@@ -600,7 +602,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **discount**
+        `discount`
       </td>
 
       <td>
@@ -610,7 +612,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **net\_amount\_debit**
+        `net_amount_debit`
       </td>
 
       <td>
@@ -620,7 +622,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **addedon**
+        `addedon`
       </td>
 
       <td>
@@ -630,7 +632,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **productinfo**
+        `productinfo`
       </td>
 
       <td>
@@ -640,7 +642,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **firstname**
+        `firstname`
       </td>
 
       <td>
@@ -650,7 +652,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **lastname**
+        `lastname`
       </td>
 
       <td>
@@ -660,7 +662,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **email**
+        `email`
       </td>
 
       <td>
@@ -670,7 +672,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **phone**
+        `phone`
       </td>
 
       <td>
@@ -680,7 +682,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **hash**
+        `hash`
       </td>
 
       <td>
@@ -690,7 +692,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **PG\_TYPE**
+        `PG_TYPE`
       </td>
 
       <td>
@@ -700,7 +702,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **udf1-udf10**
+        `udf1-udf10`
       </td>
 
       <td>
@@ -710,7 +712,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **success\_at**
+        `success_at`
       </td>
 
       <td>
@@ -720,7 +722,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **cardnum**
+        `cardnum`
       </td>
 
       <td>
@@ -730,7 +732,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **issuing\_bank**
+        `issuing_bank`
       </td>
 
       <td>
@@ -740,7 +742,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
 
     <tr>
       <td>
-        **si\_consent\_action**
+        `si_consent_action`
       </td>
 
       <td>
