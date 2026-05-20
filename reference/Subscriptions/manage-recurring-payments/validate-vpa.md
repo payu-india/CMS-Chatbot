@@ -319,6 +319,37 @@ Below is the validate VPA sample code for recurring payments.
   }
   ```
 
-**Reason:** This error occurs when the VPA is invalid but supports SI or UPI Autopay.
+  **Reason:** This error occurs when the VPA is invalid but supports SI or UPI Autopay.
+</Accordion>
+
+<Accordion title="Valid VPA but not supporting SI (Autopay):" icon="fa-info-circle">
+  ```json Error Response
+  {
+  "status":"SUCCESS",
+  "vpa":"xyz@freecharge",
+  "isVPAValid":1,
+  "isAutoPayVPAValid":0,
+  "isAutoPayBankValid":"NA",
+  "payerAccountName":"XYZ"
+  }
+  ```
+
+**Reason:** This error occurs when the VPA is valid but does not support SI or UPI Autopay.
+
+</Accordion>
+
+<Accordion title="Invalid VPA With No Support for UPI Autopay" icon="fa-times-circle">
+  ```json Error Response
+  {
+  "status":"SUCCESS",
+  "vpa":"xyz@freecharge",
+  "isVPAValid":0,
+  "isAutoPayVPAValid":0,
+  "isAutoPayBankValid":"NA",
+  "payerAccountName":"NA"
+  }
+  ```
+
+**Reason:** This error occurs when the VPA is invalid and does not support SI or UPI Autopay.
 
 </Accordion>
