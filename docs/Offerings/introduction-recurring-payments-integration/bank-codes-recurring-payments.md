@@ -886,7 +886,7 @@ Use this API to fetch supported verification modes for a specific bank.
 #### `data` Object Parameters
 
 <Accordion title="Parameters and Description" icon="fa-table">
-  | **Parameter**         | **Description**                                                           |
+| **Parameter**         | **Description**                                                           |
 | --------------------- | ------------------------------------------------------------------------- |
 | `bankCode`            | `string` The unique bank identifier.                                      |
 | `bankName`            | `string` The bank name.                                                   |
