@@ -32,9 +32,14 @@ export const RequiredStar = (props) => {
   const starOnlyStyle = {
     color: '#e53e3e',
     fontWeight: 700,
+    fontSize: '0.85em',
+    lineHeight: 0,
     verticalAlign: 'super',
-    fontSize: '0.75em',
     display: 'inline',
+    margin: 0,
+    padding: 0,
+    border: 'none',
+    background: 'transparent',
   };
   if (props.htmlblock && name) {
     return (
@@ -52,9 +57,9 @@ export const RequiredStar = (props) => {
     );
   }
   return (
-    <span aria-hidden="true" style={starOnlyStyle}>
+    <sup aria-hidden="true" style={starOnlyStyle}>
       *
-    </span>
+    </sup>
   );
 };
 
