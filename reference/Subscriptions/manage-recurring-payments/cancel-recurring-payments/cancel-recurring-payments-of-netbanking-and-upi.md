@@ -77,13 +77,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 
 ## Request Parameters
 
-> 📘 Mandatory Parameters
->
-> Parameters marked with <sup style={{color: 'red'}}>*</sup> are mandatory.
-
-> 📘 **Mandatory Parameters**
->
-> Parameters marked with <sup style={{color: 'red'}}>*</sup> are mandatory.
+<sup style={{color: 'red'}}>*</sup>: Manadatory Parameters
 
 <Table align={["left","left"]}>
   <thead>
