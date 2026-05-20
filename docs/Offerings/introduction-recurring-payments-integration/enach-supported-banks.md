@@ -30,7 +30,7 @@ This page provides the list of eNACH supported bank and their verification metho
 
 > ⚠️ **Watch Out!**
 >
-> These APIs return only the banks enabled for the merchant. For example, if NPCI supports 300 banks and the merchant has enabled only 280 banks, the APIs return details of only those 280 enabled banks.
+> These APIs return only the banks activated for the merchant. For example, if only 280 banks are activated for a Merchant ID, the APIs return details of only those 280 banks.
 
 # Get Enabled Banks
 
