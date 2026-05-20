@@ -63,68 +63,16 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
 
 ## Request Parameters
 
-<Callout icon="📘" theme="info">
-  **Mandatory Parameters**
+> 📘 **Mandatory Parameters**
+>
+> <RequiredStar legend />
 
-  Parameters marked with <sup style={{color: 'red'}}>*</sup> are mandatory.
-</Callout>
-
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        **key**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `varchar` The unique Merchant Key provided by PayU for your merchant account.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **command**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `varchar` Determines the API command. Here, it is `mandate_revoke`.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **var1**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `json` The variable details. Parameters are described in the var1 JSON Parameters section.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        **hash**<sup style={{color: 'red'}}>*</sup>
-      </td>
-
-      <td>
-        `string` The calculated hash value using the following logic.  
-        `hash = sha512(key|command|var1|SALT)`
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| **Parameter**                    | **Description**                                                                                              |
+| :------------------------------- | :----------------------------------------------------------------------------------------------------------- |
+| <RequiredStar param="key" />     | `varchar` The unique Merchant Key provided by PayU for your merchant account.                                |
+| <RequiredStar param="command" /> | `varchar` Determines the API command. Here, it is `mandate_revoke`.                                          |
+| <RequiredStar param="var1" />    | `json` The variable details. Parameters are described in the var1 JSON Parameters section.                   |
+| <RequiredStar param="hash" />    | `string` The calculated hash value using the following logic.<br />`hash = sha512(key\|command\|var1\|SALT)` |
 
 ### var1 JSON Parameters
 
@@ -132,8 +80,8 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
 
 | **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                                                               |
 | :------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **authPayuId**<sup style={{color: 'red'}}>*</sup> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
-| **requestId**<sup style={{color: 'red'}}>*</sup>  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                                                            |
+| <RequiredStar param="authPayuId" /> | `string` You should pass the `mihpayid` returned in the payment response of the <Anchor label="recurring payment registration" target="_blank" href="https://docs.payu.in/reference/upi-recurring-payment-consent-transaction">recurring payment registration</Anchor> transaction. The merchant needs to map this value against the customer profile at their end so that the correct `authPayuid` is passed in the request. |
+| <RequiredStar param="requestId" />  | `string` This parameter must contain the unique request value generated at merchant’s end to distinguish independent request call.                                                                                                                                                                                                                                                                                            |
 
 </Accordion>
 
@@ -155,7 +103,7 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
   <tbody>
     <tr>
       <td>
-        **action**
+        `action`
       </td>
 
       <td>
@@ -165,20 +113,20 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
 
     <tr>
       <td>
-        **status**
+        `status`
       </td>
 
       <td>
-        `integer` The status of the action performed. Possible values:  
+        `integer` The status of the action performed. Possible values:
 
-        * `1`: Card mandate is successfully canceled.
-        * `0`: Card mandate is not canceled.
+        - `1`: Card mandate is successfully canceled.
+        - `0`: Card mandate is not canceled.
       </td>
     </tr>
 
     <tr>
       <td>
-        **Message**
+        `message`
       </td>
 
       <td>
@@ -187,3 +135,5 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
     </tr>
   </tbody>
 </Table>
+
+<br />
