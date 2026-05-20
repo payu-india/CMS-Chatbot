@@ -1,10 +1,25 @@
 ---
 name: RequiredStar
 ---
-// RequiredStar - paste into ReadMe Custom Components. Name: RequiredStar
-// Usage in docs: key<RequiredStar />  (inline only, not on its own line)
-// See readme-cms-components/README_REQUIRED_STAR.md for callout tables
+// RequiredStar - ReadMe Custom Component name: RequiredStar
+// In tables prefer RequiredParam: <RequiredParam>merchant_id</RequiredParam>
+// If star still wraps, add README_REQUIRED_STAR.md CSS under Project Settings
 
-export const RequiredStar = () => <sup style={{ color: '#e53e3e', fontSize: '0.85em', lineHeight: 0, marginLeft: '0.15em' }}>*</sup>;
+export const RequiredStar = () => (
+  <span
+    aria-hidden="true"
+    style={{
+      color: '#e53e3e',
+      fontSize: '0.75em',
+      fontWeight: 600,
+      verticalAlign: 'super',
+      lineHeight: 1,
+      display: 'inline',
+      marginLeft: '0.12em',
+    }}
+  >
+    *
+  </span>
+);
 
 <RequiredStar />
