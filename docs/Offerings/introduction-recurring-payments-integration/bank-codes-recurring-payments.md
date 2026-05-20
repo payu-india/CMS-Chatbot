@@ -574,11 +574,11 @@ Use this API to fetch a list of eNACH enabled banks for recurring payments.
 
 <Cards>
   <Card title="Method">
-    POST
+    GET
   </Card>
 
   <Card title="Endpoint">
-    /v2/payments
+    /enach/bank-supported-verification-modes?merchant_id=134220
   </Card>
 </Cards>
 
@@ -591,6 +591,190 @@ Use this API to fetch a list of eNACH enabled banks for recurring payments.
 
 ### Sample Request
 
-<br />
+```curl
+curl --location -g --request GET \
+  'https://subscription_service/api/v1/enach/bank-supported-verification-modes?merchant_id=MERCHANT_ID' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Bearer `{access_token}`'
+```
+
+### Sample Response
+
+```json Success Response
+{
+  "status":"SUCCESS",
+  "code":null,
+  "message":"ENACH-enabled banks fetched successfully",
+  "data":[
+    {
+      "bankCode":"BURX",
+      "bankName":"THE BURDWAN CENTRAL CO OP BANK LTD",
+      "netBankingSupported":false,
+      "debitCardSupported":false,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"KRDX",
+      "bankName":"THE KRISHNA DISTRICT CO OP BANK",
+      "netBankingSupported":false,
+      "debitCardSupported":true,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"DGBX",
+      "bankName":"TELANGANA GRAMEENA BANK",
+      "netBankingSupported":false,
+      "debitCardSupported":true,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"KUKX",
+      "bankName":"THE KUKARWADA NAGARIK SAHAKARI BANK LTD",
+      "netBankingSupported":false,
+      "debitCardSupported":false,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"AKOX",
+      "bankName":"THE AKOLA URBAN CO OP BANK LTD",
+      "netBankingSupported":true,
+      "debitCardSupported":false,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"KCCB",
+      "bankName":"THE KALUPUR COMMERCIAL CO OP BANK",
+      "netBankingSupported":true,
+      "debitCardSupported":true,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"IUCB",
+      "bankName":"INTEGRAL URBAN CO OP BANK LTD",
+      "netBankingSupported":false,
+      "debitCardSupported":true,
+      "aadhaarSupported":false
+    },
+    {
+      "bankCode":"JSFB",
+      "bankName":"JANA SMALL FINANCE BANK LTD",
+      "netBankingSupported":true,
+      "debitCardSupported":true,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"CGBX",
+      "bankName":"CHHATTISGARH GRAMIN BANK",
+      "netBankingSupported":false,
+      "debitCardSupported":true,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"BRMX",
+      "bankName":"BRAMHAPURI URBAN CO OP BANK LTD",
+      "netBankingSupported":false,
+      "debitCardSupported":false,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"NGSB",
+      "bankName":"NAGPUR NAGARIK SAHAKARI BANK LTD",
+      "netBankingSupported":false,
+      "debitCardSupported":false,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"HPSX",
+      "bankName":"THE HIMACHAL PRADESH STATE CO OP BANK LTD",
+      "netBankingSupported":false,
+      "debitCardSupported":false,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"MGBX",
+      "bankName":"MAHARASHTRA GRAMIN BANK",
+      "netBankingSupported":false,
+      "debitCardSupported":true,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"HSBC",
+      "bankName":"THE HONGKONG AND SHANGHAI BANKING CORPORATION LTD",
+      "netBankingSupported":true,
+      "debitCardSupported":false,
+      "aadhaarSupported":false
+    },
+    {
+      "bankCode":"PSIB",
+      "bankName":"PUNJAB AND SIND BANK",
+      "netBankingSupported":true,
+      "debitCardSupported":true,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"SCBL",
+      "bankName":"STANDARD CHARTERED BANK",
+      "netBankingSupported":true,
+      "debitCardSupported":true,
+      "aadhaarSupported":false
+    },
+    {
+      "bankCode":"UCUX",
+      "bankName":"UNIVERSAL CO OP URBAN BANK LTD",
+      "netBankingSupported":false,
+      "debitCardSupported":false,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"ESAF",
+      "bankName":"ESAF SMALL FINANCE BANK LTD",
+      "netBankingSupported":true,
+      "debitCardSupported":true,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"MDGX",
+      "bankName":"RAJASTHAN GRAMIN BANK",
+      "netBankingSupported":false,
+      "debitCardSupported":true,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"ESFB",
+      "bankName":"EQUITAS SMALL FINANCE BANK LTD",
+      "netBankingSupported":true,
+      "debitCardSupported":true,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"CNRB",
+      "bankName":"CANARA BANK",
+      "netBankingSupported":true,
+      "debitCardSupported":true,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"KAYX",
+      "bankName":"THE KANYAKUMARI DISTRICT CENTRAL CO OP BANK",
+      "netBankingSupported":false,
+      "debitCardSupported":false,
+      "aadhaarSupported":true
+    },
+    {
+      "bankCode":"DCKX",
+      "bankName":"THE DISTRICT CO OP CENTRAL BANK LTD KURNOOL",
+      "netBankingSupported":false,
+      "debitCardSupported":false,
+      "aadhaarSupported":true
+    }
+  ]
+}
+```
+
+### Query Parameter
+
+| **Parameter**                                       | **Description**                                                                               |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| **merchant\_id**<sup style={{color: 'red'}}>*</sup> | The unique merchant ID for which the supported bank list to be fetched. For example `134220`. |
 
 <br />
