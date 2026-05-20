@@ -2,24 +2,36 @@
 name: RequiredStar
 ---
 // RequiredStar - ReadMe Custom Component name: RequiredStar
-// In tables prefer RequiredParam: <RequiredParam>merchant_id</RequiredParam>
-// If star still wraps, add README_REQUIRED_STAR.md CSS under Project Settings
+// No style={{ }} objects here - ReadMe parses this file as MDX and Acorn fails on { at line 9 etc.
+// Star only: <RequiredStar />   Code + star: <RequiredStar code="merchant_id" />
 
-export const RequiredStar = () => (
-  <span
-    aria-hidden="true"
-    style={{
-      color: '#e53e3e',
-      fontSize: '0.75em',
-      fontWeight: 600,
-      verticalAlign: 'super',
-      lineHeight: 1,
-      display: 'inline',
-      marginLeft: '0.12em',
-    }}
-  >
-    *
-  </span>
-);
+var React =
+  (typeof require === 'function' && require('react')) ||
+  (typeof React !== 'undefined' ? React : typeof window !== 'undefined' ? window.React : null);
 
-<RequiredStar />
+var mp = function (a) {
+  return a.reduce(function (o, x, i) {
+    if (i % 2 === 0 && i + 1 < a.length) o[x] = a[i + 1];
+    return o;
+  }, Object.create(null));
+};
+
+export var RequiredStar = function (props) {
+  var label = props.code || props.name || props.children || '';
+  label = label ? String(label).trim() : '';
+  if (label !== '') {
+    return React.createElement(
+      'code',
+      mp(['className', 'inline whitespace-nowrap rounded px-1.5 py-0.5 bg-gray-100 text-gray-800 font-mono text-sm']),
+      label,
+      React.createElement('span', mp(['className', 'text-red-600 font-bold ml-0.5', 'aria-hidden', 'true']), '*')
+    );
+  }
+  return React.createElement(
+    'span',
+    mp(['className', 'inline text-red-600 font-bold align-super text-xs ml-0.5', 'aria-hidden', 'true']),
+    '*'
+  );
+};
+
+<RequiredStar code="merchant_id" />
