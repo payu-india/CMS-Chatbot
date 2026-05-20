@@ -773,31 +773,9 @@ curl --location -g --request GET \
 
 ### Query Parameter
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        <RequiredStar code="merchant_id" />
-      </td>
-
-      <td>
-        `string` The unique merchant ID for which the supported bank list to be fetched. For example `134220`.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| **Parameter** | **Description**                                                                                        |
+| ------------- | ------------------------------------------------------------------------------------------------------ |
+|               | `string` The unique merchant ID for which the supported bank list to be fetched. For example `134220`. |
 
 ### Response Parameters
 
@@ -810,9 +788,12 @@ curl --location -g --request GET \
 
 #### `data` Object Parameters
 
-| **Parameter** | **Description** |
-| ------------- | --------------- |
-|               |                 |
-|               |                 |
+| **Parameter**         | **Description**                                                           |
+| --------------------- | ------------------------------------------------------------------------- |
+| `bankCode`            | `string` The unique bank identifier.                                      |
+| `bankName`            | `string` The bank name.                                                   |
+| `netBankingSupported` | `boolean` Determines whether the NetBanking verification is supported.    |
+| `debitCardSupported`  | `boolean` Determines whether the debit card verification is supported.    |
+| `aadhaarSupported`    | `boolean` Determines whether the Aadhaar-based verification is supported. |
 
 <br />
