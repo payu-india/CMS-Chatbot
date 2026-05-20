@@ -28,6 +28,10 @@ This page provides the list of supported bank codes required for eNACH mandate r
 - Use the Get Enabled Banks API to retrieve the list of supported banks along with their consent transaction and TPV bank codes.
 - Use the Get Verification Methods for a Bank API to check the verification methods supported by a specific bank before initiating mandate registration flows.
 
+> ⚠️ **Watch Out!**
+>
+> These APIs return only the banks enabled for the merchant. For example, if NPCI supports 300 banks and the merchant has enabled only 280 banks, the APIs return details of only those 280 enabled banks.
+
 # Get Enabled Banks
 
 Use this API to fetch a list of eNACH enabled banks. This API returns all supported banks for the merchant.
