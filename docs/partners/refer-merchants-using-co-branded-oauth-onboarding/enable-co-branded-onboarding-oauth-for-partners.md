@@ -28,9 +28,9 @@ Scope name: credentials_using_oauth
 
    `{{onboarding_base_url}}/app/account?reseller_id={{reseller_id}}`
 
-<Callout icon="📘" theme="info">
-  **Note**: The following environment or base URLs must be used based on the Test or Production environment:
-</Callout>
+> 📘
+>
+> **Note**: The following environment or base URLs must be used based on the Test or Production environment:
 
 |                |                                                                      |
 | -------------- | -------------------------------------------------------------------- |
@@ -38,13 +38,23 @@ Scope name: credentials_using_oauth
 | **Production** | \<[https://onboarding.payu.in>](https://onboarding.payu.in>)         |
 
 6. Merchants can perform any of the following steps:
-   * For merchants who need to register, refer to [Workflow for Co-Branded Onboarding](doc:workflow-cobranded-onboarding)
-   * For merchants who have already registered, refer to [Workflow for Co-Branded Onboarding](doc:workflow-cobranded-onboarding)
+   - For merchants who need to register, refer to [Workflow for Co-Branded Onboarding](doc:workflow-cobranded-onboarding)
+   - For merchants who have already registered, refer to [Workflow for Co-Branded Onboarding](doc:workflow-cobranded-onboarding)
 
 The partner can pass the email of the merchant in the URL and the user will be taken to the Sign-in or Signup page. For example:
 
-[https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89&state=Uqnr5ge22U](https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U)
+[https://onboarding.payu.in/app/account/signup?reseller\_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U](https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U)
 
 Here, the state parameter is the unique identifier of the session. Once the merchant is redirected beck to your platform, PayU will post the merchant id, auth code & the same state parameter to your configured redirect URL.
+
+## Sample Oauth Callback payload
+
+After the successful completion of the oauth, PayU will trigger a callback to Partner's callback URL which will consist the Merchant ID that was created during the signup, the authcode, & the state parameter that was sent in the Oauth link.&#x20;
+
+```curl Oauth Callback
+https://xn6vqico31.execute-api.ap-south-1.amazonaws.com/prod/webhook/payu?auth_code=ce38ce1370c46e6830067d2726f3e254b0ea1d271788300ac9e4f347e9587aeb&merchantId=8235901&reseller_id=11ec-ccfb-4a042936-a698-0a696b110fde&state=null
+```
+
+<br />
 
 <br />
