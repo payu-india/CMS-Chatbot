@@ -195,22 +195,6 @@ paths:
                     isAutoPayVPAValid: 1
                     isAutoPayBankValid: NA
                     payerAccountName: ABC
-                invalidVpa:
-                  summary: Invalid VPA
-                  value:
-                    status: SUCCESS
-                    vpa: abc@upi
-                    isVPAValid: 0
-                    payerAccountName: NA
-                validVpaNotAutopay:
-                  summary: Valid VPA but handle does not support Autopay
-                  value:
-                    status: SUCCESS
-                    vpa: xyz@freecharge
-                    isVPAValid: 1
-                    isAutoPayVPAValid: 0
-                    isAutoPayBankValid: NA
-                    payerAccountName: XYZ
 x-readme:
   explorer-enabled: true
   proxy-enabled: true
