@@ -4,7 +4,7 @@ name: RequiredStar
 export const RequiredStar = (props) => {
   const name = props.param || props.name || props.field || '';
   const codeStyle = {
-    display: 'inline',
+    display: 'inline-block',
     whiteSpace: 'nowrap',
     padding: '2px 6px',
     background: '#f3f4f6',
@@ -13,32 +13,42 @@ export const RequiredStar = (props) => {
     fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
     fontSize: '0.875em',
   };
+  const wrapStyle = {
+    display: 'inline-block',
+    position: 'relative',
+    whiteSpace: 'nowrap',
+    verticalAlign: 'baseline',
+  };
   const starStyle = {
+    position: 'absolute',
+    top: '-0.2em',
+    right: '-0.45em',
     color: '#e53e3e',
     fontWeight: 700,
-    marginLeft: '0.1em',
+    fontSize: '0.7em',
+    lineHeight: 1,
+    pointerEvents: 'none',
   };
   const starOnlyStyle = {
     color: '#e53e3e',
     fontWeight: 700,
     verticalAlign: 'super',
     fontSize: '0.75em',
-    marginLeft: '0.1em',
     display: 'inline',
   };
   if (props.htmlblock && name) {
     return (
-      <HTMLBlock>{`<code style="display:inline;white-space:nowrap;padding:2px 6px;background:#f3f4f6;color:#1f2937;border-radius:4px;font-family:ui-monospace,Menlo,monospace;font-size:0.875em">${name}<span style="color:#e53e3e;font-weight:700;margin-left:0.1em">*</span></code>`}</HTMLBlock>
+      <HTMLBlock>{`<span style="display:inline-block;position:relative;white-space:nowrap;vertical-align:baseline"><code style="display:inline-block;white-space:nowrap;padding:2px 6px;background:#f3f4f6;color:#1f2937;border-radius:4px;font-family:ui-monospace,Menlo,monospace;font-size:0.875em">${name}</code><span aria-hidden="true" style="position:absolute;top:-0.2em;right:-0.45em;color:#e53e3e;font-weight:700;font-size:0.7em;line-height:1">*</span></span>`}</HTMLBlock>
     );
   }
   if (name) {
     return (
-      <code style={codeStyle}>
-        {name}
+      <span style={wrapStyle}>
+        <code style={codeStyle}>{name}</code>
         <span aria-hidden="true" style={starStyle}>
           *
         </span>
-      </code>
+      </span>
     );
   }
   return (
