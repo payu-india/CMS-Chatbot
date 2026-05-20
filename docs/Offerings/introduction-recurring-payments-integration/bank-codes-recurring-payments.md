@@ -31,7 +31,7 @@ This section lists the bank codes (used in the bankcode parameter) that must be 
 
 For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transactions, use the TPV ENACH bank codes. For more information, refer to the [Bank codes ](#bank-codes)table.
 
-## Supported banks and their verification modes
+## Supported Banks and Their Verification Modes
 
 | Bank Name                                          | NetBanking Supported | Debit Card Supported | Aadhaar Supported |
 | -------------------------------------------------- | -------------------- | -------------------- | ----------------- |
