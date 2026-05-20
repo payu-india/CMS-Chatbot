@@ -568,7 +568,7 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | VIDYASAGAR CENTRAL CO OP BANK LTD                  | VIDXENCC                      | VIDXENTC      |
 | YES BANK                                           | YESBENCC                      | YESBENTC      |
 
-# ## Get eNACH Enabled Banks
+# Get eNACH Enabled Banks
 
 Use this API to fetch a list of eNACH enabled banks for recurring payments.
 
@@ -584,9 +584,9 @@ Use this API to fetch a list of eNACH enabled banks for recurring payments.
 
 ## Environment
 
-|                            |                                                                         |
-| -------------------------- | ----------------------------------------------------------------------- |
-| **Test Environment**       | \`[https://test.payu.in\`](https://info.payu.in "https://info.payu.in") |
-| **Production Environment** | \`[https://info.payu.in\`](https://info.payu.in "https://info.payu.in") |
+|                            |                           |
+| -------------------------- | ------------------------- |
+| **Test Environment**       | \`https\://test.payu.in\` |
+| **Production Environment** | \`https\://info.payu.in\` |
 
 <br />
