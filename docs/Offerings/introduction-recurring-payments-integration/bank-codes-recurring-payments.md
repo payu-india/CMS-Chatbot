@@ -23,7 +23,7 @@ metadata:
 next:
   description: ''
 ---
-# Get eNACH Enabled Banks
+# Get Enabled Banks
 
 Use this API to fetch a list of eNACH enabled banks. This API returns all supported banks for the merchant.
 
