@@ -589,4 +589,8 @@ Use this API to fetch a list of eNACH enabled banks for recurring payments.
 | **Test Environment**       | [`https://test.payu.in`](https://test.payu.in) |
 | **Production Environment** | [`https://info.payu.in`](https://info.payu.in) |
 
+### Sample Request
+
+<br />
+
 <br />
