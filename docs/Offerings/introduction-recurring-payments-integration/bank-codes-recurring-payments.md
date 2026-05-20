@@ -848,4 +848,11 @@ Use this API to fetch supported verification modes for a specific bank.
   ```
 </Accordion>
 
+### Query Parameters
+
+| **Parameters**            | **Description**                                                     |
+| ------------------------- | ------------------------------------------------------------------- |
+| `merchant_id` _mandatory_ | `number` A unique identifier of the merchant. For example `134220`. |
+|                           |                                                                     |
+
 <br />
