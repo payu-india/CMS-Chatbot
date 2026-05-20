@@ -105,7 +105,7 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
   <tbody>
     <tr>
       <td>
-        **action**
+        `action`
       </td>
 
       <td>
@@ -115,7 +115,7 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
 
     <tr>
       <td>
-        **status**
+        `status`
       </td>
 
       <td>
@@ -128,7 +128,7 @@ Use this API to cancel card mandates registered using VISA and Mastercard card n
 
     <tr>
       <td>
-        **Message**
+        `message`
       </td>
 
       <td>
