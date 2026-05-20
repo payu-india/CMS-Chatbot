@@ -866,6 +866,16 @@ Use this API to fetch supported verification modes for a specific bank.
 
 #### `data` Object Parameters
 
+<Accordion title="Parameters and Description" icon="fa-table">
+  | **Parameter**         | **Description**                                                           |
+| --------------------- | ------------------------------------------------------------------------- |
+| `bankCode`            | `string` The unique bank identifier.                                      |
+| `bankName`            | `string` The bank name.                                                   |
+| `netBankingSupported` | `boolean` Determines whether the NetBanking verification is supported.    |
+| `debitCardSupported`  | `boolean` Determines whether the debit card verification is supported.    |
+| `aadhaarSupported`    | `boolean` Determines whether the Aadhaar-based verification is supported. |
+</Accordion>
+
 | **Parameter**         | **Description**                                                           |
 | --------------------- | ------------------------------------------------------------------------- |
 | `bankCode`            | `string` The unique bank identifier.                                      |
