@@ -1,22 +1,23 @@
 ---
 name: RequiredStar
 ---
-var React = (typeof require === 'function' && require('react')) || (typeof React !== 'undefined' ? React : (typeof window !== 'undefined' ? window.React : null));
+export const RequiredStar = (props) => {
+  const name = props.param || props.name || props.field || '';
+  if (name) {
+    return (
+      <code className="inline whitespace-nowrap rounded px-1.5 py-0.5 bg-gray-100 text-gray-800 font-mono text-sm">
+        {name}
+        <span className="text-red-600 font-bold ml-0.5" aria-hidden="true">
+          *
+        </span>
+      </code>
+    );
+  }
+  return (
+    <span className="inline text-red-600 font-bold align-super text-xs ml-0.5" aria-hidden="true">
+      *
+    </span>
+  );
+};
 
-var mp = (a) => a.reduce((o, x, i) => (i % 2 === 0 && i + 1 < a.length && (o[x] = a[i + 1]), o), Object.create(null));
-
-export var RequiredStar = (props) =>
-  String(props.code || props.name || props.children || '').trim() !== ''
-    ? React.createElement(
-        'code',
-        mp(['className', 'inline whitespace-nowrap rounded px-1.5 py-0.5 bg-gray-100 text-gray-800 font-mono text-sm']),
-        String(props.code || props.name || props.children || '').trim(),
-        React.createElement('span', mp(['className', 'text-red-600 font-bold ml-0.5', 'aria-hidden', 'true']), '*')
-      )
-    : React.createElement(
-        'span',
-        mp(['className', 'inline text-red-600 font-bold align-super text-xs ml-0.5', 'aria-hidden', 'true']),
-        '*'
-      );
-
-<RequiredStar code="merchant_id" />
+<RequiredStar param="merchant_id" />
