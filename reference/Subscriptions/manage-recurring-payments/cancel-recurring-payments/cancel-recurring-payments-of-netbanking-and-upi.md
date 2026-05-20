@@ -11,11 +11,11 @@ metadata:
 ---
 Use this API to cancel mandates registered using NetBanking and UPI as payment methods. You cannot restore a cancelled mandate. You should ask customers to register a new mandate.
 
-<Callout icon="❗️" theme="error">
-  **Watch Out!**
-
-  Your customers cannot use Recurring Payments without implementing the **Cancel Recurring Registration** API.
-</Callout>
+> ❗️
+>
+> **Watch Out!**
+>
+> Your customers cannot use Recurring Payments without implementing the **Cancel Recurring Registration** API.
 
 <Cards>
   <Card title="Method">
@@ -77,11 +77,9 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 
 ## Request Parameters
 
-<Callout icon="📘" theme="info">
-  **Mandatory Parameters**
-
-  Parameters marked with <sup style={{color: 'red'}}>*</sup> are mandatory.
-</Callout>
+> 📘 **Mandatory Parameters**
+>
+> Parameters marked with <sup style={{color: 'red'}}>*</sup> are mandatory.
 
 <Table align={["left","left"]}>
   <thead>
@@ -115,8 +113,8 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
       <td>
         `varchar` Determines the API command. Possible values:
 
-        * **For NetBanking:** `mandate_revoke`
-        * **For UPI:** `upi_mandate_revoke`
+        - **For NetBanking:** `mandate_revoke`
+        - **For UPI:** `upi_mandate_revoke`
       </td>
     </tr>
 
@@ -136,8 +134,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
       </td>
 
       <td>
-        `string` The calculated hash value using the following logic.  
-        `hash = sha512(key|command|var1|SALT)`
+        `string` The calculated hash value using the following logic.<br />`hash = sha512(key|command|var1|SALT)`
       </td>
     </tr>
   </tbody>
@@ -186,8 +183,8 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
       <td>
         `integer` The status of the action performed. Possible values:
 
-        * `1`: Card mandate is successfully canceled.
-        * `0`: Card mandate is not canceled.
+        - `1`: Card mandate is successfully canceled.
+        - `0`: Card mandate is not canceled.
       </td>
     </tr>
 
