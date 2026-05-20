@@ -11,16 +11,16 @@ metadata:
 ---
 Use this endpoint to modify recurring payments and mandates of cards of the following card networks. You can update mandate details, recurring payment configurations, billing rules, and subscription settings for active recurring transactions.
 
-* Visa
-* Mastercard
-* Amex
-* RuPay
+- Visa
+- Mastercard
+- Amex
+- RuPay
 
-<Callout icon="❗️" theme="error">
-  **RBI Guidelines:**
-
-  While modifying the recurring payment, taking consent from the customer and doing an additional factor of authentication is mandatory. You must ensure this is done before using this API. You need to pass `authPayuId` and `action` parameters to modify the billing details as a part of JSON using this API.
-</Callout>
+> ❗️
+>
+> **RBI Guidelines:**
+>
+> While modifying the recurring payment, taking consent from the customer and doing an additional factor of authentication is mandatory. You must ensure this is done before using this API. You need to pass `authPayuId` and `action` parameters to modify the billing details as a part of JSON using this API.
 
 <Cards>
   <Card title="Method">
@@ -132,11 +132,9 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
 ## Request Parameters
 
-<Callout icon="📘" theme="info">
-  **Mandatory Parameters**
-
-  Parameters marked with <sup style={{color: 'red'}}>*</sup> are mandatory.
-</Callout>
+> 📘 **Mandatory Parameters**
+>
+> <RequiredStar legend />
 
 <Table align={["left","left"]}>
   <thead>
@@ -182,8 +180,8 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
         **Note**: Type-cast the amount to float type Depending upon the merchant use case, this value will vary.
 
-        * The value should be minimum of `1.00` INR for Cards for penny testing.
-        * For first installment, this can be initiate setup amount However, this is supported only for selected NetBanking (ICICI and HDFC), all Credit / Debit Cards, and UPI.
+        - The value should be minimum of `1.00` INR for Cards for penny testing.
+        - For first installment, this can be initiate setup amount However, this is supported only for selected NetBanking (ICICI and HDFC), all Credit / Debit Cards, and UPI.
       </td>
     </tr>
 
@@ -233,7 +231,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **api_version**<sup style={{color: 'red'}}>*</sup>
+        **api\_version**<sup style={{color: 'red'}}>*</sup>
       </td>
 
       <td>
@@ -259,8 +257,8 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
       <td>
         `string` This parameter describes the payment category by which the transaction was completed/attempted by the customer. Possible values:
 
-        * `DC`: For debit cards
-        * `CC`: For credit cards
+        - `DC`: For debit cards
+        - `CC`: For credit cards
       </td>
     </tr>
 
@@ -272,12 +270,12 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
       <td>
         `string` This parameter contains the code indicating the payment option used for the transaction. Possible values:
 
-        * `CC`: For Visa and Mastercard credit cards
-        * `AMEX`: For American Express credit and debit cards
-        * `RUPAYCC`: For RuPay credit cards
-        * `VISA`: For Visa debit cards
-        * `MAST`: For Mastercard debit cards
-        * `RUPAY`: For RuPay debit cards
+        - `CC`: For Visa and Mastercard credit cards
+        - `AMEX`: For American Express credit and debit cards
+        - `RUPAYCC`: For RuPay credit cards
+        - `VISA`: For Visa debit cards
+        - `MAST`: For Mastercard debit cards
+        - `RUPAY`: For RuPay debit cards
       </td>
     </tr>
 
@@ -353,11 +351,11 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **si_details**
+        **si\_details**
       </td>
 
       <td>
-        `json` The SI mandatory details that need to be passed during registration transaction from your system to PayU. Parameters are described in the si_details Object section.
+        `json` The SI mandatory details that need to be passed during registration transaction from your system to PayU. Parameters are described in the si\_details Object section.
       </td>
     </tr>
 
@@ -410,17 +408,17 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
                 </button>
 `}</HTMLBlock>
 
-### si_details JSON Parameters
+### si\_details JSON Parameters
 
-<Callout icon="📘" theme="info">
-  **Handy Tips:**
-
-  * One or more fields (marked optional) in the following table must be posted to modify the subscription:
-    * `billingCycle`
-    * `billingInterval`
-    * `billingAmount`
-  * If the request was to modify a subscription, si_consent_action parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
-</Callout>
+> 📘
+>
+> **Handy Tips:**
+>
+> - One or more fields (marked optional) in the following table must be posted to modify the subscription:
+>   - `billingCycle`
+>   - `billingInterval`
+>   - `billingAmount`
+> - If the request was to modify a subscription, si\_consent\_action parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
 
 <Table align={["left","left"]}>
   <thead>
@@ -476,11 +474,11 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
       <td>
         This field is used only to modify an existing subscription/consent. You can modify the following details:
 
-        * `startDate`
-        * `endDate`
-        * `billing cycle`
-        * `billing interval`
-        * `billing amount`
+        - `startDate`
+        - `endDate`
+        - `billing cycle`
+        - `billing interval`
+        - `billing amount`
       </td>
     </tr>
   </tbody>
@@ -518,10 +516,10 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
       </td>
 
       <td>
-        `string` This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  
+        `string` This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:
 
-        * `CC`: Credit Card
-        * `DC`: Debit Card
+        - `CC`: Credit Card
+        - `DC`: Debit Card
       </td>
     </tr>
 
@@ -533,12 +531,12 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
       <td>
         `string` This parameter contains the code indicating the payment option used for the transaction. Possible values:
 
-        * `CC`: For Visa and Mastercard credit cards
-        * `AMEX`: For American Express credit and debit cards
-        * `RUPAYCC`: For RuPay credit cards
-        * `VISA`: For Visa debit cards
-        * `MAST`: For Mastercard debit cards
-        * `RUPAY`: For RuPay debit cards
+        - `CC`: For Visa and Mastercard credit cards
+        - `AMEX`: For American Express credit and debit cards
+        - `RUPAYCC`: For RuPay credit cards
+        - `VISA`: For Visa debit cards
+        - `MAST`: For Mastercard debit cards
+        - `RUPAY`: For RuPay debit cards
       </td>
     </tr>
 
@@ -548,10 +546,10 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
       </td>
 
       <td>
-        `string` The status of the transaction and must be used to map the order status. Possible values:  
+        `string` The status of the transaction and must be used to map the order status. Possible values:
 
-        * `success`: Indicates the transaction is successful.
-        * `failed/pending`: If the value is `failure` or `pending`, should be treated as a failed transaction.
+        - `success`: Indicates the transaction is successful.
+        - `failed/pending`: If the value is `failure` or `pending`, should be treated as a failed transaction.
       </td>
     </tr>
 
@@ -561,17 +559,17 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
       </td>
 
       <td>
-        `string` The status of a transaction in PayU's internal database, which can include intermediate states. Possible values:   
+        `string` The status of a transaction in PayU's internal database, which can include intermediate states. Possible values:
 
-        * `dropped` 
-        * `bounced`
-        * `captured`
-        * `auth`
-        * `failed`
-        * `usercancelled`
-        * `pending`  
+        - `dropped`
+        - `bounced`
+        - `captured`
+        - `auth`
+        - `failed`
+        - `usercancelled`
+        - `pending`
 
-        Refer to the <Anchor label="Payment State Explanations" target="_blank" href="https://docs.payu.in/reference/payment-state-explanations">Payment State Explanations</Anchor>.
+        Refer to the <Anchor target="_blank" href="https://docs.payu.in/reference/payment-state-explanations">Payment State Explanations</Anchor>.
       </td>
     </tr>
 
@@ -597,7 +595,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **error_message**
+        **error\_message**
       </td>
 
       <td>
@@ -607,7 +605,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **bank_ref_num**
+        **bank\_ref\_num**
       </td>
 
       <td>
@@ -657,7 +655,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **net_amount_debit**
+        **net\_amount\_debit**
       </td>
 
       <td>
@@ -737,7 +735,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **PG_TYPE**
+        **PG\_TYPE**
       </td>
 
       <td>
@@ -757,7 +755,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **success_at**
+        **success\_at**
       </td>
 
       <td>
@@ -777,7 +775,7 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **issuing_bank**
+        **issuing\_bank**
       </td>
 
       <td>
@@ -787,14 +785,14 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
     <tr>
       <td>
-        **si_consent_action**
+        **si\_consent\_action**
       </td>
 
       <td>
-        `string` This parameter will be returned only if a modify subscription request has been received. In other cases, this field will not be returned. Possible values:  
+        `string` This parameter will be returned only if a modify subscription request has been received. In other cases, this field will not be returned. Possible values:
 
-        * `modify` 
-        * `cancel`
+        - `modify`
+        - `cancel`
 
         If, in billing details, the action was to modify, then to validate whether the subscription was modified, this fields need to be validated in response. If this field is not sent in response of modify request, then even if transaction is success, then money would have got deducted but the subscription would not have been modified.
       </td>
@@ -806,16 +804,16 @@ Use this endpoint to modify recurring payments and mandates of cards of the foll
 
 For `si=3` (Modify or Cancel Mandate), PayU supports two integration flows based on how card details are processed:
 
-* Standard card flow
-* Network token flow
+- Standard card flow
+- Network token flow
 
 Use the standard card flow when processing mandates using regular card details. Use the network token flow when the card has been tokenized and the transaction must be processed using the network token instead of the physical card number.
 
-<Callout icon="📘" theme="info">
-  **Handy Tips:**
-
-  This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sent the card transaction request in the form of authentication.
-</Callout>
+> 📘
+>
+> **Handy Tips:**
+>
+> This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sent the card transaction request in the form of authentication.
 
 ### Additional Object to Pass
 
@@ -853,11 +851,11 @@ Please find below the complete request payload with the additional added.
 
 ### Additional Parameters
 
-| **Parameter**                                               | **Description**                                                                                                                                                                           |
-| :---------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **store_card_token**<sup style={{color: 'red'}}>*</sup>     | `string` The Network token generated by you.                                                                                                                                              |
-| **storecard_token_type**<sup style={{color: 'red'}}>*</sup> | `integer` Indicates the store card token type. For this scenario, you must include `1`.                                                                                                   |
-| **additional_info**<sup style={{color: 'red'}}>*</sup>      | `json` This parameter will contain the additional information in the following JSON format: `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}` |
+| **Parameter**                                                 | **Description**                                                                                                                                                                           |
+| :------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **store\_card\_token**<sup style={{color: 'red'}}>*</sup>     | `string` The Network token generated by you.                                                                                                                                              |
+| **storecard\_token\_type**<sup style={{color: 'red'}}>*</sup> | `integer` Indicates the store card token type. For this scenario, you must include `1`.                                                                                                   |
+| **additional\_info**<sup style={{color: 'red'}}>*</sup>       | `json` This parameter will contain the additional information in the following JSON format: `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}` |
 
 #### `additional_info` Object Parameters
 
@@ -867,12 +865,12 @@ Please find below the complete request payload with the additional added.
 | **tokenRefNo**<sup style={{color: 'red'}}>*</sup> | `string` (Token Reference Number) is generated along with the network token. . You should be able to get the same from your token provider.               |
 | **TAVV** <sup style={{color: 'red'}}>*</sup>      | `string` A token authentication verification value given by schemes or interchange. Also, known as cryptogram.                                            |
 
-<Callout icon="📘" theme="info">
-  **Notes:**
-
-  * The last 4 digits of cards is mandatory for all transactions.
-  * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
-  * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
-</Callout>
+> 📘
+>
+> **Notes:**
+>
+> - The last 4 digits of cards is mandatory for all transactions.
+> - Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
+> - Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
 
 <br />
