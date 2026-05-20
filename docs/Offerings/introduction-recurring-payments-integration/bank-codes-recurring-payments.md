@@ -241,9 +241,35 @@ Use this API to fetch a list of eNACH enabled banks. This API returns all suppor
 
 ### Query Parameter
 
-| **Parameter**             | **Description**                                                                                        |
-| ------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `merchant_id` _mandatory_ | `string` The unique merchant ID for which the supported bank list to be fetched. For example `134220`. |
+> 📘 **Mandatory Parameters**
+>
+> Parameters marked with <RequiredStar /> are mandatory
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        **Parameter**
+      </th>
+
+      <th>
+        **Description**
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <RequiredStar param="merchant_id" />
+      </td>
+
+      <td>
+        `string` The unique merchant ID for which the supported bank list to be fetched. For example `134220`.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Response Parameters
 
@@ -320,6 +346,10 @@ Use this API to fetch supported verification modes for a specific bank.
 </Accordion>
 
 ### Query Parameters
+
+> 📘 **Mandatory Parameters**
+>
+> Parameters marked with <RequiredStar /> are mandatory
 
 <Table>
   <thead>
