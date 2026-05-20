@@ -165,7 +165,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
   <tbody>
     <tr>
       <td>
-        **action**
+        `action`
       </td>
 
       <td>
@@ -175,7 +175,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 
     <tr>
       <td>
-        **status**
+        `status`
       </td>
 
       <td>
@@ -188,7 +188,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 
     <tr>
       <td>
-        **Message**
+        `Message`
       </td>
 
       <td>
@@ -198,7 +198,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
 
     <tr>
       <td>
-        **authpayuid**
+        `authpayuid`
       </td>
 
       <td>
