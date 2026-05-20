@@ -345,7 +345,7 @@ Use this API to cancel card mandates registered via AMEX and RuPay card networks
       </td>
 
       <td>
-        `json` The SI mandatory details that need to be passed during registration transaction from your system to PayU. Parameters are described in the si\_details Object section.
+        `json` The SI mandatory details that need to be passed during registration transaction from your system to PayU. Parameters are described in the [si\_details Object](https://docs.payu.in/reference/cancel-recurring-payments-of-amex-and-rupay-cards#si_details-json-parameters) section.
       </td>
     </tr>
 
