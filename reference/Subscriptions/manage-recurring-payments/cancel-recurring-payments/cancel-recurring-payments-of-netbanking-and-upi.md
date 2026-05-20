@@ -122,7 +122,7 @@ Use this API to cancel mandates registered using NetBanking and UPI as payment m
       </td>
 
       <td>
-        `json` The variable details. Parameters are described in the var1 JSON Parameters section.
+        `json` The variable details. Parameters are described in the [var1 JSON Parameters](https://docs.payu.in/reference/cancel-recurring-payments-of-netbanking-and-upi#var1-json-parameters) section.
       </td>
     </tr>
 
