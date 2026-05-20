@@ -1,5 +1,5 @@
 ---
-title: Recurring Payments Bank Codes - ENACH Registration
+title: Recurring Payments Bank Codes - eNACH Registration
 excerpt: ''
 deprecated: false
 hidden: false
@@ -25,9 +25,9 @@ next:
 ---
 This section lists the bank codes (used in the bankcode parameter) that must be provided when initiating registration transactions (such as eNACH consent or mandate registration) with PayU. It also indicates which verification modes are supported for each bank, as per NPCI.
 
-<Callout icon="📘" theme="info">
-  **Note**: This list is subject to regular updates based on NPCI support.
-</Callout>
+> 📘 **Handy Tips:**
+>
+> This list is subject to regular updates based on NPCI support.
 
 For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transactions, use the TPV ENACH bank codes. For more information, refer to the [Bank codes ](#bank-codes)table.
 
@@ -568,4 +568,25 @@ For standard eNACH transactions, use the Normal eNACH bank codes. For TPV transa
 | VIDYASAGAR CENTRAL CO OP BANK LTD                  | VIDXENCC                      | VIDXENTC      |
 | YES BANK                                           | YESBENCC                      | YESBENTC      |
 
-#
+# ## Get eNACH Enabled Banks
+
+Use this API to fetch a list of eNACH enabled banks for recurring payments.
+
+<Cards>
+  <Card title="Method">
+    POST
+  </Card>
+
+  <Card title="Endpoint">
+    /v2/payments
+  </Card>
+</Cards>
+
+## Environment
+
+|                            |                                                                         |
+| -------------------------- | ----------------------------------------------------------------------- |
+| **Test Environment**       | \`[https://test.payu.in\`](https://info.payu.in "https://info.payu.in") |
+| **Production Environment** | \`[https://info.payu.in\`](https://info.payu.in "https://info.payu.in") |
+
+<br />
