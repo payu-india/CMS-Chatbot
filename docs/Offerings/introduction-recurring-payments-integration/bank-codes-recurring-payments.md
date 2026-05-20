@@ -243,33 +243,11 @@ Use this API to fetch a list of eNACH enabled banks. This API returns all suppor
 
 > 📘 **Mandatory Parameters**
 >
-> Parameters marked with <RequiredStar /> are mandatory
+> Parameters marked with <RequiredStar />are mandatory
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        <RequiredStar param="merchant_id" />
-      </td>
-
-      <td>
-        `string` The unique merchant ID for which the supported bank list to be fetched. For example `134220`.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| **Parameter**                        | **Description**                                                                                        |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| <RequiredStar param="merchant_id" /> | `string` The unique merchant ID for which the supported bank list to be fetched. For example `134220`. |
 
 ### Response Parameters
 
@@ -351,41 +329,10 @@ Use this API to fetch supported verification modes for a specific bank.
 >
 > Parameters marked with <RequiredStar /> are mandatory
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Parameters**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        <RequiredStar param="merchant_id" />
-      </td>
-
-      <td>
-        `number` A unique identifier of the merchant. For example `134220`.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <RequiredStar param="bank_code" />
-      </td>
-
-      <td>
-        `string` The bank code. For example `HDFC`.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| **Parameters**                       | **Description**                                                     |
+| ------------------------------------ | ------------------------------------------------------------------- |
+| <RequiredStar param="merchant_id" /> | `number` A unique identifier of the merchant. For example `134220`. |
+| <RequiredStar param="bank_code" />   | `string` The bank code. For example `HDFC`.                         |
 
 ### Response Parameters
 
