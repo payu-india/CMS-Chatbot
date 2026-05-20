@@ -23,6 +23,11 @@ metadata:
 next:
   description: ''
 ---
+This page provides the list of supported bank codes required for eNACH mandate registration. It also helps you identify the verification modes supported by each bank, including NetBanking, Debit Card, and Aadhaar-based authentication. Below are the available APIs:
+
+- Use the Get Enabled Banks API to retrieve the list of supported banks along with their consent transaction and TPV bank codes.
+- Use the Get Verification Methods for a Bank API to check the verification methods supported by a specific bank before initiating mandate registration flows.
+
 # Get Enabled Banks
 
 Use this API to fetch a list of eNACH enabled banks. This API returns all supported banks for the merchant.
