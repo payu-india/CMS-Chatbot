@@ -895,4 +895,9 @@ Use this API to fetch supported verification modes for a specific bank.
 | `aadhaarSupported`    | `boolean` Determines whether the Aadhaar-based verification is supported. |
 </Accordion>
 
+|                                        |   |   |
+| -------------------------------------- | - | - |
+| {<RequiredStar param="merchant_id" />} |   |   |
+|                                        |   |   |
+
 <br />
