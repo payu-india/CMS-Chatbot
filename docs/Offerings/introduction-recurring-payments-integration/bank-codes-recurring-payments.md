@@ -1,5 +1,5 @@
 ---
-title: Recurring Payments Bank Codes - eNACH Registration
+title: eNACH Supported Banks and Verification Modes
 excerpt: ''
 deprecated: false
 hidden: false
