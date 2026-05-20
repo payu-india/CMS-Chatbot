@@ -4,7 +4,7 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: Recurring Payments Bank Codes
+  title: eNACH Supported Banks
   description: >-
     Explore the comprehensive list of bank codes required for Net Banking and
     Debit Card recurring payment registrations. Stay updated with the latest
