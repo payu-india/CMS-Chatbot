@@ -773,9 +773,15 @@ curl --location -g --request GET \
 
 ### Query Parameter
 
-| **Parameter**                    | **Description**                                                                               |
-| -------------------------------- | --------------------------------------------------------------------------------------------- |
-| <RequiredStar />                 | The unique merchant ID for which the supported bank list to be fetched. For example `134220`. |
-| **merchant\_id**<RequiredStar /> |                                                                                               |
+| **Parameter**             | **Description**                                                                                        |
+| ------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `merchant_id` _mandatory_ | `string` The unique merchant ID for which the supported bank list to be fetched. For example `134220`. |
+
+### Response Parameters
+
+| **Parameter** | **Description** |
+| ------------- | --------------- |
+|               |                 |
+|               |                 |
 
 <br />
