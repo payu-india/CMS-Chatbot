@@ -243,7 +243,7 @@ Use this API to fetch a list of eNACH enabled banks. This API returns all suppor
 
 > 📘 **Mandatory Parameters**
 >
-> Parameters marked with <RequiredStar legend /> are mandatory.
+> <RequiredStar legend />
 
 | **Parameter**                        | **Description**                                                                                        |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------ |
@@ -327,7 +327,7 @@ Use this API to fetch supported verification modes for a specific bank.
 
 > 📘 **Mandatory Parameters**
 >
-> Parameters marked with <RequiredStar /> are mandatory.
+> <RequiredStar legend />
 
 | **Parameters**                       | **Description**                                                     |
 | ------------------------------------ | ------------------------------------------------------------------- |
