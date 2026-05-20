@@ -779,12 +779,12 @@ curl --location -g --request GET \
 
 ### Response Parameters
 
-| **Parameter** | **Description**                                                                                                                                                                |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `status`      | `string` The status of the API. Possible values:<br /><ul><li>`SUCCESS`: The API fetched the list successfully.</li> <li>`FAILED`: The API could not fetch the list.</li></ul> |
-| `code`        | `string` The error code.                                                                                                                                                       |
-| `message`     | `string` The response message.                                                                                                                                                 |
-| `data`        | `array` The list of banks and details. Parameters are described in the data Object section.                                                                                    |
+| **Parameter** | **Description**                                                                                                                                                                 |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `status`      | `string` The status of the API. Possible values:<br /><ul><li>`SUCCESS`: The API fetched the list successfully.</li> <li>`FAILED`: The API could not fetch the list.</li></ul>  |
+| `code`        | `string` The error code.                                                                                                                                                        |
+| `message`     | `string` The response message.                                                                                                                                                  |
+| `data`        | `array` The list of banks and details. Parameters are described in the [`data` Object](https://docs.payu.in/docs/bank-codes-recurring-payments#data-object-parameters) section. |
 
 #### `data` Object Parameters
 
