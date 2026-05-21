@@ -47,7 +47,6 @@ This section describes the procedure to integrate CommercePro Checkout using Res
 </Callout>
 
 ## Step 1: Load the JS-SDK on the page
-
 Load the the following URL using script tag on the page:
 
 [https://jssdk.payu.in/bolt/bolt.min.js](https://jssdk.payu.in/bolt/bolt.min.js)
@@ -64,8 +63,8 @@ Load the the following URL using script tag on the page:
 ## Step 2: Pass the transaction request object
 
 Use the following snippet to construct the initialisation object :
-
-```Text JavaScript
+<Accordion title="Sample code" icon="fa-table">
+```javascript
 // Create the express object. Refer to the table for a full list of parameters
 const expressData = {
     key: '<merchant_key>',
@@ -132,313 +131,126 @@ const hash = merchant_function_that_calculates_hash(hash_string)
 const  authHeader = 'hmac username="' + key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"';
 
 ```
+</Accordion>
 
-### Transaction Parameters
+<Accordion title="Transaction Parameters" icon="fa-table">
 
 <Table>
   <thead>
     <tr>
-      <th>
-        Field
-      </th>
-
-      <th>
-        Description
-      </th>
+      <th>Field</th>
+      <th>Description</th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
-      <td>
-        key
-        `mandatory`
-      </td>
-
-      <td>
-        `string` The merchant key generated from the PayU.
-      </td>
+      <td>key `mandatory`</td>
+      <td>`string` The merchant key generated from the PayU.</td>
     </tr>
-
     <tr>
-      <td>
-        txnid
-        `mandatory`
-      </td>
-
-      <td>
-        `string` The unique ID of the transaction.
-      </td>
+      <td>txnid `mandatory`</td>
+      <td>`string` The unique ID of the transaction.</td>
     </tr>
-
     <tr>
-      <td>
-        amount
-        `mandatory`
-      </td>
-
-      <td>
-        `string` The transaction amount, expressed in the currency subunit, such as paise (in case of INR). For example, for an actual amount of “299.35”.
-      </td>
+      <td>amount `mandatory`</td>
+      <td>`string` The transaction amount, expressed in the currency subunit, such as paise (in case of INR). For example, for an actual amount of "299.35".</td>
     </tr>
-
     <tr>
-      <td>
-        firstname
-        `mandatory`
-      </td>
-
-      <td>
-        `string` The customer first name.
-      </td>
+      <td>firstname `mandatory`</td>
+      <td>`string` The customer first name.</td>
     </tr>
-
     <tr>
-      <td>
-        lastname
-        `optional`
-      </td>
-
-      <td>
-        `string` The customer last name.
-      </td>
+      <td>lastname `optional`</td>
+      <td>`string` The customer last name.</td>
     </tr>
-
     <tr>
-      <td>
-        email
-        `optional`
-      </td>
-
-      <td>
-        `string` The email address of the customer.
-      </td>
+      <td>email `optional`</td>
+      <td>`string` The email address of the customer.</td>
     </tr>
-
     <tr>
-      <td>
-        phone
-        `mandatory`
-      </td>
-
-      <td>
-        `string` The mobile number of the customer. In case mobile number is not available, send empty string.
-      </td>
+      <td>phone `mandatory`</td>
+      <td>`string` The mobile number of the customer. In case mobile number is not available, send empty string.</td>
     </tr>
-
     <tr>
-      <td>
-        productinfo
-        `optional`
-      </td>
-
-      <td>
-        `string` The brief details of the product.
-      </td>
+      <td>productinfo `optional`</td>
+      <td>`string` The brief details of the product.</td>
     </tr>
-
     <tr>
-      <td>
-        surl
-        `mandatory`
-      </td>
-
-      <td>
-        `string` The success URL provided by merchant.
-      </td>
+      <td>surl `mandatory`</td>
+      <td>`string` The success URL provided by merchant.</td>
     </tr>
-
     <tr>
-      <td>
-        furl
-        `mandatory`
-      </td>
-
-      <td>
-        `string` The failure URL provided by merchant.
-      </td>
+      <td>furl `mandatory`</td>
+      <td>`string` The failure URL provided by merchant.</td>
     </tr>
-
     <tr>
-      <td>
-        isCheckoutExpress  `mandatory`
-      </td>
-
-      <td>
-        `boolean` This value is always true
-      </td>
+      <td>isCheckoutExpress `mandatory`</td>
+      <td>`boolean` This value is always true</td>
     </tr>
-
     <tr>
-      <td>
-        icp_source
-        `mandatory`
-      </td>
-
-      <td>
-        `string` This value is always “express”
-      </td>
+      <td>icp_source `mandatory`</td>
+      <td>`string` This value is always "express"</td>
     </tr>
-
     <tr>
-      <td>
-        orderid
-        `mandatory`
-      </td>
-
-      <td>
-        `string` Use this parameter to create new order or edit existing order.
-      </td>
+      <td>orderid `mandatory`</td>
+      <td>`string` Use this parameter to create new order or edit existing order.</td>
     </tr>
-
     <tr>
-      <td>
-        cart_details
-        `mandatory`
-      </td>
-
-      <td>
-        `object` Use this parameter to create cart for express transaction and to load SKU offers. The amount passed must be equal to the cart amount when there no extra charges. In case of extra charges, total 
-      </td>
+      <td>cart_details `mandatory`</td>
+      <td>`object` Use this parameter to create cart for express transaction and to load SKU offers. The amount passed must be equal to the cart amount when there no extra charges. In case of extra charges, total</td>
     </tr>
-
     <tr>
-      <td>
-        udf1
-        `optional`
-      </td>
-
-      <td>
-        `String` User-defined fields1
-      </td>
+      <td>udf1 `optional`</td>
+      <td>`String` User-defined fields1</td>
     </tr>
-
     <tr>
-      <td>
-        udf2
-        `optional`
-      </td>
-
-      <td>
-        `String` User-defined fields2
-      </td>
+      <td>udf2 `optional`</td>
+      <td>`String` User-defined fields2</td>
     </tr>
-
     <tr>
-      <td>
-        udf3
-        `optional`
-      </td>
-
-      <td>
-        `String` User-defined fields3
-      </td>
+      <td>udf3 `optional`</td>
+      <td>`String` User-defined fields3</td>
     </tr>
-
     <tr>
-      <td>
-        udf4
-
-        ```
-
-        optional
-        ```
-      </td>
-
-      <td>
-        `String` User-defined fields4
-      </td>
+      <td>udf4 `optional`</td>
+      <td>`String` User-defined fields4</td>
     </tr>
-
     <tr>
-      <td>
-        udf5
-        `optional`
-      </td>
-
-      <td>
-        `String` User-defined fields5
-      </td>
+      <td>udf5 `optional`</td>
+      <td>`String` User-defined fields5</td>
     </tr>
-
     <tr>
-      <td>
-        custom_note
-        `optional`
-      </td>
-
-      <td>
-        `String` Any custom note that you want to display on the checkout screen
-      </td>
+      <td>custom_note `optional`</td>
+      <td>`String` Any custom note that you want to display on the checkout screen</td>
     </tr>
-
     <tr>
-      <td>
-        note_category
-        `optional`
-      </td>
-
-      <td>
-        `String` CC, NB will show the custom_note for Credit Card & Net banking only
-      </td>
+      <td>note_category `optional`</td>
+      <td>`String` CC, NB will show the custom_note for Credit Card &amp; Net banking only</td>
     </tr>
-
     <tr>
-      <td>
-        offer_auto_apply
-        `optional` 
-      </td>
-
-      <td>
-        `Boolean` If value is true then best offer will be applied for user for the payment mode from which payment is being done.
-      </td>
+      <td>offer_auto_apply `optional`</td>
+      <td>`Boolean` If value is true then best offer will be applied for user for the payment mode from which payment is being done.</td>
     </tr>
-
     <tr>
-      <td>
-        editPhoneAllowed 
-        `optional` 
-      </td>
-
-      <td>
-        `String` The value will be either **true** or **false**. In case true then phone number edit would not be allowed on express screen, and user would be allowed to login from merchant passed phone number only.
-      </td>
+      <td>editPhoneAllowed `optional`</td>
+      <td>`String` The value will be either **true** or **false**. In case true then phone number edit would not be allowed on express screen, and user would be allowed to login from merchant passed phone number only.</td>
     </tr>
-
     <tr>
-      <td>
-        editEmailAllowed
-        `optional`
-      </td>
-
-      <td>
-        `String` The value will be either **true** or **false**. In case true then email edit would not be allowed on express screen.
-      </td>
+      <td>editEmailAllowed `optional`</td>
+      <td>`String` The value will be either **true** or **false**. In case true then email edit would not be allowed on express screen.</td>
     </tr>
-
     <tr>
-      <td>
-        emailRequired
-        `optional`
-      </td>
-
-      <td>
-        `String` The value will be either **true** or **false**.In case true then email entry, would be mandatory on login page .
-      </td>
+      <td>emailRequired `optional`</td>
+      <td>`String` The value will be either **true** or **false**. In case true then email entry, would be mandatory on login page.</td>
     </tr>
-
     <tr>
-      <td>
-        extraCharges 
-        `optional` 
-      </td>
-
-      <td>
-        `Static` The extra charges object will be required if merchant want to show extra charges to user on express screen. 
-      </td>
+      <td>extraCharges `optional`</td>
+      <td>`Static` The extra charges object will be required if merchant want to show extra charges to user on express screen.</td>
     </tr>
   </tbody>
 </Table>
+
+</Accordion>
 
 ## Step 3: Fetch the response using response handler
 
@@ -447,7 +259,7 @@ On successful or failure payment, the response handler passed to the launch func
 The customer remains on the page where they begun the payment process.
 
 The `responseHandler()` function fetches the response from PayU once the transaction is completed. In case of a successful, failed, or canceled transaction, the response parameters will be returned to the `responseHandler()` function based on the corresponding logic defined by the merchant.
-
+<Accordion title="Sample code" icon="fa-code">
 ```javascript
 bolt.launch({
   data: stringifiedExpressData,
@@ -471,34 +283,37 @@ bolt.launch({
   }
 }) 
 ```
+</Accordion>
 
-### Response parameters description
+<Accordion title="Response parameters description" icon="fa-table">
 
-| Parameter        | Descruiption                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Parameter        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mihpayid         | It is a unique reference number created for each transaction at PayU’s end which is used to identify a transaction in case of a refund.                                                                                                                                                                                                                                                                                                                                                                                   |
-| mode             | This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are:  <br /><br />_Credit Card – CC<br />_ Debit Card – DC <br />_Net Banking – NB<br />_ Cash Card – CASH<br />_EMI – EMI<br />_ Cardless EMI – CLEMI<br />* Buy Now Pay Later - BNPL                                                                                                                                                                                                         |
+| mihpayid         | It is a unique reference number created for each transaction at PayU's end which is used to identify a transaction in case of a refund.                                                                                                                                                                                                                                                                                                                                                                                   |
+| mode             | This parameter describes the payment category by which the transaction was completed/attempted by the customer. The values are: <br /><br />_Credit Card – CC<br />_ Debit Card – DC<br />_Net Banking – NB<br />_ Cash Card – CASH<br />_EMI – EMI<br />_ Cardless EMI – CLEMI<br />* Buy Now Pay Later - BNPL                                                                                                                                                                                                         |
 | bankcode         | This parameter contains the code indicating the payment option used for the transaction. For example, Visa Debit Card – VISA, Master Debit Card – MAST.                                                                                                                                                                                                                                                                                                                                                                   |
 | txnStatus        | This parameter returns the status of the transaction and must be used to map the order status. Possible values are SUCCESS, FAILED and CANCEL                                                                                                                                                                                                                                                                                                                                                                             |
 | unmappedstatus   | This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information on status description, refer to <a href="https://docs.payu.in/reference/payment-state-explanations/" target="_blank">Payment State Explanations</a>.                                                                                                                                   |
 | key              | This parameter contains the merchant key.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | error            | For the failed transactions, this parameter provides the reason for failure.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | error_Message    | This parameter contains the error message. For the list of error message, refer to <a href="https://docs.payu.in/reference/error-codes" target="_blank">Error Codes</a>.                                                                                                                                                                                                                                                                                                                                                  |
-| bank_ref_num     | For each successful transaction – this parameter contains the bank reference number generated by the bank.                                                                                                                                                                                                                                                                                                                                                                                                                |
+| bank_ref_num     | For each successful transaction – this parameter contains the bank reference number generated by the bank.                                                                                                                                                                                                                                                                                                                                                                                                                |
 | txnid            | This parameter contains the transaction ID value posted by the merchant during the transaction request.                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | amount           | This parameter contains the original amount which was sent in the transaction request by the merchant.                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| productinfo      | This parameter contains the same value of product information which was sent in the transaction request from the merchant’s end to PayU.                                                                                                                                                                                                                                                                                                                                                                                  |
-| firstname        | This parameter contains the same value of first name which was sent in the transaction request from the merchant’s end to PayU.                                                                                                                                                                                                                                                                                                                                                                                           |
-| lastname         | This parameter contains the same value of last name which was sent in the transaction request from the merchant’s end to PayU.                                                                                                                                                                                                                                                                                                                                                                                            |
-| email            | This parameter contains the same value of email which was sent in the transaction request from the merchant’s end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                |
-| phone            | This parameter contains the same value of phone which was sent in the transaction request from the merchant’s end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                |
-| hash             | This parameter is crucial and is similar to the hash parameter used in the transaction request. For more information, refer to  <a href="generate-hash-merchant-hosted" target="_blank"> Generate Hash</a>.                                                                                                                                                                                                                                                                                                               |
-| udf1             | This parameter contains the same value of udf1 which was sent in the transaction request from the merchant’s end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| udf2             | This parameter contains the same value of udf2 which was sent in the transaction request from the merchant’s end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| udf3             | This parameter contains the same value of udf3 which was sent in the transaction request from the merchant’s end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| udf4             | This parameter contains the same value of udf4 which was sent in the transaction request from the merchant’s end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| udf5             | This parameter contains the same value of udf5 which was sent in the transaction request from the merchant’s end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                 |
-| shipping_address | This parameter is an object containing address the customer chose to make payment with. Example:  <br />\{  <br />    "name": "\<name_with_saved_address>",  <br />    "email": "\<email_with_the_saved_address>",  <br />    "addressLine": "\<address_string>",  <br />    "addressPhoneNumber": "\<address_number>",  <br />    "landmark": ‘\<landmark_with_address>’,  <br />    "pincode": \<pincode_with_address>,  <br />    "city": "\<city_with_address>",  <br />    "state": “\<state_with_address>"  <br />} |
+| productinfo      | This parameter contains the same value of product information which was sent in the transaction request from the merchant's end to PayU.                                                                                                                                                                                                                                                                                                                                                                                  |
+| firstname        | This parameter contains the same value of first name which was sent in the transaction request from the merchant's end to PayU.                                                                                                                                                                                                                                                                                                                                                                                           |
+| lastname         | This parameter contains the same value of last name which was sent in the transaction request from the merchant's end to PayU.                                                                                                                                                                                                                                                                                                                                                                                            |
+| email            | This parameter contains the same value of email which was sent in the transaction request from the merchant's end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                |
+| phone            | This parameter contains the same value of phone which was sent in the transaction request from the merchant's end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                |
+| hash             | This parameter is crucial and is similar to the hash parameter used in the transaction request. For more information, refer to  <a href="generate-hash-merchant-hosted" target="_blank"> Generate Hash</a>.                                                                                                                                                                                                                                                                                                               |
+| udf1             | This parameter contains the same value of udf1 which was sent in the transaction request from the merchant's end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| udf2             | This parameter contains the same value of udf2 which was sent in the transaction request from the merchant's end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| udf3             | This parameter contains the same value of udf3 which was sent in the transaction request from the merchant's end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| udf4             | This parameter contains the same value of udf4 which was sent in the transaction request from the merchant's end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| udf5             | This parameter contains the same value of udf5 which was sent in the transaction request from the merchant's end to PayU.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| shipping_address | This parameter is an object containing address the customer chose to make payment with. Example:  <br />\{  <br />    "name": "\<name_with_saved_address>",  <br />    "email": "\<email_with_the_saved_address>",  <br />    "addressLine": "\<address_string>",  <br />    "addressPhoneNumber": "\<address_number>",  <br />    "landmark": '\<landmark_with_address>',  <br />    "pincode": \<pincode_with_address>,  <br />    "city": "\<city_with_address>",  <br />    "state": "\<state_with_address>"  <br />} |
+
+</Accordion>
 
 ## Step 4: Catch Exceptions
 
