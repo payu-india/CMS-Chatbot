@@ -10,6 +10,10 @@ metadata:
 next:
   description: ''
 ---
+This part of the document describes the Virtual Card integration on Flutter SDK. You can integrate Virtual card using `payu_ppi_flutter` SDK in Flutter. This section describes the procedure to integrate Virtual Card using Flutter SDK.
+
+## Steps to Integrate
+
 <Cards cols={3}>
   <Card title="Add Dependency" icon="fa-cube">
     Add the `payu_ppi_flutter` SDK dependency to your app's `pubspec.yaml`.
@@ -21,13 +25,6 @@ next:
     Generate SHA-512 hash on your backend using the hash string provided by PayU and return it to the SDK.
   </Card>
 </Cards>
-# Flutter SDK Integration
-
-This part of the document describes the Virtual Card integration on Flutter SDK:
-
-## Steps to Integrate
-
-You can integrate Virtual card using `payu_ppi_flutter` SDK in Flutter. This section describes the procedure to integrate Virtual Card using Flutter SDK.
 
 <Accordion title="Step 1: Add Dependency" icon="fa-cube">
 
@@ -108,4 +105,4 @@ PayU will get hash string in map `"hashString"` key and hash name `"hashName"` i
 
 You can download the sample app for Virtual Card integration on Flutter SDK from the following Github location:
 
-<https://github.com/payu-intrepos/PPIManagerFlutter>
+[https://github.com/payu-intrepos/PPIManagerFlutter](https://github.com/payu-intrepos/PPIManagerFlutter)
