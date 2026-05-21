@@ -10,32 +10,47 @@ metadata:
 next:
   description: ''
 ---
+<Cards cols={3}>
+  <Card title="Add Dependency" icon="fa-cube">
+    Add the `payu_ppi_flutter` SDK dependency to your app's `pubspec.yaml`.
+  </Card>
+  <Card title="SDK Initialisation" icon="fa-code">
+    Import classes, create params object, initialise `PayUPPIFlutter`, and override `PayUPPIProtocol` methods.
+  </Card>
+  <Card title="Hashing" icon="fa-lock">
+    Generate SHA-512 hash on your backend using the hash string provided by PayU and return it to the SDK.
+  </Card>
+</Cards>
+# Flutter SDK Integration
+
 This part of the document describes the Virtual Card integration on Flutter SDK:
 
 ## Steps to Integrate
 
 You can integrate Virtual card using `payu_ppi_flutter` SDK in Flutter. This section describes the procedure to integrate Virtual Card using Flutter SDK.
 
-### Step 1: Add Dependency
+<Accordion title="Step 1: Add Dependency" icon="fa-cube">
 
-Add the following dependency in your app’s `pubspec.yaml` .
+Add the following dependency in your app's `pubspec.yaml`.
 
 ```plaintext
 payu_ppi_flutter:^1.0.0
 ```
 
-### Step 2: SDK Initialisation
+</Accordion>
+
+<Accordion title="Step 2: SDK Initialisation" icon="fa-code">
 
 1. Import classes from `payu_ppi_flutter` SDK in your project.
 
-```plaintext DART
+```dart
 import 'package:payu_ppi_flutter/payu_ppi_flutter.dart'; 
-import 'package:payu_ppi_flutter/PayUConstantKeys.dart';`
+import 'package:payu_ppi_flutter/PayUConstantKeys.dart';
 ```
 
-2. Create the`params` object
+2. Create the `params` object.
 
-```plaintext DART
+```dart
 static Map createPayUPPIParams() {
   var payUParams = {
     PayUPPIParamKey.merchantKey: "<String - Merchant Key>",
@@ -51,14 +66,14 @@ static Map createPayUPPIParams() {
 
 3. Create the `PayUPPIFlutter` object and call `showCards` function.
 
-```Text DART
- PayUPPIFlutter _ppi = PayUPPIFlutter(this);
-  _ppi.showCards(payUPPIParams: <params created with createPayUPPIParams>)
+```dart
+PayUPPIFlutter _ppi = PayUPPIFlutter(this);
+_ppi.showCards(payUPPIParams: <params created with createPayUPPIParams>)
 ```
 
-4. Inherit class with `PayUPPIProtocol` in which  you are creating the`PayUPPIFlutter` object and override `PayUPPIProtocol` methods.
+4. Inherit class with `PayUPPIProtocol` in which you are creating the `PayUPPIFlutter` object and override `PayUPPIProtocol` methods.
 
-```plaintext DART
+```dart
 @override
   generateHash(Map response) {
     var hashName = response[PayUHashConstantsKeys.hashName];
@@ -81,12 +96,16 @@ static Map createPayUPPIParams() {
   }
 ```
 
-### Step 3: Hashing
+</Accordion>
 
-PayU will get hash string in map "hashString" key and hash name "hashName" in generateHash.  You need to send this string to server and append salt there, after appending salt convert string to sha512 hash and return back to sdk in `hashGenerated`  as  `Map`.
+<Accordion title="Step 3: Hashing" icon="fa-lock">
+
+PayU will get hash string in map `"hashString"` key and hash name `"hashName"` in `generateHash`. You need to send this string to server and append salt there. After appending salt, convert string to SHA-512 hash and return back to SDK in `hashGenerated` as `Map`.
+
+</Accordion>
 
 ## Sample app
 
 You can download the sample app for Virtual Card integration on Flutter SDK from the following Github location:
 
-https://github.com/payu-intrepos/PPIManagerFlutter
+<https://github.com/payu-intrepos/PPIManagerFlutter>
