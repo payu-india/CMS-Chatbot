@@ -84,7 +84,7 @@ Merchant can open an iFrame within its page itself. Add the inline JS script to 
 
 Add the following meta-tag & JS script in the HTML header section of your website:
 
-<Accordion title="Code Snippet" icon="fa-html5">
+<Accordion title="Code Snippet" icon="fa-code">
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -93,17 +93,17 @@ Add the following meta-tag & JS script in the HTML header section of your websit
 
 </Accordion>
 
-<Callout icon="📘" theme="info">
-  Test Script
-
-  Replace the script mentioned in the earlier code snippet with [https://jssdk-uat.payu.in/ppi/ppi.min.js](https://jssdk-uat.payu.in/bolt/bolt.min.js) to test the integration.
-</Callout>
+> 📘
+>
+> Test Script
+>
+> Replace the script mentioned in the earlier code snippet with [https://jssdk-uat.payu.in/ppi/ppi.min.js](https://jssdk-uat.payu.in/bolt/bolt.min.js) to test the integration.
 
 ## Step 4: Pass Request Objects
 
 The `ppi.launch()` function takes two arguments.
 
-* In the first argument, the data objects contain the request data. The format of the data object is as shown below:
+- In the first argument, the data objects contain the request data. The format of the data object is as shown below:
 
 <Accordion title="Request Object Format" icon="fa-code">
 
@@ -117,7 +117,7 @@ var data = {
 
 </Accordion>
 
-* The second argument is the Handler which contains two functions. The `responseHandler()` function and the `catchException()` function.
+- The second argument is the Handler which contains two functions. The `responseHandler()` function and the `catchException()` function.
 
 ## Step 5: Catch Exception
 
@@ -177,7 +177,7 @@ $(document).on('click', '#submit', function() {
 To ensure a stable integration with resize iframe, merchants are advised to create their own reusable iframe container.
 This iframe will remain hidden until the SDK is launched, and can be reused for subsequent transactions.
 
-<Accordion title="Container HTML" icon="fa-html5">
+<Accordion title="Container HTML" icon="fa-code">
 
 ```html
 <iframe
@@ -189,7 +189,7 @@ This iframe will remain hidden until the SDK is launched, and can be reused for 
 
 </Accordion>
 
-<Accordion title="Container CSS" icon="fa-css3">
+<Accordion title="Container CSS" icon="fa-code">
 
 ```css
 .iFrameContainer {
@@ -279,3 +279,5 @@ This keeps your UI clean and ensures a smooth re-launch experience for future tr
   </Accordion>
 
 </Accordion>
+
+<br />
