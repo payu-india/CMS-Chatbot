@@ -1,7 +1,7 @@
 ---
 title: PayU Devguide MCP Configuration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
