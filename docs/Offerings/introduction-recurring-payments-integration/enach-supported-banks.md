@@ -59,8 +59,7 @@ Use this API to fetch a list of eNACH enabled banks. This API returns all suppor
   ```curl
   curl --location -g --request GET \
   'https://subscription_service/api/v1/enach/bank-supported-verification-modes?merchant_id=MERCHANT_ID' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer `{access_token}`'
+  --header 'Accept: application/json' \
   ```
 </Accordion>
 
