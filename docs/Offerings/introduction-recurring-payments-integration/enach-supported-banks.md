@@ -290,8 +290,7 @@ Use this API to fetch supported verification modes for a specific bank.
   ```curl
   curl --location -g --request GET \
   'https://subscription_service/api/v1/enach/bank-supported-verification-modes?merchant_id=134220&bank_code=HDFC' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer `{access_token}`'
+  --header 'Accept: application/json' \
   ```
 </Accordion>
 
