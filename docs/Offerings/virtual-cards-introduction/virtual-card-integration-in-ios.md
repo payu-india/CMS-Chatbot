@@ -10,17 +10,28 @@ metadata:
 next:
   description: ''
 ---
-You can integrate Virtual card using PayUPPIiOS SDK in iOS. The following the sections describe the procedure to integrate and sample app.
+# iOS SDK Integration
 
-## Steps to Integrate
-
+You can integrate Virtual card using PayUPPIiOS SDK in iOS. The following sections describe the procedure to integrate and sample app. 
 You can integrate Virtual card using PayUPPIiOS SDK in iOS.
 
-### Step 1: Add the dependency
+## Steps to Integrate
+<Cards cols={3}>
+  <Card title="Add the Dependency" icon="fa-cube">
+    Add `PayUIndia-PPI-SDK` to your iOS project via Cocoapods or Swift Package Manager (SPM).
+  </Card>
+  <Card title="SDK Initialisation" icon="fa-code">
+    Import `OnePayUJSKit`, create `OnePayUJSParams`, and call `showCards` with the required delegate callbacks.
+  </Card>
+  <Card title="Hashing" icon="fa-lock">
+    Generate SHA-512 hash on your backend using the hash string provided by PayU and return it via `OnePayUJSHashCompletion`.
+  </Card>
+</Cards>
+<Accordion title="Step 1: Add the Dependency" icon="fa-cube">
 
-Add the following dependency in your app. 
+Add the following dependency in your app.
 
-#### Cocoapods
+  <Accordion title="Cocoapods" icon="fa-box">
 
 Use PayUIndia-PPI version 1.0.0.
 
@@ -28,7 +39,9 @@ Use PayUIndia-PPI version 1.0.0.
 pod 'PayUIndia-PPI-SDK'
 ```
 
-#### SPM
+  </Accordion>
+
+  <Accordion title="SPM" icon="fa-box-open">
 
 Use PayUIndia-PPI version 1.0.0.
 
@@ -36,15 +49,19 @@ Use PayUIndia-PPI version 1.0.0.
 .package(name: "PayUIndia-PPI-SDK", url: "https://github.com/payu-intrepos/PayUIndia-PPI", from: "1.0.0")
 ```
 
-### Step 2: SDK initialisation
+  </Accordion>
 
-1. import the `OnePayUJSKit` SDK in your project
+</Accordion>
+
+<Accordion title="Step 2: SDK Initialisation" icon="fa-code">
+
+1. Import the `OnePayUJSKit` SDK in your project.
 
 ```swift
 import OnePayUJSKit
 ```
 
-2. Create the `OnePayUJSParams` object
+2. Create the `OnePayUJSParams` object.
 
 ```swift
 OnePayUJSParams(
@@ -52,10 +69,9 @@ OnePayUJSParams(
     referenceId = <String - Any unique reference id>,
     environment = <Environment - Prod or Test>,
     mobileNumber = <String - user mobile number>,
-    walletUrn = <String - User wallet urn linked with aboved mobile number>,
+    walletUrn = <String - User wallet urn linked with above mobile number>,
     walletIdentifier = <String - merchant wallet Identifier>
 )
-
 ```
 
 3. Create a `OnePayUJSSDK` object using the `getInstance` call `showCards` function similar to the following code block:
@@ -74,15 +90,16 @@ OnePayUJSSDK.showCards(
 // 1. onCancel() - If user presses back button on card page or verify OTP page
 // 2. func onError(code: Int, message: String) - If any error occurs
 // 3. func generateHash(for param: [String : String], onCompletion: @escaping OnePayUJSHashCompletion) - Create and send dynamic hash.
-
 ```
 
-### Step 3: Hashing
+</Accordion>
 
-Get hash string in map "hashString" key and hash name "hashName" in generateHash.  You need to send this string to server and append salt there, after appending salt convert string to sha512 hash and return back to SDK in `OnePayUJSHashCompletion`  as  ([\<hashName>:\<hash>]).
+<Accordion title="Step 3: Hashing" icon="fa-lock">
+
+Get hash string in map `"hashString"` key and hash name `"hashName"` in `generateHash`. You need to send this string to server and append salt there. After appending salt, convert string to SHA-512 hash and return back to SDK in `OnePayUJSHashCompletion` as `([<hashName>:<hash>])`.
 
 ```swift
-OnePayUJSHashCompletion -     (_ hashDict: [String: String]) -> Void
+OnePayUJSHashCompletion - (_ hashDict: [String: String]) -> Void
 ```
 
 **Sample Code**
@@ -102,15 +119,16 @@ func generateHash(
     
     onCompletion([commandName : hashValue])
 }
-
 ```
 
 <Callout icon="📘" theme="info">
   Reference: For more information on Static Hashing, refer to <Anchor label="Generate Static Hash" target="_blank" href="https://docs.payu.in/docs/generate-static-hash-ios">Generate Static Hash</Anchor>.
 </Callout>
 
+</Accordion>
+
 ## Sample app
 
 You can download the sample app for the Virtual Card integration on the iOS SDK platform from the following Github location:
 
-https://github.com/payu-intrepos/PPIManageriOS
+<https://github.com/payu-intrepos/PPIManageriOS>
