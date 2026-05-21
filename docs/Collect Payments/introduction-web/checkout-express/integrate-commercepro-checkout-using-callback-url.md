@@ -251,7 +251,7 @@ const  authHeader = 'hmac username="' + key + '", ' + 'algorithm="' + AUTH_TYPE 
 On successful payment or payment failure, the success or failure information posted to the success URL (sURL) or failure URL (fURL) provide by the merchant, through a HTML form POST.
 
 The customer is redirected to the sURL/fURL. Call the following method on click of the **Pay** button for integration type as callback URL:
-
+<Accordion title="Sample code" icon="fa-code">
 ```javascript
 bolt.launch({
   data: stringifiedExpressData,
@@ -270,7 +270,7 @@ bolt.launch({
   }
 }) 
 ```
-
+</Accordion>
 <Accordion title="Response parameters description" icon="fa-table">
 
 | Parameter        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
