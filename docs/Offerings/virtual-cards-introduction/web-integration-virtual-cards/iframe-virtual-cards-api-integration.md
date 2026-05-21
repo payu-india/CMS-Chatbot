@@ -46,7 +46,7 @@ Create a JSON request and Authorization header. Authorization header also contai
 
 To create JSON request String and Authorisation header, use the following functions:
 
-<Accordion title="Sample Code" icon="fa-js">
+<Accordion title="Sample Code" icon="fa-code">
 
 ```javascript
 function createRequestData() {
@@ -105,7 +105,7 @@ The `ppi.launch()` function takes two arguments.
 
 * In the first argument, the data objects contain the request data. The format of the data object is as shown below:
 
-<Accordion title="Request Object Format" icon="fa-js">
+<Accordion title="Request Object Format" icon="fa-code">
 
 ```javascript
 var data = {
@@ -123,7 +123,7 @@ var data = {
 
 The `catchException()` function captures the error message in case of any exceptions.
 
-<Accordion title="Sample Code" icon="fa-js">
+<Accordion title="Sample Code" icon="fa-code">
 
 ```javascript
 var handlers = {
@@ -221,7 +221,7 @@ The SDK will use this iframe to render the payment or OTP view when `useExisting
 When initializing your iframe request, include the `useExistingIFrame` parameter as `true`.
 This ensures that the SDK uses your existing container instead of creating a new iframe.
 
-  <Accordion title="Sample Code" icon="fa-js">
+  <Accordion title="Sample Code" icon="fa-code">
 
   ```javascript
   function getIframeRequest() {
@@ -240,7 +240,7 @@ This ensures that the SDK uses your existing container instead of creating a new
 
 Before launching the SDK, make the iframe visible:
 
-  <Accordion title="Sample Code — Show IFrame" icon="fa-js">
+  <Accordion title="Sample Code — Show IFrame" icon="fa-code">
 
   ```javascript
   const iframe = document.getElementById("payuppiFrame");
@@ -259,7 +259,7 @@ Before launching the SDK, make the iframe visible:
 After the SDK flow completes or the user cancels the operation, hide the iframe again.
 This keeps your UI clean and ensures a smooth re-launch experience for future transactions.
 
-  <Accordion title="Sample Code" icon="fa-js">
+  <Accordion title="Sample Code" icon="fa-code">
 
   ```javascript
   var handlers = {
