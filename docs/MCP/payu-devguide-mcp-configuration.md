@@ -5,25 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: PayU Devguide MCP Configuration
-excerpt: >-
-  Search PayU documentation, browse the integration catalog, and fetch
-  production-ready code from Cursor, VS Code, or Claude.
-hidden: false
-metadata:
-  title: PayU Developer MCP — Documentation Search & Integration Code
-  description: >-
-    Connect Cursor, VS Code, or Claude to PayU developer docs via MCP. Semantic
-    doc search, integration catalog, and copy-paste snippets for payments APIs.
-  keywords:
-    - PayU Developer MCP
-    - MCP server
-    - Cursor MCP
-    - VS Code MCP
-    - PayU integration catalog
-  robots: index
----
 Search PayU documentation, browse the payment integration catalog, and fetch production-ready code — directly from your AI assistant.
 
 This is PayU’s **developer documentation** MCP server. It helps you integrate PayU payments (checkout, UPI, cards, webhooks, refunds, and more) without leaving Cursor, VS Code, or Claude.
@@ -36,9 +17,8 @@ For **llms.txt**, the **OpenAPI catalog**, and the legacy docs MCP endpoint, see
 
 Semantic search across [PayU’s official developer docs](https://docs.payu.in/).
 
-**Conceptual guides** — Payment flows, webhooks, 3DS, refunds, error handling, and API reference topics
-
-**Natural-language queries** — Ask in plain English; the server returns relevant excerpts with source URLs
+- **Conceptual guides** — Payment flows, webhooks, 3DS, refunds, error handling, and API reference topics
+- **Natural-language queries** — Ask in plain English; the server returns relevant excerpts with source URLs
 
 ***
 
@@ -46,11 +26,9 @@ Semantic search across [PayU’s official developer docs](https://docs.payu.in/)
 
 Discover what PayU supports before you write code.
 
-**Browse by product** — UPI, Net Banking, EMI, Cards, Tokenization, Core SDK, and more
-
-**Filter by platform** — Web, iOS, Android, React Native, Flutter, Cordova, or pure API
-
-**Filter by integration type** — PayU Hosted, Merchant Hosted, API, or SDK
+- **Browse by product** — UPI, Net Banking, EMI, Cards, Tokenization, Core SDK, and more
+- **Filter by platform** — Web, iOS, Android, React Native, Flutter, Cordova, or pure API
+- **Filter by integration type** — PayU Hosted, Merchant Hosted, API, or SDK
 
 ***
 
@@ -58,19 +36,17 @@ Discover what PayU supports before you write code.
 
 Production-ready snippets matched to your stack.
 
-**Multi-language** — `curl`, PHP, JavaScript, Java, Python, Swift, Objective-C, Kotlin, React JS
-
-**Copy-paste ready** — Hosted checkout, merchant-hosted, and API examples with doc links
-
-**Scored results** — Best-matching pages returned with URLs for deeper reading
+- **Multi-language** — `curl`, PHP, JavaScript, Java, Python, Swift, Objective-C, Kotlin, React JS
+- **Copy-paste ready** — Hosted checkout, merchant-hosted, and API examples with doc links
+- **Scored results** — Best-matching pages returned with URLs for deeper reading
 
 ## Available Tools
 
-| Tool | Description |
-| --- | --- |
+| Tool                           | Description                                                 |
+| ------------------------------ | ----------------------------------------------------------- |
 | `get_payu_integration_catalog` | Browse integrations by product, platform, and resource type |
-| `get_payu_integration_code` | Fetch ready-to-use code for a specific integration |
-| `search_payu_docs` | Semantic search over PayU developer documentation |
+| `get_payu_integration_code`    | Fetch ready-to-use code for a specific integration          |
+| `search_payu_docs`             | Semantic search over PayU developer documentation           |
 
 **Recommended workflow**
 
@@ -84,10 +60,10 @@ Production-ready snippets matched to your stack.
 
 You can use the server **without** an API key on the **anonymous tier**:
 
-* **30 requests / minute**
-* **100 requests / day**
+- **30 requests / minute**
+- **100 requests / day**
 
-For higher limits, email **ai-admin@payu.in** to request an API key, then add it as the `x-api-key` header in your MCP client config (see manual setup below).
+For higher limits, email **[ai-admin@payu.in](mailto:ai-admin@payu.in)** to request an API key, then add it as the `x-api-key` header in your MCP client config (see manual setup below).
 
 No OAuth is required for this developer-docs server.
 
@@ -95,7 +71,7 @@ No OAuth is required for this developer-docs server.
 
 ### Add PayU Developer MCP to Cursor
 
-[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=payu-developer-mcp&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vYXNrLWFpLW1jcC03MTA1NzUxNzcxMTIuYXNpYS1zb3V0aDEucnVuLmFwcC9tY3AifQ==)
+[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=payu-developer-mcp\&config=eyJ0eXBlIjoiaHR0cCIsInVybCI6Imh0dHBzOi8vYXNrLWFpLW1jcC03MTA1NzUxNzcxMTIuYXNpYS1zb3V0aDEucnVuLmFwcC9tY3AifQ==)
 
 ### Add PayU Developer MCP to VS Code
 
@@ -234,32 +210,23 @@ snippets for EMI on Android and iOS.
 
 ## Tips for Best Results
 
-* **Start with the catalog** — Call `get_payu_integration_catalog` before `get_payu_integration_code` so platform, language, and resource type are valid.
-* **Be specific** — Include product (e.g. "UPI Collect", "Core SDK"), platform (`Web`, `Android`, …), and language (`javascript`, `kotlin`, …).
-* **Use doc search for "why"** — Flows, compliance, webhooks, and troubleshooting → `search_payu_docs`.
-* **Use code fetch for "how"** — Implementation snippets → `get_payu_integration_code`.
-* **Request an API key for heavy use** — Anonymous limits are fine for exploration; production or team usage should use `x-api-key`.
+- **Start with the catalog** — Call `get_payu_integration_catalog` before `get_payu_integration_code` so platform, language, and resource type are valid.
+- **Be specific** — Include product (e.g. "UPI Collect", "Core SDK"), platform (`Web`, `Android`, …), and language (`javascript`, `kotlin`, …).
+- **Use doc search for "why"** — Flows, compliance, webhooks, and troubleshooting → `search_payu_docs`.
+- **Use code fetch for "how"** — Implementation snippets → `get_payu_integration_code`.
+- **Request an API key for heavy use** — Anonymous limits are fine for exploration; production or team usage should use `x-api-key`.
 
-## Important Notes
-
-<Callout icon="⚠️" theme="warning">
-  **Developer docs only** — This server does not create payment links, run transactions, or access your merchant dashboard. Use the [merchant MCP](doc:payu-remote-mcp-server-integration) for those operations.
-</Callout>
-
-<Callout icon="⚠️" theme="warning">
-  **Rate limits** — Anonymous usage is capped at 30 req/min and 100 req/day. Contact **ai-admin@payu.in** for a key if you hit limits.
-</Callout>
-
-<Callout icon="⚠️" theme="warning">
-  **Verify in dashboard** — Always confirm credentials, salt, and environment (test vs production) in the [PayU Dashboard](https://onboarding.payu.in/) before going live.
-</Callout>
-
-<Callout icon="⚠️" theme="warning">
-  **Docs are authoritative** — Snippets are sourced from PayU documentation; re-check hash algorithms, endpoints, and field names against the latest docs before production deploys.
-</Callout>
+> ⚠️ \## Important Notes
+>
+> - **Developer docs only** — This server does not create payment links, run transactions, or access your merchant dashboard. Use the [merchant MCP](doc:payu-remote-mcp-server-integration) for those operations.
+> - **Rate limits** — Anonymous usage is capped at 30 req/min and 100 req/day. Contact **[ai-admin@payu.in](mailto:ai-admin@payu.in)** for a key if you hit limits.
+> - **Verify in dashboard** — Always confirm credentials, salt, and environment (test vs production) in the [PayU Dashboard](https://onboarding.payu.in/) before going live.
+> - **Docs are authoritative** — Snippets are sourced from PayU documentation; re-check hash algorithms, endpoints, and field names against the latest docs before production deploys.
 
 ## Support
 
-* **API key requests** — [ai-admin@payu.in](mailto:ai-admin@payu.in)
-* **Developer documentation** — [https://docs.payu.in/](https://docs.payu.in/)
-* **Repository** — [https://github.com/payu-intrepos/payu-developer-mcp](https://github.com/payu-intrepos/payu-developer-mcp)
+- **API key requests** — [ai-admin@payu.in](mailto:ai-admin@payu.in)
+- **Developer documentation** — [https://docs.payu.in/](https://docs.payu.in/)
+- **Repository** — [https://github.com/payu-intrepos/payu-developer-mcp](https://github.com/payu-intrepos/payu-developer-mcp)
+
+<br />
