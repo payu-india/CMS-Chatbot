@@ -125,7 +125,7 @@ var data = { key: 'O85456',
 
 * The second argument is the Handler which contains two functions. The [`responseHandler()`](https://docs.payu.in/docs/android-checkoutpro-closedloopwallet) function and the [`catchException()`](https://docs.payu.in/docs/android-checkoutpro-closedloopwallet) function.
 
-<Accordion title="Handlers Object" icon="fa-js">
+<Accordion title="Handlers Object" icon="fa-code">
 
 ```plaintext
 var handlers = {responseHandler: function (BOLT) {
