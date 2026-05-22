@@ -10,6 +10,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Net Banking Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Merchant-hosted net banking seamless integration: bank selection, redirect flow, hash, transaction APIs, and net banking payment on your site.
+  keywords:
+    - payu merchant hosted net banking seamless integration web
+    - payment gateway net banking integration merchant hosted payu
+    - integrate net banking payment website custom checkout payu
+    - payu net banking seamless api integration steps india
+    - website net banking payment integration payu merchant hosted
+    - merchant hosted netbanking payment gateway integration guide payu
+    - payu collect payments net banking seamless checkout integration
+    - server side net banking integration payu custom checkout web
+    - payu net banking hash bank code seamless integration
+    - payment gateway india net banking integration payu website
+    - payu custom checkout netbanking api integration developer guide
+    - merchant hosted net banking payment integration payu web
+  robots: index
+
+next:
+  description: ''
+---
 Collect payments using Net Banking with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
 
 <Callout icon="👍" theme="okay">
