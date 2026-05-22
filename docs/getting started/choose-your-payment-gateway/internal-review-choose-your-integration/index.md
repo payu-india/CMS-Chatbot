@@ -1,5 +1,5 @@
 ---
-title: '[Internal Review] Choose your Integration'
+title: '[Internal Review] Payment APIs Getting Started'
 deprecated: false
 hidden: true
 metadata:
