@@ -14,6 +14,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Wallets Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Collect Payments with Wallets - Merchant Hosted Checkout
+  description: >-
+    Merchant-hosted wallet seamless integration: Paytm, PhonePe, Amazon Pay wallets, wallet codes, hash, and wallet payments on your checkout.
+  keywords:
+    - payu merchant hosted wallet seamless integration web india
+    - payment gateway wallet payment integration merchant hosted payu
+    - integrate wallet payments website custom checkout payu guide
+    - payu wallet seamless api integration steps merchant hosted
+    - website wallet payment integration paytm phonepe payu checkout
+    - merchant hosted wallet payment gateway integration payu web
+    - payu collect payments wallet seamless custom checkout integration
+    - server side wallet payment integration payu website checkout
+    - payu wallet hash wallet code seamless integration developer
+    - payment gateway india wallet integration merchant hosted payu
+    - payu custom checkout wallet api integration web guide
+    - merchant hosted wallet payment integration payu website india
+  robots: index
+
+next:
+  description: ''
+---
 You can collect payments from customers with leading wallets using the Merchant Hosted integration. You need to ensure that **CASH** for the **pg** parameter and wallet code based on the desired wallet for the **bankcode** parameter is posted as mentioned in <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>.
 
 **Steps to Integrate**
