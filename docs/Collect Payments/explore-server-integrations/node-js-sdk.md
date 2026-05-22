@@ -14,6 +14,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Node JS SDK
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Node JS SDK for Server-side integration
+  description: >-
+    PayU Node.js server SDK: npm install, merchant credentials, payment API calls, response verification, sandbox testing, go-live.
+  robots: index
+  keywords:
+    - payu node js sdk payment gateway integration india
+    - node js payment gateway sdk server side integration payu
+    - integrate payu payment api node express backend
+    - payment gateway node sdk npm integration payu india
+    - server to server payment integration node sdk payu
+    - node payment api sdk hash verification integration payu
+    - backend payment gateway integration node rest api payu
+    - payu node sdk test credentials sandbox integration guide
+    - enterprise node js payment integration sdk payu checkout
+    - javascript payment gateway sdk documentation integration payu
+    - php java python payment gateway api sdk integration payu node
+    - payu server sdk node java php python payment api india
+
+next:
+  description: ''
+---
 The PayU SDK for NodeJS lets you to easily work with PayU APIs by integrating this SDK within your base system. With NodeJS SDK, you do not need to worry about low-level details for API integration and with a few lines of code and a function call, get started within a few minutes. To install NodeJS Web SDK, refer to Install NodeJS Web SDK.
 
 ## Features Supported
