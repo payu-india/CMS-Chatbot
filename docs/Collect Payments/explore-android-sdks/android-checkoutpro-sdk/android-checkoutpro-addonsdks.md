@@ -14,6 +14,36 @@ next:
       slug: android-checkoutpro-custom-integrations
       title: Customise Your Integration
 ---
+---
+title: Add-on SDKs
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Add-on SDKs for Android CheckoutPro
+  description: >-
+    Add PayU CheckoutPro add-on SDKs on Android: OlaMoney, Google Pay InApp, PhonePe, and Gradle dependencies with CheckoutPro integration links.
+  keywords:
+    - payu checkoutpro addon sdks android integration guide
+    - android checkout pro olamoney gpay phonepe addon sdk
+    - payu addon sdk gradle dependency android checkoutpro payu
+    - integrate google pay inapp android checkout pro payu sdk
+    - olamoney sdk android checkoutpro integration steps payu
+    - phonepe addon checkoutpro android payment sdk payu
+    - mobile payment addon sdk android payu checkoutpro integration
+    - android checkoutpro additional payment options sdk payu
+    - payu android sdk addon modules integration india checkout
+    - integrate payment gateway android checkout pro addons payu
+    - payu checkoutpro sdk wallet addons android developer guide
+    - android payment sdk checkout pro addon gradle integration payu
+  robots: index
+next:
+  description: ''
+  pages:
+    - type: basic
+      slug: android-checkoutpro-custom-integrations
+      title: Customise Your Integration
+---
 # Olamoney SDK
 
 To integrate with Ola money SDK, the merchant can add the below gradle dependency in their app’s build.gradle file
