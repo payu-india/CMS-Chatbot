@@ -24,13 +24,22 @@ hidden: false
 metadata:
   title: Integration Steps - Android Native OTP Assist
   description: >-
-    The Android Native OTP Assist SDK integration involves following specific
-    steps, testing the integration, and completing a go-live checklist, with
-    additional guidance on generating a static hash.
-  keywords:
-    - Android Native OTP Assist Integration Steps
-    - Steps to integrate Android Native OTP Assist
+    PayU Native OTP Assist on Android: card OTP auto-read, SDK setup, payment flow, hash, and integration with Core/CheckoutPro.
   robots: index
+  keywords:
+    - native otp assist card payment android sdk payu
+    - payu android native otp assist sdk integration steps
+    - android card otp auto read payment sdk integration payu
+    - integrate native otp assist android payment gateway payu
+    - mobile card payment sdk android otp assist payu india
+    - android seamless card otp sdk integration guide payu
+    - payment gateway android card otp native assist integration
+    - payu android sdk card payment otp flow integration
+    - android in app card payment otp assist sdk payu
+    - payu native otp assist android test integration guide
+    - card payment android sdk integration otp assist payu
+    - android payment sdk native otp seamless integration payu
+
 next:
   description: ''
 ---
