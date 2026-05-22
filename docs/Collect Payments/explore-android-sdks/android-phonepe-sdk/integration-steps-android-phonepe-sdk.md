@@ -16,6 +16,31 @@ metadata:
     - ' Android PhonePe SDK Integration Steps'
   robots: index
 ---
+---
+title: Integration Steps
+deprecated: false
+hidden: false
+link:
+  new_tab: false
+metadata:
+  title: Android PhonePe SDK Integration Steps
+  description: >-
+    Integrate PhonePe in-app payments on Android with PayU: SDK dependency, intent flow, hash, callbacks, and sandbox testing.
+  robots: index
+  keywords:
+    - phonepe sdk android integration payu payment gateway
+    - payu phonepe android in app payment integration steps
+    - integrate phonepe android app native sdk payu india
+    - android wallet payment sdk phonepe integration guide payu
+    - google pay phonepe in app payment sdk android payu
+    - mobile payment sdk android phonepe intent flow payu
+    - payment gateway android phonepe sdk integration steps
+    - payu android phonepe sdk hash callback integration
+    - android native phonepe payment integration developer payu
+    - payu phonepe sdk test environment android integration
+    - wallet sdk android india phonepe payu integration
+    - android in app wallet payment phonepe payu gateway
+---
 The Android PhonePe SDK integration involves the following steps:
 
 <Cards columns={3}>
