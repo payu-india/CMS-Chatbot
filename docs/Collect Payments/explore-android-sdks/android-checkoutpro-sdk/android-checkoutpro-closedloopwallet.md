@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Integrate with Closed Loop Wallet
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Closed Loop Wallet - Android CheckoutPro
+  description: >-
+    Integrate closed-loop wallet payments with PayU CheckoutPro on Android: enable wallet mode, WALLET_URN params, and checkout flow.
+  keywords:
+    - payu checkoutpro closed loop wallet android integration
+    - android closed loop wallet payment sdk payu checkoutpro
+    - integrate closed loop wallet android checkout pro payu sdk
+    - payu android sdk branded wallet payment integration india
+    - mobile wallet checkoutpro android integration guide payu
+    - payment gateway android closed loop wallet payu sdk
+    - payu checkout pro wallet urn payment parameters android
+    - android in app closed loop wallet integration payu gateway
+    - payu android checkoutpro wallet mode enable dashboard
+    - closed loop wallet sdk android payment integration payu
+    - payu merchant wallet android sdk integration steps checkout
+    - android payment sdk self branded wallet payu checkoutpro
+  robots: index
+next:
+  description: ''
+---
 Closed-Loop wallets allow merchants to accept payments with their self-branded wallets. PayU’s Android SDK enables you to seamlessly integrate with a closed-loop wallet and start accepting payments.
 
 <Callout icon="📘" theme="info">
