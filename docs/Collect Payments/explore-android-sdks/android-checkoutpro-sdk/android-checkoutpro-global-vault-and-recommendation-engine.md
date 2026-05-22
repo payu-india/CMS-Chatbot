@@ -1,13 +1,38 @@
 ---
 title: Integrate Recommendation Engine
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+---
+title: Integrate Recommendation Engine
 excerpt: >-
   Add a recommendation engine on your checkout page for a superior payment
   experience.
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Global Vault and Recommendation Engine - Android CheckoutPro
+  description: >-
+    Enable PayU Global Vault and recommendation engine in CheckoutPro Android: saved instruments, faster repeat checkout, and better conversion.
+  keywords:
+    - payu global vault recommendation engine android checkoutpro
+    - android checkout pro saved payment instruments sdk payu
+    - payu recommendation engine checkoutpro android integration guide
+    - global vault android payment sdk integration payu india
+    - repeat payment saved cards checkoutpro android payu sdk
+    - mobile payment sdk android vault recommendation payu checkout
+    - payu checkoutpro faster checkout saved instruments android
+    - payment gateway android global vault integration payu sdk
+    - payu android sdk recommendation engine payment checkout pro
+    - android checkout pro repeat transaction sdk payu integration
+    - payu global vault cross merchant payments android sdk guide
+    - android payment conversion checkoutpro vault integration payu
   robots: index
 next:
   description: ''
