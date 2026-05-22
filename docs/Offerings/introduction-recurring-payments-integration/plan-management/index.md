@@ -19,14 +19,14 @@ Using a plan gives merchants a structured way to manage SI subscriptions.
 
 <Accordion title="Plan Benefits" icon="fa-list-check">
 <ul><li><strong>Clear customer consent:</strong> The customer sees the amount, frequency, start date, and end date before approving the mandate.</li>
-<li>**Consistent billing schedule:** Your system can calculate upcoming debit dates from the plan instead of relying on manual inputs for every cycle.</li>
-<li>**Easier pre-debit management:** The plan provides the amount and due date needed to trigger pre-debit notifications on time.</li>
-<li>**Faster recurring payment operations:** Merchants can trigger debits from a saved plan and mandate mapping instead of recreating payment details.</li>
-<li>**Better dashboard controls:** The frontend can show plan status, next debit date, last debit status, and allowed actions in one place.</li>
-<li>**Improved reconciliation:** Plan ID or merchant reference, mandate ID, invoice number, and transaction IDs can be mapped together for reports.</li>
-<li>**Safer modifications and cancellations:** Merchants can separate draft edits from active mandate changes and use the correct PayU APIs for supported updates.</li>
-<li>**Reusable subscription setup:** Common plan templates can reduce errors when merchants create similar subscriptions for multiple customers.</li>
-<li>**Better customer support:** Support teams can quickly see what the customer approved, when the next charge is due, and why a debit succeeded or failed.</li></ul>
+<li><strong>Consistent billing schedule:</strong> Your system can calculate upcoming debit dates from the plan instead of relying on manual inputs for every cycle.</li>
+<li><strong>Easier pre-debit management:</strong> The plan provides the amount and due date needed to trigger pre-debit notifications on time.</li>
+<li><strong>Faster recurring payment operations:</strong> Merchants can trigger debits from a saved plan and mandate mapping instead of recreating payment details.</li>
+<li><strong>Better dashboard controls:</strong> The frontend can show plan status, next debit date, last debit status, and allowed actions in one place.</li>
+<li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, invoice number, and transaction IDs can be mapped together for reports.</li>
+<li><strong>Safer modifications and cancellations:</strong> Merchants can separate draft edits from active mandate changes and use the correct PayU APIs for supported updates.</li>
+<li><strong>Reusable subscription setup:</strong> Common plan templates can reduce errors when merchants create similar subscriptions for multiple customers.</li>
+<li><strong>Better customer support:</strong> Support teams can quickly see what the customer approved, when the next charge is due, and why a debit succeeded or failed.</li></ul>
 
 </Accordion>
 
