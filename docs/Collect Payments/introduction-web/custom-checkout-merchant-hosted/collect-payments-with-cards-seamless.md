@@ -10,6 +10,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Cards Integration with Merchant Hosted Checkout or Seamless integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Merchant-hosted seamless cards integration: capture card details on your site, PayU APIs, hash, 3DS flow, and PCI-DSS compliant card payments.
+  keywords:
+    - payu merchant hosted seamless cards integration web
+    - payment gateway card payment integration merchant hosted payu
+    - integrate card payments website seamless checkout payu india
+    - payu custom checkout cards api integration steps web
+    - merchant hosted card payment seamless integration guide payu
+    - website credit debit card payment integration payu gateway
+    - payu collect payments cards seamless merchant hosted checkout
+    - server side card payment integration payu custom checkout
+    - payu card payment hash 3ds seamless integration web
+    - payment gateway india card integration merchant hosted payu
+    - payu web checkout card capture seamless integration developer
+    - custom checkout card payment api integration payu website
+  robots: index
+
+next:
+  description: ''
+---
 PayU supports the following debit cards and credit cards:
 
 * American Express (AMEX)
