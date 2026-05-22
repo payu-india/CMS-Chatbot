@@ -23,9 +23,24 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: UPI Bolt UI SDK integration
+  description: >-
+    UPI Bolt UI SDK on Android: native UI components, UPI intent/collect setup, PayUBolt configuration, test apps, and production.
   robots: index
+  keywords:
+    - payu upi bolt ui sdk android integration procedure
+    - upi bolt ui sdk integration android native payu
+    - payu upi bolt sdk android native integration guide india
+    - upi bolt native integration procedure android payment payu
+    - integrate upi bolt ui android app sdk payu gateway
+    - mobile upi ui sdk android bolt integration steps payu
+    - payment gateway android upi bolt ui sdk integration
+    - payu android upi bolt ui hash intent flow integration
+    - android upi bolt ui native payment sdk developer payu
+    - upi collect intent flow android bolt ui sdk payu
+    - payu bolt ui sdk android test sandbox integration
+    - android native upi payment bolt ui sdk india payu
+
 next:
   description: ''
 ---
