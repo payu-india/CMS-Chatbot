@@ -16,6 +16,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Integration Steps
+deprecated: false
+hidden: false
+metadata:
+  title: Integration Steps - iOS Checkout Pro SDK
+  description: >-
+    Integrate PayU CheckoutPro SDK on iOS with CocoaPods/Swift: SDK setup, payment parameters, hash, callbacks, test cards, go-live.
+  robots: index
+  keywords:
+    - payu checkoutpro sdk ios integration steps swift
+    - ios payment gateway sdk integration cocoapods payu india
+    - iphone ipad payment sdk integration checkout pro payu
+    - integrate payment gateway ios app swift objective c payu
+    - ios upi card payment sdk integration native payu
+    - mobile payment sdk ios integration test sandbox payu
+    - payment gateway ios sdk hash payment callback integration
+    - payu ios sdk seamless checkout integration developer guide
+    - ios payment integration app store release payu sdk
+    - native ios payment gateway integration india payu checkoutpro
+    - payu ios checkout pro sdk cocoapods integration steps
+    - payment gateway ios sdk integration steps india payu
+
+next:
+  description: ''
+---
 The iOS Checkout Pro SDK integration involves the following steps:
 
 ## SDK Integration
