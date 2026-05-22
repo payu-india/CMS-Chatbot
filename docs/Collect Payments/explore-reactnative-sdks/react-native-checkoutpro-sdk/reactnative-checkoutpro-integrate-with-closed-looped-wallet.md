@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Integrate with Closed Looped Wallet
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Integrate closed-loop wallets with PayU CheckoutPro React Native: wallet params, Android/iOS native config, and payment callbacks.
+  keywords:
+    - payu react native checkoutpro closed loop wallet integration
+    - react native closed loop wallet payment sdk integration payu
+    - integrate closed loop wallet react native checkoutpro payu
+    - react native wallet payment gateway sdk integration india
+    - mobile payment sdk react native closed wallet payu checkout
+    - payu checkoutpro react native wallet integration steps
+    - payment gateway react native closed loop wallet payu sdk
+    - react native in app wallet payment integration payu india
+    - payu react native sdk closed loop wallet android ios
+    - react native checkout pro wallet integration developer payu
+    - closed loop wallet react native payment integration payu gateway
+    - react native payment sdk wallet checkoutpro integration payu
+  robots: index
+next:
+  description: ''
+---
 Closed-Loop wallets allow merchants to accept payments with their self-branded wallets. PayU’s SDK enables you to seamlessly integrate with a closed-loop wallet and start accepting payments.
 
 <Callout icon="📘" theme="info">
