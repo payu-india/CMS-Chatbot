@@ -45,6 +45,22 @@ A plan is the billing schedule and amount that the customer agrees to for recurr
 
 For the complete SI field descriptions, refer to [SI Parameter JSON Details](ref:si-parameter-json-details).
 
+## Benefits of a plan
+
+Using a plan gives merchants a structured way to manage SI subscriptions from the frontend and backend.
+
+| Benefit | How it helps |
+| :--- | :--- |
+| Clear customer consent | The customer sees the amount, frequency, start date, and end date before approving the mandate. |
+| Consistent billing schedule | Your system can calculate upcoming debit dates from the plan instead of relying on manual inputs for every cycle. |
+| Easier pre-debit management | The plan provides the amount and due date needed to trigger pre-debit notifications on time. |
+| Faster recurring payment operations | Merchants can trigger debits from a saved plan and mandate mapping instead of recreating payment details. |
+| Better dashboard controls | The frontend can show plan status, next debit date, last debit status, and allowed actions in one place. |
+| Improved reconciliation | Plan ID or merchant reference, mandate ID, invoice number, and transaction IDs can be mapped together for reports. |
+| Safer modifications and cancellations | Merchants can separate draft edits from active mandate changes and use the correct PayU APIs for supported updates. |
+| Reusable subscription setup | Common plan templates can reduce errors when merchants create similar subscriptions for multiple customers. |
+| Better customer support | Support teams can quickly see what the customer approved, when the next charge is due, and why a debit succeeded or failed. |
+
 ## Plan lifecycle
 
 Use a lifecycle in your frontend so merchants can understand which actions are available at each stage.
