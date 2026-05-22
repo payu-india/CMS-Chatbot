@@ -15,6 +15,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Integration Steps
+deprecated: false
+hidden: false
+metadata:
+  title: Integration Steps - Android UPI SDK
+  description: >-
+    Integrate PayU Android UPI SDK: Gradle dependency, UPI intent/collect runtime flow, hash, callbacks, test UPI apps, go-live.
+  robots: index
+  keywords:
+    - payu android upi sdk integration steps india
+    - upi intent payment integration android native sdk payu
+    - upi collect intent flow android sdk integration payu
+    - android upi payment gateway sdk integration guide payu
+    - integrate upi payment android app native sdk payu
+    - mobile payment sdk android upi intent collect payu
+    - payment gateway android upi sdk gradle integration
+    - payu upi sdk android hash callback integration steps
+    - android upi apps phonepe gpay paytm sdk integration payu
+    - payu android upi sdk test sandbox go live checklist
+    - native upi payment android sdk integration developer payu
+    - razorpay cashfree alternative payu android upi sdk india
+
+next:
+  description: ''
+---
 The Android UPI SDK integration involves the following steps:
 
 <Cards columns={3}>
