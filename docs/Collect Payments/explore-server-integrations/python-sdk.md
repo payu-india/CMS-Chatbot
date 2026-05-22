@@ -14,6 +14,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Python SDK
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Python SDK for Server-side Integration
+  description: >-
+    PayU Python server SDK: pip install, merchant key/salt, payment requests, verify/status APIs, sandbox credentials, production go-live.
+  robots: index
+  keywords:
+    - payu python sdk payment gateway integration india
+    - python server side payment gateway sdk integration steps
+    - integrate payu payment api python django flask backend
+    - payment gateway python sdk pip integration payu india
+    - server to server payment integration python sdk payu
+    - python payment api sdk hash verification integration payu
+    - backend payment gateway integration python rest api payu
+    - payu python sdk test credentials sandbox integration guide
+    - enterprise python payment integration sdk payu checkout
+    - python payment gateway sdk documentation integration payu
+    - php java python payment gateway api sdk integration payu
+    - payu server sdk node java php python payment api india
+
+next:
+  description: ''
+---
 Use PayU Python SDK to integrate PayU payment in your website which is built using Python. PayU Python SDK takes care of the low-level details of the API integration and help you to start collecting payment with just a few lines of code and a function call.
 
 ## Supported Payment Features
