@@ -10,16 +10,26 @@ metadata:
 next:
   description: ''
 ---
+> ❌ **Deprecated — do not use for new integrations**
+>
+> The **Settlement Reconciliation API** is deprecated.
+>
+> **Use instead:**
+>
+> - **[Settlement Detail Range API](https://docs.payu.in/reference/settlement-detail-range-api)** — recommended for date-range reconciliation (transaction + UTR level, paginated).
+> - **[Get Settlement Details API](https://docs.payu.in/reference/get_settlement_details_api)** — legacy postservice; also deprecated. Use only for single-date/UTR via `get_settlement_details` until you migrate.
+> - **Cross-border:** [Settlement Detail Range API - CB Payments](https://docs.payu.in/reference/settlement-detail-range-api-for-cross-border)
+
 This API reconciles the settlements for a given parent mid and specified period (date range).
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                  |
-| :--------------------- | :------------------------------- |
-| Test Environment       | \<https://test.payu.in/merchant/> |
-| Production Environment | \<https://info.payu.in/merchant/> |
+|                        |                                                                      |
+| :--------------------- | :------------------------------------------------------------------- |
+| Test Environment       | \<[https://test.payu.in/merchant/>](https://test.payu.in/merchant/>) |
+| Production Environment | \<[https://info.payu.in/merchant/>](https://info.payu.in/merchant/>) |
 
 ## Request parameters
 
@@ -178,8 +188,7 @@ curl -X POST "https://info.payu.in/merchant/postservice?form=2"
 </table>
 `}</HTMLBlock>
 
-
-
+<br />
 
 ### result JSON fields description
 
@@ -451,7 +460,6 @@ The **transaction** field contains the following fields in a JSON format:
 </table>
 `}</HTMLBlock>
 
-
 ## Sample response
 
 ```plaintext
@@ -538,3 +546,5 @@ The **transaction** field contains the following fields in a JSON format:
 }
 
 ```
+
+<br />
