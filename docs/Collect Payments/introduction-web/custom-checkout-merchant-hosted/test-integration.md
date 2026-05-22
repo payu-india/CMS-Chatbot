@@ -10,6 +10,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Test the Integration
+excerpt: Use the Test mode to check if the integration is working as expected.
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Test PayU merchant-hosted checkout: sandbox credentials, test cards/UPI/wallets, verify transactions, hash checks, and pre-production checklist.
+  keywords:
+    - payu merchant hosted checkout test integration sandbox
+    - test payment integration custom checkout payu web india
+    - payment gateway test credentials merchant hosted payu guide
+    - payu test cards upi wallets merchant hosted integration web
+    - website payment test integration payu custom checkout sandbox
+    - merchant hosted checkout test transaction payu integration steps
+    - payu collect payments test integration merchant hosted web guide
+    - test payment integration sandbox go live checklist payu web
+    - payu custom checkout test environment integration developer
+    - payment gateway test mode merchant hosted integration payu india
+    - payu merchant hosted integration testing before production go live
+    - test payu payment api merchant hosted checkout website integration
+  robots: index
+
+next:
+  description: ''
+---
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
 
 You can make test payments using one of the payment methods configured at the Checkout.
