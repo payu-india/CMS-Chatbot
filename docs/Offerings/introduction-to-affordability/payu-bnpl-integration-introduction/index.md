@@ -29,6 +29,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: BNPL Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    BNPL integration with PayU merchant-hosted checkout: buy now pay later flow, eligibility, payment APIs, hash, and BNPL on your website.
+  keywords:
+    - payu bnpl integration merchant hosted checkout web india
+    - payment gateway buy now pay later integration payu website
+    - integrate bnpl payment custom checkout merchant hosted payu
+    - payu bnpl seamless api integration steps web checkout
+    - website bnpl payment integration payu merchant hosted guide
+    - merchant hosted bnpl payment gateway integration payu india
+    - payu collect payments bnpl custom checkout integration developer
+    - server side bnpl payment integration payu website checkout
+    - payu bnpl eligibility payment api integration web guide
+    - payment gateway india bnpl integration merchant hosted payu
+    - payu custom checkout bnpl payment integration steps website
+    - buy now pay later payu payment gateway web integration
+  robots: index
+
+next:
+  description: ''
+---
 BNPL is offered by third-party payment providers or financial institutions that partner with retailers to offer this service at checkout. Customers select **BNPL** as a payment option during checkout and then enter into an agreement with the payment provider or financial institution to pay for their purchase over time. Some BNPL providers charge interest or fees, while others offer interest-free installment plans.
 
 BNPL can be a convenient option for customers who may not have the funds to make a large purchase upfront, but still want to make the purchase and pay for it over time. However, customers should be aware of the terms and conditions of their BNPL agreement, including any interest or fees that may be charged, as well as the potential impact on their credit score.
