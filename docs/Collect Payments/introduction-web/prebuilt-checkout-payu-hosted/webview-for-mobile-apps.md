@@ -46,6 +46,59 @@ WebView is a component that enables mobile apps to collect payments by loading t
 
 You can collect payments from your mobile apps by opening the the PayU checkout form in a WebView. This allows you to reuse your PayU Hosted Checkout integration and get started quickly.
 
+**Choose your platform integration guide:**
+
+<Cards columns={3}>
+  <Card title="Android" href="#configure-native-webview-and-chrome-custom-tab-for-android">
+    WebView settings, POST checkout, UPI intents, and Chrome Custom Tab
+
+    <br />
+  </Card>
+
+  <Card title="iOS" href="#webview-native-integration-on-ios">
+    WKWebView POST checkout, deeplink handling, and LSApplicationQueriesSchemes
+
+    <br />
+  </Card>
+
+  <Card title="Flutter" href="#webview-flutter-integration-on-androidios">
+    webview_flutter, method channels, and UPI launch on Android and iOS
+  </Card>
+</Cards>
+
+<HTMLBlock>{`
+<style>
+.Card {
+  display: block;
+  padding: 1.5rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border: 5px solid #047857;
+  background-image: linear-gradient(to right, #34d399, #059669);
+  transition: all 0.3s ease-in-out;
+}
+
+.Card:hover {
+  background-image: linear-gradient(to right, #10b981, #047857);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.Card h3 {
+  margin: 0 0 0.5rem 0;
+  font-family: sans-serif;
+}
+
+.Card p {
+  margin: 0;
+  font-family: sans-serif;
+  font-weight: normal;
+  opacity: 0.9;
+}
+</style>
+`}</HTMLBlock>
+
 ## Key Characteristics:
 
 1. **Embedded Payment Experience**: Users can complete payments without leaving your app, providing a seamless user experience.
@@ -91,8 +144,6 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 </Accordion>
 
 <Accordion title="Create postData for Payment" icon="fa-code">
-  for Payment
-
   Build a string with the payment parameters and pass it as `postData`. For more information on the payment parameters, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 
   ```curl
@@ -155,6 +206,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
   3. `onPageFinished()`\_—\_method is called when the WebView has finished loading a page. The method is used to handle the success and failure scenarios of the request.
   4. `onPageStarted()`\_—\_method is called when the WebView starts loading a page. The method can be used to show a loading indicator or perform any other necessary actions before the page starts loading.
 
+  <Accordion title="Kotlin (WebViewClient)" icon="fa-code">
   ```java Kotlin
        private fun initWebViewClient(mWebView: WebView){
            mWebView.webViewClient = object : WebViewClient() {
@@ -228,6 +280,9 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 
 
   ```
+  </Accordion>
+
+  <Accordion title="Java (WebViewClient)" icon="fa-code">
   ```Text Java
   private class MyWebViewClient extends WebViewClient { 
    @Override 
@@ -290,6 +345,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
    } 
   } 
   ```
+  </Accordion>
 
   <Accordion title="Step 2 Add the PSP apps package Name inside the manifest file" icon="fa-code">
     Please add the below line of code from the manifest file, outside of the application tag.
@@ -368,6 +424,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 
      -> Need to implement webchromeClient with payuhandleIntent
 
+     <Accordion title="Set payuHandleIntent in session" icon="fa-code">
      ```
      view!!.evaluateJavascript(  
        "sessionStorage.setItem("payuHandleIntent", true);sessionStorage.setItem("payuCBVersion", "1.0.0");"  
@@ -375,6 +432,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
        Log.d("LogName", s!!) // Prints: "this"  
              }
      ```
+     </Accordion>
 
      and need to open new url in new webView or merchant need to call activity.startActivityForResult(intent,101) instead of  mWebView\.context.startActivity(intent) launch intent  and listen psp app response in activity in onActivityResult
 
@@ -392,6 +450,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 
      -> First set for multiple window in webview setting `webSettings.setSupportMultipleWindows(true)` and then set webview client for same and override onCreateWindow function. In onCreateWindow create new webView.
 
+     <Accordion title="Handle window.open (Android)" icon="fa-code">
      ```
        // To support multiple windows
              myWebView.setWebChromeClient(new WebChromeClient() {
@@ -417,6 +476,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
                  }
              });
      ```
+     </Accordion>
 </Accordion>
 
 ## Webview Native Integration on iOS
@@ -553,9 +613,11 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 <Accordion title="FAQ" icon="fa-code">
   #### 1. Do we need to add configuration to use checkout to use local storage -
 
+  <Accordion title="Enable local storage (iOS)" icon="fa-code">
   ```
   webView.configuration.websiteDataStore = WKWebsiteDataStore.default()
   ```
+  </Accordion>
 
   #### 2. In the ICP checkout being opened within a webview inside the application. This configuration is leading to unexpected and unusual behavior, likely due to the way the webview is interacting with the ICP checkout:
 
@@ -587,6 +649,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 
   To achieve this, the WKWebview needs to have a WKUserContentController configured that uses message handlers. Here is a sample configuration and definition. ex. let controller = WKUserContentController()
 
+  <Accordion title="WKWebView message handler setup" icon="fa-code">
   ```
       controller.add(self, name: "observe")
 
@@ -597,22 +660,24 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
       webView = WKWebView(frame: view.frame, configuration: configuration)
   ```
 
-  In the above example, "observe" defines the message thread over which the Javascript code can call a native swift method
-
-  a simple string is sent from Javascript to native swift code via WKScriptMessageHandler interface
-
-  extension WebViewController: WKScriptMessageHandler \{
-
   ```
   func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
 
      print("User message got") }}
   ```
+  </Accordion>
+
+  In the above example, "observe" defines the message thread over which the Javascript code can call a native swift method
+
+  a simple string is sent from Javascript to native swift code via WKScriptMessageHandler interface
+
+  extension WebViewController: WKScriptMessageHandler
 
   #### 10. How to handle window\.open in Webview
 
   As webview did not support multiple tab need to implement below function and create new webview to handle window\.open()
 
+  <Accordion title="Handle window.open (iOS)" icon="fa-code">
   ```
   func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
       
@@ -625,6 +690,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
   }
 
   ```
+  </Accordion>
 </Accordion>
 
 <br />
@@ -632,7 +698,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 ## Webview Flutter Integration on Android/IOS
 
 <Accordion title="Add below dependencies in pubspec.yaml file" icon="fa-code">
-  ```Dependencies
+  ```yaml
   dependencies:
   flutter:
   sdk: flutter
@@ -642,15 +708,13 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 </Accordion>
 
 <Accordion title="Import necessary packages" icon="fa-code">
-  ```Packages
+  ```dart
   import 'package:webview_flutter/webview_flutter.dart';
   import 'package:url_launcher/url_launcher.dart';
   ```
 </Accordion>
 
 <Accordion title="Create postData for Payment" icon="fa-code">
-  for Payment
-
   Build a string with the payment parameters and pass it as `postData`. For more information on the payment parameters, refer to [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 
   ```curl
@@ -703,50 +767,51 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
   </Table>
 </Accordion>
 <Accordion title="Add Method channel code in MainActivity" icon="fa-code">
-  ```Code
-class MainActivity : FlutterActivity() {
-    private val channelName = "com.example.flutterwebview/upi"
+  ```kotlin
+  class MainActivity : FlutterActivity() {
+      private val channelName = "com.example.flutterwebview/upi"
 
-    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
-        super.configureFlutterEngine(flutterEngine)
+      override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+          super.configureFlutterEngine(flutterEngine)
 
-        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channelName)
-            .setMethodCallHandler { call, result ->
-                when (call.method) {
-                    "launchUpi" -> {
-                        val url = call.argument<String>("url")
-                        if (url.isNullOrBlank()) {
-                            result.error("INVALID_URL", "UPI url was null or empty", null)
-                            return@setMethodCallHandler
-                        }
-                        try {
-                            val viewIntent = Intent(Intent.ACTION_VIEW).apply {
-                                data = Uri.parse(url)
-                            }
-                            val chooser = Intent.createChooser(viewIntent, "Pay with")
-                            chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            startActivity(chooser)
-                            result.success(true)
-                        } catch (e: ActivityNotFoundException) {
-                            result.error(
-                                "NO_UPI_APP",
-                                "No UPI app is installed to handle this intent",
-                                e.localizedMessage
-                            )
-                        } catch (e: Exception) {
-                            result.error("LAUNCH_FAILED", e.localizedMessage, null)
-                        }
-                    }
-                    else -> result.notImplemented()
-                }
-            }
+          MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channelName)
+              .setMethodCallHandler { call, result ->
+                  when (call.method) {
+                      "launchUpi" -> {
+                          val url = call.argument<String>("url")
+                          if (url.isNullOrBlank()) {
+                              result.error("INVALID_URL", "UPI url was null or empty", null)
+                              return@setMethodCallHandler
+                          }
+                          try {
+                              val viewIntent = Intent(Intent.ACTION_VIEW).apply {
+                                  data = Uri.parse(url)
+                              }
+                              val chooser = Intent.createChooser(viewIntent, "Pay with")
+                              chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                              startActivity(chooser)
+                              result.success(true)
+                          } catch (e: ActivityNotFoundException) {
+                              result.error(
+                                  "NO_UPI_APP",
+                                  "No UPI app is installed to handle this intent",
+                                  e.localizedMessage
+                              )
+                          } catch (e: Exception) {
+                              result.error("LAUNCH_FAILED", e.localizedMessage, null)
+                          }
+                      }
+                      else -> result.notImplemented()
+                  }
+              }
+      }
   }
-```
+  ```
 </Accordion>
 
 <Accordion title="Use _launchUpiIntent method to handle UPI Deeplink" icon="fa-code">
-```Packages
- static const MethodChannel _upiChannel =
+  ```dart
+  static const MethodChannel _upiChannel =
       MethodChannel('com.example.flutterwebview/upi');
       Future<bool> _launchUpiIntent(String url) async {
     if (Platform.isAndroid) {
@@ -775,8 +840,9 @@ class MainActivity : FlutterActivity() {
 
   ```
 </Accordion>
+
 <Accordion title="Set up WebView with UPI launch capability" icon="fa-code">
-  ```Packages
+  ```dart
       ..setNavigationDelegate(
         NavigationDelegate(
           onNavigationRequest: (NavigationRequest request) async {
