@@ -1,5 +1,5 @@
 ---
-title: '[S2S]Cards Integration with Direct Authorization '
+title: '[Internal Review][S2S]Cards Integration with Direct Authorization '
 deprecated: false
 hidden: true
 metadata:
