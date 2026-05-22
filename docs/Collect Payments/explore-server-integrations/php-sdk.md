@@ -14,6 +14,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: PHP SDK
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: PHP SDK for Server-side Integration
+  description: >-
+    PayU PHP server SDK: Composer install, key/salt config, payment form/API, verify transaction, refunds, sandbox, and go-live.
+  robots: index
+  keywords:
+    - payu php sdk payment gateway integration india
+    - php server side payment gateway sdk integration steps
+    - integrate payu payment api php laravel backend
+    - payment gateway php sdk composer integration payu
+    - server to server payment integration php sdk payu
+    - php payment api sdk hash verification integration payu
+    - backend payment gateway integration php rest api payu
+    - payu php sdk test credentials sandbox integration guide
+    - enterprise php payment integration sdk payu hosted checkout
+    - php payment gateway sdk documentation integration india payu
+    - php java python payment gateway api sdk integration payu
+    - payu server sdk node java php python payment api india
+
+next:
+  description: ''
+---
 The PayU SDK for PHP enables you to easily work with the APIs of PayU by integrating this SDK within your base system. With our SDK, you do not need to worry about low-level details for API integration and with a few lines of code and a function call, get started within a few minutes. To install PHP Web SDK, refer to Install PHP Web SDK.
 
 ## Features Supported
