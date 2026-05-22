@@ -5,37 +5,15 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: '[Internal Review] Choose your Integration'
-excerpt: >-
-  Interactive walkthrough and comparison of PayU no-code, hosted checkout,
-  merchant hosted, mobile SDK, and plugin integration options.
-deprecated: false
-hidden: true
-metadata:
-  title: '[Internal Review] Choose your Integration'
-  description: >-
-    Compare PayU integration options with an interactive finder—no-code, hosted
-    checkout, merchant hosted, mobile SDKs, and ecommerce plugins.
-  robots: index
-next:
-  description: ''
----
 Selecting the appropriate payment solution depends on your specific business needs and technical capabilities.
 
 > 📘 For documentation links by topic (Payment APIs, webhooks, SDKs, plugins), see [Merchant First Integration Guide](doc:merchant-first-integration-guide). For Payment API paths and mandatory hash/webhook steps, see [Payment APIs Getting Started](doc:payment-apis-getting-started).
 
 ## Interactive integration finder
 
-Use the walkthrough below to branch to a recommended PayU integration path. You can restart anytime or read the detailed sections further down this page.
-
-The interactive widget below is rendered by the **Custom HTML Footer** script (not inline on this page). The footer must include the full contents of [payu-integration-wizard-footer.js](scripts/payu-integration-wizard-footer.js) wrapped in `<script>` … `</script>` tags.
-
+<HTMLBlock>{`
 <div id="payu-integration-wizard-mount"></div>
-
-<Callout icon="📘" theme="info">
-  **Readme setup:** Project Settings → Custom HTML → **Footer** → paste the footer script. Keep the mount `<div>` above on this page only. The footer script must use page slug `internal-reviewchoose-your-integration`. Do not paste only the inner `initWizard` logic—the footer needs styles, HTML template, mount logic, and page slug check.
-</Callout>
+`}</HTMLBlock>
 
 Here are some considerations to help you make an informed decision:
 
@@ -132,15 +110,17 @@ By carefully assessing your needs and preferences in these areas, you can select
 - **One-Click Payments**: Enable one-click or fingerprint authentication for speedy checkouts.
 - **Push Notifications**: Send order updates and payment confirmations via mobile notifications.
 
-| Payment Solution              | Ease of Integration | Use Case                                     | Key Features                                                                   |
-| :---------------------------- | :------------------ | :------------------------------------------- | :----------------------------------------------------------------------------- |
-| **No-Code Payment Solutions** |                     |                                              |                                                                                |
-| Payment Links                 | Very Easy           | Simple, efficient payment collection         | Quick setup **|** Customizable **|** Real-time notifications **|** Tracking       |
-| Payment Invoices              | Very Easy           | Professional client billing with invoices    | Invoice generation **|** Payment tracking **|** Payment reminders Customization |
-| Payment Buttons               | Easy                | Seamless integration into websites/platforms | Easy integration **|** Customizable **|** Multiple payment methods **|** Security |
-| **Web Integration**           |                     |                                              |                                                                                |
-| Hosted Checkout               | Easy                | Secure, hassle-free online payments          | Robust security **|** PCI compliance **|** Multiple payment options              |
-| Custom Checkout               | Moderate            | Total control over the payment process       | Full customization **|** Optimal user experience **|** Developer-friendly APIs   |
-| Checkout Express              | Easy                | Seamless payment integration within websites | Seamless integration **|** Enhanced security **|** Easy implementation                   |
-| **Mobile Checkouts**          |                     |                                              |                                                                                |
-| Mobile SDKs                   | Moderate            | Convenient mobile payment experience         | Responsive design **|** Mobile wallet integration **|** One-click payments               |
+| Payment Solution              | Ease of Integration | Use Case                                     | Key Features              |                               |                                      |               |
+| :---------------------------- | :------------------ | :------------------------------------------- | :------------------------ | ----------------------------- | ------------------------------------ | ------------- |
+| **No-Code Payment Solutions** |                     |                                              |                           |                               |                                      |               |
+| Payment Links                 | Very Easy           | Simple, efficient payment collection         | Quick setup \*\*          | **Customizable**              | **Real-time notifications**          | \*\* Tracking |
+| Payment Invoices              | Very Easy           | Professional client billing with invoices    | Invoice generation \*\*   | **Payment tracking**          | \*\* Payment reminders Customization |               |
+| Payment Buttons               | Easy                | Seamless integration into websites/platforms | Easy integration \*\*     | **Customizable**              | **Multiple payment methods**         | \*\* Security |
+| **Web Integration**           |                     |                                              |                           |                               |                                      |               |
+| Hosted Checkout               | Easy                | Secure, hassle-free online payments          | Robust security \*\*      | **PCI compliance**            | \*\* Multiple payment options        |               |
+| Custom Checkout               | Moderate            | Total control over the payment process       | Full customization \*\*   | **Optimal user experience**   | \*\* Developer-friendly APIs         |               |
+| Checkout Express              | Easy                | Seamless payment integration within websites | Seamless integration \*\* | **Enhanced security**         | \*\* Easy implementation             |               |
+| **Mobile Checkouts**          |                     |                                              |                           |                               |                                      |               |
+| Mobile SDKs                   | Moderate            | Convenient mobile payment experience         | Responsive design \*\*    | **Mobile wallet integration** | \*\* One-click payments              |               |
+
+<br />
