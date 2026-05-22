@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Advanced Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Advanced PayU CheckoutPro React Native: custom UI, offers, payment modes, and platform-specific Android/iOS configuration.
+  keywords:
+    - payu react native checkoutpro advanced integration guide
+    - react native payment gateway sdk advanced checkout payu
+    - react native checkoutpro sdk customization integration india
+    - integrate payment gateway react native advanced payu sdk
+    - mobile payment sdk react native checkoutpro advanced payu
+    - payu react native sdk advanced payment modes integration
+    - react native checkout pro advanced android ios payu
+    - payment gateway react native sdk advanced integration steps
+    - payu checkoutpro react native advanced developer guide
+    - react native in app payment advanced sdk integration payu
+    - react native payment sdk india checkoutpro advanced payu
+    - razorpay cashfree alternative payu react native checkoutpro
+  robots: index
+next:
+  description: ''
+---
 This section includes the following advanced integrations with React Native Checkout Pro SDK:
 
 <Callout icon="📘" theme="info">
