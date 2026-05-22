@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: One-Click Checkout with Net Banking
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: One-Click Net Banking - Android CheckoutPro
+  description: >-
+    One-click net banking with PayU CheckoutPro Android: ICICI and Axis biometric checkout without password OTP in the SDK payment flow.
+  keywords:
+    - payu one click checkout net banking android sdk integration
+    - android checkoutpro net banking biometric integration payu
+    - icici axis bank one click netbanking android payu sdk
+    - payu checkout pro net banking without otp android integration
+    - mobile net banking sdk android checkoutpro integration payu
+    - payment gateway android one click net banking payu checkout
+    - payu android sdk net banking fingerprint pin integration steps
+    - android checkout pro netbanking registration flow payu sdk
+    - payu one click net banking checkoutpro android india guide
+    - integrate net banking android app checkout pro payu sdk
+    - android native net banking payment sdk payu checkoutpro
+    - net banking biometric authentication android sdk payu integration
+  robots: index
+next:
+  description: ''
+---
 PayU offers Net banking transactions using biometrics without the need of a username/user ID, password, and OTP. Currently available for ICICI and Axis Bank in PayUCheckoutPro and Custom Browser SDK.
 
 ## Customer Journey
