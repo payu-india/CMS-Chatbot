@@ -1,1 +1,245 @@
-{"openapi":"3.1.0","info":{"title":"Get Aggregator/Parent Transaction Info","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://test.payu.in/merchant","variables":{}}],"paths":{"/postservice":{"post":{"summary":"Get Child Parent Split Transaction Info","operationId":"GetChildParentSplitTransactionInfo","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"type":"integer","contentEncoding":"int32"}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"type":"string"}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","var1","hash"],"type":"object","properties":{"key":{"type":"string","description":"This parameter must contain the parent merchant’s key."},"command":{"const":"get_split_transactions","type":"string","description":"This parameter must contain the command for getting Transaction. For this API, the value should be get_split_transactions."},"var1":{"type":"string","description":"This parameter must contain the start date of the transaction in the yyyy-mm-dd hh:ii format.","examples":["2021-12-29 23:59"]},"hash":{"type":"string"},"var2":{"type":"string","description":"This parameter must contain the end Date of transaction in the yyyy-mm-dd hh:ii format.","examples":["2021-12-29 23:59"]},"var3":{"type":"integer","description":"This parameter must contain the page number that is used for pagination. The default page number is 1.","contentEncoding":"int32","examples":[1]},"var4":{"type":"integer","description":"This parameter must contain the page limit that is used for getting required number of data in one iteration. The default page limit is 1000.","contentEncoding":"int32","examples":[1000]},"var5":{"type":"string","description":"This parameter must contain the child or parent (self) merchant key.  If Parent wants to fetch own split transactions leave empty this field or pass Parent Merchant Key  If Parent wants to fetch specific child merchant split transaction, pass child merchant key","examples":["Ax4j7J"]}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{},"content":{"text/plain":{"schema":{"type":"object","contentMediaType":"text/plain"}}}}},"deprecated":false},"parameters":[]}},"components":{"schemas":{"useCase":{"title":"useCase","type":"object","properties":{"getExtendedPaymentDetails":{"type":"string","description":"This flag is posted as true to check EMI eligibility based on mobile number and/or card number depending on the payment method used. Also, checks the eligibility for “Buy Now Pay Later” payment modes.","examples":["true"]},"getAdditionalCharges":{"type":"string","description":"This flag is posted as true to return the additional charges configured for all payment options.","examples":["true"]},"getTaxSpecification":{"type":"string","description":"This flag is posted as true to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option.","examples":["true"]},"checkDownStatus":{"type":"string","description":"This flag is posted as true to return the downtime of the payment options.","examples":["true"]}}},"var1":{"title":"var1","required":["requestId","transactionDetails","usecase"],"type":"object","properties":{"requestId":{"type":"string","description":"This parameter must contain the request ID."},"transactionDetails":{"allOf":[{"$ref":"#/components/schemas/TransactionDetails"},{}]},"usecase":{"allOf":[{"$ref":"#/components/schemas/useCase"},{}]}}},"Filters":{"title":"Filters","required":["paymentOptions"],"type":"object","properties":{"paymentOptions":{"allOf":[{"$ref":"#/components/schemas/PaymentOptions"},{}]}},"examples":[{"paymentOptions":{"emi":{"dc":"ICIC"}}}]},"command":{"title":"command","const":"get_checkout_details","type":"string","description":"This parameter must contain the command as get_checkout_details.","examples":["get_checkout_details"]},"Content-Type":{"title":"Content-Type","const":"application/x-www-form-urlencoded","type":"string","examples":["application/x-www-form-urlencoded"]},"TransactionDetails":{"title":"TransactionDetails","required":["amount","txnid"],"type":"object","properties":{"amount":{"type":"string","description":"This field contains the transaction amount.","examples":["100.00"]},"txnid":{"type":"string","description":"This fields contains the transaction ID."}}},"key":{"title":"key","const":"JPM7Fg","type":"string","description":"This parameter must contain merchant key provided by PayU.","examples":["JPM7Fg"]},"PaymentOptions":{"title":"PaymentOptions","required":["emi"],"type":"object","properties":{"emi":{"allOf":[{"$ref":"#/components/schemas/Emi"},{}]}},"examples":[{"emi":{"dc":"ICIC"}}]},"UseCase2":{"title":"UseCase2","required":["checkCustomerEligibility"],"type":"object","properties":{"checkCustomerEligibility":{"type":"boolean"}}},"Emi":{"title":"Emi","required":["dc"],"type":"object","properties":{"dc":{"type":"string"}},"examples":[{"dc":"ICIC"}]},"form":{"title":"form","const":2,"type":"integer","examples":[2]},"command1":{"title":"command1","const":"get_aggregator_transactions","type":"string","description":"This parameter must contain the command as \"get_aggregator_transactions.\""},"key1":{"title":"key1","const":"JPM7Fg","type":"string","description":"This parameter must contain the parent merchant’s key."}}},"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Get Aggregator/Parent Transaction Info",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/merchant",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/postservice": {
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "useCase": {
+        "title": "useCase",
+        "type": "object",
+        "properties": {
+          "getExtendedPaymentDetails": {
+            "type": "string",
+            "description": "This flag is posted as true to check EMI eligibility based on mobile number and/or card number depending on the payment method used. Also, checks the eligibility for “Buy Now Pay Later” payment modes.",
+            "examples": [
+              "true"
+            ]
+          },
+          "getAdditionalCharges": {
+            "type": "string",
+            "description": "This flag is posted as true to return the additional charges configured for all payment options.",
+            "examples": [
+              "true"
+            ]
+          },
+          "getTaxSpecification": {
+            "type": "string",
+            "description": "This flag is posted as true to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option.",
+            "examples": [
+              "true"
+            ]
+          },
+          "checkDownStatus": {
+            "type": "string",
+            "description": "This flag is posted as true to return the downtime of the payment options.",
+            "examples": [
+              "true"
+            ]
+          }
+        }
+      },
+      "var1": {
+        "title": "var1",
+        "required": [
+          "requestId",
+          "transactionDetails",
+          "usecase"
+        ],
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "This parameter must contain the request ID."
+          },
+          "transactionDetails": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionDetails"
+              },
+              {}
+            ]
+          },
+          "usecase": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/useCase"
+              },
+              {}
+            ]
+          }
+        }
+      },
+      "Filters": {
+        "title": "Filters",
+        "required": [
+          "paymentOptions"
+        ],
+        "type": "object",
+        "properties": {
+          "paymentOptions": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentOptions"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "paymentOptions": {
+              "emi": {
+                "dc": "ICIC"
+              }
+            }
+          }
+        ]
+      },
+      "command": {
+        "title": "command",
+        "const": "get_checkout_details",
+        "type": "string",
+        "description": "This parameter must contain the command as get_checkout_details.",
+        "examples": [
+          "get_checkout_details"
+        ]
+      },
+      "Content-Type": {
+        "title": "Content-Type",
+        "const": "application/x-www-form-urlencoded",
+        "type": "string",
+        "examples": [
+          "application/x-www-form-urlencoded"
+        ]
+      },
+      "TransactionDetails": {
+        "title": "TransactionDetails",
+        "required": [
+          "amount",
+          "txnid"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string",
+            "description": "This field contains the transaction amount.",
+            "examples": [
+              "100.00"
+            ]
+          },
+          "txnid": {
+            "type": "string",
+            "description": "This fields contains the transaction ID."
+          }
+        }
+      },
+      "key": {
+        "title": "key",
+        "const": "JPM7Fg",
+        "type": "string",
+        "description": "This parameter must contain merchant key provided by PayU.",
+        "examples": [
+          "JPM7Fg"
+        ]
+      },
+      "PaymentOptions": {
+        "title": "PaymentOptions",
+        "required": [
+          "emi"
+        ],
+        "type": "object",
+        "properties": {
+          "emi": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Emi"
+              },
+              {}
+            ]
+          }
+        },
+        "examples": [
+          {
+            "emi": {
+              "dc": "ICIC"
+            }
+          }
+        ]
+      },
+      "UseCase2": {
+        "title": "UseCase2",
+        "required": [
+          "checkCustomerEligibility"
+        ],
+        "type": "object",
+        "properties": {
+          "checkCustomerEligibility": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Emi": {
+        "title": "Emi",
+        "required": [
+          "dc"
+        ],
+        "type": "object",
+        "properties": {
+          "dc": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "dc": "ICIC"
+          }
+        ]
+      },
+      "form": {
+        "title": "form",
+        "const": 2,
+        "type": "integer",
+        "examples": [
+          2
+        ]
+      },
+      "command1": {
+        "title": "command1",
+        "const": "get_aggregator_transactions",
+        "type": "string",
+        "description": "This parameter must contain the command as \"get_aggregator_transactions.\""
+      },
+      "key1": {
+        "title": "key1",
+        "const": "JPM7Fg",
+        "type": "string",
+        "description": "This parameter must contain the parent merchant’s key."
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
