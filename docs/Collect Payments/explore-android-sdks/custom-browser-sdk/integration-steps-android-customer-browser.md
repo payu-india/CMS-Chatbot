@@ -26,15 +26,23 @@ deprecated: false
 hidden: false
 metadata:
   title: Integration Steps - Android Customer Browser
-  description: ''
-  keywords:
-    - Integration Steps - Android Customer Browser
-    - Android Customer Browser Integration Steps
-    - Integrate Android Customer Browser
-    - ' Android Customer Browser Integration Steps'
-    - ' Custom Browser Android Integration Steps'
-    - Custom Browser Mobile SDK - Android Integration Steps
+  description: >-
+    Step-by-step PayU Custom Browser SDK for Android: Gradle setup, hash, payment request, surl/furl handling, test credentials, go-live.
   robots: index
+  keywords:
+    - payu custom browser sdk android integration steps india
+    - android payment gateway sdk integration custom browser payu
+    - integrate payment gateway android app webview checkout payu
+    - mobile payment sdk android gradle integration guide payu
+    - upi card netbanking wallet android sdk integration payu
+    - android payment hash generation sdk integration payu gateway
+    - payment gateway android kotlin java sdk integration steps
+    - payu android sdk test environment sandbox integration guide
+    - android in app payment integration server side hash payu
+    - custom browser mobile sdk android payment integration payu
+    - payu android payment sdk integration
+    - android payment redirect surl furl sdk integration payu
+
 next:
   description: ''
 ---
