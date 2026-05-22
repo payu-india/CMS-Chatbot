@@ -10,6 +10,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Customise Your Integration
+excerpt: Modify the integration to suit your use case.
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Customize PayU CheckoutPro on Android: payment modes, UI, offers, and advanced CheckoutPro SDK options for your app checkout flow.
+  keywords:
+    - payu checkoutpro android custom integration guide
+    - android checkout pro sdk customization payment modes
+    - payu android sdk advanced checkout configuration india
+    - mobile payment sdk android checkoutpro customize ui
+    - integrate payment gateway android app checkout pro payu
+    - android payment gateway sdk offers emi customization
+    - payu checkoutpro sdk android developer customization steps
+    - android in app payment sdk checkout pro configuration
+    - payment gateway android sdk integration customize payu
+    - payu android checkout pro payment page customization
+    - android native payment sdk india checkoutpro advanced
+    - mobile checkout sdk android payu integration customize
+  robots: index
+next:
+  description: ''
+---
+
 The PayUCheckoutPro SDK provides several customization options allowing you to make the SDK closer to the Look & Feel of your app and control some advanced capabilities provided by the SDK.
 
 <Callout icon="📘" theme="info">
