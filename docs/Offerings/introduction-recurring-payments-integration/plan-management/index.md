@@ -30,20 +30,19 @@ Using a plan gives merchants a structured way to manage SI subscriptions.
 
 </Accordion>
 
-## Plan lifecycle
+## Plan Status
 
-Use a lifecycle in your frontend so merchants can understand which actions are available at each stage.
+Every plan goes through the following statuses:
 
-| Status          | Meaning                                                             | Typical frontend actions                                            |
-| :-------------- | :------------------------------------------------------------------ | :------------------------------------------------------------------ |
-| Draft           | Plan details are being configured and consent is not yet requested. | Edit, preview, duplicate, delete draft.                             |
-| Consent pending | Customer checkout or mandate registration has started.              | View, resend link if applicable, mark failed after timeout.         |
-| Active          | Consent succeeded and future debits can be scheduled.               | View, schedule pre-debit, trigger recurring debit, cancel mandate.  |
-| Debit scheduled | A pre-debit notification has been sent for an upcoming charge.      | View notification, track debit window, trigger debit when eligible. |
-| Paused          | Merchant has stopped scheduling debits temporarily in their system. | Resume, cancel.                                                     |
-| Completed       | Plan end date or planned billing count has been reached.            | View, export, duplicate.                                            |
-| Cancelled       | Mandate or merchant plan has been cancelled.                        | View, export, create a new plan.                                    |
-| Failed          | Consent or recurring debit failed.                                  | View failure reason, retry consent, retry debit where applicable.   |
+<Cards>
+  <Card title="Draft" icon="fa-file-pen">
+    Plans are saved in the system but not active. You cannot use draft plans for subscriptions until they are activated.
+  </Card>
+
+  <Card title="Active" icon="fa-circle-check">
+    A plan becomes active once it is created and immediately available for creating subscriptions.
+  </Card>
+</Cards>
 
 ## Frontend actions for plan management
 
