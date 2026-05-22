@@ -6,6 +6,32 @@ metadata:
   title: Net Banking TPV Integration - PayU Hosted Checkout
   robots: index
 ---
+---
+title: Net Banking TPV Integration
+deprecated: false
+hidden: false
+link:
+  new_tab: false
+  url: https://docs.payu.in/docs/net-banking-integration-for-tpv/
+metadata:
+  description: >-
+    Net banking TPV with merchant-hosted checkout: third party verification, beneficiary validation, bank TPV params, and hash for web payments.
+  robots: index
+  keywords:
+    - payu net banking tpv integration merchant hosted web
+    - tpv third party verification netbanking integration payu india
+    - merchant hosted net banking tpv payment gateway integration
+    - integrate net banking tpv custom checkout website payu
+    - payu tpv netbanking api integration steps merchant hosted
+    - website net banking tpv beneficiary validation payu checkout
+    - payment gateway tpv net banking integration payu web guide
+    - payu collect payments net banking tpv custom checkout integration
+    - server side tpv net banking integration payu website payment
+    - payu merchant hosted tpv verification payment integration india
+    - custom checkout net banking tpv hash integration payu developer
+    - net banking third party verification payu web integration guide
+---
+
 For Net Banking integration, you need to post transaction details to PayU with bank account details for validation.
 
 <Callout icon="👍" theme="okay">
