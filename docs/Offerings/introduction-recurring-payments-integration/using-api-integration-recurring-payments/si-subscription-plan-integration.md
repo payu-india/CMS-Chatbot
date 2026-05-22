@@ -20,7 +20,7 @@ next:
 ---
 Use Standing Instruction (SI) subscription plan integration when your business owns the billing schedule and wants to charge customers automatically after collecting their consent. In this flow, you define the plan details in your system, pass the same details to PayU during mandate registration, notify the customer before every debit, and trigger recurring charges as per the plan.
 
-<Callout icon="📘" theme="info">
+<Callout theme="info">
   **Before you begin**: Enable Subscriptions for your PayU merchant account. Contact your PayU Key Account Manager or onboarding team before integrating SI plans.
 </Callout>
 
@@ -63,7 +63,7 @@ Create and store the plan in your system before initiating the consent transacti
 | End date | Date on which the plan ends. | 2027-05-31 |
 | Customer identifier | Your internal customer or subscription reference. | CUST-10001 |
 
-<Callout icon="🚧" theme="warn">
+<Callout theme="warn">
   Keep your internal plan record immutable after consent is collected, except for changes explicitly approved through mandate modification flows. The plan values are used by PayU and banks to validate recurring charges.
 </Callout>
 
@@ -99,7 +99,7 @@ The consent transaction can be initiated through either of the following integra
 * [Payment Consent Transaction using PayU Hosted Checkout](ref:payment-consent-transaction-payu-hosted)
 * [Payment Consent Transaction with Merchant Hosted Checkout](ref:payment-consent-transaction-merchant-hosted)
 
-<Callout icon="📘" theme="info">
+<Callout theme="info">
   The first transaction must complete the required authentication flow. Subsequent recurring debits are processed against the registered mandate and do not require the customer to enter card credentials or complete 2FA again.
 </Callout>
 

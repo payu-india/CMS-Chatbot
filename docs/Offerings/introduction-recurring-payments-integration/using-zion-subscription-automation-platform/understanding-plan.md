@@ -39,7 +39,7 @@ The following APIs are used to link or de-link plans with a subscription:
 
 ## Manage Plans
 
-Merchant can create subscription plan with combination of billing cycles and billing amount and keep associating with subscription. Merchant needs to leverage Subscription interface directly.
+Merchant can create subscription plan with combination of billing cycles and billing amount and keep associating with subscription. Merchant needs to leverage Subscription interface directly. For the complete plan model, frontend actions, and API reference links, refer to [Plan Management](doc:plan-management).
 
 ## Manage Invoice
 
