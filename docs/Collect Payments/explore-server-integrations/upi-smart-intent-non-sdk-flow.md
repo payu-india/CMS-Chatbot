@@ -16,6 +16,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: UPI Intent - Non SDK Flow
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: UPI Smart Intent - Non SDK Flow
+  description: >-
+    UPI Smart Intent non-SDK server flow: generate intent URL/QR, handle callbacks, verify payment status, and test before go-live.
+  robots: index
+  keywords:
+    - upi smart intent non sdk flow payu server integration
+    - payu upi intent server side integration without mobile sdk
+    - upi smart intent payment integration backend api payu india
+    - server side upi intent flow payment gateway integration payu
+    - upi collect intent flow server integration payu non sdk
+    - generate upi intent link qr server payment integration payu
+    - backend upi payment integration smart intent payu gateway
+    - payu upi smart intent api integration guide india
+    - server to server upi intent payment integration payu
+    - upi intent non sdk merchant server integration steps payu
+    - payment gateway upi intent server integration india payu
+    - test upi smart intent integration sandbox payu server flow
+
+next:
+  description: ''
+---
 The Non SDK implementation for finding the UPI supported application in the customer's device. The following steps will help you first find the application installed in the customer's device supporting smart intent.
 
 You can use PayU APIs to initiate the transaction and get the Intent payment URI which includes payment details required for the PSP app customer will select for payment. After completion of payment by the customer, you can verify the transaction using the **Verify Payment** API. The following steps are required to enable Smart Intent-based UPI payment in your application.
