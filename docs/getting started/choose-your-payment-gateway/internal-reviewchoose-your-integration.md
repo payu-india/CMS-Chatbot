@@ -7,8 +7,6 @@ metadata:
 ---
 Selecting the appropriate payment solution depends on your specific business needs and technical capabilities.
 
-## Interactive integration finder
-
 <HTMLBlock>{`
 <div id="payu-integration-wizard-mount"></div>
 `}</HTMLBlock>
