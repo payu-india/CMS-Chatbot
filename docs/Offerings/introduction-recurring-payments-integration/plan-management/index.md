@@ -13,25 +13,6 @@ PayU does not require you to create a separate plan object before registering an
 >
 > Enable Subscriptions for your PayU merchant account. Contact your PayU Key Account Manager or onboarding team before integrating SI plans.
 
-## What is a plan?
-
-A plan is the billing schedule and amount that the customer agrees to for recurring payments. It should include enough information for your system, PayU, and the customer to identify what will be charged and when.
-
-| Plan field         | Description                                                       | PayU mapping                                                        |
-| :----------------- | :---------------------------------------------------------------- | :------------------------------------------------------------------ |
-| Plan name          | Merchant-defined name shown to the customer.                      | Store in your system or pass through UDF/custom fields if required. |
-| Billing amount     | Amount charged for each billing cycle or maximum approved amount. | `si_details.billingAmount`                                          |
-| Billing currency   | Currency for the recurring amount.                                | `si_details.billingCurrency`                                        |
-| Billing cycle      | Frequency such as DAILY, WEEKLY, MONTHLY, YEARLY, ONCE, or ADHOC. | `si_details.billingCycle`                                           |
-| Billing interval   | Interval for the selected billing cycle.                          | `si_details.billingInterval`                                        |
-| Start date         | Date from which recurring payments can start.                     | `si_details.paymentStartDate`                                       |
-| End date           | Date on which recurring payments should end.                      | `si_details.paymentEndDate`                                         |
-| Customer details   | Customer name, email, phone, and identifier.                      | `_payment` request parameters and merchant records.                 |
-| Mandate identifier | PayU identifier returned after successful consent.                | `mihpayid`, `authpayuid`, or relevant response identifier.          |
-| Plan status        | State used by your frontend to control actions.                   | Merchant-managed state, updated using PayU responses and webhooks.  |
-
-For the complete SI field descriptions, refer to [SI Parameter JSON Details](ref:si-parameter-json-details).
-
 ## Plan lifecycle
 
 Use a lifecycle in your frontend so merchants can understand which actions are available at each stage.
@@ -69,8 +50,6 @@ The following actions can be exposed on a merchant dashboard or internal fronten
 | Duplicate plan              | Copy plan configuration to create a new draft for another customer.                                                                 | No PayU API call is required until consent starts.                                                                                                                                                                  |
 | Export plans                | Download plan, mandate, and debit history for reconciliation.                                                                       | Use your merchant records with [Verify Payment API](ref:verify_payment_api) where status refresh is needed.                                                                                                         |
 
-> 
->
 > Keep draft edits separate from active mandate changes. Once the customer has approved a mandate, use only the supported modification or cancellation flows for that payment mode.
 
 ## Recommended frontend sections
