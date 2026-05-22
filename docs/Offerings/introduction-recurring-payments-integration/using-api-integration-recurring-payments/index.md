@@ -18,7 +18,7 @@ metadata:
 next:
   description: ''
 ---
-Use [SI - Subscription Plan Integration](doc:si-subscription-plan-integration) to define the billing schedule in your system, capture customer consent, and trigger recurring debits through PayU APIs.
+Use [SI - Subscription Plan Integration](doc:si-subscription-plan-integration) to define the billing schedule in your system, and [Plan Management](doc:plan-management) to build merchant frontend actions for creating, viewing, modifying, pausing, and cancelling SI plans.
 
 The following APIs are used to integrate subscription for Net Banking, Cards, and UPI. These APIs are mandatory for any merchant to go live and comply with all the standing instruction guidelines:
 
