@@ -18,8 +18,8 @@ PayU does not require you to create a separate plan object before registering an
 Using a plan gives merchants a structured way to manage SI subscriptions.
 
 <Accordion title="Plan Benefits" icon="fa-list-check">
-    - **Clear customer consent:** The customer sees the amount, frequency, start date, and end date before approving the mandate.<br/>
-    - **Consistent billing schedule:** Your system can calculate upcoming debit dates from the plan instead of relying on manual inputs for every cycle.<br/>
+***Clear customer consent:** The customer sees the amount, frequency, start date, and end date before approving the mandate.<br/>
+***Consistent billing schedule:** Your system can calculate upcoming debit dates from the plan instead of relying on manual inputs for every cycle.<br/>
     - **Easier pre-debit management:** The plan provides the amount and due date needed to trigger pre-debit notifications on time.<br/>
     - **Faster recurring payment operations:** Merchants can trigger debits from a saved plan and mandate mapping instead of recreating payment details.<br/>
     - **Better dashboard controls:** The frontend can show plan status, next debit date, last debit status, and allowed actions in one place.<br/>
