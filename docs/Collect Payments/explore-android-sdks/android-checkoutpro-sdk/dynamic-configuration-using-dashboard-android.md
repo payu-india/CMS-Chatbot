@@ -10,7 +10,33 @@ metadata:
 next:
   description: ''
 ---
-When using checkout pro SDK, you can customize the configurations dynamically. This can be done without updating or releasing your application release. You can update the order of payment options listed on the app, color theme, logo, and other configurations can be updated remotely. This will reduce your effort and time to update these configurations and provides flexibility to all the possible changes you wish to make.
+---
+title: Dynamic Configuration using Dashboard
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Dynamic Configuration using Dashboard - Android CheckoutPro
+  description: >-
+    Dynamic CheckoutPro Android config from PayU Dashboard: remote payment order, theme, logo updates without an app store release.
+  keywords:
+    - payu checkoutpro dynamic configuration dashboard android
+    - android checkout pro remote sdk configuration payu guide
+    - payu dashboard dynamic payment options android checkoutpro sdk
+    - mobile payment sdk android dynamic config without release payu
+    - payment gateway android checkoutpro dashboard configuration payu
+    - payu android sdk remote theme logo payment options update
+    - dynamic configuration checkoutpro android integration guide payu
+    - payu checkout pro dashboard override local config android sdk
+    - android payment sdk dynamic configuration payu india checkout
+    - integrate payment gateway android checkout pro remote config payu
+    - payu android checkoutpro sdk dashboard customization guide
+    - android checkout pro dynamic payment modes configuration payu
+  robots: index
+next:
+  description: ''
+---
+When using Android Checkout Pro SDK, you can customize the configurations dynamically. This can be done without updating or releasing your application release. You can update the order of payment options listed on the app, color theme, logo, and other configurations can be updated remotely. This will reduce your effort and time to update these configurations and provides flexibility to all the possible changes you wish to make.
 
 This feature is specifically intended to dynamically fetch the details from the server based on the values you have saved and want the SDK to adopt. It will replace/override only those configurations that you will update using the PayU Dashboard of the local configuration provided during the integration of SDK with your application.
 
