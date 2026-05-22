@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Advanced Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Advanced PayU CheckoutPro iOS integration: custom UI, payment modes, offers, SKU flows, and CheckoutPro SDK configuration options.
+  keywords:
+    - payu ios checkoutpro advanced integration guide swift
+    - ios checkout pro sdk advanced configuration payment payu
+    - iphone payment sdk checkoutpro customize integration payu
+    - integrate payment gateway ios advanced checkout pro payu
+    - ios payment gateway sdk customization checkoutpro india
+    - payu ios sdk advanced payment modes offers integration
+    - mobile payment sdk ios checkoutpro advanced developer
+    - payment gateway ios sdk advanced integration steps payu
+    - payu checkoutpro ios sdk ui customization integration
+    - native ios checkout pro advanced payment integration payu
+    - ios in app payment sdk advanced checkoutpro payu india
+    - swift ios payment sdk checkout pro advanced guide payu
+  robots: index
+next:
+  description: ''
+---
 The iOS CheckoutPro SDK provides the following advanced integration options:
 
 ### Tip
