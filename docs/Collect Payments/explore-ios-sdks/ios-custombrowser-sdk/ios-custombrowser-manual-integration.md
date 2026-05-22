@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Manual Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Manually integrate PayU Custom Browser iOS SDK: download framework, Xcode linking, headers, and WebView payment checkout setup.
+  keywords:
+    - payu ios custom browser manual integration guide india
+    - ios custom browser sdk manual framework integration payu
+    - integrate custom browser ios manually xcode payu sdk
+    - iphone payment sdk manual integration custom browser payu
+    - payment gateway ios manual sdk integration steps payu
+    - payu custom browser ios framework manual install guide
+    - mobile payment sdk ios manual custom browser integration
+    - ios webview payment manual sdk integration payu gateway
+    - payu ios custombrowser manual xcode linking integration
+    - native ios custom browser manual payment sdk payu
+    - ios in app payment manual custom browser integration payu
+    - swift objective c custom browser manual sdk payu ios
+  robots: index
+next:
+  description: ''
+---
 To integrate with CustomBrowser in iOS manually:
 
 1. Download the latest custom browser archive from the following PayU Github location and extract it:
