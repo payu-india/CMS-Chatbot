@@ -1,1 +1,256 @@
-{"openapi":"3.1.0","info":{"title":"PayU Payment API","version":"1.0.0","description":"PayU Payment Gateway API for processing payments","contact":{"name":"PayU Support","url":"https://www.payu.in"}},"servers":[{"url":"https://test.payu.in","description":"Test Environment"},{"url":"https://secure.payu.in","description":"Production Environment"}],"paths":{"/_payment":{"post":{"summary":"Process Payment","description":"Initiate a payment transaction through PayU gateway","operationId":"processPayment","tags":["Payment"],"requestBody":{"required":true,"content":{"application/x-www-form-urlencoded":{"schema":{"$ref":"#/components/schemas/PaymentRequest"},"example":{"key":"JPM7Fg","txnid":"5jJ9xYceXX1ydT","amount":"1000.00","firstname":"Ashish","email":"test@gmail.com","phone":"9876543210","productinfo":"iPhone","pg":"NEFTRTGS","bankcode":"EFTAXIS","surl":"https://apiplayground-response.herokuapp.com/","furl":"https://apiplayground-response.herokuapp.com/","hash":"6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"}}}},"responses":{"200":{"description":"Payment initiated successfully","content":{"application/json":{"schema":{"$ref":"#/components/schemas/PaymentResponse"}}}},"400":{"description":"Bad Request - Invalid parameters","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorResponse"}}}},"401":{"description":"Unauthorized - Invalid key or hash","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorResponse"}}}},"500":{"description":"Internal Server Error","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorResponse"}}}}}}}},"components":{"schemas":{"PaymentRequest":{"type":"object","required":["key","txnid","amount","firstname","email","phone","productinfo","pg","bankcode","surl","furl","hash"],"properties":{"key":{"type":"string","const":"JPM7Fg","description":"Merchant key provided by PayU (fixed value for this integration)","example":"JPM7Fg"},"txnid":{"type":"string","description":"Unique transaction ID for the payment","example":"5jJ9xYceXX1ydT"},"amount":{"type":"string","pattern":"^\\d+(\\.\\d{1,2})?$","description":"Payment amount in decimal format","example":"1000.00"},"firstname":{"type":"string","description":"Customer's first name","example":"Ashish"},"email":{"type":"string","format":"email","description":"Customer's email address","example":"test@gmail.com"},"phone":{"type":"string","pattern":"^[0-9]{10}$","description":"Customer's phone number (10 digits)","example":"9876543210"},"productinfo":{"type":"string","description":"Product information or description","example":"iPhone"},"pg":{"type":"string","const":"NEFTRTGS","description":"Payment gateway option (fixed value for NEFT/RTGS)","example":"NEFTRTGS"},"bankcode":{"type":"string","const":"EFTAXIS","description":"Bank code for net banking (fixed value for Axis Bank)","example":"EFTAXIS"},"surl":{"type":"string","format":"uri","description":"Success URL - redirect URL on successful payment","example":"https://apiplayground-response.herokuapp.com/"},"furl":{"type":"string","format":"uri","description":"Failure URL - redirect URL on failed payment","example":"https://apiplayground-response.herokuapp.com/"},"hash":{"type":"string","description":"SHA-512 hash for transaction verification","example":"6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"},"lastname":{"type":"string","description":"Customer's last name (optional)","example":"Kumar"},"address1":{"type":"string","description":"Customer's address line 1 (optional)","example":"123 Main Street"},"address2":{"type":"string","description":"Customer's address line 2 (optional)","example":"Apartment 4B"},"city":{"type":"string","description":"Customer's city (optional)","example":"Mumbai"},"state":{"type":"string","description":"Customer's state (optional)","example":"Maharashtra"},"country":{"type":"string","description":"Customer's country (optional)","example":"India"},"zipcode":{"type":"string","description":"Customer's ZIP/postal code (optional)","example":"400001"},"udf1":{"type":"string","description":"User defined field 1 (optional)"},"udf2":{"type":"string","description":"User defined field 2 (optional)"},"udf3":{"type":"string","description":"User defined field 3 (optional)"},"udf4":{"type":"string","description":"User defined field 4 (optional)"},"udf5":{"type":"string","description":"User defined field 5 (optional)"}}},"PaymentResponse":{"type":"object","properties":{"status":{"type":"string","description":"Transaction status","enum":["success","failure","pending"]},"txnid":{"type":"string","description":"Transaction ID"},"amount":{"type":"string","description":"Transaction amount"},"productinfo":{"type":"string","description":"Product information"},"firstname":{"type":"string","description":"Customer first name"},"email":{"type":"string","description":"Customer email"},"phone":{"type":"string","description":"Customer phone"},"mihpayid":{"type":"string","description":"PayU transaction ID"},"mode":{"type":"string","description":"Payment mode used"},"bankcode":{"type":"string","description":"Bank code used"},"pg_type":{"type":"string","description":"Payment gateway type"},"bank_ref_num":{"type":"string","description":"Bank reference number"},"hash":{"type":"string","description":"Response hash for verification"}}},"ErrorResponse":{"type":"object","properties":{"status":{"type":"string","description":"Error status","example":"failure"},"error":{"type":"string","description":"Error message","example":"Invalid hash"},"error_Message":{"type":"string","description":"Detailed error message"}}}}},"tags":[{"name":"Payment","description":"Payment processing operations"}]}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PayU Payment API",
+    "version": "1.0.0",
+    "description": "PayU Payment Gateway API for processing payments",
+    "contact": {
+      "name": "PayU Support",
+      "url": "https://www.payu.in"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://test.payu.in",
+      "description": "Test Environment"
+    },
+    {
+      "url": "https://secure.payu.in",
+      "description": "Production Environment"
+    }
+  ],
+  "paths": {},
+  "components": {
+    "schemas": {
+      "PaymentRequest": {
+        "type": "object",
+        "required": [
+          "key",
+          "txnid",
+          "amount",
+          "firstname",
+          "email",
+          "phone",
+          "productinfo",
+          "pg",
+          "bankcode",
+          "surl",
+          "furl",
+          "hash"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "const": "JPM7Fg",
+            "description": "Merchant key provided by PayU (fixed value for this integration)",
+            "example": "JPM7Fg"
+          },
+          "txnid": {
+            "type": "string",
+            "description": "Unique transaction ID for the payment",
+            "example": "5jJ9xYceXX1ydT"
+          },
+          "amount": {
+            "type": "string",
+            "pattern": "^\\d+(\\.\\d{1,2})?$",
+            "description": "Payment amount in decimal format",
+            "example": "1000.00"
+          },
+          "firstname": {
+            "type": "string",
+            "description": "Customer's first name",
+            "example": "Ashish"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Customer's email address",
+            "example": "test@gmail.com"
+          },
+          "phone": {
+            "type": "string",
+            "pattern": "^[0-9]{10}$",
+            "description": "Customer's phone number (10 digits)",
+            "example": "9876543210"
+          },
+          "productinfo": {
+            "type": "string",
+            "description": "Product information or description",
+            "example": "iPhone"
+          },
+          "pg": {
+            "type": "string",
+            "const": "NEFTRTGS",
+            "description": "Payment gateway option (fixed value for NEFT/RTGS)",
+            "example": "NEFTRTGS"
+          },
+          "bankcode": {
+            "type": "string",
+            "const": "EFTAXIS",
+            "description": "Bank code for net banking (fixed value for Axis Bank)",
+            "example": "EFTAXIS"
+          },
+          "surl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Success URL - redirect URL on successful payment",
+            "example": "https://apiplayground-response.herokuapp.com/"
+          },
+          "furl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Failure URL - redirect URL on failed payment",
+            "example": "https://apiplayground-response.herokuapp.com/"
+          },
+          "hash": {
+            "type": "string",
+            "description": "SHA-512 hash for transaction verification",
+            "example": "6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "Customer's last name (optional)",
+            "example": "Kumar"
+          },
+          "address1": {
+            "type": "string",
+            "description": "Customer's address line 1 (optional)",
+            "example": "123 Main Street"
+          },
+          "address2": {
+            "type": "string",
+            "description": "Customer's address line 2 (optional)",
+            "example": "Apartment 4B"
+          },
+          "city": {
+            "type": "string",
+            "description": "Customer's city (optional)",
+            "example": "Mumbai"
+          },
+          "state": {
+            "type": "string",
+            "description": "Customer's state (optional)",
+            "example": "Maharashtra"
+          },
+          "country": {
+            "type": "string",
+            "description": "Customer's country (optional)",
+            "example": "India"
+          },
+          "zipcode": {
+            "type": "string",
+            "description": "Customer's ZIP/postal code (optional)",
+            "example": "400001"
+          },
+          "udf1": {
+            "type": "string",
+            "description": "User defined field 1 (optional)"
+          },
+          "udf2": {
+            "type": "string",
+            "description": "User defined field 2 (optional)"
+          },
+          "udf3": {
+            "type": "string",
+            "description": "User defined field 3 (optional)"
+          },
+          "udf4": {
+            "type": "string",
+            "description": "User defined field 4 (optional)"
+          },
+          "udf5": {
+            "type": "string",
+            "description": "User defined field 5 (optional)"
+          }
+        }
+      },
+      "PaymentResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Transaction status",
+            "enum": [
+              "success",
+              "failure",
+              "pending"
+            ]
+          },
+          "txnid": {
+            "type": "string",
+            "description": "Transaction ID"
+          },
+          "amount": {
+            "type": "string",
+            "description": "Transaction amount"
+          },
+          "productinfo": {
+            "type": "string",
+            "description": "Product information"
+          },
+          "firstname": {
+            "type": "string",
+            "description": "Customer first name"
+          },
+          "email": {
+            "type": "string",
+            "description": "Customer email"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Customer phone"
+          },
+          "mihpayid": {
+            "type": "string",
+            "description": "PayU transaction ID"
+          },
+          "mode": {
+            "type": "string",
+            "description": "Payment mode used"
+          },
+          "bankcode": {
+            "type": "string",
+            "description": "Bank code used"
+          },
+          "pg_type": {
+            "type": "string",
+            "description": "Payment gateway type"
+          },
+          "bank_ref_num": {
+            "type": "string",
+            "description": "Bank reference number"
+          },
+          "hash": {
+            "type": "string",
+            "description": "Response hash for verification"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Error status",
+            "example": "failure"
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message",
+            "example": "Invalid hash"
+          },
+          "error_Message": {
+            "type": "string",
+            "description": "Detailed error message"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Payment",
+      "description": "Payment processing operations"
+    }
+  ]
+}
