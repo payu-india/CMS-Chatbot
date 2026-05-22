@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Create SKU Based Offers for Android Checkout Pro
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: SKU Based Offers - Android CheckoutPro
+  description: >-
+    Create SKU-based offers for PayU CheckoutPro Android: dashboard offer setup, SKU params, auto-apply best offer, and SDK integration steps.
+  keywords:
+    - payu checkoutpro sku based offers android integration guide
+    - android checkout pro create offers sku sdk payu india
+    - payu android sdk promotional offers sku integration checkoutpro
+    - mobile payment sdk android sku offers checkoutpro payu gateway
+    - payment gateway android offers emi sku checkout pro payu
+    - integrate sku offers android checkoutpro sdk payu developer
+    - payu checkoutpro offers api android integration steps guide
+    - android in app payment offers sku checkout pro sdk payu
+    - payu android sdk auto apply best offer checkoutpro integration
+    - create offers dashboard android checkout pro sdk payu merchant
+    - android payment sdk sku cart offers integration payu checkout
+    - payu merchant offers checkoutpro android developer guide india
+  robots: index
+next:
+  description: ''
+---
 PayU allows merchants to create offers for specific Products/SKUs in the cart and for whole cart. SKU offers will be shown only when the specific product is added by the user and hence can be used by the merchant to promote specific products.
 
 # Create an offer on dashboard
