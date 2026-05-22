@@ -7,8 +7,6 @@ metadata:
 ---
 Selecting the appropriate payment solution depends on your specific business needs and technical capabilities.
 
-> 📘 For documentation links by topic (Payment APIs, webhooks, SDKs, plugins), see [Merchant First Integration Guide](doc:merchant-first-integration-guide). For Payment API paths and mandatory hash/webhook steps, see [Payment APIs Getting Started](doc:payment-apis-getting-started).
-
 ## Interactive integration finder
 
 <HTMLBlock>{`
