@@ -19,6 +19,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Integrate with Android
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: React Native Core SDK for Android
+  description: >-
+    Integrate PayU Core SDK with React Native on Android: native module, Gradle, payment request, hash, and Android bridge setup.
+  robots: index
+  keywords:
+    - payu react native core sdk android integration guide india
+    - react native payment gateway sdk android core integration payu
+    - integrate payu core sdk react native android app payu
+    - react native android payment sdk integration steps payu
+    - mobile payment sdk react native android native module payu
+    - payment gateway react native android sdk integration payu core
+    - payu react native coresdk android gradle bridge integration
+    - react native in app payment android core sdk payu india
+    - android react native payu core sdk seamless integration
+    - react native android hash payment callback core sdk payu
+    - payu react native core sdk android test integration guide
+    - payment gateway react native android integration india payu
+
+next:
+  description: ''
+---
 To integrate React Native Code SDK on Android, follow these steps:
 
 ## SDK Integration Steps
