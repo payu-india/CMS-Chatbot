@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: TPV with Android Core SDK
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Third Party Verification (TPV) with PayU Android Core SDK: beneficiary validation, UPI TPV flow, and server-side hash setup.
+  keywords:
+    - payu android core sdk tpv integration guide india
+    - tpv third party verification upi sdk android integration
+    - android payment gateway tpv beneficiary validation payu
+    - payu coresdk android tpv uPI collect intent flow
+    - integrate tpv payment android native sdk payu gateway
+    - android seamless payment tpv verification integration payu
+    - mobile payment sdk android tpv bank account validation
+    - payu android core sdk third party verification steps
+    - payment gateway android tpv integration developer guide
+    - upi tpv android sdk integration payu india
+    - android native payment tpv flow payu coresdk
+    - server side hash tpv android sdk integration payu
+  robots: index
+next:
+  description: ''
+---
 This section describes <Glossary>TPV</Glossary> integration with Android SDK platform.
 
 > 📘 Note:
