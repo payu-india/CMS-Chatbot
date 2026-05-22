@@ -15,6 +15,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Integrate WebView for Mobile Apps
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Integrate WebView for Mobile Apps with PayU Hosted Checkout
+  description: >-
+    PayU Hosted Checkout in mobile WebView: Android/iOS deeplink handling, UPI intent, NPCI collect changes, and in-app hosted checkout integration.
+  keywords:
+    - payu hosted checkout webview mobile app integration
+    - integrate payu payment page webview android ios app
+    - payment gateway webview checkout integration payu india
+    - payu hosted checkout mobile app deeplink upi intent
+    - android ios webview payu payment integration guide
+    - in app payment webview payu hosted checkout integration
+    - payu webview checkout upi collect disablement handling
+    - mobile app payment gateway webview integration payu
+    - payu hosted checkout webview integration steps developer
+    - website payment webview mobile sdk hosted checkout payu
+    - payu collect payments webview android ios integration
+    - hosted checkout webview payment integration india payu
+  robots: index
+
+next:
+  description: ''
+---
 WebView is a component that enables mobile apps to collect payments by loading the PayU checkout form within the app itself, rather than redirecting users to external browsers. It essentially embeds PayU's Hosted Checkout experience inside a WebView container within your mobile app. WebView essentially bridges the gap between web-based payment forms and native mobile app experiences, making payments feel more integrated and professional within your mobile application.
 
 You can collect payments from your mobile apps by opening the the PayU checkout form in a WebView. This allows you to reuse your PayU Hosted Checkout integration and get started quickly.
