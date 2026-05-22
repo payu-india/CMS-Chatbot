@@ -14,6 +14,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: UPI Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Collect Payments with UPI - Merchant Hosted Checkout
+  description: >-
+    Merchant-hosted seamless UPI integration: UPI collect/intent on your checkout, VPA, hash, surl/furl, and UPI payment APIs for web.
+  keywords:
+    - payu merchant hosted seamless upi integration web india
+    - payment gateway upi payment integration merchant hosted payu
+    - integrate upi collect intent website custom checkout payu
+    - payu upi seamless integration merchant hosted checkout guide
+    - website upi payment integration payu api seamless checkout
+    - upi collect intent flow web integration payu merchant hosted
+    - payu collect payments upi seamless custom checkout integration
+    - server side upi payment integration payu website checkout
+    - payu upi hash vpa seamless payment integration web guide
+    - payment gateway india upi integration merchant website payu
+    - payu custom checkout upi api integration steps developer
+    - merchant hosted upi payment gateway integration payu web
+  robots: index
+
+next:
+  description: ''
+---
 <NPCI_Mandate />
 
 <br />
