@@ -17,7 +17,21 @@ deprecated: false
 hidden: false
 metadata:
   title: ''
-  description: ''
+  description: >-
+    Test PayU Custom Browser iOS integration: sandbox credentials, test cards/UPI, verify surl/furl callbacks, and pre-production checklist.
+  keywords:
+    - payu ios custom browser test integration sandbox guide
+    - ios custom browser sdk test payment integration payu
+    - test payment integration sandbox ios custom browser payu
+    - iphone payment sdk test credentials custom browser payu
+    - payment gateway ios sdk test integration steps payu browser
+    - payu custom browser ios sandbox test cards integration
+    - mobile payment sdk ios test custom browser payu india
+    - ios webview payment test integration surl furl payu
+    - payu ios custombrowser test environment go live checklist
+    - native ios custom browser test payment sdk payu gateway
+    - ios in app payment test custom browser integration payu
+    - test payment integration sandbox ios go live checklist payu
   robots: index
 next:
   description: ''
