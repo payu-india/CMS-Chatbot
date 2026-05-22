@@ -1,7 +1,7 @@
 ---
 title: Flashpay Decoupled Flow Android Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: FlashPay Decoupled Flow Android Integration
   description: >-
