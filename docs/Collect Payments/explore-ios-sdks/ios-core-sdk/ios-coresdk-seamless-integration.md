@@ -1,6 +1,5 @@
 ---
 title: Seamless Integration
-excerpt: Build a seamless integration to create your own UI for payment flow.
 deprecated: false
 hidden: false
 metadata:
@@ -10,6 +9,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Seamless Integration
+excerpt: Build a seamless integration to create your own UI for payment flow.
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    PayU iOS Core SDK seamless integration: native card/UPI flows, payment params, hash, callbacks, test credentials, and go-live.
+  keywords:
+    - payu ios core sdk seamless payment integration india
+    - ios payment gateway sdk seamless integration steps payu
+    - integrate payment gateway ios app core sdk payu seamless
+    - iphone native payment sdk seamless integration guide payu
+    - payment gateway ios swift seamless sdk integration payu
+    - payu ios coresdk seamless card upi integration steps
+    - mobile payment sdk ios seamless native integration payu
+    - ios in app payment seamless integration hash payu sdk
+    - payu ios sdk test sandbox seamless integration guide
+    - native ios payment gateway seamless integration payu
+    - ios card upi payment sdk seamless integration developer
+    - payment gateway ios sdk integration seamless india payu
+  robots: index
+next:
+  description: ''
+---
+Build a seamless iOS Core SDK integration to create your own UI for payment flow.
 <Accordion title="Prerequisites" icon="fa-code">
   > ❗️ Before you begin
   >
