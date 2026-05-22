@@ -15,6 +15,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Integration Steps
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Integration Steps - Android Core SDK
+  description: >-
+    PayU Android Core SDK integration: Gradle setup, payment request, hash, surl/furl, seamless card/UPI flows, test env, and go-live.
+  robots: index
+  keywords:
+    - payu android core sdk seamless payment integration
+    - android payment gateway sdk integration steps payu india
+    - integrate payment gateway android app core sdk payu
+    - mobile payment sdk android native integration guide payu
+    - payu coresdk android gradle integration hash setup
+    - android upi card netbanking seamless sdk integration payu
+    - payment gateway android kotlin java sdk integration steps
+    - payu android sdk test environment sandbox integration
+    - android in app payment integration server side hash payu
+    - native otp assist card payment android sdk payu core
+    - android payment redirect surl furl sdk integration payu
+    - payu android core sdk developer integration guide india
+
+next:
+  description: ''
+---
 Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard** > **Settings** > **Payment methods**. PayU enable Cards, UPI, and other payment methods by default, and it is recommend edthat you enable other payment methods that are relevant to you.
 
 ## Step 1: Create a PayU account
