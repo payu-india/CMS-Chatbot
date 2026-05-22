@@ -16,6 +16,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Integration Steps
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Integration Steps  - Android Google Pay SDK
+  description: >-
+    Add Google Pay to your Android app with PayU: SDK setup, tokenization, payment request, hash, and test before go-live.
+  robots: index
+  keywords:
+    - google pay phonepe in app payment sdk android payu
+    - payu google pay android sdk integration steps india
+    - google pay android payment gateway sdk integration payu
+    - integrate google pay android app payment sdk payu
+    - android google pay native sdk integration guide payu
+    - mobile wallet payment sdk android google pay payu
+    - payment gateway android google pay integration steps
+    - payu android sdk google pay tokenization setup
+    - android in app google pay payment integration payu
+    - google pay upi card android sdk integration india payu
+    - payu google pay sdk test sandbox integration android
+    - android payment sdk google pay merchant integration payu
+
+next:
+  description: ''
+---
 Before you start with the integration, enable the payment methods that you want to offer to your customers from Dashboard > Settings > Payment methods. We enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you.
 
 <Cards columns={3}>
