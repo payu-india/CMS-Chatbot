@@ -21,6 +21,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Android Integration
+deprecated: false
+hidden: false
+metadata:
+  title: React Native Checkout Pro SDK for Android Integration
+  description: >-
+    PayU CheckoutPro React Native on Android: native module linking, Gradle config, hash, payment flow, and Android-specific setup.
+  robots: index
+  keywords:
+    - payu react native checkoutpro android integration steps
+    - react native payment gateway sdk android integration payu
+    - integrate checkoutpro react native android app payu india
+    - react native android payment sdk integration guide payu
+    - mobile payment sdk react native android checkoutpro payu
+    - payu react native checkout pro android gradle integration
+    - payment gateway react native android sdk integration payu
+    - react native checkoutpro android hash callback integration
+    - payu react native android test sandbox integration guide
+    - react native in app payment android sdk payu checkoutpro
+    - android react native payment gateway integration india payu
+    - react native checkoutpro android ios integration payu sdk
+
+next:
+  description: ''
+---
 This section describes how to integrate React Native with Android Checkout Pro SDK.
 
 ## 🔴 IMPORTANT NOTICE - React Native 0.82.0+ Users
