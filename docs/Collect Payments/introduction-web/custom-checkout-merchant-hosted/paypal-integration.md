@@ -10,6 +10,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: PayPal Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    PayPal integration with PayU merchant-hosted checkout: PayPal payment mode, API parameters, hash, redirect flow, and international payments on web.
+  keywords:
+    - payu paypal integration merchant hosted checkout web
+    - payment gateway paypal integration custom checkout payu india
+    - integrate paypal payments website merchant hosted payu guide
+    - payu paypal payment api integration steps web checkout
+    - merchant hosted paypal payment gateway integration payu
+    - website paypal checkout integration payu custom payment payu
+    - payu collect payments paypal merchant hosted integration developer
+    - server side paypal payment integration payu website checkout
+    - payu paypal hash payment mode integration web guide
+    - payment gateway paypal india integration merchant hosted payu
+    - payu custom checkout paypal api integration steps website
+    - international payment paypal integration payu web checkout
+  robots: index
+
+next:
+  description: ''
+---
 Integrate PayU with PayPal wallets to facilitate international payments. PayPal can be seamlessly integrated with your PayU Hosted or Merchant Hosted Checkout integration. Customers have the option to utilize PayPal Currency Conversion to convert international payments from INR (or other currencies) to their chosen currency. This ensures businesses can continue accepting payments via PayPal. Payments made through PayPal are directly transferred to your PayPal wallet, with settlements processed in INR.
 
 You can accept payments within the transaction limits of your PayU account. Discover more about alternative payment methods and their respective transaction limits. This section describes the following:
