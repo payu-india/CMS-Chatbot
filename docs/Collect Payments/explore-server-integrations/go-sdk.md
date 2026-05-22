@@ -14,6 +14,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Go SDK
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Go SDK for Server-side integration
+  description: >-
+    PayU Go server SDK: install module, configure merchant key and salt, create payments, verify responses, sandbox test, go-live.
+  robots: index
+  keywords:
+    - payu go sdk payment gateway integration india
+    - go server side payment gateway sdk integration steps
+    - integrate payu payment api golang backend server
+    - payment gateway go sdk module integration payu india
+    - server to server payment integration go sdk payu
+    - go payment api sdk hash verification integration payu
+    - backend payment gateway integration go rest api payu
+    - payu go sdk test credentials sandbox integration guide
+    - golang payment gateway sdk documentation integration payu
+    - enterprise go payment integration sdk payu hosted checkout
+    - node js payment gateway sdk server side integration payu go
+    - php java python payment gateway api sdk integration payu go
+
+next:
+  description: ''
+---
 Use PayU GO SDK to integrate PayU payment in your website which is built using GO. PayU GO SDK takes care of the low-level details of the API integration and help you to start collecting payment with just a few lines of code and a function call.
 
 
@@ -74,4 +101,3 @@ Before you start with the integration, enable the payment methods that you want 
 <Test_your_integration />
 <br />
 <Go_Live_Checklist />
-
