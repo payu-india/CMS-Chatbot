@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Cocoapods Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Install PayU iOS Core SDK via CocoaPods: Podfile setup, dependencies, Xcode configuration, and first payment integration steps.
+  keywords:
+    - payu ios core sdk cocoapods integration guide india
+    - ios payment gateway sdk cocoapods integration payu
+    - integrate payu ios core sdk podfile swift objective c
+    - iphone payment sdk cocoapods installation payu coresdk
+    - payment gateway ios sdk cocoapods integration steps payu
+    - payu ios coresdk pod install xcode integration guide
+    - mobile payment sdk ios cocoapods native integration payu
+    - ios native payment sdk cocoapods setup payu gateway
+    - payu ios sdk cocoapods hash payment integration steps
+    - integrate payment gateway ios app cocoapods payu india
+    - ios payment integration cocoapods sdk developer payu
+    - swift ios coresdk cocoapods payment integration payu
+  robots: index
+next:
+  description: ''
+---
 CocoaPods manages library dependencies for your Xcode projects. The dependencies for your projects are specified in a single text file called a `podfile`. For more information on installing CocoaPods, refer to the CocoaPods Documentation. This section describes the following to integrate with CocoaPods:
 
 * Integrate with CocoaPods
