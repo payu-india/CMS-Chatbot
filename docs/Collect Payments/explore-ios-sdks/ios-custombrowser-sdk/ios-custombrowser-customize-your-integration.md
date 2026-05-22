@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Customize your Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Customize PayU Custom Browser on iOS: WebView checkout UI, payment modes, branding, and Custom Browser SDK configuration options.
+  keywords:
+    - payu ios custom browser sdk customize integration guide
+    - ios custom browser payment gateway sdk customization payu
+    - integrate custom browser ios app webview checkout payu
+    - iphone payment sdk custom browser customize payu india
+    - payment gateway ios custom browser sdk integration payu
+    - payu ios custombrowser sdk ui branding configuration
+    - mobile payment sdk ios custom browser integration steps
+    - ios webview payment integration custom browser payu sdk
+    - payu custom browser ios sdk developer customization guide
+    - native ios custom browser payment integration payu gateway
+    - ios in app payment custom browser sdk integration payu
+    - swift ios custom browser payment sdk integration india
+  robots: index
+next:
+  description: ''
+---
 After the basic payment collection is done, you can improve success rates and provide a better user experience with CB. There are many features that are provided along with CB. To use them, you need to create the `PUCBConfiguration` object.
 
 ```Text Objective-C
