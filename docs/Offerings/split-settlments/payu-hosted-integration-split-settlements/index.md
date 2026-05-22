@@ -1,5 +1,5 @@
 ---
-title: PayU Hosted Integration - Split Settlements
+title: '[INTERNAL REVIEW]PayU Hosted Integration - Split Settlements'
 deprecated: false
 hidden: true
 metadata:
