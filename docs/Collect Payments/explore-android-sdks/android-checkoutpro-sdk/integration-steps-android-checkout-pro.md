@@ -16,6 +16,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Integration Steps
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Integration Steps - Android Checkout Pro
+  description: >-
+    Integrate PayU CheckoutPro SDK on Android: Gradle/Maven Central, hash, payment params, callbacks, test cards, and production go-live.
+  robots: index
+  keywords:
+    - payu checkoutpro sdk android integration steps india
+    - android payment gateway sdk integration checkout pro payu
+    - integrate payment gateway in android app kotlin java payu
+    - mobile payment sdk integration android checkout payu
+    - payu android sdk gradle maven central integration guide
+    - android payment hash generation checkoutpro sdk payu
+    - payment gateway android sdk test sandbox go live payu
+    - payu checkout pro android native payment integration
+    - android upi card netbanking wallet sdk checkoutpro payu
+    - payu android checkoutpro payment callback integration steps
+    - razorpay cashfree alternative payu android payment sdk
+    - android in app payment integration checkout pro payu india
+
+next:
+  description: ''
+---
 Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard > Settings > Payment methods**.  For more information, refer. to [Checkout Payment Modes](doc:payu-payment-page-customization#configure-checkout-payment-methods-and-settings). By default, Cards, UPI, and other payment methods are enabled, and PayU recommends that you to enable other payment methods that are relevant to you.
 
 ## SDK Integration
