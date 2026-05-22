@@ -25,7 +25,7 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: React Native Core SDK for Android
+  title: React Native Core SDK for Android platform
   description: >-
     Integrate PayU Core SDK with React Native on Android: native module, Gradle, payment request, hash, and Android bridge setup.
   robots: index
