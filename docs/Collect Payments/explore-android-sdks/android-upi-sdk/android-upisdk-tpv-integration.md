@@ -17,7 +17,21 @@ deprecated: false
 hidden: false
 metadata:
   title: ''
-  description: ''
+  description: >-
+    TPV with PayU Android UPI SDK: validate beneficiary account, UPI collect/intent TPV, hash, and production checklist.
+  keywords:
+    - tpv third party verification upi sdk android integration
+    - payu android upi sdk tpv integration guide india
+    - upi collect intent flow android sdk tpv integration payu
+    - android upi payment tpv beneficiary validation payu sdk
+    - payu upi bolt sdk android native tpv integration
+    - integrate upi tpv android app payment sdk payu
+    - mobile upi sdk android tpv verification integration steps
+    - payment gateway android upi tpv integration payu
+    - payu android upi sdk third party verification flow
+    - android native upi tpv payment integration developer
+    - upi intent tpv android sdk integration payu india
+    - server side hash upi tpv android sdk payu integration
   robots: index
 next:
   description: ''
