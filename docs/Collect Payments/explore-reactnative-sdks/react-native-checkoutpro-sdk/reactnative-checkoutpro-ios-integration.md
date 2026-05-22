@@ -22,6 +22,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: iOS Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: React Native Checkout Pro SDK for iOS Integration
+  description: >-
+    PayU CheckoutPro React Native on iOS: CocoaPods/native linking, Swift bridge, payment params, hash, and iOS-specific setup.
+  robots: index
+  keywords:
+    - payu react native checkoutpro ios integration steps swift
+    - react native payment gateway sdk ios integration payu india
+    - integrate checkoutpro react native ios app payu cocoapods
+    - react native ios payment sdk integration guide payu checkout
+    - mobile payment sdk react native ios checkoutpro payu gateway
+    - payu react native checkout pro ios native module integration
+    - payment gateway react native ios sdk integration steps payu
+    - react native checkoutpro ios hash callback integration payu
+    - payu react native ios test sandbox integration guide
+    - react native in app payment ios sdk payu checkoutpro india
+    - iphone react native payment gateway integration payu sdk
+    - react native checkoutpro android ios integration payu india
+
+next:
+  description: ''
+---
 To integrate with the CheckoutPro mobile SDK for React Native:
 
 <Accordion title="SDK Integration Steps" icon="fa-code">
