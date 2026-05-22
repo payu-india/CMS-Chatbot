@@ -10,15 +10,14 @@ metadata:
 next:
   description: ''
 ---
-> ❌ **Deprecated — do not use for new integrations**
+> 🛑 **Deprecated — do not use for new integrations**
 >
 > The **Settlement Reconciliation API** is deprecated.
 >
 > **Use instead:**
 >
-> - **[Settlement Detail Range API](https://docs.payu.in/reference/settlement-detail-range-api)** — recommended for date-range reconciliation (transaction + UTR level, paginated).
-> - **[Get Settlement Details API](https://docs.payu.in/reference/get_settlement_details_api)** — legacy postservice; also deprecated. Use only for single-date/UTR via `get_settlement_details` until you migrate.
-> - **Cross-border:** [Settlement Detail Range API - CB Payments](https://docs.payu.in/reference/settlement-detail-range-api-for-cross-border)
+> - **[Settlement Detail Range API:](https://docs.payu.in/reference/settlement-detail-range-api)&#x20;**&#x52;ecommended for date-range reconciliation (transaction + UTR level, paginated).
+> - [**Settlement Detail Range API - CB Payments:**](https://docs.payu.in/reference/settlement-detail-range-api-for-cross-border) Recommended for cross-border payments.
 
 This API reconciles the settlements for a given parent mid and specified period (date range).
 
