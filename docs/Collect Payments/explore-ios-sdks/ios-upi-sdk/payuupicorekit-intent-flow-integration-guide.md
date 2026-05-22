@@ -1,5 +1,12 @@
 ---
 title: PayUUPICoreKit Intent Flow
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
+---
+title: PayUUPICoreKit Intent Flow
 excerpt: >-
   This document provides step-by-step instructions for integrating the
   PayUUPICore SDK into your iOS application for Intent transactions.
@@ -7,7 +14,24 @@ deprecated: false
 hidden: false
 metadata:
   robots: index
+  description: >-
+    PayUUPICoreKit UPI intent flow on iOS: SDK setup, intent parameters, hash, app-to-app UPI, callbacks, and production go-live.
+    - payment gateway ios upi intent integration india payu sdk
+  keywords:
+    - Payu upi core kit ios intent flow integration guide
+    - ios upi intent payment sdk integration payu india
+    - Payu upi corekit intent flow ios sdk integration steps
+    - integrate upi intent ios app payu upi core kit
+    - iphone upi payment sdk intent flow integration payu
+    - payment gateway ios upi intent sdk integration guide payu
+    - mobile upi sdk ios intent flow native integration payu
+    - upi collect intent flow ios sdk integration payu gateway
+    - payu ios upi sdk hash intent payment integration steps
+    - native ios upi intent payment integration developer payu
+    - ios upi apps gpay phonepe intent sdk payu integration
+    - payment gateway ios upi intent integration india payu sdk
 ---
+This section provides step-by-step instructions for integrating the PayUUPICore SDK into your iOS application for Intent transactions.
 ## Integration Steps
 
 <Accordion title="1. Add SDK Dependency" icon="fa-code">
