@@ -10,6 +10,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Production Checklist for Merchant Hosted Checkout integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Production checklist for PayU merchant-hosted checkout: go-live steps, security, webhooks, hash validation, and pre-launch verification for web.
+  keywords:
+    - payu merchant hosted checkout production go live checklist
+    - payment gateway go live checklist custom checkout payu web
+    - merchant hosted integration checklist payu india production
+    - payu custom checkout production checklist website integration
+    - go live payment integration merchant hosted payu guide
+    - payu collect payments production checklist merchant hosted web
+    - website payment gateway go live steps payu custom checkout
+    - payment integration checklist before production payu merchant hosted
+    - payu merchant hosted checkout launch checklist developer guide
+    - production payment integration checklist payu web india
+    - payu custom checkout security webhook go live checklist
+    - merchant hosted payment integration production readiness payu
+  robots: index
+
+next:
+  description: ''
+---
 ## 1. Update Production Key and Salt
 
 Update your Production Key and Salt in your integration code to replace the Test Key and Salt. To generate the live merchant key and salt:
