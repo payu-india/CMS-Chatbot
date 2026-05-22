@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Create SKU Based Offers for iOS Checkout Pro
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Create SKU-based offers for PayU CheckoutPro on iOS: offer APIs, SKU mapping, CheckoutPro configuration, and test in sandbox.
+  keywords:
+    - payu ios checkoutpro sku offers integration guide
+    - ios checkout pro sdk offers sku based integration payu
+    - create offers checkoutpro ios sdk integration payu india
+    - iphone payment sdk offers emi sku integration payu
+    - integrate offers payment gateway ios checkoutpro payu
+    - ios payment gateway sdk promotional offers integration
+    - payu ios sdk sku offers checkout pro configuration
+    - mobile payment sdk ios offers integration developer payu
+    - payment gateway ios offers sku checkoutpro integration
+    - payu checkoutpro ios offers api integration steps
+    - native ios payment offers sdk checkoutpro payu
+    - ios in app payment offers checkout pro sdk payu
+  robots: index
+next:
+  description: ''
+---
 PayU allows merchants to create offers for specific Products/SKUs in the cart and for whole cart. SKU offers will be shown only when the specific product is added by the user and hence can be used by the merchant to promote specific products.
 
 # Create an offer on dashboard
