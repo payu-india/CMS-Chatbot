@@ -20,6 +20,31 @@ metadata:
 next:
   description: ''
 ---
+---
+title: EFTNET Integration
+deprecated: false
+hidden: false
+link:
+  new_tab: false
+  url: https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless/
+metadata:
+  description: >-
+    EFTNET integration with PayU merchant-hosted checkout: EFT net banking flow, payment parameters, hash, and EFTNET payment mode for web.
+  robots: index
+  keywords:
+    - payu eftnet integration merchant hosted checkout web india
+    - payment gateway eftnet integration custom checkout payu
+    - integrate eftnet payments website merchant hosted payu guide
+    - payu eft net banking integration api steps web checkout
+    - merchant hosted eftnet payment gateway integration payu
+    - website eftnet payment integration payu custom checkout developer
+    - payu collect payments eftnet merchant hosted integration guide
+    - server side eftnet payment integration payu website checkout
+    - payu eftnet hash payment mode integration web india
+    - payment gateway eftnet integration merchant hosted payu website
+    - payu custom checkout eftnet api integration steps guide
+    - eft net banking payment integration payu web checkout india
+---
 Collect payments using EFTNET (NEFT/RTGS) with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
 
 To integrate with EFTNET:
