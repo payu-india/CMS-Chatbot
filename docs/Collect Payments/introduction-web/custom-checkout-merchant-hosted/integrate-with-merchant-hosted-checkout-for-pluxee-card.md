@@ -10,6 +10,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Pluxee Card Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Pluxee card integration with PayU merchant-hosted checkout: meal card payments, API setup, hash, and Pluxee payment mode on your website.
+  keywords:
+    - payu pluxee card integration merchant hosted checkout web
+    - pluxee meal card payment gateway integration payu india
+    - integrate pluxee card payments website custom checkout payu
+    - merchant hosted pluxee card payment integration guide payu
+    - payu pluxee card api integration steps web checkout
+    - website pluxee payment integration payu merchant hosted
+    - payu collect payments pluxee card custom checkout integration
+    - server side pluxee card payment integration payu website
+    - payment gateway pluxee card integration merchant hosted payu
+    - payu custom checkout pluxee card hash integration developer
+    - pluxee sodexo card payment integration payu web india
+    - merchant hosted meal card payment integration payu website
+  robots: index
+
+next:
+  description: ''
+---
 This section describes the parameters required to collect payments using the Pluxee card with Merchant Hosted Checkout integration (using **_payment** API) with a sample request and response.
 
 <Callout icon="📘" theme="info">
