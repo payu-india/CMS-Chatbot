@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Integrate TPV
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Integrate TPV with PayU iOS Core SDK: beneficiary validation, UPI TPV parameters, hash from server, and seamless TPV checkout.
+  keywords:
+    - payu ios core sdk tpv integration guide india
+    - tpv third party verification upi sdk ios integration payu
+    - ios payment gateway tpv beneficiary validation payu sdk
+    - integrate tpv ios app payu core sdk seamless payment
+    - iphone upi tpv payment sdk integration steps payu
+    - payment gateway ios tpv integration developer guide payu
+    - payu ios coresdk third party verification flow integration
+    - mobile upi tpv sdk ios native integration payu india
+    - ios seamless payment tpv verification payu coresdk
+    - upi collect intent tpv ios sdk integration payu
+    - native ios tpv payment integration payu gateway sdk
+    - server side hash tpv ios core sdk integration payu
+  robots: index
+next:
+  description: ''
+---
 <Callout icon="📘" theme="info">
   **Note**: For TPV transactions, you need to have a different `merchantID`. Contact your key account manager for the same.
 </Callout>
