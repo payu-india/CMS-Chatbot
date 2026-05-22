@@ -1,1 +1,26 @@
-{"openapi":"3.1.0","info":{"title":"Get Transaction Info","description":"Test","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://test.payu.in/","variables":{}}],"paths":{"/merchant/postservice.php":{"post":{"summary":"Get Transaction Info","operationId":"GetTransactionInfo","parameters":[{"name":"form","in":"query","description":"","required":true,"style":"form","explode":true,"schema":{"const":2,"type":"integer","contentEncoding":"int32","examples":[2]}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/x-www-form-urlencoded","type":"string"}}],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","command","var1","var2","hash"],"type":"object","properties":{"key":{"const":"JPM7Fg","type":"string","description":"This parameter must contain the merchant key provided by PayU."},"command":{"const":"get_transaction_info","type":"string","description":"This parameter must have the get_transaction_info as command name.."},"var1":{"type":"string","description":"The starting Time (from when the transaction details are needed) in YYYY-MM-DD HH:MM:SS format","examples":["2020-10-26 01:00:00"]},"var2":{"type":"string","description":"The end Time (till when the transaction details are needed) in YYYY-MM-DD HH:MM:SS format.","examples":["2020-10-26 16:15:00"]},"hash":{"type":"string"}},"contentMediaType":"application/x-www-form-urlencoded"}}},"required":false},"responses":{"200":{"description":"","headers":{},"content":{"text/plain":{"schema":{"type":"object","contentMediaType":"text/plain"}}}}},"deprecated":false},"parameters":[]}},"tags":[],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Get Transaction Info",
+    "description": "Test",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://test.payu.in/",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/merchant/postservice.php": {
+      "parameters": []
+    }
+  },
+  "tags": [],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
