@@ -14,6 +14,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Java SDK
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Java SDK for Server-side Integration
+  description: >-
+    PayU Java server SDK: install dependency, configure merchant key and salt, create payment requests, verify responses, sandbox, go-live.
+  robots: index
+  keywords:
+    - payu java sdk payment gateway integration india
+    - java server side payment gateway sdk integration steps
+    - integrate payu payment api java spring backend
+    - payment gateway java sdk maven gradle integration payu
+    - server to server payment integration java sdk payu
+    - java payment api sdk hash verification integration payu
+    - backend payment gateway integration java rest api payu
+    - payu java sdk test credentials sandbox integration guide
+    - enterprise java payment integration sdk payu hosted checkout
+    - java payment gateway sdk documentation integration india payu
+    - php java python payment gateway api sdk integration payu
+    - node js payment gateway sdk server side integration payu java
+
+next:
+  description: ''
+---
 The PayU SDK for java enables you to easily work with the APIs of PayU by integrating this SDK within your base system. With our SDK, you do not need to worry about low-level details for API integration and with a few lines of code and a function call, get started within a few minutes. To install Java Web SDK, refer to [integraton steps](https://docs.payu.in/docs/integration-javasdk).
 
 ## Features Supported
