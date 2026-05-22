@@ -1,5 +1,5 @@
 ---
-title: '[DEPRECTATED]Settlement Reconciliation API'
+title: (DEPRECTATED)Settlement Reconciliation API
 excerpt: ''
 deprecated: false
 hidden: true
