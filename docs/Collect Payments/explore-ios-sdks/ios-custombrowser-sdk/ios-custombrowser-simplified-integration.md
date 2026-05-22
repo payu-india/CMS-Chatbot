@@ -10,6 +10,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Simplified Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Simplified PayU Custom Browser iOS integration: minimal setup steps, payment request, hash, surl/furl, and quick sandbox test.
+  keywords:
+    - payu ios custom browser simplified integration steps
+    - ios custom browser sdk simplified checkout integration payu
+    - integrate custom browser ios simplified guide payu india
+    - iphone payment sdk simplified custom browser payu gateway
+    - payment gateway ios simplified sdk integration payu browser
+    - payu custom browser ios quick integration developer guide
+    - mobile payment sdk ios simplified webview checkout payu
+    - ios webview payment simplified integration custom browser
+    - payu ios custombrowser simplified setup hash integration
+    - native ios custom browser simplified payment sdk payu
+    - ios in app payment simplified custom browser sdk payu
+    - swift ios custom browser simplified integration guide payu
+  robots: index
+next:
+  description: ''
+---
 You can use PayU’s view controller, that is, `PUCBWebVC` for making payment. This view controller creates a `UIWebView` or `WKWebview` based on configuration and loads it to facilitate payment.
 
 ## Using Cocoapods
