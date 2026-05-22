@@ -5,6 +5,29 @@ hidden: false
 metadata:
   robots: index
 ---
+---
+title: Web Integration - PayU Hosted
+deprecated: false
+hidden: false
+metadata:
+  description: >-
+    PayU Hosted Checkout web integration: server redirect, SHA-512 hash, payment params, surl/furl, test transaction, and production go-live checklist.
+    - website payment integration payu hosted checkout india
+  keywords:
+    - payu hosted checkout web integration steps india
+    - payment gateway hosted checkout page integration payu
+    - integrate payu payment page website redirect checkout
+    - payu prebuilt checkout web integration hash surl furl
+    - server side redirect payu hosted payment page integration
+    - payment gateway india hosted checkout api integration payu
+    - payu web checkout integration test sandbox go live
+    - merchant website payu hosted checkout integration guide
+    - payu payment page web integration sha512 hash setup
+    - hosted payment gateway checkout integration steps payu
+    - payu collect payments hosted checkout web developer guide
+    - website payment integration payu hosted checkout india
+  robots: index
+---
 ## What you're building
 
 A simple server-generated redirect that sends customers from your site/app to the PayU-hosted payment page, then returns them to your success/failure URLs. You pass payment details & customer fields + a server-generated <Glossary>SHA</Glossary>-512 hash for integrity; PayU handles the payment UI and authentication.
