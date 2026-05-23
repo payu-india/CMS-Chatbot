@@ -111,73 +111,39 @@ Find answers to frequently asked questions about SI plans.
    `billingCycle` defines the unit, such as DAILY, WEEKLY, MONTHLY, or YEARLY. `billingInterval` defines how many units must pass between debits.<br/>
    <blockquote class="callout callout_info" theme="📘">
      <h3>📘 Example</h3>
-     <p>`billingCycle=MONTHLY` and `billingInterval=1` means once every month. `billingCycle=DAILY` and `billingInterval=3` means once every 3 days.</p>
+     <p><code>billingCycle=MONTHLY</code> and <code>billingInterval=1</code> means once every month. <code>billingCycle=DAILY</code> and <code>billingInterval=3</code> means once every 3 days.</p>
    </blockquote>
    </Accordion>
 
-**Short answer:** At minimum, store plan name or reference, billing amount, billing currency, billing cycle, billing interval, start date, end date, customer details, and payment mode.
+### Plan Management
 
-**Note:** These values should map cleanly to `si_details` and the `_payment` consent request. For field definitions, refer to [SI Parameter JSON Details](ref:si-parameter-json-details).
-
-#### Which `si_details` fields are mandatory during consent?
-
-**Short answer:** Common mandatory fields include `billingCycle`, `billingInterval`, `billingAmount`, `billingCurrency`, `paymentStartDate`, and `paymentEndDate`.
-
-**Note:** Requirements can vary by payment mode and integration type. Validate against [SI Parameter JSON Details](ref:si-parameter-json-details) before going live.
-
-#### What optional fields should I store even if PayU does not require them?
-
-**Short answer:** Store merchant plan ID, customer ID, plan description, invoice prefix, retry policy, cancellation reason, created-by user, and audit timestamps.
-
-**Best Practice:** These fields reduce reconciliation and support effort even when they are not sent to PayU.
-
-#### How should I handle plan status during creation?
-
-**Short answer:** Keep new plans in Draft until the customer is ready for consent. Change to Consent pending when checkout starts, Active after successful mandate registration, and Failed if consent fails.
-
-**Best Practice:** Do not mark a plan Active only because the customer was redirected to checkout. Wait for the PayU response or verified final status.
-
-####
-
-**Short answer:** `billingCycle` defines the unit, such as DAILY, WEEKLY, MONTHLY, YEARLY, ONCE, or ADHOC. `billingInterval` defines how many units must pass between debits.
-
-**Example:**&#x20;
-
-#### How should I set start date and end date?
-
-**Short answer:** Use the start date as the first date from which recurring debits may begin and the end date as the last date through which the mandate can be used.
-
-**Best Practice:** Do not schedule pre-debit or recurring debit attempts outside the approved start and end date range.
-
-#### Can the start date be the current date?
-
-**Short answer:** It depends on payment mode and issuer rules. Even if consent completes today, subsequent recurring debits may require a pre-debit notification window before the actual charge.
-
-**Best Practice:** Build date validation that accounts for pre-debit lead time, especially for Cards and UPI.
-
-#### How should I configure amount?
-
-**Short answer:** For fixed plans, store the exact recurring amount. For variable plans, store the maximum approved amount and ensure each debit amount does not exceed it.
-
-**Note:** UPI and card mandates can have payment-mode-specific limits. Validate the limit before showing the plan to the customer.
-
-#### What are common validation failures during plan setup?
-
-**Short answer:** Common failures include missing `si_details`, invalid date format, end date before start date, unsupported billing cycle, amount outside allowed limits, missing customer email or phone, duplicate transaction ID, and hash mismatch.
-
-**Best Practice:** Validate the plan in your frontend and backend before initiating the PayU consent request.
-
-#### Can I create duplicate plans?
-
-**Short answer:** You can duplicate a draft plan as a convenience feature, but every consent attempt must use unique transaction and invoice identifiers.
-
-**Note:** Duplicate business configuration is acceptable. Duplicate transaction IDs are not.
+1. #### How should I set start date and end date?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   Use the start date as the first date from which recurring debits may begin and the end date as the last date through which the mandate can be used.<br/>
+   **Best Practice:** Do not schedule pre-debit or recurring debit attempts outside the approved start and end date range.
+   </Accordion>
+2. #### Can the start date be the current date?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   It depends on payment mode and issuer rules. Even if consent completes today, subsequent recurring debits may require a pre-debit notification window before the actual charge.<br/>
+   **Best Practice:** Build date validation that accounts for pre-debit lead time, especially for Cards and UPI.
+   </Accordion>
+3. #### Can I create duplicate plans?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   You can duplicate a draft plan as a convenience feature, but every consent attempt should use unique transaction and invoice identifiers.
+   </Accordion>
 
 ### Plan Lifecycle and Statuses
 
-#### What is the difference between Draft and Active plans?
-
-**Short answer:** Draft means the plan exists only in your system and has not completed mandate registration. Active means consent succeeded and the plan is mapped to a mandate that can be used for future debits.
+1. #### What is the difference between Draft and Active plans?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   Draft means the plan exists only in your system and has not activated. Active means the plan is activated and ready to use.
+   </Accordion>
+2. #### Can I edit a plan?
+   <Accordion title="Answer" icon="fa-comment-dots">
+     Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+     ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+     occaecat cupidatat non proident!
+   </Accordion>
 
 #### Can plans be edited?
 
