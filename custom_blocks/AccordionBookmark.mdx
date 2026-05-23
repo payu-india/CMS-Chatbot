@@ -2,8 +2,9 @@
 name: AccordionBookmark
 ---
 // AccordionBookmark - ReadMe CMS Custom Component
-// Accordion whose title is a bookmark (heading with anchor id). Supports Font Awesome icons and emojis.
-// Usage: <AccordionBookmark title="Request Parameters" icon="fa-info-circle">content</AccordionBookmark>
+// Accordion with a real heading anchor (ReadMe bookmark). Chevron is a separate button; title is h2-h6 with id.
+// Usage: <AccordionBookmark title="1. What is an SI plan" bookmarkId="what-is-an-si-plan">content</AccordionBookmark>
+// Link: #user-content-what-is-an-si-plan (same page) or full doc URL + that hash.
 // Props: title, icon, emoji, bookmarkId, defaultOpen, headingLevel.
 
 import { useState } from 'react';
@@ -31,35 +32,56 @@ export const AccordionBookmark = (props) => {
       .replace(/-+/g, '-')
       .replace(/^-|-$/g, '') || 'section';
 
-  const resolvedBookmarkId =
-    bookmarkId != null && bookmarkId !== '' ? String(bookmarkId) : autoBookmarkId;
+  const slug = bookmarkId != null && bookmarkId !== '' ? String(bookmarkId) : autoBookmarkId;
+  const anchorId = slug.indexOf('user-content-') === 0 ? slug : `user-content-${slug}`;
 
-  const HeadingTag = `h${Math.min(6, Math.max(2, headingLevel))}`;
+  const level = Math.min(6, Math.max(2, Number(headingLevel)));
+  const headingClass =
+    'flex-1 min-w-0 !my-0 !text-base font-semibold text-gray-800 scroll-mt-6';
+
+  const titleHeading =
+    level === 2 ? (
+      <h2 id={anchorId} className={headingClass}>
+        {title}
+      </h2>
+    ) : level === 3 ? (
+      <h3 id={anchorId} className={headingClass}>
+        {title}
+      </h3>
+    ) : level === 4 ? (
+      <h4 id={anchorId} className={headingClass}>
+        {title}
+      </h4>
+    ) : level === 5 ? (
+      <h5 id={anchorId} className={headingClass}>
+        {title}
+      </h5>
+    ) : (
+      <h6 id={anchorId} className={headingClass}>
+        {title}
+      </h6>
+    );
 
   return (
     <div className="border border-gray-200 rounded-md overflow-hidden my-4 bg-white">
-      <div
-        role="button"
-        tabIndex={0}
-        onClick={() => setIsOpen(!isOpen)}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            setIsOpen(!isOpen);
-          }
-        }}
-        className="w-full flex items-center gap-3 px-4 py-3 text-left bg-white hover:bg-gray-50 border-b border-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 cursor-pointer"
-        aria-expanded={isOpen}
-        aria-controls={contentId}
-      >
-        <span
-          className={`flex-shrink-0 text-gray-800 transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`}
-          aria-hidden="true"
+      <div className="w-full flex items-center gap-3 px-4 py-3 text-left bg-white hover:bg-gray-50 border-b border-gray-200">
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex-shrink-0 p-1 -m-1 text-gray-800 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          aria-expanded={isOpen}
+          aria-controls={contentId}
+          aria-label={isOpen ? `Collapse ${title}` : `Expand ${title}`}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
-        </span>
+          <span
+            className={`block transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`}
+            aria-hidden="true"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </span>
+        </button>
         {emoji ? (
           <span className="flex-shrink-0 text-lg leading-none" aria-hidden="true">
             {emoji}
@@ -74,18 +96,13 @@ export const AccordionBookmark = (props) => {
             <i className={`fa ${icon}`} />
           </span>
         ) : null}
-        <HeadingTag
-          id={resolvedBookmarkId}
-          className="flex-1 min-w-0 !my-0 !text-base font-semibold text-gray-800 scroll-mt-6"
-        >
-          {title}
-        </HeadingTag>
+        {titleHeading}
       </div>
       <div
         id={contentId}
         className={isOpen ? '' : 'hidden'}
         role="region"
-        aria-label={title}
+        aria-labelledby={anchorId}
       >
         <div className="px-4 py-3 border-t border-gray-100 bg-white prose prose-sm max-w-none">
           {children}
@@ -97,6 +114,6 @@ export const AccordionBookmark = (props) => {
 
 // Default preview for ReadMe CMS (component must appear after exports)
 
-<AccordionBookmark title="Request Parameters" icon="fa-info-circle">
-  <p>This accordion title is a bookmark. Link to it with #request-parameters.</p>
+<AccordionBookmark title="Request Parameters" icon="fa-info-circle" bookmarkId="request-parameters">
+  <p>Link to this section with #user-content-request-parameters</p>
 </AccordionBookmark>
