@@ -49,7 +49,7 @@ Every plan goes through the following statuses:
 You can access **Plans** under **Subscriptions&#x20;**&#x66;rom the left navigation as shown below.
 
 
-<Image src="https://github.com/payu-india/CMS-Chatbot/blob/v1/recordings/gifs/plan.gif?raw=true" border={true} />
+<Image src="https://files.readme.io/ceab99a98c18eb24f14d434f5159d4a6ae066d810e940e9f32828515fee74cc7-plan-management.gif" alt="Access Plans" align="center" caption="_Access Plans_" border={true} />
 
 
 ## Frontend actions for plan management
