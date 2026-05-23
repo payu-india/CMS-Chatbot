@@ -76,31 +76,30 @@ Find answers to frequently asked questions about SI plans.
 
 ### SI Plan Basics
 
-1. #### What is an SI Plan?
+1. #### What is an SI plan?
    <Accordion title="Answer" icon="fa-comment-dots">
    An SI Plan is the billing schedule and amount that your customer agrees to before a Standing Instruction mandate is registered. In this API-based flow, the plan is maintained in your system and passed to PayU as `si_details` during consent.<br/>
    <strong>Best Practice:</strong> Keep a unique merchant-side plan reference so support, reconciliation, and retries can be traced back to the exact plan shown to the customer
    </Accordion>
-
-#### Is an SI Plan created as a separate object in PayU?
-
-**Short answer:** No. For regular SI API integration, PayU does not require a separate plan creation API. You create and store the plan in your system, then send the approved billing fields in the consent transaction.
-
-**Note:** The PayU-side object created after successful consent is the mandate, not a merchant-managed plan record.
-
-#### When should I create a plan?
-
-**Short answer:** Create the plan before initiating consent, after the customer has selected the subscription terms but before calling the consent transaction API.
-
-**Best Practice:** Move a plan from Draft to Consent pending only when the exact amount, frequency, start date, end date, and customer details are frozen for the consent attempt.
-
-#### What is the difference between a plan and a mandate?
-
-**Short answer:** A plan is your business configuration for what to charge and when. A mandate is the customer's authorized payment instruction created after successful consent through PayU and the issuer/payment ecosystem.
-
-**Note:** Your plan can exist before consent. The mandate exists only after successful registration.
-
-#### What is the difference between a fixed and variable plan?
+2. #### When should I create a plan?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   Create the plan before initiating consent, after the customer has selected the subscription terms but before calling the consent transaction API.<br/>
+   **Best Practice:** Move a plan from Draft to activate only when the exact amount, frequency, start date, end date, and customer details are frozen for the consent attempt.
+   </Accordion>
+3. #### What is the difference between a plan and a mandate?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   A plan is your business configuration for what to charge and when. A mandate is the customer's authorized payment instruction created after successful consent through PayU and the issuer/payment ecosystem.<br/>
+   <blockquote class="callout callout_info" theme="📘">
+     <h3>📘 Handy Tips</h3>
+     <p>Your plan can exist before consent. The mandate exists only after successful registration.</p>
+   </blockquote>
+   </Accordion>
+4. #### What is the difference between a fixed and variable plan?
+   <Accordion title="Answer" icon="fa-comment-dots">
+     Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+     ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+     occaecat cupidatat non proident!
+   </Accordion>
 
 **Short answer:** A fixed plan charges the same amount each cycle. A variable plan allows the debit amount to vary, usually up to the maximum amount approved during consent.
 
