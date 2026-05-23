@@ -106,10 +106,14 @@ Find answers to frequently asked questions about SI plans.
    <Accordion title="Answer" icon="fa-comment-dots">
    No. Plan status is usually merchant-managed, such as **Draft** or **Active**. Mandate status is returned by PayU or the payment ecosystem and indicates whether debits are allowed.
    </Accordion>
-
-### Plan Creation
-
-#### What parameters are required to create an SI Plan in my system?
+6. #### How does billing cycle behavior work?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   `billingCycle` defines the unit, such as DAILY, WEEKLY, MONTHLY, or YEARLY. `billingInterval` defines how many units must pass between debits.<br/>
+   <blockquote class="callout callout_info" theme="📘">
+     <h3>📘 Example</h3>
+     <p>`billingCycle=MONTHLY` and `billingInterval=1` means once every month. `billingCycle=DAILY` and `billingInterval=3` means once every 3 days.</p>
+   </blockquote>
+   </Accordion>
 
 **Short answer:** At minimum, store plan name or reference, billing amount, billing currency, billing cycle, billing interval, start date, end date, customer details, and payment mode.
 
@@ -133,11 +137,11 @@ Find answers to frequently asked questions about SI plans.
 
 **Best Practice:** Do not mark a plan Active only because the customer was redirected to checkout. Wait for the PayU response or verified final status.
 
-#### How does billing cycle behavior work?
+####
 
 **Short answer:** `billingCycle` defines the unit, such as DAILY, WEEKLY, MONTHLY, YEARLY, ONCE, or ADHOC. `billingInterval` defines how many units must pass between debits.
 
-**Example:** `billingCycle=MONTHLY` and `billingInterval=1` means once every month. `billingCycle=DAILY` and `billingInterval=3` means once every 3 days.
+**Example:**&#x20;
 
 #### How should I set start date and end date?
 
