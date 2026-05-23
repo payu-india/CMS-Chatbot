@@ -48,6 +48,10 @@ Every plan goes through the following statuses:
 
 You can access **Plans** under **Subscriptions&#x20;**&#x66;rom the left navigation as shown below.
 
+
+<Image src="https://github.com/payu-india/CMS-Chatbot/blob/v1/recordings/gifs/plan.gif?raw=true" border={true} />
+
+
 ## Frontend actions for plan management
 
 The following actions can be exposed on a merchant dashboard or internal frontend. The API column shows the PayU reference page that supports each backend step.
