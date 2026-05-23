@@ -77,7 +77,7 @@ Find answers to frequently asked questions about SI plans.
 ### SI Plan Basics
 
 1. #### What is an SI Plan?
-   <Accordion title="Answer" icon="fa-answer">
+   <Accordion title="Answer" icon="fa-comment-dots">
    An SI Plan is the billing schedule and amount that your customer agrees to before a Standing Instruction mandate is registered. In this API-based flow, the plan is maintained in your system and passed to PayU as `si_details` during consent.<br/>
    <strong>Best Practice:</strong> Keep a unique merchant-side plan reference so support, reconciliation, and retries can be traced back to the exact plan shown to the customer
    </Accordion>
