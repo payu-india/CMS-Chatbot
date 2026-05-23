@@ -14,14 +14,14 @@ You can create a plan:
 - From PayU dashboard.
 - Using APIs.
 
-> ✅ **Before you Begin**&#x20;
->
-> Enable Subscriptions for your PayU merchant account. Contact your PayU Key Account Manager or onboarding team before integrating SI plans.
-
 > 📘 **Handy Tips**
 >
 > - Creating a plan is optional. You can create a subscription without creating a plan.
 > - You can create multiple subscriptions for a plan.
+
+## Prerequisites
+
+- Enable Subscriptions for your PayU merchant account. Contact your PayU Key Account Manager or onboarding team before integrating SI plans.
 
 ## Benefits of a Plan
 
