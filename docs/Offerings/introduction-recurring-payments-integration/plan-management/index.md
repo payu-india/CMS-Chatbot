@@ -94,28 +94,18 @@ Find answers to frequently asked questions about SI plans.
      <p>Your plan can exist before consent. The mandate exists only after successful registration.</p>
    </blockquote>
    </Accordion>
-4. #### What is the difference between a fixed and variable plan?
+4. #### Can a customer have multiple plans?
    <Accordion title="Answer" icon="fa-comment-dots">
-     Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-     ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-     occaecat cupidatat non proident!
+   Yes, your system can maintain multiple plans for a customer. Each plan should have its own merchant reference and should be mapped to the correct mandate and debit schedule.<br/>
+   <blockquote class="callout callout_info" theme="📘">
+     <h3>📘 Handy Tips</h3>
+     <p>Avoid reusing the same merchant transaction ID or invoice number across plans.</p>
+   </blockquote>
    </Accordion>
-
-**Short answer:** A fixed plan charges the same amount each cycle. A variable plan allows the debit amount to vary, usually up to the maximum amount approved during consent.
-
-**Best Practice:** If your debit amount can vary, clearly show the maximum amount to the customer and ensure every recurring debit stays within the approved mandate limits.
-
-#### Can one customer have multiple plans?
-
-**Short answer:** Yes, your system can maintain multiple plans for a customer. Each plan should have its own merchant reference and should be mapped to the correct mandate and debit schedule.
-
-**Note:** Avoid reusing the same merchant transaction ID or invoice number across plans.
-
-#### Is plan status the same as mandate status?
-
-**Short answer:** No. Plan status is usually merchant-managed, such as Draft, Active, Paused, or Completed. Mandate status is returned by PayU or the payment ecosystem and indicates whether debits are allowed.
-
-**Best Practice:** Show both statuses in your dashboard so operations teams do not attempt debits against inactive mandates.
+5. #### Is plan status the same as mandate status?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   No. Plan status is usually merchant-managed, such as **Draft** or **Active**. Mandate status is returned by PayU or the payment ecosystem and indicates whether debits are allowed.
+   </Accordion>
 
 ### Plan Creation
 
