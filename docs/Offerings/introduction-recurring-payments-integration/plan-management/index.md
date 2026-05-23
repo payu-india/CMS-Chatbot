@@ -35,11 +35,11 @@ Using a plan gives merchants a structured way to manage SI subscriptions.
 Every plan goes through the following statuses:
 
 <Cards>
-  <Card title="Draft" icon="fa-file-pen" iconColor="#4a9b88">
+  <Card title="Draft" icon="fa-file-pen" iconColor="#0c6150">
     Plans are saved in the system but not active. You cannot use draft plans for subscriptions until they are activated.
   </Card>
 
-  <Card title="Active" icon="fa-circle-check" iconColor="#4a9b88">
+  <Card title="Active" icon="fa-circle-check" iconColor="#0c6150">
     A plan becomes active once it is created and immediately available for creating subscriptions.
   </Card>
 </Cards>
