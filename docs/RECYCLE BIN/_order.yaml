@@ -1,7 +1,7 @@
 - payu-otp-parser
 - payubolt-sdk-integration-native
 - collect-payments-introduction
-- check-api-key-and-salt
+- payu-credentials-security
 - contact-payu
 - choose-your-integration
 - payu-india-api-environment
