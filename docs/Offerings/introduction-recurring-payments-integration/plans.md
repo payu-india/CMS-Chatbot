@@ -178,7 +178,7 @@ Find answers to frequently asked questions about SI plans.
    No, you cannot pause or resume a plan.
    </Accordion>
 5. #### Can I update a plan mid-cycle?
-   <Accordion title="My Accordion Title" icon="fa-info-circle">
+   <Accordion title="Answer" icon="fa-comment-dots">
      Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
      ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
      occaecat cupidatat non proident!
