@@ -1,5 +1,5 @@
 ---
-title: SI Plans
+title: Plans
 deprecated: false
 hidden: true
 metadata:
