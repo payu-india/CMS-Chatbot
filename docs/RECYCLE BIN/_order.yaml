@@ -3,6 +3,7 @@
 - collect-payments-introduction
 - payu-credentials-security
 - merchant-account-feature-flags-activation-guide
+- internal-reviewmissing-notes-placement
 - contact-payu
 - choose-your-integration
 - payu-india-api-environment
@@ -30,4 +31,3 @@
 - end-to-end-integration-flows
 - devguide-major-content-improvements-report
 - integration-pages-metadata-description-search-keywords-audit-report
-- internal-reviewmissing-notes-placement
