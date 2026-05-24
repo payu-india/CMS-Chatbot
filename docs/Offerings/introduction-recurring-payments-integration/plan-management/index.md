@@ -148,114 +148,14 @@ Find answers to frequently asked questions about SI plans.
    </Accordion>
 4. Can I pause and resume a plan?
    <Accordion title="Answer" icon="fa-comment-dots">
+   No, you cannot pause or resume a plan.
+   </Accordion>
+5. #### Can I update a plan mid-cycle?
+   <Accordion title="My Accordion Title" icon="fa-info-circle">
      Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
      ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
      occaecat cupidatat non proident!
    </Accordion>
-
-#### Can I pause and resume a plan?
-
-**Short answer:** Pause and resume are merchant-side controls unless you also modify or cancel the mandate. Pausing should stop your scheduler from sending pre-debit and recurring debit requests.
-
-**Best Practice:** On resume, re-check mandate status before scheduling the next debit.
-
-#### Can a Failed plan be retried?
-
-**Short answer:** Yes, if consent failed before mandate creation, you can retry with a new transaction ID. If recurring debit failed after mandate creation, first verify mandate status and failure reason.
-
-**Note:** Do not retry blindly. Repeated retries without checking status can create duplicate attempts or poor customer experience.
-
-### Integration and APIs
-
-#### What is the recommended API flow sequence?
-
-**Short answer:** Create the plan in your system, initiate consent with `si=1` and `si_details`, store PayU identifiers after success, send pre-debit notification when due, then call the recurring payment API.
-
-**References:** [Payment Consent Transaction with Merchant Hosted Checkout](ref:payment-consent-transaction-merchant-hosted), [Pre-Debit Notification API](ref:pre_debit_notification_api), and [Recurring Payment Transaction API](ref:recurring_payment_api).
-
-#### Do I need to call PayU when creating a Draft plan?
-
-**Short answer:** No. Draft plan creation is a merchant-side action. PayU is called when you initiate consent, check mandate status, send pre-debit, debit the customer, or manage the mandate.
-
-#### How should I generate the hash for consent?
-
-**Short answer:** Generate the hash exactly as required by the consent API and include `si_details` in the hash sequence where applicable.
-
-**Best Practice:** Use the exact string sent in the request for hash generation. Changes in JSON formatting, field order, escaping, or values after hash generation can cause hash mismatch.
-
-#### What should I expect from callbacks or webhooks?
-
-**Short answer:** The consent response or redirect tells you the result of the registration attempt. Webhooks or status APIs should be used to update asynchronous payment and recurring debit outcomes.
-
-**Best Practice:** Treat callbacks and webhooks as status signals, but always make status updates idempotent because notifications can be delayed or repeated.
-
-#### Should I use Verify Payment API after consent?
-
-**Short answer:** Yes, especially when the customer journey is interrupted, the browser closes, or your success/failure URL is not reached.
-
-**Reference:** Use [Verify Payment API](ref:verify_payment_api) to confirm final payment status.
-
-#### How should I test in sandbox?
-
-**Short answer:** Test successful consent, failed consent, invalid hash, duplicate transaction ID, pre-debit success, recurring debit success, recurring debit failure, mandate cancellation, and status verification.
-
-**Best Practice:** Maintain test cases for every payment mode you plan to support in production.
-
-#### How should I handle idempotency and retries?
-
-**Short answer:** Use unique merchant transaction IDs for new attempts and store request/response state. If a network timeout occurs, verify status before creating a new attempt.
-
-**Best Practice:** Do not retry consent, pre-debit, or recurring debit with a new ID until you know whether the previous request succeeded, failed, or timed out with no record.
-
-#### What should I do when PayU returns an error?
-
-**Short answer:** Log the request ID or transaction ID, error code, error message, payment mode, plan reference, and timestamp. Fix validation or configuration errors before retrying.
-
-**Note:** Errors such as invalid hash, missing parameters, unsupported card, inactive mandate, or duplicate transaction ID require different actions. Do not handle all failures as generic retries.
-
-### Merchant Troubleshooting
-
-#### Why does plan creation fail in my dashboard?
-
-**Short answer:** Since plan creation is merchant-side, failures usually come from your own validation rules, such as missing amount, invalid dates, unsupported frequency, duplicate plan reference, or missing customer details.
-
-**Best Practice:** Show field-level errors before the merchant starts consent.
-
-#### Why does mandate registration fail after I create the plan?
-
-**Short answer:** Common reasons include unsupported card or payment mode, invalid `si_details`, amount above limits, hash mismatch, customer authentication failure, duplicate transaction ID, or issuer decline.
-
-**Reference:** For card support issues, check BIN/payment-mode support before checkout where applicable.
-
-#### Why does the subscription fail even though the mandate was successful?
-
-**Short answer:** The plan may be Active in your system, but recurring payment can still fail because pre-debit was not sent, the mandate became inactive, the amount exceeded the approved limit, the card expired, or the customer had insufficient funds.
-
-#### Why does pre-debit fail?
-
-**Short answer:** Pre-debit can fail if the mandate identifier is wrong, the debit date is outside allowed windows, the amount exceeds the approved mandate, mandatory fields are missing, or the mandate is inactive/cancelled.
-
-**Best Practice:** Validate mandate status and amount before sending pre-debit.
-
-#### Why does recurring debit fail after pre-debit succeeded?
-
-**Short answer:** A successful pre-debit notification does not guarantee debit success. Debit can still fail due to insufficient funds, issuer decline, inactive mandate, expired mandate, expired card, or incorrect recurring transaction parameters.
-
-#### What should I check first when debugging a failed plan?
-
-**Short answer:** Check plan status, mandate status, consent transaction status, pre-debit response, recurring debit response, amount, dates, transaction ID uniqueness, and hash logs.
-
-**Best Practice:** Build an internal debug view that shows these values on one screen.
-
-#### What are the most common integration mistakes?
-
-**Short answer:** Common mistakes include changing plan values after consent, not storing `mihpayid` or `authpayuid`, skipping pre-debit, using duplicate transaction IDs, passing malformed `si_details`, treating pending as success, and not verifying final status.
-
-#### How do I reduce support tickets from operations teams?
-
-**Short answer:** Show clear plan status, mandate status, next action, last error reason, next debit date, and whether pre-debit is required before debit.
-
-**Best Practice:** Add tooltips for statuses such as Consent pending, Active, Debit scheduled, Paused, Failed, and Cancelled.
 
 ### Edge Cases
 
