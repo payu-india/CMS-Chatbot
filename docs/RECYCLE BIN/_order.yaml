@@ -2,6 +2,7 @@
 - payubolt-sdk-integration-native
 - collect-payments-introduction
 - payu-credentials-security
+- merchant-account-feature-flags-activation-guide
 - contact-payu
 - choose-your-integration
 - payu-india-api-environment
@@ -29,4 +30,3 @@
 - end-to-end-integration-flows
 - devguide-major-content-improvements-report
 - integration-pages-metadata-description-search-keywords-audit-report
-- merchant-account-feature-flags-activation-guide
