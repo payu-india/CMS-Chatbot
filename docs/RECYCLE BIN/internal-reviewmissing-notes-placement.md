@@ -5,11 +5,30 @@ hidden: true
 metadata:
   robots: index
 ---
-## Note 1: UPI App List is Platform-Controlled
+## Summary Table
 
-**Severity:** 🔴 High<br />**Target page:** (1) "Integrate WebView for Mobile Apps" — [https://docs.payu.in/docs/webview-for-mobile-apps](https://docs.payu.in/docs/webview-for-mobile-apps); (2) "Android Checkout Pro SDK" — [https://docs.payu.in/docs/android-checkoutpro-sdk](https://docs.payu.in/docs/android-checkoutpro-sdk); (3) "iOS Checkout Pro SDK" — [https://docs.payu.in/docs/ios-checkoutpro-sdk](https://docs.payu.in/docs/ios-checkoutpro-sdk)<br />**Insert under heading:** "UPI Integration" or "Known Limitations" (add new subsection if absent on any of these pages)<br />**Position:** As the first note block beneath the heading, before any existing paragraphs or steps
+| Note # | Title                                                        | Target Page(s)                                                                         | Severity  |
+| ------ | ------------------------------------------------------------ | -------------------------------------------------------------------------------------- | --------- |
+| 1      | UPI App List is Platform-Controlled                          | webview-for-mobile-apps, android-checkoutpro-sdk, ios-checkoutpro-sdk                  | 🔴 High   |
+| 2      | Hash Formula with Partial UDFs — Pipe Count Rule             | hashing-request-and-response, generate-hash-payu-hosted, generate-hash-merchant-hosted | 🔴 High   |
+| 3      | Webhook `amount` Field — Gross or Net?                       | webhook-events-and-sample-payloads, webhooks                                           | 🔴 High   |
+| 4      | Tokenization Webhooks — Not Available in UAT                 | Card tokenization page, webhooks                                                       | 🟠 Medium |
+| 5      | Verify Payment API — `command` Parameter Value               | Verify Payment / postservice API page                                                  | 🟠 Medium |
+| 6      | "Too Many Requests" Error — Causes and Fix                   | error-handling, general-faqs                                                           | 🟠 Medium |
+| 7      | Flutter SDK — Current Version and Install Source             | flutter-checkoutpro-sdk                                                                | 🟠 Medium |
+| 8      | React Native — Dynamic Hash Common Mistakes                  | reactnative-checkoutpro-android-integration, iOS React Native page                     | 🔴 High   |
+| 9      | Pluxee Card — Not Supported in Mobile SDK                    | integrate-with-merchant-hosted-checkout-for-pluxee-card                                | 🟠 Medium |
+| 10     | Split Settlement via Payment Links — Compatibility Statement | absolute-split-during-transaction-integration, payment-links-dashboard                 | 🟠 Medium |
+| 11     | Bulk Payment Links — `IsPartialPaymentAllowed` Column        | bulk-upload-to-create-multiple-payments-links                                          | 🟡 Low    |
+| 12     | UAT Offers / No Cost EMI Dashboard — 503 Error               | Offers integration page, general-faqs                                                  | 🟡 Low    |
 
-### Note content (ready to insert):
+<br />
+
+## UPI App List is Platform-Controlled
+
+**Target page:** (1) "Integrate WebView for Mobile Apps" — [https://docs.payu.in/docs/webview-for-mobile-apps](https://docs.payu.in/docs/webview-for-mobile-apps); (2) "Android Checkout Pro SDK" — [https://docs.payu.in/docs/android-checkoutpro-sdk](https://docs.payu.in/docs/android-checkoutpro-sdk); (3) "iOS Checkout Pro SDK" — [https://docs.payu.in/docs/ios-checkoutpro-sdk](https://docs.payu.in/docs/ios-checkoutpro-sdk)<br />**Insert under heading:** "UPI Integration" or "Known Limitations" (add new subsection if absent on any of these pages)<br />**Position:** As the first note block beneath the heading, before any existing paragraphs or steps
+
+### Note content:
 
 > 📘 **UPI App List is platform-controlled:**&#x20;
 >
@@ -23,9 +42,17 @@ Multiple tickets (reopened 3–8 times) from merchants confused by unexpected UP
 
 ## Note 2: Hash Formula with Partial UDFs — Pipe Count Rule
 
-**Severity:** 🔴 High<br />**Target page:** (1) "Generate Hash" — [https://docs.payu.in/docs/hashing-request-and-response](https://docs.payu.in/docs/hashing-request-and-response); (2) [https://docs.payu.in/docs/generate-hash-payu-hosted](https://docs.payu.in/docs/generate-hash-payu-hosted); (3) [https://docs.payu.in/docs/generate-hash-merchant-hosted](https://docs.payu.in/docs/generate-hash-merchant-hosted)<br />**Insert under heading:** The section showing the hash formula (exact heading title varies by page — match the section that displays the `sha512(key|txnid|...)` formula string)<br />**Position:** Immediately after the hash formula line, before any code samples or parameter tables that follow
+<br />**Target page:**&#x20;
 
-### Note content (ready to insert):
+(1) "Generate Hash" — [https://docs.payu.in/docs/hashing-request-and-response](https://docs.payu.in/docs/hashing-request-and-response);&#x20;
+
+(2) [https://docs.payu.in/docs/generate-hash-payu-hosted](https://docs.payu.in/docs/generate-hash-payu-hosted);&#x20;
+
+(3) [https://docs.payu.in/docs/generate-hash-merchant-hosted](https://docs.payu.in/docs/generate-hash-merchant-hosted)<br />
+
+**Insert under heading:** The section showing the hash formula (exact heading title varies by page — match the section that displays the `sha512(key|txnid|...)` formula string)<br />**Position:** Immediately after the hash formula line, before any code samples or parameter tables that follow
+
+### Note content:
 
 > 📘 **Partial UDF usage :**&#x20;
 >
@@ -45,11 +72,15 @@ A direct merchant question reopened 3 times — merchants using only 1–2 UDF f
 
 ***
 
-## Note 3: Webhook `amount` Field — Gross or Net?
+## Webhook `amount` Field — Gross or Net?
 
-**Severity:** 🔴 High<br />**Target page:** (1) "Webhook Events and Sample Payloads" — [https://docs.payu.in/docs/webhook-events-and-sample-payloads](https://docs.payu.in/docs/webhook-events-and-sample-payloads); (2) "Webhooks for Payments" — [https://docs.payu.in/docs/webhooks](https://docs.payu.in/docs/webhooks)<br />**Insert under heading:** The section describing webhook payload fields / response parameters (e.g., "Payload Parameters", "Response Fields", or "Webhook Body")<br />**Position:** Immediately after the table row or paragraph that describes the `amount` field; if `amount` and `net_amount_debit` appear in the same table, insert after the table as a callout block
+**Target page:**&#x20;
 
-### Note content (ready to insert):
+(1) "Webhook Events and Sample Payloads" — [https://docs.payu.in/docs/webhook-events-and-sample-payloads](https://docs.payu.in/docs/webhook-events-and-sample-payloads);&#x20;
+
+(2) "Webhooks for Payments" — [https://docs.payu.in/docs/webhooks](https://docs.payu.in/docs/webhooks)<br />**Insert under heading:** The section describing webhook payload fields / response parameters (e.g., "Payload Parameters", "Response Fields", or "Webhook Body")<br />**Position:** Immediately after the table row or paragraph that describes the `amount` field; if `amount` and `net_amount_debit` appear in the same table, insert after the table as a callout block
+
+### Note content:
 
 > 📘 **Webhook amount field:**&#x20;
 >
@@ -61,27 +92,13 @@ Reopened 3 times — merchants integrating convenience fees were unsure which am
 
 ***
 
-## Note 4: Tokenization Webhooks — Not Available in UAT
+## General APIs— `command` Parameter Value
 
-**Severity:** 🟠 Medium<br />**Target page:** (1) Any card tokenization integration page (e.g., "Card Tokenization" or "Tokenization Overview"); (2) "Webhooks for Payments" — [https://docs.payu.in/docs/webhooks](https://docs.payu.in/docs/webhooks)<br />**Insert under heading:** "Test the Integration" or "Testing" section on each target page<br />**Position:** As the first callout block under that heading, before any test steps or test card details
+**Target page:** Al the General APIs<br />**Insert under heading:** The parameters table or request example section<br />**Position:** At the very top of the page, as a pinned quick-reference callout block, before the introduction paragraph or immediately after the page title
 
-### Note content (ready to insert):
+### Note content:
 
-> ⚠️ **Tokenization webhooks are not available in the UAT/Test environment.** Webhook events for card token creation, update, and deletion can only be tested in the **Production environment**. Do not rely on UAT testing to validate your tokenization webhook handler — test directly in production with a low-value transaction.
-
-### Why this note is needed:
-
-Internal support note confirmed this explicitly; merchants were wasting integration time attempting to receive tokenization webhooks in the test environment and assuming their webhook handler was broken when no events arrived.
-
-***
-
-## Note 5: Verify Payment API — `command` Parameter Value
-
-**Severity:** 🟠 Medium<br />**Target page:** The Verify Payment / Transaction Verification API page (postservice API) — [https://docs.payu.in/docs/verify-payment](https://docs.payu.in/docs/verify-payment) (use whichever slug matches the current live page for the `postservice.php?form=2` endpoint)<br />**Insert under heading:** The parameters table or request example section<br />**Position:** At the very top of the page, as a pinned quick-reference callout block, before the introduction paragraph or immediately after the page title
-
-### Note content (ready to insert):
-
-> 📌 **Quick reference — required&#x20;**`command`**&#x20;values:**
+> 📘 **Quick reference — required&#x20;**`command`**&#x20;values:**
 >
 > | Use case                 | `command` value             |
 > | ------------------------ | --------------------------- |
@@ -98,13 +115,19 @@ Reopened 4 times — merchants did not know the exact string value required for 
 
 ***
 
-## Note 6: "Too Many Requests" Error — Causes and Fix
+## &#x20;"Too Many Requests" Error — Causes and Fix
 
-**Severity:** 🟠 Medium<br />**Target page:** (1) "Error Handling" — [https://docs.payu.in/docs/error-handling](https://docs.payu.in/docs/error-handling); (2) "General FAQs" — [https://docs.payu.in/docs/general-faqs](https://docs.payu.in/docs/general-faqs)<br />**Insert under heading:** Error messages / Common errors section on the Error Handling page; FAQ entry under a "Errors & Troubleshooting" group on the General FAQs page<br />**Position:** After any existing common-error entries, or as a new FAQ item at the end of the Troubleshooting / Errors section
+**Target page:**&#x20;
 
-### Note content (ready to insert):
+(1) "Error Handling" — [https://docs.payu.in/docs/error-handling](https://docs.payu.in/docs/error-handling);&#x20;
 
-> ⚠️ **"Too many Requests" error:** If you see _"Sorry, we are unable to process your payment due to Too many Requests. Please try after 60 seconds"_, this is caused by one of the following:
+2\) "General FAQs" — [https://docs.payu.in/docs/general-faqs](https://docs.payu.in/docs/general-faqs)<br />**Insert under heading:** Error messages / Common errors section on the Error Handling page; FAQ entry under a "Errors & Troubleshooting" group on the General FAQs page<br />**Position:** After any existing common-error entries, or as a new FAQ item at the end of the Troubleshooting / Errors section
+
+### Note content:
+
+> 📘 **"Too many Requests" error:**&#x20;
+>
+> If you see _"Sorry, we are unable to process your payment due to Too many Requests. Please try after 60 seconds"_, this is caused by one of the following:
 >
 > 1. **Rate limit exceeded** — Too many payment requests sent in a short window from the same merchant key. Wait 60 seconds and retry.
 > 2. **Wrong credentials for environment** — Using your **production key in the test environment** (or vice versa) can trigger this error. Ensure you are posting to the correct endpoint with the matching key/salt pair: test key → `https://test.payu.in/_payment`; production key → `https://secure.payu.in/_payment`.
@@ -116,13 +139,13 @@ Multiple merchant tickets arrived with this exact error message verbatim, yet no
 
 ***
 
-## Note 7: Flutter SDK — Current Version and Install Source
+## Flutter SDK — Current Version and Install Source
 
-**Severity:** 🟠 Medium<br />**Target page:** "Flutter Checkout Pro SDK" — [https://docs.payu.in/docs/flutter-checkoutpro-sdk](https://docs.payu.in/docs/flutter-checkoutpro-sdk) (and any Flutter SDK intro/overview page)<br />**Insert under heading:** The very first section of the page (before "Overview" or as a pinned note at the top)<br />**Position:** As the first content block on the page, before the overview or introduction paragraph
+<br />**Target page:** "Flutter Checkout Pro SDK" — [https://docs.payu.in/docs/flutter-checkoutpro-sdk](https://docs.payu.in/docs/flutter-checkoutpro-sdk) (and any Flutter SDK intro/overview page)<br />**Insert under heading:** The very first section of the page (before "Overview" or as a pinned note at the top)<br />**Position:** As the first content block on the page, before the overview or introduction paragraph
 
-### Note content (ready to insert):
+### Note content:
 
-> 📌 **Current SDK version and install source:**
+> 📘 **Current SDK version and install source:**
 >
 > | SDK                        | Latest Version                                                     | Install via                       |
 > | -------------------------- | ------------------------------------------------------------------ | --------------------------------- |
@@ -138,13 +161,17 @@ Reopened 7 times — the highest reopen count for any Flutter ticket in the data
 
 ***
 
-## Note 8: React Native — Dynamic Hash Common Mistakes
+## React Native — Dynamic Hash Common Mistakes
 
-**Severity:** 🔴 High<br />**Target page:** (1) "React Native CheckoutPro Android Integration" — [https://docs.payu.in/docs/reactnative-checkoutpro-android-integration](https://docs.payu.in/docs/reactnative-checkoutpro-android-integration); (2) The equivalent iOS React Native integration page<br />**Insert under heading:** "Generate Dynamic Hash" section (exact heading text on each page)<br />**Position:** Immediately after the existing code sample in that section, before any "Next steps" or following subsections
+**Severity:** 🔴 High<br />**Target page:**&#x20;
 
-### Note content (ready to insert):
+(1) "React Native CheckoutPro Android Integration" — [https://docs.payu.in/docs/reactnative-checkoutpro-android-integration](https://docs.payu.in/docs/reactnative-checkoutpro-android-integration);&#x20;
 
-> ⚠️ **Common mistakes in React Native dynamic hash generation:**
+(2) The equivalent iOS React Native integration page<br />**Insert under heading:** "Generate Dynamic Hash" section (exact heading text on each page)<br />**Position:** Immediately after the existing code sample in that section, before any "Next steps" or following subsections
+
+### Note content:
+
+> 📘 **Notes during dynamic hash generation:**
 >
 > The `generateHash` callback receives a JavaScript object (hashMap). You must:
 >
@@ -172,11 +199,11 @@ Reopened 6 times — the exact error `[PayU] Dynamic hash generation failure` wa
 
 ***
 
-## Note 9: Pluxee Card — Not Supported in Mobile SDK
+## Pluxee Card — Not Supported in Mobile SDK
 
 **Severity:** 🟠 Medium<br />**Target page:** "Pluxee Card Integration" — [https://docs.payu.in/docs/integrate-with-merchant-hosted-checkout-for-pluxee-card](https://docs.payu.in/docs/integrate-with-merchant-hosted-checkout-for-pluxee-card)<br />**Insert under heading:** Introduction / Overview section (top of page)<br />**Position:** As the first callout block on the page, before the introduction paragraph and before any prerequisites or steps
 
-### Note content (ready to insert):
+### Note content:
 
 > 📘 **Platform compatibility:**&#x20;
 >
@@ -190,11 +217,11 @@ Reopened 9 times — the longest-running ticket in the support dataset. Merchant
 
 ## Note 10: Split Settlement via Payment Links — Compatibility Statement
 
-**Severity:** 🟠 Medium<br />**Target page:** (1) Split Settlement pages — [https://docs.payu.in/docs/absolute-split-during-transaction-integration](https://docs.payu.in/docs/absolute-split-during-transaction-integration); (2) "Payment Links" — [https://docs.payu.in/docs/payment-links-dashboard](https://docs.payu.in/docs/payment-links-dashboard)<br />**Insert under heading:** "Supported Integration Types" or "Before You Begin" on each page (add as a new subsection if absent)<br />**Position:** As the first note block under that heading on both pages, so the cross-feature limitation is visible before a merchant begins the integration steps
+<br />**Target page:** (1) Split Settlement pages — [https://docs.payu.in/docs/absolute-split-during-transaction-integration](https://docs.payu.in/docs/absolute-split-during-transaction-integration); (2) "Payment Links" — [https://docs.payu.in/docs/payment-links-dashboard](https://docs.payu.in/docs/payment-links-dashboard)<br />**Insert under heading:** "Supported Integration Types" or "Before You Begin" on each page (add as a new subsection if absent)<br />**Position:** As the first note block under that heading on both pages, so the cross-feature limitation is visible before a merchant begins the integration steps
 
-### Note content (ready to insert):
+### Note content:
 
-> 📌 **Split Settlement and Payment Links:**&#x20;
+> 📘 **Split Settlement and Payment Links:**&#x20;
 >
 > Split settlement is supported for **direct API integrations** (PayU Hosted Checkout, Merchant Hosted Checkout, and S2S). Split settlement via **Payment Links** has limited support — the split parameters cannot be passed through the Payment Links creation API in the same way as direct payment APIs. If you require split settlement on payment link transactions, contact your KAM to understand the supported configuration for your account.
 
@@ -204,13 +231,13 @@ Direct merchant ticket asking about this combination — no cross-reference exis
 
 ***
 
-## Note 11: Bulk Payment Links — `IsPartialPaymentAllowed` Column
+## Bulk Payment Links — `IsPartialPaymentAllowed` Column
 
-**Severity:** 🟡 Low<br />**Target page:** "Create Payment Links in Bulk" — [https://docs.payu.in/docs/bulk-upload-to-create-multiple-payments-links](https://docs.payu.in/docs/bulk-upload-to-create-multiple-payments-links)<br />**Insert under heading:** The section describing the CSV template columns (e.g., "CSV Template Fields", "Upload Format", or "Column Reference")<br />**Position:** After the last documented column in the table, as an additional row followed by the callout block below
+<br />**Target page:** "Create Payment Links in Bulk" — [https://docs.payu.in/docs/bulk-upload-to-create-multiple-payments-links](https://docs.payu.in/docs/bulk-upload-to-create-multiple-payments-links)<br />**Insert under heading:** The section describing the CSV template columns (e.g., "CSV Template Fields", "Upload Format", or "Column Reference")<br />**Position:** After the last documented column in the table, as an additional row followed by the callout block below
 
-### Note content (ready to insert):
+### Note content:
 
-> 📌 **Partial payment option in bulk links:**&#x20;
+> 📘 **Partial payment option in bulk links:**&#x20;
 >
 > To enable partial payment on bulk-created payment links, include the column `IsPartialPaymentAllowed` in your CSV upload with value `1` (enabled) or `0` (disabled). If this column is absent, partial payment defaults to disabled.**Known behaviour:** If the partial payment option does not appear on the generated payment link despite setting `IsPartialPaymentAllowed=1`, verify that:
 >
@@ -224,11 +251,15 @@ A merchant confirmed the column stopped working on newly created bulk links. The
 
 ***
 
-## Note 12: UAT Offers / No Cost EMI Dashboard — 503 Error
+## UAT Offers / No Cost EMI Dashboard — 503 Error
 
-**Severity:** 🟡 Low<br />**Target page:** (1) Any Offers integration page (e.g., [https://docs.payu.in/docs/integrate-payu-with-interakt](https://docs.payu.in/docs/integrate-payu-with-interakt) or the main Offers documentation page); (2) "General FAQs" — [https://docs.payu.in/docs/general-faqs](https://docs.payu.in/docs/general-faqs)<br />**Insert under heading:** "Testing" or "Troubleshooting" section on the Offers page; a new FAQ item in the "Errors & Troubleshooting" group on the General FAQs page<br />**Position:** At the end of the Testing/Troubleshooting section, after any existing test steps; as the last item in the relevant FAQ group
+<br />**Target page:**&#x20;
 
-### Note content (ready to insert):
+(1) Any Offers integration page (e.g., [https://docs.payu.in/docs/integrate-payu-with-interakt](https://docs.payu.in/docs/integrate-payu-with-interakt) or the main Offers documentation page);&#x20;
+
+(2) "General FAQs" — [https://docs.payu.in/docs/general-faqs](https://docs.payu.in/docs/general-faqs)<br />**Insert under heading:** "Testing" or "Troubleshooting" section on the Offers page; a new FAQ item in the "Errors & Troubleshooting" group on the General FAQs page<br />**Position:** At the end of the Testing/Troubleshooting section, after any existing test steps; as the last item in the relevant FAQ group
+
+### Note content:
 
 > 📘 **UAT Offers / No Cost EMI dashboard returning 503:**&#x20;
 >
@@ -244,21 +275,6 @@ Reopened 3 times — merchants assumed their integration was broken when the UAT
 
 ***
 
-## Summary Table
-
-| Note # | Title                                                        | Target Page(s)                                                                         | Severity  |
-| ------ | ------------------------------------------------------------ | -------------------------------------------------------------------------------------- | --------- |
-| 1      | UPI App List is Platform-Controlled                          | webview-for-mobile-apps, android-checkoutpro-sdk, ios-checkoutpro-sdk                  | 🔴 High   |
-| 2      | Hash Formula with Partial UDFs — Pipe Count Rule             | hashing-request-and-response, generate-hash-payu-hosted, generate-hash-merchant-hosted | 🔴 High   |
-| 3      | Webhook `amount` Field — Gross or Net?                       | webhook-events-and-sample-payloads, webhooks                                           | 🔴 High   |
-| 4      | Tokenization Webhooks — Not Available in UAT                 | Card tokenization page, webhooks                                                       | 🟠 Medium |
-| 5      | Verify Payment API — `command` Parameter Value               | Verify Payment / postservice API page                                                  | 🟠 Medium |
-| 6      | "Too Many Requests" Error — Causes and Fix                   | error-handling, general-faqs                                                           | 🟠 Medium |
-| 7      | Flutter SDK — Current Version and Install Source             | flutter-checkoutpro-sdk                                                                | 🟠 Medium |
-| 8      | React Native — Dynamic Hash Common Mistakes                  | reactnative-checkoutpro-android-integration, iOS React Native page                     | 🔴 High   |
-| 9      | Pluxee Card — Not Supported in Mobile SDK                    | integrate-with-merchant-hosted-checkout-for-pluxee-card                                | 🟠 Medium |
-| 10     | Split Settlement via Payment Links — Compatibility Statement | absolute-split-during-transaction-integration, payment-links-dashboard                 | 🟠 Medium |
-| 11     | Bulk Payment Links — `IsPartialPaymentAllowed` Column        | bulk-upload-to-create-multiple-payments-links                                          | 🟡 Low    |
-| 12     | UAT Offers / No Cost EMI Dashboard — 503 Error               | Offers integration page, general-faqs                                                  | 🟡 Low    |
+##
 
 <br />
