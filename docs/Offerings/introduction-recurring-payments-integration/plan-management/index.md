@@ -1,5 +1,5 @@
 ---
-title: Plan Management
+title: SI Plans
 deprecated: false
 hidden: true
 metadata:
