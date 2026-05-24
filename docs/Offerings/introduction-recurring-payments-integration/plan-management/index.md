@@ -140,32 +140,18 @@ Find answers to frequently asked questions about SI plans.
    </Accordion>
 2. #### Can I edit a plan?
    <Accordion title="Answer" icon="fa-comment-dots">
+   Yes, you can edit a plan.
+   </Accordion>
+3. Can i delete a plan?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   No, you cannot delete a plan. However, you can deactivate a plan. Once deactivated, a plan moves to the **Archived** state. You can dupliacte it to create a new plan.
+   </Accordion>
+4. Can I pause and resume a plan?
+   <Accordion title="Answer" icon="fa-comment-dots">
      Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
      ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
      occaecat cupidatat non proident!
    </Accordion>
-
-#### Can plans be edited?
-
-**Short answer:** Draft plans can be edited freely. Active plans should not be edited directly if the change affects mandate-approved terms such as amount, frequency, or date range.
-
-**Best Practice:** For active plans, use supported mandate modification APIs or create a new mandate where modification is not supported.
-
-#### Can plans be deleted?
-
-**Short answer:** Draft plans can be deleted from your system. Active plans should usually be cancelled or marked inactive rather than hard-deleted, because they are tied to consent, mandate, and payment history.
-
-**Best Practice:** Keep an audit trail for deleted, cancelled, or expired plans.
-
-#### What happens when a plan expires?
-
-**Short answer:** Your system should stop scheduling new pre-debit notifications and recurring debits after the plan end date or after the planned billing count is complete.
-
-**Note:** Expiring a merchant-side plan does not always revoke the mandate automatically. Cancel the mandate separately if required by your business flow.
-
-#### What happens to linked subscriptions if I cancel a plan?
-
-**Short answer:** Your subscription experience should stop future debits for that plan. If the customer should no longer be charged through the mandate, call the applicable mandate cancellation API.
 
 #### Can I pause and resume a plan?
 
