@@ -3,6 +3,28 @@ title: Plans
 deprecated: false
 hidden: true
 metadata:
+  title: SI Plan Management - Create, Update & Manage Subscription Plans | PayU Docs
+  description: >-
+    Learn how to create, manage, activate, and update SI subscription plans
+    using PayU Dashboard and APIs. Explore plan lifecycle, statuses, recurring
+    billing flows, integration steps, request parameters, error handling, and
+    best practices.
+  keywords:
+    - PayU SI Plan
+    - PayU subscription plans
+    - recurring payment plans
+    - subscription integration API
+    - SI plan management
+    - PayU recurring billing
+    - plan lifecycle API
+    - PayU mandate plans
+    - create subscription plans
+    - recurring payments API
+    - PayU subscriptions
+    - SI integration docs
+    - subscription management API
+    - PayU developer docs
+    - recurring billing integration
   robots: index
 ---
 A plan defines the subscription terms that the customer accepts before a Standing Instruction (SI) mandate is registered. In API-based SI integrations, the plan is managed by your system and shared with PayU during the consent transaction through `si_details`.
