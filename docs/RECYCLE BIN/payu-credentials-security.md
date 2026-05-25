@@ -24,11 +24,13 @@ This section covers PayU credential types, what to do if credentials are exposed
 
 All credentials are **environment-specific**. Your test environment key, salt, Client ID, and Client Secret are completely different from your production credentials. Never mix them.
 
-> 📘 **Note:** The Merchant Key being "client-safe" does not mean it has no value to an attacker on its own. Without the Salt, an attacker cannot forge valid payment hashes, but the Key alone can be used to probe your integration. Always keep the Salt secret.
+> 📘 **Note:**&#x20;
+>
+> The Merchant Key being "client-safe" does not mean it has no value to an attacker on its own. Without the Salt, an attacker cannot forge valid payment hashes, but the Key alone can be used to probe your integration. Always keep the Salt secret.
 
 ***
 
-## What to Do If Credentials Are Exposed
+## What to do if Credentials are Exposed
 
 If you believe your Salt, Client Secret, or any PayU credential has been exposed (committed to a public repository, logged, sent via email, etc.), follow these steps immediately:
 
