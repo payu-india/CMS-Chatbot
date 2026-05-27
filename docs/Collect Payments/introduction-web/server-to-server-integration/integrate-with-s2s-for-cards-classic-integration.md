@@ -10,6 +10,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Classic Integration for Cards
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    PayU S2S classic cards integration: card capture APIs, OTP flow, hash, transaction verification, and classic card payment server-side.
+  robots: index
+  keywords:
+    - payu s2s classic cards integration server to server india
+    - payment gateway card s2s integration classic flow payu api
+    - integrate card payments server side payu s2s classic guide
+    - payu server to server card otp integration steps web backend
+    - classic card payment integration payu s2s api developer
+    - server side credit card payment integration payu s2s india
+    - payu collect payments s2s cards classic integration guide
+    - payment gateway s2s card api hash verification payu integration
+    - payu s2s card payment request response integration backend website
+    - merchant server card payment payu s2s classic integration steps
+    - payu server to server card payment pci integration guide
+    - website backend card payment gateway s2s integration payu
+
+next:
+  description: ''
+---
 This is server-to-server integration over the Redirect experience for cards involves the following steps:
 
 <Cards columns={2}>
