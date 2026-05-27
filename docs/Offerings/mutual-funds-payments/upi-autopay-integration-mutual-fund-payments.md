@@ -135,8 +135,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 | scheme<br/><code>optional</code> | <code>string</code> - Mutual fund type/scheme | `"LT"` |
 | mf_amc_code<br/><code>optional</code> | <code>string</code> - Asset Management Company code (max 5 chars) | `"UTB"` |
 </Accordion>    
-      <Accordion title="Validation Rules" icon="fa-code">
-
+<Accordion title="Validation Rules" icon="fa-code">
 | Field | Description | Example |
 |---|---|---|
 | type | Must always be `"mutual_fund"` | `"mutual_fund"` |
@@ -149,13 +148,10 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 | **Optional Field Validations**| |
 | mf_amc_code | Maximum 5 characters | - |
 | receipt | Maximum 25 characters for SIP registration ID | - |
-
 </Accordion>
-    </Accordion>
-  </Accordion>
 </Accordion>
 
-<Accordion title="Hash Calculation" icon="fa-key">
+  <Accordion title="Hash Calculation" icon="fa-key">
   Concatenate fields in this exact sequence, then
   <Glossary>SHA</Glossary>-512:
 
@@ -167,7 +163,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
   * Compute on your server and include the lowercase hex digest as hash.
 
   For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
-</Accordion>
+  </Accordion>
 </Accordion>
 <Accordion title="Sample Request" icon="fa-exchange">
   ```curl
