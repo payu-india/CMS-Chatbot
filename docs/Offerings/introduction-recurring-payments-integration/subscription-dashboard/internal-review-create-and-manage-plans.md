@@ -21,11 +21,14 @@ To create a plan:
 
 1. Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor> expand **Subscriptions&#x20;**&#x63;lick **Plans&#x20;**&#x66;rom the left menu.
 
+
    <Image src="https://files.readme.io/d702957802d2066612647750ceb1113b810dbe1e786d0c0375b8ea4321b3720c-Screenshot_2026-05-24_at_11.20.49_AM.png" align="center" caption="_Access Plans_" border={true} />
+
 
 2. Click **+ Create Plan&#x20;**&#x64;isplayed on the top-right corner of the page.
 
    The **Create Plan&#x20;**&#x70;op-up menu appears.
+
 3. Provide the following details:
    - **Plan ID:&#x20;**&#x41; unique ID of a plan.
    - **Plan Name:&#x20;**&#x54;he name of the plan visible to customers.
@@ -43,7 +46,9 @@ To create a plan:
    - **Billing Amount:&#x20;**&#x54;he recurring amount you want to debit from the customers account.
    - **Upfront Amount:&#x20;**&#x59;ou can add any additional amount as upfront amount. This is one-time a one-time registration amount paid by the customer.
 
+
      <Image src="https://files.readme.io/f5a3311e42e877996349c8d1b3c441e064c47672b44f91791c1cc488783cce95-Screenshot_2026-05-27_at_11.18.47_AM.png" align="center" caption="_Create Plan Fields_" border={true} />
+
 
 4. Click any of the following:
    - **Save as Draft:&#x20;**&#x54;o save the plan as a draft.
@@ -58,6 +63,16 @@ To create a plan:
 
    ![](https://files.readme.io/150db535eaadf15ae2c3fbd3c9dc02a33e890b1371a7beeb652da9f651b74122-Screenshot_2026-05-27_at_3.12.24_PM.png)
 
+   Plan and **Payment details**  are auto-populated. You can edit the plan details as per your requirement.
+3. Enter the **Customer details**. Below are the available options:
 
+   > 📘 **Mandatory Fields**
+   >
+   >
+
+   - **Enable Third Party Validation:&#x20;**&#x45;nable this to skip checkout and take your customers directly to the bank page with **Enach** pre-selected.
+   - **Customer Name**
+   - **Email:&#x20;**&#x54;he customer email address. Enable **Notify via Email&#x20;**&#x72;adio button to send the subscription link via email.
+   -
 
 <br />
