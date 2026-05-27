@@ -2,7 +2,7 @@
 name: Mutual_Funds_Product_JSON
 ---
   <Accordion title="Sample JSON" icon="fa-code">
-    ```
+    ```json
     "product": {
         "wtParams": [
           {
@@ -27,7 +27,6 @@ name: Mutual_Funds_Product_JSON
     These parameters are included within the `product` field as a JSON array under the fiedl `wtParams`:
 
 <HTMLBlock>{`
-
 <table style="width: 100%; border-collapse: collapse;">
   <thead>
     <tr>
@@ -101,8 +100,8 @@ name: Mutual_Funds_Product_JSON
 </table>
 
 `}</HTMLBlock>
-
-    <Accordion title="Validation Rules" icon="fa-code">
+  </Accordion>
+ <Accordion title="Validation Rules" icon="fa-code">
     #### Mandatory Field Validations
        - **type**: Must always be `"mutual_fund"`
        - **amount**: Must match the overall order amount and be in paise
@@ -115,5 +114,4 @@ name: Mutual_Funds_Product_JSON
     #### Optional Field Validations
        - **mf\_amc\_code**: Maximum 5 characters
        - **receipt**: Maximum 25 characters for SIP registration ID
-    </Accordion>
-  </Accordion>
+</Accordion>
