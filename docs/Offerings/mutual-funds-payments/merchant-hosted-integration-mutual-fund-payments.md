@@ -60,6 +60,8 @@ This section explains how to implement the **_payment** API for mutual fund paym
   <Accordion title="beneficiarydetail JSON Object Fields" icon="fa-code">
     The `beneficiarydetail` parameter should be a JSON object with the following structure:
 
+<HTMLBlock>{`
+
     <Table align={["left","left","left"]}>
       <thead>
         <tr>
@@ -114,6 +116,7 @@ This section explains how to implement the **_payment** API for mutual fund paym
       </tbody>
     </Table>
 
+`}</HTMLBlock>
     **Example JSON**:
 
     ```json
