@@ -125,223 +125,41 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
     <Accordion title="Sample JSON" icon="fa-code">
       These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
 
-      <Table align={["left","left","left"]}>
-        <thead>
-          <tr>
-            <th style={{ textAlign: "left" }}>
-              Parameter
-            </th>
+     This table is very similar to the previous one, with just a couple of differences in the `amount` field — the type is `numeric` and the description reads *"Amount in paise"* instead of *"The transaction amount"*. Here's the markdown! ✅
 
-            <th style={{ textAlign: "left" }}>
-              Description
-            </th>
+```md
+| Parameter | Description | Example |
+|---|---|---|
+| type<br/><code>mandatory</code> | <code>string</code> - Transaction type, must be "mutual_fund" | `"mutual_fund"` |
+| amount<br/><code>mandatory</code> | <code>numeric</code> - Amount in paise, must match order amount | `50000` |
+| receipt<br/><code>mandatory</code> | <code>string</code> - Unique PG reference number (max 25 chars) | `"77407"` |
+| mf_member_id<br/><code>mandatory</code> | <code>numeric</code> - Member ID issued by mutual fund platform (5-20 chars) | `"123445"` |
+| mf_user_id<br/><code>mandatory</code> | <code>string</code> - Unique mutual fund user/client ID (max 10 chars) | `"77407"` |
+| mf_partner<br/><code>mandatory</code> | <code>string</code> - Mutual fund platform: cams, kfin, bse, nse (max 4 chars) | `"cams"` |
+| mf_investment_type<br/><code>mandatory</code> | <code>string</code> - Investment type: L (Lump Sum) or S (SIP) (single char) | `"L"` |
+| plan<br/><code>optional</code> | <code>string</code> - Mutual fund plan name | `"GD"` |
+| folio<br/><code>optional</code> | <code>string</code> - Unique mutual fund account identifier | `"12345678"` |
+| option<br/><code>optional</code> | <code>string</code> - Mutual fund plan option | `"G"` |
+| scheme<br/><code>optional</code> | <code>string</code> - Mutual fund type/scheme | `"LT"` |
+| mf_amc_code<br/><code>optional</code> | <code>string</code> - Asset Management Company code (max 5 chars) | `"UTB"` |
 
-            <th style={{ textAlign: "left" }}>
-              Example
-            </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              type <br />
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `string` - Transaction type, must be "mutual\_fund"
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `"mutual_fund"`
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              amount <br />
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `numeric` - Amount in paise, must match order amount
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `50000`
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              receipt <br />
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `string` - Unique PG reference number (max 25 chars)
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `"77407"`
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              mf\_member\_id <br />
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `numeric` - Member ID issued by mutual fund platform (5-20 chars)
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `"123445"`
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              mf\_user\_id <br />
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `string` - Unique mutual fund user/client ID (max 10 chars)
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `"77407"`
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              mf\_partner <br />
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `string` - Mutual fund platform: cams, kfin, bse, nse (max 4 chars)
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `"cams"`
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              mf\_investment\_type <br /> `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `string` - Investment type: L (Lump Sum) or S (SIP) (single char)
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `"L"`
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              plan <br />
-              `optional`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `string` - Mutual fund plan name
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `"GD"`
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              folio<br />
-              `optional`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `string` - Unique mutual fund account identifier
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `"12345678"`
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              option <br />
-              `optional`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `string` - Mutual fund plan option
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `"G"`
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              scheme <br />
-              `optional`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `string` - Mutual fund type/scheme
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `"LT"`
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              mf\_amc\_code <br />
-              `optional`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `string` - Asset Management Company code (max 5 chars)
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `"UTB"`
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-
+</Accordion>    
       <Accordion title="Validation Rules" icon="fa-code">
-        <Accordion title="Mandatory Field Validations" icon="fa-code">
-          * **type**: Must always be `"mutual_fund"`
-          * **amount**: Must match the overall order amount and be in paise
-          * **receipt**: Must be unique across transactions
-          * **mf\_member\_id**: Must be numeric with length between 5-20 characters
-          * **mf\_user\_id**: Maximum 10 characters allowed
-          * **mf\_partner**: Must be one of: `"cams"`, `"kfin"`, `"bse"`, `"nse"`
-          * **mf\_investment\_type**: Only `"L"` (Lump Sum) or `"S"` (SIP) allowed
-        </Accordion>
 
-        <Accordion title="Optional Field Validations" icon="fa-code">
-          * **mf\_amc\_code**: Maximum 5 characters
-          * **receipt**: Maximum 25 characters for SIP registration ID
+| Field | Description | Example |
+|---|---|---|
+| type | Must always be `"mutual_fund"` | `"mutual_fund"` |
+| amount | Must match the overall order amount and be in paise | - |
+| receipt | Must be unique across transactions | - |
+| mf_member_id | Must be numeric with length between 5-20 characters | - |
+| mf_user_id | Maximum 10 characters allowed | - |
+| mf_partner | Must be one of: `"cams"`, `"kfin"`, `"bse"`, `"nse"` | `"cams"` |
+| mf_investment_type | Only `"L"` (Lump Sum) or `"S"` (SIP) allowed | `"L"` |
+| **Optional Field Validations**| |
+| mf_amc_code | Maximum 5 characters | - |
+| receipt | Maximum 25 characters for SIP registration ID | - |
 
-          ***
-        </Accordion>
-      </Accordion>
+</Accordion>
     </Accordion>
   </Accordion>
 </Accordion>
