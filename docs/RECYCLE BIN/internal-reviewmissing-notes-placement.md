@@ -194,7 +194,7 @@ Reopened 6 times — the exact error `[PayU] Dynamic hash generation failure` wa
 
 ***
 
-## Split Settlement via Payment Links — Compatibility Statement
+## Split Settlement via Payment Links — Compatibility Statement \[Check with Anit]
 
 <br />**Target page:** (1) Split Settlement pages — [https://docs.payu.in/docs/absolute-split-during-transaction-integration](https://docs.payu.in/docs/absolute-split-during-transaction-integration); (2) "Payment Links" — [https://docs.payu.in/docs/payment-links-dashboard](https://docs.payu.in/docs/payment-links-dashboard)<br />**Insert under heading:** "Supported Integration Types" or "Before You Begin" on each page (add as a new subsection if absent)<br />**Position:** As the first note block under that heading on both pages, so the cross-feature limitation is visible before a merchant begins the integration steps
 
@@ -210,7 +210,7 @@ Direct merchant ticket asking about this combination — no cross-reference exis
 
 ***
 
-## Bulk Payment Links — `IsPartialPaymentAllowed` Column
+## Bulk Payment Links — `IsPartialPaymentAllowed` Column \[Not Required]
 
 <br />**Target page:** "Create Payment Links in Bulk" — [https://docs.payu.in/docs/bulk-upload-to-create-multiple-payments-links](https://docs.payu.in/docs/bulk-upload-to-create-multiple-payments-links)<br />**Insert under heading:** The section describing the CSV template columns (e.g., "CSV Template Fields", "Upload Format", or "Column Reference")<br />**Position:** After the last documented column in the table, as an additional row followed by the callout block below
 
@@ -218,39 +218,11 @@ Direct merchant ticket asking about this combination — no cross-reference exis
 
 > 📘 **Partial payment option in bulk links:**&#x20;
 >
-> To enable partial payment on bulk-created payment links, include the column `IsPartialPaymentAllowed` in your CSV upload with value `1` (enabled) or `0` (disabled). If this column is absent, partial payment defaults to disabled.**Known behaviour:** If the partial payment option does not appear on the generated payment link despite setting `IsPartialPaymentAllowed=1`, verify that:
->
-> - The partial payment feature is enabled on your merchant account (contact your KAM)
-> - The payment link amount is above the minimum partial payment threshold
-> - You are using the latest bulk upload template from the Dashboard
+> To enable partial payment on bulk-created payment links, include the column `IsPartialPaymentAllowed` in your CSV upload with value `1` (enabled) or `0` (disabled). If this column is absent, partial payment defaults to disabled.**Known behaviour:** If the partial payment option does not appear on the generated payment link despite setting `IsPartialPaymentAllowed=1`.
 
 ### Why this note is needed:
 
 A merchant confirmed the column stopped working on newly created bulk links. The `IsPartialPaymentAllowed` column is entirely undocumented in the current template guide, leaving merchants with no way to discover or troubleshoot this feature without raising a support ticket.
-
-***
-
-## UAT Offers / No Cost EMI Dashboard — 503 Error
-
-<br />**Target page:**&#x20;
-
-(1) Any Offers integration page (e.g., [https://docs.payu.in/docs/integrate-payu-with-interakt](https://docs.payu.in/docs/integrate-payu-with-interakt) or the main Offers documentation page);&#x20;
-
-(2) "General FAQs" — [https://docs.payu.in/docs/general-faqs](https://docs.payu.in/docs/general-faqs)<br />**Insert under heading:** "Testing" or "Troubleshooting" section on the Offers page; a new FAQ item in the "Errors & Troubleshooting" group on the General FAQs page<br />**Position:** At the end of the Testing/Troubleshooting section, after any existing test steps; as the last item in the relevant FAQ group
-
-### Note content:
-
-> 📘 **UAT Offers / No Cost EMI dashboard returning 503:**&#x20;
->
-> 1. The Offers section of the PayU UAT/staging Dashboard may intermittently return a 503 error. This is a known environment issue and does not indicate a problem with your integration. If the Offers section is unavailable in UAT:
-> 2. Wait 15–30 minutes and refresh.
-> 3. If the issue persists beyond 1 hour, raise a support ticket at [integration@payu.in](mailto:integration@payu.in) with your MID and a screenshot.
-> 4. Offers created before the downtime remain valid — they are not deleted during a 503 outage.
->    Note: No Cost EMI and Offers features must be activated on your account before they appear in the Dashboard (contact your KAM).
-
-### Why this note is needed:
-
-Reopened 3 times — merchants assumed their integration was broken when the UAT Offers Dashboard returned 503 errors, and spent hours debugging their code when the issue was purely an environment outage. No documentation existed acknowledging this known behaviour.
 
 ***
 
