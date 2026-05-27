@@ -94,7 +94,6 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 
     \>
   </Accordion>
-</Accordion>
 
 #### Wealth Tech Object wtparams Fields Description
 
@@ -177,7 +176,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 
   For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
 </Accordion>
-
+</Accordion>
 <Accordion title="Sample Request" icon="fa-exchange">
   ```curl
 
