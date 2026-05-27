@@ -32,7 +32,7 @@ metadata:
 
 > 📘 **UPI App List is platform-controlled:**&#x20;
 >
-> The list of UPI apps displayed on the payment screen (GPay, PhonePe, Paytm, etc.) is managed globally by PayU and cannot be customised per merchant. Merchants can add or remove specific apps from this list. For more information, refer to  \\<Configure the Dashboard>
+> The list of UPI apps displayed on the payment screen (GPay, PhonePe, Paytm, etc.) is managed globally by PayU and cannot be customised per merchant. If you want to remove specific apps from this list, contact your PayU Key Account Manager (KAM) or<Anchor target="_blank" href="https://help.payu.in">&#x20;PayU Support</Anchor>.
 
 ### Why this note is needed:
 
@@ -58,8 +58,10 @@ Multiple tickets (reopened 3–8 times) from merchants confused by unexpected UP
 >
 > The hash string must always contain exactly 5 UDF positions between `email` and `SALT`, regardless of how many UDFs you actually use. Use an empty string `""` for each unused UDF — never omit the pipe separators.**Example — using only udf1 and udf2:**
 >
+> **Use illustration below:**
+>
 > ```
-> sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|||  |||||SALT)
+> sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2||||||||SALT)
 >                                                              ↑↑↑
 >                                              udf3, udf4, udf5 = empty strings
 > ```
