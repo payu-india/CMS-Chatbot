@@ -32,7 +32,7 @@ metadata:
 
 > 📘 **UPI App List is platform-controlled:**&#x20;
 >
-> The list of UPI apps displayed on the payment screen (GPay, PhonePe, Paytm, etc.) is managed globally by PayU and cannot be customised per merchant. If additional or unexpected apps appear under the UPI option, this is expected behaviour. Merchants can add or remove specific apps from this list. For more information, refer to  \\<Configure the Dashboard>
+> The list of UPI apps displayed on the payment screen (GPay, PhonePe, Paytm, etc.) is managed globally by PayU and cannot be customised per merchant. Merchants can add or remove specific apps from this list. For more information, refer to  \\<Configure the Dashboard>
 
 ### Why this note is needed:
 
