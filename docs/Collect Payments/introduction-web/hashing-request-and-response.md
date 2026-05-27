@@ -186,11 +186,13 @@ Along with the request, the sensitive information should not be a part of any me
 >
 > - **Test endpoint:** `https://test.payu.in/merchant/postservice` (typically with `?form=2` for JSON responses).
 > - For most command-based postservice APIs, PayU uses `sha512(key|command|var1|salt)`. Regenerate the hash whenever request parameters change. See [REST API Format](docs/API basics/rest-api-format.md) and [API Authentication and Security](/docs/api-authentication-and-security).
+
+
 | API | command | Hash logic |
 | --- | --- | --- |
 | [Verify Payment API](ref:verify_payment_api) | `verify_payment` | Hash formula: `sha512(key\|command\|var1\|salt)` |
 | [Get Transaction Details API](ref:get_transaction_details_api) | `get_Transaction_Details` | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
-| [Get Transaction Info API](ref:get_transaction_info_api) | `get_transaction<br/>_info` | The string used for calculating the hash is in the following format: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Get Transaction Info API](ref:get_transaction_info_api) | `get_transaction_info` | The string used for calculating the hash is in the following format: `sha512(key\|command\|var1\|salt)` sha512 |
 | [Get TDR API](ref:get_tdr_api) | `get_TDR` | Hash formula: `sha512(key\|command\|var1\|salt)` |
 | [Refund Transaction API](ref:refund_transaction_api) | `cancel_refund<br/>_transaction` | Calculated using the sha512 algorithm with the format: `sha512(key\|command\|var1\|salt)` |
 | [Get All Refunds from Transaction ID](ref:get_all_refunds_from_transaction_ids_api) | `getAllRefunds<br/>FromTxnIds` | Calculated using the sha512 algorithm with the format: `sha512(key\|command\|var1\|salt)` |
