@@ -1,8 +1,6 @@
 ---
 name: Mutual_Funds_Product_JSON
 ---
-<Accordion title="Wealth Tech Object (wtParams) Fields" icon="fa-cog">
-
   <Accordion title="Sample JSON" icon="fa-code">
     ```
     "product": {
@@ -48,6 +46,3 @@ name: Mutual_Funds_Product_JSON
       </Accordion>
     </Accordion>
   </Accordion>
-</Accordion>
-
-<br />
