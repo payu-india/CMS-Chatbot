@@ -37,7 +37,8 @@ Initiate an authorization request with the payment details provided post a succe
 
 <PaymentAPIEnvironment />
 
-> 👍 **Reference**: To capture the transaction for **Pre-Authorize (Auth and Capture) Payments**, you can include **pre\_authorize** parameter along with the following **\_payment** API request parameters and then call the**Capture Transaction** API. For more information on Pre-Authorize Payments with Cards , refer to <Anchor label="Pre-Authorize Payments > Credit Card" target="_blank" href="doc:credit-card-merchant-hosted-integration-pre-authorize-payment">Pre-Authorize Payments > Credit Card</Anchor>.
+> 👍 **Reference**: 
+> To capture the transaction for **Pre-Authorize (Auth and Capture) Payments**, you can include **pre\_authorize** parameter along with the following **\_payment** API request parameters and then call the**Capture Transaction** API. For more information on Pre-Authorize Payments with Cards , refer to <Anchor label="Pre-Authorize Payments > Credit Card" target="_blank" href="doc:credit-card-merchant-hosted-integration-pre-authorize-payment">Pre-Authorize Payments > Credit Card</Anchor>.
 
 <Accordion title="Request Parameter" icon="fa-info-circle">
 <HTMLBlock>{`
@@ -221,12 +222,9 @@ Initiate an authorization request with the payment details provided post a succe
 
   #### Example
 
-  ```
-  `{"eci":"05","cavv":"AAABAWFlmQAAAABjRWWZEEFgFz","flowType":"Frictionless","threeDSServerTransID":"eea30d14-71cf-41af-b961-f95b7d67dc93","threeDSTransID":"67b4c71f-19bf-4d97-bd09-4e3687dc9e42","threeDSTransStatus":"Y","threeDSTransStatusReason":"01","acquirer_bin":"401200"}`
+  ``` `{"eci":"05","cavv":"AAABAWFlmQAAAABjRWWZEEFgFz","flowType":"Frictionless","threeDSServerTransID":"eea30d14-71cf-41af-b961-f95b7d67dc93","threeDSTransID":"67b4c71f-19bf-4d97-bd09-4e3687dc9e42","threeDSTransStatus":"Y","threeDSTransStatusReason":"01","acquirer_bin":"401200"}`
   ```
 </Accordion>
-
-<br />
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
