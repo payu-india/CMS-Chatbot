@@ -111,461 +111,179 @@ For the "Try It" experience, refer to <a href="https://docs.payu.in/reference/_p
 Some of the parameters are mandatory for S2S integration, and a few are optional. You need to include the following parameters.
 
 <Accordion title="Request parameters" icon="fa-table">
-  <Table align={["left","left","left"]}>
-    <thead>
-      <tr>
-        <th style={{ textAlign: "left" }}>
-          Parameter
-        </th>
+  <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU must be included.<br><strong>Reference</strong>: For more information on how to generate the Key and Salt, refer to any of the following:
+<ul>
+<li><strong>Production</strong>: <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Access Production Key and Salt</a></li>
+<li><strong>Test</strong>: <a href="doc:generate-test-merchant-key-and-salt">Access Test Merchant Key and Salt</a></li>
+</ul></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p></p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnid<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) &amp; alphanumeric special (&lt;= 50 characters &amp; excluding &gt;,&lt;, =,:,&amp;, ').</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1234_abcdedf</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> (rounded to two decimal places) This parameter must contain the amount for which QR needs to be generated. The amount should be greater than or equal to Rs.1.00.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the customer phone number (10 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>9876786756</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>productinfo<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> (alphanumeric) This field must contain the product name. By default, the value is 'storefront' (max. 100 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>iPhone 12</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>firstname<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the customer's first name (max. 60 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Sundar</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the customer email ID.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="mailto:hello@payu.in">hello@payu.in</a></p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>surl<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Success URL (surl) – It must contain the URL to which PayU will redirect the final response if the transaction is successful.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="https://apiplayground-response.herokuapp.com/">https://apiplayground-response.herokuapp.com/</a></p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>furl<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Failure URL (furl) – It must contain the URL to which PayU will redirect the final response in case of failure.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="https://apiplayground-response.herokuapp.com/">https://apiplayground-response.herokuapp.com/</a></p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>pg<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>  <code>String</code> The payment method is specified in this field. For UPI INTENT, specify the parameter value as <strong>UPI</strong>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>UPI</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>bankcode<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Each payment option is identified with a unique bank code at PayU. For UPI Collect, specify the value as <strong>UPI</strong>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>UPI</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>lastname<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the customer last name (maximum 20 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Teja</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>address1<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the first line of customer address (up to 100 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>PayU, Bestech Business Tower, Gurgaon</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>address2<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the second line of the customer address (up to 100 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Sohna Road</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>city<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the customer city (max. 50 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Gurgaon</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>country<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the customer's country that is part of the address (max. 50 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>India</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>state<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain the customer state that is part of the address (max 50 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Haryana</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>zipcode<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Numeric</code> This parameter must contain the customer's PIN code (6 digits).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>122018</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>udf1<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter can include any custom information in request (up to 255 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Website order</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>udf2<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter can include any custom information in request (up to 255 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p></p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>udf3<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter can include any custom information in request (up to 255 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p></p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>udf4<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter can include any custom information in request (up to 255 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p></p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>udf5<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter can include any custom information in request (up to 255 characters).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p></p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>s2s_client_ip<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must have the source IP of the user's device.<br><strong>Note</strong>: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p></p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>s2s_device_info<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must have the user agent of device.<br><strong>Note</strong>: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p></p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txn_s2s_flow<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must be posted with the value as <strong>4</strong> for transaction flow.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>4</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>upiAppName<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum's expected for major apps:
+<ul>
+<li>phonepe</li>
+<li>googlepay</li>
+<li>paytm</li>
+<li>bhim</li>
+<li>cred</li>
+<li>amazonpay</li>
+<li>whatsapp</li>
+<li>genericintent – For any other app apart from above</li>
+</ul></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>phonepe</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>vpa<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Virtual Private Address. VPA can first be validated using VPA validate web service. Also, add regex where '@' exists. Example: 8800411088@upi. This needs to be passed in case of collect flow of UPI only.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>8800411088@upi</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to <a href="hashing-request-and-response" target="_blank">Generate Hash</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p></p></td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
 
-        <th style={{ textAlign: "left" }}>
-          Description
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          Example
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          key
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` The merchant key provided by PayU must be included.
-
-          * *Reference*\*: For more information on how to generate the Key and Salt, refer to any of the following:
-          * **Production**: [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-          * **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          txnid
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` (alphanumeric) Merchant transaction identifier - This parameter must be unique (after a successful transaction) & alphanumeric special (\<= 50 characters & excluding >,\<, =,:,&, ‘).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          1234\_abcdedf
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          amount
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` (rounded to two decimal places) This parameter must contain the amount for which QR needs to be generated. The amount should be greater than or equal to Rs.1.00.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          1000
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          phone
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the customer phone number (10 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          9876786756
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          productinfo
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` (alphanumeric) This field must contain the product name. By default, the value is 'storefront' (max. 100 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          iPhone 12
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          firstname
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the customer's first name (max. 60 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Sundar
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          email
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the customer email ID.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          [hello@payu.in](mailto:hello@payu.in)
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          <p>surl<br /><code>mandatory</code></p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p><strong>String</strong> Success URL (surl) – It must contain the URL to which PayU will redirect the final response if the transaction is successful.</p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p><a href="https://apiplayground-response.herokuapp.com/">[https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)</a></p>
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          <p>furl<br /><code>mandatory</code></p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p><strong>String</strong> Failure URL (furl) – It must contain the URL to which PayU will redirect the final response in case of failure.</p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p><a href="https://apiplayground-response.herokuapp.com/">[https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)</a></p>
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          <p>pg<br /><code>mandatory</code></p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p><strong>String</strong> The payment method is specified in this field. For UPI INTENT, specify the parameter value as <strong>UPI</strong>.</p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p>UPI</p>
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          <p>bankcode<br /><code>mandatory</code></p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p><strong>String</strong> Each payment option is identified with a unique bank code at PayU. For UPI Collect, specify the value as <strong>UPI</strong>.</p>
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          <p>UPI</p>
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          lastname
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the customer last name (maximum 20 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Teja
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          address1
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the first line of customer address (up to 100 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          PayU, Bestech Business Tower, Gurgaon
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          address2
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the second line of the customer address (up to 100 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Sohna Road
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          city
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the customer city (max. 50 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Gurgaon
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          country
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain the customer's country that is part of the address (max. 50 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          India
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          state
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          String This parameter must contain the customer state that is part of the address (max 50 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Haryana
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          zipcode
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `Numeric` This parameter must contain the customer's PIN code (6 digits).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          122018
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          udf1
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request (up to 255 characters).
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Website order
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          udf2
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request (up to 255 characters.).
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          udf3
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request.
-          (up to 255 characters.)
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          udf4
-          optional
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request.
-          (up to 255 characters.)
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          udf5
-          `optional`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter can include any custom information in request.
-          (up to 255 characters.)
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          s2s\_client\_ip
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `Sting` This parameter must have the source IP of the user's device.
-
-          * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          s2s\_device\_info
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must have the user agent of device.
-
-          * *Note*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          txn\_s2s\_flow
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String`This parameter must be posted with the values a **4** for transaction flow.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          4
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          upiAppName
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` For Specific Intent, merchant should share the app name which is selected by customer on the merchant check-out page. The following are the enum’s expected for major apps:
-
-          * phonepe
-          * googlepay
-          * paytm
-          * bhim
-          * cred
-          * amazonpay
-          * whatsapp
-          * genericintent – For any other app apart from
-            above
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          phonepe
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          vpa
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` Virtual Private Address. VPA can first be validated using VPA validate web service. Also, add regex where ‘@’ exists. Example: 8800411088\@upi This needs to be passed in case of collect flow of UPI only.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          8800411088\@upi
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          hash
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` Hash is a crucial parameter – used specifically to avoid any tampering during the transaction. For more information, refer to  <a href="hashing-request-and-response" target="_blank"> Generate Hash</a>.
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-    </tbody>
-  </Table>
 </Accordion>
 
 <Accordion title="Understanding Hashing and sample code" icon="fa-code">
