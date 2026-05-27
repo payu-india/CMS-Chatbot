@@ -237,7 +237,7 @@ Notes
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_emi_according_to_interest_api">Get EMI Amount according to Interest API</a></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>getEmiAmountAccordingToInterest</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>getEmiAmount<br>AccordingTo<br>Interest</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|getEmiAmountAccordingToInterest|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = transaction amount.</p></td>
 </tr>
 <tr>
