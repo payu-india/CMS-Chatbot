@@ -120,12 +120,6 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
   </Accordion>
 
   <Accordion title="Wealth Tech object (wtParams) fields Description" icon="fa-cog">
-    <Accordion title="Sample JSON" icon="fa-code">
-      These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
-
-     This table is very similar to the previous one, with just a couple of differences in the `amount` field — the type is `numeric` and the description reads *"Amount in paise"* instead of *"The transaction amount"*. 
-
-```md
 | Parameter | Description | Example |
 |---|---|---|
 | type<br/><code>mandatory</code> | <code>string</code> - Transaction type, must be "mutual_fund" | `"mutual_fund"` |
@@ -140,7 +134,6 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 | option<br/><code>optional</code> | <code>string</code> - Mutual fund plan option | `"G"` |
 | scheme<br/><code>optional</code> | <code>string</code> - Mutual fund type/scheme | `"LT"` |
 | mf_amc_code<br/><code>optional</code> | <code>string</code> - Asset Management Company code (max 5 chars) | `"UTB"` |
-
 </Accordion>    
       <Accordion title="Validation Rules" icon="fa-code">
 
