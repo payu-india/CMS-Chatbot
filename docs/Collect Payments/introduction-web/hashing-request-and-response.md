@@ -395,10 +395,6 @@ Along with the request, the sensitive information should not be a part of any me
 </tr>
 </tbody>
 </table>
-
-**Test endpoint:** \`https://test.payu.in/merchant/postservice\` (typically with \`?form=2\` or \`.php?form=2\` for JSON responses).
-
-**General rule:** For most command-based postservice APIs, PayU uses \`sha512(key|command|var1|salt)\`. Regenerate the hash whenever request parameters change. See [REST API Format](docs/API basics/rest-api-format.md) and [API Authentication and Security](https://docs.payu.in/docs/api-authentication-and-security).
 `}</HTMLBlock>
 
 <br />
