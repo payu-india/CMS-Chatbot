@@ -37,9 +37,7 @@ Initiate an authorization request with the payment details provided post a succe
 
 <PaymentAPIEnvironment />
 
-> 👍
->
-> **Reference**: To capture the transaction for **Pre-Authorize (Auth and Capture) Payments**, you can include **pre\_authorize** parameter along with the following **\_payment** API request parameters and then call the**Capture Transaction** API. For more information on Pre-Authorize Payments with Cards , refer to <Anchor label="Pre-Authorize Payments > Credit Card" target="_blank" href="doc:credit-card-merchant-hosted-integration-pre-authorize-payment">Pre-Authorize Payments > Credit Card</Anchor>.
+> 👍 **Reference**: To capture the transaction for **Pre-Authorize (Auth and Capture) Payments**, you can include **pre\_authorize** parameter along with the following **\_payment** API request parameters and then call the**Capture Transaction** API. For more information on Pre-Authorize Payments with Cards , refer to <Anchor label="Pre-Authorize Payments > Credit Card" target="_blank" href="doc:credit-card-merchant-hosted-integration-pre-authorize-payment">Pre-Authorize Payments > Credit Card</Anchor>.
 
 <Accordion title="Request Parameter" icon="fa-info-circle">
 <HTMLBlock>{`
