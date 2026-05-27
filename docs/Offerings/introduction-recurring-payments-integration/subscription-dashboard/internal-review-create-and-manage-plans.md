@@ -68,7 +68,7 @@ To create a plan:
 
    > 📘 **Mandatory Fields**
    >
-   >
+   > <RequiredStar legend />
 
    - **Enable Third Party Validation:&#x20;**&#x45;nable this to skip checkout and take your customers directly to the bank page with **Enach** pre-selected.
    - **Customer Name**
