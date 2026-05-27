@@ -166,4 +166,239 @@ Along with the request, the sensitive information should not be a part of any me
 >
 > It is important to compare the parameters sent by PayU in the response with the ones you sent in the request to make sure none of them have been changed. You should verify specific parameters such as the transaction ID and amount. PayU is not responsible for any security breaches or losses resulting from your failure to implement the necessary security measures.
 
+## Hash Generation Logic for General Command-based APIs&#x20;
+
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>API</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>command</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Hash logic</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:verify_payment_api">Verify Payment API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>verify_payment</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|verify_payment|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_transaction_details_api">Get Transaction Details API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>get_Transaction_Details</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|get_Transaction_Details|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = start date (<code>YYYY-MM-DD</code>). <em>var2</em> (end date) is required in the request but is not part of the hash string.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_transaction_info_api">Get Transaction Info API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>get_transaction_info</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|get_transaction_info|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = start time (<code>YYYY-MM-DD HH:MM:SS</code>). <em>var2</em> (end time) is required in the request but is not part of the hash string.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_tdr_api">Get TDR API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>get_TDR</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|get_TDR|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = PayU ID (<code>mihpayid</code>).</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:refund_transaction_api">Refund Transaction API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>cancel_refund_transaction</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|cancel_refund_transaction|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = PayU ID (<code>mihpayid</code>).</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_all_refunds_from_transaction_ids_api">Get All Refunds from Transaction ID</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>getAllRefundsFromTxnIds</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|getAllRefundsFromTxnIds|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = merchant transaction ID (<code>txnid</code>).</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:check_action_status_api_with_payu_id">Check Action Status with PayU ID</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>check_action_status</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|check_action_status|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = PayU ID (<code>mihpayid</code>). Set <em>var2</em> = <code>payuid</code> (not included in hash).</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:check_action_status_api_with_request_id">Check Refund Status with Request ID API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>check_action_status_txnid</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|check_action_status_txnid|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = request ID returned from <code>cancel_refund_transaction</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:check_is_domestic_api">Check is Domestic API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>check_isDomestic</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|check_isDomestic|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = card BIN (first 6 digits) or card number.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_bin_info_api">Get BIN Info API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>getBinInfo</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|getBinInfo|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_emi_according_to_interest_api">Get EMI Amount according to Interest API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>getEmiAmountAccordingToInterest</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|getEmiAmountAccordingToInterest|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = transaction amount.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_issuing_bank_status_api">Get Issuing Bank Status API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>getIssuingBankStatus</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|getIssuingBankStatus|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = card BIN.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_issuing_bank_down_bins_api">Get Issuing Bank Down BINs API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>getIssuingBankDownBins</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|getIssuingBankDownBins|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = bank name code or <code>default</code>. <em>var2</em> (<code>0</code> / <code>1</code>) is not part of the hash string.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_net_banking_status_api">Get Net Banking Status API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>getNetbankingStatus</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|getNetbankingStatus|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = <code>default</code> (all banks) or a specific net banking bank code.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_checkout_details">Get Checkout Details API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>get_checkout_details</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|get_checkout_details|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON string with transaction / eligibility details.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get-checkout-details-ntb-seamless-journey">Get Checkout Details – NTB Seamless Journey</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>get_checkout_details</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|get_checkout_details|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON string with transaction / eligibility details.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:check-offer-status-api">Check Offer Status API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>check_offer_status</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|check_offer_status|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = offer key. Additional parameters (<em>var2</em>–<em>var8</em>) may be sent but are not part of the standard hash string.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:fetch-balance-api-sodexo">Fetch Balance API (Sodexo)</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>check_balance</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|check_balance|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with Sodexo source ID.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:fetch-balance-api">Fetch Balance API (Open Loop Wallet)</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>check_balance</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|check_balance|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = customer mobile number.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:release_settlement_api">Release Settlement API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>release_settlement</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|release_settlement|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = PayU ID (<code>mihpayuid</code>).</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get-settlement-detail-api-cross-border-payments">Get Settlement Detail API (Cross-Border)</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>get_settlement_details</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|get_settlement_details|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = settlement date (<code>YYYY-MM-DD</code>). Some CB deployments also support HMAC authorization on a separate treasury endpoint—refer to the API reference.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:udf_update_api">UDF Update API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>udf_update</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|udf_update|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with PayU ID and UDF fields to update.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:recurring_payment_api">Recurring Payment Transaction API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>si_transaction</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|si_transaction|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with recurring debit details (<code>authpayuid</code>, amount, <code>txnid</code>, etc.).</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:si-transaction-api-parallel-sequencing">SI Transaction API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>si_transaction</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|si_transaction|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with recurring debit details (includes <code>mandateSeqNo</code> for parallel sequencing).</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:recurring-payment-transaction-api-pacb">Recurring Payment Transaction API – PACB</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>si_transaction</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|si_transaction|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with recurring debit and cross-border UDF details.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:pre_debit_notification_api">Pre-Debit Notification API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>pre_debit_SI</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|pre_debit_SI|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with mandate and debit notification details.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:validate_vpa_api">Validate VPA API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>validateVPA</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|validateVPA|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = customer VPA (UPI handle).</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:check-the-mandate-status">Check the Mandate Status</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>check_mandate_status</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|check_mandate_status|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with <code>authPayuId</code>, <code>requestId</code>, amount, and end date.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:net_banking_mandate_status_api">Check Net Banking Mandate Status API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>NB_mandate_status</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|NB_mandate_status|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with <code>authPayuId</code> and <code>requestId</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:cancel-the-recurring-payment-for-cards">Cancel Recurring Payment (Cards)</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>mandate_revoke</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|mandate_revoke|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with <code>authPayuId</code> and <code>requestId</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:cancel-the-recurring-payment-for-net-banking">Cancel Recurring Payment (Net Banking)</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>mandate_revoke</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|mandate_revoke|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with <code>authPayuId</code> and <code>requestId</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:cancel-the-recurring-payment-for-upi">Cancel Recurring Payment (UPI)</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>upi_mandate_revoke</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|upi_mandate_revoke|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with <code>authPayuId</code> and <code>requestId</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_user_cards_api">Get User Cards API (Model 2)</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>get_user_cards</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|get_user_cards|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = <code>&lt;merchantKey&gt;:&lt;userId&gt;</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_user_cards_api_model3">Get User Cards API – Model 3</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>get_payment_instrument</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|get_payment_instrument|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = <code>&lt;merchantKey&gt;:&lt;userId&gt;</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:save_card_api">Tokenize a Card API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>save_payment_instrument</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|save_payment_instrument|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = <code>&lt;merchantKey&gt;:&lt;userId&gt;</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:edit_saved_card_api">Edit a Saved Card API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>edit_payment_instrument</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|edit_payment_instrument|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = <code>&lt;merchantKey&gt;:&lt;userId&gt;</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:collect-payments-save-card">Collect Payments – Save Card</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>get_user_cards</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|get_user_cards|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = <code>&lt;merchantKey&gt;:&lt;userId&gt;</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_split_info_api">Get Split Info API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>get_split_info</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|get_split_info|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = parent PayU ID (<code>payuId</code>). Hash string uses <code>payuId</code> in place of <code>var1</code> in the pipe sequence.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:split_after_transaction_api">Split After Transaction API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>payment_split</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|payment_split|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with split type, <code>payuId</code>, and <code>splitInfo</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:absolute-split-after-transaction">Absolute Split After Transaction</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>payment_split</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|payment_split|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with split type, <code>payuId</code>, and <code>splitInfo</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:split-by-percentage-after-transaction">Split by Percentage After Transaction</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>payment_split</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|payment_split|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with split type, <code>payuId</code>, and <code>splitInfo</code>.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:refund-status-api-for-split-payments">Refund Status API for Split Payments</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>aggregator_check_action_status_txnid</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|aggregator_check_action_status_txnid|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = transaction ID or PayU ID to check.</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:cancel-omnichannel-transaction-api-1">Cancel Omnichannel Transaction API</a></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>cancel_omni_payment</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|cancel_omni_payment|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = PayU ID (<code>mihpayid</code>).</p></td>
+</tr>
+</tbody>
+</table>
+
+**Test endpoint:** \`https://test.payu.in/merchant/postservice\` (typically with \`?form=2\` or \`.php?form=2\` for JSON responses).
+
+**General rule:** For most command-based postservice APIs, PayU uses \`sha512(key|command|var1|salt)\`. Regenerate the hash whenever request parameters change. See [REST API Format](docs/API basics/rest-api-format.md) and [API Authentication and Security](https://docs.payu.in/docs/api-authentication-and-security).
+`}</HTMLBlock>
+
 <br />
