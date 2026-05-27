@@ -7,20 +7,19 @@ metadata:
 ---
 ## Summary Table
 
-| Note # | Title                                                        | Target Page(s)                                                                         | Severity  |
-| ------ | ------------------------------------------------------------ | -------------------------------------------------------------------------------------- | --------- |
-| 1      | UPI App List is Platform-Controlled                          | webview-for-mobile-apps, android-checkoutpro-sdk, ios-checkoutpro-sdk                  | 🔴 High   |
-| 2      | Hash Formula with Partial UDFs — Pipe Count Rule             | hashing-request-and-response, generate-hash-payu-hosted, generate-hash-merchant-hosted | 🔴 High   |
-| 3      | Webhook `amount` Field — Gross or Net?                       | webhook-events-and-sample-payloads, webhooks                                           | 🔴 High   |
-| 4      | Tokenization Webhooks — Not Available in UAT                 | Card tokenization page, webhooks                                                       | 🟠 Medium |
-| 5      | Verify Payment API — `command` Parameter Value               | Verify Payment / postservice API page                                                  | 🟠 Medium |
-| 6      | "Too Many Requests" Error — Causes and Fix                   | error-handling, general-faqs                                                           | 🟠 Medium |
-| 7      | Flutter SDK — Current Version and Install Source             | flutter-checkoutpro-sdk                                                                | 🟠 Medium |
-| 8      | React Native — Dynamic Hash Common Mistakes                  | reactnative-checkoutpro-android-integration, iOS React Native page                     | 🔴 High   |
-| 9      | Pluxee Card — Not Supported in Mobile SDK                    | integrate-with-merchant-hosted-checkout-for-pluxee-card                                | 🟠 Medium |
-| 10     | Split Settlement via Payment Links — Compatibility Statement | absolute-split-during-transaction-integration, payment-links-dashboard                 | 🟠 Medium |
-| 11     | Bulk Payment Links — `IsPartialPaymentAllowed` Column        | bulk-upload-to-create-multiple-payments-links                                          | 🟡 Low    |
-| 12     | UAT Offers / No Cost EMI Dashboard — 503 Error               | Offers integration page, general-faqs                                                  | 🟡 Low    |
+| Title                                                        | Target Page(s)                                                                         | Severity  |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------- | --------- |
+| UPI App List is Platform-Controlled                          | webview-for-mobile-apps, android-checkoutpro-sdk, ios-checkoutpro-sdk                  | 🔴 High   |
+| Hash Formula with Partial UDFs — Pipe Count Rule             | hashing-request-and-response, generate-hash-payu-hosted, generate-hash-merchant-hosted | 🔴 High   |
+| Webhook `amount` Field — Gross or Net?                       | webhook-events-and-sample-payloads, webhooks                                           | 🔴 High   |
+| Verify Payment API — `command` Parameter Value               | Verify Payment / postservice API page                                                  | 🟠 Medium |
+| "Too Many Requests" Error — Causes and Fix                   | error-handling, general-faqs                                                           | 🟠 Medium |
+| Flutter SDK — Current Version and Install Source             | flutter-checkoutpro-sdk                                                                | 🟠 Medium |
+| React Native — Dynamic Hash Common Mistakes                  | reactnative-checkoutpro-android-integration, iOS React Native page                     | 🔴 High   |
+| Pluxee Card — Not Supported in Mobile SDK                    | integrate-with-merchant-hosted-checkout-for-pluxee-card                                | 🟠 Medium |
+| Split Settlement via Payment Links — Compatibility Statement | absolute-split-during-transaction-integration, payment-links-dashboard                 | 🟠 Medium |
+| Bulk Payment Links — `IsPartialPaymentAllowed` Column        | bulk-upload-to-create-multiple-payments-links                                          | 🟡 Low    |
+| UAT Offers / No Cost EMI Dashboard — 503 Error               | Offers integration page, general-faqs                                                  | 🟡 Low    |
 
 <br />
 
@@ -78,9 +77,7 @@ A direct merchant question reopened 3 times — merchants using only 1–2 UDF f
 
 **Target page:**&#x20;
 
-(1) "Webhook Events and Sample Payloads" — [https://docs.payu.in/docs/webhook-events-and-sample-payloads](https://docs.payu.in/docs/webhook-events-and-sample-payloads);&#x20;
-
-(2) "Webhooks for Payments" — [https://docs.payu.in/docs/webhooks](https://docs.payu.in/docs/webhooks)<br />**Insert under heading:** The section describing webhook payload fields / response parameters (e.g., "Payload Parameters", "Response Fields", or "Webhook Body")<br />**Position:** Immediately after the table row or paragraph that describes the `amount` field; if `amount` and `net_amount_debit` appear in the same table, insert after the table as a callout block
+(1) "Webhook Events and Sample Payloads" — [https://docs.payu.in/docs/webhook-events-and-sample-payloads](https://docs.payu.in/docs/webhook-events-and-sample-payloads); <br />**Insert under heading:** The section describing webhook payload fields / response parameters (e.g., "Payload Parameters", "Response Fields", or "Webhook Body")<br />**Position:** Immediately after the table row or paragraph that describes the `amount` field; if `amount` and `net_amount_debit` appear in the same table, insert after the table as a callout block
 
 ### Note content:
 
@@ -129,11 +126,7 @@ Reopened 4 times — merchants did not know the exact string value required for 
 
 > 📘 **"Too many Requests" error:**&#x20;
 >
-> If you see _"Sorry, we are unable to process your payment due to Too many Requests. Please try after 60 seconds"_, this is caused by one of the following:
->
-> 1. **Rate limit exceeded** — Too many payment requests sent in a short window from the same merchant key. Wait 60 seconds and retry.
-> 2. **Wrong credentials for environment** — Using your **production key in the test environment** (or vice versa) can trigger this error. Ensure you are posting to the correct endpoint with the matching key/salt pair: test key → `https://test.payu.in/_payment`; production key → `https://secure.payu.in/_payment`.
-> 3. **Duplicate txnid** — Reusing a transaction ID that was already successfully processed. Always generate a fresh, unique `txnid` for every new transaction.
+> If you see _"Sorry, we are unable to process your payment due to Too many Requests. Please try after 60 seconds"_, this is caused by **Rate limit exceeded** — Too many payment requests sent in a short window from the same merchant key. Wait 60 seconds and retry.
 
 ### Why this note is needed:
 
@@ -188,7 +181,7 @@ Reopened 7 times — the highest reopen count for any Flutter ticket in the data
 > generateHash: (hashMap) => {
 >   const hashString = hashMap[PayUCheckoutProConstants.CP_HASH_STRING];
 >   const hashName = hashMap[PayUCheckoutProConstants.CP_HASH_NAME];
->   // Send hashString to your server → get computedHash back
+>   // Send hashString to your server → get computedHash back. Your backend will append the salt at the end of hashstring and convert using SHA512 and then pass it back to front-end.
 >   const result = {};
 >   result[hashName] = computedHash; // key must be hashName, not a custom string
 >   return result;
@@ -201,23 +194,7 @@ Reopened 6 times — the exact error `[PayU] Dynamic hash generation failure` wa
 
 ***
 
-## Pluxee Card — Not Supported in Mobile SDK
-
-**Severity:** 🟠 Medium<br />**Target page:** "Pluxee Card Integration" — [https://docs.payu.in/docs/integrate-with-merchant-hosted-checkout-for-pluxee-card](https://docs.payu.in/docs/integrate-with-merchant-hosted-checkout-for-pluxee-card)<br />**Insert under heading:** Introduction / Overview section (top of page)<br />**Position:** As the first callout block on the page, before the introduction paragraph and before any prerequisites or steps
-
-### Note content:
-
-> 📘 **Platform compatibility:**&#x20;
->
-> Pluxee (formerly Sodexo) card payments are supported on **Web integrations only** (PayU Hosted Checkout and Merchant Hosted Checkout). Pluxee card is **not currently available** as a payment option in Mobile SDK integrations (Android CheckoutPro, iOS CheckoutPro, React Native, Flutter). If you require Pluxee card support in a mobile app, use a WebView-based integration pointing to PayU Hosted Checkout.
-
-### Why this note is needed:
-
-Reopened 9 times — the longest-running ticket in the support dataset. Merchants repeatedly attempted to configure Pluxee in mobile apps with no documentation stating it is unsupported there, leading to extended integration attempts before support confirmed the limitation.
-
-***
-
-## Note 10: Split Settlement via Payment Links — Compatibility Statement
+## Split Settlement via Payment Links — Compatibility Statement
 
 <br />**Target page:** (1) Split Settlement pages — [https://docs.payu.in/docs/absolute-split-during-transaction-integration](https://docs.payu.in/docs/absolute-split-during-transaction-integration); (2) "Payment Links" — [https://docs.payu.in/docs/payment-links-dashboard](https://docs.payu.in/docs/payment-links-dashboard)<br />**Insert under heading:** "Supported Integration Types" or "Before You Begin" on each page (add as a new subsection if absent)<br />**Position:** As the first note block under that heading on both pages, so the cross-feature limitation is visible before a merchant begins the integration steps
 
