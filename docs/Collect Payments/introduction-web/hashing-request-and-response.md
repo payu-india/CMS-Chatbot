@@ -185,7 +185,8 @@ Along with the request, the sensitive information should not be a part of any me
 > 📘 Notes
 >
 > - **Test endpoint:** `https://test.payu.in/merchant/postservice` (typically with `?form=2` for JSON responses).
-> - For most command-based postservice APIs, PayU uses `sha512(key|command|var1|salt)`. Regenerate the hash whenever request parameters change. See \[REST API Format]\(docs/API basics/rest-api-format.md) and [API Authentication and Security](https://docs.payu.in/docs/api-authentication-and-security).
+> - For most command-based postservice APIs, PayU uses `sha512(key|command|var1|salt)`. Regenerate the hash whenever request parameters change. See [REST API Format](docs/API basics/rest-api-format.md) and [API Authentication and Security](/docs/api-authentication-and-security).
+
 | API | command | Hash logic |
 |---|---|---|
 | [Verify Payment API](ref:verify_payment_api) | `verify_payment` | `sha512(<Your merchant key>|verify_payment|<value of var1 parameter>|<Your merchant salt>)` |
