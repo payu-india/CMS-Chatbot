@@ -186,47 +186,46 @@ Along with the request, the sensitive information should not be a part of any me
 >
 > - **Test endpoint:** `https://test.payu.in/merchant/postservice` (typically with `?form=2` for JSON responses).
 > - For most command-based postservice APIs, PayU uses `sha512(key|command|var1|salt)`. Regenerate the hash whenever request parameters change. See [REST API Format](docs/API basics/rest-api-format.md) and [API Authentication and Security](/docs/api-authentication-and-security).
-
 | API | command | Hash logic |
-|---|---|---|
-| [Verify Payment API](ref:verify_payment_api) | `verify_payment` | `sha512(<Your merchant key>|verify_payment|<value of var1 parameter>|<Your merchant salt>)` |
-| [Get Transaction Details API](ref:get_transaction_details_api) | `get_Transaction_Details` | `sha512(<Your merchant key>|get_Transaction_Details|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = start date (`YYYY-MM-DD`). *var2* (end date) is required in the request but is not part of the hash string. |
-| [Get Transaction Info API](ref:get_transaction_info_api) | `get_transaction_info` | `sha512(<Your merchant key>|get_transaction_info|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = start time (`YYYY-MM-DD HH:MM:SS`). *var2* (end time) is required in the request but is not part of the hash string. |
-| [Get TDR API](ref:get_tdr_api) | `get_TDR` | `sha512(<Your merchant key>|get_TDR|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = PayU ID (`mihpayid`). |
-| [Refund Transaction API](ref:refund_transaction_api) | `cancel_refund_transaction` | `sha512(<Your merchant key>|cancel_refund_transaction|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = PayU ID (`mihpayid`). |
-| [Get All Refunds from Transaction ID](ref:get_all_refunds_from_transaction_ids_api) | `getAllRefundsFromTxnIds` | `sha512(<Your merchant key>|getAllRefundsFromTxnIds|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = merchant transaction ID (`txnid`). |
-| [Check Action Status with PayU ID](ref:check_action_status_api_with_payu_id) | `check_action_status` | `sha512(<Your merchant key>|check_action_status|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = PayU ID (`mihpayid`). Set *var2* = `payuid` (not included in hash). |
-| [Check Refund Status with Request ID API](ref:check_action_status_api_with_request_id) | `check_action_status_txnid` | `sha512(<Your merchant key>|check_action_status_txnid|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = request ID returned from `cancel_refund_transaction`. |
-| [Check is Domestic API](ref:check_is_domestic_api) | `check_isDomestic` | `sha512(<Your merchant key>|check_isDomestic|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = card BIN (first 6 digits) or card number. |
-| [Get BIN Info API](ref:get_bin_info_api) | `getBinInfo` | `sha512(<Your merchant key>|getBinInfo|<value of var1 parameter>|<Your merchant salt>)` |
-| [Get EMI Amount according to Interest API](ref:get_emi_according_to_interest_api) | `getEmiAmount`<br/>`AccordingTo`<br/>`Interest` | `sha512(<Your merchant key>|getEmiAmountAccordingToInterest|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = transaction amount. |
-| [Get Issuing Bank Status API](ref:get_issuing_bank_status_api) | `getIssuingBankStatus` | `sha512(<Your merchant key>|getIssuingBankStatus|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = card BIN. |
-| [Get Issuing Bank Down BINs API](ref:get_issuing_bank_down_bins_api) | `getIssuingBankDownBins` | `sha512(<Your merchant key>|getIssuingBankDownBins|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = bank name code or `default`. *var2* (`0` / `1`) is not part of the hash string. |
-| [Get Net Banking Status API](ref:get_net_banking_status_api) | `getNetbankingStatus` | `sha512(<Your merchant key>|getNetbankingStatus|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = `default` (all banks) or a specific net banking bank code. |
-| [Get Checkout Details API](ref:get_checkout_details) | `get_checkout_details` | `sha512(<Your merchant key>|get_checkout_details|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON string with transaction / eligibility details. |
-| [Get Checkout Details – NTB Seamless Journey](ref:get-checkout-details-ntb-seamless-journey) | `get_checkout_details` | `sha512(<Your merchant key>|get_checkout_details|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON string with transaction / eligibility details. |
-| [Check Offer Status API](ref:check-offer-status-api) | `check_offer_status` | `sha512(<Your merchant key>|check_offer_status|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = offer key. Additional parameters (*var2*–*var8*) may be sent but are not part of the standard hash string. |
-| [Fetch Balance API (Sodexo)](ref:fetch-balance-api-sodexo) | `check_balance` | `sha512(<Your merchant key>|check_balance|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON with Sodexo source ID. |
-| [Fetch Balance API (Open Loop Wallet)](ref:fetch-balance-api) | `check_balance` | `sha512(<Your merchant key>|check_balance|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = customer mobile number. |
-| [Release Settlement API](ref:release_settlement_api) | `release_settlement` | `sha512(<Your merchant key>|release_settlement|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = PayU ID (`mihpayuid`). |
-| [Get Settlement Detail API (Cross-Border)](ref:get-settlement-detail-api-cross-border-payments) | `get_settlement_details` | `sha512(<Your merchant key>|get_settlement_details|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = settlement date (`YYYY-MM-DD`). Some CB deployments also support HMAC authorization on a separate treasury endpoint—refer to the API reference. |
-| [UDF Update API](ref:udf_update_api) | `udf_update` | `sha512(<Your merchant key>|udf_update|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON with PayU ID and UDF fields to update. |
-| [Recurring Payment Transaction API](ref:recurring_payment_api) | `si_transaction` | `sha512(<Your merchant key>|si_transaction|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON with recurring debit details (`authpayuid`, amount, `txnid`, etc.). |
-| [SI Transaction API](ref:si-transaction-api-parallel-sequencing) | `si_transaction` | `sha512(<Your merchant key>|si_transaction|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON with recurring debit details (includes `mandateSeqNo` for parallel sequencing). |
-| [Recurring Payment Transaction API – PACB](ref:recurring-payment-transaction-api-pacb) | `si_transaction` | `sha512(<Your merchant key>|si_transaction|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON with recurring debit and cross-border UDF details. |
-| [Pre-Debit Notification API](ref:pre_debit_notification_api) | `pre_debit_SI` | `sha512(<Your merchant key>|pre_debit_SI|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON with mandate and debit notification details. |
-| [Validate VPA API](ref:validate_vpa_api) | `validateVPA` | `sha512(<Your merchant key>|validateVPA|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = customer VPA (UPI handle). |
-| [Check the Mandate Status](ref:check-the-mandate-status) | `check_mandate_status` | `sha512(<Your merchant key>|check_mandate_status|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON with `authPayuId`, `requestId`, amount, and end date. |
-| [Check Net Banking Mandate Status API](ref:net_banking_mandate_status_api) | `NB_mandate_status` | `sha512(<Your merchant key>|NB_mandate_status|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON with `authPayuId` and `requestId`. |
-| [Cancel Recurring Payment (Cards)](ref:cancel-the-recurring-payment-for-cards) | `mandate_revoke` | `sha512(<Your merchant key>|mandate_revoke|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON with `authPayuId` and `requestId`. |
-| [Cancel Recurring Payment (Net Banking)](ref:cancel-the-recurring-payment-for-net-banking) | `mandate_revoke` | `sha512(<Your merchant key>|mandate_revoke|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON with `authPayuId` and `requestId`. |
-| [Cancel Recurring Payment (UPI)](ref:cancel-the-recurring-payment-for-upi) | `upi_mandate_`<br/>`revoke` | `sha512(<Your merchant key>|upi_mandate_revoke|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON with `authPayuId` and `requestId`. |
-| [Get User Cards API (Model 2)](ref:get_user_cards_api) | `get_user_cards` | `sha512(<Your merchant key>|get_user_cards|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = `<merchantKey>:<userId>`. |
-| [Get User Cards API – Model 3](ref:get_user_cards_api_model3) | `get_payment_`<br/>`instrument` | `sha512(<Your merchant key>|get_payment_instrument|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = `<merchantKey>:<userId>`. |
-| [Tokenize a Card API](ref:save_card_api) | `save_payment_`<br/>`instrument` | `sha512(<Your merchant key>|save_payment_instrument|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = `<merchantKey>:<userId>`. |
-| [Edit a Saved Card API](ref:edit_saved_card_api) | `edit_payment_`<br/>`instrument` | `sha512(<Your merchant key>|edit_payment_instrument|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = `<merchantKey>:<userId>`. |
-| [Collect Payments – Save Card](ref:collect-payments-save-card) | `get_user_cards` | `sha512(<Your merchant key>|get_user_cards|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = `<merchantKey>:<userId>`. |
-| [Get Split Info API](ref:get_split_info_api) | `get_split_info` | `sha512(<Your merchant key>|get_split_info|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = parent PayU ID (`payuId`). Hash string uses `payuId` in place of `var1` in the pipe sequence. |
-| [Split After Transaction API](ref:split_after_transaction_api) | `payment_split` | `sha512(<Your merchant key>|payment_split|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = JSON with split type, `payuId`, and `splitInfo`. |
-| [Refund Status API for Split Payments](ref:refund-status-api-for-split-payments) | `aggregator_check_`<br/>`action_status_`<br/>`txnid` | `sha512(<Your merchant key>|aggregator_check_action_status_txnid|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = transaction ID or PayU ID to check. |
-| [Cancel Omnichannel Transaction API](ref:cancel-omnichannel-transaction-api-1) | `cancel_omni_payment` | `sha512(<Your merchant key>|cancel_omni_payment|<value of var1 parameter>|<Your merchant salt>)`<br/>*var1* = PayU ID (`mihpayid`). |
+| --- | --- | --- |
+| [Verify Payment API](ref:verify_payment_api) | `verify_payment` | Hash formula: `sha512(key\|command\|var1\|salt)` |
+| [Get Transaction Details API](ref:get_transaction_details_api) | `get_Transaction_Details` | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Get Transaction Info API](ref:get_transaction_info_api) | `get_transaction<br/>_info` | The string used for calculating the hash is in the following format: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Get TDR API](ref:get_tdr_api) | `get_TDR` | Hash formula: `sha512(key\|command\|var1\|salt)` |
+| [Refund Transaction API](ref:refund_transaction_api) | `cancel_refund<br/>_transaction` | Calculated using the sha512 algorithm with the format: `sha512(key\|command\|var1\|salt)` |
+| [Get All Refunds from Transaction ID](ref:get_all_refunds_from_transaction_ids_api) | `getAllRefunds<br/>FromTxnIds` | Calculated using the sha512 algorithm with the format: `sha512(key\|command\|var1\|salt)` |
+| [Check Action Status with PayU ID](ref:check_action_status_api_with_payu_id) | `check_action_status` | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Check Refund Status with Request ID API](ref:check_action_status_api_with_request_id) | `check_action_status<br/>_txnid` | Calculated using the sha512 algorithm with the format: `sha512(key\|command\|var1\|salt)` |
+| [Check is Domestic API](ref:check_is_domestic_api) | `check_isDomestic` | Hash logic: `sha512(key\|command\|var1\|salt)` |
+| [Get BIN Info API](ref:get_bin_info_api) | `getBinInfo` | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Get EMI Amount according to Interest API](ref:get_emi_according_to_interest_api) | `getEmiAmountAccording<br/>ToInterest` | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Get Issuing Bank Status API](ref:get_issuing_bank_status_api) | `getIssuing<br/>BankStatus` | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Get Issuing Bank Down BINs API](ref:get_issuing_bank_down_bins_api) | `getIssuing<br/>BankDownBins` | Hash formula: `sha512(key\|command\|var1\|salt)` |
+| [Get Net Banking Status API](ref:get_net_banking_status_api) | `getNetbankingStatus` | Hash formula: `sha512(key\|command\|var1\|salt)` |
+| [Get Checkout Details API](ref:get_checkout_details) | `get_checkout<br/>_details` | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Get Checkout Details – NTB Seamless Journey](ref:get-checkout-details-ntb-seamless-journey) | `get_checkout_details` | `sha512(key\|command\|var1\|salt)` (see sample request hash field) |
+| [Check Offer Status API](ref:check-offer-status-api) | `check_offer_status` | For command-based General APIs: `sha512(key\|command\|var1\|salt)` — sha512 is the encryption method used |
+| [Fetch Balance API (Sodexo)](ref:fetch-balance-api-sodexo) | `check_balance` | `sha512(key\|command\|var1\|salt)` sha512 |
+| [Fetch Balance API (Open Loop Wallet)](ref:fetch-balance-api) | `check_balance` | `sha512(key\|command\|var1\|salt)` sha512 |
+| [Release Settlement API](ref:release_settlement_api) | `release_settlement` | The format of the hash is: `key\|command\|var1\|salt` (Where var1 is your mihpayuid) |
+| [Get Settlement Detail API (Cross-Border)](ref:get-settlement-detail-api-cross-border-payments) | `get_settlement_details` | Postservice sample uses `hash` with `command=get_settlement_details`; for General APIs use `sha512(key\|command\|var1\|salt)`. Treasury endpoint uses separate HMAC authorization — see API reference. |
+| [UDF Update API](ref:udf_update_api) | `udf_update` | `hash = sha512(key\|command\|var1\|salt)` |
+| [Recurring Payment Transaction API](ref:recurring_payment_api) | `si_transaction` | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [SI Transaction API](ref:si-transaction-api-parallel-sequencing) | `si_transaction` | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Recurring Payment Transaction API – PACB](ref:recurring-payment-transaction-api-pacb) | `si_transaction` | SHA512 hash: `sha512(key\|command\|var1\|salt)` |
+| [Pre-Debit Notification API](ref:pre_debit_notification_api) | `pre_debit_SI` | Hash formula: `sha512(key\|command\|var1\|salt)` |
+| [Validate VPA API](ref:validate_vpa_api) | `validateVPA` | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Check the Mandate Status](ref:check-the-mandate-status) | `check_mandate_status` | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Check Net Banking Mandate Status API](ref:net_banking_mandate_status_api) | `NB_mandate_status` | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Cancel Recurring Payment (Cards)](ref:cancel-the-recurring-payment-for-cards) | `mandate_revoke` | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Cancel Recurring Payment (Net Banking)](ref:cancel-the-recurring-payment-for-net-banking) | `mandate_revoke` | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Cancel Recurring Payment (UPI)](ref:cancel-the-recurring-payment-for-upi) | `upi_mandate_revoke` | 512 SHA hash strings generated by encrypting request parameters (use subscription API hash pattern: `hash = sha512(key\|command\|var1\|SALT)`) |
+| [Get User Cards API (Model 2)](ref:get_user_cards_api) | `get_user_cards` | The hash is calculated using the following logic: `sha512 (key\|command\|var1\|salt)` sha512 |
+| [Get User Cards API – Model 3](ref:get_user_cards_api_model3) | `get_payment_instrument` | The hash is calculated using the following logic: `sha512 (key\|command\|var1\|salt)` sha512 |
+| [Tokenize a Card API](ref:save_card_api) | `save_payment<br/>_instrument` | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Edit a Saved Card API](ref:edit_saved_card_api) | `edit_payment_instrument` | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Collect Payments – Save Card](ref:collect-payments-save-card) | `get_user_cards` | The hash is calculated using the following logic: `sha512 (key\|command\|var1\|salt)` sha512 |
+| [Get Split Info API](ref:get_split_info_api) | `get_split_info` | `sha512(key\|command\|payuId\|salt)` sha512 |
+| [Split After Transaction API](ref:split_after<br/>_transaction_api) | `payment_split` | The format of the hash is: `sha512(key\|command\|var1\|salt)` (Where var1 contains the fields as described in the var1 description) |
+| [Refund Status API for Split Payments](ref:refund-status-api-for-split-payments) | `aggregator_check<br/>_action_status<br/>_txnid` | `sha512(key\|command\|var1\|salt)` — sha512 is the encryption method used here |
+| [Cancel Omnichannel Transaction API](ref:cancel-omnichannel-transaction-api-1) | `cancel_omni_payment` | The string used for calculating the hash is mentioned below: `sha512(key\|command\|var1\|salt)` |
