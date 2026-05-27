@@ -342,7 +342,7 @@ Notes
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:cancel-the-recurring-payment-for-upi">Cancel Recurring Payment (UPI)</a></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>upi_mandate_revoke</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>upi_mandate_<br>revoke</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|upi_mandate_revoke|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with <code>authPayuId</code> and <code>requestId</code>.</p></td>
 </tr>
 <tr>
@@ -352,17 +352,17 @@ Notes
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:get_user_cards_api_model3">Get User Cards API – Model 3</a></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>get_payment_instrument</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>get_payment_<br>instrument</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|get_payment_instrument|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = <code>&lt;merchantKey&gt;:&lt;userId&gt;</code>.</p></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:save_card_api">Tokenize a Card API</a></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>save_payment_instrument</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>save_payment_<br>instrument</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|save_payment_instrument|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = <code>&lt;merchantKey&gt;:&lt;userId&gt;</code>.</p></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:edit_saved_card_api">Edit a Saved Card API</a></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>edit_payment_instrument</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>edit_payment_<br>instrument</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|edit_payment_instrument|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = <code>&lt;merchantKey&gt;:&lt;userId&gt;</code>.</p></td>
 </tr>
 <tr>
@@ -381,19 +381,9 @@ Notes
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|payment_split|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with split type, <code>payuId</code>, and <code>splitInfo</code>.</p></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:absolute-split-after-transaction">Absolute Split After Transaction</a></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>payment_split</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|payment_split|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with split type, <code>payuId</code>, and <code>splitInfo</code>.</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:split-by-percentage-after-transaction">Split by Percentage After Transaction</a></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>payment_split</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|payment_split|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = JSON with split type, <code>payuId</code>, and <code>splitInfo</code>.</p></td>
-</tr>
-<tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:refund-status-api-for-split-payments">Refund Status API for Split Payments</a></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>aggregator_check_action_status_txnid</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|aggregator_check_action_status_txnid|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = transaction ID or PayU ID to check.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>aggregator_check_<br>action_status_<br>txnid</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>sha512(&lt;Your merchant key&gt;|aggregator_check_action<br>_status_txnid|&lt;value of var1 parameter&gt;|&lt;Your merchant salt&gt;)</code></p><p><em>var1</em> = transaction ID or PayU ID to check.</p></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><a href="ref:cancel-omnichannel-transaction-api-1">Cancel Omnichannel Transaction API</a></p></td>
