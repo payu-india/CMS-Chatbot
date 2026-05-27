@@ -9,6 +9,32 @@ metadata:
 next:
   description: ''
 ---
+---
+title: General Integration
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    PayU server-to-server general integration: PCI-DSS S2S APIs, payment request from merchant server, hash, webhooks, and no redirect checkout.
+  robots: index
+  keywords:
+    - payu server to server payment integration india guide
+    - payment gateway s2s integration steps payu web api
+    - integrate payu server side payment api backend website
+    - payu s2s general integration pci dss payment gateway
+    - server to server payment integration payu hash webhook
+    - payment gateway india s2s api integration developer payu
+    - payu collect payments server to server integration guide web
+    - backend payment gateway integration payu s2s no redirect
+    - payu s2s payment request response hash verification integration
+    - merchant server payu payment api integration steps india
+    - payu server to server checkout integration pci compliant guide
+    - website server side payment integration payu s2s api
+
+next:
+  description: ''
+---
 The Server-to-Server integration is performed at the server level, that is, your server (merchant server) and PayU server. The transaction is initiated from your server; hence redirection hop is eliminated. Since the details are captured on your page, customers gain confidence and enhance the checkout experience.
 
 <Callout icon="📘" theme="info">
