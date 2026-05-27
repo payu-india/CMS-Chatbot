@@ -25,7 +25,7 @@ name: Mutual_Funds_Product_JSON
 
   <Accordion title="Wealth Tech object (wtParams) fields Description" icon="fa-cog">
     These parameters are included within the `product` field as a JSON array under the fiedl `wtParams`:
-| Parameter | Description | Example |
+| Field | Description | Example |
 |---|---|---|
 | type<br/><code>mandatory</code> | <code>string</code> - Transaction type, must be "mutual_fund" | `"mutual_fund"` |
 | amount<br/><code>mandatory</code> | <code>float</code> - The transaction amount, must match order amount | `50000` |
@@ -43,7 +43,7 @@ name: Mutual_Funds_Product_JSON
 
  <Accordion title="Validation Rules" icon="fa-code">
 
-| Parameter | Description | Example |
+| Field | Description | Example |
 |---|---|---|
 | type | Must always be `"mutual_fund"` | `"mutual_fund"` |
 | amount | Must match the overall order amount and be in paise | - |
