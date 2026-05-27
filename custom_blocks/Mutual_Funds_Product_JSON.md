@@ -102,10 +102,8 @@ name: Mutual_Funds_Product_JSON
 
 `}</HTMLBlock>
 
-
-
     <Accordion title="Validation Rules" icon="fa-code">
-      <Accordion title="Mandatory Field Validations" icon="fa-code">
+    #### Mandatory Field Validations
        - **type**: Must always be `"mutual_fund"`
        - **amount**: Must match the overall order amount and be in paise
        - **receipt**: Must be unique across transactions
@@ -113,11 +111,9 @@ name: Mutual_Funds_Product_JSON
        - **mf\_user\_id**: Maximum 10 characters allowed
        - **mf\_partner**: Must be one of: `"cams"`, `"kfin"`, `"bse"`, `"nse"`
        - **mf\_investment\_type**: Only `"L"` (Lump Sum) or `"S"` (SIP) allowed
-      </Accordion>
 
-      <Accordion title="Optional Field Validations" icon="fa-code">
+    #### Optional Field Validations
        - **mf\_amc\_code**: Maximum 5 characters
        - **receipt**: Maximum 25 characters for SIP registration ID
-      </Accordion>
     </Accordion>
   </Accordion>
