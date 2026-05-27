@@ -49,4 +49,15 @@ To create a plan:
    - **Save as Draft:&#x20;**&#x54;o save the plan as a draft.
    - **Activate Plan:&#x20;**&#x54;o create and activate plan.
 
+## Create Subscriptions for a Plan
+
+1. Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor> expand **Subscriptions&#x20;**&#x63;lick **Plans&#x20;**&#x66;rom the left menu.
+
+   ![](https://files.readme.io/e23c9520f99c508b3a30344721344fe2c910c4ecb17b785433fe6044a56d9796-image.png)
+2. Click the required plan to create a Subscription and click **+ New Subscription.**
+
+   ![](https://files.readme.io/150db535eaadf15ae2c3fbd3c9dc02a33e890b1371a7beeb652da9f651b74122-Screenshot_2026-05-27_at_3.12.24_PM.png)
+
+
+
 <br />
