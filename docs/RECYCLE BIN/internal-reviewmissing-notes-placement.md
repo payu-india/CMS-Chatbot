@@ -26,13 +26,13 @@ metadata:
 
 ## UPI App List is Platform-Controlled
 
-**Target page:** (1) "Integrate WebView for Mobile Apps" — [https://docs.payu.in/docs/webview-for-mobile-apps](https://docs.payu.in/docs/webview-for-mobile-apps); (2) "Android Checkout Pro SDK" — [https://docs.payu.in/docs/android-checkoutpro-sdk](https://docs.payu.in/docs/android-checkoutpro-sdk); (3) "iOS Checkout Pro SDK" — [https://docs.payu.in/docs/ios-checkoutpro-sdk](https://docs.payu.in/docs/ios-checkoutpro-sdk)<br />**Insert under heading:** "UPI Integration" or "Known Limitations" (add new subsection if absent on any of these pages)<br />**Position:** As the first note block beneath the heading, before any existing paragraphs or steps
+**Target page:** (1) "Integrate WebView for Mobile Apps" — [https://docs.payu.in/docs/webview-for-mobile-apps](https://docs.payu.in/docs/webview-for-mobile-apps); <br />**Insert under heading:** "UPI Integration" or "Known Limitations" (add new subsection if absent on any of these pages)<br />**Position:** As the first note block beneath the heading, before any existing paragraphs or steps
 
 ### Note content:
 
 > 📘 **UPI App List is platform-controlled:**&#x20;
 >
-> The list of UPI apps displayed on the payment screen (GPay, PhonePe, Paytm, etc.) is managed globally by PayU and cannot be customised per merchant. If additional or unexpected apps appear under the UPI option, this is expected behaviour. Merchants cannot add or remove specific apps from this list. If no UPI apps appear, check your LSApplicationQueriesSchemes configuration (iOS) or intent filter setup (Android).
+> The list of UPI apps displayed on the payment screen (GPay, PhonePe, Paytm, etc.) is managed globally by PayU and cannot be customised per merchant. If additional or unexpected apps appear under the UPI option, this is expected behaviour. Merchants can add or remove specific apps from this list. For more information, refer to  \\<Configure the Dashboard>
 
 ### Why this note is needed:
 
