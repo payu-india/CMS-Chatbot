@@ -21,29 +21,36 @@ next:
   description: ''
 ---
 ---
-title: EFTNET Integration
+title: Merchant Hosted Checkout Integration - EFTNET
+excerpt: ''
 deprecated: false
 hidden: false
-link:
-  new_tab: false
-  url: https://docs.payu.in/docs/collect-payments-with-eftnet-neftrtgs-seamless/
 metadata:
+  title: Collect Payments with EFTNET (NEFT/RTGS) - Merchant Hosted Checkout
   description: >-
-    EFTNET integration with PayU merchant-hosted checkout: EFT net banking flow, payment parameters, hash, and EFTNET payment mode for web.
-  robots: index
+    Learn how to efficiently collect payments through EFTNET (NEFT/RTGS)
+    transactions using PayU's Merchant Hosted Checkout integration. This guide
+    outlines the process of initiating payments and verifying payment status for
+    secure and seamless transactions.
   keywords:
-    - payu eftnet integration merchant hosted checkout web india
-    - payment gateway eftnet integration custom checkout payu
-    - integrate eftnet payments website merchant hosted payu guide
-    - payu eft net banking integration api steps web checkout
-    - merchant hosted eftnet payment gateway integration payu
-    - website eftnet payment integration payu custom checkout developer
-    - payu collect payments eftnet merchant hosted integration guide
-    - server side eftnet payment integration payu website checkout
-    - payu eftnet hash payment mode integration web india
-    - payment gateway eftnet integration merchant hosted payu website
-    - payu custom checkout eftnet api integration steps guide
-    - eft net banking payment integration payu web checkout india
+    - EFTNET integration
+    - EFT integration
+    - NEFT integration
+    - RTGS integration
+    - bank transfer
+    - EFTNET integration seamless
+    - EFT integration seamless
+    - NEFT integration seamless
+    - RTGS integration seamless
+    - bank transfer seamless 
+    - EFTNET integration merchant hosted
+    - EFT integration merchant hosted
+    - NEFT integration merchant hosted
+    - RTGS integration merchant hosted
+    - bank transfer merchant hosted
+  robots: index
+next:
+  description: ''
 ---
 Collect payments using EFTNET (NEFT/RTGS) with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
 
@@ -54,21 +61,15 @@ To integrate with EFTNET:
 <Cards columns={3}>
   <Card title="1. Initiate the Payment to PayU" href="#step-1-initiate-the-payment-to-payu">
     Initiate the payment to PayU with pg= NEFTRTGS and bankcode= \<based on the bank>
-
-    <br />
   </Card>
 
   <Card title="2. Check response from PayU" href="#step-2-check-response-from-payu">
     Check the response from PayU
-
-    <br />
   </Card>
 
   <Card title="3. Verify the payment" href="#step-3-verify-the-payment">
     Verify the payment using verify\_payment and monitor using webhooks
   </Card>
-
-  <br />
 </Cards>
 
 <RegisterMerchantPrerequiste />
@@ -401,10 +402,12 @@ To integrate with EFTNET:
 
 <ReverseHashing />
 
-<Callout icon="📘" theme="info">
-  **Note on Response**: For security reasons, the sample response or URL is not included here.
-</Callout>
+> 📘
+>
+> **Note on Response**: For security reasons, the sample response or URL is not included here.
 
 ## Step 3: Verify the payment
 
 <Verify_Payment_Tabs />
+
+<br />
