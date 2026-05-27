@@ -124,7 +124,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
     <Accordion title="Sample JSON" icon="fa-code">
       These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
 
-     This table is very similar to the previous one, with just a couple of differences in the `amount` field — the type is `numeric` and the description reads *"Amount in paise"* instead of *"The transaction amount"*. Here's the markdown! ✅
+     This table is very similar to the previous one, with just a couple of differences in the `amount` field — the type is `numeric` and the description reads *"Amount in paise"* instead of *"The transaction amount"*. 
 
 ```md
 | Parameter | Description | Example |
