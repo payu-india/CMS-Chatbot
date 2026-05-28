@@ -61,11 +61,13 @@ To create a subscription for a plan:
 1. Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor> expand **Subscriptions&#x20;**&#x63;lick **Plans&#x20;**&#x66;rom the left menu.
 
    ![](https://files.readme.io/e23c9520f99c508b3a30344721344fe2c910c4ecb17b785433fe6044a56d9796-image.png)
+
 2. Click the required plan to create a Subscription and click **+ New Subscription.**
 
    ![](https://files.readme.io/150db535eaadf15ae2c3fbd3c9dc02a33e890b1371a7beeb652da9f651b74122-Screenshot_2026-05-27_at_3.12.24_PM.png)
 
    Plan and **Payment details**  are auto-populated. You can edit the plan details as per your requirement.
+
 3. Enter the **Customer details**. Below are the available options:
 
    - **Enable Third Party Validation:&#x20;**&#x45;nable this to skip checkout and take your customers directly to the bank page with **Enach** pre-selected.
@@ -73,7 +75,9 @@ To create a subscription for a plan:
    - **Email:&#x20;**&#x54;he customer email address. Enable **Notify via Email&#x20;**&#x72;adio button to send the subscription link via email.
    - **Phone Number:&#x20;**&#x54;he customer phone number. Enable **Notify via Phone&#x20;**&#x72;adio button to send the subscription link to a phone number.
    - **Allow Reminder:&#x20;**&#x53;elect this checkbox to allow reminders.
+
 4. Click **Additional details&#x20;**&#x74;o expand and add additional information to the checkout. Below are the available options:
+
    - **Show Additional Information:&#x20;**&#x41;dd the below options to collect the additional information.
      - **Shipping Charge**
      - **Customer Address**
@@ -90,7 +94,9 @@ To create a subscription for a plan:
      - **Customer Address**
    - **Add Fields:&#x20;**&#x55;se this option to add any other custom field.
 
+
    <Image src="https://files.readme.io/8bc52c6890605dbfce90a7f4974faf7c1f7bf6c4a64722faf5143bead55984a5-create-sub.gif" align="center" caption="_Subscription Fields_" border={true} />
+
 
 5. Check the preview in the **Payment Request Preview&#x20;**&#x64;isplayed section and click **Create Link**.
 
@@ -112,5 +118,20 @@ A list of all plans with the following information in displayed in the **All Pla
 - **Pricing**
 - **Status**
 - **Active Mandates**
+
+> 📘 **Action Plans**
+>
+> <p>
+>   You can perform various actions from the <strong>All Plans</strong>. Click
+>   <img
+>     src="https://files.readme.io/YOUR-UPLOADED-ICON-URL.png"
+>     alt="Actions menu"
+>     width="16"
+>     height="16"
+>     style="display:inline-block;vertical-align:middle;margin:0 4px;"
+>   />
+>   and choose actions based on the plan status:
+>
+> </p>
 
 <br />
