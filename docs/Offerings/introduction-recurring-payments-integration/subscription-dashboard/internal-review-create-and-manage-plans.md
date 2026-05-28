@@ -66,13 +66,9 @@ To create a plan:
    Plan and **Payment details**  are auto-populated. You can edit the plan details as per your requirement.
 3. Enter the **Customer details**. Below are the available options:
 
-   > 📘 **Mandatory Fields**
-   >
-   > <RequiredStar legend />
-
    - **Enable Third Party Validation:&#x20;**&#x45;nable this to skip checkout and take your customers directly to the bank page with **Enach** pre-selected.
    - **Customer Name**
    - **Email:&#x20;**&#x54;he customer email address. Enable **Notify via Email&#x20;**&#x72;adio button to send the subscription link via email.
-   -
+   - **Phone Number:&#x20;**&#x54;he customer phone number. Enable **Notify via Phone&#x20;**&#x72;adio button to send the subscription link to a phone number.
 
 <br />
