@@ -70,5 +70,32 @@ To create a plan:
    - **Customer Name**
    - **Email:&#x20;**&#x54;he customer email address. Enable **Notify via Email&#x20;**&#x72;adio button to send the subscription link via email.
    - **Phone Number:&#x20;**&#x54;he customer phone number. Enable **Notify via Phone&#x20;**&#x72;adio button to send the subscription link to a phone number.
+   - **Allow Reminder:&#x20;**&#x53;elect this checkbox to allow reminders.
+4. Click **Additional details&#x20;**&#x74;o expand and add additional information to the checkout. Below are the available options:
+   - **Show Additional Information:&#x20;**&#x41;dd the below options to collect the additional information.
+     - **Shipping Charge**
+     - **Customer Address**
+     - **Add More Details:&#x20;**&#x43;lick this to add or remove the following custom fields.
+       - **Payment Due Date**
+       - **Add Tax Amount**
+       - **Add Shipping Charges**
+       - **Address Details**
+       - **UDF&#x20;**(User Defined Fields)
+   - **Show Custom Information:&#x20;**&#x55;se this section to display the following information in the checkout.
+     - **Customer Email**
+     - **Customer Phone**
+     - **Customer Name**
+     - **Customer Address**
+   - **Add Fields:&#x20;**&#x55;se this option to add any other custom field.
+
+   <Image src="https://files.readme.io/8bc52c6890605dbfce90a7f4974faf7c1f7bf6c4a64722faf5143bead55984a5-create-sub.gif" align="center" caption="_Subscription Fields_" border={true} />
+
+5. Check the preview in the **Payment Request Preview&#x20;**&#x64;isplayed section and click **Create Link**.
+
+## View Plans
+
+To view plans:
+
+<br />
 
 <br />
