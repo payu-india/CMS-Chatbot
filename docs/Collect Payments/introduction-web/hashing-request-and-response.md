@@ -211,17 +211,17 @@ Along with the request, the sensitive information should not be a part of any me
 | [UDF Update API](ref:udf_update_api) | udf_update | `hash = sha512(key\|command\|var1\|salt)` |
 | [Recurring Payment Transaction API](ref:recurring_payment_api) | si_transaction | `sha512(key\|command\|var1\|salt)` sha512 |
 | [Pre-Debit Notification API](ref:pre_debit_notification_api) | pre_debit_SI | `sha512(key\|command\|var1\|salt)` |
-| [Validate VPA API](ref:validate_vpa_api) | validateVPA | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Validate VPA API](ref:validate_vpa_api) | validateVPA | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` |
 | [Check the Mandate Status](ref:check-the-mandate-status) | check_mandate<br/>_status | `hash = sha512(key\|command\|var1\|SALT)` |
-| [Check Net Banking Mandate Status API](ref:net_banking_mandate_status_api) | NB_mandate_status | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Check Net Banking Mandate Status API](ref:net_banking_mandate_status_api) | NB\_mandate<br/>_status | `hash = sha512(key\|command\|var1\|SALT)` |
 | [Cancel Recurring Payment (Cards)](ref:cancel-the-recurring-payment-for-cards) | mandate_revoke | `hash = sha512(key\|command\|var1\|SALT)` |
 | [Cancel Recurring Payment (Net Banking)](ref:cancel-the-recurring-payment-for-net-banking) | mandate_revoke | `hash = sha512(key\|command\|var1\|SALT)` |
-| [Cancel Recurring Payment (UPI)](ref:cancel-the-recurring-payment-for-upi) | upi_mandate_revoke |  `hash = sha512(key\|command\|var1\|SALT)`) |
-| [Get User Cards API (Model 2)](ref:get_user_cards_api) | get\_user\_cards | `sha512 (key\|command\|var1\|salt)` sha512 |
-| [Get User Cards API – Model 3](ref:get_user_cards_api_model3) | get\_payment<br/>\_instrument | `sha512 (key\|command\|var1\|salt)` sha512 |
+| [Cancel Recurring Payment (UPI)](ref:cancel-the-recurring-payment-for-upi) | upi\_mandate\_revoke |  `hash = sha512(key\|command\|var1\|SALT)`) |
+| [Get User Cards API (Model 2)](ref:get_user_cards_api) | get\_user\_cards | `sha512 (key\|command\|var1\|salt)` |
+| [Get User Cards API – Model 3](ref:get_user_cards_api_model3) | get\_payment<br/>\_instrument | `sha512 (key\|command\|var1\|salt)` |
 | [Tokenize a Card API](ref:save_card_api) | save_payment<br/>_instrument | `sha512(key\|command\|var1\|salt)` sha512 |
 | [Edit a Saved Card API](ref:edit_saved_card_api) | edit_payment<br/>_instrument |  `sha512(key\|command\|var1\|salt)` sha512 |
-| [Collect Payments – Save Card](ref:collect-payments-save-card) | get_user_cards | `sha512 (key\|command\|var1\|salt)` sha512 |
+| [Collect Payments – Save Card](ref:collect-payments-save-card) | get\_user\_cards | `sha512 (key\|command\|var1\|salt)` sha512 |
 | [Get Split Info API](ref:get_split_info_api) | get\_split\_info | `sha512(key\|command\|payuId\|salt)` sha512 |
 | [Split After Transaction API](ref:split_after_transaction_api) | payment_split |  `sha512(key\|command\|var1\|salt)` |
 | [Refund Status API for Split Payments](ref:refund-status-api-for-split-payments) | aggregator<br/> \_check_action<br/> \_status_txnid | `sha512(key\|command\|var1\|salt)` |
