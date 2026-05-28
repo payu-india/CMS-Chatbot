@@ -219,8 +219,8 @@ Along with the request, the sensitive information should not be a part of any me
 | [Cancel Recurring Payment (UPI)](ref:cancel-the-recurring-payment-for-upi) | upi\_mandate\_revoke |  `hash = sha512(key\|command\|var1\|SALT)`) |
 | [Get User Cards API (Model 2)](ref:get_user_cards_api) | get\_user\_cards | `sha512 (key\|command\|var1\|salt)` |
 | [Get User Cards API – Model 3](ref:get_user_cards_api_model3) | get\_payment<br/>\_instrument | `sha512 (key\|command\|var1\|salt)` |
-| [Tokenize a Card API](ref:save_card_api) | save_payment<br/>_instrument | `sha512(key\|command\|var1\|salt)` sha512 |
-| [Edit a Saved Card API](ref:edit_saved_card_api) | edit_payment<br/>_instrument |  `sha512(key\|command\|var1\|salt)` sha512 |
+| [Tokenize a Card API](ref:save_card_api) | save\_payment<br/>\_instrument | `sha512(key\|command\|var1\|salt)` sha512 |
+| [Edit a Saved Card API](ref:edit_saved_card_api) | edit\_payment<br/>_instrument |  `sha512(key\|command\|var1\|salt)` sha512 |
 | [Collect Payments – Save Card](ref:collect-payments-save-card) | get\_user\_cards | `sha512 (key\|command\|var1\|salt)` sha512 |
 | [Get Split Info API](ref:get_split_info_api) | get\_split\_info | `sha512(key\|command\|payuId\|salt)` sha512 |
 | [Split After Transaction API](ref:split_after_transaction_api) | payment_split |  `sha512(key\|command\|var1\|salt)` |
