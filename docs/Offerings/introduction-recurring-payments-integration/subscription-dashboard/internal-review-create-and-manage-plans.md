@@ -56,6 +56,8 @@ To create a plan:
 
 ## Create Subscriptions for a Plan
 
+To create a subscription for a plan:
+
 1. Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor> expand **Subscriptions&#x20;**&#x63;lick **Plans&#x20;**&#x66;rom the left menu.
 
    ![](https://files.readme.io/e23c9520f99c508b3a30344721344fe2c910c4ecb17b785433fe6044a56d9796-image.png)
@@ -96,6 +98,19 @@ To create a plan:
 
 To view plans:
 
-<br />
+Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor> expand **Subscriptions&#x20;**&#x63;lick **Plans&#x20;**&#x66;rom the left menu.
+
+
+<Image src="https://files.readme.io/8274162ac9b932fd0e22ff9c71f76c8f0dc0b06daefd369b9b1cce6a0ab86107-image.png" align="center" caption="_Access Plans_" border={true} />
+
+
+A list of all plans with the following information in displayed in the **All Plans&#x20;**&#x73;ection:
+
+- **Created Date**
+- **Updated Date**
+- **Plan**
+- **Pricing**
+- **Status**
+- **Active Mandates**
 
 <br />
