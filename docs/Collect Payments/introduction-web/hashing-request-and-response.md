@@ -191,38 +191,38 @@ Along with the request, the sensitive information should not be a part of any me
 | API | command | Hash logic |
 | --- | --- | --- |
 | [Verify Payment API](ref:verify_payment_api) | verify_payment | `sha512(key\|command\|var1\|salt)` |
-| [Get Transaction Details API](ref:get_transaction_details_api) | get_Transaction_Details | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
-| [Get Transaction Info API](ref:get_transaction_info_api) | get_transaction<br/>_info | `sha512(key\|command\|var1\|salt)` |
+| [Get Transaction Details API](ref:get_transaction_details_api) | get <br/>\_Transaction <br/>_Details | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Get Transaction Info API](ref:get_transaction_info_api) | get <br/>\_transaction <br/>_info | `sha512(key\|command\|var1\|salt)` |
 | [Get TDR API](ref:get_tdr_api) | get_TDR | `sha512(key\|command\|var1\|salt)` |
 | [Refund Transaction API](ref:refund_transaction_api) | cancel_refund<br/>_transaction | Calculated using the sha512 algorithm with the format: `sha512(key\|command\|var1\|salt)` |
-| [Get All Refunds from Transaction ID](ref:get_all_refunds_from_transaction_ids_api) | getAllRefundsFromTxnIds | `sha512(key\|command\|var1\|salt)` |
+| [Get All Refunds from Transaction ID](ref:get_all_refunds_from_transaction_ids_api) | getAllRefunds<br/> FromTxnIds | `sha512(key\|command\|var1\|salt)` |
 | [Check Action Status with PayU ID](ref:check_action_status_api_with_payu_id) | check_action<br/>_status | `sha512(key\|command\|var1\|salt)` |
-| [Check Refund Status with Request ID API](ref:check_action_status_api_with_request_id) | check_action_status_txnid | `sha512(key\|command\|var1\|salt)` |
-| [Check is Domestic API](ref:check_is_domestic_api) | check_isDomestic |`sha512(key\|command\|var1\|salt)` |
+| [Check Refund Status with Request ID API](ref:check_action_status_api_with_request_id) | check\_action <br/> _status_txnid | `sha512(key\|command\|var1\|salt)` |
+| [Check is Domestic API](ref:check_is_domestic_api) | check <br/>\_isDomestic |`sha512(key\|command\|var1\|salt)` |
 | [Get BIN Info API](ref:get_bin_info_api) | getBinInfo | `sha512(key\|command\|var1\|salt)` |
 | [Get EMI Amount according to Interest API](ref:get_emi_according_to_interest_api) | getEmiAmountAccordingToInterest |`sha512(key\|command\|var1\|salt)` |
 | [Get Issuing Bank Status API](ref:get_issuing_bank_status_api) | getIssuing<br/>BankStatus | `sha512(key\|command\|var1\|salt)` sha512 |
-| [Get Issuing Bank Down BINs API](ref:get_issuing_bank_down_bins_api) | getIssuingBankDownBins | Hash formula: `sha512(key\|command\|var1\|salt)` |
+| [Get Issuing Bank Down BINs API](ref:get_issuing_bank_down_bins_api) | getIssuing<br/> BankDownBins | Hash formula: `sha512(key\|command\|var1\|salt)` |
 | [Get Net Banking Status API](ref:get_net_banking_status_api) | getNetbankingStatus | Hash formula: `sha512(key\|command\|var1\|salt)` |
-| [Get Checkout Details API](ref:get_checkout_details) | get\_checkout<br/>\_details | `hash = sha512(key\|command\|var1\|SALT)` |
-| [Check Offer Status API](ref:check-offer-status-api) | check_offer<br/>_status | `sha512(key\|command\|var1\|salt)` |
-| [Release Settlement API](ref:release_settlement_api) | release_settlement |  `key\|command\|var1\|salt` |
-| [Get Settlement Detail API (Cross-Border)](ref:get-settlement-detail-api-cross-border-payments) | get\_settlement<br/>\_details | `sha512(key\|command\|var1\|salt)` |
+| [Get Checkout Details API](ref:get_checkout_details) | get <br/> \_checkout <br/>\_details | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Check Offer Status API](ref:check-offer-status-api) | check_offer <br/>\_status | `sha512(key\|command\|var1\|salt)` |
+| [Release Settlement API](ref:release_settlement_api) | release <br/>\_settlement |  `key\|command\|var1\|salt` |
+| [Get Settlement Detail API (Cross-Border)](ref:get-settlement-detail-api-cross-border-payments) | get <br/>\_settlement <br/>\_details | `sha512(key\|command\|var1\|salt)` |
 | [UDF Update API](ref:udf_update_api) | udf_update | `hash = sha512(key\|command\|var1\|salt)` |
 | [Recurring Payment Transaction API](ref:recurring_payment_api) | si_transaction | `sha512(key\|command\|var1\|salt)` sha512 |
-| [Pre-Debit Notification API](ref:pre_debit_notification_api) | pre_debit_SI | `sha512(key\|command\|var1\|salt)` |
-| [Validate VPA API](ref:validate_vpa_api) | validateVPA | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` |
-| [Check the Mandate Status](ref:check-the-mandate-status) | check_mandate<br/>_status | `hash = sha512(key\|command\|var1\|SALT)` |
-| [Check Net Banking Mandate Status API](ref:net_banking_mandate_status_api) | NB\_mandate<br/>_status | `hash = sha512(key\|command\|var1\|SALT)` |
-| [Cancel Recurring Payment (Cards)](ref:cancel-the-recurring-payment-for-cards) | mandate_revoke | `hash = sha512(key\|command\|var1\|SALT)` |
-| [Cancel Recurring Payment (Net Banking)](ref:cancel-the-recurring-payment-for-net-banking) | mandate_revoke | `hash = sha512(key\|command\|var1\|SALT)` |
-| [Cancel Recurring Payment (UPI)](ref:cancel-the-recurring-payment-for-upi) | upi\_mandate\_revoke |  `hash = sha512(key\|command\|var1\|SALT)`) |
-| [Get User Cards API (Model 2)](ref:get_user_cards_api) | get\_user\_cards | `sha512 (key\|command\|var1\|salt)` |
-| [Get User Cards API – Model 3](ref:get_user_cards_api_model3) | get\_payment<br/>\_instrument | `sha512 (key\|command\|var1\|salt)` |
-| [Tokenize a Card API](ref:save_card_api) | save\_payment<br/>\_instrument | `sha512(key\|command\|var1\|salt)` sha512 |
-| [Edit a Saved Card API](ref:edit_saved_card_api) | edit\_payment<br/>_instrument |  `sha512(key\|command\|var1\|salt)` sha512 |
-| [Collect Payments – Save Card](ref:collect-payments-save-card) | get\_user\_cards | `sha512 (key\|command\|var1\|salt)` sha512 |
-| [Get Split Info API](ref:get_split_info_api) | get\_split\_info | `sha512(key\|command\|payuId\|salt)` sha512 |
+| [Pre-Debit Notification API](ref:pre_debit_notification_api) | pre <br/>\_debit <br/> \_SI | `sha512(key\|command\|var1\|salt)` |
+| [Validate VPA API](ref:validate_vpa_api) | validateVPA | `sha512(key\|command\|var1\|salt)` |
+| [Check the Mandate Status](ref:check-the-mandate-status) | check_mandate<br/>\_status | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Check Net Banking Mandate Status API](ref:net_banking_mandate_status_api) | NB<br/> \_mandate <br/> \_status | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Cancel Recurring Payment (Cards)](ref:cancel-the-recurring-payment-for-cards) | mandate <br/>\_revoke | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Cancel Recurring Payment (Net Banking)](ref:cancel-the-recurring-payment-for-net-banking) | mandate <br/>\_revoke | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Cancel Recurring Payment (UPI)](ref:cancel-the-recurring-payment-for-upi) | upi\_mandate <br/>\_revoke |  `hash = sha512(key\|command\|var1\|SALT)`) |
+| [Get User Cards API (Model 2)](ref:get_user_cards_api) | get <br/>\_user <br/>\_cards | `sha512 (key\|command\|var1\|salt)` |
+| [Get User Cards API – Model 3](ref:get_user_cards_api_model3) | get <br/>\_payment <br/>\_instrument | `sha512 (key\|command\|var1\|salt)` |
+| [Tokenize a Card API](ref:save_card_api) | save <br/>\_payment <br/>\_instrument | `sha512(key\|command\|var1\|salt)` sha512 |
+| [Edit a Saved Card API](ref:edit_saved_card_api) | edit<br/> \_payment <br/>_instrument |  `sha512(key\|command\|var1\|salt)` sha512 |
+| [Collect Payments – Save Card](ref:collect-payments-save-card) | get <br/>\_user <br/> \_cards | `sha512 (key\|command\|var1\|salt)` sha512 |
+| [Get Split Info API](ref:get_split_info_api) | get <br/>\_split <br/>\_info | `sha512(key\|command\|payuId\|salt)` sha512 |
 | [Split After Transaction API](ref:split_after_transaction_api) | payment_split |  `sha512(key\|command\|var1\|salt)` |
 | [Refund Status API for Split Payments](ref:refund-status-api-for-split-payments) | aggregator<br/> \_check_action<br/> \_status_txnid | `sha512(key\|command\|var1\|salt)` |
 | [Cancel Omnichannel Transaction API](ref:cancel-omnichannel-transaction-api-1) | cancel_omni<br/>_payment | `sha512(key\|command\|var1\|salt)` |
