@@ -191,8 +191,8 @@ Along with the request, the sensitive information should not be a part of any me
 | API | command | Hash logic |
 | --- | --- | --- |
 | [Verify Payment API](ref:verify_payment_api) | verify_payment | `sha512(key\|command\|var1\|salt)` |
-| [Get Transaction Details API](ref:get_transaction_details_api) | get <br/>\_Transaction <br/>_Details | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
-| [Get Transaction Info API](ref:get_transaction_info_api) | get <br/>\_transaction <br/>_info | `sha512(key\|command\|var1\|salt)` |
+| [Get Transaction Details API](ref:get_transaction_details_api) | get <br/>\_Transaction <br/>\_Details | Hash logic for this API is: `sha512(key\|command\|var1\|salt)` sha512 |
+| [Get Transaction Info API](ref:get_transaction_info_api) | get <br/>\_transaction <br/>\_info | `sha512(key\|command\|var1\|salt)` |
 | [Get TDR API](ref:get_tdr_api) | get_TDR | `sha512(key\|command\|var1\|salt)` |
 | [Refund Transaction API](ref:refund_transaction_api) | cancel_refund<br/>_transaction | Calculated using the sha512 algorithm with the format: `sha512(key\|command\|var1\|salt)` |
 | [Get All Refunds from Transaction ID](ref:get_all_refunds_from_transaction_ids_api) | getAllRefunds<br/> FromTxnIds | `sha512(key\|command\|var1\|salt)` |
@@ -204,16 +204,16 @@ Along with the request, the sensitive information should not be a part of any me
 | [Get Issuing Bank Status API](ref:get_issuing_bank_status_api) | getIssuing<br/>BankStatus | `sha512(key\|command\|var1\|salt)` sha512 |
 | [Get Issuing Bank Down BINs API](ref:get_issuing_bank_down_bins_api) | getIssuing<br/> BankDownBins | Hash formula: `sha512(key\|command\|var1\|salt)` |
 | [Get Net Banking Status API](ref:get_net_banking_status_api) | getNetbankingStatus | Hash formula: `sha512(key\|command\|var1\|salt)` |
-| [Get Checkout Details API](ref:get_checkout_details) | get <br/> \_checkout <br/>\_details | `hash = sha512(key\|command\|var1\|SALT)` |
-| [Check Offer Status API](ref:check-offer-status-api) | check_offer <br/>\_status | `sha512(key\|command\|var1\|salt)` |
+| [Get Checkout Details API](ref:get_checkout_details) | get <br/>\_checkout <br/>\_details | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Check Offer Status API](ref:check-offer-status-api) | check <br/>\_offer <br/>\_status | `sha512(key\|command\|var1\|salt)` |
 | [Release Settlement API](ref:release_settlement_api) | release <br/>\_settlement |  `key\|command\|var1\|salt` |
 | [Get Settlement Detail API (Cross-Border)](ref:get-settlement-detail-api-cross-border-payments) | get <br/>\_settlement <br/>\_details | `sha512(key\|command\|var1\|salt)` |
 | [UDF Update API](ref:udf_update_api) | udf_update | `hash = sha512(key\|command\|var1\|salt)` |
 | [Recurring Payment Transaction API](ref:recurring_payment_api) | si_transaction | `sha512(key\|command\|var1\|salt)` sha512 |
-| [Pre-Debit Notification API](ref:pre_debit_notification_api) | pre <br/>\_debit <br/> \_SI | `sha512(key\|command\|var1\|salt)` |
+| [Pre-Debit Notification API](ref:pre_debit_notification_api) | pre <br/>\_debit <br/>\_SI | `sha512(key\|command\|var1\|salt)` |
 | [Validate VPA API](ref:validate_vpa_api) | validateVPA | `sha512(key\|command\|var1\|salt)` |
-| [Check the Mandate Status](ref:check-the-mandate-status) | check_mandate<br/>\_status | `hash = sha512(key\|command\|var1\|SALT)` |
-| [Check Net Banking Mandate Status API](ref:net_banking_mandate_status_api) | NB<br/> \_mandate <br/> \_status | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Check the Mandate Status](ref:check-the-mandate-status) | check <br/>\_mandate <br/>\_status | `hash = sha512(key\|command\|var1\|SALT)` |
+| [Check Net Banking Mandate Status API](ref:net_banking_mandate_status_api) | NB<br/> \_mandate <br/>\_status | `hash = sha512(key\|command\|var1\|SALT)` |
 | [Cancel Recurring Payment (Cards)](ref:cancel-the-recurring-payment-for-cards) | mandate <br/>\_revoke | `hash = sha512(key\|command\|var1\|SALT)` |
 | [Cancel Recurring Payment (Net Banking)](ref:cancel-the-recurring-payment-for-net-banking) | mandate <br/>\_revoke | `hash = sha512(key\|command\|var1\|SALT)` |
 | [Cancel Recurring Payment (UPI)](ref:cancel-the-recurring-payment-for-upi) | upi\_mandate <br/>\_revoke |  `hash = sha512(key\|command\|var1\|SALT)`) |
