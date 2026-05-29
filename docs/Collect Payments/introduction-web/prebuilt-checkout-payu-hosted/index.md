@@ -6,14 +6,18 @@ hidden: false
 metadata:
   title: Prebuilt Web Checkout or PayU Hosted Checkout Integration
   description: >-
-    Learn what is PayU Hosted Checkout, the PayU India’s prebuilt checkout
-    solution to accept online payments from your customers. This page provides
-    how PayU Hosted Checkout works, customer journey, features and benefits.
+    Integrate PayU Hosted Checkout with PayU to redirect customers to a secure, prebuilt payment page. Accept UPI, cards, net banking, and wallets with SHA-512 hash, surl/furl callbacks, and test-to-production go-live steps for India merchants.
   keywords:
-    - PayU Hosted Checkout
-    - ' Pre-Built Checkout Features'
-    - ' PayU Hosted Checkout Benefits. PayU Hosted Checkout'
-    - PayU India Hosted Checkout
+    - payu hosted checkout integration guide india
+    - prebuilt payment page redirect checkout payu
+    - payment gateway hosted checkout api _payment payu
+    - payu web checkout sha512 hash surl furl integration
+    - online payment collection website checkout payu india
+    - payu hosted checkout test sandbox go live checklist
+    - razorpay cashfree alternative payu hosted checkout india
+    - payment gateway integration for websites payu hosted
+    - payu collect payment api hosted checkout developer guide
+    - accept upi cards netbanking wallet hosted checkout payu
   robots: index
 next:
   description: ''
@@ -26,34 +30,34 @@ To use PayU Hosted Checkout, merchants need to integrate the PayU payment gatewa
 
 Once the payment is processed, the customer will be redirected back to the merchant's website where they can view the payment result.
 
-<Image align="center" alt="PayU Hosted Checkout Workflow" border={true} src="https://files.readme.io/932f800-payuhosted_wf.png" className="border" />
+<Image align="center" alt="workflow diagram - How it works?" border={true} src="https://files.readme.io/932f800-payuhosted_wf.png" className="border" />
 
 ## Customer journey
 
 The following diagram illustrates the overall customer journey:
 
-<Image align="center" src="https://files.readme.io/bc1c758a83c0c601d161a5621e1fe47a6d4c757e847a893b33b05419972e693a-b7b3bc19c28693be346591ec8a2c29ee07fcf47cb088bc6c9a6c34950c2af0dc-payu_hosted_checkout-workflow.png" />
+<Image align="center" alt="workflow diagram - Customer journey" src="https://files.readme.io/bc1c758a83c0c601d161a5621e1fe47a6d4c757e847a893b33b05419972e693a-b7b3bc19c28693be346591ec8a2c29ee07fcf47cb088bc6c9a6c34950c2af0dc-payu_hosted_checkout-workflow.png" />
 
 The following sample customer journey is for cards payment mode:
 
 1. The customer clicks **Pay Now** on merchant website after checkout.
 2. The customer is redirected to _PayU Payment _page.
 
-<Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Payment Modes" border={true} width="622px" src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" className="border" />
+<Image align="center" alt="PayU Dashboard - The customer is redirected to _PayU Payment _page" border={true} width="622px" src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" className="border" />
 
 3. The customer chooses a payment mode from the _PayU Payment_ page. For example, **Cards (Debit/Credit)**.
 4. The card details are provided by the customer and clicks **Proceed**.
 
-<Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Card Details page" border={true} width="622px" src="https://files.readme.io/fd09cbd284ffe7fb3b60d03e2acd8a5a51d850dd1795f1eca9879893b3569603-Screenshot_2024-09-06_at_11.56.40_AM.png" className="border" />
+<Image align="center" alt="card payment screen - The card details are provided by the customer and clicks Proceed" border={true} width="622px" src="https://files.readme.io/fd09cbd284ffe7fb3b60d03e2acd8a5a51d850dd1795f1eca9879893b3569603-Screenshot_2024-09-06_at_11.56.40_AM.png" className="border" />
 
 A consent message is displayed whether the card the details can be stored.
 
-<Image align="center" alt="PayU Hosted Checkout Custome Journey Sample with Save Card Confirmation" width="622px" src="https://files.readme.io/caa8481-Screenshot_2023-10-05_at_10.37.33_AM.png" />
+<Image align="center" alt="card payment screen - A consent message is displayed whether the card the details can be stored." width="622px" src="https://files.readme.io/caa8481-Screenshot_2023-10-05_at_10.37.33_AM.png" />
 
 5. Customer clicks **Save and Continue**.
 6. The OTP page is displayed where the customer enters OTP sent to the them.
 
-<Image align="center" width="422px" src="https://files.readme.io/289fa82-Screenshot_2023-10-05_at_10.37.42_AM.png" />
+<Image align="center" alt="OTP verification screen - The OTP page is displayed where the customer enters OTP sent to the them" width="422px" src="https://files.readme.io/289fa82-Screenshot_2023-10-05_at_10.37.42_AM.png" />
 
 6. PayU redirects back to the merchant website based on the success URL (surl) or failure URL (furl) specified.
 
