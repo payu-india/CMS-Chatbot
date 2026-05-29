@@ -1,7 +1,7 @@
 ---
 title: PayU CLI
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
