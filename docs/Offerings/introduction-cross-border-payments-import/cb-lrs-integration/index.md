@@ -9,32 +9,32 @@ The Liberalised Remittance Scheme (LRS) is a framework established by the Reserv
 
 Key features of LRS:
 
-* Annual limit of USD 250,000 per person per financial year
-* Available only to individual residents (not businesses, HUFs, or trusts)
-* Requires collection & validation of PAN (Permanent Account Number)
-* Involves Tax Collected at Source (TCS) based on purpose & transaction amount as per applicable government regulations
+- Annual limit of USD 250,000 per person per financial year
+- Available only to individual residents (not businesses, HUFs, or trusts)
+- Requires collection & validation of PAN (Permanent Account Number)
+- Involves Tax Collected at Source (TCS) based on purpose & transaction amount as per applicable government regulations
 
-<Callout icon="📘" theme="info">
-  **Note**: All transactions under LRS require PAN verification and proper declarations regarding the annual limit of USD 250,000. PayU automates these compliance requirements, making international payments simple for both merchants and customers.
-</Callout>
+> 📘
+>
+> **Note**: All transactions under LRS require PAN verification and proper declarations regarding the annual limit of USD 250,000. PayU automates these compliance requirements, making international payments simple for both merchants and customers.
 
 ## Advantages of LRS with PayU
 
 ### For Merchants
 
-* **Simplified International Payments:** Accept payments from Indian customers without establishing an Indian entity
-* **Higher Success Rates:** Optimized payment flows ensure better transaction completion rates
-* **Multiple Payment Options:** Offer local payment methods like UPI, NetBanking, and Cards for international transactions
-* **Automated Compliance:** Built-in verification systems for PAN, TCS calculations, and legal declarations as per local regulations
-* **Real-time Tracking:** Monitor remittance status with instant updates
-* **Flexible Integration:** Choose between seamless and non-seamless integration options
+- **Simplified International Payments:** Accept payments from Indian customers without establishing an Indian entity
+- **Higher Success Rates:** Optimized payment flows ensure better transaction completion rates
+- **Multiple Payment Options:** Offer local payment methods like UPI, NetBanking, and Cards for international transactions
+- **Automated Compliance:** Built-in verification systems for PAN, TCS calculations, and legal declarations as per local regulations
+- **Real-time Tracking:** Monitor remittance status with instant updates
+- **Flexible Integration:** Choose between seamless and non-seamless integration options
 
 ### For Customers
 
-* **Convenience:** Use familiar Indian payment methods for international transactions
-* **Digital Process:** Complete the entire remittance process online without visiting banks
-* **Transparency:** Clear visibility of exchange rates, fees, and TCS amounts
-* **Regulatory Compliance:** Automatic handling of necessary declarations and tax requirements for buyers
+- **Convenience:** Use familiar Indian payment methods for international transactions
+- **Digital Process:** Complete the entire remittance process online without visiting banks
+- **Transparency:** Clear visibility of exchange rates, fees, and TCS amounts
+- **Regulatory Compliance:** Automatic handling of necessary declarations and tax requirements for buyers
 
 ## Use Cases
 
@@ -56,19 +56,19 @@ Travel agencies and Online Travel Aggregators (OTAs) can accept payments for int
 
 For merchants belonging to the following categories, a view of applicable regulations based on the type of service being sold:
 
-* International OTA & Travel aggregators
-* International Airlines
-* International Hotel Chains
+- International OTA & Travel aggregators
+- International Airlines
+- International Hotel Chains
 
-| **Type of Service**                                                        | **Sub-type of Service**                                                                | **Applicability of PACB-Import & LRS** |
-| :------------------------------------------------------------------------- | :------------------------------------------------------------------------------------- | :------------------------------------- |
-| Travel                                                                     | Domestic Flight Booking                                                                | Only PACB-Import                       |
-| Travel                                                                     | International Flight Booking (all legs outside India)                                  | Both PACB - Import & LRS               |
-| Travel                                                                     | Mixed Flight Booking (One or more legs in India as well as International destinations) | Both PACB - Import & LRS               |
-| Hospitality                                                                | International Hotel Booking                                                            | Both PACB - Import & LRS               |
-| Hospitality                                                                | Indian Hotel Booking                                                                   | Only PACB-Import                       |
-| Others Services (Cabs, Airport transfers, Tours & Attraction Tickets etc.) | Located Outside in India                                                               | Both PACB - Import & LRS               |
-| Others Services (Cabs, Airport transfers, Tours & Attraction Tickets etc.) | Located in India                                                                       | Only PACB-Import                       |
+| **Type of Service**                                                        | **Sub-type of Service**                                                                | **Applicability of PACB-Import & LRS** | Implication on Payment Journey                                                                                             |
+| :------------------------------------------------------------------------- | :------------------------------------------------------------------------------------- | :------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Travel                                                                     | Domestic Flight Booking                                                                | Only PACB-Import                       | PAN collection & validation is not required                                                                                |
+| Travel                                                                     | International Flight Booking (all legs outside India)                                  | Both PACB - Import & LRS               | Payer's PAN details need to be collected and validated. Governed by "lrs\_service\_type" parameter in the payment request. |
+| Travel                                                                     | Mixed Flight Booking (One or more legs in India as well as International destinations) | Both PACB - Import & LRS               | Payer's PAN details need to be collected and validated. Governed by "lrs\_service\_type" parameter in the payment request. |
+| Hospitality                                                                | International Hotel Booking                                                            | Both PACB - Import & LRS               | Payer's PAN details need to be collected and validated. Governed by "lrs\_service\_type" parameter in the payment request. |
+| Hospitality                                                                | Indian Hotel Booking                                                                   | Only PACB-Import                       | PAN collection & validation is not required.                                                                               |
+| Others Services (Cabs, Airport transfers, Tours & Attraction Tickets etc.) | Located Outside in India                                                               | Both PACB - Import & LRS               | Payer's PAN details need to be collected and validated. Governed by "lrs\_service\_type" parameter in the payment request. |
+| Others Services (Cabs, Airport transfers, Tours & Attraction Tickets etc.) | Located in India                                                                       | Only PACB-Import                       | PAN collection & validation is not required.                                                                               |
 
 <br />
 
@@ -94,3 +94,5 @@ Consultants helping students with international education can streamline fee pay
 | :-------------------------------------------------- | :------------------------------------- |
 | Online Education (MOOCs, degree certifications etc) | Only PACB-Import                       |
 | Foreign School / University fees Payment            | Both PACB - Import & LRS               |
+
+<br />
