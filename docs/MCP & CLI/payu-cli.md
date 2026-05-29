@@ -5,44 +5,17 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: PayU CLI
-excerpt: >-
-  Install and use the PayU Command Line Interface (CLI) on macOS, Linux, or Windows to interact with PayU
-  dashboard APIs from your terminal.
-deprecated: false
-hidden: false
-metadata:
-  title: Install and Use the PayU CLI
-  description: >-
-    Install the PayU CLI on macOS, Linux, or Windows. Configure API credentials,
-    create payment links, look up transactions, check settlements, generate
-    reports, and manage merchant accounts from your terminal.
-  keywords:
-    - PayU CLI
-    - PayU command line tool
-    - PayU dashboard API CLI
-    - install PayU CLI
-    - payu config set
-    - payu pay create-link
-    - payu txn list
-    - payu report create
-    - PayU terminal integration
-  robots: index
-next:
-  description: ''
----
 The PayU CLI lets you interact with PayU dashboard APIs directly from your terminal. Use it to create payment links, look up transactions, check settlements, generate reports, and more — without opening the dashboard.
 
 ## Prerequisites
 
 Before you install the PayU CLI, keep the following credentials ready:
 
-| Credential    | Where to find it                                                                 |
-| :------------ | :------------------------------------------------------------------------------- |
-| Client ID     | PayU Dashboard > **Developer** > **API Details**                               |
-| Client Secret | PayU Dashboard > **Developer** > **API Details**                                 |
-| Merchant ID   | Your PayU merchant identifier (MID) shown on the dashboard                       |
+| Credential    | Where to find it                                           |
+| :------------ | :--------------------------------------------------------- |
+| Client ID     | PayU Dashboard > **Developer** > **API Details**           |
+| Client Secret | PayU Dashboard > **Developer** > **API Details**           |
+| Merchant ID   | Your PayU merchant identifier (MID) shown on the dashboard |
 
 For step-by-step instructions to retrieve your client ID and client secret, see [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard).
 
@@ -56,7 +29,7 @@ To install the PayU CLI on macOS or Linux:
 2. Run the following command:
 
    ```plaintext
-   curl -fsSL https://payu-intrepos.github.io/payu-cli/install.sh | bash
+   > curl -fsSL https://payu-intrepos.github.io/payu-cli/install.sh | bash
    Downloading payu-cli for darwin/arm64...
    Installed to /Users/you/.local/bin/payu
    ```
@@ -71,7 +44,7 @@ To install the PayU CLI on Windows:
 2. Run the following command:
 
    ```plaintext
-   irm https://payu-intrepos.github.io/payu-cli/install.ps1 | iex
+   > irm https://payu-intrepos.github.io/payu-cli/install.ps1 | iex
 
    Downloading payu-cli for windows/amd64...
    Installed to C:\Users\you\AppData\Local\payu-cli\payu.exe
@@ -85,7 +58,7 @@ To install the PayU CLI on Windows:
 To confirm that the PayU CLI is installed correctly, run:
 
 ```plaintext
-payu version
+> payu version
 
 payu-cli 1.0.0
 ```
@@ -101,7 +74,7 @@ To set your credentials on macOS or Linux:
 1. Run the following command, replacing the placeholder values with your credentials:
 
    ```plaintext
-   payu config set \
+   > payu config set \
    --client-id YOUR_CLIENT_ID \
    --client-secret YOUR_CLIENT_SECRET \
    --merchant-id YOUR_MERCHANT_ID
@@ -117,7 +90,7 @@ To set your credentials on macOS or Linux:
 To set your credentials on Windows in PowerShell:
 
 ```plaintext
-payu config set `
+> payu config set `
 --client-id YOUR_CLIENT_ID `
 --client-secret YOUR_CLIENT_SECRET `
 --merchant-id YOUR_MERCHANT_ID
@@ -131,7 +104,7 @@ Environment: production
 To confirm that your credentials are configured correctly, run:
 
 ```plaintext
-payu config show
+> payu config show
 
 Profile:     default
 Environment: production
@@ -148,52 +121,52 @@ Run any command without arguments to see its help text and available subcommands
 
 ### Account Management
 
-| Command                      | Description                          |
-| :--------------------------- | :----------------------------------- |
-| `payu account list`          | List all saved merchant accounts     |
-| `payu account show`          | Show active account details          |
-| `payu account add`           | Add a new merchant account           |
-| `payu account switch <name>` | Switch the active account            |
-| `payu account remove <name>` | Remove a merchant account            |
+| Command                      | Description                      |
+| :--------------------------- | :------------------------------- |
+| `payu account list`          | List all saved merchant accounts |
+| `payu account show`          | Show active account details      |
+| `payu account add`           | Add a new merchant account       |
+| `payu account switch <name>` | Switch the active account        |
+| `payu account remove <name>` | Remove a merchant account        |
 
 ### Payment Links
 
-| Command                    | Description                              |
-| :------------------------- | :--------------------------------------- |
-| `payu pay create-link`     | Create a new payment link                |
-| `payu pay send <id>`         | Send a payment link via email or SMS     |
-| `payu pay status <id>`       | Get payment link details                 |
-| `payu pay list`              | List all payment links                   |
-| `payu pay update <id>`       | Update a payment link                    |
-| `payu pay invoice <id>`      | Get invoice transactions                 |
+| Command                 | Description                          |
+| :---------------------- | :----------------------------------- |
+| `payu pay create-link`  | Create a new payment link            |
+| `payu pay send <id>`    | Send a payment link via email or SMS |
+| `payu pay status <id>`  | Get payment link details             |
+| `payu pay list`         | List all payment links               |
+| `payu pay update <id>`  | Update a payment link                |
+| `payu pay invoice <id>` | Get invoice transactions             |
 
 ### Transactions
 
-| Command                          | Description                              |
-| :------------------------------- | :--------------------------------------- |
-| `payu txn get <id>`              | Get details of a single transaction      |
-| `payu txn list --from --to`      | List transactions with filters           |
-| `payu txn summary --from --to`   | Get aggregated transaction analytics     |
+| Command                        | Description                          |
+| :----------------------------- | :----------------------------------- |
+| `payu txn get <id>`            | Get details of a single transaction  |
+| `payu txn list --from --to`    | List transactions with filters       |
+| `payu txn summary --from --to` | Get aggregated transaction analytics |
 
 ### Refunds
 
-| Command                 | Description                    |
-| :---------------------- | :----------------------------- |
-| `payu refund search`    | Search refunds with filters    |
-| `payu refund summary`   | Get refund analytics summary   |
+| Command               | Description                  |
+| :-------------------- | :--------------------------- |
+| `payu refund search`  | Search refunds with filters  |
+| `payu refund summary` | Get refund analytics summary |
 
 ### Settlements
 
-| Command                 | Description                    |
-| :---------------------- | :----------------------------- |
-| `payu settlement get` | Get settlement details         |
+| Command               | Description            |
+| :-------------------- | :--------------------- |
+| `payu settlement get` | Get settlement details |
 
 ### Reports
 
-| Command                      | Description                                                              |
-| :--------------------------- | :----------------------------------------------------------------------- |
-| `payu report create <type>`  | Generate a CSV report (transactions, settlements, refunds, or payouts) |
-| `payu report get <id>`         | Download a generated report                                              |
+| Command                     | Description                                                            |
+| :-------------------------- | :--------------------------------------------------------------------- |
+| `payu report create <type>` | Generate a CSV report (transactions, settlements, refunds, or payouts) |
+| `payu report get <id>`      | Download a generated report                                            |
 
 ## Examples
 
@@ -202,7 +175,7 @@ Run any command without arguments to see its help text and available subcommands
 To create a payment link for a customer:
 
 ```plaintext
-payu pay create-link \
+> payu pay create-link \
 --amount 1500 \
 --desc 'Invoice #1042' \
 --name 'Rahul Sharma' \
@@ -221,7 +194,7 @@ Status:     active
 To list all captured transactions for the current day:
 
 ```plaintext
-payu txn list \
+> payu txn list \
 --from '2025-05-29 00:00:00' \
 --to '2025-05-29 23:59:59' \
 --status captured
@@ -237,7 +210,7 @@ Total: 2 transactions
 To list transactions within a date range, filtered by payment mode and amount:
 
 ```plaintext
-payu txn list \
+> payu txn list \
 --from '2025-05-01 00:00:00' \
 --to '2025-05-29 23:59:59' \
 --mode UPI,CC \
@@ -254,7 +227,7 @@ Total: 2 transactions
 To create and download a transactions report:
 
 ```plaintext
-payu report create transactions \
+> payu report create transactions \
 --from '2025-05-01 00:00:00' \
 --to '2025-05-31 23:59:59'
 
@@ -273,7 +246,7 @@ Rows: 1,248
 To retrieve details for a specific transaction:
 
 ```plaintext
-payu txn get 403993715534343565
+> payu txn get 403993715534343565
 
 <command result>
 Transaction ID: 403993715534343565
@@ -289,17 +262,17 @@ Date:           2025-05-29 14:32:11
 
 The following flags are available across commands:
 
-| Flag                | Description                                              |
-| :------------------ | :------------------------------------------------------- |
-| `--profile <name>`  | Use a specific credential profile instead of the default |
-| `--help`            | Show help for any command                                |
+| Flag               | Description                                              |
+| :----------------- | :------------------------------------------------------- |
+| `--profile <name>` | Use a specific credential profile instead of the default |
+| `--help`           | Show help for any command                                |
 
 ## Environments
 
 By default, the CLI connects to PayU production APIs. To use the test (sandbox) environment, configure a separate profile:
 
 ```plaintext
-payu config set --env test \
+> payu config set --env test \
 --client-id TEST_ID \
 --client-secret TEST_SECRET \
 --merchant-id TEST_MID \
@@ -312,7 +285,7 @@ Environment: test
 To run a command against the test profile, pass the `--profile` flag:
 
 ```plaintext
-payu txn list --profile test --from '2025-05-29 00:00:00' --to '2025-05-29 23:59:59'
+> payu txn list --profile test --from '2025-05-29 00:00:00' --to '2025-05-29 23:59:59'
 
 TXN_ID              AMOUNT    MODE   STATUS    DATE
 403993715534343999  ₹1.00     UPI    captured  2025-05-29 10:00:00
@@ -326,13 +299,13 @@ Total: 1 transaction
 If your terminal reports that `payu` is not found, make sure `~/.local/bin` is in your PATH. Add the following line to your shell profile (`~/.bashrc` or `~/.zshrc`):
 
 ```plaintext
-export PATH="$HOME/.local/bin:$PATH"
+> export PATH="$HOME/.local/bin:$PATH"
 ```
 
 Reload your shell profile, and then verify the installation:
 
 ```plaintext
-source ~/.zshrc
+> source ~/.zshrc
 payu version
 
 payu-cli 1.0.0
@@ -355,7 +328,7 @@ Windows might show a SmartScreen warning because the binary is not code-signed. 
 If you receive a `401` error, verify that your credentials are correct:
 
 ```plaintext
-payu config show
+> payu config show
 
 Profile:     default
 Environment: production
@@ -364,3 +337,4 @@ Client ID:   abc123def456
 Client Secret: ••••a1b2
 ```
 
+<br />
