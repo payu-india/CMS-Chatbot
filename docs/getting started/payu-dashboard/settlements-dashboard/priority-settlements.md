@@ -4,9 +4,21 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Priority Settlements
+  description: >-
+    Manage PayU Dashboard settlements including settlement records, UTR details, TDR reports, priority settlements, and export options for merchant payout reconciliation in India. Covers Priority Settlements.
   robots: index
+  keywords:
+    - payu dashboard settlements guide
+    - view settlement records payu merchant dashboard
+    - payu settlement export utr report
+    - payment gateway settlement dashboard payu
+    - payu priority settlements dashboard
+    - payu tdr report download dashboard
+    - merchant settlement reconciliation payu india
+    - payu dashboard settlement filter customize
+    - payment gateway settlement payu vs razorpay cashfree
+    - payu settlement amount net deduction dashboard
 next:
   description: ''
 ---
@@ -46,7 +58,7 @@ To enroll for Priority settlements:
 
    The *Settlements Overview* page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Settlements_Manage_Cycle-1024x552.png)
+![PayU Dashboard settlements - The Settlements Overview page is displayed.](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Settlements_Manage_Cycle-1024x552.png)
 
 2. Click **Manage Settlement Cycle** on the **Manage your Settlement Cycle Settings** pane on the right side.
 
@@ -54,11 +66,11 @@ To enroll for Priority settlements:
 
     The *Choose your Priority Settlements cycle* pop-up page is displayed. The charges (in percentage of the transaction amount) for each Settlement cycle are mentioned for every settlement cycle along with the transaction limit.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Enrol_Priority_Settlements-1024x676.png)
+![PayU Dashboard settlements - The Choose your Priority Settlements cycle pop-up page is displayed. The charges (in percentage of](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Enrol_Priority_Settlements-1024x676.png)
 
 3. Select the Settlement cycle that will suit your business needs.
 4. Click **Select & Proceed**.
 
-<Image align="center" width="350px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Settlements_Cycle_Confirm.png" />
+<Image align="center" alt="PayU Dashboard settlements - Click Select & Proceed" width="350px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Settlements_Cycle_Confirm.png" />
 
 5. Click Confirm to configure the selected Settlement cycle.

@@ -4,9 +4,21 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Settlements Dashboard
+  description: >-
+    Manage PayU Dashboard settlements including settlement records, UTR details, TDR reports, priority settlements, and export options for merchant payout reconciliation in India.
   robots: index
+  keywords:
+    - payu dashboard settlements guide
+    - view settlement records payu merchant dashboard
+    - payu settlement export utr report
+    - payment gateway settlement dashboard payu
+    - payu priority settlements dashboard
+    - payu tdr report download dashboard
+    - merchant settlement reconciliation payu india
+    - payu dashboard settlement filter customize
+    - payment gateway settlement payu vs razorpay cashfree
+    - payu settlement amount net deduction dashboard
 next:
   description: ''
 ---
@@ -19,7 +31,7 @@ To navigate to the *Settlements Overview* page:
 
    The *Settlements Overview* page is displayed.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/a248779-Screenshot_2023-09-22_at_7.46.45_PM.png" />
+<Image align="center" alt="PayU Dashboard settlements - The Settlements Overview page is displayed." className="border" border={true} src="https://files.readme.io/a248779-Screenshot_2023-09-22_at_7.46.45_PM.png" />
 
 You can download the monthly invoice using the **Download Monthly TDR report** button at the top-right corner of the *Settlement Overview* page. The following sections describe how to use the various features in Settlements Dashboard:
 
