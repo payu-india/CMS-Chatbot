@@ -4,14 +4,20 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Checkout Plus
+  description: >-
+    Explore PayU Web Checkout options for Checkout Plus. Compare hosted, merchant-hosted, and server-to-server integrations to collect UPI, cards, net banking, and wallet payments in India.
   keywords:
-    - Checkout Plus
-    - Redirectionless Payment Experience
-    - Simplified Checkout Experience
-    - Lower Failure Checkout integration
-    - Responsive Design Checkout Page
+    - payu web checkout integration india
+    - payment gateway web integration payu
+    - online checkout solutions payu india
+    - payu checkout solutions hosted merchant s2s
+    - website payment integration payu gateway
+    - razorpay cashfree alternative payu web checkout
+    - payu india web payment collection integration
+    - pci dss payment gateway checkout payu
+    - payu collect payments web integration guide
+    - payment gateway integration for ecommerce payu
   robots: index
 next:
   description: ''
@@ -20,7 +26,7 @@ Checkout Plus offers your customers a simplified checkout experience that keeps 
 
 PayU’s Checkout Plus is the easiest way to collect The payment page opens as a pop-up (aka modal) on your website which is a completely redirectionless payment experience. The modal is served from PayU servers which ensures that you need not get into the complications of a PCI-DSS compliance, all the while providing a world-class payment experience as shown in the image below.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/09/image2-1024x585.jpg)
+![PayU Dashboard - image2 1024x585](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/09/image2-1024x585.jpg)
 
 **Note:** PayU Checkout Plus is only available for PayU hosted Checkout.
 
