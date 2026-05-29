@@ -43,7 +43,7 @@ To install the PayU CLI on Windows:
 1. Open PowerShell.
 2. Run the following command:
 
-   ```plaintext
+   ```plaintext CLI
    > irm https://payu-intrepos.github.io/payu-cli/install.ps1 | iex
 
    Downloading payu-cli for windows/amd64...
@@ -57,7 +57,7 @@ To install the PayU CLI on Windows:
 
 To confirm that the PayU CLI is installed correctly, run:
 
-```plaintext
+```plaintext CLI
 > payu version
 
 payu-cli 1.0.0
@@ -73,7 +73,7 @@ To set your credentials on macOS or Linux:
 
 1. Run the following command, replacing the placeholder values with your credentials:
 
-   ```plaintext
+   ```plaintext CLI
    > payu config set \
    --client-id YOUR_CLIENT_ID \
    --client-secret YOUR_CLIENT_SECRET \
@@ -89,7 +89,7 @@ To set your credentials on macOS or Linux:
 
 To set your credentials on Windows in PowerShell:
 
-```plaintext
+```plaintext CLI
 > payu config set `
 --client-id YOUR_CLIENT_ID `
 --client-secret YOUR_CLIENT_SECRET `
@@ -103,7 +103,7 @@ Environment: production
 
 To confirm that your credentials are configured correctly, run:
 
-```plaintext
+```plaintext CLI
 > payu config show
 
 Profile:     default
@@ -174,7 +174,7 @@ Run any command without arguments to see its help text and available subcommands
 
 To create a payment link for a customer:
 
-```plaintext
+```plaintext CLI
 > payu pay create-link \
 --amount 1500 \
 --desc 'Invoice #1042' \
@@ -193,7 +193,7 @@ Status:     active
 
 To list all captured transactions for the current day:
 
-```plaintext
+```plaintext CLI
 > payu txn list \
 --from '2025-05-29 00:00:00' \
 --to '2025-05-29 23:59:59' \
@@ -209,7 +209,7 @@ Total: 2 transactions
 
 To list transactions within a date range, filtered by payment mode and amount:
 
-```plaintext
+```plaintext CLI
 > payu txn list \
 --from '2025-05-01 00:00:00' \
 --to '2025-05-29 23:59:59' \
@@ -226,7 +226,7 @@ Total: 2 transactions
 
 To create and download a transactions report:
 
-```plaintext
+```plaintext CLI
 > payu report create transactions \
 --from '2025-05-01 00:00:00' \
 --to '2025-05-31 23:59:59'
@@ -245,7 +245,7 @@ Rows: 1,248
 
 To retrieve details for a specific transaction:
 
-```plaintext
+```plaintext CLI
 > payu txn get 403993715534343565
 
 <command result>
@@ -271,7 +271,7 @@ The following flags are available across commands:
 
 By default, the CLI connects to PayU production APIs. To use the test (sandbox) environment, configure a separate profile:
 
-```plaintext
+```plaintext CLI
 > payu config set --env test \
 --client-id TEST_ID \
 --client-secret TEST_SECRET \
@@ -284,7 +284,7 @@ Environment: test
 
 To run a command against the test profile, pass the `--profile` flag:
 
-```plaintext
+```plaintext CLI
 > payu txn list --profile test --from '2025-05-29 00:00:00' --to '2025-05-29 23:59:59'
 
 TXN_ID              AMOUNT    MODE   STATUS    DATE
@@ -297,14 +297,14 @@ Total: 1 transaction
 ### macOS or Linux: Command not found
 
 If your terminal reports that `payu` is not found, make sure `~/.local/bin` is in your PATH. Add the following line to your shell profile (`~/.bashrc` or `~/.zshrc`):
-
-```plaintext
+ 
+```plaintext CLI
 > export PATH="$HOME/.local/bin:$PATH"
 ```
 
 Reload your shell profile, and then verify the installation:
 
-```plaintext
+```plaintext CLI
 > source ~/.zshrc
 payu version
 
@@ -327,7 +327,7 @@ Windows might show a SmartScreen warning because the binary is not code-signed. 
 
 If you receive a `401` error, verify that your credentials are correct:
 
-```plaintext
+```plaintext CLI
 > payu config show
 
 Profile:     default
