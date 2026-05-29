@@ -4,9 +4,21 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Reports
+  description: >-
+    Generate and schedule PayU Dashboard reports for transactions, settlements, and payouts. Export merchant analytics and payment data for reconciliation and business insights in India.
   robots: index
+  keywords:
+    - payu dashboard reports guide
+    - generate payment reports payu merchant dashboard
+    - schedule reports payu dashboard
+    - payu payout reports dashboard export
+    - payment gateway merchant reports payu india
+    - payu dashboard analytics reports download
+    - merchant transaction reports payu dashboard
+    - payu scheduled reports configuration
+    - payment gateway reports payu vs razorpay cashfree
+    - payu dashboard export payment data
 next:
   description: ''
 ---
