@@ -4,9 +4,21 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Manage User and Permissions
+  description: >-
+    Manage PayU Dashboard users, roles, and employee permissions. Add team members, assign roles, and control access to transactions, settlements, and dashboard features for your merchant account.
   robots: index
+  keywords:
+    - payu dashboard user permissions guide
+    - manage employees payu merchant dashboard
+    - payu dashboard roles permissions setup
+    - add user payu merchant dashboard
+    - payu dashboard team access management
+    - merchant user roles payu dashboard india
+    - payu dashboard employee permissions guide
+    - payment gateway dashboard user management payu
+    - payu dashboard add role employee
+    - payu merchant dashboard access control
 next:
   description: ''
 ---
