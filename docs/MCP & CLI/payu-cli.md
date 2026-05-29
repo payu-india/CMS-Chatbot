@@ -28,7 +28,7 @@ To install the PayU CLI on macOS or Linux:
 1. Open a terminal window.
 2. Run the following command:
 
-   ```plaintext
+   ```plaintext CLI
    > curl -fsSL https://payu-intrepos.github.io/payu-cli/install.sh | bash
    Downloading payu-cli for darwin/arm64...
    Installed to /Users/you/.local/bin/payu
