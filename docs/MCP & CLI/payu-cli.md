@@ -113,7 +113,9 @@ Client ID:   abc123def456
 Client Secret: ••••a1b2
 ```
 
-> **Note:** Your client secret is displayed masked (for example, `••••a1b2`).
+> 📘 **Note:**&#x20;
+>
+> Your client secret is displayed masked (for example, `••••a1b2`).
 
 ## Command Reference
 
@@ -297,7 +299,7 @@ Total: 1 transaction
 ### macOS or Linux: Command not found
 
 If your terminal reports that `payu` is not found, make sure `~/.local/bin` is in your PATH. Add the following line to your shell profile (`~/.bashrc` or `~/.zshrc`):
- 
+
 ```plaintext CLI
 > export PATH="$HOME/.local/bin:$PATH"
 ```
