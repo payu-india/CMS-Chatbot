@@ -6,23 +6,18 @@ hidden: false
 metadata:
   title: Explore PayU Dashboard
   description: >-
-    The PayU Dashboard provides tools for managing account activity,
-    transactions, payments, and business settings, while offering features like
-    payment links, invoices, and analytics to streamline eCommerce operations.
-    Access requires registration on the PayU website, and the dashboard includes
-    sections for business summaries, payment collection, payouts, banking,
-    lending, sales, and analytics.
+    Explore the PayU Merchant Dashboard to manage transactions, settlements, reports, webhooks, API keys, and business settings from a single console for India payment gateway merchants.
   keywords:
-    - Merchant Dashboard
-    - ' PayU Dashboard'
-    - ' PayU Dashboard'
-    - ' PayU Dashboard Features'
-    - ' PayU Merchant Dashboard'
-    - ' PayU Transaction Management'
-    - ' PayU Analytics'
-    - ' Online Payment Dashboard'
-    - ' Merchant Transaction Insights'
-    - ' Payment Gateway Dashboard'
+    - payu merchant dashboard guide india
+    - payment gateway merchant dashboard payu
+    - payu dashboard features overview
+    - payu merchant console transactions settlements
+    - payment gateway dashboard payu vs razorpay cashfree
+    - payu dashboard navigation menu guide
+    - merchant account dashboard payu india
+    - payu dashboard business summary overview
+    - online payment dashboard payu merchant
+    - payu dashboard getting started guide
   robots: index
 next:
   description: ''
