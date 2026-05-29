@@ -4,9 +4,21 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Update Profile on Dashboard
+  description: >-
+    Update PayU Dashboard profile, KYC, and notification settings. Complete merchant onboarding, configure user preferences, and manage account details before going live in India. Covers Update Profile on Dashboard.
   robots: index
+  keywords:
+    - payu dashboard profile settings guide
+    - payu merchant kyc onboarding dashboard
+    - update profile payu merchant dashboard
+    - payu dashboard notification settings
+    - merchant onboarding payu dashboard india
+    - payu dashboard user settings configuration
+    - complete kyc payu merchant dashboard
+    - payu dashboard account profile update
+    - payment gateway merchant onboarding payu
+    - payu dashboard settings vs razorpay cashfree
 next:
   description: ''
 ---

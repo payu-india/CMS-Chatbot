@@ -4,9 +4,21 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Notifications from Dashboard
+  description: >-
+    Update PayU Dashboard profile, KYC, and notification settings. Complete merchant onboarding, configure user preferences, and manage account details before going live in India. Covers Notifications from Dashboard.
   robots: index
+  keywords:
+    - payu dashboard profile settings guide
+    - payu merchant kyc onboarding dashboard
+    - update profile payu merchant dashboard
+    - payu dashboard notification settings
+    - merchant onboarding payu dashboard india
+    - payu dashboard user settings configuration
+    - complete kyc payu merchant dashboard
+    - payu dashboard account profile update
+    - payment gateway merchant onboarding payu
+    - payu dashboard settings vs razorpay cashfree
 next:
   description: ''
 ---
@@ -18,7 +30,7 @@ To filter and save the notification view settings:
 
      The _Manage Notifications_ page is displayed.
 
-<Image align="center" border={true} src="https://files.readme.io/361f988-dashboard_notification_settings.png" className="border" />
+<Image align="center" alt="PayU Dashboard - The _Manage Notifications_ page is displayed." border={true} src="https://files.readme.io/361f988-dashboard_notification_settings.png" className="border" />
 
 2. Select the any of the following tabs and configure the notification:
    * Transactions
