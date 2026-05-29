@@ -9,42 +9,20 @@ PayU MCP Server is a secure, OAuth-protected remote MCP (Model Context Protocol)
 
 ## Features
 
-* **Merchant Account Management:** List, switch, and manage multiple merchant team accounts. Single-account users are auto-selected; multi-account users can switch seamlessly via tool calls.
-* **Transaction Reporting:** Create and retrieve CSV reports for transactions, settlements, refunds, and payouts with configurable date filters and comprehensive field selection.
-* **Payment Link Operations:** Create, send, update, and track payment links with support for partial payments, expiry settings, invoice numbers, and multi-channel delivery (SMS/Email).
-* **OAuth 2.1 Authentication with PKCE:** Industry-standard authorization code flow with PKCE, token introspection, automatic merchant validation, and per-request merchant isolation.
-* **Built-in Security Guardrails:** Automatic PII redaction, secret scanning, and data sanitization on all responses to protect sensitive merchant and customer data.
-* **Stateless HTTP with Persistent Connections:** Horizontally scalable architecture using stateless HTTP sessions with global downstream server persistence for fast tool execution.
-
-## Setup
-
-1. Visit the [Anthropic MCP Directory](https://claude.com/connectors)
-2. Find and connect to **PayU MCP Server**
-3. Complete OAuth authentication — a browser window will open for you to log in with your PayU merchant credentials
-4. If you have multiple merchant accounts, select the desired account using the `switch_team_account` tool
-
-### Client Configuration
-
-Add the following to your MCP client configuration:
-
-```json
-{
-  "mcpServers": {
-    "payu-mcp": {
-      "url": "https://api.payu.in/mcp",
-      "transport": "http"
-    }
-  }
-}
-```
+- **Merchant Account Management:** List, switch, and manage multiple merchant team accounts. Single-account users are auto-selected; multi-account users can switch seamlessly via tool calls.
+- **Transaction Reporting:** Create and retrieve CSV reports for transactions, settlements, refunds, and payouts with configurable date filters and comprehensive field selection.
+- **Payment Link Operations:** Create, send, update, and track payment links with support for partial payments, expiry settings, invoice numbers, and multi-channel delivery (SMS/Email).
+- **OAuth 2.1 Authentication with PKCE:** Industry-standard authorization code flow with PKCE, token introspection, automatic merchant validation, and per-request merchant isolation.
+- **Built-in Security Guardrails:** Automatic PII redaction, secret scanning, and data sanitization on all responses to protect sensitive merchant and customer data.
+- **Stateless HTTP with Persistent Connections:** Horizontally scalable architecture using stateless HTTP sessions with global downstream server persistence for fast tool execution.
 
 ## Authentication
 
 This server requires OAuth 2.1 authentication. You'll need:
 
-* A valid PayU merchant account
-* Access granted to the PayU MCP service
-* Your MCP client will handle the OAuth flow automatically:
+- A valid PayU merchant account
+- Access granted to the PayU MCP service
+- Your MCP client will handle the OAuth flow automatically:
   1. Discovery via `https://api.payu.in/.well-known/oauth-authorization-server`
   2. Authorization through `https://accounts.payu.in/oauth/authorize`
   3. Token exchange and refresh are managed transparently by the client
