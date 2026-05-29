@@ -5,6 +5,19 @@ deprecated: false
 hidden: false
 metadata:
   robots: index
+  description: >-
+    Configure PayU Dashboard webhooks to receive payment, refund, and dispute notifications. Create, update, and monitor webhook events with sample payloads for merchant integrations. Covers Webhook Events and Sample Payloads.
+  keywords:
+    - payu dashboard webhooks setup guide
+    - configure payment webhooks payu merchant dashboard
+    - payu webhook events sample payloads
+    - payu dashboard create update webhook
+    - payment notification webhook payu dashboard
+    - payu webhook logs dashboard guide
+    - merchant webhook integration payu dashboard
+    - payu dashboard webhook refund dispute events
+    - payment gateway webhooks payu vs razorpay cashfree
+    - payu dashboard webhook configuration india
 ---
 You can accept customer payments using PayU products. By subscribing to payments webhook events you can get notified about payment state changes. Know more about <Anchor label="managing webhooks using the dashboard" target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">managing webhooks using the dashboard</Anchor>.
 
@@ -32,6 +45,7 @@ The following are the sample payloads for webhook events.
 ### Payment Successful
 
 ```text
+# PayU sample output or reference
 mihpayid=27553369917
 &mode=SBQR
 &status=success
@@ -96,6 +110,7 @@ mihpayid=27553369917
 ### Payment Failed
 
 ```text
+# PayU sample output or reference
 mihpayid=27553387529
 &mode=CC
 &status=failure
@@ -220,6 +235,8 @@ The following table provides description for each status of the transaction. You
   * **Content type:** application/json
 </Callout>
 
+**Field reference:** `merchantTxnId` (merchant order ID), `mihpayid` (PayU transaction ID), `token` (merchant refund ID), `request_id` (PayU refund ID), `amt` (refund amount), `status` (`success` or `failure`), `action` (`refund`), `key` (merchant key), `bank_ref_num` / `bank_arn` (bank reference).
+
 ```json
 {
   "additionalValue1": null,
@@ -241,6 +258,8 @@ The following table provides description for each status of the transaction. You
 
 ### Refund ARN Update
 
+**Field reference:** Same refund webhook fields as above; `bank_arn` and `bank_ref_num` contain the updated ARN from the bank.
+
 ```json
 {
   "additionalValue1":null,
@@ -261,6 +280,8 @@ The following table provides description for each status of the transaction. You
 ```
 
 ### Refund Failure
+
+**Field reference:** Refund failure payload uses the same fields as a successful refund; check `status` (`failure`) and `remark` for the failure reason.
 
 ```json
 {
@@ -301,6 +322,8 @@ The following table provides description for each status of the transaction. You
 </Accordion>
 
 ### Dispute
+
+**Field reference:** `type` (event category), `event` (dispute event name), `data` (dispute details including transaction and chargeback information).
 
 ```json
 {

@@ -4,9 +4,21 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Manage Webhooks using Dashboard
+  description: >-
+    Configure PayU Dashboard webhooks to receive payment, refund, and dispute notifications. Create, update, and monitor webhook events with sample payloads for merchant integrations.
   robots: index
+  keywords:
+    - payu dashboard webhooks setup guide
+    - configure payment webhooks payu merchant dashboard
+    - payu webhook events sample payloads
+    - payu dashboard create update webhook
+    - payment notification webhook payu dashboard
+    - payu webhook logs dashboard guide
+    - merchant webhook integration payu dashboard
+    - payu dashboard webhook refund dispute events
+    - payment gateway webhooks payu vs razorpay cashfree
+    - payu dashboard webhook configuration india
 next:
   description: ''
 ---
