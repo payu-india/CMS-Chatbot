@@ -121,6 +121,23 @@ A list of all plans with the following information in displayed in the **All Pla
 
 > 📘 **Action Plans**
 >
-> <HTMLBlock>{`<img src="https://files.readme.io/PASTE-YOUR-REAL-URL-HERE.png" alt="test" width="32" height="32" />`}</HTMLBlock>
+> You can perform various actions from the **All Plans&#x20;**&#x73;ection. Click the three dots menu icon against the required plan to perform actions depending on the plan status.
+>
+> - **Active Plans:&#x20;**&#x59;ou can perform the following actions on active plans.
+>   - **Create Subscription**
+>   - **Duplicate Plan**
+>   - **Deactivate**
+> - **Draft Plans:&#x20;**&#x59;ou can perform the following actions on draft plans.
+>   - **Edit Plan**
+>   - **Duplicate Plan**
+>   - **Deactivate**
+> - **Archived/Deactivated Plans:&#x20;**&#x59;ou can perform the following actions on archived/deactivated plans.
+>   - **Duplicate Plan**
+
+## View Plan Details
+
+To view plan details:
+
+<br />
 
 <br />
