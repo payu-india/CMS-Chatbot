@@ -12,18 +12,6 @@ next:
 ---
 ---
 title: Customize PayU Payment Page
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Customize PayU Payment Page or Checkout Page
-  description: ''
-  robots: index
-next:
-  description: ''
----
----
-title: Customize PayU Payment Page
 excerpt: >-
   Customize the PayU Hosted Checkout page: enforce payment modes with enforce_paymethod,
   hide options with drop_category, set display language with display_lang, and
