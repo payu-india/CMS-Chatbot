@@ -121,17 +121,6 @@ A list of all plans with the following information in displayed in the **All Pla
 
 > 📘 **Action Plans**
 >
-> <p>
->   You can perform various actions from the <strong>All Plans</strong>. Click
->   <img
->     src="https://files.readme.io/YOUR-UPLOADED-ICON-URL.png"
->     alt="Actions menu"
->     width="16"
->     height="16"
->     style="display:inline-block;vertical-align:middle;margin:0 4px;"
->   />
->   and choose actions based on the plan status:
->
-> </p>
+> <HTMLBlock>{`<img src="https://files.readme.io/PASTE-YOUR-REAL-URL-HERE.png" alt="test" width="32" height="32" />`}</HTMLBlock>
 
 <br />
