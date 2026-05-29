@@ -4,9 +4,21 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Refer and Earn
+  description: >-
+    View sales and earnings insights on the PayU Merchant Dashboard. Monitor revenue trends, payment performance, and merchant earnings from the PayU payment gateway console in India. Covers Refer and Earn.
   robots: index
+  keywords:
+    - payu dashboard sales earnings
+    - payu merchant sales dashboard
+    - payment gateway earnings report payu
+    - payu dashboard revenue insights
+    - merchant sales analytics payu dashboard
+    - payu dashboard earnings overview india
+    - payment performance dashboard payu
+    - payu merchant revenue dashboard guide
+    - payu sales dashboard vs razorpay cashfree
+    - payu dashboard sales tracking merchant
 next:
   description: ''
 ---

@@ -4,9 +4,21 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Get Client ID and Secret from Dashboard
+  description: >-
+    Log in to the PayU Merchant Dashboard, reset passwords, and retrieve OAuth client credentials for API and partner integrations from the PayU merchant console in India. Covers Get Client ID and Secret from Dashboard.
   robots: index
+  keywords:
+    - payu dashboard login guide
+    - log in payu merchant dashboard
+    - payu dashboard reset password
+    - payu client id secret dashboard
+    - payu merchant dashboard authentication
+    - payu dashboard oauth credentials
+    - payment gateway dashboard login payu india
+    - payu dashboard access merchant account
+    - payu api client credentials dashboard
+    - payu dashboard login vs razorpay cashfree
 next:
   description: ''
 ---
@@ -24,12 +36,12 @@ To get the client ID and secret from the PayU Merchant Dashboard:
 
 2. Switch to **Test Mode** or **Live Mode** from the toggle option on the menu bar as required. 
 
-   <Image align="center" className="border" width="320px" border={true} src="https://files.readme.io/2282abf-dashboard_select_test_mode.png" />
+   <Image align="center" alt="PayU Dashboard - Switch to Test Mode or Live Mode from the toggle option on the menu bar as required" className="border" width="320px" border={true} src="https://files.readme.io/2282abf-dashboard_select_test_mode.png" />
 3. Select **Developer** from the menu on the left-pane and select the **API Details**tab if required.
 
    The *Payment Gateway Integrations* page is displayed similar to the following screenshot.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/2da749fe014c0fc7b0cfe791aa6f34fcdadb7e949d8f91e936ea96421292a706-Screenshot_2024-09-09_at_6.25.24_PM.png" />
+<Image align="center" alt="PayU Dashboard - The Payment Gateway Integrations page is displayed similar to the following screenshot." className="border" border={true} src="https://files.readme.io/2da749fe014c0fc7b0cfe791aa6f34fcdadb7e949d8f91e936ea96421292a706-Screenshot_2024-09-09_at_6.25.24_PM.png" />
 
 4. Click **Copy Client ID** to copy the client ID.
 5. Click **Copy Client ID** to copy the client secret.

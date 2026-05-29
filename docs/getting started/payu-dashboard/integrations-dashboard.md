@@ -4,9 +4,21 @@ excerpt: ''
 deprecated: false
 hidden: true
 metadata:
-  title: ''
-  description: ''
+  title: Integrations Dashboard
+  description: >-
+    Configure PayU Dashboard plugin and platform integrations for e-commerce stores, billing tools, and third-party apps to collect payments and sync merchant data in India. Covers Integrations Dashboard.
   robots: index
+  keywords:
+    - payu dashboard integrations guide
+    - ecommerce plugin integration payu dashboard
+    - payu merchant platform integrations
+    - payu dashboard zoho woocommerce integration
+    - payment gateway plugin setup payu dashboard
+    - payu dashboard third party integrations
+    - merchant ecommerce integration payu india
+    - payu dashboard online payments plugin
+    - payment gateway integrations payu vs razorpay cashfree
+    - payu dashboard configure gateway plugin
 next:
   description: ''
 ---
@@ -51,26 +63,26 @@ To install the PayU extension from Zoho Marketplace:
 
 The Zoho Marketplace page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Zoho_Marketplace-1024x560.png)
+![PayU Dashboard - The Zoho Marketplace page is displayed.](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Zoho_Marketplace-1024x560.png)
 
 1. Search for **PayU for Zoho Books** using the **Search apps** field and select it.
 
 The *PayU for Zoho Books* page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Zoho_MP_PayU_for_Zoho_Books_Page-1024x560.png)### **Configure PayU Extension for Zoho One**After you [install the PayU Extension from Zoho Marketplace](http://devguide.payu.in/install-the-payu-extension-from-zoho-marketplace/), you can configure the PayU extension. This section describes the procedure to configure PayU extension and verify the set up.#### **Configure PayU Plugin**To configure PayU Plugin for Zoho One:1. Log in to your Zoho One account.\
-2\. Click the **Settings** button on top right and search for “Online Payments”.![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/ZohoBooks_Settings-1024x652.png)\`\`\`\
+![PayU Dashboard - The PayU for Zoho Books page is displayed.](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Zoho_MP_PayU_for_Zoho_Books_Page-1024x560.png)### **Configure PayU Extension for Zoho One**After you [install the PayU Extension from Zoho Marketplace](http://devguide.payu.in/install-the-payu-extension-from-zoho-marketplace/), you can configure the PayU extension. This section describes the procedure to configure PayU extension and verify the set up.#### **Configure PayU Plugin**To configure PayU Plugin for Zoho One:1. Log in to your Zoho One account.\
+2\. Click the **Settings** button on top right and search for “Online Payments”.![PayU Dashboard - ![PayU Dashboard - The PayU for Zoho Books page is displayed.](](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/ZohoBooks_Settings-1024x652.png)\`\`\`\
 The *Customer Payments* page is displayed.
 
 ```3. Navigate to **PayU** under the **Connected Payment Gateways** section.
 4. Click **Setup now** under **PayU**.
 
-   The _Configure Gateway_ dialog box is displayed.![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Setup_PayU_for_ZohoBooks-1024x630.png)5. Enter your merchant key in the **Key** field.**Note**: You need to register or create an account on [PayU Dashboard](https://onboarding.payu.in/app/account) to get the merchant key and Salt. For viewing or generating your merchant key and Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](https://devguide.payu.in/merchant-integration/getting-started-with-web-checkout/generate-api-key-and-salt/).6. Enter your Salt in the **Salt** field.
+   The _Configure Gateway_ dialog box is displayed.![PayU Dashboard - Click Setup now under PayU](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Setup_PayU_for_ZohoBooks-1024x630.png)5. Enter your merchant key in the **Key** field.**Note**: You need to register or create an account on [PayU Dashboard](https://onboarding.payu.in/app/account) to get the merchant key and Salt. For viewing or generating your merchant key and Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](https://devguide.payu.in/merchant-integration/getting-started-with-web-checkout/generate-api-key-and-salt/).6. Enter your Salt in the **Salt** field.
 7. Click **Save**.#### **Verify the Zoho One Integration**To verify the PayU India integration with Zoho One:1. Navigate to **Sales** > **Invoice** on Zoho One.
 
-   The _All Invoices_ page is displayed.![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Zohobooks_New_Invoice_option-1024x485.png)2. Click the **New** button on the top-right corner.The _New Invoice_ page is displayed.![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/ZohoBooks_New_Invoice-1024x457.png)1. Enter the details for the invoice. For more information, refer to [Zoho One Help Documentation](https://www.zoho.com/in/books/help/invoice/).
+   The _All Invoices_ page is displayed.![PayU payment links or invoices - Click Save.#### Verify the Zoho One IntegrationTo verify the PayU India integration with Zoh](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Zohobooks_New_Invoice_option-1024x485.png)2. Click the **New** button on the top-right corner.The _New Invoice_ page is displayed.![PayU payment links or invoices - Click Save.#### Verify the Zoho One IntegrationTo verify the PayU India integration with Zoh](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/ZohoBooks_New_Invoice-1024x457.png)1. Enter the details for the invoice. For more information, refer to [Zoho One Help Documentation](https://www.zoho.com/in/books/help/invoice/).
 2. Click **Save and Send** after providing the details.
 
-   The _Email To \<Customer Name>_ page is displayed, where \<Customer Name> is substituted with the customer name specified in Step 3. ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/ZohoBooks_Email_Voucher-1024x505.png)4. Click **Send** to verify the invoice.
+   The _Email To \<Customer Name>_ page is displayed, where \<Customer Name> is substituted with the customer name specified in Step 3. ![PayU Dashboard - Click Save and Send after providing the details](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/ZohoBooks_Email_Voucher-1024x505.png)4. Click **Send** to verify the invoice.
 
  
 ```

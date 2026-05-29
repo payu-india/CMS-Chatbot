@@ -6,20 +6,18 @@ hidden: false
 metadata:
   title: Access Test Merchant Key and Salt
   description: >-
-    To integrate your website with PayU products in the Test environment, you
-    must register for a merchant account, complete onboarding, and obtain your
-    API key and Salt from the PayU Merchant Dashboard by switching to Test Mode
-    and accessing the Developer section.
+    Access merchant key and salt from the PayU Dashboard for test and production environments. Generate API credentials required for hosted checkout, merchant hosted, and API integrations. Covers Access Test Merchant Key and Salt.
   keywords:
-    - PayU test merchant key
-    - ' PayU salt generation'
-    - ' PayU API credentials'
-    - ' PayU test integration'
-    - ' Generate PayU test keys'
-    - ' PayU dashboard test mode'
-    - ' PayU salt-32 bit'
-    - ' PayU salt-256 bit'
-    - ' Staging Key and Salt'
+    - payu merchant key salt dashboard
+    - generate api key payu dashboard
+    - payu test production key salt dashboard
+    - payu dashboard developer api details
+    - payment gateway credentials payu dashboard
+    - payu dashboard access merchant key salt
+    - payu api key generation dashboard guide
+    - payu dashboard test mode key salt
+    - payment gateway api credentials payu india
+    - payu dashboard key salt vs razorpay cashfree
   robots: index
 next:
   description: ''
@@ -44,13 +42,13 @@ To generate test merchant API key and Salt:
 
 2. Switch to **Test Mode** from the toggle option on the menu bar.
 
-<Image align="center" border={true} width="320px" src="https://files.readme.io/2282abf-dashboard_select_test_mode.png" className="border" />
+<Image align="center" alt="PayU Dashboard - Switch to Test Mode from the toggle option on the menu bar" border={true} width="320px" src="https://files.readme.io/2282abf-dashboard_select_test_mode.png" className="border" />
 
 3. Select **Developer** from the menu on the left-pane and select the **API Keys** tab if required.
 
 The _Developers_ page is displayed similar to the following screenshot. The values for the following fields are generated automatically (for the first time) and displayed similar to the following screenshot:
 
-<Image align="center" border={true} src="https://files.readme.io/ab723100609b4fa6179ab350ba7d5755807aaf52f1027a134dacc87f21a48bda-Screenshot_2024-09-09_at_6.25.24_PM.png" className="border" />
+<Image align="center" alt="PayU Dashboard - The _Developers_ page is displayed similar to the following screenshot. The values for the following" border={true} src="https://files.readme.io/ab723100609b4fa6179ab350ba7d5755807aaf52f1027a134dacc87f21a48bda-Screenshot_2024-09-09_at_6.25.24_PM.png" className="border" />
 
 * **key**: The API key that you must use for all payment requests.
 * **Salt-32 bit**: The Salt, v1 is the 32-character string that you must use to generate a hash and further post the hash along with parameters when posting a payment request with PayU.

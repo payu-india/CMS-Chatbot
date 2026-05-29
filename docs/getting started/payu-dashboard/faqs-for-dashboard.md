@@ -4,9 +4,21 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: FAQs for Dashboard
+  description: >-
+    Find answers to frequently asked questions about the PayU Merchant Dashboard including transactions, settlements, API keys, webhooks, onboarding, and account management for India merchants. Covers FAQs for Dashboard.
   robots: index
+  keywords:
+    - payu dashboard faqs
+    - payu merchant dashboard frequently asked questions
+    - payu dashboard help guide
+    - payment gateway dashboard faq payu
+    - payu dashboard troubleshooting guide
+    - payu merchant dashboard common questions
+    - payu dashboard support faq india
+    - payment gateway merchant dashboard help payu
+    - payu dashboard faq vs razorpay cashfree
+    - payu merchant account dashboard questions
 next:
   description: ''
 ---
