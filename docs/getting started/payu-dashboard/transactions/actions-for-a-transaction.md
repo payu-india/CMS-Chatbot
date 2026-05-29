@@ -4,15 +4,27 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Actions for a Transaction
+  description: >-
+    Track, search, filter, and export PayU Dashboard transactions. View individual payment details, success rates, and transaction history for your merchant account in India. Covers Actions for a Transaction.
   robots: index
+  keywords:
+    - payu dashboard transactions guide
+    - view payment transactions payu merchant dashboard
+    - payu transaction search filter export
+    - payment gateway transaction history payu dashboard
+    - payu dashboard transaction details page
+    - merchant transaction reports payu india
+    - payu dashboard track transactions guide
+    - payment gateway merchant dashboard payu vs razorpay cashfree
+    - payu transaction export csv dashboard
+    - payu dashboard transaction success rate
 next:
   description: ''
 ---
 The **Actions** option enables you to copy the customer email for your next action.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/58ab0ba-Screenshot_2023-09-22_at_7.28.40_PM.png" />
+<Image align="center" alt="Actions for a Transaction illustration" className="border" border={true} src="https://files.readme.io/58ab0ba-Screenshot_2023-09-22_at_7.28.40_PM.png" />
 
 * **Authorize**: After end-user has entered Card/Account credentials bank checks for availability of Credit Limit or Account balance to authorize the transaction as valid.
 * **Capture**: If an authorized (explained before) transaction is not captured automatically, the merchant can capture them manually to get payments credited to their account.

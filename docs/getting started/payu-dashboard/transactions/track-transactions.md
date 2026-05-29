@@ -4,9 +4,21 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
+  title: Track Transactions
+  description: >-
+    Track, search, filter, and export PayU Dashboard transactions. View individual payment details, success rates, and transaction history for your merchant account in India. Covers Track Transactions.
   robots: index
+  keywords:
+    - payu dashboard transactions guide
+    - view payment transactions payu merchant dashboard
+    - payu transaction search filter export
+    - payment gateway transaction history payu dashboard
+    - payu dashboard transaction details page
+    - merchant transaction reports payu india
+    - payu dashboard track transactions guide
+    - payment gateway merchant dashboard payu vs razorpay cashfree
+    - payu transaction export csv dashboard
+    - payu dashboard transaction success rate
 next:
   description: ''
 ---
@@ -22,7 +34,7 @@ To view the transaction summary for a preferred interval:
 5. Click the **Custom Range** filter to choose the desired time frame.
 6. Select a particular date range, month and year from the drop-down list or you can use the next and previous buttons given on the top of the calendar view to navigate through the months.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/1c4f1d4-Screenshot_2023-09-22_at_7.04.55_PM.png" />
+<Image align="center" alt="PayU Dashboard - Select a particular date range, month and year from the drop-down list or you can use the next and p" className="border" border={true} src="https://files.readme.io/1c4f1d4-Screenshot_2023-09-22_at_7.04.55_PM.png" />
 
 > 📘 Note:
 >

@@ -4,18 +4,6 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
-  description: ''
-  robots: index
-next:
-  description: ''
----
----
-title: View the Details of Individual Transaction
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
   title: View the Details of Individual Transaction
   description: >-
     Track, search, filter, and export PayU Dashboard transactions. View individual payment details, success rates, and transaction history for your merchant account in India. Covers View the Details of Individual Transaction.
@@ -28,7 +16,7 @@ metadata:
     - payu dashboard transaction details page
     - merchant transaction reports payu india
     - payu dashboard track transactions guide
-    - payment gateway merchant dashboard payu
+    - payment gateway merchant dashboard payu vs razorpay cashfree
     - payu transaction export csv dashboard
     - payu dashboard transaction success rate
 next:
