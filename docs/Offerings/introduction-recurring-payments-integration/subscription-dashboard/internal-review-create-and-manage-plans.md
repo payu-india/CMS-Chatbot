@@ -138,6 +138,10 @@ A list of all plans with the following information in displayed in the **All Pla
 
 To view plan details:
 
-<br />
+1. Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor> expand **Subscriptions&#x20;**&#x63;lick **Plans&#x20;**&#x66;rom the left menu.
+
+   <Image src="https://files.readme.io/faf9b9f8cb4054c9f853a7a9cda47dec261dc15c979b44e6445d1a8114be4e0a-image.png" align="center" caption="_Access Plans_" border={true} framed={true} />
+
+2.
 
 <br />
