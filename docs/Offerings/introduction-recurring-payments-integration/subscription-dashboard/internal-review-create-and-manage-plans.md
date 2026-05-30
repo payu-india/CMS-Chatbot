@@ -142,6 +142,9 @@ To view plan details:
 
    <Image src="https://files.readme.io/faf9b9f8cb4054c9f853a7a9cda47dec261dc15c979b44e6445d1a8114be4e0a-image.png" align="center" caption="_Access Plans_" border={true} framed={true} />
 
-2.
+2. Click the required plan to view its details.
+
+   <Image src="https://files.readme.io/8a5ecd36ab4e00206b6abc46cb8b8d14e03b1bc91251b8c76f760e8e76141a9e-plan_details.png" align="center" caption="_Plan Details_" border={true} framed={true} />
+
 
 <br />
