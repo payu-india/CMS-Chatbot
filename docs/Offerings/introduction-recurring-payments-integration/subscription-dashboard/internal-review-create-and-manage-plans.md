@@ -186,4 +186,22 @@ The **Duplicate Plan&#x20;**&#x70;op-up menu appears.
    <Image src="https://files.readme.io/224de78f92d50b7038dfb6273f2300d0346612830be5f81fb877c8b6274a26f5-duplicate_plan_activate.png" align="center" caption="_Duplicate Plan Fields_" border={true} framed={true} />
 
 
+## Deactivate a Plan
+
+To deactivate a plan:
+
+1. Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor> expand **Subscriptions&#x20;**&#x63;lick **Plans&#x20;**&#x66;rom the left menu.
+
+   <Image src="https://files.readme.io/b83c7ac1688e70c104dcf30e79a82c4896613466da5c13f2e6decd7a90406635-image.png" align="center" caption="_Access Plan_" border={true} framed={true} />
+
+2. Click the three dot menu against a required plan and click **Deactivate.&#x20;**&#x41;lternatively, you can deactivate a plan from the **Plan Details&#x20;**&#x73;ection.
+
+   <Image src="https://files.readme.io/ae2cc70b54a1153da183dd5b501498ffcf18e0cb195dd08fb37653bd515a3acf-deactivate_plan.png" align="center" caption="_Access Plans_" border={true} framed={true} />
+
+3. Click **Deactivate Plan&#x20;**&#x69;n the **Deactivate Plan&#x20;**&#x70;op-up menu.
+
+The plan moves to the **Archived** state. You can reuse by duplicating it.
+
+<br />
+
 <br />
