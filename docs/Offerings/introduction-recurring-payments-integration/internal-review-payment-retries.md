@@ -14,30 +14,9 @@ The **Subscription Retry Settings** feature on the PayU Dashboard introduces an 
 * Delivers a seamless and reliable payment experience, reducing customer friction caused by failed transactions.
 </Accordion>
 
-This page covers the following sections:
-
-- Overview
-- Access Retry Settings
-- Retry Options Available
-- Types of Retry Systems
-- Configure Custom Retry
-- Post-Retry Behavior
-- Additional Preferences
-- Field Validations
-- Save Configuration
-
-## Overview
-
-Subscription Retry Settings give merchants greater control over how failed SI transactions are retried. Key benefits include:
-
-- Choose and configure retry strategies based on your business needs
-- Greater control and flexibility compared to traditional retry approaches
-- Improved revenue recovery through higher payment success rates
-- A smoother and more reliable experience for your customers
-
 ## Access Retry Settings
 
-To access retry settings on the PayU Dashboard:
+To access retry settings on the PayU dashboard:
 
 1. Log in to the **PayU Dashboard**.
 2. Navigate to the **Revenue Recovery** tab from the side panel.
