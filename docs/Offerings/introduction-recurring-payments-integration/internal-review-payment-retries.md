@@ -7,6 +7,13 @@ metadata:
 ---
 The **Subscription Retry Settings** feature on the PayU Dashboard introduces an advanced and flexible retry mechanism for Subscription (SI) transactions. It helps improve payment success rates by enabling more effective handling of failed recurring transactions.
 
+<Accordion title="Benefits" icon="fa-gift">
+* Enables merchants to configure payment retry strategies that align with their business requirements and customer journeys.
+* Provides greater flexibility and control over retry logic compared to conventional retry mechanisms.
+* Improves revenue recovery by increasing the likelihood of successful payment collection on subsequent attempts.
+* Delivers a seamless and reliable payment experience, reducing customer friction caused by failed transactions.
+</Accordion>
+
 This page covers the following sections:
 
 - Overview
