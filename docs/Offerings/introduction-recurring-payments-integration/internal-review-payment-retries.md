@@ -5,13 +5,28 @@ hidden: true
 metadata:
   robots: index
 ---
-The **Subscription Retry Settings** feature on the PayU Dashboard introduces an advanced and flexible retry mechanism for Subscription (SI) transactions. It helps improve payment success rates by enabling more effective handling of failed recurring transactions.
+The **Subscription Retry Settings** feature on the PayU Dashboard introduces an advanced and flexible retry mechanism for Subscription (SI) transactions. It helps improve payment success rates by enabling more effective handling of failed recurring transactions. The following are the available retry mechanisms:
+
+- **Smart Retry:&#x20;**&#x54;his is PayU Intelligence. It automatically adjusts intervals for the best recovery rates.
+- **Custom:&#x20;**&#x59;ou can customise the retry mechanism depending on your business needs.
+- **Don't Enable Retry:&#x20;**&#x54;his will not enable payment retries. You can handle the process through customer communication.
 
 <Accordion title="Benefits" icon="fa-gift">
 * Enables merchants to configure payment retry strategies that align with their business requirements and customer journeys.
 * Provides greater flexibility and control over retry logic compared to conventional retry mechanisms.
 * Improves revenue recovery by increasing the likelihood of successful payment collection on subsequent attempts.
 * Delivers a seamless and reliable payment experience, reducing customer friction caused by failed transactions.
+</Accordion>
+
+## Payment Failure Reasons
+
+Below are the reasons for payment failures:
+
+<Accordion title="Reasons" icon="fa-list">
+* Customer card has expired.
+* The bank has blocked the customer card.
+* The customer's account has insufficient balance.
+* The customer has cancelled the mandate from their end.
 </Accordion>
 
 ## Access Retry Settings
@@ -23,10 +38,6 @@ You can access retry settings under **Subscriptions&#x20;**&#x66;rom the left na
 
 
 <br />
-
-## Retry Options Available
-
-Once inside the **Revenue Recovery** tab, you can view and configure the available retry options.
 
 ### Default State
 
