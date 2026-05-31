@@ -16,10 +16,13 @@ The **Subscription Retry Settings** feature on the PayU Dashboard introduces an 
 
 ## Access Retry Settings
 
-To access retry settings on the PayU dashboard:
+You can access retry settings under **Subscriptions&#x20;**&#x66;rom the left navigation as shown below.
 
-1. Log in to the **PayU Dashboard**.
-2. Navigate to the **Revenue Recovery** tab from the side panel.
+
+<Image src="https://files.readme.io/e0c4066c46015cd568fcf6dea4131e54aa506aac522d9efc5cbda72f1fc655b1-revenue-recovery-retry-settings.gif" align="center" caption="_Access Retry Settings_" border={true} framed={true} />
+
+
+<br />
 
 ## Retry Options Available
 
@@ -132,4 +135,41 @@ Once all retry configurations are set as per your requirements:
 >
 > Retry settings apply to subscription (SI) transactions on your merchant account. For mandate and transaction details, refer to Access Subscription Mandates.
 
-<br />
+## FAQs
+
+### Where do I configure subscription retry settings?
+
+Log in to the PayU Dashboard and open the **Revenue Recovery** tab from the side panel.
+
+### Is retry enabled by default?
+
+No. By default, **Retry is Disabled**. Failed subscription transactions are not retried until you enable Smart Retry or Custom Retry and click **Update**.
+
+### What is the difference between Smart Retry and Custom Retry?
+
+**Smart Retry** is managed by PayU. PayU decides when and how often to retry based on historical data—no manual setup required.
+
+**Custom Retry** lets you configure the number of retries, intervals (minutes, hours, or days), and which subscription cycles the settings apply to.
+
+### How many retry attempts can I configure?
+
+You can configure a maximum of **7 retries** per subscription type when using Custom Retry.
+
+### What happens after all retry attempts fail?
+
+You choose the outcome using **Max Retry Action**:
+
+- **Unpaid (default):** The subscription stays active but is marked unpaid.
+- **Cancelled:** The subscription is automatically cancelled.
+
+### Can I skip retries on weekends?
+
+Yes. Enable **Skip retry attempts on weekends** to avoid retries on Saturdays and Sundays. This applies to all retry configurations.
+
+### Is the Cancelled option available for all payment methods?
+
+No. The **Cancelled** post-retry action is not supported for **AMEX** and **RUPAY** cards.
+
+### When do my retry settings take effect?
+
+After you configure your preferences, click **Update**. The settings are applied to your merchant account immediately.
