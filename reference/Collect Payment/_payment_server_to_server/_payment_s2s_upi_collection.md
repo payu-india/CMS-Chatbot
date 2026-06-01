@@ -17,50 +17,50 @@ next:
 ---
 This section provides the request and response parameters used in Step 1 of [UPI Collection S2S Integration](doc:upi-collection-s2s). You can get the sample request and response when use the "Try It" experience. For the complete integration steps, refer to [UPI Collection S2S Integration](doc:upi-collection-s2s).
 
-<Callout icon="📘" theme="info">
-  **Reference**: For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
-</Callout>
+> 📘 **Reference**:&#x20;
+>
+> For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
 <br />
 
-<Callout icon="👍" theme="okay">
-  Experience the end-to-end **Merchant Hosted Checkout** > **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
-
-  <HTMLBlock>{`
-                                      <style>
-                                      .tooltip-btn {
-                                          position: relative;
-                                          background-color: #4CAF50;
-                                          color: white;
-                                          padding: 10px 20px;
-                                          border: none;
-                                          border-radius: 5px;
-                                          cursor: pointer;
-                                          font-weight: bold; /* Added this line */
-                                      }
-                                      .tooltip-btn:hover::after {
-                                          content: attr(data-tooltip);
-                                          position: absolute;
-                                          bottom: 125%;
-                                          left: 50%;
-                                          transform: translateX(-50%);
-                                          background-color: #333;
-                                          color: white;
-                                          padding: 5px 10px;
-                                          border-radius: 4px;
-                                          white-space: nowrap;
-                                          font-size: 12px;
-                                          z-index: 1;
-                                      }
-                                      </style>
-
-                                      <button onclick="window.open('https://payu.in/integrationlab/seamless/sm-upiflow', '_blank')" 
-                                              class="tooltip-btn" 
-                                              data-tooltip="Click here to see the Merchant Hosted Checkout > UPI end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
-                                          Experience the flow and get the code
-                                      </button>
-  `}</HTMLBlock>
-</Callout>
+> 👍 Zero-coding integration into your website:
+>
+> Experience the end-to-end **Merchant Hosted Checkout** > **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+>
+> <HTMLBlock>{`
+>                                       <style>
+>                                       .tooltip-btn {
+>                                           position: relative;
+>                                           background-color: #4CAF50;
+>                                           color: white;
+>                                           padding: 10px 20px;
+>                                           border: none;
+>                                           border-radius: 5px;
+>                                           cursor: pointer;
+>                                           font-weight: bold; /* Added this line */
+>                                       }
+>                                       .tooltip-btn:hover::after {
+>                                           content: attr(data-tooltip);
+>                                           position: absolute;
+>                                           bottom: 125%;
+>                                           left: 50%;
+>                                           transform: translateX(-50%);
+>                                           background-color: #333;
+>                                           color: white;
+>                                           padding: 5px 10px;
+>                                           border-radius: 4px;
+>                                           white-space: nowrap;
+>                                           font-size: 12px;
+>                                           z-index: 1;
+>                                       }
+>                                       </style>
+>
+>                                       <button onclick="window.open('https://payu.in/integrationlab/seamless/sm-upiflow', '_blank')" 
+>                                               class="tooltip-btn" 
+>                                               data-tooltip="Click here to see the Merchant Hosted Checkout > UPI end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+>                                           Experience the flow and get the code
+>                                       </button>
+> `}</HTMLBlock>
 
 <br />
 
@@ -140,11 +140,97 @@ This section provides the request and response parameters used in Step 1 of [UPI
 For the response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
 ## Request parameters
+  <Accordion title="Additional Info for Request Parameters" icon="fa-code">
+| `upiAppName`<br/>_mandatory_ | Any of the values listed under the [upiAppName list](#upiAppName-list) | amazonpay |
+| `s2s_device_info`<br/>_conditional_ | `String` Customer agent's device information. For the list of accepted values, refer to [s2s\_device\_info Values Description](#s2s_device_info-values-description) table<br/>**Note**: This Required for UPI Intent flow. | 1\_\|\_0 for mobile browser|
 
-<Callout icon="❗️" theme="error">
-  **Error handling**: If any error message is displayed with an error code, refer to the <a href="error-codes" target="_blank">Error Codes</a> section to understand the reason for these error codes.
-</Callout>
+###  upiAppName eNum List
+  <Accordion title="UPI App Name List" icon="fa-list">
+The following are the enum's expected for UPI apps:
+- phonepe
+- googlepay
+- paytm
+- bhim
+- cred
+- amazonpay
+- whatsapp
+- adityabirla
+- bajajfinserv
+- bankofindiaomnineo
+- bharatpe
+- bhimdlbupi
+- canaraai1pe
+- cheq
+- credilio
+- curiemoney
+- ebixcash
+- famappbytrio
+- flipkart
+- freo
+- gomobile
+- groww
+- herofincorp
+- idfcmobilebankingapp
+- imobilebyicicibank
+- indmoney
+- iris
+- jar
+- jiofinance
+- jumpp
+- jupiter
+- kiwi
+- kreditbee
+- kreditpe
+- lxme
+- mobikwik
+- moneyview
+- mufin
+- myairtel
+- navi
+- omnicard
+- onecard
+- paynearby
+- pinelabsplusplay
+- popclub
+- pzw
+- rediff
+- revolut
+- rio
+- salaryse
+- samsungpay
+- scapia
+- shriramone
+- slice
+- stashfin
+- supermoney
+- tataneu
+- timepay
+- twidpay
+- yespaynext
+- zet
+- genericintent – For any other app apart from
+above
+</Accordion>
+#### s2s_device_info Values Description 
+ <Accordion title="s2s_device_info Values" icon="fa-list">
+| Value | Description |
+|-------|-------------|
+| 0\_\|\_0 | web |
+| 0\_\|\_1 | web |
+| 0\_\|\_4 | web |
+| 1\_\|\_0 | mobile browser |
+| 1\_\|\_2 | tablet |
+| 1\_\|\_3 | iOS App |
+| 1\_\|\_4 | Android App |
+</Accordion>
+  </Accordion>
 
-<Callout icon="🚧" theme="warn">
-  **Values to be used in Test environment**: For values to be used in Test environment, refer to <a href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets#web-checkout" target="_blank">Test Cards</a>.
-</Callout>
+> ❗️
+>
+> **Error handling**: If any error message is displayed with an error code, refer to the <a href="error-codes" target="_blank">Error Codes</a> section to understand the reason for these error codes.
+
+> 🚧
+>
+> **Values to be used in Test environment**: For values to be used in Test environment, refer to <a href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets#web-checkout" target="_blank">Test Cards</a>.
+
+<br />
