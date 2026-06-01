@@ -28,6 +28,7 @@ This section provides the request and response parameters used in Step 1 of [UPI
 > Experience the end-to-end **Merchant Hosted Checkout** > **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 >
 > <HTMLBlock>{`
+> {\`
 >                                       <style>
 >                                       .tooltip-btn {
 >                                           position: relative;
@@ -60,6 +61,7 @@ This section provides the request and response parameters used in Step 1 of [UPI
 >                                               data-tooltip="Click here to see the Merchant Hosted Checkout > UPI end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
 >                                           Experience the flow and get the code
 >                                       </button>
+> \`}
 > `}</HTMLBlock>
 
 <br />
@@ -140,6 +142,7 @@ This section provides the request and response parameters used in Step 1 of [UPI
 For the response parameters, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 
 ## Request parameters
+
   <Accordion title="Additional Info for Request Parameters" icon="fa-code">
 | `upiAppName`<br/>_mandatory_ | Any of the values listed under the [upiAppName list](#upiAppName-list) | amazonpay |
 | `s2s_device_info`<br/>_conditional_ | `String` Customer agent's device information. For the list of accepted values, refer to [s2s\_device\_info Values Description](#s2s_device_info-values-description) table<br/>**Note**: This Required for UPI Intent flow. | 1\_\|\_0 for mobile browser|
