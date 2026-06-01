@@ -222,16 +222,15 @@ The following are the enum's expected for UPI apps:
 above
 </Accordion>
 #### s2s_device_info Values Description 
-
 | Value | Description |
 |-------|-------------|
-| 0\_|\_0 | web |
-| 0\_|\_1 | web |
-| 0\_|\_4 | web |
-| 1\_|\_0 | mobile browser |
-| 1\_|\_2 | tablet |
-| 1\_|\_3 | iOS App |
-| 1\_|\_4 | Android App |
+| 0\_\|\_0 | web |
+| 0\_\|\_1 | web |
+| 0\_\|\_4 | web |
+| 1\_\|\_0 | mobile browser |
+| 1\_\|\_2 | tablet |
+| 1\_\|\_3 | iOS App |
+| 1\_\|\_4 | Android App |
 
   </Accordion>
 
