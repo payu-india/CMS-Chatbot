@@ -5,11 +5,24 @@ hidden: true
 metadata:
   robots: index
 ---
-The **Subscription Retry Settings** feature on the PayU Dashboard introduces an advanced and flexible retry mechanism for Subscription (SI) transactions. It helps improve payment success rates by enabling more effective handling of failed recurring transactions. The following are the available retry mechanisms:
+The **Subscription Retry Settings** feature on the PayU Dashboard introduces an advanced and flexible retry mechanism for Subscription (SI) transactions. It helps improve payment success rates by enabling more effective handling of failed recurring transactions. The following are the available retry types:
 
-- **Smart Retry:&#x20;**&#x54;his is PayU Intelligence. It automatically adjusts intervals for the best recovery rates.
-- **Custom:&#x20;**&#x59;ou can customise the retry mechanism depending on your business needs.
-- **Don't Enable Retry:&#x20;**&#x54;his will not enable payment retries. You can handle the process through customer communication.
+**Smart Retry (PayU Managed)**
+
+Smart Retry is fully controlled by PayU and requires no manual configuration. PayU uses historical data and intelligence to:
+
+- Decide when to retry
+- Decide how often to retry
+
+**Custom Retry (Merchant Configured)**
+
+Custom Retry is fully configurable by the merchant. You can define:
+
+- Number of retries
+- Retry intervals
+- Applicable subscription cycles
+- Action to be taken after retries are exhausted
+- To skip weekends
 
 <Accordion title="Benefits" icon="fa-gift">
 * Enables merchants to configure payment retry strategies that align with their business requirements and customer journeys.
@@ -43,63 +56,11 @@ You can access retry settings under **Subscriptions&#x20;**&#x66;rom the left na
 >
 > By default, payment retry is disabled in the dashboard. No retry attempts are made unless you define a retry strategy.
 
-## Types of Retry Systems
+## Configure Payment Retries
 
-PayU supports two retry modes for subscription transactions.
+To configure payment retries:
 
-### Smart Retry (PayU Managed)
-
-Smart Retry is fully controlled by PayU and requires no manual configuration. PayU uses historical data and intelligence to:
-
-- Decide **when to retry**
-- Decide **how often to retry**
-
-### Custom Retry (Merchant Configured)
-
-Custom Retry is fully configurable by the merchant. You can define:
-
-- Number of retries
-- Retry intervals
-- Applicable subscription cycles
-
-## Configure Custom Retry
-
-When you select **Custom Retry**, you can configure the following settings.
-
-### Scope of Retry
-
-You can configure retries for:
-
-- **All subscription cycles**
-- **Specific billing cycles**
-
-### Adding Retry Attempts
-
-Use the **Add** button to configure multiple retry attempts.
-
-Each retry attempt can have:
-
-- Different timing
-- Different conditions
-
-### Retry Intervals
-
-For each retry attempt, choose from the following interval options:
-
-- **Minute Wise**
-- **Hour Wise**
-- **Day Wise**
-
-### Billing Cycle-Level Configuration
-
-If required, you can:
-
-- Define retry logic per billing cycle
-- Customize retry behavior differently for each cycle
-
-## Post-Retry Behavior
-
-Once all configured retries are exhausted, you can define the outcome using **Max Retry Action**.
+1.
 
 ### Options Available
 
@@ -108,9 +69,9 @@ Once all configured retries are exhausted, you can define the outcome using **Ma
 | **Unpaid (Default)** | The subscription remains active but marked as unpaid. |
 | **Cancelled**        | The subscription is automatically cancelled.          |
 
-> 📘
+> 📘 **Note:**&#x20;
 >
-> **Note:** The **Cancelled** post-retry action is not supported for AMEX and RUPAY cards.
+> The **Cancelled** post-retry action is not supported for AMEX and RUPAY cards.
 
 ## Additional Preferences
 
