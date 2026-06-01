@@ -919,10 +919,26 @@ mihpayid=403993715537573912&mode=CASH&status=success&unmappedstatus=captured&key
 mihpayid=403993715537577231&mode=BNPL&status=success&key=ISgdHG&txnid=6decc0fffa5c60c7cbce&amount=10.00&addedon=2026-06-01+16%3A34%3A20&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=7715995865&field2=EMI1072289140999791193&field3=Transaction+is+successful&field4=&field5=iMUvX5VOqXMzv5Nq&field6=TXN558633373&field7=PAYMENT_SUCCESSFUL&field8=SUCCESS&field9=Transaction+is+successful&payment_source=payu&cardToken=&authenticationMethod=&PG_TYPE=BNPL-PG&error=E000&error_Message=No+Error&net_amount_debit=10&discount=0.00&offer_key=&offer_availed=&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D&unmappedstatus=captured&hash=caa5b6398fe72ae9a07bc5e2d140fb2872db8f95bfe997de214f7f4cbc14e0933c153db986f029f76b69c12a37589d59ce9fe4c56d1bc713ac9851593563425e&bank_ref_no=TXN558633373&bank_ref_num=TXN558633373&bankcode=LAZYPAY&surl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response
 ```
 </Accordion>
-<Accordion title="NEFT/RTGS" icon="fa-reply">
+
 > 📘
 >
-> **Note on Response**: For security reasons, the sample response or URL is not included here.
+> **Note on NEFT/RTGS Response**: For security reasons, the sample response or URL is not included here.
+
+
+#### Unmapped Status is Pending
+NEFT and RTGS are bank transfer methods that require:
+- Manual verification by the bank
+- Settlement time (NEFT operates in batches, RTGS is real-time but still needs bank processing)
+- Customer needs to complete the bank transfer from their bank account
+
+The transaction remains in pending state until:
+- The customer completes the bank transfer
+- The bank confirms the payment
+- PayU receives confirmation from the bank
+
+For example, the response is similar to the following
+<Accordion title="NEFT/RTGS-Pending" icon="fa-reply">
+mihpayid=403993715537574750&mode=NEFTRTGS&status=pending&unmappedstatus=pending&key=a4vGC2&txnid=TXN_NS_1780300270_2797&amount=10.00&discount=0.00&net_amount_debit=0.00&addedon=2026-06-01%2013%3A21%3A24&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=ed4dbb911f9bfee507362e2e053c16c07063a55302ea58cf3f026f5daeefbd52da8f316d51911c891a13a1bb648a26b24b8005a84af30904d78c13a54b4d35bf&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=02&field9=Transaction%20is%20pending&payment_source=payu&PG_TYPE=NEFTRTGS-PG&bank_ref_num=&bankcode=EFTAXIS&error=E227&error_Message=Transaction%20is%20Pending&splitInfo=%7B%22splitStatus%22%3A%22%22%2C%22splitSegments%22%3A%5B%5D%7D
 </Accordion>
 
 ### Failure Scenarios (Partial List) 
