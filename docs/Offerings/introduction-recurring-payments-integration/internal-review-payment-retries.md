@@ -60,7 +60,9 @@ You can access retry settings under **Subscriptions&#x20;**&#x66;rom the left na
 
 To configure payment retries:
 
-1.
+<Accordion title="Step 1: Log in to the PayU Dashboard" icon="fa-login">
+Log in to the 
+</Accordion>
 
 ### Options Available
 
