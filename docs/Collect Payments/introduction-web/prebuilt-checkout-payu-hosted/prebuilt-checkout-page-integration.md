@@ -925,6 +925,26 @@ mihpayid=403993715537577231&mode=BNPL&status=success&key=ISgdHG&txnid=6decc0fffa
 > **Note on Response**: For security reasons, the sample response or URL is not included here.
 </Accordion>
 
+### Failure Scenarios (Partial List) 
+<Accordion title="Cards when 3DS challenge is negative" icon="fa-card">
+```plaintext 
+mihpayid=403993715537573353&mode=CC&status=failure&unmappedstatus=failed&key=a4vGC2&txnid=TXN_NS_1780294680_1316&amount=15000.00&discount=0.00&net_amount_debit=0.00&addedon=2026-06-01%2011%3A48%3A38&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=9ae9baa17a0ca25fd1f860f49022606d1d9d3d9650a639a8656f843a02acc3282157e7997e03734547027789599832e9ac8366dc7c21815e0e226ce6ebe216d4&field1=677160001457370800&field2=&field3=&field4=&field5=&field6=00&field7=3DS_CHALLENGE_NEGATIVE&field8=Transaction%20failed%20in%20Authorization&field9=Transaction%20Failed%20at%20bank%20end.&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=&bankcode=CC&error=E308&error_Message=Transaction%20Failed%20at%20bank%20end.&cardCategory=domestic&cardnum=XXXXXXXXXXXX2346&cardhash=This%20field%20is%20no%20longer%20supported%20in%20postback%20params.&splitInfo=%7B%22splitStatus%22%3A%22%22%2C%22splitSegments%22%3A%5B%5D%7D
+
+```
+</Accordion>
+<Accordion title="UPI Transaction Cancellation by customer or dropped in between" icon="fa-reply">
+```plaintext 
+mihpayid=403993715537573890&mode=UPI&status=failure&unmappedstatus=userCancelled&key=a4vGC2&txnid=TXN_NS_1780296905_7692&amount=15000.00&discount=0.00&net_amount_debit=0.00&addedon=2026-06-01%2012%3A25%3A18&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=fd3149767139dfda1146aef578cdfef38da79bffe81db64ab8a046de3d349014eb95e9848a003616b79aa6ee61b9c46e5f47403463ae4434ede19e7b6caa71f3&field1=anything%40payu&field2=&field3=&field4=&field5=&field6=&field7=&field8=generic&field9=User%20interrupted%20by%20pressing%20back%20button&payment_source=payu&PG_TYPE=UPI-PG&bank_ref_num=&bankcode=UPI-Intent&error=E1206&error_Message=Transaction%20interrupted%20by%20pressing%20back%20button&splitInfo=%7B%22splitStatus%22%3A%22%22%2C%22splitSegments%22%3A%5B%5D%7D
+```
+</Accordion>
+<Accordion title="BNPL transaction cancelled by user during OTP flow" icon="fa-reply">
+```plaintext 
+mihpayid=403993715537573947&mode=BNPL&status=failure&unmappedstatus=userCancelled&key=a4vGC2&txnid=TXN_NS_1780297112_4289&amount=1500.00&discount=0.00&net_amount_debit=0.00&addedon=2026-06-01%2012%3A28%3A44&productinfo=Test&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=79c624327255af38af22d10005f43a6afaaa9cf212ddb2998becd56d1dd9c1f5eae1d587ab82543f53ed005eb3d752f67b445a8523153f4bea969cb3e765b5dd&field1=9876543210&field2=EMI775701587506297063&field3=Hola%21%21%20Avail%20LazyPay%20Credit%20with%20just%20an%20OTP&field4=&field5=zA0oORMOEt3RrWHg&field6=TXN983658033&field7=OTP_GENERATION_SUCCESSFUL&field8=LP_ELIGIBLE&field9=cancelled%20by%20user&payment_source=payu&PG_TYPE=BNPL-PG&bank_ref_num=TXN983658033&bankcode=LAZYPAY&error=&error_Message=&splitInfo=%7B%22splitStatus%22%3A%22%22%2C%22splitSegments%22%3A%5B%5D%7D
+```
+</Accordion>
+> 📘
+>
+> **Error Codes**: For complete list of error codes, refer to [Error Codes](https://docs.payu.in/reference/error-codes)
 ### Step 1.4.1: Response verification using reverse hashing**
 
   Verify the response received above by recomputing SHA-512 using the reverse sequence:
