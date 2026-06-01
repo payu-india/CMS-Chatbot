@@ -39,9 +39,9 @@ You can access retry settings under **Subscriptions&#x20;**&#x66;rom the left na
 
 <br />
 
-### Default State
-
-By default, **Retry is Disabled**. No retry attempts are made unless you explicitly configure a retry strategy.
+> ⚠️ Watch out!
+>
+> By default, payment retry is disabled in the dashboard. No retry attempts are made unless you define a retry strategy.
 
 ## Types of Retry Systems
 
