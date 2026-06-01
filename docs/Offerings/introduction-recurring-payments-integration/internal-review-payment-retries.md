@@ -66,6 +66,11 @@ Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor
 <Image src="https://files.readme.io/d80f28822870a7b6d160553f447a4f06b421a2f4acd175cad872fb060457be1d-image.png" align="center" caption="_Access Revenue Recovery_" border={true} framed={true} />
 </Accordion>
 
+<Accordion title="Step 2: Define Payment Retry" icon="fa-sliders">
+1. Select either of the retry type and perform the following steps:
+  1. 
+</Accordion>
+
 ### Options Available
 
 | Option               | Description                                           |
