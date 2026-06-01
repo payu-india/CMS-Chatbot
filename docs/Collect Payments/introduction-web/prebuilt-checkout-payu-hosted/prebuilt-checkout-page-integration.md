@@ -837,6 +837,10 @@ Follow the below steps to complete the integration:
   **Response Handling:**
 
   After the customer completes or abandons the payment, PayU POSTs back to your return URL with URL-encoded fields (form post). This payload includes the transaction status, txnid, mihpayid, and a hash you must verify (reverse hashing) before trusting the result.
+
+### Success Scenarios
+<Accordion title="Net Banking" icon="fa-reply">
+  **Response Handling:**
 Sample response unformatted:
 ```plaintext
 mihpayid=403993715537565049&mode=NB&status=success&unmappedstatus=captured&key=PRiQvJ&txnid=756609e32e92add4b5f2&amount=10.00&discount=0.00&net_amount_debit=10&addedon=2026-05-29+18%3A49%3A30&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=79d14afc4a3998a627d8fb431b2ee648b16fd6e31252397109ad5f44d77f7630daaaeedf0bbd5b3e7a81342c96bc087beb43125c0619cac1e5408243fdc29a04&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=NB-PG&bank_ref_num=ddb199f9-5f43-4441-8648-ce2bcb244568&bankcode=TESTPGNB&error=E000&error_Message=No+Error
@@ -893,8 +897,35 @@ bankcode=TESTPGNB
 error=E000
 error_Message=No Error
   ```
+</Accordion>
 
-  **Step 1.4.1: Response verification using reverse hashing**
+<Accordion title="Credit Card" icon="fa-card">
+```plaintext
+mihpayid=403993715537573401&mode=CC&status=success&unmappedstatus=captured&key=a4vGC2&txnid=TXN_NS_1780294871_5566&amount=1500.00&discount=0.00&net_amount_debit=1500&addedon=2026-06-01%2011%3A51%3A47&productinfo=Subscription&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=6ee1e1f743089ce38c79473f19af24371fe80e6249968f1bcbc6d31935afa79c0325d649fa7610a642e694475b33d65011b51b5d7d2a6a46e2b38895e4c27a28&field1=888758893639&field2=599738&field3=1500.00&field4=&field5=00&field6=02&field7=AUTHPOSITIVE&field8=AUTHORIZED&field9=Transaction%20is%20Successful&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=920539478106419300&bankcode=CC&error=E000&error_Message=No%20Error&cardCategory=domestic&cardnum=XXXXXXXXXXXX2346&cardhash=This%20field%20is%20no%20longer%20supported%20in%20postback%20params.&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
+```
+</Accordion>
+<Accordion title="UPI" icon="fa-reply">
+```plaintext
+mihpayid=403993715537577186&mode=UPI&status=success&key=ISgdHG&txnid=cb278c37e5982039ffa0&amount=10.00&addedon=2026-06-01+16%3A30%3A23&productinfo=Product+Info&firstname=CARDHOLDERXXXXXXXXNAME-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&"phone":"##########"&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=_mobilenum_%40upi&field2=cb278c37e5982039ffa0&field3=&field4=Payu-Admin&field5=AXIuo5ge4DYgb1spEEp038EuZkdbcm229hR&field6=&field7=Transaction+completed+successfully&field8=generic&field9=Transaction+completed+successfully&payment_source=payu&cardToken=&authenticationMethod=&PG_TYPE=UPI-PG&error=E000&error_Message=No+Error&net_amount_debit=10&discount=0.00&offer_key=&offer_availed=&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D&unmappedstatus=captured&hash=0981fbaf891fdf6384f35b_mobilenum_a91ec205beeb259f65ec45974c1010039efb1d2e3d4a420c1b75121eb88ecbafbb4d9496071dda27f7ffe1ded0af34a1&bank_ref_no=cb278c37e5982039ffa0&bank_ref_num=cb278c37e5982039ffa0&bankcode=UPI-Intent&surl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response
+```
+</Accordion>
+<Accordion title="Wallet" icon="fa-reply">
+```plaintext
+mihpayid=403993715537573912&mode=CASH&status=success&unmappedstatus=captured&key=a4vGC2&txnid=TXN_NS_1780296990_7590&amount=15000.00&discount=0.00&net_amount_debit=15000&addedon=2026-06-01%2012%3A26%3A38&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=db7052bf227001b9f02aa675b1a161e633eac2b5712f85c0d466d9b1023e739b0a57e8e61926f047c2efcb19279caf834951e3ff3c9cab99353043af1db2a71f&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction%20Completed%20Successfully&payment_source=payu&PG_TYPE=CASH-PG&bank_ref_num=a92fe2c9-4fc8-4f73-8740-9b292fe4a634&bankcode=FREC&error=E000&error_Message=No%20Error&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
+```
+</Accordion>
+<Accordion title="BNPL" icon="fa-reply">
+```plaintext
+mihpayid=403993715537577231&mode=BNPL&status=success&key=ISgdHG&txnid=6decc0fffa5c60c7cbce&amount=10.00&addedon=2026-06-01+16%3A34%3A20&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=7715995865&field2=EMI1072289140999791193&field3=Transaction+is+successful&field4=&field5=iMUvX5VOqXMzv5Nq&field6=TXN558633373&field7=PAYMENT_SUCCESSFUL&field8=SUCCESS&field9=Transaction+is+successful&payment_source=payu&cardToken=&authenticationMethod=&PG_TYPE=BNPL-PG&error=E000&error_Message=No+Error&net_amount_debit=10&discount=0.00&offer_key=&offer_availed=&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D&unmappedstatus=captured&hash=caa5b6398fe72ae9a07bc5e2d140fb2872db8f95bfe997de214f7f4cbc14e0933c153db986f029f76b69c12a37589d59ce9fe4c56d1bc713ac9851593563425e&bank_ref_no=TXN558633373&bank_ref_num=TXN558633373&bankcode=LAZYPAY&surl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response
+```
+</Accordion>
+<Accordion title="NEFT/RTGS" icon="fa-reply">
+> 📘
+>
+> **Note on Response**: For security reasons, the sample response or URL is not included here.
+</Accordion>
+
+### Step 1.4.1: Response verification using reverse hashing**
 
   Verify the response received above by recomputing SHA-512 using the reverse sequence:
 
