@@ -3,7 +3,6 @@ excerpt: ''
 api:
   file: merchant-hosted-36.json
   operationId: S2S-UPICollection
-deprecated: false
 hidden: false
 metadata:
   title: ''
@@ -71,23 +70,38 @@ This section provides the request and response parameters used in Step 1 of [UPI
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
-  curl --location --request POST 'https://test.payu.in/_payment' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JPM7Fg' \
-  --data-urlencode 'txnid=payuTestTransaction12345' \
-  --data-urlencode 'amount=100.00' \
-  --data-urlencode 'firstname=Ashish' \
-  --data-urlencode 'email=test@payu.in' \
-  --data-urlencode 'phone=9988776655' \
-  --data-urlencode 'productinfo=Product Info' \
-  --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
-  --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
-  --data-urlencode 'pg=UPI' \
-  --data-urlencode 'bankcode=INTENT' \
-  --data-urlencode 'txn_s2s_flow=4' \
-  --data-urlencode 's2s_client_ip=10.200.12.12' \
-  --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
-  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
+    curl --location 'https://test.payu.in/_payment' \
+   --header 'Content-Type: application/x-www-form-urlencoded' \
+   --data-urlencode 'key=PRiQvJ' \
+   --data-urlencode 'txnid=my_order_991' \
+   --data-urlencode 'amount=1' \
+   --data-urlencode 'productinfo=my_order_991' \
+   --data-urlencode 'email=' \
+   --data-urlencode 'phone=9368252248' \
+   --data-urlencode 'txn_s2s_flow=4' \
+   --data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
+   --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+   --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+   --data-urlencode 'udf1=buyer'\''s DOB' \
+   --data-urlencode 'udf2=' \
+   --data-urlencode 'udf3=buyer'\''s PAN' \
+   --data-urlencode 'udf4=' \
+   --data-urlencode 'udf5=invoice number' \
+   --data-urlencode 's2s_client_ip=10.200.12.12' \
+   --data-urlencode 's2s_device_info=1_|_4' \
+   --data-urlencode 'firstname=' \
+   --data-urlencode 'lastname=kr' \
+   --data-urlencode 'address1=308,third floor' \
+   --data-urlencode 'address2=testing' \
+   --data-urlencode 'city=Gurugram' \
+   --data-urlencode 'state=UP' \
+   --data-urlencode 'country=India' \
+   --data-urlencode 'zipcode=122018' \
+   --data-urlencode 'pg=UPI' \
+   --data-urlencode 'bankcode=INTENT' \
+   --data-urlencode 'upiAppName=gpay' \
+   --data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
+   --data-urlencode 'buyer_type_business=1'
   ```
 </Accordion>
 
