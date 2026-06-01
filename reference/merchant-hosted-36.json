@@ -209,8 +209,7 @@
               }
             }
           }
-        },
-        "deprecated": false
+        }
       },
       "parameters": []
     }
