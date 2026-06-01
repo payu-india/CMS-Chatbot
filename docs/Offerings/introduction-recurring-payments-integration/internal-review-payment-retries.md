@@ -67,7 +67,9 @@ Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor
 </Accordion>
 
 <Accordion title="Step 2: Define Payment Retry" icon="fa-sliders">
-1. Select either of the retry type and perform the following steps:
+1. Select either of the retry type. The following are the available options:
+* **Smart Retry:** Select this option if you want PayU to control the payment retry with no manual configuration. PayU uses historical data and intelligence to decide when and how often to retry.
+* **Custom:** Perform the following steps to define the payment retry:
   1. 
 </Accordion>
 
