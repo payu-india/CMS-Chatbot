@@ -146,7 +146,7 @@ This section includes the workflow and steps to integrate UPI Intent with Server
 | `vpa`<br/>_conditional_ | `String` Customer's VPA handle. Mandatory for UPI Collect flow. | `customer@upi` |
 | `si`<br/>_mandatory_ | `String` Signifies successful consent taken from the user. Must be `1` for subscription setup. | `1` |
 | `si_details`<br/>_mandatory_ | `JSON String` JSON object containing mandate details (billingAmount, billingCurrency, billingCycle, etc.). Refer to si\_details JSON Object below. | See si\_details accordion |
-| `upiAppName`<br/>_mandatory_ | Any of the values listed under the [upiAppName list](upiAppName-list) | amazonpay |
+| `upiAppName`<br/>_mandatory_ | Any of the values listed under the [upiAppName list](#upiAppName-list) | amazonpay |
 | `txn_s2s_flow`<br/>_conditional_ | `Integer` Parameter to enable S2S flow. Must be `4` for Legacy Decoupled flow (UPI Intent). | `4` |
 | `s2s_client_ip`<br/>_conditional_ | `String` Source IP of the customer. Required for UPI Intent flow. | `10.200.12.12` |
 | `s2s_device_info`<br/>_conditional_ | `String` Customer agent's device information. For the list of accepted values, refer to [s2s\_device\_info Values Description](#s2s_device_info-values-description) table<br/>**Note**: This Required for UPI Intent flow. | |
