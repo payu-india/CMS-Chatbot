@@ -60,7 +60,7 @@ You can access retry settings under **Subscriptions&#x20;**&#x66;rom the left na
 
 To configure payment retries:
 
-<Accordion title="Step 1: Log in to the PayU Dashboard" icon="fa-login">
+<Accordion title="Step 1: Log in to the PayU Dashboard" icon="fa-gauge">
 Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor> expand **Subscriptions** and click **Revenue Recovery** from the left menu.
 
 
