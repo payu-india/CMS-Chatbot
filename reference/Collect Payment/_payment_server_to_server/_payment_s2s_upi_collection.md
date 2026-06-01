@@ -26,7 +26,6 @@ This section provides the request and response parameters used in Step 1 of [UPI
 > 👍 Zero-coding integration into your website:
 >
 > Experience the end-to-end **Merchant Hosted Checkout** > **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
->
 
 <HTMLBlock>{`
                                       <style>
@@ -64,8 +63,6 @@ This section provides the request and response parameters used in Step 1 of [UPI
 `}</HTMLBlock>
 
 <br />
-
-<Additional_paymentRequestParams />
 
 <Accordion_Collect_Fraud_Detection />
 
