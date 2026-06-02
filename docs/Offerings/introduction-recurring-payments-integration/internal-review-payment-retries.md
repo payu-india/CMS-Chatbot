@@ -93,18 +93,18 @@ Select either of the retry type. The following are the available options:
 
 The Retry Management page validates each field before you save. Use the following reference when configuring retry settings.
 
-| Column Name                                      | Field Type                          | Validation / Allowed Values                                                                                                              |
-| ------------------------------------------------ | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Retry Preference (`retryType`)                   | Mandatory                           | Allowed values: `SMART`, `CUSTOM`, `NO_RETRY`                                                                                            |
-| Max Retry Action (`retryActionOnMax`)            | Mandatory                           | Allowed values: `UNPAID`, `CANCEL`. **Note:** Not supported for AMEX and RUPAY cards.                                                    |
-| Skip Weekends (`skipWeekends`)                   | Optional                            | —                                                                                                                                        |
-| Custom Toggle (when Retry Preference = `CUSTOM`) | Mandatory when `CUSTOM`             | `BY_INTERVAL` or `SPECIFIC_DATES`. **Note:** Specific Dates feature coming soon.                                                         |
-| Subscription Types (`selectedSubscriptionTypes`) | Mandatory when `CUSTOM`             | At least one required. Allowed values: `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ONCE`, `ADHOC`. Option to select **All Subscriptions**.  |
-| Interval Value (`intervalValue`)                 | Mandatory when `CUSTOM BY_INTERVAL` | Positive integers only. Required for each retry row.                                                                                     |
-| Interval Unit (`intervalUnit`)                   | Mandatory when `CUSTOM BY_INTERVAL` | Allowed values: `HOURS`, `MINUTES`, `DAYS`                                                                                               |
-| Start Time (`startTime`)                         | Mandatory                           | 12-hour format with AM/PM. If Start Time is set, End Time is required.                                                                   |
-| End Time (`endTime`)                             | Mandatory                           | 12-hour format with AM/PM. If End Time is set, Start Time is required. End must be **after** Start. Example: Start = 11 PM → End = 12 AM |
-| Max Number of Retries                            | Mandatory                           | Maximum **7 retries** per subscription type                                                                                              |
+| Column Name                                      | Field Type                          | Validation / Allowed Values                                                                                                          |
+| ------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Retry Preference (`retryType`)                   | Mandatory                           | Allowed values: `SMART`, `CUSTOM`, `NO_RETRY`                                                                                        |
+| Max Retry Action (`retryActionOnMax`)            | Mandatory                           | Allowed values: `UNPAID`, `CANCEL`. <br /><br />**Note:** Not supported for AMEX and RUPAY cards.                                    |
+| Skip Weekends (`skipWeekends`)                   | Optional                            | —                                                                                                                                    |
+| Custom Toggle (when Retry Preference = `CUSTOM`) | Mandatory when `CUSTOM`             | `BY_INTERVAL` or `SPECIFIC_DATES`. <br /><br />**Note:** Specific Dates feature coming soon.                                         |
+| Subscription Types (`selectedSubscriptionTypes`) | Mandatory when `CUSTOM`             | At least one required. Allowed values: `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ONCE`, `ADHOC`. Option to select All Subscriptions.  |
+| Interval Value (`intervalValue`)                 | Mandatory when `CUSTOM BY_INTERVAL` | Positive integers only. Required for each retry row.                                                                                 |
+| Interval Unit (`intervalUnit`)                   | Mandatory when `CUSTOM BY_INTERVAL` | Allowed values: `HOURS`, `MINUTES`, `DAYS`                                                                                           |
+| Start Time (`startTime`)                         | Mandatory                           | 12-hour format with AM/PM. If Start Time is set, End Time is required.                                                               |
+| End Time (`endTime`)                             | Mandatory                           | 12-hour format with AM/PM. If End Time is set, Start Time is required. End must be after Start. Example: Start = 11 PM → End = 12 AM |
+| Max Number of Retries                            | Mandatory                           | Maximum 3 retries per subscription type                                                                                              |
 
 ## FAQs
 
