@@ -5,6 +5,13 @@ hidden: true
 metadata:
   robots: index
 ---
+---
+title: Merchant Hosted Integration - Mutual Fund Payments
+deprecated: false
+hidden: true
+metadata:
+  robots: index
+---
 This section explains how to implement the **_payment** API for mutual fund payment using Merchant Hosted Checkout integration. The _payment includes the _product_ parameter contains various fields including the Wealth Tech object (**wtParams**). This integration involves the following steps:
 
 <Cards columns={3}>
@@ -40,7 +47,7 @@ This section explains how to implement the **_payment** API for mutual fund paym
   | surl<br />`mandatory`                             | `String` The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                             | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                                          |                                                                                                         |                                          |
   | furl<br />`mandatory`                             | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                                 | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                                          |                                                                                                         |                                          |
   | api\_version <br /> `mandatory`                   | API version must be posted as `21`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 21                                                                                                                                                                                      |                                                                                                         |                                          |
-  | hash<br />`mandatory`                             | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|                                                                                                                                                                                                                                                                                                                                                                                       | beneficiarydetail\\\|\\\|\\\|\\\|                                                                                                                                                       | \\\|products\\\|salt) For more information, refer to [Generate Hash](doc:hashing-request-and-response). | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0 |
+  | hash<br />`mandatory`                             | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|\\\|beneficiarydetail\\\|si\_details\\\|\\\|\\\|\\\|\\\|products\\\|salt) For more information, refer to [Generate Hash](doc:hashing-request-and-response). | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0 |
   | product<br />`mandatory for Mutual Funds payment` | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/docs/merchant-hosted-integration-mutual-fund-payments#wealth-tech-object-wtparams-fields-description).                                                                                                                                                                                                                                                                                                       | Refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/docs/merchant-hosted-integration-mutual-fund-payments#wealth-tech-object-wtparams-fields-description) |                                                                                                         |                                          |
   | beneficiarydetail<br />`mandatory `               | `String` String JSON object that contains account numbers and corresponding IFSC codes (max 4 accounts) in the same order                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Refer the table in accordion below this table                                                                                                                                           |                                                                                                         |                                          |
   | lastname<br />`optional`                          | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                                                  |                                                                                                         |                                          |
@@ -108,21 +115,7 @@ This section explains how to implement the **_payment** API for mutual fund paym
   <Glossary>SHA</Glossary>-512:
 
   ```plaintext
-  key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|SALT
-  ```
-
-  * Use empty strings for missing udf\*.
-  * Compute on your server and include the lowercase hex digest as hash.
-
-  For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
-
-  ### Sample Code for Hashing
-
-  Concatenate fields in this exact sequence, then
-  <Glossary>SHA</Glossary>-512:
-
-  ```plaintext
-  key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|si_details|||||products|salt
+  sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||||beneficiarydetail|si_details|||||products|salt)
   ```
 
   * Use empty strings for missing udf\*.
