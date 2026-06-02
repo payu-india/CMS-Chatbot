@@ -45,6 +45,10 @@ export const HoverCardGrid = (props) => {
   const mediaTransition =
     'transition-[box-shadow,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]';
 
+  const hoverLinkUnderline =
+    'transition-[text-decoration,text-decoration-color] duration-300 ' +
+    'group-hover:underline group-hover:decoration-[#00b058] group-hover:underline-offset-[3px]';
+
   return (
     <div className={`my-6 ${className}`.trim()}>
       <ul className={`grid gap-4 list-none p-0 m-0 ${gridClass}`}>
@@ -89,7 +93,7 @@ export const HoverCardGrid = (props) => {
                 .map((v) => String(v).trim());
               if (listItems.length < 1) return null;
               return (
-                <ul className="list-disc pl-5 space-y-1">
+                <ul className={'list-disc pl-5 space-y-1' + (href ? ' ' + hoverLinkUnderline : '')}>
                   {listItems.map((li, liIndex) => (
                     <li key={`${liIndex}-${li}`}>{li}</li>
                   ))}
@@ -118,7 +122,7 @@ export const HoverCardGrid = (props) => {
                 if (listItems.length < 1) return null;
 
                 return (
-                  <ul className="list-disc pl-5 space-y-1">
+                  <ul className={'list-disc pl-5 space-y-1' + (href ? ' ' + hoverLinkUnderline : '')}>
                     {listItems.map((li, liIndex) => (
                       <li key={`${liIndex}-${li}`}>{li}</li>
                     ))}
@@ -126,8 +130,8 @@ export const HoverCardGrid = (props) => {
                 );
               }
 
-              // Fallback: render as normal text (prose handles wrapping).
-              return <span>{content}</span>;
+              // Fallback: plain text; underline on card hover when the card is a link.
+              return <span className={href ? hoverLinkUnderline : ''}>{content}</span>;
             }
 
             // For any other non-string content (e.g. JSX from MDX), render it directly.
@@ -157,12 +161,23 @@ export const HoverCardGrid = (props) => {
                 </span>
               ) : null}
               <span
-                className="inline-block text-base font-semibold leading-snug text-slate-900 !no-underline group-hover:underline group-hover:decoration-[#00b058] group-hover:underline-offset-[3px]"
+                className={
+                  'inline-block text-base font-semibold leading-snug text-slate-900 !no-underline ' +
+                  (href ? hoverLinkUnderline : '')
+                }
               >
                 {title}
               </span>
               {hasContent ? (
-                <div className="mt-2 prose prose-sm max-w-none text-slate-600">
+                <div
+                  className={
+                    'mt-2 prose prose-sm max-w-none text-slate-600 ' +
+                    (href
+                      ? hoverLinkUnderline +
+                        ' [&_a]:!no-underline group-hover:[&_a]:underline group-hover:[&_a]:decoration-[#00b058] group-hover:[&_a]:underline-offset-[3px]'
+                      : ' [&_a]:underline [&_a]:decoration-[#00b058] [&_a]:underline-offset-[3px] hover:[&_a]:underline')
+                  }
+                >
                   {renderContentNode()}
                 </div>
               ) : null}
