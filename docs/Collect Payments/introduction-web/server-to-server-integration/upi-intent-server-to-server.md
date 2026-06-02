@@ -251,7 +251,7 @@ above
    --data-urlencode 'udf4=' \
    --data-urlencode 'udf5=invoice number' \
    --data-urlencode 's2s_client_ip=10.200.12.12' \
-   --data-urlencode 's2s_device_info=iOS Safari' \
+   --data-urlencode 's2s_device_info=s2s_device_info=Dalvik/2.1.0 (Linux; U; Android 13; Pixel 7 Build/...)' \
    --data-urlencode 'firstname=' \
    --data-urlencode 'lastname=kr' \
    --data-urlencode 'address1=308,third floor' \
