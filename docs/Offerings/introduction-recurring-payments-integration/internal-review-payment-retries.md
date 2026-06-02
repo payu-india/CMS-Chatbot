@@ -109,13 +109,11 @@ The Retry Management page validates each field before you save. Use the followin
 ## FAQs
 
 1. #### Is retry enabled by default?
-   <Accordion title="My Accordion Title" icon="fa-info-circle">
-     Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-     ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-     occaecat cupidatat non proident!
+   <Accordion title="Answer" icon="fa-comment-dots">
+   No. By default, retry is disabled. Failed subscription transactions are not retried until you enable Smart Retry or Custom Retry from the dashboard. Refer to the Configure Payment Retries section for steps to enable retry.
    </Accordion>
 
-No. By default, **Retry is Disabled**. Failed subscription transactions are not retried until you enable Smart Retry or Custom Retry and click **Update**.
+No. By default, retry is disabled. Failed subscription transactions are not retried until you enable Smart Retry or Custom Retry from the dashboard. Refer to the Configure Payment Retries section for steps to enable retry.
 
 ### What is the difference between Smart Retry and Custom Retry?
 
