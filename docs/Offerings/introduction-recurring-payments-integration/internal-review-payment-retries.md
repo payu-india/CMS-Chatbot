@@ -89,23 +89,6 @@ Select either of the retry type. The following are the available options:
 
 </Accordion>
 
-### Options Available
-
-| Option               | Description                                           |
-| -------------------- | ----------------------------------------------------- |
-| **Unpaid (Default)** | The subscription remains active but marked as unpaid. |
-| **Cancelled**        | The subscription is automatically cancelled.          |
-
-> 📘 **Note:**&#x20;
->
-> The **Cancelled** post-retry action is not supported for AMEX and RUPAY cards.
-
-## Additional Preferences
-
-### Skip Weekends Option
-
-You can enable **Skip retry attempts on weekends** to prevent retries from being triggered on Saturdays and Sundays. This preference applies across all retry configurations.
-
 ## Field Validations
 
 The Retry Management page validates each field before you save. Use the following reference when configuring retry settings.
@@ -122,17 +105,6 @@ The Retry Management page validates each field before you save. Use the followin
 | Start Time (`startTime`)                         | Mandatory                           | 12-hour format with AM/PM. If Start Time is set, End Time is required.                                                                   |
 | End Time (`endTime`)                             | Mandatory                           | 12-hour format with AM/PM. If End Time is set, Start Time is required. End must be **after** Start. Example: Start = 11 PM → End = 12 AM |
 | Max Number of Retries                            | Mandatory                           | Maximum **7 retries** per subscription type                                                                                              |
-
-## Save Configuration
-
-Once all retry configurations are set as per your requirements:
-
-1. Click **Update** to save your changes.
-2. All configured retry settings are applied to your merchant account.
-
-> 📘 **Reference**&#x20;
->
-> Retry settings apply to subscription (SI) transactions on your merchant account. For mandate and transaction details, refer to Access Subscription Mandates.
 
 ## FAQs
 
