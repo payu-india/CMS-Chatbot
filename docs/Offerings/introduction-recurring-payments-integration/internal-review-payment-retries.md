@@ -84,10 +84,6 @@ Select either of the retry type. The following are the available options:
 
 </Accordion>
 
-![](https://files.readme.io/fa9c5b39790b10440b76dbd1b35f5bb589d0add5fbd1ae994f28f23c7eddcfdb-payment-retry.gif)
-
-<br />
-
 ### Options Available
 
 | Option               | Description                                           |
