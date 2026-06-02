@@ -70,7 +70,13 @@ Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor
 1. Select either of the retry type. The following are the available options:
     * **Smart Retry:** Select this option if you want PayU to control the payment retry with no manual configuration. PayU uses historical data and intelligence to decide when and how often to retry.
     * **Custom:** Perform the following steps to define the payment retry:
-      1. 
+        1. Select the subscription cycle to define the payment retry from the **Change Subscription** button.
+        2. Define the first retry in the **1st Retry after previous attempt** section. The following options are available.
+          * **Time of Retry:** Select the time after which the first retry attempt should be made. You can add maximum of 3 such retries for a day.
+        3. Set the time and number of retries for other frequencies.
+        4. Select the action on subscriptions after all retries are exhausted from the **Mark Subscription as** drop-down list.
+        5. Enable or disable **Skip weekends** radio button to skip retry on weekends.
+        6. Click **Update**. 
 </Accordion>
 
 ### Options Available
