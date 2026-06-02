@@ -79,10 +79,14 @@ Select either of the retry type. The following are the available options:
     6. Click **Update**.
 
 
-<Image src="https://files.readme.io/8299d91640583a0b30ec906b3f26b52af753f03e2137793c3940cd67d89a3a1f-image.png" align="center" caption="_Define Payment Retry_" border={true} framed={true} />
+<Image src="https://files.readme.io/fa9c5b39790b10440b76dbd1b35f5bb589d0add5fbd1ae994f28f23c7eddcfdb-payment-retry.gif" align="center" caption="_Define Payment Retry_" border={true} framed={true} />
 
 
 </Accordion>
+
+![](https://files.readme.io/fa9c5b39790b10440b76dbd1b35f5bb589d0add5fbd1ae994f28f23c7eddcfdb-payment-retry.gif)
+
+<br />
 
 ### Options Available
 
