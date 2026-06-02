@@ -108,11 +108,12 @@ The Retry Management page validates each field before you save. Use the followin
 
 ## FAQs
 
-### Where do I configure subscription retry settings?
-
-Log in to the PayU Dashboard and open the **Revenue Recovery** tab from the side panel.
-
-### Is retry enabled by default?
+1. #### Is retry enabled by default?
+   <Accordion title="My Accordion Title" icon="fa-info-circle">
+     Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+     ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+     occaecat cupidatat non proident!
+   </Accordion>
 
 No. By default, **Retry is Disabled**. Failed subscription transactions are not retried until you enable Smart Retry or Custom Retry and click **Update**.
 
