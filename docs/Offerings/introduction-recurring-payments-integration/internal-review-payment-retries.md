@@ -76,7 +76,12 @@ Select either of the retry type. The following are the available options:
     3. Set the time and number of retries for other frequencies.
     4. Select the action on subscriptions after all retries are exhausted from the **Mark Subscription as** drop-down list.
     5. Enable or disable **Skip weekends** radio button to skip retry on weekends.
-    6. Click **Update**. 
+    6. Click **Update**.
+
+
+<Image src="https://files.readme.io/8299d91640583a0b30ec906b3f26b52af753f03e2137793c3940cd67d89a3a1f-image.png" align="center" caption="_Define Payment Retry_" border={true} framed={true} />
+
+
 </Accordion>
 
 ### Options Available
