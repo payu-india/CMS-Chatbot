@@ -7,6 +7,15 @@ link:
 metadata:
   robots: index
 ---
+---
+title: UPI Autopay Integration - Mutual Funds
+deprecated: false
+hidden: true
+link:
+  new_tab: false
+metadata:
+  robots: index
+---
 This section explains how to implement the **_payment** API for by Wealth Tech merchants to collect UPI recurring payments using seamless integration. The **_payment** API includes the _products_ parameter contains various fields including the Wealth Tech object (**wtParams**).
 
 <Cards columns={2}>
@@ -54,7 +63,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
   | si<br />`mandatory`                             | This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.<br />**Notes**: You can modify or cancel existing recurring payment registration as described in the following sections: <br />- Manage Recurring Payment for Cards <br />- Manage UPI Recurring Transaction                                                                                                                                                                                                                     | 1                                                                                                                                                                                 |
   | free\_trial<br />`optional`                     | This is mandatory only if the merchant wants to support free trial use cases. In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                                                                                                   |
   | si\_details<br />`mandatory`                    | This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br />**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) ) This is a JSON object and it includes a set of fields. For more information, refer to SI Parameter JSON Details                                      | \{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"}              |
-  | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|beneficiarydetail\\\|si\_details\\\|\\\|\\\|\\\|\\\|products\\\|salt) For more information, refer to Generate Hash.                                                                                                                                                                                                                                                                | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                                          |
+  | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|\\\|\\\|beneficiarydetail\\\|si\_details\\\|\\\|\\\|\\\|\\\|products\\\|salt) For more information, refer to Generate Hash.                                                                                                                                                                                                                                                                | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                                          |
   | products<br />`mandatory for Wealth Tech`       | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [Wealth Tech object wtparams fields description](https://docs.payu.in/docs/upi-autopay-integration-mutual-fund-payments#wealth-tech-object-wtparams-fields-description).                                                                                                                                                                                                                                                                                                              | Refer to [Wealth Tech object wtparams fields description](https://docs.payu.in/docs/upi-autopay-integration-mutual-fund-payments#wealth-tech-object-wtparams-fields-description). |
   | txn\_s2s\_flow <br />`mandatory`                | `String` This parameter must be passed with the value as 4 for Decoupled flow.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 4                                                                                                                                                                                 |
   | lastname<br />`optional`                        | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                                            |
@@ -89,9 +98,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
     > ```plaintext
     > ```
 
-    sha(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail||||||products|salt)
-
-    \>
+    sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||||beneficiarydetail|si_details|||||products|salt)
   </Accordion>
 
 #### Wealth Tech Object wtparams Fields Description
@@ -123,7 +130,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 | Parameter | Description | Example |
 |---|---|---|
 | type<br/><code>mandatory</code> | <code>string</code> - Transaction type, must be "mutual_fund" | `"mutual_fund"` |
-| amount<br/><code>mandatory</code> | <code>numeric</code> - Amount in paise, must match order amount | `50000` |
+| amount<br/><code>mandatory</code> | <code>numeric</code> - The transaction amount. Must match the overall order value | `50000` |
 | receipt<br/><code>mandatory</code> | <code>string</code> - Unique PG reference number (max 25 chars) | `"77407"` |
 | mf_member_id<br/><code>mandatory</code> | <code>numeric</code> - Member ID issued by mutual fund platform (5-20 chars) | `"123445"` |
 | mf_user_id<br/><code>mandatory</code> | <code>string</code> - Unique mutual fund user/client ID (max 10 chars) | `"77407"` |
@@ -139,7 +146,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 | Field | Description | Example |
 |---|---|---|
 | type | Must always be `"mutual_fund"` | `"mutual_fund"` |
-| amount | Must match the overall order amount and be in paise | - |
+| amount | Must match the overall order value | - |
 | receipt | Must be unique across transactions | - |
 | mf_member_id | Must be numeric with length between 5-20 characters | - |
 | mf_user_id | Maximum 10 characters allowed | - |
@@ -156,7 +163,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
   <Glossary>SHA</Glossary>-512:
 
   ```plaintext
-  key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|SALT
+  sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||||beneficiarydetail|si_details|||||products|salt)
   ```
 
   * Use empty strings for missing udf\*.
@@ -293,7 +300,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
   Verify response using reverse hash calculation:
 
   ```
-  key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|si_details|||||products|salt
+  key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||||beneficiarydetail|si_details|||||products|salt
   ```
 </Accordion>
 
@@ -357,8 +364,8 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
   | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
   | key<br />`mandatory`                      | `String` The merchant key provided by PayU                                                                                                                                                                                                                 | JPM7Fg                                                                                                                                                                                |
   | command<br />`mandatory`                  | `String` Command to execute the recurring transaction API. Must be si\_transaction                                                                                                                                                                         | si\_transaction                                                                                                                                                                       |
-  | var1<br />`mandatory`                     | `JSON Object` JSON-format object containing transaction details and optional fields. For more information, refer to [var1 object field descriptions](https://docs.payu.in/docs/upi-autopay-integration-wealth-tech-payment#var1-object-field-descriptions) | \{"authpayuid": "6611192557","invoiceDisplayNumber":"12345678910","amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "[ashish@gmail.com](mailto:ashish@gmail.com)"} |
-  | wtParams<br />`mandatory for Wealth Tech` | `JSON` This parameter contains various fields in the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to Wealth Tech object wtparams fields description.                                                            | Refer to Wealth Tech object wtparams fields description.                                                                                                                              |
+  | var1<br />`mandatory`                     | `JSON Object` JSON-format object containing transaction details and optional fields. For more information, refer to [var1 object field descriptions](https://docs.payu.in/docs/upi-autopay-integration-mutual-fund-payments#var1-object-field-descriptions) | \{"authpayuid": "6611192557","invoiceDisplayNumber":"12345678910","amount": 3,"txnid": "REC15113506209","phone": "9999999999","email": "[ashish@gmail.com](mailto:ashish@gmail.com)"} |
+  | wtParams<br />`mandatory for Wealth Tech` | `JSON` This parameter contains various fields in the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [Wealth Tech object wtparams fields description](https://docs.payu.in/docs/upi-autopay-integration-mutual-fund-payments#wealth-tech-object-wtparams-fields-description).                                                            | Refer to Wealth Tech object wtparams fields description.                                                                                                                              |
   | hash<br />`mandatory`                     | `String` SHA512 hash generated by concatenating key\\\|command\\\|var1\\\|salt for request authentication                                                                                                                                                  | jbUS07Og8BToVZ                                                                                                                                                                        |
 
   <Accordion title="var1 object field descriptions" icon="fa-cog">
@@ -372,11 +379,13 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
-  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d 'key=JP***g&command=si_transaction&var1={"authpayuid":"6611192557","invoiceDisplayNumber":"12345678910","amount":3,"txnid":"REC15113506209","phone":"9999999999","email":"chota.bheem@gmail.com","udf2":"","udf3":"","udf4":"","udf5":"","more_info":{"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}}&hash=jbUS07Og8BToVZ'
-
+  curl --location 'https://test.payu.in/merchant/postservice?form=2' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --header 'Cookie: PHPSESSID=69c253779decd' \
+  --data-urlencode 'key=j6Bb3k' \
+  --data-urlencode 'command=si_transaction' \
+  --data-urlencode 'hash={{hash}}' \
+  --data-urlencode 'var1={"authpayuid":"403993715537049175","invoiceDisplayNumber":"IN_403993715537049175","amount":"1","txnid":"tx_403993715537049175","phone":"9988776655","email":"chota.bheem@gmail.com","more_info":[{"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"1000.00","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"12345","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}]}'
   ```
 </Accordion>
 
