@@ -28,7 +28,7 @@ name: Mutual_Funds_Product_JSON
 | Field | Description | Example |
 |---|---|---|
 | type<br/><code>mandatory</code> | <code>string</code> - Transaction type, must be "mutual_fund" | `"mutual_fund"` |
-| amount<br/><code>mandatory</code> | <code>float</code> - The transaction amount, must match order amount | `50000` |
+| amount<br/><code>mandatory</code> | <code>float</code> - The transaction amount. Must match the overall order value | `50000` |
 | receipt<br/><code>mandatory</code> | <code>string</code> - Unique PG reference number (max 25 chars) | `"77407"` |
 | mf_member_id<br/><code>mandatory</code> | <code>numeric</code> - Member ID issued by mutual fund platform (5-20 chars) | `"123445"` |
 | mf_user_id<br/><code>mandatory</code> | <code>string</code> - Unique mutual fund user/client ID (max 10 chars) | `"77407"` |
@@ -46,7 +46,7 @@ name: Mutual_Funds_Product_JSON
 | Field | Description | Example |
 |---|---|---|
 | type | Must always be `"mutual_fund"` | `"mutual_fund"` |
-| amount | Must match the overall order amount and be in paise | - |
+| amount | Must match the overall order value | - |
 | receipt | Must be unique across transactions | - |
 | mf_member_id | Must be numeric with length between 5-20 characters | - |
 | mf_user_id | Maximum 10 characters allowed | - |
