@@ -115,13 +115,13 @@ The Retry Management page validates each field before you save. Use the followin
 
 No. By default, retry is disabled. Failed subscription transactions are not retried until you enable Smart Retry or Custom Retry from the dashboard. Refer to the Configure Payment Retries section for steps to enable retry.
 
-### What is the difference between Smart Retry and Custom Retry?
+2. ### What is the difference between Smart Retry and Custom Retry?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   **Smart Retry** is managed by PayU. PayU decides when and how often to retry based on historical data. No manual setup required.
 
-**Smart Retry** is managed by PayU. PayU decides when and how often to retry based on historical data—no manual setup required.
-
-**Custom Retry** lets you configure the number of retries, intervals (minutes, hours, or days), and which subscription cycles the settings apply to.
-
-### How many retry attempts can I configure?
+   **Custom Retry** lets you configure the number of retries, intervals (minutes, hours, or days), and which subscription cycles the settings apply to.
+   </Accordion>
+3. ### How many retry attempts can I configure?
 
 You can configure a maximum of **7 retries** per subscription type when using Custom Retry.
 
