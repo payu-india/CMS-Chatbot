@@ -11,7 +11,12 @@ name: HoverCardGrid
  * Usage: pass columns and items. Each item: title, href, optional text, icon, image, imageAlt, target.
  * If `image` (URL) is set, it shows above the title; otherwise `icon` (Font Awesome class) is used.
  *
+ * ReadMe Refactored (MDX): use plain strings only in items — do not pass JSX in `text`.
+ * See README_HOVER_CARD_GRID.md for a working 3-card example.
+ *
  * Props: items, columns 1–4, className.
+ *
+ * Do not add helpers above `export` — ReadMe MDX parses that region and Acorn fails on `{`.
  */
 
 export const HoverCardGrid = (props) => {
@@ -49,7 +54,10 @@ export const HoverCardGrid = (props) => {
           const content = item?.text;
           const hasContent =
             content != null && (typeof content === 'string' ? content.trim() !== '' : true);
-          const icon = item?.icon != null ? String(item.icon).trim() : '';
+          const rawIcon = item?.icon != null ? String(item.icon).trim() : '';
+          const strippedIcon = rawIcon ? rawIcon.replace(/^fa\s+/i, '').trim() : '';
+          const icon =
+            !strippedIcon ? '' : strippedIcon.indexOf('fa-') === 0 ? strippedIcon : 'fa-' + strippedIcon;
           const rawImage =
             item?.image != null
               ? String(item.image).trim()
@@ -145,7 +153,7 @@ export const HoverCardGrid = (props) => {
                   className={`mb-3 inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-white/80 text-[15px] text-slate-700 shadow-sm ring-1 ring-slate-900/5 ${mediaTransition} group-hover:scale-105 group-hover:shadow-md`}
                   aria-hidden="true"
                 >
-                  <span className={`fa ${icon}`} aria-hidden="true" />
+                  <i className={`fa ${icon} text-[#00b386]`} aria-hidden="true" />
                 </span>
               ) : null}
               <span
