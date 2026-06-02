@@ -78,9 +78,13 @@ Use this endpoint to check the mandate status of the following payment methods:
 
 ## Request Parameters
 
-> 📘 **Mandatory Parameters**
+> 📘 Mandatory Params
 >
-> <RequiredStar legend />
+>
+
+\> 📘 **Mandatory Parameters**
+\>
+\> <RequiredStar legend />
 
 | **Parameter**                    | **Description**                                                                                                                                                                                                                                     |
 | :------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
