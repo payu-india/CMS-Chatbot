@@ -7,11 +7,9 @@ metadata:
 ---
 Follow these steps to integrate the PayU Hosted Checkout on your website.
 
-<Callout icon="👍" theme="okay">
-  **Payment Flow**
-
-  Before you start integrating, it’s important to understand how PayU Hosted Checkout payment flow and customer journey works.
-</Callout>
+> 👍 Payment Flow
+>
+> Before you start integrating, it’s important to understand how PayU Hosted Checkout payment flow and customer journey works.
 
 <HoverCardGrid
   columns={2}
@@ -21,7 +19,7 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
       text: (
         <div style={{ color: "#000", padding: "8px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
-            <i className="fa fa-code" style={{ color: "#00b386", fontSize: "18px" }} />
+            <i className="fa fa-code" style={{ color: "#00b386", fontSize: "18px" }}></i>
             <h4 style={{ margin: 0, fontWeight: "600" }}>
               1. Build Integration
             </h4>
@@ -40,7 +38,7 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
       text: (
         <div style={{ color: "#000", padding: "8px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
-            <i className="fa fa-flask" style={{ color: "#00b386", fontSize: "18px" }} />
+            <i className="fa fa-flask" style={{ color: "#00b386", fontSize: "18px" }}></i>
             <h4 style={{ margin: 0, fontWeight: "600" }}>
               2. Test Integration
             </h4>
@@ -59,7 +57,7 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
       text: (
         <div style={{ color: "#000", padding: "8px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
-            <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "18px" }} />
+            <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "18px" }}></i>
             <h4 style={{ margin: 0, fontWeight: "600" }}>
               3. Production Checklist
             </h4>
@@ -80,9 +78,9 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
 
 In this step, you are:
 
-* Creating a payment request on your backend
-* Securing it using a hash
-* Sending the user to the PayU Hosted Checkout to complete the payment
+- Creating a payment request on your backend
+- Securing it using a hash
+- Sending the user to the PayU Hosted Checkout to complete the payment
 
 This is the core of the integration. Everything else builds on top of this.
 
@@ -595,7 +593,7 @@ To ensure the payment request is secure, you must generate a hash using your tra
   ```JavaScript
   const crypto = require('crypto');
 
-  function generateHash(params, salt) {
+  function generateHash(params, salt) \{
     // Extract parameters or use empty string if not provided
     const key = params.key;
     const txnid = params.txnid;
@@ -614,7 +612,7 @@ To ensure the payment request is secure, you must generate a hash using your tra
     
     // Generate SHA-512 hash
     return crypto.createHash('sha512').update(hashString).digest('hex');
-  }
+  \}
 
   // Example usage
   const params = {
@@ -639,41 +637,7 @@ To ensure the payment request is secure, you must generate a hash using your tra
     Replace the key and salt values with your test values obtained from the dashboard. Know more about generating test values.
   </Callout>
 
-  <HTMLBlock>{`
-                                                        			<p>You then generate a SHA-512 hash of this string. You can also use this tool to generate the hash value by providing the mandatory parameter values.</p><br/>
-                                                        								<style>
-                                                                        .tooltip-btn {
-                                                                            position: relative;
-                                                                            background-color: #4CAF50;
-                                                                            color: white;
-                                                                            padding: 10px 20px;
-                                                                            border: none;
-                                                                            border-radius: 5px;
-                                                                            cursor: pointer;
-                                                                            font-weight: bold; /* Added this line */
-                                                                        }
-                                                                        .tooltip-btn:hover::after {
-                                                                            content: attr(data-tooltip);
-                                                                            position: absolute;
-                                                                            bottom: 125%;
-                                                                            left: 50%;
-                                                                            transform: translateX(-50%);
-                                                                            background-color: #333;
-                                                                            color: white;
-                                                                            padding: 5px 10px;
-                                                                            border-radius: 4px;
-                                                                            white-space: nowrap;
-                                                                            font-size: 12px;
-                                                                            z-index: 1;
-                                                                        }
-                                                                        </style>
-
-                                                                        <button onclick="window.open('https://payu-india.github.io/CMS-Chatbot/', '_blank')" 
-                                                                                class="tooltip-btn" 
-                                                                                data-tooltip="Click to generate hash.">
-                                                                            Generate Hash
-                                                                        </button>
-  `}</HTMLBlock>
+  <HTMLBlock>{/*RDMX_HTMLBLOCK:CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCQkJPHA+WW91IHRoZW4gZ2VuZXJhdGUgYSBTSEEtNTEyIGhhc2ggb2YgdGhpcyBzdHJpbmcuIFlvdSBjYW4gYWxzbyB1c2UgdGhpcyB0b29sIHRvIGdlbmVyYXRlIHRoZSBoYXNoIHZhbHVlIGJ5IHByb3ZpZGluZyB0aGUgbWFuZGF0b3J5IHBhcmFtZXRlciB2YWx1ZXMuPC9wPjxici8+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCQkJCQkJCQk8c3R5bGU+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC50b29sdGlwLWJ0biB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNENBRjUwOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29sb3I6IHdoaXRlOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGFkZGluZzogMTBweCAyMHB4OwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYm9yZGVyOiBub25lOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogNXB4OwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY3Vyc29yOiBwb2ludGVyOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZm9udC13ZWlnaHQ6IGJvbGQ7IC8qIEFkZGVkIHRoaXMgbGluZSAqLwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC50b29sdGlwLWJ0bjpob3Zlcjo6YWZ0ZXIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29udGVudDogYXR0cihkYXRhLXRvb2x0aXApOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcG9zaXRpb246IGFic29sdXRlOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYm90dG9tOiAxMjUlOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbGVmdDogNTAlOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVYKC01MCUpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzMzMzsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbG9yOiB3aGl0ZTsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBhZGRpbmc6IDVweCAxMHB4OwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogNHB4OwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgd2hpdGUtc3BhY2U6IG5vd3JhcDsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZvbnQtc2l6ZTogMTJweDsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHotaW5kZXg6IDE7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9zdHlsZT4KCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxidXR0b24gb25jbGljaz0id2luZG93Lm9wZW4oJ2h0dHBzOi8vcGF5dS1pbmRpYS5naXRodWIuaW8vQ01TLUNoYXRib3QvJywgJ19ibGFuaycpIiAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbGFzcz0idG9vbHRpcC1idG4iIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRhdGEtdG9vbHRpcD0iQ2xpY2sgdG8gZ2VuZXJhdGUgaGFzaC4iPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgR2VuZXJhdGUgSGFzaAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2J1dHRvbj4KICA=:RDMX_HTMLBLOCK*/}</HTMLBlock>
 
   <br />
 
@@ -716,8 +680,8 @@ To ensure the payment request is secure, you must generate a hash using your tra
 
 Now that you have created the hash value combine the below into a request that will be sent to PayU.
 
-* Payment parameters
-* Generated hash
+- Payment parameters
+- Generated hash
 
 <Accordion title="POST the HTML Form (server renders)" icon="fa-paper-plane">
   **Sample Payloads in HTML and Other Language Bindings**<br />
@@ -800,8 +764,8 @@ Now that you have created the hash value combine the below into a request that w
   result = make_payu_request()
   ```
   ```JavaScript
-  async function makePayURequest() {
-  try {
+  async function makePayURequest() \{
+  try \{
     const url = "https://test.payu.in/_payment";
 
     const formData = new URLSearchParams({
@@ -836,11 +800,11 @@ Now that you have created the hash value combine the below into a request that w
       response: responseText
     };
 
-  } catch (error) {
+  \} catch (error) {
     console.error(`Error occurred: ${error.message}`);
     return null;
   }
-  }
+  \}
 
   // Execute the request
   makePayURequest()
@@ -858,14 +822,14 @@ Now that you have created the hash value combine the below into a request that w
   import java.net.*;
   import java.nio.charset.StandardCharsets;
 
-  public class PayURequest {
+  public class PayURequest \{
 
   public static void main(String[] args) {
     makePayURequest();
   }
 
-  public static void makePayURequest() {
-    try {
+  public static void makePayURequest() \{
+    try \{
       URL url = new URL("https://test.payu.in/_payment");
       HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -903,7 +867,7 @@ Now that you have created the hash value combine the below into a request that w
               : connection.getErrorStream();
 
       try (BufferedReader br = new BufferedReader(
-          new InputStreamReader(responseStream, StandardCharsets.UTF_8))) {
+          new InputStreamReader(responseStream, StandardCharsets.UTF_8))) \{
 
         StringBuilder response = new StringBuilder();
         String responseLine;
@@ -913,21 +877,21 @@ Now that you have created the hash value combine the below into a request that w
         }
 
         System.out.println("Response: " + response.toString());
-      }
+      \}
 
       connection.disconnect();
 
-    } catch (IOException e) {
+    \} catch (IOException e) {
       System.err.println("Error occurred: " + e.getMessage());
       e.printStackTrace();
     }
-  }
-  }        
+  \}
+  \}        
   ```
   ```PHP
   <?php
-  function makePayURequest() {
-  try {
+  function makePayURequest() \{
+  try \{
     $url = "https://test.payu.in/_payment";
 
     $postData = array(
@@ -981,11 +945,11 @@ Now that you have created the hash value combine the below into a request that w
       'response' => $response
     );
 
-  } catch (Exception $e) {
+  \} catch (Exception $e) {
     echo "Error occurred: " . $e->getMessage() . "\n";
     return null;
   }
-  }
+  \}
 
   // Execute the request
   $result = makePayURequest();
@@ -999,7 +963,7 @@ Now that you have created the hash value combine the below into a request that w
   use HTTP::Request::Common qw(POST);
   use URI::Escape;
 
-  sub make_payu_request {
+  sub make_payu_request \{
       my $ua = LWP::UserAgent->new;
       $ua->timeout(30);
       
@@ -1025,7 +989,7 @@ Now that you have created the hash value combine the below into a request that w
       
       my $response = $ua->request($request);
       
-      if ($response->is_success) {
+      if ($response->is_success) \{
           print "Status Code: " . $response->code . "
   ";
           print "Response: " . $response->decoded_content . "
@@ -1035,7 +999,7 @@ Now that you have created the hash value combine the below into a request that w
               'status_code' => $response->code,
               'response' => $response->decoded_content
           };
-      } else {
+      \} else {
           print "Error occurred: " . $response->status_line . "
   ";
           print "Status Code: " . $response->code . "
@@ -1044,7 +1008,7 @@ Now that you have created the hash value combine the below into a request that w
   " if $response->decoded_content;
           return undef;
       }
-  }
+  \}
 
   # Execute the request
   my $result = make_payu_request();
@@ -1063,18 +1027,18 @@ Now that you have created the hash value combine the below into a request that w
   using System.Threading.Tasks;
 
   class Program
-  {
+  \{
       static async Task Main(string[] args)
       {
           await MakePayURequest();
       }
       
       static async Task MakePayURequest()
-      {
+      \{
           try
-          {
+          \{
               using (var client = new HttpClient())
-              {
+              \{
                   var url = "https://test.payu.in/_payment";
                   
                   client.DefaultRequestHeaders.Add("accept", "application/json");
@@ -1100,14 +1064,14 @@ Now that you have created the hash value combine the below into a request that w
                   
                   Console.WriteLine($"Status Code: {(int)response.StatusCode}");
                   Console.WriteLine($"Response: {responseContent}");
-              }
-          }
+              \}
+          \}
           catch (HttpRequestException e)
           {
               Console.WriteLine($"Error occurred: {e.Message}");
           }
-      }
-  }          
+      \}
+  \}          
   ```
 
   <Callout icon="🚧" theme="warn">
