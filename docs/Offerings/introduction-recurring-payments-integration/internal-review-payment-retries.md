@@ -74,7 +74,12 @@ Select either of the retry type. The following are the available options:
     2. Define the first retry in the **1st Retry after previous attempt** section. The following option is available.
       * **Time of Retry:** Select the time after which the first retry attempt should be made. You can add maximum of 3 such retries for a day.
     3. Set the time and number of retries for other frequencies.
-    4. Select the action on subscriptions after all retries are exhausted from the **Mark Subscription as** drop-down list.
+    4. Select the action on subscriptions after all retries are exhausted from the **Mark Subscription as** drop-down list. Following are the available options.
+    | Option               | Description                                           |
+    | -------------------- | ----------------------------------------------------- |
+    | **Unpaid (Default)** | The subscription remains active but marked as unpaid. |
+    | **Cancelled**        | The subscription is automatically cancelled.          |
+
     5. Enable or disable **Skip weekends** radio button to skip retry on weekends.
     6. Click **Update**.
 
