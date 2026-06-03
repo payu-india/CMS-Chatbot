@@ -115,7 +115,7 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
 
 ````
 ```Text Dart
-var payUPaymentParams = { 
+var payUPaymentParams = \{ 
 
    “key”: "Merchant key", 
 
@@ -125,7 +125,7 @@ var payUPaymentParams = {
 
    ... 
 
-  “additionalParam”: { 
+  “additionalParam”: \{ 
        “payment_related_details_for_mobile_sdk”: "payment_related_details_for_mobile_sdk hash", 
   “vas_for_mobile_sdk”: "vas_for_mobile_sdk hash", 
  “payment": "Payment Hash" 
@@ -973,7 +973,8 @@ var payUPaymentParams = {
         PayUPaymentParamKey.transactionId:
             DateTime.now().millisecondsSinceEpoch.toString(),
         PayUPaymentParamKey.additionalParam: additionalParam,
-
+       "partner_webhook_success":"<patner webhook success url>", 
+       "partner_webhook_failure":"<patner webhook failure url>",
         // PayUPaymentParamKey.payUSIParams: siParams,
         // PayUPaymentParamKey.enableNativeOTP: true,
         // PayUPaymentParamKey.splitPaymentDetails: json.encode(splitPaymentDetails),
