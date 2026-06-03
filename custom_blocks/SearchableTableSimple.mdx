@@ -3,25 +3,20 @@ name: SearchableTableSimple
 ---
 // SearchableTableSimple - Readme CMS Custom Component
 // Register in Readme as component name: SearchableTableSimple
-// Doc pages: tableKey="banksDemo" or rowsJson string. No inline rows on pages.
+// Demo rows use JSON strings inside the component. Doc pages: rowsJson for custom data.
 
 import { useState, useMemo } from 'react';
 
 export const SearchableTableSimple = (props) => {
-  const banksDemoHeaders = ['Bank', 'Type', 'Status'];
-  const banksDemoRows = [
-    ['HDFC Bank', 'Netbanking / Cards', 'Active'],
-    ['ICICI Bank', 'Netbanking / Cards', 'Active'],
-    ['State Bank of India', 'Netbanking', 'Active'],
-    ['Axis Bank', 'Cards', 'Active'],
-  ];
+  const demoHeadersJson = '["Bank","Type","Status"]';
+  const demoRowsJson =
+    '[["HDFC Bank","Netbanking / Cards","Active"],["ICICI Bank","Netbanking / Cards","Active"],["State Bank of India","Netbanking","Active"],["Axis Bank","Cards","Active"]]';
 
   const {
     headers = [],
     headersJson = '',
     rows = [],
     rowsJson = '',
-    tableKey = '',
     placeholder = 'Search in table...',
     maxHeight = '400px',
     emptyMessage = 'No results found. Try a different search.',
@@ -75,12 +70,10 @@ export const SearchableTableSimple = (props) => {
     if (Array.isArray(headers) && headers.length > 0) {
       return headers.map((h) => String(h == null ? '' : h));
     }
-    const key = tableKey && String(tableKey).trim();
-    if (key === 'banksDemo') {
-      return banksDemoHeaders.map((h) => String(h == null ? '' : h));
-    }
-    return [];
-  }, [headers, headersJson, tableKey]);
+    return parseJsonProp(demoHeadersJson, []).map((h) =>
+      String(h == null ? '' : h)
+    );
+  }, [headers, headersJson, demoHeadersJson]);
 
   const tableRows = useMemo(() => {
     const fromRows = coerceRows(rows);
@@ -89,13 +82,8 @@ export const SearchableTableSimple = (props) => {
     const fromJson = coerceRows(rowsJson);
     if (fromJson.length > 0) return fromJson;
 
-    const key = tableKey && String(tableKey).trim();
-    if (key === 'banksDemo') {
-      return coerceRows(banksDemoRows);
-    }
-
-    return [];
-  }, [rows, rowsJson, tableKey]);
+    return coerceRows(demoRowsJson);
+  }, [rows, rowsJson, demoRowsJson]);
 
   const normalize = (str) =>
     str == null ? '' : String(str).toLowerCase().trim().replace(/\s+/g, ' ');
@@ -281,7 +269,7 @@ export const SearchableTableSimple = (props) => {
                       border: '1px solid ' + borderColor,
                     }}
                   >
-                    No rows loaded. On doc pages use tableKey banksDemo or rowsJson.
+                    No rows loaded. Re-paste SearchableTableSimple.jsx into Custom Components.
                   </td>
                 </tr>
               ) : showEmptyState ? (
@@ -336,4 +324,4 @@ export const SearchableTableSimple = (props) => {
 };
 
 
-<SearchableTableSimple tableKey="banksDemo" placeholder="Search" />
+<SearchableTableSimple placeholder="Search" />
