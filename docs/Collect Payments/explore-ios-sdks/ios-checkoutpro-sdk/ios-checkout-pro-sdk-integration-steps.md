@@ -105,7 +105,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   <Accordion title="Step 2.1: Basic Integration" icon="fa-code">
     PayU SDK needs certain inputs from the merchant app to authenticate and initiate a transaction.
 
-    ```Text Swift
+    ```swift
     let paymentParam = PayUPaymentParam(key: <String>,
                                         transactionId: <String>,
                                         amount: <String>,
@@ -119,7 +119,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
                                         
     paymentParam.userCredential = <String> // For saving and fetching user’s saved card
     ```
-    ```Text Onjective-C
+    ```objective-c
     PayUPaymentParam *paymentParam = [[PayUPaymentParam alloc] initWithKey:<#(NSString * _Nonnull)#>
                                                              transactionId:<#(NSString * _Nonnull)#>
                                                                     amount:<#(NSString * _Nonnull)#>
@@ -143,267 +143,98 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     <Accordion title="Mandatory parameters" icon="fa-code">
       Use the following table to pass the mandatory parameters in the PayU SDK:
 
-      <Table align={["left","left","left"]}>
-        <thead>
-          <tr>
-            <th style={{ textAlign: "left" }}>
-              Parameter
-            </th>
-
-            <th style={{ textAlign: "left" }}>
-              Description
-            </th>
-
-            <th style={{ textAlign: "left" }}>
-              Data Type and Validation
-            </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              Key
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `String` Merchant Key received from PayU Dashboard
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Cannot be null or empty
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              TransactionId
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `String` Cannot be null or empty and should be unique for each transaction. Maximum allowed length is 25 characters. It cannot contain special characters like: - /, & , @ etc.
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Should be unique for each transaction
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              Amount
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `String` Total transaction amount.
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Cannot be null or empty
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              Product Info
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `String` Information about Product
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Cannot be null or empty
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              First Name
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `String` Customer’s first name
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Cannot be null or empty
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              Email
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `String` Customer’s Email ID
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Cannot be null or empty
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              Phone
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `String` Customer’s phone number
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Should be of 10 digits
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              surl
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `String` When the transaction gets successful, PayU will load this URL and pass the transaction response.
-
-              * *Sample URL*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
-              * *Note*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Cannot be null or empty
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              furl\
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `String` When the transaction gets fail, PayU will load this url and pass transaction response.
-
-              * *Sample URL*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
-              * *Note*\*:- This URL is used for only Testing Purposes. Don't go live, [Refer to Generate own SURL/FURL](https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios)
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Cannot be null or empty
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              Environment\
-              `mandatory`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `String`Environment of SDK
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Should be either
-
-              * *Swift*\*:`production or test `**ObjectiveC**: `EnvironmentProduction `or `EnvironmentTest`
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              User Credential\
-              `optional`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Should be a unique value\
-              Format: \<merchantKey>:\<userId>
-              Here, UserId is any id/email/phone number to uniquely identify the user
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              PayUSIParams\
-              `optional`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `Object` of PayUSIParams. This contains SI Details.
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Object of PayUSIParams
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              SplitPaymentDetails\
-              `optional`
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              `String`\
-              This parameter is required for splitting the transactions.
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              Should be a json String
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              additionalCharges
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              String\
-              This parameter is required if merchant want to take additional charge from user
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              should be string with PG:Amount or IBIBOCode:Amount\
-              Sample: CC:10,NB:20,SBIB:15
-            </td>
-          </tr>
-
-          <tr>
-            <td style={{ textAlign: "left" }}>
-              percentageAdditionalCharges
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              String\
-              This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable
-            </td>
-
-            <td style={{ textAlign: "left" }}>
-              should be string with PG:Amount or IBIBOCode:Amount\
-              Sample: CC:100,NB:50,SBIB:25
-            </td>
-          </tr>
-        </tbody>
-      </Table>
+      <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Data Type and Validation</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Key<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Merchant Key received from PayU Dashboard</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>TransactionId<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Cannot be null or empty and should be unique for each transaction. Maximum allowed length is 25 characters. It cannot contain special characters like: - /, & , @ etc.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be unique for each transaction</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Amount<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Total transaction amount.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Product Info<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Information about Product</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>First Name<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer’s first name</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Email<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer’s Email ID</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Phone<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer’s phone number</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be of 10 digits</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>surl<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When the transaction gets successful, PayU will load this URL and pass the transaction response.</p><ul><li><em>Sample URL</em>: <a href="https://cbjs.payu.in/sdk/success">https://cbjs.payu.in/sdk/success</a></li><li><em>Note</em>:- This URL is used for only Testing Purposes. Don't go live, <a href="https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios">Refer to Generate own SURL/FURL</a></li></ul></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>furl\<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When the transaction gets fail, PayU will load this url and pass transaction response.</p><ul><li><em>Sample URL</em>: <a href="https://cbjs.payu.in/sdk/failure">https://cbjs.payu.in/sdk/failure</a></li><li><em>Note</em>:- This URL is used for only Testing Purposes. Don't go live, <a href="https://docs.payu.in/docs/handling-redirect-surlfurl-urls-with-ios">Refer to Generate own SURL/FURL</a></li></ul></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Environment\<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Environment of SDK</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be either</p><ul><li><em>Swift</em>:<code>production or test </code><strong>ObjectiveC</strong>: <code>EnvironmentProduction </code>or <code>EnvironmentTest</code></li></ul></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>User Credential\ <code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a unique value\ Format: \<merchantKey>:\<userId> Here, UserId is any id/email/phone number to uniquely identify the user</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>PayUSIParams\ <code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> of PayUSIParams. This contains SI Details.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Object of PayUSIParams</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>SplitPaymentDetails\ <code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>\ This parameter is required for splitting the transactions.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a json String</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalCharges</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>String\ This parameter is required if merchant want to take additional charge from user</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>should be string with PG:Amount or IBIBOCode:Amount\ Sample: CC:10,NB:20,SBIB:15</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>percentageAdditionalCharges</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>String\ This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>should be string with PG:Amount or IBIBOCode:Amount\ Sample: CC:100,NB:50,SBIB:25</p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 
       If you required any value in the response then pass the below value
 
-      ```Text Swift
+      ```swift
       paymentParam.additionalParam[PaymentParamConstant.udf1] = <String>
       paymentParam.additionalParam[PaymentParamConstant.udf2] = <String>
       paymentParam.additionalParam[PaymentParamConstant.udf3] = <String>
@@ -411,7 +242,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       paymentParam.additionalParam[PaymentParamConstant.udf5] = <String>
       paymentParam.additionalParam[PaymentParamConstant.walletURN] = <String>  // Required for Amul Wallet
       ```
-      ```Text Objective-C
+      ```objective-c
       paymentParam.additionalParam = [[NSDictionary alloc] initWithObjectsAndKeys:
                                           <#(NSString)#>, PaymentParamConstant.udf1,
                                           <#(NSString)#>, PaymentParamConstant.udf2,
@@ -429,7 +260,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     Use the following sample code:
 
-    ```Text Swift
+    ```swift
      let siInfo = PayUSIParams(billingAmount: <String>,
                                paymentStartDate: <Date>,
                                paymentEndDate: <Date>,
@@ -441,7 +272,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
                 
                 paymentParam.siParam = siInfo
     ```
-    ```Text Onjective-C
+    ```objective-c
     paymentParam.siParams = siParam;
     ```
   </Accordion>
@@ -449,7 +280,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   <Accordion title="Step 2.3: For UPI One Time Mandate Payments (Optional)" icon="fa-code">
     For UPI One Time Mandate (OTM) payments, use the following parameters:
 
-    ```Text Swift
+    ```swift
     let siInfo = PayUSIParams(paymentStartDate: self.siStartDate,
                             paymentEndDate: self.siEndDate,
                            isPreAuthTxn: true)
@@ -457,7 +288,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
        paymentParam.siParam = siInfo
      #isPreAuthTxn must be true for OTM transactions
     ```
-    ```Text Onjective-C
+    ```objective-c
     paymentParam.siParams = siParam;
     ```
   </Accordion>
@@ -465,11 +296,11 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   <Accordion title="Step 2.4: For Additional Charges" icon="fa-code">
     Additional charges can be applied to transactions:
 
-    ```Text Swift
+    ```swift
     paymentParam.additionalCharges = "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55"
     paymentParam.percentageAdditionalCharges = "CC:50,SBIB:100,DINR:100,DC:25,NB:50"
     ```
-    ```Text Objective-C
+    ```objective-c
     paymentParam.additionalCharges = @"CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
     paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50";
     ```
@@ -497,10 +328,10 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
       Example implementation:
 
-      ```Text Swift
+      ```swift
       paymentParam.splitPaymentDetails = ""
       ```
-      ```Text Objective-C
+      ```objective-c
       paymentParam.splitPaymentDetails = @"";
       ```
     </Accordion>
@@ -546,7 +377,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     > **Keep in mind**\
     > If you add SKU offer details, the `amount` in `PayUPaymentParam` must equal the sum of (quantity × skuAmount) for each item.
 
-    ```Text Swift
+    ```swift
     let sku1 = PayUSku(skuId: "111", skuName: "Shoes", skuAmount: "100", quantity: 1, offerKeys: nil)
     let sku2 = PayUSku(skuId: "222", skuName: "Shirt", skuAmount: "100", quantity: 1, offerKeys: nil)
 
@@ -555,7 +386,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     // Attach SKU details to payment params
     paymentParam.skuDetail = skuDetails
     ```
-    ```Text Objective-C
+    ```objective-c
     PayUSku *sku1 = [PayUSku new];
     sku1.skuId = @"111";
     sku1.skuName = @"Shoes";
@@ -594,7 +425,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       * `beneficiaryIFSC`: Bank's IFSC code
       * `beneficiaryAccountNumber`: Account number from which payment should be made
 
-      ```Text Swift
+      ```swift
       let beneficiary1 = PayUBeneficiaryParams(
           beneficiaryName: "",
           beneficiaryAccountNumber: "002001600674",
@@ -607,7 +438,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
       paymentParam.payuBeneficieryDetails = beneficiaryList
       ```
-      ```Text Objective-C
+      ```objective-c
       PayUBeneficiaryParams *beneficiary1 = [[PayUBeneficiaryParams alloc]
           initWithBeneficiaryName:@""
           beneficiaryAccountNumber:@"002001600674"
@@ -634,7 +465,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       * `beneficiaryAccountType`: Type of account (savings or current)
       * `beneficiaryName`: Account holder's name (must match bank records)
 
-      ```Text Swift
+      ```swift
       let beneficiary1 = PayUBeneficiaryParams(
           beneficiaryName: "John Doe",
           beneficiaryAccountNumber: "002001600674",
@@ -647,7 +478,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
       paymentParam.payuBeneficieryDetails = beneficiaryList
       ```
-      ```Text Objective-C
+      ```objective-c
       PayUBeneficiaryParams *beneficiary1 = [[PayUBeneficiaryParams alloc]
           initWithBeneficiaryName:@"John Doe"
           beneficiaryAccountNumber:@"002001600674"
@@ -675,7 +506,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       **Use Case:**\
       This is useful when you want to offer multiple payment options to the customer while enforcing TPV validation on all available methods.
 
-      ```Text Swift
+      ```swift
       // Beneficiary details for UPI
       let upiBeneficiary = PayUBeneficiaryParams(
           beneficiaryName: "",
@@ -699,7 +530,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
       paymentParam.payuBeneficieryDetails = beneficiaryList
       ```
-      ```Text Objective-C
+      ```objective-c
       // Beneficiary details for UPI
       PayUBeneficiaryParams *upiBeneficiary = [[PayUBeneficiaryParams alloc]
           initWithBeneficiaryName:@""
@@ -751,7 +582,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     **PayUAddressDetails** – Contains the following properties:
 
-    ```Text Swift
+    ```swift
     let address = PayUAddressDetails()
     address.lastName = "Doe"
     address.address1 = "34 Saikripa-Estate, Tilak Nagar"
@@ -763,7 +594,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     paymentParam.address = address
     ```
-    ```Text Objective-C
+    ```objective-c
     PayUAddressDetails *address = [[PayUAddressDetails alloc] init];
     address.lastName = @"Doe";
     address.address1 = @"34 Saikripa-Estate, Tilak Nagar";
@@ -799,10 +630,10 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     When using OPGSP flow, you **must** pass the Invoice Number in the **UDF5** parameter. This is a critical requirement for cross-border transactions and helps in transaction tracking and reconciliation.
 
-    ```Text Swift
+    ```swift
     paymentParam.additionalParam[PaymentParamConstant.udf5] = "INV-2024-001234"
     ```
-    ```Text Objective-C
+    ```objective-c
     paymentParam.additionalParam[PaymentParamConstantUdf5] = @"INV-2024-001234";
     ```
 
@@ -841,7 +672,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     <br />
 
-    ```Text Swift
+    ```swift
     let product = PayUWealthProducts(
         type: "mutual_fund",
         amount: "50000",
@@ -856,7 +687,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     paymentParam.products = [product]
     ```
-    ```Text Objective-C
+    ```objective-c
     PayUWealthProducts *product = [[PayUWealthProducts alloc]
         initWithType:@"mutual_fund"
         amount:@"50000"
@@ -899,13 +730,13 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   <Accordion title="Step 2.10: Enforce Offer Keys (Optional)" icon="fa-code">
     Enforce Offer Keys allows you to apply specific promotional offers to transactions. Pass an array of offer keys to enforce specific offers during checkout.
 
-    ```Text Swift
+    ```swift
     paymentParam.enforcementOfferKeys = ["offer_key_1"]
 
     // Usage - Multiple offers
     paymentParam.enforcementOfferKeys = ["OFFER123", "OFFER456", "OFFER789"]
     ```
-    ```Text Objective-C
+    ```objective-c
     paymentParam.enforcementOfferKeys = @[@"offer_key_1"];
 
     // Usage - Multiple offers
@@ -933,7 +764,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     <br />
 
-    ```Text Swift
+    ```swift
     // UDF Parameters
     paymentParam.additionalParam[PaymentParamConstant.udf1] = "udf1"
     paymentParam.additionalParam[PaymentParamConstant.udf2] = "udf2"
@@ -946,7 +777,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     paymentParam.additionalParam[PaymentParamConstant.sourceId] = "src_xxx"
     paymentParam.additionalParam[PaymentParamConstant.merchantAccessKey] = "YOUR_KEY"
     ```
-    ```Text Objective-C
+    ```objective-c
     // UDF Parameters
     paymentParam.additionalParam[PaymentParamConstantUdf1] = @"udf1";
     paymentParam.additionalParam[PaymentParamConstantUdf2] = @"udf2";
@@ -987,10 +818,10 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 <Accordion title="Step 4: Initiate the payment" icon="fa-code">
   After setting up the payment parameters and hashes, initiate the payment:
 
-  ```Text Swift
+  ```swift
   PayUCheckoutPro.open(on: self, paymentParam: paymentParam, config: <PayUCheckoutProConfig>, delegate: self)
   ```
-  ```Text Objective-C
+  ```objective-c
   [PayUCheckoutPro openOn:self paymentParam:paymentParam config:<#(PayUCheckoutProConfig * _Nullable)#> delegate:self];
   ```
 </Accordion>
@@ -999,7 +830,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   Handle the response when the payment is completed:
   Confirm to PayUCheckoutProDelegate and use these functions to get appropriate callbacks from the SDK:
 
-  ```Text Swift
+  ```swift
   /// This function is called when we successfully process the payment
   /// - Parameter response: success response
   func onPaymentSuccess(response: Any?) {
@@ -1041,7 +872,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       onCompletion([hashName : hashFetchedFromServer])
   }
   ```
-  ```Text Objective-C
+  ```objective-c
   /// This function is called when we successfully process the payment
   /// @param response  success response
   - (void)onPaymentSuccessWithResponse:(id _Nullable)response {
@@ -1086,7 +917,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   <Accordion title="UPI Intent (Optional)" icon="fa-code">
     Currently, PayU supports only PhonePe and GooglePay through Intent. Add the query schemes in the`info.plist`:
 
-    ```Text Info.plist Code for Intent
+    ```xml
 <key>LSApplicationQueriesSchemes</key>
     <array>
       <string>tez</string>
@@ -1139,7 +970,7 @@ Some of the listed schemes may not be actively used at the moment, but they are 
   </Accordion>
 
   <Accordion title="Card/NB/Wallet and other transactions" icon="fa-code">
-    ```Text Success
+    ```json
     {
       "id": 403993715526319631,
       "mode": "CC",
@@ -1188,7 +1019,7 @@ Some of the listed schemes may not be actively used at the moment, but they are 
       "furl": "https://payu.herokuapp.com/ios_failure"
     }
     ```
-    ```Text Failure
+    ```json
     {
       "id": 403993715530851078,
       "mode": "CC",
@@ -1234,7 +1065,7 @@ Some of the listed schemes may not be actively used at the moment, but they are 
   </Accordion>
 
   <Accordion title="UPI Collect/Intent payments" icon="fa-code">
-    ```Text Success
+    ```json
     {
       "txnid": "iOS240117183850",
       "address1": "",
@@ -1294,7 +1125,7 @@ Some of the listed schemes may not be actively used at the moment, but they are 
       "PG_TYPE": "UPI-PG"
     }
     ```
-    ```Text Failure
+    ```json
     {
       "address2": "",
       "field0": "",
