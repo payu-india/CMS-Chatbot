@@ -69,15 +69,43 @@ export const SearchableTable = (props) => {
     };
   }, [dataUrl]);
 
-  const inlineRows = useMemo(() => {
-    const raw = rowsJson && String(rowsJson).trim();
-    if (!raw) return Array.isArray(rows) ? rows : [];
-    try {
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch (e) {
-      return Array.isArray(rows) ? rows : [];
+  const coerceRows = (input) => {
+    if (input == null || input === '') return [];
+    if (Array.isArray(input)) {
+      return input.filter((row) => Array.isArray(row));
     }
+    if (typeof input === 'string') {
+      const text = input.trim();
+      if (!text) return [];
+      try {
+        return coerceRows(JSON.parse(text));
+      } catch (e) {
+        return [];
+      }
+    }
+    if (typeof input === 'object') {
+      if (Array.isArray(input.rows)) return coerceRows(input.rows);
+      if (typeof input.length === 'number' && input.length >= 0) {
+        const list = [];
+        for (let i = 0; i < input.length; i += 1) {
+          list.push(input[i]);
+        }
+        return coerceRows(list);
+      }
+      const vals = Object.keys(input)
+        .sort((a, b) => Number(a) - Number(b))
+        .map((k) => input[k]);
+      if (vals.length > 0 && vals.every((v) => Array.isArray(v))) return vals;
+    }
+    return [];
+  };
+
+  const inlineRows = useMemo(() => {
+    const fromRows = coerceRows(rows);
+    if (fromRows.length > 0) return fromRows;
+    const fromJson = coerceRows(rowsJson);
+    if (fromJson.length > 0) return fromJson;
+    return [];
   }, [rowsJson, rows]);
 
   const tableRows = remoteRows != null ? remoteRows : inlineRows;
@@ -109,7 +137,30 @@ export const SearchableTable = (props) => {
     !isLoading && !hasLoadError && hasSearchQuery && filteredRows.length === 0;
   const colCount = headers.length;
 
-  const useFixedLayout = Array.isArray(columnWidths) && columnWidths.length > 0;
+  const layoutWidths = useMemo(() => {
+    const n = headers.length;
+    if (n === 0) return null;
+    if (Array.isArray(columnWidths) && columnWidths.length > 0) {
+      const widths = columnWidths.slice();
+      while (widths.length < n) {
+        widths.push('auto');
+      }
+      return widths;
+    }
+    const pct = (100 / n).toFixed(4) + '%';
+    return headers.map(() => pct);
+  }, [columnWidths, headers]);
+
+  const useFixedLayout = layoutWidths != null && layoutWidths.length > 0;
+
+  const cellBorder = (index, baseStyle) => {
+    const isLast = index === colCount - 1;
+    return isLast
+      ? Object.assign({}, baseStyle, {
+          borderRight: '1px solid ' + borderColor,
+        })
+      : baseStyle;
+  };
 
   const isCodeCol = (i) =>
     Array.isArray(codeColumns) ? codeColumns.indexOf(i) >= 0 : false;
@@ -321,10 +372,10 @@ export const SearchableTable = (props) => {
           <table
             style={{
               width: '100%',
-              tableLayout: useFixedLayout ? 'fixed' : 'auto',
+              tableLayout: 'fixed',
               borderCollapse: 'collapse',
               borderSpacing: 0,
-              border: 'none',
+              border: '1px solid ' + borderColor,
               margin: 0,
               fontFamily: fontSans,
             }}
@@ -332,7 +383,7 @@ export const SearchableTable = (props) => {
             {useFixedLayout ? (
               <colgroup>
                 {headers.map((_, i) => (
-                  <col key={i} style={{ width: columnWidths[i] }} />
+                  <col key={i} style={{ width: layoutWidths[i] }} />
                 ))}
               </colgroup>
             ) : null}
@@ -342,9 +393,12 @@ export const SearchableTable = (props) => {
                   <th
                     key={i}
                     scope="col"
-                    style={mergeStyle(
-                      headerCellStyle,
-                      useFixedLayout ? { width: columnWidths[i] } : null
+                    style={cellBorder(
+                      i,
+                      mergeStyle(
+                        headerCellStyle,
+                        useFixedLayout ? { width: layoutWidths[i] } : null
+                      )
                     )}
                   >
                     <span style={headerLabelStyle}>
@@ -367,7 +421,7 @@ export const SearchableTable = (props) => {
                       border: '1px solid ' + borderColor,
                     }}
                   >
-                    No rows to display. Add rowsJson on the page or check dataUrl.
+                    No rows to display. Pass rows or rowsJson on the page, or set dataUrl for remote JSON.
                   </td>
                 </tr>
               ) : isLoading ? (
@@ -420,7 +474,7 @@ export const SearchableTable = (props) => {
                     {row.map((cell, cellIndex) => (
                       <td
                         key={cellIndex}
-                        style={bodyCellStyle}
+                        style={cellBorder(cellIndex, bodyCellStyle)}
                       >
                         {clampStyle ? (
                           <div style={clampStyle} title={cellPlainText(cell)}>
