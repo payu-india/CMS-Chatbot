@@ -129,8 +129,8 @@ var payUPaymentParams = \{
        “payment_related_details_for_mobile_sdk”: "payment_related_details_for_mobile_sdk hash", 
   “vas_for_mobile_sdk”: "vas_for_mobile_sdk hash", 
  “payment": "Payment Hash" 
-   } 
-} 
+   \} 
+\} 
 ```
 ````
 
@@ -429,8 +429,14 @@ var payUPaymentParams = \{
 
     For more details on Static Hash generation and passing them, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk).
   </Accordion>
-
-  <Accordion title="Step 5.12: Payment Param Definitions" icon="fa-code">
+ <Accordion title="Step 5.12: For Partnet Webhook" icon="fa-code">
+    Add these parameters to PayUPaymentParams
+     ```Text Dart
+    "partner_webhook_success": "<partner webhook success url>", 
+    "partner_webhook_failure": "<partner webhook failure url>"
+    ```
+</Accordion>
+  <Accordion title="Step 5.13: Payment Param Definitions" icon="fa-code">
     <Table align={["left","left","left"]}>
       <thead>
         <tr>
@@ -842,7 +848,7 @@ var payUPaymentParams = \{
     </Table>
   </Accordion>
 
-  <Accordion title="Step 5.13:  sample (recommended)" icon="fa-code">
+  <Accordion title="Step 5.14:  sample (recommended)" icon="fa-code">
     ```Text Dart
     // import 'dart:convert';
 
