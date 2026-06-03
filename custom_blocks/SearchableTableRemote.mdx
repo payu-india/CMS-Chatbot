@@ -240,6 +240,9 @@ export const SearchableTableRemote = (props) => {
 
   const isCodeCol = (i) => codeColIndexes.indexOf(i) >= 0;
 
+  const isTitleCol = (colIndex) =>
+    /^title$/i.test(String(resolvedHeaders[colIndex] == null ? '' : resolvedHeaders[colIndex]).trim());
+
   const formatHeaderLabel = (text) => {
     const raw = String(text == null ? '' : text).trim();
     if (!raw) return '';
@@ -251,6 +254,33 @@ export const SearchableTableRemote = (props) => {
       })
       .join(' ');
   };
+
+  const titleColMinWidths = useMemo(() => {
+    const widths = {};
+    const rowsForMeasure =
+      filteredRows.length > 0 ? filteredRows : tableRows;
+    const sampleSize = Math.min(rowsForMeasure.length, 150);
+
+    resolvedHeaders.forEach((header, colIdx) => {
+      if (!isTitleCol(colIdx)) return;
+
+      let maxLen = formatHeaderLabel(header).length;
+      for (let r = 0; r < sampleSize; r += 1) {
+        const cell = rowsForMeasure[r] && rowsForMeasure[r][colIdx];
+        if (cell != null) {
+          maxLen = Math.max(maxLen, String(cell).trim().length);
+        }
+      }
+
+      const pad = 32;
+      const pxPerChar = 8;
+      const oneLineWidth = maxLen * pxPerChar + pad;
+      const twoLineWidth = Math.ceil(maxLen / 2) * pxPerChar + pad;
+      widths[colIdx] = Math.min(Math.max(oneLineWidth, twoLineWidth, 112), 280);
+    });
+
+    return widths;
+  }, [resolvedHeaders, filteredRows, tableRows]);
 
   const fontSans =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
@@ -296,6 +326,9 @@ export const SearchableTableRemote = (props) => {
     verticalAlign: 'middle',
     boxSizing: 'border-box',
     whiteSpace: 'nowrap',
+    minWidth: titleColMinWidths[colIndex]
+      ? titleColMinWidths[colIndex] + 'px'
+      : undefined,
   });
 
   const bodyCellStyle = (colIndex, colTotal, isLastRow) => ({
@@ -313,10 +346,37 @@ export const SearchableTableRemote = (props) => {
     borderLeft: 'none',
     verticalAlign: 'top',
     boxSizing: 'border-box',
-    whiteSpace: isCodeCol(colIndex) ? 'nowrap' : 'normal',
-    wordBreak: isCodeCol(colIndex) ? 'normal' : 'break-word',
-    overflowWrap: isCodeCol(colIndex) ? 'normal' : 'break-word',
+    minWidth: titleColMinWidths[colIndex]
+      ? titleColMinWidths[colIndex] + 'px'
+      : undefined,
+    whiteSpace: isCodeCol(colIndex)
+      ? 'nowrap'
+      : isTitleCol(colIndex)
+        ? 'normal'
+        : 'normal',
+    wordBreak: isCodeCol(colIndex) || isTitleCol(colIndex) ? 'normal' : 'break-word',
+    overflowWrap:
+      isCodeCol(colIndex) || isTitleCol(colIndex) ? 'normal' : 'break-word',
   });
+
+  const renderBodyCellInner = (cell, cellIndex) => {
+    const content = renderCellContent(cell, cellIndex);
+    if (titleColMinWidths[cellIndex]) {
+      return (
+        <div style={titleClampStyle} title={cellPlainText(cell)}>
+          {content}
+        </div>
+      );
+    }
+    if (clampStyle) {
+      return (
+        <div style={clampStyle} title={cellPlainText(cell)}>
+          {content}
+        </div>
+      );
+    }
+    return content;
+  };
 
   const messageCellStyle = {
     padding: '16px',
@@ -337,6 +397,35 @@ export const SearchableTableRemote = (props) => {
           textOverflow: 'ellipsis',
         }
       : null;
+
+  const titleClampStyle = {
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 2,
+    overflow: 'hidden',
+    lineHeight: '1.5',
+    wordBreak: 'normal',
+    overflowWrap: 'break-word',
+  };
+
+  const renderColgroup = () => {
+    if (resolvedHeaders.length === 0) return null;
+    if (Object.keys(titleColMinWidths).length === 0) return null;
+    return (
+      <colgroup>
+        {resolvedHeaders.map((_, i) => (
+          <col
+            key={i}
+            style={
+              titleColMinWidths[i]
+                ? { minWidth: titleColMinWidths[i] + 'px', width: '1%' }
+                : undefined
+            }
+          />
+        ))}
+      </colgroup>
+    );
+  };
 
   const cellPlainText = (value) =>
     value == null ? '' : String(value).replace(/`/g, '');
@@ -455,6 +544,7 @@ export const SearchableTableRemote = (props) => {
               fontFamily: fontSans,
             }}
           >
+            {renderColgroup()}
             {resolvedHeaders.length > 0 ? (
               <thead>
                 <tr>
@@ -524,13 +614,7 @@ export const SearchableTableRemote = (props) => {
                           rowIndex === filteredRows.length - 1
                         )}
                       >
-                        {clampStyle ? (
-                          <div style={clampStyle} title={cellPlainText(cell)}>
-                            {renderCellContent(cell, cellIndex)}
-                          </div>
-                        ) : (
-                          renderCellContent(cell, cellIndex)
-                        )}
+                        {renderBodyCellInner(cell, cellIndex)}
                       </td>
                     ))}
                   </tr>
