@@ -25,6 +25,24 @@ link:
 metadata:
   title: Android PhonePe SDK Integration Steps
   description: >-
+    The Android PhonePe SDK integration involves following specific steps,
+    testing the integration, and completing a go-live checklist, with guidance
+    on generating a static hash for the process.
+  keywords:
+    - Android PhonePe SDK Integration Steps
+    - ' Steps to Integrate Android PhonePe SDK'
+    - ' Android PhonePe SDK Integration Steps'
+  robots: index
+---
+---
+title: Integration Steps
+deprecated: false
+hidden: false
+link:
+  new_tab: false
+metadata:
+  title: Android PhonePe SDK Integration Steps
+  description: >-
     Integrate PhonePe in-app payments on Android with PayU: SDK dependency, intent flow, hash, callbacks, and sandbox testing.
   robots: index
   keywords:
@@ -85,7 +103,7 @@ allprojects {
 
 Add the following dependency in your application’s build.gradle:
 
-```Text build.gradle
+```gradle
 implementation 'in.payu:phonepe-intent:1.8.9'
 ```
 
@@ -100,40 +118,24 @@ PayUPhonePeCallback provides the following callback methods.
 
 Following are error messages concerning PhonePe initialization failure.
 
-<Table align={["left","left","left"]}>
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
   <thead>
     <tr>
-      <th>
-        Error Code
-      </th>
-
-      <th>
-        Error Code
-      </th>
-
-      <th>
-        Description
-      </th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Error Code</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Error Code</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
-      <td>
-        1
-      </td>
-
-      <td>
-        MERCHANT_KEY_NOT_
-        REGISTER_FOR_PHONEPE
-      </td>
-
-      <td>
-        Merchant is not registered for PhonePe with PayU
-      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT_KEY_NOT_ REGISTER_FOR_PHONEPE</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Merchant is not registered for PhonePe with PayU</p></td>
     </tr>
   </tbody>
-</Table>
+</table>
+`}</HTMLBlock>
 
 Create an instance of PayUPhonePeCallback similar to the following code block:
 
@@ -264,7 +266,7 @@ First, create a PayU account. See [Register for a Merchant Account](https://docs
 
   Add the following dependency in your application’s build.gradle:
 
-  ```Text build.gradle
+  ```gradle
   implementation 'in.payu:phonepe-intent:1.8.7'
   ```
 </Accordion>
@@ -280,40 +282,24 @@ PayUPhonePeCallback provides the following callback methods.
 
 Following are error messages concerning PhonePe initialization failure.
 
-<Table align={["left","left","left"]}>
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
   <thead>
     <tr>
-      <th>
-        Error Code
-      </th>
-
-      <th>
-        Error Code
-      </th>
-
-      <th>
-        Description
-      </th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Error Code</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Error Code</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
-      <td>
-        1
-      </td>
-
-      <td>
-        MERCHANT_KEY_NOT_
-        REGISTER_FOR_PHONEPE
-      </td>
-
-      <td>
-        Merchant is not registered for PhonePe with PayU
-      </td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT_KEY_NOT_ REGISTER_FOR_PHONEPE</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Merchant is not registered for PhonePe with PayU</p></td>
     </tr>
   </tbody>
-</Table>
+</table>
+`}</HTMLBlock>
 
 <Accordion title="Create PayUPhonePeCallback instance" icon="fa-code">
   Create an instance of PayUPhonePeCallback similar to the following code block:
