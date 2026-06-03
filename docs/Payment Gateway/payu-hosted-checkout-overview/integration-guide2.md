@@ -1044,6 +1044,14 @@ Now that you have created the hash value combine the below into a request that w
     * Refer to the Prepare Payment Request Parameters section for parameters description.
     * Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.
   </Callout>
+
+  <Callout icon="🚧" theme="success">
+    **Make Sure:**
+
+    * Use HTTP POST.
+    * Never send payment requests using GET.
+    * Ensure all mandatory parameters are included.
+  </Callout>
           
   **Common Mistake**
 
