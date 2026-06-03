@@ -4,17 +4,22 @@ name: SearchableTable
 // SearchableTable - Readme CMS Custom Component
 // Paste this entire file into Readme Settings - Custom Components.
 // Regenerate: npm run build:searchable-table
-// Edit logic in SearchableTable.core.jsx. Table data uses rows on each doc page.
+// Large tables: host JSON on GitHub and use dataUrl on the doc page.
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 export const SearchableTable = (props) => {
   const {
     headers = [],
     rows = [],
+    rowsJson = '',
+    dataUrl = null,
+    tableKey = '',
     placeholder = 'Search in table...',
     maxHeight = '400px',
     emptyMessage = 'No results found. Try a different search.',
+    loadErrorMessage =
+      'Could not load table data. Check the GitHub raw URL and try again.',
     className = '',
     columnWidths = null,
     maxLines = 0,
@@ -22,10 +27,105 @@ export const SearchableTable = (props) => {
   } = props;
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [remoteRows, setRemoteRows] = useState(null);
+  const [loadState, setLoadState] = useState(dataUrl ? 'loading' : 'idle');
+  const [loadError, setLoadError] = useState('');
 
-  const tableRows = Array.isArray(rows)
-    ? rows.filter((row) => Array.isArray(row))
-    : [];
+  useEffect(() => {
+    const url = dataUrl;
+    if (!url) {
+      setRemoteRows(null);
+      setLoadState('idle');
+      setLoadError('');
+      return undefined;
+    }
+
+    let cancelled = false;
+    setLoadState('loading');
+    setLoadError('');
+    setRemoteRows(null);
+
+    fetch(url)
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject(new Error('HTTP ' + res.status))
+      )
+      .then((json) => {
+        if (cancelled) return;
+        const loaded =
+          json && Array.isArray(json.rows)
+            ? json.rows
+            : Array.isArray(json)
+              ? json
+              : null;
+        if (!loaded) {
+          throw new Error('JSON must be rows array or object with rows key');
+        }
+        setRemoteRows(loaded);
+        setLoadState('ready');
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setLoadError(err && err.message ? err.message : 'Load failed');
+        setLoadState('error');
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [dataUrl]);
+
+  const coerceRows = (input) => {
+    if (input == null || input === '') return [];
+    if (Array.isArray(input)) {
+      return input.filter((row) => Array.isArray(row));
+    }
+    if (typeof input === 'string') {
+      const text = input.trim();
+      if (!text) return [];
+      try {
+        return coerceRows(JSON.parse(text));
+      } catch (e) {
+        return [];
+      }
+    }
+    if (typeof input === 'object') {
+      if (Array.isArray(input.rows)) return coerceRows(input.rows);
+      if (typeof input.length === 'number' && input.length >= 0) {
+        const list = [];
+        for (let i = 0; i < input.length; i += 1) {
+          list.push(input[i]);
+        }
+        return coerceRows(list);
+      }
+      const vals = Object.keys(input)
+        .sort((a, b) => Number(a) - Number(b))
+        .map((k) => input[k]);
+      if (vals.length > 0 && vals.every((v) => Array.isArray(v))) return vals;
+    }
+    return [];
+  };
+
+  const builtinRowsForKey = (key) => {
+    const k = key && String(key).trim();
+    if (k === 'paymentErrors') {
+      return typeof paymentErrorsTableRows !== 'undefined'
+        ? coerceRows(paymentErrorsTableRows)
+        : [];
+    }
+    return [];
+  };
+
+  const inlineRows = useMemo(() => {
+    const fromKey = builtinRowsForKey(tableKey);
+    if (fromKey.length > 0) return fromKey;
+    const fromRows = coerceRows(rows);
+    if (fromRows.length > 0) return fromRows;
+    const fromJson = coerceRows(rowsJson);
+    if (fromJson.length > 0) return fromJson;
+    return [];
+  }, [tableKey, rows, rowsJson]);
+
+  const tableRows = remoteRows != null ? remoteRows : inlineRows;
 
   const normalize = (str) =>
     str == null ? '' : String(str).toLowerCase().trim().replace(/\s+/g, ' ');
@@ -44,7 +144,10 @@ export const SearchableTable = (props) => {
   );
 
   const hasSearchQuery = normalize(searchQuery).length > 0;
-  const showEmptyState = hasSearchQuery && filteredRows.length === 0;
+  const isLoading = loadState === 'loading';
+  const hasLoadError = loadState === 'error';
+  const showEmptyState =
+    !isLoading && !hasLoadError && hasSearchQuery && filteredRows.length === 0;
   const colCount = headers.length;
 
   const codeColIndexes = useMemo(() => {
@@ -191,7 +294,8 @@ export const SearchableTable = (props) => {
   const mergeStyle = (base, extra) =>
     extra ? Object.assign({}, base, extra) : base;
 
-  const showNoRows = tableRows.length === 0;
+  const showNoRows =
+    !isLoading && !hasLoadError && tableRows.length === 0;
 
   return (
     <div
@@ -340,7 +444,39 @@ export const SearchableTable = (props) => {
                       border: '1px solid ' + borderColor,
                     }}
                   >
-                    No rows to display. Pass rows on this page.
+                    No rows loaded. Set dataUrl to your GitHub raw JSON URL, or
+                    pass rows for small tables.
+                  </td>
+                </tr>
+              ) : isLoading ? (
+                <tr>
+                  <td
+                    colSpan={colCount || 1}
+                    style={{
+                      padding: '16px',
+                      fontFamily: fontSans,
+                      fontSize: '14px',
+                      color: '#6b7280',
+                      border: '1px solid ' + borderColor,
+                    }}
+                  >
+                    Loading table data...
+                  </td>
+                </tr>
+              ) : hasLoadError ? (
+                <tr>
+                  <td
+                    colSpan={colCount || 1}
+                    role="alert"
+                    style={{
+                      padding: '16px',
+                      background: '#fef2f2',
+                      color: '#b91c1c',
+                      border: '1px solid ' + borderColor,
+                    }}
+                  >
+                    {loadErrorMessage}
+                    {loadError ? ' (' + loadError + ')' : ''}
                   </td>
                 </tr>
               ) : showEmptyState ? (
@@ -397,7 +533,7 @@ export const SearchableTable = (props) => {
         </div>
       </div>
 
-      {!showNoRows && filteredRows.length > 0 ? (
+      {!isLoading && !hasLoadError && !showNoRows && filteredRows.length > 0 ? (
         <p
           style={{
             marginTop: '8px',
