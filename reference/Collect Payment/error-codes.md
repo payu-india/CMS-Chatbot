@@ -27,18 +27,16 @@ The following are possible errors and error codes for a transaction. You need t
 >
 > Refer to the **[Cards](https://docs.payu.in/reference/error-codes#cards)** section for AuthN and AuthZ errors
 
-<SearchableTable
-  headers={['Errors', 'Error_message/Message', 'Error Description', 'Title']}
-  tableKey="paymentErrors"
+<SearchableTableRemote
+  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/payment-error-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
 
 ## Other Error Codes from PayU
 
-<SearchableTable
-  headers={['Errors', 'Error_message/Message', 'Error Description', 'Title']}
-  tableKey="otherErrors"
+<SearchableTableRemote
+  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/other-error-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
