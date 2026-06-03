@@ -114,14 +114,20 @@ export const SearchableTable = (props) => {
   const isCodeCol = (i) =>
     Array.isArray(codeColumns) ? codeColumns.indexOf(i) >= 0 : false;
 
+  const fontSans =
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+  const fontMono =
+    'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
+  const borderColor = '#e5e7eb';
+
   const codeStyle = {
     padding: '2px 6px',
     background: '#f3f4f6',
     color: '#1f2937',
     borderRadius: '4px',
-    fontFamily:
-      'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
-    fontSize: '0.875em',
+    fontFamily: fontMono,
+    fontSize: '13px',
+    fontWeight: '400',
   };
 
   const renderCellContent = (value, colIndex) => {
@@ -135,32 +141,62 @@ export const SearchableTable = (props) => {
     );
   };
 
-  const headerCellStyle = {
-    padding: '12px 16px',
-    textAlign: 'left',
+  const headerLabelStyle = {
+    display: 'block',
+    margin: 0,
+    padding: 0,
+    fontFamily: fontSans,
     fontSize: '12px',
-    fontWeight: 600,
+    fontWeight: '700',
+    lineHeight: '1.25',
     color: '#374151',
     textTransform: 'uppercase',
     letterSpacing: '0.05em',
-    background: '#f9fafb',
-    borderBottom: '1px solid #e5e7eb',
-    verticalAlign: 'top',
+  };
+
+  const headerCellStyle = {
+    padding: '12px 16px',
+    textAlign: 'left',
+    fontFamily: fontSans,
+    fontSize: '12px',
+    fontWeight: '700',
+    color: '#374151',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    backgroundColor: '#f9fafb',
+    border: '1px solid ' + borderColor,
+    verticalAlign: 'middle',
     wordBreak: 'normal',
     overflowWrap: 'break-word',
     position: 'sticky',
     top: 0,
     zIndex: 10,
+    boxSizing: 'border-box',
   };
 
   const bodyCellStyle = {
-    padding: '8px 16px',
+    padding: '12px 16px',
+    fontFamily: fontSans,
     fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '1.5',
     color: '#111827',
+    backgroundColor: '#ffffff',
+    border: '1px solid ' + borderColor,
     verticalAlign: 'top',
     wordBreak: 'normal',
     overflowWrap: 'break-word',
-    borderBottom: '1px solid #f3f4f6',
+    boxSizing: 'border-box',
+  };
+
+  const bodyTextStyle = {
+    margin: 0,
+    padding: 0,
+    fontFamily: fontSans,
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '1.5',
+    color: '#111827',
   };
 
   const clampStyle =
@@ -181,22 +217,36 @@ export const SearchableTable = (props) => {
   const mergeStyle = (base, extra) =>
     extra ? Object.assign({}, base, extra) : base;
 
+  const showNoRows =
+    !isLoading && !hasLoadError && tableRows.length === 0;
+
   return (
-    <div className={className} style={{ width: '100%', display: 'block' }}>
+    <div
+      className={className}
+      style={{
+        width: '100%',
+        display: 'block',
+        fontFamily: fontSans,
+        fontSize: '14px',
+        lineHeight: '1.5',
+        color: '#111827',
+      }}
+    >
       <div
         style={{
           width: '100%',
-          border: '1px solid #e5e7eb',
+          border: '1px solid ' + borderColor,
           borderRadius: '6px',
           overflow: 'hidden',
           boxSizing: 'border-box',
+          backgroundColor: '#ffffff',
         }}
       >
         <div
           style={{
             padding: '12px 16px',
-            background: '#f9fafb',
-            borderBottom: '1px solid #e5e7eb',
+            backgroundColor: '#f9fafb',
+            borderBottom: '1px solid ' + borderColor,
           }}
         >
           <div
@@ -207,7 +257,7 @@ export const SearchableTable = (props) => {
               maxWidth: '420px',
               border: '1px solid #d1d5db',
               borderRadius: '6px',
-              background: '#ffffff',
+              backgroundColor: '#ffffff',
               boxShadow: '0 1px 2px 0 rgba(0,0,0,0.05)',
             }}
           >
@@ -247,9 +297,12 @@ export const SearchableTable = (props) => {
                 minWidth: 0,
                 padding: '8px 12px 8px 8px',
                 border: 0,
-                background: 'transparent',
+                backgroundColor: 'transparent',
                 outline: 'none',
                 fontSize: '14px',
+                fontFamily: fontSans,
+                fontWeight: '400',
+                color: '#111827',
               }}
             />
           </div>
@@ -267,11 +320,13 @@ export const SearchableTable = (props) => {
         >
           <table
             style={{
-              width: useFixedLayout ? '100%' : 'max-content',
-              minWidth: '100%',
+              width: '100%',
               tableLayout: useFixedLayout ? 'fixed' : 'auto',
-              borderCollapse: 'separate',
+              borderCollapse: 'collapse',
               borderSpacing: 0,
+              border: 'none',
+              margin: 0,
+              fontFamily: fontSans,
             }}
           >
             {useFixedLayout ? (
@@ -292,13 +347,30 @@ export const SearchableTable = (props) => {
                       useFixedLayout ? { width: columnWidths[i] } : null
                     )}
                   >
-                    {renderCellContent(header, i)}
+                    <span style={headerLabelStyle}>
+                      {renderCellContent(header, i)}
+                    </span>
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody style={{ background: '#ffffff' }}>
-              {isLoading ? (
+            <tbody style={{ backgroundColor: '#ffffff' }}>
+              {showNoRows ? (
+                <tr>
+                  <td
+                    colSpan={colCount || 1}
+                    style={{
+                      padding: '16px',
+                      fontFamily: fontSans,
+                      fontSize: '14px',
+                      color: '#6b7280',
+                      border: '1px solid ' + borderColor,
+                    }}
+                  >
+                    No rows to display. Add rowsJson on the page or check dataUrl.
+                  </td>
+                </tr>
+              ) : isLoading ? (
                 <tr>
                   <td
                     colSpan={colCount}
@@ -352,10 +424,14 @@ export const SearchableTable = (props) => {
                       >
                         {clampStyle ? (
                           <div style={clampStyle} title={cellPlainText(cell)}>
-                            {renderCellContent(cell, cellIndex)}
+                            <span style={bodyTextStyle}>
+                              {renderCellContent(cell, cellIndex)}
+                            </span>
                           </div>
                         ) : (
-                          renderCellContent(cell, cellIndex)
+                          <span style={bodyTextStyle}>
+                            {renderCellContent(cell, cellIndex)}
+                          </span>
                         )}
                       </td>
                     ))}
@@ -368,7 +444,14 @@ export const SearchableTable = (props) => {
       </div>
 
       {!isLoading && !hasLoadError && filteredRows.length > 0 ? (
-        <p style={{ marginTop: '8px', fontSize: '12px', color: '#6b7280' }}>
+        <p
+          style={{
+            marginTop: '8px',
+            fontSize: '12px',
+            fontFamily: fontSans,
+            color: '#6b7280',
+          }}
+        >
           Showing {filteredRows.length} of {tableRows.length} row
           {tableRows.length !== 1 ? 's' : ''}
           {hasSearchQuery ? ' (filtered by search)' : ''}.
