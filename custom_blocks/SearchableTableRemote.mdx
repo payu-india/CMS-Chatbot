@@ -240,37 +240,17 @@ export const SearchableTableRemote = (props) => {
 
   const isCodeCol = (i) => codeColIndexes.indexOf(i) >= 0;
 
-  const layoutWidths = useMemo(() => {
-    const n = resolvedHeaders.length;
-    if (n === 0) return null;
-    if (Array.isArray(columnWidths) && columnWidths.length > 0) {
-      const widths = columnWidths.slice();
-      while (widths.length < n) {
-        widths.push('auto');
-      }
-      return widths;
-    }
-
-    const sampleSize = Math.min(tableRows.length, 80);
-    const weights = resolvedHeaders.map((header, colIdx) => {
-      let maxLen = String(header == null ? '' : header).length;
-      for (let r = 0; r < sampleSize; r += 1) {
-        const cell = tableRows[r][colIdx];
-        if (cell != null) {
-          maxLen = Math.max(maxLen, String(cell).length);
-        }
-      }
-      if (isCodeCol(colIdx)) {
-        return Math.min(Math.max(maxLen, 6), 14) + 6;
-      }
-      return Math.min(maxLen, 120) + 12;
-    });
-
-    const total = weights.reduce((sum, w) => sum + w, 0) || 1;
-    return weights.map((w) => ((w / total) * 100).toFixed(2) + '%');
-  }, [columnWidths, resolvedHeaders, tableRows, codeColIndexes]);
-
-  const useComputedWidths = layoutWidths != null && layoutWidths.length > 0;
+  const formatHeaderLabel = (text) => {
+    const raw = String(text == null ? '' : text).trim();
+    if (!raw) return '';
+    return raw
+      .split(/\s+/)
+      .map((word) => {
+        if (!word) return word;
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
+      .join(' ');
+  };
 
   const fontSans =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
@@ -299,40 +279,29 @@ export const SearchableTableRemote = (props) => {
     );
   };
 
-  const headerLabelStyle = {
-    display: 'block',
-    margin: 0,
-    padding: 0,
-    fontFamily: fontSans,
-    fontSize: '12px',
-    fontWeight: '700',
-    lineHeight: '1.25',
-    color: '#374151',
-    textTransform: 'uppercase',
-    letterSpacing: '0.05em',
-  };
-
-  const headerCellStyle = {
+  const headerCellStyle = (colIndex, colTotal) => ({
     padding: '12px 16px',
     textAlign: 'left',
     fontFamily: fontSans,
-    fontSize: '12px',
+    fontSize: '14px',
     fontWeight: '700',
+    lineHeight: '1.25',
     color: '#374151',
-    textTransform: 'uppercase',
-    letterSpacing: '0.05em',
     backgroundColor: '#f9fafb',
-    border: '1px solid ' + borderColor,
+    borderBottom: '1px solid ' + borderColor,
+    borderRight:
+      colIndex < colTotal - 1 ? '1px solid ' + borderColor : 'none',
+    borderTop: 'none',
+    borderLeft: 'none',
     verticalAlign: 'middle',
-    wordBreak: 'normal',
-    overflowWrap: 'break-word',
     position: 'sticky',
     top: 0,
     zIndex: 10,
     boxSizing: 'border-box',
-  };
+    whiteSpace: 'nowrap',
+  });
 
-  const bodyCellStyle = {
+  const bodyCellStyle = (colIndex, colTotal, isLastRow) => ({
     padding: '12px 16px',
     fontFamily: fontSans,
     fontSize: '14px',
@@ -340,21 +309,23 @@ export const SearchableTableRemote = (props) => {
     lineHeight: '1.5',
     color: '#111827',
     backgroundColor: '#ffffff',
-    border: '1px solid ' + borderColor,
+    borderBottom: isLastRow ? 'none' : '1px solid ' + borderColor,
+    borderRight:
+      colIndex < colTotal - 1 ? '1px solid ' + borderColor : 'none',
+    borderTop: 'none',
+    borderLeft: 'none',
     verticalAlign: 'top',
-    wordBreak: 'normal',
-    overflowWrap: 'break-word',
     boxSizing: 'border-box',
-  };
+    whiteSpace: 'nowrap',
+  });
 
-  const bodyTextStyle = {
-    margin: 0,
-    padding: 0,
+  const messageCellStyle = {
+    padding: '16px',
     fontFamily: fontSans,
     fontSize: '14px',
-    fontWeight: '400',
-    lineHeight: '1.5',
-    color: '#111827',
+    color: '#6b7280',
+    border: 'none',
+    boxSizing: 'border-box',
   };
 
   const clampStyle =
@@ -371,9 +342,6 @@ export const SearchableTableRemote = (props) => {
   const cellPlainText = (value) =>
     value == null ? '' : String(value).replace(/`/g, '');
 
-  const mergeStyle = (base, extra) =>
-    extra ? Object.assign({}, base, extra) : base;
-
   const showNoRows =
     !isLoading && !hasLoadError && tableRows.length === 0;
 
@@ -381,8 +349,10 @@ export const SearchableTableRemote = (props) => {
     <div
       className={className}
       style={{
-        width: '100%',
-        display: 'block',
+        display: 'inline-block',
+        width: 'max-content',
+        maxWidth: '100%',
+        verticalAlign: 'top',
         fontFamily: fontSans,
         fontSize: '14px',
         lineHeight: '1.5',
@@ -391,7 +361,9 @@ export const SearchableTableRemote = (props) => {
     >
       <div
         style={{
-          width: '100%',
+          display: 'inline-block',
+          width: 'max-content',
+          maxWidth: '100%',
           border: '1px solid ' + borderColor,
           borderRadius: '6px',
           overflow: 'hidden',
@@ -467,46 +439,32 @@ export const SearchableTableRemote = (props) => {
 
         <div
           style={{
-            width: '100%',
             overflowY: 'auto',
             overflowX: 'auto',
-            position: 'relative',
             maxHeight: showEmptyState ? 'none' : maxHeight,
+            maxWidth: '100%',
             boxSizing: 'border-box',
-            borderTop: '1px solid ' + borderColor,
           }}
         >
           <table
             style={{
-              width: '100%',
-              minWidth: '100%',
-              tableLayout: 'fixed',
+              width: 'auto',
               borderCollapse: 'collapse',
               borderSpacing: 0,
               margin: 0,
+              tableLayout: 'auto',
               fontFamily: fontSans,
             }}
           >
-            {useComputedWidths ? (
-              <colgroup>
-                {headers.map((_, i) => (
-                  <col key={i} style={{ width: layoutWidths[i] }} />
-                ))}
-              </colgroup>
-            ) : null}
             <thead>
               <tr>
                 {resolvedHeaders.map((header, i) => (
                   <th
                     key={i}
                     scope="col"
-                    style={mergeStyle(headerCellStyle, {
-                      width: useComputedWidths ? layoutWidths[i] : undefined,
-                    })}
+                    style={headerCellStyle(i, resolvedHeaders.length)}
                   >
-                    <span style={headerLabelStyle}>
-                      {renderCellContent(header, i)}
-                    </span>
+                    {formatHeaderLabel(header)}
                   </th>
                 ))}
               </tr>
@@ -514,31 +472,13 @@ export const SearchableTableRemote = (props) => {
             <tbody style={{ backgroundColor: '#ffffff' }}>
               {showNoRows ? (
                 <tr>
-                  <td
-                    colSpan={colCount || 1}
-                    style={{
-                      padding: '16px',
-                      fontFamily: fontSans,
-                      fontSize: '14px',
-                      color: '#6b7280',
-                      border: '1px solid ' + borderColor,
-                    }}
-                  >
+                  <td colSpan={colCount || 1} style={messageCellStyle}>
                     No rows loaded. Set dataUrl to a public JSON file on GitHub (jsDelivr URL). See GITHUB_HOSTING.md.
                   </td>
                 </tr>
               ) : isLoading ? (
                 <tr>
-                  <td
-                    colSpan={colCount || 1}
-                    style={{
-                      padding: '16px',
-                      fontFamily: fontSans,
-                      fontSize: '14px',
-                      color: '#6b7280',
-                      border: '1px solid ' + borderColor,
-                    }}
-                  >
+                  <td colSpan={colCount || 1} style={messageCellStyle}>
                     Loading table data...
                   </td>
                 </tr>
@@ -548,10 +488,9 @@ export const SearchableTableRemote = (props) => {
                     colSpan={colCount || 1}
                     role="alert"
                     style={{
-                      padding: '16px',
-                      background: '#fef2f2',
+                      ...messageCellStyle,
+                      backgroundColor: '#fef2f2',
                       color: '#b91c1c',
-                      border: '1px solid ' + borderColor,
                     }}
                   >
                     {loadErrorMessage}
@@ -561,13 +500,12 @@ export const SearchableTableRemote = (props) => {
               ) : showEmptyState ? (
                 <tr>
                   <td
-                    colSpan={colCount}
+                    colSpan={colCount || 1}
                     role="alert"
                     style={{
-                      padding: '16px',
-                      background: '#fef2f2',
+                      ...messageCellStyle,
+                      backgroundColor: '#fef2f2',
                       color: '#b91c1c',
-                      borderBottom: '1px solid #fecaca',
                     }}
                   >
                     {emptyMessage}
@@ -579,28 +517,18 @@ export const SearchableTableRemote = (props) => {
                     {row.map((cell, cellIndex) => (
                       <td
                         key={cellIndex}
-                        style={mergeStyle(bodyCellStyle, {
-                          width: useComputedWidths
-                            ? layoutWidths[cellIndex]
-                            : undefined,
-                        })}
+                        style={bodyCellStyle(
+                          cellIndex,
+                          row.length,
+                          rowIndex === filteredRows.length - 1
+                        )}
                       >
                         {clampStyle ? (
                           <div style={clampStyle} title={cellPlainText(cell)}>
-                            {isCodeCol(cellIndex) ? (
-                              renderCellContent(cell, cellIndex)
-                            ) : (
-                              <span style={bodyTextStyle}>
-                                {renderCellContent(cell, cellIndex)}
-                              </span>
-                            )}
-                          </div>
-                        ) : isCodeCol(cellIndex) ? (
-                          renderCellContent(cell, cellIndex)
-                        ) : (
-                          <span style={bodyTextStyle}>
                             {renderCellContent(cell, cellIndex)}
-                          </span>
+                          </div>
+                        ) : (
+                          renderCellContent(cell, cellIndex)
                         )}
                       </td>
                     ))}
@@ -632,7 +560,7 @@ export const SearchableTableRemote = (props) => {
 
 
 <SearchableTableRemote
-  dataUrl="https://cdn.jsdelivr.net/gh/YOUR_ORG/payu-docs-assets@main/data/payment-error-codes.json"
+  dataUrl="https://cdn.jsdelivr.net/gh/palgunams21/payu-docs-assets@main/data/net-banking-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
