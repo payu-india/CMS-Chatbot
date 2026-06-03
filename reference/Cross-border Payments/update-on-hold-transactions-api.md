@@ -15,11 +15,11 @@ Use this API to submit additional customer information required to release on-ho
 
 ## Request Headers
 
-| Parameter                      | Description                                 | Example                                                             |
-| :----------------------------- | :------------------------------------------ | :------------------------------------------------------------------ |
-| mid<br />`mandatory`           | `String` - Merchant ID of the merchant      | 8763182                                                             |
-| Authorization<br />`mandatory` | `String` - SHA512 authorization header | Refer to  [Authorization field format](#authorization-field-format) |
-| Date<br />`mandatory`          | `String` - Current UTC date in HTTP format  | Wed, 28 Jun 2023 11:25:19 GMT                                       |
+| Parameter                      | Description                                | Example                                                             |
+| :----------------------------- | :----------------------------------------- | :------------------------------------------------------------------ |
+| mid<br />`mandatory`           | `String` - Merchant ID of the merchant     | 8763182                                                             |
+| Authorization<br />`mandatory` | `String` - SHA512 authorization header     | Refer to  [Authorization field format](#authorization-field-format) |
+| Date<br />`mandatory`          | `String` - Current UTC date in HTTP format | Wed, 28 Jun 2023 11:25:19 GMT                                       |
 
 ### Authorization field format
 
@@ -63,16 +63,16 @@ The request body is an array of transaction update objects.
 
 ### Common Field Keys
 
-| Key          | Display Name  | Validation Regex |
-| :----------- | :------------ | :--------------- |
-| first_name   | First name    | ^[A-Za-z]*$      |
-| last_name    | Last name     | ^[A-Za-z]*$      |
-| address_line | Address       | ^[^\<>%$]*$      |
-| city         | City          | ^[a-zA-Z\s]*$    |
-| state        | State         | ^[a-zA-Z\s]*$    |
-| zipcode      | ZIP Code      | ^[1-9][0-9]{5}$  |
-| invoice_id   | Invoice ID    | ^[a-zA-Z0-9]*$   |
-| dob          | Date of Birth | -                |
+| Key           | Display Name  | Validation Regex  |
+| :------------ | :------------ | :---------------- |
+| first\_name   | First name    | ^\[A-Za-z]\*$     |
+| last\_name    | Last name     | ^\[A-Za-z]\*$     |
+| address\_line | Address       | ^\[^\<>%$]\*$     |
+| city          | City          | ^\[a-zA-Z\s]\*$   |
+| state         | State         | ^\[a-zA-Z\s]\*$   |
+| zipcode       | ZIP Code      | ^\[1-9]\[0-9]{5}$ |
+| invoice\_id   | Invoice ID    | ^\[a-zA-Z0-9]\*$  |
+| dob           | Date of Birth | -                 |
 
 ## Sample Request
 
@@ -439,9 +439,9 @@ if ($responseData !== null) {
 ?>
 ```
 
-## Sample Postman Script
+## Sample Script to Generate Header
 
-Use this pre-request script in Postman to generate the **Date** and **Authorization** headers. Set `merchantKey` and `merchantSalt` as Postman variables before sending the request.
+Use this pre-request script to generate the **Date** and **Authorization** headers. Set `merchantKey` and `merchantSalt` before sending the request. You may use them in Postman as prerequisite in this regard.
 
 ```javascript
 function encode_base64(value) {
@@ -522,7 +522,7 @@ return true;
 
 ### Success Scenario
 
-* Simple transaction
+- Simple transaction
 
 ```json
 {
@@ -537,7 +537,7 @@ return true;
 }
 ```
 
-* Multiple transactions
+- Multiple transactions
 
 ```json
 [
@@ -575,7 +575,7 @@ return true;
 
 ### Failure scenarios
 
-* Invalid Merchant ID
+- Invalid Merchant ID
 
 ```json
 {
@@ -589,7 +589,7 @@ return true;
 }
 ```
 
-* RequestId Not in Need Response State
+- RequestId Not in Need Response State
 
 ```json
 {
@@ -603,7 +603,7 @@ return true;
 }
 ```
 
-* No Data Found
+- No Data Found
 
 ```json
 {
@@ -625,5 +625,7 @@ return true;
 | 0     | Response not received yet / Fields updated successfully        | Wait for processing or proceed                                        |
 | 1     | Successfully update the fields and run the settlement fallback | No action required - success                                          |
 | -1    | Invalid key value pair passed                                  | Verify the key names and values match the keyMappingList from GET API |
-| -2    | Failed to call PayU API opgsp_update_transaction               | Retry the request or contact support                                  |
+| -2    | Failed to call PayU API opgsp\_update\_transaction             | Retry the request or contact support                                  |
 | -3    | Exception occurred in updateFieldsForAmlockTxnRetry            | Contact support with traceId                                          |
+
+<br />
