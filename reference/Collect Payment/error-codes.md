@@ -30,7 +30,7 @@ The following are possible errors and error codes for a transaction. You need t
 <SearchableTable
   headers={['Errors', 'Error_message/Message', 'Error Description', 'Title']}
   codeColumns={[0]}
-  dataUrl="https://github.com/payu-india/CMS-Chatbot/blob/v1/payment-error-codes.json"
+  dataUrl="https://cdn.jsdelivr.net/gh/payu-india/CMS-Chatbot@v1/payment-error-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
