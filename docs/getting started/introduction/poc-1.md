@@ -23,13 +23,9 @@ metadata:
 
 <SearchableTableSimple
   headers={['Bank', 'Type', 'Status']}
-  rows={[
-    ['HDFC Bank', 'Netbanking / Cards', 'Active'],
-    ['ICICI Bank', 'Netbanking / Cards', 'Active'],
-    ['State Bank of India', 'Netbanking', 'Active'],
-    ['Axis Bank', 'Cards', 'Active'],
-  ]}
+  rowsJson='[["HDFC Bank","Netbanking / Cards","Active"],["ICICI Bank","Netbanking / Cards","Active"],["State Bank of India","Netbanking","Active"],["Axis Bank","Cards","Active"]]'
   placeholder="Search"
+  maxHeight="500px"
 />
 
 <br />
