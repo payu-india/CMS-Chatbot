@@ -78,10 +78,6 @@ Use this endpoint to check the mandate status of the following payment methods:
 
 ## Request Parameters
 
-> 📘 **Mandatory Parameters**
->
-> <RequiredStar legend />
-
 | **Parameter**                    | **Description**                                                                                                                                                                                                                                     |
 | :------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | <RequiredStar param="key" />     | `varchar` The unique Merchant Key provided by PayU for your account.                                                                                                                                                                                |
@@ -293,9 +289,5 @@ Below are the errors associated to UPI.
 
   **Reason:** This error occurs when you try to access the details of a unregistered mandate.
 </Accordion>
-
-\> ✅ **Notes**
-\>
-\>
 
 <br />
