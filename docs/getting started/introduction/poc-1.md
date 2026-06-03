@@ -21,7 +21,12 @@ metadata:
   placeholder="Search errors..."
 />
 
-
 <SearchableTableSimple tableKey="banksDemo" placeholder="Search" maxHeight="500px" />
+
+<SearchableTableSmall
+  headersJson='["Wallet","UPI","Status"]'
+  rowsJson='[["Paytm","Yes","Active"],["PhonePe","Yes","Active"]]'
+  placeholder="Search wallets"
+/>
 
 <br />
