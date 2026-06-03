@@ -151,12 +151,28 @@ export const SearchableTable = (props) => {
     return [];
   };
 
+  const embeddedPaymentRows =
+    typeof paymentErrorsTableRows !== 'undefined'
+      ? coerceRows(paymentErrorsTableRows)
+      : [];
+
+  const isPaymentErrorsHeaders = useMemo(() => {
+    const labels = headers.map((h) =>
+      String(h == null ? '' : h).toLowerCase()
+    );
+    return (
+      labels.indexOf('errors') >= 0 &&
+      labels.some(
+        (l) =>
+          l.indexOf('error_message') >= 0 || l.indexOf('error description') >= 0
+      )
+    );
+  }, [headers]);
+
   const builtinRowsForKey = (key) => {
     const k = key && String(key).trim();
-    if (k === 'paymentErrors') {
-      return typeof paymentErrorsTableRows !== 'undefined'
-        ? coerceRows(paymentErrorsTableRows)
-        : [];
+    if (k === 'paymentErrors' && embeddedPaymentRows.length > 0) {
+      return embeddedPaymentRows;
     }
     return [];
   };
@@ -164,12 +180,22 @@ export const SearchableTable = (props) => {
   const inlineRows = useMemo(() => {
     const fromKey = builtinRowsForKey(tableKey);
     if (fromKey.length > 0) return fromKey;
+    if (!dataUrl && isPaymentErrorsHeaders && embeddedPaymentRows.length > 0) {
+      return embeddedPaymentRows;
+    }
     const fromRows = coerceRows(rows);
     if (fromRows.length > 0) return fromRows;
     const fromJson = coerceRows(rowsJson);
     if (fromJson.length > 0) return fromJson;
     return [];
-  }, [tableKey, rows, rowsJson]);
+  }, [
+    tableKey,
+    rows,
+    rowsJson,
+    dataUrl,
+    isPaymentErrorsHeaders,
+    embeddedPaymentRows,
+  ]);
 
   const tableRows = remoteRows != null ? remoteRows : inlineRows;
 
@@ -490,8 +516,9 @@ export const SearchableTable = (props) => {
                       border: '1px solid ' + borderColor,
                     }}
                   >
-                    No rows loaded. Set dataUrl to your GitHub raw JSON URL, or
-                    pass rows for small tables.
+                    {embeddedPaymentRows.length > 0 && isPaymentErrorsHeaders
+                      ? 'Rows not loaded. Re-paste the full embed SearchableTable.jsx into Custom Components (npm run build:searchable-table:embed). Remove dataUrl from this page if present.'
+                      : 'No rows loaded. Use embed build plus payment error headers, dataUrl to public JSON, or rows for small tables.'}
                   </td>
                 </tr>
               ) : isLoading ? (
@@ -598,8 +625,7 @@ export const SearchableTable = (props) => {
 };
 
 <SearchableTable
-  headers={['Errors', 'Description']}
+  headers={['Errors', 'Error_message/Message', 'Error Description', 'Title']}
   codeColumns={[0]}
-  rows={[['E000', 'NO_ERROR']]}
   placeholder="Search"
 />
