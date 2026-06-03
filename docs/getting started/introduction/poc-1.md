@@ -21,8 +21,6 @@ metadata:
   placeholder="Search errors..."
 />
 
-Search supported banks in the table below.
-
-<SearchableTableSimple tableKey="banksDemo" placeholder="Search" maxHeight="500px" />
+<SearchableTableSimple tableKey="banksDemo" placeholder="Search" />
 
 <br />
