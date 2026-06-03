@@ -294,4 +294,8 @@ Below are the errors associated to UPI.
   **Reason:** This error occurs when you try to access the details of a unregistered mandate.
 </Accordion>
 
+> ✅ **Notes**
+>
+>
+
 <br />
