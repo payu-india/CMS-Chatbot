@@ -23,24 +23,6 @@ deprecated: false
 hidden: false
 metadata:
   title: Integration Steps - Android Checkout Pro
-  description: ''
-  keywords:
-    - Android Checkout Pro Integration Steps
-    - '  Android Checkout Pro Integration'
-    - ' Integrate Android Checkout Pro'
-    - PayUCheckoutPro Android Integration Steps
-    - Integrate Android PayUCheckoutPro Integration Steps
-  robots: index
-next:
-  description: ''
----
----
-title: Integration Steps
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Integration Steps - Android Checkout Pro
   description: >-
     Integrate PayU CheckoutPro SDK on Android: Gradle/Maven Central, hash, payment params, callbacks, test cards, and production go-live.
   robots: index
