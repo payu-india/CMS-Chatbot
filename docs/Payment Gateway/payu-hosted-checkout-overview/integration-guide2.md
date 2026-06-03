@@ -1053,7 +1053,7 @@ Now that you have created the hash value combine the below into a request that w
     * Ensure all mandatory parameters are included.
   </Callout>
           
-  **Common Mistake**
+  **Common Mistakes**
 
   These are the common mistakes while creating a payment request.
 
