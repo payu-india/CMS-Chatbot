@@ -89,28 +89,10 @@ The following are the errors associated with cards along with their reasons and 
 
 ### Field7 for Card payments
 
-<SearchableTable
-  headers={['Field', 'Description', 'Expanded Description', 'Platform Layer', 'API Layer']}
-  rows={[
-    ['ALT_ID_PROV_ERROR', 'Alt Provisioning API Failure', 'Occurs when the alternative ID generation API encounters a technical failure. This typically happens due to network issues, system unavailability, or invalid request parameters. The system cannot generate token or alternate ID for the card details.', 'Network', 'Alt ID Generation'],
-    ['ALT_ID_PROV_NEGATIVE', 'Alt Provisioning Failure', 'Indicates that while the API itself worked correctly, the attempt to provision an alternative ID was unsuccessful. This may be due to invalid card details, issuer restrictions, or the card being ineligible for tokenization.', 'Network', 'Alt ID Generation'],
-    ['3DS_METHOD_POSITIVE', '3DS2 Method response received', 'Confirms successful receipt of the 3DS2 method data from the Access Control Server at the notification URL. This indicates that the 3D Secure authentication flow is proceeding correctly.', 'Authentication', 'Transaction Requested'],
-    ['3DS_METHOD_NEGATIVE', '3DS2 Method no response', 'Indicates that while the 3DS2 method data was sent successfully, no response was received at the notification URL within the expected timeframe. This could be due to network issues, timeout, or browser-related problems.', 'Authentication', 'Transaction Requested'],
-    ['3DS_METHOD_ERROR', '3DS2 Method failure', 'Signifies a technical failure during the 3DS2 method process. This could be due to incorrect configuration, communication errors with the directory server, or invalid parameters.', 'Authentication', 'Transaction Requested'],
-    ['REDIRECT', 'S2S redirect initiated', 'Occurs when a server-to-server interim response is sent to the merchant or customer, indicating that a redirect is required to complete the payment flow. This is a transitional state.', 'Merchant or PayU', 'Merchant S2S Response'],
-    ['AUCPOSITIVE', 'Authentication successful', 'Indicates that cardholder authentication was completed successfully and approved by the issuing bank with a Y status. The customer has been verified via 3D Secure.', 'Authentication', 'Authentication Attempted'],
-    ['AUCNEGATIVE', 'Authentication failed', 'Occurs when authentication fails with status N or U. This may happen when the customer enters incorrect details or the issuer rejects the authentication attempt.', 'Authentication', 'Authentication Attempted'],
-    ['AUCINVALID', 'Authentication internal failure', 'Indicates that the authentication process completed but failed due to an internal system error such as parsing issues or service failure.', 'Authentication', 'Authentication Attempted'],
-    ['AUCERROR', 'Authentication error', 'Occurs when there is a technical error during the authentication call, such as OTP submission failure, timeout, or request issues.', 'Authentication', 'Authentication Attempted'],
-    ['ACS_REDIRECT', 'ACS redirect initiated', 'Indicates that the customer is redirected to the Access Control Server with a challenge request for additional verification as part of the 3D Secure flow.', 'Authentication', 'Bank OTP Page'],
-    ['3DS_CHALLENGE_POSITIVE', 'Challenge successful', 'Occurs when the Access Control Server returns a successful authentication response after the customer completes the challenge step.', 'Authentication', 'Authentication Success'],
-    ['3DS_CHALLENGE_NEGATIVE', 'Challenge failed', 'Indicates that the Access Control Server returned a negative response, typically due to incorrect input or customer cancellation.', 'Authentication', 'Authentication Failed'],
-    ['3DS_CHALLENGE_ERROR', 'Challenge no response', 'Occurs when no response is received from the Access Control Server after the challenge is initiated. This may be due to timeout or user drop-off.', 'Authentication', 'Authentication Failed'],
-    ['AUTHPOSITIVE', 'Authorization successful', 'Indicates that both authentication and authorization were successful. The payment is approved and funds are reserved.', 'Authorization', 'Authorization Success'],
-    ['AUTHNEGATIVE', 'Authorization failed', 'Occurs when authentication succeeds but the authorization request is declined by the issuing bank due to reasons such as insufficient funds or limits.', 'Authorization', 'Authorization Failed'],
-    ['AUTHERROR', 'Authorization error', 'Indicates a technical failure during the authorization process, such as network issues, timeout, or gateway errors.', 'Authorization', 'Authorization Failed']
-  ]}
+<SearchableTableRemote
+  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/field7-card-payments.json"
   placeholder="Search"
+  maxHeight="500px"
 />
 
 ### AuthN Errors
