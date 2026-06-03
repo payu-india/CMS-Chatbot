@@ -258,6 +258,49 @@ export const SearchableTableRemote = (props) => {
     'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
   const borderColor = '#e5e7eb';
 
+  const sharedColWidths = useMemo(() => {
+    const n = resolvedHeaders.length;
+    if (n === 0) return [];
+    if (Array.isArray(columnWidths) && columnWidths.length >= n) {
+      return columnWidths.slice(0, n).map((w) => String(w));
+    }
+    const rowsForMeasure =
+      filteredRows.length > 0 ? filteredRows : tableRows;
+    const sampleSize = Math.min(rowsForMeasure.length, 100);
+    return resolvedHeaders.map((header, colIdx) => {
+      let maxLen = formatHeaderLabel(header).length;
+      for (let r = 0; r < sampleSize; r += 1) {
+        const cell = rowsForMeasure[r] && rowsForMeasure[r][colIdx];
+        if (cell != null) {
+          maxLen = Math.max(maxLen, String(cell).length);
+        }
+      }
+      const px = isCodeCol(colIdx)
+        ? Math.min(Math.max(maxLen, 6), 20) * 8 + 24
+        : Math.min(maxLen, 80) * 8 + 32;
+      return Math.max(px, 96) + 'px';
+    });
+  }, [resolvedHeaders, filteredRows, tableRows, columnWidths, codeColIndexes]);
+
+  const tableStyle = {
+    width: '100%',
+    minWidth: '100%',
+    borderCollapse: 'separate',
+    borderSpacing: 0,
+    tableLayout: 'fixed',
+    margin: 0,
+    fontFamily: fontSans,
+  };
+
+  const renderColgroup = () =>
+    sharedColWidths.length > 0 ? (
+      <colgroup>
+        {sharedColWidths.map((w, i) => (
+          <col key={i} style={{ width: w, minWidth: w }} />
+        ))}
+      </colgroup>
+    ) : null;
+
   const codeStyle = {
     padding: '2px 6px',
     background: '#f3f4f6',
@@ -294,12 +337,8 @@ export const SearchableTableRemote = (props) => {
     borderTop: 'none',
     borderLeft: 'none',
     verticalAlign: 'middle',
-    position: 'sticky',
-    top: 0,
-    zIndex: 20,
     boxSizing: 'border-box',
     whiteSpace: 'nowrap',
-    boxShadow: '0 1px 0 ' + borderColor,
   });
 
   const bodyCellStyle = (colIndex, colTotal, isLastRow) => ({
@@ -437,48 +476,46 @@ export const SearchableTableRemote = (props) => {
           </div>
         </div>
 
-        <div
-          style={{
-            overflowY: 'auto',
-            overflowX: 'auto',
-            maxHeight: showEmptyState ? 'none' : maxHeight,
-            maxWidth: '100%',
-            boxSizing: 'border-box',
-            position: 'relative',
-            WebkitOverflowScrolling: 'touch',
-          }}
-        >
-          <table
+        <div style={{ maxWidth: '100%', overflowX: 'auto' }}>
+          <div
             style={{
-              width: 'auto',
-              borderCollapse: 'separate',
-              borderSpacing: 0,
-              margin: 0,
-              tableLayout: 'auto',
-              fontFamily: fontSans,
+              display: 'inline-block',
+              verticalAlign: 'top',
+              minWidth: '100%',
             }}
           >
-            <thead
+            {resolvedHeaders.length > 0 ? (
+              <table style={tableStyle}>
+                {renderColgroup()}
+                <thead>
+                  <tr>
+                    {resolvedHeaders.map((header, i) => (
+                      <th
+                        key={i}
+                        scope="col"
+                        style={headerCellStyle(i, resolvedHeaders.length)}
+                      >
+                        {formatHeaderLabel(header)}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+              </table>
+            ) : null}
+
+            <div
               style={{
-                position: 'sticky',
-                top: 0,
-                zIndex: 20,
+                overflowY: 'auto',
+                overflowX: 'hidden',
+                maxHeight: showEmptyState ? 'none' : maxHeight,
+                boxSizing: 'border-box',
+                WebkitOverflowScrolling: 'touch',
               }}
             >
-              <tr>
-                {resolvedHeaders.map((header, i) => (
-                  <th
-                    key={i}
-                    scope="col"
-                    style={headerCellStyle(i, resolvedHeaders.length)}
-                  >
-                    {formatHeaderLabel(header)}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody style={{ backgroundColor: '#ffffff' }}>
-              {showNoRows ? (
+              <table style={tableStyle}>
+                {renderColgroup()}
+                <tbody style={{ backgroundColor: '#ffffff' }}>
+                  {showNoRows ? (
                 <tr>
                   <td colSpan={colCount || 1} style={messageCellStyle}>
                     No rows loaded. Set dataUrl to a public JSON file on GitHub (jsDelivr URL). See GITHUB_HOSTING.md.
@@ -542,9 +579,11 @@ export const SearchableTableRemote = (props) => {
                     ))}
                   </tr>
                 ))
-              )}
-            </tbody>
-          </table>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
 
