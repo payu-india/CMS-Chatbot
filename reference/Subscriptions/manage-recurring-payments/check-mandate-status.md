@@ -37,4 +37,39 @@ Use this endpoint to check the mandate status of the following payment methods:
   ```
 </Accordion>
 
+## Sample Response
+
+<Accordion title="Response Payload" icon="fa-code">
+  ```json Cards - Success Response 
+  {
+    "status":"active",
+    "action":"check_mandate_status",
+    "authpayuid":25599222315,
+    "amount":"1",
+    "mandateStartDate":"2025-10-14",
+    "mandateEndDate":"2027-12-01"
+  }
+  ```
+  ```json NetBanking - Success Response
+  {
+  	"status": "SUCCESS", // INITIATED/SUCCESS/FAILED/CANCEL_INITIATED/CANCEL_PENDING/CANCEL_FAILED/CANCEL_INITIATION_FAILED
+  	"action": "NB_mandate_status",
+  	"authpayuid": "10731087875",
+  	"amount": "100.00",
+  	"mandateStartDate": "2022-07-19",
+  	"mandateEndDate": "2023-12-20"
+  }
+  ```
+  ```json UPI - Success Response
+  {
+      "status": "active",
+      "action": "MANDATE_STATUS",
+      "authpayuid": "25600438037",
+      "amount": "1.00",
+      "mandateStartDate": "2025-10-14 00:00:00",
+      "mandateEndDate": "2027-12-01 00:00:00"
+  }
+  ```
+</Accordion>
+
 <br />
