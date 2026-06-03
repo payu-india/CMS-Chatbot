@@ -30,7 +30,6 @@ The following are possible errors and error codes for a transaction. You need t
 <SearchableTable
   headers={['Errors', 'Error_message/Message', 'Error Description', 'Title']}
   codeColumns={[0]}
-  columnWidths={['12%', '32%', '28%', '28%']}
   rows={[
     ["E1620", "Payment Method Enforced and wrong method selected", "WRONG_PAYMENT_METHOD_SELECTED", "WRONG_PAYMENT_METHOD_SELECTED"],
     ["E907", "Wrong payment method selected.", "WRONG_PAYMENT_METHOD", "WRONG_PAYMENT_METHOD"],
