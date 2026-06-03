@@ -429,7 +429,7 @@ var payUPaymentParams = \{
 
     For more details on Static Hash generation and passing them, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk).
   </Accordion>
- <Accordion title="Step 5.12: For Partnet Webhook" icon="fa-code">
+ <Accordion title="Step 5.12: For Partner Webhook" icon="fa-code">
     Add these parameters to PayUPaymentParams
      ```Text Dart
     "partner_webhook_success": "<partner webhook success url>", 
