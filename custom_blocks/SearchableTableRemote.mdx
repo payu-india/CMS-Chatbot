@@ -246,14 +246,34 @@ export const SearchableTableRemote = (props) => {
   const isMessageCol = (colIndex) =>
     /message/i.test(String(resolvedHeaders[colIndex] == null ? '' : resolvedHeaders[colIndex]));
 
-  const isDescriptionCol = (colIndex) =>
-    /description/i.test(String(resolvedHeaders[colIndex] == null ? '' : resolvedHeaders[colIndex]));
+  const headerText = (colIndex) =>
+    String(resolvedHeaders[colIndex] == null ? '' : resolvedHeaders[colIndex]).trim();
+
+  const isExpandedDescriptionCol = (colIndex) =>
+    /expanded\s*description/i.test(headerText(colIndex));
+
+  const isShortDescriptionCol = (colIndex) =>
+    /^description$/i.test(headerText(colIndex));
+
+  const isFieldCol = (colIndex) => /^field$/i.test(headerText(colIndex));
+
+  const isLayerCol = (colIndex) => /layer$/i.test(headerText(colIndex));
 
   const getColMaxWidth = (colIndex) => {
     if (isTitleCol(colIndex)) return 240;
-    if (isDescriptionCol(colIndex)) return 360;
+    if (isExpandedDescriptionCol(colIndex)) return 420;
+    if (isShortDescriptionCol(colIndex)) return 220;
     if (isMessageCol(colIndex)) return 200;
+    if (isFieldCol(colIndex) || isCodeCol(colIndex)) return 210;
+    if (isLayerCol(colIndex)) return 180;
     return 280;
+  };
+
+  const measureCellLen = (colIndex, cell) => {
+    if (cell == null) return 0;
+    const text = String(cell).trim();
+    if (!text) return 0;
+    return isCodeCol(colIndex) ? text.length + 2 : text.length;
   };
 
   const formatHeaderLabel = (text) => {
@@ -273,23 +293,26 @@ export const SearchableTableRemote = (props) => {
     const rowsForMeasure =
       filteredRows.length > 0 ? filteredRows : tableRows;
     const sampleSize = Math.min(rowsForMeasure.length, 150);
-    const pxPerChar = 7;
-    const pad = 32;
-    const oneLineCharCap = 28;
+    const pxPerChar = 8;
+    const pad = 36;
+    const oneLineCharCap = 26;
 
     resolvedHeaders.forEach((header, colIdx) => {
       let maxLen = formatHeaderLabel(header).length;
       for (let r = 0; r < sampleSize; r += 1) {
         const cell = rowsForMeasure[r] && rowsForMeasure[r][colIdx];
-        if (cell != null) {
-          maxLen = Math.max(maxLen, String(cell).trim().length);
-        }
+        maxLen = Math.max(maxLen, measureCellLen(colIdx, cell));
       }
 
-      const minW = isCodeCol(colIdx) ? 72 : 80;
-      const maxW = isCodeCol(colIdx) ? 140 : getColMaxWidth(colIdx);
+      const minW = isCodeCol(colIdx) || isFieldCol(colIdx) ? 96 : 88;
+      const maxW = getColMaxWidth(colIdx);
+      const fitsOneLine =
+        isCodeCol(colIdx) ||
+        isFieldCol(colIdx) ||
+        isLayerCol(colIdx) ||
+        maxLen <= oneLineCharCap;
 
-      if (isCodeCol(colIdx) || maxLen <= oneLineCharCap) {
+      if (fitsOneLine) {
         widths[colIdx] = Math.min(
           Math.max(maxLen * pxPerChar + pad, minW),
           maxW
@@ -297,13 +320,22 @@ export const SearchableTableRemote = (props) => {
         return;
       }
 
-      const cappedLen = Math.min(maxLen, 72);
+      const cappedLen = Math.min(
+        maxLen,
+        isExpandedDescriptionCol(colIdx) ? 96 : 64
+      );
       const twoLineWidth = Math.ceil(cappedLen / 2) * pxPerChar + pad;
       widths[colIdx] = Math.min(Math.max(twoLineWidth, minW), maxW);
     });
 
     return widths;
   }, [resolvedHeaders, filteredRows, tableRows, codeColIndexes]);
+
+  const tablePixelWidth = useMemo(() => {
+    const vals = Object.keys(autoColWidths).map((k) => autoColWidths[k]);
+    if (vals.length === 0) return null;
+    return vals.reduce((sum, w) => sum + w, 0);
+  }, [autoColWidths]);
 
   const fontSans =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
@@ -334,9 +366,9 @@ export const SearchableTableRemote = (props) => {
 
   const colWidthStyle = (colIndex) => {
     const w = autoColWidths[colIndex];
-    if (!w) return {};
+    if (!w) return { minWidth: 0 };
     return {
-      minWidth: w + 'px',
+      minWidth: 0,
       width: w + 'px',
       maxWidth: w + 'px',
     };
@@ -358,7 +390,8 @@ export const SearchableTableRemote = (props) => {
     borderLeft: 'none',
     verticalAlign: 'middle',
     boxSizing: 'border-box',
-    whiteSpace: 'nowrap',
+    whiteSpace: 'normal',
+    overflow: 'hidden',
     ...colWidthStyle(colIndex),
   });
 
@@ -377,12 +410,16 @@ export const SearchableTableRemote = (props) => {
     borderLeft: 'none',
     verticalAlign: 'top',
     boxSizing: 'border-box',
+    minWidth: 0,
+    overflow: 'hidden',
     ...colWidthStyle(colIndex),
-    whiteSpace: isCodeCol(colIndex) ? 'nowrap' : 'normal',
-    wordBreak: isCodeCol(colIndex) ? 'normal' : 'normal',
-    overflowWrap: isCodeCol(colIndex) ? 'normal' : 'break-word',
-    overflow: isCodeCol(colIndex) ? undefined : 'hidden',
   });
+
+  const usesAnywhereWrap = (colIndex) =>
+    isCodeCol(colIndex) ||
+    isFieldCol(colIndex) ||
+    isTitleCol(colIndex) ||
+    isMessageCol(colIndex);
 
   const cellClampStyle = (colIndex) => ({
     display: '-webkit-box',
@@ -390,17 +427,14 @@ export const SearchableTableRemote = (props) => {
     WebkitLineClamp: 2,
     overflow: 'hidden',
     lineHeight: '1.5',
-    wordBreak:
-      isTitleCol(colIndex) || isMessageCol(colIndex) ? 'break-word' : 'normal',
-    overflowWrap:
-      isTitleCol(colIndex) || isMessageCol(colIndex)
-        ? 'anywhere'
-        : 'break-word',
+    minWidth: 0,
+    maxWidth: '100%',
+    wordBreak: usesAnywhereWrap(colIndex) ? 'break-word' : 'normal',
+    overflowWrap: usesAnywhereWrap(colIndex) ? 'anywhere' : 'break-word',
   });
 
   const renderBodyCellInner = (cell, cellIndex) => {
     const content = renderCellContent(cell, cellIndex);
-    if (isCodeCol(cellIndex)) return content;
     if (autoColWidths[cellIndex] != null) {
       return (
         <div style={cellClampStyle(cellIndex)} title={cellPlainText(cell)}>
@@ -570,11 +604,11 @@ export const SearchableTableRemote = (props) => {
         >
           <table
             style={{
-              width: 'auto',
+              width: tablePixelWidth ? tablePixelWidth + 'px' : 'auto',
               borderCollapse: 'collapse',
               borderSpacing: 0,
               margin: 0,
-              tableLayout: 'auto',
+              tableLayout: tablePixelWidth ? 'fixed' : 'auto',
               fontFamily: fontSans,
             }}
           >
