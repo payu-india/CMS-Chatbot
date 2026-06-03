@@ -4,8 +4,12 @@ name: SearchableTableSimple
 /**
  * SearchableTableSimple - Readme CMS Custom Component
  *
- * Uses inline styles (Readme preview does not load Tailwind).
- * Paste into Settings, Custom Components. Name: SearchableTableSimple
+ * MDX-ish page rules (Readme Refactored):
+ * - Do not start the page with this component; add a line of text first.
+ * - On doc pages use rowsJson (string), not inline rows array.
+ * - Component name in Readme must match export: SearchableTableSimple
+ *
+ * Inline styles are used because Tailwind does not load in Readme preview.
  */
 
 import { useState, useMemo } from 'react';
@@ -13,7 +17,9 @@ import { useState, useMemo } from 'react';
 export const SearchableTableSimple = (props) => {
   const {
     headers = [],
+    headersJson = '',
     rows = [],
+    rowsJson = '',
     placeholder = 'Search in table...',
     maxHeight = '400px',
     emptyMessage = 'No results found. Try a different search.',
@@ -21,6 +27,40 @@ export const SearchableTableSimple = (props) => {
   } = props;
 
   const [searchQuery, setSearchQuery] = useState('');
+
+  const parseJsonProp = (text, fallback) => {
+    if (text == null || text === '') return fallback;
+    if (typeof text !== 'string') return text;
+    const trimmed = text.trim();
+    if (!trimmed) return fallback;
+    try {
+      return JSON.parse(trimmed);
+    } catch (e) {
+      return fallback;
+    }
+  };
+
+  const resolvedHeaders = useMemo(() => {
+    const fromJson = parseJsonProp(headersJson, null);
+    if (Array.isArray(fromJson) && fromJson.length > 0) {
+      return fromJson.map((h) => String(h == null ? '' : h));
+    }
+    if (Array.isArray(headers) && headers.length > 0) {
+      return headers.map((h) => String(h == null ? '' : h));
+    }
+    return [];
+  }, [headers, headersJson]);
+
+  const tableRows = useMemo(() => {
+    if (Array.isArray(rows) && rows.length > 0) {
+      return rows.filter((row) => Array.isArray(row));
+    }
+    const fromJson = parseJsonProp(rowsJson, []);
+    if (Array.isArray(fromJson)) {
+      return fromJson.filter((row) => Array.isArray(row));
+    }
+    return [];
+  }, [rows, rowsJson]);
 
   const normalize = (str) =>
     str == null ? '' : String(str).toLowerCase().trim().replace(/\s+/g, ' ');
@@ -34,13 +74,14 @@ export const SearchableTableSimple = (props) => {
   };
 
   const filteredRows = useMemo(
-    () => rows.filter((row) => rowMatchesQuery(row, searchQuery)),
-    [rows, searchQuery]
+    () => tableRows.filter((row) => rowMatchesQuery(row, searchQuery)),
+    [tableRows, searchQuery]
   );
 
   const hasSearchQuery = normalize(searchQuery).length > 0;
   const showEmptyState = hasSearchQuery && filteredRows.length === 0;
-  const colCount = headers.length;
+  const showNoRows = tableRows.length === 0 && !showEmptyState;
+  const colCount = resolvedHeaders.length;
 
   const fontSans =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
@@ -185,7 +226,7 @@ export const SearchableTableSimple = (props) => {
           >
             <thead>
               <tr>
-                {headers.map((header, i) => (
+                {resolvedHeaders.map((header, i) => (
                   <th key={i} scope="col" style={headerCellStyle}>
                     {header}
                   </th>
@@ -193,10 +234,25 @@ export const SearchableTableSimple = (props) => {
               </tr>
             </thead>
             <tbody>
-              {showEmptyState ? (
+              {showNoRows ? (
                 <tr>
                   <td
-                    colSpan={colCount}
+                    colSpan={colCount || 1}
+                    style={{
+                      padding: '16px',
+                      fontFamily: fontSans,
+                      fontSize: '14px',
+                      color: '#6b7280',
+                      border: '1px solid ' + borderColor,
+                    }}
+                  >
+                    No rows loaded. On doc pages use rowsJson, not inline rows.
+                  </td>
+                </tr>
+              ) : showEmptyState ? (
+                <tr>
+                  <td
+                    colSpan={colCount || 1}
                     role="alert"
                     style={{
                       padding: '16px',
@@ -226,7 +282,7 @@ export const SearchableTableSimple = (props) => {
         </div>
       </div>
 
-      {filteredRows.length > 0 ? (
+      {!showNoRows && filteredRows.length > 0 ? (
         <p
           style={{
             marginTop: '8px',
@@ -235,8 +291,8 @@ export const SearchableTableSimple = (props) => {
             color: '#6b7280',
           }}
         >
-          Showing {filteredRows.length} of {rows.length} row
-          {rows.length !== 1 ? 's' : ''}
+          Showing {filteredRows.length} of {tableRows.length} row
+          {tableRows.length !== 1 ? 's' : ''}
           {hasSearchQuery ? ' (filtered by search)' : ''}.
         </p>
       ) : null}
@@ -247,11 +303,6 @@ export const SearchableTableSimple = (props) => {
 
 <SearchableTableSimple
   headers={['Bank', 'Type', 'Status']}
-  rows={[
-    ['HDFC Bank', 'Netbanking / Cards', 'Active'],
-    ['ICICI Bank', 'Netbanking / Cards', 'Active'],
-    ['State Bank of India', 'Netbanking', 'Active'],
-    ['Axis Bank', 'Cards', 'Active'],
-  ]}
+  rowsJson='[["HDFC Bank","Netbanking / Cards","Active"],["ICICI Bank","Netbanking / Cards","Active"],["State Bank of India","Netbanking","Active"],["Axis Bank","Cards","Active"]]'
   placeholder="Search"
 />
