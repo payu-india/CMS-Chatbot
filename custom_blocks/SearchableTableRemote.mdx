@@ -243,6 +243,19 @@ export const SearchableTableRemote = (props) => {
   const isTitleCol = (colIndex) =>
     /^title$/i.test(String(resolvedHeaders[colIndex] == null ? '' : resolvedHeaders[colIndex]).trim());
 
+  const isMessageCol = (colIndex) =>
+    /message/i.test(String(resolvedHeaders[colIndex] == null ? '' : resolvedHeaders[colIndex]));
+
+  const isDescriptionCol = (colIndex) =>
+    /description/i.test(String(resolvedHeaders[colIndex] == null ? '' : resolvedHeaders[colIndex]));
+
+  const getColMaxWidth = (colIndex) => {
+    if (isTitleCol(colIndex)) return 240;
+    if (isDescriptionCol(colIndex)) return 360;
+    if (isMessageCol(colIndex)) return 200;
+    return 280;
+  };
+
   const formatHeaderLabel = (text) => {
     const raw = String(text == null ? '' : text).trim();
     if (!raw) return '';
@@ -255,15 +268,16 @@ export const SearchableTableRemote = (props) => {
       .join(' ');
   };
 
-  const compactColWidths = useMemo(() => {
+  const autoColWidths = useMemo(() => {
     const widths = {};
     const rowsForMeasure =
       filteredRows.length > 0 ? filteredRows : tableRows;
     const sampleSize = Math.min(rowsForMeasure.length, 150);
+    const pxPerChar = 7;
+    const pad = 32;
+    const oneLineCharCap = 28;
 
     resolvedHeaders.forEach((header, colIdx) => {
-      if (!isTitleCol(colIdx)) return;
-
       let maxLen = formatHeaderLabel(header).length;
       for (let r = 0; r < sampleSize; r += 1) {
         const cell = rowsForMeasure[r] && rowsForMeasure[r][colIdx];
@@ -272,15 +286,24 @@ export const SearchableTableRemote = (props) => {
         }
       }
 
-      const pad = 32;
-      const pxPerChar = 7;
-      const cappedLen = Math.min(maxLen, 56);
+      const minW = isCodeCol(colIdx) ? 72 : 80;
+      const maxW = isCodeCol(colIdx) ? 140 : getColMaxWidth(colIdx);
+
+      if (isCodeCol(colIdx) || maxLen <= oneLineCharCap) {
+        widths[colIdx] = Math.min(
+          Math.max(maxLen * pxPerChar + pad, minW),
+          maxW
+        );
+        return;
+      }
+
+      const cappedLen = Math.min(maxLen, 72);
       const twoLineWidth = Math.ceil(cappedLen / 2) * pxPerChar + pad;
-      widths[colIdx] = Math.min(Math.max(twoLineWidth, 120), 240);
+      widths[colIdx] = Math.min(Math.max(twoLineWidth, minW), maxW);
     });
 
     return widths;
-  }, [resolvedHeaders, filteredRows, tableRows]);
+  }, [resolvedHeaders, filteredRows, tableRows, codeColIndexes]);
 
   const fontSans =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
@@ -309,6 +332,16 @@ export const SearchableTableRemote = (props) => {
     );
   };
 
+  const colWidthStyle = (colIndex) => {
+    const w = autoColWidths[colIndex];
+    if (!w) return {};
+    return {
+      minWidth: w + 'px',
+      width: w + 'px',
+      maxWidth: w + 'px',
+    };
+  };
+
   const headerCellStyle = (colIndex, colTotal) => ({
     padding: '12px 16px',
     textAlign: 'left',
@@ -326,15 +359,7 @@ export const SearchableTableRemote = (props) => {
     verticalAlign: 'middle',
     boxSizing: 'border-box',
     whiteSpace: 'nowrap',
-    minWidth: compactColWidths[colIndex]
-      ? compactColWidths[colIndex] + 'px'
-      : undefined,
-    width: compactColWidths[colIndex]
-      ? compactColWidths[colIndex] + 'px'
-      : undefined,
-    maxWidth: compactColWidths[colIndex]
-      ? compactColWidths[colIndex] + 'px'
-      : undefined,
+    ...colWidthStyle(colIndex),
   });
 
   const bodyCellStyle = (colIndex, colTotal, isLastRow) => ({
@@ -352,31 +377,33 @@ export const SearchableTableRemote = (props) => {
     borderLeft: 'none',
     verticalAlign: 'top',
     boxSizing: 'border-box',
-    minWidth: compactColWidths[colIndex]
-      ? compactColWidths[colIndex] + 'px'
-      : undefined,
-    width: compactColWidths[colIndex]
-      ? compactColWidths[colIndex] + 'px'
-      : undefined,
-    maxWidth: compactColWidths[colIndex]
-      ? compactColWidths[colIndex] + 'px'
-      : undefined,
-    whiteSpace: isCodeCol(colIndex)
-      ? 'nowrap'
-      : isTitleCol(colIndex)
-        ? 'normal'
-        : 'normal',
-    wordBreak: isCodeCol(colIndex) || isTitleCol(colIndex) ? 'normal' : 'break-word',
+    ...colWidthStyle(colIndex),
+    whiteSpace: isCodeCol(colIndex) ? 'nowrap' : 'normal',
+    wordBreak: isCodeCol(colIndex) ? 'normal' : 'normal',
+    overflowWrap: isCodeCol(colIndex) ? 'normal' : 'break-word',
+    overflow: isCodeCol(colIndex) ? undefined : 'hidden',
+  });
+
+  const cellClampStyle = (colIndex) => ({
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 2,
+    overflow: 'hidden',
+    lineHeight: '1.5',
+    wordBreak:
+      isTitleCol(colIndex) || isMessageCol(colIndex) ? 'break-word' : 'normal',
     overflowWrap:
-      isCodeCol(colIndex) || isTitleCol(colIndex) ? 'normal' : 'break-word',
-    overflow: compactColWidths[colIndex] ? 'hidden' : undefined,
+      isTitleCol(colIndex) || isMessageCol(colIndex)
+        ? 'anywhere'
+        : 'break-word',
   });
 
   const renderBodyCellInner = (cell, cellIndex) => {
     const content = renderCellContent(cell, cellIndex);
-    if (compactColWidths[cellIndex]) {
+    if (isCodeCol(cellIndex)) return content;
+    if (autoColWidths[cellIndex] != null) {
       return (
-        <div style={compactClampStyle} title={cellPlainText(cell)}>
+        <div style={cellClampStyle(cellIndex)} title={cellPlainText(cell)}>
           {content}
         </div>
       );
@@ -411,30 +438,20 @@ export const SearchableTableRemote = (props) => {
         }
       : null;
 
-  const compactClampStyle = {
-    display: '-webkit-box',
-    WebkitBoxOrient: 'vertical',
-    WebkitLineClamp: 2,
-    overflow: 'hidden',
-    lineHeight: '1.5',
-    wordBreak: 'break-word',
-    overflowWrap: 'anywhere',
-  };
-
   const renderColgroup = () => {
     if (resolvedHeaders.length === 0) return null;
-    if (Object.keys(compactColWidths).length === 0) return null;
+    if (Object.keys(autoColWidths).length === 0) return null;
     return (
       <colgroup>
         {resolvedHeaders.map((_, i) => (
           <col
             key={i}
             style={
-              compactColWidths[i]
+              autoColWidths[i] != null
                 ? {
-                    width: compactColWidths[i] + 'px',
-                    minWidth: compactColWidths[i] + 'px',
-                    maxWidth: compactColWidths[i] + 'px',
+                    width: autoColWidths[i] + 'px',
+                    minWidth: autoColWidths[i] + 'px',
+                    maxWidth: autoColWidths[i] + 'px',
                   }
                 : undefined
             }
