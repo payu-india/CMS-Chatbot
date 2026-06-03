@@ -370,14 +370,61 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
   <Accordion title="var1 object field descriptions" icon="fa-cog">
     ### var1 object field descriptions
 
-   | JSON Field                                             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-  | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | authpayuid<br />**mandatory**                          | The value of mihpayid returned in the payment response of Registration transaction when transaction is successfully completed. As explained earlier in the document, you need to map this value against customer profile at his end so that correct authPayuid will be passed in the request.                                                                                                                                                                                                                                                                              |
-  | requestId<br />**mandatory**                           | Unique request value generated at merchant's end to distinguish independent request call.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-  | debitDate<br />**mandatory for cards and UPI**         | This parameter contains the date of debit when the recurring would be charged by merchant.<br />**In UPI:** <ul><li>For all frequencies (other than Daily and Adhoc), the merchant must send the notification 48 hours before the debit.</li><li>For Daily and Adhoc frequency, the merchant must send the notification 24 hours before the debit. If the notification is sent after these durations, then the debit will fail.</li></ul>                                                                                                                                  |
-  | invoiceDisplayNumber<br />**mandatory only for cards** | A unique display number by merchant for every subsequent invoice/recurring charge. This can be displayed on the merchant's panel to the customer. This same value needs to be sent in the recurring api also.                                                                                                                                                                                                                                                                                                                                                              |
-  | amount<br />**mandatory for cards and UPI**            | The transaction amount which will be deducted from the customer's payment instrument.<br />**For Cards:** <ul><li>In case of Fixed billing plan, this amount should be same as billingAmount sent during Registration transaction.</li><li>In case of Adhoc billing plan, this amount should be equal to or lesser than billingAmount sent during the Registration transaction.<br />**Note**: The amount mentioned in the Pre-Debit notification API for UPI should be same as the next execution amount. Else, the next recurring execution request will fail.</li></ul> |
-  | action<br />**optional**                               | Any of the following actions can be performed:<br />• **Retrieve**: Query the status of the pre-debit notification. Only authpayuid and invoice display numbers are mandatory for this action.<br />• **Delete**: Delete the already generated pre debit. Only authpayuid and invoice display numbers are mandatory for this action.                                                                                                                                                                                                                                       |
+    ```json
+    {
+      "authpayuid": "403993715537049175",
+      "invoiceDisplayNumber": "IN_403993715537049175",
+      "amount": "1",
+      "txnid": "tx_403993715537049175",
+      "phone": "9988776655",
+      "email": "chota.bheem@gmail.com",
+      "more_info": [
+        {
+          "wtParams": [
+            {
+              "type": "mutual_fund",
+              "plan": "GD",
+              "amount": "1000.00",
+              "option": "G",
+              "scheme": "LT",
+              "receipt": "77407",
+              "mf_member_id": "12345",
+              "mf_user_id": "77407",
+              "mf_partner": "cams",
+              "mf_investment_type": "L",
+              "mf_amc_code": "UTB"
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+    | Parameter | Description | Example |
+    | --------- | ----------- | ------- |
+    | authpayuid<br />`mandatory` | `String` Authorization PayU ID (`mihpayid` from successful registration) | `403993715537049175` |
+    | invoiceDisplayNumber<br />`mandatory` | `String` Display invoice number for the recurring charge | `IN_403993715537049175` |
+    | amount<br />`mandatory` | `String` Transaction amount to be debited | `1` |
+    | txnid<br />`mandatory` | `String` Unique transaction ID generated by the merchant | `tx_403993715537049175` |
+    | phone<br />`mandatory` | `String` Customer phone number | `9988776655` |
+    | email<br />`mandatory` | `String` Customer email address | `chota.bheem@gmail.com` |
+    | more_info<br />`mandatory for Wealth Tech` | `JSON` Array containing the Wealth Tech object (`wtParams`). For `wtParams` field descriptions, refer to [Wealth Tech object wtparams fields description](https://docs.payu.in/docs/upi-autopay-integration-mutual-fund-payments#wealth-tech-object-wtparams-fields-description). | `[{"wtParams":[...]}]` |
+
+    **Fields within `more_info[].wtParams[]`**
+
+    | Parameter | Description | Example |
+    | --------- | ----------- | ------- |
+    | type<br />`mandatory` | `String` Transaction type; must be `mutual_fund` | `mutual_fund` |
+    | plan<br />`optional` | `String` Mutual fund plan name | `GD` |
+    | amount<br />`mandatory` | `String` Investment amount in the `wtParams` object | `1000.00` |
+    | option<br />`optional` | `String` Mutual fund plan option | `G` |
+    | scheme<br />`optional` | `String` Mutual fund type or scheme | `LT` |
+    | receipt<br />`mandatory` | `String` Unique PG reference number | `77407` |
+    | mf_member_id<br />`mandatory` | `String` Member ID issued by the mutual fund platform | `12345` |
+    | mf_user_id<br />`mandatory` | `String` Unique mutual fund user or client ID | `77407` |
+    | mf_partner<br />`mandatory` | `String` Mutual fund platform (`cams`, `kfin`, `bse`, `nse`) | `cams` |
+    | mf_investment_type<br />`mandatory` | `String` Investment type: `L` (Lump Sum) or `S` (SIP) | `L` |
+    | mf_amc_code<br />`optional` | `String` Asset Management Company code | `UTB` |
   </Accordion>
 </Accordion>
 
