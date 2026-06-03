@@ -19,6 +19,27 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Flutter Custom Browser SDK
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Flutter Custom Browser SDK
+  description: >-
+    This document provides instructions for integrating the Custom Browser SDK
+    with Flutter, highlighting features like OTP assist and bank page
+    optimizations, and includes compatibility details for Android and iOS.
+  keywords:
+    - Flutter Custom Browser SDK
+    - ' Integrate Flutter Custom Browser'
+    - Flutter Custom Browser SDK Integration
+    - Integration of Flutter Custom Browser SDK
+    - Custom Browser SDK integration on Mobile Flutter SDK
+  robots: index
+next:
+  description: ''
+---
 This document describes how to integrate Custom Browser SDK with Flutter.
 
 ## Features
@@ -154,7 +175,7 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
 <Accordion title="Step 5: Generate the Payment Parameters" icon="fa-code">
   Set up the payment parameters for the SDK to initiate a transaction request. Use the following sample code for a quick integration:
 
-  ```Text dart
+  ```dart
     var cbConfig = {
         first_name: < Name>,
         email: <email id>,
@@ -180,293 +201,105 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
   }
   ```
 
-  <Table align={["left","left","left"]}>
-    <thead>
-      <tr>
-        <th style={{ textAlign: "left" }}>
-          Parameter
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          Description
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          Notes
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          key
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This parameter must contain your merchant key received from PayU.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Cannot be null or empty
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          transaction\_id
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` It should be unique for each transaction.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Cannot be null or empty and should be unique for each transaction. Maximum allowed length is 25 characters. It cannot contain special characters like: -\_/
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          amount
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` Total transaction amount.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Cannot be null or empty and should be valid double stringified example: “100.0”
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          product\_info
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` Information about product.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Cannot be null or empty
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          first\_name
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` Customer’s first name
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Cannot be null or empty
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          email
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` Customer’s email id
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Cannot be null or empty
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          phone
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` Customer’s phone number.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Should be a valid phone number
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          User Credential
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. **Format**: `<merchantKey>:<userId>`
-          Here, the UserId is any ID/email/phone number to uniquely identify the user. \*\*
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          "merchantKey:userId"
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          ios\_surl
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` When the transaction gets success, PayU will load this url and pass transaction response.
-          Note: This field is applicable for iOS integration
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Should be a valid URL
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          ios\_furl
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` When the transaction gets fail, PayU will load this url and pass transaction response.
-          Note: This field is applicable for iOS integration
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Should be a valid URL
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          android\_surl
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` When the transaction gets success, PayU will load this url and pass transaction response.
-          Note: This field is applicable for Android integration
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Should be a valid URL
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          android\_furl
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` When the transaction gets fail, PayU will load this url and pass transaction response.
-          When the transaction gets success, PayU will load this url and pass transaction response.
-          Note: This field is applicable for Android integration
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Should be a valid URL
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          environment
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` Environment of SDK
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          "0" for Production and "1" for Test
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          url
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` The post URL
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          post\_data
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` call `getPostData` method defined in next block to generate post request
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          payment\_type
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` Payment option using which payment is being done. Example: CC, NB, CASH etc.
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          auto\_approve
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `boolean` It will auto submit the OTP without user intervention
-        </td>
-
-        <td style={{ textAlign: "left" }} />
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          merchant\_response\_timeout
-          `Mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `integer` If the SDK does not get response from bank it will give control to Merchant app when this timeout will exceed. PayU response will be send back to Merchant.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          Should be a valid positive number
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+  <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Notes</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>key <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain your merchant key received from PayU.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>transaction\_id <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It should be unique for each transaction.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty and should be unique for each transaction. Maximum allowed length is 25 characters. It cannot contain special characters like: -\_/</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>amount <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Total transaction amount.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty and should be valid double stringified example: “100.0”</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>product\_info <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Information about product.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>first\_name <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer’s first name</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>email <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer’s email id</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>phone <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer’s phone number.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a valid phone number</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>User Credential<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. <strong>Format</strong>: <code>&lt;merchantKey&gt;:&lt;userId&gt;</code> Here, the UserId is any ID/email/phone number to uniquely identify the user.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"merchantKey:userId"</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>ios\_surl <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When the transaction gets success, PayU will load this url and pass transaction response. Note: This field is applicable for iOS integration</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a valid URL</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>ios\_furl <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When the transaction gets fail, PayU will load this url and pass transaction response. Note: This field is applicable for iOS integration</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a valid URL</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>android\_surl <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When the transaction gets success, PayU will load this url and pass transaction response. Note: This field is applicable for Android integration</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a valid URL</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>android\_furl <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When the transaction gets fail, PayU will load this url and pass transaction response. When the transaction gets success, PayU will load this url and pass transaction response. Note: This field is applicable for Android integration</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a valid URL</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>environment <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Environment of SDK</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"0" for Production and "1" for Test</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>url <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The post URL</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>post\_data <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> call <code>getPostData</code> method defined in next block to generate post request</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>payment\_type <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Payment option using which payment is being done. Example: CC, NB, CASH etc.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>auto\_approve <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>boolean</code> It will auto submit the OTP without user intervention</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>merchant\_response\_timeout <code>Mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>integer</code> If the SDK does not get response from bank it will give control to Merchant app when this timeout will exceed. PayU response will be send back to Merchant.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a valid positive number</p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 
 <Accordion title="Credit / Debit Card" icon="fa-code">
   To pay using a credit card or debit card, perform the following steps.
@@ -654,7 +487,7 @@ You can make test payments using one of the payment methods configured at the Ch
 
     > 🚧 Ensure to remove the code from the manifest file before going live.
 
-    ```Text xml
+    ```xml
     <application>
     <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
     <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
@@ -705,66 +538,33 @@ You can make test payments using one of the payment methods configured at the Ch
   <Accordion title="Test wallets" icon="fa-code">
     You can use the following wallets and their corresponding credentials to test wallet integration.
 
-    <Table align={["left","left","left"]}>
-      <thead>
-        <tr>
-          <th style={{ textAlign: "left" }}>
-            Wallet
-          </th>
-
-          <th style={{ textAlign: "left" }}>
-            Mobile Number
-          </th>
-
-          <th style={{ textAlign: "left" }}>
-            OTP
-          </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            PayTM
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            7777777777
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            888888
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            PhonePe
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: [https://developer.phonepe.com/v1/docs/setting-up-test-account](https://developer.phonepe.com/v1/docs/setting-up-test-account)
-            Download the app and register your mobile number and follow the instructions as described in the above PhonePe docs.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            NA
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            AmazonPay
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            You can test using your original Amazon account details.
-          </td>
-
-          <td style={{ textAlign: "left" }} />
-        </tr>
-      </tbody>
-    </Table>
+    <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Wallet</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Mobile Number</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>OTP</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>PayTM</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>7777777777</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>888888</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>PhonePe</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Use the Phonepe Pre-Prod app for testing purposes as described in the following PhonePe doc. location: <a href="https://developer.phonepe.com/v1/docs/setting-up-test-account">https://developer.phonepe.com/v1/docs/setting-up-test-account</a> Download the app and register your mobile number and follow the instructions as described in the above PhonePe docs.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>NA</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>AmazonPay</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>You can test using your original Amazon account details.</p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
   </Accordion>
 </Accordion>
 </Accordion>
