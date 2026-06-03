@@ -1,20 +1,105 @@
 ---
 name: SearchableTable
 ---
-import { useState, useMemo } from 'react';
+/**
+ * SearchableTable - Readme CMS Custom Component
+ *
+ * - Search input that filters rows by any column (case-insensitive, multi-word)
+ * - "No results found" error state when search has no matches
+ * - Scrollable table body (fixed max height with overflow)
+ * - Columns auto-size to content (browser-native, via `table-layout: auto`).
+ *   Short columns ("100", "104") stay narrow, long columns ("Recommended Fix")
+ *   absorb the remaining space. Pass `columnWidths` only if you want to force
+ *   specific widths (e.g., ['18%', '32%', '50%']).
+ * - For large tables (100+ rows), pass `dataUrl` pointing to a JSON file hosted
+ *   on GitHub/CDN. Do NOT paste hundreds of rows into the MDX page — Readme's
+ *   parser will fail with "Page content is not renderable".
+ * - In MDX pages and in this file's preview block, NEVER wrap cell values in
+ *   backticks (e.g. '`E000`'). MDX treats backticks as inline code and breaks
+ *   the page. Use plain strings plus `codeColumns={[0]}` for monospace cells.
+ *
+ * NOTE: All critical layout (widths, table-layout, overflow) uses inline
+ * styles instead of Tailwind classes, because Readme's MDX renderer does
+ * not always apply Tailwind utilities.
+ */
+
+import { useState, useMemo, useEffect } from 'react';
 
 export const SearchableTable = (props) => {
   const {
     headers = [],
     rows = [],
+    dataUrl = null,
     placeholder = 'Search in table...',
     maxHeight = '400px',
     emptyMessage = 'No results found. Try a different search.',
+    loadErrorMessage = 'Could not load table data. Check the data URL or try again later.',
     className = '',
     columnWidths = null,
+    maxLines = 3,
+    codeColumns = null,
   } = props;
 
+  const codeColumnSet = useMemo(() => {
+    const list = Array.isArray(codeColumns) ? codeColumns : [];
+    const set = {};
+    list.forEach((i) => {
+      set[i] = true;
+    });
+    return set;
+  }, [codeColumns]);
+
   const [searchQuery, setSearchQuery] = useState('');
+  const [remoteRows, setRemoteRows] = useState(null);
+  const [loadState, setLoadState] = useState(dataUrl ? 'loading' : 'idle');
+  const [loadError, setLoadError] = useState('');
+
+  useEffect(() => {
+    if (!dataUrl) {
+      setRemoteRows(null);
+      setLoadState('idle');
+      setLoadError('');
+      return;
+    }
+
+    let cancelled = false;
+    setLoadState('loading');
+    setLoadError('');
+    setRemoteRows(null);
+
+    fetch(dataUrl)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('HTTP ' + res.status);
+        }
+        return res.json();
+      })
+      .then((json) => {
+        if (cancelled) return;
+        const loaded =
+          json && Array.isArray(json.rows)
+            ? json.rows
+            : Array.isArray(json)
+              ? json
+              : null;
+        if (!loaded) {
+          throw new Error('JSON must be { rows: [...] } or a row array');
+        }
+        setRemoteRows(loaded);
+        setLoadState('ready');
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setLoadError(err && err.message ? err.message : 'Load failed');
+        setLoadState('error');
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [dataUrl]);
+
+  const tableRows = remoteRows != null ? remoteRows : rows;
 
   const normalize = (str) =>
     str == null ? '' : String(str).toLowerCase().trim().replace(/\s+/g, ' ');
@@ -28,27 +113,48 @@ export const SearchableTable = (props) => {
   };
 
   const filteredRows = useMemo(
-    () => rows.filter((row) => rowMatchesQuery(row, searchQuery)),
-    [rows, searchQuery]
+    () => tableRows.filter((row) => rowMatchesQuery(row, searchQuery)),
+    [tableRows, searchQuery]
   );
 
   const hasSearchQuery = normalize(searchQuery).length > 0;
-  const showEmptyState = hasSearchQuery && filteredRows.length === 0;
+  const isLoading = loadState === 'loading';
+  const hasLoadError = loadState === 'error';
+  const showEmptyState =
+    !isLoading && !hasLoadError && hasSearchQuery && filteredRows.length === 0;
   const colCount = headers.length;
 
-  const getColWidth = (i) =>
-    columnWidths && columnWidths[i]
-      ? columnWidths[i]
-      : `${100 / Math.max(1, headers.length)}%`;
+  // If caller passes explicit `columnWidths`, lock the layout. Otherwise let
+  // the browser auto-size columns to their content.
+  const useFixedLayout = Array.isArray(columnWidths) && columnWidths.length > 0;
 
-  const renderCellContent = (value) => {
+  // In auto mode we let the browser size columns from content naturally.
+  // Only apply widths when explicit `columnWidths` are provided.
+  const getSizingStyle = (i) =>
+    useFixedLayout ? { width: columnWidths[i] } : null;
+
+  const codeStyle = {
+    padding: '2px 6px',
+    background: '#f3f4f6',
+    color: '#1f2937',
+    borderRadius: '4px',
+    fontFamily:
+      'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+    fontSize: '0.875em',
+  };
+
+  const renderCellContent = (value, colIndex) => {
     if (value == null) return '';
     if (typeof value !== 'string') return value;
+    const text = value.indexOf('`') >= 0 ? value.replace(/`/g, '') : value;
+    if (codeColumnSet[colIndex]) {
+      return <code style={codeStyle}>{text}</code>;
+    }
     if (value.indexOf('`') === -1) return value;
     const parts = value.split('`');
     return parts.map((part, i) =>
       i % 2 === 1 ? (
-        <code key={i} style={{ padding: '2px 6px', background: '#f3f4f6', color: '#1f2937', borderRadius: '4px', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace', fontSize: '0.875em' }}>
+        <code key={i} style={codeStyle}>
           {part}
         </code>
       ) : (
@@ -58,26 +164,101 @@ export const SearchableTable = (props) => {
   };
 
   const headerCellStyle = {
-    padding: '12px 16px', textAlign: 'left', fontSize: '12px', fontWeight: 600,
-    color: '#374151', textTransform: 'uppercase', letterSpacing: '0.05em',
-    background: '#f9fafb', borderBottom: '1px solid #e5e7eb',
-    verticalAlign: 'top', wordBreak: 'break-word', overflowWrap: 'break-word',
-    position: 'sticky', top: 0, zIndex: 10,
+    padding: '12px 16px',
+    textAlign: 'left',
+    fontSize: '12px',
+    fontWeight: 600,
+    color: '#374151',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    background: '#f9fafb',
+    borderBottom: '1px solid #e5e7eb',
+    verticalAlign: 'top',
+    wordBreak: 'normal',
+    overflowWrap: 'break-word',
+    position: 'sticky',
+    top: 0,
+    zIndex: 10,
   };
 
   const bodyCellStyle = {
-    padding: '8px 16px', fontSize: '14px', color: '#111827',
-    verticalAlign: 'top', wordBreak: 'break-word', overflowWrap: 'break-word',
+    padding: '8px 16px',
+    fontSize: '14px',
+    color: '#111827',
+    verticalAlign: 'top',
+    wordBreak: 'normal',
+    overflowWrap: 'break-word',
     borderBottom: '1px solid #f3f4f6',
+  };
+
+  const clampStyle =
+    typeof maxLines === 'number' && maxLines > 0
+      ? {
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
+          WebkitLineClamp: maxLines,
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          maxWidth: '480px',
+        }
+      : null;
+
+  const cellPlainText = (value) => {
+    if (value == null) return '';
+    return String(value).replace(/`/g, '');
   };
 
   return (
     <div className={className} style={{ width: '100%', display: 'block' }}>
-      <div style={{ width: '100%', border: '1px solid #e5e7eb', borderRadius: '6px', overflow: 'hidden', boxSizing: 'border-box' }}>
-        <div style={{ padding: '12px 16px', background: '#f9fafb', borderBottom: '1px solid #e5e7eb' }}>
-          <div style={{ display: 'flex', alignItems: 'center', width: '100%', maxWidth: '420px', border: '1px solid #d1d5db', borderRadius: '6px', background: '#ffffff', boxShadow: '0 1px 2px 0 rgba(0,0,0,0.05)' }}>
-            <span aria-hidden="true" style={{ display: 'flex', alignItems: 'center', paddingLeft: '12px', color: '#9ca3af', flexShrink: 0 }}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <div
+        style={{
+          width: '100%',
+          border: '1px solid #e5e7eb',
+          borderRadius: '6px',
+          overflow: 'hidden',
+          boxSizing: 'border-box',
+        }}
+      >
+        <div
+          style={{
+            padding: '12px 16px',
+            background: '#f9fafb',
+            borderBottom: '1px solid #e5e7eb',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              width: '100%',
+              maxWidth: '420px',
+              border: '1px solid #d1d5db',
+              borderRadius: '6px',
+              background: '#ffffff',
+              boxShadow: '0 1px 2px 0 rgba(0,0,0,0.05)',
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                paddingLeft: '12px',
+                color: '#9ca3af',
+                flexShrink: 0,
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.35-4.35" />
               </svg>
@@ -88,42 +269,130 @@ export const SearchableTable = (props) => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               aria-label="Search table"
-              style={{ flex: 1, minWidth: 0, padding: '8px 12px 8px 8px', border: 0, background: 'transparent', outline: 'none', fontSize: '14px' }}
+              style={{
+                flex: 1,
+                minWidth: 0,
+                padding: '8px 12px 8px 8px',
+                border: 0,
+                background: 'transparent',
+                outline: 'none',
+                fontSize: '14px',
+              }}
             />
           </div>
         </div>
 
-        <div style={{ width: '100%', overflowY: 'auto', overflowX: 'hidden', position: 'relative', maxHeight: showEmptyState ? 'none' : maxHeight, boxSizing: 'border-box' }}>
-          <table style={{ width: '100%', tableLayout: 'fixed', borderCollapse: 'separate', borderSpacing: 0 }}>
-            <colgroup>
-              {headers.map((_, i) => (
-                <col key={i} style={{ width: getColWidth(i) }} />
-              ))}
-            </colgroup>
+        <div
+          style={{
+            width: '100%',
+            overflowY: 'auto',
+            overflowX: 'auto',
+            position: 'relative',
+            maxHeight: showEmptyState ? 'none' : maxHeight,
+            boxSizing: 'border-box',
+          }}
+        >
+          <table
+            style={{
+              width: useFixedLayout ? '100%' : 'max-content',
+              minWidth: '100%',
+              tableLayout: useFixedLayout ? 'fixed' : 'auto',
+              borderCollapse: 'separate',
+              borderSpacing: 0,
+            }}
+          >
+            {useFixedLayout && (
+              <colgroup>
+                {headers.map((_, i) => (
+                  <col key={i} style={{ width: columnWidths[i] }} />
+                ))}
+              </colgroup>
+            )}
             <thead>
               <tr>
-                {headers.map((header, i) => (
-                  <th key={i} scope="col" style={{ ...headerCellStyle, width: getColWidth(i) }}>
-                    {renderCellContent(header)}
-                  </th>
-                ))}
+                {headers.map((header, i) => {
+                  const sizing = useFixedLayout
+                    ? { width: columnWidths[i] }
+                    : getSizingStyle(i);
+                  return (
+                    <th
+                      key={i}
+                      scope="col"
+                      style={{ ...headerCellStyle, ...(sizing || {}) }}
+                    >
+                      {renderCellContent(header, i)}
+                    </th>
+                  );
+                })}
               </tr>
             </thead>
             <tbody style={{ background: '#ffffff' }}>
-              {showEmptyState ? (
+              {isLoading ? (
                 <tr>
-                  <td colSpan={colCount} role="alert" style={{ padding: '16px', background: '#fef2f2', color: '#b91c1c', borderBottom: '1px solid #fecaca' }}>
+                  <td
+                    colSpan={colCount}
+                    style={{
+                      padding: '16px',
+                      color: '#6b7280',
+                      borderBottom: '1px solid #f3f4f6',
+                    }}
+                  >
+                    Loading table data...
+                  </td>
+                </tr>
+              ) : hasLoadError ? (
+                <tr>
+                  <td
+                    colSpan={colCount}
+                    role="alert"
+                    style={{
+                      padding: '16px',
+                      background: '#fef2f2',
+                      color: '#b91c1c',
+                      borderBottom: '1px solid #fecaca',
+                    }}
+                  >
+                    {loadErrorMessage}
+                    {loadError ? ' (' + loadError + ')' : ''}
+                  </td>
+                </tr>
+              ) : showEmptyState ? (
+                <tr>
+                  <td
+                    colSpan={colCount}
+                    role="alert"
+                    style={{
+                      padding: '16px',
+                      background: '#fef2f2',
+                      color: '#b91c1c',
+                      borderBottom: '1px solid #fecaca',
+                    }}
+                  >
                     {emptyMessage}
                   </td>
                 </tr>
               ) : (
                 filteredRows.map((row, rowIndex) => (
                   <tr key={rowIndex}>
-                    {row.map((cell, cellIndex) => (
-                      <td key={cellIndex} style={bodyCellStyle}>
-                        {renderCellContent(cell)}
-                      </td>
-                    ))}
+                    {row.map((cell, cellIndex) => {
+                      const sizing = useFixedLayout
+                        ? null
+                        : getSizingStyle(cellIndex);
+                      return (
+                        <td
+                          key={cellIndex}
+                          style={{ ...bodyCellStyle, ...(sizing || {}) }}
+                        >
+                          {clampStyle ? (
+                            <div style={clampStyle} title={cellPlainText(cell)}>
+                              {renderCellContent(cell, cellIndex)}
+                            </div>
+                          ) : (
+                            renderCellContent(cell, cellIndex)
+                          )}
+                        </td>
+                      );
+                    })}
                   </tr>
                 ))
               )}
@@ -132,9 +401,10 @@ export const SearchableTable = (props) => {
         </div>
       </div>
 
-      {filteredRows.length > 0 && (
+      {!isLoading && !hasLoadError && filteredRows.length > 0 && (
         <p style={{ marginTop: '8px', fontSize: '12px', color: '#6b7280' }}>
-          Showing {filteredRows.length} of {rows.length} row{rows.length !== 1 ? 's' : ''}
+          Showing {filteredRows.length} of {tableRows.length} row
+          {tableRows.length !== 1 ? 's' : ''}
           {hasSearchQuery && ' (filtered by search)'}.
         </p>
       )}
@@ -144,11 +414,12 @@ export const SearchableTable = (props) => {
 
 <SearchableTable
   headers={['Bank Code', 'Description', 'Recommended Fix']}
+  codeColumns={[0]}
   columnWidths={['18%', '32%', '50%']}
   rows={[
-    ['`E000`', 'NO_ERROR', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
-    ['`AUCNEGATIVE`', 'OTP Generated Successfully', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
-    ['`E348`', 'ISSUER_DECLINED', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
+    ['E000', 'NO_ERROR', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
+    ['AUCNEGATIVE', 'OTP Generated Successfully', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
+    ['E348', 'ISSUER_DECLINED', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
   ]}
   placeholder="Search errors..."
 />
