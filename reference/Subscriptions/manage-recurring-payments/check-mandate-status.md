@@ -72,4 +72,10 @@ Use this endpoint to check the mandate status of the following payment methods:
   ```
 </Accordion>
 
+## Request Parameters
+
+> 📘
+>
+>
+
 <br />
