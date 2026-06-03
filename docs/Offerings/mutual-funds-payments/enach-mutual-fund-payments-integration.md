@@ -270,7 +270,7 @@ All successful registration transactions are charged over the recurring interfac
 
   <Accordion title="var1 object field descriptions" icon="fa-cog">
     ### var1 object field descriptions
-
+**Sample JSON**
     ```json
     {
       "authpayuid": "403993715537049175",
@@ -300,7 +300,7 @@ All successful registration transactions are charged over the recurring interfac
       ]
     }
     ```
-
+**Field Descriptions**
     | Parameter | Description | Example |
     | --------- | ----------- | ------- |
     | authpayuid<br />`mandatory` | `String` Authorization PayU ID (`mihpayid` from successful registration) | `403993715537049175` |
