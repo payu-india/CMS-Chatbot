@@ -77,7 +77,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
 Add the PayU UPI SDK (available at Maven Central) to `<<glossary:build.gradle>>`:
 
-```Text build.gradle
+```gradle
 implementation 'in.payu:upisdk:1.8.15'
 ```
 
@@ -346,204 +346,79 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   <Accordion title="Wealth Tech Payment Param Description" icon="fa-cog">
     These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
 
-    <Table align={["left","left","left"]}>
-      <thead>
-        <tr>
-          <th style={{ textAlign: "left" }}>
-            Parameter
-          </th>
-
-          <th style={{ textAlign: "left" }}>
-            Description
-          </th>
-
-          <th style={{ textAlign: "left" }}>
-            Example
-          </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            type <br />
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `string` - Transaction type, must be "mutual\_fund"
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `"mutual_fund"`
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            amount <br />
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `numeric` - Amount in paise, must match order amount
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `50000`
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            receipt <br />
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `string` - Unique PG reference number (max 25 chars)
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `"77407"`
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            mf\_member\_id <br />
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `numeric` - Member ID issued by mutual fund platform (5-20 chars)
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `"123445"`
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            mf\_user\_id <br />
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `string` - Unique mutual fund user/client ID (max 10 chars)
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `"77407"`
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            mf\_partner <br />
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `string` - Mutual fund platform: cams, kfin, bse, nse (max 4 chars)
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `"cams"`
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            mf\_investment\_type <br /> `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `string` - Investment type: L (Lump Sum) or S (SIP) (single char)
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `"L"`
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            plan <br />
-            `optional`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `string` - Mutual fund plan name
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `"GD"`
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            folio<br />
-            `optional`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `string` - Unique mutual fund account identifier
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `"12345678"`
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            option <br />
-            `optional`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `string` - Mutual fund plan option
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `"G"`
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            scheme <br />
-            `optional`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `string` - Mutual fund type/scheme
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `"LT"`
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            mf\_amc\_code <br />
-            `optional`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `string` - Asset Management Company code (max 5 chars)
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `"UTB"`
-          </td>
-        </tr>
-      </tbody>
-    </Table>
+    <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>type <br /><br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> - Transaction type, must be "mutual\_fund"</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>"mutual_fund"</code></p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>amount <br /><br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>numeric</code> - Amount in paise, must match order amount</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>50000</code></p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>receipt <br /><br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> - Unique PG reference number (max 25 chars)</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>"77407"</code></p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>mf\_member\_id <br /><br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>numeric</code> - Member ID issued by mutual fund platform (5-20 chars)</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>"123445"</code></p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>mf\_user\_id <br /><br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> - Unique mutual fund user/client ID (max 10 chars)</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>"77407"</code></p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>mf\_partner <br /><br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> - Mutual fund platform: cams, kfin, bse, nse (max 4 chars)</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>"cams"</code></p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>mf\_investment\_type <br /><br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> - Investment type: L (Lump Sum) or S (SIP) (single char)</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>"L"</code></p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>plan <br /> <code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> - Mutual fund plan name</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>"GD"</code></p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>folio<br /> <code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> - Unique mutual fund account identifier</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>"12345678"</code></p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>option <br /> <code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> - Mutual fund plan option</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>"G"</code></p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>scheme <br /> <code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> - Mutual fund type/scheme</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>"LT"</code></p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>mf\_amc\_code <br /> <code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> - Asset Management Company code (max 5 chars)</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>"UTB"</code></p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 
     <Accordion title="Validation Rules" icon="fa-code">
       <Accordion title="Mandatory Field Validations" icon="fa-code">
@@ -583,7 +458,7 @@ PaymentOption.UPI_COLLECT: UPI payment through web flow.
 
   * Add the following URL to the root project of **build.gradle**:
 
-  ```Text build.gradle
+  ```gradle
   allprojects {
       repositories {
           maven {
@@ -595,7 +470,7 @@ PaymentOption.UPI_COLLECT: UPI payment through web flow.
 
   * Add the following dependency to the root project of build.gradle:
 
-  ```Text build.gradle
+  ```gradle
   implementation 'in.payu:phonepe-intent:1.7.6'
   ```
 </Accordion>
@@ -605,7 +480,7 @@ PaymentOption.UPI_COLLECT: UPI payment through web flow.
 
   * Add the following dependency to the root project of build.gradle:
 
-  ```Text build.gradle
+  ```gradle
   implementation 'in.payu:payu-gpay:3.0.0'
   ```
 </Accordion>
@@ -615,7 +490,7 @@ PaymentOption.UPI_COLLECT: UPI payment through web flow.
 
   * Add the following dependency to the root project of build.gradle:
 
-  ```Text build.gradle
+  ```gradle
   implementation 'com.payu.samsungpay:samsungpay:1.0'
   ```
 
@@ -761,7 +636,7 @@ To make the payment, you need to create UpiConfig and provide mandatory paramete
   >
   > For Device API Level 19, you must enable GMS provider service and set gmsProviderUpdatedStatus of UpiConfig similar to the following example. For more details, refer to the Andriod Documentation.
 
-  ```Text JAVA
+  ```java
   upiConfig.setGmsProviderUpdatedStatus(UpiConfig.DISABLE/UpiConfig.ENABLE);
   ```
 </Accordion>
@@ -824,7 +699,7 @@ upi.getCommandResponse(Activity, postdata, PayUUPICallback);
 <Accordion title=" Sandbox Environment Configurations" icon="fa-code">
   To test on Sandbox or Test Environment(test.payu.in), use your Sandbox environment merchant key and Salt and add the following configurations in your application manifest:
 
-  ```Text XML
+  ```xml
   <meta-data android:name="payu_debug_mode_enabled" android:value="true" />
   <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" />
   <meta-data android:name="payu_post_url" android:value="https://test.payu.in" />
@@ -839,7 +714,7 @@ upi.getCommandResponse(Activity, postdata, PayUUPICallback);
 
   #### UPI Collect Response
 
-  ```Text Success
+  ```json
   {
     "id": 403993715526100438,
     "mode": "CC",
@@ -888,7 +763,7 @@ upi.getCommandResponse(Activity, postdata, PayUUPICallback);
     "furl": "https://cbjs.payu.in/sdk/failure"
   }
   ```
-  ```Text Failure
+  ```json
   {
     "id": "15130876153",
     "mode": "CC",
@@ -933,7 +808,7 @@ upi.getCommandResponse(Activity, postdata, PayUUPICallback);
 
   #### UPI Intent/In-App Response
 
-  ```Text Success
+  ```json
   {
     "status": "success",
     "result": {
@@ -992,7 +867,7 @@ upi.getCommandResponse(Activity, postdata, PayUUPICallback);
     }
   }
   ```
-  ```Text Failure
+  ```json
   {
     "status": "success",
     "result": {
