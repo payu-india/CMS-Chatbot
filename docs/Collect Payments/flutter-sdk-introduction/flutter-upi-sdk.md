@@ -20,6 +20,28 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Flutter UPI SDK
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Flutter UPI SDK
+  description: >-
+    This document outlines the knowledge base for UPI transactions, detailing
+    the differences between Collect and Intent transactions, and provides
+    guidance on integrating UPI SDK with React Native and Flutter, including
+    compatibility requirements and integration steps.
+  keywords:
+    - Flutter UPI SDK
+    - Integrate Flutter UPI SDK
+    - ' Flutter UPI SDK Integration'
+    - Integrate Mobile Flutter UPI SDK
+    - PayU Mobile Flutter UPI SDK
+  robots: index
+next:
+  description: ''
+---
 This cluster aims to document all the knowledge base for UPI transactions. Implementation of most of the UPI flows is different when compared to normal transactions.
 
 There are broadly two types of UPI transactions, Collect and Intent(Pure Intent/In-App). For collect transactions, PayU informs the payment gateway to trigger a transaction to the app linked to the provided VPA, which asks the user for approval.
@@ -345,251 +367,91 @@ For Normal transactions, use the following format to generate the hash:
   ```
 
   <Accordion title="Payment Parameters" icon="fa-code">
-    <Table align={["left","left","left"]}>
-      <thead>
-        <tr>
-          <th style={{ textAlign: "left" }}>
-            Parameter
-          </th>
-
-          <th style={{ textAlign: "left" }}>
-            Description
-          </th>
-
-          <th style={{ textAlign: "left" }}>
-            Notes
-          </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            key
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` This parameter must contain your merchant key received from PayU.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Cannot be null or empty
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            transaction\_id
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` It should be unique for each transaction.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: -\_/
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            amount
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` Total transaction amount.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Cannot be null or empty and should be a valid double-stringified example: “100.0”
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            product\_info
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String`Product information.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Cannot be null or empty
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            first\_name
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` Customer’s first name
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Cannot be null or empty
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            email
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` Customer’s email id
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Cannot be null or empty
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            phone
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` Customer’s phone number.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            There should be a valid phone number
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            ios\_surl
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
-
-            * *Note*\*: This field is applicable for iOS integration
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Should be a valid URL
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            ios\_furl
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` When the transaction fails, PayU will load this URL and pass the transaction response.
-            No\*\*\*\*te: This field is applicable for iOS integration
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Should be a valid URL
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            android\_surl
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
-
-            * *Note*\*: This field is applicable for Android integration
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Should be a valid URL
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            android\_furl
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` When the transaction fails, PayU will load this URL and pass the transaction response.
-            When the transaction is a success, PayU will load this URL and pass the transaction response.
-
-            * *Note*\*: This field is applicable for Android integration
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Should be a valid URL
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            environment
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` Environment of SDK
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            "0" for Production and "1" for Test
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            user\_credentials
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String`User bank account number for TPV transaction.
-          </td>
-
-          <td style={{ textAlign: "left" }} />
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            beneficiary\_ifsc
-            `no`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` IFSC of bank account for TPV transaction.
-          </td>
-
-          <td style={{ textAlign: "left" }} />
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            beneficiary\_account\_number
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Users bank account number for TPV transaction.
-          </td>
-
-          <td style={{ textAlign: "left" }} />
-        </tr>
-      </tbody>
-    </Table>
+    <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Notes</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain your merchant key received from PayU.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>transaction\_id<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It should be unique for each transaction.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: -\_/</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Total transaction amount.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty and should be a valid double-stringified example: “100.0”</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>product\_info<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Product information.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>first\_name<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer’s first name</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer’s email id</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer’s phone number.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>There should be a valid phone number</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>ios\_surl<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When the transaction is successful, PayU will load this URL and pass the transaction response.</p><ul><li><em>Note</em>: This field is applicable for iOS integration</li></ul></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a valid URL</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>ios\_furl<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When the transaction fails, PayU will load this URL and pass the transaction response. No\<em>\</em>\<em>\</em>te: This field is applicable for iOS integration</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a valid URL</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>android\_surl<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When the transaction is successful, PayU will load this URL and pass the transaction response.</p><ul><li><em>Note</em>: This field is applicable for Android integration</li></ul></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a valid URL</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>android\_furl<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When the transaction fails, PayU will load this URL and pass the transaction response. When the transaction is a success, PayU will load this URL and pass the transaction response.</p><ul><li><em>Note</em>: This field is applicable for Android integration</li></ul></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a valid URL</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>environment<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Environment of SDK</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"0" for Production and "1" for Test</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>user\_credentials<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>User bank account number for TPV transaction.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiary\_ifsc <code>no</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> IFSC of bank account for TPV transaction.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiary\_account\_number</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Users bank account number for TPV transaction.</p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
   </Accordion>
 </Accordion>
 
@@ -667,7 +529,7 @@ For Normal transactions, use the following format to generate the hash:
 <Accordion title="For IOS, UPI Intent (Mandatory)" icon="fa-code">
   For fetch the Installed UPI apps, Kindly add the query schemes in the`info.plist`:
 
-  ```Text Info.plist Code for Intent
+  ```xml
   	<key>LSApplicationQueriesSchemes</key>
   	<array>
   		<string>phonepe</string>
@@ -732,7 +594,7 @@ For Normal transactions, use the following format to generate the hash:
 
       > 🚧 Ensure to remove the code from the manifest file before going live.
 
-      ```Text xml
+      ```xml
       <application>
       <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
       <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
