@@ -30,7 +30,6 @@ The following are possible errors and error codes for a transaction. You need t
 <SearchableTable
   headers={['Errors', 'Error_message/Message', 'Error Description', 'Title']}
   codeColumns={[0]}
-  tableKey="paymentErrors"
   placeholder="Search"
   maxHeight="500px"
 />
