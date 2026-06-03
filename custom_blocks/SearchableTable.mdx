@@ -1,27 +1,9 @@
 ---
 name: SearchableTable
 ---
-/**
- * SearchableTable - Readme CMS Custom Component
- *
- * - Search input that filters rows by any column (case-insensitive, multi-word)
- * - "No results found" error state when search has no matches
- * - Scrollable table body (fixed max height with overflow)
- * - Columns auto-size to content (browser-native, via `table-layout: auto`).
- *   Short columns ("100", "104") stay narrow, long columns ("Recommended Fix")
- *   absorb the remaining space. Pass `columnWidths` only if you want to force
- *   specific widths (e.g., ['18%', '32%', '50%']).
- * - For large tables (100+ rows), pass `dataUrl` pointing to a JSON file hosted
- *   on GitHub/CDN. Do NOT paste hundreds of rows into the MDX page — Readme's
- *   parser will fail with "Page content is not renderable".
- * - In MDX pages and in this file's preview block, NEVER wrap cell values in
- *   backticks (e.g. '`E000`'). MDX treats backticks as inline code and breaks
- *   the page. Use plain strings plus `codeColumns={[0]}` for monospace cells.
- *
- * NOTE: All critical layout (widths, table-layout, overflow) uses inline
- * styles instead of Tailwind classes, because Readme's MDX renderer does
- * not always apply Tailwind utilities.
- */
+// SearchableTable - Readme CMS Custom Component
+// Readme parses this entire file as MDX. Never use curly braces in comments here.
+// No helpers above export. Preview uses rowsJson only (not nested rows arrays).
 
 import { useState, useMemo, useEffect } from 'react';
 
@@ -29,6 +11,7 @@ export const SearchableTable = (props) => {
   const {
     headers = [],
     rows = [],
+    rowsJson = '',
     dataUrl = null,
     placeholder = 'Search in table...',
     maxHeight = '400px',
@@ -40,26 +23,18 @@ export const SearchableTable = (props) => {
     codeColumns = null,
   } = props;
 
-  const codeColumnSet = useMemo(() => {
-    const list = Array.isArray(codeColumns) ? codeColumns : [];
-    const set = {};
-    list.forEach((i) => {
-      set[i] = true;
-    });
-    return set;
-  }, [codeColumns]);
-
   const [searchQuery, setSearchQuery] = useState('');
   const [remoteRows, setRemoteRows] = useState(null);
   const [loadState, setLoadState] = useState(dataUrl ? 'loading' : 'idle');
   const [loadError, setLoadError] = useState('');
 
   useEffect(() => {
-    if (!dataUrl) {
+    const url = dataUrl;
+    if (!url) {
       setRemoteRows(null);
       setLoadState('idle');
       setLoadError('');
-      return;
+      return undefined;
     }
 
     let cancelled = false;
@@ -67,13 +42,8 @@ export const SearchableTable = (props) => {
     setLoadError('');
     setRemoteRows(null);
 
-    fetch(dataUrl)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('HTTP ' + res.status);
-        }
-        return res.json();
-      })
+    fetch(url)
+      .then((res) => (res.ok ? res.json() : Promise.reject(new Error('HTTP ' + res.status))))
       .then((json) => {
         if (cancelled) return;
         const loaded =
@@ -99,17 +69,32 @@ export const SearchableTable = (props) => {
     };
   }, [dataUrl]);
 
-  const tableRows = remoteRows != null ? remoteRows : rows;
+  const inlineRows = useMemo(() => {
+    const raw = rowsJson && String(rowsJson).trim();
+    if (!raw) return Array.isArray(rows) ? rows : [];
+    try {
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      return Array.isArray(rows) ? rows : [];
+    }
+  }, [rowsJson, rows]);
+
+  const tableRows = remoteRows != null ? remoteRows : inlineRows;
 
   const normalize = (str) =>
     str == null ? '' : String(str).toLowerCase().trim().replace(/\s+/g, ' ');
 
   const rowMatchesQuery = (row, query) => {
     const q = normalize(query);
-    if (!q) return true;
-    const words = q.split(/\s+/).filter(Boolean);
-    const rowText = row.map((cell) => normalize(cell)).join(' ');
-    return words.every((word) => rowText.includes(word));
+    return !q
+      ? true
+      : q
+          .split(/\s+/)
+          .filter(Boolean)
+          .every((word) =>
+            row.map((cell) => normalize(cell)).join(' ').includes(word)
+          );
   };
 
   const filteredRows = useMemo(
@@ -124,14 +109,10 @@ export const SearchableTable = (props) => {
     !isLoading && !hasLoadError && hasSearchQuery && filteredRows.length === 0;
   const colCount = headers.length;
 
-  // If caller passes explicit `columnWidths`, lock the layout. Otherwise let
-  // the browser auto-size columns to their content.
   const useFixedLayout = Array.isArray(columnWidths) && columnWidths.length > 0;
 
-  // In auto mode we let the browser size columns from content naturally.
-  // Only apply widths when explicit `columnWidths` are provided.
-  const getSizingStyle = (i) =>
-    useFixedLayout ? { width: columnWidths[i] } : null;
+  const isCodeCol = (i) =>
+    Array.isArray(codeColumns) ? codeColumns.indexOf(i) >= 0 : false;
 
   const codeStyle = {
     padding: '2px 6px',
@@ -146,20 +127,11 @@ export const SearchableTable = (props) => {
   const renderCellContent = (value, colIndex) => {
     if (value == null) return '';
     if (typeof value !== 'string') return value;
-    const text = value.indexOf('`') >= 0 ? value.replace(/`/g, '') : value;
-    if (codeColumnSet[colIndex]) {
-      return <code style={codeStyle}>{text}</code>;
-    }
-    if (value.indexOf('`') === -1) return value;
-    const parts = value.split('`');
-    return parts.map((part, i) =>
-      i % 2 === 1 ? (
-        <code key={i} style={codeStyle}>
-          {part}
-        </code>
-      ) : (
-        part
-      )
+    const plain = value.indexOf('`') >= 0 ? value.replace(/`/g, '') : value;
+    return isCodeCol(colIndex) ? (
+      <code style={codeStyle}>{plain}</code>
+    ) : (
+      plain
     );
   };
 
@@ -203,10 +175,11 @@ export const SearchableTable = (props) => {
         }
       : null;
 
-  const cellPlainText = (value) => {
-    if (value == null) return '';
-    return String(value).replace(/`/g, '');
-  };
+  const cellPlainText = (value) =>
+    value == null ? '' : String(value).replace(/`/g, '');
+
+  const mergeStyle = (base, extra) =>
+    extra ? Object.assign({}, base, extra) : base;
 
   return (
     <div className={className} style={{ width: '100%', display: 'block' }}>
@@ -301,29 +274,27 @@ export const SearchableTable = (props) => {
               borderSpacing: 0,
             }}
           >
-            {useFixedLayout && (
+            {useFixedLayout ? (
               <colgroup>
                 {headers.map((_, i) => (
                   <col key={i} style={{ width: columnWidths[i] }} />
                 ))}
               </colgroup>
-            )}
+            ) : null}
             <thead>
               <tr>
-                {headers.map((header, i) => {
-                  const sizing = useFixedLayout
-                    ? { width: columnWidths[i] }
-                    : getSizingStyle(i);
-                  return (
-                    <th
-                      key={i}
-                      scope="col"
-                      style={{ ...headerCellStyle, ...(sizing || {}) }}
-                    >
-                      {renderCellContent(header, i)}
-                    </th>
-                  );
-                })}
+                {headers.map((header, i) => (
+                  <th
+                    key={i}
+                    scope="col"
+                    style={mergeStyle(
+                      headerCellStyle,
+                      useFixedLayout ? { width: columnWidths[i] } : null
+                    )}
+                  >
+                    {renderCellContent(header, i)}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody style={{ background: '#ffffff' }}>
@@ -374,25 +345,20 @@ export const SearchableTable = (props) => {
               ) : (
                 filteredRows.map((row, rowIndex) => (
                   <tr key={rowIndex}>
-                    {row.map((cell, cellIndex) => {
-                      const sizing = useFixedLayout
-                        ? null
-                        : getSizingStyle(cellIndex);
-                      return (
-                        <td
-                          key={cellIndex}
-                          style={{ ...bodyCellStyle, ...(sizing || {}) }}
-                        >
-                          {clampStyle ? (
-                            <div style={clampStyle} title={cellPlainText(cell)}>
-                              {renderCellContent(cell, cellIndex)}
-                            </div>
-                          ) : (
-                            renderCellContent(cell, cellIndex)
-                          )}
-                        </td>
-                      );
-                    })}
+                    {row.map((cell, cellIndex) => (
+                      <td
+                        key={cellIndex}
+                        style={bodyCellStyle}
+                      >
+                        {clampStyle ? (
+                          <div style={clampStyle} title={cellPlainText(cell)}>
+                            {renderCellContent(cell, cellIndex)}
+                          </div>
+                        ) : (
+                          renderCellContent(cell, cellIndex)
+                        )}
+                      </td>
+                    ))}
                   </tr>
                 ))
               )}
@@ -401,25 +367,15 @@ export const SearchableTable = (props) => {
         </div>
       </div>
 
-      {!isLoading && !hasLoadError && filteredRows.length > 0 && (
+      {!isLoading && !hasLoadError && filteredRows.length > 0 ? (
         <p style={{ marginTop: '8px', fontSize: '12px', color: '#6b7280' }}>
           Showing {filteredRows.length} of {tableRows.length} row
           {tableRows.length !== 1 ? 's' : ''}
-          {hasSearchQuery && ' (filtered by search)'}.
+          {hasSearchQuery ? ' (filtered by search)' : ''}.
         </p>
-      )}
+      ) : null}
     </div>
   );
 };
 
-<SearchableTable
-  headers={['Bank Code', 'Description', 'Recommended Fix']}
-  codeColumns={[0]}
-  columnWidths={['18%', '32%', '50%']}
-  rows={[
-    ['E000', 'NO_ERROR', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
-    ['AUCNEGATIVE', 'OTP Generated Successfully', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
-    ['E348', 'ISSUER_DECLINED', 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'],
-  ]}
-  placeholder="Search errors..."
-/>
+<SearchableTable headers={['Code', 'Description']} codeColumns={[0]} rowsJson='[["E000","NO_ERROR"]]' />
