@@ -74,6 +74,10 @@ Use this endpoint to check the mandate status of the following payment methods:
 
 ## Request Parameters
 
+> 📘 **Mandatory Parameters**
+>
+> <RequiredStar legend />
+
 | **Parameter**                    | **Description**                                                                                                                                                                                                                                     |
 | :------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | <RequiredStar param="key" />     | `varchar` The unique Merchant Key provided by PayU for your account.                                                                                                                                                                                |
