@@ -3,23 +3,29 @@ name: SearchableTableSmall
 ---
 // SearchableTableSmall - Readme CMS Custom Component
 // Register in Readme as component name: SearchableTableSmall
-// Small tables: tableKey for embedded presets, or rowsJson on doc pages when short enough.
-// Regenerate presets: npm run build:searchable-table:small
+// Use for small tables. Pass tableKey on doc pages (reliable), or rowsJson and headersJson.
 // Do not put curly braces inside line comments in this file.
 
 import { useState, useMemo } from 'react';
 
 export const SearchableTableSmall = (props) => {
+  // EMBEDDED_TABLES_START
+  // tableKey: netBankingCodes
+  const netBankingHeadersJson = "[\"Bank Name\",\"bankcode\"]";
+  const netBankingRowsJson = "[[\"Airtel Payments Bank\",\"AIRNB\"],[\"AU Small Finance Bank\",\"AUSFNB\"],[\"AU Small Finance Bank - Corporate\",\"AUSFCNB\"],[\"AXIS Bank\",\"AXIB\"],[\"Axis Corporate Netbanking\",\"AXISCNB\"],[\"Bandhan Bank\",\"BANDNB\"],[\"Bank of Baroda\",\"BBRB\"],[\"Bank of India -  Corporate\",\"BOIB\"],[\"Bank of India  - Retail\",\"BOINB\"],[\"Bank of Maharashtra\",\"BOMB\"],[\"Canara Bank\",\"CABB\"],[\"Canara Bank (Erstwhile - Syndicate Bank)\",\"SYNDB\"],[\"Capital Small Finance Bank Corporate\",\"CSFBC\"],[\"Capital Small Finance Bank Retail\",\"CSFBR\"],[\"Catholic Syrian Bank\",\"CSBN\"],[\"Central Bank Of India\",\"CBIB\"],[\"City Union Bank\",\"CUBB\"],[\"Cosmos Bank\",\"CSMSNB\"],[\"DCB Bank\",\"DCBB\"],[\"Deutsche Bank\",\"DSHB\"],[\"Dhanlaxmi Bank - Corporate\",\"DLNBCORP\"],[\"Dhanlaxmi Bank - Retail\",\"DLSB\"],[\"Dhanlaxmi Bank - TPV\",\"DLSNBTPV\"],[\"Federal Bank\",\"FEDB\"],[\"Federal Bank Corporate\",\"FEDCORP\"],[\"HDFC Bank\",\"HDFB\"],[\"HDFC Bank - Corporate Banking\",\"HDFCCONB\"],[\"ICICI Bank\",\"ICIB\"],[\"ICICI Corporate Netbanking\",\"ICICICNB\"],[\"ICICI Corporate Netbanking TPV\",\"ICICTPV\"],[\"IDBI Bank\",\"IDBB\"],[\"IDBI Corp Netbanking\",\"IDBICORP\"],[\"IDFC FIRST Bank\",\"IDFCNB\"],[\"Indian Bank\",\"INDB\"],[\"Indian Bank (Erstwhile Allahabad Bank)\",\"ALLB\"],[\"Indian Overseas Bank\",\"INOB\"],[\"IndusInd Bank\",\"INIB\"],[\"Jammu & Kashmir Bank\",\"JAKB\"],[\"Jana Small Finance Bank\",\"JANANB\"],[\"Janata Sahakari Bank Pune\",\"JSBNB\"],[\"Karnataka Bank\",\"KRKB\"],[\"Karnataka Gramin Bank\",\"KGBNB\"],[\"Karur Vysya - Corporate Banking\",\"KRVBC\"],[\"Karur Vysya Bank\",\"KRVB\"],[\"Kerala Gramin Bank\",\"KEGBNB\"],[\"Kotak Mahindra Bank\",\"162B\"],[\"Kotak Mahindra Bank - Corp Net Banking\",\"KTKBCORP\"],[\"Karur Vysya Bank TPV\",\"KVBNBTPV\"],[\"PNB (Erstwhile -Oriental Bank of Commerce)\",\"OBCB\"],[\"PNB (Erstwhile-United Bank of India)\",\"UNIB\"],[\"Punjab & Sind Bank\",\"PSBNB\"],[\"Punjab National Bank\",\"PNBB\"],[\"Punjab National Bank - Corporate Banking\",\"CPNB\"],[\"RBL Bank\",\"RBLNB\"],[\"RBL Corporate Netbanking\",\"RBLCNB\"],[\"Saraswat Bank\",\"SRSWT\"],[\"Shivalik Small Finance Bank\",\"SHIVANB\"],[\"South Indian Bank\",\"SOIB\"],[\"Standard Chartered Bank\",\"SCBNB\"],[\"State Bank of India\",\"SBIB\"],[\"State Bank of India (Corporate)\",\"SBNCORP\"],[\"SVC Co-operative Bank Ltd.\",\"SVCNB\"],[\"SVC Corporate Bank TPV\",\"SVCCBTPV\"],[\"Tamilnad Mercantile Bank\",\"TMBB\"],[\"UCO Bank\",\"UCOB\"],[\"UCO Corporate\",\"UCOCNB\"],[\"Yes Bank\",\"YESB\"]]";
+  const netBankingCodeColumnsJson = "[1]";
+    // EMBEDDED_TABLES_END
+
   const demoHeadersJson = '["Bank","Type","Status"]';
   const demoRowsJson =
     '[["HDFC Bank","Netbanking / Cards","Active"],["ICICI Bank","Netbanking / Cards","Active"],["State Bank of India","Netbanking","Active"],["Axis Bank","Cards","Active"]]';
 
   const {
+    tableKey = '',
     headers = [],
     headersJson = '',
     rows = [],
     rowsJson = '',
-    tableKey = '',
     codeColumns = null,
     codeColumnsJson = '',
     placeholder = 'Search in table...',
@@ -29,23 +35,6 @@ export const SearchableTableSmall = (props) => {
   } = props;
 
   const [searchQuery, setSearchQuery] = useState('');
-
-  // PRESET_LOOKUP_START
-  const lookupPreset = (key) => {
-  const k = key && String(key).trim();
-  if (!k) return null;
-  if (k === 'netBankingCodes') {
-    return {
-      headersJson: "[\"Bank Name\",\"bankcode\"]",
-      rowsJson: "[[\"Airtel Payments Bank\",\"AIRNB\"],[\"AU Small Finance Bank\",\"AUSFNB\"],[\"AU Small Finance Bank - Corporate\",\"AUSFCNB\"],[\"AXIS Bank\",\"AXIB\"],[\"Axis Corporate Netbanking\",\"AXISCNB\"],[\"Bandhan Bank\",\"BANDNB\"],[\"Bank of Baroda\",\"BBRB\"],[\"Bank of India -  Corporate\",\"BOIB\"],[\"Bank of India  - Retail\",\"BOINB\"],[\"Bank of Maharashtra\",\"BOMB\"],[\"Canara Bank\",\"CABB\"],[\"Canara Bank (Erstwhile - Syndicate Bank)\",\"SYNDB\"],[\"Capital Small Finance Bank Corporate\",\"CSFBC\"],[\"Capital Small Finance Bank Retail\",\"CSFBR\"],[\"Catholic Syrian Bank\",\"CSBN\"],[\"Central Bank Of India\",\"CBIB\"],[\"City Union Bank\",\"CUBB\"],[\"Cosmos Bank\",\"CSMSNB\"],[\"DCB Bank\",\"DCBB\"],[\"Deutsche Bank\",\"DSHB\"],[\"Dhanlaxmi Bank - Corporate\",\"DLNBCORP\"],[\"Dhanlaxmi Bank - Retail\",\"DLSB\"],[\"Dhanlaxmi Bank - TPV\",\"DLSNBTPV\"],[\"Federal Bank\",\"FEDB\"],[\"Federal Bank Corporate\",\"FEDCORP\"],[\"HDFC Bank\",\"HDFB\"],[\"HDFC Bank - Corporate Banking\",\"HDFCCONB\"],[\"ICICI Bank\",\"ICIB\"],[\"ICICI Corporate Netbanking\",\"ICICICNB\"],[\"ICICI Corporate Netbanking TPV\",\"ICICTPV\"],[\"IDBI Bank\",\"IDBB\"],[\"IDBI Corp Netbanking\",\"IDBICORP\"],[\"IDFC FIRST Bank\",\"IDFCNB\"],[\"Indian Bank\",\"INDB\"],[\"Indian Bank (Erstwhile Allahabad Bank)\",\"ALLB\"],[\"Indian Overseas Bank\",\"INOB\"],[\"IndusInd Bank\",\"INIB\"],[\"Jammu & Kashmir Bank\",\"JAKB\"],[\"Jana Small Finance Bank\",\"JANANB\"],[\"Janata Sahakari Bank Pune\",\"JSBNB\"],[\"Karnataka Bank\",\"KRKB\"],[\"Karnataka Gramin Bank\",\"KGBNB\"],[\"Karur Vysya - Corporate Banking\",\"KRVBC\"],[\"Karur Vysya Bank\",\"KRVB\"],[\"Kerala Gramin Bank\",\"KEGBNB\"],[\"Kotak Mahindra Bank\",\"162B\"],[\"Kotak Mahindra Bank - Corp Net Banking\",\"KTKBCORP\"],[\"Karur Vysya Bank TPV\",\"KVBNBTPV\"],[\"PNB (Erstwhile -Oriental Bank of Commerce)\",\"OBCB\"],[\"PNB (Erstwhile-United Bank of India)\",\"UNIB\"],[\"Punjab & Sind Bank\",\"PSBNB\"],[\"Punjab National Bank\",\"PNBB\"],[\"Punjab National Bank - Corporate Banking\",\"CPNB\"],[\"RBL Bank\",\"RBLNB\"],[\"RBL Corporate Netbanking\",\"RBLCNB\"],[\"Saraswat Bank\",\"SRSWT\"],[\"Shivalik Small Finance Bank\",\"SHIVANB\"],[\"South Indian Bank\",\"SOIB\"],[\"Standard Chartered Bank\",\"SCBNB\"],[\"State Bank of India\",\"SBIB\"],[\"State Bank of India (Corporate)\",\"SBNCORP\"],[\"SVC Co-operative Bank Ltd.\",\"SVCNB\"],[\"SVC Corporate Bank TPV\",\"SVCCBTPV\"],[\"Tamilnad Mercantile Bank\",\"TMBB\"],[\"UCO Bank\",\"UCOB\"],[\"UCO Corporate\",\"UCOCNB\"],[\"Yes Bank\",\"YESB\"]]",
-      codeColumnsJson: "[1]",
-    };
-  }
-  return null;
-};
-  // PRESET_LOOKUP_END
-
-  const preset = useMemo(() => lookupPreset(tableKey), [tableKey]);
 
   const coerceRows = (input) => {
     if (input == null || input === '') return [];
@@ -84,16 +73,30 @@ export const SearchableTableSmall = (props) => {
     }
   };
 
+  const embeddedForKey = useMemo(() => {
+    const key = tableKey && String(tableKey).trim();
+    if (key === 'netBankingCodes') {
+      return {
+        headersJson: netBankingHeadersJson,
+        rowsJson: netBankingRowsJson,
+        codeColumnsJson: netBankingCodeColumnsJson,
+      };
+    }
+    return null;
+  }, [tableKey]);
+
+  const effectiveHeadersJson =
+    headersJson || (embeddedForKey ? embeddedForKey.headersJson : '');
+  const effectiveRowsJson =
+    rowsJson || (embeddedForKey ? embeddedForKey.rowsJson : '');
+  const effectiveCodeColumnsJson =
+    codeColumnsJson ||
+    (embeddedForKey ? embeddedForKey.codeColumnsJson : '');
+
   const resolvedHeaders = useMemo(() => {
-    const fromJson = parseJsonProp(headersJson, null);
+    const fromJson = parseJsonProp(effectiveHeadersJson, null);
     if (Array.isArray(fromJson) && fromJson.length > 0) {
       return fromJson.map((h) => String(h == null ? '' : h));
-    }
-    if (preset && preset.headersJson) {
-      const fromPreset = parseJsonProp(preset.headersJson, []);
-      if (fromPreset.length > 0) {
-        return fromPreset.map((h) => String(h == null ? '' : h));
-      }
     }
     if (Array.isArray(headers) && headers.length > 0) {
       return headers.map((h) => String(h == null ? '' : h));
@@ -101,33 +104,24 @@ export const SearchableTableSmall = (props) => {
     return parseJsonProp(demoHeadersJson, []).map((h) =>
       String(h == null ? '' : h)
     );
-  }, [headers, headersJson, preset, demoHeadersJson]);
+  }, [headers, effectiveHeadersJson, demoHeadersJson]);
 
   const resolvedCodeColumns = useMemo(() => {
-    const fromJson = parseJsonProp(codeColumnsJson, null);
+    const fromJson = parseJsonProp(effectiveCodeColumnsJson, null);
     if (Array.isArray(fromJson)) return fromJson;
     if (Array.isArray(codeColumns)) return codeColumns;
-    if (preset && preset.codeColumnsJson) {
-      const fromPreset = parseJsonProp(preset.codeColumnsJson, null);
-      if (Array.isArray(fromPreset)) return fromPreset;
-    }
     return [];
-  }, [codeColumns, codeColumnsJson, preset]);
+  }, [codeColumns, effectiveCodeColumnsJson]);
 
   const tableRows = useMemo(() => {
     const fromRows = coerceRows(rows);
     if (fromRows.length > 0) return fromRows;
 
-    const fromJson = coerceRows(rowsJson);
+    const fromJson = coerceRows(effectiveRowsJson);
     if (fromJson.length > 0) return fromJson;
 
-    if (preset && preset.rowsJson) {
-      const fromPreset = coerceRows(preset.rowsJson);
-      if (fromPreset.length > 0) return fromPreset;
-    }
-
     return coerceRows(demoRowsJson);
-  }, [rows, rowsJson, preset, demoRowsJson]);
+  }, [rows, effectiveRowsJson, demoRowsJson]);
 
   const codeColIndexes = useMemo(() => {
     if (resolvedCodeColumns.length > 0) return resolvedCodeColumns;
@@ -366,8 +360,8 @@ export const SearchableTableSmall = (props) => {
               {showNoRows ? (
                 <tr>
                   <td colSpan={colCount || 1} style={messageCellStyle}>
-                    No rows loaded. Use tableKey on the page, or pass rowsJson.
-                    Re-paste SearchableTableSmall.jsx after npm run build:searchable-table:small.
+                    No rows loaded. Pass tableKey on the doc page, or
+                    headersJson and rowsJson string props.
                   </td>
                 </tr>
               ) : showEmptyState ? (
