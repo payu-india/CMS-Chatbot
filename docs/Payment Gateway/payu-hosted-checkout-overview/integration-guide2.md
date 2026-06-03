@@ -1045,7 +1045,7 @@ Now that you have created the hash value combine the below into a request that w
     * Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.
   </Callout>
 
-  <Callout icon="🚧" theme="success">
+  <Callout icon="✅" theme="success">
     **Make Sure:**
 
     * Use HTTP POST.
