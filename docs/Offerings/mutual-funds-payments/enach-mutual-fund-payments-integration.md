@@ -311,7 +311,7 @@ All successful registration transactions are charged over the recurring interfac
     | email<br />`mandatory` | `String` Customer email address | `chota.bheem@gmail.com` |
     | more_info<br />`mandatory for Wealth Tech` | `JSON` Array containing the Wealth Tech object (`wtParams`). For `wtParams` field descriptions, refer to Wealth Tech object wtparams fields description table below. | `[{"wtParams":[...]}]` |
 
-    **Fields within `more_info[].wtParams[]`**
+    **Fields within wtParams field**
 
     | Parameter | Description | Example |
     | --------- | ----------- | ------- |
@@ -322,10 +322,10 @@ All successful registration transactions are charged over the recurring interfac
     | scheme<br />`optional` | `String` Mutual fund type or scheme | `LT` |
     | receipt<br />`mandatory` | `String` Unique PG reference number | `77407` |
     | mf_member_id<br />`mandatory` | `String` Member ID issued by the mutual fund platform | `12345` |
-    | mf_user_id<br />`mandatory` | `String` Unique mutual fund user or client ID | `77407` |
+    | mf\_user\_id<br />`mandatory` | `String` Unique mutual fund user or client ID | `77407` |
     | mf_partner<br />`mandatory` | `String` Mutual fund platform (`cams`, `kfin`, `bse`, `nse`) | `cams` |
     | mf_investment_type<br />`mandatory` | `String` Investment type: `L` (Lump Sum) or `S` (SIP) | `L` |
-    | mf_amc_code<br />`optional` | `String` Asset Management Company code | `UTB` |
+    | mf\_amc\_code<br />`optional` | `String` Asset Management Company code | `UTB` |
   </Accordion>
 </Accordion>
 
