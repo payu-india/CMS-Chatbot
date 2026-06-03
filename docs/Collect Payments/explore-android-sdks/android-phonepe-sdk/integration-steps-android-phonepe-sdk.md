@@ -16,24 +16,7 @@ metadata:
     - ' Android PhonePe SDK Integration Steps'
   robots: index
 ---
----
-title: Integration Steps
-deprecated: false
-hidden: false
-link:
-  new_tab: false
-metadata:
-  title: Android PhonePe SDK Integration Steps
-  description: >-
-    The Android PhonePe SDK integration involves following specific steps,
-    testing the integration, and completing a go-live checklist, with guidance
-    on generating a static hash for the process.
-  keywords:
-    - Android PhonePe SDK Integration Steps
-    - ' Steps to Integrate Android PhonePe SDK'
-    - ' Android PhonePe SDK Integration Steps'
-  robots: index
----
+
 ---
 title: Integration Steps
 deprecated: false
