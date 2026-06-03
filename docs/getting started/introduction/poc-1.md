@@ -25,7 +25,6 @@ metadata:
   headers={['Bank', 'Type', 'Status']}
   rowsJson='[["HDFC Bank","Netbanking / Cards","Active"],["ICICI Bank","Netbanking / Cards","Active"],["State Bank of India","Netbanking","Active"],["Axis Bank","Cards","Active"]]'
   placeholder="Search"
-  maxHeight="500px"
 />
 
 <br />
