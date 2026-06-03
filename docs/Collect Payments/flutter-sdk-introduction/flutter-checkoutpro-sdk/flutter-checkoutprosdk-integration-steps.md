@@ -17,6 +17,25 @@ metadata:
     - Mobile Flutter SDK Basic Integration with Checkout Pro
   robots: index
 ---
+---
+title: Flutter SDK Integration
+deprecated: false
+hidden: false
+link:
+  new_tab: false
+metadata:
+  title: Flutter Check Out SDK Integration Steps
+  description: ''
+  keywords:
+    - Flutter Checkout Pro SDK Integration Steps
+    - PayU Flutter SDK integration steps
+    - Mobile payment integration with PayU Flutter SDK steps
+    - PayU Flutter Checkout Pro set up for Mobile
+    - Flutter CheckoutPro SDK integration steps
+    - PayU Hosted Checkout SDK for Mobile steps
+    - Mobile Flutter SDK Basic Integration with Checkout Pro
+  robots: index
+---
 This section describes the steps to integrate on Flutter SDK.
 
 <Cards>
@@ -113,27 +132,24 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
   <Accordion title="Pass static hashes" icon="fa-code">
     To pass static hashes during integration, use the following code snippet:
 
-````
-```Text Dart
-var payUPaymentParams = \{ 
+    ```dart
+    var payUPaymentParams = { 
 
-   “key”: "Merchant key", 
+       “key”: "Merchant key", 
 
-   ... 
+       ... 
 
-   ... 
+       ... 
 
-   ... 
+       ... 
 
-  “additionalParam”: \{ 
-       “payment_related_details_for_mobile_sdk”: "payment_related_details_for_mobile_sdk hash", 
-  “vas_for_mobile_sdk”: "vas_for_mobile_sdk hash", 
- “payment": "Payment Hash" 
-   \} 
-\} 
-```
-````
-
+      “additionalParam”: { 
+           “payment_related_details_for_mobile_sdk”: "payment_related_details_for_mobile_sdk hash", 
+      “vas_for_mobile_sdk”: "vas_for_mobile_sdk hash", 
+     “payment": "Payment Hash" 
+       } 
+    } 
+    ```
   </Accordion>
 
   <Accordion title="Pass dynamic hashes" icon="fa-code">
@@ -141,7 +157,7 @@ var payUPaymentParams = \{
 
     To pass the dynamic hashes during integration, use the following code snippet:
 
-    ```Text Dart
+    ```dart
     var hashName = response[PayUHashConstantsKeys.hashName]; 
     var hashStringWithoutSalt = response[PayUHashConstantsKeys.hashString]; 
     var hashType = response[PayUHashConstantsKeys.hashType]; 
@@ -155,7 +171,7 @@ var payUPaymentParams = \{
 
     Use the following code snippet to generate the required hashes:
 
-    ```Text Dart
+    ```dart
     if (hashType == “V2”) { 
     hash = <Get HmacSHA256Hash with (hashStringWithoutSalt, merchantSalt)> 
     } else if (hashName == “mcpLookup”) { 
@@ -180,14 +196,13 @@ var payUPaymentParams = \{
 
     ***
   </Accordion>
-
 </Accordion>
 
 <Accordion title="Step 5: Build the payment parameters" icon="fa-code">
   To initiate a payment, your app must send transactional information to the CheckoutPro SDK.
 
   <Accordion title="Step 5.1: Basic Integration" icon="fa-code">
-    ```Text Dart
+    ```dart
     static Map createPayUPaymentParams() {
       var payUPaymentParams = {
         PayUPaymentParamKey.key: PayUTestCredentials.merchantKey,
@@ -209,8 +224,6 @@ var payUPaymentParams = \{
         // Must be <= 25 chars and should not contain special characters
         PayUPaymentParamKey.transactionId:
             DateTime.now().millisecondsSinceEpoch.toString(),
-        "partner_webhook_success":"<patner webhook success url>", 
-        "partner_webhook_failure":"<patner webhook failure url>",
       };
       return payUPaymentParams;
     }
@@ -225,7 +238,7 @@ var payUPaymentParams = \{
   <Accordion title="Step 5.2: For Recurring Payments (SI) (Optional)" icon="fa-code">
     For Standing Instructions / subscription payments, build the `siParams` map and pass it using `PayUPaymentParamKey.payUSIParams`.
 
-    ```Text Dart
+    ```dart
     // Mandatory for Recurring (Subscription / Standing Instruction) transactions, optional otherwise
     var siParams = {
       PayUSIParamsKeys.isFreeTrial: true,
@@ -251,7 +264,7 @@ var payUPaymentParams = \{
   <Accordion title="Step 5.3: For UPI One Time Mandate Payments (Optional)" icon="fa-code">
     For UPI OTM, enable pre-auth and provide mandate dates.
 
-    ```Text Dart
+    ```dart
     var siParams = {
       PayUSIParamsKeys.isPreAuthTxn: true, // Mandatory for UPI OTM
       PayUSIParamsKeys.paymentStartDate: "2026-02-20", // Required
@@ -263,7 +276,7 @@ var payUPaymentParams = \{
   </Accordion>
 
   <Accordion title="Step 5.4: For Additional Charges (Optional)" icon="fa-code">
-    ```Text Dart
+    ```dart
     payUPaymentParams[PayUPaymentParamKey.additionalCharges] =
         "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
     payUPaymentParams[PayUPaymentParamKey.percentageAdditionalCharges] =
@@ -276,7 +289,7 @@ var payUPaymentParams = \{
   <Accordion title="Step 5.5: For Split Payments details (Optional)" icon="fa-code">
     For split payments, create a JSON object and pass it as an encoded string.
 
-    ```Text Dart
+    ```dart
     // import 'dart:convert';
     var splitPaymentDetails = {
       "type": "absolute",
@@ -295,7 +308,7 @@ var payUPaymentParams = \{
   </Accordion>
 
   <Accordion title="Step 5.6: SKU details (Optional)" icon="fa-code">
-    ```Text Dart
+    ```dart
     var skus = [
       {
         PayUSKUKeys.skuId: "111",
@@ -322,7 +335,7 @@ var payUPaymentParams = \{
   </Accordion>
 
   <Accordion title="Step 5.7: Third Party Verification (TPV) Flow (Optional)" icon="fa-code">
-    ```Text Dart
+    ```dart
     var beneficiaryDetails = [
       // For UPI
       {
@@ -345,7 +358,7 @@ var payUPaymentParams = \{
   <Accordion title="Step 5.8: Cross Border Flow (OPGSP)" icon="fa-code">
     OPGSP flow requires complete address details. When using OPGSP, **UDF5 (invoice number)** is mandatory.
 
-    ```Text Dart
+    ```dart
     // Address details (mandatory only for OPGSP merchants)
     var addressDetails = {
       PayUAddressKeys.lastName: "Rastogi",
@@ -368,7 +381,7 @@ var payUPaymentParams = \{
   </Accordion>
 
   <Accordion title="Step 5.9: WealthTech Flow (Optional)" icon="fa-code">
-    ```Text Dart
+    ```dart
     var wealthTech = [
       {
         PayUWealthTechKeys.type: "mutual_fund",
@@ -391,7 +404,7 @@ var payUPaymentParams = \{
   </Accordion>
 
   <Accordion title="Step 5.10: Enforce Offer Keys (Optional)" icon="fa-code">
-    ```Text Dart
+    ```dart
     payUPaymentParams[PayUPaymentParamKey.enforcementOfferKeys] =
         "HoliSale@JbBdLOBritj5,Instantoffer@Kp78nFDENX5S";
     ```
@@ -411,7 +424,7 @@ var payUPaymentParams = \{
     | PayUAdditionalParamKeys.sourceId          | `String` Sodexo Source ID, Merchant can store it from the third field of PayU response.            |
     | PayUAdditionalParamKeys.walletUrn         | `String` Pass this parameter if closed loop wallet (clw) payment mode is enabled for your account. |
 
-    ```Text Dart
+    ```dart
     var additionalParam = {
       PayUAdditionalParamKeys.udf1: "udf1",
       PayUAdditionalParamKeys.udf2: "udf2",
@@ -429,427 +442,134 @@ var payUPaymentParams = \{
 
     For more details on Static Hash generation and passing them, refer to [Generate Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk).
   </Accordion>
- <Accordion title="Step 5.12: For Partner Webhook" icon="fa-code">
-    Add these parameters to PayUPaymentParams
-    ```Text Dart
-    "partner_webhook_success": "<partner webhook success url>", 
-    "partner_webhook_failure": "<partner webhook failure url>"
-    ```
-</Accordion>
-  <Accordion title="Step 5.13: Payment Param Definitions" icon="fa-code">
-    <Table align={["left","left","left"]}>
-      <thead>
-        <tr>
-          <th style={{ textAlign: "left" }}>
-            Parameter
-          </th>
 
-          <th style={{ textAlign: "left" }}>
-            Description
-          </th>
-
-          <th style={{ textAlign: "left" }}>
-            Example
-          </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            Key
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` This parameter must contain your merchant key received from PayU.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            "sms\*\*\*"
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            transactionId
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` It should be unique for each transaction.
-            Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "\_,$,%,&, etc"
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            4567890
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            Amount
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` Total transaction amount.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            100.0
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            productInfo
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` Information about the product.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            "ProductInfo"
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            firstName
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` Customer’s first name.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            "Firstname"
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            Email
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` Customer’s email id.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            "
-
-            [test@payu.in](mailto:test@payu.in)
-
-            "
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            Phone
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` Customer’s phone number.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            "9999999999"
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            Surl
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` When the transaction is successful, PayU will load this URL and pass the transaction response.
-
-            * *Sample SURL for testing*\*: [https://cbjs.payu.in/sdk/success](https://cbjs.payu.in/sdk/success)
-            * *Note*\*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            The Surl that you have configured
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            Furl
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` When the transaction fails, PayU will load this URL and pass the transaction response.
-
-            * *Sample FURL for testing*\*: [https://cbjs.payu.in/sdk/failure](https://cbjs.payu.in/sdk/failure)
-            * *Note*\*:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            The Furl that you have configured
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            User Credential
-            `mandatory `
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format:
-            `<merchantKey>:<userId>  `
-            Here, the `UserId` is any ID/email/phone number to uniquely identify the user. \*\*
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            "merchantKey:userId"
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            isProduction `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` Set the value of this parameter as `true`When you deploy the integration in production. To test the integration set the value as `false`.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            true
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            user\_token
-            `mandatory`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` The use for this param is to allow the offer engine to apply velocity rules at a user level.-**Card Based Offers (CC, DC, EMI):** For card payment mode offers, if this parameter is passed then the velocity rules would be applied on this token, if not passed the same would be applied to the card number.-**UPI, NB, Wallet:** It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            "ABC456789"
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            SkuDetails
-            `'madatory'`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to PayUPaymentParams.
-
-            * \*Note:- \*\*When we use SKU features then it's a mandatory parameter otherwise it's not required.
-          </td>
-
-          <td style={{ textAlign: "left" }}></td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            additionalCharges
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            String
-            This parameter is required if merchant want to take additional charge from user
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            should be string with PG:Amount or IBIBOCode:Amount
-            Sample : CC:10,NB:20,SBIB:15
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            percentageAdditionalCharges
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            String
-            This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            should be string with PG:Amount or IBIBOCode:Amount
-            Sample : CC:100,NB:50,SBIB:25
-
-            <br />
-
-            Refer to Step 5.4: For Additional Charges (Optional)
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            payUSIParams
-            `conditional`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `Object` Contains SI/mandate details for recurring payments.
-
-            **Mandatory for Recurring (Subscription / Standing Instruction) transactions.**
-
-            For more details: [Recurring Payments Integration](https://docs.payu.in/docs/introduction-recurring-payments-integration)
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            siParams object
-
-            <br />
-
-            Refer to Step 5.2: For Recurring Payments(SI) (Optional) or Step 3.3: For UPI One Time Mandate Payments (Optional)
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            enableNativeOTP
-            `optional`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `Boolean` Enable native OTP flow for card transactions. When set to true, OTP will be handled natively within the SDK.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            true / false
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            splitPaymentDetails
-            `conditional`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String (JSON encoded)` Contains details for split payment/settlement between multiple parties.
-
-            **Mandatory only for Aggregator transactions.**
-
-            For more details: [Split Settlements](https://docs.payu.in/docs/split-settlments)
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            json.encode(splitPaymentDetails)
-
-            <br />
-
-            Refer to Step 5.5: For split Payments details (Optional)
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            enforcementOfferKeys
-            `optional`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `String` Comma-separated list of offer keys to enforce specific offers during checkout. Allows merchants to apply targeted promotional offers.
-
-            * *Note*: Optional parameter for enforcing specific offer keys at checkout.
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            "HoliSale\@JbBdLOBritj5,Instantoffer\@Kp78nFDENX5S"
-
-            <br />
-
-            Refer to Step 5.10: Enforce Offer Keys
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            beneficiaryDetails
-            `conditional`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `Object/List` Contains beneficiary account details for payment verification in TPV flow.
-
-            **Mandatory only for TPV (Third Party Verification) transactions.**
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            beneficiaryDetails object or list
-
-            <br />
-
-            Refer to Step 5.7: Third Party Verification (TPV) Flow (Optional)
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            address / addressDetails
-            `conditional`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `Object` Contains customer's complete billing address including address lines, city, state, country, and zipcode.
-
-            **Mandatory only for Cross-Border Payments (OPGSP) Merchant.**
-
-            For more details: [Cross-Border Payments (Import)](https://docs.payu.in/docs/introduction-cross-border-payments-import)
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            addressDetails object
-
-            <br />
-
-            Refer to Step 5.8: Cross Border Flow (OPGSP)
-          </td>
-        </tr>
-
-        <tr>
-          <td style={{ textAlign: "left" }}>
-            products
-            `conditional`
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            `List<PayUWealthProducts>` Contains details of wealth management and investment products such as mutual funds. Each product includes information like type, amount, folio number, plan, scheme, AMC code, member ID, user ID, partner details, and investment type.
-
-            **Mandatory only for WealthTech / Investment product transactions.**
-          </td>
-
-          <td style={{ textAlign: "left" }}>
-            List of PayUWealthProducts objects
-
-            <br />
-
-            Refer to Step 5.9: WealthTech Flow
-          </td>
-        </tr>
-      </tbody>
-    </Table>
+  <Accordion title="Step 5.12: Payment Param Definitions" icon="fa-code">
+    <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Key<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This parameter must contain your merchant key received from PayU.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"sms\<em>\</em>"</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>transactionId<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It should be unique for each transaction. Cannot be null or empty and should be unique for each transaction. The maximum allowed length is 25 characters. It cannot contain special characters like: - "\_,$,%,&, etc"</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>4567890</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Amount<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Total transaction amount.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>100.0</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>productInfo<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Information about the product.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"ProductInfo"</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>firstName<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer’s first name.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"Firstname"</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Email<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer’s email id.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"<a href="mailto:test@payu.in">test@payu.in</a>"</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Phone<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer’s phone number.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"9999999999"</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Surl<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When the transaction is successful, PayU will load this URL and pass the transaction response.</p><ul><li><em>Sample SURL for testing</em>: <a href="https://cbjs.payu.in/sdk/success">https://cbjs.payu.in/sdk/success</a></li><li><em>Note</em>:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.</li></ul></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>The Surl that you have configured</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Furl<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> When the transaction fails, PayU will load this URL and pass the transaction response.</p><ul><li><em>Sample FURL for testing</em>: <a href="https://cbjs.payu.in/sdk/failure">https://cbjs.payu.in/sdk/failure</a></li><li><em>Note</em>:- This URL is used for only Testing Purposes. Going live with this sample URL may result in transaction error.</li></ul></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>The Furl that you have configured</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>User Credential <code>mandatory </code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This is used for the store card feature. PayU will store cards corresponding to passed user credentials and similarly, user credentials will be used to access previously saved cards. Format: <code>&lt;merchantKey&gt;:&lt;userId&gt;</code> Here, the <code>UserId</code> is any ID/email/phone number to uniquely identify the user.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"merchantKey:userId"</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>isProduction<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Set the value of this parameter as <code>true</code>When you deploy the integration in production. To test the integration set the value as <code>false</code>.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>user\_token<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The use for this param is to allow the offer engine to apply velocity rules at a user level.-<strong>Card Based Offers (CC, DC, EMI):</strong> For card payment mode offers, if this parameter is passed then the velocity rules would be applied on this token, if not passed the same would be applied to the card number.-<strong>UPI, NB, Wallet:</strong> It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"ABC456789"</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>SkuDetails <code>'madatory'</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to PayUPaymentParams.</p><ul><li>\<em>Note:- \</em>When we use SKU features then it's a mandatory parameter otherwise it's not required.</li></ul></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalCharges</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>String This parameter is required if merchant want to take additional charge from user</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>should be string with PG:Amount or IBIBOCode:Amount Sample : CC:10,NB:20,SBIB:15</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>percentageAdditionalCharges</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>String This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>should be string with PG:Amount or IBIBOCode:Amount Sample : CC:100,NB:50,SBIB:25</p><p><br /></p><p>Refer to Step 5.4: For Additional Charges (Optional)</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>payUSIParams <code>conditional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Contains SI/mandate details for recurring payments.</p><ul><li>*Mandatory for Recurring (Subscription / Standing Instruction) transactions.**</li></ul><p>For more details: <a href="https://docs.payu.in/docs/introduction-recurring-payments-integration">Recurring Payments Integration</a></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>siParams object</p><p><br /></p><p>Refer to Step 5.2: For Recurring Payments(SI) (Optional) or Step 3.3: For UPI One Time Mandate Payments (Optional)</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>enableNativeOTP <code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> Enable native OTP flow for card transactions. When set to true, OTP will be handled natively within the SDK.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>true / false</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>splitPaymentDetails <code>conditional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String (JSON encoded)</code> Contains details for split payment/settlement between multiple parties.</p><ul><li>*Mandatory only for Aggregator transactions.**</li></ul><p>For more details: <a href="https://docs.payu.in/docs/split-settlments">Split Settlements</a></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>json.encode(splitPaymentDetails)</p><p><br /></p><p>Refer to Step 5.5: For split Payments details (Optional)</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>enforcementOfferKeys <code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Comma-separated list of offer keys to enforce specific offers during checkout. Allows merchants to apply targeted promotional offers.</p><ul><li><em>Note</em>: Optional parameter for enforcing specific offer keys at checkout.</li></ul></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"HoliSale\@JbBdLOBritj5,Instantoffer\@Kp78nFDENX5S"</p><p><br /></p><p>Refer to Step 5.10: Enforce Offer Keys</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryDetails <code>conditional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object/List</code> Contains beneficiary account details for payment verification in TPV flow.</p><ul><li>*Mandatory only for TPV (Third Party Verification) transactions.**</li></ul></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryDetails object or list</p><p><br /></p><p>Refer to Step 5.7: Third Party Verification (TPV) Flow (Optional)</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>address / addressDetails <code>conditional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Contains customer's complete billing address including address lines, city, state, country, and zipcode.</p><ul><li>*Mandatory only for Cross-Border Payments (OPGSP) Merchant.**</li></ul><p>For more details: <a href="https://docs.payu.in/docs/introduction-cross-border-payments-import">Cross-Border Payments (Import)</a></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>addressDetails object</p><p><br /></p><p>Refer to Step 5.8: Cross Border Flow (OPGSP)</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>products <code>conditional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>List<PayUWealthProducts></code> Contains details of wealth management and investment products such as mutual funds. Each product includes information like type, amount, folio number, plan, scheme, AMC code, member ID, user ID, partner details, and investment type.</p><ul><li>*Mandatory only for WealthTech / Investment product transactions.**</li></ul></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>List of PayUWealthProducts objects</p><p><br /></p><p>Refer to Step 5.9: WealthTech Flow</p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
   </Accordion>
 
-  <Accordion title="Step 5.14:  sample (recommended)" icon="fa-code">
-    ```Text Dart
+  <Accordion title="Step 5.13:  sample (recommended)" icon="fa-code">
+    ```dart
     // import 'dart:convert';
 
     static Map createPayUPaymentParams() {
@@ -979,8 +699,7 @@ var payUPaymentParams = \{
         PayUPaymentParamKey.transactionId:
             DateTime.now().millisecondsSinceEpoch.toString(),
         PayUPaymentParamKey.additionalParam: additionalParam,
-       "partner_webhook_success":"<patner webhook success url>", 
-       "partner_webhook_failure":"<patner webhook failure url>",
+
         // PayUPaymentParamKey.payUSIParams: siParams,
         // PayUPaymentParamKey.enableNativeOTP: true,
         // PayUPaymentParamKey.splitPaymentDetails: json.encode(splitPaymentDetails),
@@ -1006,7 +725,7 @@ var payUPaymentParams = \{
 <Accordion title="Step 6: Initiate payment" icon="fa-code">
   Initialize and launch the Checkout Pro SDK by calling the following code snippet:
 
-  ```Text Dart
+  ```dart
   _checkoutPro.openCheckoutScreen( 
   payUPaymentParams: < payUPaymentParams >, 
   payUCheckoutProConfig: <payUConfigParams>, 
@@ -1024,7 +743,7 @@ var payUPaymentParams = \{
 
   Currently, PayU supports only PhonePe and GooglePay through Intent. Add the query schemes in the `info.plist.`
 
-  ```Text XML
+  ```xml
   <key>LSApplicationQueriesSchemes</key> 
   <array> 
   <string>phonepe</string> 
@@ -1037,7 +756,7 @@ var payUPaymentParams = \{
 
   * Card Scanner, Camera Permission
 
-  ```Text XML
+  ```xml
   <key>NSCameraUsageDescription</key> 
 
   <string>Please mention the description to give user info</string> 
@@ -1122,5 +841,3 @@ var payUPaymentParams = \{
 </Accordion>
 
 <Go_Live_Checklist />
-
-<br />
