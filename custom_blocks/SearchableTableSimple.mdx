@@ -1,25 +1,27 @@
 ---
 name: SearchableTableSimple
 ---
-/**
- * SearchableTableSimple - Readme CMS Custom Component
- *
- * MDX-ish page rules (Readme Refactored):
- * - Do not start the page with this component; add a line of text first.
- * - On doc pages use rowsJson (string), not inline rows array.
- * - Component name in Readme must match export: SearchableTableSimple
- *
- * Inline styles are used because Tailwind does not load in Readme preview.
- */
+// SearchableTableSimple - Readme CMS Custom Component
+// Register in Readme as component name: SearchableTableSimple
+// Doc pages: tableKey="banksDemo" or rowsJson string. No inline rows on pages.
 
 import { useState, useMemo } from 'react';
 
 export const SearchableTableSimple = (props) => {
+  const banksDemoHeaders = ['Bank', 'Type', 'Status'];
+  const banksDemoRows = [
+    ['HDFC Bank', 'Netbanking / Cards', 'Active'],
+    ['ICICI Bank', 'Netbanking / Cards', 'Active'],
+    ['State Bank of India', 'Netbanking', 'Active'],
+    ['Axis Bank', 'Cards', 'Active'],
+  ];
+
   const {
     headers = [],
     headersJson = '',
     rows = [],
     rowsJson = '',
+    tableKey = '',
     placeholder = 'Search in table...',
     maxHeight = '400px',
     emptyMessage = 'No results found. Try a different search.',
@@ -27,6 +29,31 @@ export const SearchableTableSimple = (props) => {
   } = props;
 
   const [searchQuery, setSearchQuery] = useState('');
+
+  const coerceRows = (input) => {
+    if (input == null || input === '') return [];
+    if (Array.isArray(input)) {
+      return input.filter((row) => Array.isArray(row));
+    }
+    if (typeof input === 'string') {
+      const text = input.trim();
+      if (!text) return [];
+      try {
+        return coerceRows(JSON.parse(text));
+      } catch (e) {
+        return [];
+      }
+    }
+    if (typeof input === 'object') {
+      if (Array.isArray(input.rows)) return coerceRows(input.rows);
+      if (typeof input.length === 'number' && input.length >= 0) {
+        const list = [];
+        for (let i = 0; i < input.length; i += 1) list.push(input[i]);
+        return coerceRows(list);
+      }
+    }
+    return [];
+  };
 
   const parseJsonProp = (text, fallback) => {
     if (text == null || text === '') return fallback;
@@ -48,19 +75,27 @@ export const SearchableTableSimple = (props) => {
     if (Array.isArray(headers) && headers.length > 0) {
       return headers.map((h) => String(h == null ? '' : h));
     }
+    const key = tableKey && String(tableKey).trim();
+    if (key === 'banksDemo') {
+      return banksDemoHeaders.map((h) => String(h == null ? '' : h));
+    }
     return [];
-  }, [headers, headersJson]);
+  }, [headers, headersJson, tableKey]);
 
   const tableRows = useMemo(() => {
-    if (Array.isArray(rows) && rows.length > 0) {
-      return rows.filter((row) => Array.isArray(row));
+    const fromRows = coerceRows(rows);
+    if (fromRows.length > 0) return fromRows;
+
+    const fromJson = coerceRows(rowsJson);
+    if (fromJson.length > 0) return fromJson;
+
+    const key = tableKey && String(tableKey).trim();
+    if (key === 'banksDemo') {
+      return coerceRows(banksDemoRows);
     }
-    const fromJson = parseJsonProp(rowsJson, []);
-    if (Array.isArray(fromJson)) {
-      return fromJson.filter((row) => Array.isArray(row));
-    }
+
     return [];
-  }, [rows, rowsJson]);
+  }, [rows, rowsJson, tableKey]);
 
   const normalize = (str) =>
     str == null ? '' : String(str).toLowerCase().trim().replace(/\s+/g, ' ');
@@ -246,7 +281,7 @@ export const SearchableTableSimple = (props) => {
                       border: '1px solid ' + borderColor,
                     }}
                   >
-                    No rows loaded. On doc pages use rowsJson, not inline rows.
+                    No rows loaded. On doc pages use tableKey banksDemo or rowsJson.
                   </td>
                 </tr>
               ) : showEmptyState ? (
@@ -301,8 +336,4 @@ export const SearchableTableSimple = (props) => {
 };
 
 
-<SearchableTableSimple
-  headers={['Bank', 'Type', 'Status']}
-  rowsJson='[["HDFC Bank","Netbanking / Cards","Active"],["ICICI Bank","Netbanking / Cards","Active"],["State Bank of India","Netbanking","Active"],["Axis Bank","Cards","Active"]]'
-  placeholder="Search"
-/>
+<SearchableTableSimple tableKey="banksDemo" placeholder="Search" />
