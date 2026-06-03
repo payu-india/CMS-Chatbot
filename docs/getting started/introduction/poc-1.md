@@ -21,6 +21,7 @@ metadata:
   placeholder="Search errors..."
 />
 
-<SearchableTableSimple tableKey="banksDemo" placeholder="Search" />
+
+<SearchableTableSimple tableKey="banksDemo" placeholder="Search" maxHeight="500px" />
 
 <br />
