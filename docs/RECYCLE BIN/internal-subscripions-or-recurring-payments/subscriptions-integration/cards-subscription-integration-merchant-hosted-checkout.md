@@ -30,7 +30,7 @@ PayU's Card Subscription Integration using the Merchant-Hosted Checkout method e
     <br />
   </Card>
 
-  <Card title="4. Recurring Payment Transaction" href="https://docs.payu.in/docs/subscription-for-cards#step-4-recurring-payment-transaction">
+  <Card title="4. Recurring Payment Transaction" href="https://docs.payu.in/docs/subscription-for-cards##step-4-recurring-payment-transaction">
     Execute automated recurring payments via server-to-server API without additional 2FA, using the registered mandate and billing schedule
 
     <br />
@@ -45,14 +45,14 @@ HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                                                    |
-| :--------------------- | :----------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
-| Production Environment | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+|                        |                                                                     |
+| :--------------------- | :------------------------------------------------------------------ |
+| Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| Production Environment | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-<Callout icon="📘" theme="info">
-  **Handle Guest Checkout Transaction**: You can handle Guest Checkout transactions for EMI integration. For more information, refer to[ Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
-</Callout>
+> 📘
+>
+> **Handle Guest Checkout Transaction**: You can handle Guest Checkout transactions for EMI integration. For more information, refer to[ Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
 
 ## Request parameters
 
@@ -307,21 +307,21 @@ HTTP Method: **POST**
 </table>
 `}</HTMLBlock>
 
-> 📘 Notes for **additional_info** parameter:
+> 📘 Notes for **additional\_info** parameter:
 >
 > The JSON format contains the following fields:
 >
 >  
 >
-> * **trid** (Token Requestor ID) is the identifier given by the networks for creating the tokens. You should be able to get the same from your token provider.
-> * **tokenRefNo** (Token Reference Number) is generated along with the network token. You should be able to get the same from your token provider.
-> * **TAVV** is a token authentication verification value given by schemes or interchange. Also, known as cryptogram.
+> - **trid** (Token Requestor ID) is the identifier given by the networks for creating the tokens. You should be able to get the same from your token provider.
+> - **tokenRefNo** (Token Reference Number) is generated along with the network token. You should be able to get the same from your token provider.
+> - **TAVV** is a token authentication verification value given by schemes or interchange. Also, known as cryptogram.
 >
 > Additional notes:
 >
-> * The last 4 digits of cards is mandatory for all transactions.   
-> * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
-> * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
+> - The last 4 digits of cards is mandatory for all transactions.   
+> - Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
+> - Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
 
 > 📘 Notes for bankcode
 >
@@ -331,13 +331,13 @@ Characters allowed for parameters
 
 For parameters address1, address2, city, state, country, product info, email, and phone following characters are allowed:
 
-* Characters: A to Z, a to z, 0 to 9
-* – (Minus)
-* _ (Underscore)
-* @ ()
-* / (Slash)
-* (Space)
-* . (Dot)
+- Characters: A to Z, a to z, 0 to 9
+- – (Minus)
+- \_ (Underscore)
+- @ ()
+- / (Slash)
+- (Space)
+- . (Dot)
 
 ## Sample request
 
@@ -357,16 +357,16 @@ In the case of Cards, you must ensure that the payment response from PayU has th
 | Response Parameter | Expected Value                   | Description                                                                     |
 | ------------------ | -------------------------------- | ------------------------------------------------------------------------------- |
 | status             | success                          | This indicates that the transaction is successful                               |
-| cardToken          | \<card_token> sent by PayU       | Indicates that card details are saved correctly in PayUBiz Database             |
-| payment_source     | sist                             | Indicates that card details have been marked correctly for Standing Instruction |
+| cardToken          | \<card\_token> sent by PayU      | Indicates that card details are saved correctly in PayUBiz Database             |
+| payment\_source    | sist                             | Indicates that card details have been marked correctly for Standing Instruction |
 | mihpayid           | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction           |
 
-<Callout icon="📘" theme="info">
-  **Notes**:
-
-  * If any of the above four checks are not satisfied, that means the transaction has not been correctly authorized for Standing Instruction. The merchant must not consider this transaction eligible for the Recurring platform.
-  * Registration transaction must be successful in making it eligible for the Recurring platform.
-</Callout>
+> 📘
+>
+> **Notes**:
+>
+> - If any of the above four checks are not satisfied, that means the transaction has not been correctly authorized for Standing Instruction. The merchant must not consider this transaction eligible for the Recurring platform.
+> - Registration transaction must be successful in making it eligible for the Recurring platform.
 
 At this step, if the status of the consent transaction is returned as success along with the other three conditions explained above, you can consider that the subscription setup is completed successfully.
 
@@ -434,7 +434,7 @@ Array
 
 ## Step 2: Verify the payment
 
-You can use the **Verify Payment** API and expose a webhook by requesting the PayU Integration team to configure the same against the **ws_online_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method.
+You can use the **Verify Payment** API and expose a webhook by requesting the PayU Integration team to configure the same against the **ws\_online\_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method.
 
 If the mandate is not confirmed by the customer or the mandate is confirmed by the customer, but the mandate registration is rejected from the banks, the status is communicated as a “failure” over webhook. For more information, refer to [Set up WebHook to Receive Cancellation or Modification Update from the Issuer Bank](ref:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank).
 The payment verification step ensures the transaction has been processed successfully before proceeding to subsequent recurring payments.
@@ -447,9 +447,9 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
 
 > ❗️ **Reminder**
 >
-> * Check the mandate status before calling the **Pre-Debit Notification** API.
-> * Unless the Pre-Debit notification API is implemented, the **Recurring Payment Transaction** API will not work, and you will not be able to charge the customer for the given billing cycle.
-> * Pre-Debit notification is necessary only for Cards and UPI and works for only these two payment modes
+> - Check the mandate status before calling the **Pre-Debit Notification** API.
+> - Unless the Pre-Debit notification API is implemented, the **Recurring Payment Transaction** API will not work, and you will not be able to charge the customer for the given billing cycle.
+> - Pre-Debit notification is necessary only for Cards and UPI and works for only these two payment modes
 
 **Environment**
 
@@ -542,8 +542,8 @@ All successful registration transactions are charged over the recurring interfac
 
 > 📘 **Notes**:
 >
-> * Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
-> * Check the mandate status, call the **Pre-Debit Notification** API before calling the **Recurring Payment Transaction** API to make a recurring payment transaction.
+> - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
+> - Check the mandate status, call the **Pre-Debit Notification** API before calling the **Recurring Payment Transaction** API to make a recurring payment transaction.
 
 > 🚧 **Assumptions**: If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant's end.
 
@@ -905,3 +905,5 @@ All successful registration transactions are charged over the recurring interfac
   | **hash**  | Hash logic for this API is:<br />sha512(key\\\|command\\\|var1\\\|salt)sha512                                                                                                                                                                                                                                                                                |
   | **var1**  | For JSON fields description, refer to [Additional Info. Payment APIs](http://docs.payu.in/reference/addl_info-payment-apis#/)                                                                                                                                                                                                                                |
 </Accordion>
+
+<br />
