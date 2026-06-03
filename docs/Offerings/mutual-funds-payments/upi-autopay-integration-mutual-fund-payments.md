@@ -369,7 +369,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
 
   <Accordion title="var1 object field descriptions" icon="fa-cog">
     ### var1 object field descriptions
-
+**Sample JSON**
     ```json
     {
       "authpayuid": "403993715537049175",
@@ -399,7 +399,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
       ]
     }
     ```
-
+**Fied Descriptions**
     | Parameter | Description | Example |
     | --------- | ----------- | ------- |
     | authpayuid<br />`mandatory` | `String` Authorization PayU ID (`mihpayid` from successful registration) | `403993715537049175` |
