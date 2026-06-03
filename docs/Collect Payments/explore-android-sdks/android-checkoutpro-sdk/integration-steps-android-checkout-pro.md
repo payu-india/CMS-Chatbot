@@ -167,7 +167,7 @@ To initiate a payment, your app must send transactional information to the Check
 <Accordion title="Step 3.2: For Recurring Payments(SI) (Optional)" icon="fa-code">
   For Recurring Payments(SI), then generate the below payment params additionally
 
-  ```Text Java
+  ```java Java
   PayUSIParams siDetails  = new PayUSIParams.Builder()
                   .setIsFreeTrial(true) //set it to true for free trial. Default value is false 
                   .setBillingAmount("1.0")
@@ -181,7 +181,7 @@ To initiate a payment, your app must send transactional information to the Check
                   .setRemarks("SI Txn")
                   .build();
   ```
-  ```Text Kotlin
+  ```kotlin Kotlin
   val siDetails  = PayUSIParams.Builder()
                   .setIsFreeTrial(true) //set it to true for free trial. Default value is false
                   .setBillingAmount("1.0")
@@ -230,11 +230,11 @@ To initiate a payment, your app must send transactional information to the Check
 <Accordion title="Step 3.4: For Additional Charges (Optional)" icon="fa-code">
   For additional charges or percentage additional charges, then generate the below payment params additionally
 
-  ```Text Java
+  ```java Java
   paymentParam.setAdditionalCharges("CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55")
   paymentParam.setPercentageAdditionalCharges("CC:50,AMEX:100,DINR:75,DC:25")
   ```
-  ```Text Kotlin
+  ```kotlin Kotlin
   paymentParam.setAdditionalCharges("CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55").setPercentageAdditionalCharges("CC:50,SBIB:100,DINR:100,DC:25,NB:50");
   ```
 
@@ -248,7 +248,7 @@ To initiate a payment, your app must send transactional information to the Check
 
   Here is a sample JSON structure for the `splitPaymentDetails` field:
 
-  ```Text Json
+  ```json Json
   {
      "type":"absolute",
      "splitInfo":{
@@ -278,6 +278,7 @@ To initiate a payment, your app must send transactional information to the Check
 
   The following fields are included in the `splitPaymentDetails` parameter in a JSON format to specify the split details. The fields in the JSON format are described in the following table:
 
+<HTMLBlock>{`
   <Table align={["left","left","left"]}>
     <thead>
       <tr>
@@ -340,6 +341,8 @@ To initiate a payment, your app must send transactional information to the Check
       </tr>
     </tbody>
   </Table>
+`}</HTMLBlock>
+
 </Accordion>
 
 <Accordion title="Step 3.6: SKU details (Optional)" icon="fa-code">
