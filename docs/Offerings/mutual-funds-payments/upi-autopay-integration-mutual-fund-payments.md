@@ -410,7 +410,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
     | email<br />`mandatory` | `String` Customer email address | `chota.bheem@gmail.com` |
     | more_info<br />`mandatory for Wealth Tech` | `JSON` Array containing the Wealth Tech object (`wtParams`). For `wtParams` field descriptions, refer to table below. | See the below table |
 
-    **Fields within `more_info[].wtParams[]`**
+    **Fields within wtParams field**
 
     | Parameter | Description | Example |
     | --------- | ----------- | ------- |
@@ -425,6 +425,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
     | mf_partner<br />`mandatory` | `String` Mutual fund platform (`cams`, `kfin`, `bse`, `nse`) | `cams` |
     | mf\_investment\_type<br />`mandatory` | `String` Investment type: `L` (Lump Sum) or `S` (SIP) | `L` |
     | mf\_amc\_code<br />`optional` | `String` Asset Management Company code | `UTB` |
+
   </Accordion>
 </Accordion>
 
