@@ -1039,9 +1039,10 @@ Now that you have created the hash value combine the below into a request that w
   ```
 
   <Callout icon="🚧" theme="warn">
-    **Important**
+    **Request Parameters**
 
-    Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.
+    * Refer to the Prepare Payment Request Parameters section for parameters description.
+    * Replace the value attributes with your actual data and the generated hash. You can add more parameters to this form as needed.
   </Callout>
 
   **If you are a Backend Developer:**
@@ -1068,6 +1069,6 @@ Now that you have created the hash value combine the below into a request that w
   * Extra spaces or hidden characters
 </Accordion>
 
-
+<br />
 
 <br />
