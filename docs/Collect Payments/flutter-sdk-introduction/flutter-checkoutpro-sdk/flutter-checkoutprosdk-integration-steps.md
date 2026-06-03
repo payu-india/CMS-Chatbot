@@ -113,24 +113,27 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
   <Accordion title="Pass static hashes" icon="fa-code">
     To pass static hashes during integration, use the following code snippet:
 
-    ```Text Dart
-    var payUPaymentParams = { 
+````
+```Text Dart
+var payUPaymentParams = { 
 
-       “key”: "Merchant key", 
+   “key”: "Merchant key", 
 
-       ... 
+   ... 
 
-       ... 
+   ... 
 
-       ... 
+   ... 
 
-      “additionalParam”: { 
-           “payment_related_details_for_mobile_sdk”: "payment_related_details_for_mobile_sdk hash", 
-      “vas_for_mobile_sdk”: "vas_for_mobile_sdk hash", 
-     “payment": "Payment Hash" 
-       } 
-    } 
-    ```
+  “additionalParam”: { 
+       “payment_related_details_for_mobile_sdk”: "payment_related_details_for_mobile_sdk hash", 
+  “vas_for_mobile_sdk”: "vas_for_mobile_sdk hash", 
+ “payment": "Payment Hash" 
+   } 
+} 
+```
+````
+
   </Accordion>
 
   <Accordion title="Pass dynamic hashes" icon="fa-code">
@@ -177,6 +180,7 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
 
     ***
   </Accordion>
+
 </Accordion>
 
 <Accordion title="Step 5: Build the payment parameters" icon="fa-code">
@@ -205,6 +209,8 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
         // Must be <= 25 chars and should not contain special characters
         PayUPaymentParamKey.transactionId:
             DateTime.now().millisecondsSinceEpoch.toString(),
+        "partner_webhook_success":"<patner webhook success url>", 
+        "partner_webhook_failure":"<patner webhook failure url>",
       };
       return payUPaymentParams;
     }
@@ -647,7 +653,7 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
             * \*Note:- \*\*When we use SKU features then it's a mandatory parameter otherwise it's not required.
           </td>
 
-          <td style={{ textAlign: "left" }} />
+          <td style={{ textAlign: "left" }}></td>
         </tr>
 
         <tr>
@@ -1109,3 +1115,5 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
 </Accordion>
 
 <Go_Live_Checklist />
+
+<br />
