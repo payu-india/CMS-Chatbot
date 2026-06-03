@@ -25,7 +25,7 @@ The following are possible errors and error codes for a transaction. You need t
 
 > 📘 **Reference:**
 >
-> Refer to the **[Cards](https://docs.payu.in/reference/error-codes#cards)** section for AuthN and AuthZ errors.
+> Refer to the **[Cards](https://docs.payu.in/reference/error-codes#cards)** section for AuthN and AuthZ errors
 
 <SearchableTable
   headers={['Errors', 'Error_message/Message', 'Error Description', 'Title' ]}
