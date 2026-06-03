@@ -77,79 +77,10 @@ To understand the error codes, you need to read the Error Code Object sent in th
 
 The following table helps you identify specific reasons for payment failures and provides standardized error codes and messages. This will facilitate troubleshooting and communicate your customers when transactions are declined.
 
-<SearchableTable
-  headers={['Response Code', 'PayU Error Code', 'Title', 'Error Description', 'Error Message / Reason']}
-  rows={[
-    ['0', 'E000', 'NO_ERROR', 'Approved or completed successfully', 'No Error'],
-    ['1', 'E348', 'ISSUER_DECLINED', 'Refer to card issuer', 'Transaction declined by the issuer'],
-    ['3', 'E341', 'INVALID_MERCHANT', 'Invalid Merchant', 'Transaction failed due to invalid merchant'],
-    ['4', 'E310', 'LOST_CARD', 'Pick Up Card', 'Card has been classified as lost and has been blocked.'],
-    ['5', 'E307', 'DO_NOT_HONOUR', 'Do not honor', 'Transaction declined with do not honor'],
-    ['6', 'E1903', 'AUTHORIZATION_FAILED_ BY_BANK', 'Payment could not be authorised', 'Authorization failed at Bank'],
-    ['10', 'E9202', 'PARTIAL_AMOUNT_ APPROVED', 'Partial Amount Approved', 'Partial Amount Approved'],
-    ['11', 'E9203', 'APPROVED_VIP', 'Approved VIP (not used)', 'Approved VIP (not used)'],
-    ['12', 'E207', 'INVALID_TRANSACTION', 'Invalid transaction', 'Bank denied transaction on the card.'],
-    ['13', 'E715', 'INVALID_AMOUNT', 'Invalid amount', 'Invalid amount sent to the bank'],
-    ['14', 'E1632', 'CARD_VALIDATION_ FAILED', 'Invalid card number', 'Transaction declined due to either incorrect cvv/expiry or card validation failure'],
-    ['15', 'E305', 'CARD_NUMBER_ INVALID', 'Invalid issuer', 'The transaction failed due to invalid or absent card number.'],
-    ['16', 'E9204', 'APPROVED_TRACK', 'Approved Update Track 3 (not used)', 'Approved Update Track 3 (not used)'],
-    ['17', 'E9205', 'CUSTOMER_ CANCELLATION', 'Customer Cancellation', 'Customer Cancellation'],
-    ['18', 'E9206', 'CUSTOMER_DISPUTE', 'Customer Dispute', 'Customer Dispute'],
-    ['19', 'E345', 'TECHNICAL_FAILURE', 'Re-enter Transaction', 'Transaction declined due to technical failure'],
-    ['20', 'E308', 'TRANSACTION_FAILED', 'Invalid response', 'Transaction Failed at bank end.'],
-    ['21', 'E9207', 'NO_ACTION_TAKEN_', 'No Action Taken', 'No Action Taken'],
-    ['22', 'E9208', 'SUSPECTED_ MALFUNCTION', 'Suspected Malfunction', 'Suspected Malfunction'],
-    ['23', 'E9209', 'UNACCEPTABLE_ TRANSACTION_FEE', 'Unacceptable Transaction Fee', 'Unacceptable Transaction Fee'],
-    ['24', 'E9210', 'FILE_UPDATE_NOT_ SUPPORTED_BY_RECEIVER', 'File Update not Supported by receiver', 'File Update not Supported by receiver'],
-    ['25', 'E9211', 'UNABLE_TO_LOCATE_ RECORD_ON_FILE', 'Unable to Locate Record on File', 'Unable to Locate Record on File'],
-    ['26', 'E9212', 'DUPLICATE_FILE_ UPDATE_RECORD', 'Duplicate File Update Record', 'Duplicate File Update Record'],
-    ['27', 'E9213', 'FILE_UPDATE_ FIELD_EDIT_ERROR', 'File Update Field Edit Error', 'File Update Field Edit Error'],
-    ['28', 'E9214', 'FILE_UPDATE_ FILE_LOCKED_OUT', 'File Update File Locked Out', 'File Update File Locked Out'],
-    ['29', 'E9215', 'FILE_UPDATE_ NOT_SUCCESSFUL', 'File Update not Successful', 'File Update not Successful'],
-    ['30', 'E2102', 'TXN_FAILURE', 'Format error', 'Transaction not approved'],
-    ['32', 'E9216', 'COMPLETED_ PARTIALLY', 'Completed Partially', 'Completed Partially'],
-    ['34', 'E324', 'CARD_FRAUD_ SUSPECTED', 'Suspected Fraud, Retain Card', 'Transaction was declined by the issuing bank due to suspected fraudulent activities'],
-    ['36', 'E325', 'RESTRICTED_ CARD', 'Restricted Card, Retain Card', 'Transaction declined due to card not enabled for online transactions or user / Bank Defined Restrictions'],
-    ['38', 'E9217', 'ALLOWABLE_PIN_ TRIES_EXCEEDED', 'Allowable PIN Tries Exceeded', 'Allowable PIN Tries Exceeded'],
-    ['39', 'E224', 'VIRTUAL_ACCOUNT_ NUMBER_MISMATCH', 'No credit account', 'Virtual Account Number Mismatch'],
-    ['40', 'E9218', 'REQUESTED_FUNCTION_ NOT_SUPPORTED', 'Requested Function not Supported', 'Requested Function not Supported'],
-    ['42', 'E9252', 'NO_UNIVERSAL_ ACCOUNT', 'No Universal Account', "The customer's card issuer has declined the transaction as the account type selected is not valid for this credit card number"],
-    ['46', 'E717', 'INVALID_ACCOUNT_ NUMBER', 'Closed account', 'Transaction declined as bank reported account to be closed'],
-    ['51', 'E706', 'INSUFFICIENT_ FUNDS', 'Insufficient funds/over credit limit / Not sufficient funds', 'The account against which the payment was made has insufficient funds.'],
-    ['52', 'E707', 'INVALID_PAN', 'No Checking Account', 'Transaction failed due to invalid Primary Account Number. (Primary Account Number or PAN is the number that is embossed and/or encoded on a plastic card that identifies the issuer and the particular cardholder account.)'],
-    ['54', 'E311', 'EXPIRED_CARD', 'Expired card', 'Transaction declined due to invalid expiry details or the card is expired'],
-    ['55', 'E710', 'INVALID_PIN', 'Invalid PIN', 'Transaction failed due to invalid PIN'],
-    ['56', 'E4346', 'NO_CARD_ RECORD_REMITTER', 'No Card Record', "Transaction failed due to no card details from customer's bank"],
-    ['57', 'E1642', 'CARD_NOT_ PERMITTED', 'Transaction not permitted to issuer/cardholder', 'Transaction not permitted to cardholder'],
-    ['60', 'E337', 'NOT_CAPTURED', 'Contact Card Acquirer', 'Transaction declined by the issuer'],
-    ['61', 'E909', 'TRANSACTION_MAX_ LIMIT_EXCEEDED', 'Exceeds withdrawal amount limit(s) / Withdrawal amount limit exc', 'Transaction amount exceeds the withdrawal limit of the user account'],
-    ['62', 'E1626', 'RESTRICTED_CARD_TYPE', 'Restricted card', 'Restricted card'],
-    ['63', 'E312', 'BANK_DENIED', 'Security violation', 'Bank denied transaction on the card.'],
-    ['64', 'E9253', 'AMOUNT_INCORRECT_ MISMATCH', 'Original Amount Incorrect', 'Amount Incorrect / Mismatch'],
-    ['66', 'E9219', 'CARD_ACCEPTOR_CALL_ ACQUIRER_SECURITY', 'Card Acceptor Call Acquirer Security', 'Card Acceptor Call Acquirer Security'],
-    ['68', 'E9220', 'RESPONSE_RECEIVED_ TOO_LATE', 'Response Received Too Late', 'Response Received Too Late'],
-    ['69', 'E9221', 'MOBILE_NUMBER_ RECORD_NOT_FOUND', 'Mobile number record not found / mis-match', 'Mobile number record not found / mis-match'],
-    ['70', 'E1629', 'BANK_TECHNICAL_ FAILURE', 'Contact Card Issuer', 'Transaction declined due to technical failure at bank end'],
-    ['75', 'E708', 'PIN_RETRIES_EXCEEDED', 'Allowable number of PIN tries exceeded', 'Card authentication failed as user exceeded maximum number of permitted retries for PIN.'],
-    ['77', 'E9222', 'APPROVED_ANZ_ ONLY', 'Approved (ANZ only)', 'Approved (ANZ only)'],
-    ['78', 'E1625', 'CARD_NOT_ENABLED_ FOR_ECOMM_TXN', 'Invalid/nonexistent account specified (general)', 'Card not enabled for Ecomm transactions, either the card is newly issued or has not been used for any online transaction during last 12 months'],
-    ['81', 'E9223', 'CRYPTOGRAPHIC_ ERROR', 'Cryptographic Error', 'Cryptographic Error'],
-    ['82', 'E313', 'CVC_FAILURE', 'Negative online CAM, dCVV, iCVV, CVV, or CAVV results or Offlin', 'Card authentication failed at the bank due to invalid CVV (or CVC or Card Security Code)'],
-    ['86', 'E4519', 'Insufficient_Amount', 'Cannot verify PIN', 'Refund failed due to insufficient amount'],
-    ['87', 'E9224', 'NO_ENVELOPE_ INSERTED', 'No Envelope Inserted', 'No Envelope Inserted'],
-    ['88', 'E9225', 'UNABLE_TO_ DISPENSE', 'Unable to Dispense', 'Unable to Dispense'],
-    ['89', 'E9226', 'TID_NOT_ PRESENT_ON_HOST', 'TID not present on host', 'TID not present on host'],
-    ['90', 'E9227', 'CUTOFF_IN_ PROGRESS', 'Cut-off in Progress', 'Cut-off in Progress'],
-    ['91', 'E9254', 'BANK_NOT_ SUPPORTED_BY_ SWITCH', 'Issuer or Switch is Inoperative', 'Authorization Platform or Switch / Issuer system inoperative or Not Supported'],
-    ['91', 'E4158', 'REQAUTH_TIME_ OUT_FOR_PAY', 'Issuer unavailable or switch inoperative', "Transaction failed due to timeout at acquirer's end"],
-    ['92', 'E225', 'TRANSACTION_ IN_PROGRESS', 'Destination cannot be found for routing / Unable to route transa', 'Transaction in Progress'],
-    ['94', 'E504', 'DUPLICATE_ TRANSACTION', 'Duplicate Transaction', 'The transaction has been identified as duplicate transaction.'],
-    ['95', 'E1656', 'RECONCILE_ERROR', 'Reconcile Error', 'Reconcile Error'],
-    ['97', 'E9229', 'RECONCILIATION_ TOTALS_RESET', 'Reconciliation Totals Reset', 'Reconciliation Totals Reset'],
-    ['98', 'E9230', 'EXCEEDS_CASH_ LIMIT', 'Exceeds Cash Limit', 'Exceeds Cash Limit'],
-    ['99', 'E9231', 'RESERVED_FOR_ NATIONAL_USE', 'Reserved for National Use', 'Reserved for National Use']
-  ]}
+<SearchableTableRemote
+  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/issuer-decline-error-codes.json"
   placeholder="Search"
+  maxHeight="500px"
 />
 
 ## Cards
