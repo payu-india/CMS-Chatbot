@@ -242,7 +242,7 @@ The payment verification step ensures the transaction has been processed success
 
 ***
 
-## Step 4: Recurring Payment Transaction
+## Step 3: Recurring Payment Transaction
 
 All successful registration transactions are charged over the recurring interface with server-to-server API without any additional 2FA or the customers' involvement.
 
