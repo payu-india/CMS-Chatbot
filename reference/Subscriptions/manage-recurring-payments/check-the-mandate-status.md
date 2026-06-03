@@ -78,9 +78,9 @@ Use this endpoint to check the mandate status of the following payment methods:
 
 ## Request Parameters
 
-\> 📘 **Mandatory Parameters**
-\>
-\> <RequiredStar legend />
+> 📘 **Mandatory Parameters**
+>
+> <RequiredStar legend />
 
 | **Parameter**                    | **Description**                                                                                                                                                                                                                                     |
 | :------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -294,8 +294,8 @@ Below are the errors associated to UPI.
   **Reason:** This error occurs when you try to access the details of a unregistered mandate.
 </Accordion>
 
-> ✅ **Notes**
->
->
+\> ✅ **Notes**
+\>
+\>
 
 <br />
