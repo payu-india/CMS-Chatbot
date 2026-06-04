@@ -27,4 +27,10 @@ This part of the document also includes how to integrate using 3DS Secure 2.0 Tr
 
 <RegisterMerchantPrerequiste />
 
+## Step 1: Post the parameters to PayU
+
+Initiate an authorization request with the payment details provided post a successful authentication via the MPI/3DSS. For the request parameters, refer to [Cards Direct Authorization Flow](ref:_payment_s2s_direct_authorization_flow) .
+
+<PaymentAPIEnvironment />
+
 <br />
