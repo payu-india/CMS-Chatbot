@@ -2,7 +2,7 @@
 title: eNACH Supported Banks and Verification Modes
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: eNACH Supported Banks
   description: >-
