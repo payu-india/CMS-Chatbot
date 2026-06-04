@@ -442,7 +442,7 @@ PayU sends the following parameters to your success/failure URLs:
 ## 🔄 **Transaction States**
 
 ### Payment Lifecycle
-
+<div style="transform: scale(1.5); transform-origin: top left; width: 67%;">
 ```mermaid
 graph LR
     A[Payment Initiated] --> B[Hosted Page Loaded]
@@ -455,7 +455,7 @@ graph LR
     F --> I[Redirect to Failure URL]
     G --> J[Check Status API]
 ```
-
+</div>
 ### Status Meanings
 
 * **success**: Payment completed successfully
