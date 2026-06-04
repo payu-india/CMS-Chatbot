@@ -126,6 +126,7 @@ export const Tooltip = (props) => {
 
   const [visible, setVisible] = useState(false);
   const [coords, setCoords] = useState(null);
+  const [labelHovered, setLabelHovered] = useState(false);
 
   const clearShowTimer = useCallback(() => {
     if (showTimerRef.current !== null) {
@@ -206,18 +207,6 @@ export const Tooltip = (props) => {
     textDecoration: 'none',
   };
 
-  const linkedLabelStyle = {
-    display: 'inline',
-    cursor: 'default',
-    color: 'inherit',
-    background: 'transparent',
-    padding: 0,
-    font: 'inherit',
-    textDecoration: 'underline',
-    textDecorationColor: PAYU_GREEN,
-    textUnderlineOffset: '2px',
-  };
-
   const iconButtonStyle = {
     display: 'inline-flex',
     alignItems: 'center',
@@ -289,6 +278,19 @@ export const Tooltip = (props) => {
     const displayText = labelHrefText || 'Hover for details';
 
     if (href) {
+      const linkedLabelStyle = {
+        display: 'inline',
+        cursor: 'default',
+        color: 'inherit',
+        background: 'transparent',
+        padding: 0,
+        font: 'inherit',
+        textDecoration: labelHovered ? 'none' : 'underline',
+        textDecorationColor: labelHovered ? 'transparent' : PAYU_GREEN,
+        textDecorationThickness: '1px',
+        textUnderlineOffset: '2px',
+      };
+
       return (
         <a
           ref={triggerRef}
@@ -297,7 +299,22 @@ export const Tooltip = (props) => {
           rel="noopener noreferrer"
           style={linkedLabelStyle}
           {...ariaProps}
-          {...triggerHandlers}
+          onMouseEnter={function () {
+            setLabelHovered(true);
+            handleMouseEnter();
+          }}
+          onMouseLeave={function (event) {
+            setLabelHovered(false);
+            handleMouseLeave(event);
+          }}
+          onFocus={function () {
+            setLabelHovered(true);
+            handleFocus();
+          }}
+          onBlur={function (event) {
+            setLabelHovered(false);
+            handleBlur(event);
+          }}
         >
           {displayText}
         </a>
