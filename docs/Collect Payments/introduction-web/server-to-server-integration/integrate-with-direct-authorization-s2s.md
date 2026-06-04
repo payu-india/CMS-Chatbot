@@ -297,7 +297,7 @@ response = requests.post(url, headers=headers, data=data)
 print("Status Code:", response.status\_code)
 print("Response:", response.text)
 
-````
+```
 ```java
 import java.io.IOException;
 import java.net.URI;
