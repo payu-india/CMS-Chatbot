@@ -696,5 +696,3 @@ The parameters in the response for similar for all S2S flows. For more informati
   }'
   ```
 </Accordion>
-
-<br />
