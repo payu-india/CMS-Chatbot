@@ -25,4 +25,6 @@ This part of the document also includes how to integrate using 3DS Secure 2.0 Tr
   </Card>
 </Cards>
 
+<RegisterMerchantPrerequiste />
+
 <br />
