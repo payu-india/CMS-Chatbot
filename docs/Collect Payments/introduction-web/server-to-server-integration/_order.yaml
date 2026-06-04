@@ -13,3 +13,4 @@
 - integration-checklist-s2s
 - legacy-flow-for-server-to-server
 - decoupled-flow-authentication-only-integration
+- direct-authorization-integration
