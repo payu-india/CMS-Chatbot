@@ -525,4 +525,18 @@ The formatted response is similar to the following:
   ```
 </Accordion>
 
+<Accordion title=" 3DS Secure 2.0 browserDetails JSON Fields Description" icon="fa-table">
+  | **Field**    | **Description**                                                                             | **Example**      |
+  | ------------ | ------------------------------------------------------------------------------------------- | ---------------- |
+  | userAgent    | This field must include user agent of the device browser.                                   |                  |
+  | acceptHeader | This field contains the format of the header.                                               | application/json |
+  | language     | This field contains the language for the 3D Secure Challenge.                               | en-US            |
+  | colorDepth   | This field contains the color depth of the screen.                                          | 24               |
+  | screenHeight | This field contains the screen height of the device displaying the 3D Secure Challenge.     | 640              |
+  | screenWidth  | This field contains the screen width of the device displaying the 3D Secure Challenge.      | 480              |
+  | javaEnabled  | This field contains whether Java is enabled for the device. It can be any of the following: | true             |
+  | timeZone     | This field contains the time zone code where the payment is accepted.                       | 273              |
+  | ip           | This should include the IP address of the device from which the browser is accessed.        | 10.248.2.71      |
+</Accordion>
+
 <br />
