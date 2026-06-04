@@ -5,6 +5,7 @@ name: Tooltip
 // Register in Readme as component name: Tooltip
 // Use in prose, callouts, and parameter sections (not inside pipe-table cells).
 // Props: content, label (or trigger), position, delay, linkUrl, linkText, icon, variant.
+// linkUrl puts the hyperlink on the label (not in the tooltip body).
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -107,7 +108,7 @@ export const Tooltip = (props) => {
   const triggerLabel = String(triggerProp || label || '').trim();
   const tooltipText = String(content || '').trim();
   const href = String(linkUrl || '').trim();
-  const linkLabel = String(linkText || 'Learn more').trim();
+  const labelHrefText = String(linkText || triggerLabel || '').trim();
   const preferredPosition = ['top', 'bottom', 'left', 'right'].includes(positionProp)
     ? positionProp
     : 'top';
@@ -172,7 +173,7 @@ export const Tooltip = (props) => {
     }
     updatePosition();
     return undefined;
-  }, [visible, tooltipText, href, linkLabel, updatePosition]);
+  }, [visible, tooltipText, href, labelHrefText, updatePosition]);
 
   useEffect(() => {
     if (!visible) return undefined;
@@ -193,14 +194,28 @@ export const Tooltip = (props) => {
     verticalAlign: 'baseline',
   };
 
-  const textTriggerStyle = {
+  const PAYU_GREEN = '#00b058';
+
+  const plainLabelStyle = {
     display: 'inline',
-    cursor: 'help',
-    borderBottom: '1px dotted #64748b',
+    cursor: 'default',
     color: 'inherit',
     background: 'transparent',
     padding: 0,
     font: 'inherit',
+    textDecoration: 'none',
+  };
+
+  const linkedLabelStyle = {
+    display: 'inline',
+    cursor: 'default',
+    color: 'inherit',
+    background: 'transparent',
+    padding: 0,
+    font: 'inherit',
+    textDecoration: 'underline',
+    textDecorationColor: PAYU_GREEN,
+    textUnderlineOffset: '2px',
   };
 
   const iconButtonStyle = {
@@ -215,14 +230,8 @@ export const Tooltip = (props) => {
     borderRadius: '9999px',
     background: '#e2e8f0',
     color: '#334155',
-    cursor: 'help',
+    cursor: 'default',
     verticalAlign: 'middle',
-  };
-
-  const linkStyle = {
-    color: '#7dd3fc',
-    textDecoration: 'underline',
-    textUnderlineOffset: '2px',
   };
 
   const rawIcon = icon ? String(icon).trim() : '';
@@ -258,12 +267,7 @@ export const Tooltip = (props) => {
     ...panelPosition,
   };
 
-  const ariaProps =
-    visible && interactive
-      ? { 'aria-details': tooltipId }
-      : visible
-        ? { 'aria-describedby': tooltipId }
-        : {};
+  const ariaProps = visible ? { 'aria-describedby': tooltipId } : {};
 
   const handleMouseEnter = () => show();
   const handleMouseLeave = (event) => {
@@ -274,8 +278,48 @@ export const Tooltip = (props) => {
     if (!shouldStayOpen(event.relatedTarget)) hide();
   };
 
+  const triggerHandlers = {
+    onMouseEnter: handleMouseEnter,
+    onMouseLeave: handleMouseLeave,
+    onFocus: handleFocus,
+    onBlur: handleBlur,
+  };
+
+  const renderLabelTrigger = function () {
+    const displayText = labelHrefText || 'Hover for details';
+
+    if (href) {
+      return (
+        <a
+          ref={triggerRef}
+          href={href}
+          target={linkTarget || '_blank'}
+          rel="noopener noreferrer"
+          style={linkedLabelStyle}
+          {...ariaProps}
+          {...triggerHandlers}
+        >
+          {displayText}
+        </a>
+      );
+    }
+
+    return (
+      <span
+        ref={triggerRef}
+        role="button"
+        tabIndex={0}
+        style={plainLabelStyle}
+        {...ariaProps}
+        {...triggerHandlers}
+      >
+        {triggerLabel || displayText}
+      </span>
+    );
+  };
+
   let triggerNode = null;
-  if (variant === 'icon' || (iconClass && !triggerLabel)) {
+  if (variant === 'icon' || (iconClass && !triggerLabel && !href)) {
     triggerNode = (
       <button
         type="button"
@@ -284,63 +328,34 @@ export const Tooltip = (props) => {
         aria-label={triggerLabel || tooltipText || 'More information'}
         tabIndex={0}
         {...ariaProps}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
+        {...triggerHandlers}
       >
         {iconClass ? <i className={iconClass} aria-hidden="true" /> : <span aria-hidden="true">i</span>}
       </button>
     );
-  } else if (variant === 'button') {
+  } else if (variant === 'button' && !href) {
     triggerNode = (
       <button
         type="button"
         ref={triggerRef}
-        style={{ ...textTriggerStyle, borderBottom: 'none', padding: '0.25rem 0.5rem', borderRadius: 6, background: '#f1f5f9' }}
+        style={{
+          ...plainLabelStyle,
+          padding: '0.25rem 0.5rem',
+          borderRadius: 6,
+          background: '#f1f5f9',
+        }}
         tabIndex={0}
         {...ariaProps}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
+        {...triggerHandlers}
       >
         {triggerLabel || 'Help'}
       </button>
     );
   } else {
-    triggerNode = (
-      <span
-        ref={triggerRef}
-        role="button"
-        tabIndex={0}
-        style={textTriggerStyle}
-        {...ariaProps}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-      >
-        {triggerLabel || 'Hover for details'}
-      </span>
-    );
+    triggerNode = renderLabelTrigger();
   }
 
-  const panelContent = href ? (
-    <span>
-      {tooltipText ? <span>{tooltipText} </span> : null}
-      <a
-        href={href}
-        target={linkTarget || '_blank'}
-        rel="noopener noreferrer"
-        style={linkStyle}
-      >
-        {linkLabel}
-      </a>
-    </span>
-  ) : (
-    tooltipText
-  );
+  const panelContent = tooltipText;
 
   const tooltipPanel = (
     <div
