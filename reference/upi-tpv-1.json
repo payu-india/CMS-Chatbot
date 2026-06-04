@@ -1,1 +1,22 @@
-{"openapi":"3.0.0","info":{"title":"upi-tpv","description":"UPI Integration for TPV","contact":{},"version":"1.0"},"servers":[{"url":"https://test.payu.in","variables":{}}],"paths":{"/_payment":{"post":{"summary":"UPI TPV","description":"POST EndPoint","operationId":"UPI-TPV","parameters":[],"requestBody":{"content":{"application/x-www-form-urlencoded":{"encoding":{},"schema":{"required":["key","txnid","amount","productinfo","firstname","email","VPA","phone","lastname","surl","furl","hash","pg","bankcode","beneficiarydetail","api_version"],"type":"object","properties":{"key":{"enum":["JPM7Fg"],"type":"string"},"txnid":{"type":"string"},"amount":{"type":"string"},"productinfo":{"type":"string","maxLength":100},"firstname":{"type":"string","maxLength":60},"email":{"type":"string","maxLength":50},"VPA":{"type":"string"},"phone":{"type":"string"},"lastname":{"type":"string","maxLength":60},"address1":{"type":"string","maxLength":100},"address2":{"type":"string","maxLength":100},"city":{"type":"string"},"state":{"type":"string"},"country":{"type":"string","maxLength":50},"zipcode":{"type":"string","maxLength":20},"surl":{"type":"string"},"furl":{"type":"string"},"pg":{"enum":["UPI"],"type":"string"},"bankcode":{"enum":["UPITPV","INTTPV","TEJTPV"],"type":"string"},"beneficiarydetail":{"type":"object","required":["beneficiaryAccountNumber"],"properties":{"beneficiaryAccountNumber":{"type":"string"},"ifscCode":{"type":"string"}}},"api_version":{"enum":["6"],"type":"string"},"txn_s2s_flow":{"enum":["0","2","4"],"type":"string"},"udf1":{"type":"string","maxLength":20},"udf2":{"type":"string","maxLength":20},"udf3":{"type":"string","maxLength":20},"udf4":{"type":"string","maxLength":20},"udf5":{"type":"string","maxLength":20},"hash":{"type":"string"}}},"examples":{}}},"required":false},"responses":{"200":{"description":"Success","headers":{},"content":{"application/json":{"schema":{}}}},"502":{"description":"SOME INTERNAL ERROR!!!!","content":{"application/json":{"schema":{}}}}},"deprecated":false,"servers":[{"url":"https://test.payu.in","variables":{}}]}}},"tags":[],"x-readme":{"explorer-enabled":true,"proxy-enabled":true,"samples-enabled":true}}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "upi-tpv",
+    "description": "UPI Integration for TPV",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://test.payu.in",
+      "variables": {}
+    }
+  ],
+  "paths": {},
+  "tags": [],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true,
+    "samples-enabled": true
+  }
+}
