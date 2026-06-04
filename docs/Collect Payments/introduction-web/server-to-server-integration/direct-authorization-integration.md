@@ -414,8 +414,4 @@ Collect the response in the [Cards Direct Authorization Flow](ref:_payment_s2s_d
 >
 > This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
 
-\> 📘 **Note:**
-\>
-\> This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
-
 <br />
