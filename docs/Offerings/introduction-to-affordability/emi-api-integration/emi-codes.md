@@ -38,33 +38,10 @@ next:
 
 ## UPI CC EMI Codes
 
-<SearchableTable
-  headers={['Bank or Institutions', 'bankcode', 'Tenure']}
-  rows={[
-    ['Axis Bank', 'INTAX03', '3 Months'],
-    ['Axis Bank', 'INTAX06', '6 Months'],
-    ['Axis Bank', 'INTAX09', '9 Months'],
-    ['Axis Bank', 'INTAX12', '12 Months'],
-    ['Axis Bank', 'INTAX24', '24 Months'],
-    ['Axis Bank', 'UPIAX03', '3 Months'],
-    ['Axis Bank', 'UPIAX06', '6 Months'],
-    ['Axis Bank', 'UPIAX09', '9 Months'],
-    ['Axis Bank', 'UPIAX12', '12 Months'],
-    ['Axis Bank', 'UPIAX24', '24 Months'],
-    ['Yes Bank', 'INTYES03', '3 Months'],
-    ['Yes Bank', 'INTYES06', '6 Months'],
-    ['Yes Bank', 'INTYES09', '9 Months'],
-    ['Yes Bank', 'INTYES12', '12 Months'],
-    ['Yes Bank', 'INTYES18', '18 Months'],
-    ['Yes Bank', 'INTYES24', '24 Months'],
-    ['Yes Bank', 'UPIYES03', '3 Months'],
-    ['Yes Bank', 'UPIYES06', '6 Months'],
-    ['Yes Bank', 'UPIYES09', '9 Months'],
-    ['Yes Bank', 'UPIYES12', '12 Months'],
-    ['Yes Bank', 'UPIYES18', '18 Months'],
-    ['Yes Bank', 'UPIYES24', '24 Months'],
-  ]}
+<SearchableTableRemote
+  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/upi-cc-emi-codes.json"
   placeholder="Search"
+  maxHeight="500px"
 />
 
 ## Other EMI Codes
