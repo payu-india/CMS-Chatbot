@@ -1,7 +1,7 @@
 ---
 title: Recurring Payments Bank Codes - ENACH Registration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
