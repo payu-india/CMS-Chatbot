@@ -84,7 +84,7 @@ Initiate an authorization request with the payment details provided post a succe
 <Accordion title="authentication\_info JSON object" icon="fa-info-circle">
   #### Example
 
-  ```text
+  ```json
   {
     "eci": "05",
     "cavv": "AAABAWFlmQAAAABjRWWZEEFgFz",
