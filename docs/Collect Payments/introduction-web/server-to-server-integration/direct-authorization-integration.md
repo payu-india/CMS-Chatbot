@@ -505,7 +505,7 @@ The formatted response is similar to the following:
 
 ## 3DS Secure 2.0 Transaction
 
-<Accordion title="Request Parameter for 3DS Secure 2.0 Transaction" icon="fa-info-circle">
+<Accordion title="Request Parameter for 3DS Secure 2.0 Transaction" icon="fa-code">
   Along with the parameters mentioned in [Step 1](#step-1-post-the-parameters-to-payu), you must include the `threeDS2RequestData` parameter in the following JSON format for 3DS Secure 2.0 support for cards:
 
   ```json
