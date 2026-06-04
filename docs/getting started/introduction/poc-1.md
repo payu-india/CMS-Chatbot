@@ -29,4 +29,21 @@ metadata:
   placeholder="Search wallets"
 />
 
+<Tooltip
+  content="Merchant Key issued by PayU"
+  label="Click to acess Bank Codes"
+  position="right"
+  delay="300"
+/>
+
+<Tooltip
+  content="For setup steps, see"
+  label="Click to access link page"
+  linkUrl="https://docs.payu.in/docs/merchant-key"
+  linkText="Merchant Key documentation"
+  linkTarget="_blank"
+  position="right"
+  delay="300"
+/>
+
 <br />
