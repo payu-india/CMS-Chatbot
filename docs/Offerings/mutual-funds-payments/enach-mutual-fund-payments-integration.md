@@ -222,7 +222,7 @@ HTTP Method: **POST**
       [hash] => 2794739ed6ca0fdb00540b4cf76cd8d42146ce43596a49b79011214eb1cf72f525252a39c1db6a38c1e81724fc2f56542a383a57eaca262c7df6b62fcb92ac73
       [bank_ref_no] => 154710586635169646
       [bank_ref_num] => 154710586635169646
-      [bankcode] => ICICENCC
+      [bankcode] => ICICENTC
       [surl] => https://test.payu.in/admin/test_response
       [curl] => https://test.payu.in/admin/test_response
       [furl] => https://test.payu.in/admin/test_response
