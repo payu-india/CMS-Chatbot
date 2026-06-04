@@ -503,4 +503,8 @@ The formatted response is similar to the following:
 
 <Verify_Payment_Tabs />
 
+## 3DS Secure 2.0 Transaction
+
+<br />
+
 <br />
