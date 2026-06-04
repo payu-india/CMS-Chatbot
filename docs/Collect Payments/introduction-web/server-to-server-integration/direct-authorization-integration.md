@@ -539,4 +539,34 @@ The formatted response is similar to the following:
   | ip           | This should include the IP address of the device from which the browser is accessed.        | 10.248.2.71      |
 </Accordion>
 
+<Accordion title="Sample request with 3DS Secure 2.0" icon="fa-code">
+  The sample cURL request with 3DS Secure 2.0:
+
+```curl
+curl --location "https://test.payu.in/_payment" \
+  --header "Content-Type: application/x-www-form-urlencoded" \
+  --data-urlencode "key=JF****g" \
+  --data-urlencode "firstname=Ashish" \
+  --data-urlencode "email=test@example.com" \
+  --data-urlencode "amount=10" \
+  --data-urlencode "phone=9876543210" \
+  --data-urlencode "productinfo=Product_info" \
+  --data-urlencode "surl=http://pp30admin.payu.in/test_response" \
+  --data-urlencode "furl=http://pp30admin.payu.in/test_response" \
+  --data-urlencode "pg=CC" \
+  --data-urlencode "bankcode=CC" \
+  --data-urlencode "lastname=Test" \
+  --data-urlencode "ccname=Test User" \
+  --data-urlencode "ccvv=123" \
+  --data-urlencode "ccexpmon=06" \
+  --data-urlencode "ccexpyr=2024" \
+  --data-urlencode "txnid=jYhbOYH9o4" \
+  --data-urlencode "hash=YOUR_HASH_VALUE"\
+  --data-urlencode "ccnum=4012000000002004" \
+  --data-urlencode "txn_s2s_flow=4" \
+  --data-urlencode "threeDS2RequestData={\"browserInfo\":{\"userAgent\":\"Mozilla/5.0 (X11 Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/93.0.4577.0 Safari/537.36\",\"acceptHeader\":\"*/*\",\"language\":\"en-US\",\"colorDepth\":\"24\",\"screenHeight\":\"600\",\"screenWidth\":\"800\",\"timeZone\":\"-300\",\"javaEnabled\":true,\"ip\":\"10.248.2.71\"}}"
+```
+
+</Accordion>
+
 <br />
