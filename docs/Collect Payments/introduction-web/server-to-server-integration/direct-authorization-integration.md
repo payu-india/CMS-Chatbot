@@ -81,4 +81,21 @@ Initiate an authorization request with the payment details provided post a succe
   <HashingSample />
 </Accordion>
 
+<Accordion title="authentication\_info JSON object" icon="fa-info-circle">
+  #### Example
+
+  ```text
+  {
+    "eci": "05",
+    "cavv": "AAABAWFlmQAAAABjRWWZEEFgFz",
+    "flowType": "Frictionless",
+    "threeDSServerTransID": "eea30d14-71cf-41af-b961-f95b7d67dc93",
+    "threeDSTransID": "67b4c71f-19bf-4d97-bd09-4e3687dc9e42",
+    "threeDSTransStatus": "Y",
+    "threeDSTransStatusReason": "01",
+    "acquirer_bin": "401200"
+  }
+  ```
+</Accordion>
+
 <br />
