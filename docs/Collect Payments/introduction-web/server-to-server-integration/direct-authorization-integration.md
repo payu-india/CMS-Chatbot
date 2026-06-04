@@ -410,9 +410,8 @@ if ($response->is_success) {
 
 Collect the response in the [Cards Direct Authorization Flow](ref:_payment_s2s_direct_authorization_flow) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters and authentication\_info JSON Fields Description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
 
-<Callout icon="👍" theme="okay">
-**Handy Tips**
-This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
-</Callout>
+> 👍 **Handy Tips**
+>
+> This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
 
 <br />
