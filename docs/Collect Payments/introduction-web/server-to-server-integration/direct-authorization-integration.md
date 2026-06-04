@@ -99,8 +99,9 @@ Initiate an authorization request with the payment details provided post a succe
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
-  ```curl
-  curl --location --request POST "https://test.payu.in/_payment" \
+
+```curl
+curl --location --request POST "https://test.payu.in/_payment" \
     --header "accept: application/json" \
     --header "Content-Type: application/x-www-form-urlencoded" \
     --data-urlencode "key=JP***g" \
@@ -124,10 +125,9 @@ Initiate an authorization request with the payment details provided post a succe
     --data-urlencode "authentication_info={\"eci\":\"05\",\"cavv\":\"AAABAWFlmQAAAABjRWWZEEFgFz+=\",\"flowType\":\"Frictionless\",\"threeDSTransID\":\"67b4c71f-19bf-4d97-bd09-4e3687dc9e42\",\"threeDSServerTransID\":\"eea30d14-71cf-41af-b961-f95b7d67dc93\",\"threeDSTransStatus\":\"Y\",\"threeDSTransStatusReason\":\"01-99\",\"additionalinfo\":{\"authudf2\":\"1_1665637507_954_104_l73c004m_IAMRB\"},\"acquirer_bin\":\"401200\"}" \
     --data-urlencode "s2s_client_ip=83.191.88.168" \
     --data-urlencode "s2s_device_info=221.6.48.86" \
-    --data-urlencode "hash=1447162a8519a8cbaf8726fdff99487cbac7743595cf355a27fac4a2b42a576e5f23d21ebf59b50004714f7b6b4775e34355ce6acad86f60e2c7369b5df4c55b"
-  ```
-
-```json
+    --data-urlencode "hash=YOUR_HASH_VALUE"
+```
+```python
 import requests
 import json
 
@@ -189,7 +189,6 @@ response = requests.post(url, headers=headers, data=data)
 print("Status Code:", response.status_code)
 print("Response:", response.text)
 ```
-
 ```java
 import java.io.IOException;
 import java.net.URI;
@@ -258,7 +257,6 @@ public class PayU3DS2Payment {
     }
 }
 ```
-
 ```php
 <?php
 
@@ -334,7 +332,6 @@ if ($error) {
 }
 ?>
 ```
-
 ```perl
 #!/usr/bin/perl
 use strict;
@@ -413,8 +410,8 @@ if ($response->is_success) {
 
 Collect the response in the [Cards Direct Authorization Flow](ref:_payment_s2s_direct_authorization_flow) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters and authentication\_info JSON Fields Description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
 
-> 📘 **Note:**
->
-> This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
+\> 📘 **Note:**
+\>
+\> This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
 
 <br />
