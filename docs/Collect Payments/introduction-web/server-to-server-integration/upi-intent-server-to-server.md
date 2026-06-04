@@ -14,50 +14,52 @@ This section includes the workflow and steps to integrate UPI Intent with Server
 
 <NPCI_Mandate />
 
-<Callout icon="👍" theme="okay">
-  Experience the end-to-end **Merchant Hosted Checkout** > **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
-
-  <HTMLBlock>{`
-                            <style>
-                            .tooltip-btn {
-                                position: relative;
-                                background-color: #4CAF50;
-                                color: white;
-                                padding: 10px 20px;
-                                border: none;
-                                border-radius: 5px;
-                                cursor: pointer;
-                                font-weight: bold; /* Added this line */
-                            }
-                            .tooltip-btn:hover::after {
-                                content: attr(data-tooltip);
-                                position: absolute;
-                                bottom: 125%;
-                                left: 50%;
-                                transform: translateX(-50%);
-                                background-color: #333;
-                                color: white;
-                                padding: 5px 10px;
-                                border-radius: 4px;
-                                white-space: nowrap;
-                                font-size: 12px;
-                                z-index: 1;
-                            }
-                            </style>
-
-                            <button onclick="window.open('https://payu.in/integrationlab/seamless/sm-upiflow', '_blank')" 
-                                    class="tooltip-btn" 
-                                    data-tooltip="Click here to see the Merchant Hosted Checkout >  UPI end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
-                                Experience the flow and get the code
-                            </button>
-  `}</HTMLBlock>
-</Callout>
+> 👍
+>
+> Experience the end-to-end **Merchant Hosted Checkout** > **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+>
+> <HTMLBlock>{`
+>                             <style>
+>                             .tooltip-btn {
+>                                 position: relative;
+>                                 background-color: #4CAF50;
+>                                 color: white;
+>                                 padding: 10px 20px;
+>                                 border: none;
+>                                 border-radius: 5px;
+>                                 cursor: pointer;
+>                                 font-weight: bold; /* Added this line */
+>                             }
+>                             .tooltip-btn:hover::after {
+>                                 content: attr(data-tooltip);
+>                                 position: absolute;
+>                                 bottom: 125%;
+>                                 left: 50%;
+>                                 transform: translateX(-50%);
+>                                 background-color: #333;
+>                                 color: white;
+>                                 padding: 5px 10px;
+>                                 border-radius: 4px;
+>                                 white-space: nowrap;
+>                                 font-size: 12px;
+>                                 z-index: 1;
+>                             }
+>                             </style>
+>
+>                             <button onclick="window.open('https://payu.in/integrationlab/seamless/sm-upiflow', '_blank')" 
+>                                     class="tooltip-btn" 
+>                                     data-tooltip="Click here to see the Merchant Hosted Checkout >  UPI end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+>                                 Experience the flow and get the code
+>                             </button>
+> `}</HTMLBlock>
 
 ## Smart Intent Flow
 
 ### Workflow
 
-<Image align="center" src="https://files.readme.io/991937481c8ab71eeb4f5f1477eb18e5bac248eb65d8ea924ed51705b520bb6f-UPI_One_time_Intent_-_Android_App_Non_SDK_Solution.png" />
+
+<Image src="https://files.readme.io/991937481c8ab71eeb4f5f1477eb18e5bac248eb65d8ea924ed51705b520bb6f-UPI_One_time_Intent_-_Android_App_Non_SDK_Solution.png" align="center" />
+
 
 ### Steps to integrate
 
@@ -146,7 +148,7 @@ This section includes the workflow and steps to integrate UPI Intent with Server
 | `vpa`<br/>_conditional_ | `String` Customer's VPA handle. Mandatory for UPI Collect flow. | `customer@upi` |
 | `si`<br/>_mandatory_ | `String` Signifies successful consent taken from the user. Must be `1` for subscription setup. | `1` |
 | `si_details`<br/>_mandatory_ | `JSON String` JSON object containing mandate details (billingAmount, billingCurrency, billingCycle, etc.). Refer to si\_details JSON Object below. | See si\_details accordion |
-| `upiAppName`<br/>_mandatory_ | Any of the values listed under the [upiAppName list](#upiAppName-eNum-list) | amazonpay |
+| `upiAppName`<br/>_mandatory_ | Any of the values listed under the [upiAppName list](#upiappname-enum-list) | amazonpay |
 | `txn_s2s_flow`<br/>_conditional_ | `Integer` Parameter to enable S2S flow. Must be `4` for Legacy Decoupled flow (UPI Intent). | `4` |
 | `s2s_client_ip`<br/>_conditional_ | `String` Source IP of the customer. Required for UPI Intent flow. | `10.200.12.12` |
 | `s2s_device_info`<br/>_mandatory_ | `String` Real customer User-Agent on _payment for every S2S 4 txn initiated from backend. For more information, refer to [s2s\_device\_info Values Description](#s2s_device_info-values-description) table<br/>**Note**: This Required for UPI Intent flow. | Dalvik/2.1.0 (Linux; U; Android 13; Pixel 7 Build, etc. |
@@ -274,40 +276,7 @@ above
 <Callout icon="👍" theme="okay">
   Experience the end-to-end **Merchant Hosted Checkout** flow and instantly generate the complete code for seamless, zero-coding integration into your website. Navigate to **ACS Template Decoder** under **Tools & Utilities** to generate code for decoding the ACS template in the response:
 
-  <HTMLBlock>{`
-                        <style>
-                        .tooltip-btn {
-                            position: relative;
-                            background-color: #4CAF50;
-                            color: white;
-                            padding: 10px 20px;
-                            border: none;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            font-weight: bold; /* Added this line */
-                        }
-                        .tooltip-btn:hover::after {
-                            content: attr(data-tooltip);
-                            position: absolute;
-                            bottom: 125%;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            background-color: #333;
-                            color: white;
-                            padding: 5px 10px;
-                            border-radius: 4px;
-                            white-space: nowrap;
-                            font-size: 12px;
-                            z-index: 1;
-                        }
-                        </style>
-
-                        <button onclick="window.open('https://payu.in/integrationlab/seamless/cards', '_blank')" 
-                                class="tooltip-btn" 
-                                data-tooltip="Click here to see the Merchant Hosted Checkout end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
-                            Experience the flow and get the code
-                        </button>
-  `}</HTMLBlock>
+  <HTMLBlock>{/*RDMX_HTMLBLOCK:CiAgICAgICAgICAgICAgICAgICAgICAgIDxzdHlsZT4KICAgICAgICAgICAgICAgICAgICAgICAgLnRvb2x0aXAtYnRuIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICM0Q0FGNTA7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb2xvcjogd2hpdGU7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBwYWRkaW5nOiAxMHB4IDIwcHg7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBib3JkZXI6IG5vbmU7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBib3JkZXItcmFkaXVzOiA1cHg7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjdXJzb3I6IHBvaW50ZXI7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBmb250LXdlaWdodDogYm9sZDsgLyogQWRkZWQgdGhpcyBsaW5lICovCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgLnRvb2x0aXAtYnRuOmhvdmVyOjphZnRlciB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb250ZW50OiBhdHRyKGRhdGEtdG9vbHRpcCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBib3R0b206IDEyNSU7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBsZWZ0OiA1MCU7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoLTUwJSk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzMzOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgY29sb3I6IHdoaXRlOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgcGFkZGluZzogNXB4IDEwcHg7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB3aGl0ZS1zcGFjZTogbm93cmFwOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgZm9udC1zaXplOiAxMnB4OwogICAgICAgICAgICAgICAgICAgICAgICAgICAgei1pbmRleDogMTsKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA8L3N0eWxlPgoKICAgICAgICAgICAgICAgICAgICAgICAgPGJ1dHRvbiBvbmNsaWNrPSJ3aW5kb3cub3BlbignaHR0cHM6Ly9wYXl1LmluL2ludGVncmF0aW9ubGFiL3NlYW1sZXNzL2NhcmRzJywgJ19ibGFuaycpIiAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbGFzcz0idG9vbHRpcC1idG4iIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRhdGEtdG9vbHRpcD0iQ2xpY2sgaGVyZSB0byBzZWUgdGhlIE1lcmNoYW50IEhvc3RlZCBDaGVja291dCBlbmQtdG8tZW5kIGludGVncmF0aW9uIGFuZCBpbnN0YW50bHkgZ2VuZXJhdGUgdGhlIGNvbXBsZXRlIGNvZGUgbmVlZGVkIGZvciBhIHplcm8tY29kaW5nIHNldHVwIG9uIHlvdXIgd2Vic2l0ZS4iPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgRXhwZXJpZW5jZSB0aGUgZmxvdyBhbmQgZ2V0IHRoZSBjb2RlCiAgICAgICAgICAgICAgICAgICAgICAgIDwvYnV0dG9uPgogIA==:RDMX_HTMLBLOCK*/}</HTMLBlock>
 </Callout>
 
   ```json
@@ -372,13 +341,15 @@ above
 
 ## Specific Intent Flow
 
-<Callout icon="📘" theme="info">
-  **Notes**: Specific Intent flow works with m-web, Webview, Android or iOS apps. As per **NPCI** mandate, **Pay by any UPI App** option must be shown by all the merchants in their app on all Android devices (app/m-web/webview), Use the generic deeplink, without specific `packageName` to trigger the Pay by any UPI app.
-</Callout>
+> 📘
+>
+> **Notes**: Specific Intent flow works with m-web, Webview, Android or iOS apps. As per **NPCI** mandate, **Pay by any UPI App** option must be shown by all the merchants in their app on all Android devices (app/m-web/webview), Use the generic deeplink, without specific `packageName` to trigger the Pay by any UPI app.
 
 ### Workflow
 
-<Image align="center" src="https://files.readme.io/b1767cf25bf9c6ca94e7cbf0de8ef28e2518ade4919b5df5f6d6ad41537ba1fd-UPI_One_time_Intent_-_m-web_or_IOS_App.png" />
+
+<Image src="https://files.readme.io/b1767cf25bf9c6ca94e7cbf0de8ef28e2518ade4919b5df5f6d6ad41537ba1fd-UPI_One_time_Intent_-_m-web_or_IOS_App.png" align="center" />
+
 
 ### Steps to Integrate
 
@@ -556,3 +527,5 @@ above
 <Accordion title="Step 5: Verify the payment" icon="fa-code">
   <Verify_Payment_Tabs />
 </Accordion>
+
+<br />
