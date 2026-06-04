@@ -99,7 +99,7 @@ Initiate an authorization request with the payment details provided post a succe
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
-  ```text
+  ```curl
   curl --location --request POST "https://test.payu.in/_payment" \
     --header "accept: application/json" \
     --header "Content-Type: application/x-www-form-urlencoded" \
@@ -127,7 +127,7 @@ Initiate an authorization request with the payment details provided post a succe
     --data-urlencode "hash=1447162a8519a8cbaf8726fdff99487cbac7743595cf355a27fac4a2b42a576e5f23d21ebf59b50004714f7b6b4775e34355ce6acad86f60e2c7369b5df4c55b"
   ```
 
-```text
+```json
 import requests
 import json
 
@@ -190,7 +190,7 @@ print("Status Code:", response.status_code)
 print("Response:", response.text)
 ```
 
-```text
+```java
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
@@ -259,7 +259,7 @@ public class PayU3DS2Payment {
 }
 ```
 
-```text
+```php
 <?php
 
 $url = "https://test.payu.in/_payment";
@@ -335,7 +335,7 @@ if ($error) {
 ?>
 ```
 
-```text
+```perl
 #!/usr/bin/perl
 use strict;
 use warnings;
@@ -413,8 +413,8 @@ if ($response->is_success) {
 
 Collect the response in the [Cards Direct Authorization Flow](ref:_payment_s2s_direct_authorization_flow) under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters and authentication\_info JSON Fields Description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
 
-> 📘
->
-> **Note**: This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
+\> 📘
+\>
+\> **Note**: This API is backward compatible and you can continue to the existing integration parameters to process the 3DS 1.0.2 transactions.
 
 <br />
