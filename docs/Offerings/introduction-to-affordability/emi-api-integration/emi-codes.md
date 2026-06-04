@@ -46,19 +46,10 @@ next:
 
 ## Other EMI Codes
 
-<SearchableTable
-  headers={['Bank or Institutions', 'bankcode', 'Tenure', 'Interest Rate', 'Min. Amt.', 'Max. Amt.']}
-  rows={[
-    ['Bajaj Finserv Limited', 'BAJFIN03', '3 Months', 'No-Cost EMI', 'Rs. 5,020', 'Rs. 30,000'],
-    ['Bajaj Finserv Limited', 'BAJFIN04', '4 Months', 'No-Cost EMI', 'Rs. 3,500', 'Rs. 30,000'],
-    ['Bajaj Finserv Limited', 'BAJFIN06', '6 Months', 'No-Cost EMI', 'Rs. 4,980', 'Rs. 60,000'],
-    ['Bajaj Finserv Limited', 'BAJFIN08', '8 Months', 'No-Cost EMI', 'Rs. 11,999', 'Rs. 60,000'],
-    ['Bajaj Finserv Limited', 'BAJFIN09', '9 Months', 'No-Cost EMI', 'Rs. 7,470', 'Rs. 90,000'],
-    ['Bajaj Finserv Limited', 'BAJFIN12', '12 Months', 'No-Cost EMI', 'Rs. 9,960', 'Rs. 120,000'],
-    ['Bajaj Finserv Limited', 'BAJFIN15', '15 Months', 'No-Cost EMI', 'Rs. 22,500', 'Rs. 150,000'],
-    ['Bajaj Finserv Limited', 'BAJFIN18', '18 Months', 'No-Cost EMI', 'Rs. 14,940', 'Rs. 180,000'],
-  ]}
+<SearchableTableRemote
+  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/other-emi-codes.json"
   placeholder="Search"
+  maxHeight="500px"
 />
 
 <br />
