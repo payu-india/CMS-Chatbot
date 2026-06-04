@@ -73,4 +73,12 @@ Initiate an authorization request with the payment details provided post a succe
   | **udf5** `optional` | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. | |
 </Accordion>
 
+<Accordion title="Understanding Hashing and sample code" icon="fa-code">
+  <HashingRequestParameters />
+
+  #### Hashing Sample Code
+
+  <HashingSample />
+</Accordion>
+
 <br />
