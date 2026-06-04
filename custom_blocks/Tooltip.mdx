@@ -1,0 +1,383 @@
+---
+name: Tooltip
+---
+// Tooltip - Readme CMS Custom Component
+// Register in Readme as component name: Tooltip
+// Use in prose, callouts, and parameter sections (not inside pipe-table cells).
+// Props: content, label (or trigger), position, delay, linkUrl, linkText, icon, variant.
+
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+export const Tooltip = (props) => {
+  const GAP = 8;
+  const VIEWPORT_PADDING = 8;
+  const DEFAULT_DELAY = 300;
+
+  const POSITION_CANDIDATES = {
+    top: ['top', 'bottom', 'right', 'left'],
+    bottom: ['bottom', 'top', 'right', 'left'],
+    left: ['left', 'right', 'top', 'bottom'],
+    right: ['right', 'left', 'top', 'bottom'],
+  };
+
+  const getCoordsForSide = (side, trigger, tooltip) => {
+    if (side === 'top') {
+      return {
+        top: trigger.top - tooltip.height - GAP,
+        left: trigger.left + trigger.width / 2 - tooltip.width / 2,
+      };
+    }
+    if (side === 'bottom') {
+      return {
+        top: trigger.bottom + GAP,
+        left: trigger.left + trigger.width / 2 - tooltip.width / 2,
+      };
+    }
+    if (side === 'left') {
+      return {
+        top: trigger.top + trigger.height / 2 - tooltip.height / 2,
+        left: trigger.left - tooltip.width - GAP,
+      };
+    }
+    return {
+      top: trigger.top + trigger.height / 2 - tooltip.height / 2,
+      left: trigger.right + GAP,
+    };
+  };
+
+  const fitsViewport = (top, left, width, height) =>
+    top >= VIEWPORT_PADDING &&
+    left >= VIEWPORT_PADDING &&
+    top + height <= window.innerHeight - VIEWPORT_PADDING &&
+    left + width <= window.innerWidth - VIEWPORT_PADDING;
+
+  const clampToViewport = (top, left, width, height) => {
+    const maxTop = window.innerHeight - VIEWPORT_PADDING - height;
+    const maxLeft = window.innerWidth - VIEWPORT_PADDING - width;
+    return {
+      top: Math.min(Math.max(top, VIEWPORT_PADDING), maxTop),
+      left: Math.min(Math.max(left, VIEWPORT_PADDING), maxLeft),
+    };
+  };
+
+  const computeTooltipPosition = (triggerRect, tooltipRect, preferred) => {
+    const candidates = POSITION_CANDIDATES[preferred] || POSITION_CANDIDATES.top;
+    for (let i = 0; i < candidates.length; i += 1) {
+      const side = candidates[i];
+      const coords = getCoordsForSide(side, triggerRect, tooltipRect);
+      if (fitsViewport(coords.top, coords.left, tooltipRect.width, tooltipRect.height)) {
+        return { top: coords.top, left: coords.left, position: side };
+      }
+    }
+    const fallback = getCoordsForSide(preferred, triggerRect, tooltipRect);
+    const clamped = clampToViewport(
+      fallback.top,
+      fallback.left,
+      tooltipRect.width,
+      tooltipRect.height,
+    );
+    return { top: clamped.top, left: clamped.left, position: preferred };
+  };
+
+  const isRelatedToTooltip = (relatedTarget, trigger, tooltip) => {
+    if (!relatedTarget || typeof relatedTarget.contains !== 'function') {
+      return false;
+    }
+    return Boolean(
+      (trigger && trigger.contains(relatedTarget)) ||
+        (tooltip && tooltip.contains(relatedTarget)),
+    );
+  };
+
+  const {
+    content = '',
+    label = '',
+    trigger: triggerProp = '',
+    position: positionProp = 'top',
+    delay: delayProp,
+    linkUrl = '',
+    linkText = '',
+    linkTarget = '_blank',
+    icon = '',
+    variant = 'text',
+    className = '',
+    interactive: interactiveProp,
+  } = props;
+
+  const triggerLabel = String(triggerProp || label || '').trim();
+  const tooltipText = String(content || '').trim();
+  const href = String(linkUrl || '').trim();
+  const linkLabel = String(linkText || 'Learn more').trim();
+  const preferredPosition = ['top', 'bottom', 'left', 'right'].includes(positionProp)
+    ? positionProp
+    : 'top';
+  const delayMs = Number(delayProp);
+  const delay = Number.isFinite(delayMs) && delayMs >= 0 ? delayMs : DEFAULT_DELAY;
+  const interactive = interactiveProp === true || interactiveProp === 'true' || Boolean(href);
+
+  const [tooltipId] = useState(function tooltipIdInit() {
+    return 'tooltip-' + Math.random().toString(36).slice(2, 11);
+  });
+
+  const triggerRef = useRef(null);
+  const tooltipRef = useRef(null);
+  const showTimerRef = useRef(null);
+
+  const [visible, setVisible] = useState(false);
+  const [coords, setCoords] = useState(null);
+
+  const clearShowTimer = useCallback(() => {
+    if (showTimerRef.current !== null) {
+      clearTimeout(showTimerRef.current);
+      showTimerRef.current = null;
+    }
+  }, []);
+
+  const hide = useCallback(() => {
+    clearShowTimer();
+    setVisible(false);
+  }, [clearShowTimer]);
+
+  const shouldStayOpen = useCallback(
+    (relatedTarget) =>
+      interactive && isRelatedToTooltip(relatedTarget, triggerRef.current, tooltipRef.current),
+    [interactive],
+  );
+
+  const show = useCallback(() => {
+    clearShowTimer();
+    showTimerRef.current = setTimeout(() => {
+      showTimerRef.current = null;
+      setVisible(true);
+    }, delay);
+  }, [clearShowTimer, delay]);
+
+  const updatePosition = useCallback(() => {
+    const trigger = triggerRef.current;
+    const tooltip = tooltipRef.current;
+    if (!trigger || !tooltip) return;
+    setCoords(
+      computeTooltipPosition(
+        trigger.getBoundingClientRect(),
+        tooltip.getBoundingClientRect(),
+        preferredPosition,
+      ),
+    );
+  }, [preferredPosition]);
+
+  useEffect(() => {
+    if (!visible) {
+      setCoords(null);
+      return undefined;
+    }
+    updatePosition();
+    return undefined;
+  }, [visible, tooltipText, href, linkLabel, updatePosition]);
+
+  useEffect(() => {
+    if (!visible) return undefined;
+    const onScrollOrResize = () => updatePosition();
+    window.addEventListener('scroll', onScrollOrResize, true);
+    window.addEventListener('resize', onScrollOrResize);
+    return () => {
+      window.removeEventListener('scroll', onScrollOrResize, true);
+      window.removeEventListener('resize', onScrollOrResize);
+    };
+  }, [visible, updatePosition]);
+
+  useEffect(() => () => clearShowTimer(), [clearShowTimer]);
+
+  const wrapperStyle = {
+    display: 'inline-flex',
+    maxWidth: '100%',
+    verticalAlign: 'baseline',
+  };
+
+  const textTriggerStyle = {
+    display: 'inline',
+    cursor: 'help',
+    borderBottom: '1px dotted #64748b',
+    color: 'inherit',
+    background: 'transparent',
+    padding: 0,
+    font: 'inherit',
+  };
+
+  const iconButtonStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '1.25rem',
+    height: '1.25rem',
+    marginLeft: '0.25rem',
+    padding: 0,
+    border: 'none',
+    borderRadius: '9999px',
+    background: '#e2e8f0',
+    color: '#334155',
+    cursor: 'help',
+    verticalAlign: 'middle',
+  };
+
+  const linkStyle = {
+    color: '#7dd3fc',
+    textDecoration: 'underline',
+    textUnderlineOffset: '2px',
+  };
+
+  const rawIcon = icon ? String(icon).trim() : '';
+  const strippedIcon = rawIcon ? rawIcon.replace(/^fa\s+/i, '').trim() : '';
+  const iconClass = strippedIcon
+    ? strippedIcon.indexOf('fa-') === 0
+      ? `fa ${strippedIcon}`
+      : `fa fa-${strippedIcon}`
+    : '';
+
+  const panelPosition =
+    coords != null ? { top: coords.top, left: coords.left } : { top: -9999, left: -9999 };
+
+  const panelStyle = {
+    position: 'fixed',
+    zIndex: 10000,
+    maxWidth: 250,
+    padding: '0.5rem 0.75rem',
+    borderRadius: 8,
+    backgroundColor: '#1a1a2e',
+    color: '#ffffff',
+    fontSize: '0.8125rem',
+    lineHeight: 1.45,
+    textAlign: 'left',
+    whiteSpace: 'pre-wrap',
+    wordWrap: 'break-word',
+    boxShadow:
+      '0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 10px 20px -4px rgba(0, 0, 0, 0.25)',
+    pointerEvents: interactive && visible ? 'auto' : 'none',
+    opacity: visible ? 1 : 0,
+    visibility: visible ? 'visible' : 'hidden',
+    transition: 'opacity 150ms ease, visibility 150ms ease',
+    ...panelPosition,
+  };
+
+  const ariaProps =
+    visible && interactive
+      ? { 'aria-details': tooltipId }
+      : visible
+        ? { 'aria-describedby': tooltipId }
+        : {};
+
+  const handleMouseEnter = () => show();
+  const handleMouseLeave = (event) => {
+    if (!shouldStayOpen(event.relatedTarget)) hide();
+  };
+  const handleFocus = () => show();
+  const handleBlur = (event) => {
+    if (!shouldStayOpen(event.relatedTarget)) hide();
+  };
+
+  let triggerNode = null;
+  if (variant === 'icon' || (iconClass && !triggerLabel)) {
+    triggerNode = (
+      <button
+        type="button"
+        ref={triggerRef}
+        style={iconButtonStyle}
+        aria-label={triggerLabel || tooltipText || 'More information'}
+        tabIndex={0}
+        {...ariaProps}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      >
+        {iconClass ? <i className={iconClass} aria-hidden="true" /> : <span aria-hidden="true">i</span>}
+      </button>
+    );
+  } else if (variant === 'button') {
+    triggerNode = (
+      <button
+        type="button"
+        ref={triggerRef}
+        style={{ ...textTriggerStyle, borderBottom: 'none', padding: '0.25rem 0.5rem', borderRadius: 6, background: '#f1f5f9' }}
+        tabIndex={0}
+        {...ariaProps}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      >
+        {triggerLabel || 'Help'}
+      </button>
+    );
+  } else {
+    triggerNode = (
+      <span
+        ref={triggerRef}
+        role="button"
+        tabIndex={0}
+        style={textTriggerStyle}
+        {...ariaProps}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      >
+        {triggerLabel || 'Hover for details'}
+      </span>
+    );
+  }
+
+  const panelContent = href ? (
+    <span>
+      {tooltipText ? <span>{tooltipText} </span> : null}
+      <a
+        href={href}
+        target={linkTarget || '_blank'}
+        rel="noopener noreferrer"
+        style={linkStyle}
+      >
+        {linkLabel}
+      </a>
+    </span>
+  ) : (
+    tooltipText
+  );
+
+  const tooltipPanel = (
+    <div
+      ref={tooltipRef}
+      id={tooltipId}
+      role="tooltip"
+      className={className}
+      style={panelStyle}
+      data-visible={visible ? 'true' : 'false'}
+      onMouseEnter={
+        interactive
+          ? function () {
+              clearShowTimer();
+              setVisible(true);
+            }
+          : undefined
+      }
+      onMouseLeave={
+        interactive
+          ? function (event) {
+              if (!shouldStayOpen(event.relatedTarget)) hide();
+            }
+          : undefined
+      }
+    >
+      {panelContent}
+    </div>
+  );
+
+  return (
+    <span style={wrapperStyle}>
+      {triggerNode}
+      {tooltipPanel}
+    </span>
+  );
+};
+
+// Default preview for Readme CMS. Use string props only here (no curly braces).
+
+<Tooltip content="Merchant Key issued by PayU" label="Merchant Key" position="right" delay="300" />
