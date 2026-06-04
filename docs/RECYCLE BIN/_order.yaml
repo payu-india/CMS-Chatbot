@@ -2,7 +2,6 @@
 - internal-reviewmissing-notes-placement
 - decoupled-flow-authn-authz-flow
 - internal-subscripions-or-recurring-payments
-- redemption-using-prepaid-integration
 - apple-pay-s2s-decoupled-flow-integration
 - payu-mcp-server
 - native-otp-flow-bnpl-integration-with-merchant-hosted
