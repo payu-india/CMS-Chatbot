@@ -30,33 +30,10 @@ next:
 
 ## Cardless EMI Codes
 
-<SearchableTable
-  headers={['Bank Name', 'bank_code', 'Tenure', 'Interest Rate', 'Min. Amt.', 'Max. Amt.', 'Default Processing Fee']}
-  rows={[
-    ['Axio', 'AXIO', 'Axio', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['Axio', 'AXIO03', '3 Months', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['Axio', 'AXIO06', '6 Months', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['Axio', 'AXIO09', '9 Months', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['Axio', 'AXIO12', '12 Months', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['Axio', 'AXIO18', '18 Months', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['Axio', 'AXIO24', '24 Months', '24%', 'Rs. 60,000', 'N/A', 'N/A'],
-    ['HDFC Cardless EMI', 'HDFCCL03', '3 Months', '16%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
-    ['HDFC Cardless EMI', 'HDFCCL06', '6 Months', '16%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
-    ['HDFC Cardless EMI', 'HDFCCL09', '9 Months', '16%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
-    ['HDFC Cardless EMI', 'HDFCCL12', '12 Months', '16%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
-    ['HDFC Cardless EMI', 'HDFCCL18', '18 Months', '16%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
-    ['Home Credit Ujjwal EMI Card', 'HMECDT03', '3 Months', '25%', 'Rs. 2,000', 'Rs. 99,999,999', 'Rs. 249'],
-    ['Home Credit Ujjwal EMI Card', 'HMECDT06', '6 Months', '25%', 'Rs. 2,000', 'Rs. 99,999,999', 'Rs. 249'],
-    ['Home Credit Ujjwal EMI Card', 'HMECDT09', '9 Months', '25%', 'Rs. 2,000', 'Rs. 99,999,999', 'Rs. 249'],
-    ['Home Credit Ujjwal EMI Card', 'HMECDT12', '12 Months', '25%', 'Rs. 2,000', 'Rs. 99,999,999', 'Rs. 249'],
-    ['LazyPay EMI', 'LPEMI', 'LazyPay Emi', '25%-30%', 'Rs. 3000', 'Rs. 100000', 'N/A'],
-    ['LazyPay EMI', 'LPEMI03', '3 Months', '25%-30%', 'Rs. 3000', 'Rs. 60000', 'N/A'],
-    ['LazyPay EMI', 'LPEMI06', '6 Months', '25%-30%', 'Rs. 6000', 'Rs. 100000', 'N/A'],
-    ['LazyPay EMI', 'LPEMI09', '9 Months', '25%-30%', 'Rs. 15000', 'Rs. 100000', 'N/A'],
-    ['LazyPay EMI', 'LPEMI12', '12 Months', '25%-30%', 'Rs. 20000', 'Rs. 100000', 'N/A'],
-    ['Zestmoney', 'ZESTMON', '-', '-', '-', '-', '-'],
-  ]}
+<SearchableTableRemote
+  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/cardless-emi-codes.json"
   placeholder="Search"
+  maxHeight="500px"
 />
 
 ## UPI CC EMI Codes
