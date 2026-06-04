@@ -22,23 +22,10 @@ next:
 
 ## Debit Card EMI Codes
 
-<SearchableTable
-  headers={['Bank Name', 'bank_code', 'Tenure', 'Interest Rate', 'Min. Amt.', 'Max. Amt.', 'Default Processing Fee']}
-  rows={[
-    ['HDFC Bank', 'HDFCD03', '3 Months', '18%', 'Rs. 3,000', 'Rs. 500,000', 'Rs. 299'],
-    ['HDFC Bank', 'HDFCD06', '6 Months', '17%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
-    ['HDFC Bank', 'HDFCD09', '9 Months', '17%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
-    ['HDFC Bank', 'HDFCD12', '12 Months', '17%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
-    ['HDFC Bank', 'HDFCD18', '18 Months', '17%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
-    ['HDFC Bank', 'HDFCD24', '24 Months', '17%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 299'],
-    ['HDFC Bank', 'HDFCD36', '36 Months', '17%', 'Rs. 30,000', 'Rs. 500,000', 'Rs. 299'],
-    ['HDFC Bank', 'HDFCD48', '48 Months', '16%', 'Rs. 40,000', 'Rs. 500,000', 'Rs. 299'],
-    ['ICICI Bank', 'ICICID03', '3 Months', '16%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 199'],
-    ['ICICI Bank', 'ICICID06', '6 Months', '16%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 199'],
-    ['ICICI Bank', 'ICICID09', '9 Months', '16%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 199'],
-    ['ICICI Bank', 'ICICID12', '12 Months', '16%', 'Rs. 5,000', 'Rs. 500,000', 'Rs. 199'],
-  ]}
+<SearchableTableRemote
+  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/debit-card-emi-codes.json"
   placeholder="Search"
+  maxHeight="500px"
 />
 
 ## Cardless EMI Codes
