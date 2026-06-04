@@ -499,4 +499,8 @@ The formatted response is similar to the following:
 
 </Accordion>
 
+## Step 3. Verify the payment
+
+<Verify_Payment_Tabs />
+
 <br />
