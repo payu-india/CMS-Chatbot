@@ -144,7 +144,7 @@ Enhance your checkout and customer experience with PayU’s extended offerings:
 # 🔗 MCP (Model Context Protocol)
 
 Communicate with the PayU Payments APIs using **Model Context Protocol** to collect payments.
-➡️ Learn more: [PayU MCP](https://docs.payu.in/docs/payu-mcp-server/).
+➡️ Learn more: [PayU MCP](https://docs.payu.in//docs/payu-remote-mcp-server-integration).
 
 ***
 
