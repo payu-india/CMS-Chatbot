@@ -1,5 +1,5 @@
 ---
-title: Direct Authorization Integration
+title: Direct Authorization Integration (copy)
 deprecated: false
 hidden: true
 metadata:
