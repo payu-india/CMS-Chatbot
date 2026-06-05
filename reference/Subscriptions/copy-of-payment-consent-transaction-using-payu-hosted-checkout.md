@@ -345,15 +345,15 @@ si_details Object Parameters</a>
 
 ### `si_details` Object Parameters
 
-| **Parameters**                  | **Description**                                                       |
-| ------------------------------- | --------------------------------------------------------------------- |
-| `billingAmount` _mandatory_     | `float` The subscription billing amount.                              |
-| `billingCurrency` _mandatory_   | `string` The billing currency. Here it is `INR`.                      |
-| `billingCycle` _mandatory_      | `string` The billing cycle at which the amount should be debited.     |
-| `billingInterval` _mandatory_   | `integer` The billing interval at which the amount should be debited. |
-| `paymentStartDate` _mandatory_  | `string` The date on which the subscription payment should start.     |
-| `paymentEndDate` _mandatory_    | `string` The date on which the subscription payment should end.       |
-| `planId`<FreshTag /> _optional_ |                                                                       |
+| **Parameters**                                             | **Description**                                                       |
+| ---------------------------------------------------------- | --------------------------------------------------------------------- |
+| `billingAmount` _mandatory_                                | `float` The subscription billing amount.                              |
+| `billingCurrency` _mandatory_                              | `string` The billing currency. Here it is `INR`.                      |
+| `billingCycle` _mandatory_                                 | `string` The billing cycle at which the amount should be debited.     |
+| `billingInterval` _mandatory_                              | `integer` The billing interval at which the amount should be debited. |
+| `paymentStartDate` _mandatory_                             | `string` The date on which the subscription payment should start.     |
+| `paymentEndDate` _mandatory_                               | `string` The date on which the subscription payment should end.       |
+| <FreshTag heading="planId" asHeading={false} /> _optional_ |                                                                       |
 
 ## Sample request
 
