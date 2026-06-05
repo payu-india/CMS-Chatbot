@@ -46,8 +46,6 @@ This section provides the request parameters, sample request and response for a 
 >
 > Experience the end-to-end **Merchant Hosted Checkout** > **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 >
->   
->
 > <HTMLBlock>{`
 >                           <style>
 >                           .tooltip-btn {
@@ -140,6 +138,21 @@ For parameters address1, address2, city, state, country, product info, email, an
 - (Space)
 - . (Dot)
 
+### `si_details` Object Parameters
+
+You can pass either standing instructions, or plan details or both in the request. Refer to the [Standing Instructions vs Plan](https://docs.payu.in/reference/copy-of-payment-consent-transaction-using-payu-hosted-checkout#standing-instructions-vs-plan) section for more information.
+
+| **Parameters**                 | **Description**                                                                                                                                                                                                                                     |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `billingAmount` _mandatory_    | `float` The subscription billing amount.                                                                                                                                                                                                            |
+| `billingCurrency` _mandatory_  | `string` The billing currency. Here it is `INR`.                                                                                                                                                                                                    |
+| `billingCycle` _mandatory_     | `string` The billing cycle at which the amount should be debited.                                                                                                                                                                                   |
+| `billingInterval` _mandatory_  | `integer` The billing interval at which the amount should be debited.                                                                                                                                                                               |
+| `paymentStartDate` _mandatory_ | `string` The date on which the subscription payment should start.                                                                                                                                                                                   |
+| `paymentEndDate` _mandatory_   | `string` The date on which the subscription payment should end.                                                                                                                                                                                     |
+| `planId`_&#x20;optional_       | `string` The unique plan ID obtained after creating from the dashboard. Know more about <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#create-a-plan">creating a plan</Anchor> from the dashboard. |
+| `qty` _optional_               | `string` The quantity of the billing amount. The **total subscription amount** = `billingAmount` × `qty`.<br /><br />**Note:** The `qty` will not create multiple subscriptions. It only multiplies the billing amount.                             |
+
 ## Sample request
 
 The sample code block for UPI Seamless integration (Merchant-Hosted Checkout) is similar to the following code block:
@@ -169,7 +182,7 @@ curl --location 'https://secure.payu.in/_payment' \
 --data-urlencode 'vpa=anything@payu' \
 --data-urlencode 'surl=https://test.payu.in/admin/test_response/' \
 --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
---data-urlencode 'si_details={"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2029-12-01"}' \
+--data-urlencode 'si_details={"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01", "planId": "83","qty": "20"}' \
 --data-urlencode 'hash=67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb'
 ```
 
@@ -194,7 +207,7 @@ curl --location 'https://secure.payu.in/_payment' \
 --data-urlencode 'txn_s2s_flow=4' \
 --data-urlencode 'surl=https://test.payu.in/admin/test_response/' \
 --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
---data-urlencode 'si_details={"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2019-12-01"}' \
+--data-urlencode 'si_details={"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01", "planId": "83","qty": "20"}' \
 --data-urlencode 'hash=67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb'
 ```
 
