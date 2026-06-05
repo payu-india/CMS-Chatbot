@@ -36,7 +36,7 @@ next:
 ---
 > ✅
 >
-> <FreshTag heading="Getting Started" />
+> <FreshTag heading="What's New!" asHeading={false} />
 
 This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration with **\_payment** API.
 
