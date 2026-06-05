@@ -647,4 +647,14 @@ Array
 )
 ```
 
+## Standing Instructions Vs Plan
+
+The following are the points to consider:
+
+- If plan is enabled for a subscription, only plan details are accepted in requests and the standing instructions (if passed) are ignored.
+- The transaction moves to the `bounced` state if invalid plan details are passed in the request.
+- The plan details are automatically used to fetch billing amount, currency, cycle, and other details.
+- The checkout will display plan-based subscription information.
+-
+
 <br />
