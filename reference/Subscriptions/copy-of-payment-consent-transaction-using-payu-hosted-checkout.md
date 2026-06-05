@@ -551,7 +551,7 @@ $data = [
     'si'          => '1',
     'surl'        => 'https://apiplayground-response.herokuapp.com/',
     'furl'        => 'https://apiplayground-response.herokuapp.com/',
-    'si_details'  => '{"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01"}',
+    'si_details'  => '{"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01”,"planId": “83”,”qty”: “20”}',
     'hash'        => '67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb',
 ];
 
