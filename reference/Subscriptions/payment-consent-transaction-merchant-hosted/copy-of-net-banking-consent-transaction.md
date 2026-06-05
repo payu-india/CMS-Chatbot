@@ -387,6 +387,32 @@ echo "Status Code: " . $httpCode . "\n";
 echo "Response: " . $response . "\n";
 ?>
 ```
+```html
+<!doctype html>
+<html>
+  <body onload="document.forms.payu.submit()">
+    <form name="payu" method="post" action="https://test.payu.in/_payment">
+      <input type="hidden" name="key" value="JP***g">
+      <input type="hidden" name="txnid" value="oRWSUMU4XSQBZn">
+      <input type="hidden" name="amount" value="0.0">
+      <input type="hidden" name="firstname" value="Ashish">
+      <input type="hidden" name="email" value="test@gmail.com">
+      <input type="hidden" name="phone" value="9876543210">
+      <input type="hidden" name="productinfo" value="iPhone">
+      <input type="hidden" name="si" value="1">
+      <input type="hidden" name="si_details" value='{"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01", "planId": "83","qty": "20"}'>
+      <input type="hidden" name="pg" value="ENACH">
+      <input type="hidden" name="bankcode" value="ICICENCC">
+      <input type="hidden" name="surl" value="https://apiplayground-response.herokuapp.com/">
+      <input type="hidden" name="furl" value="">
+      <input type="hidden" name="api_version" value="7">
+      <input type="hidden" name="beneficiarydetail" value='{“beneficiaryName”: “Ashish Kumar”,”beneficiaryAccountNumber”: “1211450021”,”beneficiaryAccountType”: “SAVINGS”, “beneficiaryIfscCode“:”ICIC0000046”, “verificationMode”:”DEBIT_CARD”} Kumar'>
+      <input type="hidden" name="hash" value="dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21">
+      <input type="submit" value="Submit Payment">
+    </form>
+  </body>
+</html>
+```
 
 ### Sample request with Aadhaar as Verification mode
 
