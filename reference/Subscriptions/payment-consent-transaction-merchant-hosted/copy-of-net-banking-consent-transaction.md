@@ -140,54 +140,15 @@ HTTP Method: **POST**
 }
 ```
 
-#### description
+#### Parameter Description
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryName</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Registered name against customer’s account</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryAccountNumber</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Account number against which recurring transactions need to be executed.</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>BeneficiaryAccountType</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>SAVINGS or CURRENT</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryIfscCode</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>11-digit IFSC code of the customer bank</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>verificationMode</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The verification mode can be any of the following:  </p>
-<ul>
-<li><strong>DEBIT_CARD</strong> – authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow.</li>
-<li><strong>AADHAAR</strong> – authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow.  If no value is provided, then it will trigger Net Banking login password flow.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+| Field                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `BeneficiaryName`          | Registered name against customer's account                                                                                                                                                                                                                                                                                                                                                                                     |
+| `BeneficiaryAccountNumber` | Account number against which recurring transactions need to be executed.                                                                                                                                                                                                                                                                                                                                                       |
+| `BeneficiaryAccountType`   | SAVINGS or CURRENT                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `beneficiaryIfscCode`      | 11-digit IFSC code of the customer bank                                                                                                                                                                                                                                                                                                                                                                                        |
+| `verificationMode`         | The verification mode can be any of the following: - **DEBIT\_CARD** – authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow. - **AADHAAR** – authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow. If no value is provided, then it will trigger Net Banking login password flow. |
 
 ### `si_details` Object Parameters
 
