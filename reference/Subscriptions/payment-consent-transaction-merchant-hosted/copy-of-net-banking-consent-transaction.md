@@ -210,25 +210,182 @@ curl -X POST "https://test.payu.in/_payment" \
   --data-urlencode "hash=dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21"
 ```
 ```python
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  --data-urlencode "key=JP***g" \
-  --data-urlencode "txnid=oRWSUMU4XSQBZn" \
-  --data-urlencode "amount=0.0" \
-  --data-urlencode "firstname=Ashish" \
-  --data-urlencode "email=test@gmail.com" \
-  --data-urlencode "phone=9876543210" \
-  --data-urlencode "productinfo=iPhone" \
-  --data-urlencode "si=1" \
-  --data-urlencode "si_details={\"billingAmount\": \"1.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2025-10-14\",\"paymentEndDate\": \"2027-12-01\", \"planId\": \"83\",\"qty\": \"20\"}" \
-  --data-urlencode "pg=ENACH" \
-  --data-urlencode "bankcode=ICICENCC" \
-  --data-urlencode "surl=https://apiplayground-response.herokuapp.com/" \
-  --data-urlencode "furl=" \
-  --data-urlencode "api_version=7" \
-  --data-urlencode "beneficiarydetail={“beneficiaryName”: “Ashish Kumar”,”beneficiaryAccountNumber”: “1211450021”,”beneficiaryAccountType”: “SAVINGS”, “beneficiaryIfscCode“:”ICIC0000046”, “verificationMode”:”DEBIT_CARD”} Kumar" \
-  --data-urlencode "hash=dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21"
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+data = {
+    "key": "JP***g",
+    "txnid": "oRWSUMU4XSQBZn",
+    "amount": "0.0",
+    "firstname": "Ashish",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "productinfo": "iPhone",
+    "si": "1",
+    "si_details": '{"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01", "planId": "83","qty": "20"}',
+    "pg": "ENACH",
+    "bankcode": "ICICENCC",
+    "surl": "https://apiplayground-response.herokuapp.com/",
+    "furl": "",
+    "api_version": "7",
+    "beneficiarydetail": '{“beneficiaryName”: “Ashish Kumar”,”beneficiaryAccountNumber”: “1211450021”,”beneficiaryAccountType”: “SAVINGS”, “beneficiaryIfscCode“:”ICIC0000046”, “verificationMode”:”DEBIT_CARD”} Kumar',
+    "hash": "dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21"
+}
+
+response = requests.post(url, headers=headers, data=data)
+
+print("Status Code:", response.status_code)
+print("Response:", response.text)
+```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        var url = "https://test.payu.in/_payment";
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("accept", "application/json");
+
+            var formData = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("key", "JP***g"),
+                new KeyValuePair<string, string>("txnid", "oRWSUMU4XSQBZn"),
+                new KeyValuePair<string, string>("amount", "0.0"),
+                new KeyValuePair<string, string>("firstname", "Ashish"),
+                new KeyValuePair<string, string>("email", "test@gmail.com"),
+                new KeyValuePair<string, string>("phone", "9876543210"),
+                new KeyValuePair<string, string>("productinfo", "iPhone"),
+                new KeyValuePair<string, string>("si", "1"),
+                new KeyValuePair<string, string>("si_details", "{\"billingAmount\": \"1.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2025-10-14\",\"paymentEndDate\": \"2027-12-01\", \"planId\": \"83\",\"qty\": \"20\"}"),
+                new KeyValuePair<string, string>("pg", "ENACH"),
+                new KeyValuePair<string, string>("bankcode", "ICICENCC"),
+                new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
+                new KeyValuePair<string, string>("furl", ""),
+                new KeyValuePair<string, string>("api_version", "7"),
+                new KeyValuePair<string, string>("beneficiarydetail", "{“beneficiaryName”: “Ashish Kumar”,”beneficiaryAccountNumber”: “1211450021”,”beneficiaryAccountType”: “SAVINGS”, “beneficiaryIfscCode“:”ICIC0000046”, “verificationMode”:”DEBIT_CARD”} Kumar"),
+                new KeyValuePair<string, string>("hash", "dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21")
+            };
+
+            var content = new FormUrlEncodedContent(formData);
+
+            var response = await client.PostAsync(url, content);
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            Console.WriteLine($"Status Code: {(int)response.StatusCode}");
+            Console.WriteLine($"Response: {responseBody}");
+        }
+    }
+}
+```
+```java
+import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class EnachPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        String url = "https://test.payu.in/_payment";
+
+        Map<String, String> params = new HashMap<>();
+        params.put("key", "JP***g");
+        params.put("txnid", "oRWSUMU4XSQBZn");
+        params.put("amount", "0.0");
+        params.put("firstname", "Ashish");
+        params.put("email", "test@gmail.com");
+        params.put("phone", "9876543210");
+        params.put("productinfo", "iPhone");
+        params.put("si", "1");
+        params.put("si_details", "{\"billingAmount\": \"1.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2025-10-14\",\"paymentEndDate\": \"2027-12-01\", \"planId\": \"83\",\"qty\": \"20\"}");
+        params.put("pg", "ENACH");
+        params.put("bankcode", "ICICENCC");
+        params.put("surl", "https://apiplayground-response.herokuapp.com/");
+        params.put("furl", "");
+        params.put("api_version", "7");
+        params.put("beneficiarydetail", "{“beneficiaryName”: “Ashish Kumar”,”beneficiaryAccountNumber”: “1211450021”,”beneficiaryAccountType”: “SAVINGS”, “beneficiaryIfscCode“:”ICIC0000046”, “verificationMode”:”DEBIT_CARD”} Kumar");
+        params.put("hash", "dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21");
+
+        String formData = params.entrySet().stream()
+            .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "="
+                    + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+            .collect(Collectors.joining("&"));
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println("Status Code: " + response.statusCode());
+        System.out.println("Response: " + response.body());
+    }
+}
+```
+```php
+<?php
+
+$url = "https://test.payu.in/_payment";
+
+$data = array(
+    'key' => 'JP***g',
+    'txnid' => 'oRWSUMU4XSQBZn',
+    'amount' => '0.0',
+    'firstname' => 'Ashish',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'si' => '1',
+    'si_details' => '{"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01", "planId": "83","qty": "20"}',
+    'pg' => 'ENACH',
+    'bankcode' => 'ICICENCC',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => '',
+    'api_version' => '7',
+    'beneficiarydetail' => '{“beneficiaryName”: “Ashish Kumar”,”beneficiaryAccountNumber”: “1211450021”,”beneficiaryAccountType”: “SAVINGS”, “beneficiaryIfscCode“:”ICIC0000046”, “verificationMode”:”DEBIT_CARD”} Kumar',
+    'hash' => 'dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+));
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+echo "Status Code: " . $httpCode . "\n";
+echo "Response: " . $response . "\n";
+?>
 ```
 
 ### Sample request with Aadhaar as Verification mode
