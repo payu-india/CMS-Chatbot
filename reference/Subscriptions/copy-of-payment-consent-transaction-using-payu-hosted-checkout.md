@@ -407,7 +407,7 @@ curl --location 'https://secure.payu.in/_payment' \
 --data-urlencode 'si=1' \
 --data-urlencode 'surl=https://yourapp.com/payu/success' \
 --data-urlencode 'furl=https://yourapp.com/payu/failure' \
---data-urlencode 'si_details={"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01"}' \
+--data-urlencode 'si_details={"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01", "planId": "83","qty": "20"}' \
 --data-urlencode 'hash=YOUR_HASH_VALUE'
 ```
 ```python
@@ -432,7 +432,7 @@ payload = {
     "si": "1",
     "surl": "https://apiplayground-response.herokuapp.com/",
     "furl": "https://apiplayground-response.herokuapp.com/",
-    "si_details": '{"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01"}',
+    "si_details": '{"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01", "planId": "83","qty": "20"}',
     "hash": "YOUR_HASH_VALUE",
 }
 
@@ -466,9 +466,8 @@ class PayUPayment
             { "si", "1" },
             { "surl", "https://apiplayground-response.herokuapp.com/" },
             { "furl", "https://apiplayground-response.herokuapp.com/" },
-            { "si_details", "{\"billingAmount\": \"1.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2025-10-14\",\"paymentEndDate\": \"2027-12-01\"}" },
-            { "hash", "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb" }
-        };
+            { "si_details", "{\"billingAmount\": \"1.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2025-10-14\",\"paymentEndDate\": \"2027-12-01\”,\"planId\": \”83\”,\”qty\": \”20\”}” },
+            { "hash", “YOUR”_HASH_VALUE }};
 
         string body = string.Join("&", Array.ConvertAll(formData.AllKeys, key =>
             $"{Uri.EscapeDataString(key)}={Uri.EscapeDataString(formData[key])}"));
