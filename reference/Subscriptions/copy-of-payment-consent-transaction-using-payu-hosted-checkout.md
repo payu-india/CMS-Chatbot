@@ -345,7 +345,7 @@ si_details Object Parameters</a>
 
 ### `si_details` Object Parameters
 
-You can pass either standing instructions, or plan details or both in the request. Refer to the Standing Instructions vs Plan section for more information.
+You can pass either standing instructions, or plan details or both in the request. Refer to the [Standing Instructions vs Plan](https://docs.payu.in/reference/copy-of-payment-consent-transaction-using-payu-hosted-checkout#standing-instructions-vs-plan) section for more information.
 
 | **Parameters**                 | **Description**                                                                                                                                                                                                                                     |
 | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
