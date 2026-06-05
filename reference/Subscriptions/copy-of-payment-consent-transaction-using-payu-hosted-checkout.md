@@ -372,9 +372,9 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
       <input type="hidden" name="udf2" value="Testing UDF2">
       <input type="hidden" name="udf5" value="Sample_Invoice_11">
       <input type="hidden" name="api_version" value="7">
-      <input type="hidden" name="si_details" value='{"billingAmount":"15000","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2026-03-13","paymentEndDate":"2026-04-03"}'>
+      <input type="hidden" name="si_details" value='{"billingAmount":"15000","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2026-03-13","paymentEndDate":"2026-04-03","planId":"83","qty":"20"}'>
       <input type="hidden" name="si" value="1">
-      <input type="hidden" name="hash" value="28039a4fdf4179cf7573ff05942d795d6ca3da2c759b2e202b5841fca11648c1e336afb9d4e8104476de5bc9173c5ef187b51b5093a2753f226a93c459f4c7d4">
+      <input type="hidden" name="hash" value="YOUR_HASH_VALUR>
       <input type="submit" value="Submit Payment">
     </form>
   </body>
