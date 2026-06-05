@@ -19,7 +19,7 @@ next:
 ---
 > ✅
 >
-> <FreshTag heading="Note" asHeading={false} />
+> <FreshTag heading="What's New!" asHeading={false} />
 >
 > - <Anchor target="_blank" href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction">RuPay Debit and Credit Cards</Anchor> are supported for Subscriptions.<br /><br />
 
