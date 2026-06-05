@@ -1,5 +1,5 @@
 ---
-title: Copy of Net Banking Consent Transaction
+title: '[Internal Review] Net Banking Consent Transaction - Plans'
 deprecated: false
 hidden: true
 metadata:
@@ -34,6 +34,10 @@ next:
       title: Customer Experience and Workflow
       type: basic
 ---
+> 📘
+>
+>
+
 This section provides the request parameters, sample request and response for a Net Banking Recurring Payment consent transaction or Consent transaction.
 
 > 📘 Note:
@@ -42,44 +46,46 @@ This section provides the request parameters, sample request and response for a 
 
 <br />
 
-<Callout icon="👍" theme="okay">
-  Experience the end-to-end **Merchant Hosted Checkout** > **Net Banking** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
-
-  <HTMLBlock>{`
-                                      <style>
-                                      .tooltip-btn {
-                                          position: relative;
-                                          background-color: #4CAF50;
-                                          color: white;
-                                          padding: 10px 20px;
-                                          border: none;
-                                          border-radius: 5px;
-                                          cursor: pointer;
-                                          font-weight: bold; /* Added this line */
-                                      }
-                                      .tooltip-btn:hover::after {
-                                          content: attr(data-tooltip);
-                                          position: absolute;
-                                          bottom: 125%;
-                                          left: 50%;
-                                          transform: translateX(-50%);
-                                          background-color: #333;
-                                          color: white;
-                                          padding: 5px 10px;
-                                          border-radius: 4px;
-                                          white-space: nowrap;
-                                          font-size: 12px;
-                                          z-index: 1;
-                                      }
-                                      </style>
-
-                                      <button onclick="window.open('https://payu.in/integrationlab/seamless/sm-nb-subscription', '_blank')" 
-                                              class="tooltip-btn" 
-                                              data-tooltip="Click here to see the Merchant Hosted Checkout > Net Banking > Consent Registration end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
-                                          Experience the flow and get the code
-                                      </button>
-  `}</HTMLBlock>
-</Callout>
+> 👍
+>
+> Experience the end-to-end **Merchant Hosted Checkout** > **Net Banking** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+>
+>   
+>
+> <HTMLBlock>{`
+>                                     <style>
+>                                     .tooltip-btn {
+>                                         position: relative;
+>                                         background-color: #4CAF50;
+>                                         color: white;
+>                                         padding: 10px 20px;
+>                                         border: none;
+>                                         border-radius: 5px;
+>                                         cursor: pointer;
+>                                         font-weight: bold; /* Added this line */
+>                                     }
+>                                     .tooltip-btn:hover::after {
+>                                         content: attr(data-tooltip);
+>                                         position: absolute;
+>                                         bottom: 125%;
+>                                         left: 50%;
+>                                         transform: translateX(-50%);
+>                                         background-color: #333;
+>                                         color: white;
+>                                         padding: 5px 10px;
+>                                         border-radius: 4px;
+>                                         white-space: nowrap;
+>                                         font-size: 12px;
+>                                         z-index: 1;
+>                                     }
+>                                     </style>
+>
+>                                     <button onclick="window.open('https://payu.in/integrationlab/seamless/sm-nb-subscription', '_blank')" 
+>                                             class="tooltip-btn" 
+>                                             data-tooltip="Click here to see the Merchant Hosted Checkout > Net Banking > Consent Registration end-to-end integration and instantly generate the complete code needed for a zero-coding setup on your website.">
+>                                         Experience the flow and get the code
+>                                     </button>
+> `}</HTMLBlock>
 
 <br />
 
@@ -87,10 +93,10 @@ HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                                                     |
-| :--------------------- | :------------------------------------------------------------------ |
-| Test Environment       | [https://test.payu.in/_payment](https://test.payu.in/_payment>)     |
-| Production Environment | [https://secure.payu.in/_payment](https://secure.payu.in/_payment>) |
+|                        |                                                                      |
+| :--------------------- | :------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment>)     |
+| Production Environment | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment>) |
 
 ## Request parameters
 
@@ -175,20 +181,20 @@ When the transaction POST REQUEST hits the PayU server, a new transaction entry 
 
 The Net Banking recurring payment registration is also known as e-Mandate. The request for Net Banking involves the following extra parameters posted compared to Cards or UPI:
 
-* billingCycle
-* billingInterval
-* paymentStartDate
-* paymentEndDate
-* billingAmount
-* beneficiaryName
-* beneficiaryAccountNumber
-* beneficiaryAccountType
-* ifscCode
-* verificationMode (optional)
+- billingCycle
+- billingInterval
+- paymentStartDate
+- paymentEndDate
+- billingAmount
+- beneficiaryName
+- beneficiaryAccountNumber
+- beneficiaryAccountType
+- ifscCode
+- verificationMode (optional)
 
 ### Sample request with Debit Card as Verification mode
 
-The sample code block for Net Banking Seamless integration (Merchant-Hosted Checkout) with the **verificationMode** field of the **beneficiaryDetail** JSON parameter with the values as **DEBIT_CARD** is similar to the following:
+The sample code block for Net Banking Seamless integration (Merchant-Hosted Checkout) with the **verificationMode** field of the **beneficiaryDetail** JSON parameter with the values as **DEBIT\_CARD** is similar to the following:
 
 ```curl
 curl -X \
@@ -221,7 +227,7 @@ For Net Banking, you must ensure that the payment response from PayU has the exp
 | **Response Parameter** | **Expected Value**               | **Description**                                                                 |
 | ---------------------- | -------------------------------- | ------------------------------------------------------------------------------- |
 | status                 | success                          | This indicates that the transaction is successful                               |
-| payment_source         | sist                             | Indicates that bank details have been marked correctly for Standing Instruction |
+| payment\_source        | sist                             | Indicates that bank details have been marked correctly for Standing Instruction |
 | mihpayid               | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction           |
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
@@ -283,7 +289,7 @@ Array
 
 ## Webhook for Getting Transaction Details
 
-You can expose a webhook by requesting the PayU Integration team to configure the same against the **ws_online_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method similar to the following:
+You can expose a webhook by requesting the PayU Integration team to configure the same against the **ws\_online\_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method similar to the following:
 
 ```plaintext
 unmappedstatus=success&phone=9999999999&txnid=FCDA1R100870163781&hash=84e335094bbcb2ddaa0f9a488eb338e143b273765d89c9dfa502402562d0b6f3c7935e28194ca92f380be7c84c3695415b106dcf52cb016a15fcf6adc98d724&status=success&curl=https://www.abc.in/payment/handlepayuresposne&firstname=NA&card_no=519619XXXXXX5049&furl=https://www.abc.in/payment/handlepayuresposne&productinfo=2&mode=DC&amount=800.00&field4=6807112311042810&field3=6807112311042810&field2=838264&field9=SUCCESS&email=NA&mihpayid=175477248&surl=https://www.ABC.in/payment/handlepayuresposne&card_hash=9e88cb0573d4a826b61d808c0a870ed4a990682459b0ec9e95ea421e8e47be8c&field1=42812&payment_source=sist
