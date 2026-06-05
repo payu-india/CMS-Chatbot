@@ -203,12 +203,24 @@ The Net Banking recurring payment registration is also known as e-Mandate. The r
 The sample code block for Net Banking Seamless integration (Merchant-Hosted Checkout) with the **verificationMode** field of the **beneficiaryDetail** JSON parameter with the values as **DEBIT\_CARD** is similar to the following:
 
 ```curl
-curl -X \
- POST "https://test.payu.in/_payment
--H \
- "accept: application/json" -H \
- "Content-Type: application/x-www-form-urlencoded" -d
-"key=JP***g&txnid=oRWSUMU4XSQBZn&amount=0.0&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&si=1&pg=ENACH&bankcode=ICICENCC&surl=https://apiplayground-response.herokuapp.com/&furl=&api_version=7&beneficiarydetail={“beneficiaryName”: “Ashish Kumar”,”beneficiaryAccountNumber”: “1211450021”,”beneficiaryAccountType”: “SAVINGS”, “beneficiaryIfscCode“:”ICIC0000046”, “verificationMode”:”DEBIT_CARD”} Kumar&hash=dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21"
+curl -X POST "https://test.payu.in/_payment" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  --data-urlencode "key=JP***g" \
+  --data-urlencode "txnid=oRWSUMU4XSQBZn" \
+  --data-urlencode "amount=0.0" \
+  --data-urlencode "firstname=Ashish" \
+  --data-urlencode "email=test@gmail.com" \
+  --data-urlencode "phone=9876543210" \
+  --data-urlencode "productinfo=iPhone" \
+  --data-urlencode "si=1" \
+  --data-urlencode "pg=ENACH" \
+  --data-urlencode "bankcode=ICICENCC" \
+  --data-urlencode "surl=https://apiplayground-response.herokuapp.com/" \
+  --data-urlencode "furl=" \
+  --data-urlencode "api_version=7" \
+  --data-urlencode "beneficiarydetail={“beneficiaryName”: “Ashish Kumar”,”beneficiaryAccountNumber”: “1211450021”,”beneficiaryAccountType”: “SAVINGS”, “beneficiaryIfscCode“:”ICIC0000046”, “verificationMode”:”DEBIT_CARD”} Kumar" \
+  --data-urlencode "hash=dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21"
 ```
 
 ### Sample request with Aadhaar as Verification mode
