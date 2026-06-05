@@ -1,9 +1,7 @@
 ---
-title: Recurring Payment Transaction API
 api:
   file: test_si_collection-6.json
   operationId: RecurringPaymentAPI
-deprecated: false
 hidden: false
 link:
   new_tab: false
@@ -35,16 +33,16 @@ next:
 ---
 All successful registration transactions are charged over the recurring interface with server-to-server API without any additional 2FA or the customers’ involvement. This section describes how to achieve the Recurring Transaction for Net Banking, Cards, and UPI through the common platform.
 
-<Callout icon="📘" theme="info">
-  **Notes**:
+> 📘
+>
+> **Notes**:
+>
+> - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, “Refund not accepted for txn” or Error 232. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
+> - Check the mandate status, call the **Pre-Debit Notification** API before calling the **Recurring Payment Transaction** API to make a recurring payment transaction.
 
-  * Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, “Refund not accepted for txn” or Error 232. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
-  * Check the mandate status, call the **Pre-Debit Notification** API before calling the **Recurring Payment Transaction** API to make a recurring payment transaction.
-</Callout>
-
-<Callout icon="🚧" theme="warn">
-  **Assumptions**: If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant’s end.
-</Callout>
+> 🚧
+>
+> **Assumptions**: If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant’s end.
 
 ### Environment
 
@@ -181,7 +179,11 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
   ```curl
   curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data 'form=2&key=smsplus&command=si_transaction&var1={"authpayuid": "25600438037", "invoiceDisplayNumber": "INV-12345", "amount": "100.00", "txnid": "TXN-2024-001-SEQ2", "phone": "9999999999", "email": "customer@example.com", "mandateSeqNo": 2}&hash=23a6d57370cc2b2c36a7a8ff3b0894a4309a153586544399155d29fe7dc2599cbcf74519d7bc3c8da1e407a874f2c953e05704279e770332db187d1c7b0cbb4d'
+  --data-urlencode 'form=2' \
+  --data-urlencode 'key=smsplus' \
+  --data-urlencode 'command=si_transaction' \
+  --data-urlencode 'var1={"authpayuid": "25600438037", "invoiceDisplayNumber": "INV-12345", "amount": "100.00", "txnid": "TXN-2024-001-SEQ2", "phone": "9999999999", "email": "customer@example.com", "mandateSeqNo": 2}' \
+  --data-urlencode 'hash=23a6d57370cc2b2c36a7a8ff3b0894a4309a153586544399155d29fe7dc2599cbcf74519d7bc3c8da1e407a874f2c953e05704279e770332db187d1c7b0cbb4d'
   ```
 </Accordion>
 
@@ -239,3 +241,5 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
                         </table>
   `}</HTMLBlock>
 </Accordion>
+
+<br />
