@@ -130,8 +130,14 @@ HTTP Method: **POST**
 
 #### Sample object
 
-```
-{"beneficiaryName": "Sachin Tendulkar","beneficiaryAccountNumber": "1211450021","beneficiaryAccountType": "SAVINGS", "beneficiaryIfscCode":"ICIC0000046", "verificationMode":"DEBIT_CARD"}
+```json
+{
+  "beneficiaryName": "Sachin Tendulkar",
+  "beneficiaryAccountNumber": "1211450021",
+  "beneficiaryAccountType": "SAVINGS",
+  "beneficiaryIfscCode": "ICIC0000046",
+  "verificationMode": "DEBIT_CARD"
+}
 ```
 
 #### description
