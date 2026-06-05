@@ -126,7 +126,7 @@ HTTP Method: **POST**
 | `udf1 - udf5` _optional_                        | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. `Character Limit`-255                                                                                                                                                                                                                                                                                                                                                                                                                                                | Payment Preference, Shipping Method, Shipping Address1, Shipping City, Shipping Zip Code, etc.                                             |
 | `free_trial` _optional_                         | `String` This is mandatory only if the merchant wants to support free trial use cases. In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request. This parameter has no significance in the case of seamless flow.                                                                                                                                                                                                                                                                                                                      |                                                                                                                                            |
 
-### beneficiarydetail fields description
+### `beneficiarydetail` fields description
 
 #### Sample object
 
@@ -182,6 +182,21 @@ HTTP Method: **POST**
 </tbody>
 </table>
 `}</HTMLBlock>
+
+### `si_details` Object Parameters
+
+You can pass either standing instructions, or plan details or both in the request. Refer to the [Standing Instructions vs Plan](https://docs.payu.in/reference/copy-of-payment-consent-transaction-using-payu-hosted-checkout#standing-instructions-vs-plan) section for more information.
+
+| **Parameters**                 | **Description**                                                                                                                                                                                                                                     |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `billingAmount` _mandatory_    | `float` The subscription billing amount.                                                                                                                                                                                                            |
+| `billingCurrency` _mandatory_  | `string` The billing currency. Here it is `INR`.                                                                                                                                                                                                    |
+| `billingCycle` _mandatory_     | `string` The billing cycle at which the amount should be debited.                                                                                                                                                                                   |
+| `billingInterval` _mandatory_  | `integer` The billing interval at which the amount should be debited.                                                                                                                                                                               |
+| `paymentStartDate` _mandatory_ | `string` The date on which the subscription payment should start.                                                                                                                                                                                   |
+| `paymentEndDate` _mandatory_   | `string` The date on which the subscription payment should end.                                                                                                                                                                                     |
+| `planId`_&#x20;optional_       | `string` The unique plan ID obtained after creating from the dashboard. Know more about <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#create-a-plan">creating a plan</Anchor> from the dashboard. |
+| `qty` _optional_               | `string` The quantity of the billing amount. The **total subscription amount** = `billingAmount` × `qty`.<br /><br />**Note:** The `qty` will not create multiple subscriptions. It only multiplies the billing amount.                             |
 
 ## Sample request
 
@@ -319,3 +334,14 @@ unmappedstatus=success&phone=9999999999&txnid=FCDA1R100870163781&hash=84e335094b
 ```
 
 If the mandate is not confirmed by the customer or the mandate is confirmed by the customer, but the mandate registration is rejected from the banks, the status is communicated as a “failure” over webhook. For more information, refer to [Webhooks](doc:webhooks).
+
+## Standing Instructions Vs Plan
+
+The following are the points to consider:
+
+- If plan is enabled for a subscription, only plan details are accepted in requests and the standing instructions (if passed) are ignored.
+- The transaction moves to the `bounced` state if a invalid `planId` is passed in the request.
+- The plan details are automatically used to fetch billing amount, currency, cycle, and other details.
+- The checkout will display plan-based subscription information.
+
+<br />
