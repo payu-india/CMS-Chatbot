@@ -34,13 +34,15 @@ next:
       title: Introduction
       type: basic
 ---
+> ✅
+>
+> <FreshTag heading="Getting Started" />
+
 This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration with **\_payment** API.
 
 > 👍 **Try Out Subscriptions!**
 >
 > Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
->
->   
 >
 > <HTMLBlock>{`
 >                                 <style>
