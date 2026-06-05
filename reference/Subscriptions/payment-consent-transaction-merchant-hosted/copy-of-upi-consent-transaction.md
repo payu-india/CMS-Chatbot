@@ -310,4 +310,15 @@ You can expose a webhook by requesting the PayU Integration team to configure th
 unmappedstatus=success&phone=9999999999&txnid=FCDA1R100870163781&hash=84e335094bbcb2ddaa0f9a488eb338e143b273765d89c9dfa502402562d0b6f3c7935e28194ca92f380be7c84c3695415b106dcf52cb016a15fcf6adc98d724&status=success&curl=https://www.abc.in/payment/handlepayuresposne&firstname=NA&card_no=519619XXXXXX5049&furl=https://www.abc.in/payment/handlepayuresposne&productinfo=2&mode=DC&amount=800.00&field4=6807112311042810&field3=6807112311042810&field2=838264&field9=SUCCESS&email=NA&mihpayid=175477248&surl=https://www.ABC.in/payment/handlepayuresposne&card_hash=9e88cb0573d4a826b61d808c0a870ed4a990682459b0ec9e95ea421e8e47be8c&field1=42812&payment_source=sist
 ```
 
-If the mandate is not confirmed by the customer or the mandate is confirmed by the customer, but the mandate registration is rejected from the banks, the status is communicated as a “failure” over webhook. For more information, refer to [Set up WebHook to Receive Cancellation or Modification Update from the Issuer Bank](ref:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank)
+If the mandate is not confirmed by the customer or the mandate is confirmed by the customer, but the mandate registration is rejected from the banks, the status is communicated as a “failure” over webhook. For more information, refer to [Set up WebHook to Receive Cancellation or Modification Update from the Issuer Bank.](ref:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank)
+
+## Standing Instructions Vs Plan
+
+The following are the points to consider:
+
+- If plan is enabled for a subscription, only plan details are accepted in requests and the standing instructions (if passed) are ignored.
+- The transaction moves to the `bounced` state if a invalid `planId` is passed in the request.
+- The plan details are automatically used to fetch billing amount, currency, cycle, and other details.
+- The checkout will display plan-based subscription information.
+
+<br />
