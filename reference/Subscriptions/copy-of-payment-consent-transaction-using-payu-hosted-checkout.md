@@ -322,8 +322,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
         <br/><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0</a> ) This is a JSON object and it includes a set of fields. For more information, refer to <a href="https://docs.payu.in/reference/si-parameter-json-details/">SI Parameter JSON Details</a>
       </td>
 
-      <td style={{ textAlign: "left" }}>
-        {"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2019-09-01","paymentEndDate": "2019-12-01"}
+      <td style={{ textAlign: "left" }}>       	 {"billingAmount":"15000","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2026-03-13","paymentEndDate":"2026-04-03","planId":"83","qty":"20"}
       </td>
     </tr>
 
@@ -345,6 +344,18 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
   </tbody>
 </Table>
 `}</HTMLBlock>
+
+### `si_details` Object Parameters
+
+| **Parameters**                 | **Description**                                                       |
+| ------------------------------ | --------------------------------------------------------------------- |
+| `billingAmount` _mandatory_    | `float` The subscription billing amount.                              |
+| `billingCurrency` _mandatory_  | `string` The billing currency. Here it is `INR`.                      |
+| `billingCycle` _mandatory_     | `string` The billing cycle at which the amount should be debited.     |
+| `billingInterval` _mandatory_  | `integer` The billing interval at which the amount should be debited. |
+| `paymentStartDate` _mandatory_ | `string` The date on which the subscription payment should start.     |
+| `paymentEndDate` _mandatory_   | `string` The date on which the subscription payment should end.       |
+|                                |                                                                       |
 
 ## Sample request
 
