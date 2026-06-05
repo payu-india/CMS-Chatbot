@@ -40,12 +40,6 @@ next:
 >
 > - Introducing plans for Subscriptions.
 
-<br />
-
-<br />
-
-<br />
-
 This section provides the request parameters, sample request and response for a Net Banking Recurring Payment consent transaction or Consent transaction.
 
 > 📘 Note:
