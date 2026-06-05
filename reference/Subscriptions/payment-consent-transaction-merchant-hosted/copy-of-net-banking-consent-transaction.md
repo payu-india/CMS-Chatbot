@@ -208,14 +208,14 @@ curl -X POST "https://test.payu.in/_payment" \
   --data-urlencode "phone=9876543210" \
   --data-urlencode "productinfo=iPhone" \
   --data-urlencode "si=1" \
+  --data-urlencode "si_details={\"billingAmount\": \"1.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2025-10-14\",\"paymentEndDate\": \"2027-12-01\", \"planId\": \"83\",\"qty\": \"20\"}" \
   --data-urlencode "pg=ENACH" \
   --data-urlencode "bankcode=ICICENCC" \
   --data-urlencode "surl=https://apiplayground-response.herokuapp.com/" \
   --data-urlencode "furl=" \
   --data-urlencode "api_version=7" \
   --data-urlencode "beneficiarydetail={“beneficiaryName”: “Ashish Kumar”,”beneficiaryAccountNumber”: “1211450021”,”beneficiaryAccountType”: “SAVINGS”, “beneficiaryIfscCode“:”ICIC0000046”, “verificationMode”:”DEBIT_CARD”} Kumar" \
-  --data-urlencode "si_details={“billingAmount“:“15000“,“billingCurrency“:“INR“,“billingCycle“:“MONTHLY“,“billingInterval“:1,“paymentStartDate":"2026-03-13","paymentEndDate":"2026-04-03","planId":"83","qty":"20"}"
-  --data-urlencode “hash=dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21"
+  --data-urlencode "hash=dbe874c46dcd68ae8c6dd14d04e213f4dff1f2f89106653f61df3e8cee900df33d976e737a82291dfbea3d54d3c67c403d7371c387a1e9652e27ec682d3dce21"
 ```
 
 ### Sample request with Aadhaar as Verification mode
