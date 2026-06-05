@@ -34,9 +34,15 @@ next:
       title: Customer Experience and Workflow
       type: basic
 ---
-> 📘
+> ✅
 >
->
+> <FreshTag heading="Note" asHeading={false} /><br />- Introducing plans for Subscriptions.
+
+<br />
+
+<br />
+
+<br />
 
 This section provides the request parameters, sample request and response for a Net Banking Recurring Payment consent transaction or Consent transaction.
 
@@ -49,8 +55,6 @@ This section provides the request parameters, sample request and response for a 
 > 👍
 >
 > Experience the end-to-end **Merchant Hosted Checkout** > **Net Banking** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
->
->   
 >
 > <HTMLBlock>{`
 >                                     <style>
