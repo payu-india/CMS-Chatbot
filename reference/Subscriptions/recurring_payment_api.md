@@ -184,7 +184,7 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
   --data-urlencode 'key=smsplus' \
   --data-urlencode 'command=si_transaction' \
   --data-urlencode 'var1={"authpayuid": "25600438037", "invoiceDisplayNumber": "INV-12345", "amount": "100.00", "txnid": "TXN-2024-001-SEQ2", "phone": "9999999999", "email": "customer@example.com", "mandateSeqNo": 2}' \
-  --data-urlencode 'hash=23a6d57370cc2b2c36a7a8ff3b0894a4309a153586544399155d29fe7dc2599cbcf74519d7bc3c8da1e407a874f2c953e05704279e770332db187d1c7b0cbb4d'
+  --data-urlencode 'hash=YOUR_HASH_VALUE'
   ```
 </Accordion>
 
