@@ -257,3 +257,14 @@ unmappedstatus=success&phone=9999999999&txnid=FCDA1R100870163781&hash=84e335094b
 ```
 
 If the mandate is not confirmed by the customer or the mandate is confirmed by the customer, but the mandate registration is rejected from the banks, the status is communicated as a “failure” over webhook. For more information, refer to [Set up WebHook to Receive Cancellation or Modification Update from the Issuer Bank](ref:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank).
+
+## Standing Instructions Vs Plan
+
+The following are the points to consider:
+
+- If plan is enabled for a subscription, only plan details are accepted in requests and the standing instructions (if passed) are ignored.
+- The transaction moves to the `bounced` state if a invalid `planId` is passed in the request.
+- The plan details are automatically used to fetch billing amount, currency, cycle, and other details.
+- The checkout will display plan-based subscription information.
+
+<br />
