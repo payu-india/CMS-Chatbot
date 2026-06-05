@@ -1,5 +1,7 @@
 ---
-title: Copy of Payment Consent Transaction using PayU Hosted Checkout
+title: >-
+  [Internal Review]Payment Consent Transaction using PayU Hosted Checkout with
+  Plan
 deprecated: false
 hidden: true
 metadata:
