@@ -345,15 +345,16 @@ si_details Object Parameters</a>
 
 ### `si_details` Object Parameters
 
-| **Parameters**                 | **Description**                                                       |
-| ------------------------------ | --------------------------------------------------------------------- |
-| `billingAmount` _mandatory_    | `float` The subscription billing amount.                              |
-| `billingCurrency` _mandatory_  | `string` The billing currency. Here it is `INR`.                      |
-| `billingCycle` _mandatory_     | `string` The billing cycle at which the amount should be debited.     |
-| `billingInterval` _mandatory_  | `integer` The billing interval at which the amount should be debited. |
-| `paymentStartDate` _mandatory_ | `string` The date on which the subscription payment should start.     |
-| `paymentEndDate` _mandatory_   | `string` The date on which the subscription payment should end.       |
-| `planId`_&#x20;optional_       |                                                                       |
+| **Parameters**                 | **Description**                                                                                                                                                                                                                                     |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `billingAmount` _mandatory_    | `float` The subscription billing amount.                                                                                                                                                                                                            |
+| `billingCurrency` _mandatory_  | `string` The billing currency. Here it is `INR`.                                                                                                                                                                                                    |
+| `billingCycle` _mandatory_     | `string` The billing cycle at which the amount should be debited.                                                                                                                                                                                   |
+| `billingInterval` _mandatory_  | `integer` The billing interval at which the amount should be debited.                                                                                                                                                                               |
+| `paymentStartDate` _mandatory_ | `string` The date on which the subscription payment should start.                                                                                                                                                                                   |
+| `paymentEndDate` _mandatory_   | `string` The date on which the subscription payment should end.                                                                                                                                                                                     |
+| `planId`_&#x20;optional_       | `string` The unique plan ID obtained after creating from the dashboard. Know more about <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#create-a-plan">creating a plan</Anchor> from the dashboard. |
+| `qty` _optional_               | `string` The quantity of the billing amount. The **total subscription amount** = `billingAmount` × `qty`.<br /><br />**Note:** The `qty` will not create multiple subscriptions. It only multiplies the billing amount.                             |
 
 ## Sample request
 
