@@ -30,6 +30,13 @@ next:
       title: Customer Experience and Workflow
       type: basic
 ---
+> ✅
+>
+> <FreshTag heading="What's New!" asHeading={false} />
+>
+> - [RuPay Debit and Credit Cards](https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction) are supported for Subscriptions.
+> - Introducing <Anchor target="_blank" href="https://docs.payu.in/docs/plans">plans</Anchor> for subscriptions<br /><br /><br />
+
 > 👍
 >
 > <Callout icon="👍" theme="okay">
