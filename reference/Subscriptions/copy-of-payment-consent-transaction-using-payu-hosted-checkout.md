@@ -37,6 +37,10 @@ next:
 > ✅
 >
 > <FreshTag heading="What's New!" asHeading={false} />
+>
+> - Introducing <Anchor target="_blank" href="https://docs.payu.in/docs/plans">subscription Plans</Anchor>.<br />
+
+<br />
 
 This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration with **\_payment** API.
 
