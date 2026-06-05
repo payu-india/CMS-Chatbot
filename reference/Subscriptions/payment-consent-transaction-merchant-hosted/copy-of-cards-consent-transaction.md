@@ -35,7 +35,7 @@ next:
 > <Callout icon="👍" theme="okay">
 >   <FreshTag heading
 >
->   <ul><li>RuPay Debit and Credit Cards are supported for Subscriptions.</li><li>Introducing <Anchor label="RuPay Debit and Credit Cards" target="_blank" href="https://docs.payu.in/docs/plans">plans</Anchor> for Subscriptions.</li></ul>
+>   <ul><li>RuPay Debit and Credit Cards are supported for Subscriptions.</li></ul>
 
 This section provides the request parameters, sample request and response for a Cards Recurring Payment.
 
