@@ -319,7 +319,8 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 
       <td style={{ textAlign: "left" }}>
         This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.
-        <br/><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0</a> ) This is a JSON object and it includes a set of fields. For more information, refer to <a href="https://docs.payu.in/reference/copy-of-payment-consent-transaction-using-payu-hosted-checkout#si_details-object-parameters">SI Parameter JSON Details</a>
+        <br/><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0">https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0</a> ) This is a JSON object and it includes a set of fields. For more information, refer to <a href="https://docs.payu.in/reference/copy-of-payment-consent-transaction-using-payu-hosted-checkout#si_details-object-parameters">
+si_details Object Parameters</a>
       </td>
     </tr>
 
