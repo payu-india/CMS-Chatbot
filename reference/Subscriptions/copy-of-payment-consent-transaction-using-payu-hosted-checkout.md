@@ -34,55 +34,57 @@ next:
       title: Introduction
       type: basic
 ---
-This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration with **_payment** API.
+This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration with **\_payment** API.
 
-<Callout icon="👍" theme="okay">
-  Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
-
-  <HTMLBlock>{`
-                                  <style>
-                                  .tooltip-btn {
-                                      position: relative;
-                                      background-color: #4CAF50;
-                                      color: white;
-                                      padding: 10px 20px;
-                                      border: none;
-                                      border-radius: 5px;
-                                      cursor: pointer;
-                                      font-weight: bold; /* Added this line */
-                                  }
-                                  .tooltip-btn:hover::after {
-                                      content: attr(data-tooltip);
-                                      position: absolute;
-                                      bottom: 125%;
-                                      left: 50%;
-                                      transform: translateX(-50%);
-                                      background-color: #333;
-                                      color: white;
-                                      padding: 5px 10px;
-                                      border-radius: 4px;
-                                      white-space: nowrap;
-                                      font-size: 12px;
-                                      z-index: 1;
-                                  }
-                                  </style>
-
-                                  <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
-                                          class="tooltip-btn" 
-                                          data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
-                                      Experience the flow and get the code
-                                  </button>
-  `}</HTMLBlock>
-</Callout>
+> 👍 **Try Out Subscriptions!**
+>
+> Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+>
+>   
+>
+> <HTMLBlock>{`
+>                                 <style>
+>                                 .tooltip-btn {
+>                                     position: relative;
+>                                     background-color: #4CAF50;
+>                                     color: white;
+>                                     padding: 10px 20px;
+>                                     border: none;
+>                                     border-radius: 5px;
+>                                     cursor: pointer;
+>                                     font-weight: bold; /* Added this line */
+>                                 }
+>                                 .tooltip-btn:hover::after {
+>                                     content: attr(data-tooltip);
+>                                     position: absolute;
+>                                     bottom: 125%;
+>                                     left: 50%;
+>                                     transform: translateX(-50%);
+>                                     background-color: #333;
+>                                     color: white;
+>                                     padding: 5px 10px;
+>                                     border-radius: 4px;
+>                                     white-space: nowrap;
+>                                     font-size: 12px;
+>                                     z-index: 1;
+>                                 }
+>                                 </style>
+>
+>                                 <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
+>                                         class="tooltip-btn" 
+>                                         data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
+>                                     Experience the flow and get the code
+>                                 </button>
+> `}</HTMLBlock>
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                                    |
-| :------------------------- | :----------------------------------------------------------------- |
-| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
-| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 
 ## Request parameters
 
@@ -101,6 +103,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
   white-space: nowrap;
 }
 </style>
+
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -554,13 +557,13 @@ Characters allowed for parameters
 
 For parameters address1, address2, city, state, country, product info, email, and phone following characters are allowed:
 
-* Characters: A to Z, a to z, 0 to 9
-* – (Minus)
-* _ (Underscore)
-* @ ()
-* / (Slash)
-* (Space)
-* . (Dot)
+- Characters: A to Z, a to z, 0 to 9
+- – (Minus)
+- \_ (Underscore)
+- @ ()
+- / (Slash)
+- (Space)
+- . (Dot)
 
 ## Sample response
 
