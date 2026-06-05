@@ -37,6 +37,8 @@ next:
 > ✅
 >
 > <FreshTag heading="Note" asHeading={false} /><br />- Introducing plans for Subscriptions.
+>
+> - Introducing plans for Subscriptions.
 
 <br />
 
