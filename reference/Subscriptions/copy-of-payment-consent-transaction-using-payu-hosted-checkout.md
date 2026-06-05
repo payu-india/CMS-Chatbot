@@ -396,7 +396,7 @@ curl --location 'https://secure.payu.in/_payment' \
 --data-urlencode 'surl=https://yourapp.com/payu/success' \
 --data-urlencode 'furl=https://yourapp.com/payu/failure' \
 --data-urlencode 'si_details={"billingAmount": "1.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2025-10-14","paymentEndDate": "2027-12-01"}' \
---data-urlencode 'hash=67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb'
+--data-urlencode 'hash=YOUR_HASH_VALUE'
 ```
 ```python
 import requests
