@@ -513,9 +513,8 @@ public class PayUPayment {
             "si=" + URLEncoder.encode("1", StandardCharsets.UTF_8),
             "surl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8),
             "furl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8),
-            "si_details=" + URLEncoder.encode("{\"billingAmount\": \"1.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2025-10-14\",\"paymentEndDate\": \"2027-12-01\"}", StandardCharsets.UTF_8),
-            "hash=" + URLEncoder.encode("67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb", StandardCharsets.UTF_8)
-        );
+            "si_details=" + URLEncoder.encode("{\"billingAmount\": \"1.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2025-10-14\",\"paymentEndDate\": \"2027-12-01\”,\"planId\": \”83\”,\”qty\": \”20\”}", StandardCharsets.UTF_8),
+            "hash=" + URLEncoder.encode("YOUR_HASH_VALUE”, StandardCharsets.UTF_8));
 
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(url))
