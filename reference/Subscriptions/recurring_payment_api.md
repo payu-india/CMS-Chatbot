@@ -46,10 +46,10 @@ All successful registration transactions are charged over the recurring interfac
 
 ### Environment
 
-|                        |                                                                      |
-| :--------------------- | :------------------------------------------------------------------- |
-| Production Environment | \<[https://info.payu.in/merchant/>](https://info.payu.in/merchant/>) |
-| Test Environment       | \<[https://test.payu.in/merchant/>](https://test.payu.in/merchant/>) |
+|                        |                                                                    |
+| :--------------------- | :----------------------------------------------------------------- |
+| Production Environment | [`https://info.payu.in/merchant`](https://info.payu.in/merchant/>) |
+| Test Environment       | [`https://test.payu.in/merchant`](https://test.payu.in/merchant/>) |
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
