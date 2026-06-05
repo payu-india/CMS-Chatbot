@@ -169,11 +169,11 @@ Find answers to frequently asked questions about SI plans.
    <Accordion title="Answer" icon="fa-comment-dots">
    Yes, you can edit a plan.
    </Accordion>
-3. Can i delete a plan?
+3. #### Can i delete a plan?
    <Accordion title="Answer" icon="fa-comment-dots">
    No, you cannot delete a plan. However, you can deactivate a plan. Once deactivated, a plan moves to the **Archived** state. You can dupliacte it to create a new plan.
    </Accordion>
-4. Can I pause and resume a plan?
+4. #### Can I pause and resume a plan?
    <Accordion title="Answer" icon="fa-comment-dots">
    No, you cannot pause or resume a plan.
    </Accordion>
