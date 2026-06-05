@@ -17,12 +17,11 @@ next:
       slug: using-api-integration-recurring-payments
       title: Using API Integration
 ---
-> 👍
+> ✅
 >
-> <Callout icon="👍" theme="okay">
->   <FreshTag heading
+> <FreshTag heading="Note" asHeading={false} />
 >
->   <ul><li><Anchor label="RuPay Debit and Credit Cards" target="_blank" href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction">RuPay Debit and Credit Cards</Anchor> are supported for Subscriptions.</li></ul>
+> - <Anchor target="_blank" href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction">RuPay Debit and Credit Cards</Anchor> are supported for Subscriptions.<br /><br />
 
 Set up the recurring payment or subscription service with Merchant Hosted Checkout for the following Payment modes:
 
