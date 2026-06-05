@@ -39,9 +39,9 @@ next:
 
 This section provides the request parameters, sample request and response for a Cards Recurring Payment.
 
-> 📘
+> 📘 **Note:**
 >
-> **Note**: During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
+> During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
 
 HTTP Method: **POST**
 
