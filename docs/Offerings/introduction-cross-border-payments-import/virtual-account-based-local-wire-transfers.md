@@ -15,494 +15,218 @@ Suited for: Global **Payment Service Providers&#x20;**(PSPs) integrating via API
 
 <br />
 
-<br />
-
-Onboard sub-merchant. PSP creates a Copy MID through the Create Merchant API and retrieves sub-merchant credentials. A Virtual Account is issued for the sub-merchant.
-
-<br />
-
-Receive payment. Payer in India transfers funds to the Virtual Account. PayU confirms the credit and notifies the PSP via webhook. The payment is placed on hold.
-
-<br />
-
-Submit compliance data. PSP lists on-hold transactions and submits invoice and trade metadata. PayU runs compliance checks.
-
-<br />
-
-Settle or return. Approved payments are released for outward settlement to the PSP. Failed or timed-out payments are returned.
-
-PayU partners with an AD-1 category bank for outward settlement. Funds move to the Outward Collection Account (OCA) before settlement to the PSP, similar to the import collections workflow.
-
-<br />
-
-Integration guide
-
-<br />
-
-<br />
-
-<br />
-
-Section
-
-<br />
-
-Activity
-
-<br />
-
-API
-
-<br />
-
-Dev-docs
-
-<br />
-
-<br />
-
-Authentication
-
-<br />
-
-Authenticate with parent PA key and salt
-
-<br />
-
-—
-
-<br />
-
-\[Authentication]
-
-<br />
-
-<br />
-
-Sub-merchant onboarding
-
-<br />
-
-Create sub-merchant (Copy MID)
-
-<br />
-
-Create Merchant (PACB)
-
-<br />
-
-\[Create Merchant — PACB]
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-Update sub-merchant profile
-
-<br />
-
-Update Merchant Details (PACB)
-
-<br />
-
-\[Update Merchant — PACB]
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-Fetch sub-merchant status and profile
-
-<br />
-
-Get Merchant Details (PACB)
-
-<br />
-
-\[Get Merchant — PACB]
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-Get sub-merchant key and salt
-
-<br />
-
-Get Sub-merchant Credentials
-
-<br />
-
-\[Get Credentials — PACB]
-
-<br />
-
-<br />
-
-Virtual Account
-
-<br />
-
-Get VA number, IFSC, and status
-
-<br />
-
-Get Merchant Details / List VA
-
-<br />
-
-\[Virtual Account]
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-Activate or deactivate a VA
-
-<br />
-
-Update Virtual Account
-
-<br />
-
-\[Update VA]
-
-<br />
-
-<br />
-
-Payments
-
-<br />
-
-Payment received webhook
-
-<br />
-
-Webhook — payment received
-
-<br />
-
-\[Webhooks — payment received]
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-Payment rejected webhook
-
-<br />
-
-Webhook — payment rejected
-
-<br />
-
-\[Webhooks — payment rejected]
-
-<br />
-
-<br />
+1. **Sub-merchant onboarding** — Create sub-merchant and retrieve API credentials.
+2. **Create & manage VA&#x20;**— Provision and manage Virtual Account via API.
+3. **Receive credit&#x20;**— Payer transfers to VA; PayU confirms and notifies PSP.
+4. **On-hold handling** — PSP submits invoice and trade metadata; PayU runs checks.
+5. **Settle&#x20;**— Approved payments settle to PSP via AD Bank with UTR.
 
-<br />
-
-<br />
-
-List transactions
-
-<br />
-
-List Transactions
-
-<br />
-
-\[List Transactions]
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-Get transaction details
-
-<br />
-
-Get Transaction
-
-<br />
-
-\[Get Transaction]
-
-<br />
-
-<br />
-
-On hold
-
-<br />
-
-List on-hold transactions
-
-<br />
-
-List On-Hold Transactions
-
-<br />
-
-\[On-Hold Transactions]
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-Check missing fields
-
-<br />
-
-Get Transaction Readiness
-
-<br />
-
-\[Transaction Readiness]
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-Submit invoice and trade data
-
-<br />
-
-Submit Metadata
-
-<br />
-
-\[Submit Metadata]
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-Upload invoice file
-
-<br />
-
-Upload Invoice
-
-<br />
+PayU partners with an AD-1 category bank for outward settlement. Funds move to the Outward Collection Account (OCA) before settlement to the PSP, similar to the [import collections workflow.](https://docs.payu.in/docs/workflow-for-cross-border-payments-import)
 
-\[Upload Invoice]
+## Integration Guide
 
-<br />
-
-<br />
-
-Settlement
-
-<br />
-
-Ready for settlement webhook
-
-<br />
-
-Webhook — settlement eligible
-
-<br />
-
-\[Webhooks — settlement eligible]
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-Refund completed webhook
-
-<br />
-
-Webhook — refund
-
-<br />
-
-\[Webhooks — refund]
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-Get settlement by date or UTR
-
-<br />
-
-Get Settlement Details
-
-<br />
-
-\[Settlement Details]
-
-<br />
-
-<br />
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Section
+      </th>
 
-<br />
+      <th>
+        Activity
+      </th>
 
-<br />
+      <th>
+        API Document
+      </th>
+    </tr>
+  </thead>
 
-Get settlement for a transaction
+  <tbody>
+    <tr>
+      <td>
+        **Sub-merchant onboarding**
+      </td>
 
-<br />
+      <td>
+        Create sub-merchant
+      </td>
 
-Get Transaction Settlement
+      <td>
 
-<br />
+      </td>
+    </tr>
 
-\[Transaction Settlement]
+    <tr>
+      <td>
 
-<br />
+      </td>
 
-<br />
+      <td>
+        Update sub-merchant profile
+      </td>
 
-<br />
+      <td>
 
-<br />
+      </td>
+    </tr>
 
-Configure reconciliation reports
+    <tr>
+      <td>
+        **Virtual Account (VA) Management**
+      </td>
 
-<br />
+      <td>
+        Create & Update VA
+      </td>
 
-Configure Reports
+      <td>
 
-<br />
+      </td>
+    </tr>
 
-\[Report Configuration]
+    <tr>
+      <td>
 
-<br />
+      </td>
 
-Key behaviours
+      <td>
+        Get List of VA per merchant
+      </td>
 
-<br />
+      <td>
 
-<br />
+      </td>
+    </tr>
 
-<br />
+    <tr>
+      <td>
+        **Payments**
+      </td>
 
-Topic
+      <td>
+        Payment webhooks & Status Check API
+      </td>
 
-<br />
+      <td>
 
-Behaviour
+      </td>
+    </tr>
 
-<br />
+    <tr>
+      <td>
 
-<br />
+      </td>
 
-After credit
+      <td>
+        List transactions
+      </td>
 
-<br />
+      <td>
 
-Payment is on hold until metadata is complete and checks pass
+      </td>
+    </tr>
 
-<br />
+    <tr>
+      <td>
 
-<br />
+      </td>
 
-Settlement
+      <td>
+        Get transaction details
+      </td>
 
-<br />
+      <td>
 
-Only approved payments enter settlement batches
+      </td>
+    </tr>
 
-<br />
+    <tr>
+      <td>
+        **On hold transactions**
+      </td>
 
-<br />
+      <td>
+        Get & Update On-Hold transactions
+      </td>
 
-Credit limit
+      <td>
+        - Get On-hold Settlement API
+        - Invoice Upload API
+      </td>
+    </tr>
 
-<br />
+    <tr>
+      <td>
+        **Settlement**
+      </td>
 
-Credits above INR 25,00,000 are rejected
+      <td>
+        Get Settlement Status
+      </td>
 
-<br />
+      <td>
+        [https://docs.payu.in/reference/settlement-detail-range-api-for-cross-border](https://docs.payu.in/reference/settlement-detail-range-api-for-cross-border "https://docs.payu.in/reference/settlement-detail-range-api-for-cross-border")
+      </td>
+    </tr>
 
-<br />
+    <tr>
+      <td>
+        **Refunds**
+      </td>
 
-Inactive VA
+      <td>
+        Initiate refund by merchant txn ID / PayU
+      </td>
 
-<br />
+      <td>
 
-New credits are rejected
+      </td>
+    </tr>
 
-<br />
+    <tr>
+      <td>
 
-<br />
+      </td>
 
-API credentials
+      <td>
+        Get Refund Status&#x20;
+      </td>
 
-<br />
+      <td>
 
-Onboarding uses parent PA key/salt; payments use sub-merchant credentials
+      </td>
+    </tr>
 
-<br />
+    <tr>
+      <td>
 
-Getting started
+      </td>
 
-<br />
+      <td>
+        Refund Webooks & Status API
+      </td>
 
-<br />
+      <td>
 
-Obtain parent PA credentials from PayU.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
-<br />
+## Key Behaviours
 
-Integrate Create Merchant and Get Credentials for a test sub-merchant.
+- After credit, payment is on hold until metadata is complete and checks pass
+- Transaction limit at INR 25,00,000, any transaction on the virtual account higher than this amount will be **rejected**.
+- Onboarding uses PSP's credentials; payments use **sub-merchant credentials**
 
 <br />
 
-Register webhook URLs.
-
-<br />
+## Getting Started
 
-Test: create sub-merchant → receive credit → submit metadata → fetch settlement details.
+- Obtain parent PA credentials from PayU.
+- Integrate Create Merchant and Get Credentials for a test sub-merchant.
+- Register webhook URLs.
+- Test: create sub-merchant → receive credit → submit metadata → fetch settlement details.
 
-For issues, share merchant ID, transaction ID, and webhook eventId with your PayU integration contact.
+For issues, share merchant ID, transaction ID, and webhook eventId with your PayU integration contact or international.integration\@payu.in
