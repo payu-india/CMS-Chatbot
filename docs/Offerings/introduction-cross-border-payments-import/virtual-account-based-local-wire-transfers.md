@@ -25,20 +25,19 @@ PayU partners with an AD-1 category bank for outward settlement. Funds move to t
 
 ## Integration Guide
 
-| Section                             | Activity                                  | API Document                                                                                              |
+| Section                             | Activity                                  | API Document(s)                                                                                           |
 | ----------------------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | **Sub-merchant onboarding**         | Create sub-merchant                       | [Create Merchant API (International)](https://docs.payu.in/reference/create-merchant-api-pacb)            |
 |                                     | Update sub-merchant profile               | [Update Merchant API (International)](https://docs.payu.in/reference/update-merchant-details-api-pacb)    |
 | **Virtual Account (VA) Management** | Create & Update VA                        |                                                                                                           |
 |                                     | Get List of VA per merchant               |                                                                                                           |
-| **Payments**                        | Payment webhooks & Status Check API       |                                                                                                           |
-|                                     | List transactions                         |                                                                                                           |
-|                                     | Get transaction details                   |                                                                                                           |
+| **Payments**                        | Payment webhooks &                        | [Payment Webhooks](https://docs.payu.in/docs/webhook-events-and-sample-payloads)                          |
+|                                     | Transaction Status Check API              | [Verify Payment API](https://docs.payu.in/reference/verify_payment_api)                                   |
+|                                     | Get all transactions (per MID)            | [Get Transactions API](https://docs.payu.in/reference/get_transaction_details_api)                        |
 | **On hold transactions**            | Get & Update On-Hold transactions         | [Get & Update On-hold API](https://docs.payu.in/docs/on-hold-settlements-cross-border-payments)           |
 | **Settlement**                      | Get Settlement Status                     | [Get Settlement Details API](https://docs.payu.in/reference/settlement-detail-range-api-for-cross-border) |
-| **Refunds**                         | Initiate refund by merchant txn ID / PayU |                                                                                                           |
-|                                     | Get Refund Status                         |                                                                                                           |
-|                                     | Refund Webooks & Status API               |                                                                                                           |
+| **Refunds**                         | Initiate refund by merchant txn ID / PayU | [Refund APIs (Initiate, Check Status)](https://docs.payu.in/docs/refund-apis-doc)                         |
+|                                     | Get Refund Status API                     | [Refund APIs (Initiate, Check Status)](https://docs.payu.in/docs/refund-apis-doc)                         |
 
 ## Key Behaviours
 
