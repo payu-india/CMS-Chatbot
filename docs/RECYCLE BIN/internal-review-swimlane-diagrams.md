@@ -590,3 +590,220 @@ sequenceDiagram
 ```
 
 <br />
+## Cross-Border Payments Import Flow
+
+Mermaid swimlane diagrams for [Cross-Border Payments – Import](https://docs.payu.in/docs/introduction-cross-border-payments-import), based on the payment journey, integration, settlement, and on-hold sections.
+
+### Payment and cross-border settlement
+
+End-to-end flow from Indian customer payment to overseas merchant settlement via AD-1 bank (T+2/T+3).
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 58,
+    "width": 130,
+    "boxMargin": 8,
+    "messageMargin": 30,
+    "diagramMarginX": 40,
+    "diagramMarginY": 14
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    participant Customer
+    box Merchant Site
+        participant Merchant as Overseas Merchant
+    end
+    box PayU
+        participant PayU
+    end
+    participant Acquirer as Acquirer Bank
+    participant AD1 as AD-1 Bank
+
+    Customer->>Merchant: 1. Checkout on merchant site
+
+    Merchant->>PayU: 2. Collect payment API
+    Note over Merchant,PayU: Mandatory buyer name and zipcode<br/>Invoice ID in udf5
+
+    alt PayU Hosted Checkout
+        PayU->>Customer: 3. Show payment page
+    else Merchant Hosted Checkout
+        Merchant->>Customer: 3. Collect payment on site
+    end
+
+    Customer->>PayU: 4. Pay via Cards NetBanking UPI or NEFT
+    PayU->>Acquirer: 5. Process payment
+    Acquirer-->>PayU: 6. Payment success
+
+    PayU-->>Merchant: 7. Transaction success
+    Merchant-->>Customer: 8. Order confirmation
+
+    Note over Acquirer,PayU: Funds to PayU nodal pool account
+
+    Merchant->>PayU: 9. Upload invoice or AWB
+    Note over Merchant,PayU: Invoice Upload API or UDF Update
+
+    PayU->>AD1: 10. Settlement instruction via SFTP
+    AD1->>Merchant: 11. SWIFT to offshore account
+    Note over AD1,Merchant: Native currency T+2 or T+3
+
+    AD1-->>PayU: 12. Response file and UTR
+    PayU-->>Merchant: 13. Settlement details
+```
+
+### LRS customer journey (PayU Hosted)
+
+For travel and education under the Liberalised Remittance Scheme. See [Customer Journey - PayU Hosted Checkout with LRS](https://docs.payu.in/docs/customer-journey-payu-hosted-checkout-with-lrs-integration).
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 72,
+    "width": 145,
+    "boxMargin": 8,
+    "messageMargin": 32,
+    "diagramMarginX": 45,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307"
+  }
+}}%%
+sequenceDiagram
+    participant Customer
+    box Merchant Site
+        participant Merchant as Overseas Merchant
+    end
+    box PayU
+        participant PayU
+    end
+
+    Customer->>Merchant: 1. Select products and checkout
+    Merchant->>PayU: 2. Payment request with lrs_service_type
+    PayU->>Customer: 3. PayU Hosted Checkout page
+
+    Customer->>PayU: 4. Select Individual Buyer
+    Note over Customer,PayU: PAN DOB pincode and LRS declaration
+
+    Customer->>PayU: 5. TCS declaration if applicable
+    Note over PayU: Tax based on lrs_service_type<br/>PayU remits TCS via AD-1 bank
+
+    Customer->>PayU: 6. Complete payment
+    PayU-->>Merchant: 7. Payment result
+    Merchant-->>Customer: 8. Order confirmation
+```
+
+### On-hold settlement resolution
+
+When AD-1 bank requires additional information before releasing outward settlement. See [On-Hold Settlements](https://docs.payu.in/docs/on-hold-settlements-cross-border-payments).
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 80,
+    "width": 150,
+    "boxMargin": 8,
+    "messageMargin": 34,
+    "diagramMarginX": 45,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307"
+  }
+}}%%
+sequenceDiagram
+    box Merchant Site
+        participant Merchant as Overseas Merchant
+    end
+    box PayU
+        participant PayU
+    end
+    participant AD1 as AD-1 Bank
+
+    PayU->>AD1: 1. Settlement instruction
+    AD1-->>PayU: 2. Needs Response - on hold
+    PayU-->>Merchant: 3. On-hold status notification
+
+    alt Missing invoice or buyer details
+        Merchant->>PayU: 4. UDF Update or Invoice Upload API
+        Note over Merchant,PayU: Dashboard On-hold tab also available
+        PayU->>AD1: 5. Resubmit compliance data
+        AD1-->>PayU: 6. Settled with UTR
+        PayU-->>Merchant: 7. Settlement complete
+    else AML or sanction match
+        AD1-->>PayU: Rejected by Bank
+        PayU-->>Merchant: Refund required
+        Merchant->>PayU: Initiate refund
+    end
+```
