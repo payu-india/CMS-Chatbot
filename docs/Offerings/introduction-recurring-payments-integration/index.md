@@ -1,5 +1,5 @@
 ---
-title: Subscripions or Recurring Payments
+title: Subscriptions or Recurring Payments
 excerpt: ''
 deprecated: false
 hidden: false
