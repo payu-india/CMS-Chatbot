@@ -296,9 +296,87 @@ sequenceDiagram
 Original: [https://docs.payu.in/docs/apple-pay-integration](https://docs.payu.in/update/docs/apple-pay-integration "https://docs.payu.in/update/docs/apple-pay-integration")
 
 ```mermaid
-box Merchant
-    participant Merchant as Merchant Checkout
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 68,
+    "width": 140,
+    "boxMargin": 8,
+    "messageMargin": 32,
+    "diagramMarginX": 45,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "secondaryTextColor": "#002843",
+    "secondaryBorderColor": "#A6C307",
+    "tertiaryColor": "#002843",
+    "tertiaryTextColor": "#FFFFFF",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "mainBkg": "#A6C307",
+    "clusterBkg": "#FAFCF4",
+    "clusterBorder": "#D8E8A8",
+    "edgeLabelBackground": "#FFFFFF",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "labelTextColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    participant User
+    box Merchant Site
+        participant Merchant as Merchant Checkout
+    end
+    box PayU
+        participant PayU
+    end
+    participant Apple as Apple Pay
+    participant Bank as Acquiring Bank
 
+    User->>Merchant: Select Apple Pay
+    Note over Merchant: Device check<br/>Compatible - continue<br/>Not compatible - fallback
+
+    Merchant->>User: Display Apple Pay sheet
+    Merchant->>PayU: Create merchant session
+    PayU->>Apple: Request merchant session
+    Apple-->>PayU: Return signed session
+    PayU-->>Merchant: Provide session to frontend
+
+    User->>Apple: Select device token card
+    Apple-->>User: Authorize with Face ID or Touch ID
+
+    PayU->>Bank: Submit authorization
+    Note over PayU,Bank: Tokenized card rails via Apple Pay
+
+    Bank-->>PayU: Approved or declined
+    PayU-->>Merchant: Payment result
+    Merchant-->>User: Show success or failure
+
+    Note over User,Merchant: Fallback if not compatible<br/>Show other payment methods
 ```
 
 ## TPV Workflow
