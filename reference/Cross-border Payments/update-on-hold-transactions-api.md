@@ -49,10 +49,10 @@ Use this API to submit additional customer information required to release on-ho
 
 The request body is an array of transaction update objects.
 
-| Parameter                                   | Description                                                          | Example   |
-| :------------------------------------------ | :------------------------------------------------------------------- | :-------- |
-| transactionId<br />`mandatory`              | `String` - The PayU transaction ID (requestId from GET API response) | 12345     |
-| amlockTxnRequestMappingDto<br />`mandatory` | `Array` - Array of key-value pairs containing the required fields    | See below |
+| Parameter                                   | Description                                                       | Example   |
+| :------------------------------------------ | :---------------------------------------------------------------- | :-------- |
+| transactionId<br />`mandatory`              | `String` - The PayU transaction ID                                | 12345     |
+| amlockTxnRequestMappingDto<br />`mandatory` | `Array` - Array of key-value pairs containing the required fields | See below |
 
 ### amlockTxnRequestMappingDto Object
 
