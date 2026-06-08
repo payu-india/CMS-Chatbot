@@ -1085,4 +1085,6 @@ Given below is a list of errors you may get while integrating with the PayU host
 
 </Accordion>
 
+### Step 1.4 Verify Response via Reverse Hashing
+
 <br />
