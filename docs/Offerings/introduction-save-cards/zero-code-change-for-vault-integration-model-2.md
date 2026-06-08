@@ -32,35 +32,34 @@ The Model 2 involves only zero code change and this section describes the genera
 To create the token, only minor code changes is required in your implementation. However, to process the transactions using the tokens, you need to integrate an extra API.
 
 ```mermaid
-%%{init: {
-  "theme": "base",
-  "sequence": {
-    "fontSize": 25,
-    "actorFontSize": 25,
-    "noteFontSize": 23,
-    "diagramMarginX": 60,
-    "diagramMarginY": 20,
-    "boxMargin": 12,
-    "messageMargin": 45
-  },
-  "themeVariables": {
-    "fontSize": "30px",
-    "fontFamily": "Arial, sans-serif"
-  }
-}}%%
+---
+config:
+  theme: base
+  sequence:
+    fontSize: 20
+    actorFontSize: 20
+    rightAngles: true
+  themeVariables:
+    background: "#FFFFFF"
+    actorBkg: "#A6C307"
+    actorBorder: "#002843"
+    actorTextColor: "#002843"
+    actorLineColor: "#002843"
+    signalColor: "#002843"
+    signalTextColor: "#002843"
+    fontFamily: "Arial, Helvetica, sans-serif"
+---
 sequenceDiagram
     participant Merchant
     participant PayU
     participant PG as Payment Gateway
     participant TokenHub as PayU Token Hub
-
     Merchant->>PayU: Pass card number, consent, and user credentials via payment API
     PayU->>PG: Initiate transaction
     PG-->>PayU: Return transaction status
     PayU->>TokenHub: Initiate token provision with PayU vault
     TokenHub-->>PayU: Provision Network and Issuer Token and map to PayU ref ID
     PayU-->>Merchant: Return tokens in surl response
-
 ```
 
 1. PayU onboards the merchant on the PayU token hub.
