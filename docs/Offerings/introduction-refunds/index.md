@@ -30,26 +30,24 @@ Order cancellations are an unfortunate reality for any business. Customers may c
     "mirrorActors": false,
     "rightAngles": true,
     "messageAlign": "left",
-    "fontSize": 14,
-    "actorFontSize": 14,
-    "noteFontSize": 13,
-    "diagramMarginX": 55,
-    "diagramMarginY": 20,
-    "boxMargin": 12,
-    "messageMargin": 42
+    "fontSize": 12,
+    "actorFontSize": 12,
+    "noteFontSize": 11,
+    "actorMargin": 90,
+    "width": 170,
+    "boxMargin": 10,
+    "messageMargin": 38,
+    "diagramMarginX": 60,
+    "diagramMarginY": 18
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
-    "fontSize": "14px",
+    "fontSize": "12px",
     "background": "#FFFFFF",
     "primaryColor": "#A6C307",
     "primaryTextColor": "#002843",
     "primaryBorderColor": "#002843",
     "secondaryColor": "#F4F9E0",
-    "secondaryTextColor": "#002843",
-    "secondaryBorderColor": "#A6C307",
-    "tertiaryColor": "#002843",
-    "tertiaryTextColor": "#FFFFFF",
     "lineColor": "#002843",
     "textColor": "#002843",
     "actorBkg": "#A6C307",
@@ -60,7 +58,6 @@ Order cancellations are an unfortunate reality for any business. Customers may c
     "signalTextColor": "#002843",
     "labelBoxBkgColor": "#F4F9E0",
     "labelBoxBorderColor": "#A6C307",
-    "labelTextColor": "#002843",
     "noteBkgColor": "#F4F9E0",
     "noteTextColor": "#002843",
     "noteBorderColor": "#A6C307",
@@ -79,34 +76,34 @@ sequenceDiagram
         participant Bank
     end
 
-    Merchant->>PayU: cancel_refund_transaction API
-    Note over PayU: Refund queued<br/>Status = Queued
+    Merchant->>PayU: cancel_refund_transaction
+    Note over PayU: Queued
 
-    PayU->>PayU: Debit from merchant settlement funds
+    PayU->>PayU: Debit settlement funds
     PayU->>Bank: Refund initiated
 
-    Note over Bank: Bank API call<br/>Status = In Progress
-    Note over Bank: Up to 3 retry attempts<br/>if first attempt fails
+    Note over Bank: Bank API call
+    Note over Bank: Up to 3 retries
 
     Bank->>Bank: Process refund
 
-    alt Bank API success
+    alt API success
         Bank-->>PayU: Success
-        PayU-->>Merchant: Update ARN<br/>Status = Success
-    else Bank API failure
+        PayU-->>Merchant: Update ARN
+    else API failure
         Bank-->>PayU: Failure
-        PayU->>PayU: Send to bank offline (manual)
-        Note over PayU,Bank: 5th attempt<br/>Status = Requested<br/>TAT = 5-7 working days
-        alt Manual refund success
-            PayU-->>Merchant: Update ARN<br/>Status = Success
-        else Manual refund failure
-            PayU-->>Merchant: Status = Failure
-            Merchant->>Merchant: Re-initiate correctly
+        PayU->>PayU: Send offline to bank
+        Note over PayU,Bank: 5th attempt<br/>TAT 5-7 days
+        alt Manual success
+            PayU-->>Merchant: Update ARN
+        else Manual failure
+            PayU-->>Merchant: Failure status
+            Merchant->>Merchant: Re-initiate refund
         end
     end
 
-    loop Until terminal status
-        Merchant->>PayU: check_action_status_txn_id API
+    loop Poll status
+        Merchant->>PayU: check_action_status_txn_id
         PayU-->>Merchant: Status response
     end
 
