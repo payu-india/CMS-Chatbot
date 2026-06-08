@@ -31,6 +31,22 @@ The Model 2 involves only zero code change and this section describes the genera
 
 To create the token, only minor code changes is required in your implementation. However, to process the transactions using the tokens, you need to integrate an extra API.
 
+```mermaid
+sequenceDiagram
+    participant Merchant
+    participant PayU
+    participant PG as Payment Gateway (PG)
+    participant TokenHub as PayU Token Hub
+
+    Merchant->>PayU: 1. Pass card number, consent, and user_credentials (_payment API)
+    PayU->>PG: 2. Initiate transaction
+    PG-->>PayU: 3. Return transaction status
+    PayU->>TokenHub: 4. Initiate token provision with PayU vault
+    TokenHub-->>PayU: 5. Provision Network and Issuer Token; map to PayU ref ID
+    PayU-->>Merchant: 6. Return tokens (e.g. cardToken in surl response)
+
+```
+
 1. PayU onboards the merchant on the PayU token hub.
 2. Merchant will pass the consent value and user id in the **\_payment** API.
 
@@ -51,8 +67,6 @@ To create the token, only minor code changes is required in your implementation.
 > 👍
 >
 > Experience the end-to-end **Merchant Hosted Checkout** flow and instantly generate the complete code for seamless, zero-coding integration into your website. Select **First-Time Customer > Payment API (\_payment)** from left navigation pane after opening the following page
->
->   
 >
 > <HTMLBlock>{`
 >                       <style>
@@ -92,22 +106,6 @@ To create the token, only minor code changes is required in your implementation.
 ### Workflow
 
 The following flow diagram illustrates the workflow for first-time payment workflow.
-
-```mermaid
-sequenceDiagram
-    participant Merchant
-    participant PayU
-    participant PG as Payment Gateway (PG)
-    participant TokenHub as PayU Token Hub
-
-    Merchant->>PayU: 1. Pass card number, consent, and user_credentials (_payment API)
-    PayU->>PG: 2. Initiate transaction
-    PG-->>PayU: 3. Return transaction status
-    PayU->>TokenHub: 4. Initiate token provision with PayU vault
-    TokenHub-->>PayU: 5. Provision Network and Issuer Token; map to PayU ref ID
-    PayU-->>Merchant: 6. Return tokens (e.g. cardToken in surl response)
-
-```
 
 1. Merchant takes the customer card details and consent, and then initiates transaction and sends the payment details to PayU.​
 2. PayU initiates the transaction with the Payment Gateway.
@@ -184,8 +182,6 @@ The repeat transaction flow involves the following steps:
 > 👍
 >
 > Experience the end-to-end **Merchant Hosted Checkout** flow and instantly generate the complete code for seamless, zero-coding integration into your website. Select **Repeat Customer > Payment API (\_payment)** from left navigation pane after opening the following page
->
->   
 >
 > <HTMLBlock>{`
 >                         <style>
