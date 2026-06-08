@@ -1151,57 +1151,65 @@ bankcode=TESTPGNB
 error=E000
 error_Message=No Error
 ```
+**Credit Cards**<br/>
+
 
 </Accordion>
 
 ```json Success Response
-mihpayid=403993715537565049
-mode=NB
+mihpayid=403993715537573401
+mode=CC
 status=success
 unmappedstatus=captured
-key=PRiQvJ
-txnid=756609e32e92add4b5f2
-amount=10.00
+key=a4vGC2
+txnid=TXN_NS_1780294871_5566
+amount=1500.00
 discount=0.00
-net_amount_debit=10
-addedon=2026-05-29 18:49:30
-productinfo=Product Info
-firstname=Payu-Admin
-lastname=
-address1=
-address2=
-city=
-state=
-country=
-zipcode=
-email=test@example.com
-phone=1234567890
-udf1=
-udf2=
+net_amount_debit=1500
+addedon=2026-06-01 11:51:47
+productinfo=Subscription
+firstname=Sunit
+lastname=Kumar
+address1=FIRST FLOOR
+address2=NEW ASHOK NAGAR
+city=Delhi
+state=Delhi
+country=INDIA
+zipcode=201303
+email=sunit.kumar@mail.com
+phone=9876543210
+udf1=Testing UDF 1
+udf2=Testing UDF2
 udf3=
 udf4=
-udf5=
+udf5=Sample_Invoice_11
 udf6=
 udf7=
 udf8=
 udf9=
 udf10=
-hash=79d14afc4a3998a627d8fb431b2ee648b16fd6e31252397109ad5f44d77f7630daaaeedf0bbd5b3e7a81342c96bc087beb43125c0619cac1e5408243fdc29a04
-field1=
-field2=
-field3=
+hash=6ee1e1f743089ce38c79473f19af24371fe80e6249968f1bcbc6d31935afa79c0325d649fa7610a642e694475b33d65011b51b5d7d2a6a46e2b38895e4c27a28
+field1=888758893639
+field2=599738
+field3=1500.00
 field4=
-field5=
-field6=
-field7=
-field8=
-field9=Transaction Completed Successfully
+field5=00
+field6=02
+field7=AUTHPOSITIVE
+field8=AUTHORIZED
+field9=Transaction is Successful
 payment_source=payu
-PG_TYPE=NB-PG
-bank_ref_num=ddb199f9-5f43-4441-8648-ce2bcb244568
-bankcode=TESTPGNB
+PG_TYPE=CC-PG
+bank_ref_num=920539478106419300
+bankcode=CC
 error=E000
 error_Message=No Error
+cardCategory=domestic
+cardnum=XXXXXXXXXXXX2346
+cardhash=This field is no longer supported in postback params.
+splitInfo={"splitStatus":"splitNotReceived","splitSegments":[]}
+```
+```json Error Response
 ```
 
 <br />
