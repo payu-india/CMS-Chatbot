@@ -1087,4 +1087,8 @@ Given below is a list of errors you may get while integrating with the PayU host
 
 ### Step 1.4 Verify Response via Reverse Hashing
 
+<Accordion title="Reverse Hashing Steps" icon="fa-check-double">
+
+</Accordion>
+
 <br />
