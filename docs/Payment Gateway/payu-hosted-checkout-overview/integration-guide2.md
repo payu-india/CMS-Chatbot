@@ -1,5 +1,5 @@
 ---
-title: Integration Guide
+title: Accept Payments using PayU Hosted Checkout
 deprecated: false
 hidden: false
 metadata:
@@ -7,7 +7,7 @@ metadata:
 ---
 Follow these steps to integrate the PayU Hosted Checkout on your website.
 
-> 👍 Payment Flow
+> 👍 **Payment Flow**
 >
 > Before you start integrating, it’s important to understand how PayU Hosted Checkout payment flow and customer journey works.
 
@@ -1046,26 +1046,17 @@ Now that you have created the hash value combine the below into a request that w
   </Callout>
 
   <Callout icon="✅" theme="success">
-    **Make Sure:**
+    **Best Practices:**
 
-    * Use HTTP POST.
-    * Never send payment requests using GET.
-    * Ensure all mandatory parameters are included.
+    * Generate a unique `txnid` for every transaction..
+    * Store the transaction ID in your database before redirecting the customer.
+    * Keep customer identifiers consistent for reconciliation.
   </Callout>
-          
-  **Common Mistakes**
-
-  These are the common mistakes while creating a payment request.
-
-  * Missing mandatory fields like `email`, `amount`, or `productinfo`.
-  * Incorrect parameter order.
-  * Extra spaces or hidden characters.
+         
 </Accordion>
 
 <br />
 
 > 📘 Notes
->
->
 
 <br />
