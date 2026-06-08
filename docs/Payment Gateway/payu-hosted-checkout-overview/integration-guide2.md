@@ -683,7 +683,7 @@ Now that you have created the hash value combine the below into a request that w
     -d "productinfo=iPhone" \
     -d "surl=https://apiplayground-response.herokuapp.com/" \
     -d "furl=https://apiplayground-response.herokuapp.com/" \
-    -d "hash={{hash_value}}"
+    -d "hash=YOUR_HASH_VALUE"
   ```
   ```python
   import requests
@@ -1061,12 +1061,16 @@ Now that you have created the hash value combine the below into a request that w
 
 </Accordion>
 
-#### Step 1.3.1 Customize Checkout
+#### Step 1.3.1 Customize PayU Payment Page
 
-<Accordion title="Step 1.3.1 Customise Checkout" icon="fa-gear">
-Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-occaecat cupidatat non proident!
+<Accordion title="Customize Checkout" icon="fa-gear">
+You can customize the following in the Checkout page:
+
+* Enforce Pay Method or Remove Category
+* Change the Language
+* Configure Payment Method and Checkout Settings
+
+Refer to the Customize PayU Payment Page for more information about cutomizing the PayU payment page.
 </Accordion>
 
 > 📘 Notes
