@@ -44,7 +44,7 @@ To create the token, only minor code changes is required in your implementation.
     "messageMargin": 45
   },
   "themeVariables": {
-    "fontSize": "20px",
+    "fontSize": "30px",
     "fontFamily": "Arial, sans-serif"
   }
 }}%%
