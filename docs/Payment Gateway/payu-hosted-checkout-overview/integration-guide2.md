@@ -1061,6 +1061,14 @@ Now that you have created the hash value combine the below into a request that w
 
 </Accordion>
 
+#### Step 1.3.1 Customize Checkout
+
+<Accordion title="Step 1.3.1 Customise Checkout" icon="fa-gear">
+Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+occaecat cupidatat non proident!
+</Accordion>
+
 > 📘 Notes
 
 <br />
