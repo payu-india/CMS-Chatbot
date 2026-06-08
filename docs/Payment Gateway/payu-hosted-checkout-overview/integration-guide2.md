@@ -1101,6 +1101,7 @@ After the payment is successful or failed, PayU POSTs back to your `surl` or `fu
 Below are the payment method wise success and error responses received.
 
 **NetBanking**
+
 ```json Success Response
 mihpayid=403993715537565049
 mode=NB
