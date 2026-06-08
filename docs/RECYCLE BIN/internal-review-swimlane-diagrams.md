@@ -1,7 +1,7 @@
 ---
 title: '[Internal Review] Swimlane Diagrams'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
