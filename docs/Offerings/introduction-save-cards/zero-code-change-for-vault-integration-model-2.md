@@ -32,34 +32,73 @@ The Model 2 involves only zero code change and this section describes the genera
 To create the token, only minor code changes is required in your implementation. However, to process the transactions using the tokens, you need to integrate an extra API.
 
 ```mermaid
----
-config:
-  theme: base
-  sequence:
-    fontSize: 20
-    actorFontSize: 20
-    rightAngles: true
-  themeVariables:
-    background: "#FFFFFF"
-    actorBkg: "#A6C307"
-    actorBorder: "#002843"
-    actorTextColor: "#002843"
-    actorLineColor: "#002843"
-    signalColor: "#002843"
-    signalTextColor: "#002843"
-    fontFamily: "Arial, Helvetica, sans-serif"
----
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 72,
+    "width": 145,
+    "boxMargin": 8,
+    "messageMargin": 32,
+    "diagramMarginX": 45,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "secondaryTextColor": "#002843",
+    "secondaryBorderColor": "#A6C307",
+    "tertiaryColor": "#002843",
+    "tertiaryTextColor": "#FFFFFF",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "mainBkg": "#A6C307",
+    "clusterBkg": "#FAFCF4",
+    "clusterBorder": "#D8E8A8",
+    "edgeLabelBackground": "#FFFFFF",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "labelTextColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
 sequenceDiagram
-    participant Merchant
-    participant PayU
+    box Merchant Site
+        participant Merchant
+    end
+    box PayU
+        participant PayU
+        participant TokenHub as Token Hub
+    end
     participant PG as Payment Gateway
-    participant TokenHub as PayU Token Hub
-    Merchant->>PayU: Pass card number, consent, and user credentials via payment API
-    PayU->>PG: Initiate transaction
-    PG-->>PayU: Return transaction status
-    PayU->>TokenHub: Initiate token provision with PayU vault
-    TokenHub-->>PayU: Provision Network and Issuer Token and map to PayU ref ID
-    PayU-->>Merchant: Return tokens in surl response
+
+    Merchant->>PayU: 1. Payment API with card and consent
+    PayU->>PG: 2. Initiate transaction
+    PG-->>PayU: 3. Transaction status
+    PayU->>TokenHub: 4. Token provision via vault
+    TokenHub-->>PayU: 5. Network and Issuer tokens
+    PayU-->>Merchant: 6. Return tokens in surl response
+
 ```
 
 1. PayU onboards the merchant on the PayU token hub.
