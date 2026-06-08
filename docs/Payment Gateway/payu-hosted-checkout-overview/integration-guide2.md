@@ -1066,6 +1066,7 @@ Now that you have created the hash value combine the below into a request that w
 <Accordion title="Customize Checkout" icon="fa-gear">
 You can customize the following in the Checkout page:
 
+
 * Enforce Pay Method or Remove Category
 * Change the Language
 * Configure Payment Method and Checkout Settings
