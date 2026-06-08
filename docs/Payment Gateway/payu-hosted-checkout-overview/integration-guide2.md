@@ -1064,8 +1064,7 @@ Now that you have created the hash value combine the below into a request that w
 #### Step 1.3.1 Customize PayU Payment Page
 
 <Accordion title="Customize Checkout" icon="fa-gear">
-You can customize the following in the Checkout page:
-
+You can customize the following in the Checkout page:<br/>
 
 * Enforce Pay Method or Remove Category
 * Change the Language
