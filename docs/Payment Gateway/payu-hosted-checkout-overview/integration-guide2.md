@@ -1098,7 +1098,7 @@ After the payment is successful or failed, PayU POSTs back to your `surl` or `fu
 </Accordion>
 
 <Accordion title="Response and Hashing Logic" icon="fa-file-code">
-Below are the payment method wise success and error responses received.
+Below are the payment method wise success and error responses received.<br/>
 
 **NetBanking**<br/>
 
