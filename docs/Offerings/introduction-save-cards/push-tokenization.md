@@ -34,14 +34,14 @@ PayU provides both network tokens and issuer tokens for its merchants for push 
   "flowchart": {
     "htmlLabels": true,
     "curve": "basis",
-    "padding": 28,
-    "nodeSpacing": 55,
-    "rankSpacing": 65,
-    "diagramPadding": 20
+    "padding": 20,
+    "nodeSpacing": 45,
+    "rankSpacing": 55,
+    "diagramPadding": 16
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
-    "fontSize": "20px",
+    "fontSize": "14px",
     "background": "#FFFFFF",
     "primaryColor": "#A6C307",
     "primaryTextColor": "#002843",
