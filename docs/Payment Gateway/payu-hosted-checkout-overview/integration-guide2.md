@@ -1053,9 +1053,19 @@ Now that you have created the hash value combine the below into a request that w
     * Keep customer identifiers consistent for reconciliation.
   </Callout>
          
+  <Accordion title="Errors" icon="fa-circle-xmark">
+    Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+    ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+    occaecat cupidatat non proident!
+  </Accordion>
+
 </Accordion>
 
-<br />
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
 
 > 📘 Notes
 
