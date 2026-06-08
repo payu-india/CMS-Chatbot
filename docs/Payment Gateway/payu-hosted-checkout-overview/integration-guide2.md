@@ -1087,8 +1087,14 @@ Given below is a list of errors you may get while integrating with the PayU host
 
 ### Step 1.4 Verify Response via Reverse Hashing
 
-<Accordion title="Reverse Hashing Steps" icon="fa-check-double">
+<Accordion title="Reverse Hashing Importance" icon="fa-check-double">
+Response verification ensures that the response originated from PayU and has not been modified. It protects against: <br/>
 
+* Tampered responses
+* Spoofed requests
+* Fraudulent status updates
+
+After the payment is successful or failed, PayU POSTs back to your `surl` or `furl` respectively with URL-encoded fields (form post). This payload includes the transaction status, `txnid`, `mihpayid`, and a hash you must verify (reverse hashing) for verification.
 </Accordion>
 
 <br />
