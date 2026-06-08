@@ -1073,6 +1073,12 @@ You can customize the following in the Checkout page:<br/>
 Refer to the <a href="https://docs.payu.in/docs/payu-payment-page-customization" target="_blank">Customize PayU Payment Page</a> for more information about cutomizing the PayU payment page.
 </Accordion>
 
-> 📘 Notes
+### Errors
+
+<Accordion title="Errors and Recommended Fix" icon="fa-screwdriver-wrench">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
 
 <br />
