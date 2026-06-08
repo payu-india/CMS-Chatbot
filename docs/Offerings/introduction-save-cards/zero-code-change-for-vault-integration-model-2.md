@@ -35,15 +35,15 @@ To create the token, only minor code changes is required in your implementation.
 sequenceDiagram
     participant Merchant
     participant PayU
-    participant PG as Payment Gateway (PG)
+    participant PG as Payment Gateway
     participant TokenHub as PayU Token Hub
 
-    Merchant->>PayU: 1. Pass card number, consent, and user_credentials (_payment API)
-    PayU->>PG: 2. Initiate transaction
-    PG-->>PayU: 3. Return transaction status
-    PayU->>TokenHub: 4. Initiate token provision with PayU vault
-    TokenHub-->>PayU: 5. Provision Network and Issuer Token; map to PayU ref ID
-    PayU-->>Merchant: 6. Return tokens (e.g. cardToken in surl response)
+    Merchant->>PayU: Pass card number, consent, and user credentials via payment API
+    PayU->>PG: Initiate transaction
+    PG-->>PayU: Return transaction status
+    PayU->>TokenHub: Initiate token provision with PayU vault
+    TokenHub-->>PayU: Provision Network and Issuer Token and map to PayU ref ID
+    PayU-->>Merchant: Return tokens in surl response
 
 ```
 
