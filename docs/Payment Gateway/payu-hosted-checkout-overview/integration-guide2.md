@@ -1070,7 +1070,7 @@ You can customize the following in the Checkout page:
 * Change the Language
 * Configure Payment Method and Checkout Settings
 
-Refer to the [Customize PayU Payment Page](https://docs.payu.in/docs/payu-payment-page-customization) for more information about cutomizing the PayU payment page.
+Refer to the <a href="https://docs.payu.in/docs/payu-payment-page-customization" target="_blank">Customize PayU Payment Page</a> for more information about cutomizing the PayU payment page.
 </Accordion>
 
 > 📘 Notes
