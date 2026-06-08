@@ -1036,4 +1036,230 @@ sequenceDiagram
     PayU-->>Merchant: 4. paymentOptions and savedPaymentOptions
     Note over Merchant: Render L1 and L2 checkout UI
 ```
+## International Payments and DCC Flow
 
+Mermaid swimlane diagrams for [International Payments](https://docs.payu.in/docs/introduction-dynamic-currency-conversion), based on the DCC/MCC workflow and hosted vs merchant-hosted integration sections.
+
+### Dynamic Currency Conversion (DCC)
+
+Real-time currency choice at checkout. Customer may pay in card-issuing currency or merchant order currency. Merchant settles in base currency (e.g. INR).
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 58,
+    "width": 130,
+    "boxMargin": 8,
+    "messageMargin": 30,
+    "diagramMarginX": 40,
+    "diagramMarginY": 14
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "secondaryTextColor": "#002843",
+    "secondaryBorderColor": "#A6C307",
+    "tertiaryColor": "#002843",
+    "tertiaryTextColor": "#FFFFFF",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "mainBkg": "#A6C307",
+    "clusterBkg": "#FAFCF4",
+    "clusterBorder": "#D8E8A8",
+    "edgeLabelBackground": "#FFFFFF",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "labelTextColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    participant Customer
+    box Merchant Site
+        participant Merchant
+    end
+    box PayU
+        participant PayU
+    end
+    participant Bank as Issuing Bank
+
+    Note over Merchant: Enable international payments via PayU Key Account Manager (KAM)
+
+    Customer->>Merchant: 1. Browse and select product
+    Note over Customer,Merchant: Order priced in merchant currency e.g. INR
+
+    Customer->>Merchant: 2. Pay by card and enter details
+
+    alt PayU Hosted Checkout
+        Merchant->>PayU: 3. Transaction request
+        PayU->>Customer: 4. PayU payment page
+        Customer->>PayU: 5. Enter international card
+    else Merchant Hosted Checkout
+        Merchant->>PayU: 3. Check is Domestic API
+        PayU-->>Merchant: International card confirmed
+        Merchant->>PayU: 4. Collect payment API
+        Customer->>PayU: 5. Card details via merchant UI
+    end
+
+    PayU->>Customer: 6. DCC currency choice
+    Note over PayU,Customer: Local currency or merchant order currency<br/>135+ currencies supported
+
+    Customer->>PayU: 7. Select preferred currency
+    PayU->>PayU: 8. Apply FX rate and margins
+    PayU->>Bank: 9. Process payment with 3DS2.0
+    Bank-->>PayU: 10. Authorization result
+
+    PayU-->>Merchant: 11. Transaction response
+    Note over PayU,Merchant: Merchant settled in base currency INR
+
+    Merchant-->>Customer: 12. Order confirmation
+```
+
+### Multi-Currency Conversion (MCC)
+
+Merchant displays prices in customer local currency upfront. Payment captured in merchant-initiated currency.
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 72,
+    "width": 145,
+    "boxMargin": 8,
+    "messageMargin": 32,
+    "diagramMarginX": 45,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307"
+  }
+}}%%
+sequenceDiagram
+    participant Customer
+    box Merchant Site
+        participant Merchant
+    end
+    box PayU
+        participant PayU
+    end
+    participant Bank as Issuing Bank
+
+    Customer->>Merchant: 1. Browse products
+    Note over Customer,Merchant: Prices shown in local currency<br/>27+ currencies via MCC
+
+    Customer->>Merchant: 2. Checkout with selected currency
+    Merchant->>PayU: 3. Payment request in chosen currency
+    Note over Merchant,PayU: FX rate from card networks or third-party API
+
+    Customer->>PayU: 4. Enter international card details
+    PayU->>Bank: 5. Process payment
+    Bank-->>PayU: 6. Payment captured
+
+    PayU-->>Merchant: 7. Transaction success
+    Note over PayU,Merchant: Settlement in INR or non-INR currency
+
+    Merchant-->>Customer: 8. Order confirmation
+```
+
+### Post-payment verification and refunds
+
+Standard verify flow applies. Refunds initiated in merchant base currency only.
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 80,
+    "width": 150,
+    "boxMargin": 8,
+    "messageMargin": 34,
+    "diagramMarginX": 45,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307"
+  }
+}}%%
+sequenceDiagram
+    box Merchant Site
+        participant Merchant
+    end
+    box PayU
+        participant PayU
+    end
+    participant Customer
+
+    PayU-->>Merchant: 1. surl or furl POST response
+    Merchant->>PayU: 2. Verify payment API
+    PayU-->>Merchant: 3. Confirmed transaction status
+
+    opt Refund required
+        Merchant->>PayU: 4. Refund in INR base amount
+        Note over Merchant,PayU: PayU converts using sale-date FX rate
+        PayU-->>Customer: 5. Refund to card currency
+    end
+```
