@@ -32,6 +32,22 @@ The Model 2 involves only zero code change and this section describes the genera
 To create the token, only minor code changes is required in your implementation. However, to process the transactions using the tokens, you need to integrate an extra API.
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "fontSize": 20,
+    "actorFontSize": 20,
+    "noteFontSize": 18,
+    "diagramMarginX": 60,
+    "diagramMarginY": 20,
+    "boxMargin": 12,
+    "messageMargin": 45
+  },
+  "themeVariables": {
+    "fontSize": "20px",
+    "fontFamily": "Arial, sans-serif"
+  }
+}}%%
 sequenceDiagram
     participant Merchant
     participant PayU
