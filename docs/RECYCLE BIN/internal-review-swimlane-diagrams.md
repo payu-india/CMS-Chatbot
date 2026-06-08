@@ -590,6 +590,7 @@ sequenceDiagram
 ```
 
 <br />
+
 ## Cross-Border Payments Import Flow
 
 Mermaid swimlane diagrams for [Cross-Border Payments – Import](https://docs.payu.in/docs/introduction-cross-border-payments-import), based on the payment journey, integration, settlement, and on-hold sections.
@@ -807,3 +808,232 @@ sequenceDiagram
         Merchant->>PayU: Initiate refund
     end
 ```
+
+## Recommendation Engine Flow
+
+Mermaid swimlane diagrams for [Recommendation Engine](https://docs.payu.in/docs/recommendation-engine), based on the intro, customer journey, and Fetch API sections.
+
+### Checkout personalization flow
+
+How RE personalizes payment instruments on PayU Hosted Checkout or via the Fetch API for merchant-hosted checkout.
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 58,
+    "width": 130,
+    "boxMargin": 8,
+    "messageMargin": 30,
+    "diagramMarginX": 40,
+    "diagramMarginY": 14
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "secondaryTextColor": "#002843",
+    "secondaryBorderColor": "#A6C307",
+    "tertiaryColor": "#002843",
+    "tertiaryTextColor": "#FFFFFF",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "mainBkg": "#A6C307",
+    "clusterBkg": "#FAFCF4",
+    "clusterBorder": "#D8E8A8",
+    "edgeLabelBackground": "#FFFFFF",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "labelTextColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    participant Customer
+    box Merchant Site
+        participant Merchant
+    end
+    box PayU
+        participant PayU
+        participant RE as Recommendation Engine
+    end
+    participant PG as Payment Gateway
+
+    Note over Merchant: Activate RE via PayU Key Account Manager (KAM)
+
+    Customer->>Merchant: 1. Proceed to checkout
+
+    alt PayU Hosted Checkout
+        Merchant->>PayU: 2. Payment request
+        PayU->>RE: 3. Evaluate recommendations
+    else Merchant Hosted with Fetch API
+        Merchant->>PayU: 2. Fetch RE API
+        PayU->>RE: 3. Evaluate recommendations
+        RE-->>PayU: Ranked paymentOptions
+        PayU-->>Merchant: savedPaymentOptions response
+        Merchant->>Customer: 4. Show personalized checkout
+    end
+
+    Note over RE,PayU: User history and merchant goal<br/>Transaction amount and category
+
+    RE-->>PayU: 4. Ranked L1 and L2 options
+    PayU->>Customer: 5. Display prioritized payment page
+
+    Customer->>PayU: 6. Select recommended payment mode
+    PayU->>PG: 7. Process payment
+    PG-->>PayU: 8. Payment result
+
+    PayU-->>Merchant: 9. Transaction status
+    Merchant-->>Customer: 10. Order confirmation
+```
+
+### User scenarios and merchant goals
+
+How RE adapts recommendations based on customer type and the merchant-selected optimization goal.
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 72,
+    "width": 145,
+    "boxMargin": 8,
+    "messageMargin": 32,
+    "diagramMarginX": 45,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307"
+  }
+}}%%
+sequenceDiagram
+    participant Customer
+    box PayU
+        participant RE as Recommendation Engine
+    end
+
+    alt Repeat user with saved data
+        Customer->>RE: Logged in with consented instruments
+        Note over Customer,RE: Saved cards UPI and wallets shown first
+    else Repeat user without saved data
+        Customer->>RE: Known user no stored instruments
+        Note over Customer,RE: Recommendations from history and goal
+    else First-time user
+        Customer->>RE: New user at checkout
+        Note over Customer,RE: Goal and contextual data only
+    end
+
+    alt Goal Success Rate
+        RE->>Customer: Prioritize highest SRT instruments
+        Note over RE: Example Airtel Money on L1 and L2
+    else Goal Processing Cost
+        RE->>Customer: Prioritize lowest cost modes
+        Note over RE: Example UPI over wallets on L1
+    else Goal Affordability
+        RE->>Customer: Prioritize EMI and BNPL options
+        Note over RE: Affordability on L1 and L2 screens
+    end
+```
+
+### Fetch Recommendation Engine API
+
+Server-to-server flow for merchants building a custom checkout UI. See [Fetch Recommendation Engine API](https://docs.payu.in/docs/fetch-recommendation-engine-api).
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 80,
+    "width": 150,
+    "boxMargin": 8,
+    "messageMargin": 34,
+    "diagramMarginX": 45,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307"
+  }
+}}%%
+sequenceDiagram
+    box Merchant Site
+        participant Merchant
+    end
+    box PayU
+        participant PayU
+        participant RE as Recommendation Engine
+    end
+
+    Merchant->>PayU: 1. POST recommendation/v1/fetch
+    Note over Merchant,PayU: HMAC auth with Date and Digest headers
+
+    Note over Merchant,PayU: amount and userToken mandatory<br/>phone txnId mode ibiboCode optional
+
+    PayU->>RE: 2. Score payment instruments
+    RE-->>PayU: 3. Ranked options by merchant goal
+
+    PayU-->>Merchant: 4. paymentOptions and savedPaymentOptions
+    Note over Merchant: Render L1 and L2 checkout UI
+```
+
