@@ -29,40 +29,64 @@ PayU provides both network tokens and issuer tokens for its merchants for push 
 ## How it works
 
 ```mermaid
----
-config:
-  theme: base
-  flowchart:
-    htmlLabels: true
-  themeVariables:
-    fontFamily: "Arial, Helvetica, sans-serif"
-    fontSize: "18px"
-    background: "#FFFFFF"
-    primaryColor: "#A6C307"
-    primaryTextColor: "#002843"
-    primaryBorderColor: "#002843"
-    lineColor: "#002843"
-    textColor: "#002843"
----
-flowchart TD
-    Start[Customer lands on the bank app] --> Manage[Manage your cards]
-    Manage --> Save[Save card with merchant]
-    Save --> Select[Select merchants]
-    Select --> Consent[Consent checkbox]
-    Consent --> PhoneVerified{Phone Number Verified?}
-    PhoneVerified -->|NO| Finished[Finished]
-    PhoneVerified -->|YES| Provision[PayU calls networks to provision card token]
-    Provision --> Complete{Provisioning Complete?}
-    Complete -->|NO| Failure[Show Failure]
-    Complete -->|YES| Success[Show success]
-    Failure --> Finished
-    Success --> Finished
-    classDef process fill:#A6C307,stroke:#002843,color:#002843
-    classDef decision fill:#F4F9E0,stroke:#002843,color:#002843
-    classDef endNode fill:#002843,stroke:#002843,color:#FFFFFF
-    class Start,Manage,Save,Select,Consent,Provision,Success process
-    class PhoneVerified,Complete decision
-    class Finished endNode
+%%{init: {
+  "theme": "base",
+  "flowchart": {
+    "htmlLabels": true,
+    "curve": "basis",
+    "padding": 24,
+    "nodeSpacing": 35,
+    "rankSpacing": 80
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "16px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "lineColor": "#002843",
+    "clusterBkg": "#FAFCF4",
+    "clusterBorder": "#A6C307"
+  }
+}}%%
+flowchart LR
+    subgraph Bank["Bank app — customer journey"]
+        direction LR
+        B1[Open bank app] --> B2[Manage cards]
+        B2 --> B3[Save card with merchant]
+        B3 --> B4[Select merchants]
+        B4 --> B5[Provide consent]
+    end
+
+    B5 --> V{Phone number verified?}
+
+    subgraph PayU["PayU — token provisioning"]
+        direction LR
+        P1[Provision card token via networks] --> P2{Provisioning complete?}
+    end
+
+    V -->|No| F([Finished])
+    V -->|Yes| P1
+
+    P2 -->|No| O1[Show failure]
+    P2 -->|Yes| O2[Show success]
+
+    O1 --> F
+    O2 --> F
+
+    classDef bank fill:#A6C307,stroke:#002843,color:#002843,stroke-width:2px
+    classDef payu fill:#002843,stroke:#002843,color:#FFFFFF,stroke-width:2px
+    classDef decision fill:#F4F9E0,stroke:#002843,color:#002843,stroke-width:2px
+    classDef endNode fill:#002843,stroke:#002843,color:#FFFFFF,stroke-width:2px
+    classDef outcome fill:#E8F0C4,stroke:#8AA205,color:#002843,stroke-width:2px
+
+    class B1,B2,B3,B4,B5 bank
+    class P1 payu
+    class V,P2 decision
+    class O1,O2 outcome
+    class F endNode
+
 ```
 
 ## Benefits
