@@ -34,58 +34,67 @@ PayU provides both network tokens and issuer tokens for its merchants for push 
   "flowchart": {
     "htmlLabels": true,
     "curve": "basis",
-    "padding": 24,
-    "nodeSpacing": 35,
-    "rankSpacing": 80
+    "padding": 28,
+    "nodeSpacing": 55,
+    "rankSpacing": 65,
+    "diagramPadding": 20
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
-    "fontSize": "16px",
+    "fontSize": "20px",
     "background": "#FFFFFF",
     "primaryColor": "#A6C307",
     "primaryTextColor": "#002843",
     "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
     "lineColor": "#002843",
+    "textColor": "#002843",
     "clusterBkg": "#FAFCF4",
-    "clusterBorder": "#A6C307"
+    "clusterBorder": "#D8E8A8",
+    "edgeLabelBackground": "#FFFFFF"
   }
 }}%%
-flowchart LR
-    subgraph Bank["Bank app — customer journey"]
+flowchart TB
+    subgraph R1[" "]
         direction LR
-        B1[Open bank app] --> B2[Manage cards]
-        B2 --> B3[Save card with merchant]
-        B3 --> B4[Select merchants]
-        B4 --> B5[Provide consent]
+        A[Customer opens bank app] --> B[Manage cards] --> C[Save card with merchant] --> D[Select merchants]
     end
 
-    B5 --> V{Phone number verified?}
-
-    subgraph PayU["PayU — token provisioning"]
+    subgraph R2[" "]
         direction LR
-        P1[Provision card token via networks] --> P2{Provisioning complete?}
+        E[Provide consent] --> F{Phone number verified?} --> G[PayU provisions card token] --> H{Provisioning complete?}
     end
 
-    V -->|No| F([Finished])
-    V -->|Yes| P1
+    subgraph R3[" "]
+        direction LR
+        I[Show failure message]
+        J[Show success message]
+    end
 
-    P2 -->|No| O1[Show failure]
-    P2 -->|Yes| O2[Show success]
+    subgraph R4[" "]
+        direction LR
+        Done([Finished])
+    end
 
-    O1 --> F
-    O2 --> F
+    D --> E
+    F -->|Yes| G
+    F -->|No| Done
+    H -->|No| I
+    H -->|Yes| J
+    I --> Done
+    J --> Done
 
-    classDef bank fill:#A6C307,stroke:#002843,color:#002843,stroke-width:2px
-    classDef payu fill:#002843,stroke:#002843,color:#FFFFFF,stroke-width:2px
+    classDef bankStep fill:#A6C307,stroke:#002843,color:#002843,stroke-width:2px
+    classDef payuStep fill:#002843,stroke:#002843,color:#FFFFFF,stroke-width:2px
     classDef decision fill:#F4F9E0,stroke:#002843,color:#002843,stroke-width:2px
-    classDef endNode fill:#002843,stroke:#002843,color:#FFFFFF,stroke-width:2px
     classDef outcome fill:#E8F0C4,stroke:#8AA205,color:#002843,stroke-width:2px
+    classDef endNode fill:#002843,stroke:#002843,color:#FFFFFF,stroke-width:2px
 
-    class B1,B2,B3,B4,B5 bank
-    class P1 payu
-    class V,P2 decision
-    class O1,O2 outcome
-    class F endNode
+    class A,B,C,D,E bankStep
+    class G payuStep
+    class F,H decision
+    class I,J outcome
+    class Done endNode
 
 ```
 
