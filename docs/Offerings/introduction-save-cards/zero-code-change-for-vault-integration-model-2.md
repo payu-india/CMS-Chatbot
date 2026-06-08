@@ -35,9 +35,9 @@ To create the token, only minor code changes is required in your implementation.
 %%{init: {
   "theme": "base",
   "sequence": {
-    "fontSize": 20,
-    "actorFontSize": 20,
-    "noteFontSize": 18,
+    "fontSize": 25,
+    "actorFontSize": 25,
+    "noteFontSize": 23,
     "diagramMarginX": 60,
     "diagramMarginY": 20,
     "boxMargin": 12,
