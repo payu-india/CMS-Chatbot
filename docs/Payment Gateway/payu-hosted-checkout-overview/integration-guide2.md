@@ -1076,9 +1076,13 @@ Refer to the <a href="https://docs.payu.in/docs/payu-payment-page-customization"
 ### Errors
 
 <Accordion title="Errors and Recommended Fix" icon="fa-screwdriver-wrench">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+Given below is a list of errors you may get while integrating with the PayU hosted checkout.
+
+| **Error** | **Cause** | **Recommended Fix** |
+| --------- | --------- | ------------------- |
+|           |           |                     |
+|           |           |                     |
+
 </Accordion>
 
 <br />
