@@ -356,12 +356,12 @@ You can validate your customer's Virtual Payment Address (VPA) using the <Anchor
                                                                                                     </tr>
                                                                                                     <tr>
                                                                                                       <td>furl <code>mandatory</code></td>
-                                                                                                      <td><code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.</td>
+                                                                                                      <td><code>String</code> The failure URL, which is the page PayU will redirect to if the transaction is failure.</td>
                                                                                                       <td>https://example.com/success</td>
                                                                                                     </tr>
                                                                                                     <tr>
                                                                                                       <td>surl <code>mandatory</code></td>
-                                                                                                      <td><code>String</code> The Failure URL, which is the page PayU will redirect to if the transaction is failed.</td>
+                                                                                                      <td><code>String</code> The success URL, which is the page PayU will redirect to if the transaction is success.</td>
                                                                                                       <td>https://example.com/failure</td>
                                                                                                     </tr>
                                                                                                     <tr>
