@@ -1,4 +1,4 @@
 ---
 title: Merchant Hosted — Core
-hidden: false
+hidden: true
 ---
