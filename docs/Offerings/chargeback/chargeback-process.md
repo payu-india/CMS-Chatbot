@@ -44,16 +44,16 @@ flowchart TB
     classDef payu fill:#A6C307,stroke:#002843,stroke-width:1px,color:#002843,font-size:11px
     classDef merch fill:#E8F0C4,stroke:#002843,stroke-width:1px,color:#002843,font-size:11px
 
-    b_send(["Acquiring bank / network<br/>Sends chargeback notification"]):::bank
-    p_recv["PayU receives chargeback<br/>notification from bank"]:::payu
-    p_notify["PayU notifies merchants"]:::payu
-    m_decide{"Merchant: accept or contest?"}:::merch
-    m_accept["Merchant accepts<br/>Chargeback processed"]:::merch
-    m_docs["Merchant submits<br/>defense documents"]:::merch
-    p_verify["PayU verifies documents<br/>and shares with acquiring bank"]:::payu
-    b_eval["Bank / network evaluation"]:::bank
-    b_upheld(["Chargeback upheld<br/>(merchant loses)"]):::bank
-    b_rev(["Chargeback reversed<br/>(merchant wins)"]):::bank
+    b_send(["Acquiring bank /<br/>network<br/>Sends chargeback notification"]):::bank
+    p_recv["PayU receives<br/>chargeback notification<br/>from bank"]:::payu
+    p_notify["PayU notifies<br/>merchants"]:::payu
+    m_decide{"Merchant:<br/>accept or contest?"}:::merch
+    m_accept["Merchant accepts<br/>Chargeback<br/>processed"]:::merch
+    m_docs["Merchant submits<br/>defense<br/>documents"]:::merch
+    p_verify["PayU verifies documents<br/>and shares with<br/>acquiring bank"]:::payu
+    b_eval["Bank / network<br/>evaluation"]:::bank
+    b_upheld(["Chargeback upheld<br/>(merchant<br/>loses)"]):::bank
+    b_rev(["Chargeback reversed<br/>(merchant<br/>wins)"]):::bank
 
     b_send --> p_recv
     p_recv --> p_notify
