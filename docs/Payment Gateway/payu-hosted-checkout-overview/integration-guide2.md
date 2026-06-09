@@ -1391,7 +1391,10 @@ Upon verifying  the payment, we recommend you to verify the payment status using
 
 <Tabs>
   <Tab title="Verify from Dashboard">
-    Welcome to the content that you can only see inside the first Tab.
+    To verify the payment from the PayU Dashboard:
+    1. Log in to the PayU Dashboard and click **Transactions** from the left menu.
+    2. Check if a **Payu ID (Transaction ID)** has been generated and note the status. In case of a successful payment, the status is marked as **Success**.
+
   </Tab>
 
   <Tab title="Second Tab">
