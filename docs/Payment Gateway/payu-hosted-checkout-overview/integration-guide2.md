@@ -1361,6 +1361,14 @@ Refer to the Errors section for the parameters and description.
 
 You should verify the response received for the authenticity by creating a hash using the reverse hashing logic. Below is how the reverse hashing works.
 
+> ✅ **Verification Checklist**
+>
+> - [x] Verify every transaction response.
+> - [x] Reject mismatched hashes.
+> - [x] Log verification failures.
+>
+>
+
 
 <Image src="https://files.readme.io/7acf9d72438a6a00b637ef4c70c13b8a4871c3aa6055d7c985bbef5f980fa502-reverse_hashing_flow.png" align="center" caption="_Reverse Hashing Flow_" border={true} framed={true} />
 
@@ -1374,4 +1382,4 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 * You should compare the hash value you got from the above logic with the hash value you received in the response. The payment is verified if the hash values match and update the order state.
 </Accordion>
 
-<br />
+You can use the <Anchor target="_blank" href="https://payu-hashverificationtool.onrender.com/">PayU's Hash Verification System</Anchor> to generate a hash (reverse hash) for payment verification.
