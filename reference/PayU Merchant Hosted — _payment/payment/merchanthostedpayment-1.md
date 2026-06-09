@@ -18,7 +18,7 @@ To process payments with credit/debit card, UPI, wallet, etc. on your website us
 ## Sample Request
 <Tabs>
   <Tab title="Net banking">
-```bash
+```curl
 curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
   -H "Content-Type: application/x-www-form-urlencoded" \
@@ -44,7 +44,6 @@ const requestOptions = { method: 'POST',
   body: formData };
 fetch(url, requestOptions).then(r => r.text()).then(console.log).catch(console.error);
 ```
-
 ```python
 import urllib.request
 import urllib.parse
@@ -155,7 +154,7 @@ System.Console.WriteLine(((int)resp.StatusCode) + " " + txt);
 
   </Tab>
   <Tab title="Cards">
-```bash
+```curl
 curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
   -H "Content-Type: application/x-www-form-urlencoded" \
@@ -311,7 +310,7 @@ System.Console.WriteLine(((int)resp.StatusCode) + " " + txt);
 
   </Tab>
   <Tab title="UPI">
-```bash
+```curl
 curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
   -H "Content-Type: application/x-www-form-urlencoded" \
@@ -451,7 +450,7 @@ System.Console.WriteLine(((int)resp.StatusCode) + " " + txt);
 
   </Tab>
   <Tab title="Wallets">
-```bash
+```curl
 curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
   -H "Content-Type: application/x-www-form-urlencoded" \
