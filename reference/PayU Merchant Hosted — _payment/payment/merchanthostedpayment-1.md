@@ -96,8 +96,6 @@ mihpayid=403993715524046125&mode=NB&status=success&unmappedstatus=captured&key=J
 
   <Tab title="Cards">
 
-Source: [`_payment_merchant_hosted_cards.md`](./_payment_merchant_hosted_cards.md) — “Sample response” → **Normal transaction** (query string). A **parsed JSON** example is on the same page.
-
 ```plaintext
 mihpayid=403993715531077182&mode=CC&status=success&unmappedstatus=captured&key=JPM7Fg&txnid=ypl938459435dfdfdf&amount=1000.00&cardCategory=domestic&discount=0.00&net_amount_debit=1000&addedon=2024-02-27+15%3A11%3A37&productinfo=iPhone&firstname=Ashish+User&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=ashish%40gmail.com&phone=9876543210&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=afeab9dcf4e43d47f8fbf5a6838d393c70694a58e30ada08e6cb86ac943236c05717c5f5e4872d671fe81d0d9b2d9facd44e9a061ba621aff6f20c4343ea5dfa&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=7f0d5ada-59bb-41d7-9e41-20a6af2406c9&bankcode=CC&error=E000&error_Message=No+Error&name_on_card=test&cardnum=411111XXXXXX1111&cardhash=This+field+is+no+longer+supported+in+postback+params.
 ```
@@ -105,8 +103,7 @@ mihpayid=403993715531077182&mode=CC&status=success&unmappedstatus=captured&key=J
   </Tab>
 
   <Tab title="UPI">
-
-[`_payment_merchant_hosted_upi.md`](./_payment_merchant_hosted_upi.md) does **not** include a sample response. Below is an **illustrative** success query string in the same shape as other `_payment` redirects (`mode=UPI`, `bankcode=UPI`, `PG_TYPE=UPI-PG`). Replace values with your live postback and **verify `hash`**.
+The following is an **illustrative** success query string in the same shape as other `_payment` redirects (`mode=UPI`, `bankcode=UPI`, `PG_TYPE=UPI-PG`). Replace values with your live postback and **verify `hash`**.
 
 ```plaintext
 mihpayid=403993715530000001&mode=UPI&status=success&unmappedstatus=captured&key=JP***g&txnid=xdB9G7qYpfqszo&amount=10.00&discount=0.00&net_amount_debit=10&addedon=2024-06-09+12%3A00%3A00&productinfo=iPhone&firstname=PayU+User&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40gmail.com&phone=9876543210&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=REPLACE_WITH_VERIFIED_RESPONSE_HASH&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=UPI-PG&bank_ref_num=00000000-0000-0000-0000-000000000000&bankcode=UPI&error=E000&error_Message=No+Error
@@ -116,8 +113,6 @@ mihpayid=403993715530000001&mode=UPI&status=success&unmappedstatus=captured&key=
 
   <Tab title="Wallets">
 
-Source: [`_payment_merchant_hosted_wallets.md`](./_payment_merchant_hosted_wallets.md) — “Sample response” accordion, expressed as the **redirect query string** (same field values as the doc’s PHP sample).
-
 ```plaintext
 mihpayid=403993715527518775&mode=CASH&status=success&unmappedstatus=captured&key=J*****g&txnid=HC13glcAkssIkl&amount=10.00&discount=0.00&net_amount_debit=10&addedon=2022-10-21+17%3A45%3A24&productinfo=iPhone&firstname=Ashish&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40gmail.com&phone=9876543210&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=007435a716982c7f5eec5cff95701f65eb1bdbff8f852e461224e3b5e17126ad26bb3a3ffdb95cded6a87d3515fe86fc58925cad024595a4a6825adfed2dc436&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=CASH-PG&bank_ref_num=540898ed-72e7-40a8-a96e-f17de621cbb4&bankcode=CASH&error=E000&error_Message=No+Error&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
 ```
@@ -126,8 +121,6 @@ mihpayid=403993715527518775&mode=CASH&status=success&unmappedstatus=captured&key
 
   <Tab title="EMI">
 
-Source: [`_payment_merchant_hosted_emi.md`](./_payment_merchant_hosted_emi.md) — “Sample response” accordion, expressed as the **redirect query string** (same field values as the doc’s PHP sample; **`mode=EMI`** added for consistency with other modes).
-
 ```plaintext
 mihpayid=403993715523602563&mode=EMI&status=success&unmappedstatus=captured&key=JP***g&txnid=v2tWbbdUOuacK9&amount=20000.00&discount=0.00&net_amount_debit=20000.00&addedon=2021-07-27+11%3A14%3A44&productinfo=iPhone&firstname=Ashish&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40gmail.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=10f8ead10cdf5f9b7bf9046987de046d63d62d6679dded9d5da8145f459066943570eec4aa184494ae77f99a8bcd55452af3c4eff0d7a7d3ba809c97b7c73045&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=EMI-PG&bank_ref_num=3d7cc4a4-00c8-4705-a0e7-5708d2c2bb75&bankcode=EMIA3&error=E000&error_Message=No+Error&name_on_card=payu&cardnum=512345XXXXXX2346
 ```
@@ -135,8 +128,6 @@ mihpayid=403993715523602563&mode=EMI&status=success&unmappedstatus=captured&key=
   </Tab>
 
   <Tab title="BNPL">
-
-Source: [`_payment_merchant_hosted_bnpl.md`](./_payment_merchant_hosted_bnpl.md) — “Sample Response” accordion; the doc excerpt is short, so the line below completes the usual **redirect query-string** shape to match Cards/UPI (**`hash`** placeholder where the doc omits it).
 
 ```plaintext
 mihpayid=403993715523409521&mode=BNPL&status=success&unmappedstatus=captured&key=J****g&txnid=5jJ9xYceXX1ydT&amount=1000.00&discount=0.00&net_amount_debit=1000&addedon=2021-07-02+15%3A03%3A50&productinfo=iPhone&firstname=PayU+User&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=&phone=&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=REPLACE_WITH_VERIFIED_RESPONSE_HASH&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=BNPL-PG&bank_ref_num=&bankcode=LAZYPAY&error=E000&error_Message=No+Error
