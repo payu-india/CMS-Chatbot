@@ -21,7 +21,7 @@ The following flow diagram illustrate the PayU Chargeback flow.
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
-    "fontSize": "14px",
+    "fontSize": "11px",
     "background": "#FFFFFF",
     "primaryColor": "#A6C307",
     "primaryTextColor": "#002843",
@@ -40,9 +40,9 @@ The following flow diagram illustrate the PayU Chargeback flow.
   }
 }}%%
 flowchart TB
-    classDef bank fill:#F4F9E0,stroke:#002843,stroke-width:1px,color:#002843,font-size:14px
-    classDef payu fill:#A6C307,stroke:#002843,stroke-width:1px,color:#002843,font-size:14px
-    classDef merch fill:#E8F0C4,stroke:#002843,stroke-width:1px,color:#002843,font-size:14px
+    classDef bank fill:#F4F9E0,stroke:#002843,stroke-width:1px,color:#002843,font-size:11px
+    classDef payu fill:#A6C307,stroke:#002843,stroke-width:1px,color:#002843,font-size:11px
+    classDef merch fill:#E8F0C4,stroke:#002843,stroke-width:1px,color:#002843,font-size:11px
 
     b_send(["Acquiring bank / network<br/>Sends chargeback notification"]):::bank
     p_recv["PayU receives chargeback<br/>notification from bank"]:::payu
