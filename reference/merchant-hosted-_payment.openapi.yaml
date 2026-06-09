@@ -1,0 +1,375 @@
+openapi: 3.1.0
+info:
+  title: PayU Merchant Hosted — _payment (cards + transaction biller name)
+  version: 1.0.0
+  x-derivedFrom: >-
+    reference/Collect
+    Payment/_payment_merchant_hosted/_payment_merchant_hosted_cards-with-transaction-biller-name.md
+  description: >
+    OpenAPI **3.1** for PayU merchant-hosted **`POST /_payment`** — request
+    parameters, descriptions, and examples
+
+    aligned with PayU **Cards with Transaction Biller Name** (`txnBillerName`
+    inside `additional_info`).
+
+
+    Hash generation (including **api_version=19** string) and response
+    verification are covered in
+
+    [PayU merchant-hosted
+    documentation](https://docs.payu.in/docs/custom-checkout-merchant-hosted).
+
+    For card **bankcode** values, use PayU’s card-type and BIN references in the
+    same documentation set.
+servers:
+  - url: https://test.payu.in
+    description: Sandbox
+  - url: https://secure.payu.in
+    description: Production
+paths:
+  /_payment:
+    post:
+      operationId: merchantHostedPaymentCardsWithBillerName
+      summary: Initiate card payment (`_payment`) with optional transaction biller name
+      description: >
+        `application/x-www-form-urlencoded` POST to **`/_payment`**.
+
+
+        For **cards**, post **`pg`** as **CC** (credit) or **DC** (debit) and a
+        card **bankcode** per PayU’s
+
+        card-type codes. Optionally send **`additional_info`** as JSON
+        containing **`txnBillerName`**
+
+        (sub-merchant / transaction biller label).
+
+
+        Build **`hash`** on your server per PayU rules (classic
+        registration-style hash uses
+
+        `key|txnid|amount|productinfo|firstname|email|udf1|…|udf5|||si_details|SALT`
+        where applicable;
+
+        for **api_version=19** use the extended pipe string including `phone`
+        and other fields as in PayU docs).
+      tags:
+        - Payment
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MerchantHostedCardPaymentForm'
+            examples:
+              cardCcWithTxnBillerName:
+                summary: >-
+                  CC + bankcode CC + additional_info.txnBillerName (from PayU
+                  sample pattern)
+                value:
+                  key: JP***g
+                  firstname: Ashsih
+                  email: test@example.com
+                  amount: '1'
+                  phone: 7988XX5823
+                  productinfo: Product_info
+                  surl: https://admin.payu.in/test_response
+                  furl: https://admin.payu.in/test_response
+                  pg: CC
+                  bankcode: CC
+                  ccnum: XXXXXXXXXXXX9500
+                  ccname: Test User
+                  ccvv: XXX
+                  ccexpmon: XX
+                  ccexpyr: XXXX
+                  txnid: fd3e847h2
+                  hash: >-
+                    091dae1bfe27bbad238fcecc88718dd68c92de25098c4ef5f72a17645f37a3a9e55df2e9a31e9c75ecfd145d3157cbd874937b0fe84e4f65233b2fb3cfb9684e
+                  txn_s2s_flow: '1'
+                  additional_info: '{"txnBillerName":"Airtel Recharge Payment"}'
+            encoding:
+              key:
+                style: form
+              txnid:
+                style: form
+              amount:
+                style: form
+              productinfo:
+                style: form
+              firstname:
+                style: form
+              email:
+                style: form
+              phone:
+                style: form
+              pg:
+                style: form
+              bankcode:
+                style: form
+              surl:
+                style: form
+              furl:
+                style: form
+              hash:
+                style: form
+              udf1:
+                style: form
+              udf2:
+                style: form
+              udf3:
+                style: form
+              udf4:
+                style: form
+              udf5:
+                style: form
+              ccnum:
+                style: form
+              ccvv:
+                style: form
+              ccexpmon:
+                style: form
+              ccexpyr:
+                style: form
+              ccname:
+                style: form
+              additional_info:
+                style: form
+              txn_s2s_flow:
+                style: form
+              api_version:
+                style: form
+      responses:
+        '200':
+          description: >
+            May return HTML or a **query-string style** body (e.g.
+            `mihpayid=…&status=success&…`) depending on integration.
+
+            Verify **`hash`** on return using PayU’s post-response hash rules.
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                successQueryString:
+                  summary: Example success postback (truncated; from PayU docs)
+                  value: >-
+                    mihpayid=403993715531077182&mode=CC&status=success&unmappedstatus=captured&key=JPM7Fg&txnid=ypl938459435dfdfdf&amount=1000.00&cardCategory=domestic&error=E000&error_Message=No+Error&bankcode=CC
+            text/html:
+              schema:
+                type: string
+        '302':
+          description: >-
+            Redirect to issuer / ACS or merchant **surl** / **furl** (browser
+            flow).
+components:
+  schemas:
+    PaymentGatewayCard:
+      type: string
+      description: >
+        Payment method for card rails. If omitted, PayU treats **`pg`** as
+        **CC** by default.
+
+
+        * **DC** — Debit card  
+
+        * **CC** — Credit card  
+      enum:
+        - CC
+        - DC
+      default: CC
+    AdditionalInfoTxnBiller:
+      type: object
+      description: >-
+        JSON object carried in the **`additional_info`** form field (serialized
+        as a JSON string in the POST body).
+      properties:
+        txnBillerName:
+          type: string
+          description: Sub-merchant or transaction biller name for the card transaction.
+          example: Airtel Recharge Payment
+    MerchantHostedCardPaymentForm:
+      type: object
+      additionalProperties: true
+      description: >
+        Card `_payment` request fields per **Cards with Transaction Biller
+        Name**.  
+
+        **Mandatory** fields match PayU’s table for this flow; optional fields
+        may be omitted when unused.
+
+
+        **Note:** In some PayU tables, **`ccvv`** appears next to wording that
+        describes name-on-card; the CVV is still sent in **`ccvv`**, and the
+        cardholder name belongs in **`ccname`** (see sample request in PayU
+        docs).
+      required:
+        - key
+        - txnid
+        - amount
+        - productinfo
+        - firstname
+        - email
+        - phone
+        - surl
+        - furl
+        - hash
+        - pg
+        - bankcode
+        - ccnum
+        - ccvv
+        - ccexpmon
+        - ccexpyr
+        - ccname
+      properties:
+        key:
+          type: string
+          description: Unique merchant key issued by PayU for your account (`varchar`).
+          example: Your Test Key
+        txnid:
+          type: string
+          maxLength: 25
+          description: >
+            Transaction ID (order id) generated at your end; used to track the
+            order.
+
+            Must be **unique** for each new attempt — reusing an id that already
+            succeeded returns a duplicate order id error.
+          example: fd3e847h2
+        amount:
+          type: string
+          description: >
+            Payment amount for the transaction (post as a decimal string; treat
+            numerically as float at integration time).
+
+
+            * May be **0 INR** for some net-banking penny flows or **≥ 1 INR**
+            for cards and UPI in penny use cases (per PayU).
+
+            * First-instalment behaviour applies only to selected flows (see
+            PayU full docs).
+          example: '1000'
+        productinfo:
+          type: string
+          maxLength: 100
+          description: Brief product description (`varchar`, max 100 characters).
+          example: Time Magazine Subscription
+        firstname:
+          type: string
+          maxLength: 60
+          description: Customer first name (`varchar`, max 60 characters).
+          example: Ashish
+        email:
+          type: string
+          maxLength: 50
+          description: >
+            Customer email (`varchar`, max 50). Use a valid value — used in
+            fraud/chargeback context and some issuer MIS.
+          example: Ashish@test.com
+        phone:
+          type: string
+          maxLength: 50
+          description: >
+            Customer phone (`varchar`, max 50). Use a valid value — used in
+            fraud/chargeback context and some issuer MIS.
+          example: '9843176540'
+        surl:
+          type: string
+          format: uri
+          description: Success URL — PayU redirects here when the transaction succeeds.
+          example: https://admin.payu.in/test_response
+        furl:
+          type: string
+          format: uri
+          description: Failure URL — PayU redirects here when the transaction fails.
+          example: https://admin.payu.in/test_response
+        hash:
+          type: string
+          description: >
+            SHA512 hash so request data is not tampered between your site and
+            PayU.
+
+
+            Classic-style formula (when applicable):  
+
+            `SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||si_details|SALT)`.
+
+
+            For **`api_version=19`**, use PayU’s extended pipe sequence
+            including `udf6`…`udf10`, `user_token`, `offer_key`,
+
+            `offer_auto_apply`, `cart_details`, `extra_charges`, and **`phone`**
+            as documented for `_payment` v19.
+        pg:
+          $ref: '#/components/schemas/PaymentGatewayCard'
+        bankcode:
+          type: string
+          description: >
+            PayU’s unique code for the payment option. For cards, choose the
+            code for the desired card network/type
+
+            (see PayU **Card number formats** and **Card type codes and
+            supported banks** in the same documentation set).
+          example: CC
+        udf1:
+          type: string
+          maxLength: 255
+          description: Optional user-defined field 1 (`varchar`, max 255).
+        udf2:
+          type: string
+          maxLength: 255
+          description: Optional user-defined field 2 (`varchar`, max 255).
+        udf3:
+          type: string
+          maxLength: 255
+          description: Optional user-defined field 3 (`varchar`, max 255).
+        udf4:
+          type: string
+          maxLength: 255
+          description: Optional user-defined field 4 (`varchar`, max 255).
+        udf5:
+          type: string
+          maxLength: 255
+          description: Optional user-defined field 5 (`varchar`, max 255).
+        ccnum:
+          type: string
+          description: >
+            Card number: typically **13–19** digits (15 for AMEX, 13–19 for
+            Maestro). Validate with **Luhn** and show an error for invalid
+            input.
+        ccvv:
+          type: string
+          description: >-
+            Card security code (CVV) as entered by the customer — not the name
+            on card (use **`ccname`**).
+        ccexpmon:
+          type: string
+          description: >
+            Expiry **month** as **two digits** (`MM`). For months 1–9 use
+            `01`…`09`; for 10–12 use `10`, `11`, `12`.
+          example: '05'
+        ccexpyr:
+          type: string
+          description: Expiry **year** as **four digits** as entered by the customer.
+          example: '2026'
+        ccname:
+          type: string
+          description: Name on card as entered by the customer.
+          example: Test User
+        additional_info:
+          type: string
+          description: >
+            Optional JSON string with extra transaction metadata. For
+            transaction biller name, include **`txnBillerName`**
+
+            (see component **AdditionalInfoTxnBiller** for the parsed shape).
+          example: '{"txnBillerName":"Airtel Recharge Payment"}'
+        txn_s2s_flow:
+          type: string
+          description: >-
+            Optional flow flag as in PayU samples (e.g. server-to-server
+            oriented flows).
+          example: '1'
+        api_version:
+          type: string
+          description: >-
+            When using **19**, follow PayU’s v19 hash sequence for `_payment`
+            including `phone` and related fields.
