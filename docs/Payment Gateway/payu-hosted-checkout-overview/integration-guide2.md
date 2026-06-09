@@ -1352,7 +1352,7 @@ error=E227
 error_Message=Transaction is Pending
 splitInfo={"splitStatus":"","splitSegments":[]}
 ```
-
+Refer to the Errors section for the parameters and description.
 
 
 </Accordion>
