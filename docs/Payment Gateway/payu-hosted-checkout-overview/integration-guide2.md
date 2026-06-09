@@ -1387,4 +1387,20 @@ You can use the <Anchor target="_blank" href="https://payu-hashverificationtool.
 
 ### Step 1.5 Verify the Payment
 
+Upon verifying  the payment, we recommend you to verify the payment status using any of the following ways:
+
+<Tabs>
+  <Tab title="Verify from Dashboard">
+    Welcome to the content that you can only see inside the first Tab.
+  </Tab>
+
+  <Tab title="Second Tab">
+    Here's content that's only inside the second Tab.
+  </Tab>
+
+  <Tab title="Third Tab">
+    Here's content that's only inside the third Tab.
+  </Tab>
+</Tabs>
+
 <br />
