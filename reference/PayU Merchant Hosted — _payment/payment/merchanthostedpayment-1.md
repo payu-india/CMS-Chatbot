@@ -1290,3 +1290,4 @@ mihpayid=403993715523409521&mode=BNPL&status=success&unmappedstatus=captured&key
 
   </Tab>
 </Tabs>
+## Request Parameters
