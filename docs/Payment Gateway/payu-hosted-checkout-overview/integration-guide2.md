@@ -54,7 +54,14 @@ Go through the prerequisites before you proceed with the integration.
 
 ## 1. Build Integration
 
-Perform the following steps to build your integration:
+Below are the integration steps:
+
+1. Prepare payment request parameters
+2. Generate Secure Hash
+3. Create a Payment Request
+   1. Customize PayU Payment Page _(Optional)_
+4. Verify Response via Reverse Hashing
+5. Verify the Payment
 
 ### Step 1.1 Prepare Payment Request Parameters
 
@@ -829,7 +836,7 @@ Now that you have created the hash value combine the below into a request that w
 
 </Accordion>
 
-#### Step 1.3.1 Customize PayU Payment Page
+#### Step 1.3.1 Customize PayU Payment Page _(Optional)_
 
 <Accordion title="Customize Checkout" icon="fa-gear">
 You can customize the following in the Checkout page:<br/>
