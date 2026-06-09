@@ -1,24 +1,392 @@
 {
-  "openapi": "3.0.0",
+  "openapi": "3.1.0",
   "info": {
-    "title": "Merchant Hosted Checkout",
-    "description": "PayU’s Merchant Hosted Checkout allows you to create a custom payment experience on your website while leveraging PayU’s secure payment processing infrastructure. This approach gives you greater control over the look and feel of your checkout flow, while still benefiting from PayU’s robust security and compliance features. With merchant hosted checkout, you collect the payment details on your website and then securely transmit them to PayU for processing.\n\nMerchant Hosted Checkout supports a wide range of payment methods:\n\n1. Net Banking Integration\n    \n2. Cards Integration\n    \n3. EMI Integration\n    \n4. UPI Integration\n    \n5. Wallets Integration\n    \n6. BNPL Integration\n    \n\n### 📖 Documentation\n\nComplete integration guide: [https://docs.payu.in/docs/custom-checkout-merchant-hosted](https://docs.payu.in/docs/custom-checkout-merchant-hosted)\n\n### 🚀 How to Use\n\nAPI-wise explanations and host configurations are provided in the documentation section alongside each API documentation.\n\n### 🔑 Authentication Setup\n\n#### Step 1: Obtain Merchant Key and Salt\n\nThese credentials are essential for authentication and **must be kept secure**.\n\n**Production Environment:**\n\n- Download from: [Generate Merchant Key and Salt on PayU Dashboard](https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard)\n    \n\n**Sandbox Environment:**\n\n- Download from: [Generate Test Merchant Key and Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt)\n    \n\n#### Step 2: Configure Collection Variables\n\n1. Navigate to the collection variables tab\n    \n2. Update the following variables with your credentials:\n    \n    - `key` - Your PayU Merchant Key\n        \n    - `salt` - Your PayU Merchant Salt\n        \n\n#### ⚠️ Important Notes\n\n- Ensure you use the correct key and salt for your target environment\n    \n- **Sandbox credentials** for testing and development\n    \n- **Production credentials** for live transactions only\n    \n- Never expose these credentials in client-side code or public repositories\n    \n\n### 🛠️ Environment Configuration\n\nMake sure to select the appropriate environment (Sandbox/Production) before running any requests to ensure you're using the correct endpoints and credentials.\n\n---\n\n**Merged (Jun 2026):** Duplicate `_payment` and `verify_payment` requests are consolidated. Use collection variable **`pg`** (documented enum) with matching **`bankcode`** and optional fields for cards/UPI.",
-    "version": "1.0.0"
+    "title": "PayU Merchant Hosted — _payment",
+    "version": "1.0.0",
+    "x-derivedFrom": [
+      "API Collection/Merchant Hosted Checkout.postman_collection_9th_June.json"
+    ],
+    "description": "OpenAPI **3.1** for PayU merchant-hosted **`POST /_payment`**.\n\nThe **`pg`** enum matches the payment rails reflected from the **Merchant Hosted Checkout** Postman collection\n(cards, EMI, UPI, BNPL, net banking as **NB**, and the collection’s wallet sample which used **`pg=UPI`**).\nUse **`bankcode`** and checkout APIs per your PayU **Key Account Manager (KAM)** for wallet-specific codes.\n\nHash rules and response verification: [merchant-hosted checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted).\n"
   },
   "servers": [
     {
-      "url": "https://test.payu.in"
-    }
-  ],
-  "tags": [
-    {
-      "name": "Merchant Hosted — Core",
-      "description": "One `_payment` initiate flow with **`pg`** as the payment-method selector (via collection variables). One verify call."
+      "url": "https://test.payu.in",
+      "description": "Sandbox"
     },
     {
-      "name": "Supporting APIs",
-      "description": "BIN, net banking status, EMI/UPI/BNPL helpers, checkout details, etc."
+      "url": "https://secure.payu.in",
+      "description": "Production"
     }
   ],
-  "paths": {}
+  "paths": {
+    "/_payment": {
+      "post": {
+        "operationId": "merchantHostedPayment",
+        "summary": "Initiate payment (merchant-hosted `_payment`)",
+        "description": "`application/x-www-form-urlencoded` POST to **`/_payment`**.\n\nSet **`pg`** to the payment rail and **`bankcode`** to the PayU code for that instrument (see **`PaymentGateway`** enum and property descriptions).\n\n* **Cards** — include **`ccnum`**, **`ccexpmon`**, **`ccexpyr`**, **`ccvv`**, **`ccname`** when collecting card on your site (**`pg`** **CC** or **DC**).\n* **UPI** — include **`vpa`** when collecting UPI on your site (**`pg`** **UPI**, typically **`bankcode`** **UPI** per Postman sample).\n* **EMI / BNPL / net banking** — use EMI/BNPL/net-banking **`bankcode`** values from PayU docs, **`get_checkout_details`**, or your **KAM** (Postman-style examples: **EMIA3** + **EMI**, **LAZYPAY** + **BNPL**, **TESTPGNB** + **NB**).\n\nBuild **`hash`** on your server per PayU rules for the fields you post.\n",
+        "tags": [
+          "Payment"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/MerchantHostedPaymentForm"
+              },
+              "examples": {
+                "cardCcFromPostman": {
+                  "summary": "Cards — CC + bankcode CC (PayU-style sample)",
+                  "value": {
+                    "key": "JP***g",
+                    "firstname": "Ashsih",
+                    "email": "test@example.com",
+                    "amount": "1",
+                    "phone": "7988XX5823",
+                    "productinfo": "Product_info",
+                    "surl": "https://admin.payu.in/test_response",
+                    "furl": "https://admin.payu.in/test_response",
+                    "pg": "CC",
+                    "bankcode": "CC",
+                    "ccnum": "XXXXXXXXXXXX9500",
+                    "ccname": "Test User",
+                    "ccvv": "XXX",
+                    "ccexpmon": "XX",
+                    "ccexpyr": "XXXX",
+                    "txnid": "fd3e847h2",
+                    "hash": "091dae1bfe27bbad238fcecc88718dd68c92de25098c4ef5f72a17645f37a3a9e55df2e9a31e9c75ecfd145d3157cbd874937b0fe84e4f65233b2fb3cfb9684e"
+                  }
+                },
+                "upiFromPostman": {
+                  "summary": "UPI — pg and bankcode UPI + vpa (Postman collection pattern)",
+                  "value": {
+                    "key": "JP***g",
+                    "txnid": "xdB9G7qYpfqszo",
+                    "amount": "10",
+                    "firstname": "PayU User",
+                    "email": "test@gmail.com",
+                    "phone": "9876543210",
+                    "productinfo": "iPhone",
+                    "pg": "UPI",
+                    "bankcode": "UPI",
+                    "vpa": "success@payu",
+                    "surl": "https://apiplayground-response.herokuapp.com/",
+                    "furl": "https://apiplayground-response.herokuapp.com/",
+                    "hash": "REPLACE_WITH_SERVER_GENERATED_HASH"
+                  }
+                },
+                "netBankingFromPostman": {
+                  "summary": "Net Banking — NB + TESTPGNB (Postman collection pattern; pg expressed here as NB)",
+                  "value": {
+                    "key": "JP***g",
+                    "txnid": "ewP8oRopzdHEtC",
+                    "amount": "10.00",
+                    "firstname": "Ashish",
+                    "email": "test@gmail.com",
+                    "phone": "9876543210",
+                    "productinfo": "iPhone",
+                    "pg": "NB",
+                    "bankcode": "TESTPGNB",
+                    "surl": "https://apiplayground-response.herokuapp.com/",
+                    "furl": "https://apiplayground-response.herokuapp.com/",
+                    "hash": "REPLACE_WITH_SERVER_GENERATED_HASH"
+                  }
+                },
+                "emiFromPostman": {
+                  "summary": "EMI — pg EMI + bankcode EMIA3 + card fields (Postman collection pattern)",
+                  "value": {
+                    "key": "JP***g",
+                    "txnid": "H6mUfE0ccAY94j",
+                    "amount": "20000.00",
+                    "firstname": "Ashish",
+                    "email": "test@gmail.com",
+                    "phone": "9876543210",
+                    "productinfo": "iPhone",
+                    "pg": "EMI",
+                    "bankcode": "EMIA3",
+                    "surl": "https://apiplayground-response.herokuapp.com/",
+                    "furl": "https://apiplayground-response.herokuapp.com/",
+                    "ccnum": "5123456789012346",
+                    "ccexpmon": "05",
+                    "ccexpyr": "2022",
+                    "ccvv": "123",
+                    "ccname": "",
+                    "hash": "REPLACE_WITH_SERVER_GENERATED_HASH"
+                  }
+                },
+                "bnplFromPostman": {
+                  "summary": "BNPL — pg BNPL + bankcode LAZYPAY (Postman collection pattern)",
+                  "value": {
+                    "key": "J****g",
+                    "txnid": "5jJ9xYceXX1ydT",
+                    "amount": "1000.00",
+                    "firstname": "Ashish",
+                    "email": "test@gmail.com",
+                    "phone": "9876543210",
+                    "productinfo": "iPhone",
+                    "pg": "BNPL",
+                    "bankcode": "LAZYPAY",
+                    "surl": "https://apiplayground-response.herokuapp.com/",
+                    "furl": "https://apiplayground-response.herokuapp.com/",
+                    "hash": "REPLACE_WITH_SERVER_GENERATED_HASH"
+                  }
+                }
+              },
+              "encoding": {
+                "key": {
+                  "style": "form"
+                },
+                "txnid": {
+                  "style": "form"
+                },
+                "amount": {
+                  "style": "form"
+                },
+                "productinfo": {
+                  "style": "form"
+                },
+                "firstname": {
+                  "style": "form"
+                },
+                "email": {
+                  "style": "form"
+                },
+                "phone": {
+                  "style": "form"
+                },
+                "pg": {
+                  "style": "form"
+                },
+                "bankcode": {
+                  "style": "form"
+                },
+                "surl": {
+                  "style": "form"
+                },
+                "furl": {
+                  "style": "form"
+                },
+                "hash": {
+                  "style": "form"
+                },
+                "udf1": {
+                  "style": "form"
+                },
+                "udf2": {
+                  "style": "form"
+                },
+                "udf3": {
+                  "style": "form"
+                },
+                "udf4": {
+                  "style": "form"
+                },
+                "udf5": {
+                  "style": "form"
+                },
+                "ccnum": {
+                  "style": "form"
+                },
+                "ccvv": {
+                  "style": "form"
+                },
+                "ccexpmon": {
+                  "style": "form"
+                },
+                "ccexpyr": {
+                  "style": "form"
+                },
+                "ccname": {
+                  "style": "form"
+                },
+                "vpa": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "May return HTML or a **query-string style** body (e.g. `mihpayid=…&status=success&…`) depending on integration.\nVerify **`hash`** on return using PayU’s post-response hash rules.\n",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "successQueryString": {
+                    "summary": "Example success postback (truncated; from PayU card-flow docs)",
+                    "value": "mihpayid=403993715531077182&mode=CC&status=success&unmappedstatus=captured&key=JPM7Fg&txnid=ypl938459435dfdfdf&amount=1000.00&cardCategory=domestic&error=E000&error_Message=No+Error&bankcode=CC"
+                  }
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "302": {
+            "description": "Redirect to issuer / ACS / bank or merchant **surl** / **furl** (typical browser flow)."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PaymentGateway": {
+        "type": "string",
+        "description": "Payment gateway (**`pg`**) — closed enum matching the **Merchant Hosted Checkout** Postman collection’s `_payment` samples.\n\n| `pg` | Postman folder / use |\n|------|----------------------|\n| **CC** | Cards — credit card (**default** in PayU card docs if omitted) |\n| **DC** | Cards — debit card (same collection variables; use with debit **bankcode**) |\n| **EMI** | EMI — card instalment |\n| **UPI** | UPI (and the collection’s **Wallets** sample, which used **`pg=UPI`**) |\n| **BNPL** | BNPL (e.g. **LAZYPAY** **bankcode** in Postman) |\n| **NB** | Net Banking (**TESTPGNB** **bankcode** in Postman sandbox sample; production **bankcode** from **`getNetBankingStatus`** / PayU docs) |\n\nConfirm live **`pg`/`bankcode`** pairs with PayU docs or your **KAM**.\n",
+        "enum": [
+          "BNPL",
+          "CC",
+          "DC",
+          "EMI",
+          "NB",
+          "UPI"
+        ]
+      },
+      "MerchantHostedPaymentForm": {
+        "type": "object",
+        "additionalProperties": true,
+        "description": "Merchant-hosted **`_payment`** form. **Always required:** `key`, `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`, `furl`, `hash`, `pg`, `bankcode`.\n\n**Conditional (per `pg` / instrument):** send **`ccnum`**, **`ccexpmon`**, **`ccexpyr`**, **`ccvv`**, **`ccname`** for card and EMI card flows; send **`vpa`** for UPI.\n\n**Note:** Some PayU tables place name-on-card wording beside **`ccvv`**; CVV belongs in **`ccvv`**, cardholder name in **`ccname`**.\n",
+        "required": [
+          "key",
+          "txnid",
+          "amount",
+          "productinfo",
+          "firstname",
+          "email",
+          "phone",
+          "surl",
+          "furl",
+          "hash",
+          "pg",
+          "bankcode"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Unique merchant key issued by PayU for your account (`varchar`).",
+            "example": "Your Test Key"
+          },
+          "txnid": {
+            "type": "string",
+            "maxLength": 25,
+            "description": "Transaction ID (order id) generated at your end; used to track the order.\nMust be **unique** for each new attempt — reusing an id that already succeeded returns a duplicate order id error.\n",
+            "example": "fd3e847h2"
+          },
+          "amount": {
+            "type": "string",
+            "description": "Payment amount for the transaction (post as a decimal string; treat numerically as float at integration time).\n\n* May be **0 INR** for some net-banking penny flows or **≥ 1 INR** for cards and UPI in penny use cases (per PayU).\n* First-instalment behaviour applies only to selected flows (see PayU full docs).\n",
+            "example": "1000"
+          },
+          "productinfo": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "Brief product description (`varchar`, max 100 characters).",
+            "example": "Time Magazine Subscription"
+          },
+          "firstname": {
+            "type": "string",
+            "maxLength": 60,
+            "description": "Customer first name (`varchar`, max 60 characters).",
+            "example": "Ashish"
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Customer email (`varchar`, max 50). Use a valid value — used in fraud/chargeback context and some issuer MIS.\n",
+            "example": "Ashish@test.com"
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Customer phone (`varchar`, max 50). Use a valid value — used in fraud/chargeback context and some issuer MIS.\n",
+            "example": "9843176540"
+          },
+          "surl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Success URL — PayU redirects here when the transaction succeeds.",
+            "example": "https://admin.payu.in/test_response"
+          },
+          "furl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Failure URL — PayU redirects here when the transaction fails.",
+            "example": "https://admin.payu.in/test_response"
+          },
+          "hash": {
+            "type": "string",
+            "description": "SHA512 hash so request data is not tampered between your site and PayU.\n\nClassic-style formula (when applicable):  \n`SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||si_details|SALT)`.\n\nNewer `_payment` versions may require an extended pipe sequence (including **`phone`** and further fields) per PayU documentation.\n"
+          },
+          "pg": {
+            "$ref": "#/components/schemas/PaymentGateway"
+          },
+          "bankcode": {
+            "type": "string",
+            "description": "PayU code for the payment option. Must align with **`pg`** (Postman-style examples: **CC**+**CC**, **UPI**+**UPI**,\n**EMI**+**EMIA3**, **BNPL**+**LAZYPAY**, **NB**+**TESTPGNB**). Card network codes: see PayU **Card number formats**\nand **Card type codes and supported banks**. Wallet/BNPL codes may come from **`get_checkout_details`** or your **KAM**.\n",
+            "example": "CC"
+          },
+          "udf1": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "Optional user-defined field 1 (`varchar`, max 255)."
+          },
+          "udf2": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "Optional user-defined field 2 (`varchar`, max 255)."
+          },
+          "udf3": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "Optional user-defined field 3 (`varchar`, max 255)."
+          },
+          "udf4": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "Optional user-defined field 4 (`varchar`, max 255)."
+          },
+          "udf5": {
+            "type": "string",
+            "maxLength": 255,
+            "description": "Optional user-defined field 5 (`varchar`, max 255)."
+          },
+          "ccnum": {
+            "type": "string",
+            "description": "**Cards / EMI:** card number — typically **13–19** digits (15 for AMEX, 13–19 for Maestro). Validate with **Luhn**.\n"
+          },
+          "ccvv": {
+            "type": "string",
+            "description": "Cards / EMI: card security code (CVV). Name on card belongs in ccname, not ccvv."
+          },
+          "ccexpmon": {
+            "type": "string",
+            "description": "**Cards / EMI:** expiry **month** as **two digits** (`MM`). Months 1–9 as `01`…`09`; 10–12 as `10`, `11`, `12`.\n",
+            "example": "05"
+          },
+          "ccexpyr": {
+            "type": "string",
+            "description": "Cards / EMI: expiry year (four digits in Postman samples; follow PayU field rules for your integration).",
+            "example": "2026"
+          },
+          "ccname": {
+            "type": "string",
+            "description": "Cards / EMI: name on card as entered by the customer.",
+            "example": "Test User"
+          },
+          "vpa": {
+            "type": "string",
+            "description": "UPI: virtual payment address (VPA) collected on your site.",
+            "example": "success@payu"
+          }
+        }
+      }
+    }
+  }
 }
