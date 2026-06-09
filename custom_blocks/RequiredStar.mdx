@@ -1,0 +1,63 @@
+---
+name: RequiredStar
+---
+export const RequiredStar = (props) => {
+  const name = props.param || props.name || props.field || '';
+  const inlineWrap = {
+    display: 'inline',
+    whiteSpace: 'nowrap',
+    verticalAlign: 'baseline',
+  };
+  const codeStyle = {
+    display: 'inline',
+    whiteSpace: 'nowrap',
+    padding: '2px 6px',
+    background: '#f3f4f6',
+    color: '#1f2937',
+    borderRadius: '4px',
+    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+    fontSize: '0.875em',
+  };
+  const starStyle = {
+    color: '#e53e3e',
+    fontWeight: 700,
+    fontSize: '0.75em',
+    lineHeight: 0,
+    verticalAlign: 'super',
+    marginLeft: '0.06em',
+    background: 'transparent',
+  };
+  if (props.legend) {
+    return (
+      <span style={{ display: 'inline', lineHeight: 'inherit' }}>
+        Parameters marked with{' '}
+        <sup aria-hidden="true" style={starStyle}>
+          *
+        </sup>{' '}
+        are mandatory.
+      </span>
+    );
+  }
+  if (props.htmlblock && name) {
+    return (
+      <HTMLBlock>{`<span style="display:inline;white-space:nowrap;vertical-align:baseline"><code style="display:inline;white-space:nowrap;padding:2px 6px;background:#f3f4f6;color:#1f2937;border-radius:4px;font-family:ui-monospace,Menlo,monospace;font-size:0.875em">${name}</code><sup style="color:#e53e3e;font-weight:700;font-size:0.75em;line-height:0;vertical-align:super;margin-left:0.06em;background:transparent">*</sup></span>`}</HTMLBlock>
+    );
+  }
+  if (name) {
+    return (
+      <span style={inlineWrap}>
+        <code style={codeStyle}>{name}</code>
+        <sup aria-hidden="true" style={starStyle}>
+          *
+        </sup>
+      </span>
+    );
+  }
+  return (
+    <sup aria-hidden="true" style={starStyle}>
+      *
+    </sup>
+  );
+};
+
+<RequiredStar param="merchant_id" />
