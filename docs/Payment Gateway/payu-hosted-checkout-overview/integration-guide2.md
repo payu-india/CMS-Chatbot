@@ -847,18 +847,6 @@ You can customize the following in the Checkout page:<br/>
 Refer to the <a href="https://docs.payu.in/docs/payu-payment-page-customization" target="_blank">Customize PayU Payment Page</a> for more information about cutomizing the PayU payment page.
 </Accordion>
 
-### Errors
-
-<Accordion title="Errors and Recommended Fix" icon="fa-screwdriver-wrench">
-Given below is a list of errors you may get while integrating with the PayU hosted checkout.
-
-| **Error** | **Cause** | **Recommended Fix** |
-| --------- | --------- | ------------------- |
-|           |           |                     |
-|           |           |                     |
-
-</Accordion>
-
 ### Step 1.4 Verify Response via Reverse Hashing
 
 Response verification ensures that the response originated from PayU and has not been modified. It protects against:
@@ -1310,30 +1298,31 @@ error_Message=
 splitInfo={"splitStatus":"","splitSegments":[]}
 ```
 
+**NEFT/RTGS**<br/>
 
-</Accordion>
+For security reasons, the success response sample or URL is not included here. Only the error response is recorded.<br/>
 
-```json Success Response
-mihpayid=403993715537573912
-mode=CASH
-status=success
-unmappedstatus=captured
+```json Error Response
+mihpayid=403993715537574750
+mode=NEFTRTGS
+status=pending
+unmappedstatus=pending
 key=a4vGC2
-txnid=TXN_NS_1780296990_7590
-amount=15000.00
+txnid=TXN_NS_1780300270_2797
+amount=10.00
 discount=0.00
-net_amount_debit=15000
-addedon=2026-06-01 12:26:38
+net_amount_debit=0.00
+addedon=2026-06-01 13:21:24
 productinfo=DESKTOP
-firstname=Aarav
-lastname=Raj
-address1=Banglore
-address2=Banglore
-city=Banglore
-state=Banglore
+firstname=Sunit
+lastname=Kumar
+address1=FIRST FLOOR
+address2=NEW ASHOK NAGAR
+city=Delhi
+state=Delhi
 country=INDIA
 zipcode=201303
-email=aarav.raj@testmail.com
+email=sunit.kumar@mail.com
 phone=9876543210
 udf1=Testing UDF 1
 udf2=Testing UDF2
@@ -1345,7 +1334,7 @@ udf7=
 udf8=
 udf9=
 udf10=
-hash=db7052bf227001b9f02aa675b1a161e633eac2b5712f85c0d466d9b1023e739b0a57e8e61926f047c2efcb19279caf834951e3ff3c9cab99353043af1db2a71f
+hash=ed4dbb911f9bfee507362e2e053c16c07063a55302ea58cf3f026f5daeefbd52da8f316d51911c891a13a1bb648a26b24b8005a84af30904d78c13a54b4d35bf
 field1=
 field2=
 field3=
@@ -1353,15 +1342,70 @@ field4=
 field5=
 field6=
 field7=
-field8=
-field9=Transaction Completed Successfully
+field8=02
+field9=Transaction is pending
 payment_source=payu
-PG_TYPE=CASH-PG
-bank_ref_num=a92fe2c9-4fc8-4f73-8740-9b292fe4a634
-bankcode=FREC
-error=E000
-error_Message=No Error
-splitInfo={"splitStatus":"splitNotReceived","splitSegments":[]}
+PG_TYPE=NEFTRTGS-PG
+bank_ref_num=
+bankcode=EFTAXIS
+error=E227
+error_Message=Transaction is Pending
+splitInfo={"splitStatus":"","splitSegments":[]}
+```
+
+
+
+</Accordion>
+
+```json Error Response
+mihpayid=403993715537574750
+mode=NEFTRTGS
+status=pending
+unmappedstatus=pending
+key=a4vGC2
+txnid=TXN_NS_1780300270_2797
+amount=10.00
+discount=0.00
+net_amount_debit=0.00
+addedon=2026-06-01 13:21:24
+productinfo=DESKTOP
+firstname=Sunit
+lastname=Kumar
+address1=FIRST FLOOR
+address2=NEW ASHOK NAGAR
+city=Delhi
+state=Delhi
+country=INDIA
+zipcode=201303
+email=sunit.kumar@mail.com
+phone=9876543210
+udf1=Testing UDF 1
+udf2=Testing UDF2
+udf3=
+udf4=
+udf5=Sample_Invoice_11
+udf6=
+udf7=
+udf8=
+udf9=
+udf10=
+hash=ed4dbb911f9bfee507362e2e053c16c07063a55302ea58cf3f026f5daeefbd52da8f316d51911c891a13a1bb648a26b24b8005a84af30904d78c13a54b4d35bf
+field1=
+field2=
+field3=
+field4=
+field5=
+field6=
+field7=
+field8=02
+field9=Transaction is pending
+payment_source=payu
+PG_TYPE=NEFTRTGS-PG
+bank_ref_num=
+bankcode=EFTAXIS
+error=E227
+error_Message=Transaction is Pending
+splitInfo={"splitStatus":"","splitSegments":[]}
 ```
 
 <br />
