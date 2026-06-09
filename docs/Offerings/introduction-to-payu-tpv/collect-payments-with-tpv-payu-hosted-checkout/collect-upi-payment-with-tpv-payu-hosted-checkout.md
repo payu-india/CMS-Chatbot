@@ -179,61 +179,30 @@ Create a transaction by including a JSON object with beneficiary details (accoun
 
 <Accordion title="beneficiarydetail JSON object fields" icon="fa-code">
   The `beneficiarydetail` parameter should be a JSON object with the following structure:
-
-  <Table align={["left","left","left"]}>
-    <thead>
-      <tr>
-        <th style={{ textAlign: "left" }}>
-          Field
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          Description
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          Example
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          beneficiaryAccountNumber
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` List of account numbers separated by pipe symbol (|). Maximum 4 accounts.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          "002001600674|
-          00000031957292212|
-          00000035955239352|
-          00000035955239352"
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          ifscCode
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          `String` List of corresponding IFSC codes separated by pipe symbol (|). Maximum 4 IFSC codes in the same order as account numbers.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          "KTKB0000046|
-          KTKB0000023|
-          KTKB0000035|
-          KTKB0000035"
-        </td>
-      </tr>
-    </tbody>
-  </Table>
-
+<HTMLBlock>
+{`
+  <table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryAccountNumber</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> List of account numbers separated by pipe symbol (|). Maximum 4 accounts.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"002001600674|00000031957292212|00000035955239352|00000035955239352"</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>ifscCode</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> List of corresponding IFSC codes separated by pipe symbol (|). Maximum 4 IFSC codes in the same order as account numbers.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>"KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"</p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
   **Example JSON**:
 
   ```json
