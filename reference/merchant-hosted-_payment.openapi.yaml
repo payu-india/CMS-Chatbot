@@ -1,26 +1,33 @@
 openapi: 3.1.0
 info:
-  title: PayU Merchant Hosted — _payment (cards + transaction biller name)
+  title: PayU Merchant Hosted — _payment
   version: 1.0.0
-  x-derivedFrom: >-
-    reference/Collect
-    Payment/_payment_merchant_hosted/_payment_merchant_hosted_cards-with-transaction-biller-name.md
+  x-derivedFrom:
+    - >-
+      reference/Collect
+      Payment/_payment_merchant_hosted/_payment_merchant_hosted_cards-with-transaction-biller-name.md
+    - API Collection/Merchant Hosted Checkout.postman_collection_9th_June.json
   description: >
-    OpenAPI **3.1** for PayU merchant-hosted **`POST /_payment`** — request
-    parameters, descriptions, and examples
-
-    aligned with PayU **Cards with Transaction Biller Name** (`txnBillerName`
-    inside `additional_info`).
+    OpenAPI **3.1** for PayU merchant-hosted **`POST /_payment`**.
 
 
-    Hash generation (including **api_version=19** string) and response
-    verification are covered in
+    Parameter descriptions and card examples follow PayU **Cards with
+    Transaction Biller Name** where applicable
 
-    [PayU merchant-hosted
-    documentation](https://docs.payu.in/docs/custom-checkout-merchant-hosted).
+    (`additional_info` / `txnBillerName`). The **`pg`** enum aggregates every
+    **`pg`** value used across the
 
-    For card **bankcode** values, use PayU’s card-type and BIN references in the
-    same documentation set.
+    **Merchant Hosted Checkout** Postman collection (Net Banking, Cards, EMI,
+    UPI, BNPL, and the same collection’s
+
+    wallet flow sample, which posts **`pg=UPI`** — use **`bankcode`** and
+    checkout APIs per your PayU **Key Account Manager (KAM)** for
+    wallet-specific codes).
+
+
+    Hash rules (including **api_version=19**) and response verification:
+    [merchant-hosted
+    checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted).
 servers:
   - url: https://test.payu.in
     description: Sandbox
@@ -29,29 +36,31 @@ servers:
 paths:
   /_payment:
     post:
-      operationId: merchantHostedPaymentCardsWithBillerName
-      summary: Initiate card payment (`_payment`) with optional transaction biller name
+      operationId: merchantHostedPayment
+      summary: Initiate payment (merchant-hosted `_payment`)
       description: >
         `application/x-www-form-urlencoded` POST to **`/_payment`**.
 
 
-        For **cards**, post **`pg`** as **CC** (credit) or **DC** (debit) and a
-        card **bankcode** per PayU’s
-
-        card-type codes. Optionally send **`additional_info`** as JSON
-        containing **`txnBillerName`**
-
-        (sub-merchant / transaction biller label).
+        Set **`pg`** to the payment rail and **`bankcode`** to the PayU code for
+        that instrument (see **`PaymentGateway`** enum and property
+        descriptions).
 
 
-        Build **`hash`** on your server per PayU rules (classic
-        registration-style hash uses
+        * **Cards** — include **`ccnum`**, **`ccexpmon`**, **`ccexpyr`**,
+        **`ccvv`**, **`ccname`** when collecting card on your site (**`pg`**
+        **CC** or **DC**).
 
-        `key|txnid|amount|productinfo|firstname|email|udf1|…|udf5|||si_details|SALT`
-        where applicable;
+        * **UPI** — include **`vpa`** when collecting UPI on your site (**`pg`**
+        **UPI**, typically **`bankcode`** **UPI** per Postman sample).
 
-        for **api_version=19** use the extended pipe string including `phone`
-        and other fields as in PayU docs).
+        * **EMI / BNPL / net banking (sandbox)** — use EMI/BNPL/sandbox
+        net-banking **`bankcode`** values from PayU docs,
+        **`get_checkout_details`**, or your **KAM** (Postman examples: **EMIA3**
+        + **EMI**, **LAZYPAY** + **BNPL**, **TESTPGNB** + **TESTPG**).
+
+
+        Build **`hash`** on your server per PayU rules for the fields you post.
       tags:
         - Payment
       requestBody:
@@ -59,11 +68,11 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/MerchantHostedCardPaymentForm'
+              $ref: '#/components/schemas/MerchantHostedPaymentForm'
             examples:
               cardCcWithTxnBillerName:
                 summary: >-
-                  CC + bankcode CC + additional_info.txnBillerName (from PayU
+                  Cards — CC + bankcode CC + additional_info.txnBillerName (PayU
                   sample pattern)
                 value:
                   key: JP***g
@@ -86,6 +95,76 @@ paths:
                     091dae1bfe27bbad238fcecc88718dd68c92de25098c4ef5f72a17645f37a3a9e55df2e9a31e9c75ecfd145d3157cbd874937b0fe84e4f65233b2fb3cfb9684e
                   txn_s2s_flow: '1'
                   additional_info: '{"txnBillerName":"Airtel Recharge Payment"}'
+              upiFromPostman:
+                summary: UPI — pg and bankcode UPI + vpa (Postman collection pattern)
+                value:
+                  key: JP***g
+                  txnid: xdB9G7qYpfqszo
+                  amount: '10'
+                  firstname: PayU User
+                  email: test@gmail.com
+                  phone: '9876543210'
+                  productinfo: iPhone
+                  pg: UPI
+                  bankcode: UPI
+                  vpa: success@payu
+                  surl: https://apiplayground-response.herokuapp.com/
+                  furl: https://apiplayground-response.herokuapp.com/
+                  hash: REPLACE_WITH_SERVER_GENERATED_HASH
+              netBankingSandboxFromPostman:
+                summary: >-
+                  Net Banking (sandbox) — TESTPG + TESTPGNB (Postman collection
+                  pattern)
+                value:
+                  key: JP***g
+                  txnid: ewP8oRopzdHEtC
+                  amount: '10.00'
+                  firstname: Ashish
+                  email: test@gmail.com
+                  phone: '9876543210'
+                  productinfo: iPhone
+                  pg: TESTPG
+                  bankcode: TESTPGNB
+                  surl: https://apiplayground-response.herokuapp.com/
+                  furl: https://apiplayground-response.herokuapp.com/
+                  hash: REPLACE_WITH_SERVER_GENERATED_HASH
+              emiFromPostman:
+                summary: >-
+                  EMI — pg EMI + bankcode EMIA3 + card fields (Postman
+                  collection pattern)
+                value:
+                  key: JP***g
+                  txnid: H6mUfE0ccAY94j
+                  amount: '20000.00'
+                  firstname: Ashish
+                  email: test@gmail.com
+                  phone: '9876543210'
+                  productinfo: iPhone
+                  pg: EMI
+                  bankcode: EMIA3
+                  surl: https://apiplayground-response.herokuapp.com/
+                  furl: https://apiplayground-response.herokuapp.com/
+                  ccnum: '5123456789012346'
+                  ccexpmon: '05'
+                  ccexpyr: '2022'
+                  ccvv: '123'
+                  ccname: ''
+                  hash: REPLACE_WITH_SERVER_GENERATED_HASH
+              bnplFromPostman:
+                summary: BNPL — pg BNPL + bankcode LAZYPAY (Postman collection pattern)
+                value:
+                  key: J****g
+                  txnid: 5jJ9xYceXX1ydT
+                  amount: '1000.00'
+                  firstname: Ashish
+                  email: test@gmail.com
+                  phone: '9876543210'
+                  productinfo: iPhone
+                  pg: BNPL
+                  bankcode: LAZYPAY
+                  surl: https://apiplayground-response.herokuapp.com/
+                  furl: https://apiplayground-response.herokuapp.com/
+                  hash: REPLACE_WITH_SERVER_GENERATED_HASH
             encoding:
               key:
                 style: form
@@ -131,6 +210,8 @@ paths:
                 style: form
               ccname:
                 style: form
+              vpa:
+                style: form
               additional_info:
                 style: form
               txn_s2s_flow:
@@ -150,7 +231,9 @@ paths:
                 type: string
               examples:
                 successQueryString:
-                  summary: Example success postback (truncated; from PayU docs)
+                  summary: >-
+                    Example success postback (truncated; from PayU card-flow
+                    docs)
                   value: >-
                     mihpayid=403993715531077182&mode=CC&status=success&unmappedstatus=captured&key=JPM7Fg&txnid=ypl938459435dfdfdf&amount=1000.00&cardCategory=domestic&error=E000&error_Message=No+Error&bankcode=CC
             text/html:
@@ -158,24 +241,48 @@ paths:
                 type: string
         '302':
           description: >-
-            Redirect to issuer / ACS or merchant **surl** / **furl** (browser
-            flow).
+            Redirect to issuer / ACS / bank or merchant **surl** / **furl**
+            (typical browser flow).
 components:
   schemas:
-    PaymentGatewayCard:
+    PaymentGateway:
       type: string
       description: >
-        Payment method for card rails. If omitted, PayU treats **`pg`** as
-        **CC** by default.
+        Payment gateway (**`pg`**) — closed enum matching the **Merchant Hosted
+        Checkout** Postman collection’s `_payment` samples.
 
 
-        * **DC** — Debit card  
+        | `pg` | Postman folder / use |
 
-        * **CC** — Credit card  
+        |------|----------------------|
+
+        | **CC** | Cards — credit card (**default** in PayU card docs if
+        omitted) |
+
+        | **DC** | Cards — debit card (same collection variables; use with debit
+        **bankcode**) |
+
+        | **EMI** | EMI — card instalment |
+
+        | **UPI** | UPI (and the collection’s **Wallets** sample, which used
+        **`pg=UPI`**) |
+
+        | **BNPL** | BNPL (e.g. **LAZYPAY** **bankcode** in Postman) |
+
+        | **TESTPG** | Net Banking — **sandbox** test PG (**TESTPGNB**
+        **bankcode** in Postman) |
+
+
+        Production net banking often uses other **`pg`/`bankcode`** pairs from
+        PayU docs or **`getNetBankingStatus`** — confirm with your **KAM** if
+        **`TESTPG`** is sandbox-only.
       enum:
+        - BNPL
         - CC
         - DC
-      default: CC
+        - EMI
+        - TESTPG
+        - UPI
     AdditionalInfoTxnBiller:
       type: object
       description: >-
@@ -186,21 +293,23 @@ components:
           type: string
           description: Sub-merchant or transaction biller name for the card transaction.
           example: Airtel Recharge Payment
-    MerchantHostedCardPaymentForm:
+    MerchantHostedPaymentForm:
       type: object
       additionalProperties: true
       description: >
-        Card `_payment` request fields per **Cards with Transaction Biller
-        Name**.  
-
-        **Mandatory** fields match PayU’s table for this flow; optional fields
-        may be omitted when unused.
+        Merchant-hosted **`_payment`** form. **Always required:** `key`,
+        `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`,
+        `furl`, `hash`, `pg`, `bankcode`.
 
 
-        **Note:** In some PayU tables, **`ccvv`** appears next to wording that
-        describes name-on-card; the CVV is still sent in **`ccvv`**, and the
-        cardholder name belongs in **`ccname`** (see sample request in PayU
-        docs).
+        **Conditional (per `pg` / instrument):** send **`ccnum`**,
+        **`ccexpmon`**, **`ccexpyr`**, **`ccvv`**, **`ccname`** for card and EMI
+        card flows; send **`vpa`** for UPI. Use **`additional_info`** (e.g.
+        **`txnBillerName`**) when using the card biller-name feature.
+
+
+        **Note:** Some PayU tables place name-on-card wording beside **`ccvv`**;
+        CVV belongs in **`ccvv`**, cardholder name in **`ccname`**.
       required:
         - key
         - txnid
@@ -214,11 +323,6 @@ components:
         - hash
         - pg
         - bankcode
-        - ccnum
-        - ccvv
-        - ccexpmon
-        - ccexpyr
-        - ccname
       properties:
         key:
           type: string
@@ -299,15 +403,18 @@ components:
             `offer_auto_apply`, `cart_details`, `extra_charges`, and **`phone`**
             as documented for `_payment` v19.
         pg:
-          $ref: '#/components/schemas/PaymentGatewayCard'
+          $ref: '#/components/schemas/PaymentGateway'
         bankcode:
           type: string
           description: >
-            PayU’s unique code for the payment option. For cards, choose the
-            code for the desired card network/type
+            PayU code for the payment option. Must align with **`pg`**
+            (Postman-style examples: **CC**+**CC**, **UPI**+**UPI**,
 
-            (see PayU **Card number formats** and **Card type codes and
-            supported banks** in the same documentation set).
+            **EMI**+**EMIA3**, **BNPL**+**LAZYPAY**, **TESTPG**+**TESTPGNB**).
+            Card network codes: see PayU **Card number formats**
+
+            and **Card type codes and supported banks**. Wallet/BNPL codes may
+            come from **`get_checkout_details`** or your **KAM**.
           example: CC
         udf1:
           type: string
@@ -332,40 +439,45 @@ components:
         ccnum:
           type: string
           description: >
-            Card number: typically **13–19** digits (15 for AMEX, 13–19 for
-            Maestro). Validate with **Luhn** and show an error for invalid
-            input.
+            **Cards / EMI:** card number — typically **13–19** digits (15 for
+            AMEX, 13–19 for Maestro). Validate with **Luhn**.
         ccvv:
           type: string
           description: >-
-            Card security code (CVV) as entered by the customer — not the name
-            on card (use **`ccname`**).
+            Cards / EMI: card security code (CVV). Name on card belongs in
+            ccname, not ccvv.
         ccexpmon:
           type: string
           description: >
-            Expiry **month** as **two digits** (`MM`). For months 1–9 use
-            `01`…`09`; for 10–12 use `10`, `11`, `12`.
+            **Cards / EMI:** expiry **month** as **two digits** (`MM`). Months
+            1–9 as `01`…`09`; 10–12 as `10`, `11`, `12`.
           example: '05'
         ccexpyr:
           type: string
-          description: Expiry **year** as **four digits** as entered by the customer.
+          description: >-
+            Cards / EMI: expiry year (four digits in Postman samples; follow
+            PayU field rules for your integration).
           example: '2026'
         ccname:
           type: string
-          description: Name on card as entered by the customer.
+          description: 'Cards / EMI: name on card as entered by the customer.'
           example: Test User
+        vpa:
+          type: string
+          description: 'UPI: virtual payment address (VPA) collected on your site.'
+          example: success@payu
         additional_info:
           type: string
           description: >
             Optional JSON string with extra transaction metadata. For
-            transaction biller name, include **`txnBillerName`**
+            transaction biller name on cards, include **`txnBillerName`**
 
-            (see component **AdditionalInfoTxnBiller** for the parsed shape).
+            (see **AdditionalInfoTxnBiller** for the parsed shape).
           example: '{"txnBillerName":"Airtel Recharge Payment"}'
         txn_s2s_flow:
           type: string
           description: >-
-            Optional flow flag as in PayU samples (e.g. server-to-server
+            Optional flow flag as in PayU card samples (e.g. server-to-server
             oriented flows).
           example: '1'
         api_version:
