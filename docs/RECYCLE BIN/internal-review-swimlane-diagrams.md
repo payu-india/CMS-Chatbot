@@ -5,6 +5,13 @@ hidden: true
 metadata:
   robots: index
 ---
+---
+title: '[Internal Review] Swimlane Diagrams'
+deprecated: false
+hidden: true
+metadata:
+  robots: index
+---
 ## PayU Hosted Checkout
 
 Original workflow image: [https://docs.payu.in/docs/prebuilt-checkout-payu-hosted](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted "https://docs.payu.in/docs/prebuilt-checkout-payu-hosted")
@@ -16,11 +23,11 @@ Original workflow image: [https://docs.payu.in/docs/prebuilt-checkout-payu-hoste
     "mirrorActors": false,
     "rightAngles": true,
     "messageAlign": "left",
-    "fontSize": 12,
-    "actorFontSize": 12,
-    "noteFontSize": 11,
-    "actorMargin": 95,
-    "width": 175,
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 88,
+    "width": 168,
     "boxMargin": 10,
     "messageMargin": 38,
     "diagramMarginX": 60,
@@ -28,7 +35,7 @@ Original workflow image: [https://docs.payu.in/docs/prebuilt-checkout-payu-hoste
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
-    "fontSize": "12px",
+    "fontSize": "10px",
     "background": "#FFFFFF",
     "primaryColor": "#A6C307",
     "primaryTextColor": "#002843",
@@ -91,11 +98,11 @@ Original: [https://docs.payu.in/docs/custom-checkout-merchant-hosted](https://do
     "mirrorActors": false,
     "rightAngles": true,
     "messageAlign": "left",
-    "fontSize": 11,
-    "actorFontSize": 11,
+    "fontSize": 10,
+    "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 115,
-    "width": 200,
+    "actorMargin": 100,
+    "width": 185,
     "boxMargin": 12,
     "messageMargin": 42,
     "diagramMarginX": 70,
@@ -103,7 +110,7 @@ Original: [https://docs.payu.in/docs/custom-checkout-merchant-hosted](https://do
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
-    "fontSize": "11px",
+    "fontSize": "10px",
     "background": "#FFFFFF",
     "primaryColor": "#A6C307",
     "primaryTextColor": "#002843",
@@ -120,7 +127,7 @@ Original: [https://docs.payu.in/docs/custom-checkout-merchant-hosted](https://do
   }
 }}%%
 sequenceDiagram
-    box Merchant
+    box Merchant Site
         participant Merchant
     end
     box PayU
@@ -133,23 +140,23 @@ sequenceDiagram
     Note over Merchant: 1. Select item(s)
     Note over Merchant: Fill payment details
 
-    Merchant->>PayU: 2. Send details and redirect
-    Note over Merchant,PayU: PayU provides redirect URL
+    Merchant->>PayU: 2. Send to PayU redirect
+    Note over Merchant,PayU: PayU redirect URL
 
     PayU->>Bank: 3. Send to bank
 
     Bank->>Bank: Verify payment
-    Bank-->>PayU: 4. Success/failure
+    Bank-->>PayU: 4. Success or failure
 
     PayU-->>Merchant: 5. Return status
 
-    Note over Merchant: Success/failure page
+    Note over Merchant: Success or failure page
 
 ```
 
 ## Refunds
 
-Original: [https://docs.payu.in/docs/introduction-refunds](https://docs.payu.in/update/docs/introduction-refunds "https://docs.payu.in/update/docs/introduction-refunds")
+Original: [https://docs.payu.in/docs/introduction-refunds](https://docs.payu.in/docs/introduction-refunds "https://docs.payu.in/docs/introduction-refunds")
 
 ```mermaid
 %%{init: {
@@ -158,11 +165,11 @@ Original: [https://docs.payu.in/docs/introduction-refunds](https://docs.payu.in/
     "mirrorActors": false,
     "rightAngles": true,
     "messageAlign": "left",
-    "fontSize": 12,
-    "actorFontSize": 12,
-    "noteFontSize": 11,
-    "actorMargin": 90,
-    "width": 170,
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 100,
+    "width": 190,
     "boxMargin": 10,
     "messageMargin": 38,
     "diagramMarginX": 60,
@@ -170,7 +177,7 @@ Original: [https://docs.payu.in/docs/introduction-refunds](https://docs.payu.in/
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
-    "fontSize": "12px",
+    "fontSize": "10px",
     "background": "#FFFFFF",
     "primaryColor": "#A6C307",
     "primaryTextColor": "#002843",
@@ -194,7 +201,7 @@ Original: [https://docs.payu.in/docs/introduction-refunds](https://docs.payu.in/
   }
 }}%%
 sequenceDiagram
-    box Merchant
+    box Merchant Site
         participant Merchant
     end
     box PayU
@@ -204,7 +211,7 @@ sequenceDiagram
         participant Bank
     end
 
-    Merchant->>PayU: cancel_refund_transaction
+    Merchant->>PayU: cancel_refund_txn
     Note over PayU: Queued
 
     PayU->>PayU: Debit settlement funds
@@ -220,7 +227,7 @@ sequenceDiagram
         PayU-->>Merchant: Update ARN
     else API failure
         Bank-->>PayU: Failure
-        PayU->>PayU: Send offline to bank
+        PayU->>PayU: Offline to bank
         Note over PayU,Bank: 5th attempt<br/>TAT 5-7 days
         alt Manual success
             PayU-->>Merchant: Update ARN
@@ -231,7 +238,7 @@ sequenceDiagram
     end
 
     loop Poll status
-        Merchant->>PayU: check_action_status_txn_id
+        Merchant->>PayU: check_action_status
         PayU-->>Merchant: Status response
     end
 
@@ -251,8 +258,8 @@ sequenceDiagram
     "fontSize": 10,
     "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 72,
-    "width": 145,
+    "actorMargin": 86,
+    "width": 172,
     "boxMargin": 8,
     "messageMargin": 34,
     "diagramMarginX": 50,
@@ -286,14 +293,14 @@ sequenceDiagram
     Issuer->>Network: 2. Raise chargeback
     Network->>Acquirer: 3. Route chargeback
     Acquirer->>PayU: 4. Notify PayU
-    PayU->>Merchant: 5. Chargeback alert
-    Note over Merchant: 6. Merchant responds
+    PayU->>Merchant: 5. Alert merchant
+    Note over Merchant: 6. Respond to case
 
 ```
 
 ## Apple Pay
 
-Original: [https://docs.payu.in/docs/apple-pay-integration](https://docs.payu.in/update/docs/apple-pay-integration "https://docs.payu.in/update/docs/apple-pay-integration")
+Original: [https://docs.payu.in/docs/apple-pay-integration](https://docs.payu.in/docs/apple-pay-integration "https://docs.payu.in/docs/apple-pay-integration")
 
 ```mermaid
 %%{init: {
@@ -305,11 +312,11 @@ Original: [https://docs.payu.in/docs/apple-pay-integration](https://docs.payu.in
     "fontSize": 10,
     "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 68,
-    "width": 140,
+    "actorMargin": 78,
+    "width": 158,
     "boxMargin": 8,
-    "messageMargin": 32,
-    "diagramMarginX": 45,
+    "messageMargin": 34,
+    "diagramMarginX": 48,
     "diagramMarginY": 16
   },
   "themeVariables": {
@@ -363,25 +370,25 @@ sequenceDiagram
     Merchant->>User: Display Apple Pay sheet
     Merchant->>PayU: Create merchant session
     PayU->>Apple: Request merchant session
-    Apple-->>PayU: Return signed session
-    PayU-->>Merchant: Provide session to frontend
+    Apple-->>PayU: Signed session
+    PayU-->>Merchant: Session to frontend
 
-    User->>Apple: Select device token card
-    Apple-->>User: Authorize with Face ID or Touch ID
+    User->>Apple: Select saved card
+    Apple-->>User: Face ID or Touch ID
 
-    PayU->>Bank: Submit authorization
-    Note over PayU,Bank: Tokenized card rails via Apple Pay
+    PayU->>Bank: Submit auth
+    Note over PayU,Bank: Apple Pay tokenized rails
 
     Bank-->>PayU: Approved or declined
     PayU-->>Merchant: Payment result
-    Merchant-->>User: Show success or failure
+    Merchant-->>User: Success or failure
 
-    Note over User,Merchant: Fallback if not compatible<br/>Show other payment methods
+    Note over User,Merchant: Fallback other pay methods
 ```
 
 ## TPV Workflow
 
-Original:[https://docs.payu.in/update/docs/introduction-to-payu-tpv](https://docs.payu.in/update/docs/introduction-to-payu-tpv "https://docs.payu.in/update/docs/introduction-to-payu-tpv")
+Original: [https://docs.payu.in/docs/introduction-to-payu-tpv](https://docs.payu.in/docs/introduction-to-payu-tpv "https://docs.payu.in/docs/introduction-to-payu-tpv")
 
 ```mermaid
 %%{init: {
@@ -390,11 +397,11 @@ Original:[https://docs.payu.in/update/docs/introduction-to-payu-tpv](https://doc
     "mirrorActors": false,
     "rightAngles": true,
     "messageAlign": "left",
-    "fontSize": 11,
-    "actorFontSize": 11,
+    "fontSize": 10,
+    "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 90,
-    "width": 165,
+    "actorMargin": 92,
+    "width": 175,
     "boxMargin": 10,
     "messageMargin": 38,
     "diagramMarginX": 55,
@@ -402,7 +409,7 @@ Original:[https://docs.payu.in/update/docs/introduction-to-payu-tpv](https://doc
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
-    "fontSize": "11px",
+    "fontSize": "10px",
     "background": "#FFFFFF",
     "primaryColor": "#A6C307",
     "primaryTextColor": "#002843",
@@ -416,7 +423,7 @@ Original:[https://docs.payu.in/update/docs/introduction-to-payu-tpv](https://doc
 }}%%
 sequenceDiagram
     participant Customer
-    box Merchant
+    box Merchant Site
         participant Merchant
     end
     box PayU
@@ -424,24 +431,24 @@ sequenceDiagram
     end
     participant Bank
 
-    Customer->>Merchant: 1. TPV transaction request
+    Customer->>Merchant: 1. TPV request
 
     Merchant->>PayU: 2. Send TPV request
-    Note over Merchant,PayU: bankcode, pg, account number
+    Note over Merchant,PayU: bankcode pg account
 
-    PayU-->>Merchant: 3. Return redirect URL
+    PayU-->>Merchant: 3. Redirect URL
     Note over PayU: Includes account number
 
-    Merchant->>Customer: 4. Redirect to bank page
+    Merchant->>Customer: 4. Redirect to bank
 
-    Customer->>Bank: 5. Login and authorize
-    Note over Bank: Verify requested account number
+    Customer->>Bank: 5. Login authorize
+    Note over Bank: Verify account number
 
-    Bank-->>PayU: 6. Return to PayU success URL
+    Bank-->>PayU: 6. PayU success URL
 
-    PayU-->>Merchant: 7. Redirect to merchant success URL
+    PayU-->>Merchant: 7. Merchant success URL
 
-    Merchant-->>Customer: 8. Order confirmation page
+    Merchant-->>Customer: 8. Order confirmation
 
 ```
 
@@ -463,8 +470,8 @@ Covers collect payment, split during or after transaction, and fund release to c
     "fontSize": 10,
     "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 72,
-    "width": 145,
+    "actorMargin": 82,
+    "width": 168,
     "boxMargin": 8,
     "messageMargin": 34,
     "diagramMarginX": 45,
@@ -494,35 +501,35 @@ Covers collect payment, split during or after transaction, and fund release to c
 sequenceDiagram
     participant Customer
     box Aggregator
-        participant Parent as Aggregator Merchant
+        participant Parent as Agg Merchant
     end
     box PayU
         participant PayU
     end
     participant Bank
-    participant Child as Child Merchant
+    participant Child as Child MID
 
     Customer->>Parent: 1. Checkout and pay
 
-    Parent->>PayU: 2. Collect payment API
-    Note over Parent,PayU: During txn - include splitRequest<br/>After txn - use payment_split later
+    Parent->>PayU: 2. Collect payment
+    Note over Parent,PayU: splitRequest during txn<br/>or payment_split after
 
     PayU->>Bank: 3. Process payment
-    Bank-->>PayU: 4. Payment success
+    Bank-->>PayU: 4. Success
 
-    opt Split after transaction
-        Parent->>PayU: payment_split API
+    opt Split after txn
+        Parent->>PayU: payment_split
     end
 
-    PayU->>PayU: 5. Create sub-transactions
-    Note over PayU: Split by amount or percentage<br/>aggregatorCharges and amountToBeSettled
+    PayU->>PayU: 5. Create sub-txns
+    Note over PayU: Amount or percent split<br/>aggregatorCharges
 
-    PayU-->>Parent: 6. Success with splitInfo
-    Parent-->>Customer: 7. Order confirmation
+    PayU-->>Parent: 6. splitInfo
+    Parent-->>Customer: 7. Order confirmed
 
-    Parent->>PayU: 8. Release Settlement API
-    PayU-->>Child: 9. Credit child merchant
-    PayU-->>Parent: 10. Credit aggregator commission
+    Parent->>PayU: 8. Release settlement
+    PayU-->>Child: 9. Credit child MID
+    PayU-->>Parent: 10. Commission credit
 ```
 
 ### Child merchant onboarding
@@ -536,19 +543,19 @@ One-time setup before split payments. See [Onboarding Child Merchants Workflow](
     "mirrorActors": false,
     "rightAngles": true,
     "messageAlign": "left",
-    "fontSize": 11,
-    "actorFontSize": 11,
+    "fontSize": 10,
+    "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 90,
-    "width": 165,
+    "actorMargin": 88,
+    "width": 178,
     "boxMargin": 10,
-    "messageMargin": 38,
-    "diagramMarginX": 55,
+    "messageMargin": 36,
+    "diagramMarginX": 52,
     "diagramMarginY": 18
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
-    "fontSize": "11px",
+    "fontSize": "10px",
     "background": "#FFFFFF",
     "primaryColor": "#A6C307",
     "primaryTextColor": "#002843",
@@ -564,29 +571,29 @@ One-time setup before split payments. See [Onboarding Child Merchants Workflow](
 }}%%
 sequenceDiagram
     box Aggregator
-        participant Parent as Aggregator Merchant
+        participant Parent as Agg Merchant
     end
     box PayU Hub
-        participant Hub as Accounts Hub
+        participant Hub as Hub
     end
     box PayU Onboarding
         participant Onboarding
     end
-    participant Child as Child Merchant
+    participant Child as Child MID
 
-    Note over Parent: Activate Split Settlements on dashboard
+    Note over Parent: Activate Split on dashboard
 
-    Parent->>Hub: 1. Get Client Token API
+    Parent->>Hub: 1. Get Client Token
     Note over Hub: scope refer_child_merchant
-    Hub-->>Parent: Access token
+    Hub-->>Parent: access_token
 
-    Parent->>Onboarding: 2. Create Child Merchant API
-    Onboarding-->>Parent: Child MID and UUID
+    Parent->>Onboarding: 2. Create child merchant
+    Onboarding-->>Parent: Child MID UUID
 
-    Parent->>Onboarding: 3. Update bank details
-    Onboarding-->>Child: Child merchant active
+    Parent->>Onboarding: 3. Update bank
+    Onboarding-->>Child: Child active
 
-    Note over Parent,Child: Fetch child details via dashboard or APIs
+    Note over Parent,Child: Fetch via dashboard or API
 ```
 
 <br />
@@ -609,12 +616,12 @@ End-to-end flow from Indian customer payment to overseas merchant settlement via
     "fontSize": 10,
     "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 58,
-    "width": 130,
+    "actorMargin": 78,
+    "width": 172,
     "boxMargin": 8,
-    "messageMargin": 30,
-    "diagramMarginX": 40,
-    "diagramMarginY": 14
+    "messageMargin": 34,
+    "diagramMarginX": 48,
+    "diagramMarginY": 16
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
@@ -648,35 +655,35 @@ sequenceDiagram
     participant Acquirer as Acquirer Bank
     participant AD1 as AD-1 Bank
 
-    Customer->>Merchant: 1. Checkout on merchant site
+    Customer->>Merchant: 1. Checkout
 
-    Merchant->>PayU: 2. Collect payment API
-    Note over Merchant,PayU: Mandatory buyer name and zipcode<br/>Invoice ID in udf5
+    Merchant->>PayU: 2. Collect payment
+    Note over Merchant,PayU: Buyer name zip udf5 invoice
 
-    alt PayU Hosted Checkout
-        PayU->>Customer: 3. Show payment page
-    else Merchant Hosted Checkout
-        Merchant->>Customer: 3. Collect payment on site
+    alt PayU Hosted
+        PayU->>Customer: 3. PayU page
+    else Merchant Hosted
+        Merchant->>Customer: 3. Pay on site
     end
 
-    Customer->>PayU: 4. Pay via Cards NetBanking UPI or NEFT
+    Customer->>PayU: 4. Pay Cards NB UPI NEFT
     PayU->>Acquirer: 5. Process payment
-    Acquirer-->>PayU: 6. Payment success
+    Acquirer-->>PayU: 6. Success
 
-    PayU-->>Merchant: 7. Transaction success
-    Merchant-->>Customer: 8. Order confirmation
+    PayU-->>Merchant: 7. Txn success
+    Merchant-->>Customer: 8. Order confirmed
 
-    Note over Acquirer,PayU: Funds to PayU nodal pool account
+    Note over Acquirer,PayU: Funds to nodal pool
 
-    Merchant->>PayU: 9. Upload invoice or AWB
-    Note over Merchant,PayU: Invoice Upload API or UDF Update
+    Merchant->>PayU: 9. Invoice or AWB
+    Note over Merchant,PayU: Invoice Upload or UDF
 
-    PayU->>AD1: 10. Settlement instruction via SFTP
-    AD1->>Merchant: 11. SWIFT to offshore account
-    Note over AD1,Merchant: Native currency T+2 or T+3
+    PayU->>AD1: 10. SFTP settlement file
+    AD1->>Merchant: 11. SWIFT offshore
+    Note over AD1,Merchant: T+2 or T+3
 
-    AD1-->>PayU: 12. Response file and UTR
-    PayU-->>Merchant: 13. Settlement details
+    AD1-->>PayU: 12. UTR response
+    PayU-->>Merchant: 13. Settlement info
 ```
 
 ### LRS customer journey (PayU Hosted)
@@ -693,8 +700,8 @@ For travel and education under the Liberalised Remittance Scheme. See [Customer 
     "fontSize": 10,
     "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 72,
-    "width": 145,
+    "actorMargin": 82,
+    "width": 168,
     "boxMargin": 8,
     "messageMargin": 32,
     "diagramMarginX": 45,
@@ -728,19 +735,19 @@ sequenceDiagram
         participant PayU
     end
 
-    Customer->>Merchant: 1. Select products and checkout
-    Merchant->>PayU: 2. Payment request with lrs_service_type
-    PayU->>Customer: 3. PayU Hosted Checkout page
+    Customer->>Merchant: 1. Select products checkout
+    Merchant->>PayU: 2. Payment lrs_service_type
+    PayU->>Customer: 3. PayU Hosted page
 
-    Customer->>PayU: 4. Select Individual Buyer
-    Note over Customer,PayU: PAN DOB pincode and LRS declaration
+    Customer->>PayU: 4. Individual buyer
+    Note over Customer,PayU: PAN DOB pin LRS declare
 
-    Customer->>PayU: 5. TCS declaration if applicable
-    Note over PayU: Tax based on lrs_service_type<br/>PayU remits TCS via AD-1 bank
+    Customer->>PayU: 5. TCS if needed
+    Note over PayU: lrs_service_type tax rules<br/>TCS via AD-1
 
     Customer->>PayU: 6. Complete payment
     PayU-->>Merchant: 7. Payment result
-    Merchant-->>Customer: 8. Order confirmation
+    Merchant-->>Customer: 8. Order confirmed
 ```
 
 ### On-hold settlement resolution
@@ -757,11 +764,11 @@ When AD-1 bank requires additional information before releasing outward settleme
     "fontSize": 10,
     "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 80,
-    "width": 150,
+    "actorMargin": 92,
+    "width": 175,
     "boxMargin": 8,
     "messageMargin": 34,
-    "diagramMarginX": 45,
+    "diagramMarginX": 48,
     "diagramMarginY": 16
   },
   "themeVariables": {
@@ -796,16 +803,16 @@ sequenceDiagram
     AD1-->>PayU: 2. Needs Response - on hold
     PayU-->>Merchant: 3. On-hold status notification
 
-    alt Missing invoice or buyer details
-        Merchant->>PayU: 4. UDF Update or Invoice Upload API
-        Note over Merchant,PayU: Dashboard On-hold tab also available
-        PayU->>AD1: 5. Resubmit compliance data
-        AD1-->>PayU: 6. Settled with UTR
-        PayU-->>Merchant: 7. Settlement complete
-    else AML or sanction match
+    alt Missing invoice or data
+        Merchant->>PayU: 4. UDF or Invoice Upload
+        Note over Merchant,PayU: Or Dashboard On-hold tab
+        PayU->>AD1: 5. Resubmit data
+        AD1-->>PayU: 6. Settled UTR
+        PayU-->>Merchant: 7. Settlement done
+    else AML sanction match
         AD1-->>PayU: Rejected by Bank
         PayU-->>Merchant: Refund required
-        Merchant->>PayU: Initiate refund
+        Merchant->>PayU: Refund
     end
 ```
 
@@ -827,12 +834,12 @@ How RE personalizes payment instruments on PayU Hosted Checkout or via the Fetch
     "fontSize": 10,
     "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 58,
-    "width": 130,
+    "actorMargin": 72,
+    "width": 175,
     "boxMargin": 8,
-    "messageMargin": 30,
-    "diagramMarginX": 40,
-    "diagramMarginY": 14
+    "messageMargin": 34,
+    "diagramMarginX": 48,
+    "diagramMarginY": 16
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
@@ -875,36 +882,36 @@ sequenceDiagram
     end
     box PayU
         participant PayU
-        participant RE as Recommendation Engine
+        participant RE as RE
     end
-    participant PG as Payment Gateway
+    participant PG as PG
 
-    Note over Merchant: Activate RE via PayU Key Account Manager (KAM)
+    Note over Merchant: Enable RE contact KAM
 
-    Customer->>Merchant: 1. Proceed to checkout
+    Customer->>Merchant: 1. Checkout
 
-    alt PayU Hosted Checkout
+    alt PayU Hosted
         Merchant->>PayU: 2. Payment request
-        PayU->>RE: 3. Evaluate recommendations
-    else Merchant Hosted with Fetch API
+        PayU->>RE: 3. Score recommendations
+    else Merch hosted Fetch
         Merchant->>PayU: 2. Fetch RE API
-        PayU->>RE: 3. Evaluate recommendations
-        RE-->>PayU: Ranked paymentOptions
-        PayU-->>Merchant: savedPaymentOptions response
-        Merchant->>Customer: 4. Show personalized checkout
+        PayU->>RE: 3. Score recommendations
+        RE-->>PayU: Ranked options
+        PayU-->>Merchant: savedPaymentOptions
+        Merchant->>Customer: 4. Personalized UI
     end
 
-    Note over RE,PayU: User history and merchant goal<br/>Transaction amount and category
+    Note over RE,PayU: History goal amount category
 
-    RE-->>PayU: 4. Ranked L1 and L2 options
-    PayU->>Customer: 5. Display prioritized payment page
+    RE-->>PayU: 4. L1 L2 ranking
+    PayU->>Customer: 5. Prioritized pay page
 
-    Customer->>PayU: 6. Select recommended payment mode
+    Customer->>PayU: 6. Select pay mode
     PayU->>PG: 7. Process payment
-    PG-->>PayU: 8. Payment result
+    PG-->>PayU: 8. Result
 
-    PayU-->>Merchant: 9. Transaction status
-    Merchant-->>Customer: 10. Order confirmation
+    PayU-->>Merchant: 9. Txn status
+    Merchant-->>Customer: 10. Order confirmed
 ```
 
 ### User scenarios and merchant goals
@@ -921,11 +928,11 @@ How RE adapts recommendations based on customer type and the merchant-selected o
     "fontSize": 10,
     "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 72,
-    "width": 145,
+    "actorMargin": 88,
+    "width": 175,
     "boxMargin": 8,
-    "messageMargin": 32,
-    "diagramMarginX": 45,
+    "messageMargin": 34,
+    "diagramMarginX": 48,
     "diagramMarginY": 16
   },
   "themeVariables": {
@@ -950,29 +957,29 @@ How RE adapts recommendations based on customer type and the merchant-selected o
 sequenceDiagram
     participant Customer
     box PayU
-        participant RE as Recommendation Engine
+        participant RE as RE
     end
 
-    alt Repeat user with saved data
-        Customer->>RE: Logged in with consented instruments
-        Note over Customer,RE: Saved cards UPI and wallets shown first
-    else Repeat user without saved data
-        Customer->>RE: Known user no stored instruments
-        Note over Customer,RE: Recommendations from history and goal
-    else First-time user
-        Customer->>RE: New user at checkout
-        Note over Customer,RE: Goal and contextual data only
+    alt Repeat saved data
+        Customer->>RE: Logged in with saved
+        Note over Customer,RE: Saved cards UPI wallets first
+    else Repeat no saved
+        Customer->>RE: Known user no saved
+        Note over Customer,RE: History plus merchant goal
+    else First time
+        Customer->>RE: New at checkout
+        Note over Customer,RE: Goal and context only
     end
 
-    alt Goal Success Rate
-        RE->>Customer: Prioritize highest SRT instruments
-        Note over RE: Example Airtel Money on L1 and L2
-    else Goal Processing Cost
-        RE->>Customer: Prioritize lowest cost modes
-        Note over RE: Example UPI over wallets on L1
-    else Goal Affordability
-        RE->>Customer: Prioritize EMI and BNPL options
-        Note over RE: Affordability on L1 and L2 screens
+    alt Goal SRT
+        RE->>Customer: Highest SRT first
+        Note over RE: Example wallet L1 L2
+    else Goal cost
+        RE->>Customer: Lowest cost first
+        Note over RE: Example UPI L1
+    else Goal afford
+        RE->>Customer: EMI BNPL first
+        Note over RE: Afford L1 L2
     end
 ```
 
@@ -990,11 +997,11 @@ Server-to-server flow for merchants building a custom checkout UI. See [Fetch Re
     "fontSize": 10,
     "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 80,
-    "width": 150,
+    "actorMargin": 92,
+    "width": 178,
     "boxMargin": 8,
     "messageMargin": 34,
-    "diagramMarginX": 45,
+    "diagramMarginX": 48,
     "diagramMarginY": 16
   },
   "themeVariables": {
@@ -1022,20 +1029,21 @@ sequenceDiagram
     end
     box PayU
         participant PayU
-        participant RE as Recommendation Engine
+        participant RE as RE
     end
 
-    Merchant->>PayU: 1. POST recommendation/v1/fetch
-    Note over Merchant,PayU: HMAC auth with Date and Digest headers
+    Merchant->>PayU: 1. POST fetch API
+    Note over Merchant,PayU: HMAC Date Digest headers
 
-    Note over Merchant,PayU: amount and userToken mandatory<br/>phone txnId mode ibiboCode optional
+    Note over Merchant,PayU: amount userToken required<br/>phone txnId mode optional
 
-    PayU->>RE: 2. Score payment instruments
-    RE-->>PayU: 3. Ranked options by merchant goal
+    PayU->>RE: 2. Score instruments
+    RE-->>PayU: 3. Ranked by goal
 
-    PayU-->>Merchant: 4. paymentOptions and savedPaymentOptions
-    Note over Merchant: Render L1 and L2 checkout UI
+    PayU-->>Merchant: 4. paymentOptions savedOptions
+    Note over Merchant: Render L1 L2 UI
 ```
+
 ## International Payments and DCC Flow
 
 Mermaid swimlane diagrams for [International Payments](https://docs.payu.in/docs/introduction-dynamic-currency-conversion), based on the DCC/MCC workflow and hosted vs merchant-hosted integration sections.
@@ -1054,12 +1062,12 @@ Real-time currency choice at checkout. Customer may pay in card-issuing currency
     "fontSize": 10,
     "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 58,
-    "width": 130,
+    "actorMargin": 76,
+    "width": 170,
     "boxMargin": 8,
-    "messageMargin": 30,
-    "diagramMarginX": 40,
-    "diagramMarginY": 14
+    "messageMargin": 34,
+    "diagramMarginX": 46,
+    "diagramMarginY": 16
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
@@ -1105,36 +1113,36 @@ sequenceDiagram
     end
     participant Bank as Issuing Bank
 
-    Note over Merchant: Enable international payments via PayU Key Account Manager (KAM)
+    Note over Merchant: Intl payments enable via KAM
 
-    Customer->>Merchant: 1. Browse and select product
-    Note over Customer,Merchant: Order priced in merchant currency e.g. INR
+    Customer->>Merchant: 1. Browse product
+    Note over Customer,Merchant: Price in INR order currency
 
-    Customer->>Merchant: 2. Pay by card and enter details
+    Customer->>Merchant: 2. Card details
 
-    alt PayU Hosted Checkout
-        Merchant->>PayU: 3. Transaction request
-        PayU->>Customer: 4. PayU payment page
-        Customer->>PayU: 5. Enter international card
-    else Merchant Hosted Checkout
-        Merchant->>PayU: 3. Check is Domestic API
-        PayU-->>Merchant: International card confirmed
-        Merchant->>PayU: 4. Collect payment API
-        Customer->>PayU: 5. Card details via merchant UI
+    alt PayU Hosted
+        Merchant->>PayU: 3. Txn request
+        PayU->>Customer: 4. PayU page
+        Customer->>PayU: 5. Intl card
+    else Merchant Hosted
+        Merchant->>PayU: 3. check_isDomestic
+        PayU-->>Merchant: Intl card OK
+        Merchant->>PayU: 4. _payment
+        Customer->>PayU: 5. Card via merchant UI
     end
 
-    PayU->>Customer: 6. DCC currency choice
-    Note over PayU,Customer: Local currency or merchant order currency<br/>135+ currencies supported
+    PayU->>Customer: 6. DCC choice
+    Note over PayU,Customer: Local or INR<br/>135+ currencies
 
-    Customer->>PayU: 7. Select preferred currency
-    PayU->>PayU: 8. Apply FX rate and margins
-    PayU->>Bank: 9. Process payment with 3DS2.0
-    Bank-->>PayU: 10. Authorization result
+    Customer->>PayU: 7. Pick currency
+    PayU->>PayU: 8. FX and margins
+    PayU->>Bank: 9. Auth 3DS2
+    Bank-->>PayU: 10. Auth result
 
-    PayU-->>Merchant: 11. Transaction response
-    Note over PayU,Merchant: Merchant settled in base currency INR
+    PayU-->>Merchant: 11. Txn response
+    Note over PayU,Merchant: Settle INR to merchant
 
-    Merchant-->>Customer: 12. Order confirmation
+    Merchant-->>Customer: 12. Order confirmed
 ```
 
 ### Multi-Currency Conversion (MCC)
@@ -1151,11 +1159,11 @@ Merchant displays prices in customer local currency upfront. Payment captured in
     "fontSize": 10,
     "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 72,
-    "width": 145,
+    "actorMargin": 82,
+    "width": 170,
     "boxMargin": 8,
-    "messageMargin": 32,
-    "diagramMarginX": 45,
+    "messageMargin": 34,
+    "diagramMarginX": 48,
     "diagramMarginY": 16
   },
   "themeVariables": {
@@ -1190,18 +1198,18 @@ sequenceDiagram
     Customer->>Merchant: 1. Browse products
     Note over Customer,Merchant: Prices shown in local currency<br/>27+ currencies via MCC
 
-    Customer->>Merchant: 2. Checkout with selected currency
-    Merchant->>PayU: 3. Payment request in chosen currency
-    Note over Merchant,PayU: FX rate from card networks or third-party API
+    Customer->>Merchant: 2. Checkout local currency
+    Merchant->>PayU: 3. Payment in currency
+    Note over Merchant,PayU: FX from network or partner API
 
-    Customer->>PayU: 4. Enter international card details
+    Customer->>PayU: 4. Intl card details
     PayU->>Bank: 5. Process payment
-    Bank-->>PayU: 6. Payment captured
+    Bank-->>PayU: 6. Captured
 
-    PayU-->>Merchant: 7. Transaction success
-    Note over PayU,Merchant: Settlement in INR or non-INR currency
+    PayU-->>Merchant: 7. Txn success
+    Note over PayU,Merchant: Settle INR or FX
 
-    Merchant-->>Customer: 8. Order confirmation
+    Merchant-->>Customer: 8. Order confirmed
 ```
 
 ### Post-payment verification and refunds
@@ -1218,11 +1226,11 @@ Standard verify flow applies. Refunds initiated in merchant base currency only.
     "fontSize": 10,
     "actorFontSize": 10,
     "noteFontSize": 10,
-    "actorMargin": 80,
-    "width": 150,
+    "actorMargin": 92,
+    "width": 175,
     "boxMargin": 8,
     "messageMargin": 34,
-    "diagramMarginX": 45,
+    "diagramMarginX": 48,
     "diagramMarginY": 16
   },
   "themeVariables": {
@@ -1253,13 +1261,13 @@ sequenceDiagram
     end
     participant Customer
 
-    PayU-->>Merchant: 1. surl or furl POST response
-    Merchant->>PayU: 2. Verify payment API
-    PayU-->>Merchant: 3. Confirmed transaction status
+    PayU-->>Merchant: 1. surl or furl POST
+    Merchant->>PayU: 2. Verify payment
+    PayU-->>Merchant: 3. Confirmed status
 
-    opt Refund required
-        Merchant->>PayU: 4. Refund in INR base amount
-        Note over Merchant,PayU: PayU converts using sale-date FX rate
-        PayU-->>Customer: 5. Refund to card currency
+    opt Refund
+        Merchant->>PayU: 4. Refund INR base
+        Note over Merchant,PayU: PayU FX from sale date
+        PayU-->>Customer: 5. Refund card currency
     end
 ```
