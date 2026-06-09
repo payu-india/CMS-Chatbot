@@ -143,68 +143,6 @@
         }
       }
     },
-    "/merchant/postservice.php": {
-      "post": {
-        "tags": [
-          "Supporting APIs"
-        ],
-        "summary": "get_checkout_details API",
-        "description": "Generated from cURL: curl --request POST \\\n     --url https://test.payu.in/merchant/postservice.php \\\n     --header 'accept: application/json' \\\n     --header 'content-type: application/x-www-form-urlencoded' \\\n     --data key=JPM7Fg \\\n     --data command=get_checkout_details \\\n     --data 'var1={\"transactionDetails\":{\"amount\":\"100.00\",\"txnid\":\"asdusucbshb\"},\"usecase\":{\"checkDownStatus\":\"true\"},\"requestId\":\"yegdyyshds\"}' \\\n     --data hash=hash",
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "type": "string",
-                    "example": "msfjWv"
-                  },
-                  "command": {
-                    "type": "string",
-                    "example": "get_checkout_details"
-                  },
-                  "var1": {
-                    "type": "string",
-                    "example": "{\"transactionDetails\":{\"amount\":\"100.00\",\"txnid\":\"asdusucbshb\"},\"usecase\":{\"checkDownStatus\":\"true\"},\"requestId\":\"yegdyyshds\"}"
-                  },
-                  "hash": {
-                    "type": "string",
-                    "example": "hash"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "accept",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "application/json"
-          },
-          {
-            "name": "content-type",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "application/x-www-form-urlencoded"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
-      }
-    },
     "/merchant/postservice": {
       "post": {
         "tags": [
