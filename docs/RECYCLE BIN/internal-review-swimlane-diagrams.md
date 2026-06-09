@@ -1271,11 +1271,6 @@ sequenceDiagram
         PayU-->>Customer: 5. Refund card currency
     end
 ```
-# Pluxee Card and Mutual Fund Payments Swimlanes
-
-PayU-branded Mermaid sequence diagrams aligned with [internal-review swimlane style](../docs/RECYCLE%20BIN/internal-review-swimlane-diagrams.md). Font 10px wide actors short labels no semicolons in messages.
-
----
 
 ## Pluxee (Sodexo) card — merchant hosted checkout
 
@@ -1710,4 +1705,3 @@ sequenceDiagram
 ```
 
 ---
-
