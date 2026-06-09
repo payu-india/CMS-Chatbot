@@ -1357,55 +1357,21 @@ Refer to the Errors section for the parameters and description.
 
 </Accordion>
 
-```json Error Response
-mihpayid=403993715537574750
-mode=NEFTRTGS
-status=pending
-unmappedstatus=pending
-key=a4vGC2
-txnid=TXN_NS_1780300270_2797
-amount=10.00
-discount=0.00
-net_amount_debit=0.00
-addedon=2026-06-01 13:21:24
-productinfo=DESKTOP
-firstname=Sunit
-lastname=Kumar
-address1=FIRST FLOOR
-address2=NEW ASHOK NAGAR
-city=Delhi
-state=Delhi
-country=INDIA
-zipcode=201303
-email=sunit.kumar@mail.com
-phone=9876543210
-udf1=Testing UDF 1
-udf2=Testing UDF2
-udf3=
-udf4=
-udf5=Sample_Invoice_11
-udf6=
-udf7=
-udf8=
-udf9=
-udf10=
-hash=ed4dbb911f9bfee507362e2e053c16c07063a55302ea58cf3f026f5daeefbd52da8f316d51911c891a13a1bb648a26b24b8005a84af30904d78c13a54b4d35bf
-field1=
-field2=
-field3=
-field4=
-field5=
-field6=
-field7=
-field8=02
-field9=Transaction is pending
-payment_source=payu
-PG_TYPE=NEFTRTGS-PG
-bank_ref_num=
-bankcode=EFTAXIS
-error=E227
-error_Message=Transaction is Pending
-splitInfo={"splitStatus":"","splitSegments":[]}
+#### Step 1.4.1 Reverse Hashing
+
+You should verify the response received for the authenticity by creating a hash using the reverse hashing logic. Below is how the reverse hashing works.
+
+
+<Image src="https://files.readme.io/7acf9d72438a6a00b637ef4c70c13b8a4871c3aa6055d7c985bbef5f980fa502-reverse_hashing_flow.png" align="center" caption="_Reverse Hashing Flow_" border={true} framed={true} />
+
+
+<br />
+
+<Accordion title="Reverse Hashing Logic" icon="fa-arrow-rotate-left">
+```json Reverse Hash Logic
+sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
 ```
+* You should compare the hash value you got from the above logic with the hash value you received in the response. The payment is verified if the hash values match and update the order state.
+</Accordion>
 
 <br />
