@@ -23,7 +23,7 @@
       "post": {
         "operationId": "merchantHostedPayment",
         "summary": "Initiate payment (merchant-hosted `_payment`)",
-        "description": "`application/x-www-form-urlencoded` POST to **`/_payment`**.\n\nSet **`pg`** to the payment rail and **`bankcode`** to the PayU code for that instrument (see **`PaymentGateway`** enum and property descriptions).\n\n* **Cards** — include **`ccnum`**, **`ccexpmon`**, **`ccexpyr`**, **`ccvv`**, **`ccname`** when collecting card on your site (**`pg`** **CC** or **DC**).\n* **UPI** — include **`vpa`** when collecting UPI on your site (**`pg`** **UPI**, typically **`bankcode`** **UPI** per Postman sample).\n* **EMI / BNPL / net banking** — use EMI/BNPL/net-banking **`bankcode`** values from PayU docs, **`get_checkout_details`**, or your **KAM** (Postman-style examples: **EMIA3** + **EMI**, **LAZYPAY** + **BNPL**, **TESTPGNB** + **NB**).\n\nBuild **`hash`** on your server per PayU rules for the fields you post.\n",
+        "description": "`application/x-www-form-urlencoded` POST to **`/_payment`**.\n\nSet **`pg`** to the payment rail and **`bankcode`** to the PayU code for that instrument (see **`PaymentGateway`** enum).\n\n* **Cards** — send **`ccnum`**, **`ccexpmon`**, **`ccexpyr`**, **`ccvv`**, **`ccname`** when **`pg`** is **CC** or **DC**.\n* **UPI** — send **`vpa`** when **`pg`** is **UPI** (Postman sample uses **`bankcode`** **UPI**).\n* **EMI / BNPL / net banking** — use **`bankcode`** from PayU docs, **`get_checkout_details`**, or your **PayU Key Account Manager (KAM)** (e.g. **EMIA3** + **EMI**, **LAZYPAY** + **BNPL**, **TESTPGNB** + **NB**).\n\nCompute **`hash`** on your server per PayU rules for the fields you post.\n",
         "tags": [
           "Payment"
         ],
