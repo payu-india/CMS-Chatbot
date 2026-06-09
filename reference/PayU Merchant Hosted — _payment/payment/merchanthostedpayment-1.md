@@ -19,9 +19,7 @@ To process payments with credit/debit card, UPI, wallet, etc. on your website us
 <Tabs>
   <Tab title="Net banking">
 
-  Source: [`_payment_merchant_hosted_netbanking.md`](./_payment_merchant_hosted_netbanking.md) — “Sample request” (cURL reformatted; the source line was broken).
-
-  **Test env:** that page uses **`pg=TESTPG`** and **`bankcode=TESTPGNB`**. Production net banking typically uses **`pg=NB`** with bank codes from PayU’s list / `getNetBankingStatus`.
+  **Test env:** that page uses **`pg=TESTPG`** and **`bankcode=TESTPGNB`**. Production net banking typically uses **`pg=NB`** with bank codes from PayU’s list.
 
   ```bash
   curl -X POST "https://test.payu.in/_payment" \
@@ -34,8 +32,6 @@ To process payments with credit/debit card, UPI, wallet, etc. on your website us
 
   <Tab title="Cards">
 
-  Source: [`_payment_merchant_hosted_cards.md`](./_payment_merchant_hosted_cards.md) — “Sample request” accordion.
-
   ```bash
   curl -X POST "https://test.payu.in/_payment" \
     -H "accept: application/json" \
@@ -47,8 +43,6 @@ To process payments with credit/debit card, UPI, wallet, etc. on your website us
 
   <Tab title="UPI">
 
-  Source: [`_payment_merchant_hosted_upi.md`](./_payment_merchant_hosted_upi.md) — this page has **no** embedded cURL sample. The example below matches the companion [`updated_upi_merchant_hosted.json`](../../updated_upi_merchant_hosted.json) and the doc’s test VPA note (`anything@payu` / `9999999999@payu.in`).
-
   ```bash
   curl -X POST "https://test.payu.in/_payment" \
     -H "accept: application/json" \
@@ -59,11 +53,6 @@ To process payments with credit/debit card, UPI, wallet, etc. on your website us
   </Tab>
 
   <Tab title="Wallets">
-
-  Source: [`_payment_merchant_hosted_wallets.md`](./_payment_merchant_hosted_wallets.md) — “Sample request” accordion.
-
-  **`productinfo`** is spelled correctly here (the doc’s `-d` string uses `producinfo`).
-
   ```bash
   curl -X POST "https://test.payu.in/_payment" \
     -H "accept: application/json" \
@@ -74,9 +63,6 @@ To process payments with credit/debit card, UPI, wallet, etc. on your website us
   </Tab>
 
   <Tab title="EMI">
-
-  Source: [`_payment_merchant_hosted_emi.md`](./_payment_merchant_hosted_emi.md) — “Sample request” accordion (cURL block only).
-
   ```bash
   curl -X POST "https://test.payu.in/_payment" \
     -H "accept: application/json" \
@@ -87,11 +73,6 @@ To process payments with credit/debit card, UPI, wallet, etc. on your website us
   </Tab>
 
   <Tab title="BNPL">
-
-  Source: [`_payment_merchant_hosted_bnpl.md`](./_payment_merchant_hosted_bnpl.md) — “Sample Request” accordion.
-
-  The doc shows a **JSON** object as `-d` while the header is **`application/x-www-form-urlencoded`**. Below is the **form-urlencoded** equivalent PayU expects.
-
   ```bash
   curl -X POST "https://test.payu.in/_payment" \
     -H "accept: application/json" \
