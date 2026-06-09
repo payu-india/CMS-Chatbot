@@ -1271,3 +1271,443 @@ sequenceDiagram
         PayU-->>Customer: 5. Refund card currency
     end
 ```
+# Pluxee Card and Mutual Fund Payments Swimlanes
+
+PayU-branded Mermaid sequence diagrams aligned with [internal-review swimlane style](../docs/RECYCLE%20BIN/internal-review-swimlane-diagrams.md). Font 10px wide actors short labels no semicolons in messages.
+
+---
+
+## Pluxee (Sodexo) card — merchant hosted checkout
+
+Based on [Pluxee Card Integration](https://docs.payu.in/docs/integrate-with-merchant-hosted-checkout-for-pluxee-card) (`pg=MC`, `bankcode=SODEXO`, optional **check_balance**, **save_sodexo_card**, **source_id** repeat flow).
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 78,
+    "width": 165,
+    "boxMargin": 8,
+    "messageMargin": 34,
+    "diagramMarginX": 48,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    participant Customer
+    box Merchant Site
+        participant Merchant
+    end
+    box PayU
+        participant PayU
+    end
+    participant Pluxee as Pluxee Network
+
+    Customer->>Merchant: 1. Select Pluxee pay
+    Note over Merchant: Show cart amount
+
+    opt check_balance before pay
+        Merchant->>PayU: check_balance command
+        PayU-->>Merchant: Card balance
+    end
+
+    Customer->>Merchant: 2. Enter Pluxee card
+    Note over Merchant: Do not store full PAN CVV
+
+    Merchant->>PayU: 3. _payment MC SODEXO
+    Note over Merchant,PayU: ccnum ccname ccvv expiry<br/>save_sodexo_card optional
+
+    PayU->>Pluxee: 4. Authorize meal card
+    Pluxee-->>PayU: 5. Auth result
+
+    PayU-->>Merchant: 6. Response surl or furl
+    Note over PayU,Merchant: field3 sourceId if saved
+
+    Merchant->>PayU: 7. verify_payment
+    PayU-->>Merchant: Confirmed status
+
+    opt Repeat with saved card
+        Merchant->>PayU: _payment with source_id
+        Note over Merchant,PayU: is_check_balance optional with source_id
+    end
+```
+
+---
+
+## Mutual fund payments — high level (Wealth Tech)
+
+From [Mutual Fund Payments](https://docs.payu.in/docs/mutual-funds-payments): SEBI-aligned flows non-seamless or seamless NB and UPI subscriptions via eNACH or UPI Autopay.
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 72,
+    "width": 160,
+    "boxMargin": 8,
+    "messageMargin": 32,
+    "diagramMarginX": 45,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307"
+  }
+}}%%
+sequenceDiagram
+    participant Investor
+    box Merchant Site
+        participant WT as Wealth Tech Merchant
+    end
+    box PayU
+        participant PayU
+    end
+    participant Rail as Bank or UPI
+
+    Investor->>WT: 1. SIP or lump sum checkout
+    Note over WT: Mandatory SEBI fields captured
+
+    WT->>PayU: 2. _payment api_version 21
+    Note over WT,PayU: wtParams beneficiarydetail<br/>exchange regulatory data
+
+    PayU->>Rail: 3. Collect NB or UPI
+    Rail-->>PayU: 4. Payment result
+
+    PayU-->>WT: 5. surl or S2S response
+    WT-->>Investor: 6. Confirmation
+
+    Note over WT,PayU: Subscriptions use eNACH or UPI Autopay flows
+```
+
+---
+
+## Mutual fund payment — PayU hosted (non-seamless)
+
+From [PayU Hosted Integration - Mutual Fund Payments](https://docs.payu.in/docs/payu-hosted-integration-mutual-funds-payment): redirect `_payment` with **products** JSON including **wtParams** and **beneficiarydetail** in hash.
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 80,
+    "width": 168,
+    "boxMargin": 8,
+    "messageMargin": 34,
+    "diagramMarginX": 48,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    participant Investor
+    box Merchant Site
+        participant Merchant
+    end
+    box PayU
+        participant PayU
+    end
+    participant Rail as Bank or UPI
+
+    Investor->>Merchant: 1. Start investment pay
+    Merchant->>PayU: 2. POST _payment redirect
+    Note over Merchant,PayU: api_version 21<br/>products wtParams hash
+
+    PayU->>Investor: 3. PayU hosted page
+    Investor->>PayU: 4. Pay NB or UPI
+    PayU->>Rail: 5. Debit rails
+    Rail-->>PayU: 6. Success or fail
+
+    PayU-->>Merchant: 7. surl or furl postback
+    Note over Merchant: Reverse hash verify
+
+    Merchant->>PayU: 8. verify_payment
+    Merchant-->>Investor: 9. Order status
+```
+
+---
+
+## Mutual fund payment — merchant hosted (seamless)
+
+From [Merchant Hosted Integration - Mutual Fund Payments](https://docs.payu.in/docs/merchant-hosted-integration-mutual-fund-payments): **product** JSON with **wtParams** **beneficiarydetail** **pg** NB or **UPI** **bankcode**.
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 82,
+    "width": 170,
+    "boxMargin": 8,
+    "messageMargin": 34,
+    "diagramMarginX": 48,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    participant Investor
+    box Merchant Site
+        participant Merchant
+    end
+    box PayU
+        participant PayU
+    end
+    participant Rail as Bank or UPI
+
+    Investor->>Merchant: 1. Enter pay details on site
+    Merchant->>PayU: 2. _payment seamless
+    Note over Merchant,PayU: pg NB or UPI<br/>product wtParams beneficiarydetail
+
+    PayU->>Rail: 3. Process payment
+    Rail-->>PayU: 4. Result
+
+    PayU-->>Merchant: 5. Response hash
+    Merchant->>Merchant: 6. Reverse hash check
+
+    Merchant->>PayU: 7. verify_payment
+    Merchant-->>Investor: 8. SIP or purchase status
+```
+
+---
+
+## Mutual fund SIP — eNACH subscription
+
+From [ENACH Integration - Mutual Funds](https://docs.payu.in/docs/enach-mutual-fund-payments-integration): consent with **si=1** **si_details** **pg=ENACH** **products** wtParams then recurring server calls.
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 78,
+    "width": 165,
+    "boxMargin": 8,
+    "messageMargin": 34,
+    "diagramMarginX": 46,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    participant Investor
+    box Merchant Site
+        participant Merchant
+    end
+    box PayU
+        participant PayU
+    end
+    participant Bank as Sponsor Bank
+
+    Investor->>Merchant: 1. Register SIP eNACH
+    Merchant->>PayU: 2. Consent _payment
+    Note over Merchant,PayU: si 1 si_details ENACH<br/>products wtParams txn_s2s_flow 4
+
+    PayU->>Bank: 3. Mandate registration
+    Bank-->>PayU: 4. Mandate status
+    PayU-->>Merchant: 5. Consent response
+    Merchant->>PayU: 6. Verify registration
+
+    loop Recurring debit
+        Merchant->>PayU: 7. Recurring charge API
+        Note over Merchant,PayU: authpayuid invoiceDisplayNumber
+        PayU->>Bank: 8. Presentment
+        Bank-->>PayU: 9. Debit result
+        PayU-->>Merchant: 10. Charge status
+    end
+```
+
+---
+
+## Mutual fund SIP — UPI Autopay
+
+From [UPI Autopay Integration - Mutual Funds](https://docs.payu.in/docs/upi-autopay-integration-mutual-fund-payments): consent **pg** UPI **bankcode** INTTPV **si** **si_details** **products** wtParams then pre-debit and recurring steps per doc.
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 78,
+    "width": 165,
+    "boxMargin": 8,
+    "messageMargin": 34,
+    "diagramMarginX": 46,
+    "diagramMarginY": 16
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "signalColor": "#002843",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    participant Investor
+    box Merchant Site
+        participant Merchant
+    end
+    box PayU
+        participant PayU
+    end
+    participant NPCI as UPI Rails
+
+    Investor->>Merchant: 1. UPI Autopay consent
+    Merchant->>PayU: 2. Consent _payment
+    Note over Merchant,PayU: pg UPI bankcode INTTPV<br/>si si_details products wtParams
+
+    PayU->>NPCI: 3. Mandate setup
+    NPCI-->>PayU: 4. Consent outcome
+    PayU-->>Merchant: 5. Response
+    Merchant->>PayU: 6. Verify consent
+
+    Merchant->>PayU: 7. Pre-debit notification
+    PayU-->>Merchant: 8. PDN ack
+
+    loop Recurring debit
+        Merchant->>PayU: 9. Recurring debit call
+        PayU->>NPCI: 10. Present to UPI
+        NPCI-->>PayU: 11. Debit status
+        PayU-->>Merchant: 12. Result
+    end
+```
+
+---
+
