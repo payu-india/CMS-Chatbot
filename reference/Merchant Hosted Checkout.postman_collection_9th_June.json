@@ -22,7 +22,7 @@
     "/_payment": {
       "post": {
         "operationId": "merchantHostedPayment",
-        "summary": "Initiate payment (merchant-hosted `_payment`)",
+        "summary": "Collect Payment - Merchant Hosted",
         "description": "",
         "tags": [
           "Payment"
