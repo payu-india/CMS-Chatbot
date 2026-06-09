@@ -1240,18 +1240,17 @@ System.Console.WriteLine(((int)resp.StatusCode) + " " + txt);
 
   </Tab>
 </Tabs>
-## Sample responses
+
+## Sample Response
 
 After payment, PayU usually **redirects** the browser to **`surl`** or **`furl`** with a **query-string** body (`key=value&…`). The tabs below all use that **single-line URL / query-string** format (same style as **Cards** and **UPI**). Some integrations receive a **plain/HTML** body instead—treat per your flow. **Always** verify the response **`hash`** using [PayU response hashing](https://docs.payu.in/docs/custom-checkout-merchant-hosted).
 
 <Tabs>
-## Sample Response
   <Tab title="Net banking">
 
 ```plaintext
 mihpayid=403993715524046125&mode=NB&status=success&unmappedstatus=captured&key=JPM7Fg&txnid=bvRCCBO4YiGGHE&amount=10.00&discount=0.00&net_amount_debit=10&addedon=2021-09-06+13%3A59%3A39&productinfo=iPhone&firstname=Ashish&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40gmail.com&phone=9876543210&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=fa7bb889d25b2a60bcf32316d1c9346589ff3de012dd0c66aa47ec12f1349837163ef8a603bd8b357de610b768f08dc4fb3bb470d2d1ca6d9751300667fd763a6&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=NB-PG&bank_ref_num=ae67e632-f4eb-4121-b47b-2d35dce5ec2e&bankcode=TESTPGNB&error=E000&error_Message=No+Error
 ```
-
   </Tab>
 
   <Tab title="Cards">
