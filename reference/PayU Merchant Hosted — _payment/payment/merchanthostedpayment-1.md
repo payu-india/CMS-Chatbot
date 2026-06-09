@@ -18,6 +18,7 @@ To process payments with credit/debit card, UPI, wallet, etc. on your website us
 ## Sample Request
 <Tabs>
   <Tab title="Net banking">
+
 ```curl
 curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
