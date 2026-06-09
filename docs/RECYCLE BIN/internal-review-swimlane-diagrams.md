@@ -1355,7 +1355,8 @@ sequenceDiagram
 
 ---
 
-## Mutual fund payments — high level (Wealth Tech)
+## Mutual fund payments 
+### Mutual fund payments — high level (Wealth Tech)
 
 From [Mutual Fund Payments](https://docs.payu.in/docs/mutual-funds-payments): SEBI-aligned flows non-seamless or seamless NB and UPI subscriptions via eNACH or UPI Autopay.
 
@@ -1422,7 +1423,7 @@ sequenceDiagram
 
 ---
 
-## Mutual fund payment — PayU hosted (non-seamless)
+### Mutual fund payment — PayU hosted (non-seamless)
 
 From [PayU Hosted Integration - Mutual Fund Payments](https://docs.payu.in/docs/payu-hosted-integration-mutual-funds-payment): redirect `_payment` with **products** JSON including **wtParams** and **beneficiarydetail** in hash.
 
@@ -1492,7 +1493,7 @@ sequenceDiagram
 
 ---
 
-## Mutual fund payment — merchant hosted (seamless)
+### Mutual fund payment — merchant hosted (seamless)
 
 From [Merchant Hosted Integration - Mutual Fund Payments](https://docs.payu.in/docs/merchant-hosted-integration-mutual-fund-payments): **product** JSON with **wtParams** **beneficiarydetail** **pg** NB or **UPI** **bankcode**.
 
@@ -1560,7 +1561,7 @@ sequenceDiagram
 
 ---
 
-## Mutual fund SIP — eNACH subscription
+$## Mutual fund SIP — eNACH subscription
 
 From [ENACH Integration - Mutual Funds](https://docs.payu.in/docs/enach-mutual-fund-payments-integration): consent with **si=1** **si_details** **pg=ENACH** **products** wtParams then recurring server calls.
 
@@ -1632,7 +1633,7 @@ sequenceDiagram
 
 ---
 
-## Mutual fund SIP — UPI Autopay
+### Mutual fund SIP — UPI Autopay
 
 From [UPI Autopay Integration - Mutual Funds](https://docs.payu.in/docs/upi-autopay-integration-mutual-fund-payments): consent **pg** UPI **bankcode** INTTPV **si** **si_details** **products** wtParams then pre-debit and recurring steps per doc.
 
