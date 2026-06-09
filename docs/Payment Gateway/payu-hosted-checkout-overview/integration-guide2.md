@@ -826,12 +826,6 @@ Now that you have created the hash value combine the below into a request that w
     * Store the transaction ID in your database before redirecting the customer.
     * Keep customer identifiers consistent for reconciliation.
   </Callout>
-         
-  <Accordion title="Step 1.3.1 Customise Checkout" icon="fa-gear">
-    Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-    ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-    occaecat cupidatat non proident!
-  </Accordion>
 
 </Accordion>
 
@@ -1364,10 +1358,10 @@ You should verify the response received for the authenticity by creating a hash 
 > ✅ **Verification Checklist**
 >
 > - [x] Verify every transaction response.
+>
 > - [x] Reject mismatched hashes.
+>
 > - [x] Log verification failures.
->
->
 
 
 <Image src="https://files.readme.io/7acf9d72438a6a00b637ef4c70c13b8a4871c3aa6055d7c985bbef5f980fa502-reverse_hashing_flow.png" align="center" caption="_Reverse Hashing Flow_" border={true} framed={true} />
