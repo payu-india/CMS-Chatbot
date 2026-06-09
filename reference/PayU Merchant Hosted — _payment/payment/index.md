@@ -1,4 +1,4 @@
 ---
 title: Payment
-hidden: false
+hidden: true
 ---
