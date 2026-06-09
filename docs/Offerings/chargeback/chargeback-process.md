@@ -12,16 +12,16 @@ The following flow diagram illustrate the PayU Chargeback flow.
   "theme": "base",
   "flowchart": {
     "curve": "stepAfter",
-    "padding": 10,
-    "nodeSpacing": 28,
-    "rankSpacing": 40,
-    "diagramPadding": 12,
+    "padding": 16,
+    "nodeSpacing": 40,
+    "rankSpacing": 52,
+    "diagramPadding": 16,
     "htmlLabels": true,
-    "useMaxWidth": true
+    "useMaxWidth": false
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
-    "fontSize": "10px",
+    "fontSize": "14px",
     "background": "#FFFFFF",
     "primaryColor": "#A6C307",
     "primaryTextColor": "#002843",
@@ -40,20 +40,20 @@ The following flow diagram illustrate the PayU Chargeback flow.
   }
 }}%%
 flowchart TB
-    classDef bank fill:#F4F9E0,stroke:#002843,stroke-width:1px,color:#002843
-    classDef payu fill:#A6C307,stroke:#002843,stroke-width:1px,color:#002843
-    classDef merch fill:#E8F0C4,stroke:#002843,stroke-width:1px,color:#002843
+    classDef bank fill:#F4F9E0,stroke:#002843,stroke-width:1px,color:#002843,font-size:14px
+    classDef payu fill:#A6C307,stroke:#002843,stroke-width:1px,color:#002843,font-size:14px
+    classDef merch fill:#E8F0C4,stroke:#002843,stroke-width:1px,color:#002843,font-size:14px
 
-    b_send(["Bank / network<br/>Sends chargeback"]):::bank
-    p_recv["PayU receives<br/>notification from bank"]:::payu
-    p_notify["PayU notifies<br/>merchants"]:::payu
-    m_decide{"Merchant<br/>Accept or contest?"}:::merch
+    b_send(["Acquiring bank / network<br/>Sends chargeback notification"]):::bank
+    p_recv["PayU receives chargeback<br/>notification from bank"]:::payu
+    p_notify["PayU notifies merchants"]:::payu
+    m_decide{"Merchant: accept or contest?"}:::merch
     m_accept["Merchant accepts<br/>Chargeback processed"]:::merch
     m_docs["Merchant submits<br/>defense documents"]:::merch
-    p_verify["PayU verifies docs<br/>Shares with bank"]:::payu
-    b_eval["Bank / network<br/>Evaluation"]:::bank
-    b_upheld(["Upheld<br/>Merchant loses"]):::bank
-    b_rev(["Reversed<br/>Merchant wins"]):::bank
+    p_verify["PayU verifies documents<br/>and shares with acquiring bank"]:::payu
+    b_eval["Bank / network evaluation"]:::bank
+    b_upheld(["Chargeback upheld<br/>(merchant loses)"]):::bank
+    b_rev(["Chargeback reversed<br/>(merchant wins)"]):::bank
 
     b_send --> p_recv
     p_recv --> p_notify
@@ -65,7 +65,6 @@ flowchart TB
     p_verify --> b_eval
     b_eval -->|Upheld| b_upheld
     b_eval -->|Reversed| b_rev
-
 ```
 
 
