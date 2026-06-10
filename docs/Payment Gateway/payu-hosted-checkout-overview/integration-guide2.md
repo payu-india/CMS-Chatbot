@@ -1394,7 +1394,7 @@ Upon verifying  the payment, we recommend you to verify the payment status using
     To verify the payment from the PayU Dashboard:<br/>
     1. Log in to the PayU Dashboard and click **Transactions** from the left menu.
     2. Check if a **Payu ID (Transaction ID)** has been generated and note the status. In case of a successful payment, the status is marked as **Success**.<br/>
-    <Image       src="https://files.readme.io/30840455deadfe76c808f4954f9d18dcdb2a949d9e6851ee8566e9f58094bd3d-varify_payment_dashboard.png" align="center" caption="_Verify the Payment from Dashboard_" border={true} framed={true} />
+    <Image       src="https://files.readme.io/30840455deadfe76c808f4954f9d18dcdb2a949d9e6851ee8566e9f58094bd3d-varify_payment_dashboard.png" align="center" caption="_Verify the Payment from Dashboard_" border={true} framed={false} />
   </Tab>
 
   <Tab title="Second Tab">
