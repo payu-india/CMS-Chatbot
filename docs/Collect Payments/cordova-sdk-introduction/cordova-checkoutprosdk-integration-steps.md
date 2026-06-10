@@ -24,9 +24,9 @@ next:
 ---
 The Cordova Checkout SDK integration involves the following steps:
 
-<Callout icon="📘" theme="info">
-  **Note**: You can do iOS specific customization during integration. For more information, refer to [iOS-specific Integration customization (Optional)](#ios-specific-integration-customization-optional).
-</Callout>
+> 📘
+>
+> **Note**: You can do iOS specific customization during integration. For more information, refer to [iOS-specific Integration customization (Optional)](#ios-specific-integration-customization-optional).
 
 ## Step 1: SDK Integration
 
@@ -693,7 +693,7 @@ The Cordova Checkout SDK integration involves the following steps:
           </td>
 
           <td style={{ textAlign: "left" }}>
-            Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to PayUPaymentParams.
+            Create list of SKU as per products added in cart and add this list in SKU details. and set sku details to PayUPaymentParams.
 
             * \*Note:- \*\*When we use SKU features then it's a mandatory parameter otherwise it's not required.
           </td>
@@ -1053,7 +1053,7 @@ The Cordova Checkout SDK integration involves the following steps:
   > Things to remember while testing an integration:
   >
   > 1. To test the integration make sure that you are making a transaction call to the test endpoint.
-  > 2. Use your test key and salt for the transaction requests. See [Genearate Test Key and Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt).
+  > 2. Use your test key and salt for the transaction requests. See [Generate Test Key and Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt).
   > 3. Set the value of the `environment` parameters to `1`.
 
   ***
