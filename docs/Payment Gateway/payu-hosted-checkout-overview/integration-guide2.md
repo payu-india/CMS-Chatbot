@@ -50,7 +50,7 @@ This is the core of the integration. Everything else builds on top of this.
 
 ## Prerequisites
 
-Go through the prerequisites before you proceed with the integration.
+Go through the prerequisites before you proceed with the integration
 
 ## 1. Build Integration
 
@@ -1412,5 +1412,9 @@ You can use the <Anchor target="_blank" href="https://payu-hashverificationtool.
   </Tab>
 </Tabs>
 </Accordion>
+
+## 2. Test Integration
+
+<br />
 
 <br />
