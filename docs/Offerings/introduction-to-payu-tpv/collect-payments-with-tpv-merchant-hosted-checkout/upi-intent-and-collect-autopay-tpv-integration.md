@@ -16,8 +16,8 @@ The Third-Party Verification (TPV) functionality is now being added to the UPI A
 
 > 📘 Notes:
 >
-> * Currently, PayU supports UPI Autopay only with Seamless integration.
-> * Contact your PayU Key Account Manager (KAM) or [PayU Support ](https://help.payu.in)to activate this feature.
+> - Currently, PayU supports UPI Autopay only with Seamless integration.
+> - Contact your PayU Key Account Manager (KAM) or [PayU Support ](https://help.payu.in)to activate this feature.
 
 **Steps to integrate**
 
@@ -49,8 +49,8 @@ The Third-Party Verification (TPV) functionality is now being added to the UPI A
 
 Merchants have use cases, which requires the transactions to be allowed only for selected accounts only. These accounts are provided by the customer before hand (during customer registration on merchant platform). Few merchant use cases are:
 
-* Mutual Funds (SEBI guideines)
-* Loan Repayment
+- Mutual Funds (SEBI guidelines)
+- Loan Repayment
 
 However, as part of UPI, customer has the flexibility to link multiple accounts under the same VPA and on run-time, change the account for authorisation. So using TPV services, merchant makes sure that customer authorises the transaction using pre-registered accounts only.
 
@@ -644,3 +644,5 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
     <Verify_Payment_Tabs />
   </Tab>
 </Tabs>
+
+<br />
