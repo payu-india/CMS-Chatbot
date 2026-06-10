@@ -18,7 +18,9 @@ User limit helps in restricting the number of offers/budgets availed by a custom
 
 Here the velocity has been set to 2, which means during the whole offer period, your customer can avail the offer only twice.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/67e894e5c8b00ecd3d918f680d4b4797f833695e1aed1160e5396a3622202e51-Screenshot_2025-06-06_at_10.05.59_AM.png" />
+
+<Image src="https://files.readme.io/67e894e5c8b00ecd3d918f680d4b4797f833695e1aed1160e5396a3622202e51-Screenshot_2025-06-06_at_10.05.59_AM.png" align="center" border={true} />
+
 
 Along with restricting the number of offers, we have added a budget limit of Rs 800 per user. Now, the user can avail two offers, but to a maximum budget of Rs 800. Lets the user avail an offer of ₹600 in the first transaction, during the second transaction, the customer will only be able to avail a discount of ₹200. If the second transaction has an eligible discount of more than ₹200, the customer will not be able to get any discount here
 
@@ -48,7 +50,7 @@ PayU saves the card hash mapped with the token number during the tokenization of
 
 #### Saved Card/Token Card Transaction
 
-For a transaction initiated with a tokenized card, the card hash mapped (at the time of token creation) against the tokenized card will be used to run the velocity. This will ensure that the velocity is maintained against both a plain card as well as a token card transaction
+For a transaction initiated with a tokenized card, the card hash mapped (at the time of token creation) against the tokenized card will be used to run the velocity. This will ensure that the velocity is maintained against both a plain card and a token card transaction
 
 ### Merchant Using Third-Party Tokenization
 
