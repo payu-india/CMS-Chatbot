@@ -1390,15 +1390,21 @@ You can use the <Anchor target="_blank" href="https://payu-hashverificationtool.
 Upon verifying  the payment, we recommend you to verify the payment status using any of the following ways:
 
 <Tabs>
-  <Tab title="Verify from Dashboard">
+  <Tab title="1. Verify from Dashboard">
     To verify the payment from the PayU Dashboard:<br/>
     1. Log in to the PayU Dashboard and click **Transactions** from the left menu.
     2. Check if a **Payu ID (Transaction ID)** is created for the recent transaction and if the payment is successful, the status is marked as **Success**.<br/>
     <Image       src="https://files.readme.io/30840455deadfe76c808f4954f9d18dcdb2a949d9e6851ee8566e9f58094bd3d-varify_payment_dashboard.png" align="center" caption="_Verify the Payment from Dashboard_" border={true} framed={false} />
   </Tab>
 
-  <Tab title="Second Tab">
-    Here's content that's only inside the second Tab.
+  <Tab title="2. Verify using Webhooks">
+    Configure the webhooks to monitor the status of payments.
+    
+    Webhooks enable a server to communicate with another server by sending an HTTP callback or message.
+
+    These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.
+
+    Know how to <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">manage Webhooks</a> for Payments.
   </Tab>
 
   <Tab title="Third Tab">
