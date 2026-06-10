@@ -143,6 +143,6 @@ Changes expected are:
 
 1. Register your PayU endpoint in your Onboarding form for the schemes.
 2. Integrate account discovery API (similar to the [Account Discovery API](ref:account-discovery-api) from PayU) where you will send user ID corresponding to the mobile number received for push tokenization.
-3. Post that PayU will relay the information to their <Glossary>Token Requestor</Glossary> and send response to the you after the token is created.
+3. Post that PayU will relay the information to their <Glossary>Token Requestor</Glossary> and send response to you after the token is created.
 
 <br />
