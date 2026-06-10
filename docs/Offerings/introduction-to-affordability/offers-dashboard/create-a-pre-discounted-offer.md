@@ -42,12 +42,14 @@ This procedure describes how to create a Prebuilt offer on PayU Dashboard and it
 ## Step 1: Add the basic details
 
 1. Navigate to [.Offers Dashboard](doc:offers-dashboard).
+
 2. Click **Create an Offer** at the top-right corner.
 
    The _Create New Offer_ page is displayed.
 
 
    <Image src="https://files.readme.io/94d041dbfbfc5faa76260a76e736cdbb4030553dddcde8c5ef3efeb9ca5d0f95-Screenshot_2025-06-03_at_10.16.03_AM.png" align="center" border={true} />
+
 
 3. Select the discount type as **Pre-Discounted Offer**.
 
@@ -107,12 +109,12 @@ The Choose an Offer Type to get started.
     <tbody>
       <tr>
         <td>
-          Upload Bins to be include
+          Upload Bins to be included
         </td>
 
         <td>
           * Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
-          * Update the CSV file to include the BINs to be included.
+          * Update the CSV file to include the BINs.
           * Click the **Upload Bins** button upload the bins to be included.
 
             ![](https://files.readme.io/eb89a85f7a1920608e9f00e451d11cb8c92ce606734891c80383ad1a015c93e5-dashboard_payment_options_debit_card_upload_card_bin.png)
