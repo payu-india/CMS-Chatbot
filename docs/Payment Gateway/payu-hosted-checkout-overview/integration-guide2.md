@@ -1387,6 +1387,12 @@ You can use the <Anchor target="_blank" href="https://payu-hashverificationtool.
 
 ### Step 1.5 Verify the Payment
 
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
+
 Upon verifying  the payment, we recommend you to verify the payment status using any of the following ways:
 
 <Tabs>
@@ -1408,7 +1414,7 @@ Upon verifying  the payment, we recommend you to verify the payment status using
   </Tab>
 
   <Tab title="3. Verify using APIs">
-    You can poll the Verify Payment API to verify the payment.
+    You can poll the <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a> to verify the payment.
   </Tab>
 </Tabs>
 
