@@ -155,6 +155,7 @@ System.Console.WriteLine(((int)resp.StatusCode) + " " + txt);
 
   </Tab>
   <Tab title="Cards">
+
 ```curl
 curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
@@ -311,6 +312,8 @@ System.Console.WriteLine(((int)resp.StatusCode) + " " + txt);
 
   </Tab>
   <Tab title="UPI">
+
+
 ```curl
 curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
@@ -451,6 +454,8 @@ System.Console.WriteLine(((int)resp.StatusCode) + " " + txt);
 
   </Tab>
   <Tab title="Wallets">
+
+
 ```curl
 curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
@@ -587,6 +592,8 @@ System.Console.WriteLine(((int)resp.StatusCode) + " " + txt);
 
   </Tab>
   <Tab title="EMI">
+
+
 ```curl
 curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=H6mUfE0ccAY94j&amount=20000.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=EMI&bankcode=EMIA3&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=5123456789012346&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=&hash=782057a8bb0288c858149b4805103befa22041bb3092bc45a813738b43742e31baeae92375be5286a98b44ed66c36121aba0fff6a3170339a4949bc880125d36"
 ```
@@ -1104,7 +1111,9 @@ namespace PayUCreditCardEmiIntegration
 
   </Tab>
   <Tab title="BNPL">
-```bash
+
+
+```curl
 curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
   -H "Content-Type: application/x-www-form-urlencoded" \
