@@ -1398,13 +1398,13 @@ Upon verifying  the payment, we recommend you to verify the payment status using
   </Tab>
 
   <Tab title="2. Verify using Webhooks">
-    Configure the webhooks to monitor the status of payments.
+    Configure the webhooks to monitor the status of payments.<br/>
     
-    Webhooks enable a server to communicate with another server by sending an HTTP callback or message.
+    Webhooks enable a server to communicate with another server by sending an HTTP callback or message.<br/>
 
-    These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.
+    These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.<br/>
 
-    Know how to <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">manage Webhooks</a> for Payments.
+    Know how to <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">manage Webhooks</a> for Payments.<br/>
   </Tab>
 
   <Tab title="Third Tab">
