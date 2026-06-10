@@ -1391,7 +1391,7 @@ You can use the <Anchor target="_blank" href="https://payu-hashverificationtool.
   <Tabs>
   <Tab title="1. Verify from Dashboard">
     To verify the payment from the PayU Dashboard:<br/>
-    1. Log in to the PayU Dashboard and click **Transactions** from the left menu.
+    1. Log in to the <a href="https://onboarding.payu.in/app/account/signin" target="_blank">PayU Dashboard</a> and click **Transactions** from the left menu.
     2. Check if a **Payu ID (Transaction ID)** is created for the recent transaction and if the payment is successful, the status is marked as **Success**.<br/>
     <Image       src="https://files.readme.io/30840455deadfe76c808f4954f9d18dcdb2a949d9e6851ee8566e9f58094bd3d-varify_payment_dashboard.png" align="center" caption="_Verify the Payment from Dashboard_" border={true} framed={false} />
   </Tab>
