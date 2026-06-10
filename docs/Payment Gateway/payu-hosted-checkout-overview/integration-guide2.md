@@ -56,7 +56,7 @@ Go through the prerequisites before you proceed with the integration.
 
 Below are the integration steps:
 
-1. Prepare Payment Request Parameters
+1. [Prepare Payment Request Parameters](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-11-prepare-payment-request-parameters)
 2. Generate Secure Hash
 3. Create a Payment Request
    1. Customize PayU Payment Page _(Optional)_
