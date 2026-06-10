@@ -17,15 +17,15 @@ next:
 ---
 Pre-discounted offers are applied at your (merchant) end and the transaction amount passed is the discounted transaction amount. PayU is primarily used for doing certain checks and validations rather than applying the discount itself. Pre-discounted offers help you with the following:
 
-* Better user experience on the PayU Payment page (PayU Hosted Checkout) as the offer is already applied at your side, PayU will not be showing the list of offers on the PayU Payment page.
-* Reconciliation and Settlements (offer engine back calculates original transaction amount, discount amount, and the net debit amount which can be used on reconciliation & settlements).
-* The **Don’t allow transaction, if offer is not applicable** flag is enabled by default.
+- Better user experience on the PayU Payment page (PayU Hosted Checkout) as the offer is already applied at your side, PayU will not be showing the list of offers on the PayU Payment page.
+- Reconciliation and Settlements (offer engine back calculates original transaction amount, discount amount, and the net debit amount which can be used on reconciliation & settlements).
+- The **Don’t allow transaction, if offer is not applicable** flag is enabled by default.
 
 This procedure describes how to create a Prebuilt offer on PayU Dashboard and it is similar to creating a Discount offer.
 
-<Callout icon="📘" theme="info">
-  **Note**: In Merchant Hosted Checkout integration, hide all other offers if Pre-Discounted offer is used.
-</Callout>
+> 📘
+>
+> **Note**: In Merchant Hosted Checkout integration, hide all other offers if Pre-Discounted offer is used.
 
 ***
 
@@ -46,33 +46,41 @@ This procedure describes how to create a Prebuilt offer on PayU Dashboard and it
 
    The _Create New Offer_ page is displayed.
 
-   <Image align="center" border={true} src="https://files.readme.io/94d041dbfbfc5faa76260a76e736cdbb4030553dddcde8c5ef3efeb9ca5d0f95-Screenshot_2025-06-03_at_10.16.03_AM.png" className="border" />
+
+   <Image src="https://files.readme.io/94d041dbfbfc5faa76260a76e736cdbb4030553dddcde8c5ef3efeb9ca5d0f95-Screenshot_2025-06-03_at_10.16.03_AM.png" align="center" border={true} />
+
 3. Select the discount type as **Pre-Discounted Offer**.
 
 The Choose an Offer Type to get started.
 
-<Image align="center" border={true} src="https://files.readme.io/02fa936e855901b9f6faf8bae897cf7ad501390a4e565567315abee82f0b5020-dashboard_prediscounted_offer_types.png" className="border" />
+
+<Image src="https://files.readme.io/02fa936e855901b9f6faf8bae897cf7ad501390a4e565567315abee82f0b5020-dashboard_prediscounted_offer_types.png" align="center" border={true} />
+
 
 4. Select any of the following offer sub-types:
-   * **Instant Discount**: The instant discount is applied and discounted amount is displayed on the PayU Payment page and other offers are not shown.
-   * **Low-Cost EMI**: The low-cost EMI is applied and the EMI amount is displayed on the PayU Payment page and other offers are not shown.
+   - **Instant Discount**: The instant discount is applied and discounted amount is displayed on the PayU Payment page and other offers are not shown.
+   - **Low-Cost EMI**: The low-cost EMI is applied and the EMI amount is displayed on the PayU Payment page and other offers are not shown.
 
  The _Basic Offer Details_ page is displayed.
 
-<Image align="center" border={true} src="https://files.readme.io/09dec7da3915af1371413ad8eb9195dbaebacd7934c5ba93e97f54d311c001eb-Screenshot_2025-06-05_at_10.16.18_AM.png" className="border" />
+
+<Image src="https://files.readme.io/09dec7da3915af1371413ad8eb9195dbaebacd7934c5ba93e97f54d311c001eb-Screenshot_2025-06-05_at_10.16.18_AM.png" align="center" border={true} />
+
 
 5. Add the basic details. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
 6. After you complete the above details and click **Next**.
 
    The _Payment Options_ page is displayed.
 
-<Image align="center" border={true} src="https://files.readme.io/20face5ca921ac455c7dd74ba8fb532e274b2ac4dd69b581d64b52b3072af1a7-dashboard-prediscounted-payment-options.png" className="border" />
+
+<Image src="https://files.readme.io/20face5ca921ac455c7dd74ba8fb532e274b2ac4dd69b581d64b52b3072af1a7-dashboard-prediscounted-payment-options.png" align="center" border={true} />
+
 
 > 📘 **Note**: When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
 
 ## Step 2: Configure payment modes
 
-1. Configure the payment modes. 
+1. Configure the payment modes.
 
 <Accordion title="Debit Cards" icon="fa-bell">
   1. Click the **Edit** button on the **Debit Cards** tile.
@@ -293,11 +301,14 @@ The Choose an Offer Type to get started.
 
   <Image align="center" src="https://files.readme.io/d5a47d52dd4c1b7f1eeae0b3c8e37fd2dff576352ae578b5108b2528042f4795-dashboard_payment_options_bnpl.png" />
 </Accordion>
+
 2. Click **Next**.
 
 The _Offer Rules_ page is displayed.
 
-<Image align="center" border={true} src="https://files.readme.io/2e7610844659ed93bfa6380b4023a90f4ff3c2b5743acdbe9ed3a2eeb39c385c-dashboard-prediscounted-offer-rules.png" className="border" />
+
+<Image src="https://files.readme.io/2e7610844659ed93bfa6380b4023a90f4ff3c2b5743acdbe9ed3a2eeb39c385c-dashboard-prediscounted-offer-rules.png" align="center" border={true} />
+
 
 ## Step 3: Include the Offer rules
 
@@ -308,12 +319,14 @@ The _Offer Rules_ page is displayed.
 
 ## Step 4: Configure Offer Subvention Details
 
-1. Enter the subvention details in the _Subvention Details_ page. For more information, refer to refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-4-configure-offer-subvention-details).
+1. Enter the subvention details in the _Subvention Details_ page. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-4-configure-offer-subvention-details).
 2. After you complete the above details and click **Next**.
 
 The _Preview Details_ page is displayed.
 
-<Image align="center" border={true} src="https://files.readme.io/a87a0559ec1e51c8daed008b50a26c33c186b877accfc72a3a4bc72b15eb3aa5-dashboard-prediscounted-preview_page.png" className="border" />
+
+<Image src="https://files.readme.io/a87a0559ec1e51c8daed008b50a26c33c186b877accfc72a3a4bc72b15eb3aa5-dashboard-prediscounted-preview_page.png" align="center" border={true} />
+
 
 ## Step 5: Review of the Offer
 
@@ -322,3 +335,5 @@ The _Preview Details_ page summarizes the details you provided in Step 2 to Step
 1. Review all the configurations added before you make the offer available to your customers.
 2. Click the **Edit** button to return back to the corresponding page and update the configuration.
 3. Click **Publish** to make it available to customers.
+
+<br />
