@@ -22,38 +22,8 @@ To integrate offers using Merchant Hosted Checkout integration:
 2. Use the **Validate Offer** API to validate if the offer will be applied on this transaction or not. For more information, refer to [Validate Offer API](https://devguide.payu.in/offers-integration/offers-api/validate-offer-api/).
 3. Make the payment request using the **\_payment** API using the following additional parameters for Offers. You need to send an additional parameter (**user token)**, **api\_version** as 14, and hash as described in the following table. This user token would be used to identify the customer for applying velocity rules.
 
-| **Parameter** | **Description** | **Example** |
-| ------------- | --------------- | ----------- |
 
-| api\_version  
-**mandatory** | The API version of the \_payment API must be specified as **14**. | 14 |  
-| user\_token  
-**mandatory for UPI, NB, Wallet** \|  
-The use for this param is to allow the offer engine to apply velocity rules at a user level.  
-
- 
-
-- **Card Based Offers (CC, DC, EMI)**: In case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied on the card number.
-- **UPI, NB, Wallet**: It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
-
- | User123456 |  
-| hash  
-**mandatory** | It is used to avoid the possibility of transaction tampering.  
-**Note**: The following order must be used for hashing:  
-`key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`  
-For more information on hash generation process, refer to [Hashing Request and Response](https://devguide.payu.in/wordpress/index.php/encryption-of-request/). |   |  
-| Group Name  
-**mandatory** | Should be unique |   |  
-| Max offers per user  
-**atleast one of the fields** | This is the maximum number of times an offer can be availed by a user |   |  
-| Max budget per user  
-**optional** | This is the maximum budget that can be availed by a user |   |  
-| Reset User Limits  
-**optional** | This needs to be added only if user limits need to be reset at regular intervals. Examples of value can be 1 day, 3 weeks, 2 months etc |   |  
-| Offer Keys  
-**optional** | Offer keys can be added after creation of offer group as well |   |
-
-1. Check the response from PayU.
+4. Check the response from PayU.
 
 For a sample response from PayU, refer to [Web Checkout Integration > PayU Hosted Checkout Integration](https://devguide.payu.in/merchant-integration/payu-hosted-checkout/payu-hosted-checkout-integration/#Step3).
 
