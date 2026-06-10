@@ -178,4 +178,4 @@ For the sample request and response from PayU, refer to [Web Checkout Integratio
 
 1. If you want to refund the payment to the customer. refer to [Refund Transaction.](https://devguide.payu.in/api/refund-apis-2/cancel_refund_transaction/)
 
-**Note**: You can enable the **Enforce Offer** flag by requesting your PayU Key Account Manager. If you enable the **Enforce Offer** flag, all the offers passed are visible to the customer and the customer choose the an offer that they wish to apply.
+**Note**: You can enable the **Enforce Offer** flag by requesting your PayU Key Account Manager. If you enable the **Enforce Offer** flag, all the offers passed are visible to the customer and the customer choose an offer that they wish to apply.
