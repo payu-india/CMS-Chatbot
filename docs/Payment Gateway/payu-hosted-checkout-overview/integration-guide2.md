@@ -1431,9 +1431,13 @@ Before accepting live payments, test your integration thoroughly.
 ### Step 2.1 Simulate a Successful Payment
 
 <Accordion title="Test Payment Steps" icon="fa-info-circle">
-After you post a form and save the html file, open the file and perform the following steps:
-1. Click **Submit** initiate the transaction.
-2. 
+After you post a form and save the html file and perform the following steps:
+1. Open the file to initiate the transaction
+2. Select the payment method and make a test transaction to ensure the integration is working as expected.
 </Accordion>
+
+#### Supported Payment Methods
+
+You can use the following payment methods and their test details to make the payment.
 
 <br />
