@@ -1387,7 +1387,7 @@ You can use the <Anchor target="_blank" href="https://payu-hashverificationtool.
 
 ### Step 1.5 Verify the Payment
 
-<Accordion title="Verify Payment Methods" icon="fa-info-circle">
+<Accordion title="Verify Payment Methods" icon="fa-check-double">
   <Tabs>
   <Tab title="1. Verify from Dashboard">
     To verify the payment from the PayU Dashboard:<br/>
