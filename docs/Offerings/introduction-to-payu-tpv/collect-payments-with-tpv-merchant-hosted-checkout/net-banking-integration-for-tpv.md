@@ -392,7 +392,7 @@ With the following additional parameters, make the transaction request with the 
                         <td>
                           <code>String</code> The first line of the billing address.
 
-                          * *For Fraud Detection*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+                          * *For Fraud Detection*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is required to provide the correct information.
                         </td>
 
                         <td>
