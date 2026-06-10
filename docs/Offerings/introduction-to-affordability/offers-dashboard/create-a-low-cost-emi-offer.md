@@ -26,22 +26,22 @@ While Low-Cost EMI may offer a lower interest rate than the regular interest rat
 
 ***
 
-After you create a Pre-Dsicounted Offer, you can collect payments from your customers using PayU Hosted (Non-seamless) as described in the PayU Hosted Checkout Integration with Offers.
+After you create a Pre-Discounted Offer, you can collect payments from your customers using PayU Hosted (Non-seamless) as described in the PayU Hosted Checkout Integration with Offers.
 
 ***
 
 ## **Step 1: Select the Discount Type**
 
-1. Navigate to [*Offers* section of PayU Dashboard](https://devguide.payu.in/affordability/getting-started-with-affordability/navigate-to-offer-engine/).
+1. Navigate to [_Offers_ section of PayU Dashboard](https://devguide.payu.in/affordability/getting-started-with-affordability/navigate-to-offer-engine/).
 2. Click **Create an Offer** at the top-right corner.
 
-The *Create New Offer* page is displayed.
+The _Create New Offer_ page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Screenshot-2023-03-23-at-11.15.54-AM-1024x662.png)
 
 1. Select the discount type as **Low-Cost EMI**.
 
- The *Basic Offer Details* page is displayed.
+ The _Basic Offer Details_ page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2023/03/Screenshot-2023-03-24-at-10.32.25-AM-1024x612.png)
 
@@ -51,15 +51,15 @@ The *Create New Offer* page is displayed.
 
 1. Add the basic details. For more information, refer to [Create and Instant Discount or Cashback offer](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer#step2).
 2. Select any of the following options in the **No cost EMI offer to be applied as** field:
-   * **Instant Discount**: The specified amount is discounted from the total amount.
-   * **Cashback**: The specified amount is credited back to the customer’s payment instrument later.
+   - **Instant Discount**: The specified amount is discounted from the total amount.
+   - **Cashback**: The specified amount is credited back to the customer’s payment instrument later.
 3. After you complete the above details and click **Save & Process**,
 
-The *Set Offer Rules* page is displayed.
+The _Set Offer Rules_ page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/05/Screenshot-2022-05-26-at-11.39.03-AM-1-1024x665.png)
 
-Scroll down the *Set Offer Rules* page for the **Additional Options** section.
+Scroll down the _Set Offer Rules_ page for the **Additional Options** section.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Offers_Details_Additional_Options-875x1024.png)
 
@@ -73,10 +73,10 @@ Scroll down the *Set Offer Rules* page for the **Additional Options** section.
 
 ## **Step 3: Include the Offer Rules or Limitations**
 
-1. Enter the offer rules and limitations on the *Set Offer Rules* page. For more information, refer to [Create an Instant Discount or Cashback Offer](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer/) > [Include the Offer Rules or Limitations](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer#step3)
+1. Enter the offer rules and limitations on the _Set Offer Rules_ page. For more information, refer to [Create an Instant Discount or Cashback Offer](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer/) > [Include the Offer Rules or Limitations](https://devguide.payu.in/offers-integration/create-an-offer/create-an-instant-discount-or-cashback-offer#step3)
 2. After you complete the above details and click **Save & Process**.
 
-The *Set Offer Rules* page is displayed.
+The _Set Offer Rules_ page is displayed.
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.17.28-PM-1024x573.png)
 
@@ -89,22 +89,22 @@ The *Set Offer Rules* page is displayed.
 3. Click **Select file from your library** and select the Excel file.
 4. Restrict the offer on a select list of BINs on the banks that were selected in Step 1 to Step 3 if required using the following steps:
 
-* Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of the Debit Card or Credit Cards), which you need to update according to your requirements.  
+- Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of the Debit Card or Credit Cards), which you need to update according to your requirements.  
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/01/Screenshot-2022-01-12-at-10.07.22-PM.png)
 
-* Update the CSV or text file to include the BIN details. For updating the CSV file, you can use Microsoft Excel or any other Spreadsheet tool. 
-* Click **Select .csv or .txt from your library** and select the CSV or text file. 
+- Update the CSV or text file to include the BIN details. For updating the CSV file, you can use Microsoft Excel or any other Spreadsheet tool. 
+- Click **Select .csv or .txt from your library** and select the CSV or text file. 
 
 After you complete adding any one or combination of the offers involving various payment options, click **Save & Proceed**.
 
-The offer for the payment options you configured gets added to the Setup *Payment options of your offer* page.
+The offer for the payment options you configured gets added to the Setup _Payment options of your offer_ page.
 
 ***
 
 ## **Step 5: Review of the Offer**
 
-The *Preview of Cashback Offer* page summarizes the details you provided in [Step 2](https://devguide.payu.in/temp-offers-integration/create-an-offer-temp/create-a-low-cost-emi-offer/#step2) to [Step 4](https://devguide.payu.in/temp-offers-integration/create-an-offer-temp/create-a-low-cost-emi-offer/#step4).
+The _Preview of Cashback Offer_ page summarizes the details you provided in [Step 2](https://devguide.payu.in/temp-offers-integration/create-an-offer-temp/create-a-low-cost-emi-offer/#step2) to [Step 4](https://devguide.payu.in/temp-offers-integration/create-an-offer-temp/create-a-low-cost-emi-offer/#step4).
 
 1. Review all the configuration added before you make the offer available to your customers.
 2. Click the **Edit** button to return back to the corresponding page and update the configuration.
@@ -112,3 +112,5 @@ The *Preview of Cashback Offer* page summarizes the details you provided in [Ste
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.32.06-PM-1024x573.png)
 
 1. Click **Publish Offer** to make it available to customers.
+
+<br />
