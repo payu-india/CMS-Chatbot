@@ -1388,9 +1388,28 @@ You can use the <Anchor target="_blank" href="https://payu-hashverificationtool.
 ### Step 1.5 Verify the Payment
 
 <Accordion title="My Accordion Title" icon="fa-info-circle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+  <Tabs>
+  <Tab title="1. Verify from Dashboard">
+    To verify the payment from the PayU Dashboard:<br/>
+    1. Log in to the PayU Dashboard and click **Transactions** from the left menu.
+    2. Check if a **Payu ID (Transaction ID)** is created for the recent transaction and if the payment is successful, the status is marked as **Success**.<br/>
+    <Image       src="https://files.readme.io/30840455deadfe76c808f4954f9d18dcdb2a949d9e6851ee8566e9f58094bd3d-varify_payment_dashboard.png" align="center" caption="_Verify the Payment from Dashboard_" border={true} framed={false} />
+  </Tab>
+
+  <Tab title="2. Verify using Webhooks">
+    Configure the webhooks to monitor the status of payments.<br/>
+    
+    Webhooks enable a server to communicate with another server by sending an HTTP callback or message.<br/>
+
+    These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.<br/>
+
+    Know how to <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">manage Webhooks</a> for Payments.<br/>
+  </Tab>
+
+  <Tab title="3. Verify using APIs">
+    You can poll the <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a> to verify the payment.
+  </Tab>
+</Tabs>
 </Accordion>
 
 Upon verifying  the payment, we recommend you to verify the payment status using any of the following ways:
