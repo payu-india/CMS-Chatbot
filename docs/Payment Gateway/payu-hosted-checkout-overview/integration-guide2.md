@@ -1420,19 +1420,20 @@ Before accepting live payments, test your integration thoroughly.
 > ⚠️ **Watch out!**
 >
 > This is a test page. Before making the payment:
-
-### Prerequisites
-
-Before testing the integration make sure:
-
-- **Verify API Credentials:** Double-check that you are using the correct key and salt for the test environment.
-- **Validate Hash Calculation:** The most common point of failure is an incorrect hash.
-  - Temporarily print the string that you are passing into the hash function on your server.
-  - Ensure the order of the parameters exactly matches the format specified in the documentation.
-  - Verify that there are no empty or null values for mandatory parameters in the hash string.
+>
+> - **Verify API Credentials:** Double-check that you are using the correct key and salt for the test environment.
+>
+> - **Validate Hash Calculation:** The most common point of failure is an incorrect hash.
+>   - Temporarily print the string that you are passing into the hash function on your server.
+>   - Ensure the order of the parameters exactly matches the format specified in the documentation.
+>   - Verify that there are no empty or null values for mandatory parameters in the hash string.
 
 ### Step 2.1 Simulate a Successful Payment
 
-<br />
+<Accordion title="Test Payment Steps" icon="fa-info-circle">
+After you post a form and save the html file, open the file and perform the following steps:
+1. Click **Submit** initiate the transaction.
+2. 
+</Accordion>
 
 <br />
