@@ -1407,13 +1407,9 @@ Upon verifying  the payment, we recommend you to verify the payment status using
     Know how to <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">manage Webhooks</a> for Payments.<br/>
   </Tab>
 
-  <Tab title="Third Tab">
-    Here's content that's only inside the third Tab.
+  <Tab title="3. Verify using APIs">
+    You can poll the Verify Payment API to verify the payment.
   </Tab>
 </Tabs>
-
-
-<Image src="https://files.readme.io/30840455deadfe76c808f4954f9d18dcdb2a949d9e6851ee8566e9f58094bd3d-varify_payment_dashboard.png" align="center" caption="_Verify the Payment from Dashboard_" border={true} framed={true} />
-
 
 <br />
