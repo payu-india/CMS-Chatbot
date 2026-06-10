@@ -84,6 +84,7 @@ name: Mutual_Funds_Recurring_Payments_var1
     </tr>
   </tbody>
 </table>
+
 `}</HTMLBlock>
 <Accordion title="wtParams object field descriptions" icon="fa-cog">
 
@@ -95,7 +96,7 @@ name: Mutual_Funds_Recurring_Payments_var1
 | option<br />`optional` | `String` Mutual fund plan option | `G` |
 | scheme<br />`optional` | `String` Mutual fund type or scheme | `LT` |
 | receipt<br />`mandatory` | `String` Unique PG reference number | `77407` |
-| mf_member_id<br />`mandatory` | `String` Member ID issued by the mutual fund platform | `12345` |
+| mf_member_id<br />`mandatory` | `numeric` Member ID issued by mutual fund platform (max 5 chars)| `12345` |
 | mf_user_id<br />`mandatory` | `String` Unique mutual fund user or client ID | `77407` |
 | mf_partner<br />`mandatory` | `String` Mutual fund platform (`cams`, `kfin`, `bse`, `nse`) | `cams` |
 | mf_investment_type<br />`mandatory` | `String` Investment type: `L` (Lump Sum) or `S` (SIP) | `L` |
