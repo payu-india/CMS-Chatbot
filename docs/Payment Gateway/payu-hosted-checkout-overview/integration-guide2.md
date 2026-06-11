@@ -394,7 +394,7 @@ To ensure the payment request is secure, you should generate a hash using your t
 
 ### Step 1.3 Create a Payment Request
 
-Now that you have created the hash value combine the below into a request that will be sent to PayU.
+Now that you have created the hash value combine the below into a request that will be sent to PayU in a HTML form.
 
 - Payment parameters
 - Generated hash
