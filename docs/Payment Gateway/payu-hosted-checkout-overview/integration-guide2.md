@@ -1440,7 +1440,10 @@ You can use the following payment methods and their test details to make the pay
   </Tab>
 
   <Tab title="Debit Card">
-    Here's content that's only inside the second Tab.
+    | Card Number         | Network    | Expiry | CVV | OTP    |
+    | :------------------ | :--------- | :----- | :-- | :----- |
+    | 5118-7000-0000-0003 | Mastercard | 05/30  | 123 | 123456 |
+    | 4594-5380-5063-9999 | VISA       | 05/30  | 123 | 123456 |
   </Tab>
 
   <Tab title="Third Tab">
