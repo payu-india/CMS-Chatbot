@@ -94,7 +94,7 @@ Collect and structure the below required parameters before initiating a transact
 
 ### Step 1.2: Generate Secure Hash
 
-To ensure the payment request is secure, you must generate a hash using your transaction details and merchant credentials. This hash is used to verify that the request has not been altered. Know more about hash generation.
+To ensure the payment request is secure, you should generate a hash using your transaction details and merchant credentials. This hash is used to verify that the request has not been altered. Know more about hash generation.
 
 <Accordion title="Steps to Generate Hash" icon="fa-key">
   The hash is created by concatenating the following parameters in a specific order. Refer to the Step 1.1 Prepare Payment Request Parameters for the parameter description and example values.
@@ -377,7 +377,7 @@ To ensure the payment request is secure, you must generate a hash using your tra
 
   **Common Mistake**
 
-  These are the common mistakes while concatenating params in the hash logic.
+  These are the common mistakes you may commit while concatenating params in the hash logic.
 
   * Missing `|` separators for empty fields
   * Incorrect parameter order
@@ -390,7 +390,6 @@ To ensure the payment request is secure, you must generate a hash using your tra
     * Any mismatch will result in `Invalid Hash` errors
   </Callout>
 
-  Refer to the **Generate Hash (Detailed Guide)** for complete implementation details.
 </Accordion>
 
 ### Step 1.3 Create a Payment Request
@@ -418,6 +417,23 @@ Now that you have created the hash value combine the below into a request that w
 | **Production** | `https://secure.payu.in/_payment` |
 
 <Accordion title="POST the HTML Form (server renders)" icon="fa-paper-plane">
+  <Cards>
+  <Card title="Method">
+    POST
+  </Card>
+
+  <Card title="Endpoint">
+    /_payment
+  </Card>
+  </Cards>
+  
+  #### Environment
+
+  |                |                                   |
+  | -------------- | --------------------------------- |
+  | **Test**       | `https://test.payu.in/_payment`   |
+  | **Production** | `https://secure.payu.in/_payment` |
+
   **Sample Payloads in HTML and Other Language Bindings**<br />
 
   ```html
