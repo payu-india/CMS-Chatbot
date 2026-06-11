@@ -399,23 +399,6 @@ Now that you have created the hash value combine the below into a request that w
 - Payment parameters
 - Generated hash
 
-<Cards>
-  <Card title="Method">
-    POST
-  </Card>
-
-  <Card title="Endpoint">
-    /_payment
-  </Card>
-</Cards>
-
-#### Environment
-
-|                |                                   |
-| -------------- | --------------------------------- |
-| **Test**       | `https://test.payu.in/_payment`   |
-| **Production** | `https://secure.payu.in/_payment` |
-
 <Accordion title="POST the HTML Form (server renders)" icon="fa-paper-plane">
   <Cards>
   <Card title="Method">
