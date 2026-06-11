@@ -824,28 +824,6 @@ Now that you have created the hash value combine the below into a request that w
 
 </Accordion>
 
-#### Step 1.3.1 Customize PayU Payment Page _(Optional)_
-
-<Accordion title="Customize Checkout" icon="fa-gear">
-You can customize the following in the Checkout page:<br/>
-
-* Enforce Pay Method or Remove Category
-* Change the Language
-* Configure Payment Method and Checkout Settings
-
-Refer to the <a href="https://docs.payu.in/docs/payu-payment-page-customization" target="_blank">Customize PayU Payment Page</a> for more information about cutomizing the PayU payment page.
-</Accordion>
-
-### Step 1.4 Verify Response via Reverse Hashing
-
-Response verification ensures that the response originated from PayU and has not been modified. It protects against:
-
-- Tampered responses
-- Spoofed requests
-- Fraudulent status updates
-
-After the payment is successful or failed, PayU POSTs back to your `surl` or `furl` respectively with URL-encoded fields (form post). This payload includes the transaction status, `txnid`, `mihpayid`, and a hash you must verify (reverse hashing) for verification.
-
 <Accordion title="Success and Error Response" icon="fa-circle-check">
 Below are the payment method wise success and error responses received.<br/>
 
@@ -1346,9 +1324,27 @@ Refer to the Errors section for the parameters and description.
 
 </Accordion>
 
-#### Step 1.4.1 Reverse Hashing
+#### Step 1.3.1 Customize PayU Payment Page _(Optional)_
 
-You should verify the response received for the authenticity by creating a hash using the reverse hashing logic. Below is how the reverse hashing works.
+<Accordion title="Customize Checkout" icon="fa-gear">
+You can customize the following in the Checkout page:<br/>
+
+* Enforce Pay Method or Remove Category
+* Change the Language
+* Configure Payment Method and Checkout Settings
+
+Refer to the <a href="https://docs.payu.in/docs/payu-payment-page-customization" target="_blank">Customize PayU Payment Page</a> for more information about cutomizing the PayU payment page.
+</Accordion>
+
+### Step 1.4 Verify Response via Reverse Hashing
+
+Response verification ensures that the response originated from PayU and has not been modified. It protects against:
+
+- Tampered responses
+- Spoofed requests
+- Fraudulent status updates
+
+After the payment is successful or failed, PayU POSTs back to your `surl` or `furl` respectively with URL-encoded fields (form post). This payload includes the transaction status, `txnid`, `mihpayid`, and a hash you must verify (reverse hashing) for verification. Below is how the reverse hashing works.
 
 > ✅ **Verification Checklist**
 >
@@ -1362,16 +1358,23 @@ You should verify the response received for the authenticity by creating a hash 
 <Image src="https://files.readme.io/7acf9d72438a6a00b637ef4c70c13b8a4871c3aa6055d7c985bbef5f980fa502-reverse_hashing_flow.png" align="center" caption="_Reverse Hashing Flow_" border={true} framed={true} />
 
 
-<br />
+> ✅ **Verification Checklist**
+>
+> - [x] Verify every transaction response.
+>
+> - [x] Reject mismatched hashes.
+>
+> - [x] Log verification failures.
 
 <Accordion title="Reverse Hashing Logic" icon="fa-arrow-rotate-left">
+Create a hash using the following logic.<br/>
 ```json Reverse Hash Logic
 sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-```
+```<br/>
 You should compare the hash value you got from the above logic with the hash value you received in the response. The payment is verified if the hash values match and update the order state.
 </Accordion>
 
-You can use the <Anchor target="_blank" href="https://payu-hashverificationtool.onrender.com/">PayU's Hash Verification System</Anchor> to generate a hash (reverse hash) for payment verification.
+You can also use the <Anchor target="_blank" href="https://payu-hashverificationtool.onrender.com/">PayU's Hash Verification System</Anchor> to generate a hash (reverse hash) for payment verification.
 
 ### Step 1.5 Verify the Payment
 
