@@ -1500,8 +1500,6 @@ It is equally important to test the failed transaction. Perform the following st
 > - [x] Customer receives appropriate messaging
 >
 > - [x] Order remains unpaid
->
->
 
 ## 3. Go-live Checklist
 
@@ -1520,6 +1518,10 @@ Make sure you update the test environment with the production environment.
 * Salt is never exposed
 * HTTPS is enforced
 * Sensitive information is not logged
+</Accordion>
+
+<Accordion title="Webhooks" icon="fa-info-circle">
+Make sure the <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">webhook is configured</a>.
 </Accordion>
 
 <br />
