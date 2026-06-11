@@ -52,7 +52,7 @@ Below are the integration steps:
    1. Additionally, you can [customize your PayU payment page](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-131-customize-payu-payment-page-optional). This is an optional step.
 4. After you receive a response, you should [verify it via reverse hashing](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-14-verify-response-via-reverse-hashing). This is a critical step to verify the authenticity of the payment.
    1. You should [create a reverse hash](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-141-reverse-hashing) using a hash logic mentioned in this step.
-5. As a final step you should verify the payment status.
+5. As a final step you should [verify the payment](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-15-verify-the-payment) status.
 
 ### Step 1.1 Prepare Payment Request Parameters
 
