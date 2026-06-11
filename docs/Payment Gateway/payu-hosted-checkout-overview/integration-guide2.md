@@ -1439,7 +1439,7 @@ You can use the following payment methods and their test details to make the pay
     **OTP:** 123456
   </Tab>
 
-  <Tab title="Debit Card">
+  <Tab title="Debit Card ">
     Here's content that's only inside the second Tab.
   </Tab>
 
