@@ -16,7 +16,7 @@ Follow these steps to integrate the PayU Hosted Checkout on your website and acc
   items={[
     {
       title: "1. Build Integration",
-      href: "/docs/integration-guide2#1-build-integration",
+      href: "https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#1-build-integration",
       icon: "fa-code",
       target: "_self",
       text: "Build your test integration for PayU Hosted Checkout.",
