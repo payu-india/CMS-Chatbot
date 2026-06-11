@@ -1474,10 +1474,14 @@ You can use the following default payment methods and their test details to make
   </Tab>
 </Tabs>
 
-Apart from the above default payment methods, you can <Anchor target="_blank" href="https://docs.payu.in/docs/payu-payment-page-customization#configure-checkout-payment-methods-and-settings">enable the following payment methods</Anchor> in the checkout:
+> 📘 **Handy Tips**
+>
+> Apart from the above default payment methods, you can <Anchor target="_blank" href="https://docs.payu.in/docs/payu-payment-page-customization#configure-checkout-payment-methods-and-settings">enable the following payment methods</Anchor> in the checkout:
+>
+> - BNPL
+> - EMI
+> - International Payments
 
-- BNPL
-- EMI
-- International Payments
+<br />
 
 <br />
