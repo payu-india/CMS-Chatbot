@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-Follow these steps to integrate the PayU Hosted Checkout on your website.<br />
+Follow these steps to integrate the PayU Hosted Checkout on your website and accept live payments .<br />
 
 > 👍 **Payment Flow**
 >
