@@ -1515,4 +1515,11 @@ Replace test merchant key and salt with live credentials. Know how to <a href="h
 Make sure you update the test environment with the production environment.
 </Accordion>
 
+<Accordion title="Security Checklist" icon="fa-shield-check">
+* Hash generation occurs server-side
+* Salt is never exposed
+* HTTPS is enforced
+* Sensitive information is not logged
+</Accordion>
+
 <br />
