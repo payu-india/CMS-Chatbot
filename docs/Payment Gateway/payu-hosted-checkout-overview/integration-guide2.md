@@ -1462,7 +1462,7 @@ You can use the following payment methods and their test details to make the pay
 
     > 📘 Notes:
     >
-    > - The **anything\@payu** VPA can be used in the sandbox or [Merchant Hosted > Collect Payment - UPI](ref:_payment_merchant_hosted_upi) API reference page and any other VPA will not work for th&#x65;**\_payment** only.
+    > - The **anything\@payu** VPA can be used in the sandbox or [Merchant Hosted > Collect Payment - UPI](ref:_payment_merchant_hosted_upi) API reference page and any other VPA will not work for the **_payment** only.
     > - For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
 
   </Tab>
