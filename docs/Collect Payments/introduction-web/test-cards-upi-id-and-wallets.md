@@ -30,15 +30,15 @@ next:
 
 The following table provides details of some of the test cards that you can use to test your integration in the sandbox (Test environment). As Sandbox is a replica of the production environment, you can push the code in production by just replacing account credentials and URLs.
 
-<Callout icon="📘" theme="info">
-  **Note**: The character “X” in the card numbers are placeholders that can be substituted with any number (1-9).
-</Callout>
+> 📘
+>
+> **Note**: The character “X” in the card numbers are placeholders that can be substituted with any number (1-9).
 
 ## Web Checkout
 
-<Callout icon="📘" theme="info">
-  **Note**: Any value can be used for the **name** parameter in Test environment.
-</Callout>
+> 📘
+>
+> **Note**: Any value can be used for the **name** parameter in Test environment.
 
 ### Credit Card
 
@@ -59,9 +59,9 @@ The following table provides details of some of the test cards that you can use 
 
 ## EMI test cards
 
-<Callout icon="📘" theme="info">
-  **Note**: Any value can be used for the **name** parameter in Test environment.
-</Callout>
+> 📘
+>
+> **Note**: Any value can be used for the **name** parameter in Test environment.
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -266,19 +266,19 @@ The following table provides details of some of the test cards that you can use 
 
 #### Axio
 
-* Mob:   9999999999
-* OTP =   123456
-* PAN = XYZPA1234A (for eKYC)
-* DOB = 21-07-1980
-* Aadhaar = 9999 9999 1234
-* Aadhaar OTP = 123456
-* UPI ID - test@upi
+- Mob:   9999999999
+- OTP =   123456
+- PAN = XYZPA1234A (for eKYC)
+- DOB = 21-07-1980
+- Aadhaar = 9999 9999 1234
+- Aadhaar OTP = 123456
+- UPI ID - test\@upi
 
 ## International Payments or DCC
 
-<Callout icon="📘" theme="info">
-  **Note**: Any name can be used for the **name** parameter in Test environment.
-</Callout>
+> 📘
+>
+> **Note**: Any name can be used for the **name** parameter in Test environment.
 
 | Currency | **Card Number**  | **Expiry** | **CVV** | **OTP** |
 | -------- | ---------------- | ---------- | ------- | ------- |
@@ -287,9 +287,9 @@ The following table provides details of some of the test cards that you can use 
 
 ## Save cards
 
-<Callout icon="📘" theme="info">
-  **Note**: Any value can be used for the **name** parameter in Test environment.
-</Callout>
+> 📘
+>
+> **Note**: Any value can be used for the **name** parameter in Test environment.
 
 | **Card Number**  | Network     | **Expiry** | **CVV** |
 | ---------------- | :---------- | ---------- | ------- |
@@ -298,12 +298,12 @@ The following table provides details of some of the test cards that you can use 
 
 ## Test UPI ID
 
-You can use **anything@payu** or **999999999@payu** as VPA to test your UPI-related integration in the [sandbox](https://en.wikipedia.org/wiki/Sandbox_\(software_development\)#:) (Test environment) only for the payment flows involving **_payment** AP.
+You can use **anything\@payu** or **999999999\@payu** as VPA to test your UPI-related integration in the [sandbox](https://en.wikipedia.org/wiki/Sandbox_\(software_development\)#:) (Test environment) only for the payment flows involving **\_payment** API.
 
 > 📘 Notes:
 >
-> * The **anything@payu** VPA can be used in the sandbox or [Merchant Hosted > Collect Payment - UPI](ref:_payment_merchant_hosted_upi) API reference page and any other VPA will not work for the**_payment** only.
-> * For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
+> - The **anything\@payu** VPA can be used in the sandbox or [Merchant Hosted > Collect Payment - UPI](ref:_payment_merchant_hosted_upi) API reference page and any other VPA will not work for th&#x65;**\_payment** only.
+> - For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
 
 ## Test UPI Intent Flow
 
@@ -311,15 +311,15 @@ To test the UPI intent flow on UAT, please follow the steps below:
 
 1. **Download the UPI Intent Simulator APK**
 
-* Access the UPI Intent Simulator repository:
+- Access the UPI Intent Simulator repository:
   [https://github.com/payu-india/PayU-UPI-Intent-Simulator-App](https://github.com/payu-india/PayU-UPI-Intent-Simulator-App)
-* Download the latest UAT APK from the Releases section or the appropriate branch tagged for UAT.
+- Download the latest UAT APK from the Releases section or the appropriate branch tagged for UAT.
 
 2. **Install the APK on Your Mobile Device**
 
-* Transfer the APK to your device or download it directly on your phone.
-* Enable installation from unknown sources if prompted.
-* Install the APK.
+- Transfer the APK to your device or download it directly on your phone.
+- Enable installation from unknown sources if prompted.
+- Install the APK.
 
 **For More Details**
 
@@ -330,9 +330,9 @@ Please refer to the official GitHub README and follow the detailed steps here:
 
 Use the following credentials for Net Banking in the sandbox:
 
-* **user name**: payu
-* **password**: payu
-* **OTP**: 123456
+- **user name**: payu
+- **password**: payu
+- **OTP**: 123456
 
 The above Net Banking credentials must be used in[ Collect Payment > Net Banking ](ref:_payment_merchant_hosted_netbanking)API Reference.
 
@@ -353,3 +353,5 @@ The above Net Banking credentials must be used in[ Collect Payment > Net Banking
 | HDFC Bank     | HDFCF30  | 30 days | 9123412345    | 4234567890056334 |
 | HDFC Bank     | HDFCF60  | 60 days | 9123412345    | 4234567890056334 |
 | HDFC Bank     | HDFCF90  | 90 days | 9123412345    | 4234567890056334 |
+
+<br />
