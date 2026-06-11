@@ -1430,6 +1430,24 @@ After you post a form and save the html file and perform the following steps:
 
 You can use the following payment methods and their test details to make the payment.
 
+<Tabs>
+  <Tab title="NetBanking">
+    Use the following credentials if you choose NetBanking as a payment method:<br/>
+
+    **user name:** payu
+    **password:** payu
+    **OTP:** 123456
+  </Tab>
+
+  <Tab title="Second Tab">
+    Here's content that's only inside the second Tab.
+  </Tab>
+
+  <Tab title="Third Tab">
+    Here's content that's only inside the third Tab.
+  </Tab>
+</Tabs>
+
 <Cards>
   <Card title="NetBanking" icon="fa-building-columns">
     Use the following credentials if you choose NetBanking as a payment method:<br/>
