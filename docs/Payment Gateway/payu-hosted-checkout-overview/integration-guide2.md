@@ -1493,6 +1493,8 @@ It is equally important to test the failed transaction. Perform the following st
 
 > ✅ **Verify**
 >
+> Verify the following during a failed transaction:
+>
 > - [x] Failure URL is triggered
 >
 > - [x] Customer receives appropriate messaging
