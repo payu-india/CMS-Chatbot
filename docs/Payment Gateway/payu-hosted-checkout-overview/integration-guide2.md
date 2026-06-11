@@ -38,16 +38,6 @@ Follow these steps to integrate the PayU Hosted Checkout on your website.
   ]}
 />
 
-## What You Are Building
-
-In this step, you are:
-
-- Creating a payment request on your backend
-- Securing it using a hash
-- Sending the user to the PayU Hosted Checkout to complete the payment
-
-This is the core of the integration. Everything else builds on top of this.
-
 ## Prerequisites
 
 Go through the prerequisites before you proceed with the integration
@@ -56,12 +46,12 @@ Go through the prerequisites before you proceed with the integration
 
 Below are the integration steps:
 
-1. To begin with, you should prepare payment request parameters
-2. As a next step, you should generate a secure hash using a logic.
-3. Now that you have required parameters and the hash value, you should create a payment request by posting a HTML form
-   1. Additionally, you can customize your PayU payment page. This is an optional step.
-4. After you receive a response, you should verify it via reverse hashing. This is a critical step to verify the authenticity of the payment.
-   1. You should create a reverse hash using a hash logic mentioned in this step.
+1. To begin with, you should [prepare payment request parameters.](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-11-prepare-payment-request-parameters)
+2. As a next step, you should [generate a secure hash](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-12-generate-secure-hash) using a logic.
+3. Now that you have required parameters and the hash value, you should [create a payment request](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-13-create-a-payment-request) by posting a HTML form
+   1. Additionally, you can [customize your PayU payment page](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-131-customize-payu-payment-page-optional). This is an optional step.
+4. After you receive a response, you should [verify it via reverse hashing](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-14-verify-response-via-reverse-hashing). This is a critical step to verify the authenticity of the payment.
+   1. You should [create a reverse hash](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-141-reverse-hashing) using a hash logic mentioned in this step.
 5. As a final step you should verify the payment status.
 
 ### Step 1.1 Prepare Payment Request Parameters
