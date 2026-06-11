@@ -1364,12 +1364,15 @@ Create a hash using the following logic.<br/>
 sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
 ```
 <br/>
+
 You should compare the hash value you got from the above logic with the hash value you received in the response. The payment is verified if the hash values match and update the order state.
 </Accordion>
 
 You can also use the <Anchor target="_blank" href="https://payu-hashverificationtool.onrender.com/">PayU's Hash Verification System</Anchor> to generate a hash (reverse hash) for payment verification.
 
 ### Step 1.5 Verify the Payment
+
+after the transaction is complete, you should check the payment status .&#x20;
 
 <Accordion title="Verify Payment Methods" icon="fa-check-double">
   <Tabs>
@@ -1398,7 +1401,7 @@ You can also use the <Anchor target="_blank" href="https://payu-hashverification
 
 ## 2. Test Integration
 
-Before accepting live payments, test your integration thoroughly.
+After you build the integration, you should test it thoroughly before going live.<br />
 
 > ⚠️ **Watch out!**
 >
@@ -1413,7 +1416,7 @@ Before accepting live payments, test your integration thoroughly.
 
 ### Step 2.1 Simulate a Successful Transaction
 
-<Accordion title="Test Payment Steps" icon="fa-info-circle">
+<Accordion title="Successful Transaction Steps" icon="fa-info-circle">
 After you post a form and save the html file and perform the following steps:
 1. Open the file to initiate the transaction.
 2. Select the payment method and make a test transaction to ensure the integration is working as expected.
