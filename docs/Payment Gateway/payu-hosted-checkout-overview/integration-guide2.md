@@ -1362,7 +1362,8 @@ After the payment is successful or failed, PayU POSTs back to your `surl` or `fu
 Create a hash using the following logic.<br/>
 ```json Reverse Hash Logic
 sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-```<br/>
+```
+<br/>
 You should compare the hash value you got from the above logic with the hash value you received in the response. The payment is verified if the hash values match and update the order state.
 </Accordion>
 
