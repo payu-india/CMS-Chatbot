@@ -1418,11 +1418,11 @@ Before accepting live payments, test your integration thoroughly.
 >   - Ensure the order of the parameters exactly matches the format specified in the documentation.
 >   - Verify that there are no empty or null values for mandatory parameters in the hash string.
 
-### Step 2.1 Simulate a Successful Payment
+### Step 2.1 Simulate a Successful Transaction
 
 <Accordion title="Test Payment Steps" icon="fa-info-circle">
 After you post a form and save the html file and perform the following steps:
-1. Open the file to initiate the transaction
+1. Open the file to initiate the transaction.
 2. Select the payment method and make a test transaction to ensure the integration is working as expected.
 </Accordion>
 
@@ -1482,6 +1482,13 @@ You can use the following default payment methods and their test details to make
 > - EMI
 > - International Payments
 
-<br />
+### Step 2.2 Simulate a Failed Transaction
+
+It is equally important to test the failed transaction. Perform the following steps to simulate the failed transaction.
+
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+1. Open the HTML file to initiate the transaction.
+2. Select any payment method and simulate a failed transaction by providing a invalid test credentials.
+</Accordion>
 
 <br />
