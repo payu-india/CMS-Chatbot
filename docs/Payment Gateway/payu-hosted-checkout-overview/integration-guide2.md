@@ -1508,7 +1508,11 @@ It is equally important to test the failed transaction. Perform the following st
 Now that you successfully tested the integration, check the go-live checklist for PayU hosted checkout integration. Consider these steps before taking the integration live.
 
 <Accordion title="Production Credentials" icon="fa-user-lock">
-* Replace test merchant key and salt with live credentials. Know how to <a href="https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard" target="_blank">create live merchant key and salt</a>
+Replace test merchant key and salt with live credentials. Know how to <a href="https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard" target="_blank">create live merchant key and salt</a>
+</Accordion>
+
+<Accordion title="Production Environment" icon="fa-link">
+Make sure you update the test environment with the production environment.
 </Accordion>
 
 <br />
