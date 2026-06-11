@@ -1460,7 +1460,7 @@ You can use the following default payment methods and their test details to make
   > - For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
 </Accordion>
 
-<Accordion title="Wallet" icon="fa-info-circle">
+<Accordion title="Wallet" icon="fa-wallet">
   | Vendor | Mobile Number                                                     | OTP    |
   | ------ | ----------------------------------------------------------------- | ------ |
   | PayTM  | 7777777777 or use card mentioned under [Test Cards](#test-cards). | 888888 |
