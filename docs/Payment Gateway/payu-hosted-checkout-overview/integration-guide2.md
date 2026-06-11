@@ -1447,7 +1447,24 @@ You can use the following payment methods and their test details to make the pay
   </Tab>
 
   <Tab title="Credit Card">
-    Here's content that's only inside the third Tab.
+    | **Payment Flow**              | **Card Number**  | **Network** | **Expiry** | **CVV** | **OTP** |
+    | ----------------------------- | ---------------- | ----------- | ---------- | ------- | ------- |
+    | PayU/Merchant Hosted Checkout | 5123456789012346 | Mastercard  | 05/30      | 123     | 123456  |
+    | PayU/Merchant Hosted Checkout | 4012001037141112 | VISA        | 05/30      | 123     | 123456  |
+    | Server-to-Server              | 5497774415170603 | Mastercard  | 05/30      | 412     | 123456  |
+    | PayU/Merchant Hosted Checkout | 6082015309577308 | RUPAY       | 05/30      | 123     | 123456  |
+    | PayU/Merchant Hosted Checkout | 370295061673669  | AMEX        | 03/30      | 1234    | 725356  |
+
+  </Tab>
+
+  <Tab title="UPI">
+    You can use `anything@payu` or `999999999@payu` as VPA to test your integration.<br/>
+
+    > 📘 Notes:
+    >
+    > - The **anything\@payu** VPA can be used in the sandbox or [Merchant Hosted > Collect Payment - UPI](ref:_payment_merchant_hosted_upi) API reference page and any other VPA will not work for th&#x65;**\_payment** only.
+    > - For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
+
   </Tab>
 </Tabs>
 
