@@ -1454,7 +1454,6 @@ You can use the following payment methods and their test details to make the pay
     | Server-to-Server              | 5497774415170603 | Mastercard  | 05/30      | 412     | 123456  |
     | PayU/Merchant Hosted Checkout | 6082015309577308 | RUPAY       | 05/30      | 123     | 123456  |
     | PayU/Merchant Hosted Checkout | 370295061673669  | AMEX        | 03/30      | 1234    | 725356  |
-
   </Tab>
 
   <Tab title="UPI">
@@ -1464,7 +1463,14 @@ You can use the following payment methods and their test details to make the pay
     >
     > - The **anything\@payu** VPA can be used in the sandbox or [Merchant Hosted > Collect Payment - UPI](ref:_payment_merchant_hosted_upi) API reference page and any other VPA will not work for the **_payment** only.
     > - For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
+  </Tab>
 
+  <Tab title="Wallet">
+    | Vendor | Mobile Number                                                     | OTP    |
+    | ------ | ----------------------------------------------------------------- | ------ |
+    | PayTM  | 7777777777 or use card mentioned under [Test Cards](#test-cards). | 888888 |
+    | Amazon | You can test using your original Amazon account details.          |        |
+    | Airtel | You can use your mobile number.                                   |        |
   </Tab>
 </Tabs>
 
