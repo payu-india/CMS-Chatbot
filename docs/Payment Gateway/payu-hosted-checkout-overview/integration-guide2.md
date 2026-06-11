@@ -1426,49 +1426,47 @@ After you post a form and save the html file and perform the following steps:
 
 You can use the following default payment methods and their test details to make the payment.
 
-<Tabs>
-  <Tab title="NetBanking">
-    Use the following credentials if you choose NetBanking as a payment method:<br/>
+<Accordion title="NetBanking" icon="fa-building-columns">
+  Use the following credentials if you choose NetBanking as a payment method:<br/>
+  
+  **user name:** payu
+  **password:** payu
+  **OTP:** 123456
+</Accordion>
 
-    **user name:** payu
-    **password:** payu
-    **OTP:** 123456
-  </Tab>
+<Accordion title="Debit Card" icon="fa-credit-card">
+  | Card Number         | Network    | Expiry | CVV | OTP    |
+  | :------------------ | :--------- | :----- | :-- | :----- |
+  | 5118-7000-0000-0003 | Mastercard | 05/30  | 123 | 123456 |
+  | 4594-5380-5063-9999 | VISA       | 05/30  | 123 | 123456 |
+</Accordion>
 
-  <Tab title="Debit Card">
-    | Card Number         | Network    | Expiry | CVV | OTP    |
-    | :------------------ | :--------- | :----- | :-- | :----- |
-    | 5118-7000-0000-0003 | Mastercard | 05/30  | 123 | 123456 |
-    | 4594-5380-5063-9999 | VISA       | 05/30  | 123 | 123456 |
-  </Tab>
+<Accordion title="Credit Card" icon="fa-credit-card">
+  | **Payment Flow**              | **Card Number**  | **Network** | **Expiry** | **CVV** | **OTP** |
+  | ----------------------------- | ---------------- | ----------- | ---------- | ------- | ------- |
+  | PayU/Merchant Hosted Checkout | 5123456789012346 | Mastercard  | 05/30      | 123     | 123456  |
+  | PayU/Merchant Hosted Checkout | 4012001037141112 | VISA        | 05/30      | 123     | 123456  |
+  | Server-to-Server              | 5497774415170603 | Mastercard  | 05/30      | 412     | 123456  |
+  | PayU/Merchant Hosted Checkout | 6082015309577308 | RUPAY       | 05/30      | 123     | 123456  |
+  | PayU/Merchant Hosted Checkout | 370295061673669  | AMEX        | 03/30      | 1234    | 725356  |
+</Accordion>
 
-  <Tab title="Credit Card">
-    | **Payment Flow**              | **Card Number**  | **Network** | **Expiry** | **CVV** | **OTP** |
-    | ----------------------------- | ---------------- | ----------- | ---------- | ------- | ------- |
-    | PayU/Merchant Hosted Checkout | 5123456789012346 | Mastercard  | 05/30      | 123     | 123456  |
-    | PayU/Merchant Hosted Checkout | 4012001037141112 | VISA        | 05/30      | 123     | 123456  |
-    | Server-to-Server              | 5497774415170603 | Mastercard  | 05/30      | 412     | 123456  |
-    | PayU/Merchant Hosted Checkout | 6082015309577308 | RUPAY       | 05/30      | 123     | 123456  |
-    | PayU/Merchant Hosted Checkout | 370295061673669  | AMEX        | 03/30      | 1234    | 725356  |
-  </Tab>
+<Accordion title="UPI" icon="fa-mobile-screen-button">
+  You can use `anything@payu` or `999999999@payu` as VPA to test your integration.<br/>
 
-  <Tab title="UPI">
-    You can use `anything@payu` or `999999999@payu` as VPA to test your integration.<br/>
+  > 📘 Notes:
+  >
+  > - The **anything\@payu** VPA can be used in the sandbox or [Merchant Hosted > Collect Payment - UPI](ref:_payment_merchant_hosted_upi) API reference page and any other VPA will not work for the **_payment** only.
+  > - For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
+</Accordion>
 
-    > 📘 Notes:
-    >
-    > - The **anything\@payu** VPA can be used in the sandbox or [Merchant Hosted > Collect Payment - UPI](ref:_payment_merchant_hosted_upi) API reference page and any other VPA will not work for the **_payment** only.
-    > - For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
-  </Tab>
-
-  <Tab title="Wallet">
-    | Vendor | Mobile Number                                                     | OTP    |
-    | ------ | ----------------------------------------------------------------- | ------ |
-    | PayTM  | 7777777777 or use card mentioned under [Test Cards](#test-cards). | 888888 |
-    | Amazon | You can test using your original Amazon account details.          |        |
-    | Airtel | You can use your mobile number.                                   |        |
-  </Tab>
-</Tabs>
+<Accordion title="Wallet" icon="fa-info-circle">
+  | Vendor | Mobile Number                                                     | OTP    |
+  | ------ | ----------------------------------------------------------------- | ------ |
+  | PayTM  | 7777777777 or use card mentioned under [Test Cards](#test-cards). | 888888 |
+  | Amazon | You can test using your original Amazon account details.          |        |
+  | Airtel | You can use your mobile number.                                   |        |
+</Accordion>
 
 > 📘 **Handy Tips**
 >
