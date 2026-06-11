@@ -1434,10 +1434,9 @@ You can use the following payment methods and their test details to make the pay
   <Card title="NetBanking" icon="fa-building-columns">
     Use the following credentials if you choose NetBanking as a payment method:<br/>
 
-    user name: payu
-    password: payu
-    OTP: 123456
-
+    **user name:** payu
+    **password:** payu
+    **OTP:** 123456
   </Card>
 
   <Card title="API Reference" href="#" icon="fa-code">
